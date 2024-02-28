@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of authorized spacecraft links per ground station and the expiration date of the authorization. */
+/**
+ * List of authorized spacecraft links per ground station and the expiration date of the authorization.
+ */
 @Fluent
 public final class SpacecraftLink {
     /*
@@ -48,13 +50,15 @@ public final class SpacecraftLink {
     @JsonProperty(value = "authorizations", access = JsonProperty.Access.WRITE_ONLY)
     private List<AuthorizedGroundstation> authorizations;
 
-    /** Creates an instance of SpacecraftLink class. */
+    /**
+     * Creates an instance of SpacecraftLink class.
+     */
     public SpacecraftLink() {
     }
 
     /**
      * Get the name property: Link name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -63,7 +67,7 @@ public final class SpacecraftLink {
 
     /**
      * Set the name property: Link name.
-     *
+     * 
      * @param name the name value to set.
      * @return the SpacecraftLink object itself.
      */
@@ -74,7 +78,7 @@ public final class SpacecraftLink {
 
     /**
      * Get the centerFrequencyMHz property: Center Frequency in MHz.
-     *
+     * 
      * @return the centerFrequencyMHz value.
      */
     public float centerFrequencyMHz() {
@@ -83,7 +87,7 @@ public final class SpacecraftLink {
 
     /**
      * Set the centerFrequencyMHz property: Center Frequency in MHz.
-     *
+     * 
      * @param centerFrequencyMHz the centerFrequencyMHz value to set.
      * @return the SpacecraftLink object itself.
      */
@@ -94,7 +98,7 @@ public final class SpacecraftLink {
 
     /**
      * Get the bandwidthMHz property: Bandwidth in MHz.
-     *
+     * 
      * @return the bandwidthMHz value.
      */
     public float bandwidthMHz() {
@@ -103,7 +107,7 @@ public final class SpacecraftLink {
 
     /**
      * Set the bandwidthMHz property: Bandwidth in MHz.
-     *
+     * 
      * @param bandwidthMHz the bandwidthMHz value to set.
      * @return the SpacecraftLink object itself.
      */
@@ -114,7 +118,7 @@ public final class SpacecraftLink {
 
     /**
      * Get the direction property: Direction (Uplink or Downlink).
-     *
+     * 
      * @return the direction value.
      */
     public Direction direction() {
@@ -123,7 +127,7 @@ public final class SpacecraftLink {
 
     /**
      * Set the direction property: Direction (Uplink or Downlink).
-     *
+     * 
      * @param direction the direction value to set.
      * @return the SpacecraftLink object itself.
      */
@@ -134,7 +138,7 @@ public final class SpacecraftLink {
 
     /**
      * Get the polarization property: Polarization. e.g. (RHCP, LHCP).
-     *
+     * 
      * @return the polarization value.
      */
     public Polarization polarization() {
@@ -143,7 +147,7 @@ public final class SpacecraftLink {
 
     /**
      * Set the polarization property: Polarization. e.g. (RHCP, LHCP).
-     *
+     * 
      * @param polarization the polarization value to set.
      * @return the SpacecraftLink object itself.
      */
@@ -154,7 +158,7 @@ public final class SpacecraftLink {
 
     /**
      * Get the authorizations property: Authorized Ground Stations.
-     *
+     * 
      * @return the authorizations value.
      */
     public List<AuthorizedGroundstation> authorizations() {
@@ -163,24 +167,21 @@ public final class SpacecraftLink {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model SpacecraftLink"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model SpacecraftLink"));
         }
         if (direction() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property direction in model SpacecraftLink"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property direction in model SpacecraftLink"));
         }
         if (polarization() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property polarization in model SpacecraftLink"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property polarization in model SpacecraftLink"));
         }
         if (authorizations() != null) {
             authorizations().forEach(e -> e.validate());

@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Operation Result Entity. */
+/**
+ * Operation Result Entity.
+ */
 @Fluent
 public final class OperationResultInner {
     /*
@@ -74,13 +76,15 @@ public final class OperationResultInner {
     @JsonProperty(value = "error")
     private OperationResultErrorProperties error;
 
-    /** Creates an instance of OperationResultInner class. */
+    /**
+     * Creates an instance of OperationResultInner class.
+     */
     public OperationResultInner() {
     }
 
     /**
      * Get the id property: ID of the resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -89,7 +93,7 @@ public final class OperationResultInner {
 
     /**
      * Get the name property: Name of the resource.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -98,7 +102,7 @@ public final class OperationResultInner {
 
     /**
      * Get the status property: The status of operation.
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -107,7 +111,7 @@ public final class OperationResultInner {
 
     /**
      * Get the startTime property: The operation start time (ISO 8601 UTC standard).
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -116,7 +120,7 @@ public final class OperationResultInner {
 
     /**
      * Get the endTime property: The operation end time (ISO 8601 UTC standard).
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -125,7 +129,7 @@ public final class OperationResultInner {
 
     /**
      * Get the percentComplete property: Percentage completed.
-     *
+     * 
      * @return the percentComplete value.
      */
     public Double percentComplete() {
@@ -134,7 +138,7 @@ public final class OperationResultInner {
 
     /**
      * Get the value property: A list of results when the operation returns multiple results.
-     *
+     * 
      * @return the value value.
      */
     public List<Object> value() {
@@ -143,7 +147,7 @@ public final class OperationResultInner {
 
     /**
      * Get the nextLink property: The URL to get the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -152,7 +156,7 @@ public final class OperationResultInner {
 
     /**
      * Get the properties property: Operation result properties.
-     *
+     * 
      * @return the properties value.
      */
     public Object properties() {
@@ -161,7 +165,7 @@ public final class OperationResultInner {
 
     /**
      * Set the properties property: Operation result properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the OperationResultInner object itself.
      */
@@ -172,7 +176,7 @@ public final class OperationResultInner {
 
     /**
      * Get the error property: Operation result error properties.
-     *
+     * 
      * @return the error value.
      */
     public OperationResultErrorProperties error() {
@@ -181,7 +185,7 @@ public final class OperationResultInner {
 
     /**
      * Set the error property: Operation result error properties.
-     *
+     * 
      * @param error the error value to set.
      * @return the OperationResultInner object itself.
      */
@@ -192,7 +196,7 @@ public final class OperationResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

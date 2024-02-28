@@ -15,7 +15,9 @@ import com.azure.resourcemanager.orbital.models.ContactsStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Customer creates a contact resource for a spacecraft resource. */
+/**
+ * Customer creates a contact resource for a spacecraft resource.
+ */
 @Fluent
 public final class ContactInner extends ProxyResource {
     /*
@@ -30,13 +32,15 @@ public final class ContactInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ContactInner class. */
+    /**
+     * Creates an instance of ContactInner class.
+     */
     public ContactInner() {
     }
 
     /**
      * Get the innerProperties property: Properties of the Contact Resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ContactsProperties innerProperties() {
@@ -45,7 +49,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -54,7 +58,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The current state of the resource's creation, deletion, or modification.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ContactsPropertiesProvisioningState provisioningState() {
@@ -63,7 +67,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Set the provisioningState property: The current state of the resource's creation, deletion, or modification.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the ContactInner object itself.
      */
@@ -77,7 +81,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the status property: Status of a contact.
-     *
+     * 
      * @return the status value.
      */
     public ContactsStatus status() {
@@ -86,7 +90,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the reservationStartTime property: Reservation start time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the reservationStartTime value.
      */
     public OffsetDateTime reservationStartTime() {
@@ -95,7 +99,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Set the reservationStartTime property: Reservation start time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @param reservationStartTime the reservationStartTime value to set.
      * @return the ContactInner object itself.
      */
@@ -109,7 +113,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the reservationEndTime property: Reservation end time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the reservationEndTime value.
      */
     public OffsetDateTime reservationEndTime() {
@@ -118,7 +122,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Set the reservationEndTime property: Reservation end time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @param reservationEndTime the reservationEndTime value to set.
      * @return the ContactInner object itself.
      */
@@ -132,7 +136,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the rxStartTime property: Receive start time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the rxStartTime value.
      */
     public OffsetDateTime rxStartTime() {
@@ -141,7 +145,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the rxEndTime property: Receive end time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the rxEndTime value.
      */
     public OffsetDateTime rxEndTime() {
@@ -150,7 +154,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the txStartTime property: Transmit start time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the txStartTime value.
      */
     public OffsetDateTime txStartTime() {
@@ -159,7 +163,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the txEndTime property: Transmit end time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the txEndTime value.
      */
     public OffsetDateTime txEndTime() {
@@ -168,7 +172,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the errorMessage property: Any error message while scheduling a contact.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -176,8 +180,9 @@ public final class ContactInner extends ProxyResource {
     }
 
     /**
-     * Get the maximumElevationDegrees property: Maximum elevation of the antenna during the contact in decimal degrees.
-     *
+     * Get the maximumElevationDegrees property: Maximum elevation of the antenna during the contact in decimal
+     * degrees.
+     * 
      * @return the maximumElevationDegrees value.
      */
     public Float maximumElevationDegrees() {
@@ -186,7 +191,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the startAzimuthDegrees property: Azimuth of the antenna at the start of the contact in decimal degrees.
-     *
+     * 
      * @return the startAzimuthDegrees value.
      */
     public Float startAzimuthDegrees() {
@@ -195,7 +200,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the endAzimuthDegrees property: Azimuth of the antenna at the end of the contact in decimal degrees.
-     *
+     * 
      * @return the endAzimuthDegrees value.
      */
     public Float endAzimuthDegrees() {
@@ -204,7 +209,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the groundStationName property: Azure Ground Station name.
-     *
+     * 
      * @return the groundStationName value.
      */
     public String groundStationName() {
@@ -213,7 +218,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Set the groundStationName property: Azure Ground Station name.
-     *
+     * 
      * @param groundStationName the groundStationName value to set.
      * @return the ContactInner object itself.
      */
@@ -227,7 +232,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the startElevationDegrees property: Spacecraft elevation above the horizon at contact start.
-     *
+     * 
      * @return the startElevationDegrees value.
      */
     public Float startElevationDegrees() {
@@ -236,7 +241,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the endElevationDegrees property: Spacecraft elevation above the horizon at contact end.
-     *
+     * 
      * @return the endElevationDegrees value.
      */
     public Float endElevationDegrees() {
@@ -245,7 +250,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the antennaConfiguration property: The configuration associated with the allocated antenna.
-     *
+     * 
      * @return the antennaConfiguration value.
      */
     public ContactsPropertiesAntennaConfiguration antennaConfiguration() {
@@ -254,7 +259,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Get the contactProfile property: The reference to the contact profile resource.
-     *
+     * 
      * @return the contactProfile value.
      */
     public ContactsPropertiesContactProfile contactProfile() {
@@ -263,7 +268,7 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Set the contactProfile property: The reference to the contact profile resource.
-     *
+     * 
      * @param contactProfile the contactProfile value to set.
      * @return the ContactInner object itself.
      */
@@ -277,14 +282,13 @@ public final class ContactInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model ContactInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model ContactInner"));
         } else {
             innerProperties().validate();
         }

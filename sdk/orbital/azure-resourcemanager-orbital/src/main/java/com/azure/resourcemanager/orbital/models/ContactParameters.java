@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Parameters that define the contact resource. */
+/**
+ * Parameters that define the contact resource.
+ */
 @Fluent
 public final class ContactParameters {
     /*
@@ -36,13 +38,15 @@ public final class ContactParameters {
     @JsonProperty(value = "endTime", required = true)
     private OffsetDateTime endTime;
 
-    /** Creates an instance of ContactParameters class. */
+    /**
+     * Creates an instance of ContactParameters class.
+     */
     public ContactParameters() {
     }
 
     /**
      * Get the contactProfile property: The reference to the contact profile resource.
-     *
+     * 
      * @return the contactProfile value.
      */
     public ContactParametersContactProfile contactProfile() {
@@ -51,7 +55,7 @@ public final class ContactParameters {
 
     /**
      * Set the contactProfile property: The reference to the contact profile resource.
-     *
+     * 
      * @param contactProfile the contactProfile value to set.
      * @return the ContactParameters object itself.
      */
@@ -62,7 +66,7 @@ public final class ContactParameters {
 
     /**
      * Get the groundStationName property: Name of Azure Ground Station.
-     *
+     * 
      * @return the groundStationName value.
      */
     public String groundStationName() {
@@ -71,7 +75,7 @@ public final class ContactParameters {
 
     /**
      * Set the groundStationName property: Name of Azure Ground Station.
-     *
+     * 
      * @param groundStationName the groundStationName value to set.
      * @return the ContactParameters object itself.
      */
@@ -82,7 +86,7 @@ public final class ContactParameters {
 
     /**
      * Get the startTime property: Start time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -91,7 +95,7 @@ public final class ContactParameters {
 
     /**
      * Set the startTime property: Start time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the ContactParameters object itself.
      */
@@ -102,7 +106,7 @@ public final class ContactParameters {
 
     /**
      * Get the endTime property: End time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -111,7 +115,7 @@ public final class ContactParameters {
 
     /**
      * Set the endTime property: End time of a contact (ISO 8601 UTC standard).
-     *
+     * 
      * @param endTime the endTime value to set.
      * @return the ContactParameters object itself.
      */
@@ -122,33 +126,27 @@ public final class ContactParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (contactProfile() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property contactProfile in model ContactParameters"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property contactProfile in model ContactParameters"));
         } else {
             contactProfile().validate();
         }
         if (groundStationName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property groundStationName in model ContactParameters"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property groundStationName in model ContactParameters"));
         }
         if (startTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property startTime in model ContactParameters"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property startTime in model ContactParameters"));
         }
         if (endTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property endTime in model ContactParameters"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property endTime in model ContactParameters"));
         }
     }
 

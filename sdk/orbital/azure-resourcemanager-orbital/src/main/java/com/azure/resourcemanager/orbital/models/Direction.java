@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Direction (Uplink or Downlink). */
+/**
+ * Direction (Uplink or Downlink).
+ */
 public final class Direction extends ExpandableStringEnum<Direction> {
-    /** Static value Uplink for Direction. */
+    /**
+     * Static value Uplink for Direction.
+     */
     public static final Direction UPLINK = fromString("Uplink");
 
-    /** Static value Downlink for Direction. */
+    /**
+     * Static value Downlink for Direction.
+     */
     public static final Direction DOWNLINK = fromString("Downlink");
 
     /**
      * Creates a new instance of Direction value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class Direction extends ExpandableStringEnum<Direction> {
 
     /**
      * Creates or finds a Direction from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Direction.
      */
@@ -38,7 +44,7 @@ public final class Direction extends ExpandableStringEnum<Direction> {
 
     /**
      * Gets known Direction values.
-     *
+     * 
      * @return known Direction values.
      */
     public static Collection<Direction> values() {

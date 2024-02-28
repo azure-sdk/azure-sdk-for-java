@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The configuration associated with the allocated antenna. */
+/**
+ * The configuration associated with the allocated antenna.
+ */
 @Fluent
 public final class ContactsPropertiesAntennaConfiguration {
     /*
@@ -23,14 +25,16 @@ public final class ContactsPropertiesAntennaConfiguration {
     @JsonProperty(value = "sourceIps")
     private List<String> sourceIps;
 
-    /** Creates an instance of ContactsPropertiesAntennaConfiguration class. */
+    /**
+     * Creates an instance of ContactsPropertiesAntennaConfiguration class.
+     */
     public ContactsPropertiesAntennaConfiguration() {
     }
 
     /**
      * Get the destinationIp property: The destination IP a packet can be sent to. This would for example be the TCP
      * endpoint you would send data to.
-     *
+     * 
      * @return the destinationIp value.
      */
     public String destinationIp() {
@@ -40,7 +44,7 @@ public final class ContactsPropertiesAntennaConfiguration {
     /**
      * Set the destinationIp property: The destination IP a packet can be sent to. This would for example be the TCP
      * endpoint you would send data to.
-     *
+     * 
      * @param destinationIp the destinationIp value to set.
      * @return the ContactsPropertiesAntennaConfiguration object itself.
      */
@@ -51,7 +55,7 @@ public final class ContactsPropertiesAntennaConfiguration {
 
     /**
      * Get the sourceIps property: List of Source IP.
-     *
+     * 
      * @return the sourceIps value.
      */
     public List<String> sourceIps() {
@@ -60,7 +64,7 @@ public final class ContactsPropertiesAntennaConfiguration {
 
     /**
      * Set the sourceIps property: List of Source IP.
-     *
+     * 
      * @param sourceIps the sourceIps value to set.
      * @return the ContactsPropertiesAntennaConfiguration object itself.
      */
@@ -71,7 +75,7 @@ public final class ContactsPropertiesAntennaConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

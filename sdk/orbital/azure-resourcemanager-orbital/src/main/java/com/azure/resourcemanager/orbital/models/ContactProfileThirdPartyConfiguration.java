@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Contact Profile third-party partner configuration. */
+/**
+ * Contact Profile third-party partner configuration.
+ */
 @Fluent
 public final class ContactProfileThirdPartyConfiguration {
     /*
@@ -24,13 +26,15 @@ public final class ContactProfileThirdPartyConfiguration {
     @JsonProperty(value = "missionConfiguration", required = true)
     private String missionConfiguration;
 
-    /** Creates an instance of ContactProfileThirdPartyConfiguration class. */
+    /**
+     * Creates an instance of ContactProfileThirdPartyConfiguration class.
+     */
     public ContactProfileThirdPartyConfiguration() {
     }
 
     /**
      * Get the providerName property: Name of the third-party provider.
-     *
+     * 
      * @return the providerName value.
      */
     public String providerName() {
@@ -39,7 +43,7 @@ public final class ContactProfileThirdPartyConfiguration {
 
     /**
      * Set the providerName property: Name of the third-party provider.
-     *
+     * 
      * @param providerName the providerName value to set.
      * @return the ContactProfileThirdPartyConfiguration object itself.
      */
@@ -49,10 +53,10 @@ public final class ContactProfileThirdPartyConfiguration {
     }
 
     /**
-     * Get the missionConfiguration property: Name of string referencing the configuration describing contact set-up for
-     * a particular mission. Expected values are those which have been created in collaboration with the partner
+     * Get the missionConfiguration property: Name of string referencing the configuration describing contact set-up
+     * for a particular mission. Expected values are those which have been created in collaboration with the partner
      * network.
-     *
+     * 
      * @return the missionConfiguration value.
      */
     public String missionConfiguration() {
@@ -60,10 +64,10 @@ public final class ContactProfileThirdPartyConfiguration {
     }
 
     /**
-     * Set the missionConfiguration property: Name of string referencing the configuration describing contact set-up for
-     * a particular mission. Expected values are those which have been created in collaboration with the partner
+     * Set the missionConfiguration property: Name of string referencing the configuration describing contact set-up
+     * for a particular mission. Expected values are those which have been created in collaboration with the partner
      * network.
-     *
+     * 
      * @param missionConfiguration the missionConfiguration value to set.
      * @return the ContactProfileThirdPartyConfiguration object itself.
      */
@@ -74,22 +78,17 @@ public final class ContactProfileThirdPartyConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (providerName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property providerName in model ContactProfileThirdPartyConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property providerName in model ContactProfileThirdPartyConfiguration"));
         }
         if (missionConfiguration() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property missionConfiguration in model"
-                            + " ContactProfileThirdPartyConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property missionConfiguration in model ContactProfileThirdPartyConfiguration"));
         }
     }
 

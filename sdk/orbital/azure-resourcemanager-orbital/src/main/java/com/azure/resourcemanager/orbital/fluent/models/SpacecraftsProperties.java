@@ -11,7 +11,9 @@ import com.azure.resourcemanager.orbital.models.SpacecraftsPropertiesProvisionin
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Spacecraft Resource Properties. */
+/**
+ * List of Spacecraft Resource Properties.
+ */
 @Fluent
 public final class SpacecraftsProperties {
     /*
@@ -50,13 +52,15 @@ public final class SpacecraftsProperties {
     @JsonProperty(value = "links", required = true)
     private List<SpacecraftLink> links;
 
-    /** Creates an instance of SpacecraftsProperties class. */
+    /**
+     * Creates an instance of SpacecraftsProperties class.
+     */
     public SpacecraftsProperties() {
     }
 
     /**
      * Get the provisioningState property: The current state of the resource's creation, deletion, or modification.
-     *
+     * 
      * @return the provisioningState value.
      */
     public SpacecraftsPropertiesProvisioningState provisioningState() {
@@ -65,7 +69,7 @@ public final class SpacecraftsProperties {
 
     /**
      * Set the provisioningState property: The current state of the resource's creation, deletion, or modification.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the SpacecraftsProperties object itself.
      */
@@ -76,7 +80,7 @@ public final class SpacecraftsProperties {
 
     /**
      * Get the noradId property: NORAD ID of the spacecraft.
-     *
+     * 
      * @return the noradId value.
      */
     public String noradId() {
@@ -85,7 +89,7 @@ public final class SpacecraftsProperties {
 
     /**
      * Set the noradId property: NORAD ID of the spacecraft.
-     *
+     * 
      * @param noradId the noradId value to set.
      * @return the SpacecraftsProperties object itself.
      */
@@ -96,7 +100,7 @@ public final class SpacecraftsProperties {
 
     /**
      * Get the titleLine property: Title line of the two-line element set (TLE).
-     *
+     * 
      * @return the titleLine value.
      */
     public String titleLine() {
@@ -105,7 +109,7 @@ public final class SpacecraftsProperties {
 
     /**
      * Set the titleLine property: Title line of the two-line element set (TLE).
-     *
+     * 
      * @param titleLine the titleLine value to set.
      * @return the SpacecraftsProperties object itself.
      */
@@ -116,7 +120,7 @@ public final class SpacecraftsProperties {
 
     /**
      * Get the tleLine1 property: Line 1 of the two-line element set (TLE).
-     *
+     * 
      * @return the tleLine1 value.
      */
     public String tleLine1() {
@@ -125,7 +129,7 @@ public final class SpacecraftsProperties {
 
     /**
      * Set the tleLine1 property: Line 1 of the two-line element set (TLE).
-     *
+     * 
      * @param tleLine1 the tleLine1 value to set.
      * @return the SpacecraftsProperties object itself.
      */
@@ -136,7 +140,7 @@ public final class SpacecraftsProperties {
 
     /**
      * Get the tleLine2 property: Line 2 of the two-line element set (TLE).
-     *
+     * 
      * @return the tleLine2 value.
      */
     public String tleLine2() {
@@ -145,7 +149,7 @@ public final class SpacecraftsProperties {
 
     /**
      * Set the tleLine2 property: Line 2 of the two-line element set (TLE).
-     *
+     * 
      * @param tleLine2 the tleLine2 value to set.
      * @return the SpacecraftsProperties object itself.
      */
@@ -156,7 +160,7 @@ public final class SpacecraftsProperties {
 
     /**
      * Get the links property: Immutable list of Spacecraft links.
-     *
+     * 
      * @return the links value.
      */
     public List<SpacecraftLink> links() {
@@ -165,7 +169,7 @@ public final class SpacecraftsProperties {
 
     /**
      * Set the links property: Immutable list of Spacecraft links.
-     *
+     * 
      * @param links the links value to set.
      * @return the SpacecraftsProperties object itself.
      */
@@ -176,29 +180,25 @@ public final class SpacecraftsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (titleLine() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property titleLine in model SpacecraftsProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property titleLine in model SpacecraftsProperties"));
         }
         if (tleLine1() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property tleLine1 in model SpacecraftsProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property tleLine1 in model SpacecraftsProperties"));
         }
         if (tleLine2() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property tleLine2 in model SpacecraftsProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property tleLine2 in model SpacecraftsProperties"));
         }
         if (links() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property links in model SpacecraftsProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property links in model SpacecraftsProperties"));
         } else {
             links().forEach(e -> e.validate());
         }
