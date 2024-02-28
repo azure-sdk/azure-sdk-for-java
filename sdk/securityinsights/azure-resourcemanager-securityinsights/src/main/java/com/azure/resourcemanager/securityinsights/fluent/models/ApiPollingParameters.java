@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.CodelessConnectorPollin
 import com.azure.resourcemanager.securityinsights.models.CodelessUiConnectorConfigProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents Codeless API Polling data connector. */
+/**
+ * Represents Codeless API Polling data connector.
+ */
 @Fluent
 public final class ApiPollingParameters {
     /*
@@ -25,8 +27,14 @@ public final class ApiPollingParameters {
     private CodelessConnectorPollingConfigProperties pollingConfig;
 
     /**
+     * Creates an instance of ApiPollingParameters class.
+     */
+    public ApiPollingParameters() {
+    }
+
+    /**
      * Get the connectorUiConfig property: Config to describe the instructions blade.
-     *
+     * 
      * @return the connectorUiConfig value.
      */
     public CodelessUiConnectorConfigProperties connectorUiConfig() {
@@ -35,7 +43,7 @@ public final class ApiPollingParameters {
 
     /**
      * Set the connectorUiConfig property: Config to describe the instructions blade.
-     *
+     * 
      * @param connectorUiConfig the connectorUiConfig value to set.
      * @return the ApiPollingParameters object itself.
      */
@@ -46,7 +54,7 @@ public final class ApiPollingParameters {
 
     /**
      * Get the pollingConfig property: Config to describe the polling instructions.
-     *
+     * 
      * @return the pollingConfig value.
      */
     public CodelessConnectorPollingConfigProperties pollingConfig() {
@@ -55,7 +63,7 @@ public final class ApiPollingParameters {
 
     /**
      * Set the pollingConfig property: Config to describe the polling instructions.
-     *
+     * 
      * @param pollingConfig the pollingConfig value to set.
      * @return the ApiPollingParameters object itself.
      */
@@ -66,7 +74,7 @@ public final class ApiPollingParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

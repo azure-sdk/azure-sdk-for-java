@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Config to describe the polling config for API poller connector. */
+/**
+ * Config to describe the polling config for API poller connector.
+ */
 @Fluent
 public final class CodelessConnectorPollingConfigProperties {
     /*
@@ -42,8 +44,14 @@ public final class CodelessConnectorPollingConfigProperties {
     private CodelessConnectorPollingResponseProperties response;
 
     /**
+     * Creates an instance of CodelessConnectorPollingConfigProperties class.
+     */
+    public CodelessConnectorPollingConfigProperties() {
+    }
+
+    /**
      * Get the isActive property: The poller active status.
-     *
+     * 
      * @return the isActive value.
      */
     public Boolean isActive() {
@@ -52,7 +60,7 @@ public final class CodelessConnectorPollingConfigProperties {
 
     /**
      * Set the isActive property: The poller active status.
-     *
+     * 
      * @param isActive the isActive value to set.
      * @return the CodelessConnectorPollingConfigProperties object itself.
      */
@@ -63,7 +71,7 @@ public final class CodelessConnectorPollingConfigProperties {
 
     /**
      * Get the auth property: Describe the authentication type of the poller.
-     *
+     * 
      * @return the auth value.
      */
     public CodelessConnectorPollingAuthProperties auth() {
@@ -72,7 +80,7 @@ public final class CodelessConnectorPollingConfigProperties {
 
     /**
      * Set the auth property: Describe the authentication type of the poller.
-     *
+     * 
      * @param auth the auth value to set.
      * @return the CodelessConnectorPollingConfigProperties object itself.
      */
@@ -83,7 +91,7 @@ public final class CodelessConnectorPollingConfigProperties {
 
     /**
      * Get the request property: Describe the poll request config parameters of the poller.
-     *
+     * 
      * @return the request value.
      */
     public CodelessConnectorPollingRequestProperties request() {
@@ -92,7 +100,7 @@ public final class CodelessConnectorPollingConfigProperties {
 
     /**
      * Set the request property: Describe the poll request config parameters of the poller.
-     *
+     * 
      * @param request the request value to set.
      * @return the CodelessConnectorPollingConfigProperties object itself.
      */
@@ -103,7 +111,7 @@ public final class CodelessConnectorPollingConfigProperties {
 
     /**
      * Get the paging property: Describe the poll request paging config of the poller.
-     *
+     * 
      * @return the paging value.
      */
     public CodelessConnectorPollingPagingProperties paging() {
@@ -112,7 +120,7 @@ public final class CodelessConnectorPollingConfigProperties {
 
     /**
      * Set the paging property: Describe the poll request paging config of the poller.
-     *
+     * 
      * @param paging the paging value to set.
      * @return the CodelessConnectorPollingConfigProperties object itself.
      */
@@ -123,7 +131,7 @@ public final class CodelessConnectorPollingConfigProperties {
 
     /**
      * Get the response property: Describe the response config parameters of the poller.
-     *
+     * 
      * @return the response value.
      */
     public CodelessConnectorPollingResponseProperties response() {
@@ -132,7 +140,7 @@ public final class CodelessConnectorPollingConfigProperties {
 
     /**
      * Set the response property: Describe the response config parameters of the poller.
-     *
+     * 
      * @param response the response value to set.
      * @return the CodelessConnectorPollingConfigProperties object itself.
      */
@@ -143,23 +151,19 @@ public final class CodelessConnectorPollingConfigProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (auth() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property auth in model CodelessConnectorPollingConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property auth in model CodelessConnectorPollingConfigProperties"));
         } else {
             auth().validate();
         }
         if (request() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property request in model CodelessConnectorPollingConfigProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property request in model CodelessConnectorPollingConfigProperties"));
         } else {
             request().validate();
         }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Event grouping settings property bag. */
+/**
+ * Event grouping settings property bag.
+ */
 @Fluent
 public final class EventGroupingSettings {
     /*
@@ -17,8 +19,14 @@ public final class EventGroupingSettings {
     private EventGroupingAggregationKind aggregationKind;
 
     /**
+     * Creates an instance of EventGroupingSettings class.
+     */
+    public EventGroupingSettings() {
+    }
+
+    /**
      * Get the aggregationKind property: The event grouping aggregation kinds.
-     *
+     * 
      * @return the aggregationKind value.
      */
     public EventGroupingAggregationKind aggregationKind() {
@@ -27,7 +35,7 @@ public final class EventGroupingSettings {
 
     /**
      * Set the aggregationKind property: The event grouping aggregation kinds.
-     *
+     * 
      * @param aggregationKind the aggregationKind value to set.
      * @return the EventGroupingSettings object itself.
      */
@@ -38,7 +46,7 @@ public final class EventGroupingSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

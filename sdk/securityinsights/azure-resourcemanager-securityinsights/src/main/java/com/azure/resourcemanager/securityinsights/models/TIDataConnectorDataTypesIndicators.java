@@ -6,10 +6,20 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Data type for indicators connection. */
+/**
+ * Data type for indicators connection.
+ */
 @Fluent
 public final class TIDataConnectorDataTypesIndicators extends DataConnectorDataTypeCommon {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of TIDataConnectorDataTypesIndicators class.
+     */
+    public TIDataConnectorDataTypesIndicators() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TIDataConnectorDataTypesIndicators withState(DataTypeState state) {
         super.withState(state);
@@ -18,7 +28,7 @@ public final class TIDataConnectorDataTypesIndicators extends DataConnectorDataT
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

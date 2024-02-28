@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The original source of the content item, where it comes from. */
+/**
+ * The original source of the content item, where it comes from.
+ */
 @Fluent
 public final class MetadataSource {
     /*
@@ -18,20 +20,26 @@ public final class MetadataSource {
     private SourceKind kind;
 
     /*
-     * Name of the content source.  The repo name, solution name, LA workspace name etc.
+     * Name of the content source. The repo name, solution name, LA workspace name etc.
      */
     @JsonProperty(value = "name")
     private String name;
 
     /*
-     * ID of the content source.  The solution ID, workspace ID, etc
+     * ID of the content source. The solution ID, workspace ID, etc
      */
     @JsonProperty(value = "sourceId")
     private String sourceId;
 
     /**
+     * Creates an instance of MetadataSource class.
+     */
+    public MetadataSource() {
+    }
+
+    /**
      * Get the kind property: Source type of the content.
-     *
+     * 
      * @return the kind value.
      */
     public SourceKind kind() {
@@ -40,7 +48,7 @@ public final class MetadataSource {
 
     /**
      * Set the kind property: Source type of the content.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the MetadataSource object itself.
      */
@@ -51,7 +59,7 @@ public final class MetadataSource {
 
     /**
      * Get the name property: Name of the content source. The repo name, solution name, LA workspace name etc.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -60,7 +68,7 @@ public final class MetadataSource {
 
     /**
      * Set the name property: Name of the content source. The repo name, solution name, LA workspace name etc.
-     *
+     * 
      * @param name the name value to set.
      * @return the MetadataSource object itself.
      */
@@ -71,7 +79,7 @@ public final class MetadataSource {
 
     /**
      * Get the sourceId property: ID of the content source. The solution ID, workspace ID, etc.
-     *
+     * 
      * @return the sourceId value.
      */
     public String sourceId() {
@@ -80,7 +88,7 @@ public final class MetadataSource {
 
     /**
      * Set the sourceId property: ID of the content source. The solution ID, workspace ID, etc.
-     *
+     * 
      * @param sourceId the sourceId value to set.
      * @return the MetadataSource object itself.
      */
@@ -91,14 +99,13 @@ public final class MetadataSource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (kind() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property kind in model MetadataSource"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property kind in model MetadataSource"));
         }
     }
 

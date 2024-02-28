@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectConnectorDataTypes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Office Microsoft Project data connector properties. */
+/**
+ * Office Microsoft Project data connector properties.
+ */
 @Fluent
 public final class Office365ProjectDataConnectorProperties extends DataConnectorTenantId {
     /*
@@ -20,8 +22,14 @@ public final class Office365ProjectDataConnectorProperties extends DataConnector
     private Office365ProjectConnectorDataTypes dataTypes;
 
     /**
+     * Creates an instance of Office365ProjectDataConnectorProperties class.
+     */
+    public Office365ProjectDataConnectorProperties() {
+    }
+
+    /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public Office365ProjectConnectorDataTypes dataTypes() {
@@ -30,7 +38,7 @@ public final class Office365ProjectDataConnectorProperties extends DataConnector
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the Office365ProjectDataConnectorProperties object itself.
      */
@@ -39,7 +47,9 @@ public final class Office365ProjectDataConnectorProperties extends DataConnector
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Office365ProjectDataConnectorProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -48,17 +58,15 @@ public final class Office365ProjectDataConnectorProperties extends DataConnector
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (dataTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataTypes in model Office365ProjectDataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dataTypes in model Office365ProjectDataConnectorProperties"));
         } else {
             dataTypes().validate();
         }

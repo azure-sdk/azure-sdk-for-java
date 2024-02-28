@@ -8,11 +8,41 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of Entities. */
+/**
+ * Resource collection API of Entities.
+ */
 public interface Entities {
     /**
+     * Triggers playbook on a specific entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @param requestBody Describes the request body for triggering a playbook on an entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    Response<Void> runPlaybookWithResponse(String resourceGroupName, String workspaceName, String entityIdentifier,
+        EntityManualTriggerRequestBody requestBody, Context context);
+
+    /**
+     * Triggers playbook on a specific entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityIdentifier Entity identifier.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    void runPlaybook(String resourceGroupName, String workspaceName, String entityIdentifier);
+
+    /**
      * Gets all entities.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -24,7 +54,7 @@ public interface Entities {
 
     /**
      * Gets all entities.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param context The context to associate with this operation.
@@ -37,20 +67,7 @@ public interface Entities {
 
     /**
      * Gets an entity.
-     *
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param workspaceName The name of the workspace.
-     * @param entityId entity ID.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an entity.
-     */
-    Entity get(String resourceGroupName, String workspaceName, String entityId);
-
-    /**
-     * Gets an entity.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
@@ -63,23 +80,21 @@ public interface Entities {
     Response<Entity> getWithResponse(String resourceGroupName, String workspaceName, String entityId, Context context);
 
     /**
-     * Expands an entity.
-     *
+     * Gets an entity.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
-     * @param parameters The parameters required to execute an expand operation on the given entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the entity expansion result operation response.
+     * @return an entity.
      */
-    EntityExpandResponse expand(
-        String resourceGroupName, String workspaceName, String entityId, EntityExpandParameters parameters);
+    Entity get(String resourceGroupName, String workspaceName, String entityId);
 
     /**
      * Expands an entity.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
@@ -90,31 +105,27 @@ public interface Entities {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the entity expansion result operation response along with {@link Response}.
      */
-    Response<EntityExpandResponse> expandWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String entityId,
-        EntityExpandParameters parameters,
-        Context context);
+    Response<EntityExpandResponse> expandWithResponse(String resourceGroupName, String workspaceName, String entityId,
+        EntityExpandParameters parameters, Context context);
 
     /**
-     * Get Insights and Activities for an entity.
-     *
+     * Expands an entity.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
-     * @param kind The Kind parameter for queries.
+     * @param parameters The parameters required to execute an expand operation on the given entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return insights and Activities for an entity.
+     * @return the entity expansion result operation response.
      */
-    GetQueriesResponse queries(
-        String resourceGroupName, String workspaceName, String entityId, EntityItemQueryKind kind);
+    EntityExpandResponse expand(String resourceGroupName, String workspaceName, String entityId,
+        EntityExpandParameters parameters);
 
     /**
      * Get Insights and Activities for an entity.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
@@ -125,27 +136,27 @@ public interface Entities {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return insights and Activities for an entity along with {@link Response}.
      */
-    Response<GetQueriesResponse> queriesWithResponse(
-        String resourceGroupName, String workspaceName, String entityId, EntityItemQueryKind kind, Context context);
+    Response<GetQueriesResponse> queriesWithResponse(String resourceGroupName, String workspaceName, String entityId,
+        EntityItemQueryKind kind, Context context);
 
     /**
-     * Execute Insights for an entity.
-     *
+     * Get Insights and Activities for an entity.
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
-     * @param parameters The parameters required to execute insights on the given entity.
+     * @param kind The Kind parameter for queries.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Get Insights result operation response.
+     * @return insights and Activities for an entity.
      */
-    EntityGetInsightsResponse getInsights(
-        String resourceGroupName, String workspaceName, String entityId, EntityGetInsightsParameters parameters);
+    GetQueriesResponse queries(String resourceGroupName, String workspaceName, String entityId,
+        EntityItemQueryKind kind);
 
     /**
      * Execute Insights for an entity.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param entityId entity ID.
@@ -156,10 +167,21 @@ public interface Entities {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Get Insights result operation response along with {@link Response}.
      */
-    Response<EntityGetInsightsResponse> getInsightsWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String entityId,
-        EntityGetInsightsParameters parameters,
-        Context context);
+    Response<EntityGetInsightsResponse> getInsightsWithResponse(String resourceGroupName, String workspaceName,
+        String entityId, EntityGetInsightsParameters parameters, Context context);
+
+    /**
+     * Execute Insights for an entity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName The name of the workspace.
+     * @param entityId entity ID.
+     * @param parameters The parameters required to execute insights on the given entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Get Insights result operation response.
+     */
+    EntityGetInsightsResponse getInsights(String resourceGroupName, String workspaceName, String entityId,
+        EntityGetInsightsParameters parameters);
 }

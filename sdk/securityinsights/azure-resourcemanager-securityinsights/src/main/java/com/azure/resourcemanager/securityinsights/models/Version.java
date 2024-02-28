@@ -8,17 +8,32 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The version of the source control. */
+/**
+ * The version of the source control.
+ */
 public final class Version extends ExpandableStringEnum<Version> {
-    /** Static value V1 for Version. */
+    /**
+     * Static value V1 for Version.
+     */
     public static final Version V1 = fromString("V1");
 
-    /** Static value V2 for Version. */
+    /**
+     * Static value V2 for Version.
+     */
     public static final Version V2 = fromString("V2");
 
     /**
+     * Creates a new instance of Version value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public Version() {
+    }
+
+    /**
      * Creates or finds a Version from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Version.
      */
@@ -29,7 +44,7 @@ public final class Version extends ExpandableStringEnum<Version> {
 
     /**
      * Gets known Version values.
-     *
+     * 
      * @return known Version values.
      */
     public static Collection<Version> values() {

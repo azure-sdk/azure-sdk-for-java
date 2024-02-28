@@ -6,10 +6,20 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Exchange data type connection. */
+/**
+ * Exchange data type connection.
+ */
 @Fluent
 public final class OfficeDataConnectorDataTypesExchange extends DataConnectorDataTypeCommon {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of OfficeDataConnectorDataTypesExchange class.
+     */
+    public OfficeDataConnectorDataTypesExchange() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficeDataConnectorDataTypesExchange withState(DataTypeState state) {
         super.withState(state);
@@ -18,7 +28,7 @@ public final class OfficeDataConnectorDataTypesExchange extends DataConnectorDat
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
