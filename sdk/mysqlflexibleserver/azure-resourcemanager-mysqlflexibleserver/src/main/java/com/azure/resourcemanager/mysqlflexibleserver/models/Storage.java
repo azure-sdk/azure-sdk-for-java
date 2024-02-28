@@ -7,7 +7,9 @@ package com.azure.resourcemanager.mysqlflexibleserver.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Storage Profile properties of a server. */
+/**
+ * Storage Profile properties of a server.
+ */
 @Fluent
 public final class Storage {
     /*
@@ -46,13 +48,21 @@ public final class Storage {
     @JsonProperty(value = "autoIoScaling")
     private EnableStatusEnum autoIoScaling;
 
-    /** Creates an instance of Storage class. */
+    /*
+     * The redundant type of the server storage. The parameter is used for server creation.
+     */
+    @JsonProperty(value = "storageRedundancy")
+    private StorageRedundancyEnum storageRedundancy;
+
+    /**
+     * Creates an instance of Storage class.
+     */
     public Storage() {
     }
 
     /**
      * Get the storageSizeGB property: Max storage size allowed for a server.
-     *
+     * 
      * @return the storageSizeGB value.
      */
     public Integer storageSizeGB() {
@@ -61,7 +71,7 @@ public final class Storage {
 
     /**
      * Set the storageSizeGB property: Max storage size allowed for a server.
-     *
+     * 
      * @param storageSizeGB the storageSizeGB value to set.
      * @return the Storage object itself.
      */
@@ -72,7 +82,7 @@ public final class Storage {
 
     /**
      * Get the iops property: Storage IOPS for a server.
-     *
+     * 
      * @return the iops value.
      */
     public Integer iops() {
@@ -81,7 +91,7 @@ public final class Storage {
 
     /**
      * Set the iops property: Storage IOPS for a server.
-     *
+     * 
      * @param iops the iops value to set.
      * @return the Storage object itself.
      */
@@ -92,7 +102,7 @@ public final class Storage {
 
     /**
      * Get the autoGrow property: Enable Storage Auto Grow or not.
-     *
+     * 
      * @return the autoGrow value.
      */
     public EnableStatusEnum autoGrow() {
@@ -101,7 +111,7 @@ public final class Storage {
 
     /**
      * Set the autoGrow property: Enable Storage Auto Grow or not.
-     *
+     * 
      * @param autoGrow the autoGrow value to set.
      * @return the Storage object itself.
      */
@@ -112,7 +122,7 @@ public final class Storage {
 
     /**
      * Get the logOnDisk property: Enable Log On Disk or not.
-     *
+     * 
      * @return the logOnDisk value.
      */
     public EnableStatusEnum logOnDisk() {
@@ -121,7 +131,7 @@ public final class Storage {
 
     /**
      * Set the logOnDisk property: Enable Log On Disk or not.
-     *
+     * 
      * @param logOnDisk the logOnDisk value to set.
      * @return the Storage object itself.
      */
@@ -132,7 +142,7 @@ public final class Storage {
 
     /**
      * Get the storageSku property: The sku name of the server storage.
-     *
+     * 
      * @return the storageSku value.
      */
     public String storageSku() {
@@ -141,7 +151,7 @@ public final class Storage {
 
     /**
      * Get the autoIoScaling property: Enable IO Auto Scaling or not.
-     *
+     * 
      * @return the autoIoScaling value.
      */
     public EnableStatusEnum autoIoScaling() {
@@ -150,7 +160,7 @@ public final class Storage {
 
     /**
      * Set the autoIoScaling property: Enable IO Auto Scaling or not.
-     *
+     * 
      * @param autoIoScaling the autoIoScaling value to set.
      * @return the Storage object itself.
      */
@@ -160,8 +170,30 @@ public final class Storage {
     }
 
     /**
+     * Get the storageRedundancy property: The redundant type of the server storage. The parameter is used for server
+     * creation.
+     * 
+     * @return the storageRedundancy value.
+     */
+    public StorageRedundancyEnum storageRedundancy() {
+        return this.storageRedundancy;
+    }
+
+    /**
+     * Set the storageRedundancy property: The redundant type of the server storage. The parameter is used for server
+     * creation.
+     * 
+     * @param storageRedundancy the storageRedundancy value to set.
+     * @return the Storage object itself.
+     */
+    public Storage withStorageRedundancy(StorageRedundancyEnum storageRedundancy) {
+        this.storageRedundancy = storageRedundancy;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
