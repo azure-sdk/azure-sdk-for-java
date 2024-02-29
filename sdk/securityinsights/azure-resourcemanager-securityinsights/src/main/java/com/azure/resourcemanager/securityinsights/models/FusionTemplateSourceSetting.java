@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Represents a source signal consumed in Fusion detection. */
+/**
+ * Represents a source signal consumed in Fusion detection.
+ */
 @Fluent
 public final class FusionTemplateSourceSetting {
     /*
@@ -25,8 +27,14 @@ public final class FusionTemplateSourceSetting {
     private List<FusionTemplateSourceSubType> sourceSubTypes;
 
     /**
+     * Creates an instance of FusionTemplateSourceSetting class.
+     */
+    public FusionTemplateSourceSetting() {
+    }
+
+    /**
      * Get the sourceName property: The name of a source signal consumed in Fusion detection.
-     *
+     * 
      * @return the sourceName value.
      */
     public String sourceName() {
@@ -35,7 +43,7 @@ public final class FusionTemplateSourceSetting {
 
     /**
      * Set the sourceName property: The name of a source signal consumed in Fusion detection.
-     *
+     * 
      * @param sourceName the sourceName value to set.
      * @return the FusionTemplateSourceSetting object itself.
      */
@@ -47,7 +55,7 @@ public final class FusionTemplateSourceSetting {
     /**
      * Get the sourceSubTypes property: All supported source subtypes under this source signal consumed in fusion
      * detection.
-     *
+     * 
      * @return the sourceSubTypes value.
      */
     public List<FusionTemplateSourceSubType> sourceSubTypes() {
@@ -57,7 +65,7 @@ public final class FusionTemplateSourceSetting {
     /**
      * Set the sourceSubTypes property: All supported source subtypes under this source signal consumed in fusion
      * detection.
-     *
+     * 
      * @param sourceSubTypes the sourceSubTypes value to set.
      * @return the FusionTemplateSourceSetting object itself.
      */
@@ -68,15 +76,13 @@ public final class FusionTemplateSourceSetting {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceName in model FusionTemplateSourceSetting"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceName in model FusionTemplateSourceSetting"));
         }
         if (sourceSubTypes() != null) {
             sourceSubTypes().forEach(e -> e.validate());

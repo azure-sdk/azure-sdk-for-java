@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents Office Microsoft Project data connector. */
+/**
+ * Represents Office Microsoft Project data connector.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Office365Project")
 @Fluent
@@ -23,15 +25,23 @@ public final class Office365ProjectDataConnector extends DataConnectorInner {
     private Office365ProjectDataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of Office365ProjectDataConnector class.
+     */
+    public Office365ProjectDataConnector() {
+    }
+
+    /**
      * Get the innerProperties property: Office Microsoft Project data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private Office365ProjectDataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Office365ProjectDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +50,7 @@ public final class Office365ProjectDataConnector extends DataConnectorInner {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public Office365ProjectConnectorDataTypes dataTypes() {
@@ -49,7 +59,7 @@ public final class Office365ProjectDataConnector extends DataConnectorInner {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the Office365ProjectDataConnector object itself.
      */
@@ -63,7 +73,7 @@ public final class Office365ProjectDataConnector extends DataConnectorInner {
 
     /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -72,7 +82,7 @@ public final class Office365ProjectDataConnector extends DataConnectorInner {
 
     /**
      * Set the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the Office365ProjectDataConnector object itself.
      */
@@ -86,7 +96,7 @@ public final class Office365ProjectDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

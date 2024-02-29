@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Instruction steps to enable the connector. */
+/**
+ * Instruction steps to enable the connector.
+ */
 @Fluent
 public class InstructionSteps {
     /*
@@ -30,8 +32,14 @@ public class InstructionSteps {
     private List<InstructionStepsInstructionsItem> instructions;
 
     /**
+     * Creates an instance of InstructionSteps class.
+     */
+    public InstructionSteps() {
+    }
+
+    /**
      * Get the title property: Instruction step title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -40,7 +48,7 @@ public class InstructionSteps {
 
     /**
      * Set the title property: Instruction step title.
-     *
+     * 
      * @param title the title value to set.
      * @return the InstructionSteps object itself.
      */
@@ -51,7 +59,7 @@ public class InstructionSteps {
 
     /**
      * Get the description property: Instruction step description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -60,7 +68,7 @@ public class InstructionSteps {
 
     /**
      * Set the description property: Instruction step description.
-     *
+     * 
      * @param description the description value to set.
      * @return the InstructionSteps object itself.
      */
@@ -71,7 +79,7 @@ public class InstructionSteps {
 
     /**
      * Get the instructions property: Instruction step details.
-     *
+     * 
      * @return the instructions value.
      */
     public List<InstructionStepsInstructionsItem> instructions() {
@@ -80,7 +88,7 @@ public class InstructionSteps {
 
     /**
      * Set the instructions property: Instruction step details.
-     *
+     * 
      * @param instructions the instructions value to set.
      * @return the InstructionSteps object itself.
      */
@@ -91,7 +99,7 @@ public class InstructionSteps {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

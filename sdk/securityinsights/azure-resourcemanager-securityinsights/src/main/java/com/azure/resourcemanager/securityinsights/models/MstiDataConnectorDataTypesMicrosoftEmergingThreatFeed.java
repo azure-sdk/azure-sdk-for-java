@@ -8,18 +8,26 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Data type for Microsoft Threat Intelligence Platforms data connector. */
+/**
+ * Data type for Microsoft Threat Intelligence Platforms data connector.
+ */
 @Fluent
 public final class MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed extends DataConnectorDataTypeCommon {
     /*
-     * lookback period
+     * The lookback period for the feed to be imported.
      */
     @JsonProperty(value = "lookbackPeriod", required = true)
     private String lookbackPeriod;
 
     /**
-     * Get the lookbackPeriod property: lookback period.
-     *
+     * Creates an instance of MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed class.
+     */
+    public MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed() {
+    }
+
+    /**
+     * Get the lookbackPeriod property: The lookback period for the feed to be imported.
+     * 
      * @return the lookbackPeriod value.
      */
     public String lookbackPeriod() {
@@ -27,8 +35,8 @@ public final class MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed extends
     }
 
     /**
-     * Set the lookbackPeriod property: lookback period.
-     *
+     * Set the lookbackPeriod property: The lookback period for the feed to be imported.
+     * 
      * @param lookbackPeriod the lookbackPeriod value to set.
      * @return the MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed object itself.
      */
@@ -37,7 +45,9 @@ public final class MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed extends
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed withState(DataTypeState state) {
         super.withState(state);
@@ -46,21 +56,18 @@ public final class MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed extends
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (lookbackPeriod() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property lookbackPeriod in model"
-                            + " MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property lookbackPeriod in model MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed"));
         }
     }
 
-    private static final ClientLogger LOGGER =
-        new ClientLogger(MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed.class);
+    private static final ClientLogger LOGGER
+        = new ClientLogger(MstiDataConnectorDataTypesMicrosoftEmergingThreatFeed.class);
 }

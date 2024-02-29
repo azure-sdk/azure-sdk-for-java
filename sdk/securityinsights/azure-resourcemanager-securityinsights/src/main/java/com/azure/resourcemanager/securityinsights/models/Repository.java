@@ -5,22 +5,24 @@
 package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
-/** metadata of a repository. */
+/**
+ * metadata of a repository.
+ */
 @Fluent
 public final class Repository {
     /*
      * Url of repository.
      */
-    @JsonProperty(value = "url")
+    @JsonProperty(value = "url", required = true)
     private String url;
 
     /*
      * Branch name of repository.
      */
-    @JsonProperty(value = "branch")
+    @JsonProperty(value = "branch", required = true)
     private String branch;
 
     /*
@@ -32,18 +34,18 @@ public final class Repository {
     /*
      * Url to access repository action logs.
      */
-    @JsonProperty(value = "deploymentLogsUrl")
+    @JsonProperty(value = "deploymentLogsUrl", access = JsonProperty.Access.WRITE_ONLY)
     private String deploymentLogsUrl;
 
-    /*
-     * Dictionary of source control content type and path mapping.
+    /**
+     * Creates an instance of Repository class.
      */
-    @JsonProperty(value = "pathMapping")
-    private List<ContentPathMap> pathMapping;
+    public Repository() {
+    }
 
     /**
      * Get the url property: Url of repository.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -52,7 +54,7 @@ public final class Repository {
 
     /**
      * Set the url property: Url of repository.
-     *
+     * 
      * @param url the url value to set.
      * @return the Repository object itself.
      */
@@ -63,7 +65,7 @@ public final class Repository {
 
     /**
      * Get the branch property: Branch name of repository.
-     *
+     * 
      * @return the branch value.
      */
     public String branch() {
@@ -72,7 +74,7 @@ public final class Repository {
 
     /**
      * Set the branch property: Branch name of repository.
-     *
+     * 
      * @param branch the branch value to set.
      * @return the Repository object itself.
      */
@@ -83,7 +85,7 @@ public final class Repository {
 
     /**
      * Get the displayUrl property: Display url of repository.
-     *
+     * 
      * @return the displayUrl value.
      */
     public String displayUrl() {
@@ -92,7 +94,7 @@ public final class Repository {
 
     /**
      * Set the displayUrl property: Display url of repository.
-     *
+     * 
      * @param displayUrl the displayUrl value to set.
      * @return the Repository object itself.
      */
@@ -103,7 +105,7 @@ public final class Repository {
 
     /**
      * Get the deploymentLogsUrl property: Url to access repository action logs.
-     *
+     * 
      * @return the deploymentLogsUrl value.
      */
     public String deploymentLogsUrl() {
@@ -111,44 +113,20 @@ public final class Repository {
     }
 
     /**
-     * Set the deploymentLogsUrl property: Url to access repository action logs.
-     *
-     * @param deploymentLogsUrl the deploymentLogsUrl value to set.
-     * @return the Repository object itself.
-     */
-    public Repository withDeploymentLogsUrl(String deploymentLogsUrl) {
-        this.deploymentLogsUrl = deploymentLogsUrl;
-        return this;
-    }
-
-    /**
-     * Get the pathMapping property: Dictionary of source control content type and path mapping.
-     *
-     * @return the pathMapping value.
-     */
-    public List<ContentPathMap> pathMapping() {
-        return this.pathMapping;
-    }
-
-    /**
-     * Set the pathMapping property: Dictionary of source control content type and path mapping.
-     *
-     * @param pathMapping the pathMapping value to set.
-     * @return the Repository object itself.
-     */
-    public Repository withPathMapping(List<ContentPathMap> pathMapping) {
-        this.pathMapping = pathMapping;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (pathMapping() != null) {
-            pathMapping().forEach(e -> e.validate());
+        if (url() == null) {
+            throw LOGGER
+                .logExceptionAsError(new IllegalArgumentException("Missing required property url in model Repository"));
+        }
+        if (branch() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property branch in model Repository"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(Repository.class);
 }

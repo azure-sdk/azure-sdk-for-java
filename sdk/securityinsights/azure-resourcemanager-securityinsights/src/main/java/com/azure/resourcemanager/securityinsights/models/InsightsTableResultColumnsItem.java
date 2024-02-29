@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The InsightsTableResultColumnsItem model. */
+/**
+ * The InsightsTableResultColumnsItem model.
+ */
 @Fluent
 public final class InsightsTableResultColumnsItem {
     /*
@@ -23,8 +25,14 @@ public final class InsightsTableResultColumnsItem {
     private String name;
 
     /**
+     * Creates an instance of InsightsTableResultColumnsItem class.
+     */
+    public InsightsTableResultColumnsItem() {
+    }
+
+    /**
      * Get the type property: the type of the colum.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -33,7 +41,7 @@ public final class InsightsTableResultColumnsItem {
 
     /**
      * Set the type property: the type of the colum.
-     *
+     * 
      * @param type the type value to set.
      * @return the InsightsTableResultColumnsItem object itself.
      */
@@ -44,7 +52,7 @@ public final class InsightsTableResultColumnsItem {
 
     /**
      * Get the name property: the name of the colum.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -53,7 +61,7 @@ public final class InsightsTableResultColumnsItem {
 
     /**
      * Set the name property: the name of the colum.
-     *
+     * 
      * @param name the name value to set.
      * @return the InsightsTableResultColumnsItem object itself.
      */
@@ -64,7 +72,7 @@ public final class InsightsTableResultColumnsItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

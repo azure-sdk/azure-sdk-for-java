@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Nic entity property bag. */
+/**
+ * Nic entity property bag.
+ */
 @Immutable
 public final class NicEntityProperties extends EntityCommonProperties {
     /*
@@ -31,8 +33,14 @@ public final class NicEntityProperties extends EntityCommonProperties {
     private List<String> vlans;
 
     /**
+     * Creates an instance of NicEntityProperties class.
+     */
+    public NicEntityProperties() {
+    }
+
+    /**
      * Get the macAddress property: The MAC address of this network interface.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -41,7 +49,7 @@ public final class NicEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the ipAddressEntityId property: The IP entity id of this network interface.
-     *
+     * 
      * @return the ipAddressEntityId value.
      */
     public String ipAddressEntityId() {
@@ -50,7 +58,7 @@ public final class NicEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the vlans property: A list of VLANs of the network interface entity.
-     *
+     * 
      * @return the vlans value.
      */
     public List<String> vlans() {
@@ -59,7 +67,7 @@ public final class NicEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

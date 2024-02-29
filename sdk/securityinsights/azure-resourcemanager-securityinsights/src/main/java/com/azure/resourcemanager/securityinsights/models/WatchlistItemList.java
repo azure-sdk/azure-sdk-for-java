@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.WatchlistItemInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List all the watchlist items. */
+/**
+ * List all the watchlist items.
+ */
 @Fluent
 public final class WatchlistItemList {
     /*
@@ -26,8 +28,14 @@ public final class WatchlistItemList {
     private List<WatchlistItemInner> value;
 
     /**
+     * Creates an instance of WatchlistItemList class.
+     */
+    public WatchlistItemList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of watchlist item.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class WatchlistItemList {
 
     /**
      * Get the value property: Array of watchlist items.
-     *
+     * 
      * @return the value value.
      */
     public List<WatchlistItemInner> value() {
@@ -45,7 +53,7 @@ public final class WatchlistItemList {
 
     /**
      * Set the value property: Array of watchlist items.
-     *
+     * 
      * @param value the value value to set.
      * @return the WatchlistItemList object itself.
      */
@@ -56,14 +64,13 @@ public final class WatchlistItemList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model WatchlistItemList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model WatchlistItemList"));
         } else {
             value().forEach(e -> e.validate());
         }
