@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnectorDataTypes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Dynamics365 data connector properties. */
+/**
+ * Dynamics365 data connector properties.
+ */
 @Fluent
 public final class Dynamics365DataConnectorProperties extends DataConnectorTenantId {
     /*
@@ -20,8 +22,14 @@ public final class Dynamics365DataConnectorProperties extends DataConnectorTenan
     private Dynamics365DataConnectorDataTypes dataTypes;
 
     /**
+     * Creates an instance of Dynamics365DataConnectorProperties class.
+     */
+    public Dynamics365DataConnectorProperties() {
+    }
+
+    /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public Dynamics365DataConnectorDataTypes dataTypes() {
@@ -30,7 +38,7 @@ public final class Dynamics365DataConnectorProperties extends DataConnectorTenan
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the Dynamics365DataConnectorProperties object itself.
      */
@@ -39,7 +47,9 @@ public final class Dynamics365DataConnectorProperties extends DataConnectorTenan
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Dynamics365DataConnectorProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -48,17 +58,15 @@ public final class Dynamics365DataConnectorProperties extends DataConnectorTenan
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (dataTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataTypes in model Dynamics365DataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dataTypes in model Dynamics365DataConnectorProperties"));
         } else {
             dataTypes().validate();
         }

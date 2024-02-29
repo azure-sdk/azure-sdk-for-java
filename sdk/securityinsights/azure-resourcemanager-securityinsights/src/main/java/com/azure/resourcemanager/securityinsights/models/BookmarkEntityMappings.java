@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the entity mappings of a single entity. */
+/**
+ * Describes the entity mappings of a single entity.
+ */
 @Fluent
 public final class BookmarkEntityMappings {
     /*
@@ -24,8 +26,14 @@ public final class BookmarkEntityMappings {
     private List<EntityFieldMapping> fieldMappings;
 
     /**
+     * Creates an instance of BookmarkEntityMappings class.
+     */
+    public BookmarkEntityMappings() {
+    }
+
+    /**
      * Get the entityType property: The entity type.
-     *
+     * 
      * @return the entityType value.
      */
     public String entityType() {
@@ -34,7 +42,7 @@ public final class BookmarkEntityMappings {
 
     /**
      * Set the entityType property: The entity type.
-     *
+     * 
      * @param entityType the entityType value to set.
      * @return the BookmarkEntityMappings object itself.
      */
@@ -45,7 +53,7 @@ public final class BookmarkEntityMappings {
 
     /**
      * Get the fieldMappings property: Array of fields mapping for that entity type.
-     *
+     * 
      * @return the fieldMappings value.
      */
     public List<EntityFieldMapping> fieldMappings() {
@@ -54,7 +62,7 @@ public final class BookmarkEntityMappings {
 
     /**
      * Set the fieldMappings property: Array of fields mapping for that entity type.
-     *
+     * 
      * @param fieldMappings the fieldMappings value to set.
      * @return the BookmarkEntityMappings object itself.
      */
@@ -65,7 +73,7 @@ public final class BookmarkEntityMappings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
