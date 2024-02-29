@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Gets or sets the provider specific properties. */
+/**
+ * Gets or sets the provider specific properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -22,17 +24,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "PrometheusOS", value = PrometheusOSProviderInstanceProperties.class),
     @JsonSubTypes.Type(name = "Db2", value = DB2ProviderInstanceProperties.class),
     @JsonSubTypes.Type(name = "PrometheusHaCluster", value = PrometheusHaClusterProviderInstanceProperties.class),
-    @JsonSubTypes.Type(name = "MsSqlServer", value = MsSqlServerProviderInstanceProperties.class)
-})
+    @JsonSubTypes.Type(name = "MsSqlServer", value = MsSqlServerProviderInstanceProperties.class) })
 @Immutable
 public class ProviderSpecificProperties {
-    /** Creates an instance of ProviderSpecificProperties class. */
+    /**
+     * Creates an instance of ProviderSpecificProperties class.
+     */
     public ProviderSpecificProperties() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

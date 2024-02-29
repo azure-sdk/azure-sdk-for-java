@@ -9,24 +9,23 @@ import com.azure.resourcemanager.workloads.models.RoutingPreference;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for Monitors Create. */
+/**
+ * Samples for Monitors Create.
+ */
 public final class MonitorsCreateSamples {
     /*
-     * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/monitors_Create.json
+     * x-ms-original-file:
+     * specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/
+     * monitors_Create.json
      */
     /**
      * Sample code: Create a SAP monitor.
-     *
+     * 
      * @param manager Entry point to WorkloadsManager.
      */
     public static void createASAPMonitor(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .monitors()
-            .define("mySapMonitor")
-            .withRegion("westus")
-            .withExistingResourceGroup("myResourceGroup")
-            .withTags(mapOf("key", "value"))
-            .withAppLocation("westus")
+        manager.monitors().define("mySapMonitor").withRegion("westus").withExistingResourceGroup("myResourceGroup")
+            .withTags(mapOf("key", "fakeTokenPlaceholder")).withAppLocation("westus")
             .withRoutingPreference(RoutingPreference.ROUTE_ALL)
             .withManagedResourceGroupConfiguration(new ManagedRGConfiguration().withName("myManagedRg"))
             .withLogAnalyticsWorkspaceArmId(
@@ -36,6 +35,7 @@ public final class MonitorsCreateSamples {
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

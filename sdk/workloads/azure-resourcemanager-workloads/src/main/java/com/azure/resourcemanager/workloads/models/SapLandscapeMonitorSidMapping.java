@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Gets or sets the mapping for SID to Environment/Applications. */
+/**
+ * Gets or sets the mapping for SID to Environment/Applications.
+ */
 @Fluent
 public final class SapLandscapeMonitorSidMapping {
     /*
@@ -23,13 +25,15 @@ public final class SapLandscapeMonitorSidMapping {
     @JsonProperty(value = "topSid")
     private List<String> topSid;
 
-    /** Creates an instance of SapLandscapeMonitorSidMapping class. */
+    /**
+     * Creates an instance of SapLandscapeMonitorSidMapping class.
+     */
     public SapLandscapeMonitorSidMapping() {
     }
 
     /**
      * Get the name property: Gets or sets the name of the grouping.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class SapLandscapeMonitorSidMapping {
 
     /**
      * Set the name property: Gets or sets the name of the grouping.
-     *
+     * 
      * @param name the name value to set.
      * @return the SapLandscapeMonitorSidMapping object itself.
      */
@@ -49,7 +53,7 @@ public final class SapLandscapeMonitorSidMapping {
 
     /**
      * Get the topSid property: Gets or sets the list of SID's.
-     *
+     * 
      * @return the topSid value.
      */
     public List<String> topSid() {
@@ -58,7 +62,7 @@ public final class SapLandscapeMonitorSidMapping {
 
     /**
      * Set the topSid property: Gets or sets the list of SID's.
-     *
+     * 
      * @param topSid the topSid value to set.
      * @return the SapLandscapeMonitorSidMapping object itself.
      */
@@ -69,7 +73,7 @@ public final class SapLandscapeMonitorSidMapping {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
