@@ -7,16 +7,20 @@ package com.azure.resourcemanager.orbital.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.orbital.models.ContactInstanceProperties;
 
-/** Properties of Contact resource. */
+/**
+ * Properties of Contact resource.
+ */
 @Immutable
 public final class AvailableContactsProperties extends ContactInstanceProperties {
-    /** Creates an instance of AvailableContactsProperties class. */
+    /**
+     * Creates an instance of AvailableContactsProperties class.
+     */
     public AvailableContactsProperties() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

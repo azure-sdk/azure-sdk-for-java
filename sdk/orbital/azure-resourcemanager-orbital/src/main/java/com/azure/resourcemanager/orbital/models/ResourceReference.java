@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Resource Reference. */
+/**
+ * Resource Reference.
+ */
 @Fluent
 public class ResourceReference {
     /*
@@ -17,13 +19,15 @@ public class ResourceReference {
     @JsonProperty(value = "id", required = true)
     private String id;
 
-    /** Creates an instance of ResourceReference class. */
+    /**
+     * Creates an instance of ResourceReference class.
+     */
     public ResourceReference() {
     }
 
     /**
      * Get the id property: Resource ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -32,7 +36,7 @@ public class ResourceReference {
 
     /**
      * Set the id property: Resource ID.
-     *
+     * 
      * @param id the id value to set.
      * @return the ResourceReference object itself.
      */
@@ -43,14 +47,13 @@ public class ResourceReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property id in model ResourceReference"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property id in model ResourceReference"));
         }
     }
 

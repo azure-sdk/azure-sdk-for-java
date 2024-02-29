@@ -6,14 +6,20 @@ package com.azure.resourcemanager.orbital.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The reference to the spacecraft resource. */
+/**
+ * The reference to the spacecraft resource.
+ */
 @Fluent
 public final class AvailableContactsSpacecraft extends ResourceReference {
-    /** Creates an instance of AvailableContactsSpacecraft class. */
+    /**
+     * Creates an instance of AvailableContactsSpacecraft class.
+     */
     public AvailableContactsSpacecraft() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AvailableContactsSpacecraft withId(String id) {
         super.withId(id);
@@ -22,7 +28,7 @@ public final class AvailableContactsSpacecraft extends ResourceReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

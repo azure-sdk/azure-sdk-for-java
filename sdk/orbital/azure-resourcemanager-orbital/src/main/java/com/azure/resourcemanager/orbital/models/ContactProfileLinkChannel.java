@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Contact Profile Link Channel. */
+/**
+ * Contact Profile Link Channel.
+ */
 @Fluent
 public final class ContactProfileLinkChannel {
     /*
@@ -62,13 +64,15 @@ public final class ContactProfileLinkChannel {
     @JsonProperty(value = "decodingConfiguration")
     private String decodingConfiguration;
 
-    /** Creates an instance of ContactProfileLinkChannel class. */
+    /**
+     * Creates an instance of ContactProfileLinkChannel class.
+     */
     public ContactProfileLinkChannel() {
     }
 
     /**
      * Get the name property: Channel name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -77,7 +81,7 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Set the name property: Channel name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ContactProfileLinkChannel object itself.
      */
@@ -88,7 +92,7 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Get the centerFrequencyMHz property: Center Frequency in MHz.
-     *
+     * 
      * @return the centerFrequencyMHz value.
      */
     public float centerFrequencyMHz() {
@@ -97,7 +101,7 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Set the centerFrequencyMHz property: Center Frequency in MHz.
-     *
+     * 
      * @param centerFrequencyMHz the centerFrequencyMHz value to set.
      * @return the ContactProfileLinkChannel object itself.
      */
@@ -108,7 +112,7 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Get the bandwidthMHz property: Bandwidth in MHz.
-     *
+     * 
      * @return the bandwidthMHz value.
      */
     public float bandwidthMHz() {
@@ -117,7 +121,7 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Set the bandwidthMHz property: Bandwidth in MHz.
-     *
+     * 
      * @param bandwidthMHz the bandwidthMHz value to set.
      * @return the ContactProfileLinkChannel object itself.
      */
@@ -128,7 +132,7 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Get the endPoint property: Customer end point to store and retrieve data during a contact with the spacecraft.
-     *
+     * 
      * @return the endPoint value.
      */
     public EndPoint endPoint() {
@@ -137,7 +141,7 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Set the endPoint property: Customer end point to store and retrieve data during a contact with the spacecraft.
-     *
+     * 
      * @param endPoint the endPoint value to set.
      * @return the ContactProfileLinkChannel object itself.
      */
@@ -150,7 +154,7 @@ public final class ContactProfileLinkChannel {
      * Get the modulationConfiguration property: Copy of the modem configuration file such as Kratos QRadio. Only valid
      * for uplink directions. If provided, the modem connects to the customer endpoint and accepts commands from the
      * customer instead of a VITA.49 stream.
-     *
+     * 
      * @return the modulationConfiguration value.
      */
     public String modulationConfiguration() {
@@ -161,7 +165,7 @@ public final class ContactProfileLinkChannel {
      * Set the modulationConfiguration property: Copy of the modem configuration file such as Kratos QRadio. Only valid
      * for uplink directions. If provided, the modem connects to the customer endpoint and accepts commands from the
      * customer instead of a VITA.49 stream.
-     *
+     * 
      * @param modulationConfiguration the modulationConfiguration value to set.
      * @return the ContactProfileLinkChannel object itself.
      */
@@ -172,9 +176,9 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Get the demodulationConfiguration property: Copy of the modem configuration file such as Kratos QRadio or Kratos
-     * QuantumRx. Only valid for downlink directions. If provided, the modem connects to the customer endpoint and sends
-     * demodulated data instead of a VITA.49 stream.
-     *
+     * QuantumRx. Only valid for downlink directions. If provided, the modem connects to the customer endpoint and
+     * sends demodulated data instead of a VITA.49 stream.
+     * 
      * @return the demodulationConfiguration value.
      */
     public String demodulationConfiguration() {
@@ -183,9 +187,9 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Set the demodulationConfiguration property: Copy of the modem configuration file such as Kratos QRadio or Kratos
-     * QuantumRx. Only valid for downlink directions. If provided, the modem connects to the customer endpoint and sends
-     * demodulated data instead of a VITA.49 stream.
-     *
+     * QuantumRx. Only valid for downlink directions. If provided, the modem connects to the customer endpoint and
+     * sends demodulated data instead of a VITA.49 stream.
+     * 
      * @param demodulationConfiguration the demodulationConfiguration value to set.
      * @return the ContactProfileLinkChannel object itself.
      */
@@ -196,7 +200,7 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Get the encodingConfiguration property: Currently unused.
-     *
+     * 
      * @return the encodingConfiguration value.
      */
     public String encodingConfiguration() {
@@ -205,7 +209,7 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Set the encodingConfiguration property: Currently unused.
-     *
+     * 
      * @param encodingConfiguration the encodingConfiguration value to set.
      * @return the ContactProfileLinkChannel object itself.
      */
@@ -216,7 +220,7 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Get the decodingConfiguration property: Currently unused.
-     *
+     * 
      * @return the decodingConfiguration value.
      */
     public String decodingConfiguration() {
@@ -225,7 +229,7 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Set the decodingConfiguration property: Currently unused.
-     *
+     * 
      * @param decodingConfiguration the decodingConfiguration value to set.
      * @return the ContactProfileLinkChannel object itself.
      */
@@ -236,20 +240,17 @@ public final class ContactProfileLinkChannel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model ContactProfileLinkChannel"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model ContactProfileLinkChannel"));
         }
         if (endPoint() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property endPoint in model ContactProfileLinkChannel"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property endPoint in model ContactProfileLinkChannel"));
         } else {
             endPoint().validate();
         }
