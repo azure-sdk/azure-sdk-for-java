@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/workloadsmicrosoftworkloadssapdiscoverysites/ci.yml
+      - sdk/workloadsmicrosoftworkloadssapdiscoverysites/azure-resourcemanager-workloadsmicrosoftworkloadssapdiscoverysites/
+    exclude:
+      - sdk/workloadsmicrosoftworkloadssapdiscoverysites/pom.xml
+      - sdk/workloadsmicrosoftworkloadssapdiscoverysites/azure-resourcemanager-workloadsmicrosoftworkloadssapdiscoverysites/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/workloadsmicrosoftworkloadssapdiscoverysites/ci.yml
+      - sdk/workloadsmicrosoftworkloadssapdiscoverysites/azure-resourcemanager-workloadsmicrosoftworkloadssapdiscoverysites/
+    exclude:
+      - sdk/workloadsmicrosoftworkloadssapdiscoverysites/pom.xml
+      - sdk/workloadsmicrosoftworkloadssapdiscoverysites/azure-resourcemanager-workloadsmicrosoftworkloadssapdiscoverysites/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerworkloadsmicrosoftworkloadssapdiscoverysites
+    displayName: azure-resourcemanager-workloadsmicrosoftworkloadssapdiscoverysites
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: workloadsmicrosoftworkloadssapdiscoverysites
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-workloadsmicrosoftworkloadssapdiscoverysites
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerworkloadsmicrosoftworkloadssapdiscoverysites
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerworkloadsmicrosoftworkloadssapdiscoverysites }}
