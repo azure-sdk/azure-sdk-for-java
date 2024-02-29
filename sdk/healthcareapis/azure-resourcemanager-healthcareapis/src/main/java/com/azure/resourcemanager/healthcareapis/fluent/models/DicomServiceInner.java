@@ -14,6 +14,7 @@ import com.azure.resourcemanager.healthcareapis.models.ProvisioningState;
 import com.azure.resourcemanager.healthcareapis.models.PublicNetworkAccess;
 import com.azure.resourcemanager.healthcareapis.models.ServiceEventState;
 import com.azure.resourcemanager.healthcareapis.models.ServiceManagedIdentityIdentity;
+import com.azure.resourcemanager.healthcareapis.models.StorageConfiguration;
 import com.azure.resourcemanager.healthcareapis.models.TaggedResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
@@ -242,6 +243,29 @@ public final class DicomServiceInner extends TaggedResource {
             this.innerProperties = new DicomServiceProperties();
         }
         this.innerProperties().withEncryption(encryption);
+        return this;
+    }
+
+    /**
+     * Get the storageConfiguration property: The configuration of external storage account.
+     * 
+     * @return the storageConfiguration value.
+     */
+    public StorageConfiguration storageConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().storageConfiguration();
+    }
+
+    /**
+     * Set the storageConfiguration property: The configuration of external storage account.
+     * 
+     * @param storageConfiguration the storageConfiguration value to set.
+     * @return the DicomServiceInner object itself.
+     */
+    public DicomServiceInner withStorageConfiguration(StorageConfiguration storageConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DicomServiceProperties();
+        }
+        this.innerProperties().withStorageConfiguration(storageConfiguration);
         return this;
     }
 
