@@ -30,14 +30,14 @@ public final class PineconeChatExtensionParameters {
      * The configured top number of documents to feature for the configured query.
      */
     @Generated
-    @JsonProperty(value = "top_n_documents")
+    @JsonProperty(value = "topNDocuments")
     private Integer topNDocuments;
 
     /*
      * Whether queries should be restricted to use of indexed data.
      */
     @Generated
-    @JsonProperty(value = "in_scope")
+    @JsonProperty(value = "inScope")
     private Boolean inScope;
 
     /*
@@ -54,7 +54,7 @@ public final class PineconeChatExtensionParameters {
      * limit for it, and it counts against the overall token limit.
      */
     @Generated
-    @JsonProperty(value = "role_information")
+    @JsonProperty(value = "roleInformation")
     private String roleInformation;
 
     /*
@@ -68,21 +68,21 @@ public final class PineconeChatExtensionParameters {
      * The name of the Pinecone database index.
      */
     @Generated
-    @JsonProperty(value = "index_name")
+    @JsonProperty(value = "indexName")
     private String indexName;
 
     /*
      * Customized field mapping behavior to use when interacting with the search index.
      */
     @Generated
-    @JsonProperty(value = "fields_mapping")
+    @JsonProperty(value = "fieldsMapping")
     private PineconeFieldMappingOptions fieldsMapping;
 
     /*
      * The embedding dependency for vector search.
      */
     @Generated
-    @JsonProperty(value = "embedding_dependency")
+    @JsonProperty(value = "embeddingDependency")
     private OnYourDataVectorizationSource embeddingDependency;
 
     /**
@@ -262,9 +262,9 @@ public final class PineconeChatExtensionParameters {
     @Generated
     @JsonCreator
     public PineconeChatExtensionParameters(@JsonProperty(value = "environment") String environment,
-        @JsonProperty(value = "index_name") String indexName,
-        @JsonProperty(value = "fields_mapping") PineconeFieldMappingOptions fieldsMapping,
-        @JsonProperty(value = "embedding_dependency") OnYourDataVectorizationSource embeddingDependency) {
+        @JsonProperty(value = "indexName") String indexName,
+        @JsonProperty(value = "fieldsMapping") PineconeFieldMappingOptions fieldsMapping,
+        @JsonProperty(value = "embeddingDependency") OnYourDataVectorizationSource embeddingDependency) {
         this.environment = environment;
         this.indexName = indexName;
         this.fieldsMapping = fieldsMapping;

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * The authentication options for Azure OpenAI On Your Data when using access token.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonTypeName("access_token")
+@JsonTypeName("AccessToken")
 @Immutable
 public final class OnYourDataAccessTokenAuthenticationOptions extends OnYourDataAuthenticationOptions {
 
@@ -22,7 +22,7 @@ public final class OnYourDataAccessTokenAuthenticationOptions extends OnYourData
      * The access token to use for authentication.
      */
     @Generated
-    @JsonProperty(value = "access_token")
+    @JsonProperty(value = "accessToken")
     private String accessToken;
 
     /**
@@ -32,7 +32,7 @@ public final class OnYourDataAccessTokenAuthenticationOptions extends OnYourData
      */
     @Generated
     @JsonCreator
-    public OnYourDataAccessTokenAuthenticationOptions(@JsonProperty(value = "access_token") String accessToken) {
+    public OnYourDataAccessTokenAuthenticationOptions(@JsonProperty(value = "accessToken") String accessToken) {
         this.accessToken = accessToken;
     }
 

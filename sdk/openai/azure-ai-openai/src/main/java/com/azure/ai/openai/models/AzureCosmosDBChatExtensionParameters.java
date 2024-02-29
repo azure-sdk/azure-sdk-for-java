@@ -31,14 +31,14 @@ public final class AzureCosmosDBChatExtensionParameters {
      * The configured top number of documents to feature for the configured query.
      */
     @Generated
-    @JsonProperty(value = "top_n_documents")
+    @JsonProperty(value = "topNDocuments")
     private Integer topNDocuments;
 
     /*
      * Whether queries should be restricted to use of indexed data.
      */
     @Generated
-    @JsonProperty(value = "in_scope")
+    @JsonProperty(value = "inScope")
     private Boolean inScope;
 
     /*
@@ -55,42 +55,42 @@ public final class AzureCosmosDBChatExtensionParameters {
      * limit for it, and it counts against the overall token limit.
      */
     @Generated
-    @JsonProperty(value = "role_information")
+    @JsonProperty(value = "roleInformation")
     private String roleInformation;
 
     /*
      * The MongoDB vCore database name to use with Azure Cosmos DB.
      */
     @Generated
-    @JsonProperty(value = "database_name")
+    @JsonProperty(value = "databaseName")
     private String databaseName;
 
     /*
      * The name of the Azure Cosmos DB resource container.
      */
     @Generated
-    @JsonProperty(value = "container_name")
+    @JsonProperty(value = "containerName")
     private String containerName;
 
     /*
      * The MongoDB vCore index name to use with Azure Cosmos DB.
      */
     @Generated
-    @JsonProperty(value = "index_name")
+    @JsonProperty(value = "indexName")
     private String indexName;
 
     /*
      * Customized field mapping behavior to use when interacting with the search index.
      */
     @Generated
-    @JsonProperty(value = "fields_mapping")
+    @JsonProperty(value = "fieldsMapping")
     private AzureCosmosDBFieldMappingOptions fieldsMapping;
 
     /*
      * The embedding dependency for vector search.
      */
     @Generated
-    @JsonProperty(value = "embedding_dependency")
+    @JsonProperty(value = "embeddingDependency")
     private OnYourDataVectorizationSource embeddingDependency;
 
     /**
@@ -280,11 +280,11 @@ public final class AzureCosmosDBChatExtensionParameters {
      */
     @Generated
     @JsonCreator
-    public AzureCosmosDBChatExtensionParameters(@JsonProperty(value = "database_name") String databaseName,
-        @JsonProperty(value = "container_name") String containerName,
-        @JsonProperty(value = "index_name") String indexName,
-        @JsonProperty(value = "fields_mapping") AzureCosmosDBFieldMappingOptions fieldsMapping,
-        @JsonProperty(value = "embedding_dependency") OnYourDataVectorizationSource embeddingDependency) {
+    public AzureCosmosDBChatExtensionParameters(@JsonProperty(value = "databaseName") String databaseName,
+        @JsonProperty(value = "containerName") String containerName,
+        @JsonProperty(value = "indexName") String indexName,
+        @JsonProperty(value = "fieldsMapping") AzureCosmosDBFieldMappingOptions fieldsMapping,
+        @JsonProperty(value = "embeddingDependency") OnYourDataVectorizationSource embeddingDependency) {
         this.databaseName = databaseName;
         this.containerName = containerName;
         this.indexName = indexName;

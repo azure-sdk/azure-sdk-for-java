@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * extension.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonTypeName("pinecone")
+@JsonTypeName("Pinecone")
 @Immutable
 public final class PineconeChatExtensionConfiguration extends AzureChatExtensionConfiguration {
 

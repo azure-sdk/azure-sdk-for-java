@@ -31,14 +31,14 @@ public final class AzureMachineLearningIndexChatExtensionParameters {
      * The configured top number of documents to feature for the configured query.
      */
     @Generated
-    @JsonProperty(value = "top_n_documents")
+    @JsonProperty(value = "topNDocuments")
     private Integer topNDocuments;
 
     /*
      * Whether queries should be restricted to use of indexed data.
      */
     @Generated
-    @JsonProperty(value = "in_scope")
+    @JsonProperty(value = "inScope")
     private Boolean inScope;
 
     /*
@@ -55,14 +55,14 @@ public final class AzureMachineLearningIndexChatExtensionParameters {
      * limit for it, and it counts against the overall token limit.
      */
     @Generated
-    @JsonProperty(value = "role_information")
+    @JsonProperty(value = "roleInformation")
     private String roleInformation;
 
     /*
      * The resource ID of the Azure Machine Learning project.
      */
     @Generated
-    @JsonProperty(value = "project_resource_id")
+    @JsonProperty(value = "projectResourceId")
     private String projectResourceId;
 
     /*
@@ -96,8 +96,8 @@ public final class AzureMachineLearningIndexChatExtensionParameters {
     @Generated
     @JsonCreator
     public AzureMachineLearningIndexChatExtensionParameters(
-        @JsonProperty(value = "project_resource_id") String projectResourceId,
-        @JsonProperty(value = "name") String name, @JsonProperty(value = "version") String version) {
+        @JsonProperty(value = "projectResourceId") String projectResourceId, @JsonProperty(value = "name") String name,
+        @JsonProperty(value = "version") String version) {
         this.projectResourceId = projectResourceId;
         this.name = name;
         this.version = version;

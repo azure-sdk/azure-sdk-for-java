@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * The authentication options for Azure OpenAI On Your Data when using an Elasticsearch encoded API key.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonTypeName("encoded_api_key")
+@JsonTypeName("EncodedAPIKey")
 @Immutable
 public final class OnYourDataEncodedApiKeyAuthenticationOptions extends OnYourDataAuthenticationOptions {
 
@@ -22,7 +22,7 @@ public final class OnYourDataEncodedApiKeyAuthenticationOptions extends OnYourDa
      * The encoded API key to use for authentication.
      */
     @Generated
-    @JsonProperty(value = "encoded_api_key")
+    @JsonProperty(value = "encodedApiKey")
     private String encodedApiKey;
 
     /**
@@ -32,7 +32,7 @@ public final class OnYourDataEncodedApiKeyAuthenticationOptions extends OnYourDa
      */
     @Generated
     @JsonCreator
-    public OnYourDataEncodedApiKeyAuthenticationOptions(@JsonProperty(value = "encoded_api_key") String encodedApiKey) {
+    public OnYourDataEncodedApiKeyAuthenticationOptions(@JsonProperty(value = "encodedApiKey") String encodedApiKey) {
         this.encodedApiKey = encodedApiKey;
     }
 

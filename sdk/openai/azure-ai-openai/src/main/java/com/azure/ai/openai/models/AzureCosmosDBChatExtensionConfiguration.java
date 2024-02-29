@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * extension.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonTypeName("azure_cosmos_db")
+@JsonTypeName("AzureCosmosDB")
 @Immutable
 public final class AzureCosmosDBChatExtensionConfiguration extends AzureChatExtensionConfiguration {
 

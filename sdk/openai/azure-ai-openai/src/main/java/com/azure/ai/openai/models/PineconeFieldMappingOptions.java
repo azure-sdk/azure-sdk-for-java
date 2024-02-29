@@ -19,35 +19,35 @@ public final class PineconeFieldMappingOptions {
      * The name of the index field to use as a title.
      */
     @Generated
-    @JsonProperty(value = "title_field")
+    @JsonProperty(value = "titleField")
     private String titleField;
 
     /*
      * The name of the index field to use as a URL.
      */
     @Generated
-    @JsonProperty(value = "url_field")
+    @JsonProperty(value = "urlField")
     private String urlField;
 
     /*
      * The name of the index field to use as a filepath.
      */
     @Generated
-    @JsonProperty(value = "filepath_field")
+    @JsonProperty(value = "filepathField")
     private String filepathField;
 
     /*
      * The names of index fields that should be treated as content.
      */
     @Generated
-    @JsonProperty(value = "content_fields")
+    @JsonProperty(value = "contentFields")
     private List<String> contentFields;
 
     /*
      * The separator pattern that content fields should use.
      */
     @Generated
-    @JsonProperty(value = "content_fields_separator")
+    @JsonProperty(value = "contentFieldsSeparator")
     private String contentFieldsSeparator;
 
     /**
@@ -155,7 +155,7 @@ public final class PineconeFieldMappingOptions {
      */
     @Generated
     @JsonCreator
-    public PineconeFieldMappingOptions(@JsonProperty(value = "content_fields") List<String> contentFields) {
+    public PineconeFieldMappingOptions(@JsonProperty(value = "contentFields") List<String> contentFields) {
         this.contentFields = contentFields;
     }
 }

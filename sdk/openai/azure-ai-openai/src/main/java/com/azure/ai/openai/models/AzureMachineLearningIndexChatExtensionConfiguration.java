@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * OpenAI chat extension.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonTypeName("azure_ml_index")
+@JsonTypeName("AzureMLIndex")
 @Immutable
 public final class AzureMachineLearningIndexChatExtensionConfiguration extends AzureChatExtensionConfiguration {
 

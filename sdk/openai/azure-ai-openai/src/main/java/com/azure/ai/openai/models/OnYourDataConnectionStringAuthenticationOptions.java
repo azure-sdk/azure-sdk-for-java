@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * The authentication options for Azure OpenAI On Your Data when using a connection string.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonTypeName("connection_string")
+@JsonTypeName("ConnectionString")
 @Immutable
 public final class OnYourDataConnectionStringAuthenticationOptions extends OnYourDataAuthenticationOptions {
 
@@ -22,7 +22,7 @@ public final class OnYourDataConnectionStringAuthenticationOptions extends OnYou
      * The connection string to use for authentication.
      */
     @Generated
-    @JsonProperty(value = "connection_string")
+    @JsonProperty(value = "connectionString")
     private String connectionString;
 
     /**
@@ -33,7 +33,7 @@ public final class OnYourDataConnectionStringAuthenticationOptions extends OnYou
     @Generated
     @JsonCreator
     public OnYourDataConnectionStringAuthenticationOptions(
-        @JsonProperty(value = "connection_string") String connectionString) {
+        @JsonProperty(value = "connectionString") String connectionString) {
         this.connectionString = connectionString;
     }
 

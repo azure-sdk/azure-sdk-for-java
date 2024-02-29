@@ -31,14 +31,14 @@ public final class ElasticsearchChatExtensionParameters {
      * The configured top number of documents to feature for the configured query.
      */
     @Generated
-    @JsonProperty(value = "top_n_documents")
+    @JsonProperty(value = "topNDocuments")
     private Integer topNDocuments;
 
     /*
      * Whether queries should be restricted to use of indexed data.
      */
     @Generated
-    @JsonProperty(value = "in_scope")
+    @JsonProperty(value = "inScope")
     private Boolean inScope;
 
     /*
@@ -55,7 +55,7 @@ public final class ElasticsearchChatExtensionParameters {
      * limit for it, and it counts against the overall token limit.
      */
     @Generated
-    @JsonProperty(value = "role_information")
+    @JsonProperty(value = "roleInformation")
     private String roleInformation;
 
     /*
@@ -69,28 +69,28 @@ public final class ElasticsearchChatExtensionParameters {
      * The index name of Elasticsearch®.
      */
     @Generated
-    @JsonProperty(value = "index_name")
+    @JsonProperty(value = "indexName")
     private String indexName;
 
     /*
      * The index field mapping options of Elasticsearch®.
      */
     @Generated
-    @JsonProperty(value = "fields_mapping")
+    @JsonProperty(value = "fieldsMapping")
     private ElasticsearchIndexFieldMappingOptions fieldsMapping;
 
     /*
      * The query type of Elasticsearch®.
      */
     @Generated
-    @JsonProperty(value = "query_type")
+    @JsonProperty(value = "queryType")
     private ElasticsearchQueryType queryType;
 
     /*
      * The embedding dependency for vector search.
      */
     @Generated
-    @JsonProperty(value = "embedding_dependency")
+    @JsonProperty(value = "embeddingDependency")
     private OnYourDataVectorizationSource embeddingDependency;
 
     /**
@@ -102,7 +102,7 @@ public final class ElasticsearchChatExtensionParameters {
     @Generated
     @JsonCreator
     public ElasticsearchChatExtensionParameters(@JsonProperty(value = "endpoint") String endpoint,
-        @JsonProperty(value = "index_name") String indexName) {
+        @JsonProperty(value = "indexName") String indexName) {
         this.endpoint = endpoint;
         this.indexName = indexName;
     }

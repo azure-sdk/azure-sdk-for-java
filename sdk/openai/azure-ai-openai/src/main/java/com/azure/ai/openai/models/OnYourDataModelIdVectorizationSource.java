@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * on a search service model ID. Currently only supported by Elasticsearch®.
  */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonTypeName("model_id")
+@JsonTypeName("ModelId")
 @Immutable
 public final class OnYourDataModelIdVectorizationSource extends OnYourDataVectorizationSource {
 
@@ -24,7 +24,7 @@ public final class OnYourDataModelIdVectorizationSource extends OnYourDataVector
      * The embedding model ID build inside the search service. Currently only supported by Elasticsearch®.
      */
     @Generated
-    @JsonProperty(value = "model_id")
+    @JsonProperty(value = "modelId")
     private String modelId;
 
     /**
@@ -34,7 +34,7 @@ public final class OnYourDataModelIdVectorizationSource extends OnYourDataVector
      */
     @Generated
     @JsonCreator
-    public OnYourDataModelIdVectorizationSource(@JsonProperty(value = "model_id") String modelId) {
+    public OnYourDataModelIdVectorizationSource(@JsonProperty(value = "modelId") String modelId) {
         this.modelId = modelId;
     }
 
