@@ -9,24 +9,20 @@ import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.scvmm.models.ExtendedLocation;
-import com.azure.resourcemanager.scvmm.models.VmmServerPropertiesCredentials;
+import com.azure.resourcemanager.scvmm.models.VmmServerProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The VmmServers resource definition. */
+/**
+ * The VmmServers resource definition.
+ */
 @Fluent
 public final class VmmServerInner extends Resource {
     /*
      * Resource properties.
      */
     @JsonProperty(value = "properties", required = true)
-    private VmmServerProperties innerProperties = new VmmServerProperties();
-
-    /*
-     * The system data.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    private VmmServerProperties properties;
 
     /*
      * The extended location.
@@ -34,27 +30,41 @@ public final class VmmServerInner extends Resource {
     @JsonProperty(value = "extendedLocation", required = true)
     private ExtendedLocation extendedLocation;
 
-    /**
-     * Get the innerProperties property: Resource properties.
-     *
-     * @return the innerProperties value.
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    private VmmServerProperties innerProperties() {
-        return this.innerProperties;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of VmmServerInner class.
+     */
+    public VmmServerInner() {
     }
 
     /**
-     * Get the systemData property: The system data.
-     *
-     * @return the systemData value.
+     * Get the properties property: Resource properties.
+     * 
+     * @return the properties value.
      */
-    public SystemData systemData() {
-        return this.systemData;
+    public VmmServerProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Resource properties.
+     * 
+     * @param properties the properties value to set.
+     * @return the VmmServerInner object itself.
+     */
+    public VmmServerInner withProperties(VmmServerProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
      * Get the extendedLocation property: The extended location.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -63,7 +73,7 @@ public final class VmmServerInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extended location.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the VmmServerInner object itself.
      */
@@ -72,14 +82,27 @@ public final class VmmServerInner extends Resource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VmmServerInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VmmServerInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -87,136 +110,20 @@ public final class VmmServerInner extends Resource {
     }
 
     /**
-     * Get the credentials property: Credentials to connect to VMMServer.
-     *
-     * @return the credentials value.
-     */
-    public VmmServerPropertiesCredentials credentials() {
-        return this.innerProperties() == null ? null : this.innerProperties().credentials();
-    }
-
-    /**
-     * Set the credentials property: Credentials to connect to VMMServer.
-     *
-     * @param credentials the credentials value to set.
-     * @return the VmmServerInner object itself.
-     */
-    public VmmServerInner withCredentials(VmmServerPropertiesCredentials credentials) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new VmmServerProperties();
-        }
-        this.innerProperties().withCredentials(credentials);
-        return this;
-    }
-
-    /**
-     * Get the fqdn property: Fqdn is the hostname/ip of the vmmServer.
-     *
-     * @return the fqdn value.
-     */
-    public String fqdn() {
-        return this.innerProperties() == null ? null : this.innerProperties().fqdn();
-    }
-
-    /**
-     * Set the fqdn property: Fqdn is the hostname/ip of the vmmServer.
-     *
-     * @param fqdn the fqdn value to set.
-     * @return the VmmServerInner object itself.
-     */
-    public VmmServerInner withFqdn(String fqdn) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new VmmServerProperties();
-        }
-        this.innerProperties().withFqdn(fqdn);
-        return this;
-    }
-
-    /**
-     * Get the port property: Port is the port on which the vmmServer is listening.
-     *
-     * @return the port value.
-     */
-    public Integer port() {
-        return this.innerProperties() == null ? null : this.innerProperties().port();
-    }
-
-    /**
-     * Set the port property: Port is the port on which the vmmServer is listening.
-     *
-     * @param port the port value to set.
-     * @return the VmmServerInner object itself.
-     */
-    public VmmServerInner withPort(Integer port) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new VmmServerProperties();
-        }
-        this.innerProperties().withPort(port);
-        return this;
-    }
-
-    /**
-     * Get the connectionStatus property: Gets or sets the connection status to the vmmServer.
-     *
-     * @return the connectionStatus value.
-     */
-    public String connectionStatus() {
-        return this.innerProperties() == null ? null : this.innerProperties().connectionStatus();
-    }
-
-    /**
-     * Get the errorMessage property: Gets or sets any error message if connection to vmmServer is having any issue.
-     *
-     * @return the errorMessage value.
-     */
-    public String errorMessage() {
-        return this.innerProperties() == null ? null : this.innerProperties().errorMessage();
-    }
-
-    /**
-     * Get the uuid property: Unique ID of vmmServer.
-     *
-     * @return the uuid value.
-     */
-    public String uuid() {
-        return this.innerProperties() == null ? null : this.innerProperties().uuid();
-    }
-
-    /**
-     * Get the version property: Version is the version of the vmmSever.
-     *
-     * @return the version value.
-     */
-    public String version() {
-        return this.innerProperties() == null ? null : this.innerProperties().version();
-    }
-
-    /**
-     * Get the provisioningState property: Gets or sets the provisioning state.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model VmmServerInner"));
+        if (properties() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property properties in model VmmServerInner"));
         } else {
-            innerProperties().validate();
+            properties().validate();
         }
         if (extendedLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property extendedLocation in model VmmServerInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property extendedLocation in model VmmServerInner"));
         } else {
             extendedLocation().validate();
         }

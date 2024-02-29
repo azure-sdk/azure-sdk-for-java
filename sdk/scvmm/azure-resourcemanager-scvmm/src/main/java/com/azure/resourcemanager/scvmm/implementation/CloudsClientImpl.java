@@ -35,22 +35,29 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.scvmm.fluent.CloudsClient;
 import com.azure.resourcemanager.scvmm.fluent.models.CloudInner;
 import com.azure.resourcemanager.scvmm.models.CloudListResult;
+import com.azure.resourcemanager.scvmm.models.Force;
 import com.azure.resourcemanager.scvmm.models.ResourcePatch;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in CloudsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in CloudsClient.
+ */
 public final class CloudsClientImpl implements CloudsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final CloudsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final ScvmmClientImpl client;
 
     /**
      * Initializes an instance of CloudsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     CloudsClientImpl(ScvmmClientImpl client) {
@@ -64,166 +71,127 @@ public final class CloudsClientImpl implements CloudsClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ScvmmClientClouds")
-    private interface CloudsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds"
-                + "/{cloudName}")
-        @ExpectedResponses({200})
+    public interface CloudsService {
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds/{cloudResourceName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CloudInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<CloudInner>> getByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("cloudName") String cloudName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("cloudResourceName") String cloudResourceName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds"
-                + "/{cloudName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds/{cloudResourceName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("cloudName") String cloudName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") CloudInner body,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("cloudResourceName") String cloudResourceName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") CloudInner body, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds"
-                + "/{cloudName}")
-        @ExpectedResponses({200, 202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds/{cloudResourceName}")
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("cloudName") String cloudName,
-            @QueryParam("api-version") String apiVersion,
-            @QueryParam("force") Boolean force,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("cloudResourceName") String cloudResourceName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("force") Force force, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds"
-                + "/{cloudName}")
-        @ExpectedResponses({200, 201, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds/{cloudResourceName}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("cloudName") String cloudName,
-            @BodyParam("application/json") ResourcePatch body,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("cloudResourceName") String cloudResourceName, @BodyParam("application/json") ResourcePatch body,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ScVmm/clouds")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CloudListResult>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<CloudListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.ScVmm/clouds")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CloudListResult>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<CloudListResult>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CloudListResult>> listByResourceGroupNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CloudListResult>> listBySubscriptionNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
+     * Gets a Cloud.
+     * 
      * Implements Cloud GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Clouds resource definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CloudInner>> getByResourceGroupWithResponseAsync(String resourceGroupName, String cloudName) {
+    private Mono<Response<CloudInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String cloudResourceName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (cloudName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter cloudName is required and cannot be null."));
+        if (cloudResourceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudResourceName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            cloudName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, cloudResourceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Gets a Cloud.
+     * 
      * Implements Cloud GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -231,83 +199,55 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CloudInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String cloudName, Context context) {
+    private Mono<Response<CloudInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String cloudResourceName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (cloudName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter cloudName is required and cannot be null."));
+        if (cloudResourceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudResourceName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                cloudName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            cloudResourceName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Gets a Cloud.
+     * 
      * Implements Cloud GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the Clouds resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CloudInner> getByResourceGroupAsync(String resourceGroupName, String cloudName) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, cloudName)
-            .flatMap(
-                (Response<CloudInner> res) -> {
-                    if (res.getValue() != null) {
-                        return Mono.just(res.getValue());
-                    } else {
-                        return Mono.empty();
-                    }
-                });
+    private Mono<CloudInner> getByResourceGroupAsync(String resourceGroupName, String cloudResourceName) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, cloudResourceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * Gets a Cloud.
+     * 
      * Implements Cloud GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the Clouds resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public CloudInner getByResourceGroup(String resourceGroupName, String cloudName) {
-        return getByResourceGroupAsync(resourceGroupName, cloudName).block();
-    }
-
-    /**
-     * Implements Cloud GET method.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -315,16 +255,35 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CloudInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String cloudName, Context context) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, cloudName, context).block();
+    public Response<CloudInner> getByResourceGroupWithResponse(String resourceGroupName, String cloudResourceName,
+        Context context) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, cloudResourceName, context).block();
     }
 
     /**
+     * Gets a Cloud.
+     * 
+     * Implements Cloud GET method.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the Clouds resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public CloudInner getByResourceGroup(String resourceGroupName, String cloudResourceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, cloudResourceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Implements Clouds PUT method.
+     * 
      * Onboards the ScVmm fabric cloud as an Azure cloud resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -332,26 +291,23 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String cloudName, CloudInner body) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String cloudResourceName, CloudInner body) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (cloudName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter cloudName is required and cannot be null."));
+        if (cloudResourceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudResourceName is required and cannot be null."));
         }
         if (body == null) {
             return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
@@ -360,26 +316,18 @@ public final class CloudsClientImpl implements CloudsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            cloudName,
-                            this.client.getApiVersion(),
-                            body,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, cloudResourceName, this.client.getApiVersion(), body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Implements Clouds PUT method.
+     * 
      * Onboards the ScVmm fabric cloud as an Azure cloud resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -388,26 +336,23 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String cloudName, CloudInner body, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String cloudResourceName, CloudInner body, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (cloudName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter cloudName is required and cannot be null."));
+        if (cloudResourceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudResourceName is required and cannot be null."));
         }
         if (body == null) {
             return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
@@ -416,23 +361,17 @@ public final class CloudsClientImpl implements CloudsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                cloudName,
-                this.client.getApiVersion(),
-                body,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            cloudResourceName, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
+     * Implements Clouds PUT method.
+     * 
      * Onboards the ScVmm fabric cloud as an Azure cloud resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -440,20 +379,21 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the {@link PollerFlux} for polling of the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<CloudInner>, CloudInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String cloudName, CloudInner body) {
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, cloudName, body);
-        return this
-            .client
-            .<CloudInner, CloudInner>getLroResult(
-                mono, this.client.getHttpPipeline(), CloudInner.class, CloudInner.class, this.client.getContext());
+    private PollerFlux<PollResult<CloudInner>, CloudInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String cloudResourceName, CloudInner body) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, cloudResourceName, body);
+        return this.client.<CloudInner, CloudInner>getLroResult(mono, this.client.getHttpPipeline(), CloudInner.class,
+            CloudInner.class, this.client.getContext());
     }
 
     /**
+     * Implements Clouds PUT method.
+     * 
      * Onboards the ScVmm fabric cloud as an Azure cloud resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -462,22 +402,22 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the {@link PollerFlux} for polling of the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<CloudInner>, CloudInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String cloudName, CloudInner body, Context context) {
+    private PollerFlux<PollResult<CloudInner>, CloudInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String cloudResourceName, CloudInner body, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, cloudName, body, context);
-        return this
-            .client
-            .<CloudInner, CloudInner>getLroResult(
-                mono, this.client.getHttpPipeline(), CloudInner.class, CloudInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, cloudResourceName, body, context);
+        return this.client.<CloudInner, CloudInner>getLroResult(mono, this.client.getHttpPipeline(), CloudInner.class,
+            CloudInner.class, context);
     }
 
     /**
+     * Implements Clouds PUT method.
+     * 
      * Onboards the ScVmm fabric cloud as an Azure cloud resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -485,16 +425,18 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the {@link SyncPoller} for polling of the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<CloudInner>, CloudInner> beginCreateOrUpdate(
-        String resourceGroupName, String cloudName, CloudInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, cloudName, body).getSyncPoller();
+    public SyncPoller<PollResult<CloudInner>, CloudInner> beginCreateOrUpdate(String resourceGroupName,
+        String cloudResourceName, CloudInner body) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, cloudResourceName, body).getSyncPoller();
     }
 
     /**
+     * Implements Clouds PUT method.
+     * 
      * Onboards the ScVmm fabric cloud as an Azure cloud resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -503,16 +445,18 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the {@link SyncPoller} for polling of the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<CloudInner>, CloudInner> beginCreateOrUpdate(
-        String resourceGroupName, String cloudName, CloudInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, cloudName, body, context).getSyncPoller();
+    public SyncPoller<PollResult<CloudInner>, CloudInner> beginCreateOrUpdate(String resourceGroupName,
+        String cloudResourceName, CloudInner body, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, cloudResourceName, body, context).getSyncPoller();
     }
 
     /**
+     * Implements Clouds PUT method.
+     * 
      * Onboards the ScVmm fabric cloud as an Azure cloud resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -520,17 +464,18 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CloudInner> createOrUpdateAsync(String resourceGroupName, String cloudName, CloudInner body) {
-        return beginCreateOrUpdateAsync(resourceGroupName, cloudName, body)
-            .last()
+    private Mono<CloudInner> createOrUpdateAsync(String resourceGroupName, String cloudResourceName, CloudInner body) {
+        return beginCreateOrUpdateAsync(resourceGroupName, cloudResourceName, body).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements Clouds PUT method.
+     * 
      * Onboards the ScVmm fabric cloud as an Azure cloud resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -539,18 +484,19 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CloudInner> createOrUpdateAsync(
-        String resourceGroupName, String cloudName, CloudInner body, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, cloudName, body, context)
-            .last()
+    private Mono<CloudInner> createOrUpdateAsync(String resourceGroupName, String cloudResourceName, CloudInner body,
+        Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, cloudResourceName, body, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements Clouds PUT method.
+     * 
      * Onboards the ScVmm fabric cloud as an Azure cloud resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -558,15 +504,17 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CloudInner createOrUpdate(String resourceGroupName, String cloudName, CloudInner body) {
-        return createOrUpdateAsync(resourceGroupName, cloudName, body).block();
+    public CloudInner createOrUpdate(String resourceGroupName, String cloudResourceName, CloudInner body) {
+        return createOrUpdateAsync(resourceGroupName, cloudResourceName, body).block();
     }
 
     /**
+     * Implements Clouds PUT method.
+     * 
      * Onboards the ScVmm fabric cloud as an Azure cloud resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -575,68 +523,60 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CloudInner createOrUpdate(String resourceGroupName, String cloudName, CloudInner body, Context context) {
-        return createOrUpdateAsync(resourceGroupName, cloudName, body, context).block();
+    public CloudInner createOrUpdate(String resourceGroupName, String cloudResourceName, CloudInner body,
+        Context context) {
+        return createOrUpdateAsync(resourceGroupName, cloudResourceName, body, context).block();
     }
 
     /**
+     * Implements Cloud resource DELETE method.
+     * 
      * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String cloudName, Boolean force) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String cloudResourceName,
+        Force force) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (cloudName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter cloudName is required and cannot be null."));
+        if (cloudResourceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudResourceName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            cloudName,
-                            this.client.getApiVersion(),
-                            force,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, cloudResourceName, this.client.getApiVersion(), force, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Implements Cloud resource DELETE method.
+     * 
      * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -644,70 +584,81 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String cloudName, Boolean force, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String cloudResourceName,
+        Force force, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        if (cloudName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter cloudName is required and cannot be null."));
+        if (cloudResourceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudResourceName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                cloudName,
-                this.client.getApiVersion(),
-                force,
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            cloudResourceName, this.client.getApiVersion(), force, accept, context);
     }
 
     /**
+     * Implements Cloud resource DELETE method.
+     * 
      * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String cloudName, Boolean force) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, cloudName, force);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String cloudResourceName,
+        Force force) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, cloudResourceName, force);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
+     * Implements Cloud resource DELETE method.
+     * 
      * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String cloudResourceName) {
+        final Force force = null;
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, cloudResourceName, force);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Implements Cloud resource DELETE method.
+     * 
+     * Deregisters the ScVmm fabric cloud from Azure.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -715,39 +666,42 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String cloudName, Boolean force, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String cloudResourceName,
+        Force force, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, cloudName, force, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, cloudResourceName, force, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
+     * Implements Cloud resource DELETE method.
+     * 
      * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String cloudName, Boolean force) {
-        return beginDeleteAsync(resourceGroupName, cloudName, force).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String cloudResourceName) {
+        final Force force = null;
+        return this.beginDeleteAsync(resourceGroupName, cloudResourceName, force).getSyncPoller();
     }
 
     /**
+     * Implements Cloud resource DELETE method.
+     * 
      * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -755,55 +709,59 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String cloudName, Boolean force, Context context) {
-        return beginDeleteAsync(resourceGroupName, cloudName, force, context).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String cloudResourceName,
+        Force force, Context context) {
+        return this.beginDeleteAsync(resourceGroupName, cloudResourceName, force, context).getSyncPoller();
     }
 
     /**
+     * Implements Cloud resource DELETE method.
+     * 
      * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String cloudName, Boolean force) {
-        return beginDeleteAsync(resourceGroupName, cloudName, force)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String cloudResourceName, Force force) {
+        return beginDeleteAsync(resourceGroupName, cloudResourceName, force).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements Cloud resource DELETE method.
+     * 
      * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String cloudName) {
-        final Boolean force = null;
-        return beginDeleteAsync(resourceGroupName, cloudName, force)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String cloudResourceName) {
+        final Force force = null;
+        return beginDeleteAsync(resourceGroupName, cloudResourceName, force).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements Cloud resource DELETE method.
+     * 
      * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -811,65 +769,54 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String cloudName, Boolean force, Context context) {
-        return beginDeleteAsync(resourceGroupName, cloudName, force, context)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String cloudResourceName, Force force, Context context) {
+        return beginDeleteAsync(resourceGroupName, cloudResourceName, force, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements Cloud resource DELETE method.
+     * 
      * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
-     * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String cloudName, Boolean force) {
-        deleteAsync(resourceGroupName, cloudName, force).block();
+    public void delete(String resourceGroupName, String cloudResourceName) {
+        final Force force = null;
+        deleteAsync(resourceGroupName, cloudResourceName, force).block();
     }
 
     /**
+     * Implements Cloud resource DELETE method.
+     * 
      * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String cloudName) {
-        final Boolean force = null;
-        deleteAsync(resourceGroupName, cloudName, force).block();
-    }
-
-    /**
-     * Deregisters the ScVmm fabric cloud from Azure.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param force Forces the resource to be deleted from azure. The corresponding CR would be attempted to be deleted
-     *     too.
+     * too.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String cloudName, Boolean force, Context context) {
-        deleteAsync(resourceGroupName, cloudName, force, context).block();
+    public void delete(String resourceGroupName, String cloudResourceName, Force force, Context context) {
+        deleteAsync(resourceGroupName, cloudResourceName, force, context).block();
     }
 
     /**
+     * Implements the Clouds PATCH method.
+     * 
      * Updates the Clouds resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Clouds patch payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -877,26 +824,23 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String cloudName, ResourcePatch body) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String cloudResourceName,
+        ResourcePatch body) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (cloudName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter cloudName is required and cannot be null."));
+        if (cloudResourceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudResourceName is required and cannot be null."));
         }
         if (body == null) {
             return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
@@ -905,26 +849,18 @@ public final class CloudsClientImpl implements CloudsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            cloudName,
-                            body,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), resourceGroupName,
+                this.client.getApiVersion(), this.client.getSubscriptionId(), cloudResourceName, body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Implements the Clouds PATCH method.
+     * 
      * Updates the Clouds resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Clouds patch payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -933,26 +869,23 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String cloudName, ResourcePatch body, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String cloudResourceName,
+        ResourcePatch body, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (cloudName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter cloudName is required and cannot be null."));
+        if (cloudResourceName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter cloudResourceName is required and cannot be null."));
         }
         if (body == null) {
             return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
@@ -961,23 +894,17 @@ public final class CloudsClientImpl implements CloudsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                cloudName,
-                body,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), resourceGroupName, this.client.getApiVersion(),
+            this.client.getSubscriptionId(), cloudResourceName, body, accept, context);
     }
 
     /**
+     * Implements the Clouds PATCH method.
+     * 
      * Updates the Clouds resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Clouds patch payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -985,20 +912,20 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the {@link PollerFlux} for polling of the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<CloudInner>, CloudInner> beginUpdateAsync(
-        String resourceGroupName, String cloudName, ResourcePatch body) {
-        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, cloudName, body);
-        return this
-            .client
-            .<CloudInner, CloudInner>getLroResult(
-                mono, this.client.getHttpPipeline(), CloudInner.class, CloudInner.class, this.client.getContext());
+    private PollerFlux<PollResult<CloudInner>, CloudInner> beginUpdateAsync(String resourceGroupName,
+        String cloudResourceName, ResourcePatch body) {
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, cloudResourceName, body);
+        return this.client.<CloudInner, CloudInner>getLroResult(mono, this.client.getHttpPipeline(), CloudInner.class,
+            CloudInner.class, this.client.getContext());
     }
 
     /**
+     * Implements the Clouds PATCH method.
+     * 
      * Updates the Clouds resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Clouds patch payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1007,21 +934,22 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the {@link PollerFlux} for polling of the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<CloudInner>, CloudInner> beginUpdateAsync(
-        String resourceGroupName, String cloudName, ResourcePatch body, Context context) {
+    private PollerFlux<PollResult<CloudInner>, CloudInner> beginUpdateAsync(String resourceGroupName,
+        String cloudResourceName, ResourcePatch body, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, cloudName, body, context);
-        return this
-            .client
-            .<CloudInner, CloudInner>getLroResult(
-                mono, this.client.getHttpPipeline(), CloudInner.class, CloudInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, cloudResourceName, body, context);
+        return this.client.<CloudInner, CloudInner>getLroResult(mono, this.client.getHttpPipeline(), CloudInner.class,
+            CloudInner.class, context);
     }
 
     /**
+     * Implements the Clouds PATCH method.
+     * 
      * Updates the Clouds resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Clouds patch payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1029,16 +957,18 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the {@link SyncPoller} for polling of the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<CloudInner>, CloudInner> beginUpdate(
-        String resourceGroupName, String cloudName, ResourcePatch body) {
-        return beginUpdateAsync(resourceGroupName, cloudName, body).getSyncPoller();
+    public SyncPoller<PollResult<CloudInner>, CloudInner> beginUpdate(String resourceGroupName,
+        String cloudResourceName, ResourcePatch body) {
+        return this.beginUpdateAsync(resourceGroupName, cloudResourceName, body).getSyncPoller();
     }
 
     /**
+     * Implements the Clouds PATCH method.
+     * 
      * Updates the Clouds resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Clouds patch payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1047,16 +977,18 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the {@link SyncPoller} for polling of the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<CloudInner>, CloudInner> beginUpdate(
-        String resourceGroupName, String cloudName, ResourcePatch body, Context context) {
-        return beginUpdateAsync(resourceGroupName, cloudName, body, context).getSyncPoller();
+    public SyncPoller<PollResult<CloudInner>, CloudInner> beginUpdate(String resourceGroupName,
+        String cloudResourceName, ResourcePatch body, Context context) {
+        return this.beginUpdateAsync(resourceGroupName, cloudResourceName, body, context).getSyncPoller();
     }
 
     /**
+     * Implements the Clouds PATCH method.
+     * 
      * Updates the Clouds resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Clouds patch payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1064,17 +996,18 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CloudInner> updateAsync(String resourceGroupName, String cloudName, ResourcePatch body) {
-        return beginUpdateAsync(resourceGroupName, cloudName, body)
-            .last()
+    private Mono<CloudInner> updateAsync(String resourceGroupName, String cloudResourceName, ResourcePatch body) {
+        return beginUpdateAsync(resourceGroupName, cloudResourceName, body).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements the Clouds PATCH method.
+     * 
      * Updates the Clouds resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Clouds patch payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1083,18 +1016,19 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CloudInner> updateAsync(
-        String resourceGroupName, String cloudName, ResourcePatch body, Context context) {
-        return beginUpdateAsync(resourceGroupName, cloudName, body, context)
-            .last()
+    private Mono<CloudInner> updateAsync(String resourceGroupName, String cloudResourceName, ResourcePatch body,
+        Context context) {
+        return beginUpdateAsync(resourceGroupName, cloudResourceName, body, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Implements the Clouds PATCH method.
+     * 
      * Updates the Clouds resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Clouds patch payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1102,15 +1036,17 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CloudInner update(String resourceGroupName, String cloudName, ResourcePatch body) {
-        return updateAsync(resourceGroupName, cloudName, body).block();
+    public CloudInner update(String resourceGroupName, String cloudResourceName, ResourcePatch body) {
+        return updateAsync(resourceGroupName, cloudResourceName, body).block();
     }
 
     /**
+     * Implements the Clouds PATCH method.
+     * 
      * Updates the Clouds resource.
-     *
-     * @param resourceGroupName The name of the resource group.
-     * @param cloudName Name of the Cloud.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param cloudResourceName Name of the Cloud.
      * @param body Clouds patch payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1119,14 +1055,16 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return the Clouds resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CloudInner update(String resourceGroupName, String cloudName, ResourcePatch body, Context context) {
-        return updateAsync(resourceGroupName, cloudName, body, context).block();
+    public CloudInner update(String resourceGroupName, String cloudResourceName, ResourcePatch body, Context context) {
+        return updateAsync(resourceGroupName, cloudResourceName, body, context).block();
     }
 
     /**
+     * Implements GET Clouds in a resource group.
+     * 
      * List of Clouds in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1135,16 +1073,12 @@ public final class CloudsClientImpl implements CloudsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CloudInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1152,32 +1086,19 @@ public final class CloudsClientImpl implements CloudsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<CloudInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<CloudInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Implements GET Clouds in a resource group.
+     * 
      * List of Clouds in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1185,19 +1106,15 @@ public final class CloudsClientImpl implements CloudsClient {
      * @return list of Clouds along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CloudInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
+    private Mono<PagedResponse<CloudInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1206,28 +1123,18 @@ public final class CloudsClientImpl implements CloudsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
+     * Implements GET Clouds in a resource group.
+     * 
      * List of Clouds in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1235,15 +1142,16 @@ public final class CloudsClientImpl implements CloudsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CloudInner> listByResourceGroupAsync(String resourceGroupName) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
+     * Implements GET Clouds in a resource group.
+     * 
      * List of Clouds in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1252,15 +1160,16 @@ public final class CloudsClientImpl implements CloudsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CloudInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
+     * Implements GET Clouds in a resource group.
+     * 
      * List of Clouds in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1272,9 +1181,11 @@ public final class CloudsClientImpl implements CloudsClient {
     }
 
     /**
+     * Implements GET Clouds in a resource group.
+     * 
      * List of Clouds in a resource group.
-     *
-     * @param resourceGroupName The name of the resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1287,8 +1198,10 @@ public final class CloudsClientImpl implements CloudsClient {
     }
 
     /**
+     * Implements GET Clouds in a subscription.
+     * 
      * List of Clouds in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of Clouds along with {@link PagedResponse} on successful completion of {@link Mono}.
@@ -1296,43 +1209,27 @@ public final class CloudsClientImpl implements CloudsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CloudInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<CloudInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                this.client.getApiVersion(), accept, context))
+            .<PagedResponse<CloudInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Implements GET Clouds in a subscription.
+     * 
      * List of Clouds in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1342,53 +1239,42 @@ public final class CloudsClientImpl implements CloudsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CloudInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
-                accept,
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
                 context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
+     * Implements GET Clouds in a subscription.
+     * 
      * List of Clouds in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of Clouds as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CloudInner> listAsync() {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
     }
 
     /**
+     * Implements GET Clouds in a subscription.
+     * 
      * List of Clouds in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1397,13 +1283,15 @@ public final class CloudsClientImpl implements CloudsClient {
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<CloudInner> listAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
     }
 
     /**
+     * Implements GET Clouds in a subscription.
+     * 
      * List of Clouds in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return list of Clouds as paginated response with {@link PagedIterable}.
@@ -1414,8 +1302,10 @@ public final class CloudsClientImpl implements CloudsClient {
     }
 
     /**
+     * Implements GET Clouds in a subscription.
+     * 
      * List of Clouds in a subscription.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1429,8 +1319,10 @@ public final class CloudsClientImpl implements CloudsClient {
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1442,31 +1334,24 @@ public final class CloudsClientImpl implements CloudsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<CloudInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<CloudInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1479,30 +1364,22 @@ public final class CloudsClientImpl implements CloudsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1514,31 +1391,24 @@ public final class CloudsClientImpl implements CloudsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<CloudInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<CloudInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1551,23 +1421,13 @@ public final class CloudsClientImpl implements CloudsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

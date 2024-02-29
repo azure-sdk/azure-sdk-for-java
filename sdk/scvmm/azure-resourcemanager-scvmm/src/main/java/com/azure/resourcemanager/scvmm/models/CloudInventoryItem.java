@@ -5,18 +5,25 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.scvmm.fluent.models.InventoryItemProperties;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The Cloud inventory item. */
+/**
+ * The Cloud inventory item.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "inventoryType")
 @JsonTypeName("Cloud")
 @Immutable
 public final class CloudInventoryItem extends InventoryItemProperties {
     /**
+     * Creates an instance of CloudInventoryItem class.
+     */
+    public CloudInventoryItem() {
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

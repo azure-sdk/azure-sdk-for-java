@@ -8,19 +8,26 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the resource properties. */
+/**
+ * Defines the resource properties.
+ */
 @Fluent
 public final class StorageProfile {
     /*
-     * Gets or sets the list of virtual disks associated with the virtual
-     * machine.
+     * Gets or sets the list of virtual disks associated with the virtual machine.
      */
     @JsonProperty(value = "disks")
     private List<VirtualDisk> disks;
 
     /**
+     * Creates an instance of StorageProfile class.
+     */
+    public StorageProfile() {
+    }
+
+    /**
      * Get the disks property: Gets or sets the list of virtual disks associated with the virtual machine.
-     *
+     * 
      * @return the disks value.
      */
     public List<VirtualDisk> disks() {
@@ -29,7 +36,7 @@ public final class StorageProfile {
 
     /**
      * Set the disks property: Gets or sets the list of virtual disks associated with the virtual machine.
-     *
+     * 
      * @param disks the disks value to set.
      * @return the StorageProfile object itself.
      */
@@ -40,7 +47,7 @@ public final class StorageProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
