@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.relay.models.UnavailableReason;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Description of the check name availability request properties. */
+/**
+ * Description of the check name availability request properties.
+ */
 @Fluent
 public final class CheckNameAvailabilityResultInner {
     /*
@@ -18,8 +20,7 @@ public final class CheckNameAvailabilityResultInner {
     private String message;
 
     /*
-     * Value indicating namespace is available. Returns true if the namespace
-     * is available; otherwise, false.
+     * Value indicating namespace is available. Returns true if the namespace is available; otherwise, false.
      */
     @JsonProperty(value = "nameAvailable")
     private Boolean nameAvailable;
@@ -31,8 +32,14 @@ public final class CheckNameAvailabilityResultInner {
     private UnavailableReason reason;
 
     /**
+     * Creates an instance of CheckNameAvailabilityResultInner class.
+     */
+    public CheckNameAvailabilityResultInner() {
+    }
+
+    /**
      * Get the message property: The detailed info regarding the reason associated with the namespace.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -42,7 +49,7 @@ public final class CheckNameAvailabilityResultInner {
     /**
      * Get the nameAvailable property: Value indicating namespace is available. Returns true if the namespace is
      * available; otherwise, false.
-     *
+     * 
      * @return the nameAvailable value.
      */
     public Boolean nameAvailable() {
@@ -52,7 +59,7 @@ public final class CheckNameAvailabilityResultInner {
     /**
      * Set the nameAvailable property: Value indicating namespace is available. Returns true if the namespace is
      * available; otherwise, false.
-     *
+     * 
      * @param nameAvailable the nameAvailable value to set.
      * @return the CheckNameAvailabilityResultInner object itself.
      */
@@ -63,7 +70,7 @@ public final class CheckNameAvailabilityResultInner {
 
     /**
      * Get the reason property: The reason for unavailability of a namespace.
-     *
+     * 
      * @return the reason value.
      */
     public UnavailableReason reason() {
@@ -72,7 +79,7 @@ public final class CheckNameAvailabilityResultInner {
 
     /**
      * Set the reason property: The reason for unavailability of a namespace.
-     *
+     * 
      * @param reason the reason value to set.
      * @return the CheckNameAvailabilityResultInner object itself.
      */
@@ -83,7 +90,7 @@ public final class CheckNameAvailabilityResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -6,13 +6,17 @@ package com.azure.resourcemanager.relay.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
-import com.azure.resourcemanager.relay.models.ProvisioningStateEnum;
+import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.relay.models.PublicNetworkAccess;
 import com.azure.resourcemanager.relay.models.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.Map;
 
-/** Description of a namespace resource. */
+/**
+ * Description of a namespace resource.
+ */
 @Fluent
 public final class RelayNamespaceInner extends Resource {
     /*
@@ -22,14 +26,26 @@ public final class RelayNamespaceInner extends Resource {
     private Sku sku;
 
     /*
+     * The system meta data relating to this resource.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /*
      * Description of Relay namespace
      */
     @JsonProperty(value = "properties")
     private RelayNamespaceProperties innerProperties;
 
     /**
+     * Creates an instance of RelayNamespaceInner class.
+     */
+    public RelayNamespaceInner() {
+    }
+
+    /**
      * Get the sku property: SKU of the namespace.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -38,7 +54,7 @@ public final class RelayNamespaceInner extends Resource {
 
     /**
      * Set the sku property: SKU of the namespace.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the RelayNamespaceInner object itself.
      */
@@ -48,22 +64,35 @@ public final class RelayNamespaceInner extends Resource {
     }
 
     /**
+     * Get the systemData property: The system meta data relating to this resource.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the innerProperties property: Description of Relay namespace.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RelayNamespaceProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RelayNamespaceInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RelayNamespaceInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -71,17 +100,26 @@ public final class RelayNamespaceInner extends Resource {
     }
 
     /**
-     * Get the provisioningState property: The provisioningState property.
-     *
+     * Get the provisioningState property: Provisioning state of the Namespace.
+     * 
      * @return the provisioningState value.
      */
-    public ProvisioningStateEnum provisioningState() {
+    public String provisioningState() {
         return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 
     /**
+     * Get the status property: Status of the Namespace.
+     * 
+     * @return the status value.
+     */
+    public String status() {
+        return this.innerProperties() == null ? null : this.innerProperties().status();
+    }
+
+    /**
      * Get the createdAt property: The time the namespace was created.
-     *
+     * 
      * @return the createdAt value.
      */
     public OffsetDateTime createdAt() {
@@ -90,7 +128,7 @@ public final class RelayNamespaceInner extends Resource {
 
     /**
      * Get the updatedAt property: The time the namespace was updated.
-     *
+     * 
      * @return the updatedAt value.
      */
     public OffsetDateTime updatedAt() {
@@ -99,7 +137,7 @@ public final class RelayNamespaceInner extends Resource {
 
     /**
      * Get the serviceBusEndpoint property: Endpoint you can use to perform Service Bus operations.
-     *
+     * 
      * @return the serviceBusEndpoint value.
      */
     public String serviceBusEndpoint() {
@@ -108,7 +146,7 @@ public final class RelayNamespaceInner extends Resource {
 
     /**
      * Get the metricId property: Identifier for Azure Insights metrics.
-     *
+     * 
      * @return the metricId value.
      */
     public String metricId() {
@@ -116,8 +154,57 @@ public final class RelayNamespaceInner extends Resource {
     }
 
     /**
+     * Get the privateEndpointConnections property: List of private endpoint connections.
+     * 
+     * @return the privateEndpointConnections value.
+     */
+    public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
+        return this.innerProperties() == null ? null : this.innerProperties().privateEndpointConnections();
+    }
+
+    /**
+     * Set the privateEndpointConnections property: List of private endpoint connections.
+     * 
+     * @param privateEndpointConnections the privateEndpointConnections value to set.
+     * @return the RelayNamespaceInner object itself.
+     */
+    public RelayNamespaceInner
+        withPrivateEndpointConnections(List<PrivateEndpointConnectionInner> privateEndpointConnections) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RelayNamespaceProperties();
+        }
+        this.innerProperties().withPrivateEndpointConnections(privateEndpointConnections);
+        return this;
+    }
+
+    /**
+     * Get the publicNetworkAccess property: This determines if traffic is allowed over public network. By default it
+     * is enabled.
+     * 
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccess publicNetworkAccess() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
+    }
+
+    /**
+     * Set the publicNetworkAccess property: This determines if traffic is allowed over public network. By default it
+     * is enabled.
+     * 
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the RelayNamespaceInner object itself.
+     */
+    public RelayNamespaceInner withPublicNetworkAccess(PublicNetworkAccess publicNetworkAccess) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new RelayNamespaceProperties();
+        }
+        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

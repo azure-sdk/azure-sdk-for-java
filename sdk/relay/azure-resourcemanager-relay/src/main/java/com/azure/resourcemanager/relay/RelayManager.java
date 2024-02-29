@@ -27,11 +27,15 @@ import com.azure.resourcemanager.relay.fluent.RelayApi;
 import com.azure.resourcemanager.relay.implementation.HybridConnectionsImpl;
 import com.azure.resourcemanager.relay.implementation.NamespacesImpl;
 import com.azure.resourcemanager.relay.implementation.OperationsImpl;
+import com.azure.resourcemanager.relay.implementation.PrivateEndpointConnectionsImpl;
+import com.azure.resourcemanager.relay.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.relay.implementation.RelayApiBuilder;
 import com.azure.resourcemanager.relay.implementation.WcfRelaysImpl;
 import com.azure.resourcemanager.relay.models.HybridConnections;
 import com.azure.resourcemanager.relay.models.Namespaces;
 import com.azure.resourcemanager.relay.models.Operations;
+import com.azure.resourcemanager.relay.models.PrivateEndpointConnections;
+import com.azure.resourcemanager.relay.models.PrivateLinkResources;
 import com.azure.resourcemanager.relay.models.WcfRelays;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -40,33 +44,36 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to RelayManager. Use these API to manage Azure Relay resources through Azure Resource Manager. */
+/**
+ * Entry point to RelayManager.
+ * Use these API to manage Azure Relay resources through Azure Resource Manager.
+ */
 public final class RelayManager {
-    private Operations operations;
-
     private Namespaces namespaces;
 
     private HybridConnections hybridConnections;
 
     private WcfRelays wcfRelays;
 
+    private PrivateEndpointConnections privateEndpointConnections;
+
+    private PrivateLinkResources privateLinkResources;
+
+    private Operations operations;
+
     private final RelayApi clientObject;
 
     private RelayManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new RelayApiBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new RelayApiBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of Relay service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the Relay service API instance.
@@ -79,7 +86,7 @@ public final class RelayManager {
 
     /**
      * Creates an instance of Relay service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the Relay service API instance.
@@ -92,14 +99,16 @@ public final class RelayManager {
 
     /**
      * Gets a Configurable instance that can be used to create RelayManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new RelayManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -171,8 +180,8 @@ public final class RelayManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -189,8 +198,8 @@ public final class RelayManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -210,21 +219,12 @@ public final class RelayManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.relay")
-                .append("/")
-                .append("1.0.0-beta.2");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.relay").append("/")
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -243,50 +243,25 @@ public final class RelayManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new RelayManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
-     * Gets the resource collection API of Operations.
-     *
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
-    }
-
-    /**
      * Gets the resource collection API of Namespaces. It manages RelayNamespace, AuthorizationRule.
-     *
+     * 
      * @return Resource collection API of Namespaces.
      */
     public Namespaces namespaces() {
@@ -298,7 +273,7 @@ public final class RelayManager {
 
     /**
      * Gets the resource collection API of HybridConnections. It manages HybridConnection.
-     *
+     * 
      * @return Resource collection API of HybridConnections.
      */
     public HybridConnections hybridConnections() {
@@ -310,7 +285,7 @@ public final class RelayManager {
 
     /**
      * Gets the resource collection API of WcfRelays. It manages WcfRelay.
-     *
+     * 
      * @return Resource collection API of WcfRelays.
      */
     public WcfRelays wcfRelays() {
@@ -321,8 +296,47 @@ public final class RelayManager {
     }
 
     /**
-     * @return Wrapped service client RelayApi providing direct access to the underlying auto-generated API
-     *     implementation, based on Azure REST API.
+     * Gets the resource collection API of PrivateEndpointConnections. It manages PrivateEndpointConnection.
+     * 
+     * @return Resource collection API of PrivateEndpointConnections.
+     */
+    public PrivateEndpointConnections privateEndpointConnections() {
+        if (this.privateEndpointConnections == null) {
+            this.privateEndpointConnections
+                = new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
+        }
+        return privateEndpointConnections;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateLinkResources.
+     * 
+     * @return Resource collection API of PrivateLinkResources.
+     */
+    public PrivateLinkResources privateLinkResources() {
+        if (this.privateLinkResources == null) {
+            this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
+        }
+        return privateLinkResources;
+    }
+
+    /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
+     * Gets wrapped service client RelayApi providing direct access to the underlying auto-generated API implementation,
+     * based on Azure REST API.
+     * 
+     * @return Wrapped service client RelayApi.
      */
     public RelayApi serviceClient() {
         return this.clientObject;

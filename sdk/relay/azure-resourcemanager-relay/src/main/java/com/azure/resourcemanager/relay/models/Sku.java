@@ -5,16 +5,19 @@
 package com.azure.resourcemanager.relay.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** SKU of the namespace. */
+/**
+ * SKU of the namespace.
+ */
 @Fluent
 public final class Sku {
     /*
      * Name of this SKU.
      */
     @JsonProperty(value = "name", required = true)
-    private String name = "Standard";
+    private SkuName name;
 
     /*
      * The tier of this SKU.
@@ -22,34 +25,35 @@ public final class Sku {
     @JsonProperty(value = "tier")
     private SkuTier tier;
 
-    /** Creates an instance of Sku class. */
+    /**
+     * Creates an instance of Sku class.
+     */
     public Sku() {
-        name = "Standard";
     }
 
     /**
      * Get the name property: Name of this SKU.
-     *
+     * 
      * @return the name value.
      */
-    public String name() {
+    public SkuName name() {
         return this.name;
     }
 
     /**
      * Set the name property: Name of this SKU.
-     *
+     * 
      * @param name the name value to set.
      * @return the Sku object itself.
      */
-    public Sku withName(String name) {
+    public Sku withName(SkuName name) {
         this.name = name;
         return this;
     }
 
     /**
      * Get the tier property: The tier of this SKU.
-     *
+     * 
      * @return the tier value.
      */
     public SkuTier tier() {
@@ -58,7 +62,7 @@ public final class Sku {
 
     /**
      * Set the tier property: The tier of this SKU.
-     *
+     * 
      * @param tier the tier value to set.
      * @return the Sku object itself.
      */
@@ -69,9 +73,15 @@ public final class Sku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (name() == null) {
+            throw LOGGER
+                .logExceptionAsError(new IllegalArgumentException("Missing required property name in model Sku"));
+        }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(Sku.class);
 }

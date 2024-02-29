@@ -4,44 +4,50 @@
 
 package com.azure.resourcemanager.relay.models;
 
+import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Collection;
 
-/** Defines values for KeyType. */
-public enum KeyType {
-    /** Enum value PrimaryKey. */
-    PRIMARY_KEY("PrimaryKey"),
+/**
+ * The access key to regenerate.
+ */
+public final class KeyType extends ExpandableStringEnum<KeyType> {
+    /**
+     * Static value PrimaryKey for KeyType.
+     */
+    public static final KeyType PRIMARY_KEY = fromString("PrimaryKey");
 
-    /** Enum value SecondaryKey. */
-    SECONDARY_KEY("SecondaryKey");
+    /**
+     * Static value SecondaryKey for KeyType.
+     */
+    public static final KeyType SECONDARY_KEY = fromString("SecondaryKey");
 
-    /** The actual serialized value for a KeyType instance. */
-    private final String value;
-
-    KeyType(String value) {
-        this.value = value;
+    /**
+     * Creates a new instance of KeyType value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public KeyType() {
     }
 
     /**
-     * Parses a serialized value to a KeyType instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed KeyType object, or null if unable to parse.
+     * Creates or finds a KeyType from its string representation.
+     * 
+     * @param name a name to look for.
+     * @return the corresponding KeyType.
      */
     @JsonCreator
-    public static KeyType fromString(String value) {
-        KeyType[] items = KeyType.values();
-        for (KeyType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
+    public static KeyType fromString(String name) {
+        return fromString(name, KeyType.class);
     }
 
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    /**
+     * Gets known KeyType values.
+     * 
+     * @return known KeyType values.
+     */
+    public static Collection<KeyType> values() {
+        return values(KeyType.class);
     }
 }
