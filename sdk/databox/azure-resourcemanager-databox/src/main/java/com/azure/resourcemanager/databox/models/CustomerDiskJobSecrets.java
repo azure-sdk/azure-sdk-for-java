@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The secrets related to customer disk job. */
+/**
+ * The secrets related to customer disk job.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobSecretsType")
 @JsonTypeName("DataBoxCustomerDisk")
 @Immutable
@@ -27,13 +29,15 @@ public final class CustomerDiskJobSecrets extends JobSecrets {
     @JsonProperty(value = "carrierAccountNumber", access = JsonProperty.Access.WRITE_ONLY)
     private String carrierAccountNumber;
 
-    /** Creates an instance of CustomerDiskJobSecrets class. */
+    /**
+     * Creates an instance of CustomerDiskJobSecrets class.
+     */
     public CustomerDiskJobSecrets() {
     }
 
     /**
      * Get the diskSecrets property: Contains the list of secrets object for that device.
-     *
+     * 
      * @return the diskSecrets value.
      */
     public List<DiskSecret> diskSecrets() {
@@ -42,7 +46,7 @@ public final class CustomerDiskJobSecrets extends JobSecrets {
 
     /**
      * Get the carrierAccountNumber property: Carrier Account Number of the customer.
-     *
+     * 
      * @return the carrierAccountNumber value.
      */
     public String carrierAccountNumber() {
@@ -51,7 +55,7 @@ public final class CustomerDiskJobSecrets extends JobSecrets {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

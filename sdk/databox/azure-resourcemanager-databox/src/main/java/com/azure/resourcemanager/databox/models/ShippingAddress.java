@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Shipping address where customer wishes to receive the device. */
+/**
+ * Shipping address where customer wishes to receive the device.
+ */
 @Fluent
 public final class ShippingAddress {
     /*
@@ -83,13 +85,15 @@ public final class ShippingAddress {
     @JsonProperty(value = "taxIdentificationNumber")
     private String taxIdentificationNumber;
 
-    /** Creates an instance of ShippingAddress class. */
+    /**
+     * Creates an instance of ShippingAddress class.
+     */
     public ShippingAddress() {
     }
 
     /**
      * Get the streetAddress1 property: Street Address line 1.
-     *
+     * 
      * @return the streetAddress1 value.
      */
     public String streetAddress1() {
@@ -98,7 +102,7 @@ public final class ShippingAddress {
 
     /**
      * Set the streetAddress1 property: Street Address line 1.
-     *
+     * 
      * @param streetAddress1 the streetAddress1 value to set.
      * @return the ShippingAddress object itself.
      */
@@ -109,7 +113,7 @@ public final class ShippingAddress {
 
     /**
      * Get the streetAddress2 property: Street Address line 2.
-     *
+     * 
      * @return the streetAddress2 value.
      */
     public String streetAddress2() {
@@ -118,7 +122,7 @@ public final class ShippingAddress {
 
     /**
      * Set the streetAddress2 property: Street Address line 2.
-     *
+     * 
      * @param streetAddress2 the streetAddress2 value to set.
      * @return the ShippingAddress object itself.
      */
@@ -129,7 +133,7 @@ public final class ShippingAddress {
 
     /**
      * Get the streetAddress3 property: Street Address line 3.
-     *
+     * 
      * @return the streetAddress3 value.
      */
     public String streetAddress3() {
@@ -138,7 +142,7 @@ public final class ShippingAddress {
 
     /**
      * Set the streetAddress3 property: Street Address line 3.
-     *
+     * 
      * @param streetAddress3 the streetAddress3 value to set.
      * @return the ShippingAddress object itself.
      */
@@ -149,7 +153,7 @@ public final class ShippingAddress {
 
     /**
      * Get the city property: Name of the City.
-     *
+     * 
      * @return the city value.
      */
     public String city() {
@@ -158,7 +162,7 @@ public final class ShippingAddress {
 
     /**
      * Set the city property: Name of the City.
-     *
+     * 
      * @param city the city value to set.
      * @return the ShippingAddress object itself.
      */
@@ -169,7 +173,7 @@ public final class ShippingAddress {
 
     /**
      * Get the stateOrProvince property: Name of the State or Province.
-     *
+     * 
      * @return the stateOrProvince value.
      */
     public String stateOrProvince() {
@@ -178,7 +182,7 @@ public final class ShippingAddress {
 
     /**
      * Set the stateOrProvince property: Name of the State or Province.
-     *
+     * 
      * @param stateOrProvince the stateOrProvince value to set.
      * @return the ShippingAddress object itself.
      */
@@ -189,7 +193,7 @@ public final class ShippingAddress {
 
     /**
      * Get the country property: Name of the Country.
-     *
+     * 
      * @return the country value.
      */
     public String country() {
@@ -198,7 +202,7 @@ public final class ShippingAddress {
 
     /**
      * Set the country property: Name of the Country.
-     *
+     * 
      * @param country the country value to set.
      * @return the ShippingAddress object itself.
      */
@@ -209,7 +213,7 @@ public final class ShippingAddress {
 
     /**
      * Get the postalCode property: Postal code.
-     *
+     * 
      * @return the postalCode value.
      */
     public String postalCode() {
@@ -218,7 +222,7 @@ public final class ShippingAddress {
 
     /**
      * Set the postalCode property: Postal code.
-     *
+     * 
      * @param postalCode the postalCode value to set.
      * @return the ShippingAddress object itself.
      */
@@ -229,7 +233,7 @@ public final class ShippingAddress {
 
     /**
      * Get the zipExtendedCode property: Extended Zip Code.
-     *
+     * 
      * @return the zipExtendedCode value.
      */
     public String zipExtendedCode() {
@@ -238,7 +242,7 @@ public final class ShippingAddress {
 
     /**
      * Set the zipExtendedCode property: Extended Zip Code.
-     *
+     * 
      * @param zipExtendedCode the zipExtendedCode value to set.
      * @return the ShippingAddress object itself.
      */
@@ -249,7 +253,7 @@ public final class ShippingAddress {
 
     /**
      * Get the companyName property: Name of the company.
-     *
+     * 
      * @return the companyName value.
      */
     public String companyName() {
@@ -258,7 +262,7 @@ public final class ShippingAddress {
 
     /**
      * Set the companyName property: Name of the company.
-     *
+     * 
      * @param companyName the companyName value to set.
      * @return the ShippingAddress object itself.
      */
@@ -269,7 +273,7 @@ public final class ShippingAddress {
 
     /**
      * Get the addressType property: Type of address.
-     *
+     * 
      * @return the addressType value.
      */
     public AddressType addressType() {
@@ -278,7 +282,7 @@ public final class ShippingAddress {
 
     /**
      * Set the addressType property: Type of address.
-     *
+     * 
      * @param addressType the addressType value to set.
      * @return the ShippingAddress object itself.
      */
@@ -290,7 +294,7 @@ public final class ShippingAddress {
     /**
      * Get the skipAddressValidation property: Flag to indicate if customer has chosen to skip default address
      * validation.
-     *
+     * 
      * @return the skipAddressValidation value.
      */
     public Boolean skipAddressValidation() {
@@ -300,7 +304,7 @@ public final class ShippingAddress {
     /**
      * Set the skipAddressValidation property: Flag to indicate if customer has chosen to skip default address
      * validation.
-     *
+     * 
      * @param skipAddressValidation the skipAddressValidation value to set.
      * @return the ShippingAddress object itself.
      */
@@ -311,7 +315,7 @@ public final class ShippingAddress {
 
     /**
      * Get the taxIdentificationNumber property: Tax Identification Number.
-     *
+     * 
      * @return the taxIdentificationNumber value.
      */
     public String taxIdentificationNumber() {
@@ -320,7 +324,7 @@ public final class ShippingAddress {
 
     /**
      * Set the taxIdentificationNumber property: Tax Identification Number.
-     *
+     * 
      * @param taxIdentificationNumber the taxIdentificationNumber value to set.
      * @return the ShippingAddress object itself.
      */
@@ -331,19 +335,17 @@ public final class ShippingAddress {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (streetAddress1() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property streetAddress1 in model ShippingAddress"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property streetAddress1 in model ShippingAddress"));
         }
         if (country() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property country in model ShippingAddress"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property country in model ShippingAddress"));
         }
     }
 

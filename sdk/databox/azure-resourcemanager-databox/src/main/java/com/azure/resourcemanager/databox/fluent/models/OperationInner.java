@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.databox.models.OperationDisplay;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Operation entity. */
+/**
+ * Operation entity.
+ */
 @Fluent
 public final class OperationInner {
     /*
@@ -41,14 +43,16 @@ public final class OperationInner {
     @JsonProperty(value = "isDataAction")
     private Boolean isDataAction;
 
-    /** Creates an instance of OperationInner class. */
+    /**
+     * Creates an instance of OperationInner class.
+     */
     public OperationInner() {
     }
 
     /**
      * Get the name property: Name of the operation. Format:
      * {resourceProviderNamespace}/{resourceType}/{read|write|delete|action}.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -57,7 +61,7 @@ public final class OperationInner {
 
     /**
      * Get the display property: Operation display values.
-     *
+     * 
      * @return the display value.
      */
     public OperationDisplay display() {
@@ -66,7 +70,7 @@ public final class OperationInner {
 
     /**
      * Get the properties property: Operation properties.
-     *
+     * 
      * @return the properties value.
      */
     public Object properties() {
@@ -75,7 +79,7 @@ public final class OperationInner {
 
     /**
      * Get the origin property: Origin of the operation. Can be : user|system|user,system.
-     *
+     * 
      * @return the origin value.
      */
     public String origin() {
@@ -84,7 +88,7 @@ public final class OperationInner {
 
     /**
      * Get the isDataAction property: Indicates whether the operation is a data action.
-     *
+     * 
      * @return the isDataAction value.
      */
     public Boolean isDataAction() {
@@ -93,7 +97,7 @@ public final class OperationInner {
 
     /**
      * Set the isDataAction property: Indicates whether the operation is a data action.
-     *
+     * 
      * @param isDataAction the isDataAction value to set.
      * @return the OperationInner object itself.
      */
@@ -104,7 +108,7 @@ public final class OperationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

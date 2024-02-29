@@ -12,14 +12,16 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Minimum request requirement of any validation category. */
+/**
+ * Minimum request requirement of any validation category.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "validationCategory",
     defaultImpl = ValidationRequest.class)
 @JsonTypeName("ValidationRequest")
-@JsonSubTypes({@JsonSubTypes.Type(name = "JobCreationValidation", value = CreateJobValidations.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "JobCreationValidation", value = CreateJobValidations.class) })
 @Fluent
 public class ValidationRequest {
     /*
@@ -28,14 +30,16 @@ public class ValidationRequest {
     @JsonProperty(value = "individualRequestDetails", required = true)
     private List<ValidationInputRequest> individualRequestDetails;
 
-    /** Creates an instance of ValidationRequest class. */
+    /**
+     * Creates an instance of ValidationRequest class.
+     */
     public ValidationRequest() {
     }
 
     /**
      * Get the individualRequestDetails property: List of request details contain validationType and its request as key
      * and value respectively.
-     *
+     * 
      * @return the individualRequestDetails value.
      */
     public List<ValidationInputRequest> individualRequestDetails() {
@@ -45,7 +49,7 @@ public class ValidationRequest {
     /**
      * Set the individualRequestDetails property: List of request details contain validationType and its request as key
      * and value respectively.
-     *
+     * 
      * @param individualRequestDetails the individualRequestDetails value to set.
      * @return the ValidationRequest object itself.
      */
@@ -56,15 +60,13 @@ public class ValidationRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (individualRequestDetails() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property individualRequestDetails in model ValidationRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property individualRequestDetails in model ValidationRequest"));
         } else {
             individualRequestDetails().forEach(e -> e.validate());
         }

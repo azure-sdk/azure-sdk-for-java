@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Configuration for defining the transfer of data. */
+/**
+ * Configuration for defining the transfer of data.
+ */
 @Fluent
 public final class TransferConfiguration {
     /*
@@ -31,13 +33,15 @@ public final class TransferConfiguration {
     @JsonProperty(value = "transferAllDetails")
     private TransferConfigurationTransferAllDetails transferAllDetails;
 
-    /** Creates an instance of TransferConfiguration class. */
+    /**
+     * Creates an instance of TransferConfiguration class.
+     */
     public TransferConfiguration() {
     }
 
     /**
      * Get the transferConfigurationType property: Type of the configuration for transfer.
-     *
+     * 
      * @return the transferConfigurationType value.
      */
     public TransferConfigurationType transferConfigurationType() {
@@ -46,7 +50,7 @@ public final class TransferConfiguration {
 
     /**
      * Set the transferConfigurationType property: Type of the configuration for transfer.
-     *
+     * 
      * @param transferConfigurationType the transferConfigurationType value to set.
      * @return the TransferConfiguration object itself.
      */
@@ -56,9 +60,9 @@ public final class TransferConfiguration {
     }
 
     /**
-     * Get the transferFilterDetails property: Map of filter type and the details to filter. This field is required only
-     * if the TransferConfigurationType is given as TransferUsingFilter.
-     *
+     * Get the transferFilterDetails property: Map of filter type and the details to filter. This field is required
+     * only if the TransferConfigurationType is given as TransferUsingFilter.
+     * 
      * @return the transferFilterDetails value.
      */
     public TransferConfigurationTransferFilterDetails transferFilterDetails() {
@@ -66,14 +70,14 @@ public final class TransferConfiguration {
     }
 
     /**
-     * Set the transferFilterDetails property: Map of filter type and the details to filter. This field is required only
-     * if the TransferConfigurationType is given as TransferUsingFilter.
-     *
+     * Set the transferFilterDetails property: Map of filter type and the details to filter. This field is required
+     * only if the TransferConfigurationType is given as TransferUsingFilter.
+     * 
      * @param transferFilterDetails the transferFilterDetails value to set.
      * @return the TransferConfiguration object itself.
      */
-    public TransferConfiguration withTransferFilterDetails(
-        TransferConfigurationTransferFilterDetails transferFilterDetails) {
+    public TransferConfiguration
+        withTransferFilterDetails(TransferConfigurationTransferFilterDetails transferFilterDetails) {
         this.transferFilterDetails = transferFilterDetails;
         return this;
     }
@@ -81,7 +85,7 @@ public final class TransferConfiguration {
     /**
      * Get the transferAllDetails property: Map of filter type and the details to transfer all data. This field is
      * required only if the TransferConfigurationType is given as TransferAll.
-     *
+     * 
      * @return the transferAllDetails value.
      */
     public TransferConfigurationTransferAllDetails transferAllDetails() {
@@ -91,7 +95,7 @@ public final class TransferConfiguration {
     /**
      * Set the transferAllDetails property: Map of filter type and the details to transfer all data. This field is
      * required only if the TransferConfigurationType is given as TransferAll.
-     *
+     * 
      * @param transferAllDetails the transferAllDetails value to set.
      * @return the TransferConfiguration object itself.
      */
@@ -102,15 +106,13 @@ public final class TransferConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (transferConfigurationType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property transferConfigurationType in model TransferConfiguration"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property transferConfigurationType in model TransferConfiguration"));
         }
         if (transferFilterDetails() != null) {
             transferFilterDetails().validate();

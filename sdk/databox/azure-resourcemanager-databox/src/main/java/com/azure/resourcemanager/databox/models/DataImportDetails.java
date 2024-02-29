@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details of the data to be used for importing data to azure. */
+/**
+ * Details of the data to be used for importing data to azure.
+ */
 @Fluent
 public final class DataImportDetails {
     /*
@@ -23,13 +25,15 @@ public final class DataImportDetails {
     @JsonProperty(value = "logCollectionLevel")
     private LogCollectionLevel logCollectionLevel;
 
-    /** Creates an instance of DataImportDetails class. */
+    /**
+     * Creates an instance of DataImportDetails class.
+     */
     public DataImportDetails() {
     }
 
     /**
      * Get the accountDetails property: Account details of the data to be transferred.
-     *
+     * 
      * @return the accountDetails value.
      */
     public DataAccountDetails accountDetails() {
@@ -38,7 +42,7 @@ public final class DataImportDetails {
 
     /**
      * Set the accountDetails property: Account details of the data to be transferred.
-     *
+     * 
      * @param accountDetails the accountDetails value to set.
      * @return the DataImportDetails object itself.
      */
@@ -49,7 +53,7 @@ public final class DataImportDetails {
 
     /**
      * Get the logCollectionLevel property: Level of the logs to be collected.
-     *
+     * 
      * @return the logCollectionLevel value.
      */
     public LogCollectionLevel logCollectionLevel() {
@@ -58,7 +62,7 @@ public final class DataImportDetails {
 
     /**
      * Set the logCollectionLevel property: Level of the logs to be collected.
-     *
+     * 
      * @param logCollectionLevel the logCollectionLevel value to set.
      * @return the DataImportDetails object itself.
      */
@@ -69,15 +73,13 @@ public final class DataImportDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (accountDetails() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property accountDetails in model DataImportDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property accountDetails in model DataImportDetails"));
         } else {
             accountDetails().validate();
         }

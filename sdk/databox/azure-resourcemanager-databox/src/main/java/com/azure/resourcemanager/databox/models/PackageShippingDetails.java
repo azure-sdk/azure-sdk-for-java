@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** package shipping details. */
+/**
+ * package shipping details.
+ */
 @Immutable
 public final class PackageShippingDetails {
     /*
@@ -28,13 +30,15 @@ public final class PackageShippingDetails {
     @JsonProperty(value = "trackingId", access = JsonProperty.Access.WRITE_ONLY)
     private String trackingId;
 
-    /** Creates an instance of PackageShippingDetails class. */
+    /**
+     * Creates an instance of PackageShippingDetails class.
+     */
     public PackageShippingDetails() {
     }
 
     /**
      * Get the trackingUrl property: Url where shipment can be tracked.
-     *
+     * 
      * @return the trackingUrl value.
      */
     public String trackingUrl() {
@@ -43,7 +47,7 @@ public final class PackageShippingDetails {
 
     /**
      * Get the carrierName property: Name of the carrier.
-     *
+     * 
      * @return the carrierName value.
      */
     public String carrierName() {
@@ -52,7 +56,7 @@ public final class PackageShippingDetails {
 
     /**
      * Get the trackingId property: Tracking Id of shipment.
-     *
+     * 
      * @return the trackingId value.
      */
     public String trackingId() {
@@ -61,7 +65,7 @@ public final class PackageShippingDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

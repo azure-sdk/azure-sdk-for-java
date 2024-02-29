@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Transport options available for given sku in a region. */
+/**
+ * Transport options available for given sku in a region.
+ */
 @Immutable
 public final class TransportAvailabilityResponse {
     /*
@@ -17,13 +19,15 @@ public final class TransportAvailabilityResponse {
     @JsonProperty(value = "transportAvailabilityDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<TransportAvailabilityDetails> transportAvailabilityDetails;
 
-    /** Creates an instance of TransportAvailabilityResponse class. */
+    /**
+     * Creates an instance of TransportAvailabilityResponse class.
+     */
     public TransportAvailabilityResponse() {
     }
 
     /**
      * Get the transportAvailabilityDetails property: List of transport availability details for given region.
-     *
+     * 
      * @return the transportAvailabilityDetails value.
      */
     public List<TransportAvailabilityDetails> transportAvailabilityDetails() {
@@ -32,7 +36,7 @@ public final class TransportAvailabilityResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

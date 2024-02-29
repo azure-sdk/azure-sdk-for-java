@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The JobResourceUpdateParameter. */
+/**
+ * The JobResourceUpdateParameter.
+ */
 @Fluent
 public final class JobResourceUpdateParameter {
     /*
@@ -33,13 +35,15 @@ public final class JobResourceUpdateParameter {
     @JsonProperty(value = "identity")
     private ResourceIdentity identity;
 
-    /** Creates an instance of JobResourceUpdateParameter class. */
+    /**
+     * Creates an instance of JobResourceUpdateParameter class.
+     */
     public JobResourceUpdateParameter() {
     }
 
     /**
      * Get the innerProperties property: Properties of a job to be updated.
-     *
+     * 
      * @return the innerProperties value.
      */
     private UpdateJobProperties innerProperties() {
@@ -49,7 +53,7 @@ public final class JobResourceUpdateParameter {
     /**
      * Get the tags property: The list of key value pairs that describe the resource. These tags can be used in viewing
      * and grouping this resource (across resource groups).
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -59,7 +63,7 @@ public final class JobResourceUpdateParameter {
     /**
      * Set the tags property: The list of key value pairs that describe the resource. These tags can be used in viewing
      * and grouping this resource (across resource groups).
-     *
+     * 
      * @param tags the tags value to set.
      * @return the JobResourceUpdateParameter object itself.
      */
@@ -70,7 +74,7 @@ public final class JobResourceUpdateParameter {
 
     /**
      * Get the identity property: Msi identity of the resource.
-     *
+     * 
      * @return the identity value.
      */
     public ResourceIdentity identity() {
@@ -79,7 +83,7 @@ public final class JobResourceUpdateParameter {
 
     /**
      * Set the identity property: Msi identity of the resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the JobResourceUpdateParameter object itself.
      */
@@ -90,7 +94,7 @@ public final class JobResourceUpdateParameter {
 
     /**
      * Get the details property: Details of a job to be updated.
-     *
+     * 
      * @return the details value.
      */
     public UpdateJobDetails details() {
@@ -99,7 +103,7 @@ public final class JobResourceUpdateParameter {
 
     /**
      * Set the details property: Details of a job to be updated.
-     *
+     * 
      * @param details the details value to set.
      * @return the JobResourceUpdateParameter object itself.
      */
@@ -113,7 +117,7 @@ public final class JobResourceUpdateParameter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

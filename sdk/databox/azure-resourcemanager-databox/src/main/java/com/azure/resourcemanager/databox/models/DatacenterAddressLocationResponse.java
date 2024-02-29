@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Datacenter address for given storage location. */
+/**
+ * Datacenter address for given storage location.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "datacenterAddressType")
 @JsonTypeName("DatacenterAddressLocation")
 @Immutable
@@ -92,13 +94,15 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
     @JsonProperty(value = "additionalShippingInformation", access = JsonProperty.Access.WRITE_ONLY)
     private String additionalShippingInformation;
 
-    /** Creates an instance of DatacenterAddressLocationResponse class. */
+    /**
+     * Creates an instance of DatacenterAddressLocationResponse class.
+     */
     public DatacenterAddressLocationResponse() {
     }
 
     /**
      * Get the contactPersonName property: Contact person name.
-     *
+     * 
      * @return the contactPersonName value.
      */
     public String contactPersonName() {
@@ -107,7 +111,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the company property: Company name.
-     *
+     * 
      * @return the company value.
      */
     public String company() {
@@ -116,7 +120,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the street1 property: Street address line 1.
-     *
+     * 
      * @return the street1 value.
      */
     public String street1() {
@@ -125,7 +129,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the street2 property: Street address line 2.
-     *
+     * 
      * @return the street2 value.
      */
     public String street2() {
@@ -134,7 +138,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the street3 property: Street address line 3.
-     *
+     * 
      * @return the street3 value.
      */
     public String street3() {
@@ -143,7 +147,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the city property: City name.
-     *
+     * 
      * @return the city value.
      */
     public String city() {
@@ -152,7 +156,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the state property: name of the state.
-     *
+     * 
      * @return the state value.
      */
     public String state() {
@@ -161,7 +165,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the zip property: Zip code.
-     *
+     * 
      * @return the zip value.
      */
     public String zip() {
@@ -170,7 +174,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the country property: name of the country.
-     *
+     * 
      * @return the country value.
      */
     public String country() {
@@ -179,7 +183,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the phone property: Phone number.
-     *
+     * 
      * @return the phone value.
      */
     public String phone() {
@@ -188,7 +192,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the phoneExtension property: Phone extension.
-     *
+     * 
      * @return the phoneExtension value.
      */
     public String phoneExtension() {
@@ -197,7 +201,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the addressType property: Address type.
-     *
+     * 
      * @return the addressType value.
      */
     public String addressType() {
@@ -206,7 +210,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Get the additionalShippingInformation property: Special instruction for shipping.
-     *
+     * 
      * @return the additionalShippingInformation value.
      */
     public String additionalShippingInformation() {
@@ -215,7 +219,7 @@ public final class DatacenterAddressLocationResponse extends DatacenterAddressRe
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

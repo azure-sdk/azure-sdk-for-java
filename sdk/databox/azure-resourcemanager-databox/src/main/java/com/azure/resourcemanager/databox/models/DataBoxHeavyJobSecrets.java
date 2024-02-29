@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The secrets related to a databox heavy job. */
+/**
+ * The secrets related to a databox heavy job.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobSecretsType")
 @JsonTypeName("DataBoxHeavy")
 @Immutable
@@ -21,13 +23,15 @@ public final class DataBoxHeavyJobSecrets extends JobSecrets {
     @JsonProperty(value = "cabinetPodSecrets", access = JsonProperty.Access.WRITE_ONLY)
     private List<DataBoxHeavySecret> cabinetPodSecrets;
 
-    /** Creates an instance of DataBoxHeavyJobSecrets class. */
+    /**
+     * Creates an instance of DataBoxHeavyJobSecrets class.
+     */
     public DataBoxHeavyJobSecrets() {
     }
 
     /**
      * Get the cabinetPodSecrets property: Contains the list of secret objects for a databox heavy job.
-     *
+     * 
      * @return the cabinetPodSecrets value.
      */
     public List<DataBoxHeavySecret> cabinetPodSecrets() {
@@ -36,7 +40,7 @@ public final class DataBoxHeavyJobSecrets extends JobSecrets {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
