@@ -31,14 +31,16 @@ public final class SuppressionListAddressesImpl implements SuppressionListAddres
         String domainName, String suppressionListName) {
         PagedIterable<SuppressionListAddressResourceInner> inner
             = this.serviceClient().list(resourceGroupName, emailServiceName, domainName, suppressionListName);
-        return Utils.mapPage(inner, inner1 -> new SuppressionListAddressResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new SuppressionListAddressResourceImpl(inner1, this.manager()));
     }
 
     public PagedIterable<SuppressionListAddressResource> list(String resourceGroupName, String emailServiceName,
         String domainName, String suppressionListName, Context context) {
         PagedIterable<SuppressionListAddressResourceInner> inner
             = this.serviceClient().list(resourceGroupName, emailServiceName, domainName, suppressionListName, context);
-        return Utils.mapPage(inner, inner1 -> new SuppressionListAddressResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new SuppressionListAddressResourceImpl(inner1, this.manager()));
     }
 
     public Response<SuppressionListAddressResource> getWithResponse(String resourceGroupName, String emailServiceName,
@@ -76,27 +78,27 @@ public final class SuppressionListAddressesImpl implements SuppressionListAddres
     }
 
     public SuppressionListAddressResource getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String emailServiceName = Utils.getValueFromIdByName(id, "emailServices");
+        String emailServiceName = ResourceManagerUtils.getValueFromIdByName(id, "emailServices");
         if (emailServiceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'emailServices'.", id)));
         }
-        String domainName = Utils.getValueFromIdByName(id, "domains");
+        String domainName = ResourceManagerUtils.getValueFromIdByName(id, "domains");
         if (domainName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'domains'.", id)));
         }
-        String suppressionListName = Utils.getValueFromIdByName(id, "suppressionLists");
+        String suppressionListName = ResourceManagerUtils.getValueFromIdByName(id, "suppressionLists");
         if (suppressionListName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'suppressionLists'.", id)));
         }
-        String addressId = Utils.getValueFromIdByName(id, "suppressionListAddresses");
+        String addressId = ResourceManagerUtils.getValueFromIdByName(id, "suppressionListAddresses");
         if (addressId == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
                 .format("The resource ID '%s' is not valid. Missing path segment 'suppressionListAddresses'.", id)));
@@ -106,27 +108,27 @@ public final class SuppressionListAddressesImpl implements SuppressionListAddres
     }
 
     public Response<SuppressionListAddressResource> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String emailServiceName = Utils.getValueFromIdByName(id, "emailServices");
+        String emailServiceName = ResourceManagerUtils.getValueFromIdByName(id, "emailServices");
         if (emailServiceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'emailServices'.", id)));
         }
-        String domainName = Utils.getValueFromIdByName(id, "domains");
+        String domainName = ResourceManagerUtils.getValueFromIdByName(id, "domains");
         if (domainName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'domains'.", id)));
         }
-        String suppressionListName = Utils.getValueFromIdByName(id, "suppressionLists");
+        String suppressionListName = ResourceManagerUtils.getValueFromIdByName(id, "suppressionLists");
         if (suppressionListName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'suppressionLists'.", id)));
         }
-        String addressId = Utils.getValueFromIdByName(id, "suppressionListAddresses");
+        String addressId = ResourceManagerUtils.getValueFromIdByName(id, "suppressionListAddresses");
         if (addressId == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
                 .format("The resource ID '%s' is not valid. Missing path segment 'suppressionListAddresses'.", id)));
@@ -136,27 +138,27 @@ public final class SuppressionListAddressesImpl implements SuppressionListAddres
     }
 
     public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String emailServiceName = Utils.getValueFromIdByName(id, "emailServices");
+        String emailServiceName = ResourceManagerUtils.getValueFromIdByName(id, "emailServices");
         if (emailServiceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'emailServices'.", id)));
         }
-        String domainName = Utils.getValueFromIdByName(id, "domains");
+        String domainName = ResourceManagerUtils.getValueFromIdByName(id, "domains");
         if (domainName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'domains'.", id)));
         }
-        String suppressionListName = Utils.getValueFromIdByName(id, "suppressionLists");
+        String suppressionListName = ResourceManagerUtils.getValueFromIdByName(id, "suppressionLists");
         if (suppressionListName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'suppressionLists'.", id)));
         }
-        String addressId = Utils.getValueFromIdByName(id, "suppressionListAddresses");
+        String addressId = ResourceManagerUtils.getValueFromIdByName(id, "suppressionListAddresses");
         if (addressId == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
                 .format("The resource ID '%s' is not valid. Missing path segment 'suppressionListAddresses'.", id)));
@@ -166,27 +168,27 @@ public final class SuppressionListAddressesImpl implements SuppressionListAddres
     }
 
     public Response<Void> deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String emailServiceName = Utils.getValueFromIdByName(id, "emailServices");
+        String emailServiceName = ResourceManagerUtils.getValueFromIdByName(id, "emailServices");
         if (emailServiceName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'emailServices'.", id)));
         }
-        String domainName = Utils.getValueFromIdByName(id, "domains");
+        String domainName = ResourceManagerUtils.getValueFromIdByName(id, "domains");
         if (domainName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'domains'.", id)));
         }
-        String suppressionListName = Utils.getValueFromIdByName(id, "suppressionLists");
+        String suppressionListName = ResourceManagerUtils.getValueFromIdByName(id, "suppressionLists");
         if (suppressionListName == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'suppressionLists'.", id)));
         }
-        String addressId = Utils.getValueFromIdByName(id, "suppressionListAddresses");
+        String addressId = ResourceManagerUtils.getValueFromIdByName(id, "suppressionListAddresses");
         if (addressId == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(String
                 .format("The resource ID '%s' is not valid. Missing path segment 'suppressionListAddresses'.", id)));
