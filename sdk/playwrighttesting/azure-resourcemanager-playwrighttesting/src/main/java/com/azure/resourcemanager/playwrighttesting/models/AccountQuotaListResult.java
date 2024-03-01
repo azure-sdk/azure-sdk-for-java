@@ -6,20 +6,20 @@ package com.azure.resourcemanager.playwrighttesting.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.playwrighttesting.fluent.models.QuotaInner;
+import com.azure.resourcemanager.playwrighttesting.fluent.models.AccountQuotaInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * The response of a Quota list operation.
+ * The response of a AccountQuota list operation.
  */
 @Fluent
-public final class QuotaListResult {
+public final class AccountQuotaListResult {
     /*
-     * The Quota items on this page
+     * The AccountQuota items on this page
      */
     @JsonProperty(value = "value", required = true)
-    private List<QuotaInner> value;
+    private List<AccountQuotaInner> value;
 
     /*
      * The link to the next page of items
@@ -28,27 +28,27 @@ public final class QuotaListResult {
     private String nextLink;
 
     /**
-     * Creates an instance of QuotaListResult class.
+     * Creates an instance of AccountQuotaListResult class.
      */
-    public QuotaListResult() {
+    public AccountQuotaListResult() {
     }
 
     /**
-     * Get the value property: The Quota items on this page.
+     * Get the value property: The AccountQuota items on this page.
      * 
      * @return the value value.
      */
-    public List<QuotaInner> value() {
+    public List<AccountQuotaInner> value() {
         return this.value;
     }
 
     /**
-     * Set the value property: The Quota items on this page.
+     * Set the value property: The AccountQuota items on this page.
      * 
      * @param value the value value to set.
-     * @return the QuotaListResult object itself.
+     * @return the AccountQuotaListResult object itself.
      */
-    public QuotaListResult withValue(List<QuotaInner> value) {
+    public AccountQuotaListResult withValue(List<AccountQuotaInner> value) {
         this.value = value;
         return this;
     }
@@ -70,11 +70,11 @@ public final class QuotaListResult {
     public void validate() {
         if (value() == null) {
             throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property value in model QuotaListResult"));
+                new IllegalArgumentException("Missing required property value in model AccountQuotaListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(QuotaListResult.class);
+    private static final ClientLogger LOGGER = new ClientLogger(AccountQuotaListResult.class);
 }
