@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.containerservicefleet.models.FleetProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Fleet properties. */
+/**
+ * Fleet properties.
+ */
 @Immutable
 public final class FleetProperties {
     /*
@@ -17,13 +19,15 @@ public final class FleetProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private FleetProvisioningState provisioningState;
 
-    /** Creates an instance of FleetProperties class. */
+    /**
+     * Creates an instance of FleetProperties class.
+     */
     public FleetProperties() {
     }
 
     /**
      * Get the provisioningState property: The status of the last operation.
-     *
+     * 
      * @return the provisioningState value.
      */
     public FleetProvisioningState provisioningState() {
@@ -32,7 +36,7 @@ public final class FleetProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
