@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The target service properties. */
+/**
+ * The target service properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -19,13 +21,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureResource", value = AzureResource.class),
     @JsonSubTypes.Type(name = "ConfluentBootstrapServer", value = ConfluentBootstrapServer.class),
-    @JsonSubTypes.Type(name = "ConfluentSchemaRegistry", value = ConfluentSchemaRegistry.class)
-})
+    @JsonSubTypes.Type(name = "ConfluentSchemaRegistry", value = ConfluentSchemaRegistry.class) })
 @Immutable
 public class TargetServiceBase {
     /**
+     * Creates an instance of TargetServiceBase class.
+     */
+    public TargetServiceBase() {
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
