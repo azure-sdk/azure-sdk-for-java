@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.azure.resourcemanager.securityinsights.models.OfficeDataConnectorDataTypes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Office data connector properties. */
+/**
+ * Office data connector properties.
+ */
 @Fluent
 public final class OfficeDataConnectorProperties extends DataConnectorTenantId {
     /*
@@ -20,8 +22,14 @@ public final class OfficeDataConnectorProperties extends DataConnectorTenantId {
     private OfficeDataConnectorDataTypes dataTypes;
 
     /**
+     * Creates an instance of OfficeDataConnectorProperties class.
+     */
+    public OfficeDataConnectorProperties() {
+    }
+
+    /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public OfficeDataConnectorDataTypes dataTypes() {
@@ -30,7 +38,7 @@ public final class OfficeDataConnectorProperties extends DataConnectorTenantId {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the OfficeDataConnectorProperties object itself.
      */
@@ -39,7 +47,9 @@ public final class OfficeDataConnectorProperties extends DataConnectorTenantId {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficeDataConnectorProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -48,17 +58,15 @@ public final class OfficeDataConnectorProperties extends DataConnectorTenantId {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (dataTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataTypes in model OfficeDataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dataTypes in model OfficeDataConnectorProperties"));
         } else {
             dataTypes().validate();
         }

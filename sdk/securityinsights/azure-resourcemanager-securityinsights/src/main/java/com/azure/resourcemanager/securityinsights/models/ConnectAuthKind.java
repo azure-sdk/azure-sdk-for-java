@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The authentication kind used to poll the data. */
+/**
+ * The authentication kind used to poll the data.
+ */
 public final class ConnectAuthKind extends ExpandableStringEnum<ConnectAuthKind> {
-    /** Static value Basic for ConnectAuthKind. */
+    /**
+     * Static value Basic for ConnectAuthKind.
+     */
     public static final ConnectAuthKind BASIC = fromString("Basic");
 
-    /** Static value OAuth2 for ConnectAuthKind. */
+    /**
+     * Static value OAuth2 for ConnectAuthKind.
+     */
     public static final ConnectAuthKind OAUTH2 = fromString("OAuth2");
 
-    /** Static value APIKey for ConnectAuthKind. */
+    /**
+     * Static value APIKey for ConnectAuthKind.
+     */
     public static final ConnectAuthKind APIKEY = fromString("APIKey");
 
     /**
+     * Creates a new instance of ConnectAuthKind value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ConnectAuthKind() {
+    }
+
+    /**
      * Creates or finds a ConnectAuthKind from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ConnectAuthKind.
      */
@@ -32,7 +49,7 @@ public final class ConnectAuthKind extends ExpandableStringEnum<ConnectAuthKind>
 
     /**
      * Gets known ConnectAuthKind values.
-     *
+     * 
      * @return known ConnectAuthKind values.
      */
     public static Collection<ConnectAuthKind> values() {

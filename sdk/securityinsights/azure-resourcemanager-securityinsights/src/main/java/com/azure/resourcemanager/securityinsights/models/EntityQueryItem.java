@@ -10,14 +10,16 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** An abstract Query item for entity. */
+/**
+ * An abstract Query item for entity.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "kind",
     defaultImpl = EntityQueryItem.class)
 @JsonTypeName("EntityQueryItem")
-@JsonSubTypes({@JsonSubTypes.Type(name = "Insight", value = InsightQueryItem.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "Insight", value = InsightQueryItem.class) })
 @Fluent
 public class EntityQueryItem {
     /*
@@ -39,8 +41,14 @@ public class EntityQueryItem {
     private String type;
 
     /**
+     * Creates an instance of EntityQueryItem class.
+     */
+    public EntityQueryItem() {
+    }
+
+    /**
      * Get the id property: Query Template ARM ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -49,7 +57,7 @@ public class EntityQueryItem {
 
     /**
      * Get the name property: Query Template ARM Name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -58,7 +66,7 @@ public class EntityQueryItem {
 
     /**
      * Set the name property: Query Template ARM Name.
-     *
+     * 
      * @param name the name value to set.
      * @return the EntityQueryItem object itself.
      */
@@ -69,7 +77,7 @@ public class EntityQueryItem {
 
     /**
      * Get the type property: ARM Type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -78,7 +86,7 @@ public class EntityQueryItem {
 
     /**
      * Set the type property: ARM Type.
-     *
+     * 
      * @param type the type value to set.
      * @return the EntityQueryItem object itself.
      */
@@ -89,7 +97,7 @@ public class EntityQueryItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

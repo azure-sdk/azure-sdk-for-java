@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.AlertRuleTemplat
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List all the alert rule templates. */
+/**
+ * List all the alert rule templates.
+ */
 @Fluent
 public final class AlertRuleTemplatesList {
     /*
@@ -26,8 +28,14 @@ public final class AlertRuleTemplatesList {
     private List<AlertRuleTemplateInner> value;
 
     /**
+     * Creates an instance of AlertRuleTemplatesList class.
+     */
+    public AlertRuleTemplatesList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of alert rule templates.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class AlertRuleTemplatesList {
 
     /**
      * Get the value property: Array of alert rule templates.
-     *
+     * 
      * @return the value value.
      */
     public List<AlertRuleTemplateInner> value() {
@@ -45,7 +53,7 @@ public final class AlertRuleTemplatesList {
 
     /**
      * Set the value property: Array of alert rule templates.
-     *
+     * 
      * @param value the value value to set.
      * @return the AlertRuleTemplatesList object itself.
      */
@@ -56,14 +64,13 @@ public final class AlertRuleTemplatesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model AlertRuleTemplatesList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model AlertRuleTemplatesList"));
         } else {
             value().forEach(e -> e.validate());
         }

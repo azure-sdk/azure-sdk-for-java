@@ -10,9 +10,17 @@ import com.azure.resourcemanager.securityinsights.models.ClientInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Incident comment property bag. */
+/**
+ * Incident comment property bag.
+ */
 @Fluent
 public final class IncidentCommentProperties {
+    /*
+     * The comment message
+     */
+    @JsonProperty(value = "message", required = true)
+    private String message;
+
     /*
      * The time the comment was created
      */
@@ -26,38 +34,20 @@ public final class IncidentCommentProperties {
     private OffsetDateTime lastModifiedTimeUtc;
 
     /*
-     * The comment message
-     */
-    @JsonProperty(value = "message", required = true)
-    private String message;
-
-    /*
      * Describes the client that created the comment
      */
     @JsonProperty(value = "author", access = JsonProperty.Access.WRITE_ONLY)
     private ClientInfo author;
 
     /**
-     * Get the createdTimeUtc property: The time the comment was created.
-     *
-     * @return the createdTimeUtc value.
+     * Creates an instance of IncidentCommentProperties class.
      */
-    public OffsetDateTime createdTimeUtc() {
-        return this.createdTimeUtc;
-    }
-
-    /**
-     * Get the lastModifiedTimeUtc property: The time the comment was updated.
-     *
-     * @return the lastModifiedTimeUtc value.
-     */
-    public OffsetDateTime lastModifiedTimeUtc() {
-        return this.lastModifiedTimeUtc;
+    public IncidentCommentProperties() {
     }
 
     /**
      * Get the message property: The comment message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -66,7 +56,7 @@ public final class IncidentCommentProperties {
 
     /**
      * Set the message property: The comment message.
-     *
+     * 
      * @param message the message value to set.
      * @return the IncidentCommentProperties object itself.
      */
@@ -76,8 +66,26 @@ public final class IncidentCommentProperties {
     }
 
     /**
+     * Get the createdTimeUtc property: The time the comment was created.
+     * 
+     * @return the createdTimeUtc value.
+     */
+    public OffsetDateTime createdTimeUtc() {
+        return this.createdTimeUtc;
+    }
+
+    /**
+     * Get the lastModifiedTimeUtc property: The time the comment was updated.
+     * 
+     * @return the lastModifiedTimeUtc value.
+     */
+    public OffsetDateTime lastModifiedTimeUtc() {
+        return this.lastModifiedTimeUtc;
+    }
+
+    /**
      * Get the author property: Describes the client that created the comment.
-     *
+     * 
      * @return the author value.
      */
     public ClientInfo author() {
@@ -86,15 +94,13 @@ public final class IncidentCommentProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (message() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property message in model IncidentCommentProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property message in model IncidentCommentProperties"));
         }
         if (author() != null) {
             author().validate();

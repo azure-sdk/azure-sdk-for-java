@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes an error encountered in the file during validation. */
+/**
+ * Describes an error encountered in the file during validation.
+ */
 @Fluent
 public final class ValidationError {
     /*
@@ -24,8 +26,14 @@ public final class ValidationError {
     private List<String> errorMessages;
 
     /**
+     * Creates an instance of ValidationError class.
+     */
+    public ValidationError() {
+    }
+
+    /**
      * Get the recordIndex property: The number of the record that has the error.
-     *
+     * 
      * @return the recordIndex value.
      */
     public Integer recordIndex() {
@@ -34,7 +42,7 @@ public final class ValidationError {
 
     /**
      * Set the recordIndex property: The number of the record that has the error.
-     *
+     * 
      * @param recordIndex the recordIndex value to set.
      * @return the ValidationError object itself.
      */
@@ -45,7 +53,7 @@ public final class ValidationError {
 
     /**
      * Get the errorMessages property: A list of descriptions of the error.
-     *
+     * 
      * @return the errorMessages value.
      */
     public List<String> errorMessages() {
@@ -54,7 +62,7 @@ public final class ValidationError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

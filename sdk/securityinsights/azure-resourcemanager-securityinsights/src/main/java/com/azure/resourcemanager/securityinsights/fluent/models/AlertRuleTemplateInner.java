@@ -18,7 +18,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Alert rule template. */
+/**
+ * Alert rule template.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -33,8 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         name = "MicrosoftSecurityIncidentCreation",
         value = MicrosoftSecurityIncidentCreationAlertRuleTemplate.class),
     @JsonSubTypes.Type(name = "Scheduled", value = ScheduledAlertRuleTemplate.class),
-    @JsonSubTypes.Type(name = "NRT", value = NrtAlertRuleTemplate.class)
-})
+    @JsonSubTypes.Type(name = "NRT", value = NrtAlertRuleTemplate.class) })
 @Immutable
 public class AlertRuleTemplateInner extends ProxyResource {
     /*
@@ -44,8 +45,14 @@ public class AlertRuleTemplateInner extends ProxyResource {
     private SystemData systemData;
 
     /**
+     * Creates an instance of AlertRuleTemplateInner class.
+     */
+    public AlertRuleTemplateInner() {
+    }
+
+    /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -54,7 +61,7 @@ public class AlertRuleTemplateInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
