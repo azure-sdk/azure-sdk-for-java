@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed application deployment policy. */
+/**
+ * Managed application deployment policy.
+ */
 @Fluent
 public final class ApplicationDeploymentPolicy {
     /*
@@ -17,13 +19,15 @@ public final class ApplicationDeploymentPolicy {
     @JsonProperty(value = "deploymentMode", required = true)
     private DeploymentMode deploymentMode;
 
-    /** Creates an instance of ApplicationDeploymentPolicy class. */
+    /**
+     * Creates an instance of ApplicationDeploymentPolicy class.
+     */
     public ApplicationDeploymentPolicy() {
     }
 
     /**
      * Get the deploymentMode property: The managed application deployment mode.
-     *
+     * 
      * @return the deploymentMode value.
      */
     public DeploymentMode deploymentMode() {
@@ -32,7 +36,7 @@ public final class ApplicationDeploymentPolicy {
 
     /**
      * Set the deploymentMode property: The managed application deployment mode.
-     *
+     * 
      * @param deploymentMode the deploymentMode value to set.
      * @return the ApplicationDeploymentPolicy object itself.
      */
@@ -43,15 +47,13 @@ public final class ApplicationDeploymentPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (deploymentMode() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property deploymentMode in model ApplicationDeploymentPolicy"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property deploymentMode in model ApplicationDeploymentPolicy"));
         }
     }
 

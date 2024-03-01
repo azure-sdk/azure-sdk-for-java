@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** JIT approver definition. */
+/**
+ * JIT approver definition.
+ */
 @Fluent
 public final class JitApproverDefinition {
     /*
@@ -29,13 +31,15 @@ public final class JitApproverDefinition {
     @JsonProperty(value = "displayName")
     private String displayName;
 
-    /** Creates an instance of JitApproverDefinition class. */
+    /**
+     * Creates an instance of JitApproverDefinition class.
+     */
     public JitApproverDefinition() {
     }
 
     /**
      * Get the id property: The approver service principal Id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -44,7 +48,7 @@ public final class JitApproverDefinition {
 
     /**
      * Set the id property: The approver service principal Id.
-     *
+     * 
      * @param id the id value to set.
      * @return the JitApproverDefinition object itself.
      */
@@ -55,7 +59,7 @@ public final class JitApproverDefinition {
 
     /**
      * Get the type property: The approver type.
-     *
+     * 
      * @return the type value.
      */
     public JitApproverType type() {
@@ -64,7 +68,7 @@ public final class JitApproverDefinition {
 
     /**
      * Set the type property: The approver type.
-     *
+     * 
      * @param type the type value to set.
      * @return the JitApproverDefinition object itself.
      */
@@ -75,7 +79,7 @@ public final class JitApproverDefinition {
 
     /**
      * Get the displayName property: The approver display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -84,7 +88,7 @@ public final class JitApproverDefinition {
 
     /**
      * Set the displayName property: The approver display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the JitApproverDefinition object itself.
      */
@@ -95,14 +99,13 @@ public final class JitApproverDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property id in model JitApproverDefinition"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property id in model JitApproverDefinition"));
         }
     }
 

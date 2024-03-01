@@ -17,7 +17,9 @@ import com.azure.resourcemanager.managedapplications.models.ApplicationPolicy;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The managed application definition properties. */
+/**
+ * The managed application definition properties.
+ */
 @Fluent
 public final class ApplicationDefinitionProperties {
     /*
@@ -113,13 +115,15 @@ public final class ApplicationDefinitionProperties {
     @JsonProperty(value = "policies")
     private List<ApplicationPolicy> policies;
 
-    /** Creates an instance of ApplicationDefinitionProperties class. */
+    /**
+     * Creates an instance of ApplicationDefinitionProperties class.
+     */
     public ApplicationDefinitionProperties() {
     }
 
     /**
      * Get the lockLevel property: The managed application lock level.
-     *
+     * 
      * @return the lockLevel value.
      */
     public ApplicationLockLevel lockLevel() {
@@ -128,7 +132,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Set the lockLevel property: The managed application lock level.
-     *
+     * 
      * @param lockLevel the lockLevel value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -139,7 +143,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Get the displayName property: The managed application definition display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -148,7 +152,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Set the displayName property: The managed application definition display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -159,7 +163,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Get the isEnabled property: A value indicating whether the package is enabled or not.
-     *
+     * 
      * @return the isEnabled value.
      */
     public Boolean isEnabled() {
@@ -168,7 +172,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Set the isEnabled property: A value indicating whether the package is enabled or not.
-     *
+     * 
      * @param isEnabled the isEnabled value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -179,7 +183,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Get the authorizations property: The managed application provider authorizations.
-     *
+     * 
      * @return the authorizations value.
      */
     public List<ApplicationAuthorization> authorizations() {
@@ -188,7 +192,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Set the authorizations property: The managed application provider authorizations.
-     *
+     * 
      * @param authorizations the authorizations value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -201,7 +205,7 @@ public final class ApplicationDefinitionProperties {
      * Get the artifacts property: The collection of managed application artifacts. The portal will use the files
      * specified as artifacts to construct the user experience of creating a managed application from a managed
      * application definition.
-     *
+     * 
      * @return the artifacts value.
      */
     public List<ApplicationDefinitionArtifact> artifacts() {
@@ -212,7 +216,7 @@ public final class ApplicationDefinitionProperties {
      * Set the artifacts property: The collection of managed application artifacts. The portal will use the files
      * specified as artifacts to construct the user experience of creating a managed application from a managed
      * application definition.
-     *
+     * 
      * @param artifacts the artifacts value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -223,7 +227,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Get the description property: The managed application definition description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -232,7 +236,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Set the description property: The managed application definition description.
-     *
+     * 
      * @param description the description value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -243,7 +247,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Get the packageFileUri property: The managed application definition package file Uri. Use this element.
-     *
+     * 
      * @return the packageFileUri value.
      */
     public String packageFileUri() {
@@ -252,7 +256,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Set the packageFileUri property: The managed application definition package file Uri. Use this element.
-     *
+     * 
      * @param packageFileUri the packageFileUri value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -263,7 +267,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Get the storageAccountId property: The storage account id for bring your own storage scenario.
-     *
+     * 
      * @return the storageAccountId value.
      */
     public String storageAccountId() {
@@ -272,7 +276,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Set the storageAccountId property: The storage account id for bring your own storage scenario.
-     *
+     * 
      * @param storageAccountId the storageAccountId value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -284,7 +288,7 @@ public final class ApplicationDefinitionProperties {
     /**
      * Get the mainTemplate property: The inline main template json which has resources to be provisioned. It can be a
      * JObject or well-formed JSON string.
-     *
+     * 
      * @return the mainTemplate value.
      */
     public Object mainTemplate() {
@@ -294,7 +298,7 @@ public final class ApplicationDefinitionProperties {
     /**
      * Set the mainTemplate property: The inline main template json which has resources to be provisioned. It can be a
      * JObject or well-formed JSON string.
-     *
+     * 
      * @param mainTemplate the mainTemplate value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -306,7 +310,7 @@ public final class ApplicationDefinitionProperties {
     /**
      * Get the createUiDefinition property: The createUiDefinition json for the backing template with
      * Microsoft.Solutions/applications resource. It can be a JObject or well-formed JSON string.
-     *
+     * 
      * @return the createUiDefinition value.
      */
     public Object createUiDefinition() {
@@ -316,7 +320,7 @@ public final class ApplicationDefinitionProperties {
     /**
      * Set the createUiDefinition property: The createUiDefinition json for the backing template with
      * Microsoft.Solutions/applications resource. It can be a JObject or well-formed JSON string.
-     *
+     * 
      * @param createUiDefinition the createUiDefinition value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -327,7 +331,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Get the notificationPolicy property: The managed application notification policy.
-     *
+     * 
      * @return the notificationPolicy value.
      */
     public ApplicationNotificationPolicy notificationPolicy() {
@@ -336,7 +340,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Set the notificationPolicy property: The managed application notification policy.
-     *
+     * 
      * @param notificationPolicy the notificationPolicy value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -347,7 +351,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Get the lockingPolicy property: The managed application locking policy.
-     *
+     * 
      * @return the lockingPolicy value.
      */
     public ApplicationPackageLockingPolicyDefinition lockingPolicy() {
@@ -356,7 +360,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Set the lockingPolicy property: The managed application locking policy.
-     *
+     * 
      * @param lockingPolicy the lockingPolicy value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -367,7 +371,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Get the deploymentPolicy property: The managed application deployment policy.
-     *
+     * 
      * @return the deploymentPolicy value.
      */
     public ApplicationDeploymentPolicy deploymentPolicy() {
@@ -376,7 +380,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Set the deploymentPolicy property: The managed application deployment policy.
-     *
+     * 
      * @param deploymentPolicy the deploymentPolicy value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -388,7 +392,7 @@ public final class ApplicationDefinitionProperties {
     /**
      * Get the managementPolicy property: The managed application management policy that determines publisher's access
      * to the managed resource group.
-     *
+     * 
      * @return the managementPolicy value.
      */
     public ApplicationManagementPolicy managementPolicy() {
@@ -398,7 +402,7 @@ public final class ApplicationDefinitionProperties {
     /**
      * Set the managementPolicy property: The managed application management policy that determines publisher's access
      * to the managed resource group.
-     *
+     * 
      * @param managementPolicy the managementPolicy value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -409,7 +413,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Get the policies property: The managed application provider policies.
-     *
+     * 
      * @return the policies value.
      */
     public List<ApplicationPolicy> policies() {
@@ -418,7 +422,7 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Set the policies property: The managed application provider policies.
-     *
+     * 
      * @param policies the policies value to set.
      * @return the ApplicationDefinitionProperties object itself.
      */
@@ -429,15 +433,13 @@ public final class ApplicationDefinitionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (lockLevel() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property lockLevel in model ApplicationDefinitionProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property lockLevel in model ApplicationDefinitionProperties"));
         }
         if (authorizations() != null) {
             authorizations().forEach(e -> e.validate());
