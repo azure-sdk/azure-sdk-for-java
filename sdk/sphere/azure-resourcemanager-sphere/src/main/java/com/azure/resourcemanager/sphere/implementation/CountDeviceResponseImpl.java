@@ -12,8 +12,8 @@ public final class CountDeviceResponseImpl implements CountDeviceResponse {
 
     private final com.azure.resourcemanager.sphere.AzureSphereManager serviceManager;
 
-    CountDeviceResponseImpl(
-        CountDeviceResponseInner innerObject, com.azure.resourcemanager.sphere.AzureSphereManager serviceManager) {
+    CountDeviceResponseImpl(CountDeviceResponseInner innerObject,
+        com.azure.resourcemanager.sphere.AzureSphereManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
