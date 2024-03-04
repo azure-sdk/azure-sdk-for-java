@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The UsernamePasswordAuthTypeWorkspaceConnectionProperties model. */
+/**
+ * The UsernamePasswordAuthTypeWorkspaceConnectionProperties model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
 @JsonTypeName("UsernamePassword")
 @Fluent
@@ -20,13 +22,15 @@ public final class UsernamePasswordAuthTypeWorkspaceConnectionProperties extends
     @JsonProperty(value = "credentials")
     private WorkspaceConnectionUsernamePassword credentials;
 
-    /** Creates an instance of UsernamePasswordAuthTypeWorkspaceConnectionProperties class. */
+    /**
+     * Creates an instance of UsernamePasswordAuthTypeWorkspaceConnectionProperties class.
+     */
     public UsernamePasswordAuthTypeWorkspaceConnectionProperties() {
     }
 
     /**
      * Get the credentials property: The credentials property.
-     *
+     * 
      * @return the credentials value.
      */
     public WorkspaceConnectionUsernamePassword credentials() {
@@ -35,38 +39,46 @@ public final class UsernamePasswordAuthTypeWorkspaceConnectionProperties extends
 
     /**
      * Set the credentials property: The credentials property.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the UsernamePasswordAuthTypeWorkspaceConnectionProperties object itself.
      */
-    public UsernamePasswordAuthTypeWorkspaceConnectionProperties withCredentials(
-        WorkspaceConnectionUsernamePassword credentials) {
+    public UsernamePasswordAuthTypeWorkspaceConnectionProperties
+        withCredentials(WorkspaceConnectionUsernamePassword credentials) {
         this.credentials = credentials;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UsernamePasswordAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UsernamePasswordAuthTypeWorkspaceConnectionProperties withTarget(String target) {
         super.withTarget(target);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UsernamePasswordAuthTypeWorkspaceConnectionProperties withValue(String value) {
         super.withValue(value);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UsernamePasswordAuthTypeWorkspaceConnectionProperties withValueFormat(ValueFormat valueFormat) {
         super.withValueFormat(valueFormat);
@@ -75,7 +87,7 @@ public final class UsernamePasswordAuthTypeWorkspaceConnectionProperties extends
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

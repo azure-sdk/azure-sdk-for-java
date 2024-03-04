@@ -5,11 +5,15 @@
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.machinelearning.models.FeatureStoreSettings;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
+import com.azure.resourcemanager.machinelearning.models.ServerlessComputeSettings;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The parameters for updating the properties of a machine learning workspace. */
+/**
+ * The parameters for updating the properties of a machine learning workspace.
+ */
 @Fluent
 public final class WorkspacePropertiesUpdateParameters {
     /*
@@ -43,6 +47,12 @@ public final class WorkspacePropertiesUpdateParameters {
     private String primaryUserAssignedIdentity;
 
     /*
+     * Settings for serverless compute created in the workspace
+     */
+    @JsonProperty(value = "serverlessComputeSettings")
+    private ServerlessComputeSettings serverlessComputeSettings;
+
+    /*
      * Whether requests from Public Network are allowed.
      */
     @JsonProperty(value = "publicNetworkAccess")
@@ -60,13 +70,21 @@ public final class WorkspacePropertiesUpdateParameters {
     @JsonProperty(value = "containerRegistry")
     private String containerRegistry;
 
-    /** Creates an instance of WorkspacePropertiesUpdateParameters class. */
+    /*
+     * Settings for feature store type workspace.
+     */
+    @JsonProperty(value = "featureStoreSettings")
+    private FeatureStoreSettings featureStoreSettings;
+
+    /**
+     * Creates an instance of WorkspacePropertiesUpdateParameters class.
+     */
     public WorkspacePropertiesUpdateParameters() {
     }
 
     /**
      * Get the description property: The description of this workspace.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -75,7 +93,7 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Set the description property: The description of this workspace.
-     *
+     * 
      * @param description the description value to set.
      * @return the WorkspacePropertiesUpdateParameters object itself.
      */
@@ -86,7 +104,7 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Get the friendlyName property: The friendly name for this workspace.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -95,7 +113,7 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Set the friendlyName property: The friendly name for this workspace.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the WorkspacePropertiesUpdateParameters object itself.
      */
@@ -106,7 +124,7 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Get the imageBuildCompute property: The compute name for image build.
-     *
+     * 
      * @return the imageBuildCompute value.
      */
     public String imageBuildCompute() {
@@ -115,7 +133,7 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Set the imageBuildCompute property: The compute name for image build.
-     *
+     * 
      * @param imageBuildCompute the imageBuildCompute value to set.
      * @return the WorkspacePropertiesUpdateParameters object itself.
      */
@@ -126,7 +144,7 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Get the serviceManagedResourcesSettings property: The service managed resource settings.
-     *
+     * 
      * @return the serviceManagedResourcesSettings value.
      */
     public ServiceManagedResourcesSettings serviceManagedResourcesSettings() {
@@ -135,12 +153,12 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Set the serviceManagedResourcesSettings property: The service managed resource settings.
-     *
+     * 
      * @param serviceManagedResourcesSettings the serviceManagedResourcesSettings value to set.
      * @return the WorkspacePropertiesUpdateParameters object itself.
      */
-    public WorkspacePropertiesUpdateParameters withServiceManagedResourcesSettings(
-        ServiceManagedResourcesSettings serviceManagedResourcesSettings) {
+    public WorkspacePropertiesUpdateParameters
+        withServiceManagedResourcesSettings(ServiceManagedResourcesSettings serviceManagedResourcesSettings) {
         this.serviceManagedResourcesSettings = serviceManagedResourcesSettings;
         return this;
     }
@@ -148,7 +166,7 @@ public final class WorkspacePropertiesUpdateParameters {
     /**
      * Get the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
      * workspace identity.
-     *
+     * 
      * @return the primaryUserAssignedIdentity value.
      */
     public String primaryUserAssignedIdentity() {
@@ -158,7 +176,7 @@ public final class WorkspacePropertiesUpdateParameters {
     /**
      * Set the primaryUserAssignedIdentity property: The user assigned identity resource id that represents the
      * workspace identity.
-     *
+     * 
      * @param primaryUserAssignedIdentity the primaryUserAssignedIdentity value to set.
      * @return the WorkspacePropertiesUpdateParameters object itself.
      */
@@ -168,8 +186,29 @@ public final class WorkspacePropertiesUpdateParameters {
     }
 
     /**
+     * Get the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     * 
+     * @return the serverlessComputeSettings value.
+     */
+    public ServerlessComputeSettings serverlessComputeSettings() {
+        return this.serverlessComputeSettings;
+    }
+
+    /**
+     * Set the serverlessComputeSettings property: Settings for serverless compute created in the workspace.
+     * 
+     * @param serverlessComputeSettings the serverlessComputeSettings value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters
+        withServerlessComputeSettings(ServerlessComputeSettings serverlessComputeSettings) {
+        this.serverlessComputeSettings = serverlessComputeSettings;
+        return this;
+    }
+
+    /**
      * Get the publicNetworkAccess property: Whether requests from Public Network are allowed.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -178,7 +217,7 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Set the publicNetworkAccess property: Whether requests from Public Network are allowed.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the WorkspacePropertiesUpdateParameters object itself.
      */
@@ -189,7 +228,7 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Get the applicationInsights property: ARM id of the application insights associated with this workspace.
-     *
+     * 
      * @return the applicationInsights value.
      */
     public String applicationInsights() {
@@ -198,7 +237,7 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Set the applicationInsights property: ARM id of the application insights associated with this workspace.
-     *
+     * 
      * @param applicationInsights the applicationInsights value to set.
      * @return the WorkspacePropertiesUpdateParameters object itself.
      */
@@ -209,7 +248,7 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Get the containerRegistry property: ARM id of the container registry associated with this workspace.
-     *
+     * 
      * @return the containerRegistry value.
      */
     public String containerRegistry() {
@@ -218,7 +257,7 @@ public final class WorkspacePropertiesUpdateParameters {
 
     /**
      * Set the containerRegistry property: ARM id of the container registry associated with this workspace.
-     *
+     * 
      * @param containerRegistry the containerRegistry value to set.
      * @return the WorkspacePropertiesUpdateParameters object itself.
      */
@@ -228,13 +267,39 @@ public final class WorkspacePropertiesUpdateParameters {
     }
 
     /**
+     * Get the featureStoreSettings property: Settings for feature store type workspace.
+     * 
+     * @return the featureStoreSettings value.
+     */
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.featureStoreSettings;
+    }
+
+    /**
+     * Set the featureStoreSettings property: Settings for feature store type workspace.
+     * 
+     * @param featureStoreSettings the featureStoreSettings value to set.
+     * @return the WorkspacePropertiesUpdateParameters object itself.
+     */
+    public WorkspacePropertiesUpdateParameters withFeatureStoreSettings(FeatureStoreSettings featureStoreSettings) {
+        this.featureStoreSettings = featureStoreSettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (serviceManagedResourcesSettings() != null) {
             serviceManagedResourcesSettings().validate();
+        }
+        if (serverlessComputeSettings() != null) {
+            serverlessComputeSettings().validate();
+        }
+        if (featureStoreSettings() != null) {
+            featureStoreSettings().validate();
         }
     }
 }

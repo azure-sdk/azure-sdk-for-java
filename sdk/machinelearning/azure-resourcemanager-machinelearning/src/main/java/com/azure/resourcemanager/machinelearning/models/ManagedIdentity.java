@@ -10,11 +10,13 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.UUID;
 
-/** Managed identity configuration. */
+/**
+ * Managed identity configuration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "identityType")
 @JsonTypeName("Managed")
 @Fluent
-public class ManagedIdentity extends IdentityConfiguration {
+public final class ManagedIdentity extends IdentityConfiguration {
     /*
      * Specifies a user-assigned identity by client ID. For system-assigned, do not set this field.
      */
@@ -33,14 +35,16 @@ public class ManagedIdentity extends IdentityConfiguration {
     @JsonProperty(value = "resourceId")
     private String resourceId;
 
-    /** Creates an instance of ManagedIdentity class. */
+    /**
+     * Creates an instance of ManagedIdentity class.
+     */
     public ManagedIdentity() {
     }
 
     /**
      * Get the clientId property: Specifies a user-assigned identity by client ID. For system-assigned, do not set this
      * field.
-     *
+     * 
      * @return the clientId value.
      */
     public UUID clientId() {
@@ -50,7 +54,7 @@ public class ManagedIdentity extends IdentityConfiguration {
     /**
      * Set the clientId property: Specifies a user-assigned identity by client ID. For system-assigned, do not set this
      * field.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the ManagedIdentity object itself.
      */
@@ -62,7 +66,7 @@ public class ManagedIdentity extends IdentityConfiguration {
     /**
      * Get the objectId property: Specifies a user-assigned identity by object ID. For system-assigned, do not set this
      * field.
-     *
+     * 
      * @return the objectId value.
      */
     public UUID objectId() {
@@ -72,7 +76,7 @@ public class ManagedIdentity extends IdentityConfiguration {
     /**
      * Set the objectId property: Specifies a user-assigned identity by object ID. For system-assigned, do not set this
      * field.
-     *
+     * 
      * @param objectId the objectId value to set.
      * @return the ManagedIdentity object itself.
      */
@@ -84,7 +88,7 @@ public class ManagedIdentity extends IdentityConfiguration {
     /**
      * Get the resourceId property: Specifies a user-assigned identity by ARM resource ID. For system-assigned, do not
      * set this field.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -94,7 +98,7 @@ public class ManagedIdentity extends IdentityConfiguration {
     /**
      * Set the resourceId property: Specifies a user-assigned identity by ARM resource ID. For system-assigned, do not
      * set this field.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the ManagedIdentity object itself.
      */
@@ -105,7 +109,7 @@ public class ManagedIdentity extends IdentityConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

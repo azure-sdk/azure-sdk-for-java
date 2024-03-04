@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Base definition for asset references. */
+/**
+ * Base definition for asset references.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -19,17 +21,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "DataPath", value = DataPathAssetReference.class),
     @JsonSubTypes.Type(name = "Id", value = IdAssetReference.class),
-    @JsonSubTypes.Type(name = "OutputPath", value = OutputPathAssetReference.class)
-})
+    @JsonSubTypes.Type(name = "OutputPath", value = OutputPathAssetReference.class) })
 @Immutable
 public class AssetReferenceBase {
-    /** Creates an instance of AssetReferenceBase class. */
+    /**
+     * Creates an instance of AssetReferenceBase class.
+     */
     public AssetReferenceBase() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

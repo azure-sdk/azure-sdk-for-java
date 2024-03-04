@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Category of the connection. */
+/**
+ * Category of the connection.
+ */
 public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCategory> {
-    /** Static value PythonFeed for ConnectionCategory. */
+    /**
+     * Static value PythonFeed for ConnectionCategory.
+     */
     public static final ConnectionCategory PYTHON_FEED = fromString("PythonFeed");
 
-    /** Static value ContainerRegistry for ConnectionCategory. */
+    /**
+     * Static value ContainerRegistry for ConnectionCategory.
+     */
     public static final ConnectionCategory CONTAINER_REGISTRY = fromString("ContainerRegistry");
 
-    /** Static value Git for ConnectionCategory. */
+    /**
+     * Static value Git for ConnectionCategory.
+     */
     public static final ConnectionCategory GIT = fromString("Git");
 
     /**
      * Creates a new instance of ConnectionCategory value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCat
 
     /**
      * Creates or finds a ConnectionCategory from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ConnectionCategory.
      */
@@ -41,7 +49,7 @@ public final class ConnectionCategory extends ExpandableStringEnum<ConnectionCat
 
     /**
      * Gets known ConnectionCategory values.
-     *
+     * 
      * @return known ConnectionCategory values.
      */
     public static Collection<ConnectionCategory> values() {

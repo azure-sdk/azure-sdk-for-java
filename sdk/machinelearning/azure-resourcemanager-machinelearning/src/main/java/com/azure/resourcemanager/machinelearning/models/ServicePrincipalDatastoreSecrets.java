@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Datastore Service Principal secrets. */
+/**
+ * Datastore Service Principal secrets.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "secretsType")
 @JsonTypeName("ServicePrincipal")
 @Fluent
@@ -21,13 +23,15 @@ public final class ServicePrincipalDatastoreSecrets extends DatastoreSecretsInne
     @JsonProperty(value = "clientSecret")
     private String clientSecret;
 
-    /** Creates an instance of ServicePrincipalDatastoreSecrets class. */
+    /**
+     * Creates an instance of ServicePrincipalDatastoreSecrets class.
+     */
     public ServicePrincipalDatastoreSecrets() {
     }
 
     /**
      * Get the clientSecret property: Service principal secret.
-     *
+     * 
      * @return the clientSecret value.
      */
     public String clientSecret() {
@@ -36,7 +40,7 @@ public final class ServicePrincipalDatastoreSecrets extends DatastoreSecretsInne
 
     /**
      * Set the clientSecret property: Service principal secret.
-     *
+     * 
      * @param clientSecret the clientSecret value to set.
      * @return the ServicePrincipalDatastoreSecrets object itself.
      */
@@ -47,7 +51,7 @@ public final class ServicePrincipalDatastoreSecrets extends DatastoreSecretsInne
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

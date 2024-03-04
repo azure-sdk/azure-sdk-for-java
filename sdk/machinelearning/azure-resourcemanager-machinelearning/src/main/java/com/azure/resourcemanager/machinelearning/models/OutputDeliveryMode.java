@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Output data delivery mode enums. */
+/**
+ * Output data delivery mode enums.
+ */
 public final class OutputDeliveryMode extends ExpandableStringEnum<OutputDeliveryMode> {
-    /** Static value ReadWriteMount for OutputDeliveryMode. */
+    /**
+     * Static value ReadWriteMount for OutputDeliveryMode.
+     */
     public static final OutputDeliveryMode READ_WRITE_MOUNT = fromString("ReadWriteMount");
 
-    /** Static value Upload for OutputDeliveryMode. */
+    /**
+     * Static value Upload for OutputDeliveryMode.
+     */
     public static final OutputDeliveryMode UPLOAD = fromString("Upload");
 
     /**
      * Creates a new instance of OutputDeliveryMode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class OutputDeliveryMode extends ExpandableStringEnum<OutputDeliver
 
     /**
      * Creates or finds a OutputDeliveryMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding OutputDeliveryMode.
      */
@@ -38,7 +44,7 @@ public final class OutputDeliveryMode extends ExpandableStringEnum<OutputDeliver
 
     /**
      * Gets known OutputDeliveryMode values.
-     *
+     * 
      * @return known OutputDeliveryMode values.
      */
     public static Collection<OutputDeliveryMode> values() {

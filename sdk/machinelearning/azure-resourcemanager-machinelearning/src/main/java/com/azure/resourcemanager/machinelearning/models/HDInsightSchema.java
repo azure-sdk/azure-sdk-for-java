@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The HDInsightSchema model. */
+/**
+ * The HDInsightSchema model.
+ */
 @Fluent
 public class HDInsightSchema {
     /*
@@ -16,13 +18,15 @@ public class HDInsightSchema {
     @JsonProperty(value = "properties")
     private HDInsightProperties properties;
 
-    /** Creates an instance of HDInsightSchema class. */
+    /**
+     * Creates an instance of HDInsightSchema class.
+     */
     public HDInsightSchema() {
     }
 
     /**
      * Get the properties property: HDInsight compute properties.
-     *
+     * 
      * @return the properties value.
      */
     public HDInsightProperties properties() {
@@ -31,7 +35,7 @@ public class HDInsightSchema {
 
     /**
      * Set the properties property: HDInsight compute properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the HDInsightSchema object itself.
      */
@@ -42,7 +46,7 @@ public class HDInsightSchema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

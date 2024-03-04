@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for JobLimitsType. */
+/**
+ * Defines values for JobLimitsType.
+ */
 public final class JobLimitsType extends ExpandableStringEnum<JobLimitsType> {
-    /** Static value Command for JobLimitsType. */
+    /**
+     * Static value Command for JobLimitsType.
+     */
     public static final JobLimitsType COMMAND = fromString("Command");
 
-    /** Static value Sweep for JobLimitsType. */
+    /**
+     * Static value Sweep for JobLimitsType.
+     */
     public static final JobLimitsType SWEEP = fromString("Sweep");
 
     /**
      * Creates a new instance of JobLimitsType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class JobLimitsType extends ExpandableStringEnum<JobLimitsType> {
 
     /**
      * Creates or finds a JobLimitsType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding JobLimitsType.
      */
@@ -38,7 +44,7 @@ public final class JobLimitsType extends ExpandableStringEnum<JobLimitsType> {
 
     /**
      * Gets known JobLimitsType values.
-     *
+     * 
      * @return known JobLimitsType values.
      */
     public static Collection<JobLimitsType> values() {
