@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The authentication info when authType is servicePrincipal certificate. */
+/**
+ * The authentication info when authType is servicePrincipal certificate.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
 @JsonTypeName("servicePrincipalCertificate")
 @Fluent
@@ -30,12 +32,18 @@ public final class ServicePrincipalCertificateAuthInfo extends AuthInfoBase {
     /*
      * ServicePrincipal certificate for servicePrincipal auth.
      */
-    @JsonProperty(value = "certificate", required = true)
+    @JsonProperty(value = "certificate")
     private String certificate;
 
     /**
+     * Creates an instance of ServicePrincipalCertificateAuthInfo class.
+     */
+    public ServicePrincipalCertificateAuthInfo() {
+    }
+
+    /**
      * Get the clientId property: Application clientId for servicePrincipal auth.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -44,7 +52,7 @@ public final class ServicePrincipalCertificateAuthInfo extends AuthInfoBase {
 
     /**
      * Set the clientId property: Application clientId for servicePrincipal auth.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the ServicePrincipalCertificateAuthInfo object itself.
      */
@@ -55,7 +63,7 @@ public final class ServicePrincipalCertificateAuthInfo extends AuthInfoBase {
 
     /**
      * Get the principalId property: Principal Id for servicePrincipal auth.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -64,7 +72,7 @@ public final class ServicePrincipalCertificateAuthInfo extends AuthInfoBase {
 
     /**
      * Set the principalId property: Principal Id for servicePrincipal auth.
-     *
+     * 
      * @param principalId the principalId value to set.
      * @return the ServicePrincipalCertificateAuthInfo object itself.
      */
@@ -75,7 +83,7 @@ public final class ServicePrincipalCertificateAuthInfo extends AuthInfoBase {
 
     /**
      * Get the certificate property: ServicePrincipal certificate for servicePrincipal auth.
-     *
+     * 
      * @return the certificate value.
      */
     public String certificate() {
@@ -84,7 +92,7 @@ public final class ServicePrincipalCertificateAuthInfo extends AuthInfoBase {
 
     /**
      * Set the certificate property: ServicePrincipal certificate for servicePrincipal auth.
-     *
+     * 
      * @param certificate the certificate value to set.
      * @return the ServicePrincipalCertificateAuthInfo object itself.
      */
@@ -95,29 +103,23 @@ public final class ServicePrincipalCertificateAuthInfo extends AuthInfoBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (clientId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property clientId in model ServicePrincipalCertificateAuthInfo"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property clientId in model ServicePrincipalCertificateAuthInfo"));
         }
         if (principalId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property principalId in model ServicePrincipalCertificateAuthInfo"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property principalId in model ServicePrincipalCertificateAuthInfo"));
         }
         if (certificate() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property certificate in model ServicePrincipalCertificateAuthInfo"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property certificate in model ServicePrincipalCertificateAuthInfo"));
         }
     }
 
