@@ -9,9 +9,11 @@ import com.azure.resourcemanager.servicelinker.models.SourceConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Configurations for source resource, include appSettings, connectionString and serviceBindings. */
+/**
+ * Configurations for source resource, include appSettings, connectionString and serviceBindings.
+ */
 @Fluent
-public final class SourceConfigurationResultInner {
+public final class ConfigurationResultInner {
     /*
      * The configuration properties for source resource.
      */
@@ -19,8 +21,14 @@ public final class SourceConfigurationResultInner {
     private List<SourceConfiguration> configurations;
 
     /**
+     * Creates an instance of ConfigurationResultInner class.
+     */
+    public ConfigurationResultInner() {
+    }
+
+    /**
      * Get the configurations property: The configuration properties for source resource.
-     *
+     * 
      * @return the configurations value.
      */
     public List<SourceConfiguration> configurations() {
@@ -29,18 +37,18 @@ public final class SourceConfigurationResultInner {
 
     /**
      * Set the configurations property: The configuration properties for source resource.
-     *
+     * 
      * @param configurations the configurations value to set.
-     * @return the SourceConfigurationResultInner object itself.
+     * @return the ConfigurationResultInner object itself.
      */
-    public SourceConfigurationResultInner withConfigurations(List<SourceConfiguration> configurations) {
+    public ConfigurationResultInner withConfigurations(List<SourceConfiguration> configurations) {
         this.configurations = configurations;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

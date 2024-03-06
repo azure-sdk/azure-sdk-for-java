@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The validation operation result for a linker. */
+/**
+ * The validation operation result for a Linker.
+ */
 @Fluent
 public final class ValidateOperationResultInner {
     /*
@@ -21,7 +23,7 @@ public final class ValidateOperationResultInner {
     private ValidateResult innerProperties;
 
     /*
-     * Validated linker id.
+     * Validated Linker id.
      */
     @JsonProperty(value = "resourceId")
     private String resourceId;
@@ -33,8 +35,14 @@ public final class ValidateOperationResultInner {
     private String status;
 
     /**
+     * Creates an instance of ValidateOperationResultInner class.
+     */
+    public ValidateOperationResultInner() {
+    }
+
+    /**
      * Get the innerProperties property: The validation result detail.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ValidateResult innerProperties() {
@@ -42,8 +50,8 @@ public final class ValidateOperationResultInner {
     }
 
     /**
-     * Get the resourceId property: Validated linker id.
-     *
+     * Get the resourceId property: Validated Linker id.
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -51,8 +59,8 @@ public final class ValidateOperationResultInner {
     }
 
     /**
-     * Set the resourceId property: Validated linker id.
-     *
+     * Set the resourceId property: Validated Linker id.
+     * 
      * @param resourceId the resourceId value to set.
      * @return the ValidateOperationResultInner object itself.
      */
@@ -63,7 +71,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Get the status property: Validation operation status.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -72,7 +80,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Set the status property: Validation operation status.
-     *
+     * 
      * @param status the status value to set.
      * @return the ValidateOperationResultInner object itself.
      */
@@ -83,7 +91,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Get the linkerName property: The linker name.
-     *
+     * 
      * @return the linkerName value.
      */
     public String linkerName() {
@@ -92,7 +100,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Set the linkerName property: The linker name.
-     *
+     * 
      * @param linkerName the linkerName value to set.
      * @return the ValidateOperationResultInner object itself.
      */
@@ -106,7 +114,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Get the isConnectionAvailable property: A boolean value indicating whether the connection is available or not.
-     *
+     * 
      * @return the isConnectionAvailable value.
      */
     public Boolean isConnectionAvailable() {
@@ -115,7 +123,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Set the isConnectionAvailable property: A boolean value indicating whether the connection is available or not.
-     *
+     * 
      * @param isConnectionAvailable the isConnectionAvailable value to set.
      * @return the ValidateOperationResultInner object itself.
      */
@@ -129,7 +137,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Get the reportStartTimeUtc property: The start time of the validation report.
-     *
+     * 
      * @return the reportStartTimeUtc value.
      */
     public OffsetDateTime reportStartTimeUtc() {
@@ -138,7 +146,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Set the reportStartTimeUtc property: The start time of the validation report.
-     *
+     * 
      * @param reportStartTimeUtc the reportStartTimeUtc value to set.
      * @return the ValidateOperationResultInner object itself.
      */
@@ -152,7 +160,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Get the reportEndTimeUtc property: The end time of the validation report.
-     *
+     * 
      * @return the reportEndTimeUtc value.
      */
     public OffsetDateTime reportEndTimeUtc() {
@@ -161,7 +169,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Set the reportEndTimeUtc property: The end time of the validation report.
-     *
+     * 
      * @param reportEndTimeUtc the reportEndTimeUtc value to set.
      * @return the ValidateOperationResultInner object itself.
      */
@@ -174,8 +182,8 @@ public final class ValidateOperationResultInner {
     }
 
     /**
-     * Get the sourceId property: The resource id of the linker source application.
-     *
+     * Get the sourceId property: The resource id of the Linker source application.
+     * 
      * @return the sourceId value.
      */
     public String sourceId() {
@@ -183,8 +191,8 @@ public final class ValidateOperationResultInner {
     }
 
     /**
-     * Set the sourceId property: The resource id of the linker source application.
-     *
+     * Set the sourceId property: The resource id of the Linker source application.
+     * 
      * @param sourceId the sourceId value to set.
      * @return the ValidateOperationResultInner object itself.
      */
@@ -198,7 +206,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Get the targetId property: The resource Id of target service.
-     *
+     * 
      * @return the targetId value.
      */
     public String targetId() {
@@ -207,7 +215,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Set the targetId property: The resource Id of target service.
-     *
+     * 
      * @param targetId the targetId value to set.
      * @return the ValidateOperationResultInner object itself.
      */
@@ -221,7 +229,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Get the authType property: The authentication type.
-     *
+     * 
      * @return the authType value.
      */
     public AuthType authType() {
@@ -230,7 +238,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Set the authType property: The authentication type.
-     *
+     * 
      * @param authType the authType value to set.
      * @return the ValidateOperationResultInner object itself.
      */
@@ -244,7 +252,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Get the validationDetail property: The detail of validation result.
-     *
+     * 
      * @return the validationDetail value.
      */
     public List<ValidationResultItem> validationDetail() {
@@ -253,7 +261,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Set the validationDetail property: The detail of validation result.
-     *
+     * 
      * @param validationDetail the validationDetail value to set.
      * @return the ValidateOperationResultInner object itself.
      */
@@ -267,7 +275,7 @@ public final class ValidateOperationResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

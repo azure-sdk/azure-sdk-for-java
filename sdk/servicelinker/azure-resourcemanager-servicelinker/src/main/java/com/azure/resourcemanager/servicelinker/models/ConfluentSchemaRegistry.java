@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The service properties when target service type is ConfluentSchemaRegistry. */
+/**
+ * The service properties when target service type is ConfluentSchemaRegistry.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("ConfluentSchemaRegistry")
 @Fluent
@@ -21,8 +23,14 @@ public final class ConfluentSchemaRegistry extends TargetServiceBase {
     private String endpoint;
 
     /**
+     * Creates an instance of ConfluentSchemaRegistry class.
+     */
+    public ConfluentSchemaRegistry() {
+    }
+
+    /**
      * Get the endpoint property: The endpoint of service.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -31,7 +39,7 @@ public final class ConfluentSchemaRegistry extends TargetServiceBase {
 
     /**
      * Set the endpoint property: The endpoint of service.
-     *
+     * 
      * @param endpoint the endpoint value to set.
      * @return the ConfluentSchemaRegistry object itself.
      */
@@ -42,7 +50,7 @@ public final class ConfluentSchemaRegistry extends TargetServiceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
