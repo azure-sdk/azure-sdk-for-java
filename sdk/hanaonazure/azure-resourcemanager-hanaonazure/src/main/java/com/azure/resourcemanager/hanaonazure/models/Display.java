@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hanaonazure.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Detailed HANA operation information. */
+/**
+ * Detailed HANA operation information.
+ */
 @Immutable
 public final class Display {
     /*
@@ -45,14 +47,16 @@ public final class Display {
     @JsonProperty(value = "origin", access = JsonProperty.Access.WRITE_ONLY)
     private String origin;
 
-    /** Creates an instance of Display class. */
+    /**
+     * Creates an instance of Display class.
+     */
     public Display() {
     }
 
     /**
      * Get the provider property: The localized friendly form of the resource provider name. This form is also expected
      * to include the publisher/company responsible. Use Title Casing. Begin with "Microsoft" for 1st party services.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -63,7 +67,7 @@ public final class Display {
      * Get the resource property: The localized friendly form of the resource type related to this action/operation.
      * This form should match the public documentation for the resource provider. Use Title Casing. For examples, refer
      * to the “name” section.
-     *
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -72,9 +76,9 @@ public final class Display {
 
     /**
      * Get the operation property: The localized friendly name for the operation as shown to the user. This name should
-     * be concise (to fit in drop downs), but clear (self-documenting). Use Title Casing and include the entity/resource
-     * to which it applies.
-     *
+     * be concise (to fit in drop downs), but clear (self-documenting). Use Title Casing and include the
+     * entity/resource to which it applies.
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -84,7 +88,7 @@ public final class Display {
     /**
      * Get the description property: The localized friendly description for the operation as shown to the user. This
      * description should be thorough, yet concise. It will be used in tool-tips and detailed views.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -92,9 +96,9 @@ public final class Display {
     }
 
     /**
-     * Get the origin property: The intended executor of the operation; governs the display of the operation in the RBAC
-     * UX and the audit logs UX. Default value is 'user,system'.
-     *
+     * Get the origin property: The intended executor of the operation; governs the display of the operation in the
+     * RBAC UX and the audit logs UX. Default value is 'user,system'.
+     * 
      * @return the origin value.
      */
     public String origin() {
@@ -103,7 +107,7 @@ public final class Display {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

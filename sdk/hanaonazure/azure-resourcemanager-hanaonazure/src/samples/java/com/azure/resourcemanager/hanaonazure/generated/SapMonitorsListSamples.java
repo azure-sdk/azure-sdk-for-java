@@ -5,21 +5,20 @@
 package com.azure.resourcemanager.hanaonazure.generated;
 
 /**
- * Samples for Operations List.
+ * Samples for SapMonitors List.
  */
-public final class OperationsListSamples {
+public final class SapMonitorsListSamples {
     /*
      * x-ms-original-file:
      * specification/hanaonazure/resource-manager/Microsoft.HanaOnAzure/preview/2020-02-07-preview/examples/
-     * HanaOperations_List.json
+     * SapMonitors_List.json
      */
     /**
-     * Sample code: List all HANA management operations supported by HANA RP.
+     * Sample code: List all SAP Monitors in a subscription.
      * 
      * @param manager Entry point to HanaManager.
      */
-    public static void
-        listAllHANAManagementOperationsSupportedByHANARP(com.azure.resourcemanager.hanaonazure.HanaManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
+    public static void listAllSAPMonitorsInASubscription(com.azure.resourcemanager.hanaonazure.HanaManager manager) {
+        manager.sapMonitors().list(com.azure.core.util.Context.NONE);
     }
 }

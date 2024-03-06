@@ -7,55 +7,64 @@ package com.azure.resourcemanager.hanaonazure.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for HanaManagementClient class. */
+/**
+ * The interface for HanaManagementClient class.
+ */
 public interface HanaManagementClient {
     /**
      * Gets Subscription ID which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the
      * URI for every service call.
-     *
+     * 
      * @return the subscriptionId value.
      */
     String getSubscriptionId();
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     String getEndpoint();
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     HttpPipeline getHttpPipeline();
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
 
     /**
-     * Gets the HanaInstancesClient object to access its operations.
-     *
-     * @return the HanaInstancesClient object.
+     * Gets the SapMonitorsClient object to access its operations.
+     * 
+     * @return the SapMonitorsClient object.
      */
-    HanaInstancesClient getHanaInstances();
+    SapMonitorsClient getSapMonitors();
+
+    /**
+     * Gets the ProviderInstancesClient object to access its operations.
+     * 
+     * @return the ProviderInstancesClient object.
+     */
+    ProviderInstancesClient getProviderInstances();
 }
