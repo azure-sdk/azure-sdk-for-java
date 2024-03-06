@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** a powershell credential object. */
+/**
+ * a powershell credential object.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("Credential")
 @Fluent
@@ -26,13 +28,15 @@ public final class PSCredentialExecutionParameter extends ScriptExecutionParamet
     @JsonProperty(value = "password")
     private String password;
 
-    /** Creates an instance of PSCredentialExecutionParameter class. */
+    /**
+     * Creates an instance of PSCredentialExecutionParameter class.
+     */
     public PSCredentialExecutionParameter() {
     }
 
     /**
      * Get the username property: username for login.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -41,7 +45,7 @@ public final class PSCredentialExecutionParameter extends ScriptExecutionParamet
 
     /**
      * Set the username property: username for login.
-     *
+     * 
      * @param username the username value to set.
      * @return the PSCredentialExecutionParameter object itself.
      */
@@ -52,7 +56,7 @@ public final class PSCredentialExecutionParameter extends ScriptExecutionParamet
 
     /**
      * Get the password property: password for login.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -61,7 +65,7 @@ public final class PSCredentialExecutionParameter extends ScriptExecutionParamet
 
     /**
      * Set the password property: password for login.
-     *
+     * 
      * @param password the password value to set.
      * @return the PSCredentialExecutionParameter object itself.
      */
@@ -70,7 +74,9 @@ public final class PSCredentialExecutionParameter extends ScriptExecutionParamet
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PSCredentialExecutionParameter withName(String name) {
         super.withName(name);
@@ -79,7 +85,7 @@ public final class PSCredentialExecutionParameter extends ScriptExecutionParamet
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

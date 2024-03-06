@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** VM-VM placement policy properties. */
+/**
+ * VM-VM placement policy properties.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("VmVm")
 @Fluent
@@ -28,13 +30,15 @@ public final class VmPlacementPolicyProperties extends PlacementPolicyProperties
     @JsonProperty(value = "affinityType", required = true)
     private AffinityType affinityType;
 
-    /** Creates an instance of VmPlacementPolicyProperties class. */
+    /**
+     * Creates an instance of VmPlacementPolicyProperties class.
+     */
     public VmPlacementPolicyProperties() {
     }
 
     /**
      * Get the vmMembers property: Virtual machine members list.
-     *
+     * 
      * @return the vmMembers value.
      */
     public List<String> vmMembers() {
@@ -43,7 +47,7 @@ public final class VmPlacementPolicyProperties extends PlacementPolicyProperties
 
     /**
      * Set the vmMembers property: Virtual machine members list.
-     *
+     * 
      * @param vmMembers the vmMembers value to set.
      * @return the VmPlacementPolicyProperties object itself.
      */
@@ -54,7 +58,7 @@ public final class VmPlacementPolicyProperties extends PlacementPolicyProperties
 
     /**
      * Get the affinityType property: placement policy affinity type.
-     *
+     * 
      * @return the affinityType value.
      */
     public AffinityType affinityType() {
@@ -63,7 +67,7 @@ public final class VmPlacementPolicyProperties extends PlacementPolicyProperties
 
     /**
      * Set the affinityType property: placement policy affinity type.
-     *
+     * 
      * @param affinityType the affinityType value to set.
      * @return the VmPlacementPolicyProperties object itself.
      */
@@ -72,14 +76,18 @@ public final class VmPlacementPolicyProperties extends PlacementPolicyProperties
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VmPlacementPolicyProperties withState(PlacementPolicyState state) {
         super.withState(state);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VmPlacementPolicyProperties withDisplayName(String displayName) {
         super.withDisplayName(displayName);
@@ -88,23 +96,19 @@ public final class VmPlacementPolicyProperties extends PlacementPolicyProperties
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (vmMembers() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property vmMembers in model VmPlacementPolicyProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property vmMembers in model VmPlacementPolicyProperties"));
         }
         if (affinityType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property affinityType in model VmPlacementPolicyProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property affinityType in model VmPlacementPolicyProperties"));
         }
     }
 
