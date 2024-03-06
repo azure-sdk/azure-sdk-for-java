@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** a plain text value execution parameter. */
+/**
+ * a plain text value execution parameter.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("SecureValue")
 @Fluent
@@ -20,13 +22,15 @@ public final class ScriptSecureStringExecutionParameter extends ScriptExecutionP
     @JsonProperty(value = "secureValue")
     private String secureValue;
 
-    /** Creates an instance of ScriptSecureStringExecutionParameter class. */
+    /**
+     * Creates an instance of ScriptSecureStringExecutionParameter class.
+     */
     public ScriptSecureStringExecutionParameter() {
     }
 
     /**
      * Get the secureValue property: A secure value for the passed parameter, not to be stored in logs.
-     *
+     * 
      * @return the secureValue value.
      */
     public String secureValue() {
@@ -35,7 +39,7 @@ public final class ScriptSecureStringExecutionParameter extends ScriptExecutionP
 
     /**
      * Set the secureValue property: A secure value for the passed parameter, not to be stored in logs.
-     *
+     * 
      * @param secureValue the secureValue value to set.
      * @return the ScriptSecureStringExecutionParameter object itself.
      */
@@ -44,7 +48,9 @@ public final class ScriptSecureStringExecutionParameter extends ScriptExecutionP
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScriptSecureStringExecutionParameter withName(String name) {
         super.withName(name);
@@ -53,7 +59,7 @@ public final class ScriptSecureStringExecutionParameter extends ScriptExecutionP
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

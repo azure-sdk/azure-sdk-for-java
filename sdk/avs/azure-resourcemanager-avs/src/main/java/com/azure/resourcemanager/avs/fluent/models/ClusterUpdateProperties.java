@@ -8,9 +8,17 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The properties of a cluster that may be updated. */
+/**
+ * The properties of a cluster that may be updated.
+ */
 @Fluent
 public final class ClusterUpdateProperties {
+    /*
+     * Display name of the resource.
+     */
+    @JsonProperty(value = "displayName")
+    private String displayName;
+
     /*
      * The cluster size
      */
@@ -23,13 +31,41 @@ public final class ClusterUpdateProperties {
     @JsonProperty(value = "hosts")
     private List<String> hosts;
 
-    /** Creates an instance of ClusterUpdateProperties class. */
+    /*
+     * Name of the vsan datastore associated with the cluster
+     */
+    @JsonProperty(value = "vsanDatastoreName")
+    private String vsanDatastoreName;
+
+    /**
+     * Creates an instance of ClusterUpdateProperties class.
+     */
     public ClusterUpdateProperties() {
     }
 
     /**
+     * Get the displayName property: Display name of the resource.
+     * 
+     * @return the displayName value.
+     */
+    public String displayName() {
+        return this.displayName;
+    }
+
+    /**
+     * Set the displayName property: Display name of the resource.
+     * 
+     * @param displayName the displayName value to set.
+     * @return the ClusterUpdateProperties object itself.
+     */
+    public ClusterUpdateProperties withDisplayName(String displayName) {
+        this.displayName = displayName;
+        return this;
+    }
+
+    /**
      * Get the clusterSize property: The cluster size.
-     *
+     * 
      * @return the clusterSize value.
      */
     public Integer clusterSize() {
@@ -38,7 +74,7 @@ public final class ClusterUpdateProperties {
 
     /**
      * Set the clusterSize property: The cluster size.
-     *
+     * 
      * @param clusterSize the clusterSize value to set.
      * @return the ClusterUpdateProperties object itself.
      */
@@ -49,7 +85,7 @@ public final class ClusterUpdateProperties {
 
     /**
      * Get the hosts property: The hosts.
-     *
+     * 
      * @return the hosts value.
      */
     public List<String> hosts() {
@@ -58,7 +94,7 @@ public final class ClusterUpdateProperties {
 
     /**
      * Set the hosts property: The hosts.
-     *
+     * 
      * @param hosts the hosts value to set.
      * @return the ClusterUpdateProperties object itself.
      */
@@ -68,8 +104,28 @@ public final class ClusterUpdateProperties {
     }
 
     /**
+     * Get the vsanDatastoreName property: Name of the vsan datastore associated with the cluster.
+     * 
+     * @return the vsanDatastoreName value.
+     */
+    public String vsanDatastoreName() {
+        return this.vsanDatastoreName;
+    }
+
+    /**
+     * Set the vsanDatastoreName property: Name of the vsan datastore associated with the cluster.
+     * 
+     * @param vsanDatastoreName the vsanDatastoreName value to set.
+     * @return the ClusterUpdateProperties object itself.
+     */
+    public ClusterUpdateProperties withVsanDatastoreName(String vsanDatastoreName) {
+        this.vsanDatastoreName = vsanDatastoreName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

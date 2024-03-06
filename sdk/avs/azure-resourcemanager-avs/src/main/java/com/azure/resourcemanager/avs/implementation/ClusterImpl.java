@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.avs.implementation;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.avs.fluent.models.ClusterInner;
 import com.azure.resourcemanager.avs.models.Cluster;
@@ -36,6 +37,14 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         return this.innerModel().sku();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String displayName() {
+        return this.innerModel().displayName();
+    }
+
     public Integer clusterSize() {
         return this.innerModel().clusterSize();
     }
@@ -55,6 +64,10 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public String vsanDatastoreName() {
+        return this.innerModel().vsanDatastoreName();
     }
 
     public String resourceGroupName() {
@@ -84,20 +97,14 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
     }
 
     public Cluster create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .createOrUpdate(resourceGroupName, privateCloudName, clusterName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getClusters().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Cluster create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .createOrUpdate(resourceGroupName, privateCloudName, clusterName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getClusters().createOrUpdate(resourceGroupName,
+            privateCloudName, clusterName, this.innerModel(), context);
         return this;
     }
 
@@ -113,55 +120,40 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
     }
 
     public Cluster apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .update(resourceGroupName, privateCloudName, clusterName, updateClusterUpdate, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getClusters().update(resourceGroupName, privateCloudName,
+            clusterName, updateClusterUpdate, Context.NONE);
         return this;
     }
 
     public Cluster apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .update(resourceGroupName, privateCloudName, clusterName, updateClusterUpdate, context);
+        this.innerObject = serviceManager.serviceClient().getClusters().update(resourceGroupName, privateCloudName,
+            clusterName, updateClusterUpdate, context);
         return this;
     }
 
     ClusterImpl(ClusterInner innerObject, com.azure.resourcemanager.avs.AvsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.privateCloudName = Utils.getValueFromIdByName(innerObject.id(), "privateClouds");
-        this.clusterName = Utils.getValueFromIdByName(innerObject.id(), "clusters");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.privateCloudName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "privateClouds");
+        this.clusterName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "clusters");
     }
 
     public Cluster refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .getWithResponse(resourceGroupName, privateCloudName, clusterName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getClusters()
+            .getWithResponse(resourceGroupName, privateCloudName, clusterName, Context.NONE).getValue();
         return this;
     }
 
     public Cluster refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getClusters()
-                .getWithResponse(resourceGroupName, privateCloudName, clusterName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getClusters()
+            .getWithResponse(resourceGroupName, privateCloudName, clusterName, context).getValue();
         return this;
     }
 
     public Response<ClusterZoneList> listZonesWithResponse(Context context) {
-        return serviceManager
-            .clusters()
-            .listZonesWithResponse(resourceGroupName, privateCloudName, clusterName, context);
+        return serviceManager.clusters().listZonesWithResponse(resourceGroupName, privateCloudName, clusterName,
+            context);
     }
 
     public ClusterZoneList listZones() {
@@ -169,8 +161,23 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
     }
 
     public ClusterImpl withSku(Sku sku) {
-        this.innerModel().withSku(sku);
-        return this;
+        if (isInCreateMode()) {
+            this.innerModel().withSku(sku);
+            return this;
+        } else {
+            this.updateClusterUpdate.withSku(sku);
+            return this;
+        }
+    }
+
+    public ClusterImpl withDisplayName(String displayName) {
+        if (isInCreateMode()) {
+            this.innerModel().withDisplayName(displayName);
+            return this;
+        } else {
+            this.updateClusterUpdate.withDisplayName(displayName);
+            return this;
+        }
     }
 
     public ClusterImpl withClusterSize(Integer clusterSize) {
@@ -189,6 +196,16 @@ public final class ClusterImpl implements Cluster, Cluster.Definition, Cluster.U
             return this;
         } else {
             this.updateClusterUpdate.withHosts(hosts);
+            return this;
+        }
+    }
+
+    public ClusterImpl withVsanDatastoreName(String vsanDatastoreName) {
+        if (isInCreateMode()) {
+            this.innerModel().withVsanDatastoreName(vsanDatastoreName);
+            return this;
+        } else {
+            this.updateClusterUpdate.withVsanDatastoreName(vsanDatastoreName);
             return this;
         }
     }
