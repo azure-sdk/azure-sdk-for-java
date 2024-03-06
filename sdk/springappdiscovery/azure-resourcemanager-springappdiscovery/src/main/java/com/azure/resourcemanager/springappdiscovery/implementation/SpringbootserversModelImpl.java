@@ -10,8 +10,6 @@ import com.azure.resourcemanager.springappdiscovery.fluent.models.Springbootserv
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversModel;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversPatch;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversProperties;
-import java.util.Collections;
-import java.util.Map;
 
 public final class SpringbootserversModelImpl
     implements SpringbootserversModel, SpringbootserversModel.Definition, SpringbootserversModel.Update {
@@ -29,15 +27,6 @@ public final class SpringbootserversModelImpl
 
     public String type() {
         return this.innerModel().type();
-    }
-
-    public Map<String, String> tags() {
-        Map<String, String> inner = this.innerModel().tags();
-        if (inner != null) {
-            return Collections.unmodifiableMap(inner);
-        } else {
-            return Collections.emptyMap();
-        }
     }
 
     public SpringbootserversProperties properties() {
@@ -101,14 +90,15 @@ public final class SpringbootserversModelImpl
     }
 
     public SpringbootserversModel apply() {
-        this.innerObject = serviceManager.serviceClient().getSpringbootservers().update(resourceGroupName, siteName,
-            springbootserversName, updateSpringbootservers, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getSpringbootservers().updateWithResponse(resourceGroupName,
+            siteName, springbootserversName, updateSpringbootservers, Context.NONE).getValue();
         return this;
     }
 
     public SpringbootserversModel apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSpringbootservers().update(resourceGroupName, siteName,
-            springbootserversName, updateSpringbootservers, context);
+        this.innerObject = serviceManager.serviceClient().getSpringbootservers()
+            .updateWithResponse(resourceGroupName, siteName, springbootserversName, updateSpringbootservers, context)
+            .getValue();
         return this;
     }
 
@@ -131,16 +121,6 @@ public final class SpringbootserversModelImpl
         this.innerObject = serviceManager.serviceClient().getSpringbootservers()
             .getWithResponse(resourceGroupName, siteName, springbootserversName, context).getValue();
         return this;
-    }
-
-    public SpringbootserversModelImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
-            return this;
-        } else {
-            this.updateSpringbootservers.withTags(tags);
-            return this;
-        }
     }
 
     public SpringbootserversModelImpl withProperties(SpringbootserversProperties properties) {

@@ -106,9 +106,9 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OffAzureSpringBoot/springbootsites/{siteName}/springbootservers/{springbootserversName}")
-        @ExpectedResponses({ 200, 202 })
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+        Mono<Response<SpringbootserversModelInner>> update(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("siteName") String siteName,
             @PathParam("springbootserversName") String springbootserversName,
@@ -677,8 +677,8 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String siteName,
-        String springbootserversName, SpringbootserversPatch springbootservers) {
+    private Mono<Response<SpringbootserversModelInner>> updateWithResponseAsync(String resourceGroupName,
+        String siteName, String springbootserversName, SpringbootserversPatch springbootservers) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -727,8 +727,8 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
      * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String siteName,
-        String springbootserversName, SpringbootserversPatch springbootservers, Context context) {
+    private Mono<Response<SpringbootserversModelInner>> updateWithResponseAsync(String resourceGroupName,
+        String siteName, String springbootserversName, SpringbootserversPatch springbootservers, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -770,102 +770,13 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the springbootservers envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SpringbootserversModelInner>, SpringbootserversModelInner> beginUpdateAsync(
-        String resourceGroupName, String siteName, String springbootserversName,
-        SpringbootserversPatch springbootservers) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, siteName, springbootserversName, springbootservers);
-        return this.client.<SpringbootserversModelInner, SpringbootserversModelInner>getLroResult(mono,
-            this.client.getHttpPipeline(), SpringbootserversModelInner.class, SpringbootserversModelInner.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Update springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param springbootservers Update a springbootservers payload.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the springbootservers envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<SpringbootserversModelInner>, SpringbootserversModelInner> beginUpdateAsync(
-        String resourceGroupName, String siteName, String springbootserversName,
-        SpringbootserversPatch springbootservers, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceGroupName, siteName, springbootserversName, springbootservers, context);
-        return this.client.<SpringbootserversModelInner, SpringbootserversModelInner>getLroResult(mono,
-            this.client.getHttpPipeline(), SpringbootserversModelInner.class, SpringbootserversModelInner.class,
-            context);
-    }
-
-    /**
-     * Update springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param springbootservers Update a springbootservers payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the springbootservers envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<SpringbootserversModelInner>, SpringbootserversModelInner> beginUpdate(
-        String resourceGroupName, String siteName, String springbootserversName,
-        SpringbootserversPatch springbootservers) {
-        return this.beginUpdateAsync(resourceGroupName, siteName, springbootserversName, springbootservers)
-            .getSyncPoller();
-    }
-
-    /**
-     * Update springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param springbootservers Update a springbootservers payload.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the springbootservers envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<SpringbootserversModelInner>, SpringbootserversModelInner> beginUpdate(
-        String resourceGroupName, String siteName, String springbootserversName,
-        SpringbootserversPatch springbootservers, Context context) {
-        return this.beginUpdateAsync(resourceGroupName, siteName, springbootserversName, springbootservers, context)
-            .getSyncPoller();
-    }
-
-    /**
-     * Update springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param springbootservers Update a springbootservers payload.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the springbootservers envelope resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SpringbootserversModelInner> updateAsync(String resourceGroupName, String siteName,
         String springbootserversName, SpringbootserversPatch springbootservers) {
-        return beginUpdateAsync(resourceGroupName, siteName, springbootserversName, springbootservers).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return updateWithResponseAsync(resourceGroupName, siteName, springbootserversName, springbootservers)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -879,13 +790,13 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers envelope resource definition on successful completion of {@link Mono}.
+     * @return the springbootservers envelope resource definition along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<SpringbootserversModelInner> updateAsync(String resourceGroupName, String siteName,
+    public Response<SpringbootserversModelInner> updateWithResponse(String resourceGroupName, String siteName,
         String springbootserversName, SpringbootserversPatch springbootservers, Context context) {
-        return beginUpdateAsync(resourceGroupName, siteName, springbootserversName, springbootservers, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
+        return updateWithResponseAsync(resourceGroupName, siteName, springbootserversName, springbootservers, context)
+            .block();
     }
 
     /**
@@ -903,26 +814,8 @@ public final class SpringbootserversClientImpl implements SpringbootserversClien
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SpringbootserversModelInner update(String resourceGroupName, String siteName, String springbootserversName,
         SpringbootserversPatch springbootservers) {
-        return updateAsync(resourceGroupName, siteName, springbootserversName, springbootservers).block();
-    }
-
-    /**
-     * Update springbootservers resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootserversName The springbootservers name.
-     * @param springbootservers Update a springbootservers payload.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootservers envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public SpringbootserversModelInner update(String resourceGroupName, String siteName, String springbootserversName,
-        SpringbootserversPatch springbootservers, Context context) {
-        return updateAsync(resourceGroupName, siteName, springbootserversName, springbootservers, context).block();
+        return updateWithResponse(resourceGroupName, siteName, springbootserversName, springbootservers, Context.NONE)
+            .getValue();
     }
 
     /**

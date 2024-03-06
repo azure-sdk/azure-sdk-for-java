@@ -49,20 +49,129 @@ public interface SpringbootappsClient {
     SpringbootappsModelInner get(String resourceGroupName, String siteName, String springbootappsName);
 
     /**
-     * Update a springbootapps resource.
+     * Create a springbootapps resource.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param siteName The springbootsites name.
      * @param springbootappsName The springbootapps name.
-     * @param springbootapps Update a springbootapps payload.
+     * @param springbootapps Create a springbootapps payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of the springbootapps envelope resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginUpdate(String resourceGroupName,
-        String siteName, String springbootappsName, SpringbootappsPatch springbootapps);
+    SyncPoller<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginCreateOrUpdate(
+        String resourceGroupName, String siteName, String springbootappsName, SpringbootappsModelInner springbootapps);
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of the springbootapps envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginCreateOrUpdate(
+        String resourceGroupName, String siteName, String springbootappsName, SpringbootappsModelInner springbootapps,
+        Context context);
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the springbootapps envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SpringbootappsModelInner createOrUpdate(String resourceGroupName, String siteName, String springbootappsName,
+        SpringbootappsModelInner springbootapps);
+
+    /**
+     * Create a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param springbootapps Create a springbootapps payload.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the springbootapps envelope resource definition.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    SpringbootappsModelInner createOrUpdate(String resourceGroupName, String siteName, String springbootappsName,
+        SpringbootappsModelInner springbootapps, Context context);
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String siteName,
+        String springbootappsName);
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String siteName, String springbootappsName,
+        Context context);
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String siteName, String springbootappsName);
+
+    /**
+     * Delete a springbootapps resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param siteName The springbootsites name.
+     * @param springbootappsName The springbootapps name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    void delete(String resourceGroupName, String siteName, String springbootappsName, Context context);
 
     /**
      * Update a springbootapps resource.
@@ -75,11 +184,11 @@ public interface SpringbootappsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the springbootapps envelope resource definition.
+     * @return the springbootapps envelope resource definition along with {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<SpringbootappsModelInner>, SpringbootappsModelInner> beginUpdate(String resourceGroupName,
-        String siteName, String springbootappsName, SpringbootappsPatch springbootapps, Context context);
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<SpringbootappsModelInner> updateWithResponse(String resourceGroupName, String siteName,
+        String springbootappsName, SpringbootappsPatch springbootapps, Context context);
 
     /**
      * Update a springbootapps resource.
@@ -96,23 +205,6 @@ public interface SpringbootappsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     SpringbootappsModelInner update(String resourceGroupName, String siteName, String springbootappsName,
         SpringbootappsPatch springbootapps);
-
-    /**
-     * Update a springbootapps resource.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param siteName The springbootsites name.
-     * @param springbootappsName The springbootapps name.
-     * @param springbootapps Update a springbootapps payload.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the springbootapps envelope resource definition.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    SpringbootappsModelInner update(String resourceGroupName, String siteName, String springbootappsName,
-        SpringbootappsPatch springbootapps, Context context);
 
     /**
      * List springbootapps resource by resourceGroup.

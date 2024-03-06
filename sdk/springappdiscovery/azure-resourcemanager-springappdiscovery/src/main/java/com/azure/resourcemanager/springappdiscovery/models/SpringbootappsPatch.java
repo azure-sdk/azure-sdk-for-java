@@ -7,9 +7,7 @@ package com.azure.resourcemanager.springappdiscovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /**
  * The springbootapps resource patch definition.
@@ -21,13 +19,6 @@ public final class SpringbootappsPatch extends ProxyResource {
      */
     @JsonProperty(value = "properties")
     private SpringbootappsProperties properties;
-
-    /*
-     * Resource tags
-     */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -58,26 +49,6 @@ public final class SpringbootappsPatch extends ProxyResource {
      */
     public SpringbootappsPatch withProperties(SpringbootappsProperties properties) {
         this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: Resource tags.
-     * 
-     * @param tags the tags value to set.
-     * @return the SpringbootappsPatch object itself.
-     */
-    public SpringbootappsPatch withTags(Map<String, String> tags) {
-        this.tags = tags;
         return this;
     }
 

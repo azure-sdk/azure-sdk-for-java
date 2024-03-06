@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.springappdiscovery.models;
 
 import com.azure.core.management.SystemData;
+import com.azure.core.util.Context;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootappsModelInner;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of SpringbootappsModel.
@@ -41,13 +41,6 @@ public interface SpringbootappsModel {
     SpringbootappsProperties properties();
 
     /**
-     * Gets the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    Map<String, String> tags();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
@@ -55,9 +48,142 @@ public interface SpringbootappsModel {
     SystemData systemData();
 
     /**
+     * Gets the name of the resource group.
+     * 
+     * @return the name of the resource group.
+     */
+    String resourceGroupName();
+
+    /**
      * Gets the inner com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootappsModelInner object.
      * 
      * @return the inner object.
      */
     SpringbootappsModelInner innerModel();
+
+    /**
+     * The entirety of the SpringbootappsModel definition.
+     */
+    interface Definition
+        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
+    }
+
+    /**
+     * The SpringbootappsModel definition stages.
+     */
+    interface DefinitionStages {
+        /**
+         * The first stage of the SpringbootappsModel definition.
+         */
+        interface Blank extends WithParentResource {
+        }
+
+        /**
+         * The stage of the SpringbootappsModel definition allowing to specify parent resource.
+         */
+        interface WithParentResource {
+            /**
+             * Specifies resourceGroupName, siteName.
+             * 
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
+             * @param siteName The springbootsites name.
+             * @return the next definition stage.
+             */
+            WithCreate withExistingSpringbootsite(String resourceGroupName, String siteName);
+        }
+
+        /**
+         * The stage of the SpringbootappsModel definition which contains all the minimum required properties for the
+         * resource to be created, but also allows for any other optional properties to be specified.
+         */
+        interface WithCreate extends DefinitionStages.WithProperties {
+            /**
+             * Executes the create request.
+             * 
+             * @return the created resource.
+             */
+            SpringbootappsModel create();
+
+            /**
+             * Executes the create request.
+             * 
+             * @param context The context to associate with this operation.
+             * @return the created resource.
+             */
+            SpringbootappsModel create(Context context);
+        }
+
+        /**
+         * The stage of the SpringbootappsModel definition allowing to specify properties.
+         */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: The springbootapps resource definition..
+             * 
+             * @param properties The springbootapps resource definition.
+             * @return the next definition stage.
+             */
+            WithCreate withProperties(SpringbootappsProperties properties);
+        }
+    }
+
+    /**
+     * Begins update for the SpringbootappsModel resource.
+     * 
+     * @return the stage of resource update.
+     */
+    SpringbootappsModel.Update update();
+
+    /**
+     * The template for SpringbootappsModel update.
+     */
+    interface Update extends UpdateStages.WithProperties {
+        /**
+         * Executes the update request.
+         * 
+         * @return the updated resource.
+         */
+        SpringbootappsModel apply();
+
+        /**
+         * Executes the update request.
+         * 
+         * @param context The context to associate with this operation.
+         * @return the updated resource.
+         */
+        SpringbootappsModel apply(Context context);
+    }
+
+    /**
+     * The SpringbootappsModel update stages.
+     */
+    interface UpdateStages {
+        /**
+         * The stage of the SpringbootappsModel update allowing to specify properties.
+         */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: The springbootapps resource definition..
+             * 
+             * @param properties The springbootapps resource definition.
+             * @return the next definition stage.
+             */
+            Update withProperties(SpringbootappsProperties properties);
+        }
+    }
+
+    /**
+     * Refreshes the resource to sync with Azure.
+     * 
+     * @return the refreshed resource.
+     */
+    SpringbootappsModel refresh();
+
+    /**
+     * Refreshes the resource to sync with Azure.
+     * 
+     * @param context The context to associate with this operation.
+     * @return the refreshed resource.
+     */
+    SpringbootappsModel refresh(Context context);
 }

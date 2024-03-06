@@ -12,7 +12,7 @@ import com.azure.resourcemanager.springappdiscovery.models.SpringbootserversMode
 public final class SpringbootserversUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2023-01-01-preview/
+     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
      * examples/springbootservers_Update_MinimumSet_Gen.json
      */
     /**
@@ -31,7 +31,7 @@ public final class SpringbootserversUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2023-01-01-preview/
+     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
      * examples/springbootservers_Update_MaximumSet_Gen.json
      */
     /**
