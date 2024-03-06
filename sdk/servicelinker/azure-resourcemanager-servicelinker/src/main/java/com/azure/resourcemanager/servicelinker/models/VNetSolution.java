@@ -7,7 +7,9 @@ package com.azure.resourcemanager.servicelinker.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The VNet solution for linker. */
+/**
+ * The VNet solution for linker.
+ */
 @Fluent
 public final class VNetSolution {
     /*
@@ -16,9 +18,21 @@ public final class VNetSolution {
     @JsonProperty(value = "type")
     private VNetSolutionType type;
 
+    /*
+     * Indicates whether to clean up previous operation when Linker is updating or deleting
+     */
+    @JsonProperty(value = "deleteOrUpdateBehavior")
+    private DeleteOrUpdateBehavior deleteOrUpdateBehavior;
+
+    /**
+     * Creates an instance of VNetSolution class.
+     */
+    public VNetSolution() {
+    }
+
     /**
      * Get the type property: Type of VNet solution.
-     *
+     * 
      * @return the type value.
      */
     public VNetSolutionType type() {
@@ -27,7 +41,7 @@ public final class VNetSolution {
 
     /**
      * Set the type property: Type of VNet solution.
-     *
+     * 
      * @param type the type value to set.
      * @return the VNetSolution object itself.
      */
@@ -37,8 +51,30 @@ public final class VNetSolution {
     }
 
     /**
+     * Get the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is
+     * updating or deleting.
+     * 
+     * @return the deleteOrUpdateBehavior value.
+     */
+    public DeleteOrUpdateBehavior deleteOrUpdateBehavior() {
+        return this.deleteOrUpdateBehavior;
+    }
+
+    /**
+     * Set the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is
+     * updating or deleting.
+     * 
+     * @param deleteOrUpdateBehavior the deleteOrUpdateBehavior value to set.
+     * @return the VNetSolution object itself.
+     */
+    public VNetSolution withDeleteOrUpdateBehavior(DeleteOrUpdateBehavior deleteOrUpdateBehavior) {
+        this.deleteOrUpdateBehavior = deleteOrUpdateBehavior;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
