@@ -9,7 +9,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The Sampling Algorithm used to generate hyperparameter values, along with properties to configure the algorithm. */
+/**
+ * The Sampling Algorithm used to generate hyperparameter values, along with properties to
+ * configure the algorithm.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -19,17 +22,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Bayesian", value = BayesianSamplingAlgorithm.class),
     @JsonSubTypes.Type(name = "Grid", value = GridSamplingAlgorithm.class),
-    @JsonSubTypes.Type(name = "Random", value = RandomSamplingAlgorithm.class)
-})
+    @JsonSubTypes.Type(name = "Random", value = RandomSamplingAlgorithm.class) })
 @Immutable
 public class SamplingAlgorithm {
-    /** Creates an instance of SamplingAlgorithm class. */
+    /**
+     * Creates an instance of SamplingAlgorithm class.
+     */
     public SamplingAlgorithm() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

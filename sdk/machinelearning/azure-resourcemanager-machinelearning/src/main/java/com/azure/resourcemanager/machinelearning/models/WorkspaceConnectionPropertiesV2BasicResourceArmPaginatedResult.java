@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceConnecti
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult model. */
+/**
+ * The WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult model.
+ */
 @Fluent
 public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult {
     /*
@@ -24,13 +26,15 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResul
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult class.
+     */
     public WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkspaceConnectionPropertiesV2BasicResourceInner> value() {
@@ -39,19 +43,19 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResul
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult object itself.
      */
-    public WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult withValue(
-        List<WorkspaceConnectionPropertiesV2BasicResourceInner> value) {
+    public WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult
+        withValue(List<WorkspaceConnectionPropertiesV2BasicResourceInner> value) {
         this.value = value;
         return this;
     }
 
     /**
      * Get the nextLink property: The nextLink property.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,7 +64,7 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResul
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.models.QuotaUnit;
 import com.azure.resourcemanager.machinelearning.models.ResourceName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The quota assigned to a resource. */
+/**
+ * The quota assigned to a resource.
+ */
 @Immutable
 public final class ResourceQuotaInner {
     /*
@@ -38,7 +40,7 @@ public final class ResourceQuotaInner {
 
     /*
      * Limit.
-     *
+     * 
      * The maximum permitted quota of the resource.
      */
     @JsonProperty(value = "limit", access = JsonProperty.Access.WRITE_ONLY)
@@ -50,13 +52,15 @@ public final class ResourceQuotaInner {
     @JsonProperty(value = "unit", access = JsonProperty.Access.WRITE_ONLY)
     private QuotaUnit unit;
 
-    /** Creates an instance of ResourceQuotaInner class. */
+    /**
+     * Creates an instance of ResourceQuotaInner class.
+     */
     public ResourceQuotaInner() {
     }
 
     /**
      * Get the id property: Specifies the resource ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -65,7 +69,7 @@ public final class ResourceQuotaInner {
 
     /**
      * Get the amlWorkspaceLocation property: Region of the AML workspace in the id.
-     *
+     * 
      * @return the amlWorkspaceLocation value.
      */
     public String amlWorkspaceLocation() {
@@ -74,7 +78,7 @@ public final class ResourceQuotaInner {
 
     /**
      * Get the type property: Specifies the resource type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -83,7 +87,7 @@ public final class ResourceQuotaInner {
 
     /**
      * Get the name property: Name of the resource.
-     *
+     * 
      * @return the name value.
      */
     public ResourceName name() {
@@ -92,9 +96,9 @@ public final class ResourceQuotaInner {
 
     /**
      * Get the limit property: Limit.
-     *
-     * <p>The maximum permitted quota of the resource.
-     *
+     * 
+     * The maximum permitted quota of the resource.
+     * 
      * @return the limit value.
      */
     public Long limit() {
@@ -103,7 +107,7 @@ public final class ResourceQuotaInner {
 
     /**
      * Get the unit property: An enum describing the unit of quota measurement.
-     *
+     * 
      * @return the unit value.
      */
     public QuotaUnit unit() {
@@ -112,7 +116,7 @@ public final class ResourceQuotaInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

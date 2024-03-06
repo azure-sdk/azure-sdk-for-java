@@ -11,7 +11,10 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** AutoML vertical class. Base class for AutoML verticals - TableVertical/ImageVertical/NLPVertical. */
+/**
+ * AutoML vertical class.
+ * Base class for AutoML verticals - TableVertical/ImageVertical/NLPVertical.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -28,8 +31,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "Regression", value = Regression.class),
     @JsonSubTypes.Type(name = "TextClassification", value = TextClassification.class),
     @JsonSubTypes.Type(name = "TextClassificationMultilabel", value = TextClassificationMultilabel.class),
-    @JsonSubTypes.Type(name = "TextNER", value = TextNer.class)
-})
+    @JsonSubTypes.Type(name = "TextNER", value = TextNer.class) })
 @Fluent
 public class AutoMLVertical {
     /*
@@ -51,13 +53,15 @@ public class AutoMLVertical {
     @JsonProperty(value = "trainingData", required = true)
     private MLTableJobInput trainingData;
 
-    /** Creates an instance of AutoMLVertical class. */
+    /**
+     * Creates an instance of AutoMLVertical class.
+     */
     public AutoMLVertical() {
     }
 
     /**
      * Get the logVerbosity property: Log verbosity for the job.
-     *
+     * 
      * @return the logVerbosity value.
      */
     public LogVerbosity logVerbosity() {
@@ -66,7 +70,7 @@ public class AutoMLVertical {
 
     /**
      * Set the logVerbosity property: Log verbosity for the job.
-     *
+     * 
      * @param logVerbosity the logVerbosity value to set.
      * @return the AutoMLVertical object itself.
      */
@@ -76,9 +80,9 @@ public class AutoMLVertical {
     }
 
     /**
-     * Get the targetColumnName property: Target column name: This is prediction values column. Also known as label
-     * column name in context of classification tasks.
-     *
+     * Get the targetColumnName property: Target column name: This is prediction values column.
+     * Also known as label column name in context of classification tasks.
+     * 
      * @return the targetColumnName value.
      */
     public String targetColumnName() {
@@ -86,9 +90,9 @@ public class AutoMLVertical {
     }
 
     /**
-     * Set the targetColumnName property: Target column name: This is prediction values column. Also known as label
-     * column name in context of classification tasks.
-     *
+     * Set the targetColumnName property: Target column name: This is prediction values column.
+     * Also known as label column name in context of classification tasks.
+     * 
      * @param targetColumnName the targetColumnName value to set.
      * @return the AutoMLVertical object itself.
      */
@@ -99,7 +103,7 @@ public class AutoMLVertical {
 
     /**
      * Get the trainingData property: [Required] Training data input.
-     *
+     * 
      * @return the trainingData value.
      */
     public MLTableJobInput trainingData() {
@@ -108,7 +112,7 @@ public class AutoMLVertical {
 
     /**
      * Set the trainingData property: [Required] Training data input.
-     *
+     * 
      * @param trainingData the trainingData value to set.
      * @return the AutoMLVertical object itself.
      */
@@ -119,14 +123,13 @@ public class AutoMLVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (trainingData() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property trainingData in model AutoMLVertical"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property trainingData in model AutoMLVertical"));
         } else {
             trainingData().validate();
         }
