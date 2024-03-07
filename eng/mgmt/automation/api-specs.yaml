@@ -117,3 +117,5 @@ web:
   suffix: generated
 workloads/Microsoft.Workloads/SAPVirtualInstance:
   service: workloadssapvirtualinstance
+workloads/Microsoft.Workloads/monitors:
+  service: workloadsmicrosoftworkloadsmonitors
