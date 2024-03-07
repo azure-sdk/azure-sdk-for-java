@@ -5,28 +5,37 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.scvmm.fluent.models.CloudInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Clouds. */
+/**
+ * The response of a Cloud list operation.
+ */
 @Fluent
 public final class CloudListResult {
     /*
-     * List of Clouds.
+     * The Cloud items on this page
      */
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "value", required = true)
     private List<CloudInner> value;
 
     /*
-     * Url to follow for getting next page of resources.
+     * The link to the next page of items
      */
-    @JsonProperty(value = "nextLink")
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
     /**
-     * Get the value property: List of Clouds.
-     *
+     * Creates an instance of CloudListResult class.
+     */
+    public CloudListResult() {
+    }
+
+    /**
+     * Get the value property: The Cloud items on this page.
+     * 
      * @return the value value.
      */
     public List<CloudInner> value() {
@@ -34,8 +43,8 @@ public final class CloudListResult {
     }
 
     /**
-     * Set the value property: List of Clouds.
-     *
+     * Set the value property: The Cloud items on this page.
+     * 
      * @param value the value value to set.
      * @return the CloudListResult object itself.
      */
@@ -45,8 +54,8 @@ public final class CloudListResult {
     }
 
     /**
-     * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * Get the nextLink property: The link to the next page of items.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -54,24 +63,18 @@ public final class CloudListResult {
     }
 
     /**
-     * Set the nextLink property: Url to follow for getting next page of resources.
-     *
-     * @param nextLink the nextLink value to set.
-     * @return the CloudListResult object itself.
-     */
-    public CloudListResult withNextLink(String nextLink) {
-        this.nextLink = nextLink;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model CloudListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(CloudListResult.class);
 }

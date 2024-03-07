@@ -5,28 +5,35 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.scvmm.fluent.models.InventoryItemProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The Virtual machine inventory item. */
+/**
+ * The Virtual machine inventory item.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "inventoryType")
 @JsonTypeName("VirtualMachine")
 @Fluent
 public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     /*
-     * Gets or sets the type of the os.
+     * Gets the type of the os.
      */
     @JsonProperty(value = "osType", access = JsonProperty.Access.WRITE_ONLY)
     private OsType osType;
 
     /*
-     * Gets or sets os name.
+     * Gets os name.
      */
     @JsonProperty(value = "osName", access = JsonProperty.Access.WRITE_ONLY)
     private String osName;
+
+    /*
+     * Gets os version.
+     */
+    @JsonProperty(value = "osVersion", access = JsonProperty.Access.WRITE_ONLY)
+    private String osVersion;
 
     /*
      * Gets the power state of the virtual machine.
@@ -46,9 +53,27 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     @JsonProperty(value = "cloud")
     private InventoryItemDetails cloud;
 
+    /*
+     * Gets the bios guid.
+     */
+    @JsonProperty(value = "biosGuid", access = JsonProperty.Access.WRITE_ONLY)
+    private String biosGuid;
+
+    /*
+     * Gets the tracked resource id corresponding to the inventory resource.
+     */
+    @JsonProperty(value = "managedMachineResourceId", access = JsonProperty.Access.WRITE_ONLY)
+    private String managedMachineResourceId;
+
     /**
-     * Get the osType property: Gets or sets the type of the os.
-     *
+     * Creates an instance of VirtualMachineInventoryItem class.
+     */
+    public VirtualMachineInventoryItem() {
+    }
+
+    /**
+     * Get the osType property: Gets the type of the os.
+     * 
      * @return the osType value.
      */
     public OsType osType() {
@@ -56,8 +81,8 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     }
 
     /**
-     * Get the osName property: Gets or sets os name.
-     *
+     * Get the osName property: Gets os name.
+     * 
      * @return the osName value.
      */
     public String osName() {
@@ -65,8 +90,17 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     }
 
     /**
+     * Get the osVersion property: Gets os version.
+     * 
+     * @return the osVersion value.
+     */
+    public String osVersion() {
+        return this.osVersion;
+    }
+
+    /**
      * Get the powerState property: Gets the power state of the virtual machine.
-     *
+     * 
      * @return the powerState value.
      */
     public String powerState() {
@@ -75,7 +109,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the ipAddresses property: Gets or sets the nic ip addresses.
-     *
+     * 
      * @return the ipAddresses value.
      */
     public List<String> ipAddresses() {
@@ -84,7 +118,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the ipAddresses property: Gets or sets the nic ip addresses.
-     *
+     * 
      * @param ipAddresses the ipAddresses value to set.
      * @return the VirtualMachineInventoryItem object itself.
      */
@@ -95,7 +129,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the cloud property: Cloud inventory resource details where the VM is present.
-     *
+     * 
      * @return the cloud value.
      */
     public InventoryItemDetails cloud() {
@@ -104,7 +138,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the cloud property: Cloud inventory resource details where the VM is present.
-     *
+     * 
      * @param cloud the cloud value to set.
      * @return the VirtualMachineInventoryItem object itself.
      */
@@ -114,8 +148,26 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     }
 
     /**
+     * Get the biosGuid property: Gets the bios guid.
+     * 
+     * @return the biosGuid value.
+     */
+    public String biosGuid() {
+        return this.biosGuid;
+    }
+
+    /**
+     * Get the managedMachineResourceId property: Gets the tracked resource id corresponding to the inventory resource.
+     * 
+     * @return the managedMachineResourceId value.
+     */
+    public String managedMachineResourceId() {
+        return this.managedMachineResourceId;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

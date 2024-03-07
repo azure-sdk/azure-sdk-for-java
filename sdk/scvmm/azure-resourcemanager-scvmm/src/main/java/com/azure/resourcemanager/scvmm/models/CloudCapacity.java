@@ -4,34 +4,41 @@
 
 package com.azure.resourcemanager.scvmm.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cloud Capacity model. */
-@Fluent
+/**
+ * Cloud Capacity model.
+ */
+@Immutable
 public final class CloudCapacity {
     /*
-     * CPUCount specifies the maximum number of CPUs that can be allocated in
-     * the cloud.
+     * CPUCount specifies the maximum number of CPUs that can be allocated in the cloud.
      */
-    @JsonProperty(value = "cpuCount")
+    @JsonProperty(value = "cpuCount", access = JsonProperty.Access.WRITE_ONLY)
     private Long cpuCount;
 
     /*
      * MemoryMB specifies a memory usage limit in megabytes.
      */
-    @JsonProperty(value = "memoryMB")
+    @JsonProperty(value = "memoryMB", access = JsonProperty.Access.WRITE_ONLY)
     private Long memoryMB;
 
     /*
      * VMCount gives the max number of VMs that can be deployed in the cloud.
      */
-    @JsonProperty(value = "vmCount")
+    @JsonProperty(value = "vmCount", access = JsonProperty.Access.WRITE_ONLY)
     private Long vmCount;
 
     /**
+     * Creates an instance of CloudCapacity class.
+     */
+    public CloudCapacity() {
+    }
+
+    /**
      * Get the cpuCount property: CPUCount specifies the maximum number of CPUs that can be allocated in the cloud.
-     *
+     * 
      * @return the cpuCount value.
      */
     public Long cpuCount() {
@@ -39,19 +46,8 @@ public final class CloudCapacity {
     }
 
     /**
-     * Set the cpuCount property: CPUCount specifies the maximum number of CPUs that can be allocated in the cloud.
-     *
-     * @param cpuCount the cpuCount value to set.
-     * @return the CloudCapacity object itself.
-     */
-    public CloudCapacity withCpuCount(Long cpuCount) {
-        this.cpuCount = cpuCount;
-        return this;
-    }
-
-    /**
      * Get the memoryMB property: MemoryMB specifies a memory usage limit in megabytes.
-     *
+     * 
      * @return the memoryMB value.
      */
     public Long memoryMB() {
@@ -59,19 +55,8 @@ public final class CloudCapacity {
     }
 
     /**
-     * Set the memoryMB property: MemoryMB specifies a memory usage limit in megabytes.
-     *
-     * @param memoryMB the memoryMB value to set.
-     * @return the CloudCapacity object itself.
-     */
-    public CloudCapacity withMemoryMB(Long memoryMB) {
-        this.memoryMB = memoryMB;
-        return this;
-    }
-
-    /**
      * Get the vmCount property: VMCount gives the max number of VMs that can be deployed in the cloud.
-     *
+     * 
      * @return the vmCount value.
      */
     public Long vmCount() {
@@ -79,19 +64,8 @@ public final class CloudCapacity {
     }
 
     /**
-     * Set the vmCount property: VMCount gives the max number of VMs that can be deployed in the cloud.
-     *
-     * @param vmCount the vmCount value to set.
-     * @return the CloudCapacity object itself.
-     */
-    public CloudCapacity withVmCount(Long vmCount) {
-        this.vmCount = vmCount;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.scvmm.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Virtual disk model. */
+/**
+ * Virtual disk model.
+ */
 @Fluent
 public final class VirtualDisk {
     /*
@@ -17,8 +19,8 @@ public final class VirtualDisk {
     private String name;
 
     /*
-     * Gets the display name of the virtual disk as shown in the vmmServer.
-     * This is the fallback label for a disk when the name is not set.
+     * Gets the display name of the virtual disk as shown in the vmmServer. This is the fallback label for a disk when
+     * the name is not set.
      */
     @JsonProperty(value = "displayName", access = JsonProperty.Access.WRITE_ONLY)
     private String displayName;
@@ -36,7 +38,7 @@ public final class VirtualDisk {
     private Integer diskSizeGB;
 
     /*
-     * Gets or sets the max disk size.
+     * Gets the max disk size.
      */
     @JsonProperty(value = "maxDiskSizeGB", access = JsonProperty.Access.WRITE_ONLY)
     private Integer maxDiskSizeGB;
@@ -66,7 +68,7 @@ public final class VirtualDisk {
     private String vhdType;
 
     /*
-     * Gets or sets the disk volume type.
+     * Gets the disk volume type.
      */
     @JsonProperty(value = "volumeType", access = JsonProperty.Access.WRITE_ONLY)
     private String volumeType;
@@ -87,7 +89,7 @@ public final class VirtualDisk {
      * The QoS policy for the disk.
      */
     @JsonProperty(value = "storageQoSPolicy")
-    private StorageQoSPolicyDetails storageQoSPolicy;
+    private StorageQosPolicyDetails storageQosPolicy;
 
     /*
      * Gets or sets a value indicating diff disk.
@@ -96,8 +98,14 @@ public final class VirtualDisk {
     private CreateDiffDisk createDiffDisk;
 
     /**
+     * Creates an instance of VirtualDisk class.
+     */
+    public VirtualDisk() {
+    }
+
+    /**
      * Get the name property: Gets or sets the name of the disk.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -106,7 +114,7 @@ public final class VirtualDisk {
 
     /**
      * Set the name property: Gets or sets the name of the disk.
-     *
+     * 
      * @param name the name value to set.
      * @return the VirtualDisk object itself.
      */
@@ -118,7 +126,7 @@ public final class VirtualDisk {
     /**
      * Get the displayName property: Gets the display name of the virtual disk as shown in the vmmServer. This is the
      * fallback label for a disk when the name is not set.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -127,7 +135,7 @@ public final class VirtualDisk {
 
     /**
      * Get the diskId property: Gets or sets the disk id.
-     *
+     * 
      * @return the diskId value.
      */
     public String diskId() {
@@ -136,7 +144,7 @@ public final class VirtualDisk {
 
     /**
      * Set the diskId property: Gets or sets the disk id.
-     *
+     * 
      * @param diskId the diskId value to set.
      * @return the VirtualDisk object itself.
      */
@@ -147,7 +155,7 @@ public final class VirtualDisk {
 
     /**
      * Get the diskSizeGB property: Gets or sets the disk total size.
-     *
+     * 
      * @return the diskSizeGB value.
      */
     public Integer diskSizeGB() {
@@ -156,7 +164,7 @@ public final class VirtualDisk {
 
     /**
      * Set the diskSizeGB property: Gets or sets the disk total size.
-     *
+     * 
      * @param diskSizeGB the diskSizeGB value to set.
      * @return the VirtualDisk object itself.
      */
@@ -166,8 +174,8 @@ public final class VirtualDisk {
     }
 
     /**
-     * Get the maxDiskSizeGB property: Gets or sets the max disk size.
-     *
+     * Get the maxDiskSizeGB property: Gets the max disk size.
+     * 
      * @return the maxDiskSizeGB value.
      */
     public Integer maxDiskSizeGB() {
@@ -176,7 +184,7 @@ public final class VirtualDisk {
 
     /**
      * Get the bus property: Gets or sets the disk bus.
-     *
+     * 
      * @return the bus value.
      */
     public Integer bus() {
@@ -185,7 +193,7 @@ public final class VirtualDisk {
 
     /**
      * Set the bus property: Gets or sets the disk bus.
-     *
+     * 
      * @param bus the bus value to set.
      * @return the VirtualDisk object itself.
      */
@@ -196,7 +204,7 @@ public final class VirtualDisk {
 
     /**
      * Get the lun property: Gets or sets the disk lun.
-     *
+     * 
      * @return the lun value.
      */
     public Integer lun() {
@@ -205,7 +213,7 @@ public final class VirtualDisk {
 
     /**
      * Set the lun property: Gets or sets the disk lun.
-     *
+     * 
      * @param lun the lun value to set.
      * @return the VirtualDisk object itself.
      */
@@ -216,7 +224,7 @@ public final class VirtualDisk {
 
     /**
      * Get the busType property: Gets or sets the disk bus type.
-     *
+     * 
      * @return the busType value.
      */
     public String busType() {
@@ -225,7 +233,7 @@ public final class VirtualDisk {
 
     /**
      * Set the busType property: Gets or sets the disk bus type.
-     *
+     * 
      * @param busType the busType value to set.
      * @return the VirtualDisk object itself.
      */
@@ -236,7 +244,7 @@ public final class VirtualDisk {
 
     /**
      * Get the vhdType property: Gets or sets the disk vhd type.
-     *
+     * 
      * @return the vhdType value.
      */
     public String vhdType() {
@@ -245,7 +253,7 @@ public final class VirtualDisk {
 
     /**
      * Set the vhdType property: Gets or sets the disk vhd type.
-     *
+     * 
      * @param vhdType the vhdType value to set.
      * @return the VirtualDisk object itself.
      */
@@ -255,8 +263,8 @@ public final class VirtualDisk {
     }
 
     /**
-     * Get the volumeType property: Gets or sets the disk volume type.
-     *
+     * Get the volumeType property: Gets the disk volume type.
+     * 
      * @return the volumeType value.
      */
     public String volumeType() {
@@ -265,7 +273,7 @@ public final class VirtualDisk {
 
     /**
      * Get the vhdFormatType property: Gets the disk vhd format type.
-     *
+     * 
      * @return the vhdFormatType value.
      */
     public String vhdFormatType() {
@@ -274,7 +282,7 @@ public final class VirtualDisk {
 
     /**
      * Get the templateDiskId property: Gets or sets the disk id in the template.
-     *
+     * 
      * @return the templateDiskId value.
      */
     public String templateDiskId() {
@@ -283,7 +291,7 @@ public final class VirtualDisk {
 
     /**
      * Set the templateDiskId property: Gets or sets the disk id in the template.
-     *
+     * 
      * @param templateDiskId the templateDiskId value to set.
      * @return the VirtualDisk object itself.
      */
@@ -293,28 +301,28 @@ public final class VirtualDisk {
     }
 
     /**
-     * Get the storageQoSPolicy property: The QoS policy for the disk.
-     *
-     * @return the storageQoSPolicy value.
+     * Get the storageQosPolicy property: The QoS policy for the disk.
+     * 
+     * @return the storageQosPolicy value.
      */
-    public StorageQoSPolicyDetails storageQoSPolicy() {
-        return this.storageQoSPolicy;
+    public StorageQosPolicyDetails storageQosPolicy() {
+        return this.storageQosPolicy;
     }
 
     /**
-     * Set the storageQoSPolicy property: The QoS policy for the disk.
-     *
-     * @param storageQoSPolicy the storageQoSPolicy value to set.
+     * Set the storageQosPolicy property: The QoS policy for the disk.
+     * 
+     * @param storageQosPolicy the storageQosPolicy value to set.
      * @return the VirtualDisk object itself.
      */
-    public VirtualDisk withStorageQoSPolicy(StorageQoSPolicyDetails storageQoSPolicy) {
-        this.storageQoSPolicy = storageQoSPolicy;
+    public VirtualDisk withStorageQosPolicy(StorageQosPolicyDetails storageQosPolicy) {
+        this.storageQosPolicy = storageQosPolicy;
         return this;
     }
 
     /**
      * Get the createDiffDisk property: Gets or sets a value indicating diff disk.
-     *
+     * 
      * @return the createDiffDisk value.
      */
     public CreateDiffDisk createDiffDisk() {
@@ -323,7 +331,7 @@ public final class VirtualDisk {
 
     /**
      * Set the createDiffDisk property: Gets or sets a value indicating diff disk.
-     *
+     * 
      * @param createDiffDisk the createDiffDisk value to set.
      * @return the VirtualDisk object itself.
      */
@@ -334,12 +342,12 @@ public final class VirtualDisk {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (storageQoSPolicy() != null) {
-            storageQoSPolicy().validate();
+        if (storageQosPolicy() != null) {
+            storageQosPolicy().validate();
         }
     }
 }

@@ -5,28 +5,37 @@
 package com.azure.resourcemanager.scvmm.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.scvmm.fluent.models.VmmServerInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of VmmServers. */
+/**
+ * The response of a VmmServer list operation.
+ */
 @Fluent
 public final class VmmServerListResult {
     /*
-     * List of VmmServers.
+     * The VmmServer items on this page
      */
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "value", required = true)
     private List<VmmServerInner> value;
 
     /*
-     * Url to follow for getting next page of resources.
+     * The link to the next page of items
      */
-    @JsonProperty(value = "nextLink")
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
     /**
-     * Get the value property: List of VmmServers.
-     *
+     * Creates an instance of VmmServerListResult class.
+     */
+    public VmmServerListResult() {
+    }
+
+    /**
+     * Get the value property: The VmmServer items on this page.
+     * 
      * @return the value value.
      */
     public List<VmmServerInner> value() {
@@ -34,8 +43,8 @@ public final class VmmServerListResult {
     }
 
     /**
-     * Set the value property: List of VmmServers.
-     *
+     * Set the value property: The VmmServer items on this page.
+     * 
      * @param value the value value to set.
      * @return the VmmServerListResult object itself.
      */
@@ -45,8 +54,8 @@ public final class VmmServerListResult {
     }
 
     /**
-     * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * Get the nextLink property: The link to the next page of items.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -54,24 +63,18 @@ public final class VmmServerListResult {
     }
 
     /**
-     * Set the nextLink property: Url to follow for getting next page of resources.
-     *
-     * @param nextLink the nextLink value to set.
-     * @return the VmmServerListResult object itself.
-     */
-    public VmmServerListResult withNextLink(String nextLink) {
-        this.nextLink = nextLink;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model VmmServerListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(VmmServerListResult.class);
 }
