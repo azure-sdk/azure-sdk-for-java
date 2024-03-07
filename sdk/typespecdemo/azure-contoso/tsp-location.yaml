@@ -1,0 +1,5 @@
+repo: Azure/azure-rest-api-specs
+directory: specification/typespecdemo/TypeSpec.Demo
+commit: dfa5374653ae4f4c0127b146e1d22cc8002a32ea
+additionalDirectories: []
+

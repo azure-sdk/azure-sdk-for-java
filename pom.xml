@@ -205,6 +205,7 @@
     <module>sdk/timeseriesinsights</module>
     <module>sdk/tools</module>
     <module>sdk/translation</module>
+    <module>sdk/typespecdemo</module>
     <module>sdk/videoanalyzer</module>
     <module>sdk/vision</module>
     <module>sdk/vmwarecloudsimple</module>
