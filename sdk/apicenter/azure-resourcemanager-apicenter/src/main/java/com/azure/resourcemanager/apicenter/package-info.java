@@ -4,6 +4,6 @@
 
 /**
  * Package containing the classes for AzureApiCenter.
- * Azure API Center Resource Provider.
+ * Azure API Center Resource Provider. tetetetetetet.
  */
 package com.azure.resourcemanager.apicenter;

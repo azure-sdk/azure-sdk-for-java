@@ -80,7 +80,7 @@
  */
 public final class ApiDefinitionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/
      * ApiDefinitions_CreateOrUpdate.json
      */
     /**
@@ -104,7 +104,7 @@ public final class ApiDefinitionsCreateOrUpdateSamples {
 public final class ApiDefinitionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiDefinitions_Delete.
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/ApiDefinitions_Delete.
      * json
      */
     /**
@@ -127,7 +127,7 @@ public final class ApiDefinitionsDeleteSamples {
  */
 public final class ApiDefinitionsExportSpecificationSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/
      * ApiDefinitions_ExportSpecification.json
      */
     /**
@@ -151,7 +151,7 @@ public final class ApiDefinitionsExportSpecificationSamples {
 public final class ApiDefinitionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiDefinitions_Get.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/ApiDefinitions_Get.json
      */
     /**
      * Sample code: ApiDefinitions_Get.
@@ -174,7 +174,7 @@ public final class ApiDefinitionsGetSamples {
 public final class ApiDefinitionsHeadSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiDefinitions_Head.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/ApiDefinitions_Head.json
      */
     /**
      * Sample code: ApiDefinitions_Head.
@@ -197,7 +197,7 @@ public final class ApiDefinitionsHeadSamples {
  */
 public final class ApiDefinitionsImportSpecificationSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/
      * ApiDefinitions_ImportSpecification.json
      */
     /**
@@ -221,7 +221,7 @@ public final class ApiDefinitionsImportSpecificationSamples {
 public final class ApiDefinitionsListSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiDefinitions_List.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/ApiDefinitions_List.json
      */
     /**
      * Sample code: ApiDefinitions_ListByApiVersion.
@@ -243,7 +243,7 @@ public final class ApiDefinitionsListSamples {
  */
 public final class ApiVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/
      * ApiVersions_CreateOrUpdate.json
      */
     /**
@@ -267,7 +267,7 @@ public final class ApiVersionsCreateOrUpdateSamples {
 public final class ApiVersionsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiVersions_Delete.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/ApiVersions_Delete.json
      */
     /**
      * Sample code: ApiVersions_Delete.
@@ -290,7 +290,7 @@ public final class ApiVersionsDeleteSamples {
 public final class ApiVersionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiVersions_Get.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/ApiVersions_Get.json
      */
     /**
      * Sample code: ApiVersions_Get.
@@ -313,7 +313,7 @@ public final class ApiVersionsGetSamples {
 public final class ApiVersionsHeadSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiVersions_Head.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/ApiVersions_Head.json
      */
     /**
      * Sample code: ApiVersions_Head.
@@ -336,7 +336,7 @@ public final class ApiVersionsHeadSamples {
 public final class ApiVersionsListSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiVersions_List.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/ApiVersions_List.json
      */
     /**
      * Sample code: ApiVersions_ListByApi.
@@ -359,7 +359,7 @@ public final class ApiVersionsListSamples {
 public final class ApisCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Apis_CreateOrUpdate.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Apis_CreateOrUpdate.json
      */
     /**
      * Sample code: Apis_CreateOrUpdate.
@@ -381,7 +381,7 @@ public final class ApisCreateOrUpdateSamples {
 public final class ApisDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Apis_Delete.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Apis_Delete.json
      */
     /**
      * Sample code: Apis_Delete.
@@ -404,7 +404,7 @@ public final class ApisDeleteSamples {
 public final class ApisGetSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Apis_Get.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Apis_Get.json
      */
     /**
      * Sample code: Apis_Get.
@@ -427,7 +427,7 @@ public final class ApisGetSamples {
 public final class ApisHeadSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Apis_Head.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Apis_Head.json
      */
     /**
      * Sample code: Apis_Head.
@@ -450,7 +450,7 @@ public final class ApisHeadSamples {
 public final class ApisListSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Apis_List.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Apis_List.json
      */
     /**
      * Sample code: Apis_ListByWorkspace.
@@ -471,7 +471,7 @@ public final class ApisListSamples {
  */
 public final class DeploymentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/
      * Deployments_CreateOrUpdate.json
      */
     /**
@@ -495,7 +495,7 @@ public final class DeploymentsCreateOrUpdateSamples {
 public final class DeploymentsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Deployments_Delete.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Deployments_Delete.json
      */
     /**
      * Sample code: Deployments_Delete.
@@ -518,7 +518,7 @@ public final class DeploymentsDeleteSamples {
 public final class DeploymentsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Deployments_Get.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Deployments_Get.json
      */
     /**
      * Sample code: Deployments_Get.
@@ -541,7 +541,7 @@ public final class DeploymentsGetSamples {
 public final class DeploymentsHeadSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Deployments_Head.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Deployments_Head.json
      */
     /**
      * Sample code: Deployments_Head.
@@ -564,7 +564,7 @@ public final class DeploymentsHeadSamples {
 public final class DeploymentsListSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Deployments_List.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Deployments_List.json
      */
     /**
      * Sample code: Deployments_ListByApi.
@@ -586,7 +586,7 @@ public final class DeploymentsListSamples {
  */
 public final class EnvironmentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/
      * Environments_CreateOrUpdate.json
      */
     /**
@@ -610,7 +610,7 @@ public final class EnvironmentsCreateOrUpdateSamples {
 public final class EnvironmentsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Environments_Delete.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Environments_Delete.json
      */
     /**
      * Sample code: Environments_Delete.
@@ -633,7 +633,7 @@ public final class EnvironmentsDeleteSamples {
 public final class EnvironmentsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Environments_Get.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Environments_Get.json
      */
     /**
      * Sample code: Environments_Get.
@@ -656,7 +656,7 @@ public final class EnvironmentsGetSamples {
 public final class EnvironmentsHeadSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Environments_Head.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Environments_Head.json
      */
     /**
      * Sample code: Environments_Head.
@@ -679,7 +679,7 @@ public final class EnvironmentsHeadSamples {
 public final class EnvironmentsListSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Environments_List.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Environments_List.json
      */
     /**
      * Sample code: Environments_ListByWorkspace.
@@ -700,7 +700,7 @@ public final class EnvironmentsListSamples {
  */
 public final class MetadataSchemasCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/
      * MetadataSchemas_CreateOrUpdate.json
      */
     /**
@@ -723,7 +723,7 @@ public final class MetadataSchemasCreateOrUpdateSamples {
 public final class MetadataSchemasDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/MetadataSchemas_Delete.
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/MetadataSchemas_Delete.
      * json
      */
     /**
@@ -747,7 +747,7 @@ public final class MetadataSchemasDeleteSamples {
 public final class MetadataSchemasGetSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/MetadataSchemas_Get.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/MetadataSchemas_Get.json
      */
     /**
      * Sample code: MetadataSchemas_Get.
@@ -770,7 +770,7 @@ public final class MetadataSchemasGetSamples {
 public final class MetadataSchemasHeadSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/MetadataSchemas_Head.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/MetadataSchemas_Head.json
      */
     /**
      * Sample code: MetadataSchemas_Head.
@@ -793,7 +793,7 @@ public final class MetadataSchemasHeadSamples {
 public final class MetadataSchemasListSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/MetadataSchemas_List.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/MetadataSchemas_List.json
      */
     /**
      * Sample code: MetadataSchemas_ListByService.
@@ -815,7 +815,7 @@ public final class MetadataSchemasListSamples {
 public final class OperationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Operations_List.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Operations_List.json
      */
     /**
      * Sample code: List Provider Operations.
@@ -844,7 +844,7 @@ import java.util.Map;
 public final class ServicesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Services_CreateOrUpdate.
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Services_CreateOrUpdate.
      * json
      */
     /**
@@ -886,7 +886,7 @@ public final class ServicesCreateOrUpdateSamples {
 public final class ServicesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Services_Delete.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Services_Delete.json
      */
     /**
      * Sample code: Services_Delete.
@@ -909,7 +909,7 @@ public final class ServicesDeleteSamples {
  */
 public final class ServicesExportMetadataSchemaSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/
      * Services_ExportMetadataSchema.json
      */
     /**
@@ -932,7 +932,7 @@ public final class ServicesExportMetadataSchemaSamples {
 public final class ServicesGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Services_Get.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Services_Get.json
      */
     /**
      * Sample code: Services_Get.
@@ -954,7 +954,7 @@ public final class ServicesGetByResourceGroupSamples {
  */
 public final class ServicesListSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/
      * Services_ListBySubscription.json
      */
     /**
@@ -976,7 +976,7 @@ public final class ServicesListSamples {
  */
 public final class ServicesListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/
      * Services_ListByResourceGroup.json
      */
     /**
@@ -1001,7 +1001,7 @@ import com.azure.resourcemanager.apicenter.models.Service;
 public final class ServicesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Services_Update.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Services_Update.json
      */
     /**
      * Sample code: Services_Update.
@@ -1026,7 +1026,7 @@ public final class ServicesUpdateSamples {
 public final class WorkspacesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Workspaces_CreateOrUpdate
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Workspaces_CreateOrUpdate
      * .json
      */
     /**
@@ -1049,7 +1049,7 @@ public final class WorkspacesCreateOrUpdateSamples {
 public final class WorkspacesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Workspaces_Delete.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Workspaces_Delete.json
      */
     /**
      * Sample code: Workspaces_Delete.
@@ -1072,7 +1072,7 @@ public final class WorkspacesDeleteSamples {
 public final class WorkspacesGetSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Workspaces_Get.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Workspaces_Get.json
      */
     /**
      * Sample code: Workspaces_Get.
@@ -1095,7 +1095,7 @@ public final class WorkspacesGetSamples {
 public final class WorkspacesHeadSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Workspaces_Head.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Workspaces_Head.json
      */
     /**
      * Sample code: Workspaces_Head.
@@ -1118,7 +1118,7 @@ public final class WorkspacesHeadSamples {
 public final class WorkspacesListSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Workspaces_List.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Workspaces_List.json
      */
     /**
      * Sample code: Workspaces_ListByService.

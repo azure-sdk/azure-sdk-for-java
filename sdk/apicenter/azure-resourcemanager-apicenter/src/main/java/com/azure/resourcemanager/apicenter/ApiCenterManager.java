@@ -52,7 +52,7 @@ import java.util.stream.Collectors;
 
 /**
  * Entry point to ApiCenterManager.
- * Azure API Center Resource Provider.
+ * Azure API Center Resource Provider. tetetetetetet.
  */
 public final class ApiCenterManager {
     private Operations operations;
@@ -232,7 +232,7 @@ public final class ApiCenterManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.apicenter").append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")

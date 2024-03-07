@@ -12,7 +12,7 @@ import com.azure.resourcemanager.apicenter.models.Service;
 public final class ServicesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Services_Update.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Services_Update.json
      */
     /**
      * Sample code: Services_Update.

@@ -10,7 +10,7 @@ package com.azure.resourcemanager.apicenter.generated;
 public final class DeploymentsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Deployments_Get.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Deployments_Get.json
      */
     /**
      * Sample code: Deployments_Get.

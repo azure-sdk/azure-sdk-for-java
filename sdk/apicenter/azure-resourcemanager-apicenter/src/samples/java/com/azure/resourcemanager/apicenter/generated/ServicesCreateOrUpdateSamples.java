@@ -17,7 +17,7 @@ import java.util.Map;
 public final class ServicesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Services_CreateOrUpdate.
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2023-03-01/examples/Services_CreateOrUpdate.
      * json
      */
     /**
