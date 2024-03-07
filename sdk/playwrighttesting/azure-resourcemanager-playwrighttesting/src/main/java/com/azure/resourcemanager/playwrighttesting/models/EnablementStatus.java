@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The enablement status of a feature.
+ * This property sets the connection region for Playwright client workers to cloud-hosted browsers. If enabled, workers
+ * connect to browsers in the closest Azure region, ensuring lower latency. If disabled, workers connect to browsers in
+ * the Azure region in which the workspace was initially created.
  */
 public final class EnablementStatus extends ExpandableStringEnum<EnablementStatus> {
     /**
