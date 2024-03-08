@@ -4,33 +4,38 @@
 
 package com.azure.resourcemanager.chaos.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Model that represents a list of Experiment executions and a link for pagination. */
-@Immutable
+/**
+ * The response of a ExperimentExecution list operation.
+ */
+@Fluent
 public final class ExperimentExecutionListResult {
     /*
-     * List of Experiment executions.
+     * The ExperimentExecution items on this page
      */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "value", required = true)
     private List<ExperimentExecutionInner> value;
 
     /*
-     * URL to retrieve the next page of Experiment executions.
+     * The link to the next page of items
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ExperimentExecutionListResult class. */
+    /**
+     * Creates an instance of ExperimentExecutionListResult class.
+     */
     public ExperimentExecutionListResult() {
     }
 
     /**
-     * Get the value property: List of Experiment executions.
-     *
+     * Get the value property: The ExperimentExecution items on this page.
+     * 
      * @return the value value.
      */
     public List<ExperimentExecutionInner> value() {
@@ -38,8 +43,19 @@ public final class ExperimentExecutionListResult {
     }
 
     /**
-     * Get the nextLink property: URL to retrieve the next page of Experiment executions.
-     *
+     * Set the value property: The ExperimentExecution items on this page.
+     * 
+     * @param value the value value to set.
+     * @return the ExperimentExecutionListResult object itself.
+     */
+    public ExperimentExecutionListResult withValue(List<ExperimentExecutionInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page of items.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -47,13 +63,29 @@ public final class ExperimentExecutionListResult {
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the ExperimentExecutionListResult object itself.
+     */
+    public ExperimentExecutionListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model ExperimentExecutionListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ExperimentExecutionListResult.class);
 }

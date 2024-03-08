@@ -4,33 +4,38 @@
 
 package com.azure.resourcemanager.chaos.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.chaos.fluent.models.CapabilityTypeInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Model that represents a list of Capability Type resources and a link for pagination. */
-@Immutable
+/**
+ * The response of a CapabilityType list operation.
+ */
+@Fluent
 public final class CapabilityTypeListResult {
     /*
-     * List of Capability Type resources.
+     * The CapabilityType items on this page
      */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "value", required = true)
     private List<CapabilityTypeInner> value;
 
     /*
-     * URL to retrieve the next page of Capability Type resources.
+     * The link to the next page of items
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of CapabilityTypeListResult class. */
+    /**
+     * Creates an instance of CapabilityTypeListResult class.
+     */
     public CapabilityTypeListResult() {
     }
 
     /**
-     * Get the value property: List of Capability Type resources.
-     *
+     * Get the value property: The CapabilityType items on this page.
+     * 
      * @return the value value.
      */
     public List<CapabilityTypeInner> value() {
@@ -38,8 +43,19 @@ public final class CapabilityTypeListResult {
     }
 
     /**
-     * Get the nextLink property: URL to retrieve the next page of Capability Type resources.
-     *
+     * Set the value property: The CapabilityType items on this page.
+     * 
+     * @param value the value value to set.
+     * @return the CapabilityTypeListResult object itself.
+     */
+    public CapabilityTypeListResult withValue(List<CapabilityTypeInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page of items.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -47,13 +63,29 @@ public final class CapabilityTypeListResult {
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the CapabilityTypeListResult object itself.
+     */
+    public CapabilityTypeListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model CapabilityTypeListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(CapabilityTypeListResult.class);
 }

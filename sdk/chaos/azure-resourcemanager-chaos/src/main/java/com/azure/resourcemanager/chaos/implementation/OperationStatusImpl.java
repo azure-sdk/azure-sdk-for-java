@@ -18,6 +18,10 @@ public final class OperationStatusImpl implements OperationStatus {
         this.serviceManager = serviceManager;
     }
 
+    public ManagementError error() {
+        return this.innerModel().error();
+    }
+
     public String id() {
         return this.innerModel().id();
     }
@@ -36,10 +40,6 @@ public final class OperationStatusImpl implements OperationStatus {
 
     public String status() {
         return this.innerModel().status();
-    }
-
-    public ManagementError error() {
-        return this.innerModel().error();
     }
 
     public OperationStatusInner innerModel() {

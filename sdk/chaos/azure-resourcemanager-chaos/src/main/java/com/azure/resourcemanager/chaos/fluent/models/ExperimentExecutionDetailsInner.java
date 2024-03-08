@@ -5,11 +5,12 @@
 package com.azure.resourcemanager.chaos.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetailsPropertiesRunInformation;
+import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetailsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.OffsetDateTime;
 
-/** Model that represents the execution details of an Experiment. */
+/**
+ * Model that represents the execution details of an Experiment.
+ */
 @Immutable
 public final class ExperimentExecutionDetailsInner {
     /*
@@ -34,15 +35,17 @@ public final class ExperimentExecutionDetailsInner {
      * The properties of the experiment execution details.
      */
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
-    private ExperimentExecutionDetailsProperties innerProperties;
+    private ExperimentExecutionDetailsProperties properties;
 
-    /** Creates an instance of ExperimentExecutionDetailsInner class. */
+    /**
+     * Creates an instance of ExperimentExecutionDetailsInner class.
+     */
     public ExperimentExecutionDetailsInner() {
     }
 
     /**
      * Get the type property: String of the resource type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -51,7 +54,7 @@ public final class ExperimentExecutionDetailsInner {
 
     /**
      * Get the id property: String of the fully qualified resource ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -60,7 +63,7 @@ public final class ExperimentExecutionDetailsInner {
 
     /**
      * Get the name property: String of the resource name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -68,76 +71,22 @@ public final class ExperimentExecutionDetailsInner {
     }
 
     /**
-     * Get the innerProperties property: The properties of the experiment execution details.
-     *
-     * @return the innerProperties value.
+     * Get the properties property: The properties of the experiment execution details.
+     * 
+     * @return the properties value.
      */
-    private ExperimentExecutionDetailsProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /**
-     * Get the failureReason property: The reason why the execution failed.
-     *
-     * @return the failureReason value.
-     */
-    public String failureReason() {
-        return this.innerProperties() == null ? null : this.innerProperties().failureReason();
-    }
-
-    /**
-     * Get the lastActionAt property: String that represents the last action date time.
-     *
-     * @return the lastActionAt value.
-     */
-    public OffsetDateTime lastActionAt() {
-        return this.innerProperties() == null ? null : this.innerProperties().lastActionAt();
-    }
-
-    /**
-     * Get the runInformation property: The information of the experiment run.
-     *
-     * @return the runInformation value.
-     */
-    public ExperimentExecutionDetailsPropertiesRunInformation runInformation() {
-        return this.innerProperties() == null ? null : this.innerProperties().runInformation();
-    }
-
-    /**
-     * Get the status property: The status of the execution.
-     *
-     * @return the status value.
-     */
-    public String status() {
-        return this.innerProperties() == null ? null : this.innerProperties().status();
-    }
-
-    /**
-     * Get the startedAt property: String that represents the start date time.
-     *
-     * @return the startedAt value.
-     */
-    public OffsetDateTime startedAt() {
-        return this.innerProperties() == null ? null : this.innerProperties().startedAt();
-    }
-
-    /**
-     * Get the stoppedAt property: String that represents the stop date time.
-     *
-     * @return the stoppedAt value.
-     */
-    public OffsetDateTime stoppedAt() {
-        return this.innerProperties() == null ? null : this.innerProperties().stoppedAt();
+    public ExperimentExecutionDetailsProperties properties() {
+        return this.properties;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() != null) {
+            properties().validate();
         }
     }
 }

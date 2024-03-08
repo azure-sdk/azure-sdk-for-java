@@ -4,17 +4,20 @@
 
 package com.azure.resourcemanager.chaos.generated;
 
-/** Samples for Experiments Cancel. */
+/**
+ * Samples for Experiments Cancel.
+ */
 public final class ExperimentsCancelSamples {
     /*
-     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/stable/2023-11-01/examples/CancelExperiment.json
+     * x-ms-original-file:
+     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/CancelExperiment.json
      */
     /**
-     * Sample code: Cancel a running Experiment.
-     *
+     * Sample code: CancelExperiment.
+     * 
      * @param manager Entry point to ChaosManager.
      */
-    public static void cancelARunningExperiment(com.azure.resourcemanager.chaos.ChaosManager manager) {
-        manager.experiments().cancel("exampleRG", "exampleExperiment", com.azure.core.util.Context.NONE);
+    public static void cancelExperiment(com.azure.resourcemanager.chaos.ChaosManager manager) {
+        manager.experiments().cancel("exampleRG", "exampleExperiment", null, com.azure.core.util.Context.NONE);
     }
 }

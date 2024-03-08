@@ -11,16 +11,16 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
-import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionDetailsInner;
-import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionInner;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentInner;
 import com.azure.resourcemanager.chaos.models.ExperimentUpdate;
 
-/** An instance of this class provides access to all the operations defined in ExperimentsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ExperimentsClient.
+ */
 public interface ExperimentsClient {
     /**
      * Get a list of Experiment resources in a subscription.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Experiment resources in a subscription as paginated response with {@link PagedIterable}.
@@ -30,10 +30,7 @@ public interface ExperimentsClient {
 
     /**
      * Get a list of Experiment resources in a subscription.
-     *
-     * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
-     * @param continuationToken String that sets the continuation token.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -41,12 +38,12 @@ public interface ExperimentsClient {
      * @return a list of Experiment resources in a subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ExperimentInner> list(Boolean running, String continuationToken, Context context);
+    PagedIterable<ExperimentInner> list(Context context);
 
     /**
      * Get a list of Experiment resources in a resource group.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -57,10 +54,10 @@ public interface ExperimentsClient {
 
     /**
      * Get a list of Experiment resources in a resource group.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
+     * running. If null, then the results will not be filtered.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -69,13 +66,163 @@ public interface ExperimentsClient {
      * @return a list of Experiment resources in a resource group as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ExperimentInner> listByResourceGroup(
-        String resourceGroupName, Boolean running, String continuationToken, Context context);
+    PagedIterable<ExperimentInner> listByResourceGroup(String resourceGroupName, Boolean running,
+        String continuationToken, Context context);
+
+    /**
+     * Get a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Experiment resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ExperimentInner> getByResourceGroupWithResponse(String resourceGroupName, String experimentName,
+        Context context);
+
+    /**
+     * Get a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Experiment resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ExperimentInner getByResourceGroup(String resourceGroupName, String experimentName);
+
+    /**
+     * Create or update a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdate(String resourceGroupName,
+        String experimentName, ExperimentInner resource);
+
+    /**
+     * Create or update a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdate(String resourceGroupName,
+        String experimentName, ExperimentInner resource, Context context);
+
+    /**
+     * Create or update a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param resource Resource create parameters.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents a Experiment resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ExperimentInner createOrUpdate(String resourceGroupName, String experimentName, ExperimentInner resource);
+
+    /**
+     * Create or update a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param resource Resource create parameters.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents a Experiment resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ExperimentInner createOrUpdate(String resourceGroupName, String experimentName, ExperimentInner resource,
+        Context context);
+
+    /**
+     * The operation to update an experiment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginUpdate(String resourceGroupName,
+        String experimentName, ExperimentUpdate properties);
+
+    /**
+     * The operation to update an experiment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginUpdate(String resourceGroupName,
+        String experimentName, ExperimentUpdate properties, Context context);
+
+    /**
+     * The operation to update an experiment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents a Experiment resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ExperimentInner update(String resourceGroupName, String experimentName, ExperimentUpdate properties);
+
+    /**
+     * The operation to update an experiment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return model that represents a Experiment resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ExperimentInner update(String resourceGroupName, String experimentName, ExperimentUpdate properties,
+        Context context);
 
     /**
      * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -87,8 +234,8 @@ public interface ExperimentsClient {
 
     /**
      * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -101,8 +248,8 @@ public interface ExperimentsClient {
 
     /**
      * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -113,8 +260,8 @@ public interface ExperimentsClient {
 
     /**
      * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -125,173 +272,25 @@ public interface ExperimentsClient {
     void delete(String resourceGroupName, String experimentName, Context context);
 
     /**
-     * Get a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Experiment resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ExperimentInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String experimentName, Context context);
-
-    /**
-     * Get a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Experiment resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ExperimentInner getByResourceGroup(String resourceGroupName, String experimentName);
-
-    /**
-     * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdate(
-        String resourceGroupName, String experimentName, ExperimentInner experiment);
-
-    /**
-     * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdate(
-        String resourceGroupName, String experimentName, ExperimentInner experiment, Context context);
-
-    /**
-     * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a Experiment resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ExperimentInner createOrUpdate(String resourceGroupName, String experimentName, ExperimentInner experiment);
-
-    /**
-     * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a Experiment resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ExperimentInner createOrUpdate(
-        String resourceGroupName, String experimentName, ExperimentInner experiment, Context context);
-
-    /**
-     * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginUpdate(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment);
-
-    /**
-     * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginUpdate(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment, Context context);
-
-    /**
-     * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a Experiment resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ExperimentInner update(String resourceGroupName, String experimentName, ExperimentUpdate experiment);
-
-    /**
-     * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a Experiment resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ExperimentInner update(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment, Context context);
-
-    /**
      * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginCancel(String resourceGroupName, String experimentName);
+    SyncPoller<PollResult<Void>, Void> beginCancel(String resourceGroupName, String experimentName, Object body);
 
     /**
      * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -299,51 +298,56 @@ public interface ExperimentsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginCancel(String resourceGroupName, String experimentName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginCancel(String resourceGroupName, String experimentName, Object body,
+        Context context);
 
     /**
      * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void cancel(String resourceGroupName, String experimentName);
+    void cancel(String resourceGroupName, String experimentName, Object body);
 
     /**
      * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void cancel(String resourceGroupName, String experimentName, Context context);
+    void cancel(String resourceGroupName, String experimentName, Object body, Context context);
 
     /**
      * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String experimentName);
+    SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String experimentName, Object body);
 
     /**
      * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -351,119 +355,33 @@ public interface ExperimentsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String experimentName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String experimentName, Object body,
+        Context context);
 
     /**
      * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void start(String resourceGroupName, String experimentName);
+    void start(String resourceGroupName, String experimentName, Object body);
 
     /**
      * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void start(String resourceGroupName, String experimentName, Context context);
-
-    /**
-     * Get a list of executions of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of executions of an Experiment resource as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ExperimentExecutionInner> listAllExecutions(String resourceGroupName, String experimentName);
-
-    /**
-     * Get a list of executions of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of executions of an Experiment resource as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ExperimentExecutionInner> listAllExecutions(
-        String resourceGroupName, String experimentName, Context context);
-
-    /**
-     * Get an execution of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an execution of an Experiment resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ExperimentExecutionInner> getExecutionWithResponse(
-        String resourceGroupName, String experimentName, String executionId, Context context);
-
-    /**
-     * Get an execution of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an execution of an Experiment resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ExperimentExecutionInner getExecution(String resourceGroupName, String experimentName, String executionId);
-
-    /**
-     * Execution details of an experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the execution details of an Experiment along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ExperimentExecutionDetailsInner> executionDetailsWithResponse(
-        String resourceGroupName, String experimentName, String executionId, Context context);
-
-    /**
-     * Execution details of an experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the execution details of an Experiment.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ExperimentExecutionDetailsInner executionDetails(
-        String resourceGroupName, String experimentName, String executionId);
+    void start(String resourceGroupName, String experimentName, Object body, Context context);
 }

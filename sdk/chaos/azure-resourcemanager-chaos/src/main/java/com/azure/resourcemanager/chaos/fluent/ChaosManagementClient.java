@@ -7,89 +7,98 @@ package com.azure.resourcemanager.chaos.fluent;
 import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
-/** The interface for ChaosManagementClient class. */
+/**
+ * The interface for ChaosManagementClient class.
+ */
 public interface ChaosManagementClient {
     /**
-     * Gets GUID that represents an Azure subscription ID.
-     *
+     * Gets The ID of the target subscription.
+     * 
      * @return the subscriptionId value.
      */
     String getSubscriptionId();
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     String getEndpoint();
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     String getApiVersion();
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     HttpPipeline getHttpPipeline();
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the CapabilitiesClient object to access its operations.
-     *
-     * @return the CapabilitiesClient object.
-     */
-    CapabilitiesClient getCapabilities();
-
-    /**
-     * Gets the CapabilityTypesClient object to access its operations.
-     *
-     * @return the CapabilityTypesClient object.
-     */
-    CapabilityTypesClient getCapabilityTypes();
-
-    /**
-     * Gets the ExperimentsClient object to access its operations.
-     *
-     * @return the ExperimentsClient object.
-     */
-    ExperimentsClient getExperiments();
-
-    /**
-     * Gets the OperationStatusesClient object to access its operations.
-     *
-     * @return the OperationStatusesClient object.
-     */
-    OperationStatusesClient getOperationStatuses();
-
-    /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     OperationsClient getOperations();
 
     /**
+     * Gets the TargetsClient object to access its operations.
+     * 
+     * @return the TargetsClient object.
+     */
+    TargetsClient getTargets();
+
+    /**
+     * Gets the CapabilitiesClient object to access its operations.
+     * 
+     * @return the CapabilitiesClient object.
+     */
+    CapabilitiesClient getCapabilities();
+
+    /**
+     * Gets the ExperimentsClient object to access its operations.
+     * 
+     * @return the ExperimentsClient object.
+     */
+    ExperimentsClient getExperiments();
+
+    /**
+     * Gets the OperationStatusesOperationsClient object to access its operations.
+     * 
+     * @return the OperationStatusesOperationsClient object.
+     */
+    OperationStatusesOperationsClient getOperationStatusesOperations();
+
+    /**
      * Gets the TargetTypesClient object to access its operations.
-     *
+     * 
      * @return the TargetTypesClient object.
      */
     TargetTypesClient getTargetTypes();
 
     /**
-     * Gets the TargetsClient object to access its operations.
-     *
-     * @return the TargetsClient object.
+     * Gets the CapabilityTypesClient object to access its operations.
+     * 
+     * @return the CapabilityTypesClient object.
      */
-    TargetsClient getTargets();
+    CapabilityTypesClient getCapabilityTypes();
+
+    /**
+     * Gets the ExperimentExecutionsClient object to access its operations.
+     * 
+     * @return the ExperimentExecutionsClient object.
+     */
+    ExperimentExecutionsClient getExperimentExecutions();
 }

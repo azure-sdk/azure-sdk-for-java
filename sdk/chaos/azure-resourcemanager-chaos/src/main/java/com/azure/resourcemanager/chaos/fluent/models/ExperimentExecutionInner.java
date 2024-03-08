@@ -5,70 +5,37 @@
 package com.azure.resourcemanager.chaos.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Model that represents the execution of a Experiment. */
+/**
+ * Model that represents the execution of a Experiment.
+ */
 @Immutable
-public final class ExperimentExecutionInner {
+public final class ExperimentExecutionInner extends ProxyResource {
     /*
-     * String of the resource type.
-     */
-    @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
-    private String type;
-
-    /*
-     * String of the fully qualified resource ID.
-     */
-    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
-    private String id;
-
-    /*
-     * String of the resource name.
-     */
-    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
-    private String name;
-
-    /*
-     * The properties of experiment execution status.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private ExperimentExecutionProperties innerProperties;
 
-    /** Creates an instance of ExperimentExecutionInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ExperimentExecutionInner class.
+     */
     public ExperimentExecutionInner() {
     }
 
     /**
-     * Get the type property: String of the resource type.
-     *
-     * @return the type value.
-     */
-    public String type() {
-        return this.type;
-    }
-
-    /**
-     * Get the id property: String of the fully qualified resource ID.
-     *
-     * @return the id value.
-     */
-    public String id() {
-        return this.id;
-    }
-
-    /**
-     * Get the name property: String of the resource name.
-     *
-     * @return the name value.
-     */
-    public String name() {
-        return this.name;
-    }
-
-    /**
-     * Get the innerProperties property: The properties of experiment execution status.
-     *
+     * Get the innerProperties property: The resource-specific properties for this resource.
+     * 
      * @return the innerProperties value.
      */
     private ExperimentExecutionProperties innerProperties() {
@@ -76,8 +43,17 @@ public final class ExperimentExecutionInner {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the status property: The status of the execution.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -86,7 +62,7 @@ public final class ExperimentExecutionInner {
 
     /**
      * Get the startedAt property: String that represents the start date time.
-     *
+     * 
      * @return the startedAt value.
      */
     public OffsetDateTime startedAt() {
@@ -95,7 +71,7 @@ public final class ExperimentExecutionInner {
 
     /**
      * Get the stoppedAt property: String that represents the stop date time.
-     *
+     * 
      * @return the stoppedAt value.
      */
     public OffsetDateTime stoppedAt() {
@@ -104,7 +80,7 @@ public final class ExperimentExecutionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

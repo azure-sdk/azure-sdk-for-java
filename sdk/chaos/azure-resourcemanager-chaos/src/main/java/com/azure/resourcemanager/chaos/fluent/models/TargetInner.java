@@ -7,69 +7,37 @@ package com.azure.resourcemanager.chaos.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Model that represents a Target resource. */
+/**
+ * Model that represents a Target resource.
+ */
 @Fluent
 public final class TargetInner extends ProxyResource {
     /*
-     * The system metadata of the target resource.
+     * The resource-specific properties for this resource.
+     */
+    @JsonProperty(value = "properties")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> properties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /*
-     * Location of the target resource.
+    /**
+     * Creates an instance of TargetInner class.
      */
-    @JsonProperty(value = "location")
-    private String location;
-
-    /*
-     * The properties of the target resource.
-     */
-    @JsonProperty(value = "properties", required = true)
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> properties;
-
-    /** Creates an instance of TargetInner class. */
     public TargetInner() {
     }
 
     /**
-     * Get the systemData property: The system metadata of the target resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * Get the location property: Location of the target resource.
-     *
-     * @return the location value.
-     */
-    public String location() {
-        return this.location;
-    }
-
-    /**
-     * Set the location property: Location of the target resource.
-     *
-     * @param location the location value to set.
-     * @return the TargetInner object itself.
-     */
-    public TargetInner withLocation(String location) {
-        this.location = location;
-        return this;
-    }
-
-    /**
-     * Get the properties property: The properties of the target resource.
-     *
+     * Get the properties property: The resource-specific properties for this resource.
+     * 
      * @return the properties value.
      */
     public Map<String, Object> properties() {
@@ -77,8 +45,8 @@ public final class TargetInner extends ProxyResource {
     }
 
     /**
-     * Set the properties property: The properties of the target resource.
-     *
+     * Set the properties property: The resource-specific properties for this resource.
+     * 
      * @param properties the properties value to set.
      * @return the TargetInner object itself.
      */
@@ -88,17 +56,19 @@ public final class TargetInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property properties in model TargetInner"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TargetInner.class);
 }

@@ -34,32 +34,35 @@ import com.azure.core.util.FluxUtil;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.chaos.fluent.ExperimentsClient;
-import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionDetailsInner;
-import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionInner;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentInner;
-import com.azure.resourcemanager.chaos.models.ExperimentExecutionListResult;
 import com.azure.resourcemanager.chaos.models.ExperimentListResult;
 import com.azure.resourcemanager.chaos.models.ExperimentUpdate;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ExperimentsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ExperimentsClient.
+ */
 public final class ExperimentsClientImpl implements ExperimentsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final ExperimentsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final ChaosManagementClientImpl client;
 
     /**
      * Initializes an instance of ExperimentsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     ExperimentsClientImpl(ChaosManagementClientImpl client) {
-        this.service =
-            RestProxy.create(ExperimentsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(ExperimentsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -70,333 +73,170 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
     @Host("{$host}")
     @ServiceInterface(name = "ChaosManagementClien")
     public interface ExperimentsService {
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/experiments")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExperimentListResult>> list(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("running") Boolean running,
-            @QueryParam("continuationToken") String continuationToken,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ExperimentListResult>> list(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExperimentListResult>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("running") Boolean running,
-            @QueryParam("continuationToken") String continuationToken,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<ExperimentListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("running") Boolean running,
+            @QueryParam("continuationToken") String continuationToken, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}")
-        @ExpectedResponses({202})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<ExperimentInner>> getByResourceGroup(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("experimentName") String experimentName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("experimentName") String experimentName, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExperimentInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("experimentName") String experimentName, @BodyParam("application/json") ExperimentInner resource,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("experimentName") String experimentName,
-            @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") ExperimentUpdate properties, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}")
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("experimentName") String experimentName,
-            @BodyParam("application/json") ExperimentInner experiment,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("experimentName") String experimentName, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}")
-        @ExpectedResponses({202})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/cancel")
+        @ExpectedResponses({ 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> cancel(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("experimentName") String experimentName,
-            @BodyParam("application/json") ExperimentUpdate experiment,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("experimentName") String experimentName, @BodyParam("application/json") Object body,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/cancel")
-        @ExpectedResponses({202})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/start")
+        @ExpectedResponses({ 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> cancel(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<Flux<ByteBuffer>>> start(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("experimentName") String experimentName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("experimentName") String experimentName, @BodyParam("application/json") Object body,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/start")
-        @ExpectedResponses({202})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> start(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("experimentName") String experimentName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/executions")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExperimentExecutionListResult>> listAllExecutions(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("experimentName") String experimentName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/executions/{executionId}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExperimentExecutionInner>> getExecution(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("experimentName") String experimentName,
-            @PathParam("executionId") String executionId,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/executions/{executionId}/getExecutionDetails")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExperimentExecutionDetailsInner>> executionDetails(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("experimentName") String experimentName,
-            @PathParam("executionId") String executionId,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExperimentListResult>> listAllNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ExperimentListResult>> listAllNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+            @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExperimentListResult>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ExperimentExecutionListResult>> listAllExecutionsNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ExperimentListResult>> listByResourceGroupNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Get a list of Experiment resources in a subscription.
-     *
-     * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
-     * @param continuationToken String that sets the continuation token.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Experiment resources in a subscription along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExperimentInner>> listSinglePageAsync(Boolean running, String continuationToken) {
+    private Mono<PagedResponse<ExperimentInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            running,
-                            continuationToken,
-                            accept,
-                            context))
-            .<PagedResponse<ExperimentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), accept, context))
+            .<PagedResponse<ExperimentInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a list of Experiment resources in a subscription.
-     *
-     * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
-     * @param continuationToken String that sets the continuation token.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Experiment resources in a subscription along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExperimentInner>> listSinglePageAsync(
-        Boolean running, String continuationToken, Context context) {
+    private Mono<PagedResponse<ExperimentInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                running,
-                continuationToken,
-                accept,
+            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
                 context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get a list of Experiment resources in a subscription.
-     *
-     * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
-     * @param continuationToken String that sets the continuation token.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Experiment resources in a subscription as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ExperimentInner> listAsync(Boolean running, String continuationToken) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(running, continuationToken), nextLink -> listAllNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Get a list of Experiment resources in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Experiment resources in a subscription as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ExperimentInner> listAsync() {
-        final Boolean running = null;
-        final String continuationToken = null;
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(running, continuationToken), nextLink -> listAllNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listSinglePageAsync(), nextLink -> listAllNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get a list of Experiment resources in a subscription.
-     *
-     * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
-     * @param continuationToken String that sets the continuation token.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -404,32 +244,26 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return a list of Experiment resources in a subscription as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ExperimentInner> listAsync(Boolean running, String continuationToken, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(running, continuationToken, context),
+    private PagedFlux<ExperimentInner> listAsync(Context context) {
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
             nextLink -> listAllNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Get a list of Experiment resources in a subscription.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Experiment resources in a subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ExperimentInner> list() {
-        final Boolean running = null;
-        final String continuationToken = null;
-        return new PagedIterable<>(listAsync(running, continuationToken));
+        return new PagedIterable<>(listAsync());
     }
 
     /**
      * Get a list of Experiment resources in a subscription.
-     *
-     * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
-     * @param continuationToken String that sets the continuation token.
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -437,37 +271,33 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return a list of Experiment resources in a subscription as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ExperimentInner> list(Boolean running, String continuationToken, Context context) {
-        return new PagedIterable<>(listAsync(running, continuationToken, context));
+    public PagedIterable<ExperimentInner> list(Context context) {
+        return new PagedIterable<>(listAsync(context));
     }
 
     /**
      * Get a list of Experiment resources in a resource group.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
+     * running. If null, then the results will not be filtered.
      * @param continuationToken String that sets the continuation token.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Experiment resources in a resource group along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExperimentInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Boolean running, String continuationToken) {
+    private Mono<PagedResponse<ExperimentInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        Boolean running, String continuationToken) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -475,58 +305,37 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            running,
-                            continuationToken,
-                            accept,
-                            context))
-            .<PagedResponse<ExperimentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, running, continuationToken, accept, context))
+            .<PagedResponse<ExperimentInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a list of Experiment resources in a resource group.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
+     * running. If null, then the results will not be filtered.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Experiment resources in a resource group along with {@link PagedResponse} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExperimentInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Boolean running, String continuationToken, Context context) {
+    private Mono<PagedResponse<ExperimentInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        Boolean running, String continuationToken, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -535,32 +344,18 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                running,
-                continuationToken,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, running, continuationToken, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get a list of Experiment resources in a resource group.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
+     * running. If null, then the results will not be filtered.
      * @param continuationToken String that sets the continuation token.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -568,17 +363,16 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return a list of Experiment resources in a resource group as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ExperimentInner> listByResourceGroupAsync(
-        String resourceGroupName, Boolean running, String continuationToken) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, running, continuationToken),
-            nextLink -> listNextSinglePageAsync(nextLink));
+    private PagedFlux<ExperimentInner> listByResourceGroupAsync(String resourceGroupName, Boolean running,
+        String continuationToken) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, running, continuationToken),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get a list of Experiment resources in a resource group.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -588,17 +382,16 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
     private PagedFlux<ExperimentInner> listByResourceGroupAsync(String resourceGroupName) {
         final Boolean running = null;
         final String continuationToken = null;
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, running, continuationToken),
-            nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, running, continuationToken),
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get a list of Experiment resources in a resource group.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
+     * running. If null, then the results will not be filtered.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -607,17 +400,17 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return a list of Experiment resources in a resource group as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ExperimentInner> listByResourceGroupAsync(
-        String resourceGroupName, Boolean running, String continuationToken, Context context) {
+    private PagedFlux<ExperimentInner> listByResourceGroupAsync(String resourceGroupName, Boolean running,
+        String continuationToken, Context context) {
         return new PagedFlux<>(
             () -> listByResourceGroupSinglePageAsync(resourceGroupName, running, continuationToken, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+            nextLink -> listByResourceGroupNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Get a list of Experiment resources in a resource group.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -632,10 +425,10 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
 
     /**
      * Get a list of Experiment resources in a resource group.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param running Optional value that indicates whether to filter results based on if the Experiment is currently
-     *     running. If null, then the results will not be filtered.
+     * running. If null, then the results will not be filtered.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -644,34 +437,31 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return a list of Experiment resources in a resource group as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ExperimentInner> listByResourceGroup(
-        String resourceGroupName, Boolean running, String continuationToken, Context context) {
+    public PagedIterable<ExperimentInner> listByResourceGroup(String resourceGroupName, Boolean running,
+        String continuationToken, Context context) {
         return new PagedIterable<>(listByResourceGroupAsync(resourceGroupName, running, continuationToken, context));
     }
 
     /**
-     * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Get a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return a Experiment resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String experimentName) {
+    private Mono<Response<ExperimentInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String experimentName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -682,254 +472,15 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            experimentName,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String experimentName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (experimentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                experimentName,
-                accept,
-                context);
-    }
-
-    /**
-     * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String experimentName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, experimentName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
-    }
-
-    /**
-     * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String experimentName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, experimentName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
-    }
-
-    /**
-     * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String experimentName) {
-        return this.beginDeleteAsync(resourceGroupName, experimentName).getSyncPoller();
-    }
-
-    /**
-     * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String experimentName, Context context) {
-        return this.beginDeleteAsync(resourceGroupName, experimentName, context).getSyncPoller();
-    }
-
-    /**
-     * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String experimentName) {
-        return beginDeleteAsync(resourceGroupName, experimentName)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceGroupName, String experimentName, Context context) {
-        return beginDeleteAsync(resourceGroupName, experimentName, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String experimentName) {
-        deleteAsync(resourceGroupName, experimentName).block();
-    }
-
-    /**
-     * Delete a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceGroupName, String experimentName, Context context) {
-        deleteAsync(resourceGroupName, experimentName, context).block();
-    }
-
-    /**
-     * Get a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Experiment resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExperimentInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String experimentName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (experimentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            experimentName,
-                            accept,
-                            context))
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, experimentName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -938,19 +489,15 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return a Experiment resource along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExperimentInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String experimentName, Context context) {
+    private Mono<Response<ExperimentInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String experimentName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -961,21 +508,14 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                experimentName,
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, experimentName, accept, context);
     }
 
     /**
      * Get a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -990,8 +530,8 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
 
     /**
      * Get a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1000,15 +540,15 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return a Experiment resource along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ExperimentInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String experimentName, Context context) {
+    public Response<ExperimentInner> getByResourceGroupWithResponse(String resourceGroupName, String experimentName,
+        Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, experimentName, context).block();
     }
 
     /**
      * Get a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1022,30 +562,26 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
 
     /**
      * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return model that represents a Experiment resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String experimentName, ExperimentInner experiment) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String experimentName, ExperimentInner resource) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1054,55 +590,41 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         if (experimentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
         }
-        if (experiment == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experiment is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            experiment.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            experimentName,
-                            experiment,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, experimentName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return model that represents a Experiment resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String experimentName, ExperimentInner experiment, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String experimentName, ExperimentInner resource, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1111,57 +633,43 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         if (experimentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
         }
-        if (experiment == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experiment is required and cannot be null."));
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
         } else {
-            experiment.validate();
+            resource.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                experimentName,
-                experiment,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, experimentName, resource, accept, context);
     }
 
     /**
      * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String experimentName, ExperimentInner experiment) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, experimentName, experiment);
-        return this
-            .client
-            .<ExperimentInner, ExperimentInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ExperimentInner.class,
-                ExperimentInner.class,
-                this.client.getContext());
+    private PollerFlux<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String experimentName, ExperimentInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, experimentName, resource);
+        return this.client.<ExperimentInner, ExperimentInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ExperimentInner.class, ExperimentInner.class, this.client.getContext());
     }
 
     /**
      * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1169,40 +677,38 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link PollerFlux} for polling of model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String experimentName, ExperimentInner experiment, Context context) {
+    private PollerFlux<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdateAsync(String resourceGroupName,
+        String experimentName, ExperimentInner resource, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, experimentName, experiment, context);
-        return this
-            .client
-            .<ExperimentInner, ExperimentInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ExperimentInner.class, ExperimentInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, experimentName, resource, context);
+        return this.client.<ExperimentInner, ExperimentInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ExperimentInner.class, ExperimentInner.class, context);
     }
 
     /**
      * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdate(
-        String resourceGroupName, String experimentName, ExperimentInner experiment) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, experimentName, experiment).getSyncPoller();
+    public SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdate(String resourceGroupName,
+        String experimentName, ExperimentInner resource) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, experimentName, resource).getSyncPoller();
     }
 
     /**
      * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1210,36 +716,35 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdate(
-        String resourceGroupName, String experimentName, ExperimentInner experiment, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, experimentName, experiment, context).getSyncPoller();
+    public SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginCreateOrUpdate(String resourceGroupName,
+        String experimentName, ExperimentInner resource, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, experimentName, resource, context).getSyncPoller();
     }
 
     /**
      * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return model that represents a Experiment resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ExperimentInner> createOrUpdateAsync(
-        String resourceGroupName, String experimentName, ExperimentInner experiment) {
-        return beginCreateOrUpdateAsync(resourceGroupName, experimentName, experiment)
-            .last()
+    private Mono<ExperimentInner> createOrUpdateAsync(String resourceGroupName, String experimentName,
+        ExperimentInner resource) {
+        return beginCreateOrUpdateAsync(resourceGroupName, experimentName, resource).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1247,35 +752,34 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return model that represents a Experiment resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ExperimentInner> createOrUpdateAsync(
-        String resourceGroupName, String experimentName, ExperimentInner experiment, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, experimentName, experiment, context)
-            .last()
+    private Mono<ExperimentInner> createOrUpdateAsync(String resourceGroupName, String experimentName,
+        ExperimentInner resource, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, experimentName, resource, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
+     * @param resource Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExperimentInner createOrUpdate(String resourceGroupName, String experimentName, ExperimentInner experiment) {
-        return createOrUpdateAsync(resourceGroupName, experimentName, experiment).block();
+    public ExperimentInner createOrUpdate(String resourceGroupName, String experimentName, ExperimentInner resource) {
+        return createOrUpdateAsync(resourceGroupName, experimentName, resource).block();
     }
 
     /**
      * Create or update a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Experiment resource to be created or updated.
+     * @param resource Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1283,37 +787,33 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExperimentInner createOrUpdate(
-        String resourceGroupName, String experimentName, ExperimentInner experiment, Context context) {
-        return createOrUpdateAsync(resourceGroupName, experimentName, experiment, context).block();
+    public ExperimentInner createOrUpdate(String resourceGroupName, String experimentName, ExperimentInner resource,
+        Context context) {
+        return createOrUpdateAsync(resourceGroupName, experimentName, resource, context).block();
     }
 
     /**
      * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return model that represents a Experiment resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String experimentName,
+        ExperimentUpdate properties) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1322,55 +822,41 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         if (experimentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
         }
-        if (experiment == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experiment is required and cannot be null."));
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
         } else {
-            experiment.validate();
+            properties.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            experimentName,
-                            experiment,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, experimentName, properties, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return model that represents a Experiment resource along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String experimentName,
+        ExperimentUpdate properties, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1379,56 +865,42 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         if (experimentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
         }
-        if (experiment == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experiment is required and cannot be null."));
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
         } else {
-            experiment.validate();
+            properties.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                experimentName,
-                experiment,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, experimentName, properties, accept, context);
     }
 
     /**
      * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ExperimentInner>, ExperimentInner> beginUpdateAsync(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment) {
-        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, experimentName, experiment);
-        return this
-            .client
-            .<ExperimentInner, ExperimentInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ExperimentInner.class,
-                ExperimentInner.class,
-                this.client.getContext());
+    private PollerFlux<PollResult<ExperimentInner>, ExperimentInner> beginUpdateAsync(String resourceGroupName,
+        String experimentName, ExperimentUpdate properties) {
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, experimentName, properties);
+        return this.client.<ExperimentInner, ExperimentInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ExperimentInner.class, ExperimentInner.class, this.client.getContext());
     }
 
     /**
      * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1436,40 +908,38 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link PollerFlux} for polling of model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ExperimentInner>, ExperimentInner> beginUpdateAsync(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment, Context context) {
+    private PollerFlux<PollResult<ExperimentInner>, ExperimentInner> beginUpdateAsync(String resourceGroupName,
+        String experimentName, ExperimentUpdate properties, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, experimentName, experiment, context);
-        return this
-            .client
-            .<ExperimentInner, ExperimentInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ExperimentInner.class, ExperimentInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, experimentName, properties, context);
+        return this.client.<ExperimentInner, ExperimentInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ExperimentInner.class, ExperimentInner.class, context);
     }
 
     /**
      * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginUpdate(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment) {
-        return this.beginUpdateAsync(resourceGroupName, experimentName, experiment).getSyncPoller();
+    public SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginUpdate(String resourceGroupName,
+        String experimentName, ExperimentUpdate properties) {
+        return this.beginUpdateAsync(resourceGroupName, experimentName, properties).getSyncPoller();
     }
 
     /**
      * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1477,36 +947,35 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link SyncPoller} for polling of model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginUpdate(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment, Context context) {
-        return this.beginUpdateAsync(resourceGroupName, experimentName, experiment, context).getSyncPoller();
+    public SyncPoller<PollResult<ExperimentInner>, ExperimentInner> beginUpdate(String resourceGroupName,
+        String experimentName, ExperimentUpdate properties, Context context) {
+        return this.beginUpdateAsync(resourceGroupName, experimentName, properties, context).getSyncPoller();
     }
 
     /**
      * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return model that represents a Experiment resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ExperimentInner> updateAsync(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment) {
-        return beginUpdateAsync(resourceGroupName, experimentName, experiment)
-            .last()
+    private Mono<ExperimentInner> updateAsync(String resourceGroupName, String experimentName,
+        ExperimentUpdate properties) {
+        return beginUpdateAsync(resourceGroupName, experimentName, properties).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1514,35 +983,34 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return model that represents a Experiment resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ExperimentInner> updateAsync(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment, Context context) {
-        return beginUpdateAsync(resourceGroupName, experimentName, experiment, context)
-            .last()
+    private Mono<ExperimentInner> updateAsync(String resourceGroupName, String experimentName,
+        ExperimentUpdate properties, Context context) {
+        return beginUpdateAsync(resourceGroupName, experimentName, properties, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
+     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExperimentInner update(String resourceGroupName, String experimentName, ExperimentUpdate experiment) {
-        return updateAsync(resourceGroupName, experimentName, experiment).block();
+    public ExperimentInner update(String resourceGroupName, String experimentName, ExperimentUpdate properties) {
+        return updateAsync(resourceGroupName, experimentName, properties).block();
     }
 
     /**
      * The operation to update an experiment.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
-     * @param experiment Parameters supplied to the Update experiment operation.
+     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1550,15 +1018,15 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return model that represents a Experiment resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExperimentInner update(
-        String resourceGroupName, String experimentName, ExperimentUpdate experiment, Context context) {
-        return updateAsync(resourceGroupName, experimentName, experiment, context).block();
+    public ExperimentInner update(String resourceGroupName, String experimentName, ExperimentUpdate properties,
+        Context context) {
+        return updateAsync(resourceGroupName, experimentName, properties, context).block();
     }
 
     /**
-     * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1566,18 +1034,14 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> cancelWithResponseAsync(String resourceGroupName, String experimentName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String experimentName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1588,24 +1052,15 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .cancel(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            experimentName,
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, experimentName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1614,19 +1069,15 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> cancelWithResponseAsync(
-        String resourceGroupName, String experimentName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName, String experimentName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1637,21 +1088,14 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .cancel(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                experimentName,
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, experimentName, accept, context);
     }
 
     /**
-     * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1659,18 +1103,16 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginCancelAsync(String resourceGroupName, String experimentName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = cancelWithResponseAsync(resourceGroupName, experimentName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String experimentName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, experimentName);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
-     * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1679,19 +1121,18 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginCancelAsync(
-        String resourceGroupName, String experimentName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String experimentName,
+        Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = cancelWithResponseAsync(resourceGroupName, experimentName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, experimentName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
-     * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1699,14 +1140,14 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginCancel(String resourceGroupName, String experimentName) {
-        return this.beginCancelAsync(resourceGroupName, experimentName).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String experimentName) {
+        return this.beginDeleteAsync(resourceGroupName, experimentName).getSyncPoller();
     }
 
     /**
-     * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1715,15 +1156,15 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginCancel(
-        String resourceGroupName, String experimentName, Context context) {
-        return this.beginCancelAsync(resourceGroupName, experimentName, context).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String experimentName,
+        Context context) {
+        return this.beginDeleteAsync(resourceGroupName, experimentName, context).getSyncPoller();
     }
 
     /**
-     * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1731,16 +1172,15 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> cancelAsync(String resourceGroupName, String experimentName) {
-        return beginCancelAsync(resourceGroupName, experimentName)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String experimentName) {
+        return beginDeleteAsync(resourceGroupName, experimentName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1749,30 +1189,29 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> cancelAsync(String resourceGroupName, String experimentName, Context context) {
-        return beginCancelAsync(resourceGroupName, experimentName, context)
-            .last()
+    private Mono<Void> deleteAsync(String resourceGroupName, String experimentName, Context context) {
+        return beginDeleteAsync(resourceGroupName, experimentName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void cancel(String resourceGroupName, String experimentName) {
-        cancelAsync(resourceGroupName, experimentName).block();
+    public void delete(String resourceGroupName, String experimentName) {
+        deleteAsync(resourceGroupName, experimentName).block();
     }
 
     /**
-     * Cancel a running Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Delete a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1780,33 +1219,31 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void cancel(String resourceGroupName, String experimentName, Context context) {
-        cancelAsync(resourceGroupName, experimentName, context).block();
+    public void delete(String resourceGroupName, String experimentName, Context context) {
+        deleteAsync(resourceGroupName, experimentName, context).block();
     }
 
     /**
-     * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Cancel a running Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String resourceGroupName, String experimentName) {
+    private Mono<Response<Flux<ByteBuffer>>> cancelWithResponseAsync(String resourceGroupName, String experimentName,
+        Object body) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1815,27 +1252,22 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         if (experimentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
         }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .start(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            experimentName,
-                            accept,
-                            context))
+            .withContext(context -> service.cancel(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, experimentName, body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Cancel a running Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1843,19 +1275,15 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(
-        String resourceGroupName, String experimentName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> cancelWithResponseAsync(String resourceGroupName, String experimentName,
+        Object body, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1864,43 +1292,40 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
         if (experimentName == null) {
             return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
         }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .start(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                experimentName,
-                accept,
-                context);
+        return service.cancel(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, experimentName, body, accept, context);
     }
 
     /**
-     * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Cancel a running Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginStartAsync(String resourceGroupName, String experimentName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = startWithResponseAsync(resourceGroupName, experimentName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+    private PollerFlux<PollResult<Void>, Void> beginCancelAsync(String resourceGroupName, String experimentName,
+        Object body) {
+        Mono<Response<Flux<ByteBuffer>>> mono = cancelWithResponseAsync(resourceGroupName, experimentName, body);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
-     * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Cancel a running Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1908,35 +1333,38 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginStartAsync(
-        String resourceGroupName, String experimentName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginCancelAsync(String resourceGroupName, String experimentName,
+        Object body, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = startWithResponseAsync(resourceGroupName, experimentName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = cancelWithResponseAsync(resourceGroupName, experimentName, body, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
-     * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Cancel a running Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String experimentName) {
-        return this.beginStartAsync(resourceGroupName, experimentName).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginCancel(String resourceGroupName, String experimentName,
+        Object body) {
+        return this.beginCancelAsync(resourceGroupName, experimentName, body).getSyncPoller();
     }
 
     /**
-     * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Cancel a running Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1944,31 +1372,34 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginStart(
-        String resourceGroupName, String experimentName, Context context) {
-        return this.beginStartAsync(resourceGroupName, experimentName, context).getSyncPoller();
+    public SyncPoller<PollResult<Void>, Void> beginCancel(String resourceGroupName, String experimentName, Object body,
+        Context context) {
+        return this.beginCancelAsync(resourceGroupName, experimentName, body, context).getSyncPoller();
     }
 
     /**
-     * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Cancel a running Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> startAsync(String resourceGroupName, String experimentName) {
-        return beginStartAsync(resourceGroupName, experimentName).last().flatMap(this.client::getLroFinalResultOrError);
+    private Mono<Void> cancelAsync(String resourceGroupName, String experimentName, Object body) {
+        return beginCancelAsync(resourceGroupName, experimentName, body).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
-     * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * Cancel a running Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1976,551 +1407,272 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> startAsync(String resourceGroupName, String experimentName, Context context) {
-        return beginStartAsync(resourceGroupName, experimentName, context)
-            .last()
+    private Mono<Void> cancelAsync(String resourceGroupName, String experimentName, Object body, Context context) {
+        return beginCancelAsync(resourceGroupName, experimentName, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Cancel a running Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void cancel(String resourceGroupName, String experimentName, Object body) {
+        cancelAsync(resourceGroupName, experimentName, body).block();
+    }
+
+    /**
+     * Cancel a running Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void cancel(String resourceGroupName, String experimentName, Object body, Context context) {
+        cancelAsync(resourceGroupName, experimentName, body, context).block();
+    }
+
+    /**
+     * Start a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String resourceGroupName, String experimentName,
+        Object body) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (experimentName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.start(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, experimentName, body, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Start a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String resourceGroupName, String experimentName,
+        Object body, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (experimentName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
+        }
+        if (body == null) {
+            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.start(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, experimentName, body, accept, context);
+    }
+
+    /**
+     * Start a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginStartAsync(String resourceGroupName, String experimentName,
+        Object body) {
+        Mono<Response<Flux<ByteBuffer>>> mono = startWithResponseAsync(resourceGroupName, experimentName, body);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Start a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<Void>, Void> beginStartAsync(String resourceGroupName, String experimentName,
+        Object body, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = startWithResponseAsync(resourceGroupName, experimentName, body, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
+    }
+
+    /**
+     * Start a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String experimentName, Object body) {
+        return this.beginStartAsync(resourceGroupName, experimentName, body).getSyncPoller();
+    }
+
+    /**
+     * Start a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of long-running operation.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<Void>, Void> beginStart(String resourceGroupName, String experimentName, Object body,
+        Context context) {
+        return this.beginStartAsync(resourceGroupName, experimentName, body, context).getSyncPoller();
+    }
+
+    /**
+     * Start a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> startAsync(String resourceGroupName, String experimentName, Object body) {
+        return beginStartAsync(resourceGroupName, experimentName, body).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
+     * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void start(String resourceGroupName, String experimentName) {
-        startAsync(resourceGroupName, experimentName).block();
+    private Mono<Void> startAsync(String resourceGroupName, String experimentName, Object body, Context context) {
+        return beginStartAsync(resourceGroupName, experimentName, body, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Start a Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void start(String resourceGroupName, String experimentName, Object body) {
+        startAsync(resourceGroupName, experimentName, body).block();
+    }
+
+    /**
+     * Start a Experiment resource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param experimentName String that represents a Experiment resource name.
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void start(String resourceGroupName, String experimentName, Context context) {
-        startAsync(resourceGroupName, experimentName, context).block();
-    }
-
-    /**
-     * Get a list of executions of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of executions of an Experiment resource along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExperimentExecutionInner>> listAllExecutionsSinglePageAsync(
-        String resourceGroupName, String experimentName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (experimentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listAllExecutions(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            experimentName,
-                            accept,
-                            context))
-            .<PagedResponse<ExperimentExecutionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get a list of executions of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of executions of an Experiment resource along with {@link PagedResponse} on successful completion
-     *     of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExperimentExecutionInner>> listAllExecutionsSinglePageAsync(
-        String resourceGroupName, String experimentName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (experimentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listAllExecutions(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                experimentName,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Get a list of executions of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of executions of an Experiment resource as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ExperimentExecutionInner> listAllExecutionsAsync(
-        String resourceGroupName, String experimentName) {
-        return new PagedFlux<>(
-            () -> listAllExecutionsSinglePageAsync(resourceGroupName, experimentName),
-            nextLink -> listAllExecutionsNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Get a list of executions of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of executions of an Experiment resource as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<ExperimentExecutionInner> listAllExecutionsAsync(
-        String resourceGroupName, String experimentName, Context context) {
-        return new PagedFlux<>(
-            () -> listAllExecutionsSinglePageAsync(resourceGroupName, experimentName, context),
-            nextLink -> listAllExecutionsNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Get a list of executions of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of executions of an Experiment resource as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ExperimentExecutionInner> listAllExecutions(String resourceGroupName, String experimentName) {
-        return new PagedIterable<>(listAllExecutionsAsync(resourceGroupName, experimentName));
-    }
-
-    /**
-     * Get a list of executions of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of executions of an Experiment resource as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<ExperimentExecutionInner> listAllExecutions(
-        String resourceGroupName, String experimentName, Context context) {
-        return new PagedIterable<>(listAllExecutionsAsync(resourceGroupName, experimentName, context));
-    }
-
-    /**
-     * Get an execution of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an execution of an Experiment resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExperimentExecutionInner>> getExecutionWithResponseAsync(
-        String resourceGroupName, String experimentName, String executionId) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (experimentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
-        }
-        if (executionId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter executionId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getExecution(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            experimentName,
-                            executionId,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get an execution of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an execution of an Experiment resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExperimentExecutionInner>> getExecutionWithResponseAsync(
-        String resourceGroupName, String experimentName, String executionId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (experimentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
-        }
-        if (executionId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter executionId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .getExecution(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                experimentName,
-                executionId,
-                accept,
-                context);
-    }
-
-    /**
-     * Get an execution of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an execution of an Experiment resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ExperimentExecutionInner> getExecutionAsync(
-        String resourceGroupName, String experimentName, String executionId) {
-        return getExecutionWithResponseAsync(resourceGroupName, experimentName, executionId)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Get an execution of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an execution of an Experiment resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ExperimentExecutionInner> getExecutionWithResponse(
-        String resourceGroupName, String experimentName, String executionId, Context context) {
-        return getExecutionWithResponseAsync(resourceGroupName, experimentName, executionId, context).block();
-    }
-
-    /**
-     * Get an execution of an Experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an execution of an Experiment resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExperimentExecutionInner getExecution(String resourceGroupName, String experimentName, String executionId) {
-        return getExecutionWithResponse(resourceGroupName, experimentName, executionId, Context.NONE).getValue();
-    }
-
-    /**
-     * Execution details of an experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the execution details of an Experiment along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExperimentExecutionDetailsInner>> executionDetailsWithResponseAsync(
-        String resourceGroupName, String experimentName, String executionId) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (experimentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
-        }
-        if (executionId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter executionId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .executionDetails(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            experimentName,
-                            executionId,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Execution details of an experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the execution details of an Experiment along with {@link Response} on successful
-     *     completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ExperimentExecutionDetailsInner>> executionDetailsWithResponseAsync(
-        String resourceGroupName, String experimentName, String executionId, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (experimentName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter experimentName is required and cannot be null."));
-        }
-        if (executionId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter executionId is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .executionDetails(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                experimentName,
-                executionId,
-                accept,
-                context);
-    }
-
-    /**
-     * Execution details of an experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the execution details of an Experiment on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ExperimentExecutionDetailsInner> executionDetailsAsync(
-        String resourceGroupName, String experimentName, String executionId) {
-        return executionDetailsWithResponseAsync(resourceGroupName, experimentName, executionId)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Execution details of an experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the execution details of an Experiment along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<ExperimentExecutionDetailsInner> executionDetailsWithResponse(
-        String resourceGroupName, String experimentName, String executionId, Context context) {
-        return executionDetailsWithResponseAsync(resourceGroupName, experimentName, executionId, context).block();
-    }
-
-    /**
-     * Execution details of an experiment resource.
-     *
-     * @param resourceGroupName String that represents an Azure resource group.
-     * @param experimentName String that represents a Experiment resource name.
-     * @param executionId GUID that represents a Experiment execution detail.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents the execution details of an Experiment.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ExperimentExecutionDetailsInner executionDetails(
-        String resourceGroupName, String experimentName, String executionId) {
-        return executionDetailsWithResponse(resourceGroupName, experimentName, executionId, Context.NONE).getValue();
+    public void start(String resourceGroupName, String experimentName, Object body, Context context) {
+        startAsync(resourceGroupName, experimentName, body, context).block();
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a list of Experiment resources and a link for pagination along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Experiment list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExperimentInner>> listAllNextSinglePageAsync(String nextLink) {
@@ -2528,37 +1680,29 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listAllNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ExperimentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<ExperimentInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a list of Experiment resources and a link for pagination along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Experiment list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ExperimentInner>> listAllNextSinglePageAsync(String nextLink, Context context) {
@@ -2566,174 +1710,73 @@ public final class ExperimentsClientImpl implements ExperimentsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listAllNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listAllNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a list of Experiment resources and a link for pagination along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Experiment list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExperimentInner>> listNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<ExperimentInner>> listByResourceGroupNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ExperimentInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(
+                context -> service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<ExperimentInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a list of Experiment resources and a link for pagination along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a Experiment list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExperimentInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<ExperimentInner>> listByResourceGroupNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a list of Experiment executions and a link for pagination along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExperimentExecutionInner>> listAllExecutionsNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listAllExecutionsNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<ExperimentExecutionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a list of Experiment executions and a link for pagination along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<ExperimentExecutionInner>> listAllExecutionsNextSinglePageAsync(
-        String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listAllExecutionsNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByResourceGroupNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

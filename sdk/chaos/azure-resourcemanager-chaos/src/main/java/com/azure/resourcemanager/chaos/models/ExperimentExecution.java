@@ -4,56 +4,66 @@
 
 package com.azure.resourcemanager.chaos.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionInner;
 import java.time.OffsetDateTime;
 
-/** An immutable client-side representation of ExperimentExecution. */
+/**
+ * An immutable client-side representation of ExperimentExecution.
+ */
 public interface ExperimentExecution {
     /**
-     * Gets the type property: String of the resource type.
-     *
-     * @return the type value.
-     */
-    String type();
-
-    /**
-     * Gets the id property: String of the fully qualified resource ID.
-     *
+     * Gets the id property: Fully qualified resource Id for the resource.
+     * 
      * @return the id value.
      */
     String id();
 
     /**
-     * Gets the name property: String of the resource name.
-     *
+     * Gets the name property: The name of the resource.
+     * 
      * @return the name value.
      */
     String name();
 
     /**
+     * Gets the type property: The type of the resource.
+     * 
+     * @return the type value.
+     */
+    String type();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the status property: The status of the execution.
-     *
+     * 
      * @return the status value.
      */
     String status();
 
     /**
      * Gets the startedAt property: String that represents the start date time.
-     *
+     * 
      * @return the startedAt value.
      */
     OffsetDateTime startedAt();
 
     /**
      * Gets the stoppedAt property: String that represents the stop date time.
-     *
+     * 
      * @return the stoppedAt value.
      */
     OffsetDateTime stoppedAt();
 
     /**
      * Gets the inner com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionInner object.
-     *
+     * 
      * @return the inner object.
      */
     ExperimentExecutionInner innerModel();

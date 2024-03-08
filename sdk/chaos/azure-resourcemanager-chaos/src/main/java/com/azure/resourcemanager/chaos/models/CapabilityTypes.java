@@ -8,41 +8,43 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of CapabilityTypes. */
+/**
+ * Resource collection API of CapabilityTypes.
+ */
 public interface CapabilityTypes {
     /**
      * Get a list of Capability Type resources for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Capability Type resources for given Target Type and location as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of Capability Type resources for given Target Type and location as paginated response with
+     * {@link PagedIterable}.
      */
-    PagedIterable<CapabilityType> list(String locationName, String targetTypeName);
+    PagedIterable<CapabilityType> listByTargetType(String location, String targetTypeName);
 
     /**
      * Get a list of Capability Type resources for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Capability Type resources for given Target Type and location as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of Capability Type resources for given Target Type and location as paginated response with
+     * {@link PagedIterable}.
      */
-    PagedIterable<CapabilityType> list(
-        String locationName, String targetTypeName, String continuationToken, Context context);
+    PagedIterable<CapabilityType> listByTargetType(String location, String targetTypeName, String continuationToken,
+        Context context);
 
     /**
      * Get a Capability Type resource for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param capabilityTypeName String that represents a Capability Type resource name.
      * @param context The context to associate with this operation.
@@ -51,13 +53,13 @@ public interface CapabilityTypes {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Capability Type resource for given Target Type and location along with {@link Response}.
      */
-    Response<CapabilityType> getWithResponse(
-        String locationName, String targetTypeName, String capabilityTypeName, Context context);
+    Response<CapabilityType> getWithResponse(String location, String targetTypeName, String capabilityTypeName,
+        Context context);
 
     /**
      * Get a Capability Type resource for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param capabilityTypeName String that represents a Capability Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -65,5 +67,5 @@ public interface CapabilityTypes {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Capability Type resource for given Target Type and location.
      */
-    CapabilityType get(String locationName, String targetTypeName, String capabilityTypeName);
+    CapabilityType get(String location, String targetTypeName, String capabilityTypeName);
 }

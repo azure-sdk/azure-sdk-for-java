@@ -8,23 +8,25 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of TargetTypes. */
+/**
+ * Resource collection API of TargetTypes.
+ */
 public interface TargetTypes {
     /**
      * Get a list of Target Type resources for given location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Target Type resources for given location as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<TargetType> list(String locationName);
+    PagedIterable<TargetType> listByLocation(String location);
 
     /**
      * Get a list of Target Type resources for given location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -32,12 +34,12 @@ public interface TargetTypes {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Target Type resources for given location as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<TargetType> list(String locationName, String continuationToken, Context context);
+    PagedIterable<TargetType> listByLocation(String location, String continuationToken, Context context);
 
     /**
      * Get a Target Type resources for given location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -45,17 +47,17 @@ public interface TargetTypes {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Target Type resources for given location along with {@link Response}.
      */
-    Response<TargetType> getWithResponse(String locationName, String targetTypeName, Context context);
+    Response<TargetType> getWithResponse(String location, String targetTypeName, Context context);
 
     /**
      * Get a Target Type resources for given location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Target Type resources for given location.
      */
-    TargetType get(String locationName, String targetTypeName);
+    TargetType get(String location, String targetTypeName);
 }

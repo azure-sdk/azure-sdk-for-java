@@ -4,70 +4,38 @@
 
 package com.azure.resourcemanager.chaos.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Model that represents a Target Type resource. */
-@Fluent
+/**
+ * Model that represents a Target Type resource.
+ */
+@Immutable
 public final class TargetTypeInner extends ProxyResource {
     /*
-     * The system metadata properties of the target type resource.
+     * The resource-specific properties for this resource.
+     */
+    @JsonProperty(value = "properties")
+    private TargetTypeProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /*
-     * Location of the Target Type resource.
+    /**
+     * Creates an instance of TargetTypeInner class.
      */
-    @JsonProperty(value = "location")
-    private String location;
-
-    /*
-     * The properties of the target type resource.
-     */
-    @JsonProperty(value = "properties", required = true)
-    private TargetTypeProperties innerProperties = new TargetTypeProperties();
-
-    /** Creates an instance of TargetTypeInner class. */
     public TargetTypeInner() {
     }
 
     /**
-     * Get the systemData property: The system metadata properties of the target type resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * Get the location property: Location of the Target Type resource.
-     *
-     * @return the location value.
-     */
-    public String location() {
-        return this.location;
-    }
-
-    /**
-     * Set the location property: Location of the Target Type resource.
-     *
-     * @param location the location value to set.
-     * @return the TargetTypeInner object itself.
-     */
-    public TargetTypeInner withLocation(String location) {
-        this.location = location;
-        return this;
-    }
-
-    /**
-     * Get the innerProperties property: The properties of the target type resource.
-     *
+     * Get the innerProperties property: The resource-specific properties for this resource.
+     * 
      * @return the innerProperties value.
      */
     private TargetTypeProperties innerProperties() {
@@ -75,8 +43,17 @@ public final class TargetTypeInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the displayName property: Localized string of the display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -85,7 +62,7 @@ public final class TargetTypeInner extends ProxyResource {
 
     /**
      * Get the description property: Localized string of the description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -94,7 +71,7 @@ public final class TargetTypeInner extends ProxyResource {
 
     /**
      * Get the propertiesSchema property: URL to retrieve JSON schema of the Target Type properties.
-     *
+     * 
      * @return the propertiesSchema value.
      */
     public String propertiesSchema() {
@@ -103,7 +80,7 @@ public final class TargetTypeInner extends ProxyResource {
 
     /**
      * Get the resourceTypes property: List of resource types this Target Type can extend.
-     *
+     * 
      * @return the resourceTypes value.
      */
     public List<String> resourceTypes() {
@@ -112,18 +89,12 @@ public final class TargetTypeInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model TargetTypeInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(TargetTypeInner.class);
 }

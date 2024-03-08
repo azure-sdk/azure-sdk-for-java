@@ -6,17 +6,14 @@ package com.azure.resourcemanager.chaos.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import java.util.HashMap;
-import java.util.Map;
 
-/** Model that represents a selector in the Experiment resource. */
+/**
+ * Model that represents a selector in the Experiment resource.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -25,8 +22,7 @@ import java.util.Map;
 @JsonTypeName("ChaosTargetSelector")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "List", value = ChaosTargetListSelector.class),
-    @JsonSubTypes.Type(name = "Query", value = ChaosTargetQuerySelector.class)
-})
+    @JsonSubTypes.Type(name = "Query", value = ChaosTargetQuerySelector.class) })
 @Fluent
 public class ChaosTargetSelector {
     /*
@@ -39,20 +35,17 @@ public class ChaosTargetSelector {
      * Model that represents available filter types that can be applied to a targets list.
      */
     @JsonProperty(value = "filter")
-    private ChaosTargetFilter filter;
+    private Filter filter;
 
-    /*
-     * Model that represents a selector in the Experiment resource.
+    /**
+     * Creates an instance of ChaosTargetSelector class.
      */
-    @JsonIgnore private Map<String, Object> additionalProperties;
-
-    /** Creates an instance of ChaosTargetSelector class. */
     public ChaosTargetSelector() {
     }
 
     /**
      * Get the id property: String of the selector ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -61,7 +54,7 @@ public class ChaosTargetSelector {
 
     /**
      * Set the id property: String of the selector ID.
-     *
+     * 
      * @param id the id value to set.
      * @return the ChaosTargetSelector object itself.
      */
@@ -72,63 +65,33 @@ public class ChaosTargetSelector {
 
     /**
      * Get the filter property: Model that represents available filter types that can be applied to a targets list.
-     *
+     * 
      * @return the filter value.
      */
-    public ChaosTargetFilter filter() {
+    public Filter filter() {
         return this.filter;
     }
 
     /**
      * Set the filter property: Model that represents available filter types that can be applied to a targets list.
-     *
+     * 
      * @param filter the filter value to set.
      * @return the ChaosTargetSelector object itself.
      */
-    public ChaosTargetSelector withFilter(ChaosTargetFilter filter) {
+    public ChaosTargetSelector withFilter(Filter filter) {
         this.filter = filter;
         return this;
     }
 
     /**
-     * Get the additionalProperties property: Model that represents a selector in the Experiment resource.
-     *
-     * @return the additionalProperties value.
-     */
-    @JsonAnyGetter
-    public Map<String, Object> additionalProperties() {
-        return this.additionalProperties;
-    }
-
-    /**
-     * Set the additionalProperties property: Model that represents a selector in the Experiment resource.
-     *
-     * @param additionalProperties the additionalProperties value to set.
-     * @return the ChaosTargetSelector object itself.
-     */
-    public ChaosTargetSelector withAdditionalProperties(Map<String, Object> additionalProperties) {
-        this.additionalProperties = additionalProperties;
-        return this;
-    }
-
-    @JsonAnySetter
-    void withAdditionalProperties(String key, Object value) {
-        if (additionalProperties == null) {
-            additionalProperties = new HashMap<>();
-        }
-        additionalProperties.put(key, value);
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property id in model ChaosTargetSelector"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property id in model ChaosTargetSelector"));
         }
         if (filter() != null) {
             filter().validate();

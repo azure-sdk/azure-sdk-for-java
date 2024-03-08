@@ -4,51 +4,55 @@
 
 package com.azure.resourcemanager.chaos.models;
 
+import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import java.util.Collection;
 
-/** String of the resource identity type. */
-public enum ResourceIdentityType {
-    /** Enum value None. */
-    NONE("None"),
+/**
+ * The identity type.
+ */
+public final class ResourceIdentityType extends ExpandableStringEnum<ResourceIdentityType> {
+    /**
+     * Static value None for ResourceIdentityType.
+     */
+    public static final ResourceIdentityType NONE = fromString("None");
 
-    /** Enum value SystemAssigned. */
-    SYSTEM_ASSIGNED("SystemAssigned"),
+    /**
+     * Static value SystemAssigned for ResourceIdentityType.
+     */
+    public static final ResourceIdentityType SYSTEM_ASSIGNED = fromString("SystemAssigned");
 
-    /** Enum value UserAssigned. */
-    USER_ASSIGNED("UserAssigned");
+    /**
+     * Static value UserAssigned for ResourceIdentityType.
+     */
+    public static final ResourceIdentityType USER_ASSIGNED = fromString("UserAssigned");
 
-    /** The actual serialized value for a ResourceIdentityType instance. */
-    private final String value;
-
-    ResourceIdentityType(String value) {
-        this.value = value;
+    /**
+     * Creates a new instance of ResourceIdentityType value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ResourceIdentityType() {
     }
 
     /**
-     * Parses a serialized value to a ResourceIdentityType instance.
-     *
-     * @param value the serialized value to parse.
-     * @return the parsed ResourceIdentityType object, or null if unable to parse.
+     * Creates or finds a ResourceIdentityType from its string representation.
+     * 
+     * @param name a name to look for.
+     * @return the corresponding ResourceIdentityType.
      */
     @JsonCreator
-    public static ResourceIdentityType fromString(String value) {
-        if (value == null) {
-            return null;
-        }
-        ResourceIdentityType[] items = ResourceIdentityType.values();
-        for (ResourceIdentityType item : items) {
-            if (item.toString().equalsIgnoreCase(value)) {
-                return item;
-            }
-        }
-        return null;
+    public static ResourceIdentityType fromString(String name) {
+        return fromString(name, ResourceIdentityType.class);
     }
 
-    /** {@inheritDoc} */
-    @JsonValue
-    @Override
-    public String toString() {
-        return this.value;
+    /**
+     * Gets known ResourceIdentityType values.
+     * 
+     * @return known ResourceIdentityType values.
+     */
+    public static Collection<ResourceIdentityType> values() {
+        return values(ResourceIdentityType.class);
     }
 }

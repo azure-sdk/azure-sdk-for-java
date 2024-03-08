@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.chaos.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionInner;
 import com.azure.resourcemanager.chaos.models.ExperimentExecution;
 import java.time.OffsetDateTime;
@@ -13,14 +14,10 @@ public final class ExperimentExecutionImpl implements ExperimentExecution {
 
     private final com.azure.resourcemanager.chaos.ChaosManager serviceManager;
 
-    ExperimentExecutionImpl(
-        ExperimentExecutionInner innerObject, com.azure.resourcemanager.chaos.ChaosManager serviceManager) {
+    ExperimentExecutionImpl(ExperimentExecutionInner innerObject,
+        com.azure.resourcemanager.chaos.ChaosManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-    }
-
-    public String type() {
-        return this.innerModel().type();
     }
 
     public String id() {
@@ -29,6 +26,14 @@ public final class ExperimentExecutionImpl implements ExperimentExecution {
 
     public String name() {
         return this.innerModel().name();
+    }
+
+    public String type() {
+        return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String status() {

@@ -6,16 +6,15 @@ package com.azure.resourcemanager.chaos.implementation;
 
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentExecutionDetailsInner;
 import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetails;
-import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetailsPropertiesRunInformation;
-import java.time.OffsetDateTime;
+import com.azure.resourcemanager.chaos.models.ExperimentExecutionDetailsProperties;
 
 public final class ExperimentExecutionDetailsImpl implements ExperimentExecutionDetails {
     private ExperimentExecutionDetailsInner innerObject;
 
     private final com.azure.resourcemanager.chaos.ChaosManager serviceManager;
 
-    ExperimentExecutionDetailsImpl(
-        ExperimentExecutionDetailsInner innerObject, com.azure.resourcemanager.chaos.ChaosManager serviceManager) {
+    ExperimentExecutionDetailsImpl(ExperimentExecutionDetailsInner innerObject,
+        com.azure.resourcemanager.chaos.ChaosManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -32,28 +31,8 @@ public final class ExperimentExecutionDetailsImpl implements ExperimentExecution
         return this.innerModel().name();
     }
 
-    public String failureReason() {
-        return this.innerModel().failureReason();
-    }
-
-    public OffsetDateTime lastActionAt() {
-        return this.innerModel().lastActionAt();
-    }
-
-    public ExperimentExecutionDetailsPropertiesRunInformation runInformation() {
-        return this.innerModel().runInformation();
-    }
-
-    public String status() {
-        return this.innerModel().status();
-    }
-
-    public OffsetDateTime startedAt() {
-        return this.innerModel().startedAt();
-    }
-
-    public OffsetDateTime stoppedAt() {
-        return this.innerModel().stoppedAt();
+    public ExperimentExecutionDetailsProperties properties() {
+        return this.innerModel().properties();
     }
 
     public ExperimentExecutionDetailsInner innerModel() {

@@ -30,22 +30,28 @@ import com.azure.resourcemanager.chaos.fluent.models.CapabilityTypeInner;
 import com.azure.resourcemanager.chaos.models.CapabilityTypeListResult;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in CapabilityTypesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in CapabilityTypesClient.
+ */
 public final class CapabilityTypesClientImpl implements CapabilityTypesClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final CapabilityTypesService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final ChaosManagementClientImpl client;
 
     /**
      * Initializes an instance of CapabilityTypesClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     CapabilityTypesClientImpl(ChaosManagementClientImpl client) {
-        this.service =
-            RestProxy.create(CapabilityTypesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(CapabilityTypesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -56,110 +62,76 @@ public final class CapabilityTypesClientImpl implements CapabilityTypesClient {
     @Host("{$host}")
     @ServiceInterface(name = "ChaosManagementClien")
     public interface CapabilityTypesService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{locationName}/targetTypes/{targetTypeName}/capabilityTypes")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}/capabilityTypes")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CapabilityTypeListResult>> list(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("locationName") String locationName,
-            @PathParam("targetTypeName") String targetTypeName,
-            @QueryParam("continuationToken") String continuationToken,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<CapabilityTypeListResult>> listByTargetType(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("continuationToken") String continuationToken, @PathParam("location") String location,
+            @PathParam("targetTypeName") String targetTypeName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}/capabilityTypes/{capabilityTypeName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<CapabilityTypeInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("location") String location, @PathParam("targetTypeName") String targetTypeName,
+            @PathParam("capabilityTypeName") String capabilityTypeName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{locationName}/targetTypes/{targetTypeName}/capabilityTypes/{capabilityTypeName}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CapabilityTypeInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("locationName") String locationName,
-            @PathParam("targetTypeName") String targetTypeName,
-            @PathParam("capabilityTypeName") String capabilityTypeName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CapabilityTypeListResult>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<CapabilityTypeListResult>> listByTargetTypeNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Get a list of Capability Type resources for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param continuationToken String that sets the continuation token.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Capability Type resources for given Target Type and location along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CapabilityTypeInner>> listSinglePageAsync(
-        String locationName, String targetTypeName, String continuationToken) {
+    private Mono<PagedResponse<CapabilityTypeInner>> listByTargetTypeSinglePageAsync(String location,
+        String targetTypeName, String continuationToken) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (locationName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
         }
         if (targetTypeName == null) {
             return Mono.error(new IllegalArgumentException("Parameter targetTypeName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            locationName,
-                            targetTypeName,
-                            continuationToken,
-                            accept,
-                            context))
-            .<PagedResponse<CapabilityTypeInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByTargetType(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), continuationToken, location, targetTypeName, accept, context))
+            .<PagedResponse<CapabilityTypeInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a list of Capability Type resources for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
@@ -167,25 +139,21 @@ public final class CapabilityTypesClientImpl implements CapabilityTypesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a list of Capability Type resources for given Target Type and location along with {@link PagedResponse}
-     *     on successful completion of {@link Mono}.
+     * on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CapabilityTypeInner>> listSinglePageAsync(
-        String locationName, String targetTypeName, String continuationToken, Context context) {
+    private Mono<PagedResponse<CapabilityTypeInner>> listByTargetTypeSinglePageAsync(String location,
+        String targetTypeName, String continuationToken, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (locationName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
         }
         if (targetTypeName == null) {
             return Mono.error(new IllegalArgumentException("Parameter targetTypeName is required and cannot be null."));
@@ -193,151 +161,131 @@ public final class CapabilityTypesClientImpl implements CapabilityTypesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                locationName,
-                targetTypeName,
-                continuationToken,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByTargetType(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                continuationToken, location, targetTypeName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get a list of Capability Type resources for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param continuationToken String that sets the continuation token.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Capability Type resources for given Target Type and location as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of Capability Type resources for given Target Type and location as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<CapabilityTypeInner> listAsync(
-        String locationName, String targetTypeName, String continuationToken) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(locationName, targetTypeName, continuationToken),
-            nextLink -> listNextSinglePageAsync(nextLink));
+    private PagedFlux<CapabilityTypeInner> listByTargetTypeAsync(String location, String targetTypeName,
+        String continuationToken) {
+        return new PagedFlux<>(() -> listByTargetTypeSinglePageAsync(location, targetTypeName, continuationToken),
+            nextLink -> listByTargetTypeNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get a list of Capability Type resources for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Capability Type resources for given Target Type and location as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of Capability Type resources for given Target Type and location as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<CapabilityTypeInner> listAsync(String locationName, String targetTypeName) {
+    private PagedFlux<CapabilityTypeInner> listByTargetTypeAsync(String location, String targetTypeName) {
         final String continuationToken = null;
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(locationName, targetTypeName, continuationToken),
-            nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listByTargetTypeSinglePageAsync(location, targetTypeName, continuationToken),
+            nextLink -> listByTargetTypeNextSinglePageAsync(nextLink));
     }
 
     /**
      * Get a list of Capability Type resources for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Capability Type resources for given Target Type and location as paginated response with {@link
-     *     PagedFlux}.
+     * @return a list of Capability Type resources for given Target Type and location as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<CapabilityTypeInner> listAsync(
-        String locationName, String targetTypeName, String continuationToken, Context context) {
+    private PagedFlux<CapabilityTypeInner> listByTargetTypeAsync(String location, String targetTypeName,
+        String continuationToken, Context context) {
         return new PagedFlux<>(
-            () -> listSinglePageAsync(locationName, targetTypeName, continuationToken, context),
-            nextLink -> listNextSinglePageAsync(nextLink, context));
+            () -> listByTargetTypeSinglePageAsync(location, targetTypeName, continuationToken, context),
+            nextLink -> listByTargetTypeNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Get a list of Capability Type resources for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Capability Type resources for given Target Type and location as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of Capability Type resources for given Target Type and location as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<CapabilityTypeInner> list(String locationName, String targetTypeName) {
+    public PagedIterable<CapabilityTypeInner> listByTargetType(String location, String targetTypeName) {
         final String continuationToken = null;
-        return new PagedIterable<>(listAsync(locationName, targetTypeName, continuationToken));
+        return new PagedIterable<>(listByTargetTypeAsync(location, targetTypeName, continuationToken));
     }
 
     /**
      * Get a list of Capability Type resources for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param continuationToken String that sets the continuation token.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Capability Type resources for given Target Type and location as paginated response with {@link
-     *     PagedIterable}.
+     * @return a list of Capability Type resources for given Target Type and location as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<CapabilityTypeInner> list(
-        String locationName, String targetTypeName, String continuationToken, Context context) {
-        return new PagedIterable<>(listAsync(locationName, targetTypeName, continuationToken, context));
+    public PagedIterable<CapabilityTypeInner> listByTargetType(String location, String targetTypeName,
+        String continuationToken, Context context) {
+        return new PagedIterable<>(listByTargetTypeAsync(location, targetTypeName, continuationToken, context));
     }
 
     /**
      * Get a Capability Type resource for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param capabilityTypeName String that represents a Capability Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Capability Type resource for given Target Type and location along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CapabilityTypeInner>> getWithResponseAsync(
-        String locationName, String targetTypeName, String capabilityTypeName) {
+    private Mono<Response<CapabilityTypeInner>> getWithResponseAsync(String location, String targetTypeName,
+        String capabilityTypeName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (locationName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
         }
         if (targetTypeName == null) {
             return Mono.error(new IllegalArgumentException("Parameter targetTypeName is required and cannot be null."));
@@ -348,25 +296,15 @@ public final class CapabilityTypesClientImpl implements CapabilityTypesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            locationName,
-                            targetTypeName,
-                            capabilityTypeName,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), location, targetTypeName, capabilityTypeName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get a Capability Type resource for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param capabilityTypeName String that represents a Capability Type resource name.
      * @param context The context to associate with this operation.
@@ -374,25 +312,21 @@ public final class CapabilityTypesClientImpl implements CapabilityTypesClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Capability Type resource for given Target Type and location along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CapabilityTypeInner>> getWithResponseAsync(
-        String locationName, String targetTypeName, String capabilityTypeName, Context context) {
+    private Mono<Response<CapabilityTypeInner>> getWithResponseAsync(String location, String targetTypeName,
+        String capabilityTypeName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (locationName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
+        if (location == null) {
+            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
         }
         if (targetTypeName == null) {
             return Mono.error(new IllegalArgumentException("Parameter targetTypeName is required and cannot be null."));
@@ -403,22 +337,14 @@ public final class CapabilityTypesClientImpl implements CapabilityTypesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                locationName,
-                targetTypeName,
-                capabilityTypeName,
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            location, targetTypeName, capabilityTypeName, accept, context);
     }
 
     /**
      * Get a Capability Type resource for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param capabilityTypeName String that represents a Capability Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -427,15 +353,15 @@ public final class CapabilityTypesClientImpl implements CapabilityTypesClient {
      * @return a Capability Type resource for given Target Type and location on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CapabilityTypeInner> getAsync(String locationName, String targetTypeName, String capabilityTypeName) {
-        return getWithResponseAsync(locationName, targetTypeName, capabilityTypeName)
+    private Mono<CapabilityTypeInner> getAsync(String location, String targetTypeName, String capabilityTypeName) {
+        return getWithResponseAsync(location, targetTypeName, capabilityTypeName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get a Capability Type resource for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param capabilityTypeName String that represents a Capability Type resource name.
      * @param context The context to associate with this operation.
@@ -445,15 +371,15 @@ public final class CapabilityTypesClientImpl implements CapabilityTypesClient {
      * @return a Capability Type resource for given Target Type and location along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CapabilityTypeInner> getWithResponse(
-        String locationName, String targetTypeName, String capabilityTypeName, Context context) {
-        return getWithResponseAsync(locationName, targetTypeName, capabilityTypeName, context).block();
+    public Response<CapabilityTypeInner> getWithResponse(String location, String targetTypeName,
+        String capabilityTypeName, Context context) {
+        return getWithResponseAsync(location, targetTypeName, capabilityTypeName, context).block();
     }
 
     /**
      * Get a Capability Type resource for given Target Type and location.
-     *
-     * @param locationName String that represents a Location resource name.
+     * 
+     * @param location The name of Azure region.
      * @param targetTypeName String that represents a Target Type resource name.
      * @param capabilityTypeName String that represents a Capability Type resource name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -462,82 +388,66 @@ public final class CapabilityTypesClientImpl implements CapabilityTypesClient {
      * @return a Capability Type resource for given Target Type and location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CapabilityTypeInner get(String locationName, String targetTypeName, String capabilityTypeName) {
-        return getWithResponse(locationName, targetTypeName, capabilityTypeName, Context.NONE).getValue();
+    public CapabilityTypeInner get(String location, String targetTypeName, String capabilityTypeName) {
+        return getWithResponse(location, targetTypeName, capabilityTypeName, Context.NONE).getValue();
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a list of Capability Type resources and a link for pagination along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a CapabilityType list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CapabilityTypeInner>> listNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<CapabilityTypeInner>> listByTargetTypeNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<CapabilityTypeInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByTargetTypeNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<CapabilityTypeInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return model that represents a list of Capability Type resources and a link for pagination along with {@link
-     *     PagedResponse} on successful completion of {@link Mono}.
+     * @return the response of a CapabilityType list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CapabilityTypeInner>> listNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<CapabilityTypeInner>> listByTargetTypeNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByTargetTypeNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

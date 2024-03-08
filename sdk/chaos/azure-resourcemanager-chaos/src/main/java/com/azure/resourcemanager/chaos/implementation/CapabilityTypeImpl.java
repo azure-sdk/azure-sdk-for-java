@@ -37,10 +37,6 @@ public final class CapabilityTypeImpl implements CapabilityType {
         return this.innerModel().systemData();
     }
 
-    public String location() {
-        return this.innerModel().location();
-    }
-
     public String publisher() {
         return this.innerModel().publisher();
     }

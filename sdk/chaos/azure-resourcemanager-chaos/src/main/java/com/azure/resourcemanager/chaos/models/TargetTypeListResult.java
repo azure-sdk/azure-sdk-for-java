@@ -4,33 +4,38 @@
 
 package com.azure.resourcemanager.chaos.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.chaos.fluent.models.TargetTypeInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Model that represents a list of Target Type resources and a link for pagination. */
-@Immutable
+/**
+ * The response of a TargetType list operation.
+ */
+@Fluent
 public final class TargetTypeListResult {
     /*
-     * List of Target Type resources.
+     * The TargetType items on this page
      */
-    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "value", required = true)
     private List<TargetTypeInner> value;
 
     /*
-     * URL to retrieve the next page of Target Type resources.
+     * The link to the next page of items
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of TargetTypeListResult class. */
+    /**
+     * Creates an instance of TargetTypeListResult class.
+     */
     public TargetTypeListResult() {
     }
 
     /**
-     * Get the value property: List of Target Type resources.
-     *
+     * Get the value property: The TargetType items on this page.
+     * 
      * @return the value value.
      */
     public List<TargetTypeInner> value() {
@@ -38,8 +43,19 @@ public final class TargetTypeListResult {
     }
 
     /**
-     * Get the nextLink property: URL to retrieve the next page of Target Type resources.
-     *
+     * Set the value property: The TargetType items on this page.
+     * 
+     * @param value the value value to set.
+     * @return the TargetTypeListResult object itself.
+     */
+    public TargetTypeListResult withValue(List<TargetTypeInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
+     * Get the nextLink property: The link to the next page of items.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -47,13 +63,29 @@ public final class TargetTypeListResult {
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the TargetTypeListResult object itself.
+     */
+    public TargetTypeListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model TargetTypeListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(TargetTypeListResult.class);
 }

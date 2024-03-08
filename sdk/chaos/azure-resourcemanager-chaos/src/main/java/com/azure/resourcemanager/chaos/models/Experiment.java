@@ -11,127 +11,132 @@ import com.azure.resourcemanager.chaos.fluent.models.ExperimentInner;
 import java.util.List;
 import java.util.Map;
 
-/** An immutable client-side representation of Experiment. */
+/**
+ * An immutable client-side representation of Experiment.
+ */
 public interface Experiment {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     String location();
 
     /**
      * Gets the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     Map<String, String> tags();
 
     /**
-     * Gets the systemData property: The system metadata of the experiment resource.
-     *
+     * Gets the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    ManagedServiceIdentity identity();
+
+    /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
-     * Gets the identity property: The identity of the experiment resource.
-     *
-     * @return the identity value.
-     */
-    ResourceIdentity identity();
-
-    /**
      * Gets the provisioningState property: Most recent provisioning state for the given experiment resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     ProvisioningState provisioningState();
 
     /**
      * Gets the steps property: List of steps.
-     *
+     * 
      * @return the steps value.
      */
-    List<ChaosExperimentStep> steps();
+    List<Step> steps();
 
     /**
      * Gets the selectors property: List of selectors.
-     *
+     * 
      * @return the selectors value.
      */
     List<ChaosTargetSelector> selectors();
 
     /**
      * Gets the region of the resource.
-     *
+     * 
      * @return the region of the resource.
      */
     Region region();
 
     /**
      * Gets the name of the resource region.
-     *
+     * 
      * @return the name of the resource region.
      */
     String regionName();
 
     /**
      * Gets the name of the resource group.
-     *
+     * 
      * @return the name of the resource group.
      */
     String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.chaos.fluent.models.ExperimentInner object.
-     *
+     * 
      * @return the inner object.
      */
     ExperimentInner innerModel();
 
-    /** The entirety of the Experiment definition. */
-    interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithLocation,
-            DefinitionStages.WithResourceGroup,
-            DefinitionStages.WithSteps,
-            DefinitionStages.WithSelectors,
-            DefinitionStages.WithCreate {
+    /**
+     * The entirety of the Experiment definition.
+     */
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
 
-    /** The Experiment definition stages. */
+    /**
+     * The Experiment definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the Experiment definition. */
+        /**
+         * The first stage of the Experiment definition.
+         */
         interface Blank extends WithLocation {
         }
 
-        /** The stage of the Experiment definition allowing to specify location. */
+        /**
+         * The stage of the Experiment definition allowing to specify location.
+         */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
@@ -139,122 +144,139 @@ public interface Experiment {
 
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
             WithResourceGroup withRegion(String location);
         }
 
-        /** The stage of the Experiment definition allowing to specify parent resource. */
+        /**
+         * The stage of the Experiment definition allowing to specify parent resource.
+         */
         interface WithResourceGroup {
             /**
              * Specifies resourceGroupName.
-             *
-             * @param resourceGroupName String that represents an Azure resource group.
+             * 
+             * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
-            WithSteps withExistingResourceGroup(String resourceGroupName);
-        }
-
-        /** The stage of the Experiment definition allowing to specify steps. */
-        interface WithSteps {
-            /**
-             * Specifies the steps property: List of steps..
-             *
-             * @param steps List of steps.
-             * @return the next definition stage.
-             */
-            WithSelectors withSteps(List<ChaosExperimentStep> steps);
-        }
-
-        /** The stage of the Experiment definition allowing to specify selectors. */
-        interface WithSelectors {
-            /**
-             * Specifies the selectors property: List of selectors..
-             *
-             * @param selectors List of selectors.
-             * @return the next definition stage.
-             */
-            WithCreate withSelectors(List<ChaosTargetSelector> selectors);
+            WithCreate withExistingResourceGroup(String resourceGroupName);
         }
 
         /**
          * The stage of the Experiment definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
+            DefinitionStages.WithSteps, DefinitionStages.WithSelectors {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             Experiment create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             Experiment create(Context context);
         }
 
-        /** The stage of the Experiment definition allowing to specify tags. */
+        /**
+         * The stage of the Experiment definition allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
         }
 
-        /** The stage of the Experiment definition allowing to specify identity. */
+        /**
+         * The stage of the Experiment definition allowing to specify identity.
+         */
         interface WithIdentity {
             /**
-             * Specifies the identity property: The identity of the experiment resource..
-             *
-             * @param identity The identity of the experiment resource.
+             * Specifies the identity property: The managed service identities assigned to this resource..
+             * 
+             * @param identity The managed service identities assigned to this resource.
              * @return the next definition stage.
              */
-            WithCreate withIdentity(ResourceIdentity identity);
+            WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
+         * The stage of the Experiment definition allowing to specify steps.
+         */
+        interface WithSteps {
+            /**
+             * Specifies the steps property: List of steps..
+             * 
+             * @param steps List of steps.
+             * @return the next definition stage.
+             */
+            WithCreate withSteps(List<Step> steps);
+        }
+
+        /**
+         * The stage of the Experiment definition allowing to specify selectors.
+         */
+        interface WithSelectors {
+            /**
+             * Specifies the selectors property: List of selectors..
+             * 
+             * @param selectors List of selectors.
+             * @return the next definition stage.
+             */
+            WithCreate withSelectors(List<ChaosTargetSelector> selectors);
         }
     }
 
     /**
      * Begins update for the Experiment resource.
-     *
+     * 
      * @return the stage of resource update.
      */
     Experiment.Update update();
 
-    /** The template for Experiment update. */
+    /**
+     * The template for Experiment update.
+     */
     interface Update extends UpdateStages.WithIdentity {
         /**
          * Executes the update request.
-         *
+         * 
          * @return the updated resource.
          */
         Experiment apply();
 
         /**
          * Executes the update request.
-         *
+         * 
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
         Experiment apply(Context context);
     }
 
-    /** The Experiment update stages. */
+    /**
+     * The Experiment update stages.
+     */
     interface UpdateStages {
-        /** The stage of the Experiment update allowing to specify identity. */
+        /**
+         * The stage of the Experiment update allowing to specify identity.
+         */
         interface WithIdentity {
             /**
              * Specifies the identity property: The identity of the experiment resource..
-             *
+             * 
              * @param identity The identity of the experiment resource.
              * @return the next definition stage.
              */
@@ -264,14 +286,14 @@ public interface Experiment {
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @return the refreshed resource.
      */
     Experiment refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */
@@ -279,37 +301,43 @@ public interface Experiment {
 
     /**
      * Cancel a running Experiment resource.
-     *
+     * 
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void cancel();
+    void cancel(Object body);
 
     /**
      * Cancel a running Experiment resource.
-     *
+     * 
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void cancel(Context context);
+    void cancel(Object body, Context context);
 
     /**
      * Start a Experiment resource.
-     *
+     * 
+     * @param body The content of the action request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void start();
+    void start(Object body);
 
     /**
      * Start a Experiment resource.
-     *
+     * 
+     * @param body The content of the action request.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
-    void start(Context context);
+    void start(Object body, Context context);
 }

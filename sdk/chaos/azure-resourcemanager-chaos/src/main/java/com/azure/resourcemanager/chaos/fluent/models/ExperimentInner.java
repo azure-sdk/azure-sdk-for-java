@@ -7,43 +7,75 @@ package com.azure.resourcemanager.chaos.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
 import com.azure.resourcemanager.chaos.models.ChaosTargetSelector;
+import com.azure.resourcemanager.chaos.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.chaos.models.ProvisioningState;
-import com.azure.resourcemanager.chaos.models.ResourceIdentity;
+import com.azure.resourcemanager.chaos.models.Step;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Model that represents a Experiment resource. */
+/**
+ * Model that represents a Experiment resource.
+ */
 @Fluent
 public final class ExperimentInner extends Resource {
     /*
-     * The system metadata of the experiment resource.
+     * The resource-specific properties for this resource.
+     */
+    @JsonProperty(value = "properties")
+    private ExperimentProperties innerProperties;
+
+    /*
+     * The managed service identities assigned to this resource.
+     */
+    @JsonProperty(value = "identity")
+    private ManagedServiceIdentity identity;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /*
-     * The identity of the experiment resource.
+    /**
+     * Creates an instance of ExperimentInner class.
      */
-    @JsonProperty(value = "identity")
-    private ResourceIdentity identity;
-
-    /*
-     * The properties of the experiment resource.
-     */
-    @JsonProperty(value = "properties", required = true)
-    private ExperimentProperties innerProperties = new ExperimentProperties();
-
-    /** Creates an instance of ExperimentInner class. */
     public ExperimentInner() {
     }
 
     /**
-     * Get the systemData property: The system metadata of the experiment resource.
-     *
+     * Get the innerProperties property: The resource-specific properties for this resource.
+     * 
+     * @return the innerProperties value.
+     */
+    private ExperimentProperties innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
+     * Get the identity property: The managed service identities assigned to this resource.
+     * 
+     * @return the identity value.
+     */
+    public ManagedServiceIdentity identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The managed service identities assigned to this resource.
+     * 
+     * @param identity the identity value to set.
+     * @return the ExperimentInner object itself.
+     */
+    public ExperimentInner withIdentity(ManagedServiceIdentity identity) {
+        this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -51,42 +83,17 @@ public final class ExperimentInner extends Resource {
     }
 
     /**
-     * Get the identity property: The identity of the experiment resource.
-     *
-     * @return the identity value.
+     * {@inheritDoc}
      */
-    public ResourceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: The identity of the experiment resource.
-     *
-     * @param identity the identity value to set.
-     * @return the ExperimentInner object itself.
-     */
-    public ExperimentInner withIdentity(ResourceIdentity identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
-     * Get the innerProperties property: The properties of the experiment resource.
-     *
-     * @return the innerProperties value.
-     */
-    private ExperimentProperties innerProperties() {
-        return this.innerProperties;
-    }
-
-    /** {@inheritDoc} */
     @Override
     public ExperimentInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ExperimentInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -95,7 +102,7 @@ public final class ExperimentInner extends Resource {
 
     /**
      * Get the provisioningState property: Most recent provisioning state for the given experiment resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -104,20 +111,20 @@ public final class ExperimentInner extends Resource {
 
     /**
      * Get the steps property: List of steps.
-     *
+     * 
      * @return the steps value.
      */
-    public List<ChaosExperimentStep> steps() {
+    public List<Step> steps() {
         return this.innerProperties() == null ? null : this.innerProperties().steps();
     }
 
     /**
      * Set the steps property: List of steps.
-     *
+     * 
      * @param steps the steps value to set.
      * @return the ExperimentInner object itself.
      */
-    public ExperimentInner withSteps(List<ChaosExperimentStep> steps) {
+    public ExperimentInner withSteps(List<Step> steps) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ExperimentProperties();
         }
@@ -127,7 +134,7 @@ public final class ExperimentInner extends Resource {
 
     /**
      * Get the selectors property: List of selectors.
-     *
+     * 
      * @return the selectors value.
      */
     public List<ChaosTargetSelector> selectors() {
@@ -136,7 +143,7 @@ public final class ExperimentInner extends Resource {
 
     /**
      * Set the selectors property: List of selectors.
-     *
+     * 
      * @param selectors the selectors value to set.
      * @return the ExperimentInner object itself.
      */
@@ -150,21 +157,15 @@ public final class ExperimentInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (innerProperties() != null) {
+            innerProperties().validate();
+        }
         if (identity() != null) {
             identity().validate();
         }
-        if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model ExperimentInner"));
-        } else {
-            innerProperties().validate();
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ExperimentInner.class);
 }

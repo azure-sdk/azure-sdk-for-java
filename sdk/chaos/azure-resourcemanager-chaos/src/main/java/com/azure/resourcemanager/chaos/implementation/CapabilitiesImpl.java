@@ -21,94 +21,42 @@ public final class CapabilitiesImpl implements Capabilities {
 
     private final com.azure.resourcemanager.chaos.ChaosManager serviceManager;
 
-    public CapabilitiesImpl(
-        CapabilitiesClient innerClient, com.azure.resourcemanager.chaos.ChaosManager serviceManager) {
+    public CapabilitiesImpl(CapabilitiesClient innerClient,
+        com.azure.resourcemanager.chaos.ChaosManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<Capability> list(
-        String resourceGroupName,
-        String parentProviderNamespace,
-        String parentResourceType,
-        String parentResourceName,
-        String targetName) {
-        PagedIterable<CapabilityInner> inner =
-            this
-                .serviceClient()
-                .list(resourceGroupName, parentProviderNamespace, parentResourceType, parentResourceName, targetName);
-        return Utils.mapPage(inner, inner1 -> new CapabilityImpl(inner1, this.manager()));
+    public PagedIterable<Capability> listByTarget(String parentProviderNamespace, String parentResourceType,
+        String parentResourceName, String location, String targetName) {
+        PagedIterable<CapabilityInner> inner = this.serviceClient().listByTarget(parentProviderNamespace,
+            parentResourceType, parentResourceName, location, targetName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new CapabilityImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Capability> list(
-        String resourceGroupName,
-        String parentProviderNamespace,
-        String parentResourceType,
-        String parentResourceName,
-        String targetName,
-        String continuationToken,
-        Context context) {
-        PagedIterable<CapabilityInner> inner =
-            this
-                .serviceClient()
-                .list(
-                    resourceGroupName,
-                    parentProviderNamespace,
-                    parentResourceType,
-                    parentResourceName,
-                    targetName,
-                    continuationToken,
-                    context);
-        return Utils.mapPage(inner, inner1 -> new CapabilityImpl(inner1, this.manager()));
+    public PagedIterable<Capability> listByTarget(String parentProviderNamespace, String parentResourceType,
+        String parentResourceName, String location, String targetName, String continuationToken, Context context) {
+        PagedIterable<CapabilityInner> inner = this.serviceClient().listByTarget(parentProviderNamespace,
+            parentResourceType, parentResourceName, location, targetName, continuationToken, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new CapabilityImpl(inner1, this.manager()));
     }
 
-    public Response<Capability> getWithResponse(
-        String resourceGroupName,
-        String parentProviderNamespace,
-        String parentResourceType,
-        String parentResourceName,
-        String targetName,
-        String capabilityName,
-        Context context) {
-        Response<CapabilityInner> inner =
-            this
-                .serviceClient()
-                .getWithResponse(
-                    resourceGroupName,
-                    parentProviderNamespace,
-                    parentResourceType,
-                    parentResourceName,
-                    targetName,
-                    capabilityName,
-                    context);
+    public Response<Capability> getWithResponse(String parentProviderNamespace, String parentResourceType,
+        String parentResourceName, String location, String targetName, String capabilityName, Context context) {
+        Response<CapabilityInner> inner = this.serviceClient().getWithResponse(parentProviderNamespace,
+            parentResourceType, parentResourceName, location, targetName, capabilityName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CapabilityImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public Capability get(
-        String resourceGroupName,
-        String parentProviderNamespace,
-        String parentResourceType,
-        String parentResourceName,
-        String targetName,
-        String capabilityName) {
-        CapabilityInner inner =
-            this
-                .serviceClient()
-                .get(
-                    resourceGroupName,
-                    parentProviderNamespace,
-                    parentResourceType,
-                    parentResourceName,
-                    targetName,
-                    capabilityName);
+    public Capability get(String parentProviderNamespace, String parentResourceType, String parentResourceName,
+        String location, String targetName, String capabilityName) {
+        CapabilityInner inner = this.serviceClient().get(parentProviderNamespace, parentResourceType,
+            parentResourceName, location, targetName, capabilityName);
         if (inner != null) {
             return new CapabilityImpl(inner, this.manager());
         } else {
@@ -116,100 +64,41 @@ public final class CapabilitiesImpl implements Capabilities {
         }
     }
 
-    public Response<Void> deleteWithResponse(
-        String resourceGroupName,
-        String parentProviderNamespace,
-        String parentResourceType,
-        String parentResourceName,
-        String targetName,
-        String capabilityName,
+    public Response<Capability> createOrUpdateWithResponse(String parentProviderNamespace, String parentResourceType,
+        String parentResourceName, String location, String targetName, String capabilityName, CapabilityInner resource,
         Context context) {
-        return this
-            .serviceClient()
-            .deleteWithResponse(
-                resourceGroupName,
-                parentProviderNamespace,
-                parentResourceType,
-                parentResourceName,
-                targetName,
-                capabilityName,
-                context);
-    }
-
-    public void delete(
-        String resourceGroupName,
-        String parentProviderNamespace,
-        String parentResourceType,
-        String parentResourceName,
-        String targetName,
-        String capabilityName) {
-        this
-            .serviceClient()
-            .delete(
-                resourceGroupName,
-                parentProviderNamespace,
-                parentResourceType,
-                parentResourceName,
-                targetName,
-                capabilityName);
-    }
-
-    public Response<Capability> createOrUpdateWithResponse(
-        String resourceGroupName,
-        String parentProviderNamespace,
-        String parentResourceType,
-        String parentResourceName,
-        String targetName,
-        String capabilityName,
-        CapabilityInner capability,
-        Context context) {
-        Response<CapabilityInner> inner =
-            this
-                .serviceClient()
-                .createOrUpdateWithResponse(
-                    resourceGroupName,
-                    parentProviderNamespace,
-                    parentResourceType,
-                    parentResourceName,
-                    targetName,
-                    capabilityName,
-                    capability,
-                    context);
+        Response<CapabilityInner> inner = this.serviceClient().createOrUpdateWithResponse(parentProviderNamespace,
+            parentResourceType, parentResourceName, location, targetName, capabilityName, resource, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CapabilityImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public Capability createOrUpdate(
-        String resourceGroupName,
-        String parentProviderNamespace,
-        String parentResourceType,
-        String parentResourceName,
-        String targetName,
-        String capabilityName,
-        CapabilityInner capability) {
-        CapabilityInner inner =
-            this
-                .serviceClient()
-                .createOrUpdate(
-                    resourceGroupName,
-                    parentProviderNamespace,
-                    parentResourceType,
-                    parentResourceName,
-                    targetName,
-                    capabilityName,
-                    capability);
+    public Capability createOrUpdate(String parentProviderNamespace, String parentResourceType,
+        String parentResourceName, String location, String targetName, String capabilityName,
+        CapabilityInner resource) {
+        CapabilityInner inner = this.serviceClient().createOrUpdate(parentProviderNamespace, parentResourceType,
+            parentResourceName, location, targetName, capabilityName, resource);
         if (inner != null) {
             return new CapabilityImpl(inner, this.manager());
         } else {
             return null;
         }
+    }
+
+    public Response<Void> deleteWithResponse(String parentProviderNamespace, String parentResourceType,
+        String parentResourceName, String location, String targetName, String capabilityName, Context context) {
+        return this.serviceClient().deleteWithResponse(parentProviderNamespace, parentResourceType, parentResourceName,
+            location, targetName, capabilityName, context);
+    }
+
+    public void delete(String parentProviderNamespace, String parentResourceType, String parentResourceName,
+        String location, String targetName, String capabilityName) {
+        this.serviceClient().delete(parentProviderNamespace, parentResourceType, parentResourceName, location,
+            targetName, capabilityName);
     }
 
     private CapabilitiesClient serviceClient() {

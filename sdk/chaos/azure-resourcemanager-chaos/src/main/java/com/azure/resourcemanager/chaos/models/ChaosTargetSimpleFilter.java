@@ -9,24 +9,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Model that represents a simple target filter. */
+/**
+ * Model that represents a simple target filter.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("Simple")
 @Fluent
-public final class ChaosTargetSimpleFilter extends ChaosTargetFilter {
+public final class ChaosTargetSimpleFilter extends Filter {
     /*
      * Model that represents the Simple filter parameters.
      */
     @JsonProperty(value = "parameters")
     private ChaosTargetSimpleFilterParameters parameters;
 
-    /** Creates an instance of ChaosTargetSimpleFilter class. */
+    /**
+     * Creates an instance of ChaosTargetSimpleFilter class.
+     */
     public ChaosTargetSimpleFilter() {
     }
 
     /**
      * Get the parameters property: Model that represents the Simple filter parameters.
-     *
+     * 
      * @return the parameters value.
      */
     public ChaosTargetSimpleFilterParameters parameters() {
@@ -35,7 +39,7 @@ public final class ChaosTargetSimpleFilter extends ChaosTargetFilter {
 
     /**
      * Set the parameters property: Model that represents the Simple filter parameters.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the ChaosTargetSimpleFilter object itself.
      */
@@ -46,7 +50,7 @@ public final class ChaosTargetSimpleFilter extends ChaosTargetFilter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

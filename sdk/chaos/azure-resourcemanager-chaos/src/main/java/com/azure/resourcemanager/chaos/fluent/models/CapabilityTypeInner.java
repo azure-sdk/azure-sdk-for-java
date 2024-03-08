@@ -11,63 +11,32 @@ import com.azure.resourcemanager.chaos.models.CapabilityTypePropertiesRuntimePro
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Model that represents a Capability Type resource. */
+/**
+ * Model that represents a Capability Type resource.
+ */
 @Fluent
 public final class CapabilityTypeInner extends ProxyResource {
     /*
-     * The system metadata properties of the capability type resource.
+     * The resource-specific properties for this resource.
+     */
+    @JsonProperty(value = "properties")
+    private CapabilityTypeProperties innerProperties;
+
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /*
-     * Location of the Capability Type resource.
+    /**
+     * Creates an instance of CapabilityTypeInner class.
      */
-    @JsonProperty(value = "location")
-    private String location;
-
-    /*
-     * The properties of the capability type resource.
-     */
-    @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
-    private CapabilityTypeProperties innerProperties;
-
-    /** Creates an instance of CapabilityTypeInner class. */
     public CapabilityTypeInner() {
     }
 
     /**
-     * Get the systemData property: The system metadata properties of the capability type resource.
-     *
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
-    }
-
-    /**
-     * Get the location property: Location of the Capability Type resource.
-     *
-     * @return the location value.
-     */
-    public String location() {
-        return this.location;
-    }
-
-    /**
-     * Set the location property: Location of the Capability Type resource.
-     *
-     * @param location the location value to set.
-     * @return the CapabilityTypeInner object itself.
-     */
-    public CapabilityTypeInner withLocation(String location) {
-        this.location = location;
-        return this;
-    }
-
-    /**
-     * Get the innerProperties property: The properties of the capability type resource.
-     *
+     * Get the innerProperties property: The resource-specific properties for this resource.
+     * 
      * @return the innerProperties value.
      */
     private CapabilityTypeProperties innerProperties() {
@@ -75,8 +44,17 @@ public final class CapabilityTypeInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the publisher property: String of the Publisher that this Capability Type extends.
-     *
+     * 
      * @return the publisher value.
      */
     public String publisher() {
@@ -85,7 +63,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Get the targetType property: String of the Target Type that this Capability Type extends.
-     *
+     * 
      * @return the targetType value.
      */
     public String targetType() {
@@ -94,7 +72,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Get the displayName property: Localized string of the display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -103,7 +81,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Get the description property: Localized string of the description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -112,7 +90,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Get the parametersSchema property: URL to retrieve JSON schema of the Capability Type parameters.
-     *
+     * 
      * @return the parametersSchema value.
      */
     public String parametersSchema() {
@@ -121,7 +99,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Get the urn property: String of the URN for this Capability Type.
-     *
+     * 
      * @return the urn value.
      */
     public String urn() {
@@ -130,7 +108,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Get the kind property: String of the kind of this Capability Type.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -139,7 +117,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Get the azureRbacActions property: Control plane actions necessary to execute capability type.
-     *
+     * 
      * @return the azureRbacActions value.
      */
     public List<String> azureRbacActions() {
@@ -148,7 +126,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Set the azureRbacActions property: Control plane actions necessary to execute capability type.
-     *
+     * 
      * @param azureRbacActions the azureRbacActions value to set.
      * @return the CapabilityTypeInner object itself.
      */
@@ -162,7 +140,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Get the azureRbacDataActions property: Data plane actions necessary to execute capability type.
-     *
+     * 
      * @return the azureRbacDataActions value.
      */
     public List<String> azureRbacDataActions() {
@@ -171,7 +149,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Set the azureRbacDataActions property: Data plane actions necessary to execute capability type.
-     *
+     * 
      * @param azureRbacDataActions the azureRbacDataActions value to set.
      * @return the CapabilityTypeInner object itself.
      */
@@ -185,7 +163,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Get the runtimeProperties property: Runtime properties of this Capability Type.
-     *
+     * 
      * @return the runtimeProperties value.
      */
     public CapabilityTypePropertiesRuntimeProperties runtimeProperties() {
@@ -194,7 +172,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Set the runtimeProperties property: Runtime properties of this Capability Type.
-     *
+     * 
      * @param runtimeProperties the runtimeProperties value to set.
      * @return the CapabilityTypeInner object itself.
      */
@@ -208,7 +186,7 @@ public final class CapabilityTypeInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
