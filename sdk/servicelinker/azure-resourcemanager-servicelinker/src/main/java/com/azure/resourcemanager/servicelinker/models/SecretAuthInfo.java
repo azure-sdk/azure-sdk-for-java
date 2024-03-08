@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The authentication info when authType is secret. */
+/**
+ * The authentication info when authType is secret.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
 @JsonTypeName("secret")
 @Fluent
@@ -27,8 +29,14 @@ public final class SecretAuthInfo extends AuthInfoBase {
     private SecretInfoBase secretInfo;
 
     /**
+     * Creates an instance of SecretAuthInfo class.
+     */
+    public SecretAuthInfo() {
+    }
+
+    /**
      * Get the name property: Username or account name for secret auth.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +45,7 @@ public final class SecretAuthInfo extends AuthInfoBase {
 
     /**
      * Set the name property: Username or account name for secret auth.
-     *
+     * 
      * @param name the name value to set.
      * @return the SecretAuthInfo object itself.
      */
@@ -48,7 +56,7 @@ public final class SecretAuthInfo extends AuthInfoBase {
 
     /**
      * Get the secretInfo property: Password or key vault secret for secret auth.
-     *
+     * 
      * @return the secretInfo value.
      */
     public SecretInfoBase secretInfo() {
@@ -57,7 +65,7 @@ public final class SecretAuthInfo extends AuthInfoBase {
 
     /**
      * Set the secretInfo property: Password or key vault secret for secret auth.
-     *
+     * 
      * @param secretInfo the secretInfo value to set.
      * @return the SecretAuthInfo object itself.
      */
@@ -68,7 +76,7 @@ public final class SecretAuthInfo extends AuthInfoBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

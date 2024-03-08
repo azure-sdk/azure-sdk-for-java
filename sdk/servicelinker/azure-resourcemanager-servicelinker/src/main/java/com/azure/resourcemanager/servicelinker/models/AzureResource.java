@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The azure resource info when target service type is AzureResource. */
+/**
+ * The azure resource info when target service type is AzureResource.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("AzureResource")
 @Fluent
@@ -27,8 +29,14 @@ public final class AzureResource extends TargetServiceBase {
     private AzureResourcePropertiesBase resourceProperties;
 
     /**
+     * Creates an instance of AzureResource class.
+     */
+    public AzureResource() {
+    }
+
+    /**
      * Get the id property: The Id of azure resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -37,7 +45,7 @@ public final class AzureResource extends TargetServiceBase {
 
     /**
      * Set the id property: The Id of azure resource.
-     *
+     * 
      * @param id the id value to set.
      * @return the AzureResource object itself.
      */
@@ -48,7 +56,7 @@ public final class AzureResource extends TargetServiceBase {
 
     /**
      * Get the resourceProperties property: The azure resource connection related properties.
-     *
+     * 
      * @return the resourceProperties value.
      */
     public AzureResourcePropertiesBase resourceProperties() {
@@ -57,7 +65,7 @@ public final class AzureResource extends TargetServiceBase {
 
     /**
      * Set the resourceProperties property: The azure resource connection related properties.
-     *
+     * 
      * @param resourceProperties the resourceProperties value to set.
      * @return the AzureResource object itself.
      */
@@ -68,7 +76,7 @@ public final class AzureResource extends TargetServiceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

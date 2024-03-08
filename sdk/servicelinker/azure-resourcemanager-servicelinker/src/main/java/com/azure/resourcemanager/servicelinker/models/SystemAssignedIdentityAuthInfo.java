@@ -8,14 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The authentication info when authType is systemAssignedIdentity. */
+/**
+ * The authentication info when authType is systemAssignedIdentity.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
 @JsonTypeName("systemAssignedIdentity")
 @Immutable
 public final class SystemAssignedIdentityAuthInfo extends AuthInfoBase {
     /**
+     * Creates an instance of SystemAssignedIdentityAuthInfo class.
+     */
+    public SystemAssignedIdentityAuthInfo() {
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
