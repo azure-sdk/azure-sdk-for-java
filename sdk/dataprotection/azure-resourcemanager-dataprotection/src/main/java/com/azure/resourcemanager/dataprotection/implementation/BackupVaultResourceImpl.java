@@ -134,8 +134,8 @@ public final class BackupVaultResourceImpl
         com.azure.resourcemanager.dataprotection.DataProtectionManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.vaultName = Utils.getValueFromIdByName(innerObject.id(), "backupVaults");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.vaultName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "backupVaults");
     }
 
     public BackupVaultResource refresh() {

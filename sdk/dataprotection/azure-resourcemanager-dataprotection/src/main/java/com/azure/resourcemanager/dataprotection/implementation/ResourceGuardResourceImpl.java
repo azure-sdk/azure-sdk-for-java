@@ -128,8 +128,8 @@ public final class ResourceGuardResourceImpl
         com.azure.resourcemanager.dataprotection.DataProtectionManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.resourceGuardsName = Utils.getValueFromIdByName(innerObject.id(), "resourceGuards");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.resourceGuardsName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGuards");
     }
 
     public ResourceGuardResource refresh() {

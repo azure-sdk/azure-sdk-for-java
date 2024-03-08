@@ -30,14 +30,16 @@ public final class FetchSecondaryRecoveryPointsImpl implements FetchSecondaryRec
         FetchSecondaryRPsRequestParameters parameters) {
         PagedIterable<AzureBackupRecoveryPointResourceInner> inner
             = this.serviceClient().list(resourceGroupName, location, parameters);
-        return Utils.mapPage(inner, inner1 -> new AzureBackupRecoveryPointResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new AzureBackupRecoveryPointResourceImpl(inner1, this.manager()));
     }
 
     public PagedIterable<AzureBackupRecoveryPointResource> list(String resourceGroupName, String location,
         FetchSecondaryRPsRequestParameters parameters, String filter, String skipToken, Context context) {
         PagedIterable<AzureBackupRecoveryPointResourceInner> inner
             = this.serviceClient().list(resourceGroupName, location, parameters, filter, skipToken, context);
-        return Utils.mapPage(inner, inner1 -> new AzureBackupRecoveryPointResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new AzureBackupRecoveryPointResourceImpl(inner1, this.manager()));
     }
 
     private FetchSecondaryRecoveryPointsClient serviceClient() {
