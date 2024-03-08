@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Cluster profile. */
+/**
+ * Cluster profile.
+ */
 @Fluent
 public final class ClusterProfile {
     /*
@@ -33,10 +35,16 @@ public final class ClusterProfile {
     private List<ClusterComponentsItem> components;
 
     /*
-     * Identity Profile with details of an MSI.
+     * This is deprecated. Please use managed identity profile instead.
      */
-    @JsonProperty(value = "identityProfile", required = true)
+    @JsonProperty(value = "identityProfile")
     private IdentityProfile identityProfile;
+
+    /*
+     * This property is required by Trino, Spark and Flink cluster but is optional for Kafka cluster.
+     */
+    @JsonProperty(value = "managedIdentityProfile")
+    private ManagedIdentityProfile managedIdentityProfile;
 
     /*
      * Authorization profile with details of AAD user Ids and group Ids authorized for data plane access.
@@ -61,6 +69,12 @@ public final class ClusterProfile {
      */
     @JsonProperty(value = "connectivityProfile", access = JsonProperty.Access.WRITE_ONLY)
     private ConnectivityProfile connectivityProfile;
+
+    /*
+     * Cluster access profile.
+     */
+    @JsonProperty(value = "clusterAccessProfile")
+    private ClusterAccessProfile clusterAccessProfile;
 
     /*
      * Cluster log analytics profile to enable or disable OMS agent for cluster.
@@ -88,11 +102,16 @@ public final class ClusterProfile {
     private AutoscaleProfile autoscaleProfile;
 
     /*
-     * Kafka cluster profile.
+     * Cluster Ranger plugin profile.
+     */
+    @JsonProperty(value = "rangerPluginProfile")
+    private ClusterRangerPluginProfile rangerPluginProfile;
+
+    /*
+     * The Kafka cluster profile.
      */
     @JsonProperty(value = "kafkaProfile")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, Object> kafkaProfile;
+    private KafkaProfile kafkaProfile;
 
     /*
      * Trino Cluster profile.
@@ -120,6 +139,12 @@ public final class ClusterProfile {
     private SparkProfile sparkProfile;
 
     /*
+     * The ranger cluster profile.
+     */
+    @JsonProperty(value = "rangerProfile")
+    private RangerProfile rangerProfile;
+
+    /*
      * Stub cluster profile.
      */
     @JsonProperty(value = "stubProfile")
@@ -132,13 +157,15 @@ public final class ClusterProfile {
     @JsonProperty(value = "scriptActionProfiles")
     private List<ScriptActionProfile> scriptActionProfiles;
 
-    /** Creates an instance of ClusterProfile class. */
+    /**
+     * Creates an instance of ClusterProfile class.
+     */
     public ClusterProfile() {
     }
 
     /**
      * Get the clusterVersion property: Version with 3/4 part.
-     *
+     * 
      * @return the clusterVersion value.
      */
     public String clusterVersion() {
@@ -147,7 +174,7 @@ public final class ClusterProfile {
 
     /**
      * Set the clusterVersion property: Version with 3/4 part.
-     *
+     * 
      * @param clusterVersion the clusterVersion value to set.
      * @return the ClusterProfile object itself.
      */
@@ -158,7 +185,7 @@ public final class ClusterProfile {
 
     /**
      * Get the ossVersion property: Version with three part.
-     *
+     * 
      * @return the ossVersion value.
      */
     public String ossVersion() {
@@ -167,7 +194,7 @@ public final class ClusterProfile {
 
     /**
      * Set the ossVersion property: Version with three part.
-     *
+     * 
      * @param ossVersion the ossVersion value to set.
      * @return the ClusterProfile object itself.
      */
@@ -178,7 +205,7 @@ public final class ClusterProfile {
 
     /**
      * Get the components property: Component list of this cluster type and version.
-     *
+     * 
      * @return the components value.
      */
     public List<ClusterComponentsItem> components() {
@@ -186,8 +213,8 @@ public final class ClusterProfile {
     }
 
     /**
-     * Get the identityProfile property: Identity Profile with details of an MSI.
-     *
+     * Get the identityProfile property: This is deprecated. Please use managed identity profile instead.
+     * 
      * @return the identityProfile value.
      */
     public IdentityProfile identityProfile() {
@@ -195,8 +222,8 @@ public final class ClusterProfile {
     }
 
     /**
-     * Set the identityProfile property: Identity Profile with details of an MSI.
-     *
+     * Set the identityProfile property: This is deprecated. Please use managed identity profile instead.
+     * 
      * @param identityProfile the identityProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -206,9 +233,31 @@ public final class ClusterProfile {
     }
 
     /**
+     * Get the managedIdentityProfile property: This property is required by Trino, Spark and Flink cluster but is
+     * optional for Kafka cluster.
+     * 
+     * @return the managedIdentityProfile value.
+     */
+    public ManagedIdentityProfile managedIdentityProfile() {
+        return this.managedIdentityProfile;
+    }
+
+    /**
+     * Set the managedIdentityProfile property: This property is required by Trino, Spark and Flink cluster but is
+     * optional for Kafka cluster.
+     * 
+     * @param managedIdentityProfile the managedIdentityProfile value to set.
+     * @return the ClusterProfile object itself.
+     */
+    public ClusterProfile withManagedIdentityProfile(ManagedIdentityProfile managedIdentityProfile) {
+        this.managedIdentityProfile = managedIdentityProfile;
+        return this;
+    }
+
+    /**
      * Get the authorizationProfile property: Authorization profile with details of AAD user Ids and group Ids
      * authorized for data plane access.
-     *
+     * 
      * @return the authorizationProfile value.
      */
     public AuthorizationProfile authorizationProfile() {
@@ -218,7 +267,7 @@ public final class ClusterProfile {
     /**
      * Set the authorizationProfile property: Authorization profile with details of AAD user Ids and group Ids
      * authorized for data plane access.
-     *
+     * 
      * @param authorizationProfile the authorizationProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -229,7 +278,7 @@ public final class ClusterProfile {
 
     /**
      * Get the secretsProfile property: The cluster secret profile.
-     *
+     * 
      * @return the secretsProfile value.
      */
     public SecretsProfile secretsProfile() {
@@ -238,7 +287,7 @@ public final class ClusterProfile {
 
     /**
      * Set the secretsProfile property: The cluster secret profile.
-     *
+     * 
      * @param secretsProfile the secretsProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -249,7 +298,7 @@ public final class ClusterProfile {
 
     /**
      * Get the serviceConfigsProfiles property: The service configs profiles.
-     *
+     * 
      * @return the serviceConfigsProfiles value.
      */
     public List<ClusterServiceConfigsProfile> serviceConfigsProfiles() {
@@ -258,7 +307,7 @@ public final class ClusterProfile {
 
     /**
      * Set the serviceConfigsProfiles property: The service configs profiles.
-     *
+     * 
      * @param serviceConfigsProfiles the serviceConfigsProfiles value to set.
      * @return the ClusterProfile object itself.
      */
@@ -269,7 +318,7 @@ public final class ClusterProfile {
 
     /**
      * Get the connectivityProfile property: Cluster connectivity profile.
-     *
+     * 
      * @return the connectivityProfile value.
      */
     public ConnectivityProfile connectivityProfile() {
@@ -277,8 +326,28 @@ public final class ClusterProfile {
     }
 
     /**
+     * Get the clusterAccessProfile property: Cluster access profile.
+     * 
+     * @return the clusterAccessProfile value.
+     */
+    public ClusterAccessProfile clusterAccessProfile() {
+        return this.clusterAccessProfile;
+    }
+
+    /**
+     * Set the clusterAccessProfile property: Cluster access profile.
+     * 
+     * @param clusterAccessProfile the clusterAccessProfile value to set.
+     * @return the ClusterProfile object itself.
+     */
+    public ClusterProfile withClusterAccessProfile(ClusterAccessProfile clusterAccessProfile) {
+        this.clusterAccessProfile = clusterAccessProfile;
+        return this;
+    }
+
+    /**
      * Get the logAnalyticsProfile property: Cluster log analytics profile to enable or disable OMS agent for cluster.
-     *
+     * 
      * @return the logAnalyticsProfile value.
      */
     public ClusterLogAnalyticsProfile logAnalyticsProfile() {
@@ -287,7 +356,7 @@ public final class ClusterProfile {
 
     /**
      * Set the logAnalyticsProfile property: Cluster log analytics profile to enable or disable OMS agent for cluster.
-     *
+     * 
      * @param logAnalyticsProfile the logAnalyticsProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -298,7 +367,7 @@ public final class ClusterProfile {
 
     /**
      * Get the prometheusProfile property: Cluster Prometheus profile.
-     *
+     * 
      * @return the prometheusProfile value.
      */
     public ClusterPrometheusProfile prometheusProfile() {
@@ -307,7 +376,7 @@ public final class ClusterProfile {
 
     /**
      * Set the prometheusProfile property: Cluster Prometheus profile.
-     *
+     * 
      * @param prometheusProfile the prometheusProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -318,7 +387,7 @@ public final class ClusterProfile {
 
     /**
      * Get the sshProfile property: Ssh profile for the cluster.
-     *
+     * 
      * @return the sshProfile value.
      */
     public SshProfile sshProfile() {
@@ -327,7 +396,7 @@ public final class ClusterProfile {
 
     /**
      * Set the sshProfile property: Ssh profile for the cluster.
-     *
+     * 
      * @param sshProfile the sshProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -339,7 +408,7 @@ public final class ClusterProfile {
     /**
      * Get the autoscaleProfile property: This is the Autoscale profile for the cluster. This will allow customer to
      * create cluster enabled with Autoscale.
-     *
+     * 
      * @return the autoscaleProfile value.
      */
     public AutoscaleProfile autoscaleProfile() {
@@ -349,7 +418,7 @@ public final class ClusterProfile {
     /**
      * Set the autoscaleProfile property: This is the Autoscale profile for the cluster. This will allow customer to
      * create cluster enabled with Autoscale.
-     *
+     * 
      * @param autoscaleProfile the autoscaleProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -359,28 +428,48 @@ public final class ClusterProfile {
     }
 
     /**
-     * Get the kafkaProfile property: Kafka cluster profile.
-     *
+     * Get the rangerPluginProfile property: Cluster Ranger plugin profile.
+     * 
+     * @return the rangerPluginProfile value.
+     */
+    public ClusterRangerPluginProfile rangerPluginProfile() {
+        return this.rangerPluginProfile;
+    }
+
+    /**
+     * Set the rangerPluginProfile property: Cluster Ranger plugin profile.
+     * 
+     * @param rangerPluginProfile the rangerPluginProfile value to set.
+     * @return the ClusterProfile object itself.
+     */
+    public ClusterProfile withRangerPluginProfile(ClusterRangerPluginProfile rangerPluginProfile) {
+        this.rangerPluginProfile = rangerPluginProfile;
+        return this;
+    }
+
+    /**
+     * Get the kafkaProfile property: The Kafka cluster profile.
+     * 
      * @return the kafkaProfile value.
      */
-    public Map<String, Object> kafkaProfile() {
+    public KafkaProfile kafkaProfile() {
         return this.kafkaProfile;
     }
 
     /**
-     * Set the kafkaProfile property: Kafka cluster profile.
-     *
+     * Set the kafkaProfile property: The Kafka cluster profile.
+     * 
      * @param kafkaProfile the kafkaProfile value to set.
      * @return the ClusterProfile object itself.
      */
-    public ClusterProfile withKafkaProfile(Map<String, Object> kafkaProfile) {
+    public ClusterProfile withKafkaProfile(KafkaProfile kafkaProfile) {
         this.kafkaProfile = kafkaProfile;
         return this;
     }
 
     /**
      * Get the trinoProfile property: Trino Cluster profile.
-     *
+     * 
      * @return the trinoProfile value.
      */
     public TrinoProfile trinoProfile() {
@@ -389,7 +478,7 @@ public final class ClusterProfile {
 
     /**
      * Set the trinoProfile property: Trino Cluster profile.
-     *
+     * 
      * @param trinoProfile the trinoProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -400,7 +489,7 @@ public final class ClusterProfile {
 
     /**
      * Get the llapProfile property: LLAP cluster profile.
-     *
+     * 
      * @return the llapProfile value.
      */
     public Map<String, Object> llapProfile() {
@@ -409,7 +498,7 @@ public final class ClusterProfile {
 
     /**
      * Set the llapProfile property: LLAP cluster profile.
-     *
+     * 
      * @param llapProfile the llapProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -420,7 +509,7 @@ public final class ClusterProfile {
 
     /**
      * Get the flinkProfile property: The Flink cluster profile.
-     *
+     * 
      * @return the flinkProfile value.
      */
     public FlinkProfile flinkProfile() {
@@ -429,7 +518,7 @@ public final class ClusterProfile {
 
     /**
      * Set the flinkProfile property: The Flink cluster profile.
-     *
+     * 
      * @param flinkProfile the flinkProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -440,7 +529,7 @@ public final class ClusterProfile {
 
     /**
      * Get the sparkProfile property: The spark cluster profile.
-     *
+     * 
      * @return the sparkProfile value.
      */
     public SparkProfile sparkProfile() {
@@ -449,7 +538,7 @@ public final class ClusterProfile {
 
     /**
      * Set the sparkProfile property: The spark cluster profile.
-     *
+     * 
      * @param sparkProfile the sparkProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -459,8 +548,28 @@ public final class ClusterProfile {
     }
 
     /**
+     * Get the rangerProfile property: The ranger cluster profile.
+     * 
+     * @return the rangerProfile value.
+     */
+    public RangerProfile rangerProfile() {
+        return this.rangerProfile;
+    }
+
+    /**
+     * Set the rangerProfile property: The ranger cluster profile.
+     * 
+     * @param rangerProfile the rangerProfile value to set.
+     * @return the ClusterProfile object itself.
+     */
+    public ClusterProfile withRangerProfile(RangerProfile rangerProfile) {
+        this.rangerProfile = rangerProfile;
+        return this;
+    }
+
+    /**
      * Get the stubProfile property: Stub cluster profile.
-     *
+     * 
      * @return the stubProfile value.
      */
     public Map<String, Object> stubProfile() {
@@ -469,7 +578,7 @@ public final class ClusterProfile {
 
     /**
      * Set the stubProfile property: Stub cluster profile.
-     *
+     * 
      * @param stubProfile the stubProfile value to set.
      * @return the ClusterProfile object itself.
      */
@@ -480,7 +589,7 @@ public final class ClusterProfile {
 
     /**
      * Get the scriptActionProfiles property: The script action profile list.
-     *
+     * 
      * @return the scriptActionProfiles value.
      */
     public List<ScriptActionProfile> scriptActionProfiles() {
@@ -489,7 +598,7 @@ public final class ClusterProfile {
 
     /**
      * Set the scriptActionProfiles property: The script action profile list.
-     *
+     * 
      * @param scriptActionProfiles the scriptActionProfiles value to set.
      * @return the ClusterProfile object itself.
      */
@@ -500,35 +609,30 @@ public final class ClusterProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (clusterVersion() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property clusterVersion in model ClusterProfile"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property clusterVersion in model ClusterProfile"));
         }
         if (ossVersion() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property ossVersion in model ClusterProfile"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property ossVersion in model ClusterProfile"));
         }
         if (components() != null) {
             components().forEach(e -> e.validate());
         }
-        if (identityProfile() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property identityProfile in model ClusterProfile"));
-        } else {
+        if (identityProfile() != null) {
             identityProfile().validate();
         }
+        if (managedIdentityProfile() != null) {
+            managedIdentityProfile().validate();
+        }
         if (authorizationProfile() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property authorizationProfile in model ClusterProfile"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property authorizationProfile in model ClusterProfile"));
         } else {
             authorizationProfile().validate();
         }
@@ -540,6 +644,9 @@ public final class ClusterProfile {
         }
         if (connectivityProfile() != null) {
             connectivityProfile().validate();
+        }
+        if (clusterAccessProfile() != null) {
+            clusterAccessProfile().validate();
         }
         if (logAnalyticsProfile() != null) {
             logAnalyticsProfile().validate();
@@ -553,6 +660,12 @@ public final class ClusterProfile {
         if (autoscaleProfile() != null) {
             autoscaleProfile().validate();
         }
+        if (rangerPluginProfile() != null) {
+            rangerPluginProfile().validate();
+        }
+        if (kafkaProfile() != null) {
+            kafkaProfile().validate();
+        }
         if (trinoProfile() != null) {
             trinoProfile().validate();
         }
@@ -561,6 +674,9 @@ public final class ClusterProfile {
         }
         if (sparkProfile() != null) {
             sparkProfile().validate();
+        }
+        if (rangerProfile() != null) {
+            rangerProfile().validate();
         }
         if (scriptActionProfiles() != null) {
             scriptActionProfiles().forEach(e -> e.validate());
