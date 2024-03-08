@@ -7,30 +7,24 @@ package com.azure.resourcemanager.appcontainers.generated;
 import com.azure.resourcemanager.appcontainers.fluent.models.CertificateInner;
 import com.azure.resourcemanager.appcontainers.models.CertificateProperties;
 
-/** Samples for Certificates CreateOrUpdate. */
+/**
+ * Samples for Certificates CreateOrUpdate.
+ */
 public final class CertificatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2023-05-01/examples/Certificate_CreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/app/resource-manager/Microsoft.App/stable/2024-03-01/examples/Certificate_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Certificate.
-     *
+     * 
      * @param manager Entry point to ContainerAppsApiManager.
      */
-    public static void createOrUpdateCertificate(
-        com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager
-            .certificates()
-            .createOrUpdateWithResponse(
-                "examplerg",
-                "testcontainerenv",
-                "certificate-firendly-name",
-                new CertificateInner()
-                    .withLocation("East US")
-                    .withProperties(
-                        new CertificateProperties()
-                            .withPassword("fakeTokenPlaceholder")
-                            .withValue("Y2VydA==".getBytes())),
-                com.azure.core.util.Context.NONE);
+    public static void
+        createOrUpdateCertificate(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
+        manager.certificates().createOrUpdateWithResponse("examplerg", "testcontainerenv", "certificate-firendly-name",
+            new CertificateInner().withLocation("East US").withProperties(
+                new CertificateProperties().withPassword("fakeTokenPlaceholder").withValue("Y2VydA==".getBytes())),
+            com.azure.core.util.Context.NONE);
     }
 }

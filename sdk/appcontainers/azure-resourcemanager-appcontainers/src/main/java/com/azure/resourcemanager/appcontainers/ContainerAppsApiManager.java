@@ -80,7 +80,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to ContainerAppsApiManager. */
+/**
+ * Entry point to ContainerAppsApiManager.
+ */
 public final class ContainerAppsApiManager {
     private ContainerAppsAuthConfigs containerAppsAuthConfigs;
 
@@ -135,18 +137,14 @@ public final class ContainerAppsApiManager {
     private ContainerAppsApiManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new ContainerAppsApiClientBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new ContainerAppsApiClientBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of ContainerAppsApi service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the ContainerAppsApi service API instance.
@@ -159,7 +157,7 @@ public final class ContainerAppsApiManager {
 
     /**
      * Creates an instance of ContainerAppsApi service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the ContainerAppsApi service API instance.
@@ -172,14 +170,16 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets a Configurable instance that can be used to create ContainerAppsApiManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new ContainerAppsApiManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -251,8 +251,8 @@ public final class ContainerAppsApiManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -269,8 +269,8 @@ public final class ContainerAppsApiManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -290,21 +290,12 @@ public final class ContainerAppsApiManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.appcontainers")
-                .append("/")
-                .append("1.0.0-beta.6");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.appcontainers")
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -323,64 +314,51 @@ public final class ContainerAppsApiManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new ContainerAppsApiManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
      * Gets the resource collection API of ContainerAppsAuthConfigs. It manages AuthConfig.
-     *
+     * 
      * @return Resource collection API of ContainerAppsAuthConfigs.
      */
     public ContainerAppsAuthConfigs containerAppsAuthConfigs() {
         if (this.containerAppsAuthConfigs == null) {
-            this.containerAppsAuthConfigs =
-                new ContainerAppsAuthConfigsImpl(clientObject.getContainerAppsAuthConfigs(), this);
+            this.containerAppsAuthConfigs
+                = new ContainerAppsAuthConfigsImpl(clientObject.getContainerAppsAuthConfigs(), this);
         }
         return containerAppsAuthConfigs;
     }
 
     /**
      * Gets the resource collection API of AvailableWorkloadProfiles.
-     *
+     * 
      * @return Resource collection API of AvailableWorkloadProfiles.
      */
     public AvailableWorkloadProfiles availableWorkloadProfiles() {
         if (this.availableWorkloadProfiles == null) {
-            this.availableWorkloadProfiles =
-                new AvailableWorkloadProfilesImpl(clientObject.getAvailableWorkloadProfiles(), this);
+            this.availableWorkloadProfiles
+                = new AvailableWorkloadProfilesImpl(clientObject.getAvailableWorkloadProfiles(), this);
         }
         return availableWorkloadProfiles;
     }
 
     /**
      * Gets the resource collection API of BillingMeters.
-     *
+     * 
      * @return Resource collection API of BillingMeters.
      */
     public BillingMeters billingMeters() {
@@ -392,7 +370,7 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of ConnectedEnvironments. It manages ConnectedEnvironment.
-     *
+     * 
      * @return Resource collection API of ConnectedEnvironments.
      */
     public ConnectedEnvironments connectedEnvironments() {
@@ -404,47 +382,46 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of ConnectedEnvironmentsCertificates. It manages Certificate.
-     *
+     * 
      * @return Resource collection API of ConnectedEnvironmentsCertificates.
      */
     public ConnectedEnvironmentsCertificates connectedEnvironmentsCertificates() {
         if (this.connectedEnvironmentsCertificates == null) {
-            this.connectedEnvironmentsCertificates =
-                new ConnectedEnvironmentsCertificatesImpl(clientObject.getConnectedEnvironmentsCertificates(), this);
+            this.connectedEnvironmentsCertificates
+                = new ConnectedEnvironmentsCertificatesImpl(clientObject.getConnectedEnvironmentsCertificates(), this);
         }
         return connectedEnvironmentsCertificates;
     }
 
     /**
      * Gets the resource collection API of ConnectedEnvironmentsDaprComponents. It manages DaprComponent.
-     *
+     * 
      * @return Resource collection API of ConnectedEnvironmentsDaprComponents.
      */
     public ConnectedEnvironmentsDaprComponents connectedEnvironmentsDaprComponents() {
         if (this.connectedEnvironmentsDaprComponents == null) {
-            this.connectedEnvironmentsDaprComponents =
-                new ConnectedEnvironmentsDaprComponentsImpl(
-                    clientObject.getConnectedEnvironmentsDaprComponents(), this);
+            this.connectedEnvironmentsDaprComponents = new ConnectedEnvironmentsDaprComponentsImpl(
+                clientObject.getConnectedEnvironmentsDaprComponents(), this);
         }
         return connectedEnvironmentsDaprComponents;
     }
 
     /**
      * Gets the resource collection API of ConnectedEnvironmentsStorages. It manages ConnectedEnvironmentStorage.
-     *
+     * 
      * @return Resource collection API of ConnectedEnvironmentsStorages.
      */
     public ConnectedEnvironmentsStorages connectedEnvironmentsStorages() {
         if (this.connectedEnvironmentsStorages == null) {
-            this.connectedEnvironmentsStorages =
-                new ConnectedEnvironmentsStoragesImpl(clientObject.getConnectedEnvironmentsStorages(), this);
+            this.connectedEnvironmentsStorages
+                = new ConnectedEnvironmentsStoragesImpl(clientObject.getConnectedEnvironmentsStorages(), this);
         }
         return connectedEnvironmentsStorages;
     }
 
     /**
      * Gets the resource collection API of ContainerApps. It manages ContainerApp.
-     *
+     * 
      * @return Resource collection API of ContainerApps.
      */
     public ContainerApps containerApps() {
@@ -456,72 +433,72 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of ContainerAppsRevisions.
-     *
+     * 
      * @return Resource collection API of ContainerAppsRevisions.
      */
     public ContainerAppsRevisions containerAppsRevisions() {
         if (this.containerAppsRevisions == null) {
-            this.containerAppsRevisions =
-                new ContainerAppsRevisionsImpl(clientObject.getContainerAppsRevisions(), this);
+            this.containerAppsRevisions
+                = new ContainerAppsRevisionsImpl(clientObject.getContainerAppsRevisions(), this);
         }
         return containerAppsRevisions;
     }
 
     /**
      * Gets the resource collection API of ContainerAppsRevisionReplicas.
-     *
+     * 
      * @return Resource collection API of ContainerAppsRevisionReplicas.
      */
     public ContainerAppsRevisionReplicas containerAppsRevisionReplicas() {
         if (this.containerAppsRevisionReplicas == null) {
-            this.containerAppsRevisionReplicas =
-                new ContainerAppsRevisionReplicasImpl(clientObject.getContainerAppsRevisionReplicas(), this);
+            this.containerAppsRevisionReplicas
+                = new ContainerAppsRevisionReplicasImpl(clientObject.getContainerAppsRevisionReplicas(), this);
         }
         return containerAppsRevisionReplicas;
     }
 
     /**
      * Gets the resource collection API of ContainerAppsDiagnostics.
-     *
+     * 
      * @return Resource collection API of ContainerAppsDiagnostics.
      */
     public ContainerAppsDiagnostics containerAppsDiagnostics() {
         if (this.containerAppsDiagnostics == null) {
-            this.containerAppsDiagnostics =
-                new ContainerAppsDiagnosticsImpl(clientObject.getContainerAppsDiagnostics(), this);
+            this.containerAppsDiagnostics
+                = new ContainerAppsDiagnosticsImpl(clientObject.getContainerAppsDiagnostics(), this);
         }
         return containerAppsDiagnostics;
     }
 
     /**
      * Gets the resource collection API of ManagedEnvironmentDiagnostics.
-     *
+     * 
      * @return Resource collection API of ManagedEnvironmentDiagnostics.
      */
     public ManagedEnvironmentDiagnostics managedEnvironmentDiagnostics() {
         if (this.managedEnvironmentDiagnostics == null) {
-            this.managedEnvironmentDiagnostics =
-                new ManagedEnvironmentDiagnosticsImpl(clientObject.getManagedEnvironmentDiagnostics(), this);
+            this.managedEnvironmentDiagnostics
+                = new ManagedEnvironmentDiagnosticsImpl(clientObject.getManagedEnvironmentDiagnostics(), this);
         }
         return managedEnvironmentDiagnostics;
     }
 
     /**
      * Gets the resource collection API of ManagedEnvironmentsDiagnostics.
-     *
+     * 
      * @return Resource collection API of ManagedEnvironmentsDiagnostics.
      */
     public ManagedEnvironmentsDiagnostics managedEnvironmentsDiagnostics() {
         if (this.managedEnvironmentsDiagnostics == null) {
-            this.managedEnvironmentsDiagnostics =
-                new ManagedEnvironmentsDiagnosticsImpl(clientObject.getManagedEnvironmentsDiagnostics(), this);
+            this.managedEnvironmentsDiagnostics
+                = new ManagedEnvironmentsDiagnosticsImpl(clientObject.getManagedEnvironmentsDiagnostics(), this);
         }
         return managedEnvironmentsDiagnostics;
     }
 
     /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -533,7 +510,7 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of Jobs. It manages Job.
-     *
+     * 
      * @return Resource collection API of Jobs.
      */
     public Jobs jobs() {
@@ -545,7 +522,7 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of JobsExecutions.
-     *
+     * 
      * @return Resource collection API of JobsExecutions.
      */
     public JobsExecutions jobsExecutions() {
@@ -557,7 +534,7 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of ResourceProviders.
-     *
+     * 
      * @return Resource collection API of ResourceProviders.
      */
     public ResourceProviders resourceProviders() {
@@ -569,7 +546,7 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of ManagedEnvironments. It manages ManagedEnvironment.
-     *
+     * 
      * @return Resource collection API of ManagedEnvironments.
      */
     public ManagedEnvironments managedEnvironments() {
@@ -581,7 +558,7 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of Certificates.
-     *
+     * 
      * @return Resource collection API of Certificates.
      */
     public Certificates certificates() {
@@ -593,7 +570,7 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of ManagedCertificates. It manages ManagedCertificate.
-     *
+     * 
      * @return Resource collection API of ManagedCertificates.
      */
     public ManagedCertificates managedCertificates() {
@@ -605,7 +582,7 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of Namespaces.
-     *
+     * 
      * @return Resource collection API of Namespaces.
      */
     public Namespaces namespaces() {
@@ -617,7 +594,7 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of DaprComponents.
-     *
+     * 
      * @return Resource collection API of DaprComponents.
      */
     public DaprComponents daprComponents() {
@@ -629,26 +606,26 @@ public final class ContainerAppsApiManager {
 
     /**
      * Gets the resource collection API of ManagedEnvironmentsStorages. It manages ManagedEnvironmentStorage.
-     *
+     * 
      * @return Resource collection API of ManagedEnvironmentsStorages.
      */
     public ManagedEnvironmentsStorages managedEnvironmentsStorages() {
         if (this.managedEnvironmentsStorages == null) {
-            this.managedEnvironmentsStorages =
-                new ManagedEnvironmentsStoragesImpl(clientObject.getManagedEnvironmentsStorages(), this);
+            this.managedEnvironmentsStorages
+                = new ManagedEnvironmentsStoragesImpl(clientObject.getManagedEnvironmentsStorages(), this);
         }
         return managedEnvironmentsStorages;
     }
 
     /**
      * Gets the resource collection API of ContainerAppsSourceControls. It manages SourceControl.
-     *
+     * 
      * @return Resource collection API of ContainerAppsSourceControls.
      */
     public ContainerAppsSourceControls containerAppsSourceControls() {
         if (this.containerAppsSourceControls == null) {
-            this.containerAppsSourceControls =
-                new ContainerAppsSourceControlsImpl(clientObject.getContainerAppsSourceControls(), this);
+            this.containerAppsSourceControls
+                = new ContainerAppsSourceControlsImpl(clientObject.getContainerAppsSourceControls(), this);
         }
         return containerAppsSourceControls;
     }
@@ -656,7 +633,7 @@ public final class ContainerAppsApiManager {
     /**
      * Gets wrapped service client ContainerAppsApiClient providing direct access to the underlying auto-generated API
      * implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client ContainerAppsApiClient.
      */
     public ContainerAppsApiClient serviceClient() {

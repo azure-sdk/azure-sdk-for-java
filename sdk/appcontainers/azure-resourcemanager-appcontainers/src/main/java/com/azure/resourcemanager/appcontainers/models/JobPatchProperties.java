@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Container Apps Job resource specific properties. */
+/**
+ * Container Apps Job resource specific properties.
+ */
 @Fluent
 public final class JobPatchProperties {
     /*
@@ -32,14 +34,16 @@ public final class JobPatchProperties {
     @JsonProperty(value = "properties")
     private JobPatchPropertiesProperties properties;
 
-    /** Creates an instance of JobPatchProperties class. */
+    /**
+     * Creates an instance of JobPatchProperties class.
+     */
     public JobPatchProperties() {
     }
 
     /**
-     * Get the identity property: Managed identities needed by a container app job to interact with other Azure services
-     * to not maintain any secrets or credentials in code.
-     *
+     * Get the identity property: Managed identities needed by a container app job to interact with other Azure
+     * services to not maintain any secrets or credentials in code.
+     * 
      * @return the identity value.
      */
     public ManagedServiceIdentity identity() {
@@ -47,9 +51,9 @@ public final class JobPatchProperties {
     }
 
     /**
-     * Set the identity property: Managed identities needed by a container app job to interact with other Azure services
-     * to not maintain any secrets or credentials in code.
-     *
+     * Set the identity property: Managed identities needed by a container app job to interact with other Azure
+     * services to not maintain any secrets or credentials in code.
+     * 
      * @param identity the identity value to set.
      * @return the JobPatchProperties object itself.
      */
@@ -60,7 +64,7 @@ public final class JobPatchProperties {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -69,7 +73,7 @@ public final class JobPatchProperties {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the JobPatchProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class JobPatchProperties {
 
     /**
      * Get the properties property: The properties property.
-     *
+     * 
      * @return the properties value.
      */
     public JobPatchPropertiesProperties properties() {
@@ -89,7 +93,7 @@ public final class JobPatchProperties {
 
     /**
      * Set the properties property: The properties property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the JobPatchProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class JobPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

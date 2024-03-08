@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appcontainers.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Configuration to bind a ContainerApp to a dev ContainerApp Service. */
+/**
+ * Configuration to bind a ContainerApp to a dev ContainerApp Service.
+ */
 @Fluent
 public final class ServiceBind {
     /*
@@ -22,13 +24,15 @@ public final class ServiceBind {
     @JsonProperty(value = "name")
     private String name;
 
-    /** Creates an instance of ServiceBind class. */
+    /**
+     * Creates an instance of ServiceBind class.
+     */
     public ServiceBind() {
     }
 
     /**
      * Get the serviceId property: Resource id of the target service.
-     *
+     * 
      * @return the serviceId value.
      */
     public String serviceId() {
@@ -37,7 +41,7 @@ public final class ServiceBind {
 
     /**
      * Set the serviceId property: Resource id of the target service.
-     *
+     * 
      * @param serviceId the serviceId value to set.
      * @return the ServiceBind object itself.
      */
@@ -48,7 +52,7 @@ public final class ServiceBind {
 
     /**
      * Get the name property: Name of the service bind.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -57,7 +61,7 @@ public final class ServiceBind {
 
     /**
      * Set the name property: Name of the service bind.
-     *
+     * 
      * @param name the name value to set.
      * @return the ServiceBind object itself.
      */
@@ -68,7 +72,7 @@ public final class ServiceBind {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

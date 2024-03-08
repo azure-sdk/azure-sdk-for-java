@@ -127,20 +127,14 @@ public final class JobImpl implements Job, Job.Definition, Job.Update {
     }
 
     public Job create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .createOrUpdate(resourceGroupName, jobName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getJobs().createOrUpdate(resourceGroupName, jobName,
+            this.innerModel(), Context.NONE);
         return this;
     }
 
     public Job create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .createOrUpdate(resourceGroupName, jobName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getJobs().createOrUpdate(resourceGroupName, jobName,
+            this.innerModel(), context);
         return this;
     }
 
@@ -156,44 +150,33 @@ public final class JobImpl implements Job, Job.Definition, Job.Update {
     }
 
     public Job apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .update(resourceGroupName, jobName, updateJobEnvelope, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getJobs().update(resourceGroupName, jobName,
+            updateJobEnvelope, Context.NONE);
         return this;
     }
 
     public Job apply(Context context) {
-        this.innerObject =
-            serviceManager.serviceClient().getJobs().update(resourceGroupName, jobName, updateJobEnvelope, context);
+        this.innerObject
+            = serviceManager.serviceClient().getJobs().update(resourceGroupName, jobName, updateJobEnvelope, context);
         return this;
     }
 
     JobImpl(JobInner innerObject, com.azure.resourcemanager.appcontainers.ContainerAppsApiManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.jobName = Utils.getValueFromIdByName(innerObject.id(), "jobs");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.jobName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "jobs");
     }
 
     public Job refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .getByResourceGroupWithResponse(resourceGroupName, jobName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getJobs()
+            .getByResourceGroupWithResponse(resourceGroupName, jobName, Context.NONE).getValue();
         return this;
     }
 
     public Job refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getJobs()
-                .getByResourceGroupWithResponse(resourceGroupName, jobName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getJobs()
+            .getByResourceGroupWithResponse(resourceGroupName, jobName, context).getValue();
         return this;
     }
 
