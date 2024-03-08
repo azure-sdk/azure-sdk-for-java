@@ -15,7 +15,8 @@ import com.azure.resourcemanager.quota.models.ResourceName;
 public final class QuotaUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/quota/resource-manager/Microsoft.Quota/stable/2023-02-01/examples/patchComputeQuotaRequest.json
+     * specification/quota/resource-manager/Microsoft.Quota/preview/2023-06-01-preview/examples/patchComputeQuotaRequest
+     * .json
      */
     /**
      * Sample code: Quotas_Request_PatchForCompute.
@@ -24,18 +25,17 @@ public final class QuotaUpdateSamples {
      */
     public static void quotasRequestPatchForCompute(com.azure.resourcemanager.quota.QuotaManager manager) {
         CurrentQuotaLimitBase resource = manager.quotas()
-            .getWithResponse("standardFSv2Family",
+            .getWithResponse(
                 "subscriptions/D7EC67B3-7657-4966-BFFC-41EFD36BAAB3/providers/Microsoft.Compute/locations/eastus",
-                com.azure.core.util.Context.NONE)
+                "standardFSv2Family", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update().withProperties(new QuotaProperties().withLimit(new LimitObject().withValue(10))
             .withName(new ResourceName().withValue("standardFSv2Family"))).apply();
     }
 
     /*
-     * x-ms-original-file:
-     * specification/quota/resource-manager/Microsoft.Quota/stable/2023-02-01/examples/patchNetworkOneSkuQuotaRequest.
-     * json
+     * x-ms-original-file: specification/quota/resource-manager/Microsoft.Quota/preview/2023-06-01-preview/examples/
+     * patchNetworkOneSkuQuotaRequest.json
      */
     /**
      * Sample code: Quotas_Request_PatchForNetwork.
@@ -44,9 +44,9 @@ public final class QuotaUpdateSamples {
      */
     public static void quotasRequestPatchForNetwork(com.azure.resourcemanager.quota.QuotaManager manager) {
         CurrentQuotaLimitBase resource = manager.quotas()
-            .getWithResponse("MinPublicIpInterNetworkPrefixLength",
+            .getWithResponse(
                 "subscriptions/D7EC67B3-7657-4966-BFFC-41EFD36BAAB3/providers/Microsoft.Network/locations/eastus",
-                com.azure.core.util.Context.NONE)
+                "MinPublicIpInterNetworkPrefixLength", com.azure.core.util.Context.NONE)
             .getValue();
         resource.update()
             .withProperties(new QuotaProperties().withLimit(new LimitObject().withValue(10))

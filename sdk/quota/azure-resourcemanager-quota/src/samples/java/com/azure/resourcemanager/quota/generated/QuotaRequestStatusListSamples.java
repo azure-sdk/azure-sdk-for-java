@@ -10,7 +10,8 @@ package com.azure.resourcemanager.quota.generated;
 public final class QuotaRequestStatusListSamples {
     /*
      * x-ms-original-file:
-     * specification/quota/resource-manager/Microsoft.Quota/stable/2023-02-01/examples/getQuotaRequestsHistory.json
+     * specification/quota/resource-manager/Microsoft.Quota/preview/2023-06-01-preview/examples/getQuotaRequestsHistory.
+     * json
      */
     /**
      * Sample code: QuotaRequestHistory.

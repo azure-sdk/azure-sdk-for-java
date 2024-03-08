@@ -19,9 +19,9 @@ public final class SubRequest {
     private ResourceName name;
 
     /*
-     * Resource type for which the quota properties were requested.
+     * The name of the resource type. Optional field.
      */
-    @JsonProperty(value = "resourceType", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "resourceType")
     private String resourceType;
 
     /*
@@ -82,12 +82,23 @@ public final class SubRequest {
     }
 
     /**
-     * Get the resourceType property: Resource type for which the quota properties were requested.
+     * Get the resourceType property: The name of the resource type. Optional field.
      * 
      * @return the resourceType value.
      */
     public String resourceType() {
         return this.resourceType;
+    }
+
+    /**
+     * Set the resourceType property: The name of the resource type. Optional field.
+     * 
+     * @param resourceType the resourceType value to set.
+     * @return the SubRequest object itself.
+     */
+    public SubRequest withResourceType(String resourceType) {
+        this.resourceType = resourceType;
+        return this;
     }
 
     /**

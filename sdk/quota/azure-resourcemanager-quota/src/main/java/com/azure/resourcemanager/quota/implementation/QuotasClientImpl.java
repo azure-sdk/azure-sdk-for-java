@@ -75,17 +75,17 @@ public final class QuotasClientImpl implements QuotasClient {
         @Get("/{scope}/providers/Microsoft.Quota/quotas/{resourceName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<QuotasGetResponse> get(@HostParam("$host") String endpoint, @PathParam("resourceName") String resourceName,
-            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
-            @HeaderParam("Accept") String accept, Context context);
+        Mono<QuotasGetResponse> get(@HostParam("$host") String endpoint,
+            @PathParam(value = "scope", encoded = true) String scope, @PathParam("resourceName") String resourceName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/{scope}/providers/Microsoft.Quota/quotas/{resourceName}")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("resourceName") String resourceName, @QueryParam("api-version") String apiVersion,
-            @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam(value = "scope", encoded = true) String scope, @PathParam("resourceName") String resourceName,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") CurrentQuotaLimitBaseInner createQuotaRequest,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -94,8 +94,8 @@ public final class QuotasClientImpl implements QuotasClient {
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
-            @PathParam("resourceName") String resourceName, @QueryParam("api-version") String apiVersion,
-            @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam(value = "scope", encoded = true) String scope, @PathParam("resourceName") String resourceName,
+            @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") CurrentQuotaLimitBaseInner createQuotaRequest,
             @HeaderParam("Accept") String accept, Context context);
 
@@ -103,9 +103,9 @@ public final class QuotasClientImpl implements QuotasClient {
         @Get("/{scope}/providers/Microsoft.Quota/quotas")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<QuotasListResponse> list(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
-            @PathParam(value = "scope", encoded = true) String scope, @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<QuotasListResponse> list(@HostParam("$host") String endpoint,
+            @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -119,35 +119,35 @@ public final class QuotasClientImpl implements QuotasClient {
      * Get the quota limit of a resource. The response can be used to determine the remaining quota to calculate a new
      * quota limit that can be submitted with a PUT request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the quota limit of a resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<QuotasGetResponse> getWithResponseAsync(String resourceName, String scope) {
+    private Mono<QuotasGetResponse> getWithResponseAsync(String scope, String resourceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), resourceName, this.client.getApiVersion(),
-                scope, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), scope, resourceName,
+                this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -155,14 +155,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * Get the quota limit of a resource. The response can be used to determine the remaining quota to calculate a new
      * quota limit that can be submitted with a PUT request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -170,20 +170,20 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return the quota limit of a resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<QuotasGetResponse> getWithResponseAsync(String resourceName, String scope, Context context) {
+    private Mono<QuotasGetResponse> getWithResponseAsync(String scope, String resourceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceName, this.client.getApiVersion(), scope, accept,
+        return service.get(this.client.getEndpoint(), scope, resourceName, this.client.getApiVersion(), accept,
             context);
     }
 
@@ -191,36 +191,36 @@ public final class QuotasClientImpl implements QuotasClient {
      * Get the quota limit of a resource. The response can be used to determine the remaining quota to calculate a new
      * quota limit that can be submitted with a PUT request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the quota limit of a resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CurrentQuotaLimitBaseInner> getAsync(String resourceName, String scope) {
-        return getWithResponseAsync(resourceName, scope).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<CurrentQuotaLimitBaseInner> getAsync(String scope, String resourceName) {
+        return getWithResponseAsync(scope, resourceName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get the quota limit of a resource. The response can be used to determine the remaining quota to calculate a new
      * quota limit that can be submitted with a PUT request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -228,30 +228,30 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return the quota limit of a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public QuotasGetResponse getWithResponse(String resourceName, String scope, Context context) {
-        return getWithResponseAsync(resourceName, scope, context).block();
+    public QuotasGetResponse getWithResponse(String scope, String resourceName, Context context) {
+        return getWithResponseAsync(scope, resourceName, context).block();
     }
 
     /**
      * Get the quota limit of a resource. The response can be used to determine the remaining quota to calculate a new
      * quota limit that can be submitted with a PUT request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the quota limit of a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CurrentQuotaLimitBaseInner get(String resourceName, String scope) {
-        return getWithResponse(resourceName, scope, Context.NONE).getValue();
+    public CurrentQuotaLimitBaseInner get(String scope, String resourceName) {
+        return getWithResponse(scope, resourceName, Context.NONE).getValue();
     }
 
     /**
@@ -263,14 +263,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -278,17 +278,17 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceName, String scope,
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
         if (createQuotaRequest == null) {
             return Mono
@@ -298,8 +298,8 @@ public final class QuotasClientImpl implements QuotasClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceName,
-                this.client.getApiVersion(), scope, createQuotaRequest, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), scope, resourceName,
+                this.client.getApiVersion(), createQuotaRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -312,14 +312,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -328,17 +328,17 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceName, String scope,
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
         if (createQuotaRequest == null) {
             return Mono
@@ -348,7 +348,7 @@ public final class QuotasClientImpl implements QuotasClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), resourceName, this.client.getApiVersion(), scope,
+        return service.createOrUpdate(this.client.getEndpoint(), scope, resourceName, this.client.getApiVersion(),
             createQuotaRequest, accept, context);
     }
 
@@ -361,14 +361,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -377,9 +377,9 @@ public final class QuotasClientImpl implements QuotasClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CurrentQuotaLimitBaseInner>, CurrentQuotaLimitBaseInner>
-        beginCreateOrUpdateAsync(String resourceName, String scope, CurrentQuotaLimitBaseInner createQuotaRequest) {
+        beginCreateOrUpdateAsync(String scope, String resourceName, CurrentQuotaLimitBaseInner createQuotaRequest) {
         Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceName, scope, createQuotaRequest);
+            = createOrUpdateWithResponseAsync(scope, resourceName, createQuotaRequest);
         return this.client.<CurrentQuotaLimitBaseInner, CurrentQuotaLimitBaseInner>getLroResult(mono,
             this.client.getHttpPipeline(), CurrentQuotaLimitBaseInner.class, CurrentQuotaLimitBaseInner.class,
             this.client.getContext());
@@ -394,14 +394,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -411,10 +411,10 @@ public final class QuotasClientImpl implements QuotasClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CurrentQuotaLimitBaseInner>, CurrentQuotaLimitBaseInner> beginCreateOrUpdateAsync(
-        String resourceName, String scope, CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
+        String scope, String resourceName, CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceName, scope, createQuotaRequest, context);
+            = createOrUpdateWithResponseAsync(scope, resourceName, createQuotaRequest, context);
         return this.client.<CurrentQuotaLimitBaseInner, CurrentQuotaLimitBaseInner>getLroResult(mono,
             this.client.getHttpPipeline(), CurrentQuotaLimitBaseInner.class, CurrentQuotaLimitBaseInner.class, context);
     }
@@ -428,14 +428,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -444,8 +444,8 @@ public final class QuotasClientImpl implements QuotasClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CurrentQuotaLimitBaseInner>, CurrentQuotaLimitBaseInner>
-        beginCreateOrUpdate(String resourceName, String scope, CurrentQuotaLimitBaseInner createQuotaRequest) {
-        return this.beginCreateOrUpdateAsync(resourceName, scope, createQuotaRequest).getSyncPoller();
+        beginCreateOrUpdate(String scope, String resourceName, CurrentQuotaLimitBaseInner createQuotaRequest) {
+        return this.beginCreateOrUpdateAsync(scope, resourceName, createQuotaRequest).getSyncPoller();
     }
 
     /**
@@ -457,14 +457,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -474,8 +474,8 @@ public final class QuotasClientImpl implements QuotasClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<CurrentQuotaLimitBaseInner>, CurrentQuotaLimitBaseInner> beginCreateOrUpdate(
-        String resourceName, String scope, CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceName, scope, createQuotaRequest, context).getSyncPoller();
+        String scope, String resourceName, CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
+        return this.beginCreateOrUpdateAsync(scope, resourceName, createQuotaRequest, context).getSyncPoller();
     }
 
     /**
@@ -487,14 +487,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -502,9 +502,9 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CurrentQuotaLimitBaseInner> createOrUpdateAsync(String resourceName, String scope,
+    private Mono<CurrentQuotaLimitBaseInner> createOrUpdateAsync(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest) {
-        return beginCreateOrUpdateAsync(resourceName, scope, createQuotaRequest).last()
+        return beginCreateOrUpdateAsync(scope, resourceName, createQuotaRequest).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -517,14 +517,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -533,9 +533,9 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CurrentQuotaLimitBaseInner> createOrUpdateAsync(String resourceName, String scope,
+    private Mono<CurrentQuotaLimitBaseInner> createOrUpdateAsync(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
-        return beginCreateOrUpdateAsync(resourceName, scope, createQuotaRequest, context).last()
+        return beginCreateOrUpdateAsync(scope, resourceName, createQuotaRequest, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -548,14 +548,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota request payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -563,9 +563,9 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CurrentQuotaLimitBaseInner createOrUpdate(String resourceName, String scope,
+    public CurrentQuotaLimitBaseInner createOrUpdate(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest) {
-        return createOrUpdateAsync(resourceName, scope, createQuotaRequest).block();
+        return createOrUpdateAsync(scope, resourceName, createQuotaRequest).block();
     }
 
     /**
@@ -577,14 +577,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota request payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -593,9 +593,9 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CurrentQuotaLimitBaseInner createOrUpdate(String resourceName, String scope,
+    public CurrentQuotaLimitBaseInner createOrUpdate(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
-        return createOrUpdateAsync(resourceName, scope, createQuotaRequest, context).block();
+        return createOrUpdateAsync(scope, resourceName, createQuotaRequest, context).block();
     }
 
     /**
@@ -606,14 +606,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota requests payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -621,17 +621,17 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceName, String scope,
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
         if (createQuotaRequest == null) {
             return Mono
@@ -641,8 +641,8 @@ public final class QuotasClientImpl implements QuotasClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), resourceName, this.client.getApiVersion(),
-                scope, createQuotaRequest, accept, context))
+            .withContext(context -> service.update(this.client.getEndpoint(), scope, resourceName,
+                this.client.getApiVersion(), createQuotaRequest, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -654,14 +654,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota requests payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -670,17 +670,17 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceName, String scope,
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
+        }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
         }
         if (createQuotaRequest == null) {
             return Mono
@@ -690,7 +690,7 @@ public final class QuotasClientImpl implements QuotasClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), resourceName, this.client.getApiVersion(), scope,
+        return service.update(this.client.getEndpoint(), scope, resourceName, this.client.getApiVersion(),
             createQuotaRequest, accept, context);
     }
 
@@ -702,14 +702,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota requests payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -718,8 +718,8 @@ public final class QuotasClientImpl implements QuotasClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CurrentQuotaLimitBaseInner>, CurrentQuotaLimitBaseInner>
-        beginUpdateAsync(String resourceName, String scope, CurrentQuotaLimitBaseInner createQuotaRequest) {
-        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceName, scope, createQuotaRequest);
+        beginUpdateAsync(String scope, String resourceName, CurrentQuotaLimitBaseInner createQuotaRequest) {
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(scope, resourceName, createQuotaRequest);
         return this.client.<CurrentQuotaLimitBaseInner, CurrentQuotaLimitBaseInner>getLroResult(mono,
             this.client.getHttpPipeline(), CurrentQuotaLimitBaseInner.class, CurrentQuotaLimitBaseInner.class,
             this.client.getContext());
@@ -733,14 +733,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota requests payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -750,10 +750,10 @@ public final class QuotasClientImpl implements QuotasClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<CurrentQuotaLimitBaseInner>, CurrentQuotaLimitBaseInner> beginUpdateAsync(
-        String resourceName, String scope, CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
+        String scope, String resourceName, CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono
-            = updateWithResponseAsync(resourceName, scope, createQuotaRequest, context);
+            = updateWithResponseAsync(scope, resourceName, createQuotaRequest, context);
         return this.client.<CurrentQuotaLimitBaseInner, CurrentQuotaLimitBaseInner>getLroResult(mono,
             this.client.getHttpPipeline(), CurrentQuotaLimitBaseInner.class, CurrentQuotaLimitBaseInner.class, context);
     }
@@ -766,14 +766,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota requests payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -781,9 +781,9 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return the {@link SyncPoller} for polling of quota limit.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<CurrentQuotaLimitBaseInner>, CurrentQuotaLimitBaseInner>
-        beginUpdate(String resourceName, String scope, CurrentQuotaLimitBaseInner createQuotaRequest) {
-        return this.beginUpdateAsync(resourceName, scope, createQuotaRequest).getSyncPoller();
+    public SyncPoller<PollResult<CurrentQuotaLimitBaseInner>, CurrentQuotaLimitBaseInner> beginUpdate(String scope,
+        String resourceName, CurrentQuotaLimitBaseInner createQuotaRequest) {
+        return this.beginUpdateAsync(scope, resourceName, createQuotaRequest).getSyncPoller();
     }
 
     /**
@@ -794,14 +794,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota requests payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -810,9 +810,9 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return the {@link SyncPoller} for polling of quota limit.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<CurrentQuotaLimitBaseInner>, CurrentQuotaLimitBaseInner>
-        beginUpdate(String resourceName, String scope, CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
-        return this.beginUpdateAsync(resourceName, scope, createQuotaRequest, context).getSyncPoller();
+    public SyncPoller<PollResult<CurrentQuotaLimitBaseInner>, CurrentQuotaLimitBaseInner> beginUpdate(String scope,
+        String resourceName, CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
+        return this.beginUpdateAsync(scope, resourceName, createQuotaRequest, context).getSyncPoller();
     }
 
     /**
@@ -823,14 +823,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota requests payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -838,9 +838,9 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CurrentQuotaLimitBaseInner> updateAsync(String resourceName, String scope,
+    private Mono<CurrentQuotaLimitBaseInner> updateAsync(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest) {
-        return beginUpdateAsync(resourceName, scope, createQuotaRequest).last()
+        return beginUpdateAsync(scope, resourceName, createQuotaRequest).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -852,14 +852,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota requests payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -868,9 +868,9 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CurrentQuotaLimitBaseInner> updateAsync(String resourceName, String scope,
+    private Mono<CurrentQuotaLimitBaseInner> updateAsync(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
-        return beginUpdateAsync(resourceName, scope, createQuotaRequest, context).last()
+        return beginUpdateAsync(scope, resourceName, createQuotaRequest, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
@@ -882,14 +882,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota requests payload.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -897,9 +897,9 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CurrentQuotaLimitBaseInner update(String resourceName, String scope,
+    public CurrentQuotaLimitBaseInner update(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest) {
-        return updateAsync(resourceName, scope, createQuotaRequest).block();
+        return updateAsync(scope, resourceName, createQuotaRequest).block();
     }
 
     /**
@@ -910,14 +910,14 @@ public final class QuotasClientImpl implements QuotasClient {
      * 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed
      * status of the request.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param createQuotaRequest Quota requests payload.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -926,9 +926,9 @@ public final class QuotasClientImpl implements QuotasClient {
      * @return quota limit.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CurrentQuotaLimitBaseInner update(String resourceName, String scope,
+    public CurrentQuotaLimitBaseInner update(String scope, String resourceName,
         CurrentQuotaLimitBaseInner createQuotaRequest, Context context) {
-        return updateAsync(resourceName, scope, createQuotaRequest, context).block();
+        return updateAsync(scope, resourceName, createQuotaRequest, context).block();
     }
 
     /**
@@ -957,7 +957,7 @@ public final class QuotasClientImpl implements QuotasClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context))
+                context -> service.list(this.client.getEndpoint(), scope, this.client.getApiVersion(), accept, context))
             .<PagedResponse<CurrentQuotaLimitBaseInner>>map(
                 res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                     res.getValue().value(), res.getValue().nextLink(), res.getDeserializedHeaders()))
@@ -990,7 +990,7 @@ public final class QuotasClientImpl implements QuotasClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context)
+        return service.list(this.client.getEndpoint(), scope, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), res.getDeserializedHeaders()));
     }

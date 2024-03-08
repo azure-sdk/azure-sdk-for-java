@@ -27,8 +27,8 @@ public final class UsagesImpl implements Usages {
         this.serviceManager = serviceManager;
     }
 
-    public Response<CurrentUsagesBase> getWithResponse(String resourceName, String scope, Context context) {
-        UsagesGetResponse inner = this.serviceClient().getWithResponse(resourceName, scope, context);
+    public Response<CurrentUsagesBase> getWithResponse(String scope, String resourceName, Context context) {
+        UsagesGetResponse inner = this.serviceClient().getWithResponse(scope, resourceName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CurrentUsagesBaseImpl(inner.getValue(), this.manager()));
@@ -37,8 +37,8 @@ public final class UsagesImpl implements Usages {
         }
     }
 
-    public CurrentUsagesBase get(String resourceName, String scope) {
-        CurrentUsagesBaseInner inner = this.serviceClient().get(resourceName, scope);
+    public CurrentUsagesBase get(String scope, String resourceName) {
+        CurrentUsagesBaseInner inner = this.serviceClient().get(scope, resourceName);
         if (inner != null) {
             return new CurrentUsagesBaseImpl(inner, this.manager());
         } else {
@@ -48,12 +48,12 @@ public final class UsagesImpl implements Usages {
 
     public PagedIterable<CurrentUsagesBase> list(String scope) {
         PagedIterable<CurrentUsagesBaseInner> inner = this.serviceClient().list(scope);
-        return Utils.mapPage(inner, inner1 -> new CurrentUsagesBaseImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new CurrentUsagesBaseImpl(inner1, this.manager()));
     }
 
     public PagedIterable<CurrentUsagesBase> list(String scope, Context context) {
         PagedIterable<CurrentUsagesBaseInner> inner = this.serviceClient().list(scope, context);
-        return Utils.mapPage(inner, inner1 -> new CurrentUsagesBaseImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new CurrentUsagesBaseImpl(inner1, this.manager()));
     }
 
     private UsagesClient serviceClient() {

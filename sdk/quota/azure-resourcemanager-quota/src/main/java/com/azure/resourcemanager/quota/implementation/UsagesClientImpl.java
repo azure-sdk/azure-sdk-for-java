@@ -66,17 +66,17 @@ public final class UsagesClientImpl implements UsagesClient {
         @Get("/{scope}/providers/Microsoft.Quota/usages/{resourceName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<UsagesGetResponse> get(@HostParam("$host") String endpoint, @PathParam("resourceName") String resourceName,
-            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
-            @HeaderParam("Accept") String accept, Context context);
+        Mono<UsagesGetResponse> get(@HostParam("$host") String endpoint,
+            @PathParam(value = "scope", encoded = true) String scope, @PathParam("resourceName") String resourceName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/{scope}/providers/Microsoft.Quota/usages")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<UsagesListResponse> list(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
-            @PathParam(value = "scope", encoded = true) String scope, @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<UsagesListResponse> list(@HostParam("$host") String endpoint,
+            @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -89,49 +89,49 @@ public final class UsagesClientImpl implements UsagesClient {
     /**
      * Get the current usage of a resource.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current usage of a resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<UsagesGetResponse> getWithResponseAsync(String resourceName, String scope) {
+    private Mono<UsagesGetResponse> getWithResponseAsync(String scope, String resourceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), resourceName, this.client.getApiVersion(),
-                scope, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), scope, resourceName,
+                this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the current usage of a resource.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -139,55 +139,55 @@ public final class UsagesClientImpl implements UsagesClient {
      * @return the current usage of a resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<UsagesGetResponse> getWithResponseAsync(String resourceName, String scope, Context context) {
+    private Mono<UsagesGetResponse> getWithResponseAsync(String scope, String resourceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (resourceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
-        }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        if (resourceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resourceName is required and cannot be null."));
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceName, this.client.getApiVersion(), scope, accept,
+        return service.get(this.client.getEndpoint(), scope, resourceName, this.client.getApiVersion(), accept,
             context);
     }
 
     /**
      * Get the current usage of a resource.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current usage of a resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CurrentUsagesBaseInner> getAsync(String resourceName, String scope) {
-        return getWithResponseAsync(resourceName, scope).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<CurrentUsagesBaseInner> getAsync(String scope, String resourceName) {
+        return getWithResponseAsync(scope, resourceName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get the current usage of a resource.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -195,29 +195,29 @@ public final class UsagesClientImpl implements UsagesClient {
      * @return the current usage of a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public UsagesGetResponse getWithResponse(String resourceName, String scope, Context context) {
-        return getWithResponseAsync(resourceName, scope, context).block();
+    public UsagesGetResponse getWithResponse(String scope, String resourceName, Context context) {
+        return getWithResponseAsync(scope, resourceName, context).block();
     }
 
     /**
      * Get the current usage of a resource.
      * 
-     * @param resourceName Resource name for a given resource provider. For example:
-     * - SKU name for Microsoft.Compute
-     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
-     * For Microsoft.Network PublicIPAddresses.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param resourceName Resource name for a given resource provider. For example:
+     * - SKU name for Microsoft.Compute
+     * - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices
+     * For Microsoft.Network PublicIPAddresses.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current usage of a resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CurrentUsagesBaseInner get(String resourceName, String scope) {
-        return getWithResponse(resourceName, scope, Context.NONE).getValue();
+    public CurrentUsagesBaseInner get(String scope, String resourceName) {
+        return getWithResponse(scope, resourceName, Context.NONE).getValue();
     }
 
     /**
@@ -245,7 +245,7 @@ public final class UsagesClientImpl implements UsagesClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context))
+                context -> service.list(this.client.getEndpoint(), scope, this.client.getApiVersion(), accept, context))
             .<PagedResponse<CurrentUsagesBaseInner>>map(
                 res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                     res.getValue().value(), res.getValue().nextLink(), res.getDeserializedHeaders()))
@@ -277,7 +277,7 @@ public final class UsagesClientImpl implements UsagesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, accept, context)
+        return service.list(this.client.getEndpoint(), scope, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), res.getDeserializedHeaders()));
     }

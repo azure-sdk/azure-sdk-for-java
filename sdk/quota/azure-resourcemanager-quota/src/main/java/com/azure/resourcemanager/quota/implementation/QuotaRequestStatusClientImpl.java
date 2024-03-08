@@ -66,16 +66,16 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
         @Get("/{scope}/providers/Microsoft.Quota/quotaRequests/{id}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<QuotaRequestDetailsInner>> get(@HostParam("$host") String endpoint, @PathParam("id") String id,
-            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
-            @HeaderParam("Accept") String accept, Context context);
+        Mono<Response<QuotaRequestDetailsInner>> get(@HostParam("$host") String endpoint,
+            @PathParam(value = "scope", encoded = true) String scope, @PathParam("id") String id,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/{scope}/providers/Microsoft.Quota/quotaRequests")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<QuotaRequestDetailsList>> list(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam(value = "scope", encoded = true) String scope,
+            @PathParam(value = "scope", encoded = true) String scope, @QueryParam("api-version") String apiVersion,
             @QueryParam("$filter") String filter, @QueryParam("$top") Integer top,
             @QueryParam("$skiptoken") String skiptoken, @HeaderParam("Accept") String accept, Context context);
 
@@ -91,11 +91,11 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
      * Get the quota request details and status by quota request ID for the resources of the resource provider at a
      * specific location. The quota request ID **id** is returned in the response of the PUT operation.
      * 
-     * @param id Quota request ID.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param id Quota request ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -103,20 +103,20 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
      * specific location along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<QuotaRequestDetailsInner>> getWithResponseAsync(String id, String scope) {
+    private Mono<Response<QuotaRequestDetailsInner>> getWithResponseAsync(String scope, String id) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (id == null) {
-            return Mono.error(new IllegalArgumentException("Parameter id is required and cannot be null."));
-        }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        if (id == null) {
+            return Mono.error(new IllegalArgumentException("Parameter id is required and cannot be null."));
+        }
         final String accept = "application/json";
         return FluxUtil.withContext(
-            context -> service.get(this.client.getEndpoint(), id, this.client.getApiVersion(), scope, accept, context))
+            context -> service.get(this.client.getEndpoint(), scope, id, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -124,11 +124,11 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
      * Get the quota request details and status by quota request ID for the resources of the resource provider at a
      * specific location. The quota request ID **id** is returned in the response of the PUT operation.
      * 
-     * @param id Quota request ID.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param id Quota request ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -137,31 +137,31 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
      * specific location along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<QuotaRequestDetailsInner>> getWithResponseAsync(String id, String scope, Context context) {
+    private Mono<Response<QuotaRequestDetailsInner>> getWithResponseAsync(String scope, String id, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
-        if (id == null) {
-            return Mono.error(new IllegalArgumentException("Parameter id is required and cannot be null."));
-        }
         if (scope == null) {
             return Mono.error(new IllegalArgumentException("Parameter scope is required and cannot be null."));
         }
+        if (id == null) {
+            return Mono.error(new IllegalArgumentException("Parameter id is required and cannot be null."));
+        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), id, this.client.getApiVersion(), scope, accept, context);
+        return service.get(this.client.getEndpoint(), scope, id, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Get the quota request details and status by quota request ID for the resources of the resource provider at a
      * specific location. The quota request ID **id** is returned in the response of the PUT operation.
      * 
-     * @param id Quota request ID.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param id Quota request ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -169,19 +169,19 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
      * specific location on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<QuotaRequestDetailsInner> getAsync(String id, String scope) {
-        return getWithResponseAsync(id, scope).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<QuotaRequestDetailsInner> getAsync(String scope, String id) {
+        return getWithResponseAsync(scope, id).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get the quota request details and status by quota request ID for the resources of the resource provider at a
      * specific location. The quota request ID **id** is returned in the response of the PUT operation.
      * 
-     * @param id Quota request ID.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param id Quota request ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -190,19 +190,19 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
      * specific location along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<QuotaRequestDetailsInner> getWithResponse(String id, String scope, Context context) {
-        return getWithResponseAsync(id, scope, context).block();
+    public Response<QuotaRequestDetailsInner> getWithResponse(String scope, String id, Context context) {
+        return getWithResponseAsync(scope, id, context).block();
     }
 
     /**
      * Get the quota request details and status by quota request ID for the resources of the resource provider at a
      * specific location. The quota request ID **id** is returned in the response of the PUT operation.
      * 
-     * @param id Quota request ID.
      * @param scope The target Azure resource URI. For example,
      * `/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/qms-test/providers/Microsoft.Batch/batchAccounts/testAccount/`.
      * This is the target Azure resource URI for the List GET operation. If a `{resourceName}` is added after `/quotas`,
      * then it's the target Azure resource URI in the GET operation for the specific resource.
+     * @param id Quota request ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -210,8 +210,8 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
      * specific location.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public QuotaRequestDetailsInner get(String id, String scope) {
-        return getWithResponse(id, scope, Context.NONE).getValue();
+    public QuotaRequestDetailsInner get(String scope, String id) {
+        return getWithResponse(scope, id, Context.NONE).getValue();
     }
 
     /**
@@ -249,7 +249,7 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(), scope, filter,
+            .withContext(context -> service.list(this.client.getEndpoint(), scope, this.client.getApiVersion(), filter,
                 top, skiptoken, accept, context))
             .<PagedResponse<QuotaRequestDetailsInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -293,7 +293,7 @@ public final class QuotaRequestStatusClientImpl implements QuotaRequestStatusCli
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), scope, filter, top, skiptoken, accept,
+            .list(this.client.getEndpoint(), scope, this.client.getApiVersion(), filter, top, skiptoken, accept,
                 context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
