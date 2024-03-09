@@ -1,4 +1,6 @@
+commit: 7a305220cdd71107fe5eca7ae584a5e23435c717
 directory: specification/devcenter/DevCenter
-commit: 74e93fc9fb00380250110fba78dadfebeb93cbf1
-repo: Azure/azure-rest-api-specs
 cleanup: true
+repo: Azure/azure-rest-api-specs
+additionalDirectories: []
+
