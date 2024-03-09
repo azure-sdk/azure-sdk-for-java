@@ -19,7 +19,7 @@ import java.util.List;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("followupCommunication")
 @Immutable
-public final class FollowupCommunicationInference extends FhirR4Extendible1 {
+public final class FollowupCommunicationInference extends RadiologyInsightsInference {
 
     /*
      * Communication date and time.

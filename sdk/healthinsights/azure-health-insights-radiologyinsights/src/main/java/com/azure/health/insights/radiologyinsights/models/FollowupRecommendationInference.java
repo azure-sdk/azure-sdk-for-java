@@ -18,7 +18,7 @@ import java.util.List;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("followupRecommendation")
 @Immutable
-public final class FollowupRecommendationInference extends FhirR4Extendible1 {
+public final class FollowupRecommendationInference extends RadiologyInsightsInference {
 
     /*
      * Date and time are displayed when the procedure is recommended to be done at a specific point in time.
@@ -39,7 +39,7 @@ public final class FollowupRecommendationInference extends FhirR4Extendible1 {
      */
     @Generated
     @JsonProperty(value = "findings")
-    private List<FhirR4Extendible2> findings;
+    private List<FhirR4Extendible1> findings;
 
     /*
      * The conditional value indicates whether or not the sentence containing the recommendation includes a conditional
@@ -130,7 +130,7 @@ public final class FollowupRecommendationInference extends FhirR4Extendible1 {
      * @return the findings value.
      */
     @Generated
-    public List<FhirR4Extendible2> getFindings() {
+    public List<FhirR4Extendible1> getFindings() {
         return this.findings;
     }
 

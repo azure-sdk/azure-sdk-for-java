@@ -5,44 +5,15 @@ package com.azure.health.insights.radiologyinsights.models;
 
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
 /**
- * An inference made by the Radiology Insights model regarding a patient.
- * - AgeMismatch
- * - SexMismatch
- * - LateralityDiscrepancy
- * - CompleteOrderDiscrepancy
- * - LimitedOrderDiscrepancy
- * - Finding
- * - CriticalResult
- * - FollowupRecommendation
- * - RadiologyProcedure
- * - FollowupCommunication.
+ * Finding reference for recommendation.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "kind",
-    defaultImpl = FhirR4Extendible1.class)
-@JsonTypeName("Fhir_R4_Extendible1")
-@JsonSubTypes({
-    @JsonSubTypes.Type(name = "ageMismatch", value = AgeMismatchInference.class),
-    @JsonSubTypes.Type(name = "sexMismatch", value = SexMismatchInference.class),
-    @JsonSubTypes.Type(name = "lateralityDiscrepancy", value = LateralityDiscrepancyInference.class),
-    @JsonSubTypes.Type(name = "completeOrderDiscrepancy", value = CompleteOrderDiscrepancyInference.class),
-    @JsonSubTypes.Type(name = "limitedOrderDiscrepancy", value = LimitedOrderDiscrepancyInference.class),
-    @JsonSubTypes.Type(name = "finding", value = FindingInference.class),
-    @JsonSubTypes.Type(name = "criticalResult", value = CriticalResultInference.class),
-    @JsonSubTypes.Type(name = "radiologyProcedure", value = RadiologyProcedureInference.class),
-    @JsonSubTypes.Type(name = "followupRecommendation", value = FollowupRecommendationInference.class),
-    @JsonSubTypes.Type(name = "followupCommunication", value = FollowupCommunicationInference.class) })
 @Immutable
-public class FhirR4Extendible1 {
+public final class FhirR4Extendible1 {
 
     /*
      * Additional Content defined by implementations
@@ -52,13 +23,6 @@ public class FhirR4Extendible1 {
     private List<FhirR4Extension> extension;
 
     /**
-     * Creates an instance of FhirR4Extendible1 class.
-     */
-    @Generated
-    protected FhirR4Extendible1() {
-    }
-
-    /**
      * Get the extension property: Additional Content defined by implementations.
      *
      * @return the extension value.
@@ -66,5 +30,68 @@ public class FhirR4Extendible1 {
     @Generated
     public List<FhirR4Extension> getExtension() {
         return this.extension;
+    }
+
+    /*
+     * Finding linked to a recommendation.
+     */
+    @Generated
+    @JsonProperty(value = "finding")
+    private FhirR4Observation finding;
+
+    /*
+     * Critical result linked to a recommendation.
+     */
+    @Generated
+    @JsonProperty(value = "criticalFinding")
+    private CriticalResult criticalFinding;
+
+    /*
+     * Recommendation finding status.
+     */
+    @Generated
+    @JsonProperty(value = "recommendationFindingStatus")
+    private RecommendationFindingStatusType recommendationFindingStatus;
+
+    /**
+     * Creates an instance of FhirR4Extendible1 class.
+     *
+     * @param recommendationFindingStatus the recommendationFindingStatus value to set.
+     */
+    @Generated
+    @JsonCreator
+    private FhirR4Extendible1(@JsonProperty(
+        value = "recommendationFindingStatus") RecommendationFindingStatusType recommendationFindingStatus) {
+        this.recommendationFindingStatus = recommendationFindingStatus;
+    }
+
+    /**
+     * Get the finding property: Finding linked to a recommendation.
+     *
+     * @return the finding value.
+     */
+    @Generated
+    public FhirR4Observation getFinding() {
+        return this.finding;
+    }
+
+    /**
+     * Get the criticalFinding property: Critical result linked to a recommendation.
+     *
+     * @return the criticalFinding value.
+     */
+    @Generated
+    public CriticalResult getCriticalFinding() {
+        return this.criticalFinding;
+    }
+
+    /**
+     * Get the recommendationFindingStatus property: Recommendation finding status.
+     *
+     * @return the recommendationFindingStatus value.
+     */
+    @Generated
+    public RecommendationFindingStatusType getRecommendationFindingStatus() {
+        return this.recommendationFindingStatus;
     }
 }
