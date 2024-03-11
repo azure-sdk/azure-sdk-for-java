@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Model sweeping and hyperparameter sweeping related settings. */
+/**
+ * Model sweeping and hyperparameter sweeping related settings.
+ */
 @Fluent
 public final class ImageSweepSettings {
     /*
@@ -23,13 +25,15 @@ public final class ImageSweepSettings {
     @JsonProperty(value = "samplingAlgorithm", required = true)
     private SamplingAlgorithmType samplingAlgorithm;
 
-    /** Creates an instance of ImageSweepSettings class. */
+    /**
+     * Creates an instance of ImageSweepSettings class.
+     */
     public ImageSweepSettings() {
     }
 
     /**
      * Get the earlyTermination property: Type of early termination policy.
-     *
+     * 
      * @return the earlyTermination value.
      */
     public EarlyTerminationPolicy earlyTermination() {
@@ -38,7 +42,7 @@ public final class ImageSweepSettings {
 
     /**
      * Set the earlyTermination property: Type of early termination policy.
-     *
+     * 
      * @param earlyTermination the earlyTermination value to set.
      * @return the ImageSweepSettings object itself.
      */
@@ -49,7 +53,7 @@ public final class ImageSweepSettings {
 
     /**
      * Get the samplingAlgorithm property: [Required] Type of the hyperparameter sampling algorithms.
-     *
+     * 
      * @return the samplingAlgorithm value.
      */
     public SamplingAlgorithmType samplingAlgorithm() {
@@ -58,7 +62,7 @@ public final class ImageSweepSettings {
 
     /**
      * Set the samplingAlgorithm property: [Required] Type of the hyperparameter sampling algorithms.
-     *
+     * 
      * @param samplingAlgorithm the samplingAlgorithm value to set.
      * @return the ImageSweepSettings object itself.
      */
@@ -69,7 +73,7 @@ public final class ImageSweepSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -77,10 +81,8 @@ public final class ImageSweepSettings {
             earlyTermination().validate();
         }
         if (samplingAlgorithm() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property samplingAlgorithm in model ImageSweepSettings"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property samplingAlgorithm in model ImageSweepSettings"));
         }
     }
 

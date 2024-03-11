@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Optimization objective. */
+/**
+ * Optimization objective.
+ */
 @Fluent
 public final class Objective {
     /*
@@ -23,13 +25,15 @@ public final class Objective {
     @JsonProperty(value = "primaryMetric", required = true)
     private String primaryMetric;
 
-    /** Creates an instance of Objective class. */
+    /**
+     * Creates an instance of Objective class.
+     */
     public Objective() {
     }
 
     /**
      * Get the goal property: [Required] Defines supported metric goals for hyperparameter tuning.
-     *
+     * 
      * @return the goal value.
      */
     public Goal goal() {
@@ -38,7 +42,7 @@ public final class Objective {
 
     /**
      * Set the goal property: [Required] Defines supported metric goals for hyperparameter tuning.
-     *
+     * 
      * @param goal the goal value to set.
      * @return the Objective object itself.
      */
@@ -49,7 +53,7 @@ public final class Objective {
 
     /**
      * Get the primaryMetric property: [Required] Name of the metric to optimize.
-     *
+     * 
      * @return the primaryMetric value.
      */
     public String primaryMetric() {
@@ -58,7 +62,7 @@ public final class Objective {
 
     /**
      * Set the primaryMetric property: [Required] Name of the metric to optimize.
-     *
+     * 
      * @param primaryMetric the primaryMetric value to set.
      * @return the Objective object itself.
      */
@@ -69,7 +73,7 @@ public final class Objective {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -78,9 +82,8 @@ public final class Objective {
                 .logExceptionAsError(new IllegalArgumentException("Missing required property goal in model Objective"));
         }
         if (primaryMetric() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property primaryMetric in model Objective"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property primaryMetric in model Objective"));
         }
     }
 

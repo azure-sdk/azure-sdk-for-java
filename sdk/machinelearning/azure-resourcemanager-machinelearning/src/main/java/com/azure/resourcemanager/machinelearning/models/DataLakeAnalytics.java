@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** A DataLakeAnalytics compute. */
+/**
+ * A DataLakeAnalytics compute.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
 @JsonTypeName("DataLakeAnalytics")
 @Fluent
@@ -20,13 +22,15 @@ public final class DataLakeAnalytics extends Compute {
     @JsonProperty(value = "properties")
     private DataLakeAnalyticsSchemaProperties properties;
 
-    /** Creates an instance of DataLakeAnalytics class. */
+    /**
+     * Creates an instance of DataLakeAnalytics class.
+     */
     public DataLakeAnalytics() {
     }
 
     /**
      * Get the properties property: The properties property.
-     *
+     * 
      * @return the properties value.
      */
     public DataLakeAnalyticsSchemaProperties properties() {
@@ -35,7 +39,7 @@ public final class DataLakeAnalytics extends Compute {
 
     /**
      * Set the properties property: The properties property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the DataLakeAnalytics object itself.
      */
@@ -44,28 +48,36 @@ public final class DataLakeAnalytics extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataLakeAnalytics withComputeLocation(String computeLocation) {
         super.withComputeLocation(computeLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataLakeAnalytics withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataLakeAnalytics withResourceId(String resourceId) {
         super.withResourceId(resourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataLakeAnalytics withDisableLocalAuth(Boolean disableLocalAuth) {
         super.withDisableLocalAuth(disableLocalAuth);
@@ -74,7 +86,7 @@ public final class DataLakeAnalytics extends Compute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

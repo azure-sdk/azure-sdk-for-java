@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** AML Token identity configuration. */
+/**
+ * AML Token identity configuration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "identityType")
 @JsonTypeName("AMLToken")
 @Immutable
 public final class AmlToken extends IdentityConfiguration {
-    /** Creates an instance of AmlToken class. */
+    /**
+     * Creates an instance of AmlToken class.
+     */
     public AmlToken() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
