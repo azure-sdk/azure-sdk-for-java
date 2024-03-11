@@ -11,30 +11,27 @@ import com.azure.resourcemanager.security.models.SecurityContactPropertiesNotifi
 import com.azure.resourcemanager.security.models.State;
 import java.util.Arrays;
 
-/** Samples for SecurityContacts Create. */
+/**
+ * Samples for SecurityContacts Create.
+ */
 public final class SecurityContactsCreateSamples {
     /*
-     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2020-01-01-preview/examples/SecurityContacts/CreateSecurityContact_example.json
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2020-01-01-preview/examples/SecurityContacts/
+     * CreateSecurityContact_example.json
      */
     /**
      * Sample code: Create security contact data.
-     *
+     * 
      * @param manager Entry point to SecurityManager.
      */
     public static void createSecurityContactData(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager
-            .securityContacts()
-            .define("default")
-            .withEmails("john@contoso.com;jane@contoso.com")
+        manager.securityContacts().define("default").withEmails("john@contoso.com;jane@contoso.com")
             .withPhone("(214)275-4038")
-            .withAlertNotifications(
-                new SecurityContactPropertiesAlertNotifications()
-                    .withState(State.fromString("On"))
-                    .withMinimalSeverity(MinimalSeverity.LOW))
-            .withNotificationsByRole(
-                new SecurityContactPropertiesNotificationsByRole()
-                    .withState(State.fromString("On"))
-                    .withRoles(Arrays.asList(Roles.OWNER)))
+            .withAlertNotifications(new SecurityContactPropertiesAlertNotifications().withState(State.fromString("On"))
+                .withMinimalSeverity(MinimalSeverity.LOW))
+            .withNotificationsByRole(new SecurityContactPropertiesNotificationsByRole()
+                .withState(State.fromString("On")).withRoles(Arrays.asList(Roles.OWNER)))
             .create();
     }
 }
