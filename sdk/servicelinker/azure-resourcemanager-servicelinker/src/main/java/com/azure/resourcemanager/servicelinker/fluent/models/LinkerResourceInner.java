@@ -15,7 +15,9 @@ import com.azure.resourcemanager.servicelinker.models.TargetServiceBase;
 import com.azure.resourcemanager.servicelinker.models.VNetSolution;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Linker of source and target resource. */
+/**
+ * Linker of source and target resource.
+ */
 @Fluent
 public final class LinkerResourceInner extends ProxyResource {
     /*
@@ -31,8 +33,14 @@ public final class LinkerResourceInner extends ProxyResource {
     private SystemData systemData;
 
     /**
+     * Creates an instance of LinkerResourceInner class.
+     */
+    public LinkerResourceInner() {
+    }
+
+    /**
      * Get the innerProperties property: The properties of the linker.
-     *
+     * 
      * @return the innerProperties value.
      */
     private LinkerProperties innerProperties() {
@@ -41,7 +49,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the systemData property: The system data.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -50,7 +58,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the targetService property: The target service properties.
-     *
+     * 
      * @return the targetService value.
      */
     public TargetServiceBase targetService() {
@@ -59,7 +67,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the targetService property: The target service properties.
-     *
+     * 
      * @param targetService the targetService value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -73,7 +81,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the authInfo property: The authentication type.
-     *
+     * 
      * @return the authInfo value.
      */
     public AuthInfoBase authInfo() {
@@ -82,7 +90,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the authInfo property: The authentication type.
-     *
+     * 
      * @param authInfo the authInfo value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -96,7 +104,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the clientType property: The application client type.
-     *
+     * 
      * @return the clientType value.
      */
     public ClientType clientType() {
@@ -105,7 +113,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the clientType property: The application client type.
-     *
+     * 
      * @param clientType the clientType value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -119,7 +127,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -128,7 +136,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the vNetSolution property: The VNet solution.
-     *
+     * 
      * @return the vNetSolution value.
      */
     public VNetSolution vNetSolution() {
@@ -137,7 +145,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the vNetSolution property: The VNet solution.
-     *
+     * 
      * @param vNetSolution the vNetSolution value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -151,7 +159,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the secretStore property: An option to store secret value in secure place.
-     *
+     * 
      * @return the secretStore value.
      */
     public SecretStore secretStore() {
@@ -160,7 +168,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the secretStore property: An option to store secret value in secure place.
-     *
+     * 
      * @param secretStore the secretStore value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -174,7 +182,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the scope property: connection scope in source service.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -183,7 +191,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the scope property: connection scope in source service.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -197,15 +205,13 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model LinkerResourceInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model LinkerResourceInner"));
         } else {
             innerProperties().validate();
         }
