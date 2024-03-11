@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Auto scale properties. */
+/**
+ * Auto scale properties.
+ */
 @Fluent
 public final class AutoScaleProperties {
     /*
@@ -28,13 +30,15 @@ public final class AutoScaleProperties {
     @JsonProperty(value = "maxNodeCount")
     private Integer maxNodeCount;
 
-    /** Creates an instance of AutoScaleProperties class. */
+    /**
+     * Creates an instance of AutoScaleProperties class.
+     */
     public AutoScaleProperties() {
     }
 
     /**
      * Get the minNodeCount property: The minNodeCount property.
-     *
+     * 
      * @return the minNodeCount value.
      */
     public Integer minNodeCount() {
@@ -43,7 +47,7 @@ public final class AutoScaleProperties {
 
     /**
      * Set the minNodeCount property: The minNodeCount property.
-     *
+     * 
      * @param minNodeCount the minNodeCount value to set.
      * @return the AutoScaleProperties object itself.
      */
@@ -54,7 +58,7 @@ public final class AutoScaleProperties {
 
     /**
      * Get the enabled property: The enabled property.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -63,7 +67,7 @@ public final class AutoScaleProperties {
 
     /**
      * Set the enabled property: The enabled property.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the AutoScaleProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class AutoScaleProperties {
 
     /**
      * Get the maxNodeCount property: The maxNodeCount property.
-     *
+     * 
      * @return the maxNodeCount value.
      */
     public Integer maxNodeCount() {
@@ -83,7 +87,7 @@ public final class AutoScaleProperties {
 
     /**
      * Set the maxNodeCount property: The maxNodeCount property.
-     *
+     * 
      * @param maxNodeCount the maxNodeCount value to set.
      * @return the AutoScaleProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class AutoScaleProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.BatchDeploymentIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of BatchDeployment entities. */
+/**
+ * A paginated list of BatchDeployment entities.
+ */
 @Fluent
 public final class BatchDeploymentTrackedResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class BatchDeploymentTrackedResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<BatchDeploymentInner> value;
 
-    /** Creates an instance of BatchDeploymentTrackedResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of BatchDeploymentTrackedResourceArmPaginatedResult class.
+     */
     public BatchDeploymentTrackedResourceArmPaginatedResult() {
     }
 
     /**
-     * Get the nextLink property: The link to the next page of BatchDeployment objects. If null, there are no additional
-     * pages.
-     *
+     * Get the nextLink property: The link to the next page of BatchDeployment objects. If null, there are no
+     * additional pages.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,9 +43,9 @@ public final class BatchDeploymentTrackedResourceArmPaginatedResult {
     }
 
     /**
-     * Set the nextLink property: The link to the next page of BatchDeployment objects. If null, there are no additional
-     * pages.
-     *
+     * Set the nextLink property: The link to the next page of BatchDeployment objects. If null, there are no
+     * additional pages.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the BatchDeploymentTrackedResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class BatchDeploymentTrackedResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type BatchDeployment.
-     *
+     * 
      * @return the value value.
      */
     public List<BatchDeploymentInner> value() {
@@ -61,7 +65,7 @@ public final class BatchDeploymentTrackedResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type BatchDeployment.
-     *
+     * 
      * @param value the value value to set.
      * @return the BatchDeploymentTrackedResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class BatchDeploymentTrackedResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

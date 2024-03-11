@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
-/** Deployment container liveness/readiness probe configuration. */
+/**
+ * Deployment container liveness/readiness probe configuration.
+ */
 @Fluent
 public final class ProbeSettings {
     /*
@@ -41,13 +43,15 @@ public final class ProbeSettings {
     @JsonProperty(value = "timeout")
     private Duration timeout;
 
-    /** Creates an instance of ProbeSettings class. */
+    /**
+     * Creates an instance of ProbeSettings class.
+     */
     public ProbeSettings() {
     }
 
     /**
      * Get the failureThreshold property: The number of failures to allow before returning an unhealthy status.
-     *
+     * 
      * @return the failureThreshold value.
      */
     public Integer failureThreshold() {
@@ -56,7 +60,7 @@ public final class ProbeSettings {
 
     /**
      * Set the failureThreshold property: The number of failures to allow before returning an unhealthy status.
-     *
+     * 
      * @param failureThreshold the failureThreshold value to set.
      * @return the ProbeSettings object itself.
      */
@@ -67,7 +71,7 @@ public final class ProbeSettings {
 
     /**
      * Get the initialDelay property: The delay before the first probe in ISO 8601 format.
-     *
+     * 
      * @return the initialDelay value.
      */
     public Duration initialDelay() {
@@ -76,7 +80,7 @@ public final class ProbeSettings {
 
     /**
      * Set the initialDelay property: The delay before the first probe in ISO 8601 format.
-     *
+     * 
      * @param initialDelay the initialDelay value to set.
      * @return the ProbeSettings object itself.
      */
@@ -87,7 +91,7 @@ public final class ProbeSettings {
 
     /**
      * Get the period property: The length of time between probes in ISO 8601 format.
-     *
+     * 
      * @return the period value.
      */
     public Duration period() {
@@ -96,7 +100,7 @@ public final class ProbeSettings {
 
     /**
      * Set the period property: The length of time between probes in ISO 8601 format.
-     *
+     * 
      * @param period the period value to set.
      * @return the ProbeSettings object itself.
      */
@@ -107,7 +111,7 @@ public final class ProbeSettings {
 
     /**
      * Get the successThreshold property: The number of successful probes before returning a healthy status.
-     *
+     * 
      * @return the successThreshold value.
      */
     public Integer successThreshold() {
@@ -116,7 +120,7 @@ public final class ProbeSettings {
 
     /**
      * Set the successThreshold property: The number of successful probes before returning a healthy status.
-     *
+     * 
      * @param successThreshold the successThreshold value to set.
      * @return the ProbeSettings object itself.
      */
@@ -127,7 +131,7 @@ public final class ProbeSettings {
 
     /**
      * Get the timeout property: The probe timeout in ISO 8601 format.
-     *
+     * 
      * @return the timeout value.
      */
     public Duration timeout() {
@@ -136,7 +140,7 @@ public final class ProbeSettings {
 
     /**
      * Set the timeout property: The probe timeout in ISO 8601 format.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the ProbeSettings object itself.
      */
@@ -147,7 +151,7 @@ public final class ProbeSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
