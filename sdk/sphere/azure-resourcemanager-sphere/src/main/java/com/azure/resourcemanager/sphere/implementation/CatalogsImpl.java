@@ -32,41 +32,38 @@ public final class CatalogsImpl implements Catalogs {
 
     private final com.azure.resourcemanager.sphere.AzureSphereManager serviceManager;
 
-    public CatalogsImpl(
-        CatalogsClient innerClient, com.azure.resourcemanager.sphere.AzureSphereManager serviceManager) {
+    public CatalogsImpl(CatalogsClient innerClient,
+        com.azure.resourcemanager.sphere.AzureSphereManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
     public PagedIterable<Catalog> list() {
         PagedIterable<CatalogInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new CatalogImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new CatalogImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Catalog> list(Context context) {
         PagedIterable<CatalogInner> inner = this.serviceClient().list(context);
-        return Utils.mapPage(inner, inner1 -> new CatalogImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new CatalogImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Catalog> listByResourceGroup(String resourceGroupName) {
         PagedIterable<CatalogInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return Utils.mapPage(inner, inner1 -> new CatalogImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new CatalogImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Catalog> listByResourceGroup(String resourceGroupName, Context context) {
         PagedIterable<CatalogInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return Utils.mapPage(inner, inner1 -> new CatalogImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new CatalogImpl(inner1, this.manager()));
     }
 
-    public Response<Catalog> getByResourceGroupWithResponse(
-        String resourceGroupName, String catalogName, Context context) {
-        Response<CatalogInner> inner =
-            this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, catalogName, context);
+    public Response<Catalog> getByResourceGroupWithResponse(String resourceGroupName, String catalogName,
+        Context context) {
+        Response<CatalogInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, catalogName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CatalogImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -90,15 +87,12 @@ public final class CatalogsImpl implements Catalogs {
         this.serviceClient().delete(resourceGroupName, catalogName, context);
     }
 
-    public Response<CountDeviceResponse> countDevicesWithResponse(
-        String resourceGroupName, String catalogName, Context context) {
-        Response<CountDeviceResponseInner> inner =
-            this.serviceClient().countDevicesWithResponse(resourceGroupName, catalogName, context);
+    public Response<CountDeviceResponse> countDevicesWithResponse(String resourceGroupName, String catalogName,
+        Context context) {
+        Response<CountDeviceResponseInner> inner
+            = this.serviceClient().countDevicesWithResponse(resourceGroupName, catalogName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CountDeviceResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -116,159 +110,108 @@ public final class CatalogsImpl implements Catalogs {
 
     public PagedIterable<Deployment> listDeployments(String resourceGroupName, String catalogName) {
         PagedIterable<DeploymentInner> inner = this.serviceClient().listDeployments(resourceGroupName, catalogName);
-        return Utils.mapPage(inner, inner1 -> new DeploymentImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DeploymentImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Deployment> listDeployments(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
+    public PagedIterable<Deployment> listDeployments(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize, Context context) {
+        PagedIterable<DeploymentInner> inner = this.serviceClient().listDeployments(resourceGroupName, catalogName,
+            filter, top, skip, maxpagesize, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DeploymentImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<DeviceGroup> listDeviceGroups(String resourceGroupName, String catalogName,
+        ListDeviceGroupsRequest listDeviceGroupsRequest) {
+        PagedIterable<DeviceGroupInner> inner
+            = this.serviceClient().listDeviceGroups(resourceGroupName, catalogName, listDeviceGroupsRequest);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DeviceGroupImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<DeviceGroup> listDeviceGroups(String resourceGroupName, String catalogName,
+        ListDeviceGroupsRequest listDeviceGroupsRequest, String filter, Integer top, Integer skip, Integer maxpagesize,
         Context context) {
-        PagedIterable<DeploymentInner> inner =
-            this
-                .serviceClient()
-                .listDeployments(resourceGroupName, catalogName, filter, top, skip, maxpagesize, context);
-        return Utils.mapPage(inner, inner1 -> new DeploymentImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<DeviceGroup> listDeviceGroups(
-        String resourceGroupName, String catalogName, ListDeviceGroupsRequest listDeviceGroupsRequest) {
-        PagedIterable<DeviceGroupInner> inner =
-            this.serviceClient().listDeviceGroups(resourceGroupName, catalogName, listDeviceGroupsRequest);
-        return Utils.mapPage(inner, inner1 -> new DeviceGroupImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<DeviceGroup> listDeviceGroups(
-        String resourceGroupName,
-        String catalogName,
-        ListDeviceGroupsRequest listDeviceGroupsRequest,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
-        PagedIterable<DeviceGroupInner> inner =
-            this
-                .serviceClient()
-                .listDeviceGroups(
-                    resourceGroupName, catalogName, listDeviceGroupsRequest, filter, top, skip, maxpagesize, context);
-        return Utils.mapPage(inner, inner1 -> new DeviceGroupImpl(inner1, this.manager()));
+        PagedIterable<DeviceGroupInner> inner = this.serviceClient().listDeviceGroups(resourceGroupName, catalogName,
+            listDeviceGroupsRequest, filter, top, skip, maxpagesize, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DeviceGroupImpl(inner1, this.manager()));
     }
 
     public PagedIterable<DeviceInsight> listDeviceInsights(String resourceGroupName, String catalogName) {
-        PagedIterable<DeviceInsightInner> inner =
-            this.serviceClient().listDeviceInsights(resourceGroupName, catalogName);
-        return Utils.mapPage(inner, inner1 -> new DeviceInsightImpl(inner1, this.manager()));
+        PagedIterable<DeviceInsightInner> inner
+            = this.serviceClient().listDeviceInsights(resourceGroupName, catalogName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DeviceInsightImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<DeviceInsight> listDeviceInsights(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
-        PagedIterable<DeviceInsightInner> inner =
-            this
-                .serviceClient()
-                .listDeviceInsights(resourceGroupName, catalogName, filter, top, skip, maxpagesize, context);
-        return Utils.mapPage(inner, inner1 -> new DeviceInsightImpl(inner1, this.manager()));
+    public PagedIterable<DeviceInsight> listDeviceInsights(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize, Context context) {
+        PagedIterable<DeviceInsightInner> inner = this.serviceClient().listDeviceInsights(resourceGroupName,
+            catalogName, filter, top, skip, maxpagesize, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DeviceInsightImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Device> listDevices(String resourceGroupName, String catalogName) {
         PagedIterable<DeviceInner> inner = this.serviceClient().listDevices(resourceGroupName, catalogName);
-        return Utils.mapPage(inner, inner1 -> new DeviceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DeviceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Device> listDevices(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context) {
-        PagedIterable<DeviceInner> inner =
-            this.serviceClient().listDevices(resourceGroupName, catalogName, filter, top, skip, maxpagesize, context);
-        return Utils.mapPage(inner, inner1 -> new DeviceImpl(inner1, this.manager()));
+    public PagedIterable<Device> listDevices(String resourceGroupName, String catalogName, String filter, Integer top,
+        Integer skip, Integer maxpagesize, Context context) {
+        PagedIterable<DeviceInner> inner
+            = this.serviceClient().listDevices(resourceGroupName, catalogName, filter, top, skip, maxpagesize, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new DeviceImpl(inner1, this.manager()));
     }
 
     public Catalog getById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String catalogName = Utils.getValueFromIdByName(id, "catalogs");
+        String catalogName = ResourceManagerUtils.getValueFromIdByName(id, "catalogs");
         if (catalogName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, catalogName, Context.NONE).getValue();
     }
 
     public Response<Catalog> getByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String catalogName = Utils.getValueFromIdByName(id, "catalogs");
+        String catalogName = ResourceManagerUtils.getValueFromIdByName(id, "catalogs");
         if (catalogName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
         }
         return this.getByResourceGroupWithResponse(resourceGroupName, catalogName, context);
     }
 
     public void deleteById(String id) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String catalogName = Utils.getValueFromIdByName(id, "catalogs");
+        String catalogName = ResourceManagerUtils.getValueFromIdByName(id, "catalogs");
         if (catalogName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
         }
         this.delete(resourceGroupName, catalogName, Context.NONE);
     }
 
     public void deleteByIdWithResponse(String id, Context context) {
-        String resourceGroupName = Utils.getValueFromIdByName(id, "resourceGroups");
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
         if (resourceGroupName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String
-                            .format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
         }
-        String catalogName = Utils.getValueFromIdByName(id, "catalogs");
+        String catalogName = ResourceManagerUtils.getValueFromIdByName(id, "catalogs");
         if (catalogName == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'catalogs'.", id)));
         }
         this.delete(resourceGroupName, catalogName, context);
     }
