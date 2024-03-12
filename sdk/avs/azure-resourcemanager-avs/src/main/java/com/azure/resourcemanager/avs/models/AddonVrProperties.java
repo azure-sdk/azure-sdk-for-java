@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The properties of a vSphere Replication (VR) addon. */
+/**
+ * The properties of a vSphere Replication (VR) addon.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "addonType")
 @JsonTypeName("VR")
 @Fluent
@@ -20,13 +22,15 @@ public final class AddonVrProperties extends AddonProperties {
     @JsonProperty(value = "vrsCount", required = true)
     private int vrsCount;
 
-    /** Creates an instance of AddonVrProperties class. */
+    /**
+     * Creates an instance of AddonVrProperties class.
+     */
     public AddonVrProperties() {
     }
 
     /**
      * Get the vrsCount property: The vSphere Replication Server (VRS) count.
-     *
+     * 
      * @return the vrsCount value.
      */
     public int vrsCount() {
@@ -35,7 +39,7 @@ public final class AddonVrProperties extends AddonProperties {
 
     /**
      * Set the vrsCount property: The vSphere Replication Server (VRS) count.
-     *
+     * 
      * @param vrsCount the vrsCount value to set.
      * @return the AddonVrProperties object itself.
      */
@@ -46,7 +50,7 @@ public final class AddonVrProperties extends AddonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
