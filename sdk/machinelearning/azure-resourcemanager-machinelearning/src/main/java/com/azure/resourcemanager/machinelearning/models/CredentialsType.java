@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Enum to determine the datastore credentials type. */
+/**
+ * Enum to determine the datastore credentials type.
+ */
 public final class CredentialsType extends ExpandableStringEnum<CredentialsType> {
-    /** Static value AccountKey for CredentialsType. */
+    /**
+     * Static value AccountKey for CredentialsType.
+     */
     public static final CredentialsType ACCOUNT_KEY = fromString("AccountKey");
 
-    /** Static value Certificate for CredentialsType. */
+    /**
+     * Static value Certificate for CredentialsType.
+     */
     public static final CredentialsType CERTIFICATE = fromString("Certificate");
 
-    /** Static value None for CredentialsType. */
+    /**
+     * Static value None for CredentialsType.
+     */
     public static final CredentialsType NONE = fromString("None");
 
-    /** Static value Sas for CredentialsType. */
+    /**
+     * Static value Sas for CredentialsType.
+     */
     public static final CredentialsType SAS = fromString("Sas");
 
-    /** Static value ServicePrincipal for CredentialsType. */
+    /**
+     * Static value ServicePrincipal for CredentialsType.
+     */
     public static final CredentialsType SERVICE_PRINCIPAL = fromString("ServicePrincipal");
 
     /**
      * Creates a new instance of CredentialsType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class CredentialsType extends ExpandableStringEnum<CredentialsType>
 
     /**
      * Creates or finds a CredentialsType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding CredentialsType.
      */
@@ -47,7 +59,7 @@ public final class CredentialsType extends ExpandableStringEnum<CredentialsType>
 
     /**
      * Gets known CredentialsType values.
-     *
+     * 
      * @return known CredentialsType values.
      */
     public static Collection<CredentialsType> values() {

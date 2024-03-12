@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Instance type schema. */
+/**
+ * Instance type schema.
+ */
 @Fluent
 public final class InstanceTypeSchema {
     /*
@@ -25,13 +27,15 @@ public final class InstanceTypeSchema {
     @JsonProperty(value = "resources")
     private InstanceTypeSchemaResources resources;
 
-    /** Creates an instance of InstanceTypeSchema class. */
+    /**
+     * Creates an instance of InstanceTypeSchema class.
+     */
     public InstanceTypeSchema() {
     }
 
     /**
      * Get the nodeSelector property: Node Selector.
-     *
+     * 
      * @return the nodeSelector value.
      */
     public Map<String, String> nodeSelector() {
@@ -40,7 +44,7 @@ public final class InstanceTypeSchema {
 
     /**
      * Set the nodeSelector property: Node Selector.
-     *
+     * 
      * @param nodeSelector the nodeSelector value to set.
      * @return the InstanceTypeSchema object itself.
      */
@@ -51,7 +55,7 @@ public final class InstanceTypeSchema {
 
     /**
      * Get the resources property: Resource requests/limits for this instance type.
-     *
+     * 
      * @return the resources value.
      */
     public InstanceTypeSchemaResources resources() {
@@ -60,7 +64,7 @@ public final class InstanceTypeSchema {
 
     /**
      * Set the resources property: Resource requests/limits for this instance type.
-     *
+     * 
      * @param resources the resources value to set.
      * @return the InstanceTypeSchema object itself.
      */
@@ -71,7 +75,7 @@ public final class InstanceTypeSchema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

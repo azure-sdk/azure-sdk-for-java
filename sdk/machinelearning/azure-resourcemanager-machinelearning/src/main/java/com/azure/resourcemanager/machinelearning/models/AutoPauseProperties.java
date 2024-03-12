@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Auto pause properties. */
+/**
+ * Auto pause properties.
+ */
 @Fluent
 public final class AutoPauseProperties {
     /*
@@ -22,13 +24,15 @@ public final class AutoPauseProperties {
     @JsonProperty(value = "enabled")
     private Boolean enabled;
 
-    /** Creates an instance of AutoPauseProperties class. */
+    /**
+     * Creates an instance of AutoPauseProperties class.
+     */
     public AutoPauseProperties() {
     }
 
     /**
      * Get the delayInMinutes property: The delayInMinutes property.
-     *
+     * 
      * @return the delayInMinutes value.
      */
     public Integer delayInMinutes() {
@@ -37,7 +41,7 @@ public final class AutoPauseProperties {
 
     /**
      * Set the delayInMinutes property: The delayInMinutes property.
-     *
+     * 
      * @param delayInMinutes the delayInMinutes value to set.
      * @return the AutoPauseProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class AutoPauseProperties {
 
     /**
      * Get the enabled property: The enabled property.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -57,7 +61,7 @@ public final class AutoPauseProperties {
 
     /**
      * Set the enabled property: The enabled property.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the AutoPauseProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class AutoPauseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

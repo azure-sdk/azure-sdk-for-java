@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Strictly used in update requests. */
+/**
+ * Strictly used in update requests.
+ */
 @Fluent
 public final class PartialMinimalTrackedResourceWithSku extends PartialMinimalTrackedResource {
     /*
@@ -17,13 +19,15 @@ public final class PartialMinimalTrackedResourceWithSku extends PartialMinimalTr
     @JsonProperty(value = "sku")
     private PartialSku sku;
 
-    /** Creates an instance of PartialMinimalTrackedResourceWithSku class. */
+    /**
+     * Creates an instance of PartialMinimalTrackedResourceWithSku class.
+     */
     public PartialMinimalTrackedResourceWithSku() {
     }
 
     /**
      * Get the sku property: Sku details required for ARM contract for Autoscaling.
-     *
+     * 
      * @return the sku value.
      */
     public PartialSku sku() {
@@ -32,7 +36,7 @@ public final class PartialMinimalTrackedResourceWithSku extends PartialMinimalTr
 
     /**
      * Set the sku property: Sku details required for ARM contract for Autoscaling.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the PartialMinimalTrackedResourceWithSku object itself.
      */
@@ -41,7 +45,9 @@ public final class PartialMinimalTrackedResourceWithSku extends PartialMinimalTr
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PartialMinimalTrackedResourceWithSku withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -50,7 +56,7 @@ public final class PartialMinimalTrackedResourceWithSku extends PartialMinimalTr
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
