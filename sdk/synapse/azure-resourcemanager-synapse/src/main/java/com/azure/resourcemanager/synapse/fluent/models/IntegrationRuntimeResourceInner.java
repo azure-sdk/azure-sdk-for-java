@@ -10,7 +10,9 @@ import com.azure.resourcemanager.synapse.models.EntityResource;
 import com.azure.resourcemanager.synapse.models.IntegrationRuntime;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Integration runtime resource type. */
+/**
+ * Integration runtime resource type.
+ */
 @Fluent
 public final class IntegrationRuntimeResourceInner extends EntityResource {
     /*
@@ -19,13 +21,15 @@ public final class IntegrationRuntimeResourceInner extends EntityResource {
     @JsonProperty(value = "properties", required = true)
     private IntegrationRuntime properties;
 
-    /** Creates an instance of IntegrationRuntimeResourceInner class. */
+    /**
+     * Creates an instance of IntegrationRuntimeResourceInner class.
+     */
     public IntegrationRuntimeResourceInner() {
     }
 
     /**
      * Get the properties property: Integration runtime properties.
-     *
+     * 
      * @return the properties value.
      */
     public IntegrationRuntime properties() {
@@ -34,7 +38,7 @@ public final class IntegrationRuntimeResourceInner extends EntityResource {
 
     /**
      * Set the properties property: Integration runtime properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the IntegrationRuntimeResourceInner object itself.
      */
@@ -45,17 +49,15 @@ public final class IntegrationRuntimeResourceInner extends EntityResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property properties in model IntegrationRuntimeResourceInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property properties in model IntegrationRuntimeResourceInner"));
         } else {
             properties().validate();
         }

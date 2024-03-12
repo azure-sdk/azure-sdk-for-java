@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.DataMaskingRuleInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response to a list data masking rules request. */
+/**
+ * The response to a list data masking rules request.
+ */
 @Fluent
 public final class DataMaskingRuleListResult {
     /*
@@ -18,13 +20,15 @@ public final class DataMaskingRuleListResult {
     @JsonProperty(value = "value")
     private List<DataMaskingRuleInner> value;
 
-    /** Creates an instance of DataMaskingRuleListResult class. */
+    /**
+     * Creates an instance of DataMaskingRuleListResult class.
+     */
     public DataMaskingRuleListResult() {
     }
 
     /**
      * Get the value property: The list of Sql pool data masking rules.
-     *
+     * 
      * @return the value value.
      */
     public List<DataMaskingRuleInner> value() {
@@ -33,7 +37,7 @@ public final class DataMaskingRuleListResult {
 
     /**
      * Set the value property: The list of Sql pool data masking rules.
-     *
+     * 
      * @param value the value value to set.
      * @return the DataMaskingRuleListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class DataMaskingRuleListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.SqlPoolBlobAuditingPolicy
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of Sql pool auditing settings. */
+/**
+ * A list of Sql pool auditing settings.
+ */
 @Immutable
 public final class SqlPoolBlobAuditingPolicyListResult {
     /*
@@ -24,13 +26,15 @@ public final class SqlPoolBlobAuditingPolicyListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SqlPoolBlobAuditingPolicyListResult class. */
+    /**
+     * Creates an instance of SqlPoolBlobAuditingPolicyListResult class.
+     */
     public SqlPoolBlobAuditingPolicyListResult() {
     }
 
     /**
      * Get the value property: Array of results.
-     *
+     * 
      * @return the value value.
      */
     public List<SqlPoolBlobAuditingPolicyInner> value() {
@@ -39,7 +43,7 @@ public final class SqlPoolBlobAuditingPolicyListResult {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class SqlPoolBlobAuditingPolicyListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

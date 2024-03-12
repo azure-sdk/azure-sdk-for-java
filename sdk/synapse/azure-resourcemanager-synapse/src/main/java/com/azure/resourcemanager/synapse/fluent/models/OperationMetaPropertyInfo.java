@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.synapse.models.OperationMetaServiceSpecification;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** What is this?. */
+/**
+ * What is this?.
+ */
 @Fluent
 public final class OperationMetaPropertyInfo {
     /*
@@ -17,13 +19,15 @@ public final class OperationMetaPropertyInfo {
     @JsonProperty(value = "serviceSpecification")
     private OperationMetaServiceSpecification serviceSpecification;
 
-    /** Creates an instance of OperationMetaPropertyInfo class. */
+    /**
+     * Creates an instance of OperationMetaPropertyInfo class.
+     */
     public OperationMetaPropertyInfo() {
     }
 
     /**
      * Get the serviceSpecification property: Operation service specification.
-     *
+     * 
      * @return the serviceSpecification value.
      */
     public OperationMetaServiceSpecification serviceSpecification() {
@@ -32,7 +36,7 @@ public final class OperationMetaPropertyInfo {
 
     /**
      * Set the serviceSpecification property: Operation service specification.
-     *
+     * 
      * @param serviceSpecification the serviceSpecification value to set.
      * @return the OperationMetaPropertyInfo object itself.
      */
@@ -43,7 +47,7 @@ public final class OperationMetaPropertyInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

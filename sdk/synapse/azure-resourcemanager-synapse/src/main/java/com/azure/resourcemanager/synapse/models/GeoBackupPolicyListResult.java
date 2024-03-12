@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.GeoBackupPolicyInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response to a list geo backup policies request. */
+/**
+ * The response to a list geo backup policies request.
+ */
 @Fluent
 public final class GeoBackupPolicyListResult {
     /*
@@ -18,13 +20,15 @@ public final class GeoBackupPolicyListResult {
     @JsonProperty(value = "value")
     private List<GeoBackupPolicyInner> value;
 
-    /** Creates an instance of GeoBackupPolicyListResult class. */
+    /**
+     * Creates an instance of GeoBackupPolicyListResult class.
+     */
     public GeoBackupPolicyListResult() {
     }
 
     /**
      * Get the value property: The list of geo backup policies.
-     *
+     * 
      * @return the value value.
      */
     public List<GeoBackupPolicyInner> value() {
@@ -33,7 +37,7 @@ public final class GeoBackupPolicyListResult {
 
     /**
      * Set the value property: The list of geo backup policies.
-     *
+     * 
      * @param value the value value to set.
      * @return the GeoBackupPolicyListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class GeoBackupPolicyListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

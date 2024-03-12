@@ -10,7 +10,9 @@ import com.azure.resourcemanager.synapse.models.StateValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Azure Active Directory Only Authentication Info. */
+/**
+ * Azure Active Directory Only Authentication Info.
+ */
 @Fluent
 public final class AzureADOnlyAuthenticationInner extends ProxyResource {
     /*
@@ -19,13 +21,15 @@ public final class AzureADOnlyAuthenticationInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private AzureADOnlyAuthenticationProperties innerProperties;
 
-    /** Creates an instance of AzureADOnlyAuthenticationInner class. */
+    /**
+     * Creates an instance of AzureADOnlyAuthenticationInner class.
+     */
     public AzureADOnlyAuthenticationInner() {
     }
 
     /**
      * Get the innerProperties property: azureADOnlyAuthentication resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AzureADOnlyAuthenticationProperties innerProperties() {
@@ -34,7 +38,7 @@ public final class AzureADOnlyAuthenticationInner extends ProxyResource {
 
     /**
      * Get the azureADOnlyAuthentication property: Azure Active Directory only Authentication enabled.
-     *
+     * 
      * @return the azureADOnlyAuthentication value.
      */
     public Boolean azureADOnlyAuthentication() {
@@ -43,7 +47,7 @@ public final class AzureADOnlyAuthenticationInner extends ProxyResource {
 
     /**
      * Set the azureADOnlyAuthentication property: Azure Active Directory only Authentication enabled.
-     *
+     * 
      * @param azureADOnlyAuthentication the azureADOnlyAuthentication value to set.
      * @return the AzureADOnlyAuthenticationInner object itself.
      */
@@ -57,7 +61,7 @@ public final class AzureADOnlyAuthenticationInner extends ProxyResource {
 
     /**
      * Get the state property: property configuration state.
-     *
+     * 
      * @return the state value.
      */
     public StateValue state() {
@@ -66,7 +70,7 @@ public final class AzureADOnlyAuthenticationInner extends ProxyResource {
 
     /**
      * Get the creationDate property: property configuration date.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -75,7 +79,7 @@ public final class AzureADOnlyAuthenticationInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

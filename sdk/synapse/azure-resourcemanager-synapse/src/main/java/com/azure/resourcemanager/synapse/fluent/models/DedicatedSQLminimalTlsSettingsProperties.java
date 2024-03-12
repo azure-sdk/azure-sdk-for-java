@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of a dedicated sql minimal tls settings. */
+/**
+ * Properties of a dedicated sql minimal tls settings.
+ */
 @Fluent
 public final class DedicatedSQLminimalTlsSettingsProperties {
     /*
@@ -16,13 +18,15 @@ public final class DedicatedSQLminimalTlsSettingsProperties {
     @JsonProperty(value = "minimalTlsVersion")
     private String minimalTlsVersion;
 
-    /** Creates an instance of DedicatedSQLminimalTlsSettingsProperties class. */
+    /**
+     * Creates an instance of DedicatedSQLminimalTlsSettingsProperties class.
+     */
     public DedicatedSQLminimalTlsSettingsProperties() {
     }
 
     /**
      * Get the minimalTlsVersion property: The minimal tls version of the sql server.
-     *
+     * 
      * @return the minimalTlsVersion value.
      */
     public String minimalTlsVersion() {
@@ -31,7 +35,7 @@ public final class DedicatedSQLminimalTlsSettingsProperties {
 
     /**
      * Set the minimalTlsVersion property: The minimal tls version of the sql server.
-     *
+     * 
      * @param minimalTlsVersion the minimalTlsVersion value to set.
      * @return the DedicatedSQLminimalTlsSettingsProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class DedicatedSQLminimalTlsSettingsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

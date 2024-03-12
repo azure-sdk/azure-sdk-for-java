@@ -8,32 +8,48 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The provisioned state of the resource. */
+/**
+ * The provisioned state of the resource.
+ */
 public final class ResourceProvisioningState extends ExpandableStringEnum<ResourceProvisioningState> {
-    /** Static value Running for ResourceProvisioningState. */
+    /**
+     * Static value Running for ResourceProvisioningState.
+     */
     public static final ResourceProvisioningState RUNNING = fromString("Running");
 
-    /** Static value Creating for ResourceProvisioningState. */
+    /**
+     * Static value Creating for ResourceProvisioningState.
+     */
     public static final ResourceProvisioningState CREATING = fromString("Creating");
 
-    /** Static value Deleting for ResourceProvisioningState. */
+    /**
+     * Static value Deleting for ResourceProvisioningState.
+     */
     public static final ResourceProvisioningState DELETING = fromString("Deleting");
 
-    /** Static value Succeeded for ResourceProvisioningState. */
+    /**
+     * Static value Succeeded for ResourceProvisioningState.
+     */
     public static final ResourceProvisioningState SUCCEEDED = fromString("Succeeded");
 
-    /** Static value Failed for ResourceProvisioningState. */
+    /**
+     * Static value Failed for ResourceProvisioningState.
+     */
     public static final ResourceProvisioningState FAILED = fromString("Failed");
 
-    /** Static value Moving for ResourceProvisioningState. */
+    /**
+     * Static value Moving for ResourceProvisioningState.
+     */
     public static final ResourceProvisioningState MOVING = fromString("Moving");
 
-    /** Static value Canceled for ResourceProvisioningState. */
+    /**
+     * Static value Canceled for ResourceProvisioningState.
+     */
     public static final ResourceProvisioningState CANCELED = fromString("Canceled");
 
     /**
      * Creates a new instance of ResourceProvisioningState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -42,7 +58,7 @@ public final class ResourceProvisioningState extends ExpandableStringEnum<Resour
 
     /**
      * Creates or finds a ResourceProvisioningState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ResourceProvisioningState.
      */
@@ -53,7 +69,7 @@ public final class ResourceProvisioningState extends ExpandableStringEnum<Resour
 
     /**
      * Gets known ResourceProvisioningState values.
-     *
+     * 
      * @return known ResourceProvisioningState values.
      */
     public static Collection<ResourceProvisioningState> values() {

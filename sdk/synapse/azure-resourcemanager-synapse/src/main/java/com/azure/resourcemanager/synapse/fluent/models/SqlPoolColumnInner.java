@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.synapse.models.ColumnDataType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A Sql pool column resource. */
+/**
+ * A Sql pool column resource.
+ */
 @Fluent
 public final class SqlPoolColumnInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class SqlPoolColumnInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private SqlPoolColumnProperties innerProperties;
 
-    /** Creates an instance of SqlPoolColumnInner class. */
+    /**
+     * Creates an instance of SqlPoolColumnInner class.
+     */
     public SqlPoolColumnInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SqlPoolColumnProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class SqlPoolColumnInner extends ProxyResource {
 
     /**
      * Get the columnType property: The column data type.
-     *
+     * 
      * @return the columnType value.
      */
     public ColumnDataType columnType() {
@@ -42,7 +46,7 @@ public final class SqlPoolColumnInner extends ProxyResource {
 
     /**
      * Set the columnType property: The column data type.
-     *
+     * 
      * @param columnType the columnType value to set.
      * @return the SqlPoolColumnInner object itself.
      */
@@ -56,7 +60,7 @@ public final class SqlPoolColumnInner extends ProxyResource {
 
     /**
      * Get the isComputed property: Indicates whether column value is computed or not.
-     *
+     * 
      * @return the isComputed value.
      */
     public Boolean isComputed() {
@@ -65,7 +69,7 @@ public final class SqlPoolColumnInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

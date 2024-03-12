@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** A restorable dropped Sql pool. */
+/**
+ * A restorable dropped Sql pool.
+ */
 @Immutable
 public final class RestorableDroppedSqlPoolInner extends ProxyResource {
     /*
@@ -24,13 +26,15 @@ public final class RestorableDroppedSqlPoolInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private RestorableDroppedSqlPoolProperties innerProperties;
 
-    /** Creates an instance of RestorableDroppedSqlPoolInner class. */
+    /**
+     * Creates an instance of RestorableDroppedSqlPoolInner class.
+     */
     public RestorableDroppedSqlPoolInner() {
     }
 
     /**
      * Get the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -39,7 +43,7 @@ public final class RestorableDroppedSqlPoolInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: The properties of a restorable dropped Sql pool.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RestorableDroppedSqlPoolProperties innerProperties() {
@@ -48,7 +52,7 @@ public final class RestorableDroppedSqlPoolInner extends ProxyResource {
 
     /**
      * Get the databaseName property: The name of the database.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -57,7 +61,7 @@ public final class RestorableDroppedSqlPoolInner extends ProxyResource {
 
     /**
      * Get the edition property: The edition of the database.
-     *
+     * 
      * @return the edition value.
      */
     public String edition() {
@@ -66,7 +70,7 @@ public final class RestorableDroppedSqlPoolInner extends ProxyResource {
 
     /**
      * Get the maxSizeBytes property: The max size in bytes of the database.
-     *
+     * 
      * @return the maxSizeBytes value.
      */
     public String maxSizeBytes() {
@@ -75,7 +79,7 @@ public final class RestorableDroppedSqlPoolInner extends ProxyResource {
 
     /**
      * Get the serviceLevelObjective property: The service level objective name of the database.
-     *
+     * 
      * @return the serviceLevelObjective value.
      */
     public String serviceLevelObjective() {
@@ -84,7 +88,7 @@ public final class RestorableDroppedSqlPoolInner extends ProxyResource {
 
     /**
      * Get the elasticPoolName property: The elastic pool name of the database.
-     *
+     * 
      * @return the elasticPoolName value.
      */
     public String elasticPoolName() {
@@ -93,7 +97,7 @@ public final class RestorableDroppedSqlPoolInner extends ProxyResource {
 
     /**
      * Get the creationDate property: The creation date of the database (ISO8601 format).
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -102,7 +106,7 @@ public final class RestorableDroppedSqlPoolInner extends ProxyResource {
 
     /**
      * Get the deletionDate property: The deletion date of the database (ISO8601 format).
-     *
+     * 
      * @return the deletionDate value.
      */
     public OffsetDateTime deletionDate() {
@@ -111,7 +115,7 @@ public final class RestorableDroppedSqlPoolInner extends ProxyResource {
 
     /**
      * Get the earliestRestoreDate property: The earliest restore date of the database (ISO8601 format).
-     *
+     * 
      * @return the earliestRestoreDate value.
      */
     public OffsetDateTime earliestRestoreDate() {
@@ -120,7 +124,7 @@ public final class RestorableDroppedSqlPoolInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

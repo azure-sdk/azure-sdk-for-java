@@ -12,26 +12,30 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** SparkConfiguration response details. */
+/**
+ * SparkConfiguration response details.
+ */
 @Fluent
 public final class SparkConfigurationResourceInner extends EntityResource {
     /*
      * Information about a SparkConfiguration created at the workspace level.
-     *
+     * 
      * SparkConfiguration properties.
      */
     @JsonProperty(value = "properties", required = true)
     private SparkConfigurationInfo innerProperties = new SparkConfigurationInfo();
 
-    /** Creates an instance of SparkConfigurationResourceInner class. */
+    /**
+     * Creates an instance of SparkConfigurationResourceInner class.
+     */
     public SparkConfigurationResourceInner() {
     }
 
     /**
      * Get the innerProperties property: Information about a SparkConfiguration created at the workspace level.
-     *
-     * <p>SparkConfiguration properties.
-     *
+     * 
+     * SparkConfiguration properties.
+     * 
      * @return the innerProperties value.
      */
     private SparkConfigurationInfo innerProperties() {
@@ -40,7 +44,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Get the description property: Description about the SparkConfiguration.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -49,7 +53,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Set the description property: Description about the SparkConfiguration.
-     *
+     * 
      * @param description the description value to set.
      * @return the SparkConfigurationResourceInner object itself.
      */
@@ -63,7 +67,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Get the configs property: SparkConfiguration configs.
-     *
+     * 
      * @return the configs value.
      */
     public Map<String, String> configs() {
@@ -72,7 +76,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Set the configs property: SparkConfiguration configs.
-     *
+     * 
      * @param configs the configs value to set.
      * @return the SparkConfigurationResourceInner object itself.
      */
@@ -86,7 +90,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Get the annotations property: Annotations for SparkConfiguration.
-     *
+     * 
      * @return the annotations value.
      */
     public List<String> annotations() {
@@ -95,7 +99,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Set the annotations property: Annotations for SparkConfiguration.
-     *
+     * 
      * @param annotations the annotations value to set.
      * @return the SparkConfigurationResourceInner object itself.
      */
@@ -109,7 +113,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Get the notes property: additional Notes.
-     *
+     * 
      * @return the notes value.
      */
     public String notes() {
@@ -118,7 +122,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Set the notes property: additional Notes.
-     *
+     * 
      * @param notes the notes value to set.
      * @return the SparkConfigurationResourceInner object itself.
      */
@@ -132,7 +136,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Get the createdBy property: The identity that created the resource.
-     *
+     * 
      * @return the createdBy value.
      */
     public String createdBy() {
@@ -141,7 +145,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Set the createdBy property: The identity that created the resource.
-     *
+     * 
      * @param createdBy the createdBy value to set.
      * @return the SparkConfigurationResourceInner object itself.
      */
@@ -155,7 +159,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Get the created property: The timestamp of resource creation.
-     *
+     * 
      * @return the created value.
      */
     public OffsetDateTime created() {
@@ -164,7 +168,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Set the created property: The timestamp of resource creation.
-     *
+     * 
      * @param created the created value to set.
      * @return the SparkConfigurationResourceInner object itself.
      */
@@ -178,7 +182,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Get the configMergeRule property: SparkConfiguration merge configs.
-     *
+     * 
      * @return the configMergeRule value.
      */
     public Map<String, String> configMergeRule() {
@@ -187,7 +191,7 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Set the configMergeRule property: SparkConfiguration merge configs.
-     *
+     * 
      * @param configMergeRule the configMergeRule value to set.
      * @return the SparkConfigurationResourceInner object itself.
      */
@@ -201,17 +205,15 @@ public final class SparkConfigurationResourceInner extends EntityResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model SparkConfigurationResourceInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model SparkConfigurationResourceInner"));
         } else {
             innerProperties().validate();
         }

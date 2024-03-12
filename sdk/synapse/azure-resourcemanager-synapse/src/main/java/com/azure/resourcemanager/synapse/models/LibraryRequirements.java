@@ -10,8 +10,8 @@ import java.time.OffsetDateTime;
 
 /**
  * Spark pool library version requirements
- *
- * <p>Library requirements for a Big Data pool powered by Apache Spark.
+ * 
+ * Library requirements for a Big Data pool powered by Apache Spark.
  */
 @Fluent
 public final class LibraryRequirements {
@@ -33,13 +33,15 @@ public final class LibraryRequirements {
     @JsonProperty(value = "filename")
     private String filename;
 
-    /** Creates an instance of LibraryRequirements class. */
+    /**
+     * Creates an instance of LibraryRequirements class.
+     */
     public LibraryRequirements() {
     }
 
     /**
      * Get the time property: The last update time of the library requirements file.
-     *
+     * 
      * @return the time value.
      */
     public OffsetDateTime time() {
@@ -48,7 +50,7 @@ public final class LibraryRequirements {
 
     /**
      * Get the content property: The library requirements.
-     *
+     * 
      * @return the content value.
      */
     public String content() {
@@ -57,7 +59,7 @@ public final class LibraryRequirements {
 
     /**
      * Set the content property: The library requirements.
-     *
+     * 
      * @param content the content value to set.
      * @return the LibraryRequirements object itself.
      */
@@ -68,7 +70,7 @@ public final class LibraryRequirements {
 
     /**
      * Get the filename property: The filename of the library requirements file.
-     *
+     * 
      * @return the filename value.
      */
     public String filename() {
@@ -77,7 +79,7 @@ public final class LibraryRequirements {
 
     /**
      * Set the filename property: The filename of the library requirements file.
-     *
+     * 
      * @param filename the filename value to set.
      * @return the LibraryRequirements object itself.
      */
@@ -88,7 +90,7 @@ public final class LibraryRequirements {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

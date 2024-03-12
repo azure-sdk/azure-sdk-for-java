@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.synapse.models.LanguageExtensionName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The language extension object. */
+/**
+ * The language extension object.
+ */
 @Fluent
 public final class LanguageExtensionInner {
     /*
@@ -17,13 +19,15 @@ public final class LanguageExtensionInner {
     @JsonProperty(value = "languageExtensionName")
     private LanguageExtensionName languageExtensionName;
 
-    /** Creates an instance of LanguageExtensionInner class. */
+    /**
+     * Creates an instance of LanguageExtensionInner class.
+     */
     public LanguageExtensionInner() {
     }
 
     /**
      * Get the languageExtensionName property: The language extension name.
-     *
+     * 
      * @return the languageExtensionName value.
      */
     public LanguageExtensionName languageExtensionName() {
@@ -32,7 +36,7 @@ public final class LanguageExtensionInner {
 
     /**
      * Set the languageExtensionName property: The language extension name.
-     *
+     * 
      * @param languageExtensionName the languageExtensionName value to set.
      * @return the LanguageExtensionInner object itself.
      */
@@ -43,7 +47,7 @@ public final class LanguageExtensionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Managed Identity Sql Control Settings
- *
- * <p>Sql Control Settings for workspace managed identity.
+ * 
+ * Sql Control Settings for workspace managed identity.
  */
 @Fluent
 public final class ManagedIdentitySqlControlSettingsModelProperties {
@@ -19,16 +19,17 @@ public final class ManagedIdentitySqlControlSettingsModelProperties {
      * Grant sql control to managed identity
      */
     @JsonProperty(value = "grantSqlControlToManagedIdentity")
-    private ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity
-        grantSqlControlToManagedIdentity;
+    private ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity grantSqlControlToManagedIdentity;
 
-    /** Creates an instance of ManagedIdentitySqlControlSettingsModelProperties class. */
+    /**
+     * Creates an instance of ManagedIdentitySqlControlSettingsModelProperties class.
+     */
     public ManagedIdentitySqlControlSettingsModelProperties() {
     }
 
     /**
      * Get the grantSqlControlToManagedIdentity property: Grant sql control to managed identity.
-     *
+     * 
      * @return the grantSqlControlToManagedIdentity value.
      */
     public ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity
@@ -38,20 +39,19 @@ public final class ManagedIdentitySqlControlSettingsModelProperties {
 
     /**
      * Set the grantSqlControlToManagedIdentity property: Grant sql control to managed identity.
-     *
+     * 
      * @param grantSqlControlToManagedIdentity the grantSqlControlToManagedIdentity value to set.
      * @return the ManagedIdentitySqlControlSettingsModelProperties object itself.
      */
     public ManagedIdentitySqlControlSettingsModelProperties withGrantSqlControlToManagedIdentity(
-        ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity
-            grantSqlControlToManagedIdentity) {
+        ManagedIdentitySqlControlSettingsModelPropertiesGrantSqlControlToManagedIdentity grantSqlControlToManagedIdentity) {
         this.grantSqlControlToManagedIdentity = grantSqlControlToManagedIdentity;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

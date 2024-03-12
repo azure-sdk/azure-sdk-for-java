@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The Sql pool usages. */
+/**
+ * The Sql pool usages.
+ */
 @Immutable
 public final class SqlPoolUsageInner {
     /*
@@ -53,13 +55,15 @@ public final class SqlPoolUsageInner {
     @JsonProperty(value = "nextResetTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime nextResetTime;
 
-    /** Creates an instance of SqlPoolUsageInner class. */
+    /**
+     * Creates an instance of SqlPoolUsageInner class.
+     */
     public SqlPoolUsageInner() {
     }
 
     /**
      * Get the name property: The name of the usage metric.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -68,7 +72,7 @@ public final class SqlPoolUsageInner {
 
     /**
      * Get the resourceName property: The name of the resource.
-     *
+     * 
      * @return the resourceName value.
      */
     public String resourceName() {
@@ -77,7 +81,7 @@ public final class SqlPoolUsageInner {
 
     /**
      * Get the displayName property: The usage metric display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -86,7 +90,7 @@ public final class SqlPoolUsageInner {
 
     /**
      * Get the currentValue property: The current value of the usage metric.
-     *
+     * 
      * @return the currentValue value.
      */
     public Double currentValue() {
@@ -95,7 +99,7 @@ public final class SqlPoolUsageInner {
 
     /**
      * Get the limit property: The current limit of the usage metric.
-     *
+     * 
      * @return the limit value.
      */
     public Double limit() {
@@ -104,7 +108,7 @@ public final class SqlPoolUsageInner {
 
     /**
      * Get the unit property: The units of the usage metric.
-     *
+     * 
      * @return the unit value.
      */
     public String unit() {
@@ -113,7 +117,7 @@ public final class SqlPoolUsageInner {
 
     /**
      * Get the nextResetTime property: The next reset time for the usage metric (ISO8601 format).
-     *
+     * 
      * @return the nextResetTime value.
      */
     public OffsetDateTime nextResetTime() {
@@ -122,7 +126,7 @@ public final class SqlPoolUsageInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

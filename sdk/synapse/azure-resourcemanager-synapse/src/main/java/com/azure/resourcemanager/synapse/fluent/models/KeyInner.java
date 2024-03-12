@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A workspace key. */
+/**
+ * A workspace key.
+ */
 @Fluent
 public final class KeyInner extends ProxyResource {
     /*
@@ -17,13 +19,15 @@ public final class KeyInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private KeyProperties innerProperties;
 
-    /** Creates an instance of KeyInner class. */
+    /**
+     * Creates an instance of KeyInner class.
+     */
     public KeyInner() {
     }
 
     /**
      * Get the innerProperties property: Keys resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private KeyProperties innerProperties() {
@@ -32,7 +36,7 @@ public final class KeyInner extends ProxyResource {
 
     /**
      * Get the isActiveCmk property: Used to activate the workspace after a customer managed key is provided.
-     *
+     * 
      * @return the isActiveCmk value.
      */
     public Boolean isActiveCmk() {
@@ -41,7 +45,7 @@ public final class KeyInner extends ProxyResource {
 
     /**
      * Set the isActiveCmk property: Used to activate the workspace after a customer managed key is provided.
-     *
+     * 
      * @param isActiveCmk the isActiveCmk value to set.
      * @return the KeyInner object itself.
      */
@@ -55,7 +59,7 @@ public final class KeyInner extends ProxyResource {
 
     /**
      * Get the keyVaultUrl property: The Key Vault Url of the workspace key.
-     *
+     * 
      * @return the keyVaultUrl value.
      */
     public String keyVaultUrl() {
@@ -64,7 +68,7 @@ public final class KeyInner extends ProxyResource {
 
     /**
      * Set the keyVaultUrl property: The Key Vault Url of the workspace key.
-     *
+     * 
      * @param keyVaultUrl the keyVaultUrl value to set.
      * @return the KeyInner object itself.
      */
@@ -78,7 +82,7 @@ public final class KeyInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

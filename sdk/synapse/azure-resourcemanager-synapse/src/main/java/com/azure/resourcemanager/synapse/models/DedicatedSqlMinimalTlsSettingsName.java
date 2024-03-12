@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for DedicatedSqlMinimalTlsSettingsName. */
+/**
+ * Defines values for DedicatedSqlMinimalTlsSettingsName.
+ */
 public final class DedicatedSqlMinimalTlsSettingsName extends ExpandableStringEnum<DedicatedSqlMinimalTlsSettingsName> {
-    /** Static value default for DedicatedSqlMinimalTlsSettingsName. */
+    /**
+     * Static value default for DedicatedSqlMinimalTlsSettingsName.
+     */
     public static final DedicatedSqlMinimalTlsSettingsName DEFAULT = fromString("default");
 
     /**
      * Creates a new instance of DedicatedSqlMinimalTlsSettingsName value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class DedicatedSqlMinimalTlsSettingsName extends ExpandableStringEn
 
     /**
      * Creates or finds a DedicatedSqlMinimalTlsSettingsName from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DedicatedSqlMinimalTlsSettingsName.
      */
@@ -35,7 +39,7 @@ public final class DedicatedSqlMinimalTlsSettingsName extends ExpandableStringEn
 
     /**
      * Gets known DedicatedSqlMinimalTlsSettingsName values.
-     *
+     * 
      * @return known DedicatedSqlMinimalTlsSettingsName values.
      */
     public static Collection<DedicatedSqlMinimalTlsSettingsName> values() {

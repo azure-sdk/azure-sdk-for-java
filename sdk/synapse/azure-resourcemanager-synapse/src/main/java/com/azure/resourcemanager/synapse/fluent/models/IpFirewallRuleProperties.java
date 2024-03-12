@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.synapse.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** IP firewall rule properties. */
+/**
+ * IP firewall rule properties.
+ */
 @Fluent
 public final class IpFirewallRuleProperties {
     /*
@@ -29,14 +31,16 @@ public final class IpFirewallRuleProperties {
     @JsonProperty(value = "startIpAddress")
     private String startIpAddress;
 
-    /** Creates an instance of IpFirewallRuleProperties class. */
+    /**
+     * Creates an instance of IpFirewallRuleProperties class.
+     */
     public IpFirewallRuleProperties() {
     }
 
     /**
-     * Get the endIpAddress property: The end IP address of the firewall rule. Must be IPv4 format. Must be greater than
-     * or equal to startIpAddress.
-     *
+     * Get the endIpAddress property: The end IP address of the firewall rule. Must be IPv4 format. Must be greater
+     * than or equal to startIpAddress.
+     * 
      * @return the endIpAddress value.
      */
     public String endIpAddress() {
@@ -44,9 +48,9 @@ public final class IpFirewallRuleProperties {
     }
 
     /**
-     * Set the endIpAddress property: The end IP address of the firewall rule. Must be IPv4 format. Must be greater than
-     * or equal to startIpAddress.
-     *
+     * Set the endIpAddress property: The end IP address of the firewall rule. Must be IPv4 format. Must be greater
+     * than or equal to startIpAddress.
+     * 
      * @param endIpAddress the endIpAddress value to set.
      * @return the IpFirewallRuleProperties object itself.
      */
@@ -57,7 +61,7 @@ public final class IpFirewallRuleProperties {
 
     /**
      * Get the provisioningState property: Resource provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -66,7 +70,7 @@ public final class IpFirewallRuleProperties {
 
     /**
      * Get the startIpAddress property: The start IP address of the firewall rule. Must be IPv4 format.
-     *
+     * 
      * @return the startIpAddress value.
      */
     public String startIpAddress() {
@@ -75,7 +79,7 @@ public final class IpFirewallRuleProperties {
 
     /**
      * Set the startIpAddress property: The start IP address of the firewall rule. Must be IPv4 format.
-     *
+     * 
      * @param startIpAddress the startIpAddress value to set.
      * @return the IpFirewallRuleProperties object itself.
      */
@@ -86,7 +90,7 @@ public final class IpFirewallRuleProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

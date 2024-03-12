@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.synapse.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** IP firewall rule. */
+/**
+ * IP firewall rule.
+ */
 @Fluent
 public final class IpFirewallRuleInfoInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class IpFirewallRuleInfoInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private IpFirewallRuleProperties innerProperties;
 
-    /** Creates an instance of IpFirewallRuleInfoInner class. */
+    /**
+     * Creates an instance of IpFirewallRuleInfoInner class.
+     */
     public IpFirewallRuleInfoInner() {
     }
 
     /**
      * Get the innerProperties property: IP firewall rule properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private IpFirewallRuleProperties innerProperties() {
@@ -32,9 +36,9 @@ public final class IpFirewallRuleInfoInner extends ProxyResource {
     }
 
     /**
-     * Get the endIpAddress property: The end IP address of the firewall rule. Must be IPv4 format. Must be greater than
-     * or equal to startIpAddress.
-     *
+     * Get the endIpAddress property: The end IP address of the firewall rule. Must be IPv4 format. Must be greater
+     * than or equal to startIpAddress.
+     * 
      * @return the endIpAddress value.
      */
     public String endIpAddress() {
@@ -42,9 +46,9 @@ public final class IpFirewallRuleInfoInner extends ProxyResource {
     }
 
     /**
-     * Set the endIpAddress property: The end IP address of the firewall rule. Must be IPv4 format. Must be greater than
-     * or equal to startIpAddress.
-     *
+     * Set the endIpAddress property: The end IP address of the firewall rule. Must be IPv4 format. Must be greater
+     * than or equal to startIpAddress.
+     * 
      * @param endIpAddress the endIpAddress value to set.
      * @return the IpFirewallRuleInfoInner object itself.
      */
@@ -58,7 +62,7 @@ public final class IpFirewallRuleInfoInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Resource provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -67,7 +71,7 @@ public final class IpFirewallRuleInfoInner extends ProxyResource {
 
     /**
      * Get the startIpAddress property: The start IP address of the firewall rule. Must be IPv4 format.
-     *
+     * 
      * @return the startIpAddress value.
      */
     public String startIpAddress() {
@@ -76,7 +80,7 @@ public final class IpFirewallRuleInfoInner extends ProxyResource {
 
     /**
      * Set the startIpAddress property: The start IP address of the firewall rule. Must be IPv4 format.
-     *
+     * 
      * @param startIpAddress the startIpAddress value to set.
      * @return the IpFirewallRuleInfoInner object itself.
      */
@@ -90,7 +94,7 @@ public final class IpFirewallRuleInfoInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
