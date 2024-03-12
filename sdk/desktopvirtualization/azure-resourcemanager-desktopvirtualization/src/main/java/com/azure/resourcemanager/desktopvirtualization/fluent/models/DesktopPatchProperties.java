@@ -7,7 +7,9 @@ package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Desktop properties that can be patched. */
+/**
+ * Desktop properties that can be patched.
+ */
 @Fluent
 public final class DesktopPatchProperties {
     /*
@@ -22,13 +24,15 @@ public final class DesktopPatchProperties {
     @JsonProperty(value = "friendlyName")
     private String friendlyName;
 
-    /** Creates an instance of DesktopPatchProperties class. */
+    /**
+     * Creates an instance of DesktopPatchProperties class.
+     */
     public DesktopPatchProperties() {
     }
 
     /**
      * Get the description property: Description of Desktop.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -37,7 +41,7 @@ public final class DesktopPatchProperties {
 
     /**
      * Set the description property: Description of Desktop.
-     *
+     * 
      * @param description the description value to set.
      * @return the DesktopPatchProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class DesktopPatchProperties {
 
     /**
      * Get the friendlyName property: Friendly name of Desktop.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -57,7 +61,7 @@ public final class DesktopPatchProperties {
 
     /**
      * Set the friendlyName property: Friendly name of Desktop.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the DesktopPatchProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class DesktopPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

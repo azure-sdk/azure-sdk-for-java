@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.MsixPackagePatchProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** MSIX Package properties that can be patched. */
+/**
+ * MSIX Package properties that can be patched.
+ */
 @Fluent
 public final class MsixPackagePatch extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class MsixPackagePatch extends ProxyResource {
     @JsonProperty(value = "properties")
     private MsixPackagePatchProperties innerProperties;
 
-    /** Creates an instance of MsixPackagePatch class. */
+    /**
+     * Creates an instance of MsixPackagePatch class.
+     */
     public MsixPackagePatch() {
     }
 
     /**
      * Get the innerProperties property: Detailed properties for MSIX Package.
-     *
+     * 
      * @return the innerProperties value.
      */
     private MsixPackagePatchProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class MsixPackagePatch extends ProxyResource {
 
     /**
      * Get the isActive property: Set a version of the package to be active across hostpool.
-     *
+     * 
      * @return the isActive value.
      */
     public Boolean isActive() {
@@ -42,7 +46,7 @@ public final class MsixPackagePatch extends ProxyResource {
 
     /**
      * Set the isActive property: Set a version of the package to be active across hostpool.
-     *
+     * 
      * @param isActive the isActive value to set.
      * @return the MsixPackagePatch object itself.
      */
@@ -56,7 +60,7 @@ public final class MsixPackagePatch extends ProxyResource {
 
     /**
      * Get the isRegularRegistration property: Set Registration mode. Regular or Delayed.
-     *
+     * 
      * @return the isRegularRegistration value.
      */
     public Boolean isRegularRegistration() {
@@ -65,7 +69,7 @@ public final class MsixPackagePatch extends ProxyResource {
 
     /**
      * Set the isRegularRegistration property: Set Registration mode. Regular or Delayed.
-     *
+     * 
      * @param isRegularRegistration the isRegularRegistration value to set.
      * @return the MsixPackagePatch object itself.
      */
@@ -79,7 +83,7 @@ public final class MsixPackagePatch extends ProxyResource {
 
     /**
      * Get the displayName property: Display name for MSIX Package.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -88,7 +92,7 @@ public final class MsixPackagePatch extends ProxyResource {
 
     /**
      * Set the displayName property: Display name for MSIX Package.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MsixPackagePatch object itself.
      */
@@ -102,7 +106,7 @@ public final class MsixPackagePatch extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

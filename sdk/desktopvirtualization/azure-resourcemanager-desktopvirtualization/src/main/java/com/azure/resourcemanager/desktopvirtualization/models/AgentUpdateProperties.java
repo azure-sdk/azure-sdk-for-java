@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The session host configuration for updating agent, monitoring agent, and stack component. */
+/**
+ * The session host configuration for updating agent, monitoring agent, and stack component.
+ */
 @Fluent
 public final class AgentUpdateProperties {
     /*
@@ -37,13 +39,15 @@ public final class AgentUpdateProperties {
     @JsonProperty(value = "maintenanceWindows")
     private List<MaintenanceWindowProperties> maintenanceWindows;
 
-    /** Creates an instance of AgentUpdateProperties class. */
+    /**
+     * Creates an instance of AgentUpdateProperties class.
+     */
     public AgentUpdateProperties() {
     }
 
     /**
      * Get the type property: The type of maintenance for session host components.
-     *
+     * 
      * @return the type value.
      */
     public SessionHostComponentUpdateType type() {
@@ -52,7 +56,7 @@ public final class AgentUpdateProperties {
 
     /**
      * Set the type property: The type of maintenance for session host components.
-     *
+     * 
      * @param type the type value to set.
      * @return the AgentUpdateProperties object itself.
      */
@@ -63,7 +67,7 @@ public final class AgentUpdateProperties {
 
     /**
      * Get the useSessionHostLocalTime property: Whether to use localTime of the virtual machine.
-     *
+     * 
      * @return the useSessionHostLocalTime value.
      */
     public Boolean useSessionHostLocalTime() {
@@ -72,7 +76,7 @@ public final class AgentUpdateProperties {
 
     /**
      * Set the useSessionHostLocalTime property: Whether to use localTime of the virtual machine.
-     *
+     * 
      * @param useSessionHostLocalTime the useSessionHostLocalTime value to set.
      * @return the AgentUpdateProperties object itself.
      */
@@ -85,7 +89,7 @@ public final class AgentUpdateProperties {
      * Get the maintenanceWindowTimeZone property: Time zone for maintenance as defined in
      * https://docs.microsoft.com/en-us/dotnet/api/system.timezoneinfo.findsystemtimezonebyid?view=net-5.0. Must be set
      * if useLocalTime is true.
-     *
+     * 
      * @return the maintenanceWindowTimeZone value.
      */
     public String maintenanceWindowTimeZone() {
@@ -96,7 +100,7 @@ public final class AgentUpdateProperties {
      * Set the maintenanceWindowTimeZone property: Time zone for maintenance as defined in
      * https://docs.microsoft.com/en-us/dotnet/api/system.timezoneinfo.findsystemtimezonebyid?view=net-5.0. Must be set
      * if useLocalTime is true.
-     *
+     * 
      * @param maintenanceWindowTimeZone the maintenanceWindowTimeZone value to set.
      * @return the AgentUpdateProperties object itself.
      */
@@ -107,7 +111,7 @@ public final class AgentUpdateProperties {
 
     /**
      * Get the maintenanceWindows property: List of maintenance windows. Maintenance windows are 2 hours long.
-     *
+     * 
      * @return the maintenanceWindows value.
      */
     public List<MaintenanceWindowProperties> maintenanceWindows() {
@@ -116,7 +120,7 @@ public final class AgentUpdateProperties {
 
     /**
      * Set the maintenanceWindows property: List of maintenance windows. Maintenance windows are 2 hours long.
-     *
+     * 
      * @param maintenanceWindows the maintenanceWindows value to set.
      * @return the AgentUpdateProperties object itself.
      */
@@ -127,7 +131,7 @@ public final class AgentUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

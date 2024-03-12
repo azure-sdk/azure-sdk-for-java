@@ -20,25 +20,24 @@ public final class MsixImagesImpl implements MsixImages {
 
     private final com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager;
 
-    public MsixImagesImpl(
-        MsixImagesClient innerClient,
+    public MsixImagesImpl(MsixImagesClient innerClient,
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public PagedIterable<ExpandMsixImage> expand(
-        String resourceGroupName, String hostPoolName, MsixImageUri msixImageUri) {
-        PagedIterable<ExpandMsixImageInner> inner =
-            this.serviceClient().expand(resourceGroupName, hostPoolName, msixImageUri);
-        return Utils.mapPage(inner, inner1 -> new ExpandMsixImageImpl(inner1, this.manager()));
+    public PagedIterable<ExpandMsixImage> expand(String resourceGroupName, String hostPoolName,
+        MsixImageUri msixImageUri) {
+        PagedIterable<ExpandMsixImageInner> inner
+            = this.serviceClient().expand(resourceGroupName, hostPoolName, msixImageUri);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ExpandMsixImageImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ExpandMsixImage> expand(
-        String resourceGroupName, String hostPoolName, MsixImageUri msixImageUri, Context context) {
-        PagedIterable<ExpandMsixImageInner> inner =
-            this.serviceClient().expand(resourceGroupName, hostPoolName, msixImageUri, context);
-        return Utils.mapPage(inner, inner1 -> new ExpandMsixImageImpl(inner1, this.manager()));
+    public PagedIterable<ExpandMsixImage> expand(String resourceGroupName, String hostPoolName,
+        MsixImageUri msixImageUri, Context context) {
+        PagedIterable<ExpandMsixImageInner> inner
+            = this.serviceClient().expand(resourceGroupName, hostPoolName, msixImageUri, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ExpandMsixImageImpl(inner1, this.manager()));
     }
 
     private MsixImagesClient serviceClient() {
