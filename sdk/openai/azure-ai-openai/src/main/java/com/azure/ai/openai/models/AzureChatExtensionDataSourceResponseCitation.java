@@ -111,4 +111,21 @@ public final class AzureChatExtensionDataSourceResponseCitation {
     public String getChunkId() {
         return this.chunkId;
     }
+
+    /*
+     * Additional metadata related to this citation.
+     */
+    @Generated
+    @JsonProperty(value = "metadata")
+    private AzureChatExtensionDataSourceResponseCitationMetadata metadata;
+
+    /**
+     * Get the metadata property: Additional metadata related to this citation.
+     *
+     * @return the metadata value.
+     */
+    @Generated
+    public AzureChatExtensionDataSourceResponseCitationMetadata getMetadata() {
+        return this.metadata;
+    }
 }

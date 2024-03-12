@@ -1074,6 +1074,9 @@ public final class OpenAIClientImpl {
      *                             title: String (Optional)
      *                             url: String (Optional)
      *                             filepath: String (Optional)
+     *                             metadata (Optional): {
+     *                                 chunking: String (Required)
+     *                             }
      *                             chunk_id: String (Optional)
      *                         }
      *                     ]
@@ -1304,6 +1307,9 @@ public final class OpenAIClientImpl {
      *                             title: String (Optional)
      *                             url: String (Optional)
      *                             filepath: String (Optional)
+     *                             metadata (Optional): {
+     *                                 chunking: String (Required)
+     *                             }
      *                             chunk_id: String (Optional)
      *                         }
      *                     ]
