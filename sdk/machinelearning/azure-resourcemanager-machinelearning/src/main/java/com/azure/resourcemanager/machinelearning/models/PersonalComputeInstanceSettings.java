@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Settings for a personal compute instance. */
+/**
+ * Settings for a personal compute instance.
+ */
 @Fluent
 public final class PersonalComputeInstanceSettings {
     /*
@@ -16,13 +18,15 @@ public final class PersonalComputeInstanceSettings {
     @JsonProperty(value = "assignedUser")
     private AssignedUser assignedUser;
 
-    /** Creates an instance of PersonalComputeInstanceSettings class. */
+    /**
+     * Creates an instance of PersonalComputeInstanceSettings class.
+     */
     public PersonalComputeInstanceSettings() {
     }
 
     /**
      * Get the assignedUser property: A user explicitly assigned to a personal compute instance.
-     *
+     * 
      * @return the assignedUser value.
      */
     public AssignedUser assignedUser() {
@@ -31,7 +35,7 @@ public final class PersonalComputeInstanceSettings {
 
     /**
      * Set the assignedUser property: A user explicitly assigned to a personal compute instance.
-     *
+     * 
      * @param assignedUser the assignedUser value to set.
      * @return the PersonalComputeInstanceSettings object itself.
      */
@@ -42,7 +46,7 @@ public final class PersonalComputeInstanceSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

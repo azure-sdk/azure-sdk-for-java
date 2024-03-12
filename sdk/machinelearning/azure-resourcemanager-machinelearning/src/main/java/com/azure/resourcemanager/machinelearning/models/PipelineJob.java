@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Pipeline Job definition: defines generic to MFE attributes. */
+/**
+ * Pipeline Job definition: defines generic to MFE attributes.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobType")
 @JsonTypeName("Pipeline")
 @Fluent
@@ -49,13 +51,15 @@ public final class PipelineJob extends JobBaseProperties {
     @JsonProperty(value = "sourceJobId")
     private String sourceJobId;
 
-    /** Creates an instance of PipelineJob class. */
+    /**
+     * Creates an instance of PipelineJob class.
+     */
     public PipelineJob() {
     }
 
     /**
      * Get the inputs property: Inputs for the pipeline job.
-     *
+     * 
      * @return the inputs value.
      */
     public Map<String, JobInput> inputs() {
@@ -64,7 +68,7 @@ public final class PipelineJob extends JobBaseProperties {
 
     /**
      * Set the inputs property: Inputs for the pipeline job.
-     *
+     * 
      * @param inputs the inputs value to set.
      * @return the PipelineJob object itself.
      */
@@ -75,7 +79,7 @@ public final class PipelineJob extends JobBaseProperties {
 
     /**
      * Get the jobs property: Jobs construct the Pipeline Job.
-     *
+     * 
      * @return the jobs value.
      */
     public Map<String, Object> jobs() {
@@ -84,7 +88,7 @@ public final class PipelineJob extends JobBaseProperties {
 
     /**
      * Set the jobs property: Jobs construct the Pipeline Job.
-     *
+     * 
      * @param jobs the jobs value to set.
      * @return the PipelineJob object itself.
      */
@@ -95,7 +99,7 @@ public final class PipelineJob extends JobBaseProperties {
 
     /**
      * Get the outputs property: Outputs for the pipeline job.
-     *
+     * 
      * @return the outputs value.
      */
     public Map<String, JobOutput> outputs() {
@@ -104,7 +108,7 @@ public final class PipelineJob extends JobBaseProperties {
 
     /**
      * Set the outputs property: Outputs for the pipeline job.
-     *
+     * 
      * @param outputs the outputs value to set.
      * @return the PipelineJob object itself.
      */
@@ -115,7 +119,7 @@ public final class PipelineJob extends JobBaseProperties {
 
     /**
      * Get the settings property: Pipeline settings, for things like ContinueRunOnStepFailure etc.
-     *
+     * 
      * @return the settings value.
      */
     public Object settings() {
@@ -124,7 +128,7 @@ public final class PipelineJob extends JobBaseProperties {
 
     /**
      * Set the settings property: Pipeline settings, for things like ContinueRunOnStepFailure etc.
-     *
+     * 
      * @param settings the settings value to set.
      * @return the PipelineJob object itself.
      */
@@ -135,7 +139,7 @@ public final class PipelineJob extends JobBaseProperties {
 
     /**
      * Get the sourceJobId property: ARM resource ID of source job.
-     *
+     * 
      * @return the sourceJobId value.
      */
     public String sourceJobId() {
@@ -144,7 +148,7 @@ public final class PipelineJob extends JobBaseProperties {
 
     /**
      * Set the sourceJobId property: ARM resource ID of source job.
-     *
+     * 
      * @param sourceJobId the sourceJobId value to set.
      * @return the PipelineJob object itself.
      */
@@ -153,70 +157,90 @@ public final class PipelineJob extends JobBaseProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PipelineJob withComponentId(String componentId) {
         super.withComponentId(componentId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PipelineJob withComputeId(String computeId) {
         super.withComputeId(computeId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PipelineJob withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PipelineJob withExperimentName(String experimentName) {
         super.withExperimentName(experimentName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PipelineJob withIdentity(IdentityConfiguration identity) {
         super.withIdentity(identity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PipelineJob withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PipelineJob withServices(Map<String, JobService> services) {
         super.withServices(services);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PipelineJob withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PipelineJob withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PipelineJob withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -225,31 +249,25 @@ public final class PipelineJob extends JobBaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (inputs() != null) {
-            inputs()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            inputs().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
         if (outputs() != null) {
-            outputs()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            outputs().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of AmlCompute Nodes. */
+/**
+ * Result of AmlCompute Nodes.
+ */
 @Immutable
 public final class AmlComputeNodesInformation {
     /*
@@ -23,13 +25,15 @@ public final class AmlComputeNodesInformation {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of AmlComputeNodesInformation class. */
+    /**
+     * Creates an instance of AmlComputeNodesInformation class.
+     */
     public AmlComputeNodesInformation() {
     }
 
     /**
      * Get the nodes property: The collection of returned AmlCompute nodes details.
-     *
+     * 
      * @return the nodes value.
      */
     public List<AmlComputeNodeInformation> nodes() {
@@ -38,7 +42,7 @@ public final class AmlComputeNodesInformation {
 
     /**
      * Get the nextLink property: The continuation token.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -47,7 +51,7 @@ public final class AmlComputeNodesInformation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

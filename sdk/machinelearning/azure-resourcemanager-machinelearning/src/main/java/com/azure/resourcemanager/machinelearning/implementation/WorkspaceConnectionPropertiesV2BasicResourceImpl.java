@@ -16,8 +16,7 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceImpl
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
 
-    WorkspaceConnectionPropertiesV2BasicResourceImpl(
-        WorkspaceConnectionPropertiesV2BasicResourceInner innerObject,
+    WorkspaceConnectionPropertiesV2BasicResourceImpl(WorkspaceConnectionPropertiesV2BasicResourceInner innerObject,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -57,57 +56,43 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceImpl
 
     private String connectionName;
 
-    public WorkspaceConnectionPropertiesV2BasicResourceImpl withExistingWorkspace(
-        String resourceGroupName, String workspaceName) {
+    public WorkspaceConnectionPropertiesV2BasicResourceImpl withExistingWorkspace(String resourceGroupName,
+        String workspaceName) {
         this.resourceGroupName = resourceGroupName;
         this.workspaceName = workspaceName;
         return this;
     }
 
     public WorkspaceConnectionPropertiesV2BasicResource create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkspaceConnections()
-                .createWithResponse(resourceGroupName, workspaceName, connectionName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkspaceConnections()
+            .createWithResponse(resourceGroupName, workspaceName, connectionName, this.innerModel(), Context.NONE)
+            .getValue();
         return this;
     }
 
     public WorkspaceConnectionPropertiesV2BasicResource create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkspaceConnections()
-                .createWithResponse(resourceGroupName, workspaceName, connectionName, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkspaceConnections()
+            .createWithResponse(resourceGroupName, workspaceName, connectionName, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
-    WorkspaceConnectionPropertiesV2BasicResourceImpl(
-        String name, com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
+    WorkspaceConnectionPropertiesV2BasicResourceImpl(String name,
+        com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = new WorkspaceConnectionPropertiesV2BasicResourceInner();
         this.serviceManager = serviceManager;
         this.connectionName = name;
     }
 
     public WorkspaceConnectionPropertiesV2BasicResource refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkspaceConnections()
-                .getWithResponse(resourceGroupName, workspaceName, connectionName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkspaceConnections()
+            .getWithResponse(resourceGroupName, workspaceName, connectionName, Context.NONE).getValue();
         return this;
     }
 
     public WorkspaceConnectionPropertiesV2BasicResource refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getWorkspaceConnections()
-                .getWithResponse(resourceGroupName, workspaceName, connectionName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getWorkspaceConnections()
+            .getWithResponse(resourceGroupName, workspaceName, connectionName, context).getValue();
         return this;
     }
 

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Datastore account key secrets. */
+/**
+ * Datastore account key secrets.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "secretsType")
 @JsonTypeName("AccountKey")
 @Fluent
@@ -21,13 +23,15 @@ public final class AccountKeyDatastoreSecrets extends DatastoreSecretsInner {
     @JsonProperty(value = "key")
     private String key;
 
-    /** Creates an instance of AccountKeyDatastoreSecrets class. */
+    /**
+     * Creates an instance of AccountKeyDatastoreSecrets class.
+     */
     public AccountKeyDatastoreSecrets() {
     }
 
     /**
      * Get the key property: Storage account key.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -36,7 +40,7 @@ public final class AccountKeyDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Set the key property: Storage account key.
-     *
+     * 
      * @param key the key value to set.
      * @return the AccountKeyDatastoreSecrets object itself.
      */
@@ -47,7 +51,7 @@ public final class AccountKeyDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
