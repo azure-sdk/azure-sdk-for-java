@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.models.UpdateWorkspaceQuotas;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The result of update workspace quota. */
+/**
+ * The result of update workspace quota.
+ */
 @Immutable
 public final class UpdateWorkspaceQuotasResultInner {
     /*
@@ -25,13 +27,15 @@ public final class UpdateWorkspaceQuotasResultInner {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of UpdateWorkspaceQuotasResultInner class. */
+    /**
+     * Creates an instance of UpdateWorkspaceQuotasResultInner class.
+     */
     public UpdateWorkspaceQuotasResultInner() {
     }
 
     /**
      * Get the value property: The list of workspace quota update result.
-     *
+     * 
      * @return the value value.
      */
     public List<UpdateWorkspaceQuotas> value() {
@@ -41,7 +45,7 @@ public final class UpdateWorkspaceQuotasResultInner {
     /**
      * Get the nextLink property: The URI to fetch the next page of workspace quota update result. Call ListNext() with
      * this to fetch the next page of Workspace Quota update result.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -50,7 +54,7 @@ public final class UpdateWorkspaceQuotasResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

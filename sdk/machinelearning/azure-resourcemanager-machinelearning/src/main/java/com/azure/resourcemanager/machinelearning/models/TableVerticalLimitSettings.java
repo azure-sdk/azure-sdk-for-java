@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
-/** Job execution constraints. */
+/**
+ * Job execution constraints.
+ */
 @Fluent
 public final class TableVerticalLimitSettings {
     /*
@@ -54,14 +56,16 @@ public final class TableVerticalLimitSettings {
     @JsonProperty(value = "trialTimeout")
     private Duration trialTimeout;
 
-    /** Creates an instance of TableVerticalLimitSettings class. */
+    /**
+     * Creates an instance of TableVerticalLimitSettings class.
+     */
     public TableVerticalLimitSettings() {
     }
 
     /**
      * Get the enableEarlyTermination property: Enable early termination, determines whether or not if AutoMLJob will
      * terminate early if there is no score improvement in last 20 iterations.
-     *
+     * 
      * @return the enableEarlyTermination value.
      */
     public Boolean enableEarlyTermination() {
@@ -71,7 +75,7 @@ public final class TableVerticalLimitSettings {
     /**
      * Set the enableEarlyTermination property: Enable early termination, determines whether or not if AutoMLJob will
      * terminate early if there is no score improvement in last 20 iterations.
-     *
+     * 
      * @param enableEarlyTermination the enableEarlyTermination value to set.
      * @return the TableVerticalLimitSettings object itself.
      */
@@ -82,7 +86,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Get the exitScore property: Exit score for the AutoML job.
-     *
+     * 
      * @return the exitScore value.
      */
     public Double exitScore() {
@@ -91,7 +95,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Set the exitScore property: Exit score for the AutoML job.
-     *
+     * 
      * @param exitScore the exitScore value to set.
      * @return the TableVerticalLimitSettings object itself.
      */
@@ -102,7 +106,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Get the maxConcurrentTrials property: Maximum Concurrent iterations.
-     *
+     * 
      * @return the maxConcurrentTrials value.
      */
     public Integer maxConcurrentTrials() {
@@ -111,7 +115,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Set the maxConcurrentTrials property: Maximum Concurrent iterations.
-     *
+     * 
      * @param maxConcurrentTrials the maxConcurrentTrials value to set.
      * @return the TableVerticalLimitSettings object itself.
      */
@@ -122,7 +126,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Get the maxCoresPerTrial property: Max cores per iteration.
-     *
+     * 
      * @return the maxCoresPerTrial value.
      */
     public Integer maxCoresPerTrial() {
@@ -131,7 +135,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Set the maxCoresPerTrial property: Max cores per iteration.
-     *
+     * 
      * @param maxCoresPerTrial the maxCoresPerTrial value to set.
      * @return the TableVerticalLimitSettings object itself.
      */
@@ -142,7 +146,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Get the maxTrials property: Number of iterations.
-     *
+     * 
      * @return the maxTrials value.
      */
     public Integer maxTrials() {
@@ -151,7 +155,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Set the maxTrials property: Number of iterations.
-     *
+     * 
      * @param maxTrials the maxTrials value to set.
      * @return the TableVerticalLimitSettings object itself.
      */
@@ -162,7 +166,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Get the timeout property: AutoML job timeout.
-     *
+     * 
      * @return the timeout value.
      */
     public Duration timeout() {
@@ -171,7 +175,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Set the timeout property: AutoML job timeout.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the TableVerticalLimitSettings object itself.
      */
@@ -182,7 +186,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Get the trialTimeout property: Iteration timeout.
-     *
+     * 
      * @return the trialTimeout value.
      */
     public Duration trialTimeout() {
@@ -191,7 +195,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Set the trialTimeout property: Iteration timeout.
-     *
+     * 
      * @param trialTimeout the trialTimeout value to set.
      * @return the TableVerticalLimitSettings object itself.
      */
@@ -202,7 +206,7 @@ public final class TableVerticalLimitSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

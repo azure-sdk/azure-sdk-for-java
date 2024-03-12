@@ -9,16 +9,22 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.Duration;
 
-/** Command Job limit class. */
+/**
+ * Command Job limit class.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobLimitsType")
 @JsonTypeName("Command")
 @Fluent
 public final class CommandJobLimits extends JobLimits {
-    /** Creates an instance of CommandJobLimits class. */
+    /**
+     * Creates an instance of CommandJobLimits class.
+     */
     public CommandJobLimits() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJobLimits withTimeout(Duration timeout) {
         super.withTimeout(timeout);
@@ -27,7 +33,7 @@ public final class CommandJobLimits extends JobLimits {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

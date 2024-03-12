@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The CronTrigger model. */
+/**
+ * The CronTrigger model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "triggerType")
 @JsonTypeName("Cron")
 @Fluent
@@ -22,14 +24,16 @@ public final class CronTrigger extends TriggerBase {
     @JsonProperty(value = "expression", required = true)
     private String expression;
 
-    /** Creates an instance of CronTrigger class. */
+    /**
+     * Creates an instance of CronTrigger class.
+     */
     public CronTrigger() {
     }
 
     /**
-     * Get the expression property: [Required] Specifies cron expression of schedule. The expression should follow
-     * NCronTab format.
-     *
+     * Get the expression property: [Required] Specifies cron expression of schedule.
+     * The expression should follow NCronTab format.
+     * 
      * @return the expression value.
      */
     public String expression() {
@@ -37,9 +41,9 @@ public final class CronTrigger extends TriggerBase {
     }
 
     /**
-     * Set the expression property: [Required] Specifies cron expression of schedule. The expression should follow
-     * NCronTab format.
-     *
+     * Set the expression property: [Required] Specifies cron expression of schedule.
+     * The expression should follow NCronTab format.
+     * 
      * @param expression the expression value to set.
      * @return the CronTrigger object itself.
      */
@@ -48,21 +52,27 @@ public final class CronTrigger extends TriggerBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CronTrigger withEndTime(String endTime) {
         super.withEndTime(endTime);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CronTrigger withStartTime(String startTime) {
         super.withStartTime(startTime);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CronTrigger withTimeZone(String timeZone) {
         super.withTimeZone(timeZone);
@@ -71,16 +81,15 @@ public final class CronTrigger extends TriggerBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (expression() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property expression in model CronTrigger"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property expression in model CronTrigger"));
         }
     }
 

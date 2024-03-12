@@ -11,11 +11,13 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceConnectionPropertiesV2BasicResourceInner;
 
-/** An instance of this class provides access to all the operations defined in WorkspaceConnectionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in WorkspaceConnectionsClient.
+ */
 public interface WorkspaceConnectionsClient {
     /**
      * The create operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param connectionName Friendly name of the workspace connection.
@@ -27,16 +29,13 @@ public interface WorkspaceConnectionsClient {
      * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkspaceConnectionPropertiesV2BasicResourceInner> createWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String connectionName,
-        WorkspaceConnectionPropertiesV2BasicResourceInner parameters,
+    Response<WorkspaceConnectionPropertiesV2BasicResourceInner> createWithResponse(String resourceGroupName,
+        String workspaceName, String connectionName, WorkspaceConnectionPropertiesV2BasicResourceInner parameters,
         Context context);
 
     /**
      * The create operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param connectionName Friendly name of the workspace connection.
@@ -47,15 +46,12 @@ public interface WorkspaceConnectionsClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkspaceConnectionPropertiesV2BasicResourceInner create(
-        String resourceGroupName,
-        String workspaceName,
-        String connectionName,
-        WorkspaceConnectionPropertiesV2BasicResourceInner parameters);
+    WorkspaceConnectionPropertiesV2BasicResourceInner create(String resourceGroupName, String workspaceName,
+        String connectionName, WorkspaceConnectionPropertiesV2BasicResourceInner parameters);
 
     /**
      * The get operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param connectionName Friendly name of the workspace connection.
@@ -66,12 +62,12 @@ public interface WorkspaceConnectionsClient {
      * @return the response body along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<WorkspaceConnectionPropertiesV2BasicResourceInner> getWithResponse(
-        String resourceGroupName, String workspaceName, String connectionName, Context context);
+    Response<WorkspaceConnectionPropertiesV2BasicResourceInner> getWithResponse(String resourceGroupName,
+        String workspaceName, String connectionName, Context context);
 
     /**
      * The get operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param connectionName Friendly name of the workspace connection.
@@ -81,12 +77,12 @@ public interface WorkspaceConnectionsClient {
      * @return the response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    WorkspaceConnectionPropertiesV2BasicResourceInner get(
-        String resourceGroupName, String workspaceName, String connectionName);
+    WorkspaceConnectionPropertiesV2BasicResourceInner get(String resourceGroupName, String workspaceName,
+        String connectionName);
 
     /**
      * The delete operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param connectionName Friendly name of the workspace connection.
@@ -97,12 +93,12 @@ public interface WorkspaceConnectionsClient {
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteWithResponse(
-        String resourceGroupName, String workspaceName, String connectionName, Context context);
+    Response<Void> deleteWithResponse(String resourceGroupName, String workspaceName, String connectionName,
+        Context context);
 
     /**
      * The delete operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param connectionName Friendly name of the workspace connection.
@@ -115,7 +111,7 @@ public interface WorkspaceConnectionsClient {
 
     /**
      * The list operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -124,12 +120,12 @@ public interface WorkspaceConnectionsClient {
      * @return the paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> list(
-        String resourceGroupName, String workspaceName);
+    PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> list(String resourceGroupName,
+        String workspaceName);
 
     /**
      * The list operation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param target Target of the workspace connection.
@@ -141,6 +137,6 @@ public interface WorkspaceConnectionsClient {
      * @return the paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> list(
-        String resourceGroupName, String workspaceName, String target, String category, Context context);
+    PagedIterable<WorkspaceConnectionPropertiesV2BasicResourceInner> list(String resourceGroupName,
+        String workspaceName, String target, String category, Context context);
 }
