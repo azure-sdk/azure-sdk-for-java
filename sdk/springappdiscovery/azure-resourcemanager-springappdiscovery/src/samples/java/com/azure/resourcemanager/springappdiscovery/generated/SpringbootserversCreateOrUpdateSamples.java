@@ -13,7 +13,7 @@ import java.util.Arrays;
 public final class SpringbootserversCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2023-01-01-preview/
+     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
      * examples/springbootservers_CreateOrUpdate_MaximumSet_Gen.json
      */
     /**
@@ -34,7 +34,7 @@ public final class SpringbootserversCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2023-01-01-preview/
+     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
      * examples/springbootservers_CreateOrUpdate_MinimumSet_Gen.json
      */
     /**

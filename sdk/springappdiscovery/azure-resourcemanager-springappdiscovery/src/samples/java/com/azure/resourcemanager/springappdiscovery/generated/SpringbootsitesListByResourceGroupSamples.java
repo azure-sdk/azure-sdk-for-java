@@ -10,7 +10,7 @@ package com.azure.resourcemanager.springappdiscovery.generated;
 public final class SpringbootsitesListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2023-01-01-preview/
+     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
      * examples/springbootsites_ListByResourceGroup_MinimumSet_Gen.json
      */
     /**
@@ -25,7 +25,7 @@ public final class SpringbootsitesListByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2023-01-01-preview/
+     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
      * examples/springbootsites_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**

@@ -12,7 +12,7 @@ import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsPatch;
 public final class SpringbootappsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2023-01-01-preview/
+     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
      * examples/springbootapps_Update_MinimumSet_Gen.json
      */
     /**
@@ -29,7 +29,7 @@ public final class SpringbootappsUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2023-01-01-preview/
+     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
      * examples/springbootapps_Update_MaximumSet_Gen.json
      */
     /**
