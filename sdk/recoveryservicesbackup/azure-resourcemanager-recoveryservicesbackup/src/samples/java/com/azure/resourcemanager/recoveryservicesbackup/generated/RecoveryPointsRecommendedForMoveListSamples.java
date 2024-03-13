@@ -13,7 +13,7 @@ import java.util.Arrays;
 public final class RecoveryPointsRecommendedForMoveListSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-01-01/examples/
      * AzureIaasVm/RecoveryPointsRecommendedForMove_List.json
      */
     /**

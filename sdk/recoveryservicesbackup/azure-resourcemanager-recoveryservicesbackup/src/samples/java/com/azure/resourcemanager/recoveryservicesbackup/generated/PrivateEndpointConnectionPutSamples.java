@@ -19,7 +19,7 @@ import java.util.Arrays;
 public final class PrivateEndpointConnectionPutSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-01-01/examples/
      * PrivateEndpointConnection/PutPrivateEndpointConnection.json
      */
     /**
