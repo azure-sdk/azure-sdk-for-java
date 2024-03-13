@@ -7,7 +7,9 @@ package com.azure.resourcemanager.servicelinker.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An option to store secret value in secure place. */
+/**
+ * An option to store secret value in secure place.
+ */
 @Fluent
 public final class SecretStore {
     /*
@@ -16,9 +18,21 @@ public final class SecretStore {
     @JsonProperty(value = "keyVaultId")
     private String keyVaultId;
 
+    /*
+     * The key vault secret name to store secret, only valid when storing one secret
+     */
+    @JsonProperty(value = "keyVaultSecretName")
+    private String keyVaultSecretName;
+
+    /**
+     * Creates an instance of SecretStore class.
+     */
+    public SecretStore() {
+    }
+
     /**
      * Get the keyVaultId property: The key vault id to store secret.
-     *
+     * 
      * @return the keyVaultId value.
      */
     public String keyVaultId() {
@@ -27,7 +41,7 @@ public final class SecretStore {
 
     /**
      * Set the keyVaultId property: The key vault id to store secret.
-     *
+     * 
      * @param keyVaultId the keyVaultId value to set.
      * @return the SecretStore object itself.
      */
@@ -37,8 +51,30 @@ public final class SecretStore {
     }
 
     /**
+     * Get the keyVaultSecretName property: The key vault secret name to store secret, only valid when storing one
+     * secret.
+     * 
+     * @return the keyVaultSecretName value.
+     */
+    public String keyVaultSecretName() {
+        return this.keyVaultSecretName;
+    }
+
+    /**
+     * Set the keyVaultSecretName property: The key vault secret name to store secret, only valid when storing one
+     * secret.
+     * 
+     * @param keyVaultSecretName the keyVaultSecretName value to set.
+     * @return the SecretStore object itself.
+     */
+    public SecretStore withKeyVaultSecretName(String keyVaultSecretName) {
+        this.keyVaultSecretName = keyVaultSecretName;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
