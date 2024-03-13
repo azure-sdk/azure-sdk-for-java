@@ -4,6 +4,8 @@
 
 package com.azure.resourcemanager.relay.implementation;
 
+import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.relay.fluent.models.HybridConnectionInner;
 import com.azure.resourcemanager.relay.models.HybridConnection;
@@ -27,6 +29,14 @@ public final class HybridConnectionImpl
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String location() {
+        return this.innerModel().location();
+    }
+
     public OffsetDateTime createdAt() {
         return this.innerModel().createdAt();
     }
@@ -45,6 +55,14 @@ public final class HybridConnectionImpl
 
     public String userMetadata() {
         return this.innerModel().userMetadata();
+    }
+
+    public Region region() {
+        return Region.fromName(this.regionName());
+    }
+
+    public String regionName() {
+        return this.location();
     }
 
     public String resourceGroupName() {
@@ -72,24 +90,16 @@ public final class HybridConnectionImpl
     }
 
     public HybridConnection create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHybridConnections()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, namespaceName, hybridConnectionName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getHybridConnections().createOrUpdateWithResponse(resourceGroupName,
+                namespaceName, hybridConnectionName, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public HybridConnection create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHybridConnections()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, namespaceName, hybridConnectionName, this.innerModel(), context)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getHybridConnections().createOrUpdateWithResponse(resourceGroupName,
+                namespaceName, hybridConnectionName, this.innerModel(), context).getValue();
         return this;
     }
 
@@ -104,53 +114,37 @@ public final class HybridConnectionImpl
     }
 
     public HybridConnection apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHybridConnections()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, namespaceName, hybridConnectionName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getHybridConnections().createOrUpdateWithResponse(resourceGroupName,
+                namespaceName, hybridConnectionName, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public HybridConnection apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHybridConnections()
-                .createOrUpdateWithResponse(
-                    resourceGroupName, namespaceName, hybridConnectionName, this.innerModel(), context)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getHybridConnections().createOrUpdateWithResponse(resourceGroupName,
+                namespaceName, hybridConnectionName, this.innerModel(), context).getValue();
         return this;
     }
 
-    HybridConnectionImpl(
-        HybridConnectionInner innerObject, com.azure.resourcemanager.relay.RelayManager serviceManager) {
+    HybridConnectionImpl(HybridConnectionInner innerObject,
+        com.azure.resourcemanager.relay.RelayManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.namespaceName = Utils.getValueFromIdByName(innerObject.id(), "namespaces");
-        this.hybridConnectionName = Utils.getValueFromIdByName(innerObject.id(), "hybridConnections");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.namespaceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "namespaces");
+        this.hybridConnectionName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "hybridConnections");
     }
 
     public HybridConnection refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHybridConnections()
-                .getWithResponse(resourceGroupName, namespaceName, hybridConnectionName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getHybridConnections()
+            .getWithResponse(resourceGroupName, namespaceName, hybridConnectionName, Context.NONE).getValue();
         return this;
     }
 
     public HybridConnection refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getHybridConnections()
-                .getWithResponse(resourceGroupName, namespaceName, hybridConnectionName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getHybridConnections()
+            .getWithResponse(resourceGroupName, namespaceName, hybridConnectionName, context).getValue();
         return this;
     }
 

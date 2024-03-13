@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.relay.implementation;
 
 import com.azure.core.http.rest.Response;
+import com.azure.core.management.Region;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.relay.fluent.models.AuthorizationRuleInner;
 import com.azure.resourcemanager.relay.models.AccessKeys;
@@ -32,6 +34,14 @@ public final class AuthorizationRuleImpl
         return this.innerModel().type();
     }
 
+    public SystemData systemData() {
+        return this.innerModel().systemData();
+    }
+
+    public String location() {
+        return this.innerModel().location();
+    }
+
     public List<AccessRights> rights() {
         List<AccessRights> inner = this.innerModel().rights();
         if (inner != null) {
@@ -39,6 +49,14 @@ public final class AuthorizationRuleImpl
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public Region region() {
+        return Region.fromName(this.regionName());
+    }
+
+    public String regionName() {
+        return this.location();
     }
 
     public String resourceGroupName() {
@@ -66,24 +84,14 @@ public final class AuthorizationRuleImpl
     }
 
     public AuthorizationRule create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNamespaces()
-                .createOrUpdateAuthorizationRuleWithResponse(
-                    resourceGroupName, namespaceName, authorizationRuleName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getNamespaces().createOrUpdateAuthorizationRuleWithResponse(
+            resourceGroupName, namespaceName, authorizationRuleName, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public AuthorizationRule create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNamespaces()
-                .createOrUpdateAuthorizationRuleWithResponse(
-                    resourceGroupName, namespaceName, authorizationRuleName, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getNamespaces().createOrUpdateAuthorizationRuleWithResponse(
+            resourceGroupName, namespaceName, authorizationRuleName, this.innerModel(), context).getValue();
         return this;
     }
 
@@ -98,76 +106,57 @@ public final class AuthorizationRuleImpl
     }
 
     public AuthorizationRule apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNamespaces()
-                .createOrUpdateAuthorizationRuleWithResponse(
-                    resourceGroupName, namespaceName, authorizationRuleName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getNamespaces().createOrUpdateAuthorizationRuleWithResponse(
+            resourceGroupName, namespaceName, authorizationRuleName, this.innerModel(), Context.NONE).getValue();
         return this;
     }
 
     public AuthorizationRule apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNamespaces()
-                .createOrUpdateAuthorizationRuleWithResponse(
-                    resourceGroupName, namespaceName, authorizationRuleName, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getNamespaces().createOrUpdateAuthorizationRuleWithResponse(
+            resourceGroupName, namespaceName, authorizationRuleName, this.innerModel(), context).getValue();
         return this;
     }
 
-    AuthorizationRuleImpl(
-        AuthorizationRuleInner innerObject, com.azure.resourcemanager.relay.RelayManager serviceManager) {
+    AuthorizationRuleImpl(AuthorizationRuleInner innerObject,
+        com.azure.resourcemanager.relay.RelayManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.namespaceName = Utils.getValueFromIdByName(innerObject.id(), "namespaces");
-        this.authorizationRuleName = Utils.getValueFromIdByName(innerObject.id(), "authorizationRules");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.namespaceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "namespaces");
+        this.authorizationRuleName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "authorizationRules");
     }
 
     public AuthorizationRule refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNamespaces()
-                .getAuthorizationRuleWithResponse(resourceGroupName, namespaceName, authorizationRuleName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getNamespaces()
+            .getAuthorizationRuleWithResponse(resourceGroupName, namespaceName, authorizationRuleName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public AuthorizationRule refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getNamespaces()
-                .getAuthorizationRuleWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getNamespaces()
+            .getAuthorizationRuleWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context)
+            .getValue();
         return this;
+    }
+
+    public Response<AccessKeys> listKeysWithResponse(Context context) {
+        return serviceManager.namespaces().listKeysWithResponse(resourceGroupName, namespaceName, authorizationRuleName,
+            context);
     }
 
     public AccessKeys listKeys() {
         return serviceManager.namespaces().listKeys(resourceGroupName, namespaceName, authorizationRuleName);
     }
 
-    public Response<AccessKeys> listKeysWithResponse(Context context) {
-        return serviceManager
-            .namespaces()
-            .listKeysWithResponse(resourceGroupName, namespaceName, authorizationRuleName, context);
+    public Response<AccessKeys> regenerateKeysWithResponse(RegenerateAccessKeyParameters parameters, Context context) {
+        return serviceManager.namespaces().regenerateKeysWithResponse(resourceGroupName, namespaceName,
+            authorizationRuleName, parameters, context);
     }
 
     public AccessKeys regenerateKeys(RegenerateAccessKeyParameters parameters) {
-        return serviceManager
-            .namespaces()
-            .regenerateKeys(resourceGroupName, namespaceName, authorizationRuleName, parameters);
-    }
-
-    public Response<AccessKeys> regenerateKeysWithResponse(RegenerateAccessKeyParameters parameters, Context context) {
-        return serviceManager
-            .namespaces()
-            .regenerateKeysWithResponse(resourceGroupName, namespaceName, authorizationRuleName, parameters, context);
+        return serviceManager.namespaces().regenerateKeys(resourceGroupName, namespaceName, authorizationRuleName,
+            parameters);
     }
 
     public AuthorizationRuleImpl withRights(List<AccessRights> rights) {

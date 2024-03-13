@@ -16,7 +16,7 @@ import java.util.List;
 @Immutable
 public final class OperationListResult {
     /*
-     * List of Relay operations supported by resource provider.
+     * List of Relay operations supported by the Microsoft.Relay resource provider.
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<OperationInner> value;
@@ -28,8 +28,14 @@ public final class OperationListResult {
     private String nextLink;
 
     /**
-     * Get the value property: List of Relay operations supported by resource provider.
-     *
+     * Creates an instance of OperationListResult class.
+     */
+    public OperationListResult() {
+    }
+
+    /**
+     * Get the value property: List of Relay operations supported by the Microsoft.Relay resource provider.
+     * 
      * @return the value value.
      */
     public List<OperationInner> value() {
@@ -38,7 +44,7 @@ public final class OperationListResult {
 
     /**
      * Get the nextLink property: URL to get the next set of operation list results if there are any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -47,7 +53,7 @@ public final class OperationListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
