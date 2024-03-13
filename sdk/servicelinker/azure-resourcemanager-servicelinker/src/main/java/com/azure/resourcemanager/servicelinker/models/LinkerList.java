@@ -9,7 +9,9 @@ import com.azure.resourcemanager.servicelinker.fluent.models.LinkerResourceInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of Linker. */
+/**
+ * The list of Linker.
+ */
 @Fluent
 public final class LinkerList {
     /*
@@ -25,8 +27,14 @@ public final class LinkerList {
     private List<LinkerResourceInner> value;
 
     /**
+     * Creates an instance of LinkerList class.
+     */
+    public LinkerList() {
+    }
+
+    /**
      * Get the nextLink property: The link used to get the next page of Linker list.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -35,7 +43,7 @@ public final class LinkerList {
 
     /**
      * Set the nextLink property: The link used to get the next page of Linker list.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the LinkerList object itself.
      */
@@ -46,7 +54,7 @@ public final class LinkerList {
 
     /**
      * Get the value property: The list of Linkers.
-     *
+     * 
      * @return the value value.
      */
     public List<LinkerResourceInner> value() {
@@ -55,7 +63,7 @@ public final class LinkerList {
 
     /**
      * Set the value property: The list of Linkers.
-     *
+     * 
      * @param value the value value to set.
      * @return the LinkerList object itself.
      */
@@ -66,7 +74,7 @@ public final class LinkerList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

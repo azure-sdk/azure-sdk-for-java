@@ -7,7 +7,9 @@ package com.azure.resourcemanager.servicelinker.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The VNet solution for linker. */
+/**
+ * The VNet solution for linker.
+ */
 @Fluent
 public final class VNetSolution {
     /*
@@ -17,8 +19,14 @@ public final class VNetSolution {
     private VNetSolutionType type;
 
     /**
+     * Creates an instance of VNetSolution class.
+     */
+    public VNetSolution() {
+    }
+
+    /**
      * Get the type property: Type of VNet solution.
-     *
+     * 
      * @return the type value.
      */
     public VNetSolutionType type() {
@@ -27,7 +35,7 @@ public final class VNetSolution {
 
     /**
      * Set the type property: Type of VNet solution.
-     *
+     * 
      * @param type the type value to set.
      * @return the VNetSolution object itself.
      */
@@ -38,7 +46,7 @@ public final class VNetSolution {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

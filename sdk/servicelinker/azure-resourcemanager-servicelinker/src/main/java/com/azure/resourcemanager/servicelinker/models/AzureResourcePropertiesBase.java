@@ -9,19 +9,27 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The azure resource properties. */
+/**
+ * The azure resource properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "type",
     defaultImpl = AzureResourcePropertiesBase.class)
 @JsonTypeName("AzureResourcePropertiesBase")
-@JsonSubTypes({@JsonSubTypes.Type(name = "KeyVault", value = AzureKeyVaultProperties.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "KeyVault", value = AzureKeyVaultProperties.class) })
 @Immutable
 public class AzureResourcePropertiesBase {
     /**
+     * Creates an instance of AzureResourcePropertiesBase class.
+     */
+    public AzureResourcePropertiesBase() {
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.servicelinker.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The validation item for a linker. */
+/**
+ * The validation item for a linker.
+ */
 @Fluent
 public final class ValidationResultItem {
     /*
@@ -41,8 +43,14 @@ public final class ValidationResultItem {
     private String errorCode;
 
     /**
+     * Creates an instance of ValidationResultItem class.
+     */
+    public ValidationResultItem() {
+    }
+
+    /**
      * Get the name property: The validation item name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -51,7 +59,7 @@ public final class ValidationResultItem {
 
     /**
      * Set the name property: The validation item name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ValidationResultItem object itself.
      */
@@ -62,7 +70,7 @@ public final class ValidationResultItem {
 
     /**
      * Get the description property: The display name of validation item.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -71,7 +79,7 @@ public final class ValidationResultItem {
 
     /**
      * Set the description property: The display name of validation item.
-     *
+     * 
      * @param description the description value to set.
      * @return the ValidationResultItem object itself.
      */
@@ -82,7 +90,7 @@ public final class ValidationResultItem {
 
     /**
      * Get the result property: The result of validation.
-     *
+     * 
      * @return the result value.
      */
     public ValidationResultStatus result() {
@@ -91,7 +99,7 @@ public final class ValidationResultItem {
 
     /**
      * Set the result property: The result of validation.
-     *
+     * 
      * @param result the result value to set.
      * @return the ValidationResultItem object itself.
      */
@@ -102,7 +110,7 @@ public final class ValidationResultItem {
 
     /**
      * Get the errorMessage property: The error message of validation result.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -111,7 +119,7 @@ public final class ValidationResultItem {
 
     /**
      * Set the errorMessage property: The error message of validation result.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the ValidationResultItem object itself.
      */
@@ -122,7 +130,7 @@ public final class ValidationResultItem {
 
     /**
      * Get the errorCode property: The error code of validation result.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -131,7 +139,7 @@ public final class ValidationResultItem {
 
     /**
      * Set the errorCode property: The error code of validation result.
-     *
+     * 
      * @param errorCode the errorCode value to set.
      * @return the ValidationResultItem object itself.
      */
@@ -142,7 +150,7 @@ public final class ValidationResultItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
