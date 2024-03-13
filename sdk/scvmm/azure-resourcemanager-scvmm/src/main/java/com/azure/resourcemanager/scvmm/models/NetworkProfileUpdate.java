@@ -8,41 +8,48 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the resource properties. */
+/**
+ * Defines the resource properties.
+ */
 @Fluent
 public final class NetworkProfileUpdate {
     /*
-     * Gets or sets the list of network interfaces associated with the virtual
-     * machine.
+     * Gets or sets the list of network interfaces associated with the virtual machine.
      */
     @JsonProperty(value = "networkInterfaces")
-    private List<NetworkInterfacesUpdate> networkInterfaces;
+    private List<NetworkInterfaceUpdate> networkInterfaces;
+
+    /**
+     * Creates an instance of NetworkProfileUpdate class.
+     */
+    public NetworkProfileUpdate() {
+    }
 
     /**
      * Get the networkInterfaces property: Gets or sets the list of network interfaces associated with the virtual
      * machine.
-     *
+     * 
      * @return the networkInterfaces value.
      */
-    public List<NetworkInterfacesUpdate> networkInterfaces() {
+    public List<NetworkInterfaceUpdate> networkInterfaces() {
         return this.networkInterfaces;
     }
 
     /**
      * Set the networkInterfaces property: Gets or sets the list of network interfaces associated with the virtual
      * machine.
-     *
+     * 
      * @param networkInterfaces the networkInterfaces value to set.
      * @return the NetworkProfileUpdate object itself.
      */
-    public NetworkProfileUpdate withNetworkInterfaces(List<NetworkInterfacesUpdate> networkInterfaces) {
+    public NetworkProfileUpdate withNetworkInterfaces(List<NetworkInterfaceUpdate> networkInterfaces) {
         this.networkInterfaces = networkInterfaces;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,52 +7,64 @@ package com.azure.resourcemanager.scvmm.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
+import com.azure.resourcemanager.scvmm.models.AvailabilitySetProperties;
 import com.azure.resourcemanager.scvmm.models.ExtendedLocation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The AvailabilitySets resource definition. */
+/**
+ * The AvailabilitySets resource definition.
+ */
 @Fluent
 public final class AvailabilitySetInner extends Resource {
     /*
      * Resource properties.
      */
-    @JsonProperty(value = "properties")
-    private AvailabilitySetProperties innerProperties;
-
-    /*
-     * The system data.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
+    @JsonProperty(value = "properties", required = true)
+    private AvailabilitySetProperties properties;
 
     /*
      * The extended location.
      */
-    @JsonProperty(value = "extendedLocation")
+    @JsonProperty(value = "extendedLocation", required = true)
     private ExtendedLocation extendedLocation;
 
-    /**
-     * Get the innerProperties property: Resource properties.
-     *
-     * @return the innerProperties value.
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
-    private AvailabilitySetProperties innerProperties() {
-        return this.innerProperties;
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of AvailabilitySetInner class.
+     */
+    public AvailabilitySetInner() {
     }
 
     /**
-     * Get the systemData property: The system data.
-     *
-     * @return the systemData value.
+     * Get the properties property: Resource properties.
+     * 
+     * @return the properties value.
      */
-    public SystemData systemData() {
-        return this.systemData;
+    public AvailabilitySetProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Resource properties.
+     * 
+     * @param properties the properties value to set.
+     * @return the AvailabilitySetInner object itself.
+     */
+    public AvailabilitySetInner withProperties(AvailabilitySetProperties properties) {
+        this.properties = properties;
+        return this;
     }
 
     /**
      * Get the extendedLocation property: The extended location.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -61,7 +73,7 @@ public final class AvailabilitySetInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extended location.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the AvailabilitySetInner object itself.
      */
@@ -70,14 +82,27 @@ public final class AvailabilitySetInner extends Resource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AvailabilitySetInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AvailabilitySetInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -85,71 +110,24 @@ public final class AvailabilitySetInner extends Resource {
     }
 
     /**
-     * Get the availabilitySetName property: Name of the availability set.
-     *
-     * @return the availabilitySetName value.
-     */
-    public String availabilitySetName() {
-        return this.innerProperties() == null ? null : this.innerProperties().availabilitySetName();
-    }
-
-    /**
-     * Set the availabilitySetName property: Name of the availability set.
-     *
-     * @param availabilitySetName the availabilitySetName value to set.
-     * @return the AvailabilitySetInner object itself.
-     */
-    public AvailabilitySetInner withAvailabilitySetName(String availabilitySetName) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AvailabilitySetProperties();
-        }
-        this.innerProperties().withAvailabilitySetName(availabilitySetName);
-        return this;
-    }
-
-    /**
-     * Get the vmmServerId property: ARM Id of the vmmServer resource in which this resource resides.
-     *
-     * @return the vmmServerId value.
-     */
-    public String vmmServerId() {
-        return this.innerProperties() == null ? null : this.innerProperties().vmmServerId();
-    }
-
-    /**
-     * Set the vmmServerId property: ARM Id of the vmmServer resource in which this resource resides.
-     *
-     * @param vmmServerId the vmmServerId value to set.
-     * @return the AvailabilitySetInner object itself.
-     */
-    public AvailabilitySetInner withVmmServerId(String vmmServerId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new AvailabilitySetProperties();
-        }
-        this.innerProperties().withVmmServerId(vmmServerId);
-        return this;
-    }
-
-    /**
-     * Get the provisioningState property: Gets or sets the provisioning state.
-     *
-     * @return the provisioningState value.
-     */
-    public String provisioningState() {
-        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() != null) {
-            innerProperties().validate();
+        if (properties() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property properties in model AvailabilitySetInner"));
+        } else {
+            properties().validate();
         }
-        if (extendedLocation() != null) {
+        if (extendedLocation() == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property extendedLocation in model AvailabilitySetInner"));
+        } else {
             extendedLocation().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(AvailabilitySetInner.class);
 }
