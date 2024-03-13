@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request to validate create order limit for current subscription. */
+/**
+ * Request to validate create order limit for current subscription.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
 @JsonTypeName("ValidateCreateOrderLimit")
 @Fluent
@@ -21,13 +23,15 @@ public final class CreateOrderLimitForSubscriptionValidationRequest extends Vali
     @JsonProperty(value = "deviceType", required = true)
     private SkuName deviceType;
 
-    /** Creates an instance of CreateOrderLimitForSubscriptionValidationRequest class. */
+    /**
+     * Creates an instance of CreateOrderLimitForSubscriptionValidationRequest class.
+     */
     public CreateOrderLimitForSubscriptionValidationRequest() {
     }
 
     /**
      * Get the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @return the deviceType value.
      */
     public SkuName deviceType() {
@@ -36,7 +40,7 @@ public final class CreateOrderLimitForSubscriptionValidationRequest extends Vali
 
     /**
      * Set the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @param deviceType the deviceType value to set.
      * @return the CreateOrderLimitForSubscriptionValidationRequest object itself.
      */
@@ -47,18 +51,15 @@ public final class CreateOrderLimitForSubscriptionValidationRequest extends Vali
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (deviceType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property deviceType in model"
-                            + " CreateOrderLimitForSubscriptionValidationRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property deviceType in model CreateOrderLimitForSubscriptionValidationRequest"));
         }
     }
 

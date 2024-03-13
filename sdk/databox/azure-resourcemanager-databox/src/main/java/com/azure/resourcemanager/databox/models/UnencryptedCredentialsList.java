@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databox.fluent.models.UnencryptedCredentialsInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of unencrypted credentials for accessing device. */
+/**
+ * List of unencrypted credentials for accessing device.
+ */
 @Fluent
 public final class UnencryptedCredentialsList {
     /*
@@ -24,13 +26,15 @@ public final class UnencryptedCredentialsList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of UnencryptedCredentialsList class. */
+    /**
+     * Creates an instance of UnencryptedCredentialsList class.
+     */
     public UnencryptedCredentialsList() {
     }
 
     /**
      * Get the value property: List of unencrypted credentials.
-     *
+     * 
      * @return the value value.
      */
     public List<UnencryptedCredentialsInner> value() {
@@ -39,7 +43,7 @@ public final class UnencryptedCredentialsList {
 
     /**
      * Set the value property: List of unencrypted credentials.
-     *
+     * 
      * @param value the value value to set.
      * @return the UnencryptedCredentialsList object itself.
      */
@@ -50,7 +54,7 @@ public final class UnencryptedCredentialsList {
 
     /**
      * Get the nextLink property: Link for the next set of unencrypted credentials.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class UnencryptedCredentialsList {
 
     /**
      * Set the nextLink property: Link for the next set of unencrypted credentials.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the UnencryptedCredentialsList object itself.
      */
@@ -70,7 +74,7 @@ public final class UnencryptedCredentialsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

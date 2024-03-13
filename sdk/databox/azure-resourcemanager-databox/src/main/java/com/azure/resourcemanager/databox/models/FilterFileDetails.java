@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details of the filter files to be used for data transfer. */
+/**
+ * Details of the filter files to be used for data transfer.
+ */
 @Fluent
 public final class FilterFileDetails {
     /*
@@ -23,13 +25,15 @@ public final class FilterFileDetails {
     @JsonProperty(value = "filterFilePath", required = true)
     private String filterFilePath;
 
-    /** Creates an instance of FilterFileDetails class. */
+    /**
+     * Creates an instance of FilterFileDetails class.
+     */
     public FilterFileDetails() {
     }
 
     /**
      * Get the filterFileType property: Type of the filter file.
-     *
+     * 
      * @return the filterFileType value.
      */
     public FilterFileType filterFileType() {
@@ -38,7 +42,7 @@ public final class FilterFileDetails {
 
     /**
      * Set the filterFileType property: Type of the filter file.
-     *
+     * 
      * @param filterFileType the filterFileType value to set.
      * @return the FilterFileDetails object itself.
      */
@@ -49,7 +53,7 @@ public final class FilterFileDetails {
 
     /**
      * Get the filterFilePath property: Path of the file that contains the details of all items to transfer.
-     *
+     * 
      * @return the filterFilePath value.
      */
     public String filterFilePath() {
@@ -58,7 +62,7 @@ public final class FilterFileDetails {
 
     /**
      * Set the filterFilePath property: Path of the file that contains the details of all items to transfer.
-     *
+     * 
      * @param filterFilePath the filterFilePath value to set.
      * @return the FilterFileDetails object itself.
      */
@@ -69,21 +73,17 @@ public final class FilterFileDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (filterFileType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property filterFileType in model FilterFileDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property filterFileType in model FilterFileDetails"));
         }
         if (filterFilePath() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property filterFilePath in model FilterFileDetails"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property filterFilePath in model FilterFileDetails"));
         }
     }
 

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Msi identity details of the resource. */
+/**
+ * Msi identity details of the resource.
+ */
 @Fluent
 public final class ResourceIdentity {
     /*
@@ -37,13 +39,15 @@ public final class ResourceIdentity {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, UserAssignedIdentity> userAssignedIdentities;
 
-    /** Creates an instance of ResourceIdentity class. */
+    /**
+     * Creates an instance of ResourceIdentity class.
+     */
     public ResourceIdentity() {
     }
 
     /**
      * Get the type property: Identity type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -52,7 +56,7 @@ public final class ResourceIdentity {
 
     /**
      * Set the type property: Identity type.
-     *
+     * 
      * @param type the type value to set.
      * @return the ResourceIdentity object itself.
      */
@@ -63,7 +67,7 @@ public final class ResourceIdentity {
 
     /**
      * Get the principalId property: Service Principal Id backing the Msi.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -72,7 +76,7 @@ public final class ResourceIdentity {
 
     /**
      * Get the tenantId property: Home Tenant Id.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -81,7 +85,7 @@ public final class ResourceIdentity {
 
     /**
      * Get the userAssignedIdentities property: User Assigned Identities.
-     *
+     * 
      * @return the userAssignedIdentities value.
      */
     public Map<String, UserAssignedIdentity> userAssignedIdentities() {
@@ -90,7 +94,7 @@ public final class ResourceIdentity {
 
     /**
      * Set the userAssignedIdentities property: User Assigned Identities.
-     *
+     * 
      * @param userAssignedIdentities the userAssignedIdentities value to set.
      * @return the ResourceIdentity object itself.
      */
@@ -101,19 +105,16 @@ public final class ResourceIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (userAssignedIdentities() != null) {
-            userAssignedIdentities()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            userAssignedIdentities().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

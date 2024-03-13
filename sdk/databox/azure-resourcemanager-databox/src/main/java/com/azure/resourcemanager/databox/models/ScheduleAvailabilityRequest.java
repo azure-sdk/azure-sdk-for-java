@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request body to get the availability for scheduling orders. */
+/**
+ * Request body to get the availability for scheduling orders.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -21,8 +23,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "DataBox", value = DataBoxScheduleAvailabilityRequest.class),
     @JsonSubTypes.Type(name = "DataBoxDisk", value = DiskScheduleAvailabilityRequest.class),
-    @JsonSubTypes.Type(name = "DataBoxHeavy", value = HeavyScheduleAvailabilityRequest.class)
-})
+    @JsonSubTypes.Type(name = "DataBoxHeavy", value = HeavyScheduleAvailabilityRequest.class) })
 @Fluent
 public class ScheduleAvailabilityRequest {
     /*
@@ -38,14 +39,16 @@ public class ScheduleAvailabilityRequest {
     @JsonProperty(value = "country")
     private String country;
 
-    /** Creates an instance of ScheduleAvailabilityRequest class. */
+    /**
+     * Creates an instance of ScheduleAvailabilityRequest class.
+     */
     public ScheduleAvailabilityRequest() {
     }
 
     /**
      * Get the storageLocation property: Location for data transfer. For locations check:
      * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01.
-     *
+     * 
      * @return the storageLocation value.
      */
     public String storageLocation() {
@@ -55,7 +58,7 @@ public class ScheduleAvailabilityRequest {
     /**
      * Set the storageLocation property: Location for data transfer. For locations check:
      * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01.
-     *
+     * 
      * @param storageLocation the storageLocation value to set.
      * @return the ScheduleAvailabilityRequest object itself.
      */
@@ -66,7 +69,7 @@ public class ScheduleAvailabilityRequest {
 
     /**
      * Get the country property: Country in which storage location should be supported.
-     *
+     * 
      * @return the country value.
      */
     public String country() {
@@ -75,7 +78,7 @@ public class ScheduleAvailabilityRequest {
 
     /**
      * Set the country property: Country in which storage location should be supported.
-     *
+     * 
      * @param country the country value to set.
      * @return the ScheduleAvailabilityRequest object itself.
      */
@@ -86,15 +89,13 @@ public class ScheduleAvailabilityRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (storageLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storageLocation in model ScheduleAvailabilityRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property storageLocation in model ScheduleAvailabilityRequest"));
         }
     }
 

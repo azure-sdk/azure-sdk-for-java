@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The address validation output. */
+/**
+ * The address validation output.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
 @JsonTypeName("ValidateAddress")
 @Immutable
@@ -27,13 +29,15 @@ public final class AddressValidationProperties extends ValidationInputResponse {
     @JsonProperty(value = "alternateAddresses", access = JsonProperty.Access.WRITE_ONLY)
     private List<ShippingAddress> alternateAddresses;
 
-    /** Creates an instance of AddressValidationProperties class. */
+    /**
+     * Creates an instance of AddressValidationProperties class.
+     */
     public AddressValidationProperties() {
     }
 
     /**
      * Get the validationStatus property: The address validation status.
-     *
+     * 
      * @return the validationStatus value.
      */
     public AddressValidationStatus validationStatus() {
@@ -42,7 +46,7 @@ public final class AddressValidationProperties extends ValidationInputResponse {
 
     /**
      * Get the alternateAddresses property: List of alternate addresses.
-     *
+     * 
      * @return the alternateAddresses value.
      */
     public List<ShippingAddress> alternateAddresses() {
@@ -51,7 +55,7 @@ public final class AddressValidationProperties extends ValidationInputResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

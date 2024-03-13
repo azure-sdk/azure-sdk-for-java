@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Properties of subscription permission to create job validation response. */
+/**
+ * Properties of subscription permission to create job validation response.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
 @JsonTypeName("ValidateSubscriptionIsAllowedToCreateJob")
 @Immutable
@@ -20,13 +22,15 @@ public final class SubscriptionIsAllowedToCreateJobValidationResponseProperties 
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationStatus status;
 
-    /** Creates an instance of SubscriptionIsAllowedToCreateJobValidationResponseProperties class. */
+    /**
+     * Creates an instance of SubscriptionIsAllowedToCreateJobValidationResponseProperties class.
+     */
     public SubscriptionIsAllowedToCreateJobValidationResponseProperties() {
     }
 
     /**
      * Get the status property: Validation status of subscription permission to create job.
-     *
+     * 
      * @return the status value.
      */
     public ValidationStatus status() {
@@ -35,7 +39,7 @@ public final class SubscriptionIsAllowedToCreateJobValidationResponseProperties 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

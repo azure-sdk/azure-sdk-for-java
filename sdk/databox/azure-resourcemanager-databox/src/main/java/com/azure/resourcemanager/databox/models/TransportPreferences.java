@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Preferences related to the shipment logistics of the sku. */
+/**
+ * Preferences related to the shipment logistics of the sku.
+ */
 @Fluent
 public final class TransportPreferences {
     /*
@@ -24,13 +26,15 @@ public final class TransportPreferences {
     @JsonProperty(value = "isUpdated", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isUpdated;
 
-    /** Creates an instance of TransportPreferences class. */
+    /**
+     * Creates an instance of TransportPreferences class.
+     */
     public TransportPreferences() {
     }
 
     /**
      * Get the preferredShipmentType property: Indicates Shipment Logistics type that the customer preferred.
-     *
+     * 
      * @return the preferredShipmentType value.
      */
     public TransportShipmentTypes preferredShipmentType() {
@@ -39,7 +43,7 @@ public final class TransportPreferences {
 
     /**
      * Set the preferredShipmentType property: Indicates Shipment Logistics type that the customer preferred.
-     *
+     * 
      * @param preferredShipmentType the preferredShipmentType value to set.
      * @return the TransportPreferences object itself.
      */
@@ -51,7 +55,7 @@ public final class TransportPreferences {
     /**
      * Get the isUpdated property: Read only property which indicates whether transport preferences has been updated or
      * not after device is prepared.
-     *
+     * 
      * @return the isUpdated value.
      */
     public Boolean isUpdated() {
@@ -60,15 +64,13 @@ public final class TransportPreferences {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (preferredShipmentType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property preferredShipmentType in model TransportPreferences"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property preferredShipmentType in model TransportPreferences"));
         }
     }
 

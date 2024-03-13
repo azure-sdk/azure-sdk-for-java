@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Granular Copy progress. */
+/**
+ * Granular Copy progress.
+ */
 @Immutable
 public class GranularCopyProgress {
     /*
@@ -114,14 +116,16 @@ public class GranularCopyProgress {
     @JsonProperty(value = "actions", access = JsonProperty.Access.WRITE_ONLY)
     private List<CustomerResolutionCode> actions;
 
-    /** Creates an instance of GranularCopyProgress class. */
+    /**
+     * Creates an instance of GranularCopyProgress class.
+     */
     public GranularCopyProgress() {
     }
 
     /**
-     * Get the storageAccountName property: Name of the storage account. This will be empty for data account types other
-     * than storage account.
-     *
+     * Get the storageAccountName property: Name of the storage account. This will be empty for data account types
+     * other than storage account.
+     * 
      * @return the storageAccountName value.
      */
     public String storageAccountName() {
@@ -130,7 +134,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the transferType property: Transfer type of data.
-     *
+     * 
      * @return the transferType value.
      */
     public TransferType transferType() {
@@ -139,7 +143,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the dataAccountType property: Data Account Type.
-     *
+     * 
      * @return the dataAccountType value.
      */
     public DataAccountType dataAccountType() {
@@ -148,7 +152,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the accountId property: Id of the account where the data needs to be uploaded.
-     *
+     * 
      * @return the accountId value.
      */
     public String accountId() {
@@ -157,7 +161,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the bytesProcessed property: To indicate bytes transferred.
-     *
+     * 
      * @return the bytesProcessed value.
      */
     public Long bytesProcessed() {
@@ -166,7 +170,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the totalBytesToProcess property: Total amount of data to be processed by the job.
-     *
+     * 
      * @return the totalBytesToProcess value.
      */
     public Long totalBytesToProcess() {
@@ -175,7 +179,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the filesProcessed property: Number of files processed.
-     *
+     * 
      * @return the filesProcessed value.
      */
     public Long filesProcessed() {
@@ -184,7 +188,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the totalFilesToProcess property: Total files to process.
-     *
+     * 
      * @return the totalFilesToProcess value.
      */
     public Long totalFilesToProcess() {
@@ -194,7 +198,7 @@ public class GranularCopyProgress {
     /**
      * Get the invalidFilesProcessed property: Number of files not adhering to azure naming conventions which were
      * processed by automatic renaming.
-     *
+     * 
      * @return the invalidFilesProcessed value.
      */
     public Long invalidFilesProcessed() {
@@ -204,7 +208,7 @@ public class GranularCopyProgress {
     /**
      * Get the invalidFileBytesUploaded property: Total amount of data not adhering to azure naming conventions which
      * were processed by automatic renaming.
-     *
+     * 
      * @return the invalidFileBytesUploaded value.
      */
     public Long invalidFileBytesUploaded() {
@@ -214,7 +218,7 @@ public class GranularCopyProgress {
     /**
      * Get the renamedContainerCount property: Number of folders not adhering to azure naming conventions which were
      * processed by automatic renaming.
-     *
+     * 
      * @return the renamedContainerCount value.
      */
     public Long renamedContainerCount() {
@@ -223,7 +227,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the filesErroredOut property: Number of files which could not be copied.
-     *
+     * 
      * @return the filesErroredOut value.
      */
     public Long filesErroredOut() {
@@ -232,7 +236,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the directoriesErroredOut property: To indicate directories errored out in the job.
-     *
+     * 
      * @return the directoriesErroredOut value.
      */
     public Long directoriesErroredOut() {
@@ -241,7 +245,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the invalidDirectoriesProcessed property: To indicate directories renamed.
-     *
+     * 
      * @return the invalidDirectoriesProcessed value.
      */
     public Long invalidDirectoriesProcessed() {
@@ -249,9 +253,9 @@ public class GranularCopyProgress {
     }
 
     /**
-     * Get the isEnumerationInProgress property: To indicate if enumeration of data is in progress. Until this is true,
-     * the TotalBytesToProcess may not be valid.
-     *
+     * Get the isEnumerationInProgress property: To indicate if enumeration of data is in progress.
+     * Until this is true, the TotalBytesToProcess may not be valid.
+     * 
      * @return the isEnumerationInProgress value.
      */
     public Boolean isEnumerationInProgress() {
@@ -260,7 +264,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the error property: Error, if any, in the stage.
-     *
+     * 
      * @return the error value.
      */
     public CloudError error() {
@@ -269,7 +273,7 @@ public class GranularCopyProgress {
 
     /**
      * Get the actions property: Available actions on the job.
-     *
+     * 
      * @return the actions value.
      */
     public List<CustomerResolutionCode> actions() {
@@ -278,7 +282,7 @@ public class GranularCopyProgress {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Shipment pick up request details. */
+/**
+ * Shipment pick up request details.
+ */
 @Fluent
 public final class ShipmentPickUpRequest {
     /*
@@ -30,14 +32,16 @@ public final class ShipmentPickUpRequest {
     @JsonProperty(value = "shipmentLocation", required = true)
     private String shipmentLocation;
 
-    /** Creates an instance of ShipmentPickUpRequest class. */
+    /**
+     * Creates an instance of ShipmentPickUpRequest class.
+     */
     public ShipmentPickUpRequest() {
     }
 
     /**
      * Get the startTime property: Minimum date after which the pick up should commence, this must be in local time of
      * pick up area.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -47,7 +51,7 @@ public final class ShipmentPickUpRequest {
     /**
      * Set the startTime property: Minimum date after which the pick up should commence, this must be in local time of
      * pick up area.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the ShipmentPickUpRequest object itself.
      */
@@ -59,7 +63,7 @@ public final class ShipmentPickUpRequest {
     /**
      * Get the endTime property: Maximum date before which the pick up should commence, this must be in local time of
      * pick up area.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -69,7 +73,7 @@ public final class ShipmentPickUpRequest {
     /**
      * Set the endTime property: Maximum date before which the pick up should commence, this must be in local time of
      * pick up area.
-     *
+     * 
      * @param endTime the endTime value to set.
      * @return the ShipmentPickUpRequest object itself.
      */
@@ -80,7 +84,7 @@ public final class ShipmentPickUpRequest {
 
     /**
      * Get the shipmentLocation property: Shipment Location in the pickup place. Eg.front desk.
-     *
+     * 
      * @return the shipmentLocation value.
      */
     public String shipmentLocation() {
@@ -89,7 +93,7 @@ public final class ShipmentPickUpRequest {
 
     /**
      * Set the shipmentLocation property: Shipment Location in the pickup place. Eg.front desk.
-     *
+     * 
      * @param shipmentLocation the shipmentLocation value to set.
      * @return the ShipmentPickUpRequest object itself.
      */
@@ -100,25 +104,21 @@ public final class ShipmentPickUpRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (startTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property startTime in model ShipmentPickUpRequest"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property startTime in model ShipmentPickUpRequest"));
         }
         if (endTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property endTime in model ShipmentPickUpRequest"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property endTime in model ShipmentPickUpRequest"));
         }
         if (shipmentLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property shipmentLocation in model ShipmentPickUpRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property shipmentLocation in model ShipmentPickUpRequest"));
         }
     }
 
