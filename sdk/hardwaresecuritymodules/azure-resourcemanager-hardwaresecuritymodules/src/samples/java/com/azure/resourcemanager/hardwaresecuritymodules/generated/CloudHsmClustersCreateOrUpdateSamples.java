@@ -6,10 +6,10 @@ package com.azure.resourcemanager.hardwaresecuritymodules.generated;
 
 import com.azure.resourcemanager.hardwaresecuritymodules.models.BackupProperties;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterProperties;
-import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterSecurityDomainProperties;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterSku;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterSkuFamily;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterSkuName;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.CloudHsmClusterStatusProperties;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.hardwaresecuritymodules.models.UserAssignedIdentity;
@@ -34,16 +34,15 @@ public final class CloudHsmClustersCreateOrUpdateSamples {
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager manager) {
         manager.cloudHsmClusters().define("chsm1").withRegion("eastus2").withExistingResourceGroup("rgcloudhsm")
             .withTags(mapOf("Dept", "hsm", "Environment", "dogfood"))
-            .withSku(new CloudHsmClusterSku().withFamily(CloudHsmClusterSkuFamily.B)
-                .withName(CloudHsmClusterSkuName.STANDARD_B1))
             .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
                 .withUserAssignedIdentities(mapOf(
                     "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-resources/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity-1",
                     new UserAssignedIdentity())))
-            .withProperties(new CloudHsmClusterProperties()
-                .withSecurityDomain(new CloudHsmClusterSecurityDomainProperties().withFipsState(2))
-                .withPublicNetworkAccess("Disabled")
-                .withBackupProperties(new BackupProperties().withAzureStorageResourceUri("testStorageResourceUri")))
+            .withSku(new CloudHsmClusterSku().withFamily(CloudHsmClusterSkuFamily.B)
+                .withName(CloudHsmClusterSkuName.STANDARD_B1))
+            .withProperties(new CloudHsmClusterProperties().withPublicNetworkAccess("Disabled")
+                .withClusterStatus(new CloudHsmClusterStatusProperties().withFipsState(2))
+                .withBackupProperties(new BackupProperties().withAzureStorageContainerUri("testStorageContainerUri")))
             .create();
     }
 

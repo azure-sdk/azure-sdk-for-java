@@ -13,16 +13,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class RestoreProperties {
     /*
-     * Directory name in Azure Storage Blob where the backup is stored
-     */
-    @JsonProperty(value = "foldername")
-    private String foldername;
-
-    /*
      * Azure Blob storage container Uri
      */
-    @JsonProperty(value = "azureStorageResourceUri")
-    private String azureStorageResourceUri;
+    @JsonProperty(value = "azureStorageContainerUri")
+    private String azureStorageContainerUri;
+
+    /*
+     * Directory name in Azure Storage Blob where the backup is stored
+     */
+    @JsonProperty(value = "folderName")
+    private String folderName;
 
     /**
      * Creates an instance of RestoreProperties class.
@@ -31,42 +31,42 @@ public final class RestoreProperties {
     }
 
     /**
-     * Get the foldername property: Directory name in Azure Storage Blob where the backup is stored.
+     * Get the azureStorageContainerUri property: Azure Blob storage container Uri.
      * 
-     * @return the foldername value.
+     * @return the azureStorageContainerUri value.
      */
-    public String foldername() {
-        return this.foldername;
+    public String azureStorageContainerUri() {
+        return this.azureStorageContainerUri;
     }
 
     /**
-     * Set the foldername property: Directory name in Azure Storage Blob where the backup is stored.
+     * Set the azureStorageContainerUri property: Azure Blob storage container Uri.
      * 
-     * @param foldername the foldername value to set.
+     * @param azureStorageContainerUri the azureStorageContainerUri value to set.
      * @return the RestoreProperties object itself.
      */
-    public RestoreProperties withFoldername(String foldername) {
-        this.foldername = foldername;
+    public RestoreProperties withAzureStorageContainerUri(String azureStorageContainerUri) {
+        this.azureStorageContainerUri = azureStorageContainerUri;
         return this;
     }
 
     /**
-     * Get the azureStorageResourceUri property: Azure Blob storage container Uri.
+     * Get the folderName property: Directory name in Azure Storage Blob where the backup is stored.
      * 
-     * @return the azureStorageResourceUri value.
+     * @return the folderName value.
      */
-    public String azureStorageResourceUri() {
-        return this.azureStorageResourceUri;
+    public String folderName() {
+        return this.folderName;
     }
 
     /**
-     * Set the azureStorageResourceUri property: Azure Blob storage container Uri.
+     * Set the folderName property: Directory name in Azure Storage Blob where the backup is stored.
      * 
-     * @param azureStorageResourceUri the azureStorageResourceUri value to set.
+     * @param folderName the folderName value to set.
      * @return the RestoreProperties object itself.
      */
-    public RestoreProperties withAzureStorageResourceUri(String azureStorageResourceUri) {
-        this.azureStorageResourceUri = azureStorageResourceUri;
+    public RestoreProperties withFolderName(String folderName) {
+        this.folderName = folderName;
         return this;
     }
 

@@ -37,7 +37,7 @@ public final class CloudHsmClustersUpdateSamples {
                     "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-resources/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity-1",
                     new UserAssignedIdentity())))
             .withProperties(new CloudHsmClusterPatchParametersProperties()
-                .withBackupProperties(new BackupProperties().withAzureStorageResourceUri("testStorageResourceUri")))
+                .withBackupProperties(new BackupProperties().withAzureStorageContainerUri("testStorageContainerUri")))
             .apply();
     }
 

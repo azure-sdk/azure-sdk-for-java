@@ -22,16 +22,16 @@ public final class CloudHsmClusterPatchParameters {
     private Map<String, String> tags;
 
     /*
-     * SKU details
-     */
-    @JsonProperty(value = "sku")
-    private CloudHsmClusterSku sku;
-
-    /*
      * Managed service identity (system assigned and/or user assigned identities)
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
+
+    /*
+     * SKU details
+     */
+    @JsonProperty(value = "sku")
+    private CloudHsmClusterSku sku;
 
     /*
      * Properties of the Cloud HSM Cluster
@@ -66,26 +66,6 @@ public final class CloudHsmClusterPatchParameters {
     }
 
     /**
-     * Get the sku property: SKU details.
-     * 
-     * @return the sku value.
-     */
-    public CloudHsmClusterSku sku() {
-        return this.sku;
-    }
-
-    /**
-     * Set the sku property: SKU details.
-     * 
-     * @param sku the sku value to set.
-     * @return the CloudHsmClusterPatchParameters object itself.
-     */
-    public CloudHsmClusterPatchParameters withSku(CloudHsmClusterSku sku) {
-        this.sku = sku;
-        return this;
-    }
-
-    /**
      * Get the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
      * @return the identity value.
@@ -102,6 +82,26 @@ public final class CloudHsmClusterPatchParameters {
      */
     public CloudHsmClusterPatchParameters withIdentity(ManagedServiceIdentity identity) {
         this.identity = identity;
+        return this;
+    }
+
+    /**
+     * Get the sku property: SKU details.
+     * 
+     * @return the sku value.
+     */
+    public CloudHsmClusterSku sku() {
+        return this.sku;
+    }
+
+    /**
+     * Set the sku property: SKU details.
+     * 
+     * @param sku the sku value to set.
+     * @return the CloudHsmClusterPatchParameters object itself.
+     */
+    public CloudHsmClusterPatchParameters withSku(CloudHsmClusterSku sku) {
+        this.sku = sku;
         return this;
     }
 
@@ -131,11 +131,11 @@ public final class CloudHsmClusterPatchParameters {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (sku() != null) {
-            sku().validate();
-        }
         if (identity() != null) {
             identity().validate();
+        }
+        if (sku() != null) {
+            sku().validate();
         }
         if (properties() != null) {
             properties().validate();
