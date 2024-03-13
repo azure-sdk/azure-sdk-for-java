@@ -10,7 +10,7 @@ package com.azure.resourcemanager.postgresqlflexibleserver.generated;
 public final class MigrationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * Migrations_GetMigrationWithSuccessfulValidationOnly.json
      */
     /**
@@ -26,7 +26,7 @@ public final class MigrationsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * Migrations_Get.json
      */
     /**
@@ -41,7 +41,7 @@ public final class MigrationsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * Migrations_GetMigrationWithSuccessfulValidationButMigrationFailure.json
      */
     /**
@@ -57,7 +57,7 @@ public final class MigrationsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * Migrations_GetMigrationWithSuccessfulValidationAndMigration.json
      */
     /**
@@ -73,7 +73,7 @@ public final class MigrationsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * Migrations_GetMigrationWithValidationFailures.json
      */
     /**

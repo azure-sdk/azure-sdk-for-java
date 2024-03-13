@@ -34,7 +34,7 @@ import java.util.Map;
 public final class ServersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * ServerUpdateWithAadAuthEnabled.json
      */
     /**
@@ -58,7 +58,7 @@ public final class ServersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * ServerUpdateWithDataEncryptionEnabled.json
      */
     /**
@@ -89,7 +89,7 @@ public final class ServersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * PromoteReplicaAsPlannedSwitchover.json
      */
     /**
@@ -110,7 +110,7 @@ public final class ServersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * PromoteReplicaAsForcedSwitchover.json
      */
     /**
@@ -131,7 +131,7 @@ public final class ServersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * ServerUpdate.json
      */
     /**
@@ -151,7 +151,7 @@ public final class ServersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * ServerUpdateWithMajorVersionUpgrade.json
      */
     /**
@@ -168,7 +168,7 @@ public final class ServersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * ServerUpdateWithCustomerMaintenanceWindow.json
      */
     /**
@@ -187,7 +187,7 @@ public final class ServersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * PromoteReplicaAsForcedStandaloneServer.json
      */
     /**
@@ -208,7 +208,7 @@ public final class ServersUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-06-01-preview/examples/
+     * specification/postgresql/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-12-01-preview/examples/
      * PromoteReplicaAsPlannedStandaloneServer.json
      */
     /**

@@ -11,6 +11,7 @@ import com.azure.resourcemanager.postgresqlflexibleserver.fluent.models.Migratio
 import com.azure.resourcemanager.postgresqlflexibleserver.models.CancelEnum;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.DbServerMetadata;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.LogicalReplicationOnSourceDbEnum;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.MigrateRolesEnum;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.MigrationMode;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.MigrationOption;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.MigrationResource;
@@ -68,6 +69,10 @@ public final class MigrationResourceImpl
 
     public MigrationStatus currentStatus() {
         return this.innerModel().currentStatus();
+    }
+
+    public String migrationInstanceResourceId() {
+        return this.innerModel().migrationInstanceResourceId();
     }
 
     public MigrationMode migrationMode() {
@@ -137,6 +142,10 @@ public final class MigrationResourceImpl
 
     public OffsetDateTime migrationWindowEndTimeInUtc() {
         return this.innerModel().migrationWindowEndTimeInUtc();
+    }
+
+    public MigrateRolesEnum migrateRoles() {
+        return this.innerModel().migrateRoles();
     }
 
     public StartDataMigrationEnum startDataMigration() {
@@ -286,6 +295,11 @@ public final class MigrationResourceImpl
         }
     }
 
+    public MigrationResourceImpl withMigrationInstanceResourceId(String migrationInstanceResourceId) {
+        this.innerModel().withMigrationInstanceResourceId(migrationInstanceResourceId);
+        return this;
+    }
+
     public MigrationResourceImpl withMigrationMode(MigrationMode migrationMode) {
         if (isInCreateMode()) {
             this.innerModel().withMigrationMode(migrationMode);
@@ -398,6 +412,16 @@ public final class MigrationResourceImpl
     public MigrationResourceImpl withMigrationWindowEndTimeInUtc(OffsetDateTime migrationWindowEndTimeInUtc) {
         this.innerModel().withMigrationWindowEndTimeInUtc(migrationWindowEndTimeInUtc);
         return this;
+    }
+
+    public MigrationResourceImpl withMigrateRoles(MigrateRolesEnum migrateRoles) {
+        if (isInCreateMode()) {
+            this.innerModel().withMigrateRoles(migrateRoles);
+            return this;
+        } else {
+            this.updateParameters.withMigrateRoles(migrateRoles);
+            return this;
+        }
     }
 
     public MigrationResourceImpl withStartDataMigration(StartDataMigrationEnum startDataMigration) {
