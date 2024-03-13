@@ -9,7 +9,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.CommandLineSetting
 import com.azure.resourcemanager.desktopvirtualization.models.RemoteApplicationType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Application properties that can be patched. */
+/**
+ * Application properties that can be patched.
+ */
 @Fluent
 public final class ApplicationPatchProperties {
     /*
@@ -79,13 +81,15 @@ public final class ApplicationPatchProperties {
     @JsonProperty(value = "applicationType")
     private RemoteApplicationType applicationType;
 
-    /** Creates an instance of ApplicationPatchProperties class. */
+    /**
+     * Creates an instance of ApplicationPatchProperties class.
+     */
     public ApplicationPatchProperties() {
     }
 
     /**
      * Get the description property: Description of Application.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -94,7 +98,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Set the description property: Description of Application.
-     *
+     * 
      * @param description the description value to set.
      * @return the ApplicationPatchProperties object itself.
      */
@@ -105,7 +109,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Get the friendlyName property: Friendly name of Application.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -114,7 +118,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Set the friendlyName property: Friendly name of Application.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the ApplicationPatchProperties object itself.
      */
@@ -125,7 +129,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Get the filePath property: Specifies a path for the executable file for the application.
-     *
+     * 
      * @return the filePath value.
      */
     public String filePath() {
@@ -134,7 +138,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Set the filePath property: Specifies a path for the executable file for the application.
-     *
+     * 
      * @param filePath the filePath value to set.
      * @return the ApplicationPatchProperties object itself.
      */
@@ -147,7 +151,7 @@ public final class ApplicationPatchProperties {
      * Get the commandLineSetting property: Specifies whether this published application can be launched with command
      * line arguments provided by the client, command line arguments specified at publish time, or no command line
      * arguments at all.
-     *
+     * 
      * @return the commandLineSetting value.
      */
     public CommandLineSetting commandLineSetting() {
@@ -158,7 +162,7 @@ public final class ApplicationPatchProperties {
      * Set the commandLineSetting property: Specifies whether this published application can be launched with command
      * line arguments provided by the client, command line arguments specified at publish time, or no command line
      * arguments at all.
-     *
+     * 
      * @param commandLineSetting the commandLineSetting value to set.
      * @return the ApplicationPatchProperties object itself.
      */
@@ -169,7 +173,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Get the commandLineArguments property: Command Line Arguments for Application.
-     *
+     * 
      * @return the commandLineArguments value.
      */
     public String commandLineArguments() {
@@ -178,7 +182,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Set the commandLineArguments property: Command Line Arguments for Application.
-     *
+     * 
      * @param commandLineArguments the commandLineArguments value to set.
      * @return the ApplicationPatchProperties object itself.
      */
@@ -189,7 +193,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Get the showInPortal property: Specifies whether to show the RemoteApp program in the RD Web Access server.
-     *
+     * 
      * @return the showInPortal value.
      */
     public Boolean showInPortal() {
@@ -198,7 +202,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Set the showInPortal property: Specifies whether to show the RemoteApp program in the RD Web Access server.
-     *
+     * 
      * @param showInPortal the showInPortal value to set.
      * @return the ApplicationPatchProperties object itself.
      */
@@ -209,7 +213,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Get the iconPath property: Path to icon.
-     *
+     * 
      * @return the iconPath value.
      */
     public String iconPath() {
@@ -218,7 +222,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Set the iconPath property: Path to icon.
-     *
+     * 
      * @param iconPath the iconPath value to set.
      * @return the ApplicationPatchProperties object itself.
      */
@@ -229,7 +233,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Get the iconIndex property: Index of the icon.
-     *
+     * 
      * @return the iconIndex value.
      */
     public Integer iconIndex() {
@@ -238,7 +242,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Set the iconIndex property: Index of the icon.
-     *
+     * 
      * @param iconIndex the iconIndex value to set.
      * @return the ApplicationPatchProperties object itself.
      */
@@ -249,7 +253,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Get the msixPackageFamilyName property: Specifies the package family name for MSIX applications.
-     *
+     * 
      * @return the msixPackageFamilyName value.
      */
     public String msixPackageFamilyName() {
@@ -258,7 +262,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Set the msixPackageFamilyName property: Specifies the package family name for MSIX applications.
-     *
+     * 
      * @param msixPackageFamilyName the msixPackageFamilyName value to set.
      * @return the ApplicationPatchProperties object itself.
      */
@@ -269,7 +273,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Get the msixPackageApplicationId property: Specifies the package application Id for MSIX applications.
-     *
+     * 
      * @return the msixPackageApplicationId value.
      */
     public String msixPackageApplicationId() {
@@ -278,7 +282,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Set the msixPackageApplicationId property: Specifies the package application Id for MSIX applications.
-     *
+     * 
      * @param msixPackageApplicationId the msixPackageApplicationId value to set.
      * @return the ApplicationPatchProperties object itself.
      */
@@ -289,7 +293,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Get the applicationType property: Resource Type of Application.
-     *
+     * 
      * @return the applicationType value.
      */
     public RemoteApplicationType applicationType() {
@@ -298,7 +302,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Set the applicationType property: Resource Type of Application.
-     *
+     * 
      * @param applicationType the applicationType value to set.
      * @return the ApplicationPatchProperties object itself.
      */
@@ -309,7 +313,7 @@ public final class ApplicationPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

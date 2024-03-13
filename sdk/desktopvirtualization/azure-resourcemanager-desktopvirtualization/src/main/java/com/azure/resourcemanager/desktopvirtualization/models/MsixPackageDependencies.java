@@ -7,11 +7,14 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Schema for MSIX Package Dependencies properties. */
+/**
+ * Schema for MSIX Package Dependencies properties.
+ */
 @Fluent
 public final class MsixPackageDependencies {
     /*
-     * Name of package dependency.
+     * Name of the package dependency. For Msix packages, this is the other packages this package depends upon, for
+     * APP-V packages this is the locations of the user and deployment config files
      */
     @JsonProperty(value = "dependencyName")
     private String dependencyName;
@@ -28,13 +31,16 @@ public final class MsixPackageDependencies {
     @JsonProperty(value = "minVersion")
     private String minVersion;
 
-    /** Creates an instance of MsixPackageDependencies class. */
+    /**
+     * Creates an instance of MsixPackageDependencies class.
+     */
     public MsixPackageDependencies() {
     }
 
     /**
-     * Get the dependencyName property: Name of package dependency.
-     *
+     * Get the dependencyName property: Name of the package dependency. For Msix packages, this is the other packages
+     * this package depends upon, for APP-V packages this is the locations of the user and deployment config files.
+     * 
      * @return the dependencyName value.
      */
     public String dependencyName() {
@@ -42,8 +48,9 @@ public final class MsixPackageDependencies {
     }
 
     /**
-     * Set the dependencyName property: Name of package dependency.
-     *
+     * Set the dependencyName property: Name of the package dependency. For Msix packages, this is the other packages
+     * this package depends upon, for APP-V packages this is the locations of the user and deployment config files.
+     * 
      * @param dependencyName the dependencyName value to set.
      * @return the MsixPackageDependencies object itself.
      */
@@ -54,7 +61,7 @@ public final class MsixPackageDependencies {
 
     /**
      * Get the publisher property: Name of dependency publisher.
-     *
+     * 
      * @return the publisher value.
      */
     public String publisher() {
@@ -63,7 +70,7 @@ public final class MsixPackageDependencies {
 
     /**
      * Set the publisher property: Name of dependency publisher.
-     *
+     * 
      * @param publisher the publisher value to set.
      * @return the MsixPackageDependencies object itself.
      */
@@ -74,7 +81,7 @@ public final class MsixPackageDependencies {
 
     /**
      * Get the minVersion property: Dependency version required.
-     *
+     * 
      * @return the minVersion value.
      */
     public String minVersion() {
@@ -83,7 +90,7 @@ public final class MsixPackageDependencies {
 
     /**
      * Set the minVersion property: Dependency version required.
-     *
+     * 
      * @param minVersion the minVersion value to set.
      * @return the MsixPackageDependencies object itself.
      */
@@ -94,7 +101,7 @@ public final class MsixPackageDependencies {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

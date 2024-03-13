@@ -12,8 +12,7 @@ public final class StartMenuItemImpl implements StartMenuItem {
 
     private final com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager;
 
-    StartMenuItemImpl(
-        StartMenuItemInner innerObject,
+    StartMenuItemImpl(StartMenuItemInner innerObject,
         com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
