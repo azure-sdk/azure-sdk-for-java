@@ -10,7 +10,9 @@ import com.azure.resourcemanager.signalr.models.ProvisioningState;
 import com.azure.resourcemanager.signalr.models.SharedPrivateLinkResourceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes the properties of an existing Shared Private Link Resource. */
+/**
+ * Describes the properties of an existing Shared Private Link Resource.
+ */
 @Fluent
 public final class SharedPrivateLinkResourceProperties {
     /*
@@ -43,13 +45,15 @@ public final class SharedPrivateLinkResourceProperties {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private SharedPrivateLinkResourceStatus status;
 
-    /** Creates an instance of SharedPrivateLinkResourceProperties class. */
+    /**
+     * Creates an instance of SharedPrivateLinkResourceProperties class.
+     */
     public SharedPrivateLinkResourceProperties() {
     }
 
     /**
      * Get the groupId property: The group id from the provider of resource the shared private link resource is for.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -58,7 +62,7 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Set the groupId property: The group id from the provider of resource the shared private link resource is for.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the SharedPrivateLinkResourceProperties object itself.
      */
@@ -69,7 +73,7 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Get the privateLinkResourceId property: The resource id of the resource the shared private link resource is for.
-     *
+     * 
      * @return the privateLinkResourceId value.
      */
     public String privateLinkResourceId() {
@@ -78,7 +82,7 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Set the privateLinkResourceId property: The resource id of the resource the shared private link resource is for.
-     *
+     * 
      * @param privateLinkResourceId the privateLinkResourceId value to set.
      * @return the SharedPrivateLinkResourceProperties object itself.
      */
@@ -89,7 +93,7 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -97,8 +101,9 @@ public final class SharedPrivateLinkResourceProperties {
     }
 
     /**
-     * Get the requestMessage property: The request message for requesting approval of the shared private link resource.
-     *
+     * Get the requestMessage property: The request message for requesting approval of the shared private link
+     * resource.
+     * 
      * @return the requestMessage value.
      */
     public String requestMessage() {
@@ -106,8 +111,9 @@ public final class SharedPrivateLinkResourceProperties {
     }
 
     /**
-     * Set the requestMessage property: The request message for requesting approval of the shared private link resource.
-     *
+     * Set the requestMessage property: The request message for requesting approval of the shared private link
+     * resource.
+     * 
      * @param requestMessage the requestMessage value to set.
      * @return the SharedPrivateLinkResourceProperties object itself.
      */
@@ -118,7 +124,7 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Get the status property: Status of the shared private link resource.
-     *
+     * 
      * @return the status value.
      */
     public SharedPrivateLinkResourceStatus status() {
@@ -127,22 +133,17 @@ public final class SharedPrivateLinkResourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (groupId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property groupId in model SharedPrivateLinkResourceProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property groupId in model SharedPrivateLinkResourceProperties"));
         }
         if (privateLinkResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property privateLinkResourceId in model"
-                            + " SharedPrivateLinkResourceProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property privateLinkResourceId in model SharedPrivateLinkResourceProperties"));
         }
     }
 

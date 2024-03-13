@@ -7,7 +7,9 @@ package com.azure.resourcemanager.signalr.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes an available sku.". */
+/**
+ * Describes an available sku.".
+ */
 @Immutable
 public final class Sku {
     /*
@@ -28,13 +30,15 @@ public final class Sku {
     @JsonProperty(value = "capacity", access = JsonProperty.Access.WRITE_ONLY)
     private SkuCapacity capacity;
 
-    /** Creates an instance of Sku class. */
+    /**
+     * Creates an instance of Sku class.
+     */
     public Sku() {
     }
 
     /**
      * Get the resourceType property: The resource type that this object applies to.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -43,7 +47,7 @@ public final class Sku {
 
     /**
      * Get the sku property: The billing information of the resource.
-     *
+     * 
      * @return the sku value.
      */
     public ResourceSku sku() {
@@ -52,7 +56,7 @@ public final class Sku {
 
     /**
      * Get the capacity property: Describes scaling information of a sku.
-     *
+     * 
      * @return the capacity value.
      */
     public SkuCapacity capacity() {
@@ -61,7 +65,7 @@ public final class Sku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.signalr.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes the properties of a resource type that has been onboarded to private link service. */
+/**
+ * Describes the properties of a resource type that has been onboarded to private link service.
+ */
 @Fluent
 public final class ShareablePrivateLinkResourceProperties {
     /*
@@ -28,14 +30,16 @@ public final class ShareablePrivateLinkResourceProperties {
     @JsonProperty(value = "type")
     private String type;
 
-    /** Creates an instance of ShareablePrivateLinkResourceProperties class. */
+    /**
+     * Creates an instance of ShareablePrivateLinkResourceProperties class.
+     */
     public ShareablePrivateLinkResourceProperties() {
     }
 
     /**
      * Get the description property: The description of the resource type that has been onboarded to private link
      * service.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -45,7 +49,7 @@ public final class ShareablePrivateLinkResourceProperties {
     /**
      * Set the description property: The description of the resource type that has been onboarded to private link
      * service.
-     *
+     * 
      * @param description the description value to set.
      * @return the ShareablePrivateLinkResourceProperties object itself.
      */
@@ -55,9 +59,9 @@ public final class ShareablePrivateLinkResourceProperties {
     }
 
     /**
-     * Get the groupId property: The resource provider group id for the resource that has been onboarded to private link
-     * service.
-     *
+     * Get the groupId property: The resource provider group id for the resource that has been onboarded to private
+     * link service.
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -65,9 +69,9 @@ public final class ShareablePrivateLinkResourceProperties {
     }
 
     /**
-     * Set the groupId property: The resource provider group id for the resource that has been onboarded to private link
-     * service.
-     *
+     * Set the groupId property: The resource provider group id for the resource that has been onboarded to private
+     * link service.
+     * 
      * @param groupId the groupId value to set.
      * @return the ShareablePrivateLinkResourceProperties object itself.
      */
@@ -79,7 +83,7 @@ public final class ShareablePrivateLinkResourceProperties {
     /**
      * Get the type property: The resource provider type for the resource that has been onboarded to private link
      * service.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -89,7 +93,7 @@ public final class ShareablePrivateLinkResourceProperties {
     /**
      * Set the type property: The resource provider type for the resource that has been onboarded to private link
      * service.
-     *
+     * 
      * @param type the type value to set.
      * @return the ShareablePrivateLinkResourceProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class ShareablePrivateLinkResourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

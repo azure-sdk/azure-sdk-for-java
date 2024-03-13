@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Custom certificate properties. */
+/**
+ * Custom certificate properties.
+ */
 @Fluent
 public final class CustomCertificateProperties {
     /*
@@ -36,13 +38,15 @@ public final class CustomCertificateProperties {
     @JsonProperty(value = "keyVaultSecretVersion")
     private String keyVaultSecretVersion;
 
-    /** Creates an instance of CustomCertificateProperties class. */
+    /**
+     * Creates an instance of CustomCertificateProperties class.
+     */
     public CustomCertificateProperties() {
     }
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -51,7 +55,7 @@ public final class CustomCertificateProperties {
 
     /**
      * Get the keyVaultBaseUri property: Base uri of the KeyVault that stores certificate.
-     *
+     * 
      * @return the keyVaultBaseUri value.
      */
     public String keyVaultBaseUri() {
@@ -60,7 +64,7 @@ public final class CustomCertificateProperties {
 
     /**
      * Set the keyVaultBaseUri property: Base uri of the KeyVault that stores certificate.
-     *
+     * 
      * @param keyVaultBaseUri the keyVaultBaseUri value to set.
      * @return the CustomCertificateProperties object itself.
      */
@@ -71,7 +75,7 @@ public final class CustomCertificateProperties {
 
     /**
      * Get the keyVaultSecretName property: Certificate secret name.
-     *
+     * 
      * @return the keyVaultSecretName value.
      */
     public String keyVaultSecretName() {
@@ -80,7 +84,7 @@ public final class CustomCertificateProperties {
 
     /**
      * Set the keyVaultSecretName property: Certificate secret name.
-     *
+     * 
      * @param keyVaultSecretName the keyVaultSecretName value to set.
      * @return the CustomCertificateProperties object itself.
      */
@@ -91,7 +95,7 @@ public final class CustomCertificateProperties {
 
     /**
      * Get the keyVaultSecretVersion property: Certificate secret version.
-     *
+     * 
      * @return the keyVaultSecretVersion value.
      */
     public String keyVaultSecretVersion() {
@@ -100,7 +104,7 @@ public final class CustomCertificateProperties {
 
     /**
      * Set the keyVaultSecretVersion property: Certificate secret version.
-     *
+     * 
      * @param keyVaultSecretVersion the keyVaultSecretVersion value to set.
      * @return the CustomCertificateProperties object itself.
      */
@@ -111,21 +115,17 @@ public final class CustomCertificateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (keyVaultBaseUri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property keyVaultBaseUri in model CustomCertificateProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property keyVaultBaseUri in model CustomCertificateProperties"));
         }
         if (keyVaultSecretName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property keyVaultSecretName in model CustomCertificateProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property keyVaultSecretName in model CustomCertificateProperties"));
         }
     }
 

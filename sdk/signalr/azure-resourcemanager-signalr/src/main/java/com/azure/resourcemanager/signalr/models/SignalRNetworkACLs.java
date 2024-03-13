@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Network ACLs for the resource. */
+/**
+ * Network ACLs for the resource.
+ */
 @Fluent
 public final class SignalRNetworkACLs {
     /*
@@ -35,13 +37,15 @@ public final class SignalRNetworkACLs {
     @JsonProperty(value = "ipRules")
     private List<IpRule> ipRules;
 
-    /** Creates an instance of SignalRNetworkACLs class. */
+    /**
+     * Creates an instance of SignalRNetworkACLs class.
+     */
     public SignalRNetworkACLs() {
     }
 
     /**
      * Get the defaultAction property: Azure Networking ACL Action.
-     *
+     * 
      * @return the defaultAction value.
      */
     public AclAction defaultAction() {
@@ -50,7 +54,7 @@ public final class SignalRNetworkACLs {
 
     /**
      * Set the defaultAction property: Azure Networking ACL Action.
-     *
+     * 
      * @param defaultAction the defaultAction value to set.
      * @return the SignalRNetworkACLs object itself.
      */
@@ -61,7 +65,7 @@ public final class SignalRNetworkACLs {
 
     /**
      * Get the publicNetwork property: Network ACL.
-     *
+     * 
      * @return the publicNetwork value.
      */
     public NetworkAcl publicNetwork() {
@@ -70,7 +74,7 @@ public final class SignalRNetworkACLs {
 
     /**
      * Set the publicNetwork property: Network ACL.
-     *
+     * 
      * @param publicNetwork the publicNetwork value to set.
      * @return the SignalRNetworkACLs object itself.
      */
@@ -81,7 +85,7 @@ public final class SignalRNetworkACLs {
 
     /**
      * Get the privateEndpoints property: ACLs for requests from private endpoints.
-     *
+     * 
      * @return the privateEndpoints value.
      */
     public List<PrivateEndpointAcl> privateEndpoints() {
@@ -90,7 +94,7 @@ public final class SignalRNetworkACLs {
 
     /**
      * Set the privateEndpoints property: ACLs for requests from private endpoints.
-     *
+     * 
      * @param privateEndpoints the privateEndpoints value to set.
      * @return the SignalRNetworkACLs object itself.
      */
@@ -101,7 +105,7 @@ public final class SignalRNetworkACLs {
 
     /**
      * Get the ipRules property: IP rules for filtering public traffic.
-     *
+     * 
      * @return the ipRules value.
      */
     public List<IpRule> ipRules() {
@@ -110,7 +114,7 @@ public final class SignalRNetworkACLs {
 
     /**
      * Set the ipRules property: IP rules for filtering public traffic.
-     *
+     * 
      * @param ipRules the ipRules value to set.
      * @return the SignalRNetworkACLs object itself.
      */
@@ -121,7 +125,7 @@ public final class SignalRNetworkACLs {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The settings for the Upstream when the service is in server-less mode. */
+/**
+ * The settings for the Upstream when the service is in server-less mode.
+ */
 @Fluent
 public final class ServerlessUpstreamSettings {
     /*
@@ -17,14 +19,16 @@ public final class ServerlessUpstreamSettings {
     @JsonProperty(value = "templates")
     private List<UpstreamTemplate> templates;
 
-    /** Creates an instance of ServerlessUpstreamSettings class. */
+    /**
+     * Creates an instance of ServerlessUpstreamSettings class.
+     */
     public ServerlessUpstreamSettings() {
     }
 
     /**
      * Get the templates property: Gets or sets the list of Upstream URL templates. Order matters, and the first
      * matching template takes effects.
-     *
+     * 
      * @return the templates value.
      */
     public List<UpstreamTemplate> templates() {
@@ -34,7 +38,7 @@ public final class ServerlessUpstreamSettings {
     /**
      * Set the templates property: Gets or sets the list of Upstream URL templates. Order matters, and the first
      * matching template takes effects.
-     *
+     * 
      * @param templates the templates value to set.
      * @return the ServerlessUpstreamSettings object itself.
      */
@@ -45,7 +49,7 @@ public final class ServerlessUpstreamSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -65,35 +65,33 @@ public final class SharedPrivateLinkResourceImpl
         return this.serviceManager;
     }
 
-    private String sharedPrivateLinkResourceName;
-
     private String resourceGroupName;
 
     private String resourceName;
 
-    public SharedPrivateLinkResourceImpl withExistingSignalR(String resourceGroupName, String resourceName) {
+    private String replicaName;
+
+    private String sharedPrivateLinkResourceName;
+
+    public SharedPrivateLinkResourceImpl withExistingReplica(String resourceGroupName, String resourceName,
+        String replicaName) {
         this.resourceGroupName = resourceGroupName;
         this.resourceName = resourceName;
+        this.replicaName = replicaName;
         return this;
     }
 
     public SharedPrivateLinkResource create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSignalRSharedPrivateLinkResources()
-                .createOrUpdate(
-                    sharedPrivateLinkResourceName, resourceGroupName, resourceName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getSignalRReplicaOperations()
+            .sharedPrivateLinkResourcesCreateOrUpdate(resourceGroupName, resourceName, replicaName,
+                sharedPrivateLinkResourceName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public SharedPrivateLinkResource create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSignalRSharedPrivateLinkResources()
-                .createOrUpdate(
-                    sharedPrivateLinkResourceName, resourceGroupName, resourceName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getSignalRReplicaOperations()
+            .sharedPrivateLinkResourcesCreateOrUpdate(resourceGroupName, resourceName, replicaName,
+                sharedPrivateLinkResourceName, this.innerModel(), context);
         return this;
     }
 
@@ -108,51 +106,41 @@ public final class SharedPrivateLinkResourceImpl
     }
 
     public SharedPrivateLinkResource apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSignalRSharedPrivateLinkResources()
-                .createOrUpdate(
-                    sharedPrivateLinkResourceName, resourceGroupName, resourceName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getSignalRReplicaOperations()
+            .sharedPrivateLinkResourcesCreateOrUpdate(resourceGroupName, resourceName, replicaName,
+                sharedPrivateLinkResourceName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public SharedPrivateLinkResource apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSignalRSharedPrivateLinkResources()
-                .createOrUpdate(
-                    sharedPrivateLinkResourceName, resourceGroupName, resourceName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getSignalRReplicaOperations()
+            .sharedPrivateLinkResourcesCreateOrUpdate(resourceGroupName, resourceName, replicaName,
+                sharedPrivateLinkResourceName, this.innerModel(), context);
         return this;
     }
 
-    SharedPrivateLinkResourceImpl(
-        SharedPrivateLinkResourceInner innerObject, com.azure.resourcemanager.signalr.SignalRManager serviceManager) {
+    SharedPrivateLinkResourceImpl(SharedPrivateLinkResourceInner innerObject,
+        com.azure.resourcemanager.signalr.SignalRManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.sharedPrivateLinkResourceName = Utils.getValueFromIdByName(innerObject.id(), "sharedPrivateLinkResources");
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.resourceName = Utils.getValueFromIdByName(innerObject.id(), "signalR");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.resourceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "signalR");
+        this.replicaName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "replicas");
+        this.sharedPrivateLinkResourceName
+            = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "sharedPrivateLinkResources");
     }
 
     public SharedPrivateLinkResource refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSignalRSharedPrivateLinkResources()
-                .getWithResponse(sharedPrivateLinkResourceName, resourceGroupName, resourceName, Context.NONE)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getSignalRReplicaOperations().sharedPrivateLinkResourcesGetWithResponse(
+                resourceGroupName, resourceName, replicaName, sharedPrivateLinkResourceName, Context.NONE).getValue();
         return this;
     }
 
     public SharedPrivateLinkResource refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getSignalRSharedPrivateLinkResources()
-                .getWithResponse(sharedPrivateLinkResourceName, resourceGroupName, resourceName, context)
-                .getValue();
+        this.innerObject
+            = serviceManager.serviceClient().getSignalRReplicaOperations().sharedPrivateLinkResourcesGetWithResponse(
+                resourceGroupName, resourceName, replicaName, sharedPrivateLinkResourceName, context).getValue();
         return this;
     }
 

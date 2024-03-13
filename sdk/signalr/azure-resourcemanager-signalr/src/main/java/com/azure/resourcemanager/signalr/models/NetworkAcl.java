@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Network ACL. */
+/**
+ * Network ACL.
+ */
 @Fluent
 public class NetworkAcl {
     /*
@@ -23,14 +25,16 @@ public class NetworkAcl {
     @JsonProperty(value = "deny")
     private List<SignalRRequestType> deny;
 
-    /** Creates an instance of NetworkAcl class. */
+    /**
+     * Creates an instance of NetworkAcl class.
+     */
     public NetworkAcl() {
     }
 
     /**
      * Get the allow property: Allowed request types. The value can be one or more of: ClientConnection,
      * ServerConnection, RESTAPI.
-     *
+     * 
      * @return the allow value.
      */
     public List<SignalRRequestType> allow() {
@@ -40,7 +44,7 @@ public class NetworkAcl {
     /**
      * Set the allow property: Allowed request types. The value can be one or more of: ClientConnection,
      * ServerConnection, RESTAPI.
-     *
+     * 
      * @param allow the allow value to set.
      * @return the NetworkAcl object itself.
      */
@@ -50,9 +54,9 @@ public class NetworkAcl {
     }
 
     /**
-     * Get the deny property: Denied request types. The value can be one or more of: ClientConnection, ServerConnection,
-     * RESTAPI.
-     *
+     * Get the deny property: Denied request types. The value can be one or more of: ClientConnection,
+     * ServerConnection, RESTAPI.
+     * 
      * @return the deny value.
      */
     public List<SignalRRequestType> deny() {
@@ -60,9 +64,9 @@ public class NetworkAcl {
     }
 
     /**
-     * Set the deny property: Denied request types. The value can be one or more of: ClientConnection, ServerConnection,
-     * RESTAPI.
-     *
+     * Set the deny property: Denied request types. The value can be one or more of: ClientConnection,
+     * ServerConnection, RESTAPI.
+     * 
      * @param deny the deny value to set.
      * @return the NetworkAcl object itself.
      */
@@ -73,7 +77,7 @@ public class NetworkAcl {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

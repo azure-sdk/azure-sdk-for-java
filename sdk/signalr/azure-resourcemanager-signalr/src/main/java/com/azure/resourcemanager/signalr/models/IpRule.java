@@ -7,7 +7,9 @@ package com.azure.resourcemanager.signalr.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An IP rule. */
+/**
+ * An IP rule.
+ */
 @Fluent
 public final class IpRule {
     /*
@@ -22,13 +24,15 @@ public final class IpRule {
     @JsonProperty(value = "action")
     private AclAction action;
 
-    /** Creates an instance of IpRule class. */
+    /**
+     * Creates an instance of IpRule class.
+     */
     public IpRule() {
     }
 
     /**
      * Get the value property: An IP or CIDR or ServiceTag.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -37,7 +41,7 @@ public final class IpRule {
 
     /**
      * Set the value property: An IP or CIDR or ServiceTag.
-     *
+     * 
      * @param value the value value to set.
      * @return the IpRule object itself.
      */
@@ -48,7 +52,7 @@ public final class IpRule {
 
     /**
      * Get the action property: Azure Networking ACL Action.
-     *
+     * 
      * @return the action value.
      */
     public AclAction action() {
@@ -57,7 +61,7 @@ public final class IpRule {
 
     /**
      * Set the action property: Azure Networking ACL Action.
-     *
+     * 
      * @param action the action value to set.
      * @return the IpRule object itself.
      */
@@ -68,7 +72,7 @@ public final class IpRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

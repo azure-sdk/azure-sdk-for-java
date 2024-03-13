@@ -294,6 +294,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.signalr.models.SharedPrivateLinkResourceList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.signalr.fluent.models.SkuListInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -305,11 +310,6 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.signalr.models.SkuCapacity",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.signalr.models.SharedPrivateLinkResourceList",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.signalr.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Serverless settings. */
+/**
+ * Serverless settings.
+ */
 @Fluent
 public final class ServerlessSettings {
     /*
@@ -24,18 +26,23 @@ public final class ServerlessSettings {
     @JsonProperty(value = "connectionTimeoutInSeconds")
     private Integer connectionTimeoutInSeconds;
 
-    /** Creates an instance of ServerlessSettings class. */
+    /**
+     * Creates an instance of ServerlessSettings class.
+     */
     public ServerlessSettings() {
     }
 
     /**
-     * Get the connectionTimeoutInSeconds property: Gets or sets Client Connection Timeout. Optional to be set. Value in
-     * seconds. Default value is 30 seconds. Customer should set the timeout to a shorter period if messages are
-     * expected to be sent in shorter intervals, and want the client to disconnect more quickly after the last message
-     * is sent. You can set the timeout to a longer period if messages are expected to be sent in longer intervals, and
-     * they want to keep the same client connection alive during this session. The service considers the client
-     * disconnected if it hasn't received a message (including keep-alive) in this interval.
-     *
+     * Get the connectionTimeoutInSeconds property: Gets or sets Client Connection Timeout. Optional to be set.
+     * Value in seconds.
+     * Default value is 30 seconds.
+     * Customer should set the timeout to a shorter period if messages are expected to be sent in shorter intervals,
+     * and want the client to disconnect more quickly after the last message is sent.
+     * You can set the timeout to a longer period if messages are expected to be sent in longer intervals,
+     * and they want to keep the same client connection alive during this session.
+     * The service considers the client disconnected if it hasn't received a message (including keep-alive) in this
+     * interval.
+     * 
      * @return the connectionTimeoutInSeconds value.
      */
     public Integer connectionTimeoutInSeconds() {
@@ -43,13 +50,16 @@ public final class ServerlessSettings {
     }
 
     /**
-     * Set the connectionTimeoutInSeconds property: Gets or sets Client Connection Timeout. Optional to be set. Value in
-     * seconds. Default value is 30 seconds. Customer should set the timeout to a shorter period if messages are
-     * expected to be sent in shorter intervals, and want the client to disconnect more quickly after the last message
-     * is sent. You can set the timeout to a longer period if messages are expected to be sent in longer intervals, and
-     * they want to keep the same client connection alive during this session. The service considers the client
-     * disconnected if it hasn't received a message (including keep-alive) in this interval.
-     *
+     * Set the connectionTimeoutInSeconds property: Gets or sets Client Connection Timeout. Optional to be set.
+     * Value in seconds.
+     * Default value is 30 seconds.
+     * Customer should set the timeout to a shorter period if messages are expected to be sent in shorter intervals,
+     * and want the client to disconnect more quickly after the last message is sent.
+     * You can set the timeout to a longer period if messages are expected to be sent in longer intervals,
+     * and they want to keep the same client connection alive during this session.
+     * The service considers the client disconnected if it hasn't received a message (including keep-alive) in this
+     * interval.
+     * 
      * @param connectionTimeoutInSeconds the connectionTimeoutInSeconds value to set.
      * @return the ServerlessSettings object itself.
      */
@@ -60,7 +70,7 @@ public final class ServerlessSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
