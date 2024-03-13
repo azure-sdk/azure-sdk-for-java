@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.OfficeConsentInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of all the office365 consents. */
+/**
+ * List of all the office365 consents.
+ */
 @Fluent
 public final class OfficeConsentList {
     /*
@@ -26,8 +28,14 @@ public final class OfficeConsentList {
     private List<OfficeConsentInner> value;
 
     /**
+     * Creates an instance of OfficeConsentList class.
+     */
+    public OfficeConsentList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of office consents.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class OfficeConsentList {
 
     /**
      * Get the value property: Array of the consents.
-     *
+     * 
      * @return the value value.
      */
     public List<OfficeConsentInner> value() {
@@ -45,7 +53,7 @@ public final class OfficeConsentList {
 
     /**
      * Set the value property: Array of the consents.
-     *
+     * 
      * @param value the value value to set.
      * @return the OfficeConsentList object itself.
      */
@@ -56,14 +64,13 @@ public final class OfficeConsentList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model OfficeConsentList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model OfficeConsentList"));
         } else {
             value().forEach(e -> e.validate());
         }

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.azure.resourcemanager.securityinsights.models.OSFamily;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Host entity property bag. */
+/**
+ * Host entity property bag.
+ */
 @Fluent
 public final class HostEntityProperties extends EntityCommonProperties {
     /*
@@ -68,8 +70,14 @@ public final class HostEntityProperties extends EntityCommonProperties {
     private String osVersion;
 
     /**
+     * Creates an instance of HostEntityProperties class.
+     */
+    public HostEntityProperties() {
+    }
+
+    /**
      * Get the azureId property: The azure resource id of the VM.
-     *
+     * 
      * @return the azureId value.
      */
     public String azureId() {
@@ -79,7 +87,7 @@ public final class HostEntityProperties extends EntityCommonProperties {
     /**
      * Get the dnsDomain property: The DNS domain that this host belongs to. Should contain the compete DNS suffix for
      * the domain.
-     *
+     * 
      * @return the dnsDomain value.
      */
     public String dnsDomain() {
@@ -88,7 +96,7 @@ public final class HostEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the hostname property: The hostname without the domain suffix.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -97,7 +105,7 @@ public final class HostEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the isDomainJoined property: Determines whether this host belongs to a domain.
-     *
+     * 
      * @return the isDomainJoined value.
      */
     public Boolean isDomainJoined() {
@@ -106,7 +114,7 @@ public final class HostEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the netBiosName property: The host name (pre-windows2000).
-     *
+     * 
      * @return the netBiosName value.
      */
     public String netBiosName() {
@@ -115,7 +123,7 @@ public final class HostEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the ntDomain property: The NT domain that this host belongs to.
-     *
+     * 
      * @return the ntDomain value.
      */
     public String ntDomain() {
@@ -124,7 +132,7 @@ public final class HostEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the omsAgentId property: The OMS agent id, if the host has OMS agent installed.
-     *
+     * 
      * @return the omsAgentId value.
      */
     public String omsAgentId() {
@@ -133,7 +141,7 @@ public final class HostEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the osFamily property: The operating system type.
-     *
+     * 
      * @return the osFamily value.
      */
     public OSFamily osFamily() {
@@ -142,7 +150,7 @@ public final class HostEntityProperties extends EntityCommonProperties {
 
     /**
      * Set the osFamily property: The operating system type.
-     *
+     * 
      * @param osFamily the osFamily value to set.
      * @return the HostEntityProperties object itself.
      */
@@ -153,8 +161,9 @@ public final class HostEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the osVersion property: A free text representation of the operating system. This field is meant to hold
-     * specific versions the are more fine grained than OSFamily or future values not supported by OSFamily enumeration.
-     *
+     * specific versions the are more fine grained than OSFamily or future values not supported by OSFamily
+     * enumeration.
+     * 
      * @return the osVersion value.
      */
     public String osVersion() {
@@ -163,7 +172,7 @@ public final class HostEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

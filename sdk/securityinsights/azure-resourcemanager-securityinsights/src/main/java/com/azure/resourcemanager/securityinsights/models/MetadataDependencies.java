@@ -28,8 +28,8 @@ public final class MetadataDependencies {
     private Kind kind;
 
     /*
-     * Version of the the content item we depend on.  Can be blank, * or missing to indicate any version fulfills the
-     * dependency.  If version does not match our defined numeric format then an exact match is required.
+     * Version of the the content item we depend on. Can be blank, * or missing to indicate any version fulfills the
+     * dependency. If version does not match our defined numeric format then an exact match is required.
      */
     @JsonProperty(value = "version")
     private String version;
@@ -53,8 +53,14 @@ public final class MetadataDependencies {
     private List<MetadataDependencies> criteria;
 
     /**
+     * Creates an instance of MetadataDependencies class.
+     */
+    public MetadataDependencies() {
+    }
+
+    /**
      * Get the contentId property: Id of the content item we depend on.
-     *
+     * 
      * @return the contentId value.
      */
     public String contentId() {
@@ -63,7 +69,7 @@ public final class MetadataDependencies {
 
     /**
      * Set the contentId property: Id of the content item we depend on.
-     *
+     * 
      * @param contentId the contentId value to set.
      * @return the MetadataDependencies object itself.
      */
@@ -74,7 +80,7 @@ public final class MetadataDependencies {
 
     /**
      * Get the kind property: Type of the content item we depend on.
-     *
+     * 
      * @return the kind value.
      */
     public Kind kind() {
@@ -83,7 +89,7 @@ public final class MetadataDependencies {
 
     /**
      * Set the kind property: Type of the content item we depend on.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the MetadataDependencies object itself.
      */
@@ -94,9 +100,9 @@ public final class MetadataDependencies {
 
     /**
      * Get the version property: Version of the the content item we depend on. Can be blank, * or missing to indicate
-     * any version fulfills the dependency. If version does not match our defined numeric format then an exact match is
-     * required.
-     *
+     * any version fulfills the dependency. If version does not match our defined numeric format then an exact match
+     * is required.
+     * 
      * @return the version value.
      */
     public String version() {
@@ -105,9 +111,9 @@ public final class MetadataDependencies {
 
     /**
      * Set the version property: Version of the the content item we depend on. Can be blank, * or missing to indicate
-     * any version fulfills the dependency. If version does not match our defined numeric format then an exact match is
-     * required.
-     *
+     * any version fulfills the dependency. If version does not match our defined numeric format then an exact match
+     * is required.
+     * 
      * @param version the version value to set.
      * @return the MetadataDependencies object itself.
      */
@@ -118,7 +124,7 @@ public final class MetadataDependencies {
 
     /**
      * Get the name property: Name of the content item.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -127,7 +133,7 @@ public final class MetadataDependencies {
 
     /**
      * Set the name property: Name of the content item.
-     *
+     * 
      * @param name the name value to set.
      * @return the MetadataDependencies object itself.
      */
@@ -138,7 +144,7 @@ public final class MetadataDependencies {
 
     /**
      * Get the operator property: Operator used for list of dependencies in criteria array.
-     *
+     * 
      * @return the operator value.
      */
     public Operator operator() {
@@ -147,7 +153,7 @@ public final class MetadataDependencies {
 
     /**
      * Set the operator property: Operator used for list of dependencies in criteria array.
-     *
+     * 
      * @param operator the operator value to set.
      * @return the MetadataDependencies object itself.
      */
@@ -158,7 +164,7 @@ public final class MetadataDependencies {
 
     /**
      * Get the criteria property: This is the list of dependencies we must fulfill, according to the AND/OR operator.
-     *
+     * 
      * @return the criteria value.
      */
     public List<MetadataDependencies> criteria() {
@@ -167,7 +173,7 @@ public final class MetadataDependencies {
 
     /**
      * Set the criteria property: This is the list of dependencies we must fulfill, according to the AND/OR operator.
-     *
+     * 
      * @param criteria the criteria value to set.
      * @return the MetadataDependencies object itself.
      */
@@ -178,7 +184,7 @@ public final class MetadataDependencies {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

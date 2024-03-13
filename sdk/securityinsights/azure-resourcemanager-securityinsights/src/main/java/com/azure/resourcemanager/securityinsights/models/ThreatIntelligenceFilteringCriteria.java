@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Filtering criteria for querying threat intelligence indicators. */
+/**
+ * Filtering criteria for querying threat intelligence indicators.
+ */
 @Fluent
 public final class ThreatIntelligenceFilteringCriteria {
     /*
@@ -90,8 +92,14 @@ public final class ThreatIntelligenceFilteringCriteria {
     private String skipToken;
 
     /**
+     * Creates an instance of ThreatIntelligenceFilteringCriteria class.
+     */
+    public ThreatIntelligenceFilteringCriteria() {
+    }
+
+    /**
      * Get the pageSize property: Page size.
-     *
+     * 
      * @return the pageSize value.
      */
     public Integer pageSize() {
@@ -100,7 +108,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the pageSize property: Page size.
-     *
+     * 
      * @param pageSize the pageSize value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -111,7 +119,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the minConfidence property: Minimum confidence.
-     *
+     * 
      * @return the minConfidence value.
      */
     public Integer minConfidence() {
@@ -120,7 +128,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the minConfidence property: Minimum confidence.
-     *
+     * 
      * @param minConfidence the minConfidence value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -131,7 +139,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the maxConfidence property: Maximum confidence.
-     *
+     * 
      * @return the maxConfidence value.
      */
     public Integer maxConfidence() {
@@ -140,7 +148,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the maxConfidence property: Maximum confidence.
-     *
+     * 
      * @param maxConfidence the maxConfidence value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -151,7 +159,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the minValidUntil property: Start time for ValidUntil filter.
-     *
+     * 
      * @return the minValidUntil value.
      */
     public String minValidUntil() {
@@ -160,7 +168,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the minValidUntil property: Start time for ValidUntil filter.
-     *
+     * 
      * @param minValidUntil the minValidUntil value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -171,7 +179,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the maxValidUntil property: End time for ValidUntil filter.
-     *
+     * 
      * @return the maxValidUntil value.
      */
     public String maxValidUntil() {
@@ -180,7 +188,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the maxValidUntil property: End time for ValidUntil filter.
-     *
+     * 
      * @param maxValidUntil the maxValidUntil value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -191,7 +199,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the includeDisabled property: Parameter to include/exclude disabled indicators.
-     *
+     * 
      * @return the includeDisabled value.
      */
     public Boolean includeDisabled() {
@@ -200,7 +208,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the includeDisabled property: Parameter to include/exclude disabled indicators.
-     *
+     * 
      * @param includeDisabled the includeDisabled value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -211,7 +219,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the sortBy property: Columns to sort by and sorting order.
-     *
+     * 
      * @return the sortBy value.
      */
     public List<ThreatIntelligenceSortingCriteria> sortBy() {
@@ -220,7 +228,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the sortBy property: Columns to sort by and sorting order.
-     *
+     * 
      * @param sortBy the sortBy value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -231,7 +239,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the sources property: Sources of threat intelligence indicators.
-     *
+     * 
      * @return the sources value.
      */
     public List<String> sources() {
@@ -240,7 +248,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the sources property: Sources of threat intelligence indicators.
-     *
+     * 
      * @param sources the sources value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -251,7 +259,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the patternTypes property: Pattern types.
-     *
+     * 
      * @return the patternTypes value.
      */
     public List<String> patternTypes() {
@@ -260,7 +268,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the patternTypes property: Pattern types.
-     *
+     * 
      * @param patternTypes the patternTypes value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -271,7 +279,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the threatTypes property: Threat types of threat intelligence indicators.
-     *
+     * 
      * @return the threatTypes value.
      */
     public List<String> threatTypes() {
@@ -280,7 +288,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the threatTypes property: Threat types of threat intelligence indicators.
-     *
+     * 
      * @param threatTypes the threatTypes value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -291,7 +299,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the ids property: Ids of threat intelligence indicators.
-     *
+     * 
      * @return the ids value.
      */
     public List<String> ids() {
@@ -300,7 +308,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the ids property: Ids of threat intelligence indicators.
-     *
+     * 
      * @param ids the ids value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -311,7 +319,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the keywords property: Keywords for searching threat intelligence indicators.
-     *
+     * 
      * @return the keywords value.
      */
     public List<String> keywords() {
@@ -320,7 +328,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the keywords property: Keywords for searching threat intelligence indicators.
-     *
+     * 
      * @param keywords the keywords value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -331,7 +339,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Get the skipToken property: Skip token.
-     *
+     * 
      * @return the skipToken value.
      */
     public String skipToken() {
@@ -340,7 +348,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Set the skipToken property: Skip token.
-     *
+     * 
      * @param skipToken the skipToken value to set.
      * @return the ThreatIntelligenceFilteringCriteria object itself.
      */
@@ -351,7 +359,7 @@ public final class ThreatIntelligenceFilteringCriteria {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

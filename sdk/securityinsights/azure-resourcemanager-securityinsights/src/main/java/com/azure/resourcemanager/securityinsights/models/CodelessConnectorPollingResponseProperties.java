@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the response from the external server. */
+/**
+ * Describes the response from the external server.
+ */
 @Fluent
 public final class CodelessConnectorPollingResponseProperties {
     /*
@@ -37,8 +39,14 @@ public final class CodelessConnectorPollingResponseProperties {
     private Boolean isGzipCompressed;
 
     /**
+     * Creates an instance of CodelessConnectorPollingResponseProperties class.
+     */
+    public CodelessConnectorPollingResponseProperties() {
+    }
+
+    /**
      * Get the eventsJsonPaths property: Describes the path we should extract the data in the response.
-     *
+     * 
      * @return the eventsJsonPaths value.
      */
     public List<String> eventsJsonPaths() {
@@ -47,7 +55,7 @@ public final class CodelessConnectorPollingResponseProperties {
 
     /**
      * Set the eventsJsonPaths property: Describes the path we should extract the data in the response.
-     *
+     * 
      * @param eventsJsonPaths the eventsJsonPaths value to set.
      * @return the CodelessConnectorPollingResponseProperties object itself.
      */
@@ -58,7 +66,7 @@ public final class CodelessConnectorPollingResponseProperties {
 
     /**
      * Get the successStatusJsonPath property: Describes the path we should extract the status code in the response.
-     *
+     * 
      * @return the successStatusJsonPath value.
      */
     public String successStatusJsonPath() {
@@ -67,7 +75,7 @@ public final class CodelessConnectorPollingResponseProperties {
 
     /**
      * Set the successStatusJsonPath property: Describes the path we should extract the status code in the response.
-     *
+     * 
      * @param successStatusJsonPath the successStatusJsonPath value to set.
      * @return the CodelessConnectorPollingResponseProperties object itself.
      */
@@ -78,7 +86,7 @@ public final class CodelessConnectorPollingResponseProperties {
 
     /**
      * Get the successStatusValue property: Describes the path we should extract the status value in the response.
-     *
+     * 
      * @return the successStatusValue value.
      */
     public String successStatusValue() {
@@ -87,7 +95,7 @@ public final class CodelessConnectorPollingResponseProperties {
 
     /**
      * Set the successStatusValue property: Describes the path we should extract the status value in the response.
-     *
+     * 
      * @param successStatusValue the successStatusValue value to set.
      * @return the CodelessConnectorPollingResponseProperties object itself.
      */
@@ -98,7 +106,7 @@ public final class CodelessConnectorPollingResponseProperties {
 
     /**
      * Get the isGzipCompressed property: Describes if the data in the response is Gzip.
-     *
+     * 
      * @return the isGzipCompressed value.
      */
     public Boolean isGzipCompressed() {
@@ -107,7 +115,7 @@ public final class CodelessConnectorPollingResponseProperties {
 
     /**
      * Set the isGzipCompressed property: Describes if the data in the response is Gzip.
-     *
+     * 
      * @param isGzipCompressed the isGzipCompressed value to set.
      * @return the CodelessConnectorPollingResponseProperties object itself.
      */
@@ -118,16 +126,13 @@ public final class CodelessConnectorPollingResponseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (eventsJsonPaths() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property eventsJsonPaths in model"
-                            + " CodelessConnectorPollingResponseProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property eventsJsonPaths in model CodelessConnectorPollingResponseProperties"));
         }
     }
 

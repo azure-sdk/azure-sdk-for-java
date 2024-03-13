@@ -10,33 +10,32 @@ import com.azure.resourcemanager.securityinsights.fluent.models.IncidentCommentI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of incident comments. */
+/**
+ * The IncidentCommentList model.
+ */
 @Fluent
 public final class IncidentCommentList {
     /*
-     * URL to fetch the next set of comments.
-     */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
-    /*
-     * Array of comments.
+     * The value property.
      */
     @JsonProperty(value = "value", required = true)
     private List<IncidentCommentInner> value;
 
-    /**
-     * Get the nextLink property: URL to fetch the next set of comments.
-     *
-     * @return the nextLink value.
+    /*
+     * The nextLink property.
      */
-    public String nextLink() {
-        return this.nextLink;
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
+
+    /**
+     * Creates an instance of IncidentCommentList class.
+     */
+    public IncidentCommentList() {
     }
 
     /**
-     * Get the value property: Array of comments.
-     *
+     * Get the value property: The value property.
+     * 
      * @return the value value.
      */
     public List<IncidentCommentInner> value() {
@@ -44,8 +43,8 @@ public final class IncidentCommentList {
     }
 
     /**
-     * Set the value property: Array of comments.
-     *
+     * Set the value property: The value property.
+     * 
      * @param value the value value to set.
      * @return the IncidentCommentList object itself.
      */
@@ -55,15 +54,23 @@ public final class IncidentCommentList {
     }
 
     /**
+     * Get the nextLink property: The nextLink property.
+     * 
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model IncidentCommentList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model IncidentCommentList"));
         } else {
             value().forEach(e -> e.validate());
         }

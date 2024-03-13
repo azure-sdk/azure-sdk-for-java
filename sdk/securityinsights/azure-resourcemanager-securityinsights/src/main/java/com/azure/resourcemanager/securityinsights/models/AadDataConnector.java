@@ -11,27 +11,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents AAD (Azure Active Directory) data connector. */
+/**
+ * Represents AADIP (Azure Active Directory Identity Protection) data connector.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("AzureActiveDirectory")
 @Fluent
 public final class AadDataConnector extends DataConnectorInner {
     /*
-     * AAD (Azure Active Directory) data connector properties.
+     * AADIP (Azure Active Directory Identity Protection) data connector properties.
      */
     @JsonProperty(value = "properties")
     private AadDataConnectorProperties innerProperties;
 
     /**
-     * Get the innerProperties property: AAD (Azure Active Directory) data connector properties.
-     *
+     * Creates an instance of AadDataConnector class.
+     */
+    public AadDataConnector() {
+    }
+
+    /**
+     * Get the innerProperties property: AADIP (Azure Active Directory Identity Protection) data connector properties.
+     * 
      * @return the innerProperties value.
      */
     private AadDataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AadDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +50,7 @@ public final class AadDataConnector extends DataConnectorInner {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AlertsDataTypeOfDataConnector dataTypes() {
@@ -49,7 +59,7 @@ public final class AadDataConnector extends DataConnectorInner {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the AadDataConnector object itself.
      */
@@ -63,7 +73,7 @@ public final class AadDataConnector extends DataConnectorInner {
 
     /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -72,7 +82,7 @@ public final class AadDataConnector extends DataConnectorInner {
 
     /**
      * Set the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the AadDataConnector object itself.
      */
@@ -86,7 +96,7 @@ public final class AadDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

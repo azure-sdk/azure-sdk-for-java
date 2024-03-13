@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.RelationInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of relations. */
+/**
+ * List of relations.
+ */
 @Fluent
 public final class RelationList {
     /*
@@ -26,8 +28,14 @@ public final class RelationList {
     private List<RelationInner> value;
 
     /**
+     * Creates an instance of RelationList class.
+     */
+    public RelationList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of relations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class RelationList {
 
     /**
      * Get the value property: Array of relations.
-     *
+     * 
      * @return the value value.
      */
     public List<RelationInner> value() {
@@ -45,7 +53,7 @@ public final class RelationList {
 
     /**
      * Set the value property: Array of relations.
-     *
+     * 
      * @param value the value value to set.
      * @return the RelationList object itself.
      */
@@ -56,14 +64,13 @@ public final class RelationList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model RelationList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model RelationList"));
         } else {
             value().forEach(e -> e.validate());
         }

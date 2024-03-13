@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents Insight Query. */
+/**
+ * Represents Insight Query.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Insight")
 @Fluent
@@ -21,8 +23,14 @@ public final class InsightQueryItem extends EntityQueryItem {
     private InsightQueryItemProperties properties;
 
     /**
+     * Creates an instance of InsightQueryItem class.
+     */
+    public InsightQueryItem() {
+    }
+
+    /**
      * Get the properties property: Properties bag for InsightQueryItem.
-     *
+     * 
      * @return the properties value.
      */
     public InsightQueryItemProperties properties() {
@@ -31,7 +39,7 @@ public final class InsightQueryItem extends EntityQueryItem {
 
     /**
      * Set the properties property: Properties bag for InsightQueryItem.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the InsightQueryItem object itself.
      */
@@ -40,14 +48,18 @@ public final class InsightQueryItem extends EntityQueryItem {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InsightQueryItem withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InsightQueryItem withType(String type) {
         super.withType(type);
@@ -56,7 +68,7 @@ public final class InsightQueryItem extends EntityQueryItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
