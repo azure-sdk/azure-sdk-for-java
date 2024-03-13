@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.hanaonazure.models.Display;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** HANA operation information. */
+/**
+ * HANA operation information.
+ */
 @Fluent
 public final class OperationInner {
     /*
@@ -24,20 +26,16 @@ public final class OperationInner {
     @JsonProperty(value = "display")
     private Display display;
 
-    /*
-     * Indicates whether the operation applies to data-plane.
+    /**
+     * Creates an instance of OperationInner class.
      */
-    @JsonProperty(value = "isDataAction", access = JsonProperty.Access.WRITE_ONLY)
-    private Boolean isDataAction;
-
-    /** Creates an instance of OperationInner class. */
     public OperationInner() {
     }
 
     /**
      * Get the name property: The name of the operation being performed on this particular object. This name should
      * match the action name that appears in RBAC / the event service.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -46,7 +44,7 @@ public final class OperationInner {
 
     /**
      * Get the display property: Displayed HANA operation information.
-     *
+     * 
      * @return the display value.
      */
     public Display display() {
@@ -55,7 +53,7 @@ public final class OperationInner {
 
     /**
      * Set the display property: Displayed HANA operation information.
-     *
+     * 
      * @param display the display value to set.
      * @return the OperationInner object itself.
      */
@@ -65,17 +63,8 @@ public final class OperationInner {
     }
 
     /**
-     * Get the isDataAction property: Indicates whether the operation applies to data-plane.
-     *
-     * @return the isDataAction value.
-     */
-    public Boolean isDataAction() {
-        return this.isDataAction;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
