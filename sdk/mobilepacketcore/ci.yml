@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/mobilepacketcore/ci.yml
+      - sdk/mobilepacketcore/azure-resourcemanager-mobilepacketcore/
+    exclude:
+      - sdk/mobilepacketcore/pom.xml
+      - sdk/mobilepacketcore/azure-resourcemanager-mobilepacketcore/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/mobilepacketcore/ci.yml
+      - sdk/mobilepacketcore/azure-resourcemanager-mobilepacketcore/
+    exclude:
+      - sdk/mobilepacketcore/pom.xml
+      - sdk/mobilepacketcore/azure-resourcemanager-mobilepacketcore/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagermobilepacketcore
+    displayName: azure-resourcemanager-mobilepacketcore
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: mobilepacketcore
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-mobilepacketcore
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagermobilepacketcore
+        releaseInBatch: ${{ parameters.release_azureresourcemanagermobilepacketcore }}
