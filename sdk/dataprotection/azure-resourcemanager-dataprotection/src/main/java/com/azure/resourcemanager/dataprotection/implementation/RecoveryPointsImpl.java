@@ -31,14 +31,16 @@ public final class RecoveryPointsImpl implements RecoveryPoints {
         String backupInstanceName) {
         PagedIterable<AzureBackupRecoveryPointResourceInner> inner
             = this.serviceClient().list(resourceGroupName, vaultName, backupInstanceName);
-        return Utils.mapPage(inner, inner1 -> new AzureBackupRecoveryPointResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new AzureBackupRecoveryPointResourceImpl(inner1, this.manager()));
     }
 
     public PagedIterable<AzureBackupRecoveryPointResource> list(String resourceGroupName, String vaultName,
         String backupInstanceName, String filter, String skipToken, Context context) {
         PagedIterable<AzureBackupRecoveryPointResourceInner> inner
             = this.serviceClient().list(resourceGroupName, vaultName, backupInstanceName, filter, skipToken, context);
-        return Utils.mapPage(inner, inner1 -> new AzureBackupRecoveryPointResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner,
+            inner1 -> new AzureBackupRecoveryPointResourceImpl(inner1, this.manager()));
     }
 
     public Response<AzureBackupRecoveryPointResource> getWithResponse(String resourceGroupName, String vaultName,
