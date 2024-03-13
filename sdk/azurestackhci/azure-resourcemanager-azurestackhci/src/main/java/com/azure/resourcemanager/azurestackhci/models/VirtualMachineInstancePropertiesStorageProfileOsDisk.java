@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** VHD to attach as OS disk. */
+/**
+ * VHD to attach as OS disk.
+ */
 @Fluent
 public final class VirtualMachineInstancePropertiesStorageProfileOsDisk {
     /*
@@ -23,13 +25,15 @@ public final class VirtualMachineInstancePropertiesStorageProfileOsDisk {
     @JsonProperty(value = "osType")
     private OperatingSystemTypes osType;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesStorageProfileOsDisk class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesStorageProfileOsDisk class.
+     */
     public VirtualMachineInstancePropertiesStorageProfileOsDisk() {
     }
 
     /**
      * Get the id property: Resource ID of the OS disk.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -38,7 +42,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileOsDisk {
 
     /**
      * Set the id property: Resource ID of the OS disk.
-     *
+     * 
      * @param id the id value to set.
      * @return the VirtualMachineInstancePropertiesStorageProfileOsDisk object itself.
      */
@@ -50,7 +54,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileOsDisk {
     /**
      * Get the osType property: This property allows you to specify the type of the OS that is included in the disk if
      * creating a VM from user-image or a specialized VHD. Possible values are: **Windows,** **Linux.**.
-     *
+     * 
      * @return the osType value.
      */
     public OperatingSystemTypes osType() {
@@ -60,7 +64,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileOsDisk {
     /**
      * Set the osType property: This property allows you to specify the type of the OS that is included in the disk if
      * creating a VM from user-image or a specialized VHD. Possible values are: **Windows,** **Linux.**.
-     *
+     * 
      * @param osType the osType value to set.
      * @return the VirtualMachineInstancePropertiesStorageProfileOsDisk object itself.
      */
@@ -71,7 +75,7 @@ public final class VirtualMachineInstancePropertiesStorageProfileOsDisk {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

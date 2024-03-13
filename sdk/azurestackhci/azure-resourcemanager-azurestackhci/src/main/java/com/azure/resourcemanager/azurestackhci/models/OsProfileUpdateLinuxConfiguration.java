@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The OsProfileUpdateLinuxConfiguration model. */
+/**
+ * The OsProfileUpdateLinuxConfiguration model.
+ */
 @Fluent
 public final class OsProfileUpdateLinuxConfiguration {
     /*
@@ -23,14 +25,16 @@ public final class OsProfileUpdateLinuxConfiguration {
     @JsonProperty(value = "provisionVMConfigAgent")
     private Boolean provisionVMConfigAgent;
 
-    /** Creates an instance of OsProfileUpdateLinuxConfiguration class. */
+    /**
+     * Creates an instance of OsProfileUpdateLinuxConfiguration class.
+     */
     public OsProfileUpdateLinuxConfiguration() {
     }
 
     /**
      * Get the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @return the provisionVMAgent value.
      */
     public Boolean provisionVMAgent() {
@@ -40,7 +44,7 @@ public final class OsProfileUpdateLinuxConfiguration {
     /**
      * Set the provisionVMAgent property: Used to indicate whether Arc for Servers agent onboarding should be triggered
      * during the virtual machine instance creation process.
-     *
+     * 
      * @param provisionVMAgent the provisionVMAgent value to set.
      * @return the OsProfileUpdateLinuxConfiguration object itself.
      */
@@ -52,7 +56,7 @@ public final class OsProfileUpdateLinuxConfiguration {
     /**
      * Get the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @return the provisionVMConfigAgent value.
      */
     public Boolean provisionVMConfigAgent() {
@@ -62,7 +66,7 @@ public final class OsProfileUpdateLinuxConfiguration {
     /**
      * Set the provisionVMConfigAgent property: Used to indicate whether the VM Config Agent should be installed during
      * the virtual machine creation process.
-     *
+     * 
      * @param provisionVMConfigAgent the provisionVMConfigAgent value to set.
      * @return the OsProfileUpdateLinuxConfiguration object itself.
      */
@@ -73,7 +77,7 @@ public final class OsProfileUpdateLinuxConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

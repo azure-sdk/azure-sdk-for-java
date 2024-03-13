@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for NetworkInterfacesOperation Delete. */
+/**
+ * Samples for NetworkInterfacesOperation Delete.
+ */
 public final class NetworkInterfacesOperationDeleteSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/DeleteNetworkInterface.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * DeleteNetworkInterface.json
      */
     /**
      * Sample code: DeleteNetworkInterface.
-     *
+     * 
      * @param manager Entry point to AzureStackHciManager.
      */
     public static void deleteNetworkInterface(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {

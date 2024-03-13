@@ -15,7 +15,9 @@ import com.azure.resourcemanager.azurestackhci.models.OperatingSystemTypes;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties under the gallery image resource. */
+/**
+ * Properties under the gallery image resource.
+ */
 @Fluent
 public final class GalleryImageProperties {
     /*
@@ -72,13 +74,15 @@ public final class GalleryImageProperties {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private GalleryImageStatus status;
 
-    /** Creates an instance of GalleryImageProperties class. */
+    /**
+     * Creates an instance of GalleryImageProperties class.
+     */
     public GalleryImageProperties() {
     }
 
     /**
      * Get the containerId property: Storage ContainerID of the storage container to be used for gallery image.
-     *
+     * 
      * @return the containerId value.
      */
     public String containerId() {
@@ -87,7 +91,7 @@ public final class GalleryImageProperties {
 
     /**
      * Set the containerId property: Storage ContainerID of the storage container to be used for gallery image.
-     *
+     * 
      * @param containerId the containerId value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -98,7 +102,7 @@ public final class GalleryImageProperties {
 
     /**
      * Get the imagePath property: location of the image the gallery image should be created from.
-     *
+     * 
      * @return the imagePath value.
      */
     public String imagePath() {
@@ -107,7 +111,7 @@ public final class GalleryImageProperties {
 
     /**
      * Set the imagePath property: location of the image the gallery image should be created from.
-     *
+     * 
      * @param imagePath the imagePath value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -118,7 +122,7 @@ public final class GalleryImageProperties {
 
     /**
      * Get the osType property: Operating system type that the gallery image uses [Windows, Linux].
-     *
+     * 
      * @return the osType value.
      */
     public OperatingSystemTypes osType() {
@@ -127,7 +131,7 @@ public final class GalleryImageProperties {
 
     /**
      * Set the osType property: Operating system type that the gallery image uses [Windows, Linux].
-     *
+     * 
      * @param osType the osType value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -139,7 +143,7 @@ public final class GalleryImageProperties {
     /**
      * Get the cloudInitDataSource property: Datasource for the gallery image when provisioning with cloud-init
      * [NoCloud, Azure].
-     *
+     * 
      * @return the cloudInitDataSource value.
      */
     public CloudInitDataSource cloudInitDataSource() {
@@ -149,7 +153,7 @@ public final class GalleryImageProperties {
     /**
      * Set the cloudInitDataSource property: Datasource for the gallery image when provisioning with cloud-init
      * [NoCloud, Azure].
-     *
+     * 
      * @param cloudInitDataSource the cloudInitDataSource value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -160,7 +164,7 @@ public final class GalleryImageProperties {
 
     /**
      * Get the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @return the hyperVGeneration value.
      */
     public HyperVGeneration hyperVGeneration() {
@@ -169,7 +173,7 @@ public final class GalleryImageProperties {
 
     /**
      * Set the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @param hyperVGeneration the hyperVGeneration value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -180,7 +184,7 @@ public final class GalleryImageProperties {
 
     /**
      * Get the identifier property: This is the gallery image definition identifier.
-     *
+     * 
      * @return the identifier value.
      */
     public GalleryImageIdentifier identifier() {
@@ -189,7 +193,7 @@ public final class GalleryImageProperties {
 
     /**
      * Set the identifier property: This is the gallery image definition identifier.
-     *
+     * 
      * @param identifier the identifier value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -201,7 +205,7 @@ public final class GalleryImageProperties {
     /**
      * Get the version property: Specifies information about the gallery image version that you want to create or
      * update.
-     *
+     * 
      * @return the version value.
      */
     public GalleryImageVersion version() {
@@ -211,7 +215,7 @@ public final class GalleryImageProperties {
     /**
      * Set the version property: Specifies information about the gallery image version that you want to create or
      * update.
-     *
+     * 
      * @param version the version value to set.
      * @return the GalleryImageProperties object itself.
      */
@@ -222,7 +226,7 @@ public final class GalleryImageProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the gallery image.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -231,7 +235,7 @@ public final class GalleryImageProperties {
 
     /**
      * Get the status property: The observed state of gallery images.
-     *
+     * 
      * @return the status value.
      */
     public GalleryImageStatus status() {
@@ -240,14 +244,13 @@ public final class GalleryImageProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (osType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property osType in model GalleryImageProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property osType in model GalleryImageProperties"));
         }
         if (identifier() != null) {
             identifier().validate();

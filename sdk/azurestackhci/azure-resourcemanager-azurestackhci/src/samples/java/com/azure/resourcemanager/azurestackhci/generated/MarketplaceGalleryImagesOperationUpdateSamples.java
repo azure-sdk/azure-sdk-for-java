@@ -8,24 +8,25 @@ import com.azure.resourcemanager.azurestackhci.models.MarketplaceGalleryImages;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for MarketplaceGalleryImagesOperation Update. */
+/**
+ * Samples for MarketplaceGalleryImagesOperation Update.
+ */
 public final class MarketplaceGalleryImagesOperationUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/UpdateMarketplaceGalleryImage.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * UpdateMarketplaceGalleryImage.json
      */
     /**
      * Sample code: UpdateMarketplaceGalleryImage.
-     *
+     * 
      * @param manager Entry point to AzureStackHciManager.
      */
-    public static void updateMarketplaceGalleryImage(
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        MarketplaceGalleryImages resource =
-            manager
-                .marketplaceGalleryImagesOperations()
-                .getByResourceGroupWithResponse(
-                    "test-rg", "test-marketplce-gallery-image", com.azure.core.util.Context.NONE)
-                .getValue();
+    public static void
+        updateMarketplaceGalleryImage(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+        MarketplaceGalleryImages resource
+            = manager.marketplaceGalleryImagesOperations().getByResourceGroupWithResponse("test-rg",
+                "test-marketplce-gallery-image", com.azure.core.util.Context.NONE).getValue();
         resource.update().withTags(mapOf("additionalProperties", "sample")).apply();
     }
 
