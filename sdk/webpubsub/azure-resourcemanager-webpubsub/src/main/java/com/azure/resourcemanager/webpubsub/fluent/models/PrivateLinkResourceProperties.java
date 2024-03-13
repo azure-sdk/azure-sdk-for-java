@@ -9,7 +9,9 @@ import com.azure.resourcemanager.webpubsub.models.ShareablePrivateLinkResourceTy
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Private link resource properties. */
+/**
+ * Private link resource properties.
+ */
 @Fluent
 public final class PrivateLinkResourceProperties {
     /*
@@ -36,13 +38,15 @@ public final class PrivateLinkResourceProperties {
     @JsonProperty(value = "shareablePrivateLinkResourceTypes")
     private List<ShareablePrivateLinkResourceType> shareablePrivateLinkResourceTypes;
 
-    /** Creates an instance of PrivateLinkResourceProperties class. */
+    /**
+     * Creates an instance of PrivateLinkResourceProperties class.
+     */
     public PrivateLinkResourceProperties() {
     }
 
     /**
      * Get the groupId property: Group Id of the private link resource.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -51,7 +55,7 @@ public final class PrivateLinkResourceProperties {
 
     /**
      * Set the groupId property: Group Id of the private link resource.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the PrivateLinkResourceProperties object itself.
      */
@@ -62,7 +66,7 @@ public final class PrivateLinkResourceProperties {
 
     /**
      * Get the requiredMembers property: Required members of the private link resource.
-     *
+     * 
      * @return the requiredMembers value.
      */
     public List<String> requiredMembers() {
@@ -71,7 +75,7 @@ public final class PrivateLinkResourceProperties {
 
     /**
      * Set the requiredMembers property: Required members of the private link resource.
-     *
+     * 
      * @param requiredMembers the requiredMembers value to set.
      * @return the PrivateLinkResourceProperties object itself.
      */
@@ -82,7 +86,7 @@ public final class PrivateLinkResourceProperties {
 
     /**
      * Get the requiredZoneNames property: Required private DNS zone names.
-     *
+     * 
      * @return the requiredZoneNames value.
      */
     public List<String> requiredZoneNames() {
@@ -91,7 +95,7 @@ public final class PrivateLinkResourceProperties {
 
     /**
      * Set the requiredZoneNames property: Required private DNS zone names.
-     *
+     * 
      * @param requiredZoneNames the requiredZoneNames value to set.
      * @return the PrivateLinkResourceProperties object itself.
      */
@@ -103,7 +107,7 @@ public final class PrivateLinkResourceProperties {
     /**
      * Get the shareablePrivateLinkResourceTypes property: The list of resources that are onboarded to private link
      * service.
-     *
+     * 
      * @return the shareablePrivateLinkResourceTypes value.
      */
     public List<ShareablePrivateLinkResourceType> shareablePrivateLinkResourceTypes() {
@@ -113,7 +117,7 @@ public final class PrivateLinkResourceProperties {
     /**
      * Set the shareablePrivateLinkResourceTypes property: The list of resources that are onboarded to private link
      * service.
-     *
+     * 
      * @param shareablePrivateLinkResourceTypes the shareablePrivateLinkResourceTypes value to set.
      * @return the PrivateLinkResourceProperties object itself.
      */
@@ -125,7 +129,7 @@ public final class PrivateLinkResourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

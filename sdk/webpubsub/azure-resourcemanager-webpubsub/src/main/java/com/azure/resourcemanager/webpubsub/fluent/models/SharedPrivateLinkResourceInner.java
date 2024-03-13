@@ -11,7 +11,9 @@ import com.azure.resourcemanager.webpubsub.models.ProvisioningState;
 import com.azure.resourcemanager.webpubsub.models.SharedPrivateLinkResourceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes a Shared Private Link Resource. */
+/**
+ * Describes a Shared Private Link Resource.
+ */
 @Fluent
 public final class SharedPrivateLinkResourceInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of SharedPrivateLinkResourceInner class. */
+    /**
+     * Creates an instance of SharedPrivateLinkResourceInner class.
+     */
     public SharedPrivateLinkResourceInner() {
     }
 
     /**
      * Get the innerProperties property: Describes the properties of an existing Shared Private Link Resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SharedPrivateLinkResourceProperties innerProperties() {
@@ -41,7 +45,7 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -50,7 +54,7 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Get the groupId property: The group id from the provider of resource the shared private link resource is for.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -59,7 +63,7 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Set the groupId property: The group id from the provider of resource the shared private link resource is for.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the SharedPrivateLinkResourceInner object itself.
      */
@@ -73,7 +77,7 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Get the privateLinkResourceId property: The resource id of the resource the shared private link resource is for.
-     *
+     * 
      * @return the privateLinkResourceId value.
      */
     public String privateLinkResourceId() {
@@ -82,7 +86,7 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Set the privateLinkResourceId property: The resource id of the resource the shared private link resource is for.
-     *
+     * 
      * @param privateLinkResourceId the privateLinkResourceId value to set.
      * @return the SharedPrivateLinkResourceInner object itself.
      */
@@ -96,7 +100,7 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -104,8 +108,9 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the requestMessage property: The request message for requesting approval of the shared private link resource.
-     *
+     * Get the requestMessage property: The request message for requesting approval of the shared private link
+     * resource.
+     * 
      * @return the requestMessage value.
      */
     public String requestMessage() {
@@ -113,8 +118,9 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
     }
 
     /**
-     * Set the requestMessage property: The request message for requesting approval of the shared private link resource.
-     *
+     * Set the requestMessage property: The request message for requesting approval of the shared private link
+     * resource.
+     * 
      * @param requestMessage the requestMessage value to set.
      * @return the SharedPrivateLinkResourceInner object itself.
      */
@@ -128,7 +134,7 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Get the status property: Status of the shared private link resource.
-     *
+     * 
      * @return the status value.
      */
     public SharedPrivateLinkResourceStatus status() {
@@ -137,7 +143,7 @@ public final class SharedPrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

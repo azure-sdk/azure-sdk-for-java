@@ -12,7 +12,9 @@ import com.azure.resourcemanager.webpubsub.models.ProvisioningState;
 import com.azure.resourcemanager.webpubsub.models.ResourceReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A custom domain. */
+/**
+ * A custom domain.
+ */
 @Fluent
 public final class CustomDomainInner extends ProxyResource {
     /*
@@ -27,13 +29,15 @@ public final class CustomDomainInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of CustomDomainInner class. */
+    /**
+     * Creates an instance of CustomDomainInner class.
+     */
     public CustomDomainInner() {
     }
 
     /**
      * Get the innerProperties property: Properties of a custom domain.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CustomDomainProperties innerProperties() {
@@ -42,7 +46,7 @@ public final class CustomDomainInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -51,7 +55,7 @@ public final class CustomDomainInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -60,7 +64,7 @@ public final class CustomDomainInner extends ProxyResource {
 
     /**
      * Get the domainName property: The custom domain name.
-     *
+     * 
      * @return the domainName value.
      */
     public String domainName() {
@@ -69,7 +73,7 @@ public final class CustomDomainInner extends ProxyResource {
 
     /**
      * Set the domainName property: The custom domain name.
-     *
+     * 
      * @param domainName the domainName value to set.
      * @return the CustomDomainInner object itself.
      */
@@ -83,7 +87,7 @@ public final class CustomDomainInner extends ProxyResource {
 
     /**
      * Get the customCertificate property: Reference to a resource.
-     *
+     * 
      * @return the customCertificate value.
      */
     public ResourceReference customCertificate() {
@@ -92,7 +96,7 @@ public final class CustomDomainInner extends ProxyResource {
 
     /**
      * Set the customCertificate property: Reference to a resource.
-     *
+     * 
      * @param customCertificate the customCertificate value to set.
      * @return the CustomDomainInner object itself.
      */
@@ -106,15 +110,13 @@ public final class CustomDomainInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model CustomDomainInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model CustomDomainInner"));
         } else {
             innerProperties().validate();
         }

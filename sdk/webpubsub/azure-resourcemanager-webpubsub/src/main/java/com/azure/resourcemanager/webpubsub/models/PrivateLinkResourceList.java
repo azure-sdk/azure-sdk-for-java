@@ -9,7 +9,9 @@ import com.azure.resourcemanager.webpubsub.fluent.models.PrivateLinkResourceInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Contains a list of PrivateLinkResource and a possible link to query more results. */
+/**
+ * Contains a list of PrivateLinkResource and a possible link to query more results.
+ */
 @Fluent
 public final class PrivateLinkResourceList {
     /*
@@ -25,13 +27,15 @@ public final class PrivateLinkResourceList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of PrivateLinkResourceList class. */
+    /**
+     * Creates an instance of PrivateLinkResourceList class.
+     */
     public PrivateLinkResourceList() {
     }
 
     /**
      * Get the value property: List of PrivateLinkResource.
-     *
+     * 
      * @return the value value.
      */
     public List<PrivateLinkResourceInner> value() {
@@ -40,7 +44,7 @@ public final class PrivateLinkResourceList {
 
     /**
      * Set the value property: List of PrivateLinkResource.
-     *
+     * 
      * @param value the value value to set.
      * @return the PrivateLinkResourceList object itself.
      */
@@ -50,9 +54,9 @@ public final class PrivateLinkResourceList {
     }
 
     /**
-     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,9 +64,9 @@ public final class PrivateLinkResourceList {
     }
 
     /**
-     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the PrivateLinkResourceList object itself.
      */
@@ -73,7 +77,7 @@ public final class PrivateLinkResourceList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -32,6 +32,7 @@ import com.azure.resourcemanager.webpubsub.implementation.WebPubSubHubsImpl;
 import com.azure.resourcemanager.webpubsub.implementation.WebPubSubManagementClientBuilder;
 import com.azure.resourcemanager.webpubsub.implementation.WebPubSubPrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.webpubsub.implementation.WebPubSubPrivateLinkResourcesImpl;
+import com.azure.resourcemanager.webpubsub.implementation.WebPubSubReplicaOperationsImpl;
 import com.azure.resourcemanager.webpubsub.implementation.WebPubSubReplicasImpl;
 import com.azure.resourcemanager.webpubsub.implementation.WebPubSubSharedPrivateLinkResourcesImpl;
 import com.azure.resourcemanager.webpubsub.implementation.WebPubSubsImpl;
@@ -42,6 +43,7 @@ import com.azure.resourcemanager.webpubsub.models.WebPubSubCustomDomains;
 import com.azure.resourcemanager.webpubsub.models.WebPubSubHubs;
 import com.azure.resourcemanager.webpubsub.models.WebPubSubPrivateEndpointConnections;
 import com.azure.resourcemanager.webpubsub.models.WebPubSubPrivateLinkResources;
+import com.azure.resourcemanager.webpubsub.models.WebPubSubReplicaOperations;
 import com.azure.resourcemanager.webpubsub.models.WebPubSubReplicas;
 import com.azure.resourcemanager.webpubsub.models.WebPubSubSharedPrivateLinkResources;
 import com.azure.resourcemanager.webpubsub.models.WebPubSubs;
@@ -52,7 +54,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to WebPubSubManager. REST API for Azure WebPubSub Service. */
+/**
+ * Entry point to WebPubSubManager.
+ * REST API for Azure WebPubSub Service.
+ */
 public final class WebPubSubManager {
     private Operations operations;
 
@@ -72,6 +77,8 @@ public final class WebPubSubManager {
 
     private WebPubSubReplicas webPubSubReplicas;
 
+    private WebPubSubReplicaOperations webPubSubReplicaOperations;
+
     private WebPubSubSharedPrivateLinkResources webPubSubSharedPrivateLinkResources;
 
     private final WebPubSubManagementClient clientObject;
@@ -79,18 +86,14 @@ public final class WebPubSubManager {
     private WebPubSubManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new WebPubSubManagementClientBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new WebPubSubManagementClientBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of WebPubSub service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the WebPubSub service API instance.
@@ -103,7 +106,7 @@ public final class WebPubSubManager {
 
     /**
      * Creates an instance of WebPubSub service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the WebPubSub service API instance.
@@ -116,14 +119,16 @@ public final class WebPubSubManager {
 
     /**
      * Gets a Configurable instance that can be used to create WebPubSubManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new WebPubSubManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -195,8 +200,8 @@ public final class WebPubSubManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -213,8 +218,8 @@ public final class WebPubSubManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -234,21 +239,12 @@ public final class WebPubSubManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.webpubsub")
-                .append("/")
-                .append("1.1.0-beta.2");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.webpubsub").append("/")
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -267,38 +263,25 @@ public final class WebPubSubManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new WebPubSubManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -310,7 +293,7 @@ public final class WebPubSubManager {
 
     /**
      * Gets the resource collection API of WebPubSubs. It manages WebPubSubResource.
-     *
+     * 
      * @return Resource collection API of WebPubSubs.
      */
     public WebPubSubs webPubSubs() {
@@ -322,7 +305,7 @@ public final class WebPubSubManager {
 
     /**
      * Gets the resource collection API of Usages.
-     *
+     * 
      * @return Resource collection API of Usages.
      */
     public Usages usages() {
@@ -334,33 +317,33 @@ public final class WebPubSubManager {
 
     /**
      * Gets the resource collection API of WebPubSubCustomCertificates. It manages CustomCertificate.
-     *
+     * 
      * @return Resource collection API of WebPubSubCustomCertificates.
      */
     public WebPubSubCustomCertificates webPubSubCustomCertificates() {
         if (this.webPubSubCustomCertificates == null) {
-            this.webPubSubCustomCertificates =
-                new WebPubSubCustomCertificatesImpl(clientObject.getWebPubSubCustomCertificates(), this);
+            this.webPubSubCustomCertificates
+                = new WebPubSubCustomCertificatesImpl(clientObject.getWebPubSubCustomCertificates(), this);
         }
         return webPubSubCustomCertificates;
     }
 
     /**
      * Gets the resource collection API of WebPubSubCustomDomains. It manages CustomDomain.
-     *
+     * 
      * @return Resource collection API of WebPubSubCustomDomains.
      */
     public WebPubSubCustomDomains webPubSubCustomDomains() {
         if (this.webPubSubCustomDomains == null) {
-            this.webPubSubCustomDomains =
-                new WebPubSubCustomDomainsImpl(clientObject.getWebPubSubCustomDomains(), this);
+            this.webPubSubCustomDomains
+                = new WebPubSubCustomDomainsImpl(clientObject.getWebPubSubCustomDomains(), this);
         }
         return webPubSubCustomDomains;
     }
 
     /**
      * Gets the resource collection API of WebPubSubHubs. It manages WebPubSubHub.
-     *
+     * 
      * @return Resource collection API of WebPubSubHubs.
      */
     public WebPubSubHubs webPubSubHubs() {
@@ -372,34 +355,33 @@ public final class WebPubSubManager {
 
     /**
      * Gets the resource collection API of WebPubSubPrivateEndpointConnections.
-     *
+     * 
      * @return Resource collection API of WebPubSubPrivateEndpointConnections.
      */
     public WebPubSubPrivateEndpointConnections webPubSubPrivateEndpointConnections() {
         if (this.webPubSubPrivateEndpointConnections == null) {
-            this.webPubSubPrivateEndpointConnections =
-                new WebPubSubPrivateEndpointConnectionsImpl(
-                    clientObject.getWebPubSubPrivateEndpointConnections(), this);
+            this.webPubSubPrivateEndpointConnections = new WebPubSubPrivateEndpointConnectionsImpl(
+                clientObject.getWebPubSubPrivateEndpointConnections(), this);
         }
         return webPubSubPrivateEndpointConnections;
     }
 
     /**
      * Gets the resource collection API of WebPubSubPrivateLinkResources.
-     *
+     * 
      * @return Resource collection API of WebPubSubPrivateLinkResources.
      */
     public WebPubSubPrivateLinkResources webPubSubPrivateLinkResources() {
         if (this.webPubSubPrivateLinkResources == null) {
-            this.webPubSubPrivateLinkResources =
-                new WebPubSubPrivateLinkResourcesImpl(clientObject.getWebPubSubPrivateLinkResources(), this);
+            this.webPubSubPrivateLinkResources
+                = new WebPubSubPrivateLinkResourcesImpl(clientObject.getWebPubSubPrivateLinkResources(), this);
         }
         return webPubSubPrivateLinkResources;
     }
 
     /**
      * Gets the resource collection API of WebPubSubReplicas. It manages Replica.
-     *
+     * 
      * @return Resource collection API of WebPubSubReplicas.
      */
     public WebPubSubReplicas webPubSubReplicas() {
@@ -410,15 +392,27 @@ public final class WebPubSubManager {
     }
 
     /**
-     * Gets the resource collection API of WebPubSubSharedPrivateLinkResources. It manages SharedPrivateLinkResource.
-     *
+     * Gets the resource collection API of WebPubSubReplicaOperations. It manages SharedPrivateLinkResource.
+     * 
+     * @return Resource collection API of WebPubSubReplicaOperations.
+     */
+    public WebPubSubReplicaOperations webPubSubReplicaOperations() {
+        if (this.webPubSubReplicaOperations == null) {
+            this.webPubSubReplicaOperations
+                = new WebPubSubReplicaOperationsImpl(clientObject.getWebPubSubReplicaOperations(), this);
+        }
+        return webPubSubReplicaOperations;
+    }
+
+    /**
+     * Gets the resource collection API of WebPubSubSharedPrivateLinkResources.
+     * 
      * @return Resource collection API of WebPubSubSharedPrivateLinkResources.
      */
     public WebPubSubSharedPrivateLinkResources webPubSubSharedPrivateLinkResources() {
         if (this.webPubSubSharedPrivateLinkResources == null) {
-            this.webPubSubSharedPrivateLinkResources =
-                new WebPubSubSharedPrivateLinkResourcesImpl(
-                    clientObject.getWebPubSubSharedPrivateLinkResources(), this);
+            this.webPubSubSharedPrivateLinkResources = new WebPubSubSharedPrivateLinkResourcesImpl(
+                clientObject.getWebPubSubSharedPrivateLinkResources(), this);
         }
         return webPubSubSharedPrivateLinkResources;
     }
@@ -426,7 +420,7 @@ public final class WebPubSubManager {
     /**
      * Gets wrapped service client WebPubSubManagementClient providing direct access to the underlying auto-generated
      * API implementation, based on Azure REST API.
-     *
+     * 
      * @return Wrapped service client WebPubSubManagementClient.
      */
     public WebPubSubManagementClient serviceClient() {

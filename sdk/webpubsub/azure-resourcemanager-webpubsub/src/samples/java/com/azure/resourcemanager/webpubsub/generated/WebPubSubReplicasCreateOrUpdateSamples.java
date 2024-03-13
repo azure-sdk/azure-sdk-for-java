@@ -9,26 +9,26 @@ import com.azure.resourcemanager.webpubsub.models.WebPubSubSkuTier;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for WebPubSubReplicas CreateOrUpdate. */
+/**
+ * Samples for WebPubSubReplicas CreateOrUpdate.
+ */
 public final class WebPubSubReplicasCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/webpubsub/resource-manager/Microsoft.SignalRService/preview/2023-08-01-preview/examples/WebPubSubReplicas_CreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/webpubsub/resource-manager/Microsoft.SignalRService/preview/2024-01-01-preview/examples/
+     * WebPubSubReplicas_CreateOrUpdate.json
      */
     /**
      * Sample code: WebPubSubReplicas_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to WebPubSubManager.
      */
     public static void webPubSubReplicasCreateOrUpdate(com.azure.resourcemanager.webpubsub.WebPubSubManager manager) {
-        manager
-            .webPubSubReplicas()
-            .define("myWebPubSubService-eastus")
-            .withRegion("eastus")
+        manager.webPubSubReplicas().define("myWebPubSubService-eastus").withRegion("eastus")
             .withExistingWebPubSub("myResourceGroup", "myWebPubSubService")
             .withTags(mapOf("key1", "fakeTokenPlaceholder"))
             .withSku(new ResourceSku().withName("Premium_P1").withTier(WebPubSubSkuTier.PREMIUM).withCapacity(1))
-            .withResourceStopped("false")
-            .create();
+            .withResourceStopped("false").create();
     }
 
     // Use "Map.of" if available

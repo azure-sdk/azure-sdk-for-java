@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ACL for a private endpoint. */
+/**
+ * ACL for a private endpoint.
+ */
 @Fluent
 public final class PrivateEndpointAcl extends NetworkAcl {
     /*
@@ -18,13 +20,15 @@ public final class PrivateEndpointAcl extends NetworkAcl {
     @JsonProperty(value = "name", required = true)
     private String name;
 
-    /** Creates an instance of PrivateEndpointAcl class. */
+    /**
+     * Creates an instance of PrivateEndpointAcl class.
+     */
     public PrivateEndpointAcl() {
     }
 
     /**
      * Get the name property: Name of the private endpoint connection.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -33,7 +37,7 @@ public final class PrivateEndpointAcl extends NetworkAcl {
 
     /**
      * Set the name property: Name of the private endpoint connection.
-     *
+     * 
      * @param name the name value to set.
      * @return the PrivateEndpointAcl object itself.
      */
@@ -42,14 +46,18 @@ public final class PrivateEndpointAcl extends NetworkAcl {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PrivateEndpointAcl withAllow(List<WebPubSubRequestType> allow) {
         super.withAllow(allow);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PrivateEndpointAcl withDeny(List<WebPubSubRequestType> deny) {
         super.withDeny(deny);
@@ -58,16 +66,15 @@ public final class PrivateEndpointAcl extends NetworkAcl {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model PrivateEndpointAcl"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model PrivateEndpointAcl"));
         }
     }
 

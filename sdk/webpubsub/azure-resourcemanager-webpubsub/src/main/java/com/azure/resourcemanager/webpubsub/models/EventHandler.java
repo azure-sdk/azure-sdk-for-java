@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties of event handler. */
+/**
+ * Properties of event handler.
+ */
 @Fluent
 public final class EventHandler {
     /*
@@ -42,16 +44,18 @@ public final class EventHandler {
     @JsonProperty(value = "auth")
     private UpstreamAuthSettings auth;
 
-    /** Creates an instance of EventHandler class. */
+    /**
+     * Creates an instance of EventHandler class.
+     */
     public EventHandler() {
     }
 
     /**
      * Get the urlTemplate property: Gets or sets the EventHandler URL template. You can use a predefined parameter
      * {hub} and {event} inside the template, the value of the EventHandler URL is dynamically calculated when the
-     * client request comes in. For example, UrlTemplate can be `http://example.com/api/{hub}/{event}`. The host part
-     * can't contains parameters.
-     *
+     * client request comes in.
+     * For example, UrlTemplate can be `http://example.com/api/{hub}/{event}`. The host part can't contains parameters.
+     * 
      * @return the urlTemplate value.
      */
     public String urlTemplate() {
@@ -61,9 +65,9 @@ public final class EventHandler {
     /**
      * Set the urlTemplate property: Gets or sets the EventHandler URL template. You can use a predefined parameter
      * {hub} and {event} inside the template, the value of the EventHandler URL is dynamically calculated when the
-     * client request comes in. For example, UrlTemplate can be `http://example.com/api/{hub}/{event}`. The host part
-     * can't contains parameters.
-     *
+     * client request comes in.
+     * For example, UrlTemplate can be `http://example.com/api/{hub}/{event}`. The host part can't contains parameters.
+     * 
      * @param urlTemplate the urlTemplate value to set.
      * @return the EventHandler object itself.
      */
@@ -73,11 +77,12 @@ public final class EventHandler {
     }
 
     /**
-     * Get the userEventPattern property: Gets or sets the matching pattern for event names. There are 3 kinds of
-     * patterns supported: 1. "*", it matches any event name 2. Combine multiple events with ",", for example
-     * "event1,event2", it matches event "event1" and "event2" 3. A single event name, for example, "event1", it matches
-     * "event1".
-     *
+     * Get the userEventPattern property: Gets or sets the matching pattern for event names.
+     * There are 3 kinds of patterns supported:
+     * 1. "*", it matches any event name
+     * 2. Combine multiple events with ",", for example "event1,event2", it matches event "event1" and "event2"
+     * 3. A single event name, for example, "event1", it matches "event1".
+     * 
      * @return the userEventPattern value.
      */
     public String userEventPattern() {
@@ -85,11 +90,12 @@ public final class EventHandler {
     }
 
     /**
-     * Set the userEventPattern property: Gets or sets the matching pattern for event names. There are 3 kinds of
-     * patterns supported: 1. "*", it matches any event name 2. Combine multiple events with ",", for example
-     * "event1,event2", it matches event "event1" and "event2" 3. A single event name, for example, "event1", it matches
-     * "event1".
-     *
+     * Set the userEventPattern property: Gets or sets the matching pattern for event names.
+     * There are 3 kinds of patterns supported:
+     * 1. "*", it matches any event name
+     * 2. Combine multiple events with ",", for example "event1,event2", it matches event "event1" and "event2"
+     * 3. A single event name, for example, "event1", it matches "event1".
+     * 
      * @param userEventPattern the userEventPattern value to set.
      * @return the EventHandler object itself.
      */
@@ -100,7 +106,7 @@ public final class EventHandler {
 
     /**
      * Get the systemEvents property: Gets or sets the list of system events.
-     *
+     * 
      * @return the systemEvents value.
      */
     public List<String> systemEvents() {
@@ -109,7 +115,7 @@ public final class EventHandler {
 
     /**
      * Set the systemEvents property: Gets or sets the list of system events.
-     *
+     * 
      * @param systemEvents the systemEvents value to set.
      * @return the EventHandler object itself.
      */
@@ -120,7 +126,7 @@ public final class EventHandler {
 
     /**
      * Get the auth property: Upstream auth settings. If not set, no auth is used for upstream messages.
-     *
+     * 
      * @return the auth value.
      */
     public UpstreamAuthSettings auth() {
@@ -129,7 +135,7 @@ public final class EventHandler {
 
     /**
      * Set the auth property: Upstream auth settings. If not set, no auth is used for upstream messages.
-     *
+     * 
      * @param auth the auth value to set.
      * @return the EventHandler object itself.
      */
@@ -140,14 +146,13 @@ public final class EventHandler {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (urlTemplate() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property urlTemplate in model EventHandler"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property urlTemplate in model EventHandler"));
         }
         if (auth() != null) {
             auth().validate();

@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for EventListenerFilterDiscriminator. */
+/**
+ * Defines values for EventListenerFilterDiscriminator.
+ */
 public final class EventListenerFilterDiscriminator extends ExpandableStringEnum<EventListenerFilterDiscriminator> {
-    /** Static value EventName for EventListenerFilterDiscriminator. */
+    /**
+     * Static value EventName for EventListenerFilterDiscriminator.
+     */
     public static final EventListenerFilterDiscriminator EVENT_NAME = fromString("EventName");
 
     /**
      * Creates a new instance of EventListenerFilterDiscriminator value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class EventListenerFilterDiscriminator extends ExpandableStringEnum
 
     /**
      * Creates or finds a EventListenerFilterDiscriminator from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding EventListenerFilterDiscriminator.
      */
@@ -35,7 +39,7 @@ public final class EventListenerFilterDiscriminator extends ExpandableStringEnum
 
     /**
      * Gets known EventListenerFilterDiscriminator values.
-     *
+     * 
      * @return known EventListenerFilterDiscriminator values.
      */
     public static Collection<EventListenerFilterDiscriminator> values() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Live trace configuration of a Microsoft.SignalRService resource. */
+/**
+ * Live trace configuration of a Microsoft.SignalRService resource.
+ */
 @Fluent
 public final class LiveTraceConfiguration {
     /*
@@ -28,15 +30,20 @@ public final class LiveTraceConfiguration {
     @JsonProperty(value = "categories")
     private List<LiveTraceCategory> categories;
 
-    /** Creates an instance of LiveTraceConfiguration class. */
+    /**
+     * Creates an instance of LiveTraceConfiguration class.
+     */
     public LiveTraceConfiguration() {
     }
 
     /**
-     * Get the enabled property: Indicates whether or not enable live trace. When it's set to true, live trace client
-     * can connect to the service. Otherwise, live trace client can't connect to the service, so that you are unable to
-     * receive any log, no matter what you configure in "categories". Available values: true, false. Case insensitive.
-     *
+     * Get the enabled property: Indicates whether or not enable live trace.
+     * When it's set to true, live trace client can connect to the service.
+     * Otherwise, live trace client can't connect to the service, so that you are unable to receive any log, no matter
+     * what you configure in "categories".
+     * Available values: true, false.
+     * Case insensitive.
+     * 
      * @return the enabled value.
      */
     public String enabled() {
@@ -44,10 +51,13 @@ public final class LiveTraceConfiguration {
     }
 
     /**
-     * Set the enabled property: Indicates whether or not enable live trace. When it's set to true, live trace client
-     * can connect to the service. Otherwise, live trace client can't connect to the service, so that you are unable to
-     * receive any log, no matter what you configure in "categories". Available values: true, false. Case insensitive.
-     *
+     * Set the enabled property: Indicates whether or not enable live trace.
+     * When it's set to true, live trace client can connect to the service.
+     * Otherwise, live trace client can't connect to the service, so that you are unable to receive any log, no matter
+     * what you configure in "categories".
+     * Available values: true, false.
+     * Case insensitive.
+     * 
      * @param enabled the enabled value to set.
      * @return the LiveTraceConfiguration object itself.
      */
@@ -58,7 +68,7 @@ public final class LiveTraceConfiguration {
 
     /**
      * Get the categories property: Gets or sets the list of category configurations.
-     *
+     * 
      * @return the categories value.
      */
     public List<LiveTraceCategory> categories() {
@@ -67,7 +77,7 @@ public final class LiveTraceConfiguration {
 
     /**
      * Set the categories property: Gets or sets the list of category configurations.
-     *
+     * 
      * @param categories the categories value to set.
      * @return the LiveTraceConfiguration object itself.
      */
@@ -78,7 +88,7 @@ public final class LiveTraceConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

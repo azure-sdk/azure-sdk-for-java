@@ -9,7 +9,9 @@ import com.azure.resourcemanager.webpubsub.fluent.models.ReplicaInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ReplicaList model. */
+/**
+ * The ReplicaList model.
+ */
 @Fluent
 public final class ReplicaList {
     /*
@@ -25,13 +27,15 @@ public final class ReplicaList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ReplicaList class. */
+    /**
+     * Creates an instance of ReplicaList class.
+     */
     public ReplicaList() {
     }
 
     /**
      * Get the value property: List of the replica.
-     *
+     * 
      * @return the value value.
      */
     public List<ReplicaInner> value() {
@@ -40,7 +44,7 @@ public final class ReplicaList {
 
     /**
      * Set the value property: List of the replica.
-     *
+     * 
      * @param value the value value to set.
      * @return the ReplicaList object itself.
      */
@@ -50,9 +54,9 @@ public final class ReplicaList {
     }
 
     /**
-     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,9 +64,9 @@ public final class ReplicaList {
     }
 
     /**
-     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ReplicaList object itself.
      */
@@ -73,7 +77,7 @@ public final class ReplicaList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

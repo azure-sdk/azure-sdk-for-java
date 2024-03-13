@@ -10,7 +10,9 @@ import com.azure.resourcemanager.webpubsub.models.ProvisioningState;
 import com.azure.resourcemanager.webpubsub.models.ResourceReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of a custom domain. */
+/**
+ * Properties of a custom domain.
+ */
 @Fluent
 public final class CustomDomainProperties {
     /*
@@ -31,13 +33,15 @@ public final class CustomDomainProperties {
     @JsonProperty(value = "customCertificate", required = true)
     private ResourceReference customCertificate;
 
-    /** Creates an instance of CustomDomainProperties class. */
+    /**
+     * Creates an instance of CustomDomainProperties class.
+     */
     public CustomDomainProperties() {
     }
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -46,7 +50,7 @@ public final class CustomDomainProperties {
 
     /**
      * Get the domainName property: The custom domain name.
-     *
+     * 
      * @return the domainName value.
      */
     public String domainName() {
@@ -55,7 +59,7 @@ public final class CustomDomainProperties {
 
     /**
      * Set the domainName property: The custom domain name.
-     *
+     * 
      * @param domainName the domainName value to set.
      * @return the CustomDomainProperties object itself.
      */
@@ -66,7 +70,7 @@ public final class CustomDomainProperties {
 
     /**
      * Get the customCertificate property: Reference to a resource.
-     *
+     * 
      * @return the customCertificate value.
      */
     public ResourceReference customCertificate() {
@@ -75,7 +79,7 @@ public final class CustomDomainProperties {
 
     /**
      * Set the customCertificate property: Reference to a resource.
-     *
+     * 
      * @param customCertificate the customCertificate value to set.
      * @return the CustomDomainProperties object itself.
      */
@@ -86,21 +90,17 @@ public final class CustomDomainProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (domainName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property domainName in model CustomDomainProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property domainName in model CustomDomainProperties"));
         }
         if (customCertificate() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property customCertificate in model CustomDomainProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property customCertificate in model CustomDomainProperties"));
         } else {
             customCertificate().validate();
         }

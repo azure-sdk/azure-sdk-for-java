@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.webpubsub.models.SignalRServiceUsageName;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Object that describes a specific usage of the resources. */
+/**
+ * Object that describes a specific usage of the resources.
+ */
 @Fluent
 public final class SignalRServiceUsageInner {
     /*
@@ -42,13 +44,15 @@ public final class SignalRServiceUsageInner {
     @JsonProperty(value = "unit")
     private String unit;
 
-    /** Creates an instance of SignalRServiceUsageInner class. */
+    /**
+     * Creates an instance of SignalRServiceUsageInner class.
+     */
     public SignalRServiceUsageInner() {
     }
 
     /**
      * Get the id property: Fully qualified ARM resource id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -57,7 +61,7 @@ public final class SignalRServiceUsageInner {
 
     /**
      * Set the id property: Fully qualified ARM resource id.
-     *
+     * 
      * @param id the id value to set.
      * @return the SignalRServiceUsageInner object itself.
      */
@@ -68,7 +72,7 @@ public final class SignalRServiceUsageInner {
 
     /**
      * Get the currentValue property: Current value for the usage quota.
-     *
+     * 
      * @return the currentValue value.
      */
     public Long currentValue() {
@@ -77,7 +81,7 @@ public final class SignalRServiceUsageInner {
 
     /**
      * Set the currentValue property: Current value for the usage quota.
-     *
+     * 
      * @param currentValue the currentValue value to set.
      * @return the SignalRServiceUsageInner object itself.
      */
@@ -87,9 +91,9 @@ public final class SignalRServiceUsageInner {
     }
 
     /**
-     * Get the limit property: The maximum permitted value for the usage quota. If there is no limit, this value will be
-     * -1.
-     *
+     * Get the limit property: The maximum permitted value for the usage quota. If there is no limit, this value will
+     * be -1.
+     * 
      * @return the limit value.
      */
     public Long limit() {
@@ -97,9 +101,9 @@ public final class SignalRServiceUsageInner {
     }
 
     /**
-     * Set the limit property: The maximum permitted value for the usage quota. If there is no limit, this value will be
-     * -1.
-     *
+     * Set the limit property: The maximum permitted value for the usage quota. If there is no limit, this value will
+     * be -1.
+     * 
      * @param limit the limit value to set.
      * @return the SignalRServiceUsageInner object itself.
      */
@@ -110,7 +114,7 @@ public final class SignalRServiceUsageInner {
 
     /**
      * Get the name property: Localizable String object containing the name and a localized value.
-     *
+     * 
      * @return the name value.
      */
     public SignalRServiceUsageName name() {
@@ -119,7 +123,7 @@ public final class SignalRServiceUsageInner {
 
     /**
      * Set the name property: Localizable String object containing the name and a localized value.
-     *
+     * 
      * @param name the name value to set.
      * @return the SignalRServiceUsageInner object itself.
      */
@@ -131,7 +135,7 @@ public final class SignalRServiceUsageInner {
     /**
      * Get the unit property: Representing the units of the usage quota. Possible values are: Count, Bytes, Seconds,
      * Percent, CountPerSecond, BytesPerSecond.
-     *
+     * 
      * @return the unit value.
      */
     public String unit() {
@@ -141,7 +145,7 @@ public final class SignalRServiceUsageInner {
     /**
      * Set the unit property: Representing the units of the usage quota. Possible values are: Count, Bytes, Seconds,
      * Percent, CountPerSecond, BytesPerSecond.
-     *
+     * 
      * @param unit the unit value to set.
      * @return the SignalRServiceUsageInner object itself.
      */
@@ -152,7 +156,7 @@ public final class SignalRServiceUsageInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

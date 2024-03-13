@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A setting defines which kinds of events should be sent to which endpoint. */
+/**
+ * A setting defines which kinds of events should be sent to which endpoint.
+ */
 @Fluent
 public final class EventListener {
     /*
@@ -23,14 +25,16 @@ public final class EventListener {
     @JsonProperty(value = "endpoint", required = true)
     private EventListenerEndpoint endpoint;
 
-    /** Creates an instance of EventListener class. */
+    /**
+     * Creates an instance of EventListener class.
+     */
     public EventListener() {
     }
 
     /**
      * Get the filter property: A base class for event filter which determines whether an event should be sent to an
      * event listener.
-     *
+     * 
      * @return the filter value.
      */
     public EventListenerFilter filter() {
@@ -40,7 +44,7 @@ public final class EventListener {
     /**
      * Set the filter property: A base class for event filter which determines whether an event should be sent to an
      * event listener.
-     *
+     * 
      * @param filter the filter value to set.
      * @return the EventListener object itself.
      */
@@ -51,7 +55,7 @@ public final class EventListener {
 
     /**
      * Get the endpoint property: An endpoint specifying where Web PubSub should send events to.
-     *
+     * 
      * @return the endpoint value.
      */
     public EventListenerEndpoint endpoint() {
@@ -60,7 +64,7 @@ public final class EventListener {
 
     /**
      * Set the endpoint property: An endpoint specifying where Web PubSub should send events to.
-     *
+     * 
      * @param endpoint the endpoint value to set.
      * @return the EventListener object itself.
      */
@@ -71,21 +75,19 @@ public final class EventListener {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (filter() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property filter in model EventListener"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property filter in model EventListener"));
         } else {
             filter().validate();
         }
         if (endpoint() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property endpoint in model EventListener"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property endpoint in model EventListener"));
         } else {
             endpoint().validate();
         }

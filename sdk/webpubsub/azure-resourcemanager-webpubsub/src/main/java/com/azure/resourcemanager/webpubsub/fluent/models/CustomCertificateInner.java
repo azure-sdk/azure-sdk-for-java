@@ -11,7 +11,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.webpubsub.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A custom certificate. */
+/**
+ * A custom certificate.
+ */
 @Fluent
 public final class CustomCertificateInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class CustomCertificateInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of CustomCertificateInner class. */
+    /**
+     * Creates an instance of CustomCertificateInner class.
+     */
     public CustomCertificateInner() {
     }
 
     /**
      * Get the innerProperties property: Custom certificate properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CustomCertificateProperties innerProperties() {
@@ -41,7 +45,7 @@ public final class CustomCertificateInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -50,7 +54,7 @@ public final class CustomCertificateInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -59,7 +63,7 @@ public final class CustomCertificateInner extends ProxyResource {
 
     /**
      * Get the keyVaultBaseUri property: Base uri of the KeyVault that stores certificate.
-     *
+     * 
      * @return the keyVaultBaseUri value.
      */
     public String keyVaultBaseUri() {
@@ -68,7 +72,7 @@ public final class CustomCertificateInner extends ProxyResource {
 
     /**
      * Set the keyVaultBaseUri property: Base uri of the KeyVault that stores certificate.
-     *
+     * 
      * @param keyVaultBaseUri the keyVaultBaseUri value to set.
      * @return the CustomCertificateInner object itself.
      */
@@ -82,7 +86,7 @@ public final class CustomCertificateInner extends ProxyResource {
 
     /**
      * Get the keyVaultSecretName property: Certificate secret name.
-     *
+     * 
      * @return the keyVaultSecretName value.
      */
     public String keyVaultSecretName() {
@@ -91,7 +95,7 @@ public final class CustomCertificateInner extends ProxyResource {
 
     /**
      * Set the keyVaultSecretName property: Certificate secret name.
-     *
+     * 
      * @param keyVaultSecretName the keyVaultSecretName value to set.
      * @return the CustomCertificateInner object itself.
      */
@@ -105,7 +109,7 @@ public final class CustomCertificateInner extends ProxyResource {
 
     /**
      * Get the keyVaultSecretVersion property: Certificate secret version.
-     *
+     * 
      * @return the keyVaultSecretVersion value.
      */
     public String keyVaultSecretVersion() {
@@ -114,7 +118,7 @@ public final class CustomCertificateInner extends ProxyResource {
 
     /**
      * Set the keyVaultSecretVersion property: Certificate secret version.
-     *
+     * 
      * @param keyVaultSecretVersion the keyVaultSecretVersion value to set.
      * @return the CustomCertificateInner object itself.
      */
@@ -128,15 +132,13 @@ public final class CustomCertificateInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model CustomCertificateInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model CustomCertificateInner"));
         } else {
             innerProperties().validate();
         }
