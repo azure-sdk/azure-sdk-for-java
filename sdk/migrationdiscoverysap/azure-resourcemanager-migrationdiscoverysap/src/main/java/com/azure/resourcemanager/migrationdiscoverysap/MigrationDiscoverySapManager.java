@@ -23,8 +23,8 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.migrationdiscoverysap.fluent.MigrationDiscoverySapMgmtClient;
-import com.azure.resourcemanager.migrationdiscoverysap.implementation.MigrationDiscoverySapMgmtClientBuilder;
+import com.azure.resourcemanager.migrationdiscoverysap.fluent.MigrationDiscoverySapClient;
+import com.azure.resourcemanager.migrationdiscoverysap.implementation.MigrationDiscoverySapClientBuilder;
 import com.azure.resourcemanager.migrationdiscoverysap.implementation.OperationsImpl;
 import com.azure.resourcemanager.migrationdiscoverysap.implementation.SapDiscoverySitesImpl;
 import com.azure.resourcemanager.migrationdiscoverysap.implementation.SapInstancesImpl;
@@ -53,13 +53,13 @@ public final class MigrationDiscoverySapManager {
 
     private Operations operations;
 
-    private final MigrationDiscoverySapMgmtClient clientObject;
+    private final MigrationDiscoverySapClient clientObject;
 
     private MigrationDiscoverySapManager(HttpPipeline httpPipeline, AzureProfile profile,
         Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject = new MigrationDiscoverySapMgmtClientBuilder().pipeline(httpPipeline)
+        this.clientObject = new MigrationDiscoverySapClientBuilder().pipeline(httpPipeline)
             .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
             .defaultPollInterval(defaultPollInterval).buildClient();
     }
@@ -301,12 +301,12 @@ public final class MigrationDiscoverySapManager {
     }
 
     /**
-     * Gets wrapped service client MigrationDiscoverySapMgmtClient providing direct access to the underlying
-     * auto-generated API implementation, based on Azure REST API.
+     * Gets wrapped service client MigrationDiscoverySapClient providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
      * 
-     * @return Wrapped service client MigrationDiscoverySapMgmtClient.
+     * @return Wrapped service client MigrationDiscoverySapClient.
      */
-    public MigrationDiscoverySapMgmtClient serviceClient() {
+    public MigrationDiscoverySapClient serviceClient() {
         return this.clientObject;
     }
 }

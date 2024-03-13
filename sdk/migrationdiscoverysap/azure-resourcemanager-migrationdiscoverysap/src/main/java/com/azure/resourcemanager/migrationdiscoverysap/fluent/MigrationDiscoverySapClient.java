@@ -8,9 +8,9 @@ import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
 /**
- * The interface for MigrationDiscoverySapMgmtClient class.
+ * The interface for MigrationDiscoverySapClient class.
  */
-public interface MigrationDiscoverySapMgmtClient {
+public interface MigrationDiscoverySapClient {
     /**
      * Gets The ID of the target subscription.
      * 

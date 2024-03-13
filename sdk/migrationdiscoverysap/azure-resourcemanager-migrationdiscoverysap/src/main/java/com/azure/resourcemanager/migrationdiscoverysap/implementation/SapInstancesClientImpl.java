@@ -52,21 +52,21 @@ public final class SapInstancesClientImpl implements SapInstancesClient {
     /**
      * The service client containing this operation class.
      */
-    private final MigrationDiscoverySapMgmtClientImpl client;
+    private final MigrationDiscoverySapClientImpl client;
 
     /**
      * Initializes an instance of SapInstancesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    SapInstancesClientImpl(MigrationDiscoverySapMgmtClientImpl client) {
+    SapInstancesClientImpl(MigrationDiscoverySapClientImpl client) {
         this.service
             = RestProxy.create(SapInstancesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for MigrationDiscoverySapMgmtClientSapInstances to be used by the proxy
+     * The interface defining all the services for MigrationDiscoverySapClientSapInstances to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
