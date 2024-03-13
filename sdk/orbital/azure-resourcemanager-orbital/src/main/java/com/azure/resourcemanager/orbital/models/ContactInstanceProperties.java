@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Contact Instance Properties. */
+/**
+ * Contact Instance Properties.
+ */
 @Immutable
 public class ContactInstanceProperties {
     /*
@@ -65,13 +67,16 @@ public class ContactInstanceProperties {
     @JsonProperty(value = "endElevationDegrees", access = JsonProperty.Access.WRITE_ONLY)
     private Float endElevationDegrees;
 
-    /** Creates an instance of ContactInstanceProperties class. */
+    /**
+     * Creates an instance of ContactInstanceProperties class.
+     */
     public ContactInstanceProperties() {
     }
 
     /**
-     * Get the maximumElevationDegrees property: Maximum elevation of the antenna during the contact in decimal degrees.
-     *
+     * Get the maximumElevationDegrees property: Maximum elevation of the antenna during the contact in decimal
+     * degrees.
+     * 
      * @return the maximumElevationDegrees value.
      */
     public Float maximumElevationDegrees() {
@@ -80,7 +85,7 @@ public class ContactInstanceProperties {
 
     /**
      * Get the txStartTime property: Time at which antenna transmit will be enabled (ISO 8601 UTC standard).
-     *
+     * 
      * @return the txStartTime value.
      */
     public OffsetDateTime txStartTime() {
@@ -89,7 +94,7 @@ public class ContactInstanceProperties {
 
     /**
      * Get the txEndTime property: Time at which antenna transmit will be disabled (ISO 8601 UTC standard).
-     *
+     * 
      * @return the txEndTime value.
      */
     public OffsetDateTime txEndTime() {
@@ -98,7 +103,7 @@ public class ContactInstanceProperties {
 
     /**
      * Get the rxStartTime property: Earliest time to receive a signal (ISO 8601 UTC standard).
-     *
+     * 
      * @return the rxStartTime value.
      */
     public OffsetDateTime rxStartTime() {
@@ -107,7 +112,7 @@ public class ContactInstanceProperties {
 
     /**
      * Get the rxEndTime property: Time to lost receiving a signal (ISO 8601 UTC standard).
-     *
+     * 
      * @return the rxEndTime value.
      */
     public OffsetDateTime rxEndTime() {
@@ -116,7 +121,7 @@ public class ContactInstanceProperties {
 
     /**
      * Get the startAzimuthDegrees property: Azimuth of the antenna at the start of the contact in decimal degrees.
-     *
+     * 
      * @return the startAzimuthDegrees value.
      */
     public Float startAzimuthDegrees() {
@@ -125,7 +130,7 @@ public class ContactInstanceProperties {
 
     /**
      * Get the endAzimuthDegrees property: Azimuth of the antenna at the end of the contact in decimal degrees.
-     *
+     * 
      * @return the endAzimuthDegrees value.
      */
     public Float endAzimuthDegrees() {
@@ -134,7 +139,7 @@ public class ContactInstanceProperties {
 
     /**
      * Get the startElevationDegrees property: Spacecraft elevation above the horizon at contact start.
-     *
+     * 
      * @return the startElevationDegrees value.
      */
     public Float startElevationDegrees() {
@@ -143,7 +148,7 @@ public class ContactInstanceProperties {
 
     /**
      * Get the endElevationDegrees property: Spacecraft elevation above the horizon at contact end.
-     *
+     * 
      * @return the endElevationDegrees value.
      */
     public Float endElevationDegrees() {
@@ -152,7 +157,7 @@ public class ContactInstanceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

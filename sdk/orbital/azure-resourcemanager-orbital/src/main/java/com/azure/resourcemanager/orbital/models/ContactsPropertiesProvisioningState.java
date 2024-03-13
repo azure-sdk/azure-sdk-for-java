@@ -8,30 +8,44 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The current state of the resource's creation, deletion, or modification. */
+/**
+ * The current state of the resource's creation, deletion, or modification.
+ */
 public final class ContactsPropertiesProvisioningState
     extends ExpandableStringEnum<ContactsPropertiesProvisioningState> {
-    /** Static value creating for ContactsPropertiesProvisioningState. */
+    /**
+     * Static value creating for ContactsPropertiesProvisioningState.
+     */
     public static final ContactsPropertiesProvisioningState CREATING = fromString("creating");
 
-    /** Static value succeeded for ContactsPropertiesProvisioningState. */
+    /**
+     * Static value succeeded for ContactsPropertiesProvisioningState.
+     */
     public static final ContactsPropertiesProvisioningState SUCCEEDED = fromString("succeeded");
 
-    /** Static value failed for ContactsPropertiesProvisioningState. */
+    /**
+     * Static value failed for ContactsPropertiesProvisioningState.
+     */
     public static final ContactsPropertiesProvisioningState FAILED = fromString("failed");
 
-    /** Static value canceled for ContactsPropertiesProvisioningState. */
+    /**
+     * Static value canceled for ContactsPropertiesProvisioningState.
+     */
     public static final ContactsPropertiesProvisioningState CANCELED = fromString("canceled");
 
-    /** Static value updating for ContactsPropertiesProvisioningState. */
+    /**
+     * Static value updating for ContactsPropertiesProvisioningState.
+     */
     public static final ContactsPropertiesProvisioningState UPDATING = fromString("updating");
 
-    /** Static value deleting for ContactsPropertiesProvisioningState. */
+    /**
+     * Static value deleting for ContactsPropertiesProvisioningState.
+     */
     public static final ContactsPropertiesProvisioningState DELETING = fromString("deleting");
 
     /**
      * Creates a new instance of ContactsPropertiesProvisioningState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -40,7 +54,7 @@ public final class ContactsPropertiesProvisioningState
 
     /**
      * Creates or finds a ContactsPropertiesProvisioningState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ContactsPropertiesProvisioningState.
      */
@@ -51,7 +65,7 @@ public final class ContactsPropertiesProvisioningState
 
     /**
      * Gets known ContactsPropertiesProvisioningState values.
-     *
+     * 
      * @return known ContactsPropertiesProvisioningState values.
      */
     public static Collection<ContactsPropertiesProvisioningState> values() {

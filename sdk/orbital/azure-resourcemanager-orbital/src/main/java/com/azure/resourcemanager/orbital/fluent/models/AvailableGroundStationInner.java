@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.orbital.models.ReleaseMode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Ground Stations available to schedule Contacts. */
+/**
+ * Ground Stations available to schedule Contacts.
+ */
 @Fluent
 public final class AvailableGroundStationInner {
     /*
@@ -42,13 +44,15 @@ public final class AvailableGroundStationInner {
     @JsonProperty(value = "properties", required = true)
     private AvailableGroundStationProperties innerProperties = new AvailableGroundStationProperties();
 
-    /** Creates an instance of AvailableGroundStationInner class. */
+    /**
+     * Creates an instance of AvailableGroundStationInner class.
+     */
     public AvailableGroundStationInner() {
     }
 
     /**
      * Get the id property: ID of groundStation.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -57,7 +61,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Get the name property: Name of the ground station.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -66,7 +70,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Get the location property: Azure region.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -75,7 +79,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Set the location property: Azure region.
-     *
+     * 
      * @param location the location value to set.
      * @return the AvailableGroundStationInner object itself.
      */
@@ -86,7 +90,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Get the type property: Resource type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -95,7 +99,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Get the innerProperties property: The properties bag for this resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AvailableGroundStationProperties innerProperties() {
@@ -104,7 +108,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Get the city property: City of ground station.
-     *
+     * 
      * @return the city value.
      */
     public String city() {
@@ -113,7 +117,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Set the city property: City of ground station.
-     *
+     * 
      * @param city the city value to set.
      * @return the AvailableGroundStationInner object itself.
      */
@@ -127,7 +131,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Get the providerName property: Ground station provider name.
-     *
+     * 
      * @return the providerName value.
      */
     public String providerName() {
@@ -136,7 +140,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Set the providerName property: Ground station provider name.
-     *
+     * 
      * @param providerName the providerName value to set.
      * @return the AvailableGroundStationInner object itself.
      */
@@ -150,7 +154,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Get the longitudeDegrees property: Longitude of the ground station in decimal degrees.
-     *
+     * 
      * @return the longitudeDegrees value.
      */
     public Float longitudeDegrees() {
@@ -159,7 +163,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Set the longitudeDegrees property: Longitude of the ground station in decimal degrees.
-     *
+     * 
      * @param longitudeDegrees the longitudeDegrees value to set.
      * @return the AvailableGroundStationInner object itself.
      */
@@ -173,7 +177,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Get the latitudeDegrees property: Latitude of the ground station in decimal degrees.
-     *
+     * 
      * @return the latitudeDegrees value.
      */
     public Float latitudeDegrees() {
@@ -182,7 +186,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Set the latitudeDegrees property: Latitude of the ground station in decimal degrees.
-     *
+     * 
      * @param latitudeDegrees the latitudeDegrees value to set.
      * @return the AvailableGroundStationInner object itself.
      */
@@ -196,7 +200,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Get the altitudeMeters property: Altitude of the ground station.
-     *
+     * 
      * @return the altitudeMeters value.
      */
     public Float altitudeMeters() {
@@ -205,7 +209,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Set the altitudeMeters property: Altitude of the ground station.
-     *
+     * 
      * @param altitudeMeters the altitudeMeters value to set.
      * @return the AvailableGroundStationInner object itself.
      */
@@ -219,7 +223,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Get the releaseMode property: Release Status of a ground station.
-     *
+     * 
      * @return the releaseMode value.
      */
     public ReleaseMode releaseMode() {
@@ -228,7 +232,7 @@ public final class AvailableGroundStationInner {
 
     /**
      * Set the releaseMode property: Release Status of a ground station.
-     *
+     * 
      * @param releaseMode the releaseMode value to set.
      * @return the AvailableGroundStationInner object itself.
      */
@@ -242,15 +246,13 @@ public final class AvailableGroundStationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model AvailableGroundStationInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model AvailableGroundStationInner"));
         } else {
             innerProperties().validate();
         }

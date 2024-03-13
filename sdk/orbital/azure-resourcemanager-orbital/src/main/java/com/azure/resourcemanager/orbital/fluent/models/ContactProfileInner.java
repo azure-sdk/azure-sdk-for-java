@@ -35,13 +35,15 @@ public final class ContactProfileInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ContactProfileInner class. */
+    /**
+     * Creates an instance of ContactProfileInner class.
+     */
     public ContactProfileInner() {
     }
 
     /**
      * Get the innerProperties property: Properties of the contact profile resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ContactProfileProperties innerProperties() {
@@ -50,21 +52,25 @@ public final class ContactProfileInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ContactProfileInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ContactProfileInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -73,7 +79,7 @@ public final class ContactProfileInner extends Resource {
 
     /**
      * Get the provisioningState property: The current state of the resource's creation, deletion, or modification.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ContactProfilesPropertiesProvisioningState provisioningState() {
@@ -82,7 +88,7 @@ public final class ContactProfileInner extends Resource {
 
     /**
      * Set the provisioningState property: The current state of the resource's creation, deletion, or modification.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the ContactProfileInner object itself.
      */
@@ -97,7 +103,7 @@ public final class ContactProfileInner extends Resource {
     /**
      * Get the minimumViableContactDuration property: Minimum viable contact duration in ISO 8601 format. Used for
      * listing the available contacts with a spacecraft at a given ground station.
-     *
+     * 
      * @return the minimumViableContactDuration value.
      */
     public String minimumViableContactDuration() {
@@ -107,7 +113,7 @@ public final class ContactProfileInner extends Resource {
     /**
      * Set the minimumViableContactDuration property: Minimum viable contact duration in ISO 8601 format. Used for
      * listing the available contacts with a spacecraft at a given ground station.
-     *
+     * 
      * @param minimumViableContactDuration the minimumViableContactDuration value to set.
      * @return the ContactProfileInner object itself.
      */
@@ -122,7 +128,7 @@ public final class ContactProfileInner extends Resource {
     /**
      * Get the minimumElevationDegrees property: Minimum viable elevation for the contact in decimal degrees. Used for
      * listing the available contacts with a spacecraft at a given ground station.
-     *
+     * 
      * @return the minimumElevationDegrees value.
      */
     public Float minimumElevationDegrees() {
@@ -132,7 +138,7 @@ public final class ContactProfileInner extends Resource {
     /**
      * Set the minimumElevationDegrees property: Minimum viable elevation for the contact in decimal degrees. Used for
      * listing the available contacts with a spacecraft at a given ground station.
-     *
+     * 
      * @param minimumElevationDegrees the minimumElevationDegrees value to set.
      * @return the ContactProfileInner object itself.
      */
@@ -146,7 +152,7 @@ public final class ContactProfileInner extends Resource {
 
     /**
      * Get the autoTrackingConfiguration property: Auto-tracking configuration.
-     *
+     * 
      * @return the autoTrackingConfiguration value.
      */
     public AutoTrackingConfiguration autoTrackingConfiguration() {
@@ -155,7 +161,7 @@ public final class ContactProfileInner extends Resource {
 
     /**
      * Set the autoTrackingConfiguration property: Auto-tracking configuration.
-     *
+     * 
      * @param autoTrackingConfiguration the autoTrackingConfiguration value to set.
      * @return the ContactProfileInner object itself.
      */
@@ -170,7 +176,7 @@ public final class ContactProfileInner extends Resource {
     /**
      * Get the eventHubUri property: ARM resource identifier of the Event Hub used for telemetry. Requires granting
      * Orbital Resource Provider the rights to send telemetry into the hub.
-     *
+     * 
      * @return the eventHubUri value.
      */
     public String eventHubUri() {
@@ -180,7 +186,7 @@ public final class ContactProfileInner extends Resource {
     /**
      * Set the eventHubUri property: ARM resource identifier of the Event Hub used for telemetry. Requires granting
      * Orbital Resource Provider the rights to send telemetry into the hub.
-     *
+     * 
      * @param eventHubUri the eventHubUri value to set.
      * @return the ContactProfileInner object itself.
      */
@@ -194,7 +200,7 @@ public final class ContactProfileInner extends Resource {
 
     /**
      * Get the networkConfiguration property: Network configuration of customer virtual network.
-     *
+     * 
      * @return the networkConfiguration value.
      */
     public ContactProfilesPropertiesNetworkConfiguration networkConfiguration() {
@@ -203,12 +209,12 @@ public final class ContactProfileInner extends Resource {
 
     /**
      * Set the networkConfiguration property: Network configuration of customer virtual network.
-     *
+     * 
      * @param networkConfiguration the networkConfiguration value to set.
      * @return the ContactProfileInner object itself.
      */
-    public ContactProfileInner withNetworkConfiguration(
-        ContactProfilesPropertiesNetworkConfiguration networkConfiguration) {
+    public ContactProfileInner
+        withNetworkConfiguration(ContactProfilesPropertiesNetworkConfiguration networkConfiguration) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ContactProfileProperties();
         }
@@ -217,9 +223,9 @@ public final class ContactProfileInner extends Resource {
     }
 
     /**
-     * Get the thirdPartyConfigurations property: Third-party mission configuration of the Contact Profile. Describes RF
-     * links, modem processing, and IP endpoints.
-     *
+     * Get the thirdPartyConfigurations property: Third-party mission configuration of the Contact Profile. Describes
+     * RF links, modem processing, and IP endpoints.
+     * 
      * @return the thirdPartyConfigurations value.
      */
     public List<ContactProfileThirdPartyConfiguration> thirdPartyConfigurations() {
@@ -227,14 +233,14 @@ public final class ContactProfileInner extends Resource {
     }
 
     /**
-     * Set the thirdPartyConfigurations property: Third-party mission configuration of the Contact Profile. Describes RF
-     * links, modem processing, and IP endpoints.
-     *
+     * Set the thirdPartyConfigurations property: Third-party mission configuration of the Contact Profile. Describes
+     * RF links, modem processing, and IP endpoints.
+     * 
      * @param thirdPartyConfigurations the thirdPartyConfigurations value to set.
      * @return the ContactProfileInner object itself.
      */
-    public ContactProfileInner withThirdPartyConfigurations(
-        List<ContactProfileThirdPartyConfiguration> thirdPartyConfigurations) {
+    public ContactProfileInner
+        withThirdPartyConfigurations(List<ContactProfileThirdPartyConfiguration> thirdPartyConfigurations) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ContactProfileProperties();
         }
@@ -244,7 +250,7 @@ public final class ContactProfileInner extends Resource {
 
     /**
      * Get the links property: Links of the Contact Profile. Describes RF links, modem processing, and IP endpoints.
-     *
+     * 
      * @return the links value.
      */
     public List<ContactProfileLink> links() {
@@ -253,7 +259,7 @@ public final class ContactProfileInner extends Resource {
 
     /**
      * Set the links property: Links of the Contact Profile. Describes RF links, modem processing, and IP endpoints.
-     *
+     * 
      * @param links the links value to set.
      * @return the ContactProfileInner object itself.
      */
@@ -267,15 +273,13 @@ public final class ContactProfileInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model ContactProfileInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model ContactProfileInner"));
         } else {
             innerProperties().validate();
         }

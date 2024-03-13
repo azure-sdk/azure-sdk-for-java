@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for CapabilityParameter. */
+/**
+ * Defines values for CapabilityParameter.
+ */
 public final class CapabilityParameter extends ExpandableStringEnum<CapabilityParameter> {
-    /** Static value EarthObservation for CapabilityParameter. */
+    /**
+     * Static value EarthObservation for CapabilityParameter.
+     */
     public static final CapabilityParameter EARTH_OBSERVATION = fromString("EarthObservation");
 
-    /** Static value Communication for CapabilityParameter. */
+    /**
+     * Static value Communication for CapabilityParameter.
+     */
     public static final CapabilityParameter COMMUNICATION = fromString("Communication");
 
     /**
      * Creates a new instance of CapabilityParameter value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class CapabilityParameter extends ExpandableStringEnum<CapabilityPa
 
     /**
      * Creates or finds a CapabilityParameter from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding CapabilityParameter.
      */
@@ -38,7 +44,7 @@ public final class CapabilityParameter extends ExpandableStringEnum<CapabilityPa
 
     /**
      * Gets known CapabilityParameter values.
-     *
+     * 
      * @return known CapabilityParameter values.
      */
     public static Collection<CapabilityParameter> values() {

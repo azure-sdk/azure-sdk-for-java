@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Contact Profile Resource Properties. */
+/**
+ * List of Contact Profile Resource Properties.
+ */
 @Fluent
 public class ContactProfilesProperties {
     /*
@@ -64,13 +66,15 @@ public class ContactProfilesProperties {
     @JsonProperty(value = "links", required = true)
     private List<ContactProfileLink> links;
 
-    /** Creates an instance of ContactProfilesProperties class. */
+    /**
+     * Creates an instance of ContactProfilesProperties class.
+     */
     public ContactProfilesProperties() {
     }
 
     /**
      * Get the provisioningState property: The current state of the resource's creation, deletion, or modification.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ContactProfilesPropertiesProvisioningState provisioningState() {
@@ -79,12 +83,12 @@ public class ContactProfilesProperties {
 
     /**
      * Set the provisioningState property: The current state of the resource's creation, deletion, or modification.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the ContactProfilesProperties object itself.
      */
-    public ContactProfilesProperties withProvisioningState(
-        ContactProfilesPropertiesProvisioningState provisioningState) {
+    public ContactProfilesProperties
+        withProvisioningState(ContactProfilesPropertiesProvisioningState provisioningState) {
         this.provisioningState = provisioningState;
         return this;
     }
@@ -92,7 +96,7 @@ public class ContactProfilesProperties {
     /**
      * Get the minimumViableContactDuration property: Minimum viable contact duration in ISO 8601 format. Used for
      * listing the available contacts with a spacecraft at a given ground station.
-     *
+     * 
      * @return the minimumViableContactDuration value.
      */
     public String minimumViableContactDuration() {
@@ -102,7 +106,7 @@ public class ContactProfilesProperties {
     /**
      * Set the minimumViableContactDuration property: Minimum viable contact duration in ISO 8601 format. Used for
      * listing the available contacts with a spacecraft at a given ground station.
-     *
+     * 
      * @param minimumViableContactDuration the minimumViableContactDuration value to set.
      * @return the ContactProfilesProperties object itself.
      */
@@ -114,7 +118,7 @@ public class ContactProfilesProperties {
     /**
      * Get the minimumElevationDegrees property: Minimum viable elevation for the contact in decimal degrees. Used for
      * listing the available contacts with a spacecraft at a given ground station.
-     *
+     * 
      * @return the minimumElevationDegrees value.
      */
     public Float minimumElevationDegrees() {
@@ -124,7 +128,7 @@ public class ContactProfilesProperties {
     /**
      * Set the minimumElevationDegrees property: Minimum viable elevation for the contact in decimal degrees. Used for
      * listing the available contacts with a spacecraft at a given ground station.
-     *
+     * 
      * @param minimumElevationDegrees the minimumElevationDegrees value to set.
      * @return the ContactProfilesProperties object itself.
      */
@@ -135,7 +139,7 @@ public class ContactProfilesProperties {
 
     /**
      * Get the autoTrackingConfiguration property: Auto-tracking configuration.
-     *
+     * 
      * @return the autoTrackingConfiguration value.
      */
     public AutoTrackingConfiguration autoTrackingConfiguration() {
@@ -144,12 +148,12 @@ public class ContactProfilesProperties {
 
     /**
      * Set the autoTrackingConfiguration property: Auto-tracking configuration.
-     *
+     * 
      * @param autoTrackingConfiguration the autoTrackingConfiguration value to set.
      * @return the ContactProfilesProperties object itself.
      */
-    public ContactProfilesProperties withAutoTrackingConfiguration(
-        AutoTrackingConfiguration autoTrackingConfiguration) {
+    public ContactProfilesProperties
+        withAutoTrackingConfiguration(AutoTrackingConfiguration autoTrackingConfiguration) {
         this.autoTrackingConfiguration = autoTrackingConfiguration;
         return this;
     }
@@ -157,7 +161,7 @@ public class ContactProfilesProperties {
     /**
      * Get the eventHubUri property: ARM resource identifier of the Event Hub used for telemetry. Requires granting
      * Orbital Resource Provider the rights to send telemetry into the hub.
-     *
+     * 
      * @return the eventHubUri value.
      */
     public String eventHubUri() {
@@ -167,7 +171,7 @@ public class ContactProfilesProperties {
     /**
      * Set the eventHubUri property: ARM resource identifier of the Event Hub used for telemetry. Requires granting
      * Orbital Resource Provider the rights to send telemetry into the hub.
-     *
+     * 
      * @param eventHubUri the eventHubUri value to set.
      * @return the ContactProfilesProperties object itself.
      */
@@ -178,7 +182,7 @@ public class ContactProfilesProperties {
 
     /**
      * Get the networkConfiguration property: Network configuration of customer virtual network.
-     *
+     * 
      * @return the networkConfiguration value.
      */
     public ContactProfilesPropertiesNetworkConfiguration networkConfiguration() {
@@ -187,20 +191,20 @@ public class ContactProfilesProperties {
 
     /**
      * Set the networkConfiguration property: Network configuration of customer virtual network.
-     *
+     * 
      * @param networkConfiguration the networkConfiguration value to set.
      * @return the ContactProfilesProperties object itself.
      */
-    public ContactProfilesProperties withNetworkConfiguration(
-        ContactProfilesPropertiesNetworkConfiguration networkConfiguration) {
+    public ContactProfilesProperties
+        withNetworkConfiguration(ContactProfilesPropertiesNetworkConfiguration networkConfiguration) {
         this.networkConfiguration = networkConfiguration;
         return this;
     }
 
     /**
-     * Get the thirdPartyConfigurations property: Third-party mission configuration of the Contact Profile. Describes RF
-     * links, modem processing, and IP endpoints.
-     *
+     * Get the thirdPartyConfigurations property: Third-party mission configuration of the Contact Profile. Describes
+     * RF links, modem processing, and IP endpoints.
+     * 
      * @return the thirdPartyConfigurations value.
      */
     public List<ContactProfileThirdPartyConfiguration> thirdPartyConfigurations() {
@@ -208,21 +212,21 @@ public class ContactProfilesProperties {
     }
 
     /**
-     * Set the thirdPartyConfigurations property: Third-party mission configuration of the Contact Profile. Describes RF
-     * links, modem processing, and IP endpoints.
-     *
+     * Set the thirdPartyConfigurations property: Third-party mission configuration of the Contact Profile. Describes
+     * RF links, modem processing, and IP endpoints.
+     * 
      * @param thirdPartyConfigurations the thirdPartyConfigurations value to set.
      * @return the ContactProfilesProperties object itself.
      */
-    public ContactProfilesProperties withThirdPartyConfigurations(
-        List<ContactProfileThirdPartyConfiguration> thirdPartyConfigurations) {
+    public ContactProfilesProperties
+        withThirdPartyConfigurations(List<ContactProfileThirdPartyConfiguration> thirdPartyConfigurations) {
         this.thirdPartyConfigurations = thirdPartyConfigurations;
         return this;
     }
 
     /**
      * Get the links property: Links of the Contact Profile. Describes RF links, modem processing, and IP endpoints.
-     *
+     * 
      * @return the links value.
      */
     public List<ContactProfileLink> links() {
@@ -231,7 +235,7 @@ public class ContactProfilesProperties {
 
     /**
      * Set the links property: Links of the Contact Profile. Describes RF links, modem processing, and IP endpoints.
-     *
+     * 
      * @param links the links value to set.
      * @return the ContactProfilesProperties object itself.
      */
@@ -242,15 +246,13 @@ public class ContactProfilesProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (networkConfiguration() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property networkConfiguration in model ContactProfilesProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property networkConfiguration in model ContactProfilesProperties"));
         } else {
             networkConfiguration().validate();
         }
@@ -258,9 +260,8 @@ public class ContactProfilesProperties {
             thirdPartyConfigurations().forEach(e -> e.validate());
         }
         if (links() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property links in model ContactProfilesProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property links in model ContactProfilesProperties"));
         } else {
             links().forEach(e -> e.validate());
         }

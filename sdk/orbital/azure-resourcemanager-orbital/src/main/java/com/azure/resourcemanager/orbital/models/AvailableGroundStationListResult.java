@@ -9,7 +9,9 @@ import com.azure.resourcemanager.orbital.fluent.models.AvailableGroundStationInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Response for the AvailableGroundStations API service call. */
+/**
+ * Response for the AvailableGroundStations API service call.
+ */
 @Fluent
 public final class AvailableGroundStationListResult {
     /*
@@ -24,13 +26,15 @@ public final class AvailableGroundStationListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of AvailableGroundStationListResult class. */
+    /**
+     * Creates an instance of AvailableGroundStationListResult class.
+     */
     public AvailableGroundStationListResult() {
     }
 
     /**
      * Get the value property: A list of ground station resources.
-     *
+     * 
      * @return the value value.
      */
     public List<AvailableGroundStationInner> value() {
@@ -39,7 +43,7 @@ public final class AvailableGroundStationListResult {
 
     /**
      * Set the value property: A list of ground station resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the AvailableGroundStationListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class AvailableGroundStationListResult {
 
     /**
      * Get the nextLink property: The URL to get the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class AvailableGroundStationListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

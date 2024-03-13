@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 
-/** Authorized groundstation. */
+/**
+ * Authorized groundstation.
+ */
 @Fluent
 public final class AuthorizedGroundstation {
     /*
@@ -24,13 +26,15 @@ public final class AuthorizedGroundstation {
     @JsonProperty(value = "expirationDate", required = true)
     private LocalDate expirationDate;
 
-    /** Creates an instance of AuthorizedGroundstation class. */
+    /**
+     * Creates an instance of AuthorizedGroundstation class.
+     */
     public AuthorizedGroundstation() {
     }
 
     /**
      * Get the groundStation property: Groundstation name.
-     *
+     * 
      * @return the groundStation value.
      */
     public String groundStation() {
@@ -39,7 +43,7 @@ public final class AuthorizedGroundstation {
 
     /**
      * Set the groundStation property: Groundstation name.
-     *
+     * 
      * @param groundStation the groundStation value to set.
      * @return the AuthorizedGroundstation object itself.
      */
@@ -50,7 +54,7 @@ public final class AuthorizedGroundstation {
 
     /**
      * Get the expirationDate property: Date of authorization expiration.
-     *
+     * 
      * @return the expirationDate value.
      */
     public LocalDate expirationDate() {
@@ -59,7 +63,7 @@ public final class AuthorizedGroundstation {
 
     /**
      * Set the expirationDate property: Date of authorization expiration.
-     *
+     * 
      * @param expirationDate the expirationDate value to set.
      * @return the AuthorizedGroundstation object itself.
      */
@@ -70,21 +74,17 @@ public final class AuthorizedGroundstation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (groundStation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property groundStation in model AuthorizedGroundstation"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property groundStation in model AuthorizedGroundstation"));
         }
         if (expirationDate() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property expirationDate in model AuthorizedGroundstation"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property expirationDate in model AuthorizedGroundstation"));
         }
     }
 

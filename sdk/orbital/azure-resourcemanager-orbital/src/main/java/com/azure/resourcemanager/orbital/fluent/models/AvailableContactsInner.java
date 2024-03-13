@@ -33,13 +33,15 @@ public final class AvailableContactsInner {
     @JsonProperty(value = "properties")
     private AvailableContactsProperties innerProperties;
 
-    /** Creates an instance of AvailableContactsInner class. */
+    /**
+     * Creates an instance of AvailableContactsInner class.
+     */
     public AvailableContactsInner() {
     }
 
     /**
      * Get the spacecraft property: The reference to the spacecraft resource.
-     *
+     * 
      * @return the spacecraft value.
      */
     public AvailableContactsSpacecraft spacecraft() {
@@ -48,7 +50,7 @@ public final class AvailableContactsInner {
 
     /**
      * Set the spacecraft property: The reference to the spacecraft resource.
-     *
+     * 
      * @param spacecraft the spacecraft value to set.
      * @return the AvailableContactsInner object itself.
      */
@@ -59,7 +61,7 @@ public final class AvailableContactsInner {
 
     /**
      * Get the groundStationName property: Name of Azure Ground Station.
-     *
+     * 
      * @return the groundStationName value.
      */
     public String groundStationName() {
@@ -68,7 +70,7 @@ public final class AvailableContactsInner {
 
     /**
      * Get the innerProperties property: Properties of Contact resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AvailableContactsProperties innerProperties() {
@@ -76,8 +78,9 @@ public final class AvailableContactsInner {
     }
 
     /**
-     * Get the maximumElevationDegrees property: Maximum elevation of the antenna during the contact in decimal degrees.
-     *
+     * Get the maximumElevationDegrees property: Maximum elevation of the antenna during the contact in decimal
+     * degrees.
+     * 
      * @return the maximumElevationDegrees value.
      */
     public Float maximumElevationDegrees() {
@@ -86,7 +89,7 @@ public final class AvailableContactsInner {
 
     /**
      * Get the txStartTime property: Time at which antenna transmit will be enabled (ISO 8601 UTC standard).
-     *
+     * 
      * @return the txStartTime value.
      */
     public OffsetDateTime txStartTime() {
@@ -95,7 +98,7 @@ public final class AvailableContactsInner {
 
     /**
      * Get the txEndTime property: Time at which antenna transmit will be disabled (ISO 8601 UTC standard).
-     *
+     * 
      * @return the txEndTime value.
      */
     public OffsetDateTime txEndTime() {
@@ -104,7 +107,7 @@ public final class AvailableContactsInner {
 
     /**
      * Get the rxStartTime property: Earliest time to receive a signal (ISO 8601 UTC standard).
-     *
+     * 
      * @return the rxStartTime value.
      */
     public OffsetDateTime rxStartTime() {
@@ -113,7 +116,7 @@ public final class AvailableContactsInner {
 
     /**
      * Get the rxEndTime property: Time to lost receiving a signal (ISO 8601 UTC standard).
-     *
+     * 
      * @return the rxEndTime value.
      */
     public OffsetDateTime rxEndTime() {
@@ -122,7 +125,7 @@ public final class AvailableContactsInner {
 
     /**
      * Get the startAzimuthDegrees property: Azimuth of the antenna at the start of the contact in decimal degrees.
-     *
+     * 
      * @return the startAzimuthDegrees value.
      */
     public Float startAzimuthDegrees() {
@@ -131,7 +134,7 @@ public final class AvailableContactsInner {
 
     /**
      * Get the endAzimuthDegrees property: Azimuth of the antenna at the end of the contact in decimal degrees.
-     *
+     * 
      * @return the endAzimuthDegrees value.
      */
     public Float endAzimuthDegrees() {
@@ -140,7 +143,7 @@ public final class AvailableContactsInner {
 
     /**
      * Get the startElevationDegrees property: Spacecraft elevation above the horizon at contact start.
-     *
+     * 
      * @return the startElevationDegrees value.
      */
     public Float startElevationDegrees() {
@@ -149,7 +152,7 @@ public final class AvailableContactsInner {
 
     /**
      * Get the endElevationDegrees property: Spacecraft elevation above the horizon at contact end.
-     *
+     * 
      * @return the endElevationDegrees value.
      */
     public Float endElevationDegrees() {
@@ -158,7 +161,7 @@ public final class AvailableContactsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

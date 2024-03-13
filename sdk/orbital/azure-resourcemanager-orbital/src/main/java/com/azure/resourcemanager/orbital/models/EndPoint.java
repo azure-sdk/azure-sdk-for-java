@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Customer end point to store and retrieve data during a contact with the spacecraft. */
+/**
+ * Customer end point to store and retrieve data during a contact with the spacecraft.
+ */
 @Fluent
 public final class EndPoint {
     /*
@@ -35,13 +37,15 @@ public final class EndPoint {
     @JsonProperty(value = "protocol", required = true)
     private Protocol protocol;
 
-    /** Creates an instance of EndPoint class. */
+    /**
+     * Creates an instance of EndPoint class.
+     */
     public EndPoint() {
     }
 
     /**
      * Get the ipAddress property: IP Address (IPv4).
-     *
+     * 
      * @return the ipAddress value.
      */
     public String ipAddress() {
@@ -50,7 +54,7 @@ public final class EndPoint {
 
     /**
      * Set the ipAddress property: IP Address (IPv4).
-     *
+     * 
      * @param ipAddress the ipAddress value to set.
      * @return the EndPoint object itself.
      */
@@ -61,7 +65,7 @@ public final class EndPoint {
 
     /**
      * Get the endPointName property: Name of an end point.
-     *
+     * 
      * @return the endPointName value.
      */
     public String endPointName() {
@@ -70,7 +74,7 @@ public final class EndPoint {
 
     /**
      * Set the endPointName property: Name of an end point.
-     *
+     * 
      * @param endPointName the endPointName value to set.
      * @return the EndPoint object itself.
      */
@@ -81,7 +85,7 @@ public final class EndPoint {
 
     /**
      * Get the port property: TCP port to listen on to receive data.
-     *
+     * 
      * @return the port value.
      */
     public String port() {
@@ -90,7 +94,7 @@ public final class EndPoint {
 
     /**
      * Set the port property: TCP port to listen on to receive data.
-     *
+     * 
      * @param port the port value to set.
      * @return the EndPoint object itself.
      */
@@ -101,7 +105,7 @@ public final class EndPoint {
 
     /**
      * Get the protocol property: Protocol either UDP or TCP.
-     *
+     * 
      * @return the protocol value.
      */
     public Protocol protocol() {
@@ -110,7 +114,7 @@ public final class EndPoint {
 
     /**
      * Set the protocol property: Protocol either UDP or TCP.
-     *
+     * 
      * @param protocol the protocol value to set.
      * @return the EndPoint object itself.
      */
@@ -121,28 +125,25 @@ public final class EndPoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (ipAddress() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property ipAddress in model EndPoint"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property ipAddress in model EndPoint"));
         }
         if (endPointName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property endPointName in model EndPoint"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property endPointName in model EndPoint"));
         }
         if (port() == null) {
             throw LOGGER
                 .logExceptionAsError(new IllegalArgumentException("Missing required property port in model EndPoint"));
         }
         if (protocol() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property protocol in model EndPoint"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property protocol in model EndPoint"));
         }
     }
 

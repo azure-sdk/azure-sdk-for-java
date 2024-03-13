@@ -6,14 +6,20 @@ package com.azure.resourcemanager.orbital.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The reference to the contact profile resource. */
+/**
+ * The reference to the contact profile resource.
+ */
 @Fluent
 public final class ContactsPropertiesContactProfile extends ResourceReference {
-    /** Creates an instance of ContactsPropertiesContactProfile class. */
+    /**
+     * Creates an instance of ContactsPropertiesContactProfile class.
+     */
     public ContactsPropertiesContactProfile() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ContactsPropertiesContactProfile withId(String id) {
         super.withId(id);
@@ -22,7 +28,7 @@ public final class ContactsPropertiesContactProfile extends ResourceReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
