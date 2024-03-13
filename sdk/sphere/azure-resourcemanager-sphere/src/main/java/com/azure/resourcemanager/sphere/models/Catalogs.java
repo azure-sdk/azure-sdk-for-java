@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of Catalogs. */
+/**
+ * Resource collection API of Catalogs.
+ */
 public interface Catalogs {
     /**
      * List Catalog resources by subscription ID.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Catalog list operation as paginated response with {@link PagedIterable}.
@@ -21,7 +23,7 @@ public interface Catalogs {
 
     /**
      * List Catalog resources by subscription ID.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -32,7 +34,7 @@ public interface Catalogs {
 
     /**
      * List Catalog resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -43,7 +45,7 @@ public interface Catalogs {
 
     /**
      * List Catalog resources by resource group.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -55,7 +57,7 @@ public interface Catalogs {
 
     /**
      * Get a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
@@ -68,7 +70,7 @@ public interface Catalogs {
 
     /**
      * Get a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -80,7 +82,7 @@ public interface Catalogs {
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -91,7 +93,7 @@ public interface Catalogs {
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
@@ -103,33 +105,33 @@ public interface Catalogs {
 
     /**
      * Counts devices in catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response to the action call for count devices in a catalog along with {@link Response}.
+     * @return response to the action call for count devices in a catalog (preview API) along with {@link Response}.
      */
-    Response<CountDeviceResponse> countDevicesWithResponse(
-        String resourceGroupName, String catalogName, Context context);
+    Response<CountDeviceResponse> countDevicesWithResponse(String resourceGroupName, String catalogName,
+        Context context);
 
     /**
      * Counts devices in catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response to the action call for count devices in a catalog.
+     * @return response to the action call for count devices in a catalog (preview API).
      */
     CountDeviceResponse countDevices(String resourceGroupName, String catalogName);
 
     /**
      * Lists deployments for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -141,7 +143,7 @@ public interface Catalogs {
 
     /**
      * Lists deployments for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -154,18 +156,12 @@ public interface Catalogs {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Deployment list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Deployment> listDeployments(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context);
+    PagedIterable<Deployment> listDeployments(String resourceGroupName, String catalogName, String filter, Integer top,
+        Integer skip, Integer maxpagesize, Context context);
 
     /**
      * List the device groups for the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param listDeviceGroupsRequest List device groups for catalog.
@@ -174,12 +170,12 @@ public interface Catalogs {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DeviceGroup list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DeviceGroup> listDeviceGroups(
-        String resourceGroupName, String catalogName, ListDeviceGroupsRequest listDeviceGroupsRequest);
+    PagedIterable<DeviceGroup> listDeviceGroups(String resourceGroupName, String catalogName,
+        ListDeviceGroupsRequest listDeviceGroupsRequest);
 
     /**
      * List the device groups for the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param listDeviceGroupsRequest List device groups for catalog.
@@ -193,19 +189,13 @@ public interface Catalogs {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a DeviceGroup list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DeviceGroup> listDeviceGroups(
-        String resourceGroupName,
-        String catalogName,
-        ListDeviceGroupsRequest listDeviceGroupsRequest,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
+    PagedIterable<DeviceGroup> listDeviceGroups(String resourceGroupName, String catalogName,
+        ListDeviceGroupsRequest listDeviceGroupsRequest, String filter, Integer top, Integer skip, Integer maxpagesize,
         Context context);
 
     /**
      * Lists device insights for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -217,7 +207,7 @@ public interface Catalogs {
 
     /**
      * Lists device insights for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -230,18 +220,12 @@ public interface Catalogs {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return paged collection of DeviceInsight items as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<DeviceInsight> listDeviceInsights(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context);
+    PagedIterable<DeviceInsight> listDeviceInsights(String resourceGroupName, String catalogName, String filter,
+        Integer top, Integer skip, Integer maxpagesize, Context context);
 
     /**
      * Lists devices for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -253,7 +237,7 @@ public interface Catalogs {
 
     /**
      * Lists devices for catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param catalogName Name of catalog.
      * @param filter Filter the result list using the given expression.
@@ -266,18 +250,12 @@ public interface Catalogs {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a Device list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Device> listDevices(
-        String resourceGroupName,
-        String catalogName,
-        String filter,
-        Integer top,
-        Integer skip,
-        Integer maxpagesize,
-        Context context);
+    PagedIterable<Device> listDevices(String resourceGroupName, String catalogName, String filter, Integer top,
+        Integer skip, Integer maxpagesize, Context context);
 
     /**
      * Get a Catalog.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -288,7 +266,7 @@ public interface Catalogs {
 
     /**
      * Get a Catalog.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -300,7 +278,7 @@ public interface Catalogs {
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -310,7 +288,7 @@ public interface Catalogs {
 
     /**
      * Delete a Catalog.
-     *
+     * 
      * @param id the resource ID.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -321,7 +299,7 @@ public interface Catalogs {
 
     /**
      * Begins definition for a new Catalog resource.
-     *
+     * 
      * @param name resource name.
      * @return the first stage of the new Catalog definition.
      */
