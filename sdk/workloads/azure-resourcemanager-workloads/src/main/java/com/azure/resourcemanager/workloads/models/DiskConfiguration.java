@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The Disk Configuration Details. */
+/**
+ * The Disk Configuration Details.
+ */
 @Fluent
 public final class DiskConfiguration {
     /*
@@ -20,14 +22,16 @@ public final class DiskConfiguration {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, DiskVolumeConfiguration> diskVolumeConfigurations;
 
-    /** Creates an instance of DiskConfiguration class. */
+    /**
+     * Creates an instance of DiskConfiguration class.
+     */
     public DiskConfiguration() {
     }
 
     /**
      * Get the diskVolumeConfigurations property: The disk configuration for the db volume. For HANA, Required volumes
      * are: ['hana/data', 'hana/log', hana/shared', 'usr/sap', 'os'], Optional volume : ['backup'].
-     *
+     * 
      * @return the diskVolumeConfigurations value.
      */
     public Map<String, DiskVolumeConfiguration> diskVolumeConfigurations() {
@@ -37,31 +41,28 @@ public final class DiskConfiguration {
     /**
      * Set the diskVolumeConfigurations property: The disk configuration for the db volume. For HANA, Required volumes
      * are: ['hana/data', 'hana/log', hana/shared', 'usr/sap', 'os'], Optional volume : ['backup'].
-     *
+     * 
      * @param diskVolumeConfigurations the diskVolumeConfigurations value to set.
      * @return the DiskConfiguration object itself.
      */
-    public DiskConfiguration withDiskVolumeConfigurations(
-        Map<String, DiskVolumeConfiguration> diskVolumeConfigurations) {
+    public DiskConfiguration
+        withDiskVolumeConfigurations(Map<String, DiskVolumeConfiguration> diskVolumeConfigurations) {
         this.diskVolumeConfigurations = diskVolumeConfigurations;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (diskVolumeConfigurations() != null) {
-            diskVolumeConfigurations()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            diskVolumeConfigurations().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

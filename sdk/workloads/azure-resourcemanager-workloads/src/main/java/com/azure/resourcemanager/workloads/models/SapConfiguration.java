@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The SAP Configuration. */
+/**
+ * The SAP Configuration.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -19,17 +21,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Discovery", value = DiscoveryConfiguration.class),
     @JsonSubTypes.Type(name = "Deployment", value = DeploymentConfiguration.class),
-    @JsonSubTypes.Type(name = "DeploymentWithOSConfig", value = DeploymentWithOSConfiguration.class)
-})
+    @JsonSubTypes.Type(name = "DeploymentWithOSConfig", value = DeploymentWithOSConfiguration.class) })
 @Immutable
 public class SapConfiguration {
-    /** Creates an instance of SapConfiguration class. */
+    /**
+     * Creates an instance of SapConfiguration class.
+     */
     public SapConfiguration() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

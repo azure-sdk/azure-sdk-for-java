@@ -11,7 +11,9 @@ import com.azure.resourcemanager.workloads.models.SapLandscapeMonitorProvisionin
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Gets or sets the properties for Sap Landscape Monitor Dashboard. */
+/**
+ * Gets or sets the properties for Sap Landscape Monitor Dashboard.
+ */
 @Fluent
 public final class SapLandscapeMonitorProperties {
     /*
@@ -32,13 +34,15 @@ public final class SapLandscapeMonitorProperties {
     @JsonProperty(value = "topMetricsThresholds")
     private List<SapLandscapeMonitorMetricThresholds> topMetricsThresholds;
 
-    /** Creates an instance of SapLandscapeMonitorProperties class. */
+    /**
+     * Creates an instance of SapLandscapeMonitorProperties class.
+     */
     public SapLandscapeMonitorProperties() {
     }
 
     /**
      * Get the provisioningState property: State of provisioning of the SAP monitor.
-     *
+     * 
      * @return the provisioningState value.
      */
     public SapLandscapeMonitorProvisioningState provisioningState() {
@@ -47,7 +51,7 @@ public final class SapLandscapeMonitorProperties {
 
     /**
      * Get the grouping property: Gets or sets the SID groupings by landscape and Environment.
-     *
+     * 
      * @return the grouping value.
      */
     public SapLandscapeMonitorPropertiesGrouping grouping() {
@@ -56,7 +60,7 @@ public final class SapLandscapeMonitorProperties {
 
     /**
      * Set the grouping property: Gets or sets the SID groupings by landscape and Environment.
-     *
+     * 
      * @param grouping the grouping value to set.
      * @return the SapLandscapeMonitorProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class SapLandscapeMonitorProperties {
     /**
      * Get the topMetricsThresholds property: Gets or sets the list Top Metric Thresholds for SAP Landscape Monitor
      * Dashboard.
-     *
+     * 
      * @return the topMetricsThresholds value.
      */
     public List<SapLandscapeMonitorMetricThresholds> topMetricsThresholds() {
@@ -78,19 +82,19 @@ public final class SapLandscapeMonitorProperties {
     /**
      * Set the topMetricsThresholds property: Gets or sets the list Top Metric Thresholds for SAP Landscape Monitor
      * Dashboard.
-     *
+     * 
      * @param topMetricsThresholds the topMetricsThresholds value to set.
      * @return the SapLandscapeMonitorProperties object itself.
      */
-    public SapLandscapeMonitorProperties withTopMetricsThresholds(
-        List<SapLandscapeMonitorMetricThresholds> topMetricsThresholds) {
+    public SapLandscapeMonitorProperties
+        withTopMetricsThresholds(List<SapLandscapeMonitorMetricThresholds> topMetricsThresholds) {
         this.topMetricsThresholds = topMetricsThresholds;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
