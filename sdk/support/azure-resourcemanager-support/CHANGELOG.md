@@ -1,6 +1,8 @@
 # Release History
 
-## 1.0.0-beta.4 (Unreleased)
+## 1.0.0-beta.1 (2024-03-13)
+
+- Azure Resource Manager support client library for Java. This package contains Microsoft Azure SDK for support Management SDK. Microsoft Azure Support Resource Provider. Package tag package-preview-2023-06. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ### Features Added
 
