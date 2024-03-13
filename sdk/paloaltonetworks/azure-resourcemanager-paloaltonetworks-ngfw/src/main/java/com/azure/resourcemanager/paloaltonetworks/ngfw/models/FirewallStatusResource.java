@@ -75,6 +75,21 @@ public interface FirewallStatusResource {
     ReadOnlyProvisioningState provisioningState();
 
     /**
+     * Gets the isStrataCloudManaged property: Strata Cloud Manager.
+     * 
+     * @return the isStrataCloudManaged value.
+     */
+    BooleanEnum isStrataCloudManaged();
+
+    /**
+     * Gets the strataCloudManagerInfo property: This field is only present if Strata Cloud Manager is managing the
+     * policy for this firewall.
+     * 
+     * @return the strataCloudManagerInfo value.
+     */
+    StrataCloudManagerInfo strataCloudManagerInfo();
+
+    /**
      * Gets the inner com.azure.resourcemanager.paloaltonetworks.ngfw.fluent.models.FirewallStatusResourceInner object.
      * 
      * @return the inner object.
