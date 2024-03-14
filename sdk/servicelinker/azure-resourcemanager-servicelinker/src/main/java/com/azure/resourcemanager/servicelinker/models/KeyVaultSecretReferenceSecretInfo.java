@@ -30,8 +30,14 @@ public final class KeyVaultSecretReferenceSecretInfo extends SecretInfoBase {
     private String version;
 
     /**
+     * Creates an instance of KeyVaultSecretReferenceSecretInfo class.
+     */
+    public KeyVaultSecretReferenceSecretInfo() {
+    }
+
+    /**
      * Get the name property: Name of the Key Vault secret.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -40,7 +46,7 @@ public final class KeyVaultSecretReferenceSecretInfo extends SecretInfoBase {
 
     /**
      * Set the name property: Name of the Key Vault secret.
-     *
+     * 
      * @param name the name value to set.
      * @return the KeyVaultSecretReferenceSecretInfo object itself.
      */
@@ -51,7 +57,7 @@ public final class KeyVaultSecretReferenceSecretInfo extends SecretInfoBase {
 
     /**
      * Get the version property: Version of the Key Vault secret.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -60,7 +66,7 @@ public final class KeyVaultSecretReferenceSecretInfo extends SecretInfoBase {
 
     /**
      * Set the version property: Version of the Key Vault secret.
-     *
+     * 
      * @param version the version value to set.
      * @return the KeyVaultSecretReferenceSecretInfo object itself.
      */
@@ -71,7 +77,7 @@ public final class KeyVaultSecretReferenceSecretInfo extends SecretInfoBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
