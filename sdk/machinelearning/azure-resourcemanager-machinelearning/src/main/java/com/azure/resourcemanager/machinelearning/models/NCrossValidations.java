@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** N-Cross validations value. */
+/**
+ * N-Cross validations value.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,17 +20,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("NCrossValidations")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Auto", value = AutoNCrossValidations.class),
-    @JsonSubTypes.Type(name = "Custom", value = CustomNCrossValidations.class)
-})
+    @JsonSubTypes.Type(name = "Custom", value = CustomNCrossValidations.class) })
 @Immutable
 public class NCrossValidations {
-    /** Creates an instance of NCrossValidations class. */
+    /**
+     * Creates an instance of NCrossValidations class.
+     */
     public NCrossValidations() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

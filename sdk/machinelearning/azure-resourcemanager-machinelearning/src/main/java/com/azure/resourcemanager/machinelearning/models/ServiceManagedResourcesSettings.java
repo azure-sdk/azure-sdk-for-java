@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ServiceManagedResourcesSettings model. */
+/**
+ * The ServiceManagedResourcesSettings model.
+ */
 @Fluent
 public final class ServiceManagedResourcesSettings {
     /*
@@ -16,13 +18,15 @@ public final class ServiceManagedResourcesSettings {
     @JsonProperty(value = "cosmosDb")
     private CosmosDbSettings cosmosDb;
 
-    /** Creates an instance of ServiceManagedResourcesSettings class. */
+    /**
+     * Creates an instance of ServiceManagedResourcesSettings class.
+     */
     public ServiceManagedResourcesSettings() {
     }
 
     /**
      * Get the cosmosDb property: The settings for the service managed cosmosdb account.
-     *
+     * 
      * @return the cosmosDb value.
      */
     public CosmosDbSettings cosmosDb() {
@@ -31,7 +35,7 @@ public final class ServiceManagedResourcesSettings {
 
     /**
      * Set the cosmosDb property: The settings for the service managed cosmosdb account.
-     *
+     * 
      * @param cosmosDb the cosmosDb value to set.
      * @return the ServiceManagedResourcesSettings object itself.
      */
@@ -42,7 +46,7 @@ public final class ServiceManagedResourcesSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

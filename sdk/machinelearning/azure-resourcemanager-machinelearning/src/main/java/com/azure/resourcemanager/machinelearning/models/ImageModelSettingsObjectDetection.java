@@ -8,8 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Settings used for training the model. For more information on the available settings please visit the official
- * documentation: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
+ * Settings used for training the model.
+ * For more information on the available settings please visit the official documentation:
+ * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
  */
 @Fluent
 public final class ImageModelSettingsObjectDetection extends ImageModelSettings {
@@ -108,14 +109,17 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     @JsonProperty(value = "validationMetricType")
     private ValidationMetricType validationMetricType;
 
-    /** Creates an instance of ImageModelSettingsObjectDetection class. */
+    /**
+     * Creates an instance of ImageModelSettingsObjectDetection class.
+     */
     public ImageModelSettingsObjectDetection() {
     }
 
     /**
      * Get the boxDetectionsPerImage property: Maximum number of detections per image, for all classes. Must be a
-     * positive integer. Note: This settings is not supported for the 'yolov5' algorithm.
-     *
+     * positive integer.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @return the boxDetectionsPerImage value.
      */
     public Integer boxDetectionsPerImage() {
@@ -124,8 +128,9 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
 
     /**
      * Set the boxDetectionsPerImage property: Maximum number of detections per image, for all classes. Must be a
-     * positive integer. Note: This settings is not supported for the 'yolov5' algorithm.
-     *
+     * positive integer.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @param boxDetectionsPerImage the boxDetectionsPerImage value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -136,8 +141,9 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
 
     /**
      * Get the boxScoreThreshold property: During inference, only return proposals with a classification score greater
-     * than BoxScoreThreshold. Must be a float in the range[0, 1].
-     *
+     * than
+     * BoxScoreThreshold. Must be a float in the range[0, 1].
+     * 
      * @return the boxScoreThreshold value.
      */
     public Float boxScoreThreshold() {
@@ -146,8 +152,9 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
 
     /**
      * Set the boxScoreThreshold property: During inference, only return proposals with a classification score greater
-     * than BoxScoreThreshold. Must be a float in the range[0, 1].
-     *
+     * than
+     * BoxScoreThreshold. Must be a float in the range[0, 1].
+     * 
      * @param boxScoreThreshold the boxScoreThreshold value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -157,10 +164,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Get the imageSize property: Image size for train and validation. Must be a positive integer. Note: The training
-     * run may get into CUDA OOM if the size is too big. Note: This settings is only supported for the 'yolov5'
-     * algorithm.
-     *
+     * Get the imageSize property: Image size for train and validation. Must be a positive integer.
+     * Note: The training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @return the imageSize value.
      */
     public Integer imageSize() {
@@ -168,10 +175,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Set the imageSize property: Image size for train and validation. Must be a positive integer. Note: The training
-     * run may get into CUDA OOM if the size is too big. Note: This settings is only supported for the 'yolov5'
-     * algorithm.
-     *
+     * Set the imageSize property: Image size for train and validation. Must be a positive integer.
+     * Note: The training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @param imageSize the imageSize value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -181,10 +188,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Get the maxSize property: Maximum size of the image to be rescaled before feeding it to the backbone. Must be a
-     * positive integer. Note: training run may get into CUDA OOM if the size is too big. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Get the maxSize property: Maximum size of the image to be rescaled before feeding it to the backbone.
+     * Must be a positive integer. Note: training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @return the maxSize value.
      */
     public Integer maxSize() {
@@ -192,10 +199,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Set the maxSize property: Maximum size of the image to be rescaled before feeding it to the backbone. Must be a
-     * positive integer. Note: training run may get into CUDA OOM if the size is too big. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Set the maxSize property: Maximum size of the image to be rescaled before feeding it to the backbone.
+     * Must be a positive integer. Note: training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @param maxSize the maxSize value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -205,10 +212,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Get the minSize property: Minimum size of the image to be rescaled before feeding it to the backbone. Must be a
-     * positive integer. Note: training run may get into CUDA OOM if the size is too big. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Get the minSize property: Minimum size of the image to be rescaled before feeding it to the backbone.
+     * Must be a positive integer. Note: training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @return the minSize value.
      */
     public Integer minSize() {
@@ -216,10 +223,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Set the minSize property: Minimum size of the image to be rescaled before feeding it to the backbone. Must be a
-     * positive integer. Note: training run may get into CUDA OOM if the size is too big. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Set the minSize property: Minimum size of the image to be rescaled before feeding it to the backbone.
+     * Must be a positive integer. Note: training run may get into CUDA OOM if the size is too big.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @param minSize the minSize value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -229,9 +236,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Get the modelSize property: Model size. Must be 'small', 'medium', 'large', or 'xlarge'. Note: training run may
-     * get into CUDA OOM if the model size is too big. Note: This settings is only supported for the 'yolov5' algorithm.
-     *
+     * Get the modelSize property: Model size. Must be 'small', 'medium', 'large', or 'xlarge'.
+     * Note: training run may get into CUDA OOM if the model size is too big.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @return the modelSize value.
      */
     public ModelSize modelSize() {
@@ -239,9 +247,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Set the modelSize property: Model size. Must be 'small', 'medium', 'large', or 'xlarge'. Note: training run may
-     * get into CUDA OOM if the model size is too big. Note: This settings is only supported for the 'yolov5' algorithm.
-     *
+     * Set the modelSize property: Model size. Must be 'small', 'medium', 'large', or 'xlarge'.
+     * Note: training run may get into CUDA OOM if the model size is too big.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @param modelSize the modelSize value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -251,9 +260,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Get the multiScale property: Enable multi-scale image by varying image size by +/- 50%. Note: training run may
-     * get into CUDA OOM if no sufficient GPU memory. Note: This settings is only supported for the 'yolov5' algorithm.
-     *
+     * Get the multiScale property: Enable multi-scale image by varying image size by +/- 50%.
+     * Note: training run may get into CUDA OOM if no sufficient GPU memory.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @return the multiScale value.
      */
     public Boolean multiScale() {
@@ -261,9 +271,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Set the multiScale property: Enable multi-scale image by varying image size by +/- 50%. Note: training run may
-     * get into CUDA OOM if no sufficient GPU memory. Note: This settings is only supported for the 'yolov5' algorithm.
-     *
+     * Set the multiScale property: Enable multi-scale image by varying image size by +/- 50%.
+     * Note: training run may get into CUDA OOM if no sufficient GPU memory.
+     * Note: This settings is only supported for the 'yolov5' algorithm.
+     * 
      * @param multiScale the multiScale value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -275,7 +286,7 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     /**
      * Get the nmsIouThreshold property: IOU threshold used during inference in NMS post processing. Must be a float in
      * the range [0, 1].
-     *
+     * 
      * @return the nmsIouThreshold value.
      */
     public Float nmsIouThreshold() {
@@ -285,7 +296,7 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     /**
      * Set the nmsIouThreshold property: IOU threshold used during inference in NMS post processing. Must be a float in
      * the range [0, 1].
-     *
+     * 
      * @param nmsIouThreshold the nmsIouThreshold value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -295,10 +306,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Get the tileGridSize property: The grid size to use for tiling each image. Note: TileGridSize must not be None to
-     * enable small object detection logic. A string containing two integers in mxn format. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Get the tileGridSize property: The grid size to use for tiling each image. Note: TileGridSize must not be
+     * None to enable small object detection logic. A string containing two integers in mxn format.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @return the tileGridSize value.
      */
     public String tileGridSize() {
@@ -306,10 +317,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     }
 
     /**
-     * Set the tileGridSize property: The grid size to use for tiling each image. Note: TileGridSize must not be None to
-     * enable small object detection logic. A string containing two integers in mxn format. Note: This settings is not
-     * supported for the 'yolov5' algorithm.
-     *
+     * Set the tileGridSize property: The grid size to use for tiling each image. Note: TileGridSize must not be
+     * None to enable small object detection logic. A string containing two integers in mxn format.
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @param tileGridSize the tileGridSize value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -320,8 +331,9 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
 
     /**
      * Get the tileOverlapRatio property: Overlap ratio between adjacent tiles in each dimension. Must be float in the
-     * range [0, 1). Note: This settings is not supported for the 'yolov5' algorithm.
-     *
+     * range [0, 1).
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @return the tileOverlapRatio value.
      */
     public Float tileOverlapRatio() {
@@ -330,8 +342,9 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
 
     /**
      * Set the tileOverlapRatio property: Overlap ratio between adjacent tiles in each dimension. Must be float in the
-     * range [0, 1). Note: This settings is not supported for the 'yolov5' algorithm.
-     *
+     * range [0, 1).
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @param tileOverlapRatio the tileOverlapRatio value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -342,9 +355,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
 
     /**
      * Get the tilePredictionsNmsThreshold property: The IOU threshold to use to perform NMS while merging predictions
-     * from tiles and image. Used in validation/ inference. Must be float in the range [0, 1]. Note: This settings is
-     * not supported for the 'yolov5' algorithm.
-     *
+     * from tiles and image.
+     * Used in validation/ inference. Must be float in the range [0, 1].
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @return the tilePredictionsNmsThreshold value.
      */
     public Float tilePredictionsNmsThreshold() {
@@ -353,9 +367,10 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
 
     /**
      * Set the tilePredictionsNmsThreshold property: The IOU threshold to use to perform NMS while merging predictions
-     * from tiles and image. Used in validation/ inference. Must be float in the range [0, 1]. Note: This settings is
-     * not supported for the 'yolov5' algorithm.
-     *
+     * from tiles and image.
+     * Used in validation/ inference. Must be float in the range [0, 1].
+     * Note: This settings is not supported for the 'yolov5' algorithm.
+     * 
      * @param tilePredictionsNmsThreshold the tilePredictionsNmsThreshold value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -367,7 +382,7 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     /**
      * Get the validationIouThreshold property: IOU threshold to use when computing validation metric. Must be float in
      * the range [0, 1].
-     *
+     * 
      * @return the validationIouThreshold value.
      */
     public Float validationIouThreshold() {
@@ -377,7 +392,7 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
     /**
      * Set the validationIouThreshold property: IOU threshold to use when computing validation metric. Must be float in
      * the range [0, 1].
-     *
+     * 
      * @param validationIouThreshold the validationIouThreshold value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -388,7 +403,7 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
 
     /**
      * Get the validationMetricType property: Metric computation method to use for validation metrics.
-     *
+     * 
      * @return the validationMetricType value.
      */
     public ValidationMetricType validationMetricType() {
@@ -397,7 +412,7 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
 
     /**
      * Set the validationMetricType property: Metric computation method to use for validation metrics.
-     *
+     * 
      * @param validationMetricType the validationMetricType value to set.
      * @return the ImageModelSettingsObjectDetection object itself.
      */
@@ -406,224 +421,288 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withAdvancedSettings(String advancedSettings) {
         super.withAdvancedSettings(advancedSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withAmsGradient(Boolean amsGradient) {
         super.withAmsGradient(amsGradient);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withAugmentations(String augmentations) {
         super.withAugmentations(augmentations);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withBeta1(Float beta1) {
         super.withBeta1(beta1);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withBeta2(Float beta2) {
         super.withBeta2(beta2);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withCheckpointFrequency(Integer checkpointFrequency) {
         super.withCheckpointFrequency(checkpointFrequency);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withCheckpointModel(MLFlowModelJobInput checkpointModel) {
         super.withCheckpointModel(checkpointModel);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withCheckpointRunId(String checkpointRunId) {
         super.withCheckpointRunId(checkpointRunId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withDistributed(Boolean distributed) {
         super.withDistributed(distributed);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withEarlyStopping(Boolean earlyStopping) {
         super.withEarlyStopping(earlyStopping);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withEarlyStoppingDelay(Integer earlyStoppingDelay) {
         super.withEarlyStoppingDelay(earlyStoppingDelay);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withEarlyStoppingPatience(Integer earlyStoppingPatience) {
         super.withEarlyStoppingPatience(earlyStoppingPatience);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withEnableOnnxNormalization(Boolean enableOnnxNormalization) {
         super.withEnableOnnxNormalization(enableOnnxNormalization);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withEvaluationFrequency(Integer evaluationFrequency) {
         super.withEvaluationFrequency(evaluationFrequency);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withGradientAccumulationStep(Integer gradientAccumulationStep) {
         super.withGradientAccumulationStep(gradientAccumulationStep);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withLayersToFreeze(Integer layersToFreeze) {
         super.withLayersToFreeze(layersToFreeze);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withLearningRate(Float learningRate) {
         super.withLearningRate(learningRate);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withLearningRateScheduler(LearningRateScheduler learningRateScheduler) {
         super.withLearningRateScheduler(learningRateScheduler);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withModelName(String modelName) {
         super.withModelName(modelName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withMomentum(Float momentum) {
         super.withMomentum(momentum);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withNesterov(Boolean nesterov) {
         super.withNesterov(nesterov);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withNumberOfEpochs(Integer numberOfEpochs) {
         super.withNumberOfEpochs(numberOfEpochs);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withNumberOfWorkers(Integer numberOfWorkers) {
         super.withNumberOfWorkers(numberOfWorkers);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withOptimizer(StochasticOptimizer optimizer) {
         super.withOptimizer(optimizer);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withRandomSeed(Integer randomSeed) {
         super.withRandomSeed(randomSeed);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withStepLRGamma(Float stepLRGamma) {
         super.withStepLRGamma(stepLRGamma);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withStepLRStepSize(Integer stepLRStepSize) {
         super.withStepLRStepSize(stepLRStepSize);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withTrainingBatchSize(Integer trainingBatchSize) {
         super.withTrainingBatchSize(trainingBatchSize);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withValidationBatchSize(Integer validationBatchSize) {
         super.withValidationBatchSize(validationBatchSize);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withWarmupCosineLRCycles(Float warmupCosineLRCycles) {
         super.withWarmupCosineLRCycles(warmupCosineLRCycles);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withWarmupCosineLRWarmupEpochs(Integer warmupCosineLRWarmupEpochs) {
         super.withWarmupCosineLRWarmupEpochs(warmupCosineLRWarmupEpochs);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageModelSettingsObjectDetection withWeightDecay(Float weightDecay) {
         super.withWeightDecay(weightDecay);
@@ -632,7 +711,7 @@ public final class ImageModelSettingsObjectDetection extends ImageModelSettings 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.models.VirtualMachineSize;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The List Virtual Machine size operation response. */
+/**
+ * The List Virtual Machine size operation response.
+ */
 @Fluent
 public final class VirtualMachineSizeListResultInner {
     /*
@@ -18,13 +20,15 @@ public final class VirtualMachineSizeListResultInner {
     @JsonProperty(value = "value")
     private List<VirtualMachineSize> value;
 
-    /** Creates an instance of VirtualMachineSizeListResultInner class. */
+    /**
+     * Creates an instance of VirtualMachineSizeListResultInner class.
+     */
     public VirtualMachineSizeListResultInner() {
     }
 
     /**
      * Get the value property: The list of virtual machine sizes supported by AmlCompute.
-     *
+     * 
      * @return the value value.
      */
     public List<VirtualMachineSize> value() {
@@ -33,7 +37,7 @@ public final class VirtualMachineSizeListResultInner {
 
     /**
      * Set the value property: The list of virtual machine sizes supported by AmlCompute.
-     *
+     * 
      * @param value the value value to set.
      * @return the VirtualMachineSizeListResultInner object itself.
      */
@@ -44,7 +48,7 @@ public final class VirtualMachineSizeListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

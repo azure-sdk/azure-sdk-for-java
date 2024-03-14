@@ -7,28 +7,38 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** The DeploymentResourceConfiguration model. */
+/**
+ * The DeploymentResourceConfiguration model.
+ */
 @Fluent
 public final class DeploymentResourceConfiguration extends ResourceConfiguration {
-    /** Creates an instance of DeploymentResourceConfiguration class. */
+    /**
+     * Creates an instance of DeploymentResourceConfiguration class.
+     */
     public DeploymentResourceConfiguration() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DeploymentResourceConfiguration withInstanceCount(Integer instanceCount) {
         super.withInstanceCount(instanceCount);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DeploymentResourceConfiguration withInstanceType(String instanceType) {
         super.withInstanceType(instanceType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DeploymentResourceConfiguration withProperties(Map<String, Object> properties) {
         super.withProperties(properties);
@@ -37,7 +47,7 @@ public final class DeploymentResourceConfiguration extends ResourceConfiguration
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

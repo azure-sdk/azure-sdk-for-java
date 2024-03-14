@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The AksSchema model. */
+/**
+ * The AksSchema model.
+ */
 @Fluent
 public class AksSchema {
     /*
@@ -16,13 +18,15 @@ public class AksSchema {
     @JsonProperty(value = "properties")
     private AksSchemaProperties properties;
 
-    /** Creates an instance of AksSchema class. */
+    /**
+     * Creates an instance of AksSchema class.
+     */
     public AksSchema() {
     }
 
     /**
      * Get the properties property: AKS properties.
-     *
+     * 
      * @return the properties value.
      */
     public AksSchemaProperties properties() {
@@ -31,7 +35,7 @@ public class AksSchema {
 
     /**
      * Set the properties property: AKS properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the AksSchema object itself.
      */
@@ -42,7 +46,7 @@ public class AksSchema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Configuration settings for Docker build context. */
+/**
+ * Configuration settings for Docker build context.
+ */
 @Fluent
 public final class BuildContext {
     /*
@@ -26,15 +28,17 @@ public final class BuildContext {
     @JsonProperty(value = "dockerfilePath")
     private String dockerfilePath;
 
-    /** Creates an instance of BuildContext class. */
+    /**
+     * Creates an instance of BuildContext class.
+     */
     public BuildContext() {
     }
 
     /**
      * Get the contextUri property: [Required] URI of the Docker build context used to build the image. Supports blob
-     * URIs on environment creation and may return blob or Git URIs. &lt;seealso
-     * href="https://docs.docker.com/engine/reference/commandline/build/#extended-description" /&gt;.
-     *
+     * URIs on environment creation and may return blob or Git URIs.
+     * &lt;seealso href="https://docs.docker.com/engine/reference/commandline/build/#extended-description" /&gt;.
+     * 
      * @return the contextUri value.
      */
     public String contextUri() {
@@ -43,9 +47,9 @@ public final class BuildContext {
 
     /**
      * Set the contextUri property: [Required] URI of the Docker build context used to build the image. Supports blob
-     * URIs on environment creation and may return blob or Git URIs. &lt;seealso
-     * href="https://docs.docker.com/engine/reference/commandline/build/#extended-description" /&gt;.
-     *
+     * URIs on environment creation and may return blob or Git URIs.
+     * &lt;seealso href="https://docs.docker.com/engine/reference/commandline/build/#extended-description" /&gt;.
+     * 
      * @param contextUri the contextUri value to set.
      * @return the BuildContext object itself.
      */
@@ -55,9 +59,9 @@ public final class BuildContext {
     }
 
     /**
-     * Get the dockerfilePath property: Path to the Dockerfile in the build context. &lt;seealso
-     * href="https://docs.docker.com/engine/reference/builder/" /&gt;.
-     *
+     * Get the dockerfilePath property: Path to the Dockerfile in the build context.
+     * &lt;seealso href="https://docs.docker.com/engine/reference/builder/" /&gt;.
+     * 
      * @return the dockerfilePath value.
      */
     public String dockerfilePath() {
@@ -65,9 +69,9 @@ public final class BuildContext {
     }
 
     /**
-     * Set the dockerfilePath property: Path to the Dockerfile in the build context. &lt;seealso
-     * href="https://docs.docker.com/engine/reference/builder/" /&gt;.
-     *
+     * Set the dockerfilePath property: Path to the Dockerfile in the build context.
+     * &lt;seealso href="https://docs.docker.com/engine/reference/builder/" /&gt;.
+     * 
      * @param dockerfilePath the dockerfilePath value to set.
      * @return the BuildContext object itself.
      */
@@ -78,14 +82,13 @@ public final class BuildContext {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (contextUri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property contextUri in model BuildContext"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property contextUri in model BuildContext"));
         }
     }
 
