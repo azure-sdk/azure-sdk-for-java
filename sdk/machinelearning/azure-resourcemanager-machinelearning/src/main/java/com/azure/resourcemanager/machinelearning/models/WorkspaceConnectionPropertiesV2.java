@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The WorkspaceConnectionPropertiesV2 model. */
+/**
+ * The WorkspaceConnectionPropertiesV2 model.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -22,8 +24,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "SAS", value = SasAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "UsernamePassword", value = UsernamePasswordAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "None", value = NoneAuthTypeWorkspaceConnectionProperties.class),
-    @JsonSubTypes.Type(name = "ManagedIdentity", value = ManagedIdentityAuthTypeWorkspaceConnectionProperties.class)
-})
+    @JsonSubTypes.Type(name = "ManagedIdentity", value = ManagedIdentityAuthTypeWorkspaceConnectionProperties.class) })
 @Fluent
 public class WorkspaceConnectionPropertiesV2 {
     /*
@@ -50,13 +51,15 @@ public class WorkspaceConnectionPropertiesV2 {
     @JsonProperty(value = "valueFormat")
     private ValueFormat valueFormat;
 
-    /** Creates an instance of WorkspaceConnectionPropertiesV2 class. */
+    /**
+     * Creates an instance of WorkspaceConnectionPropertiesV2 class.
+     */
     public WorkspaceConnectionPropertiesV2() {
     }
 
     /**
      * Get the category property: Category of the connection.
-     *
+     * 
      * @return the category value.
      */
     public ConnectionCategory category() {
@@ -65,7 +68,7 @@ public class WorkspaceConnectionPropertiesV2 {
 
     /**
      * Set the category property: Category of the connection.
-     *
+     * 
      * @param category the category value to set.
      * @return the WorkspaceConnectionPropertiesV2 object itself.
      */
@@ -76,7 +79,7 @@ public class WorkspaceConnectionPropertiesV2 {
 
     /**
      * Get the target property: The target property.
-     *
+     * 
      * @return the target value.
      */
     public String target() {
@@ -85,7 +88,7 @@ public class WorkspaceConnectionPropertiesV2 {
 
     /**
      * Set the target property: The target property.
-     *
+     * 
      * @param target the target value to set.
      * @return the WorkspaceConnectionPropertiesV2 object itself.
      */
@@ -96,7 +99,7 @@ public class WorkspaceConnectionPropertiesV2 {
 
     /**
      * Get the value property: Value details of the workspace connection.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -105,7 +108,7 @@ public class WorkspaceConnectionPropertiesV2 {
 
     /**
      * Set the value property: Value details of the workspace connection.
-     *
+     * 
      * @param value the value value to set.
      * @return the WorkspaceConnectionPropertiesV2 object itself.
      */
@@ -116,7 +119,7 @@ public class WorkspaceConnectionPropertiesV2 {
 
     /**
      * Get the valueFormat property: format for the workspace connection value.
-     *
+     * 
      * @return the valueFormat value.
      */
     public ValueFormat valueFormat() {
@@ -125,7 +128,7 @@ public class WorkspaceConnectionPropertiesV2 {
 
     /**
      * Set the valueFormat property: format for the workspace connection value.
-     *
+     * 
      * @param valueFormat the valueFormat value to set.
      * @return the WorkspaceConnectionPropertiesV2 object itself.
      */
@@ -136,7 +139,7 @@ public class WorkspaceConnectionPropertiesV2 {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Environment version details. */
+/**
+ * Environment version details.
+ */
 @Fluent
 public final class EnvironmentVersionProperties extends AssetBase {
     /*
@@ -43,8 +45,8 @@ public final class EnvironmentVersionProperties extends AssetBase {
     /*
      * Name of the image that will be used for the environment.
      * <seealso
-     * href="https://docs.microsoft.com/en-us/azure/machine-learning"
-         + "/how-to-deploy-custom-docker-image#use-a-custom-base-image"
+     * href=
+     * "https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-custom-docker-image#use-a-custom-base-image"
      * />
      */
     @JsonProperty(value = "image")
@@ -62,13 +64,27 @@ public final class EnvironmentVersionProperties extends AssetBase {
     @JsonProperty(value = "osType")
     private OperatingSystemType osType;
 
-    /** Creates an instance of EnvironmentVersionProperties class. */
+    /*
+     * Provisioning state for the environment version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
+    /*
+     * Stage in the environment lifecycle assigned to this environment
+     */
+    @JsonProperty(value = "stage")
+    private String stage;
+
+    /**
+     * Creates an instance of EnvironmentVersionProperties class.
+     */
     public EnvironmentVersionProperties() {
     }
 
     /**
      * Get the autoRebuild property: Defines if image needs to be rebuilt based on base image changes.
-     *
+     * 
      * @return the autoRebuild value.
      */
     public AutoRebuildSetting autoRebuild() {
@@ -77,7 +93,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Set the autoRebuild property: Defines if image needs to be rebuilt based on base image changes.
-     *
+     * 
      * @param autoRebuild the autoRebuild value to set.
      * @return the EnvironmentVersionProperties object itself.
      */
@@ -88,7 +104,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Get the build property: Configuration settings for Docker build context.
-     *
+     * 
      * @return the build value.
      */
     public BuildContext build() {
@@ -97,7 +113,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Set the build property: Configuration settings for Docker build context.
-     *
+     * 
      * @param build the build value to set.
      * @return the EnvironmentVersionProperties object itself.
      */
@@ -108,10 +124,11 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Get the condaFile property: Standard configuration file used by Conda that lets you install any kind of package,
-     * including Python, R, and C/C++ packages. &lt;see
+     * including Python, R, and C/C++ packages.
+     * &lt;see
      * href="https://repo2docker.readthedocs.io/en/latest/config_files.html#environment-yml-install-a-conda-environment"
      * /&gt;.
-     *
+     * 
      * @return the condaFile value.
      */
     public String condaFile() {
@@ -120,10 +137,11 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Set the condaFile property: Standard configuration file used by Conda that lets you install any kind of package,
-     * including Python, R, and C/C++ packages. &lt;see
+     * including Python, R, and C/C++ packages.
+     * &lt;see
      * href="https://repo2docker.readthedocs.io/en/latest/config_files.html#environment-yml-install-a-conda-environment"
      * /&gt;.
-     *
+     * 
      * @param condaFile the condaFile value to set.
      * @return the EnvironmentVersionProperties object itself.
      */
@@ -135,7 +153,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
     /**
      * Get the environmentType property: Environment type is either user managed or curated by the Azure ML service
      * &lt;see href="https://docs.microsoft.com/en-us/azure/machine-learning/resource-curated-environments" /&gt;.
-     *
+     * 
      * @return the environmentType value.
      */
     public EnvironmentType environmentType() {
@@ -143,11 +161,11 @@ public final class EnvironmentVersionProperties extends AssetBase {
     }
 
     /**
-     * Get the image property: Name of the image that will be used for the environment. &lt;seealso
-     * href="https://docs.microsoft.com/en-us/azure/machine-learning"
-         + "/how-to-deploy-custom-docker-image#use-a-custom-base-image"
+     * Get the image property: Name of the image that will be used for the environment.
+     * &lt;seealso
+     * href="https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-custom-docker-image#use-a-custom-base-image"
      * /&gt;.
-     *
+     * 
      * @return the image value.
      */
     public String image() {
@@ -155,11 +173,11 @@ public final class EnvironmentVersionProperties extends AssetBase {
     }
 
     /**
-     * Set the image property: Name of the image that will be used for the environment. &lt;seealso
-     * href="https://docs.microsoft.com/en-us/azure/machine-learning"
-         + "/how-to-deploy-custom-docker-image#use-a-custom-base-image"
+     * Set the image property: Name of the image that will be used for the environment.
+     * &lt;seealso
+     * href="https://docs.microsoft.com/en-us/azure/machine-learning/how-to-deploy-custom-docker-image#use-a-custom-base-image"
      * /&gt;.
-     *
+     * 
      * @param image the image value to set.
      * @return the EnvironmentVersionProperties object itself.
      */
@@ -170,7 +188,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Get the inferenceConfig property: Defines configuration specific to inference.
-     *
+     * 
      * @return the inferenceConfig value.
      */
     public InferenceContainerProperties inferenceConfig() {
@@ -179,7 +197,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Set the inferenceConfig property: Defines configuration specific to inference.
-     *
+     * 
      * @param inferenceConfig the inferenceConfig value to set.
      * @return the EnvironmentVersionProperties object itself.
      */
@@ -190,7 +208,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Get the osType property: The OS type of the environment.
-     *
+     * 
      * @return the osType value.
      */
     public OperatingSystemType osType() {
@@ -199,7 +217,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Set the osType property: The OS type of the environment.
-     *
+     * 
      * @param osType the osType value to set.
      * @return the EnvironmentVersionProperties object itself.
      */
@@ -208,35 +226,74 @@ public final class EnvironmentVersionProperties extends AssetBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the provisioningState property: Provisioning state for the environment version.
+     * 
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * Get the stage property: Stage in the environment lifecycle assigned to this environment.
+     * 
+     * @return the stage value.
+     */
+    public String stage() {
+        return this.stage;
+    }
+
+    /**
+     * Set the stage property: Stage in the environment lifecycle assigned to this environment.
+     * 
+     * @param stage the stage value to set.
+     * @return the EnvironmentVersionProperties object itself.
+     */
+    public EnvironmentVersionProperties withStage(String stage) {
+        this.stage = stage;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EnvironmentVersionProperties withIsAnonymous(Boolean isAnonymous) {
         super.withIsAnonymous(isAnonymous);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EnvironmentVersionProperties withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EnvironmentVersionProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EnvironmentVersionProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EnvironmentVersionProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -245,7 +302,7 @@ public final class EnvironmentVersionProperties extends AssetBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

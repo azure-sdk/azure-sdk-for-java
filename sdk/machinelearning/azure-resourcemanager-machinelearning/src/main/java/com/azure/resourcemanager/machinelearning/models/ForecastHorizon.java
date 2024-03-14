@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The desired maximum forecast horizon in units of time-series frequency. */
+/**
+ * The desired maximum forecast horizon in units of time-series frequency.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,17 +20,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("ForecastHorizon")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Auto", value = AutoForecastHorizon.class),
-    @JsonSubTypes.Type(name = "Custom", value = CustomForecastHorizon.class)
-})
+    @JsonSubTypes.Type(name = "Custom", value = CustomForecastHorizon.class) })
 @Immutable
 public class ForecastHorizon {
-    /** Creates an instance of ForecastHorizon class. */
+    /**
+     * Creates an instance of ForecastHorizon class.
+     */
     public ForecastHorizon() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
