@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The AutoTargetLags model. */
+/**
+ * The AutoTargetLags model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
 @JsonTypeName("Auto")
 @Immutable
 public final class AutoTargetLags extends TargetLags {
-    /** Creates an instance of AutoTargetLags class. */
+    /**
+     * Creates an instance of AutoTargetLags class.
+     */
     public AutoTargetLags() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

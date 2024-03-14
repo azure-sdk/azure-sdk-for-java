@@ -9,7 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Text Classification task in AutoML NLP vertical. NLP - Natural Language Processing. */
+/**
+ * Text Classification task in AutoML NLP vertical.
+ * NLP - Natural Language Processing.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("TextClassification")
 @Fluent
@@ -38,13 +41,15 @@ public final class TextClassification extends AutoMLVertical {
     @JsonProperty(value = "validationData")
     private MLTableJobInput validationData;
 
-    /** Creates an instance of TextClassification class. */
+    /**
+     * Creates an instance of TextClassification class.
+     */
     public TextClassification() {
     }
 
     /**
      * Get the primaryMetric property: Primary metric for Text-Classification task.
-     *
+     * 
      * @return the primaryMetric value.
      */
     public ClassificationPrimaryMetrics primaryMetric() {
@@ -53,7 +58,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Set the primaryMetric property: Primary metric for Text-Classification task.
-     *
+     * 
      * @param primaryMetric the primaryMetric value to set.
      * @return the TextClassification object itself.
      */
@@ -64,7 +69,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @return the featurizationSettings value.
      */
     public NlpVerticalFeaturizationSettings featurizationSettings() {
@@ -73,7 +78,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @param featurizationSettings the featurizationSettings value to set.
      * @return the TextClassification object itself.
      */
@@ -84,7 +89,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @return the limitSettings value.
      */
     public NlpVerticalLimitSettings limitSettings() {
@@ -93,7 +98,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Set the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the TextClassification object itself.
      */
@@ -104,7 +109,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -113,7 +118,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the TextClassification object itself.
      */
@@ -122,21 +127,27 @@ public final class TextClassification extends AutoMLVertical {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassification withLogVerbosity(LogVerbosity logVerbosity) {
         super.withLogVerbosity(logVerbosity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassification withTargetColumnName(String targetColumnName) {
         super.withTargetColumnName(targetColumnName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassification withTrainingData(MLTableJobInput trainingData) {
         super.withTrainingData(trainingData);
@@ -145,7 +156,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

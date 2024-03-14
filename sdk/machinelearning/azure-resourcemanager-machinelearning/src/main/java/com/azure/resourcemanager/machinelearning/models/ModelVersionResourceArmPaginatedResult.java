@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ModelVersionInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of ModelVersion entities. */
+/**
+ * A paginated list of ModelVersion entities.
+ */
 @Fluent
 public final class ModelVersionResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class ModelVersionResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<ModelVersionInner> value;
 
-    /** Creates an instance of ModelVersionResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of ModelVersionResourceArmPaginatedResult class.
+     */
     public ModelVersionResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of ModelVersion objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class ModelVersionResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of ModelVersion objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ModelVersionResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class ModelVersionResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type ModelVersion.
-     *
+     * 
      * @return the value value.
      */
     public List<ModelVersionInner> value() {
@@ -61,7 +65,7 @@ public final class ModelVersionResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type ModelVersion.
-     *
+     * 
      * @param value the value value to set.
      * @return the ModelVersionResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class ModelVersionResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

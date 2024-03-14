@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines a Sampling Algorithm that generates values based on previous values. */
+/**
+ * Defines a Sampling Algorithm that generates values based on previous values.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "samplingAlgorithmType")
 @JsonTypeName("Bayesian")
 @Immutable
 public final class BayesianSamplingAlgorithm extends SamplingAlgorithm {
-    /** Creates an instance of BayesianSamplingAlgorithm class. */
+    /**
+     * Creates an instance of BayesianSamplingAlgorithm class.
+     */
     public BayesianSamplingAlgorithm() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The compute power action. */
+/**
+ * The compute power action.
+ */
 public final class ComputePowerAction extends ExpandableStringEnum<ComputePowerAction> {
-    /** Static value Start for ComputePowerAction. */
+    /**
+     * Static value Start for ComputePowerAction.
+     */
     public static final ComputePowerAction START = fromString("Start");
 
-    /** Static value Stop for ComputePowerAction. */
+    /**
+     * Static value Stop for ComputePowerAction.
+     */
     public static final ComputePowerAction STOP = fromString("Stop");
 
     /**
      * Creates a new instance of ComputePowerAction value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ComputePowerAction extends ExpandableStringEnum<ComputePowerA
 
     /**
      * Creates or finds a ComputePowerAction from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ComputePowerAction.
      */
@@ -38,7 +44,7 @@ public final class ComputePowerAction extends ExpandableStringEnum<ComputePowerA
 
     /**
      * Gets known ComputePowerAction values.
-     *
+     * 
      * @return known ComputePowerAction values.
      */
     public static Collection<ComputePowerAction> values() {
