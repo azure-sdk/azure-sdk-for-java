@@ -24,8 +24,14 @@ public final class KeyVaultSecretUriSecretInfo extends SecretInfoBase {
     private String value;
 
     /**
+     * Creates an instance of KeyVaultSecretUriSecretInfo class.
+     */
+    public KeyVaultSecretUriSecretInfo() {
+    }
+
+    /**
      * Get the value property: URI to the keyvault secret.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -34,7 +40,7 @@ public final class KeyVaultSecretUriSecretInfo extends SecretInfoBase {
 
     /**
      * Set the value property: URI to the keyvault secret.
-     *
+     * 
      * @param value the value value to set.
      * @return the KeyVaultSecretUriSecretInfo object itself.
      */
@@ -45,7 +51,7 @@ public final class KeyVaultSecretUriSecretInfo extends SecretInfoBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
