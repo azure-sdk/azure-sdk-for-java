@@ -22,7 +22,7 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
-import com.azure.resourcemanager.migrationdiscoverysap.fluent.MigrationDiscoverySapMgmtClient;
+import com.azure.resourcemanager.migrationdiscoverysap.fluent.MigrationDiscoverySapClient;
 import com.azure.resourcemanager.migrationdiscoverysap.fluent.OperationsClient;
 import com.azure.resourcemanager.migrationdiscoverysap.fluent.SapDiscoverySitesClient;
 import com.azure.resourcemanager.migrationdiscoverysap.fluent.SapInstancesClient;
@@ -37,10 +37,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * Initializes a new instance of the MigrationDiscoverySapMgmtClientImpl type.
+ * Initializes a new instance of the MigrationDiscoverySapClientImpl type.
  */
-@ServiceClient(builder = MigrationDiscoverySapMgmtClientBuilder.class)
-public final class MigrationDiscoverySapMgmtClientImpl implements MigrationDiscoverySapMgmtClient {
+@ServiceClient(builder = MigrationDiscoverySapClientBuilder.class)
+public final class MigrationDiscoverySapClientImpl implements MigrationDiscoverySapClient {
     /**
      * The ID of the target subscription.
      */
@@ -182,7 +182,7 @@ public final class MigrationDiscoverySapMgmtClientImpl implements MigrationDisco
     }
 
     /**
-     * Initializes an instance of MigrationDiscoverySapMgmtClient client.
+     * Initializes an instance of MigrationDiscoverySapClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
@@ -191,7 +191,7 @@ public final class MigrationDiscoverySapMgmtClientImpl implements MigrationDisco
      * @param subscriptionId The ID of the target subscription.
      * @param endpoint server parameter.
      */
-    MigrationDiscoverySapMgmtClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
+    MigrationDiscoverySapClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
         Duration defaultPollInterval, AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
@@ -331,5 +331,5 @@ public final class MigrationDiscoverySapMgmtClientImpl implements MigrationDisco
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(MigrationDiscoverySapMgmtClientImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(MigrationDiscoverySapClientImpl.class);
 }
