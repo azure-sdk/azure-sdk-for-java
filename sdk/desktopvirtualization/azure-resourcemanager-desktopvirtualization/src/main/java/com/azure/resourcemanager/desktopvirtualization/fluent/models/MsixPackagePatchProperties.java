@@ -7,7 +7,9 @@ package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** MSIX Package properties that can be patched. */
+/**
+ * MSIX Package properties that can be patched.
+ */
 @Fluent
 public final class MsixPackagePatchProperties {
     /*
@@ -28,13 +30,15 @@ public final class MsixPackagePatchProperties {
     @JsonProperty(value = "displayName")
     private String displayName;
 
-    /** Creates an instance of MsixPackagePatchProperties class. */
+    /**
+     * Creates an instance of MsixPackagePatchProperties class.
+     */
     public MsixPackagePatchProperties() {
     }
 
     /**
      * Get the isActive property: Set a version of the package to be active across hostpool.
-     *
+     * 
      * @return the isActive value.
      */
     public Boolean isActive() {
@@ -43,7 +47,7 @@ public final class MsixPackagePatchProperties {
 
     /**
      * Set the isActive property: Set a version of the package to be active across hostpool.
-     *
+     * 
      * @param isActive the isActive value to set.
      * @return the MsixPackagePatchProperties object itself.
      */
@@ -54,7 +58,7 @@ public final class MsixPackagePatchProperties {
 
     /**
      * Get the isRegularRegistration property: Set Registration mode. Regular or Delayed.
-     *
+     * 
      * @return the isRegularRegistration value.
      */
     public Boolean isRegularRegistration() {
@@ -63,7 +67,7 @@ public final class MsixPackagePatchProperties {
 
     /**
      * Set the isRegularRegistration property: Set Registration mode. Regular or Delayed.
-     *
+     * 
      * @param isRegularRegistration the isRegularRegistration value to set.
      * @return the MsixPackagePatchProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class MsixPackagePatchProperties {
 
     /**
      * Get the displayName property: Display name for MSIX Package.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -83,7 +87,7 @@ public final class MsixPackagePatchProperties {
 
     /**
      * Set the displayName property: Display name for MSIX Package.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MsixPackagePatchProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class MsixPackagePatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
