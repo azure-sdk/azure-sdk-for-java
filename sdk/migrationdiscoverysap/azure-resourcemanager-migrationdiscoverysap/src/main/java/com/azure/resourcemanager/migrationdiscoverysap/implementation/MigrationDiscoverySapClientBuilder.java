@@ -15,10 +15,10 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
 /**
- * A builder for creating a new instance of the MigrationDiscoverySapMgmtClientImpl type.
+ * A builder for creating a new instance of the MigrationDiscoverySapClientImpl type.
  */
-@ServiceClientBuilder(serviceClients = { MigrationDiscoverySapMgmtClientImpl.class })
-public final class MigrationDiscoverySapMgmtClientBuilder {
+@ServiceClientBuilder(serviceClients = { MigrationDiscoverySapClientImpl.class })
+public final class MigrationDiscoverySapClientBuilder {
     /*
      * The ID of the target subscription.
      */
@@ -28,9 +28,9 @@ public final class MigrationDiscoverySapMgmtClientBuilder {
      * Sets The ID of the target subscription.
      * 
      * @param subscriptionId the subscriptionId value.
-     * @return the MigrationDiscoverySapMgmtClientBuilder.
+     * @return the MigrationDiscoverySapClientBuilder.
      */
-    public MigrationDiscoverySapMgmtClientBuilder subscriptionId(String subscriptionId) {
+    public MigrationDiscoverySapClientBuilder subscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
@@ -44,9 +44,9 @@ public final class MigrationDiscoverySapMgmtClientBuilder {
      * Sets server parameter.
      * 
      * @param endpoint the endpoint value.
-     * @return the MigrationDiscoverySapMgmtClientBuilder.
+     * @return the MigrationDiscoverySapClientBuilder.
      */
-    public MigrationDiscoverySapMgmtClientBuilder endpoint(String endpoint) {
+    public MigrationDiscoverySapClientBuilder endpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
     }
@@ -60,9 +60,9 @@ public final class MigrationDiscoverySapMgmtClientBuilder {
      * Sets The environment to connect to.
      * 
      * @param environment the environment value.
-     * @return the MigrationDiscoverySapMgmtClientBuilder.
+     * @return the MigrationDiscoverySapClientBuilder.
      */
-    public MigrationDiscoverySapMgmtClientBuilder environment(AzureEnvironment environment) {
+    public MigrationDiscoverySapClientBuilder environment(AzureEnvironment environment) {
         this.environment = environment;
         return this;
     }
@@ -76,9 +76,9 @@ public final class MigrationDiscoverySapMgmtClientBuilder {
      * Sets The HTTP pipeline to send requests through.
      * 
      * @param pipeline the pipeline value.
-     * @return the MigrationDiscoverySapMgmtClientBuilder.
+     * @return the MigrationDiscoverySapClientBuilder.
      */
-    public MigrationDiscoverySapMgmtClientBuilder pipeline(HttpPipeline pipeline) {
+    public MigrationDiscoverySapClientBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
     }
@@ -92,9 +92,9 @@ public final class MigrationDiscoverySapMgmtClientBuilder {
      * Sets The default poll interval for long-running operation.
      * 
      * @param defaultPollInterval the defaultPollInterval value.
-     * @return the MigrationDiscoverySapMgmtClientBuilder.
+     * @return the MigrationDiscoverySapClientBuilder.
      */
-    public MigrationDiscoverySapMgmtClientBuilder defaultPollInterval(Duration defaultPollInterval) {
+    public MigrationDiscoverySapClientBuilder defaultPollInterval(Duration defaultPollInterval) {
         this.defaultPollInterval = defaultPollInterval;
         return this;
     }
@@ -108,19 +108,19 @@ public final class MigrationDiscoverySapMgmtClientBuilder {
      * Sets The serializer to serialize an object into a string.
      * 
      * @param serializerAdapter the serializerAdapter value.
-     * @return the MigrationDiscoverySapMgmtClientBuilder.
+     * @return the MigrationDiscoverySapClientBuilder.
      */
-    public MigrationDiscoverySapMgmtClientBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
+    public MigrationDiscoverySapClientBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
     }
 
     /**
-     * Builds an instance of MigrationDiscoverySapMgmtClientImpl with the provided parameters.
+     * Builds an instance of MigrationDiscoverySapClientImpl with the provided parameters.
      * 
-     * @return an instance of MigrationDiscoverySapMgmtClientImpl.
+     * @return an instance of MigrationDiscoverySapClientImpl.
      */
-    public MigrationDiscoverySapMgmtClientImpl buildClient() {
+    public MigrationDiscoverySapClientImpl buildClient() {
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
         HttpPipeline localPipeline = (pipeline != null) ? pipeline
@@ -129,7 +129,7 @@ public final class MigrationDiscoverySapMgmtClientBuilder {
             = (defaultPollInterval != null) ? defaultPollInterval : Duration.ofSeconds(30);
         SerializerAdapter localSerializerAdapter = (serializerAdapter != null) ? serializerAdapter
             : SerializerFactory.createDefaultManagementSerializerAdapter();
-        MigrationDiscoverySapMgmtClientImpl client = new MigrationDiscoverySapMgmtClientImpl(localPipeline,
+        MigrationDiscoverySapClientImpl client = new MigrationDiscoverySapClientImpl(localPipeline,
             localSerializerAdapter, localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }

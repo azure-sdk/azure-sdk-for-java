@@ -52,22 +52,22 @@ public final class ServerInstancesClientImpl implements ServerInstancesClient {
     /**
      * The service client containing this operation class.
      */
-    private final MigrationDiscoverySapMgmtClientImpl client;
+    private final MigrationDiscoverySapClientImpl client;
 
     /**
      * Initializes an instance of ServerInstancesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    ServerInstancesClientImpl(MigrationDiscoverySapMgmtClientImpl client) {
+    ServerInstancesClientImpl(MigrationDiscoverySapClientImpl client) {
         this.service
             = RestProxy.create(ServerInstancesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for MigrationDiscoverySapMgmtClientServerInstances to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for MigrationDiscoverySapClientServerInstances to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "MigrationDiscoverySa")

@@ -54,22 +54,22 @@ public final class SapDiscoverySitesClientImpl implements SapDiscoverySitesClien
     /**
      * The service client containing this operation class.
      */
-    private final MigrationDiscoverySapMgmtClientImpl client;
+    private final MigrationDiscoverySapClientImpl client;
 
     /**
      * Initializes an instance of SapDiscoverySitesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    SapDiscoverySitesClientImpl(MigrationDiscoverySapMgmtClientImpl client) {
+    SapDiscoverySitesClientImpl(MigrationDiscoverySapClientImpl client) {
         this.service
             = RestProxy.create(SapDiscoverySitesService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for MigrationDiscoverySapMgmtClientSapDiscoverySites to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for MigrationDiscoverySapClientSapDiscoverySites to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "MigrationDiscoverySa")

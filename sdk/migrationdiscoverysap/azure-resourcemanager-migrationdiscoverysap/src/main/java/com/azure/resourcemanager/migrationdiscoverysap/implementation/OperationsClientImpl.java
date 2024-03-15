@@ -42,21 +42,21 @@ public final class OperationsClientImpl implements OperationsClient {
     /**
      * The service client containing this operation class.
      */
-    private final MigrationDiscoverySapMgmtClientImpl client;
+    private final MigrationDiscoverySapClientImpl client;
 
     /**
      * Initializes an instance of OperationsClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    OperationsClientImpl(MigrationDiscoverySapMgmtClientImpl client) {
+    OperationsClientImpl(MigrationDiscoverySapClientImpl client) {
         this.service
             = RestProxy.create(OperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for MigrationDiscoverySapMgmtClientOperations to be used by the proxy
+     * The interface defining all the services for MigrationDiscoverySapClientOperations to be used by the proxy
      * service to perform REST calls.
      */
     @Host("{$host}")
