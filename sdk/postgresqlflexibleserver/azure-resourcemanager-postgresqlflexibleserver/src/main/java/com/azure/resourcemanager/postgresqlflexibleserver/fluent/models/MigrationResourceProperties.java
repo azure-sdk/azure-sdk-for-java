@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.CancelEnum;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.DbServerMetadata;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.LogicalReplicationOnSourceDbEnum;
+import com.azure.resourcemanager.postgresqlflexibleserver.models.MigrateRolesEnum;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.MigrationMode;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.MigrationOption;
 import com.azure.resourcemanager.postgresqlflexibleserver.models.MigrationSecretParameters;
@@ -39,6 +40,12 @@ public final class MigrationResourceProperties {
     private MigrationStatus currentStatus;
 
     /*
+     * ResourceId of the private endpoint migration instance
+     */
+    @JsonProperty(value = "migrationInstanceResourceId")
+    private String migrationInstanceResourceId;
+
+    /*
      * There are two types of migration modes Online and Offline
      */
     @JsonProperty(value = "migrationMode")
@@ -51,7 +58,8 @@ public final class MigrationResourceProperties {
     private MigrationOption migrationOption;
 
     /*
-     * migration source server type : OnPremises, AWS, GCP, AzureVM or PostgreSQLSingleServer
+     * migration source server type : OnPremises, AWS, GCP, AzureVM, PostgreSQLSingleServer, AWS_RDS, AWS_AURORA,
+     * AWS_EC2, GCP_CloudSQL, GCP_AlloyDB, GCP_Compute, or EDB
      */
     @JsonProperty(value = "sourceType")
     private SourceType sourceType;
@@ -140,6 +148,12 @@ public final class MigrationResourceProperties {
     private OffsetDateTime migrationWindowEndTimeInUtc;
 
     /*
+     * To migrate roles and permissions we need to send this flag as True
+     */
+    @JsonProperty(value = "migrateRoles")
+    private MigrateRolesEnum migrateRoles;
+
+    /*
      * Indicates whether the data migration should start right away
      */
     @JsonProperty(value = "startDataMigration")
@@ -195,6 +209,26 @@ public final class MigrationResourceProperties {
     }
 
     /**
+     * Get the migrationInstanceResourceId property: ResourceId of the private endpoint migration instance.
+     * 
+     * @return the migrationInstanceResourceId value.
+     */
+    public String migrationInstanceResourceId() {
+        return this.migrationInstanceResourceId;
+    }
+
+    /**
+     * Set the migrationInstanceResourceId property: ResourceId of the private endpoint migration instance.
+     * 
+     * @param migrationInstanceResourceId the migrationInstanceResourceId value to set.
+     * @return the MigrationResourceProperties object itself.
+     */
+    public MigrationResourceProperties withMigrationInstanceResourceId(String migrationInstanceResourceId) {
+        this.migrationInstanceResourceId = migrationInstanceResourceId;
+        return this;
+    }
+
+    /**
      * Get the migrationMode property: There are two types of migration modes Online and Offline.
      * 
      * @return the migrationMode value.
@@ -235,8 +269,8 @@ public final class MigrationResourceProperties {
     }
 
     /**
-     * Get the sourceType property: migration source server type : OnPremises, AWS, GCP, AzureVM or
-     * PostgreSQLSingleServer.
+     * Get the sourceType property: migration source server type : OnPremises, AWS, GCP, AzureVM,
+     * PostgreSQLSingleServer, AWS_RDS, AWS_AURORA, AWS_EC2, GCP_CloudSQL, GCP_AlloyDB, GCP_Compute, or EDB.
      * 
      * @return the sourceType value.
      */
@@ -245,8 +279,8 @@ public final class MigrationResourceProperties {
     }
 
     /**
-     * Set the sourceType property: migration source server type : OnPremises, AWS, GCP, AzureVM or
-     * PostgreSQLSingleServer.
+     * Set the sourceType property: migration source server type : OnPremises, AWS, GCP, AzureVM,
+     * PostgreSQLSingleServer, AWS_RDS, AWS_AURORA, AWS_EC2, GCP_CloudSQL, GCP_AlloyDB, GCP_Compute, or EDB.
      * 
      * @param sourceType the sourceType value to set.
      * @return the MigrationResourceProperties object itself.
@@ -497,6 +531,26 @@ public final class MigrationResourceProperties {
      */
     public MigrationResourceProperties withMigrationWindowEndTimeInUtc(OffsetDateTime migrationWindowEndTimeInUtc) {
         this.migrationWindowEndTimeInUtc = migrationWindowEndTimeInUtc;
+        return this;
+    }
+
+    /**
+     * Get the migrateRoles property: To migrate roles and permissions we need to send this flag as True.
+     * 
+     * @return the migrateRoles value.
+     */
+    public MigrateRolesEnum migrateRoles() {
+        return this.migrateRoles;
+    }
+
+    /**
+     * Set the migrateRoles property: To migrate roles and permissions we need to send this flag as True.
+     * 
+     * @param migrateRoles the migrateRoles value to set.
+     * @return the MigrationResourceProperties object itself.
+     */
+    public MigrationResourceProperties withMigrateRoles(MigrateRolesEnum migrateRoles) {
+        this.migrateRoles = migrateRoles;
         return this;
     }
 
