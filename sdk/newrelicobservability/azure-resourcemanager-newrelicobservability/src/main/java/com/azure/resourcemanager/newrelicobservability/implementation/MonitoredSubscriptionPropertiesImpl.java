@@ -57,13 +57,13 @@ public final class MonitoredSubscriptionPropertiesImpl implements MonitoredSubsc
     }
 
     public MonitoredSubscriptionProperties create() {
-        this.innerObject = serviceManager.serviceClient().getMonitoredSubscriptions().createorUpdate(resourceGroupName,
+        this.innerObject = serviceManager.serviceClient().getMonitoredSubscriptions().createOrUpdate(resourceGroupName,
             monitorName, configurationName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public MonitoredSubscriptionProperties create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getMonitoredSubscriptions().createorUpdate(resourceGroupName,
+        this.innerObject = serviceManager.serviceClient().getMonitoredSubscriptions().createOrUpdate(resourceGroupName,
             monitorName, configurationName, this.innerModel(), context);
         return this;
     }

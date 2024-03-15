@@ -127,9 +127,9 @@ public final class MonitorsClientImpl implements MonitorsClient {
 
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/NewRelic.Observability/monitors/{monitorName}")
-        @ExpectedResponses({ 200 })
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<NewRelicMonitorResourceInner>> update(@HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("monitorName") String monitorName,
             @BodyParam("application/json") NewRelicMonitorResourceUpdate properties,
@@ -877,8 +877,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @return a Monitor Resource by NewRelic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NewRelicMonitorResourceInner>> updateWithResponseAsync(String resourceGroupName,
-        String monitorName, NewRelicMonitorResourceUpdate properties) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String monitorName,
+        NewRelicMonitorResourceUpdate properties) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -919,8 +919,8 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @return a Monitor Resource by NewRelic along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NewRelicMonitorResourceInner>> updateWithResponseAsync(String resourceGroupName,
-        String monitorName, NewRelicMonitorResourceUpdate properties, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName, String monitorName,
+        NewRelicMonitorResourceUpdate properties, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -956,13 +956,15 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Monitor Resource by NewRelic on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of a Monitor Resource by NewRelic.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NewRelicMonitorResourceInner> updateAsync(String resourceGroupName, String monitorName,
-        NewRelicMonitorResourceUpdate properties) {
-        return updateWithResponseAsync(resourceGroupName, monitorName, properties)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner>
+        beginUpdateAsync(String resourceGroupName, String monitorName, NewRelicMonitorResourceUpdate properties) {
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, monitorName, properties);
+        return this.client.<NewRelicMonitorResourceInner, NewRelicMonitorResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), NewRelicMonitorResourceInner.class, NewRelicMonitorResourceInner.class,
+            this.client.getContext());
     }
 
     /**
@@ -975,12 +977,89 @@ public final class MonitorsClientImpl implements MonitorsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a Monitor Resource by NewRelic along with {@link Response}.
+     * @return the {@link PollerFlux} for polling of a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner> beginUpdateAsync(
+        String resourceGroupName, String monitorName, NewRelicMonitorResourceUpdate properties, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, monitorName, properties, context);
+        return this.client.<NewRelicMonitorResourceInner, NewRelicMonitorResourceInner>getLroResult(mono,
+            this.client.getHttpPipeline(), NewRelicMonitorResourceInner.class, NewRelicMonitorResourceInner.class,
+            context);
+    }
+
+    /**
+     * Update a NewRelicMonitorResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Name of the Monitors resource.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner>
+        beginUpdate(String resourceGroupName, String monitorName, NewRelicMonitorResourceUpdate properties) {
+        return this.beginUpdateAsync(resourceGroupName, monitorName, properties).getSyncPoller();
+    }
+
+    /**
+     * Update a NewRelicMonitorResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Name of the Monitors resource.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<NewRelicMonitorResourceInner>, NewRelicMonitorResourceInner> beginUpdate(
+        String resourceGroupName, String monitorName, NewRelicMonitorResourceUpdate properties, Context context) {
+        return this.beginUpdateAsync(resourceGroupName, monitorName, properties, context).getSyncPoller();
+    }
+
+    /**
+     * Update a NewRelicMonitorResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Name of the Monitors resource.
+     * @param properties The resource properties to be updated.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NewRelicMonitorResourceInner> updateWithResponse(String resourceGroupName, String monitorName,
+    private Mono<NewRelicMonitorResourceInner> updateAsync(String resourceGroupName, String monitorName,
+        NewRelicMonitorResourceUpdate properties) {
+        return beginUpdateAsync(resourceGroupName, monitorName, properties).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Update a NewRelicMonitorResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Name of the Monitors resource.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<NewRelicMonitorResourceInner> updateAsync(String resourceGroupName, String monitorName,
         NewRelicMonitorResourceUpdate properties, Context context) {
-        return updateWithResponseAsync(resourceGroupName, monitorName, properties, context).block();
+        return beginUpdateAsync(resourceGroupName, monitorName, properties, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -997,7 +1076,25 @@ public final class MonitorsClientImpl implements MonitorsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public NewRelicMonitorResourceInner update(String resourceGroupName, String monitorName,
         NewRelicMonitorResourceUpdate properties) {
-        return updateWithResponse(resourceGroupName, monitorName, properties, Context.NONE).getValue();
+        return updateAsync(resourceGroupName, monitorName, properties).block();
+    }
+
+    /**
+     * Update a NewRelicMonitorResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param monitorName Name of the Monitors resource.
+     * @param properties The resource properties to be updated.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a Monitor Resource by NewRelic.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NewRelicMonitorResourceInner update(String resourceGroupName, String monitorName,
+        NewRelicMonitorResourceUpdate properties, Context context) {
+        return updateAsync(resourceGroupName, monitorName, properties, context).block();
     }
 
     /**

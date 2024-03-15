@@ -184,14 +184,14 @@ public final class NewRelicMonitorResourceImpl
     }
 
     public NewRelicMonitorResource apply() {
-        this.innerObject = serviceManager.serviceClient().getMonitors()
-            .updateWithResponse(resourceGroupName, monitorName, updateProperties, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient().getMonitors().update(resourceGroupName, monitorName,
+            updateProperties, Context.NONE);
         return this;
     }
 
     public NewRelicMonitorResource apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getMonitors()
-            .updateWithResponse(resourceGroupName, monitorName, updateProperties, context).getValue();
+        this.innerObject = serviceManager.serviceClient().getMonitors().update(resourceGroupName, monitorName,
+            updateProperties, context);
         return this;
     }
 

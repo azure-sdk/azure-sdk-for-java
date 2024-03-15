@@ -20,10 +20,10 @@ public final class PlanData {
     private UsageType usageType;
 
     /*
-     * Different billing cycles like MONTHLY/WEEKLY. this could be enum
+     * Different billing cycles like Monthly/Weekly.
      */
     @JsonProperty(value = "billingCycle")
-    private BillingCycle billingCycle;
+    private String billingCycle;
 
     /*
      * plan id as published by NewRelic
@@ -64,21 +64,21 @@ public final class PlanData {
     }
 
     /**
-     * Get the billingCycle property: Different billing cycles like MONTHLY/WEEKLY. this could be enum.
+     * Get the billingCycle property: Different billing cycles like Monthly/Weekly.
      * 
      * @return the billingCycle value.
      */
-    public BillingCycle billingCycle() {
+    public String billingCycle() {
         return this.billingCycle;
     }
 
     /**
-     * Set the billingCycle property: Different billing cycles like MONTHLY/WEEKLY. this could be enum.
+     * Set the billingCycle property: Different billing cycles like Monthly/Weekly.
      * 
      * @param billingCycle the billingCycle value to set.
      * @return the PlanData object itself.
      */
-    public PlanData withBillingCycle(BillingCycle billingCycle) {
+    public PlanData withBillingCycle(String billingCycle) {
         this.billingCycle = billingCycle;
         return this;
     }

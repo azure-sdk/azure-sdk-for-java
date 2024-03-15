@@ -11,7 +11,7 @@ import com.azure.resourcemanager.newrelicobservability.models.ConfigurationName;
  */
 public final class MonitoredSubscriptionsGetSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-03-01/examples/
      * MonitoredSubscriptions_Get.json
      */
     /**

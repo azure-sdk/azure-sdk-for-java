@@ -11,7 +11,7 @@ import com.azure.resourcemanager.newrelicobservability.models.MetricsRequest;
  */
 public final class MonitorsGetMetricRulesSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-03-01/examples/
      * Monitors_GetMetricRules_MinimumSet_Gen.json
      */
     /**
@@ -26,7 +26,7 @@ public final class MonitorsGetMetricRulesSamples {
     }
 
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-03-01/examples/
      * Monitors_GetMetricRules_MaximumSet_Gen.json
      */
     /**

@@ -12,7 +12,7 @@ import java.util.Arrays;
  */
 public final class MonitorsListHostsSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-03-01/examples/
      * Monitors_ListHosts_MinimumSet_Gen.json
      */
     /**
@@ -29,7 +29,7 @@ public final class MonitorsListHostsSamples {
     }
 
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-03-01/examples/
      * Monitors_ListHosts_MaximumSet_Gen.json
      */
     /**

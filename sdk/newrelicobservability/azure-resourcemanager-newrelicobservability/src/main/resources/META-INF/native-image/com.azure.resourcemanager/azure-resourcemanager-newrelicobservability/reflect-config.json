@@ -329,11 +329,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.newrelicobservability.models.BillingCycle",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.newrelicobservability.models.LiftrResourceCategories",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,

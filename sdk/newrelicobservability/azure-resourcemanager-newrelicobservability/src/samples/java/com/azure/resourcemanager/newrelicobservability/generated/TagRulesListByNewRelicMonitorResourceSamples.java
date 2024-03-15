@@ -9,7 +9,7 @@ package com.azure.resourcemanager.newrelicobservability.generated;
  */
 public final class TagRulesListByNewRelicMonitorResourceSamples {
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-03-01/examples/
      * TagRules_ListByNewRelicMonitorResource_MinimumSet_Gen.json
      */
     /**
@@ -24,7 +24,7 @@ public final class TagRulesListByNewRelicMonitorResourceSamples {
     }
 
     /*
-     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-01-01/examples/
+     * x-ms-original-file: specification/newrelic/resource-manager/NewRelic.Observability/stable/2024-03-01/examples/
      * TagRules_ListByNewRelicMonitorResource_MaximumSet_Gen.json
      */
     /**
