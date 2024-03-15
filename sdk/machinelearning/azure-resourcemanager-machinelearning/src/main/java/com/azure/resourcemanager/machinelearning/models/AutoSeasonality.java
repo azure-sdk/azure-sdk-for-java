@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The AutoSeasonality model. */
+/**
+ * The AutoSeasonality model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
 @JsonTypeName("Auto")
 @Immutable
 public final class AutoSeasonality extends Seasonality {
-    /** Creates an instance of AutoSeasonality class. */
+    /**
+     * Creates an instance of AutoSeasonality class.
+     */
     public AutoSeasonality() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

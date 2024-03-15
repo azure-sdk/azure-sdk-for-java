@@ -4,49 +4,39 @@
 
 package com.azure.resourcemanager.machinelearning.generated;
 
-/** Samples for OnlineDeployments ListSkus. */
+/**
+ * Samples for OnlineDeployments ListSkus.
+ */
 public final class OnlineDeploymentsListSkusSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/ManagedOnlineDeployment/listSkus.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-04-01-
+     * preview/examples/OnlineDeployment/ManagedOnlineDeployment/listSkus.json
      */
     /**
      * Sample code: List Managed Online Deployment Skus.
-     *
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listManagedOnlineDeploymentSkus(
-        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager
-            .onlineDeployments()
-            .listSkus(
-                "test-rg",
-                "my-aml-workspace",
-                "testEndpointName",
-                "testDeploymentName",
-                1,
-                null,
-                com.azure.core.util.Context.NONE);
+    public static void
+        listManagedOnlineDeploymentSkus(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.onlineDeployments().listSkus("test-rg", "my-aml-workspace", "testEndpointName", "testDeploymentName", 1,
+            null, com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/OnlineDeployment/KubernetesOnlineDeployment/listSkus.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-04-01-
+     * preview/examples/OnlineDeployment/KubernetesOnlineDeployment/listSkus.json
      */
     /**
      * Sample code: List Kubernetes Online Deployment Skus.
-     *
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void listKubernetesOnlineDeploymentSkus(
-        com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        manager
-            .onlineDeployments()
-            .listSkus(
-                "test-rg",
-                "my-aml-workspace",
-                "testEndpointName",
-                "testDeploymentName",
-                1,
-                null,
-                com.azure.core.util.Context.NONE);
+    public static void
+        listKubernetesOnlineDeploymentSkus(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        manager.onlineDeployments().listSkus("test-rg", "my-aml-workspace", "testEndpointName", "testDeploymentName", 1,
+            null, com.azure.core.util.Context.NONE);
     }
 }

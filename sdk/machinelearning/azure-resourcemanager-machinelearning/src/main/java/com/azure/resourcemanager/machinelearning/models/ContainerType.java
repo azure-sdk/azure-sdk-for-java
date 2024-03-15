@@ -8,17 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ContainerType. */
+/**
+ * The type of container to retrieve logs from.
+ */
 public final class ContainerType extends ExpandableStringEnum<ContainerType> {
-    /** Static value StorageInitializer for ContainerType. */
+    /**
+     * Static value StorageInitializer for ContainerType.
+     */
     public static final ContainerType STORAGE_INITIALIZER = fromString("StorageInitializer");
 
-    /** Static value InferenceServer for ContainerType. */
+    /**
+     * Static value InferenceServer for ContainerType.
+     */
     public static final ContainerType INFERENCE_SERVER = fromString("InferenceServer");
 
     /**
+     * Static value ModelDataCollector for ContainerType.
+     */
+    public static final ContainerType MODEL_DATA_COLLECTOR = fromString("ModelDataCollector");
+
+    /**
      * Creates a new instance of ContainerType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +38,7 @@ public final class ContainerType extends ExpandableStringEnum<ContainerType> {
 
     /**
      * Creates or finds a ContainerType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ContainerType.
      */
@@ -38,7 +49,7 @@ public final class ContainerType extends ExpandableStringEnum<ContainerType> {
 
     /**
      * Gets known ContainerType values.
-     *
+     * 
      * @return known ContainerType values.
      */
     public static Collection<ContainerType> values() {

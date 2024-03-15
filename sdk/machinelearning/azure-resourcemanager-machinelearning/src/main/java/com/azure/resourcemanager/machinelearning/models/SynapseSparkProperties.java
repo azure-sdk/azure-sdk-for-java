@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The SynapseSparkProperties model. */
+/**
+ * The SynapseSparkProperties model.
+ */
 @Fluent
 public final class SynapseSparkProperties {
     /*
@@ -70,13 +72,15 @@ public final class SynapseSparkProperties {
     @JsonProperty(value = "poolName")
     private String poolName;
 
-    /** Creates an instance of SynapseSparkProperties class. */
+    /**
+     * Creates an instance of SynapseSparkProperties class.
+     */
     public SynapseSparkProperties() {
     }
 
     /**
      * Get the autoScaleProperties property: Auto scale properties.
-     *
+     * 
      * @return the autoScaleProperties value.
      */
     public AutoScaleProperties autoScaleProperties() {
@@ -85,7 +89,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Set the autoScaleProperties property: Auto scale properties.
-     *
+     * 
      * @param autoScaleProperties the autoScaleProperties value to set.
      * @return the SynapseSparkProperties object itself.
      */
@@ -96,7 +100,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Get the autoPauseProperties property: Auto pause properties.
-     *
+     * 
      * @return the autoPauseProperties value.
      */
     public AutoPauseProperties autoPauseProperties() {
@@ -105,7 +109,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Set the autoPauseProperties property: Auto pause properties.
-     *
+     * 
      * @param autoPauseProperties the autoPauseProperties value to set.
      * @return the SynapseSparkProperties object itself.
      */
@@ -116,7 +120,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Get the sparkVersion property: Spark version.
-     *
+     * 
      * @return the sparkVersion value.
      */
     public String sparkVersion() {
@@ -125,7 +129,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Set the sparkVersion property: Spark version.
-     *
+     * 
      * @param sparkVersion the sparkVersion value to set.
      * @return the SynapseSparkProperties object itself.
      */
@@ -136,7 +140,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Get the nodeCount property: The number of compute nodes currently assigned to the compute.
-     *
+     * 
      * @return the nodeCount value.
      */
     public Integer nodeCount() {
@@ -145,7 +149,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Set the nodeCount property: The number of compute nodes currently assigned to the compute.
-     *
+     * 
      * @param nodeCount the nodeCount value to set.
      * @return the SynapseSparkProperties object itself.
      */
@@ -156,7 +160,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Get the nodeSize property: Node size.
-     *
+     * 
      * @return the nodeSize value.
      */
     public String nodeSize() {
@@ -165,7 +169,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Set the nodeSize property: Node size.
-     *
+     * 
      * @param nodeSize the nodeSize value to set.
      * @return the SynapseSparkProperties object itself.
      */
@@ -176,7 +180,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Get the nodeSizeFamily property: Node size family.
-     *
+     * 
      * @return the nodeSizeFamily value.
      */
     public String nodeSizeFamily() {
@@ -185,7 +189,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Set the nodeSizeFamily property: Node size family.
-     *
+     * 
      * @param nodeSizeFamily the nodeSizeFamily value to set.
      * @return the SynapseSparkProperties object itself.
      */
@@ -196,7 +200,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Get the subscriptionId property: Azure subscription identifier.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -205,7 +209,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Set the subscriptionId property: Azure subscription identifier.
-     *
+     * 
      * @param subscriptionId the subscriptionId value to set.
      * @return the SynapseSparkProperties object itself.
      */
@@ -216,7 +220,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Get the resourceGroup property: Name of the resource group in which workspace is located.
-     *
+     * 
      * @return the resourceGroup value.
      */
     public String resourceGroup() {
@@ -225,7 +229,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Set the resourceGroup property: Name of the resource group in which workspace is located.
-     *
+     * 
      * @param resourceGroup the resourceGroup value to set.
      * @return the SynapseSparkProperties object itself.
      */
@@ -236,7 +240,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Get the workspaceName property: Name of Azure Machine Learning workspace.
-     *
+     * 
      * @return the workspaceName value.
      */
     public String workspaceName() {
@@ -245,7 +249,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Set the workspaceName property: Name of Azure Machine Learning workspace.
-     *
+     * 
      * @param workspaceName the workspaceName value to set.
      * @return the SynapseSparkProperties object itself.
      */
@@ -256,7 +260,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Get the poolName property: Pool name.
-     *
+     * 
      * @return the poolName value.
      */
     public String poolName() {
@@ -265,7 +269,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Set the poolName property: Pool name.
-     *
+     * 
      * @param poolName the poolName value to set.
      * @return the SynapseSparkProperties object itself.
      */
@@ -276,7 +280,7 @@ public final class SynapseSparkProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

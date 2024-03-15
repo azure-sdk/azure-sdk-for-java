@@ -7,28 +7,26 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Private Endpoint resource. */
+/**
+ * The Private Endpoint resource.
+ */
 @Immutable
-public final class PrivateEndpoint {
+public class PrivateEndpoint {
     /*
      * The ARM identifier for Private Endpoint
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
-    /*
-     * The ARM identifier for Subnet resource that private endpoint links to
+    /**
+     * Creates an instance of PrivateEndpoint class.
      */
-    @JsonProperty(value = "subnetArmId", access = JsonProperty.Access.WRITE_ONLY)
-    private String subnetArmId;
-
-    /** Creates an instance of PrivateEndpoint class. */
     public PrivateEndpoint() {
     }
 
     /**
      * Get the id property: The ARM identifier for Private Endpoint.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -36,17 +34,8 @@ public final class PrivateEndpoint {
     }
 
     /**
-     * Get the subnetArmId property: The ARM identifier for Subnet resource that private endpoint links to.
-     *
-     * @return the subnetArmId value.
-     */
-    public String subnetArmId() {
-        return this.subnetArmId;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,8 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Settings used for training the model. For more information on the available settings please visit the official
- * documentation: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
+ * Settings used for training the model.
+ * For more information on the available settings please visit the official documentation:
+ * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
  */
 @Fluent
 public class ImageModelSettings {
@@ -100,7 +101,7 @@ public class ImageModelSettings {
     private Integer evaluationFrequency;
 
     /*
-     * Gradient accumulation means running a configured number of "GradAccumulationStep"\  steps without
+     * Gradient accumulation means running a configured number of "GradAccumulationStep" steps without
      * updating the model weights while accumulating the gradients of those steps, and then using
      * the accumulated gradients to compute the weight updates. Must be a positive integer.
      */
@@ -214,13 +215,15 @@ public class ImageModelSettings {
     @JsonProperty(value = "weightDecay")
     private Float weightDecay;
 
-    /** Creates an instance of ImageModelSettings class. */
+    /**
+     * Creates an instance of ImageModelSettings class.
+     */
     public ImageModelSettings() {
     }
 
     /**
      * Get the advancedSettings property: Settings for advanced scenarios.
-     *
+     * 
      * @return the advancedSettings value.
      */
     public String advancedSettings() {
@@ -229,7 +232,7 @@ public class ImageModelSettings {
 
     /**
      * Set the advancedSettings property: Settings for advanced scenarios.
-     *
+     * 
      * @param advancedSettings the advancedSettings value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -240,7 +243,7 @@ public class ImageModelSettings {
 
     /**
      * Get the amsGradient property: Enable AMSGrad when optimizer is 'adam' or 'adamw'.
-     *
+     * 
      * @return the amsGradient value.
      */
     public Boolean amsGradient() {
@@ -249,7 +252,7 @@ public class ImageModelSettings {
 
     /**
      * Set the amsGradient property: Enable AMSGrad when optimizer is 'adam' or 'adamw'.
-     *
+     * 
      * @param amsGradient the amsGradient value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -260,7 +263,7 @@ public class ImageModelSettings {
 
     /**
      * Get the augmentations property: Settings for using Augmentations.
-     *
+     * 
      * @return the augmentations value.
      */
     public String augmentations() {
@@ -269,7 +272,7 @@ public class ImageModelSettings {
 
     /**
      * Set the augmentations property: Settings for using Augmentations.
-     *
+     * 
      * @param augmentations the augmentations value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -281,7 +284,7 @@ public class ImageModelSettings {
     /**
      * Get the beta1 property: Value of 'beta1' when optimizer is 'adam' or 'adamw'. Must be a float in the range [0,
      * 1].
-     *
+     * 
      * @return the beta1 value.
      */
     public Float beta1() {
@@ -291,7 +294,7 @@ public class ImageModelSettings {
     /**
      * Set the beta1 property: Value of 'beta1' when optimizer is 'adam' or 'adamw'. Must be a float in the range [0,
      * 1].
-     *
+     * 
      * @param beta1 the beta1 value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -303,7 +306,7 @@ public class ImageModelSettings {
     /**
      * Get the beta2 property: Value of 'beta2' when optimizer is 'adam' or 'adamw'. Must be a float in the range [0,
      * 1].
-     *
+     * 
      * @return the beta2 value.
      */
     public Float beta2() {
@@ -313,7 +316,7 @@ public class ImageModelSettings {
     /**
      * Set the beta2 property: Value of 'beta2' when optimizer is 'adam' or 'adamw'. Must be a float in the range [0,
      * 1].
-     *
+     * 
      * @param beta2 the beta2 value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -324,7 +327,7 @@ public class ImageModelSettings {
 
     /**
      * Get the checkpointFrequency property: Frequency to store model checkpoints. Must be a positive integer.
-     *
+     * 
      * @return the checkpointFrequency value.
      */
     public Integer checkpointFrequency() {
@@ -333,7 +336,7 @@ public class ImageModelSettings {
 
     /**
      * Set the checkpointFrequency property: Frequency to store model checkpoints. Must be a positive integer.
-     *
+     * 
      * @param checkpointFrequency the checkpointFrequency value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -344,7 +347,7 @@ public class ImageModelSettings {
 
     /**
      * Get the checkpointModel property: The pretrained checkpoint model for incremental training.
-     *
+     * 
      * @return the checkpointModel value.
      */
     public MLFlowModelJobInput checkpointModel() {
@@ -353,7 +356,7 @@ public class ImageModelSettings {
 
     /**
      * Set the checkpointModel property: The pretrained checkpoint model for incremental training.
-     *
+     * 
      * @param checkpointModel the checkpointModel value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -365,7 +368,7 @@ public class ImageModelSettings {
     /**
      * Get the checkpointRunId property: The id of a previous run that has a pretrained checkpoint for incremental
      * training.
-     *
+     * 
      * @return the checkpointRunId value.
      */
     public String checkpointRunId() {
@@ -375,7 +378,7 @@ public class ImageModelSettings {
     /**
      * Set the checkpointRunId property: The id of a previous run that has a pretrained checkpoint for incremental
      * training.
-     *
+     * 
      * @param checkpointRunId the checkpointRunId value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -386,7 +389,7 @@ public class ImageModelSettings {
 
     /**
      * Get the distributed property: Whether to use distributed training.
-     *
+     * 
      * @return the distributed value.
      */
     public Boolean distributed() {
@@ -395,7 +398,7 @@ public class ImageModelSettings {
 
     /**
      * Set the distributed property: Whether to use distributed training.
-     *
+     * 
      * @param distributed the distributed value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -406,7 +409,7 @@ public class ImageModelSettings {
 
     /**
      * Get the earlyStopping property: Enable early stopping logic during training.
-     *
+     * 
      * @return the earlyStopping value.
      */
     public Boolean earlyStopping() {
@@ -415,7 +418,7 @@ public class ImageModelSettings {
 
     /**
      * Set the earlyStopping property: Enable early stopping logic during training.
-     *
+     * 
      * @param earlyStopping the earlyStopping value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -426,8 +429,9 @@ public class ImageModelSettings {
 
     /**
      * Get the earlyStoppingDelay property: Minimum number of epochs or validation evaluations to wait before primary
-     * metric improvement is tracked for early stopping. Must be a positive integer.
-     *
+     * metric improvement
+     * is tracked for early stopping. Must be a positive integer.
+     * 
      * @return the earlyStoppingDelay value.
      */
     public Integer earlyStoppingDelay() {
@@ -436,8 +440,9 @@ public class ImageModelSettings {
 
     /**
      * Set the earlyStoppingDelay property: Minimum number of epochs or validation evaluations to wait before primary
-     * metric improvement is tracked for early stopping. Must be a positive integer.
-     *
+     * metric improvement
+     * is tracked for early stopping. Must be a positive integer.
+     * 
      * @param earlyStoppingDelay the earlyStoppingDelay value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -447,9 +452,10 @@ public class ImageModelSettings {
     }
 
     /**
-     * Get the earlyStoppingPatience property: Minimum number of epochs or validation evaluations with no primary metric
-     * improvement before the run is stopped. Must be a positive integer.
-     *
+     * Get the earlyStoppingPatience property: Minimum number of epochs or validation evaluations with no primary
+     * metric improvement before
+     * the run is stopped. Must be a positive integer.
+     * 
      * @return the earlyStoppingPatience value.
      */
     public Integer earlyStoppingPatience() {
@@ -457,9 +463,10 @@ public class ImageModelSettings {
     }
 
     /**
-     * Set the earlyStoppingPatience property: Minimum number of epochs or validation evaluations with no primary metric
-     * improvement before the run is stopped. Must be a positive integer.
-     *
+     * Set the earlyStoppingPatience property: Minimum number of epochs or validation evaluations with no primary
+     * metric improvement before
+     * the run is stopped. Must be a positive integer.
+     * 
      * @param earlyStoppingPatience the earlyStoppingPatience value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -470,7 +477,7 @@ public class ImageModelSettings {
 
     /**
      * Get the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
-     *
+     * 
      * @return the enableOnnxNormalization value.
      */
     public Boolean enableOnnxNormalization() {
@@ -479,7 +486,7 @@ public class ImageModelSettings {
 
     /**
      * Set the enableOnnxNormalization property: Enable normalization when exporting ONNX model.
-     *
+     * 
      * @param enableOnnxNormalization the enableOnnxNormalization value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -491,7 +498,7 @@ public class ImageModelSettings {
     /**
      * Get the evaluationFrequency property: Frequency to evaluate validation dataset to get metric scores. Must be a
      * positive integer.
-     *
+     * 
      * @return the evaluationFrequency value.
      */
     public Integer evaluationFrequency() {
@@ -501,7 +508,7 @@ public class ImageModelSettings {
     /**
      * Set the evaluationFrequency property: Frequency to evaluate validation dataset to get metric scores. Must be a
      * positive integer.
-     *
+     * 
      * @param evaluationFrequency the evaluationFrequency value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -512,9 +519,10 @@ public class ImageModelSettings {
 
     /**
      * Get the gradientAccumulationStep property: Gradient accumulation means running a configured number of
-     * "GradAccumulationStep"\ steps without updating the model weights while accumulating the gradients of those steps,
-     * and then using the accumulated gradients to compute the weight updates. Must be a positive integer.
-     *
+     * "GradAccumulationStep" steps without
+     * updating the model weights while accumulating the gradients of those steps, and then using
+     * the accumulated gradients to compute the weight updates. Must be a positive integer.
+     * 
      * @return the gradientAccumulationStep value.
      */
     public Integer gradientAccumulationStep() {
@@ -523,9 +531,10 @@ public class ImageModelSettings {
 
     /**
      * Set the gradientAccumulationStep property: Gradient accumulation means running a configured number of
-     * "GradAccumulationStep"\ steps without updating the model weights while accumulating the gradients of those steps,
-     * and then using the accumulated gradients to compute the weight updates. Must be a positive integer.
-     *
+     * "GradAccumulationStep" steps without
+     * updating the model weights while accumulating the gradients of those steps, and then using
+     * the accumulated gradients to compute the weight updates. Must be a positive integer.
+     * 
      * @param gradientAccumulationStep the gradientAccumulationStep value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -535,11 +544,11 @@ public class ImageModelSettings {
     }
 
     /**
-     * Get the layersToFreeze property: Number of layers to freeze for the model. Must be a positive integer. For
-     * instance, passing 2 as value for 'seresnext' means freezing layer0 and layer1. For a full list of models
-     * supported and details on layer freeze, please see:
-     * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
-     *
+     * Get the layersToFreeze property: Number of layers to freeze for the model. Must be a positive integer.
+     * For instance, passing 2 as value for 'seresnext' means
+     * freezing layer0 and layer1. For a full list of models supported and details on layer freeze, please
+     * see: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
+     * 
      * @return the layersToFreeze value.
      */
     public Integer layersToFreeze() {
@@ -547,11 +556,11 @@ public class ImageModelSettings {
     }
 
     /**
-     * Set the layersToFreeze property: Number of layers to freeze for the model. Must be a positive integer. For
-     * instance, passing 2 as value for 'seresnext' means freezing layer0 and layer1. For a full list of models
-     * supported and details on layer freeze, please see:
-     * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
-     *
+     * Set the layersToFreeze property: Number of layers to freeze for the model. Must be a positive integer.
+     * For instance, passing 2 as value for 'seresnext' means
+     * freezing layer0 and layer1. For a full list of models supported and details on layer freeze, please
+     * see: https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
+     * 
      * @param layersToFreeze the layersToFreeze value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -562,7 +571,7 @@ public class ImageModelSettings {
 
     /**
      * Get the learningRate property: Initial learning rate. Must be a float in the range [0, 1].
-     *
+     * 
      * @return the learningRate value.
      */
     public Float learningRate() {
@@ -571,7 +580,7 @@ public class ImageModelSettings {
 
     /**
      * Set the learningRate property: Initial learning rate. Must be a float in the range [0, 1].
-     *
+     * 
      * @param learningRate the learningRate value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -582,7 +591,7 @@ public class ImageModelSettings {
 
     /**
      * Get the learningRateScheduler property: Type of learning rate scheduler. Must be 'warmup_cosine' or 'step'.
-     *
+     * 
      * @return the learningRateScheduler value.
      */
     public LearningRateScheduler learningRateScheduler() {
@@ -591,7 +600,7 @@ public class ImageModelSettings {
 
     /**
      * Set the learningRateScheduler property: Type of learning rate scheduler. Must be 'warmup_cosine' or 'step'.
-     *
+     * 
      * @param learningRateScheduler the learningRateScheduler value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -601,10 +610,10 @@ public class ImageModelSettings {
     }
 
     /**
-     * Get the modelName property: Name of the model to use for training. For more information on the available models
-     * please visit the official documentation:
+     * Get the modelName property: Name of the model to use for training.
+     * For more information on the available models please visit the official documentation:
      * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
-     *
+     * 
      * @return the modelName value.
      */
     public String modelName() {
@@ -612,10 +621,10 @@ public class ImageModelSettings {
     }
 
     /**
-     * Set the modelName property: Name of the model to use for training. For more information on the available models
-     * please visit the official documentation:
+     * Set the modelName property: Name of the model to use for training.
+     * For more information on the available models please visit the official documentation:
      * https://docs.microsoft.com/en-us/azure/machine-learning/how-to-auto-train-image-models.
-     *
+     * 
      * @param modelName the modelName value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -626,7 +635,7 @@ public class ImageModelSettings {
 
     /**
      * Get the momentum property: Value of momentum when optimizer is 'sgd'. Must be a float in the range [0, 1].
-     *
+     * 
      * @return the momentum value.
      */
     public Float momentum() {
@@ -635,7 +644,7 @@ public class ImageModelSettings {
 
     /**
      * Set the momentum property: Value of momentum when optimizer is 'sgd'. Must be a float in the range [0, 1].
-     *
+     * 
      * @param momentum the momentum value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -646,7 +655,7 @@ public class ImageModelSettings {
 
     /**
      * Get the nesterov property: Enable nesterov when optimizer is 'sgd'.
-     *
+     * 
      * @return the nesterov value.
      */
     public Boolean nesterov() {
@@ -655,7 +664,7 @@ public class ImageModelSettings {
 
     /**
      * Set the nesterov property: Enable nesterov when optimizer is 'sgd'.
-     *
+     * 
      * @param nesterov the nesterov value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -666,7 +675,7 @@ public class ImageModelSettings {
 
     /**
      * Get the numberOfEpochs property: Number of training epochs. Must be a positive integer.
-     *
+     * 
      * @return the numberOfEpochs value.
      */
     public Integer numberOfEpochs() {
@@ -675,7 +684,7 @@ public class ImageModelSettings {
 
     /**
      * Set the numberOfEpochs property: Number of training epochs. Must be a positive integer.
-     *
+     * 
      * @param numberOfEpochs the numberOfEpochs value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -686,7 +695,7 @@ public class ImageModelSettings {
 
     /**
      * Get the numberOfWorkers property: Number of data loader workers. Must be a non-negative integer.
-     *
+     * 
      * @return the numberOfWorkers value.
      */
     public Integer numberOfWorkers() {
@@ -695,7 +704,7 @@ public class ImageModelSettings {
 
     /**
      * Set the numberOfWorkers property: Number of data loader workers. Must be a non-negative integer.
-     *
+     * 
      * @param numberOfWorkers the numberOfWorkers value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -706,7 +715,7 @@ public class ImageModelSettings {
 
     /**
      * Get the optimizer property: Type of optimizer.
-     *
+     * 
      * @return the optimizer value.
      */
     public StochasticOptimizer optimizer() {
@@ -715,7 +724,7 @@ public class ImageModelSettings {
 
     /**
      * Set the optimizer property: Type of optimizer.
-     *
+     * 
      * @param optimizer the optimizer value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -726,7 +735,7 @@ public class ImageModelSettings {
 
     /**
      * Get the randomSeed property: Random seed to be used when using deterministic training.
-     *
+     * 
      * @return the randomSeed value.
      */
     public Integer randomSeed() {
@@ -735,7 +744,7 @@ public class ImageModelSettings {
 
     /**
      * Set the randomSeed property: Random seed to be used when using deterministic training.
-     *
+     * 
      * @param randomSeed the randomSeed value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -745,9 +754,9 @@ public class ImageModelSettings {
     }
 
     /**
-     * Get the stepLRGamma property: Value of gamma when learning rate scheduler is 'step'. Must be a float in the range
-     * [0, 1].
-     *
+     * Get the stepLRGamma property: Value of gamma when learning rate scheduler is 'step'. Must be a float in the
+     * range [0, 1].
+     * 
      * @return the stepLRGamma value.
      */
     public Float stepLRGamma() {
@@ -755,9 +764,9 @@ public class ImageModelSettings {
     }
 
     /**
-     * Set the stepLRGamma property: Value of gamma when learning rate scheduler is 'step'. Must be a float in the range
-     * [0, 1].
-     *
+     * Set the stepLRGamma property: Value of gamma when learning rate scheduler is 'step'. Must be a float in the
+     * range [0, 1].
+     * 
      * @param stepLRGamma the stepLRGamma value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -769,7 +778,7 @@ public class ImageModelSettings {
     /**
      * Get the stepLRStepSize property: Value of step size when learning rate scheduler is 'step'. Must be a positive
      * integer.
-     *
+     * 
      * @return the stepLRStepSize value.
      */
     public Integer stepLRStepSize() {
@@ -779,7 +788,7 @@ public class ImageModelSettings {
     /**
      * Set the stepLRStepSize property: Value of step size when learning rate scheduler is 'step'. Must be a positive
      * integer.
-     *
+     * 
      * @param stepLRStepSize the stepLRStepSize value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -790,7 +799,7 @@ public class ImageModelSettings {
 
     /**
      * Get the trainingBatchSize property: Training batch size. Must be a positive integer.
-     *
+     * 
      * @return the trainingBatchSize value.
      */
     public Integer trainingBatchSize() {
@@ -799,7 +808,7 @@ public class ImageModelSettings {
 
     /**
      * Set the trainingBatchSize property: Training batch size. Must be a positive integer.
-     *
+     * 
      * @param trainingBatchSize the trainingBatchSize value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -810,7 +819,7 @@ public class ImageModelSettings {
 
     /**
      * Get the validationBatchSize property: Validation batch size. Must be a positive integer.
-     *
+     * 
      * @return the validationBatchSize value.
      */
     public Integer validationBatchSize() {
@@ -819,7 +828,7 @@ public class ImageModelSettings {
 
     /**
      * Set the validationBatchSize property: Validation batch size. Must be a positive integer.
-     *
+     * 
      * @param validationBatchSize the validationBatchSize value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -831,7 +840,7 @@ public class ImageModelSettings {
     /**
      * Get the warmupCosineLRCycles property: Value of cosine cycle when learning rate scheduler is 'warmup_cosine'.
      * Must be a float in the range [0, 1].
-     *
+     * 
      * @return the warmupCosineLRCycles value.
      */
     public Float warmupCosineLRCycles() {
@@ -841,7 +850,7 @@ public class ImageModelSettings {
     /**
      * Set the warmupCosineLRCycles property: Value of cosine cycle when learning rate scheduler is 'warmup_cosine'.
      * Must be a float in the range [0, 1].
-     *
+     * 
      * @param warmupCosineLRCycles the warmupCosineLRCycles value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -853,7 +862,7 @@ public class ImageModelSettings {
     /**
      * Get the warmupCosineLRWarmupEpochs property: Value of warmup epochs when learning rate scheduler is
      * 'warmup_cosine'. Must be a positive integer.
-     *
+     * 
      * @return the warmupCosineLRWarmupEpochs value.
      */
     public Integer warmupCosineLRWarmupEpochs() {
@@ -863,7 +872,7 @@ public class ImageModelSettings {
     /**
      * Set the warmupCosineLRWarmupEpochs property: Value of warmup epochs when learning rate scheduler is
      * 'warmup_cosine'. Must be a positive integer.
-     *
+     * 
      * @param warmupCosineLRWarmupEpochs the warmupCosineLRWarmupEpochs value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -875,7 +884,7 @@ public class ImageModelSettings {
     /**
      * Get the weightDecay property: Value of weight decay when optimizer is 'sgd', 'adam', or 'adamw'. Must be a float
      * in the range[0, 1].
-     *
+     * 
      * @return the weightDecay value.
      */
     public Float weightDecay() {
@@ -885,7 +894,7 @@ public class ImageModelSettings {
     /**
      * Set the weightDecay property: Value of weight decay when optimizer is 'sgd', 'adam', or 'adamw'. Must be a float
      * in the range[0, 1].
-     *
+     * 
      * @param weightDecay the weightDecay value to set.
      * @return the ImageModelSettings object itself.
      */
@@ -896,7 +905,7 @@ public class ImageModelSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

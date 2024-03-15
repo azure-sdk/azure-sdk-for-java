@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Secrets related to a Machine Learning compute based on AKS. */
+/**
+ * Secrets related to a Machine Learning compute based on AKS.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
 @JsonTypeName("VirtualMachine")
 @Fluent
@@ -21,13 +23,15 @@ public final class VirtualMachineSecrets extends ComputeSecretsInner {
     @JsonProperty(value = "administratorAccount")
     private VirtualMachineSshCredentials administratorAccount;
 
-    /** Creates an instance of VirtualMachineSecrets class. */
+    /**
+     * Creates an instance of VirtualMachineSecrets class.
+     */
     public VirtualMachineSecrets() {
     }
 
     /**
      * Get the administratorAccount property: Admin credentials for virtual machine.
-     *
+     * 
      * @return the administratorAccount value.
      */
     public VirtualMachineSshCredentials administratorAccount() {
@@ -36,7 +40,7 @@ public final class VirtualMachineSecrets extends ComputeSecretsInner {
 
     /**
      * Set the administratorAccount property: Admin credentials for virtual machine.
-     *
+     * 
      * @param administratorAccount the administratorAccount value to set.
      * @return the VirtualMachineSecrets object itself.
      */
@@ -47,7 +51,7 @@ public final class VirtualMachineSecrets extends ComputeSecretsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
