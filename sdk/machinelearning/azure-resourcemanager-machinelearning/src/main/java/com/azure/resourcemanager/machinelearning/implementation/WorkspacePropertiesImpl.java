@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.machinelearning.implementation;
 
+import com.azure.resourcemanager.machinelearning.fluent.models.ManagedNetworkSettingsInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.NotebookResourceInfoInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.PrivateEndpointConnectionInner;
 import com.azure.resourcemanager.machinelearning.fluent.models.WorkspacePropertiesInner;
 import com.azure.resourcemanager.machinelearning.models.EncryptionProperty;
+import com.azure.resourcemanager.machinelearning.models.FeatureStoreSettings;
+import com.azure.resourcemanager.machinelearning.models.ManagedNetworkSettings;
 import com.azure.resourcemanager.machinelearning.models.NotebookResourceInfo;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnection;
 import com.azure.resourcemanager.machinelearning.models.ProvisioningState;
 import com.azure.resourcemanager.machinelearning.models.PublicNetworkAccess;
+import com.azure.resourcemanager.machinelearning.models.ServerlessComputeSettings;
 import com.azure.resourcemanager.machinelearning.models.ServiceManagedResourcesSettings;
 import com.azure.resourcemanager.machinelearning.models.SharedPrivateLinkResource;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceProperties;
@@ -24,8 +28,7 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
 
-    WorkspacePropertiesImpl(
-        WorkspacePropertiesInner innerObject,
+    WorkspacePropertiesImpl(WorkspacePropertiesInner innerObject,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -98,15 +101,15 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
     public List<PrivateEndpointConnection> privateEndpointConnections() {
         List<PrivateEndpointConnectionInner> inner = this.innerModel().privateEndpointConnections();
         if (inner != null) {
-            return Collections
-                .unmodifiableList(
-                    inner
-                        .stream()
-                        .map(inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()))
-                        .collect(Collectors.toList()));
+            return Collections.unmodifiableList(inner.stream()
+                .map(inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager())).collect(Collectors.toList()));
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public ServerlessComputeSettings serverlessComputeSettings() {
+        return this.innerModel().serverlessComputeSettings();
     }
 
     public List<SharedPrivateLinkResource> sharedPrivateLinkResources() {
@@ -149,6 +152,19 @@ public final class WorkspacePropertiesImpl implements WorkspaceProperties {
 
     public Boolean v1LegacyMode() {
         return this.innerModel().v1LegacyMode();
+    }
+
+    public ManagedNetworkSettings managedNetwork() {
+        ManagedNetworkSettingsInner inner = this.innerModel().managedNetwork();
+        if (inner != null) {
+            return new ManagedNetworkSettingsImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public FeatureStoreSettings featureStoreSettings() {
+        return this.innerModel().featureStoreSettings();
     }
 
     public WorkspacePropertiesInner innerModel() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Script reference. */
+/**
+ * Script reference.
+ */
 @Fluent
 public final class ScriptReference {
     /*
@@ -34,13 +36,15 @@ public final class ScriptReference {
     @JsonProperty(value = "timeout")
     private String timeout;
 
-    /** Creates an instance of ScriptReference class. */
+    /**
+     * Creates an instance of ScriptReference class.
+     */
     public ScriptReference() {
     }
 
     /**
      * Get the scriptSource property: The storage source of the script: workspace.
-     *
+     * 
      * @return the scriptSource value.
      */
     public String scriptSource() {
@@ -49,7 +53,7 @@ public final class ScriptReference {
 
     /**
      * Set the scriptSource property: The storage source of the script: workspace.
-     *
+     * 
      * @param scriptSource the scriptSource value to set.
      * @return the ScriptReference object itself.
      */
@@ -60,7 +64,7 @@ public final class ScriptReference {
 
     /**
      * Get the scriptData property: The location of scripts in the mounted volume.
-     *
+     * 
      * @return the scriptData value.
      */
     public String scriptData() {
@@ -69,7 +73,7 @@ public final class ScriptReference {
 
     /**
      * Set the scriptData property: The location of scripts in the mounted volume.
-     *
+     * 
      * @param scriptData the scriptData value to set.
      * @return the ScriptReference object itself.
      */
@@ -80,7 +84,7 @@ public final class ScriptReference {
 
     /**
      * Get the scriptArguments property: Optional command line arguments passed to the script to run.
-     *
+     * 
      * @return the scriptArguments value.
      */
     public String scriptArguments() {
@@ -89,7 +93,7 @@ public final class ScriptReference {
 
     /**
      * Set the scriptArguments property: Optional command line arguments passed to the script to run.
-     *
+     * 
      * @param scriptArguments the scriptArguments value to set.
      * @return the ScriptReference object itself.
      */
@@ -100,7 +104,7 @@ public final class ScriptReference {
 
     /**
      * Get the timeout property: Optional time period passed to timeout command.
-     *
+     * 
      * @return the timeout value.
      */
     public String timeout() {
@@ -109,7 +113,7 @@ public final class ScriptReference {
 
     /**
      * Set the timeout property: Optional time period passed to timeout command.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the ScriptReference object itself.
      */
@@ -120,7 +124,7 @@ public final class ScriptReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

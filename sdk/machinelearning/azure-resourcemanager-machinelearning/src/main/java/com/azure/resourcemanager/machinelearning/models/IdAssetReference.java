@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Reference to an asset via its ARM resource ID. */
+/**
+ * Reference to an asset via its ARM resource ID.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "referenceType")
 @JsonTypeName("Id")
 @Fluent
@@ -21,13 +23,15 @@ public final class IdAssetReference extends AssetReferenceBase {
     @JsonProperty(value = "assetId", required = true)
     private String assetId;
 
-    /** Creates an instance of IdAssetReference class. */
+    /**
+     * Creates an instance of IdAssetReference class.
+     */
     public IdAssetReference() {
     }
 
     /**
      * Get the assetId property: [Required] ARM resource ID of the asset.
-     *
+     * 
      * @return the assetId value.
      */
     public String assetId() {
@@ -36,7 +40,7 @@ public final class IdAssetReference extends AssetReferenceBase {
 
     /**
      * Set the assetId property: [Required] ARM resource ID of the asset.
-     *
+     * 
      * @param assetId the assetId value to set.
      * @return the IdAssetReference object itself.
      */
@@ -47,16 +51,15 @@ public final class IdAssetReference extends AssetReferenceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (assetId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property assetId in model IdAssetReference"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property assetId in model IdAssetReference"));
         }
     }
 
