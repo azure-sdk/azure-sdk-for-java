@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** a plain text value execution parameter. */
+/**
+ * a plain text value execution parameter.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("Value")
 @Fluent
@@ -20,13 +22,15 @@ public final class ScriptStringExecutionParameter extends ScriptExecutionParamet
     @JsonProperty(value = "value")
     private String value;
 
-    /** Creates an instance of ScriptStringExecutionParameter class. */
+    /**
+     * Creates an instance of ScriptStringExecutionParameter class.
+     */
     public ScriptStringExecutionParameter() {
     }
 
     /**
      * Get the value property: The value for the passed parameter.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -35,7 +39,7 @@ public final class ScriptStringExecutionParameter extends ScriptExecutionParamet
 
     /**
      * Set the value property: The value for the passed parameter.
-     *
+     * 
      * @param value the value value to set.
      * @return the ScriptStringExecutionParameter object itself.
      */
@@ -44,7 +48,9 @@ public final class ScriptStringExecutionParameter extends ScriptExecutionParamet
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ScriptStringExecutionParameter withName(String name) {
         super.withName(name);
@@ -53,7 +59,7 @@ public final class ScriptStringExecutionParameter extends ScriptExecutionParamet
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

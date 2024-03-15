@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The properties of an Arc addon. */
+/**
+ * The properties of an Arc addon.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "addonType")
 @JsonTypeName("Arc")
 @Fluent
@@ -20,13 +22,15 @@ public final class AddonArcProperties extends AddonProperties {
     @JsonProperty(value = "vCenter")
     private String vCenter;
 
-    /** Creates an instance of AddonArcProperties class. */
+    /**
+     * Creates an instance of AddonArcProperties class.
+     */
     public AddonArcProperties() {
     }
 
     /**
      * Get the vCenter property: The VMware vCenter resource ID.
-     *
+     * 
      * @return the vCenter value.
      */
     public String vCenter() {
@@ -35,7 +39,7 @@ public final class AddonArcProperties extends AddonProperties {
 
     /**
      * Set the vCenter property: The VMware vCenter resource ID.
-     *
+     * 
      * @param vCenter the vCenter value to set.
      * @return the AddonArcProperties object itself.
      */
@@ -46,7 +50,7 @@ public final class AddonArcProperties extends AddonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
