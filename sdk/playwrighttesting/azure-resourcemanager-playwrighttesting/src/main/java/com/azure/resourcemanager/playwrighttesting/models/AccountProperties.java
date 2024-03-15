@@ -8,7 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Account properties.
+ * Account resource properties.
  */
 @Fluent
 public final class AccountProperties {

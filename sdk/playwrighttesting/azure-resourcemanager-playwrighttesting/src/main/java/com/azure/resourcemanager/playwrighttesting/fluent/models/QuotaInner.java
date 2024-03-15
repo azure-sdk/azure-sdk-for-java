@@ -11,7 +11,7 @@ import com.azure.resourcemanager.playwrighttesting.models.QuotaProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * A quota resource.
+ * A subscription quota resource.
  */
 @Fluent
 public final class QuotaInner extends ProxyResource {
