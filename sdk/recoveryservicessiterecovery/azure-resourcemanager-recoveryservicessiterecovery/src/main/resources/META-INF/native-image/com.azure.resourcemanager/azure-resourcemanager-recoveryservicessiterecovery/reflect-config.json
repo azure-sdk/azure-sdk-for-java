@@ -1729,6 +1729,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.SecurityProfileProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.HyperVReplicaAzureEventDetails",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -2009,6 +2014,16 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.InMageRcmAddDisksInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.InMageRcmDiskInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.InMageRcmAgentUpgradeBlockingErrorDetails",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -2069,17 +2084,17 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.InMageRcmDiskInput",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.InMageRcmDisksDefaultInput",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.InMageRcmEnableProtectionInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.UserCreatedResourceTag",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -2194,6 +2209,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.InMageRcmUnProtectedDiskDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.InMageRcmProtectionContainerMappingDetails",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -2265,6 +2285,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.JobStatusEventDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.ManagedRunCommandScriptInput",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -2709,6 +2734,16 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.SecurityType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.SecurityConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.PresenceStatus",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -2750,6 +2785,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.EthernetAddressType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.DiskState",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -2809,7 +2849,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.SecurityType",
+  "name" : "com.azure.resourcemanager.recoveryservicessiterecovery.models.LinuxLicenseType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

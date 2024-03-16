@@ -293,6 +293,12 @@ public final class InMageRcmReplicationDetails extends ReplicationProviderSpecif
     private List<InMageRcmProtectedDiskDetails> protectedDisks;
 
     /*
+     * The list of unprotected disks.
+     */
+    @JsonProperty(value = "unprotectedDisks")
+    private List<InMageRcmUnProtectedDiskDetails> unprotectedDisks;
+
+    /*
      * A value indicating whether last agent upgrade was successful or not.
      */
     @JsonProperty(value = "isLastUpgradeSuccessful", access = JsonProperty.Access.WRITE_ONLY)
@@ -333,6 +339,54 @@ public final class InMageRcmReplicationDetails extends ReplicationProviderSpecif
      */
     @JsonProperty(value = "discoveredVmDetails")
     private InMageRcmDiscoveredProtectedVmDetails discoveredVmDetails;
+
+    /*
+     * The target VM tags.
+     */
+    @JsonProperty(value = "targetVmTags")
+    private List<UserCreatedResourceTag> targetVmTags;
+
+    /*
+     * The tags for the seed managed disks.
+     */
+    @JsonProperty(value = "seedManagedDiskTags")
+    private List<UserCreatedResourceTag> seedManagedDiskTags;
+
+    /*
+     * The tags for the target managed disks.
+     */
+    @JsonProperty(value = "targetManagedDiskTags")
+    private List<UserCreatedResourceTag> targetManagedDiskTags;
+
+    /*
+     * The tags for the target NICs.
+     */
+    @JsonProperty(value = "targetNicTags")
+    private List<UserCreatedResourceTag> targetNicTags;
+
+    /*
+     * The SQL Server license type.
+     */
+    @JsonProperty(value = "sqlServerLicenseType")
+    private String sqlServerLicenseType;
+
+    /*
+     * A value indicating the inplace OS Upgrade version.
+     */
+    @JsonProperty(value = "supportedOSVersions")
+    private List<String> supportedOSVersions;
+
+    /*
+     * The OS name associated with VM.
+     */
+    @JsonProperty(value = "osName")
+    private String osName;
+
+    /*
+     * The target VM security profile.
+     */
+    @JsonProperty(value = "targetVmSecurityProfile")
+    private SecurityProfileProperties targetVmSecurityProfile;
 
     /**
      * Creates an instance of InMageRcmReplicationDetails class.
@@ -886,6 +940,26 @@ public final class InMageRcmReplicationDetails extends ReplicationProviderSpecif
     }
 
     /**
+     * Get the unprotectedDisks property: The list of unprotected disks.
+     * 
+     * @return the unprotectedDisks value.
+     */
+    public List<InMageRcmUnProtectedDiskDetails> unprotectedDisks() {
+        return this.unprotectedDisks;
+    }
+
+    /**
+     * Set the unprotectedDisks property: The list of unprotected disks.
+     * 
+     * @param unprotectedDisks the unprotectedDisks value to set.
+     * @return the InMageRcmReplicationDetails object itself.
+     */
+    public InMageRcmReplicationDetails withUnprotectedDisks(List<InMageRcmUnProtectedDiskDetails> unprotectedDisks) {
+        this.unprotectedDisks = unprotectedDisks;
+        return this;
+    }
+
+    /**
      * Get the isLastUpgradeSuccessful property: A value indicating whether last agent upgrade was successful or not.
      * 
      * @return the isLastUpgradeSuccessful value.
@@ -1008,6 +1082,166 @@ public final class InMageRcmReplicationDetails extends ReplicationProviderSpecif
     }
 
     /**
+     * Get the targetVmTags property: The target VM tags.
+     * 
+     * @return the targetVmTags value.
+     */
+    public List<UserCreatedResourceTag> targetVmTags() {
+        return this.targetVmTags;
+    }
+
+    /**
+     * Set the targetVmTags property: The target VM tags.
+     * 
+     * @param targetVmTags the targetVmTags value to set.
+     * @return the InMageRcmReplicationDetails object itself.
+     */
+    public InMageRcmReplicationDetails withTargetVmTags(List<UserCreatedResourceTag> targetVmTags) {
+        this.targetVmTags = targetVmTags;
+        return this;
+    }
+
+    /**
+     * Get the seedManagedDiskTags property: The tags for the seed managed disks.
+     * 
+     * @return the seedManagedDiskTags value.
+     */
+    public List<UserCreatedResourceTag> seedManagedDiskTags() {
+        return this.seedManagedDiskTags;
+    }
+
+    /**
+     * Set the seedManagedDiskTags property: The tags for the seed managed disks.
+     * 
+     * @param seedManagedDiskTags the seedManagedDiskTags value to set.
+     * @return the InMageRcmReplicationDetails object itself.
+     */
+    public InMageRcmReplicationDetails withSeedManagedDiskTags(List<UserCreatedResourceTag> seedManagedDiskTags) {
+        this.seedManagedDiskTags = seedManagedDiskTags;
+        return this;
+    }
+
+    /**
+     * Get the targetManagedDiskTags property: The tags for the target managed disks.
+     * 
+     * @return the targetManagedDiskTags value.
+     */
+    public List<UserCreatedResourceTag> targetManagedDiskTags() {
+        return this.targetManagedDiskTags;
+    }
+
+    /**
+     * Set the targetManagedDiskTags property: The tags for the target managed disks.
+     * 
+     * @param targetManagedDiskTags the targetManagedDiskTags value to set.
+     * @return the InMageRcmReplicationDetails object itself.
+     */
+    public InMageRcmReplicationDetails withTargetManagedDiskTags(List<UserCreatedResourceTag> targetManagedDiskTags) {
+        this.targetManagedDiskTags = targetManagedDiskTags;
+        return this;
+    }
+
+    /**
+     * Get the targetNicTags property: The tags for the target NICs.
+     * 
+     * @return the targetNicTags value.
+     */
+    public List<UserCreatedResourceTag> targetNicTags() {
+        return this.targetNicTags;
+    }
+
+    /**
+     * Set the targetNicTags property: The tags for the target NICs.
+     * 
+     * @param targetNicTags the targetNicTags value to set.
+     * @return the InMageRcmReplicationDetails object itself.
+     */
+    public InMageRcmReplicationDetails withTargetNicTags(List<UserCreatedResourceTag> targetNicTags) {
+        this.targetNicTags = targetNicTags;
+        return this;
+    }
+
+    /**
+     * Get the sqlServerLicenseType property: The SQL Server license type.
+     * 
+     * @return the sqlServerLicenseType value.
+     */
+    public String sqlServerLicenseType() {
+        return this.sqlServerLicenseType;
+    }
+
+    /**
+     * Set the sqlServerLicenseType property: The SQL Server license type.
+     * 
+     * @param sqlServerLicenseType the sqlServerLicenseType value to set.
+     * @return the InMageRcmReplicationDetails object itself.
+     */
+    public InMageRcmReplicationDetails withSqlServerLicenseType(String sqlServerLicenseType) {
+        this.sqlServerLicenseType = sqlServerLicenseType;
+        return this;
+    }
+
+    /**
+     * Get the supportedOSVersions property: A value indicating the inplace OS Upgrade version.
+     * 
+     * @return the supportedOSVersions value.
+     */
+    public List<String> supportedOSVersions() {
+        return this.supportedOSVersions;
+    }
+
+    /**
+     * Set the supportedOSVersions property: A value indicating the inplace OS Upgrade version.
+     * 
+     * @param supportedOSVersions the supportedOSVersions value to set.
+     * @return the InMageRcmReplicationDetails object itself.
+     */
+    public InMageRcmReplicationDetails withSupportedOSVersions(List<String> supportedOSVersions) {
+        this.supportedOSVersions = supportedOSVersions;
+        return this;
+    }
+
+    /**
+     * Get the osName property: The OS name associated with VM.
+     * 
+     * @return the osName value.
+     */
+    public String osName() {
+        return this.osName;
+    }
+
+    /**
+     * Set the osName property: The OS name associated with VM.
+     * 
+     * @param osName the osName value to set.
+     * @return the InMageRcmReplicationDetails object itself.
+     */
+    public InMageRcmReplicationDetails withOsName(String osName) {
+        this.osName = osName;
+        return this;
+    }
+
+    /**
+     * Get the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @return the targetVmSecurityProfile value.
+     */
+    public SecurityProfileProperties targetVmSecurityProfile() {
+        return this.targetVmSecurityProfile;
+    }
+
+    /**
+     * Set the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @param targetVmSecurityProfile the targetVmSecurityProfile value to set.
+     * @return the InMageRcmReplicationDetails object itself.
+     */
+    public InMageRcmReplicationDetails withTargetVmSecurityProfile(SecurityProfileProperties targetVmSecurityProfile) {
+        this.targetVmSecurityProfile = targetVmSecurityProfile;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -1017,6 +1251,9 @@ public final class InMageRcmReplicationDetails extends ReplicationProviderSpecif
         super.validate();
         if (protectedDisks() != null) {
             protectedDisks().forEach(e -> e.validate());
+        }
+        if (unprotectedDisks() != null) {
+            unprotectedDisks().forEach(e -> e.validate());
         }
         if (mobilityAgentDetails() != null) {
             mobilityAgentDetails().validate();
@@ -1032,6 +1269,21 @@ public final class InMageRcmReplicationDetails extends ReplicationProviderSpecif
         }
         if (discoveredVmDetails() != null) {
             discoveredVmDetails().validate();
+        }
+        if (targetVmTags() != null) {
+            targetVmTags().forEach(e -> e.validate());
+        }
+        if (seedManagedDiskTags() != null) {
+            seedManagedDiskTags().forEach(e -> e.validate());
+        }
+        if (targetManagedDiskTags() != null) {
+            targetManagedDiskTags().forEach(e -> e.validate());
+        }
+        if (targetNicTags() != null) {
+            targetNicTags().forEach(e -> e.validate());
+        }
+        if (targetVmSecurityProfile() != null) {
+            targetVmSecurityProfile().validate();
         }
     }
 }

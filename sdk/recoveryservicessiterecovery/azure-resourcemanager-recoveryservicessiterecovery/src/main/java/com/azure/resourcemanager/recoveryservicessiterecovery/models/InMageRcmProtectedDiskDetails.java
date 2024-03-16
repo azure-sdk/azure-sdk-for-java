@@ -37,6 +37,12 @@ public final class InMageRcmProtectedDiskDetails {
     private Long capacityInBytes;
 
     /*
+     * The disk state.
+     */
+    @JsonProperty(value = "diskState", access = JsonProperty.Access.WRITE_ONLY)
+    private DiskState diskState;
+
+    /*
      * The log storage account ARM Id.
      */
     @JsonProperty(value = "logStorageAccountId", access = JsonProperty.Access.WRITE_ONLY)
@@ -102,6 +108,18 @@ public final class InMageRcmProtectedDiskDetails {
     @JsonProperty(value = "resyncDetails")
     private InMageRcmSyncDetails resyncDetails;
 
+    /*
+     * The custom target Azure disk name.
+     */
+    @JsonProperty(value = "customTargetDiskName")
+    private String customTargetDiskName;
+
+    /*
+     * The logical sector size (in bytes), 512 by default.
+     */
+    @JsonProperty(value = "sectorSizeInBytes")
+    private Integer sectorSizeInBytes;
+
     /**
      * Creates an instance of InMageRcmProtectedDiskDetails class.
      */
@@ -142,6 +160,15 @@ public final class InMageRcmProtectedDiskDetails {
      */
     public Long capacityInBytes() {
         return this.capacityInBytes;
+    }
+
+    /**
+     * Get the diskState property: The disk state.
+     * 
+     * @return the diskState value.
+     */
+    public DiskState diskState() {
+        return this.diskState;
     }
 
     /**
@@ -274,6 +301,46 @@ public final class InMageRcmProtectedDiskDetails {
      */
     public InMageRcmProtectedDiskDetails withResyncDetails(InMageRcmSyncDetails resyncDetails) {
         this.resyncDetails = resyncDetails;
+        return this;
+    }
+
+    /**
+     * Get the customTargetDiskName property: The custom target Azure disk name.
+     * 
+     * @return the customTargetDiskName value.
+     */
+    public String customTargetDiskName() {
+        return this.customTargetDiskName;
+    }
+
+    /**
+     * Set the customTargetDiskName property: The custom target Azure disk name.
+     * 
+     * @param customTargetDiskName the customTargetDiskName value to set.
+     * @return the InMageRcmProtectedDiskDetails object itself.
+     */
+    public InMageRcmProtectedDiskDetails withCustomTargetDiskName(String customTargetDiskName) {
+        this.customTargetDiskName = customTargetDiskName;
+        return this;
+    }
+
+    /**
+     * Get the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @return the sectorSizeInBytes value.
+     */
+    public Integer sectorSizeInBytes() {
+        return this.sectorSizeInBytes;
+    }
+
+    /**
+     * Set the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @param sectorSizeInBytes the sectorSizeInBytes value to set.
+     * @return the InMageRcmProtectedDiskDetails object itself.
+     */
+    public InMageRcmProtectedDiskDetails withSectorSizeInBytes(Integer sectorSizeInBytes) {
+        this.sectorSizeInBytes = sectorSizeInBytes;
         return this;
     }
 

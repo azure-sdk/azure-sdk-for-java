@@ -15,7 +15,7 @@ import java.util.Arrays;
 public final class ReplicationProtectedItemsRemoveDisksSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
+     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-01-01/examples
      * /ReplicationProtectedItems_RemoveDisks.json
      */
     /**

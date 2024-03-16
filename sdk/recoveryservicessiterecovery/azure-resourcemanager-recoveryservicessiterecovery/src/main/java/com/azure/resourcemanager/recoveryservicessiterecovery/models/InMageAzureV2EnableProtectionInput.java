@@ -105,7 +105,7 @@ public final class InMageAzureV2EnableProtectionInput extends EnableProtectionPr
     private String targetAzureV2ResourceGroupId;
 
     /*
-     * The DiskType.
+     * The disk type.
      */
     @JsonProperty(value = "diskType")
     private DiskAccountType diskType;
@@ -473,7 +473,7 @@ public final class InMageAzureV2EnableProtectionInput extends EnableProtectionPr
     }
 
     /**
-     * Get the diskType property: The DiskType.
+     * Get the diskType property: The disk type.
      * 
      * @return the diskType value.
      */
@@ -482,7 +482,7 @@ public final class InMageAzureV2EnableProtectionInput extends EnableProtectionPr
     }
 
     /**
-     * Set the diskType property: The DiskType.
+     * Set the diskType property: The disk type.
      * 
      * @param diskType the diskType value to set.
      * @return the InMageAzureV2EnableProtectionInput object itself.

@@ -9,6 +9,7 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
 /**
  * VMwareCbt specific migrate input.
@@ -28,6 +29,12 @@ public final class VMwareCbtMigrateInput extends MigrateProviderSpecificInput {
      */
     @JsonProperty(value = "osUpgradeVersion")
     private String osUpgradeVersion;
+
+    /*
+     * The managed run command script input.
+     */
+    @JsonProperty(value = "postMigrationSteps")
+    private List<ManagedRunCommandScriptInput> postMigrationSteps;
 
     /**
      * Creates an instance of VMwareCbtMigrateInput class.
@@ -76,6 +83,26 @@ public final class VMwareCbtMigrateInput extends MigrateProviderSpecificInput {
     }
 
     /**
+     * Get the postMigrationSteps property: The managed run command script input.
+     * 
+     * @return the postMigrationSteps value.
+     */
+    public List<ManagedRunCommandScriptInput> postMigrationSteps() {
+        return this.postMigrationSteps;
+    }
+
+    /**
+     * Set the postMigrationSteps property: The managed run command script input.
+     * 
+     * @param postMigrationSteps the postMigrationSteps value to set.
+     * @return the VMwareCbtMigrateInput object itself.
+     */
+    public VMwareCbtMigrateInput withPostMigrationSteps(List<ManagedRunCommandScriptInput> postMigrationSteps) {
+        this.postMigrationSteps = postMigrationSteps;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -86,6 +113,9 @@ public final class VMwareCbtMigrateInput extends MigrateProviderSpecificInput {
         if (performShutdown() == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 "Missing required property performShutdown in model VMwareCbtMigrateInput"));
+        }
+        if (postMigrationSteps() != null) {
+            postMigrationSteps().forEach(e -> e.validate());
         }
     }
 

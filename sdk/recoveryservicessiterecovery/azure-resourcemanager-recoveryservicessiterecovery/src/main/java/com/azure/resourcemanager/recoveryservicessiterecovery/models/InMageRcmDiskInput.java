@@ -37,6 +37,12 @@ public final class InMageRcmDiskInput {
     @JsonProperty(value = "diskEncryptionSetId")
     private String diskEncryptionSetId;
 
+    /*
+     * The logical sector size (in bytes), 512 by default.
+     */
+    @JsonProperty(value = "sectorSizeInBytes")
+    private Integer sectorSizeInBytes;
+
     /**
      * Creates an instance of InMageRcmDiskInput class.
      */
@@ -120,6 +126,26 @@ public final class InMageRcmDiskInput {
      */
     public InMageRcmDiskInput withDiskEncryptionSetId(String diskEncryptionSetId) {
         this.diskEncryptionSetId = diskEncryptionSetId;
+        return this;
+    }
+
+    /**
+     * Get the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @return the sectorSizeInBytes value.
+     */
+    public Integer sectorSizeInBytes() {
+        return this.sectorSizeInBytes;
+    }
+
+    /**
+     * Set the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @param sectorSizeInBytes the sectorSizeInBytes value to set.
+     * @return the InMageRcmDiskInput object itself.
+     */
+    public InMageRcmDiskInput withSectorSizeInBytes(Integer sectorSizeInBytes) {
+        this.sectorSizeInBytes = sectorSizeInBytes;
         return this;
     }
 

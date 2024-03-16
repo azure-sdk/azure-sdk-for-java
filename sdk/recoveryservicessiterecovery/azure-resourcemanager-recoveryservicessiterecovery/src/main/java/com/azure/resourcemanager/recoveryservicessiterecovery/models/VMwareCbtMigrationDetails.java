@@ -63,6 +63,12 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
     private String sqlServerLicenseType;
 
     /*
+     * The license type for Linux VM's.
+     */
+    @JsonProperty(value = "linuxLicenseType")
+    private LinuxLicenseType linuxLicenseType;
+
+    /*
      * The data mover run as account Id.
      */
     @JsonProperty(value = "dataMoverRunAsAccountId", access = JsonProperty.Access.WRITE_ONLY)
@@ -400,6 +406,26 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
      */
     public VMwareCbtMigrationDetails withSqlServerLicenseType(String sqlServerLicenseType) {
         this.sqlServerLicenseType = sqlServerLicenseType;
+        return this;
+    }
+
+    /**
+     * Get the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @return the linuxLicenseType value.
+     */
+    public LinuxLicenseType linuxLicenseType() {
+        return this.linuxLicenseType;
+    }
+
+    /**
+     * Set the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @param linuxLicenseType the linuxLicenseType value to set.
+     * @return the VMwareCbtMigrationDetails object itself.
+     */
+    public VMwareCbtMigrationDetails withLinuxLicenseType(LinuxLicenseType linuxLicenseType) {
+        this.linuxLicenseType = linuxLicenseType;
         return this;
     }
 

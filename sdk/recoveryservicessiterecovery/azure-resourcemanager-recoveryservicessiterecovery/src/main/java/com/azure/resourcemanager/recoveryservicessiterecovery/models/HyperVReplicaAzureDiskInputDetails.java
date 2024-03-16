@@ -25,7 +25,7 @@ public final class HyperVReplicaAzureDiskInputDetails {
     private String logStorageAccountId;
 
     /*
-     * The DiskType.
+     * The disk type.
      */
     @JsonProperty(value = "diskType")
     private DiskAccountType diskType;
@@ -35,6 +35,12 @@ public final class HyperVReplicaAzureDiskInputDetails {
      */
     @JsonProperty(value = "diskEncryptionSetId")
     private String diskEncryptionSetId;
+
+    /*
+     * The logical sector size (in bytes), 512 by default.
+     */
+    @JsonProperty(value = "sectorSizeInBytes")
+    private Integer sectorSizeInBytes;
 
     /**
      * Creates an instance of HyperVReplicaAzureDiskInputDetails class.
@@ -83,7 +89,7 @@ public final class HyperVReplicaAzureDiskInputDetails {
     }
 
     /**
-     * Get the diskType property: The DiskType.
+     * Get the diskType property: The disk type.
      * 
      * @return the diskType value.
      */
@@ -92,7 +98,7 @@ public final class HyperVReplicaAzureDiskInputDetails {
     }
 
     /**
-     * Set the diskType property: The DiskType.
+     * Set the diskType property: The disk type.
      * 
      * @param diskType the diskType value to set.
      * @return the HyperVReplicaAzureDiskInputDetails object itself.
@@ -119,6 +125,26 @@ public final class HyperVReplicaAzureDiskInputDetails {
      */
     public HyperVReplicaAzureDiskInputDetails withDiskEncryptionSetId(String diskEncryptionSetId) {
         this.diskEncryptionSetId = diskEncryptionSetId;
+        return this;
+    }
+
+    /**
+     * Get the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @return the sectorSizeInBytes value.
+     */
+    public Integer sectorSizeInBytes() {
+        return this.sectorSizeInBytes;
+    }
+
+    /**
+     * Set the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @param sectorSizeInBytes the sectorSizeInBytes value to set.
+     * @return the HyperVReplicaAzureDiskInputDetails object itself.
+     */
+    public HyperVReplicaAzureDiskInputDetails withSectorSizeInBytes(Integer sectorSizeInBytes) {
+        this.sectorSizeInBytes = sectorSizeInBytes;
         return this;
     }
 

@@ -45,6 +45,12 @@ public final class VMwareCbtEnableMigrationInput extends EnableMigrationProvider
     private SqlServerLicenseType sqlServerLicenseType;
 
     /*
+     * The license type for Linux VM's.
+     */
+    @JsonProperty(value = "linuxLicenseType")
+    private LinuxLicenseType linuxLicenseType;
+
+    /*
      * A value indicating whether bulk SQL RP registration to be done.
      */
     @JsonProperty(value = "performSqlBulkRegistration")
@@ -174,6 +180,12 @@ public final class VMwareCbtEnableMigrationInput extends EnableMigrationProvider
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> targetNicTags;
 
+    /*
+     * The OS name selected by user.
+     */
+    @JsonProperty(value = "userSelectedOSName")
+    private String userSelectedOSName;
+
     /**
      * Creates an instance of VMwareCbtEnableMigrationInput class.
      */
@@ -257,6 +269,26 @@ public final class VMwareCbtEnableMigrationInput extends EnableMigrationProvider
      */
     public VMwareCbtEnableMigrationInput withSqlServerLicenseType(SqlServerLicenseType sqlServerLicenseType) {
         this.sqlServerLicenseType = sqlServerLicenseType;
+        return this;
+    }
+
+    /**
+     * Get the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @return the linuxLicenseType value.
+     */
+    public LinuxLicenseType linuxLicenseType() {
+        return this.linuxLicenseType;
+    }
+
+    /**
+     * Set the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @param linuxLicenseType the linuxLicenseType value to set.
+     * @return the VMwareCbtEnableMigrationInput object itself.
+     */
+    public VMwareCbtEnableMigrationInput withLinuxLicenseType(LinuxLicenseType linuxLicenseType) {
+        this.linuxLicenseType = linuxLicenseType;
         return this;
     }
 
@@ -679,6 +711,26 @@ public final class VMwareCbtEnableMigrationInput extends EnableMigrationProvider
      */
     public VMwareCbtEnableMigrationInput withTargetNicTags(Map<String, String> targetNicTags) {
         this.targetNicTags = targetNicTags;
+        return this;
+    }
+
+    /**
+     * Get the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @return the userSelectedOSName value.
+     */
+    public String userSelectedOSName() {
+        return this.userSelectedOSName;
+    }
+
+    /**
+     * Set the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @param userSelectedOSName the userSelectedOSName value to set.
+     * @return the VMwareCbtEnableMigrationInput object itself.
+     */
+    public VMwareCbtEnableMigrationInput withUserSelectedOSName(String userSelectedOSName) {
+        this.userSelectedOSName = userSelectedOSName;
         return this;
     }
 

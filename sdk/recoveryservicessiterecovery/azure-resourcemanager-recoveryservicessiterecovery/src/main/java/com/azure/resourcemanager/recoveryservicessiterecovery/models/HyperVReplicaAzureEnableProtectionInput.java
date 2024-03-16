@@ -38,6 +38,12 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     private String osType;
 
     /*
+     * The OS name selected by user.
+     */
+    @JsonProperty(value = "userSelectedOSName")
+    private String userSelectedOSName;
+
+    /*
      * The OS disk VHD id associated with VM.
      */
     @JsonProperty(value = "vhdId")
@@ -129,6 +135,12 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     private SqlServerLicenseType sqlServerLicenseType;
 
     /*
+     * The target VM security profile.
+     */
+    @JsonProperty(value = "targetVmSecurityProfile")
+    private SecurityProfileProperties targetVmSecurityProfile;
+
+    /*
      * The target VM size.
      */
     @JsonProperty(value = "targetVmSize")
@@ -147,7 +159,7 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     private String useManagedDisksForReplication;
 
     /*
-     * The DiskType.
+     * The disk type.
      */
     @JsonProperty(value = "diskType")
     private DiskAccountType diskType;
@@ -255,6 +267,26 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
      */
     public HyperVReplicaAzureEnableProtectionInput withOsType(String osType) {
         this.osType = osType;
+        return this;
+    }
+
+    /**
+     * Get the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @return the userSelectedOSName value.
+     */
+    public String userSelectedOSName() {
+        return this.userSelectedOSName;
+    }
+
+    /**
+     * Set the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @param userSelectedOSName the userSelectedOSName value to set.
+     * @return the HyperVReplicaAzureEnableProtectionInput object itself.
+     */
+    public HyperVReplicaAzureEnableProtectionInput withUserSelectedOSName(String userSelectedOSName) {
+        this.userSelectedOSName = userSelectedOSName;
         return this;
     }
 
@@ -567,6 +599,27 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     }
 
     /**
+     * Get the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @return the targetVmSecurityProfile value.
+     */
+    public SecurityProfileProperties targetVmSecurityProfile() {
+        return this.targetVmSecurityProfile;
+    }
+
+    /**
+     * Set the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @param targetVmSecurityProfile the targetVmSecurityProfile value to set.
+     * @return the HyperVReplicaAzureEnableProtectionInput object itself.
+     */
+    public HyperVReplicaAzureEnableProtectionInput
+        withTargetVmSecurityProfile(SecurityProfileProperties targetVmSecurityProfile) {
+        this.targetVmSecurityProfile = targetVmSecurityProfile;
+        return this;
+    }
+
+    /**
      * Get the targetVmSize property: The target VM size.
      * 
      * @return the targetVmSize value.
@@ -631,7 +684,7 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     }
 
     /**
-     * Get the diskType property: The DiskType.
+     * Get the diskType property: The disk type.
      * 
      * @return the diskType value.
      */
@@ -640,7 +693,7 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     }
 
     /**
-     * Set the diskType property: The DiskType.
+     * Set the diskType property: The disk type.
      * 
      * @param diskType the diskType value to set.
      * @return the HyperVReplicaAzureEnableProtectionInput object itself.
@@ -780,6 +833,9 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     @Override
     public void validate() {
         super.validate();
+        if (targetVmSecurityProfile() != null) {
+            targetVmSecurityProfile().validate();
+        }
         if (disksToIncludeForManagedDisks() != null) {
             disksToIncludeForManagedDisks().forEach(e -> e.validate());
         }

@@ -18,7 +18,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     property = "instanceType",
     defaultImpl = AddDisksProviderSpecificInput.class)
 @JsonTypeName("AddDisksProviderSpecificInput")
-@JsonSubTypes({ @JsonSubTypes.Type(name = "A2A", value = A2AAddDisksInput.class) })
+@JsonSubTypes({
+    @JsonSubTypes.Type(name = "A2A", value = A2AAddDisksInput.class),
+    @JsonSubTypes.Type(name = "InMageRcm", value = InMageRcmAddDisksInput.class) })
 @Immutable
 public class AddDisksProviderSpecificInput {
     /**

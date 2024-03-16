@@ -126,6 +126,48 @@ public final class InMageRcmEnableProtectionInput extends EnableProtectionProvid
     @JsonProperty(value = "multiVmGroupName")
     private String multiVmGroupName;
 
+    /*
+     * The SQL Server license type.
+     */
+    @JsonProperty(value = "sqlServerLicenseType")
+    private SqlServerLicenseType sqlServerLicenseType;
+
+    /*
+     * The target VM tags.
+     */
+    @JsonProperty(value = "targetVmTags")
+    private List<UserCreatedResourceTag> targetVmTags;
+
+    /*
+     * The tags for the seed managed disks.
+     */
+    @JsonProperty(value = "seedManagedDiskTags")
+    private List<UserCreatedResourceTag> seedManagedDiskTags;
+
+    /*
+     * The tags for the target managed disks.
+     */
+    @JsonProperty(value = "targetManagedDiskTags")
+    private List<UserCreatedResourceTag> targetManagedDiskTags;
+
+    /*
+     * The tags for the target NICs.
+     */
+    @JsonProperty(value = "targetNicTags")
+    private List<UserCreatedResourceTag> targetNicTags;
+
+    /*
+     * The OS name selected by user.
+     */
+    @JsonProperty(value = "userSelectedOSName")
+    private String userSelectedOSName;
+
+    /*
+     * The target VM security profile.
+     */
+    @JsonProperty(value = "targetVmSecurityProfile")
+    private SecurityProfileProperties targetVmSecurityProfile;
+
     /**
      * Creates an instance of InMageRcmEnableProtectionInput class.
      */
@@ -494,6 +536,148 @@ public final class InMageRcmEnableProtectionInput extends EnableProtectionProvid
     }
 
     /**
+     * Get the sqlServerLicenseType property: The SQL Server license type.
+     * 
+     * @return the sqlServerLicenseType value.
+     */
+    public SqlServerLicenseType sqlServerLicenseType() {
+        return this.sqlServerLicenseType;
+    }
+
+    /**
+     * Set the sqlServerLicenseType property: The SQL Server license type.
+     * 
+     * @param sqlServerLicenseType the sqlServerLicenseType value to set.
+     * @return the InMageRcmEnableProtectionInput object itself.
+     */
+    public InMageRcmEnableProtectionInput withSqlServerLicenseType(SqlServerLicenseType sqlServerLicenseType) {
+        this.sqlServerLicenseType = sqlServerLicenseType;
+        return this;
+    }
+
+    /**
+     * Get the targetVmTags property: The target VM tags.
+     * 
+     * @return the targetVmTags value.
+     */
+    public List<UserCreatedResourceTag> targetVmTags() {
+        return this.targetVmTags;
+    }
+
+    /**
+     * Set the targetVmTags property: The target VM tags.
+     * 
+     * @param targetVmTags the targetVmTags value to set.
+     * @return the InMageRcmEnableProtectionInput object itself.
+     */
+    public InMageRcmEnableProtectionInput withTargetVmTags(List<UserCreatedResourceTag> targetVmTags) {
+        this.targetVmTags = targetVmTags;
+        return this;
+    }
+
+    /**
+     * Get the seedManagedDiskTags property: The tags for the seed managed disks.
+     * 
+     * @return the seedManagedDiskTags value.
+     */
+    public List<UserCreatedResourceTag> seedManagedDiskTags() {
+        return this.seedManagedDiskTags;
+    }
+
+    /**
+     * Set the seedManagedDiskTags property: The tags for the seed managed disks.
+     * 
+     * @param seedManagedDiskTags the seedManagedDiskTags value to set.
+     * @return the InMageRcmEnableProtectionInput object itself.
+     */
+    public InMageRcmEnableProtectionInput withSeedManagedDiskTags(List<UserCreatedResourceTag> seedManagedDiskTags) {
+        this.seedManagedDiskTags = seedManagedDiskTags;
+        return this;
+    }
+
+    /**
+     * Get the targetManagedDiskTags property: The tags for the target managed disks.
+     * 
+     * @return the targetManagedDiskTags value.
+     */
+    public List<UserCreatedResourceTag> targetManagedDiskTags() {
+        return this.targetManagedDiskTags;
+    }
+
+    /**
+     * Set the targetManagedDiskTags property: The tags for the target managed disks.
+     * 
+     * @param targetManagedDiskTags the targetManagedDiskTags value to set.
+     * @return the InMageRcmEnableProtectionInput object itself.
+     */
+    public InMageRcmEnableProtectionInput
+        withTargetManagedDiskTags(List<UserCreatedResourceTag> targetManagedDiskTags) {
+        this.targetManagedDiskTags = targetManagedDiskTags;
+        return this;
+    }
+
+    /**
+     * Get the targetNicTags property: The tags for the target NICs.
+     * 
+     * @return the targetNicTags value.
+     */
+    public List<UserCreatedResourceTag> targetNicTags() {
+        return this.targetNicTags;
+    }
+
+    /**
+     * Set the targetNicTags property: The tags for the target NICs.
+     * 
+     * @param targetNicTags the targetNicTags value to set.
+     * @return the InMageRcmEnableProtectionInput object itself.
+     */
+    public InMageRcmEnableProtectionInput withTargetNicTags(List<UserCreatedResourceTag> targetNicTags) {
+        this.targetNicTags = targetNicTags;
+        return this;
+    }
+
+    /**
+     * Get the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @return the userSelectedOSName value.
+     */
+    public String userSelectedOSName() {
+        return this.userSelectedOSName;
+    }
+
+    /**
+     * Set the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @param userSelectedOSName the userSelectedOSName value to set.
+     * @return the InMageRcmEnableProtectionInput object itself.
+     */
+    public InMageRcmEnableProtectionInput withUserSelectedOSName(String userSelectedOSName) {
+        this.userSelectedOSName = userSelectedOSName;
+        return this;
+    }
+
+    /**
+     * Get the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @return the targetVmSecurityProfile value.
+     */
+    public SecurityProfileProperties targetVmSecurityProfile() {
+        return this.targetVmSecurityProfile;
+    }
+
+    /**
+     * Set the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @param targetVmSecurityProfile the targetVmSecurityProfile value to set.
+     * @return the InMageRcmEnableProtectionInput object itself.
+     */
+    public InMageRcmEnableProtectionInput
+        withTargetVmSecurityProfile(SecurityProfileProperties targetVmSecurityProfile) {
+        this.targetVmSecurityProfile = targetVmSecurityProfile;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -518,6 +702,21 @@ public final class InMageRcmEnableProtectionInput extends EnableProtectionProvid
         if (processServerId() == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 "Missing required property processServerId in model InMageRcmEnableProtectionInput"));
+        }
+        if (targetVmTags() != null) {
+            targetVmTags().forEach(e -> e.validate());
+        }
+        if (seedManagedDiskTags() != null) {
+            seedManagedDiskTags().forEach(e -> e.validate());
+        }
+        if (targetManagedDiskTags() != null) {
+            targetManagedDiskTags().forEach(e -> e.validate());
+        }
+        if (targetNicTags() != null) {
+            targetNicTags().forEach(e -> e.validate());
+        }
+        if (targetVmSecurityProfile() != null) {
+            targetVmSecurityProfile().validate();
         }
     }
 

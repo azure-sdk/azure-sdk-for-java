@@ -230,6 +230,12 @@ public final class HyperVReplicaAzureReplicationDetails extends ReplicationProvi
     @JsonProperty(value = "allAvailableOSUpgradeConfigurations")
     private List<OSUpgradeSupportedVersions> allAvailableOSUpgradeConfigurations;
 
+    /*
+     * The target VM security profile.
+     */
+    @JsonProperty(value = "targetVmSecurityProfile")
+    private SecurityProfileProperties targetVmSecurityProfile;
+
     /**
      * Creates an instance of HyperVReplicaAzureReplicationDetails class.
      */
@@ -920,6 +926,27 @@ public final class HyperVReplicaAzureReplicationDetails extends ReplicationProvi
     }
 
     /**
+     * Get the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @return the targetVmSecurityProfile value.
+     */
+    public SecurityProfileProperties targetVmSecurityProfile() {
+        return this.targetVmSecurityProfile;
+    }
+
+    /**
+     * Set the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @param targetVmSecurityProfile the targetVmSecurityProfile value to set.
+     * @return the HyperVReplicaAzureReplicationDetails object itself.
+     */
+    public HyperVReplicaAzureReplicationDetails
+        withTargetVmSecurityProfile(SecurityProfileProperties targetVmSecurityProfile) {
+        this.targetVmSecurityProfile = targetVmSecurityProfile;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -944,6 +971,9 @@ public final class HyperVReplicaAzureReplicationDetails extends ReplicationProvi
         }
         if (allAvailableOSUpgradeConfigurations() != null) {
             allAvailableOSUpgradeConfigurations().forEach(e -> e.validate());
+        }
+        if (targetVmSecurityProfile() != null) {
+            targetVmSecurityProfile().validate();
         }
     }
 }
