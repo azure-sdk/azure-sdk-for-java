@@ -264,6 +264,29 @@ public final class MigrationResourceForPatch {
     }
 
     /**
+     * Get the migrateRoles property: To migrate roles and permissions we need to send this flag as True.
+     * 
+     * @return the migrateRoles value.
+     */
+    public MigrateRolesEnum migrateRoles() {
+        return this.innerProperties() == null ? null : this.innerProperties().migrateRoles();
+    }
+
+    /**
+     * Set the migrateRoles property: To migrate roles and permissions we need to send this flag as True.
+     * 
+     * @param migrateRoles the migrateRoles value to set.
+     * @return the MigrationResourceForPatch object itself.
+     */
+    public MigrationResourceForPatch withMigrateRoles(MigrateRolesEnum migrateRoles) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new MigrationResourcePropertiesForPatch();
+        }
+        this.innerProperties().withMigrateRoles(migrateRoles);
+        return this;
+    }
+
+    /**
      * Get the startDataMigration property: Indicates whether the data migration should start right away.
      * 
      * @return the startDataMigration value.
