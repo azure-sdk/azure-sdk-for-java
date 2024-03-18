@@ -17,7 +17,7 @@ import java.util.Arrays;
  */
 public final class VolumeGroupsCreateSamples {
     /*
-     * x-ms-original-file: specification/netapp/resource-manager/Microsoft.NetApp/preview/2023-05-01-preview/examples/
+     * x-ms-original-file: specification/netapp/resource-manager/Microsoft.NetApp/preview/2023-07-01-preview/examples/
      * VolumeGroups_Create_SapHana.json
      */
     /**
@@ -120,7 +120,7 @@ public final class VolumeGroupsCreateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/netapp/resource-manager/Microsoft.NetApp/preview/2023-05-01-preview/examples/
+     * x-ms-original-file: specification/netapp/resource-manager/Microsoft.NetApp/preview/2023-07-01-preview/examples/
      * VolumeGroups_Create_Oracle.json
      */
     /**
