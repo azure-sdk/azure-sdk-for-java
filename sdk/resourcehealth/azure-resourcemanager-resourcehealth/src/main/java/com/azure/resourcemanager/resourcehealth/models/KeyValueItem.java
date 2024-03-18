@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Key value tuple. */
+/**
+ * Key value tuple.
+ */
 @Immutable
 public final class KeyValueItem {
     /*
@@ -22,13 +24,15 @@ public final class KeyValueItem {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private String value;
 
-    /** Creates an instance of KeyValueItem class. */
+    /**
+     * Creates an instance of KeyValueItem class.
+     */
     public KeyValueItem() {
     }
 
     /**
      * Get the key property: Key of tuple.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -37,7 +41,7 @@ public final class KeyValueItem {
 
     /**
      * Get the value property: Value of tuple.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -46,7 +50,7 @@ public final class KeyValueItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Operation available in the Microsoft.ResourceHealth resource provider. */
+/**
+ * Operation available in the Microsoft.ResourceHealth resource provider.
+ */
 @Fluent
 public final class Operation {
     /*
@@ -22,13 +24,15 @@ public final class Operation {
     @JsonProperty(value = "display")
     private OperationDisplay display;
 
-    /** Creates an instance of Operation class. */
+    /**
+     * Creates an instance of Operation class.
+     */
     public Operation() {
     }
 
     /**
      * Get the name property: Name of the operation.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class Operation {
 
     /**
      * Set the name property: Name of the operation.
-     *
+     * 
      * @param name the name value to set.
      * @return the Operation object itself.
      */
@@ -48,7 +52,7 @@ public final class Operation {
 
     /**
      * Get the display property: Properties of the operation.
-     *
+     * 
      * @return the display value.
      */
     public OperationDisplay display() {
@@ -57,7 +61,7 @@ public final class Operation {
 
     /**
      * Set the display property: Properties of the operation.
-     *
+     * 
      * @param display the display value to set.
      * @return the Operation object itself.
      */
@@ -68,7 +72,7 @@ public final class Operation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

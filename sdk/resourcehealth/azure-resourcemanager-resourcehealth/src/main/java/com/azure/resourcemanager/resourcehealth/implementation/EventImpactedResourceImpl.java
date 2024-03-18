@@ -16,8 +16,7 @@ public final class EventImpactedResourceImpl implements EventImpactedResource {
 
     private final com.azure.resourcemanager.resourcehealth.ResourceHealthManager serviceManager;
 
-    EventImpactedResourceImpl(
-        EventImpactedResourceInner innerObject,
+    EventImpactedResourceImpl(EventImpactedResourceInner innerObject,
         com.azure.resourcemanager.resourcehealth.ResourceHealthManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -49,26 +48,6 @@ public final class EventImpactedResourceImpl implements EventImpactedResource {
 
     public String targetRegion() {
         return this.innerModel().targetRegion();
-    }
-
-    public String resourceName() {
-        return this.innerModel().resourceName();
-    }
-
-    public String resourceGroup() {
-        return this.innerModel().resourceGroup();
-    }
-
-    public String status() {
-        return this.innerModel().status();
-    }
-
-    public String maintenanceStartTime() {
-        return this.innerModel().maintenanceStartTime();
-    }
-
-    public String maintenanceEndTime() {
-        return this.innerModel().maintenanceEndTime();
     }
 
     public List<KeyValueItem> info() {

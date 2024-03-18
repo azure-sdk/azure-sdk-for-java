@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Azure region impacted by the service health event. */
+/**
+ * Azure region impacted by the service health event.
+ */
 @Fluent
 public final class ImpactedServiceRegion {
     /*
@@ -48,13 +50,15 @@ public final class ImpactedServiceRegion {
     @JsonProperty(value = "updates")
     private List<Update> updates;
 
-    /** Creates an instance of ImpactedServiceRegion class. */
+    /**
+     * Creates an instance of ImpactedServiceRegion class.
+     */
     public ImpactedServiceRegion() {
     }
 
     /**
      * Get the impactedRegion property: Impacted region name.
-     *
+     * 
      * @return the impactedRegion value.
      */
     public String impactedRegion() {
@@ -63,7 +67,7 @@ public final class ImpactedServiceRegion {
 
     /**
      * Set the impactedRegion property: Impacted region name.
-     *
+     * 
      * @param impactedRegion the impactedRegion value to set.
      * @return the ImpactedServiceRegion object itself.
      */
@@ -74,7 +78,7 @@ public final class ImpactedServiceRegion {
 
     /**
      * Get the status property: Current status of event in the region.
-     *
+     * 
      * @return the status value.
      */
     public EventStatusValues status() {
@@ -83,7 +87,7 @@ public final class ImpactedServiceRegion {
 
     /**
      * Set the status property: Current status of event in the region.
-     *
+     * 
      * @param status the status value to set.
      * @return the ImpactedServiceRegion object itself.
      */
@@ -94,7 +98,7 @@ public final class ImpactedServiceRegion {
 
     /**
      * Get the impactedSubscriptions property: List subscription impacted by the service health event.
-     *
+     * 
      * @return the impactedSubscriptions value.
      */
     public List<String> impactedSubscriptions() {
@@ -103,7 +107,7 @@ public final class ImpactedServiceRegion {
 
     /**
      * Set the impactedSubscriptions property: List subscription impacted by the service health event.
-     *
+     * 
      * @param impactedSubscriptions the impactedSubscriptions value to set.
      * @return the ImpactedServiceRegion object itself.
      */
@@ -114,7 +118,7 @@ public final class ImpactedServiceRegion {
 
     /**
      * Get the impactedTenants property: List tenant impacted by the service health event.
-     *
+     * 
      * @return the impactedTenants value.
      */
     public List<String> impactedTenants() {
@@ -123,7 +127,7 @@ public final class ImpactedServiceRegion {
 
     /**
      * Set the impactedTenants property: List tenant impacted by the service health event.
-     *
+     * 
      * @param impactedTenants the impactedTenants value to set.
      * @return the ImpactedServiceRegion object itself.
      */
@@ -133,8 +137,9 @@ public final class ImpactedServiceRegion {
     }
 
     /**
-     * Get the lastUpdateTime property: It provides the Timestamp for when the last update for the service health event.
-     *
+     * Get the lastUpdateTime property: It provides the Timestamp for when the last update for the service health
+     * event.
+     * 
      * @return the lastUpdateTime value.
      */
     public OffsetDateTime lastUpdateTime() {
@@ -142,8 +147,9 @@ public final class ImpactedServiceRegion {
     }
 
     /**
-     * Set the lastUpdateTime property: It provides the Timestamp for when the last update for the service health event.
-     *
+     * Set the lastUpdateTime property: It provides the Timestamp for when the last update for the service health
+     * event.
+     * 
      * @param lastUpdateTime the lastUpdateTime value to set.
      * @return the ImpactedServiceRegion object itself.
      */
@@ -154,7 +160,7 @@ public final class ImpactedServiceRegion {
 
     /**
      * Get the updates property: List of updates for given service health event.
-     *
+     * 
      * @return the updates value.
      */
     public List<Update> updates() {
@@ -163,7 +169,7 @@ public final class ImpactedServiceRegion {
 
     /**
      * Set the updates property: List of updates for given service health event.
-     *
+     * 
      * @param updates the updates value to set.
      * @return the ImpactedServiceRegion object itself.
      */
@@ -174,7 +180,7 @@ public final class ImpactedServiceRegion {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

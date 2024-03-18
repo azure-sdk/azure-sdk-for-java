@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Additional information. */
+/**
+ * Additional information.
+ */
 @Fluent
 public final class EventPropertiesAdditionalInformation {
     /*
@@ -16,13 +18,15 @@ public final class EventPropertiesAdditionalInformation {
     @JsonProperty(value = "message")
     private String message;
 
-    /** Creates an instance of EventPropertiesAdditionalInformation class. */
+    /**
+     * Creates an instance of EventPropertiesAdditionalInformation class.
+     */
     public EventPropertiesAdditionalInformation() {
     }
 
     /**
      * Get the message property: Additional information Message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -31,7 +35,7 @@ public final class EventPropertiesAdditionalInformation {
 
     /**
      * Set the message property: Additional information Message.
-     *
+     * 
      * @param message the message value to set.
      * @return the EventPropertiesAdditionalInformation object itself.
      */
@@ -42,7 +46,7 @@ public final class EventPropertiesAdditionalInformation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

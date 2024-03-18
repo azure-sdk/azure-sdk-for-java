@@ -11,7 +11,9 @@ import com.azure.resourcemanager.resourcehealth.models.KeyValueItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Impacted resource for an event. */
+/**
+ * Impacted resource for an event.
+ */
 @Fluent
 public final class EventImpactedResourceInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class EventImpactedResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of EventImpactedResourceInner class. */
+    /**
+     * Creates an instance of EventImpactedResourceInner class.
+     */
     public EventImpactedResourceInner() {
     }
 
     /**
      * Get the innerProperties property: Properties of impacted resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private EventImpactedResourceProperties innerProperties() {
@@ -41,7 +45,7 @@ public final class EventImpactedResourceInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -50,7 +54,7 @@ public final class EventImpactedResourceInner extends ProxyResource {
 
     /**
      * Get the targetResourceType property: Resource type within Microsoft cloud.
-     *
+     * 
      * @return the targetResourceType value.
      */
     public String targetResourceType() {
@@ -59,7 +63,7 @@ public final class EventImpactedResourceInner extends ProxyResource {
 
     /**
      * Get the targetResourceId property: Identity for resource within Microsoft cloud.
-     *
+     * 
      * @return the targetResourceId value.
      */
     public String targetResourceId() {
@@ -68,7 +72,7 @@ public final class EventImpactedResourceInner extends ProxyResource {
 
     /**
      * Get the targetRegion property: Impacted resource region name.
-     *
+     * 
      * @return the targetRegion value.
      */
     public String targetRegion() {
@@ -76,53 +80,8 @@ public final class EventImpactedResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the resourceName property: Resource name of the impacted resource.
-     *
-     * @return the resourceName value.
-     */
-    public String resourceName() {
-        return this.innerProperties() == null ? null : this.innerProperties().resourceName();
-    }
-
-    /**
-     * Get the resourceGroup property: Resource group name of the impacted resource.
-     *
-     * @return the resourceGroup value.
-     */
-    public String resourceGroup() {
-        return this.innerProperties() == null ? null : this.innerProperties().resourceGroup();
-    }
-
-    /**
-     * Get the status property: Status of the impacted resource.
-     *
-     * @return the status value.
-     */
-    public String status() {
-        return this.innerProperties() == null ? null : this.innerProperties().status();
-    }
-
-    /**
-     * Get the maintenanceStartTime property: Start time of maintenance for the impacted resource.
-     *
-     * @return the maintenanceStartTime value.
-     */
-    public String maintenanceStartTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().maintenanceStartTime();
-    }
-
-    /**
-     * Get the maintenanceEndTime property: End time of maintenance for the impacted resource.
-     *
-     * @return the maintenanceEndTime value.
-     */
-    public String maintenanceEndTime() {
-        return this.innerProperties() == null ? null : this.innerProperties().maintenanceEndTime();
-    }
-
-    /**
      * Get the info property: Additional information.
-     *
+     * 
      * @return the info value.
      */
     public List<KeyValueItem> info() {
@@ -131,7 +90,7 @@ public final class EventImpactedResourceInner extends ProxyResource {
 
     /**
      * Set the info property: Additional information.
-     *
+     * 
      * @param info the info value to set.
      * @return the EventImpactedResourceInner object itself.
      */
@@ -145,7 +104,7 @@ public final class EventImpactedResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

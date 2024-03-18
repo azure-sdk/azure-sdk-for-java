@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Recommended actions of event. */
+/**
+ * Recommended actions of event.
+ */
 @Fluent
 public final class EventPropertiesRecommendedActions {
     /*
@@ -29,13 +31,15 @@ public final class EventPropertiesRecommendedActions {
     @JsonProperty(value = "localeCode")
     private String localeCode;
 
-    /** Creates an instance of EventPropertiesRecommendedActions class. */
+    /**
+     * Creates an instance of EventPropertiesRecommendedActions class.
+     */
     public EventPropertiesRecommendedActions() {
     }
 
     /**
      * Get the message property: Recommended action title for the service health event.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -44,7 +48,7 @@ public final class EventPropertiesRecommendedActions {
 
     /**
      * Set the message property: Recommended action title for the service health event.
-     *
+     * 
      * @param message the message value to set.
      * @return the EventPropertiesRecommendedActions object itself.
      */
@@ -55,7 +59,7 @@ public final class EventPropertiesRecommendedActions {
 
     /**
      * Get the actions property: Recommended actions for the service health event.
-     *
+     * 
      * @return the actions value.
      */
     public List<EventPropertiesRecommendedActionsItem> actions() {
@@ -64,7 +68,7 @@ public final class EventPropertiesRecommendedActions {
 
     /**
      * Set the actions property: Recommended actions for the service health event.
-     *
+     * 
      * @param actions the actions value to set.
      * @return the EventPropertiesRecommendedActions object itself.
      */
@@ -75,7 +79,7 @@ public final class EventPropertiesRecommendedActions {
 
     /**
      * Get the localeCode property: Recommended action locale for the service health event.
-     *
+     * 
      * @return the localeCode value.
      */
     public String localeCode() {
@@ -84,7 +88,7 @@ public final class EventPropertiesRecommendedActions {
 
     /**
      * Set the localeCode property: Recommended action locale for the service health event.
-     *
+     * 
      * @param localeCode the localeCode value to set.
      * @return the EventPropertiesRecommendedActions object itself.
      */
@@ -95,7 +99,7 @@ public final class EventPropertiesRecommendedActions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

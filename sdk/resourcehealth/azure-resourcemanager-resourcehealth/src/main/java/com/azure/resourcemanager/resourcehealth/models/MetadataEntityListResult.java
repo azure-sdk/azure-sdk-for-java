@@ -9,7 +9,9 @@ import com.azure.resourcemanager.resourcehealth.fluent.models.MetadataEntityInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of metadata entities. */
+/**
+ * The list of metadata entities.
+ */
 @Fluent
 public final class MetadataEntityListResult {
     /*
@@ -24,13 +26,15 @@ public final class MetadataEntityListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of MetadataEntityListResult class. */
+    /**
+     * Creates an instance of MetadataEntityListResult class.
+     */
     public MetadataEntityListResult() {
     }
 
     /**
      * Get the value property: The list of metadata entities.
-     *
+     * 
      * @return the value value.
      */
     public List<MetadataEntityInner> value() {
@@ -39,7 +43,7 @@ public final class MetadataEntityListResult {
 
     /**
      * Set the value property: The list of metadata entities.
-     *
+     * 
      * @param value the value value to set.
      * @return the MetadataEntityListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class MetadataEntityListResult {
 
     /**
      * Get the nextLink property: The link used to get the next page of metadata.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class MetadataEntityListResult {
 
     /**
      * Set the nextLink property: The link used to get the next page of metadata.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the MetadataEntityListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class MetadataEntityListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

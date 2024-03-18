@@ -10,7 +10,9 @@ import com.azure.resourcemanager.resourcehealth.fluent.models.EventImpactedResou
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The List of eventImpactedResources operation response. */
+/**
+ * The List of eventImpactedResources operation response.
+ */
 @Fluent
 public final class EventImpactedResourceListResult {
     /*
@@ -26,13 +28,15 @@ public final class EventImpactedResourceListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of EventImpactedResourceListResult class. */
+    /**
+     * Creates an instance of EventImpactedResourceListResult class.
+     */
     public EventImpactedResourceListResult() {
     }
 
     /**
      * Get the value property: The list of eventImpactedResources.
-     *
+     * 
      * @return the value value.
      */
     public List<EventImpactedResourceInner> value() {
@@ -41,7 +45,7 @@ public final class EventImpactedResourceListResult {
 
     /**
      * Set the value property: The list of eventImpactedResources.
-     *
+     * 
      * @param value the value value to set.
      * @return the EventImpactedResourceListResult object itself.
      */
@@ -53,7 +57,7 @@ public final class EventImpactedResourceListResult {
     /**
      * Get the nextLink property: The URI to fetch the next page of events. Call ListNext() with this URI to fetch the
      * next page of impacted resource.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +67,7 @@ public final class EventImpactedResourceListResult {
     /**
      * Set the nextLink property: The URI to fetch the next page of events. Call ListNext() with this URI to fetch the
      * next page of impacted resource.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the EventImpactedResourceListResult object itself.
      */
@@ -74,15 +78,13 @@ public final class EventImpactedResourceListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model EventImpactedResourceListResult"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model EventImpactedResourceListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

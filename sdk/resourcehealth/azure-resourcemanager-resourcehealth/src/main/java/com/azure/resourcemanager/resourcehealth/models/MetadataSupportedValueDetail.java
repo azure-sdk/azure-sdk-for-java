@@ -8,14 +8,28 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The metadata supported value detail. */
+/**
+ * The metadata supported value detail.
+ */
 @Fluent
 public final class MetadataSupportedValueDetail {
     /*
-     * The id.
+     * The id of the metadata value
      */
     @JsonProperty(value = "id")
     private String id;
+
+    /*
+     * The previous value of the id field incase the data has changed.
+     */
+    @JsonProperty(value = "previousId")
+    private String previousId;
+
+    /*
+     * The permanent guid for the service. Used when the id is a service name.
+     */
+    @JsonProperty(value = "serviceGuid")
+    private String serviceGuid;
 
     /*
      * The display name.
@@ -29,13 +43,15 @@ public final class MetadataSupportedValueDetail {
     @JsonProperty(value = "resourceTypes")
     private List<String> resourceTypes;
 
-    /** Creates an instance of MetadataSupportedValueDetail class. */
+    /**
+     * Creates an instance of MetadataSupportedValueDetail class.
+     */
     public MetadataSupportedValueDetail() {
     }
 
     /**
-     * Get the id property: The id.
-     *
+     * Get the id property: The id of the metadata value.
+     * 
      * @return the id value.
      */
     public String id() {
@@ -43,8 +59,8 @@ public final class MetadataSupportedValueDetail {
     }
 
     /**
-     * Set the id property: The id.
-     *
+     * Set the id property: The id of the metadata value.
+     * 
      * @param id the id value to set.
      * @return the MetadataSupportedValueDetail object itself.
      */
@@ -54,8 +70,48 @@ public final class MetadataSupportedValueDetail {
     }
 
     /**
+     * Get the previousId property: The previous value of the id field incase the data has changed.
+     * 
+     * @return the previousId value.
+     */
+    public String previousId() {
+        return this.previousId;
+    }
+
+    /**
+     * Set the previousId property: The previous value of the id field incase the data has changed.
+     * 
+     * @param previousId the previousId value to set.
+     * @return the MetadataSupportedValueDetail object itself.
+     */
+    public MetadataSupportedValueDetail withPreviousId(String previousId) {
+        this.previousId = previousId;
+        return this;
+    }
+
+    /**
+     * Get the serviceGuid property: The permanent guid for the service. Used when the id is a service name.
+     * 
+     * @return the serviceGuid value.
+     */
+    public String serviceGuid() {
+        return this.serviceGuid;
+    }
+
+    /**
+     * Set the serviceGuid property: The permanent guid for the service. Used when the id is a service name.
+     * 
+     * @param serviceGuid the serviceGuid value to set.
+     * @return the MetadataSupportedValueDetail object itself.
+     */
+    public MetadataSupportedValueDetail withServiceGuid(String serviceGuid) {
+        this.serviceGuid = serviceGuid;
+        return this;
+    }
+
+    /**
      * Get the displayName property: The display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -64,7 +120,7 @@ public final class MetadataSupportedValueDetail {
 
     /**
      * Set the displayName property: The display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MetadataSupportedValueDetail object itself.
      */
@@ -75,7 +131,7 @@ public final class MetadataSupportedValueDetail {
 
     /**
      * Get the resourceTypes property: The list of associated resource types.
-     *
+     * 
      * @return the resourceTypes value.
      */
     public List<String> resourceTypes() {
@@ -84,7 +140,7 @@ public final class MetadataSupportedValueDetail {
 
     /**
      * Set the resourceTypes property: The list of associated resource types.
-     *
+     * 
      * @param resourceTypes the resourceTypes value to set.
      * @return the MetadataSupportedValueDetail object itself.
      */
@@ -95,7 +151,7 @@ public final class MetadataSupportedValueDetail {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Lists the service impacting events that may be affecting the health of the resource. */
+/**
+ * Lists the service impacting events that may be affecting the health of the resource.
+ */
 @Fluent
 public final class ServiceImpactingEvent {
     /*
@@ -41,13 +43,15 @@ public final class ServiceImpactingEvent {
     @JsonProperty(value = "incidentProperties")
     private ServiceImpactingEventIncidentProperties incidentProperties;
 
-    /** Creates an instance of ServiceImpactingEvent class. */
+    /**
+     * Creates an instance of ServiceImpactingEvent class.
+     */
     public ServiceImpactingEvent() {
     }
 
     /**
      * Get the eventStartTime property: Timestamp for when the event started.
-     *
+     * 
      * @return the eventStartTime value.
      */
     public OffsetDateTime eventStartTime() {
@@ -56,7 +60,7 @@ public final class ServiceImpactingEvent {
 
     /**
      * Set the eventStartTime property: Timestamp for when the event started.
-     *
+     * 
      * @param eventStartTime the eventStartTime value to set.
      * @return the ServiceImpactingEvent object itself.
      */
@@ -67,7 +71,7 @@ public final class ServiceImpactingEvent {
 
     /**
      * Get the eventStatusLastModifiedTime property: Timestamp for when event was submitted/detected.
-     *
+     * 
      * @return the eventStatusLastModifiedTime value.
      */
     public OffsetDateTime eventStatusLastModifiedTime() {
@@ -76,7 +80,7 @@ public final class ServiceImpactingEvent {
 
     /**
      * Set the eventStatusLastModifiedTime property: Timestamp for when event was submitted/detected.
-     *
+     * 
      * @param eventStatusLastModifiedTime the eventStatusLastModifiedTime value to set.
      * @return the ServiceImpactingEvent object itself.
      */
@@ -87,7 +91,7 @@ public final class ServiceImpactingEvent {
 
     /**
      * Get the correlationId property: Correlation id for the event.
-     *
+     * 
      * @return the correlationId value.
      */
     public String correlationId() {
@@ -96,7 +100,7 @@ public final class ServiceImpactingEvent {
 
     /**
      * Set the correlationId property: Correlation id for the event.
-     *
+     * 
      * @param correlationId the correlationId value to set.
      * @return the ServiceImpactingEvent object itself.
      */
@@ -107,7 +111,7 @@ public final class ServiceImpactingEvent {
 
     /**
      * Get the status property: Status of the service impacting event.
-     *
+     * 
      * @return the status value.
      */
     public ServiceImpactingEventStatus status() {
@@ -116,7 +120,7 @@ public final class ServiceImpactingEvent {
 
     /**
      * Set the status property: Status of the service impacting event.
-     *
+     * 
      * @param status the status value to set.
      * @return the ServiceImpactingEvent object itself.
      */
@@ -127,7 +131,7 @@ public final class ServiceImpactingEvent {
 
     /**
      * Get the incidentProperties property: Properties of the service impacting event.
-     *
+     * 
      * @return the incidentProperties value.
      */
     public ServiceImpactingEventIncidentProperties incidentProperties() {
@@ -136,7 +140,7 @@ public final class ServiceImpactingEvent {
 
     /**
      * Set the incidentProperties property: Properties of the service impacting event.
-     *
+     * 
      * @param incidentProperties the incidentProperties value to set.
      * @return the ServiceImpactingEvent object itself.
      */
@@ -147,7 +151,7 @@ public final class ServiceImpactingEvent {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

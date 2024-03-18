@@ -10,7 +10,9 @@ import com.azure.resourcemanager.resourcehealth.fluent.models.AvailabilityStatus
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The List availabilityStatus operation response. */
+/**
+ * The List availabilityStatus operation response.
+ */
 @Fluent
 public final class AvailabilityStatusListResult {
     /*
@@ -26,13 +28,15 @@ public final class AvailabilityStatusListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of AvailabilityStatusListResult class. */
+    /**
+     * Creates an instance of AvailabilityStatusListResult class.
+     */
     public AvailabilityStatusListResult() {
     }
 
     /**
      * Get the value property: The list of availabilityStatuses.
-     *
+     * 
      * @return the value value.
      */
     public List<AvailabilityStatusInner> value() {
@@ -41,7 +45,7 @@ public final class AvailabilityStatusListResult {
 
     /**
      * Set the value property: The list of availabilityStatuses.
-     *
+     * 
      * @param value the value value to set.
      * @return the AvailabilityStatusListResult object itself.
      */
@@ -53,7 +57,7 @@ public final class AvailabilityStatusListResult {
     /**
      * Get the nextLink property: The URI to fetch the next page of availabilityStatuses. Call ListNext() with this URI
      * to fetch the next page of availabilityStatuses.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +67,7 @@ public final class AvailabilityStatusListResult {
     /**
      * Set the nextLink property: The URI to fetch the next page of availabilityStatuses. Call ListNext() with this URI
      * to fetch the next page of availabilityStatuses.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the AvailabilityStatusListResult object itself.
      */
@@ -74,15 +78,13 @@ public final class AvailabilityStatusListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model AvailabilityStatusListResult"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model AvailabilityStatusListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

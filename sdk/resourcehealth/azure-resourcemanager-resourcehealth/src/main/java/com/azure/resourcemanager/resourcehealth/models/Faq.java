@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Frequently asked question for the service health event. */
+/**
+ * Frequently asked question for the service health event.
+ */
 @Fluent
 public final class Faq {
     /*
@@ -28,13 +30,15 @@ public final class Faq {
     @JsonProperty(value = "localeCode")
     private String localeCode;
 
-    /** Creates an instance of Faq class. */
+    /**
+     * Creates an instance of Faq class.
+     */
     public Faq() {
     }
 
     /**
      * Get the question property: FAQ question for the service health event.
-     *
+     * 
      * @return the question value.
      */
     public String question() {
@@ -43,7 +47,7 @@ public final class Faq {
 
     /**
      * Set the question property: FAQ question for the service health event.
-     *
+     * 
      * @param question the question value to set.
      * @return the Faq object itself.
      */
@@ -54,7 +58,7 @@ public final class Faq {
 
     /**
      * Get the answer property: FAQ answer for the service health event.
-     *
+     * 
      * @return the answer value.
      */
     public String answer() {
@@ -63,7 +67,7 @@ public final class Faq {
 
     /**
      * Set the answer property: FAQ answer for the service health event.
-     *
+     * 
      * @param answer the answer value to set.
      * @return the Faq object itself.
      */
@@ -74,7 +78,7 @@ public final class Faq {
 
     /**
      * Get the localeCode property: FAQ locale for the service health event.
-     *
+     * 
      * @return the localeCode value.
      */
     public String localeCode() {
@@ -83,7 +87,7 @@ public final class Faq {
 
     /**
      * Set the localeCode property: FAQ locale for the service health event.
-     *
+     * 
      * @param localeCode the localeCode value to set.
      * @return the Faq object itself.
      */
@@ -94,7 +98,7 @@ public final class Faq {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

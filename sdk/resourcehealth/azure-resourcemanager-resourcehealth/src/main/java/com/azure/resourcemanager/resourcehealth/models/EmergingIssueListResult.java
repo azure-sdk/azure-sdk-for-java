@@ -9,7 +9,9 @@ import com.azure.resourcemanager.resourcehealth.fluent.models.EmergingIssuesGetR
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of emerging issues. */
+/**
+ * The list of emerging issues.
+ */
 @Fluent
 public final class EmergingIssueListResult {
     /*
@@ -24,13 +26,15 @@ public final class EmergingIssueListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of EmergingIssueListResult class. */
+    /**
+     * Creates an instance of EmergingIssueListResult class.
+     */
     public EmergingIssueListResult() {
     }
 
     /**
      * Get the value property: The list of emerging issues.
-     *
+     * 
      * @return the value value.
      */
     public List<EmergingIssuesGetResultInner> value() {
@@ -39,7 +43,7 @@ public final class EmergingIssueListResult {
 
     /**
      * Set the value property: The list of emerging issues.
-     *
+     * 
      * @param value the value value to set.
      * @return the EmergingIssueListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class EmergingIssueListResult {
 
     /**
      * Get the nextLink property: The link used to get the next page of emerging issues.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class EmergingIssueListResult {
 
     /**
      * Set the nextLink property: The link used to get the next page of emerging issues.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the EmergingIssueListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class EmergingIssueListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

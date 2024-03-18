@@ -10,7 +10,9 @@ import com.azure.resourcemanager.resourcehealth.fluent.models.EventInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The List events operation response. */
+/**
+ * The List events operation response.
+ */
 @Fluent
 public final class Events {
     /*
@@ -25,13 +27,15 @@ public final class Events {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of Events class. */
+    /**
+     * Creates an instance of Events class.
+     */
     public Events() {
     }
 
     /**
      * Get the value property: The list of event.
-     *
+     * 
      * @return the value value.
      */
     public List<EventInner> value() {
@@ -40,7 +44,7 @@ public final class Events {
 
     /**
      * Set the value property: The list of event.
-     *
+     * 
      * @param value the value value to set.
      * @return the Events object itself.
      */
@@ -52,7 +56,7 @@ public final class Events {
     /**
      * Get the nextLink property: The URI to fetch the next page of events. Call ListNext() with this URI to fetch the
      * next page of events.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -62,7 +66,7 @@ public final class Events {
     /**
      * Set the nextLink property: The URI to fetch the next page of events. Call ListNext() with this URI to fetch the
      * next page of events.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the Events object itself.
      */
@@ -73,7 +77,7 @@ public final class Events {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

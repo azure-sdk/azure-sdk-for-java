@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Type of link. */
+/**
+ * Type of link.
+ */
 public final class LinkTypeValues extends ExpandableStringEnum<LinkTypeValues> {
-    /** Static value Button for LinkTypeValues. */
+    /**
+     * Static value Button for LinkTypeValues.
+     */
     public static final LinkTypeValues BUTTON = fromString("Button");
 
-    /** Static value Hyperlink for LinkTypeValues. */
+    /**
+     * Static value Hyperlink for LinkTypeValues.
+     */
     public static final LinkTypeValues HYPERLINK = fromString("Hyperlink");
 
     /**
      * Creates a new instance of LinkTypeValues value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class LinkTypeValues extends ExpandableStringEnum<LinkTypeValues> {
 
     /**
      * Creates or finds a LinkTypeValues from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding LinkTypeValues.
      */
@@ -38,7 +44,7 @@ public final class LinkTypeValues extends ExpandableStringEnum<LinkTypeValues> {
 
     /**
      * Gets known LinkTypeValues values.
-     *
+     * 
      * @return known LinkTypeValues values.
      */
     public static Collection<LinkTypeValues> values() {
