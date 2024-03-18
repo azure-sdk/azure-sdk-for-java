@@ -61,6 +61,13 @@ public interface AzureApiCenter {
     ServicesClient getServices();
 
     /**
+     * Gets the DeletedServicesClient object to access its operations.
+     * 
+     * @return the DeletedServicesClient object.
+     */
+    DeletedServicesClient getDeletedServices();
+
+    /**
      * Gets the MetadataSchemasClient object to access its operations.
      * 
      * @return the MetadataSchemasClient object.

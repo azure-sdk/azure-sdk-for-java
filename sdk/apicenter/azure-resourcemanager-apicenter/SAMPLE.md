@@ -27,6 +27,12 @@
 - [Head](#apis_head)
 - [List](#apis_list)
 
+## DeletedServices
+
+- [Delete](#deletedservices_delete)
+- [GetByResourceGroup](#deletedservices_getbyresourcegroup)
+- [ListByResourceGroup](#deletedservices_listbyresourcegroup)
+
 ## Deployments
 
 - [CreateOrUpdate](#deployments_createorupdate)
@@ -459,6 +465,75 @@ public final class ApisListSamples {
      */
     public static void apisListByWorkspace(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.apis().list("contoso-resources", "contoso", "default", null, com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DeletedServices_Delete
+
+```java
+/**
+ * Samples for DeletedServices Delete.
+ */
+public final class DeletedServicesDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/DeletedServices_Delete.
+     * json
+     */
+    /**
+     * Sample code: DeletedServices_Delete.
+     * 
+     * @param manager Entry point to ApiCenterManager.
+     */
+    public static void deletedServicesDelete(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+        manager.deletedServices().deleteByResourceGroupWithResponse("contoso-resources", "contoso",
+            com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DeletedServices_GetByResourceGroup
+
+```java
+/**
+ * Samples for DeletedServices GetByResourceGroup.
+ */
+public final class DeletedServicesGetByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/DeletedServices_Get.json
+     */
+    /**
+     * Sample code: DeletedServices_Get.
+     * 
+     * @param manager Entry point to ApiCenterManager.
+     */
+    public static void deletedServicesGet(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+        manager.deletedServices().getByResourceGroupWithResponse("contoso-resources", "contoso",
+            com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DeletedServices_ListByResourceGroup
+
+```java
+/**
+ * Samples for DeletedServices ListByResourceGroup.
+ */
+public final class DeletedServicesListByResourceGroupSamples {
+    /*
+     * x-ms-original-file:
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/DeletedServices_List.json
+     */
+    /**
+     * Sample code: DeletedServices_List.
+     * 
+     * @param manager Entry point to ApiCenterManager.
+     */
+    public static void deletedServicesList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+        manager.deletedServices().listByResourceGroup("contoso-resources", null, com.azure.core.util.Context.NONE);
     }
 }
 ```

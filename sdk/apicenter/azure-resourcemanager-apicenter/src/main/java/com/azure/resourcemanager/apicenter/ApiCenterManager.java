@@ -28,6 +28,7 @@ import com.azure.resourcemanager.apicenter.implementation.ApiDefinitionsImpl;
 import com.azure.resourcemanager.apicenter.implementation.ApiVersionsImpl;
 import com.azure.resourcemanager.apicenter.implementation.ApisImpl;
 import com.azure.resourcemanager.apicenter.implementation.AzureApiCenterBuilder;
+import com.azure.resourcemanager.apicenter.implementation.DeletedServicesImpl;
 import com.azure.resourcemanager.apicenter.implementation.DeploymentsImpl;
 import com.azure.resourcemanager.apicenter.implementation.EnvironmentsImpl;
 import com.azure.resourcemanager.apicenter.implementation.MetadataSchemasImpl;
@@ -37,6 +38,7 @@ import com.azure.resourcemanager.apicenter.implementation.WorkspacesImpl;
 import com.azure.resourcemanager.apicenter.models.ApiDefinitions;
 import com.azure.resourcemanager.apicenter.models.ApiVersions;
 import com.azure.resourcemanager.apicenter.models.Apis;
+import com.azure.resourcemanager.apicenter.models.DeletedServices;
 import com.azure.resourcemanager.apicenter.models.Deployments;
 import com.azure.resourcemanager.apicenter.models.Environments;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemas;
@@ -58,6 +60,8 @@ public final class ApiCenterManager {
     private Operations operations;
 
     private Services services;
+
+    private DeletedServices deletedServices;
 
     private MetadataSchemas metadataSchemas;
 
@@ -232,7 +236,7 @@ public final class ApiCenterManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.apicenter").append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -293,6 +297,18 @@ public final class ApiCenterManager {
             this.services = new ServicesImpl(clientObject.getServices(), this);
         }
         return services;
+    }
+
+    /**
+     * Gets the resource collection API of DeletedServices.
+     * 
+     * @return Resource collection API of DeletedServices.
+     */
+    public DeletedServices deletedServices() {
+        if (this.deletedServices == null) {
+            this.deletedServices = new DeletedServicesImpl(clientObject.getDeletedServices(), this);
+        }
+        return deletedServices;
     }
 
     /**

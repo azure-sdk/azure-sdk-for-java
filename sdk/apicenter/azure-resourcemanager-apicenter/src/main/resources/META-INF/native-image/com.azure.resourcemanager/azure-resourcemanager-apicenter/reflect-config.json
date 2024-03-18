@@ -39,6 +39,21 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.apicenter.models.DeletedServiceListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.apicenter.fluent.models.DeletedServiceInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.apicenter.models.DeletedServiceProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.apicenter.models.ServiceUpdate",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -215,6 +230,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.apicenter.models.Onboarding",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.apicenter.models.DeletedServicesGetByResourceGroupHeaders",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

@@ -26,6 +26,7 @@ import com.azure.resourcemanager.apicenter.fluent.ApiDefinitionsClient;
 import com.azure.resourcemanager.apicenter.fluent.ApiVersionsClient;
 import com.azure.resourcemanager.apicenter.fluent.ApisClient;
 import com.azure.resourcemanager.apicenter.fluent.AzureApiCenter;
+import com.azure.resourcemanager.apicenter.fluent.DeletedServicesClient;
 import com.azure.resourcemanager.apicenter.fluent.DeploymentsClient;
 import com.azure.resourcemanager.apicenter.fluent.EnvironmentsClient;
 import com.azure.resourcemanager.apicenter.fluent.MetadataSchemasClient;
@@ -159,6 +160,20 @@ public final class AzureApiCenterImpl implements AzureApiCenter {
     }
 
     /**
+     * The DeletedServicesClient object to access its operations.
+     */
+    private final DeletedServicesClient deletedServices;
+
+    /**
+     * Gets the DeletedServicesClient object to access its operations.
+     * 
+     * @return the DeletedServicesClient object.
+     */
+    public DeletedServicesClient getDeletedServices() {
+        return this.deletedServices;
+    }
+
+    /**
      * The MetadataSchemasClient object to access its operations.
      */
     private final MetadataSchemasClient metadataSchemas;
@@ -276,6 +291,7 @@ public final class AzureApiCenterImpl implements AzureApiCenter {
         this.apiVersion = "2024-03-01";
         this.operations = new OperationsClientImpl(this);
         this.services = new ServicesClientImpl(this);
+        this.deletedServices = new DeletedServicesClientImpl(this);
         this.metadataSchemas = new MetadataSchemasClientImpl(this);
         this.workspaces = new WorkspacesClientImpl(this);
         this.apis = new ApisClientImpl(this);
