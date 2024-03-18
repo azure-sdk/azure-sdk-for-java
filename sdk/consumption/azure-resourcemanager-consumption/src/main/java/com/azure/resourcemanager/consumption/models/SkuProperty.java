@@ -5,15 +5,13 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Sku property. */
+/**
+ * The Sku property.
+ */
 @Immutable
 public final class SkuProperty {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(SkuProperty.class);
-
     /*
      * The name of sku property.
      */
@@ -27,8 +25,14 @@ public final class SkuProperty {
     private String value;
 
     /**
+     * Creates an instance of SkuProperty class.
+     */
+    public SkuProperty() {
+    }
+
+    /**
      * Get the name property: The name of sku property.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class SkuProperty {
 
     /**
      * Get the value property: The value of sku property.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -46,7 +50,7 @@ public final class SkuProperty {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
