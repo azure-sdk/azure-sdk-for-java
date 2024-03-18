@@ -7,9 +7,11 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The WorkspaceConnectionManagedIdentity model. */
+/**
+ * The WorkspaceConnectionManagedIdentity model.
+ */
 @Fluent
-public class WorkspaceConnectionManagedIdentity {
+public final class WorkspaceConnectionManagedIdentity {
     /*
      * The resourceId property.
      */
@@ -22,13 +24,15 @@ public class WorkspaceConnectionManagedIdentity {
     @JsonProperty(value = "clientId")
     private String clientId;
 
-    /** Creates an instance of WorkspaceConnectionManagedIdentity class. */
+    /**
+     * Creates an instance of WorkspaceConnectionManagedIdentity class.
+     */
     public WorkspaceConnectionManagedIdentity() {
     }
 
     /**
      * Get the resourceId property: The resourceId property.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -37,7 +41,7 @@ public class WorkspaceConnectionManagedIdentity {
 
     /**
      * Set the resourceId property: The resourceId property.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the WorkspaceConnectionManagedIdentity object itself.
      */
@@ -48,7 +52,7 @@ public class WorkspaceConnectionManagedIdentity {
 
     /**
      * Get the clientId property: The clientId property.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -57,7 +61,7 @@ public class WorkspaceConnectionManagedIdentity {
 
     /**
      * Set the clientId property: The clientId property.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the WorkspaceConnectionManagedIdentity object itself.
      */
@@ -68,7 +72,7 @@ public class WorkspaceConnectionManagedIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

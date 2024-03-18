@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Azure Data Lake Gen2 datastore configuration. */
+/**
+ * Azure Data Lake Gen2 datastore configuration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "datastoreType")
 @JsonTypeName("AzureDataLakeGen2")
 @Fluent
@@ -46,13 +48,27 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
     @JsonProperty(value = "serviceDataAccessAuthIdentity")
     private ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity;
 
-    /** Creates an instance of AzureDataLakeGen2Datastore class. */
+    /*
+     * Azure Resource Group name
+     */
+    @JsonProperty(value = "resourceGroup")
+    private String resourceGroup;
+
+    /*
+     * Azure Subscription Id
+     */
+    @JsonProperty(value = "subscriptionId")
+    private String subscriptionId;
+
+    /**
+     * Creates an instance of AzureDataLakeGen2Datastore class.
+     */
     public AzureDataLakeGen2Datastore() {
     }
 
     /**
      * Get the accountName property: [Required] Storage account name.
-     *
+     * 
      * @return the accountName value.
      */
     public String accountName() {
@@ -61,7 +77,7 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
 
     /**
      * Set the accountName property: [Required] Storage account name.
-     *
+     * 
      * @param accountName the accountName value to set.
      * @return the AzureDataLakeGen2Datastore object itself.
      */
@@ -72,7 +88,7 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
 
     /**
      * Get the endpoint property: Azure cloud endpoint for the storage account.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -81,7 +97,7 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
 
     /**
      * Set the endpoint property: Azure cloud endpoint for the storage account.
-     *
+     * 
      * @param endpoint the endpoint value to set.
      * @return the AzureDataLakeGen2Datastore object itself.
      */
@@ -92,7 +108,7 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
 
     /**
      * Get the filesystem property: [Required] The name of the Data Lake Gen2 filesystem.
-     *
+     * 
      * @return the filesystem value.
      */
     public String filesystem() {
@@ -101,7 +117,7 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
 
     /**
      * Set the filesystem property: [Required] The name of the Data Lake Gen2 filesystem.
-     *
+     * 
      * @param filesystem the filesystem value to set.
      * @return the AzureDataLakeGen2Datastore object itself.
      */
@@ -112,7 +128,7 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
 
     /**
      * Get the protocol property: Protocol used to communicate with the storage account.
-     *
+     * 
      * @return the protocol value.
      */
     public String protocol() {
@@ -121,7 +137,7 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
 
     /**
      * Set the protocol property: Protocol used to communicate with the storage account.
-     *
+     * 
      * @param protocol the protocol value to set.
      * @return the AzureDataLakeGen2Datastore object itself.
      */
@@ -133,7 +149,7 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
     /**
      * Get the serviceDataAccessAuthIdentity property: Indicates which identity to use to authenticate service data
      * access to customer's storage.
-     *
+     * 
      * @return the serviceDataAccessAuthIdentity value.
      */
     public ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity() {
@@ -143,38 +159,86 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
     /**
      * Set the serviceDataAccessAuthIdentity property: Indicates which identity to use to authenticate service data
      * access to customer's storage.
-     *
+     * 
      * @param serviceDataAccessAuthIdentity the serviceDataAccessAuthIdentity value to set.
      * @return the AzureDataLakeGen2Datastore object itself.
      */
-    public AzureDataLakeGen2Datastore withServiceDataAccessAuthIdentity(
-        ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity) {
+    public AzureDataLakeGen2Datastore
+        withServiceDataAccessAuthIdentity(ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity) {
         this.serviceDataAccessAuthIdentity = serviceDataAccessAuthIdentity;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the resourceGroup property: Azure Resource Group name.
+     * 
+     * @return the resourceGroup value.
+     */
+    public String resourceGroup() {
+        return this.resourceGroup;
+    }
+
+    /**
+     * Set the resourceGroup property: Azure Resource Group name.
+     * 
+     * @param resourceGroup the resourceGroup value to set.
+     * @return the AzureDataLakeGen2Datastore object itself.
+     */
+    public AzureDataLakeGen2Datastore withResourceGroup(String resourceGroup) {
+        this.resourceGroup = resourceGroup;
+        return this;
+    }
+
+    /**
+     * Get the subscriptionId property: Azure Subscription Id.
+     * 
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     * 
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureDataLakeGen2Datastore object itself.
+     */
+    public AzureDataLakeGen2Datastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureDataLakeGen2Datastore withCredentials(DatastoreCredentials credentials) {
         super.withCredentials(credentials);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureDataLakeGen2Datastore withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureDataLakeGen2Datastore withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureDataLakeGen2Datastore withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -183,23 +247,19 @@ public final class AzureDataLakeGen2Datastore extends DatastoreProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (accountName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property accountName in model AzureDataLakeGen2Datastore"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property accountName in model AzureDataLakeGen2Datastore"));
         }
         if (filesystem() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property filesystem in model AzureDataLakeGen2Datastore"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property filesystem in model AzureDataLakeGen2Datastore"));
         }
     }
 

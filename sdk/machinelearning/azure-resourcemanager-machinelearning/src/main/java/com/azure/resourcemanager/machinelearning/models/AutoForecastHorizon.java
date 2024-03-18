@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Forecast horizon determined automatically by system. */
+/**
+ * Forecast horizon determined automatically by system.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
 @JsonTypeName("Auto")
 @Immutable
 public final class AutoForecastHorizon extends ForecastHorizon {
-    /** Creates an instance of AutoForecastHorizon class. */
+    /**
+     * Creates an instance of AutoForecastHorizon class.
+     */
     public AutoForecastHorizon() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

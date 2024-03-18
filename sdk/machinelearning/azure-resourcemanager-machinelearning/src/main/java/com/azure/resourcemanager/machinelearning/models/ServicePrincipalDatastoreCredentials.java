@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.UUID;
 
-/** Service Principal datastore credentials configuration. */
+/**
+ * Service Principal datastore credentials configuration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "credentialsType")
 @JsonTypeName("ServicePrincipal")
 @Fluent
@@ -37,7 +39,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
     /*
      * [Required] Service principal secrets.
      */
-    @JsonProperty(value = "secrets", required = true)
+    @JsonProperty(value = "secrets")
     private ServicePrincipalDatastoreSecrets secrets;
 
     /*
@@ -46,13 +48,15 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
     @JsonProperty(value = "tenantId", required = true)
     private UUID tenantId;
 
-    /** Creates an instance of ServicePrincipalDatastoreCredentials class. */
+    /**
+     * Creates an instance of ServicePrincipalDatastoreCredentials class.
+     */
     public ServicePrincipalDatastoreCredentials() {
     }
 
     /**
      * Get the authorityUrl property: Authority URL used for authentication.
-     *
+     * 
      * @return the authorityUrl value.
      */
     public String authorityUrl() {
@@ -61,7 +65,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Set the authorityUrl property: Authority URL used for authentication.
-     *
+     * 
      * @param authorityUrl the authorityUrl value to set.
      * @return the ServicePrincipalDatastoreCredentials object itself.
      */
@@ -72,7 +76,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Get the clientId property: [Required] Service principal client ID.
-     *
+     * 
      * @return the clientId value.
      */
     public UUID clientId() {
@@ -81,7 +85,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Set the clientId property: [Required] Service principal client ID.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the ServicePrincipalDatastoreCredentials object itself.
      */
@@ -92,7 +96,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Get the resourceUrl property: Resource the service principal has access to.
-     *
+     * 
      * @return the resourceUrl value.
      */
     public String resourceUrl() {
@@ -101,7 +105,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Set the resourceUrl property: Resource the service principal has access to.
-     *
+     * 
      * @param resourceUrl the resourceUrl value to set.
      * @return the ServicePrincipalDatastoreCredentials object itself.
      */
@@ -112,7 +116,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Get the secrets property: [Required] Service principal secrets.
-     *
+     * 
      * @return the secrets value.
      */
     public ServicePrincipalDatastoreSecrets secrets() {
@@ -121,7 +125,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Set the secrets property: [Required] Service principal secrets.
-     *
+     * 
      * @param secrets the secrets value to set.
      * @return the ServicePrincipalDatastoreCredentials object itself.
      */
@@ -132,7 +136,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Get the tenantId property: [Required] ID of the tenant to which the service principal belongs.
-     *
+     * 
      * @return the tenantId value.
      */
     public UUID tenantId() {
@@ -141,7 +145,7 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Set the tenantId property: [Required] ID of the tenant to which the service principal belongs.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the ServicePrincipalDatastoreCredentials object itself.
      */
@@ -152,31 +156,25 @@ public final class ServicePrincipalDatastoreCredentials extends DatastoreCredent
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (clientId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property clientId in model ServicePrincipalDatastoreCredentials"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property clientId in model ServicePrincipalDatastoreCredentials"));
         }
         if (secrets() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property secrets in model ServicePrincipalDatastoreCredentials"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property secrets in model ServicePrincipalDatastoreCredentials"));
         } else {
             secrets().validate();
         }
         if (tenantId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property tenantId in model ServicePrincipalDatastoreCredentials"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property tenantId in model ServicePrincipalDatastoreCredentials"));
         }
     }
 
