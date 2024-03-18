@@ -9,7 +9,9 @@ import com.azure.resourcemanager.appconfiguration.fluent.models.PrivateLinkResou
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of private link resources. */
+/**
+ * A list of private link resources.
+ */
 @Fluent
 public final class PrivateLinkResourceListResult {
     /*
@@ -24,13 +26,15 @@ public final class PrivateLinkResourceListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of PrivateLinkResourceListResult class. */
+    /**
+     * Creates an instance of PrivateLinkResourceListResult class.
+     */
     public PrivateLinkResourceListResult() {
     }
 
     /**
      * Get the value property: The collection value.
-     *
+     * 
      * @return the value value.
      */
     public List<PrivateLinkResourceInner> value() {
@@ -39,7 +43,7 @@ public final class PrivateLinkResourceListResult {
 
     /**
      * Set the value property: The collection value.
-     *
+     * 
      * @param value the value value to set.
      * @return the PrivateLinkResourceListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class PrivateLinkResourceListResult {
 
     /**
      * Get the nextLink property: The URI that can be used to request the next set of paged results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class PrivateLinkResourceListResult {
 
     /**
      * Set the nextLink property: The URI that can be used to request the next set of paged results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the PrivateLinkResourceListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class PrivateLinkResourceListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

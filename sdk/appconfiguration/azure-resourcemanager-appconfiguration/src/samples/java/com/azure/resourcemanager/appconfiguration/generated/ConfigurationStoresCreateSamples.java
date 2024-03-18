@@ -4,82 +4,121 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
+import com.azure.resourcemanager.appconfiguration.models.AuthenticationMode;
+import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
+import com.azure.resourcemanager.appconfiguration.models.ExperimentationProperties;
 import com.azure.resourcemanager.appconfiguration.models.IdentityType;
+import com.azure.resourcemanager.appconfiguration.models.PrivateLinkDelegation;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
 import com.azure.resourcemanager.appconfiguration.models.Sku;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
 import com.azure.resourcemanager.appconfiguration.models.UserIdentity;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for ConfigurationStores Create. */
+/**
+ * Samples for ConfigurationStores Create.
+ */
 public final class ConfigurationStoresCreateSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresCreate.json
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-03-01-preview/examples/
+     * ConfigurationStoresCreate.json
      */
     /**
      * Sample code: ConfigurationStores_Create.
-     *
+     * 
      * @param manager Entry point to AppConfigurationManager.
      */
-    public static void configurationStoresCreate(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .configurationStores()
-            .define("contoso")
-            .withRegion("westus")
-            .withExistingResourceGroup("myResourceGroup")
-            .withSku(new Sku().withName("Standard"))
-            .withTags(mapOf("myTag", "myTagValue"))
-            .create();
+    public static void
+        configurationStoresCreate(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.configurationStores().define("contoso").withRegion("westus")
+            .withExistingResourceGroup("myResourceGroup").withSku(new Sku().withName("Standard"))
+            .withTags(mapOf("myTag", "myTagValue")).create();
     }
 
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresCreateWithIdentity.json
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-03-01-preview/examples/
+     * ConfigurationStoresCreateWithIdentity.json
      */
     /**
      * Sample code: ConfigurationStores_Create_With_Identity.
-     *
+     * 
      * @param manager Entry point to AppConfigurationManager.
      */
     public static void configurationStoresCreateWithIdentity(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .configurationStores()
-            .define("contoso")
-            .withRegion("westus")
-            .withExistingResourceGroup("myResourceGroup")
-            .withSku(new Sku().withName("Standard"))
+        manager.configurationStores().define("contoso").withRegion("westus")
+            .withExistingResourceGroup("myResourceGroup").withSku(new Sku().withName("Standard"))
             .withTags(mapOf("myTag", "myTagValue"))
-            .withIdentity(
-                new ResourceIdentity()
-                    .withType(IdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
-                    .withUserAssignedIdentities(
-                        mapOf(
-                            "/subscriptions/c80fb759-c965-4c6a-9110-9b2b2d038882/resourcegroups/myResourceGroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity2",
-                            new UserIdentity())))
+            .withIdentity(new ResourceIdentity().withType(IdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/c80fb759-c965-4c6a-9110-9b2b2d038882/resourcegroups/myResourceGroup1/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity2",
+                    new UserIdentity())))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresCreateWithLocalAuthDisabled.json
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-03-01-preview/examples/
+     * ConfigurationStoresCreateWithDataPlaneProxy.json
+     */
+    /**
+     * Sample code: ConfigurationStores_Create_With_Data_Plane_Proxy.
+     * 
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void configurationStoresCreateWithDataPlaneProxy(
+        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.configurationStores().define("contoso").withRegion("westus")
+            .withExistingResourceGroup("myResourceGroup").withSku(new Sku().withName("Standard"))
+            .withDataPlaneProxy(new DataPlaneProxyProperties().withAuthenticationMode(AuthenticationMode.PASS_THROUGH)
+                .withPrivateLinkDelegation(PrivateLinkDelegation.ENABLED))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-03-01-preview/examples/
+     * ConfigurationStoresCreateWithLocalAuthDisabled.json
      */
     /**
      * Sample code: ConfigurationStores_Create_With_Local_Auth_Disabled.
-     *
+     * 
      * @param manager Entry point to AppConfigurationManager.
      */
     public static void configurationStoresCreateWithLocalAuthDisabled(
         com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .configurationStores()
-            .define("contoso")
-            .withRegion("westus")
-            .withExistingResourceGroup("myResourceGroup")
-            .withSku(new Sku().withName("Standard"))
-            .withDisableLocalAuth(true)
+        manager.configurationStores().define("contoso").withRegion("westus")
+            .withExistingResourceGroup("myResourceGroup").withSku(new Sku().withName("Standard"))
+            .withDisableLocalAuth(true).create();
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-03-01-preview/examples/
+     * ConfigurationStoresCreateWithTelemetryAndExperimentation.json
+     */
+    /**
+     * Sample code: ConfigurationStores_Create_With_Telemetry_And_Experimentation.
+     * 
+     * @param manager Entry point to AppConfigurationManager.
+     */
+    public static void configurationStoresCreateWithTelemetryAndExperimentation(
+        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.configurationStores().define("contoso").withRegion("westus")
+            .withExistingResourceGroup("myResourceGroup").withSku(new Sku().withName("Standard"))
+            .withTags(mapOf("myTag", "myTagValue"))
+            .withTelemetry(new TelemetryProperties().withResourceId(
+                "/subscriptions/c80fb759-c965-4c6a-9110-9b2b2d038882/resourceGroups/myResourceGroup/providers/microsoft.insights/components/appInsightsName"))
+            .withExperimentation(new ExperimentationProperties().withResourceId(
+                "/subscriptions/c80fb759-c965-4c6a-9110-9b2b2d038882/resourceGroups/myResourceGroup/providers/SplitIO.Experimentation/experimentationWorkspaces/myWorkspaceName")
+                .withDataPlaneEndpoint("https://asi.eu.az.split.io"))
             .create();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

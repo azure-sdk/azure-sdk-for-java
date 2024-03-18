@@ -9,12 +9,16 @@ import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appconfiguration.models.CreateMode;
+import com.azure.resourcemanager.appconfiguration.models.DataPlaneProxyProperties;
 import com.azure.resourcemanager.appconfiguration.models.EncryptionProperties;
+import com.azure.resourcemanager.appconfiguration.models.ExperimentationProperties;
 import com.azure.resourcemanager.appconfiguration.models.PrivateEndpointConnectionReference;
 import com.azure.resourcemanager.appconfiguration.models.ProvisioningState;
 import com.azure.resourcemanager.appconfiguration.models.PublicNetworkAccess;
+import com.azure.resourcemanager.appconfiguration.models.ReplicaInfo;
 import com.azure.resourcemanager.appconfiguration.models.ResourceIdentity;
 import com.azure.resourcemanager.appconfiguration.models.Sku;
+import com.azure.resourcemanager.appconfiguration.models.TelemetryProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -50,13 +54,15 @@ public final class ConfigurationStoreInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ConfigurationStoreInner class. */
+    /**
+     * Creates an instance of ConfigurationStoreInner class.
+     */
     public ConfigurationStoreInner() {
     }
 
     /**
      * Get the identity property: The managed identity information, if configured.
-     *
+     * 
      * @return the identity value.
      */
     public ResourceIdentity identity() {
@@ -65,7 +71,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Set the identity property: The managed identity information, if configured.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -76,7 +82,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the innerProperties property: The properties of a configuration store.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ConfigurationStoreProperties innerProperties() {
@@ -85,7 +91,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the sku property: The sku of the configuration store.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -94,7 +100,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Set the sku property: The sku of the configuration store.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -105,21 +111,25 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the systemData property: Resource system metadata.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ConfigurationStoreInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ConfigurationStoreInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -128,7 +138,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the provisioningState property: The provisioning state of the configuration store.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -137,7 +147,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the creationDate property: The creation date of configuration store.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -146,7 +156,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the endpoint property: The DNS endpoint where the configuration store API will be available.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -155,7 +165,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionProperties encryption() {
@@ -164,7 +174,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Set the encryption property: The encryption settings of the configuration store.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -179,7 +189,7 @@ public final class ConfigurationStoreInner extends Resource {
     /**
      * Get the privateEndpointConnections property: The list of private endpoint connections that are set up for this
      * resource.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionReference> privateEndpointConnections() {
@@ -187,9 +197,9 @@ public final class ConfigurationStoreInner extends Resource {
     }
 
     /**
-     * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
-     * private endpoint is enabled.
-     *
+     * Get the publicNetworkAccess property: Control permission for data plane traffic coming from public networks
+     * while private endpoint is enabled.
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -197,9 +207,9 @@ public final class ConfigurationStoreInner extends Resource {
     }
 
     /**
-     * Set the publicNetworkAccess property: Control permission for data plane traffic coming from public networks while
-     * private endpoint is enabled.
-     *
+     * Set the publicNetworkAccess property: Control permission for data plane traffic coming from public networks
+     * while private endpoint is enabled.
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -213,7 +223,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Get the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -222,7 +232,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Set the disableLocalAuth property: Disables all authentication methods other than AAD authentication.
-     *
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -237,7 +247,7 @@ public final class ConfigurationStoreInner extends Resource {
     /**
      * Get the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
      * retained when it is soft deleted.
-     *
+     * 
      * @return the softDeleteRetentionInDays value.
      */
     public Integer softDeleteRetentionInDays() {
@@ -247,7 +257,7 @@ public final class ConfigurationStoreInner extends Resource {
     /**
      * Set the softDeleteRetentionInDays property: The amount of time in days that the configuration store will be
      * retained when it is soft deleted.
-     *
+     * 
      * @param softDeleteRetentionInDays the softDeleteRetentionInDays value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -262,7 +272,7 @@ public final class ConfigurationStoreInner extends Resource {
     /**
      * Get the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @return the enablePurgeProtection value.
      */
     public Boolean enablePurgeProtection() {
@@ -272,7 +282,7 @@ public final class ConfigurationStoreInner extends Resource {
     /**
      * Set the enablePurgeProtection property: Property specifying whether protection against purge is enabled for this
      * configuration store.
-     *
+     * 
      * @param enablePurgeProtection the enablePurgeProtection value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -285,8 +295,33 @@ public final class ConfigurationStoreInner extends Resource {
     }
 
     /**
+     * Get the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @return the dataPlaneProxy value.
+     */
+    public DataPlaneProxyProperties dataPlaneProxy() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataPlaneProxy();
+    }
+
+    /**
+     * Set the dataPlaneProxy property: Property specifying the configuration of data plane proxy for Azure Resource
+     * Manager (ARM).
+     * 
+     * @param dataPlaneProxy the dataPlaneProxy value to set.
+     * @return the ConfigurationStoreInner object itself.
+     */
+    public ConfigurationStoreInner withDataPlaneProxy(DataPlaneProxyProperties dataPlaneProxy) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStoreProperties();
+        }
+        this.innerProperties().withDataPlaneProxy(dataPlaneProxy);
+        return this;
+    }
+
+    /**
      * Get the createMode property: Indicates whether the configuration store need to be recovered.
-     *
+     * 
      * @return the createMode value.
      */
     public CreateMode createMode() {
@@ -295,7 +330,7 @@ public final class ConfigurationStoreInner extends Resource {
 
     /**
      * Set the createMode property: Indicates whether the configuration store need to be recovered.
-     *
+     * 
      * @param createMode the createMode value to set.
      * @return the ConfigurationStoreInner object itself.
      */
@@ -308,8 +343,79 @@ public final class ConfigurationStoreInner extends Resource {
     }
 
     /**
+     * Get the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @return the telemetry value.
+     */
+    public TelemetryProperties telemetry() {
+        return this.innerProperties() == null ? null : this.innerProperties().telemetry();
+    }
+
+    /**
+     * Set the telemetry property: Property specifying the configuration of telemetry for this configuration store.
+     * 
+     * @param telemetry the telemetry value to set.
+     * @return the ConfigurationStoreInner object itself.
+     */
+    public ConfigurationStoreInner withTelemetry(TelemetryProperties telemetry) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStoreProperties();
+        }
+        this.innerProperties().withTelemetry(telemetry);
+        return this;
+    }
+
+    /**
+     * Get the experimentation property: Property specifying the configuration of experimentation for this
+     * configuration store.
+     * 
+     * @return the experimentation value.
+     */
+    public ExperimentationProperties experimentation() {
+        return this.innerProperties() == null ? null : this.innerProperties().experimentation();
+    }
+
+    /**
+     * Set the experimentation property: Property specifying the configuration of experimentation for this
+     * configuration store.
+     * 
+     * @param experimentation the experimentation value to set.
+     * @return the ConfigurationStoreInner object itself.
+     */
+    public ConfigurationStoreInner withExperimentation(ExperimentationProperties experimentation) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStoreProperties();
+        }
+        this.innerProperties().withExperimentation(experimentation);
+        return this;
+    }
+
+    /**
+     * Get the replicas property: Property specifying the configuration of replicas for this configuration store.
+     * 
+     * @return the replicas value.
+     */
+    public List<ReplicaInfo> replicas() {
+        return this.innerProperties() == null ? null : this.innerProperties().replicas();
+    }
+
+    /**
+     * Set the replicas property: Property specifying the configuration of replicas for this configuration store.
+     * 
+     * @param replicas the replicas value to set.
+     * @return the ConfigurationStoreInner object itself.
+     */
+    public ConfigurationStoreInner withReplicas(List<ReplicaInfo> replicas) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigurationStoreProperties();
+        }
+        this.innerProperties().withReplicas(replicas);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -320,9 +426,8 @@ public final class ConfigurationStoreInner extends Resource {
             innerProperties().validate();
         }
         if (sku() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sku in model ConfigurationStoreInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sku in model ConfigurationStoreInner"));
         } else {
             sku().validate();
         }

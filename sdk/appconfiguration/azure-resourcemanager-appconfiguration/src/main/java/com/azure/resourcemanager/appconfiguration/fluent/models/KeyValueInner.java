@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** The key-value resource along with all resource properties. */
+/**
+ * The key-value resource along with all resource properties.
+ */
 @Fluent
 public final class KeyValueInner extends ProxyResource {
     /*
@@ -19,13 +21,15 @@ public final class KeyValueInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private KeyValueProperties innerProperties;
 
-    /** Creates an instance of KeyValueInner class. */
+    /**
+     * Creates an instance of KeyValueInner class.
+     */
     public KeyValueInner() {
     }
 
     /**
      * Get the innerProperties property: All key-value properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private KeyValueProperties innerProperties() {
@@ -33,9 +37,9 @@ public final class KeyValueInner extends ProxyResource {
     }
 
     /**
-     * Get the key property: The primary identifier of a key-value. The key is used in unison with the label to uniquely
-     * identify a key-value.
-     *
+     * Get the key property: The primary identifier of a key-value.
+     * The key is used in unison with the label to uniquely identify a key-value.
+     * 
      * @return the key value.
      */
     public String key() {
@@ -43,9 +47,9 @@ public final class KeyValueInner extends ProxyResource {
     }
 
     /**
-     * Get the label property: A value used to group key-values. The label is used in unison with the key to uniquely
-     * identify a key-value.
-     *
+     * Get the label property: A value used to group key-values.
+     * The label is used in unison with the key to uniquely identify a key-value.
+     * 
      * @return the label value.
      */
     public String label() {
@@ -54,7 +58,7 @@ public final class KeyValueInner extends ProxyResource {
 
     /**
      * Get the value property: The value of the key-value.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -63,7 +67,7 @@ public final class KeyValueInner extends ProxyResource {
 
     /**
      * Set the value property: The value of the key-value.
-     *
+     * 
      * @param value the value value to set.
      * @return the KeyValueInner object itself.
      */
@@ -76,9 +80,9 @@ public final class KeyValueInner extends ProxyResource {
     }
 
     /**
-     * Get the contentType property: The content type of the key-value's value. Providing a proper content-type can
-     * enable transformations of values when they are retrieved by applications.
-     *
+     * Get the contentType property: The content type of the key-value's value.
+     * Providing a proper content-type can enable transformations of values when they are retrieved by applications.
+     * 
      * @return the contentType value.
      */
     public String contentType() {
@@ -86,9 +90,9 @@ public final class KeyValueInner extends ProxyResource {
     }
 
     /**
-     * Set the contentType property: The content type of the key-value's value. Providing a proper content-type can
-     * enable transformations of values when they are retrieved by applications.
-     *
+     * Set the contentType property: The content type of the key-value's value.
+     * Providing a proper content-type can enable transformations of values when they are retrieved by applications.
+     * 
      * @param contentType the contentType value to set.
      * @return the KeyValueInner object itself.
      */
@@ -102,7 +106,7 @@ public final class KeyValueInner extends ProxyResource {
 
     /**
      * Get the etag property: An ETag indicating the state of a key-value within a configuration store.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -111,7 +115,7 @@ public final class KeyValueInner extends ProxyResource {
 
     /**
      * Get the lastModified property: The last time a modifying operation was performed on the given key-value.
-     *
+     * 
      * @return the lastModified value.
      */
     public OffsetDateTime lastModified() {
@@ -119,9 +123,9 @@ public final class KeyValueInner extends ProxyResource {
     }
 
     /**
-     * Get the locked property: A value indicating whether the key-value is locked. A locked key-value may not be
-     * modified until it is unlocked.
-     *
+     * Get the locked property: A value indicating whether the key-value is locked.
+     * A locked key-value may not be modified until it is unlocked.
+     * 
      * @return the locked value.
      */
     public Boolean locked() {
@@ -130,7 +134,7 @@ public final class KeyValueInner extends ProxyResource {
 
     /**
      * Get the tags property: A dictionary of tags that can help identify what a key-value may be applicable for.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -139,7 +143,7 @@ public final class KeyValueInner extends ProxyResource {
 
     /**
      * Set the tags property: A dictionary of tags that can help identify what a key-value may be applicable for.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the KeyValueInner object itself.
      */
@@ -153,7 +157,7 @@ public final class KeyValueInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

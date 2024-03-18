@@ -9,7 +9,9 @@ import com.azure.resourcemanager.appconfiguration.fluent.models.PrivateEndpointC
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of private endpoint connections. */
+/**
+ * A list of private endpoint connections.
+ */
 @Fluent
 public final class PrivateEndpointConnectionListResult {
     /*
@@ -24,13 +26,15 @@ public final class PrivateEndpointConnectionListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of PrivateEndpointConnectionListResult class. */
+    /**
+     * Creates an instance of PrivateEndpointConnectionListResult class.
+     */
     public PrivateEndpointConnectionListResult() {
     }
 
     /**
      * Get the value property: The collection value.
-     *
+     * 
      * @return the value value.
      */
     public List<PrivateEndpointConnectionInner> value() {
@@ -39,7 +43,7 @@ public final class PrivateEndpointConnectionListResult {
 
     /**
      * Set the value property: The collection value.
-     *
+     * 
      * @param value the value value to set.
      * @return the PrivateEndpointConnectionListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class PrivateEndpointConnectionListResult {
 
     /**
      * Get the nextLink property: The URI that can be used to request the next set of paged results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class PrivateEndpointConnectionListResult {
 
     /**
      * Set the nextLink property: The URI that can be used to request the next set of paged results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the PrivateEndpointConnectionListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class PrivateEndpointConnectionListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

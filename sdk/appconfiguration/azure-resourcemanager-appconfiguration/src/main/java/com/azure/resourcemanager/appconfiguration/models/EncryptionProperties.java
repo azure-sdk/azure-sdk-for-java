@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The encryption settings for a configuration store. */
+/**
+ * The encryption settings for a configuration store.
+ */
 @Fluent
 public final class EncryptionProperties {
     /*
@@ -16,13 +18,15 @@ public final class EncryptionProperties {
     @JsonProperty(value = "keyVaultProperties")
     private KeyVaultProperties keyVaultProperties;
 
-    /** Creates an instance of EncryptionProperties class. */
+    /**
+     * Creates an instance of EncryptionProperties class.
+     */
     public EncryptionProperties() {
     }
 
     /**
      * Get the keyVaultProperties property: Key vault properties.
-     *
+     * 
      * @return the keyVaultProperties value.
      */
     public KeyVaultProperties keyVaultProperties() {
@@ -31,7 +35,7 @@ public final class EncryptionProperties {
 
     /**
      * Set the keyVaultProperties property: Key vault properties.
-     *
+     * 
      * @param keyVaultProperties the keyVaultProperties value to set.
      * @return the EncryptionProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class EncryptionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

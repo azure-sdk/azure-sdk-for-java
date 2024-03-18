@@ -4,20 +4,23 @@
 
 package com.azure.resourcemanager.appconfiguration.generated;
 
-/** Samples for Replicas ListByConfigurationStore. */
+/**
+ * Samples for Replicas ListByConfigurationStore.
+ */
 public final class ReplicasListByConfigurationStoreSamples {
     /*
-     * x-ms-original-file: specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/stable/2023-03-01/examples/ConfigurationStoresListReplicas.json
+     * x-ms-original-file:
+     * specification/appconfiguration/resource-manager/Microsoft.AppConfiguration/preview/2024-03-01-preview/examples/
+     * ConfigurationStoresListReplicas.json
      */
     /**
      * Sample code: Replicas_ListByConfigurationStore.
-     *
+     * 
      * @param manager Entry point to AppConfigurationManager.
      */
-    public static void replicasListByConfigurationStore(
-        com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
-        manager
-            .replicas()
-            .listByConfigurationStore("myResourceGroup", "contoso", null, com.azure.core.util.Context.NONE);
+    public static void
+        replicasListByConfigurationStore(com.azure.resourcemanager.appconfiguration.AppConfigurationManager manager) {
+        manager.replicas().listByConfigurationStore("myResourceGroup", "contoso", null,
+            com.azure.core.util.Context.NONE);
     }
 }
