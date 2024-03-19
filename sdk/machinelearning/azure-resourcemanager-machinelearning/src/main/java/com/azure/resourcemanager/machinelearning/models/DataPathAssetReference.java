@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Reference to an asset via its path in a datastore. */
+/**
+ * Reference to an asset via its path in a datastore.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "referenceType")
 @JsonTypeName("DataPath")
 @Fluent
@@ -26,13 +28,15 @@ public final class DataPathAssetReference extends AssetReferenceBase {
     @JsonProperty(value = "path")
     private String path;
 
-    /** Creates an instance of DataPathAssetReference class. */
+    /**
+     * Creates an instance of DataPathAssetReference class.
+     */
     public DataPathAssetReference() {
     }
 
     /**
      * Get the datastoreId property: ARM resource ID of the datastore where the asset is located.
-     *
+     * 
      * @return the datastoreId value.
      */
     public String datastoreId() {
@@ -41,7 +45,7 @@ public final class DataPathAssetReference extends AssetReferenceBase {
 
     /**
      * Set the datastoreId property: ARM resource ID of the datastore where the asset is located.
-     *
+     * 
      * @param datastoreId the datastoreId value to set.
      * @return the DataPathAssetReference object itself.
      */
@@ -52,7 +56,7 @@ public final class DataPathAssetReference extends AssetReferenceBase {
 
     /**
      * Get the path property: The path of the file/directory in the datastore.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -61,7 +65,7 @@ public final class DataPathAssetReference extends AssetReferenceBase {
 
     /**
      * Set the path property: The path of the file/directory in the datastore.
-     *
+     * 
      * @param path the path value to set.
      * @return the DataPathAssetReference object itself.
      */
@@ -72,7 +76,7 @@ public final class DataPathAssetReference extends AssetReferenceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

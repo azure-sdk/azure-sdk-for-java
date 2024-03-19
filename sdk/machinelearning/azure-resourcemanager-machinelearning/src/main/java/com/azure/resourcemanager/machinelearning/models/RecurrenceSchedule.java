@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The RecurrenceSchedule model. */
+/**
+ * The RecurrenceSchedule model.
+ */
 @Fluent
 public final class RecurrenceSchedule {
     /*
@@ -36,13 +38,15 @@ public final class RecurrenceSchedule {
     @JsonProperty(value = "weekDays")
     private List<WeekDay> weekDays;
 
-    /** Creates an instance of RecurrenceSchedule class. */
+    /**
+     * Creates an instance of RecurrenceSchedule class.
+     */
     public RecurrenceSchedule() {
     }
 
     /**
      * Get the hours property: [Required] List of hours for the schedule.
-     *
+     * 
      * @return the hours value.
      */
     public List<Integer> hours() {
@@ -51,7 +55,7 @@ public final class RecurrenceSchedule {
 
     /**
      * Set the hours property: [Required] List of hours for the schedule.
-     *
+     * 
      * @param hours the hours value to set.
      * @return the RecurrenceSchedule object itself.
      */
@@ -62,7 +66,7 @@ public final class RecurrenceSchedule {
 
     /**
      * Get the minutes property: [Required] List of minutes for the schedule.
-     *
+     * 
      * @return the minutes value.
      */
     public List<Integer> minutes() {
@@ -71,7 +75,7 @@ public final class RecurrenceSchedule {
 
     /**
      * Set the minutes property: [Required] List of minutes for the schedule.
-     *
+     * 
      * @param minutes the minutes value to set.
      * @return the RecurrenceSchedule object itself.
      */
@@ -82,7 +86,7 @@ public final class RecurrenceSchedule {
 
     /**
      * Get the monthDays property: List of month days for the schedule.
-     *
+     * 
      * @return the monthDays value.
      */
     public List<Integer> monthDays() {
@@ -91,7 +95,7 @@ public final class RecurrenceSchedule {
 
     /**
      * Set the monthDays property: List of month days for the schedule.
-     *
+     * 
      * @param monthDays the monthDays value to set.
      * @return the RecurrenceSchedule object itself.
      */
@@ -102,7 +106,7 @@ public final class RecurrenceSchedule {
 
     /**
      * Get the weekDays property: List of days for the schedule.
-     *
+     * 
      * @return the weekDays value.
      */
     public List<WeekDay> weekDays() {
@@ -111,7 +115,7 @@ public final class RecurrenceSchedule {
 
     /**
      * Set the weekDays property: List of days for the schedule.
-     *
+     * 
      * @param weekDays the weekDays value to set.
      * @return the RecurrenceSchedule object itself.
      */
@@ -122,19 +126,17 @@ public final class RecurrenceSchedule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (hours() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property hours in model RecurrenceSchedule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property hours in model RecurrenceSchedule"));
         }
         if (minutes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property minutes in model RecurrenceSchedule"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property minutes in model RecurrenceSchedule"));
         }
     }
 

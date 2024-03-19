@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** An enum describing the unit of quota measurement. */
+/**
+ * An enum describing the unit of quota measurement.
+ */
 public final class QuotaUnit extends ExpandableStringEnum<QuotaUnit> {
-    /** Static value Count for QuotaUnit. */
+    /**
+     * Static value Count for QuotaUnit.
+     */
     public static final QuotaUnit COUNT = fromString("Count");
 
     /**
      * Creates a new instance of QuotaUnit value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class QuotaUnit extends ExpandableStringEnum<QuotaUnit> {
 
     /**
      * Creates or finds a QuotaUnit from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding QuotaUnit.
      */
@@ -35,7 +39,7 @@ public final class QuotaUnit extends ExpandableStringEnum<QuotaUnit> {
 
     /**
      * Gets known QuotaUnit values.
-     *
+     * 
      * @return known QuotaUnit values.
      */
     public static Collection<QuotaUnit> values() {

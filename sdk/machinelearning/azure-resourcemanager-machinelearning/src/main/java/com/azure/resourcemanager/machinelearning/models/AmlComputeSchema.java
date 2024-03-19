@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties(top level) of AmlCompute. */
+/**
+ * Properties(top level) of AmlCompute.
+ */
 @Fluent
 public class AmlComputeSchema {
     /*
@@ -16,13 +18,15 @@ public class AmlComputeSchema {
     @JsonProperty(value = "properties")
     private AmlComputeProperties properties;
 
-    /** Creates an instance of AmlComputeSchema class. */
+    /**
+     * Creates an instance of AmlComputeSchema class.
+     */
     public AmlComputeSchema() {
     }
 
     /**
      * Get the properties property: Properties of AmlCompute.
-     *
+     * 
      * @return the properties value.
      */
     public AmlComputeProperties properties() {
@@ -31,7 +35,7 @@ public class AmlComputeSchema {
 
     /**
      * Set the properties property: Properties of AmlCompute.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the AmlComputeSchema object itself.
      */
@@ -42,7 +46,7 @@ public class AmlComputeSchema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

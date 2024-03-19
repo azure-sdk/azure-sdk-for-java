@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Online deployment scaling configuration. */
+/**
+ * Online deployment scaling configuration.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,17 +20,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonTypeName("OnlineScaleSettings")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Default", value = DefaultScaleSettings.class),
-    @JsonSubTypes.Type(name = "TargetUtilization", value = TargetUtilizationScaleSettings.class)
-})
+    @JsonSubTypes.Type(name = "TargetUtilization", value = TargetUtilizationScaleSettings.class) })
 @Immutable
 public class OnlineScaleSettings {
-    /** Creates an instance of OnlineScaleSettings class. */
+    /**
+     * Creates an instance of OnlineScaleSettings class.
+     */
     public OnlineScaleSettings() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

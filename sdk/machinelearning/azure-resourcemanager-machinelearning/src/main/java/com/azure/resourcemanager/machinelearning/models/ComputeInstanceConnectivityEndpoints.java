@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines all connectivity endpoints and properties for an ComputeInstance. */
+/**
+ * Defines all connectivity endpoints and properties for an ComputeInstance.
+ */
 @Immutable
 public final class ComputeInstanceConnectivityEndpoints {
     /*
@@ -22,13 +24,15 @@ public final class ComputeInstanceConnectivityEndpoints {
     @JsonProperty(value = "privateIpAddress", access = JsonProperty.Access.WRITE_ONLY)
     private String privateIpAddress;
 
-    /** Creates an instance of ComputeInstanceConnectivityEndpoints class. */
+    /**
+     * Creates an instance of ComputeInstanceConnectivityEndpoints class.
+     */
     public ComputeInstanceConnectivityEndpoints() {
     }
 
     /**
      * Get the publicIpAddress property: Public IP Address of this ComputeInstance.
-     *
+     * 
      * @return the publicIpAddress value.
      */
     public String publicIpAddress() {
@@ -38,7 +42,7 @@ public final class ComputeInstanceConnectivityEndpoints {
     /**
      * Get the privateIpAddress property: Private IP Address of this ComputeInstance (local to the VNET in which the
      * compute instance is deployed).
-     *
+     * 
      * @return the privateIpAddress value.
      */
     public String privateIpAddress() {
@@ -47,7 +51,7 @@ public final class ComputeInstanceConnectivityEndpoints {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
