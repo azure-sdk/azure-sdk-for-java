@@ -8,9 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /**
  * The springbootapps envelope resource definition.
@@ -22,13 +20,6 @@ public final class SpringbootappsModelInner extends ProxyResource {
      */
     @JsonProperty(value = "properties")
     private SpringbootappsProperties properties;
-
-    /*
-     * Resource tags
-     */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -59,26 +50,6 @@ public final class SpringbootappsModelInner extends ProxyResource {
      */
     public SpringbootappsModelInner withProperties(SpringbootappsProperties properties) {
         this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: Resource tags.
-     * 
-     * @param tags the tags value to set.
-     * @return the SpringbootappsModelInner object itself.
-     */
-    public SpringbootappsModelInner withTags(Map<String, String> tags) {
-        this.tags = tags;
         return this;
     }
 

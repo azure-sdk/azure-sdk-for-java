@@ -5,9 +5,11 @@
 package com.azure.resourcemanager.springappdiscovery.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * The springbootapps resource definition.
@@ -135,12 +137,6 @@ public final class SpringbootappsProperties {
     private List<String> machineArmIds;
 
     /*
-     * The site name.
-     */
-    @JsonProperty(value = "siteName")
-    private String siteName;
-
-    /*
      * The spring boot version.
      */
     @JsonProperty(value = "springBootVersion")
@@ -173,7 +169,7 @@ public final class SpringbootappsProperties {
     /*
      * The resource provisioning state.
      */
-    @JsonProperty(value = "provisioningState")
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
     /*
@@ -181,6 +177,13 @@ public final class SpringbootappsProperties {
      */
     @JsonProperty(value = "errors")
     private List<Error> errors;
+
+    /*
+     * Resource labels
+     */
+    @JsonProperty(value = "labels")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> labels;
 
     /**
      * Creates an instance of SpringbootappsProperties class.
@@ -590,26 +593,6 @@ public final class SpringbootappsProperties {
     }
 
     /**
-     * Get the siteName property: The site name.
-     * 
-     * @return the siteName value.
-     */
-    public String siteName() {
-        return this.siteName;
-    }
-
-    /**
-     * Set the siteName property: The site name.
-     * 
-     * @param siteName the siteName value to set.
-     * @return the SpringbootappsProperties object itself.
-     */
-    public SpringbootappsProperties withSiteName(String siteName) {
-        this.siteName = siteName;
-        return this;
-    }
-
-    /**
      * Get the springBootVersion property: The spring boot version.
      * 
      * @return the springBootVersion value.
@@ -719,17 +702,6 @@ public final class SpringbootappsProperties {
     }
 
     /**
-     * Set the provisioningState property: The resource provisioning state.
-     * 
-     * @param provisioningState the provisioningState value to set.
-     * @return the SpringbootappsProperties object itself.
-     */
-    public SpringbootappsProperties withProvisioningState(ProvisioningState provisioningState) {
-        this.provisioningState = provisioningState;
-        return this;
-    }
-
-    /**
      * Get the errors property: The list of errors.
      * 
      * @return the errors value.
@@ -746,6 +718,26 @@ public final class SpringbootappsProperties {
      */
     public SpringbootappsProperties withErrors(List<Error> errors) {
         this.errors = errors;
+        return this;
+    }
+
+    /**
+     * Get the labels property: Resource labels.
+     * 
+     * @return the labels value.
+     */
+    public Map<String, String> labels() {
+        return this.labels;
+    }
+
+    /**
+     * Set the labels property: Resource labels.
+     * 
+     * @param labels the labels value to set.
+     * @return the SpringbootappsProperties object itself.
+     */
+    public SpringbootappsProperties withLabels(Map<String, String> labels) {
+        this.labels = labels;
         return this;
     }
 

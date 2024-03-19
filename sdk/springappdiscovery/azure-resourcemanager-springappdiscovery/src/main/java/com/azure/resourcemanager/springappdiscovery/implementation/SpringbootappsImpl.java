@@ -13,7 +13,6 @@ import com.azure.resourcemanager.springappdiscovery.fluent.SpringbootappsClient;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootappsModelInner;
 import com.azure.resourcemanager.springappdiscovery.models.Springbootapps;
 import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsModel;
-import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsPatch;
 
 public final class SpringbootappsImpl implements Springbootapps {
     private static final ClientLogger LOGGER = new ClientLogger(SpringbootappsImpl.class);
@@ -49,26 +48,12 @@ public final class SpringbootappsImpl implements Springbootapps {
         }
     }
 
-    public SpringbootappsModel update(String resourceGroupName, String siteName, String springbootappsName,
-        SpringbootappsPatch springbootapps) {
-        SpringbootappsModelInner inner
-            = this.serviceClient().update(resourceGroupName, siteName, springbootappsName, springbootapps);
-        if (inner != null) {
-            return new SpringbootappsModelImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String siteName, String springbootappsName) {
+        this.serviceClient().delete(resourceGroupName, siteName, springbootappsName);
     }
 
-    public SpringbootappsModel update(String resourceGroupName, String siteName, String springbootappsName,
-        SpringbootappsPatch springbootapps, Context context) {
-        SpringbootappsModelInner inner
-            = this.serviceClient().update(resourceGroupName, siteName, springbootappsName, springbootapps, context);
-        if (inner != null) {
-            return new SpringbootappsModelImpl(inner, this.manager());
-        } else {
-            return null;
-        }
+    public void delete(String resourceGroupName, String siteName, String springbootappsName, Context context) {
+        this.serviceClient().delete(resourceGroupName, siteName, springbootappsName, context);
     }
 
     public PagedIterable<SpringbootappsModel> listByResourceGroup(String resourceGroupName, String siteName) {
@@ -94,11 +79,91 @@ public final class SpringbootappsImpl implements Springbootapps {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new SpringbootappsModelImpl(inner1, this.manager()));
     }
 
+    public SpringbootappsModel getById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String siteName = ResourceManagerUtils.getValueFromIdByName(id, "springbootsites");
+        if (siteName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'springbootsites'.", id)));
+        }
+        String springbootappsName = ResourceManagerUtils.getValueFromIdByName(id, "springbootapps");
+        if (springbootappsName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'springbootapps'.", id)));
+        }
+        return this.getWithResponse(resourceGroupName, siteName, springbootappsName, Context.NONE).getValue();
+    }
+
+    public Response<SpringbootappsModel> getByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String siteName = ResourceManagerUtils.getValueFromIdByName(id, "springbootsites");
+        if (siteName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'springbootsites'.", id)));
+        }
+        String springbootappsName = ResourceManagerUtils.getValueFromIdByName(id, "springbootapps");
+        if (springbootappsName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'springbootapps'.", id)));
+        }
+        return this.getWithResponse(resourceGroupName, siteName, springbootappsName, context);
+    }
+
+    public void deleteById(String id) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String siteName = ResourceManagerUtils.getValueFromIdByName(id, "springbootsites");
+        if (siteName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'springbootsites'.", id)));
+        }
+        String springbootappsName = ResourceManagerUtils.getValueFromIdByName(id, "springbootapps");
+        if (springbootappsName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'springbootapps'.", id)));
+        }
+        this.delete(resourceGroupName, siteName, springbootappsName, Context.NONE);
+    }
+
+    public void deleteByIdWithResponse(String id, Context context) {
+        String resourceGroupName = ResourceManagerUtils.getValueFromIdByName(id, "resourceGroups");
+        if (resourceGroupName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'resourceGroups'.", id)));
+        }
+        String siteName = ResourceManagerUtils.getValueFromIdByName(id, "springbootsites");
+        if (siteName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'springbootsites'.", id)));
+        }
+        String springbootappsName = ResourceManagerUtils.getValueFromIdByName(id, "springbootapps");
+        if (springbootappsName == null) {
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                String.format("The resource ID '%s' is not valid. Missing path segment 'springbootapps'.", id)));
+        }
+        this.delete(resourceGroupName, siteName, springbootappsName, context);
+    }
+
     private SpringbootappsClient serviceClient() {
         return this.innerClient;
     }
 
     private com.azure.resourcemanager.springappdiscovery.SpringAppDiscoveryManager manager() {
         return this.serviceManager;
+    }
+
+    public SpringbootappsModelImpl define(String name) {
+        return new SpringbootappsModelImpl(name, this.manager());
     }
 }
