@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** TensorFlow distribution configuration. */
+/**
+ * TensorFlow distribution configuration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "distributionType")
 @JsonTypeName("TensorFlow")
 @Fluent
@@ -26,13 +28,15 @@ public final class TensorFlow extends DistributionConfiguration {
     @JsonProperty(value = "workerCount")
     private Integer workerCount;
 
-    /** Creates an instance of TensorFlow class. */
+    /**
+     * Creates an instance of TensorFlow class.
+     */
     public TensorFlow() {
     }
 
     /**
      * Get the parameterServerCount property: Number of parameter server tasks.
-     *
+     * 
      * @return the parameterServerCount value.
      */
     public Integer parameterServerCount() {
@@ -41,7 +45,7 @@ public final class TensorFlow extends DistributionConfiguration {
 
     /**
      * Set the parameterServerCount property: Number of parameter server tasks.
-     *
+     * 
      * @param parameterServerCount the parameterServerCount value to set.
      * @return the TensorFlow object itself.
      */
@@ -52,7 +56,7 @@ public final class TensorFlow extends DistributionConfiguration {
 
     /**
      * Get the workerCount property: Number of workers. If not specified, will default to the instance count.
-     *
+     * 
      * @return the workerCount value.
      */
     public Integer workerCount() {
@@ -61,7 +65,7 @@ public final class TensorFlow extends DistributionConfiguration {
 
     /**
      * Set the workerCount property: Number of workers. If not specified, will default to the instance count.
-     *
+     * 
      * @param workerCount the workerCount value to set.
      * @return the TensorFlow object itself.
      */
@@ -72,7 +76,7 @@ public final class TensorFlow extends DistributionConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

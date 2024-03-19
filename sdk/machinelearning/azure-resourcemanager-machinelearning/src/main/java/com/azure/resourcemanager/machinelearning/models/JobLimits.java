@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.Duration;
 
-/** The JobLimits model. */
+/**
+ * The JobLimits model.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -20,8 +22,7 @@ import java.time.Duration;
 @JsonTypeName("JobLimits")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Command", value = CommandJobLimits.class),
-    @JsonSubTypes.Type(name = "Sweep", value = SweepJobLimits.class)
-})
+    @JsonSubTypes.Type(name = "Sweep", value = SweepJobLimits.class) })
 @Fluent
 public class JobLimits {
     /*
@@ -31,14 +32,16 @@ public class JobLimits {
     @JsonProperty(value = "timeout")
     private Duration timeout;
 
-    /** Creates an instance of JobLimits class. */
+    /**
+     * Creates an instance of JobLimits class.
+     */
     public JobLimits() {
     }
 
     /**
      * Get the timeout property: The max run duration in ISO 8601 format, after which the job will be cancelled. Only
      * supports duration with precision as low as Seconds.
-     *
+     * 
      * @return the timeout value.
      */
     public Duration timeout() {
@@ -48,7 +51,7 @@ public class JobLimits {
     /**
      * Set the timeout property: The max run duration in ISO 8601 format, after which the job will be cancelled. Only
      * supports duration with precision as low as Seconds.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the JobLimits object itself.
      */
@@ -59,7 +62,7 @@ public class JobLimits {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

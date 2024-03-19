@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The WorkspaceConnectionUsernamePassword model. */
+/**
+ * The WorkspaceConnectionUsernamePassword model.
+ */
 @Fluent
 public final class WorkspaceConnectionUsernamePassword {
     /*
@@ -22,13 +24,15 @@ public final class WorkspaceConnectionUsernamePassword {
     @JsonProperty(value = "password")
     private String password;
 
-    /** Creates an instance of WorkspaceConnectionUsernamePassword class. */
+    /**
+     * Creates an instance of WorkspaceConnectionUsernamePassword class.
+     */
     public WorkspaceConnectionUsernamePassword() {
     }
 
     /**
      * Get the username property: The username property.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -37,7 +41,7 @@ public final class WorkspaceConnectionUsernamePassword {
 
     /**
      * Set the username property: The username property.
-     *
+     * 
      * @param username the username value to set.
      * @return the WorkspaceConnectionUsernamePassword object itself.
      */
@@ -48,7 +52,7 @@ public final class WorkspaceConnectionUsernamePassword {
 
     /**
      * Get the password property: The password property.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -57,7 +61,7 @@ public final class WorkspaceConnectionUsernamePassword {
 
     /**
      * Set the password property: The password property.
-     *
+     * 
      * @param password the password value to set.
      * @return the WorkspaceConnectionUsernamePassword object itself.
      */
@@ -68,7 +72,7 @@ public final class WorkspaceConnectionUsernamePassword {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

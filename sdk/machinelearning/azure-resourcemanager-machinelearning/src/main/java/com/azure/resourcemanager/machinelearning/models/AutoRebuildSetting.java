@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** AutoRebuild setting for the derived image. */
+/**
+ * AutoRebuild setting for the derived image.
+ */
 public final class AutoRebuildSetting extends ExpandableStringEnum<AutoRebuildSetting> {
-    /** Static value Disabled for AutoRebuildSetting. */
+    /**
+     * Static value Disabled for AutoRebuildSetting.
+     */
     public static final AutoRebuildSetting DISABLED = fromString("Disabled");
 
-    /** Static value OnBaseImageUpdate for AutoRebuildSetting. */
+    /**
+     * Static value OnBaseImageUpdate for AutoRebuildSetting.
+     */
     public static final AutoRebuildSetting ON_BASE_IMAGE_UPDATE = fromString("OnBaseImageUpdate");
 
     /**
      * Creates a new instance of AutoRebuildSetting value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class AutoRebuildSetting extends ExpandableStringEnum<AutoRebuildSe
 
     /**
      * Creates or finds a AutoRebuildSetting from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AutoRebuildSetting.
      */
@@ -38,7 +44,7 @@ public final class AutoRebuildSetting extends ExpandableStringEnum<AutoRebuildSe
 
     /**
      * Gets known AutoRebuildSetting values.
-     *
+     * 
      * @return known AutoRebuildSetting values.
      */
     public static Collection<AutoRebuildSetting> values() {
