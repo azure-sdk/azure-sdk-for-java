@@ -6,20 +6,18 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.ReservationRecommendationDetailsResourceProperties;
 import com.azure.resourcemanager.consumption.models.ReservationRecommendationDetailsSavingsProperties;
 import com.azure.resourcemanager.consumption.models.ReservationRecommendationDetailsUsageProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Reservation recommendation details. */
+/**
+ * Reservation recommendation details.
+ */
 @Fluent
 public final class ReservationRecommendationDetailsModelInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationRecommendationDetailsModelInner.class);
-
     /*
      * Resource Location.
      */
@@ -52,8 +50,14 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
     private Map<String, String> tags;
 
     /**
+     * Creates an instance of ReservationRecommendationDetailsModelInner class.
+     */
+    public ReservationRecommendationDetailsModelInner() {
+    }
+
+    /**
      * Get the location property: Resource Location.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -62,7 +66,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Set the location property: Resource Location.
-     *
+     * 
      * @param location the location value to set.
      * @return the ReservationRecommendationDetailsModelInner object itself.
      */
@@ -73,7 +77,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Get the sku property: Resource sku.
-     *
+     * 
      * @return the sku value.
      */
     public String sku() {
@@ -82,7 +86,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Set the sku property: Resource sku.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ReservationRecommendationDetailsModelInner object itself.
      */
@@ -93,7 +97,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Get the innerProperties property: The properties of the reservation recommendation.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ReservationRecommendationDetailsProperties innerProperties() {
@@ -102,7 +106,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Get the etag property: The etag for the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -111,7 +115,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -120,7 +124,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Get the currency property: An ISO 4217 currency code identifier for the costs and savings.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -129,7 +133,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Get the resource property: Resource specific properties.
-     *
+     * 
      * @return the resource value.
      */
     public ReservationRecommendationDetailsResourceProperties resource() {
@@ -138,7 +142,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Get the resourceGroup property: Resource Group.
-     *
+     * 
      * @return the resourceGroup value.
      */
     public String resourceGroup() {
@@ -147,7 +151,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Get the savings property: Savings information for the recommendation.
-     *
+     * 
      * @return the savings value.
      */
     public ReservationRecommendationDetailsSavingsProperties savings() {
@@ -156,7 +160,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Get the scope property: Scope of the reservation, ex: Single or Shared.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -165,7 +169,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Get the usage property: Historical usage details used to calculate the estimated savings.
-     *
+     * 
      * @return the usage value.
      */
     public ReservationRecommendationDetailsUsageProperties usage() {
@@ -174,7 +178,7 @@ public final class ReservationRecommendationDetailsModelInner extends ProxyResou
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
