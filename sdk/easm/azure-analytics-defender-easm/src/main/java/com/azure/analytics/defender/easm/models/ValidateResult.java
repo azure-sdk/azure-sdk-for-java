@@ -8,7 +8,7 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The ValidateResult model.
+ * Validate result for validate action endpoints.
  */
 @Immutable
 public final class ValidateResult {
