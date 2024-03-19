@@ -14,7 +14,9 @@ import com.azure.resourcemanager.machinelearning.models.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The OnlineDeployment model. */
+/**
+ * The OnlineDeployment model.
+ */
 @Fluent
 public final class OnlineDeploymentInner extends Resource {
     /*
@@ -47,13 +49,15 @@ public final class OnlineDeploymentInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of OnlineDeploymentInner class. */
+    /**
+     * Creates an instance of OnlineDeploymentInner class.
+     */
     public OnlineDeploymentInner() {
     }
 
     /**
      * Get the identity property: Managed service identity (system assigned and/or user assigned identities).
-     *
+     * 
      * @return the identity value.
      */
     public ManagedServiceIdentity identity() {
@@ -62,7 +66,7 @@ public final class OnlineDeploymentInner extends Resource {
 
     /**
      * Set the identity property: Managed service identity (system assigned and/or user assigned identities).
-     *
+     * 
      * @param identity the identity value to set.
      * @return the OnlineDeploymentInner object itself.
      */
@@ -74,7 +78,7 @@ public final class OnlineDeploymentInner extends Resource {
     /**
      * Get the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
      * the same type.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -84,7 +88,7 @@ public final class OnlineDeploymentInner extends Resource {
     /**
      * Set the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
      * the same type.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the OnlineDeploymentInner object itself.
      */
@@ -95,7 +99,7 @@ public final class OnlineDeploymentInner extends Resource {
 
     /**
      * Get the properties property: [Required] Additional attributes of the entity.
-     *
+     * 
      * @return the properties value.
      */
     public OnlineDeploymentProperties properties() {
@@ -104,7 +108,7 @@ public final class OnlineDeploymentInner extends Resource {
 
     /**
      * Set the properties property: [Required] Additional attributes of the entity.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the OnlineDeploymentInner object itself.
      */
@@ -115,7 +119,7 @@ public final class OnlineDeploymentInner extends Resource {
 
     /**
      * Get the sku property: Sku details required for ARM contract for Autoscaling.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -124,7 +128,7 @@ public final class OnlineDeploymentInner extends Resource {
 
     /**
      * Set the sku property: Sku details required for ARM contract for Autoscaling.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the OnlineDeploymentInner object itself.
      */
@@ -135,21 +139,25 @@ public final class OnlineDeploymentInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OnlineDeploymentInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OnlineDeploymentInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -158,7 +166,7 @@ public final class OnlineDeploymentInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -166,10 +174,8 @@ public final class OnlineDeploymentInner extends Resource {
             identity().validate();
         }
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property properties in model OnlineDeploymentInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property properties in model OnlineDeploymentInner"));
         } else {
             properties().validate();
         }

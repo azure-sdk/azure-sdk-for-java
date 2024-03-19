@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Forecasting specific parameters. */
+/**
+ * Forecasting specific parameters.
+ */
 @Fluent
 public final class ForecastingSettings {
     /*
@@ -99,14 +101,16 @@ public final class ForecastingSettings {
     @JsonProperty(value = "useStl")
     private UseStl useStl;
 
-    /** Creates an instance of ForecastingSettings class. */
+    /**
+     * Creates an instance of ForecastingSettings class.
+     */
     public ForecastingSettings() {
     }
 
     /**
-     * Get the countryOrRegionForHolidays property: Country or region for holidays for forecasting tasks. These should
-     * be ISO 3166 two-letter country/region codes, for example 'US' or 'GB'.
-     *
+     * Get the countryOrRegionForHolidays property: Country or region for holidays for forecasting tasks.
+     * These should be ISO 3166 two-letter country/region codes, for example 'US' or 'GB'.
+     * 
      * @return the countryOrRegionForHolidays value.
      */
     public String countryOrRegionForHolidays() {
@@ -114,9 +118,9 @@ public final class ForecastingSettings {
     }
 
     /**
-     * Set the countryOrRegionForHolidays property: Country or region for holidays for forecasting tasks. These should
-     * be ISO 3166 two-letter country/region codes, for example 'US' or 'GB'.
-     *
+     * Set the countryOrRegionForHolidays property: Country or region for holidays for forecasting tasks.
+     * These should be ISO 3166 two-letter country/region codes, for example 'US' or 'GB'.
+     * 
      * @param countryOrRegionForHolidays the countryOrRegionForHolidays value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -127,8 +131,9 @@ public final class ForecastingSettings {
 
     /**
      * Get the cvStepSize property: Number of periods between the origin time of one CV fold and the next fold. For
-     * example, if `CVStepSize` = 3 for daily data, the origin time for each fold will be three days apart.
-     *
+     * example, if `CVStepSize` = 3 for daily data, the origin time for each fold will be
+     * three days apart.
+     * 
      * @return the cvStepSize value.
      */
     public Integer cvStepSize() {
@@ -137,8 +142,9 @@ public final class ForecastingSettings {
 
     /**
      * Set the cvStepSize property: Number of periods between the origin time of one CV fold and the next fold. For
-     * example, if `CVStepSize` = 3 for daily data, the origin time for each fold will be three days apart.
-     *
+     * example, if `CVStepSize` = 3 for daily data, the origin time for each fold will be
+     * three days apart.
+     * 
      * @param cvStepSize the cvStepSize value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -149,7 +155,7 @@ public final class ForecastingSettings {
 
     /**
      * Get the featureLags property: Flag for generating lags for the numeric features with 'auto' or null.
-     *
+     * 
      * @return the featureLags value.
      */
     public FeatureLags featureLags() {
@@ -158,7 +164,7 @@ public final class ForecastingSettings {
 
     /**
      * Set the featureLags property: Flag for generating lags for the numeric features with 'auto' or null.
-     *
+     * 
      * @param featureLags the featureLags value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -169,7 +175,7 @@ public final class ForecastingSettings {
 
     /**
      * Get the forecastHorizon property: The desired maximum forecast horizon in units of time-series frequency.
-     *
+     * 
      * @return the forecastHorizon value.
      */
     public ForecastHorizon forecastHorizon() {
@@ -178,7 +184,7 @@ public final class ForecastingSettings {
 
     /**
      * Set the forecastHorizon property: The desired maximum forecast horizon in units of time-series frequency.
-     *
+     * 
      * @param forecastHorizon the forecastHorizon value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -190,7 +196,7 @@ public final class ForecastingSettings {
     /**
      * Get the frequency property: When forecasting, this parameter represents the period with which the forecast is
      * desired, for example daily, weekly, yearly, etc. The forecast frequency is dataset frequency by default.
-     *
+     * 
      * @return the frequency value.
      */
     public String frequency() {
@@ -200,7 +206,7 @@ public final class ForecastingSettings {
     /**
      * Set the frequency property: When forecasting, this parameter represents the period with which the forecast is
      * desired, for example daily, weekly, yearly, etc. The forecast frequency is dataset frequency by default.
-     *
+     * 
      * @param frequency the frequency value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -210,9 +216,9 @@ public final class ForecastingSettings {
     }
 
     /**
-     * Get the seasonality property: Set time series seasonality as an integer multiple of the series frequency. If
-     * seasonality is set to 'auto', it will be inferred.
-     *
+     * Get the seasonality property: Set time series seasonality as an integer multiple of the series frequency.
+     * If seasonality is set to 'auto', it will be inferred.
+     * 
      * @return the seasonality value.
      */
     public Seasonality seasonality() {
@@ -220,9 +226,9 @@ public final class ForecastingSettings {
     }
 
     /**
-     * Set the seasonality property: Set time series seasonality as an integer multiple of the series frequency. If
-     * seasonality is set to 'auto', it will be inferred.
-     *
+     * Set the seasonality property: Set time series seasonality as an integer multiple of the series frequency.
+     * If seasonality is set to 'auto', it will be inferred.
+     * 
      * @param seasonality the seasonality value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -232,8 +238,9 @@ public final class ForecastingSettings {
     }
 
     /**
-     * Get the shortSeriesHandlingConfig property: The parameter defining how if AutoML should handle short time series.
-     *
+     * Get the shortSeriesHandlingConfig property: The parameter defining how if AutoML should handle short time
+     * series.
+     * 
      * @return the shortSeriesHandlingConfig value.
      */
     public ShortSeriesHandlingConfiguration shortSeriesHandlingConfig() {
@@ -241,23 +248,24 @@ public final class ForecastingSettings {
     }
 
     /**
-     * Set the shortSeriesHandlingConfig property: The parameter defining how if AutoML should handle short time series.
-     *
+     * Set the shortSeriesHandlingConfig property: The parameter defining how if AutoML should handle short time
+     * series.
+     * 
      * @param shortSeriesHandlingConfig the shortSeriesHandlingConfig value to set.
      * @return the ForecastingSettings object itself.
      */
-    public ForecastingSettings withShortSeriesHandlingConfig(
-        ShortSeriesHandlingConfiguration shortSeriesHandlingConfig) {
+    public ForecastingSettings
+        withShortSeriesHandlingConfig(ShortSeriesHandlingConfiguration shortSeriesHandlingConfig) {
         this.shortSeriesHandlingConfig = shortSeriesHandlingConfig;
         return this;
     }
 
     /**
      * Get the targetAggregateFunction property: The function to be used to aggregate the time series target column to
-     * conform to a user specified frequency. If the TargetAggregateFunction is set i.e. not 'None', but the freq
-     * parameter is not set, the error is raised. The possible target aggregation functions are: "sum", "max", "min" and
-     * "mean".
-     *
+     * conform to a user specified frequency.
+     * If the TargetAggregateFunction is set i.e. not 'None', but the freq parameter is not set, the error is raised.
+     * The possible target aggregation functions are: "sum", "max", "min" and "mean".
+     * 
      * @return the targetAggregateFunction value.
      */
     public TargetAggregationFunction targetAggregateFunction() {
@@ -266,10 +274,10 @@ public final class ForecastingSettings {
 
     /**
      * Set the targetAggregateFunction property: The function to be used to aggregate the time series target column to
-     * conform to a user specified frequency. If the TargetAggregateFunction is set i.e. not 'None', but the freq
-     * parameter is not set, the error is raised. The possible target aggregation functions are: "sum", "max", "min" and
-     * "mean".
-     *
+     * conform to a user specified frequency.
+     * If the TargetAggregateFunction is set i.e. not 'None', but the freq parameter is not set, the error is raised.
+     * The possible target aggregation functions are: "sum", "max", "min" and "mean".
+     * 
      * @param targetAggregateFunction the targetAggregateFunction value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -280,7 +288,7 @@ public final class ForecastingSettings {
 
     /**
      * Get the targetLags property: The number of past periods to lag from the target column.
-     *
+     * 
      * @return the targetLags value.
      */
     public TargetLags targetLags() {
@@ -289,7 +297,7 @@ public final class ForecastingSettings {
 
     /**
      * Set the targetLags property: The number of past periods to lag from the target column.
-     *
+     * 
      * @param targetLags the targetLags value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -301,7 +309,7 @@ public final class ForecastingSettings {
     /**
      * Get the targetRollingWindowSize property: The number of past periods used to create a rolling window average of
      * the target column.
-     *
+     * 
      * @return the targetRollingWindowSize value.
      */
     public TargetRollingWindowSize targetRollingWindowSize() {
@@ -311,7 +319,7 @@ public final class ForecastingSettings {
     /**
      * Set the targetRollingWindowSize property: The number of past periods used to create a rolling window average of
      * the target column.
-     *
+     * 
      * @param targetRollingWindowSize the targetRollingWindowSize value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -323,7 +331,7 @@ public final class ForecastingSettings {
     /**
      * Get the timeColumnName property: The name of the time column. This parameter is required when forecasting to
      * specify the datetime column in the input data used for building the time series and inferring its frequency.
-     *
+     * 
      * @return the timeColumnName value.
      */
     public String timeColumnName() {
@@ -333,7 +341,7 @@ public final class ForecastingSettings {
     /**
      * Set the timeColumnName property: The name of the time column. This parameter is required when forecasting to
      * specify the datetime column in the input data used for building the time series and inferring its frequency.
-     *
+     * 
      * @param timeColumnName the timeColumnName value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -344,9 +352,10 @@ public final class ForecastingSettings {
 
     /**
      * Get the timeSeriesIdColumnNames property: The names of columns used to group a timeseries. It can be used to
-     * create multiple series. If grain is not defined, the data set is assumed to be one time-series. This parameter is
-     * used with task type forecasting.
-     *
+     * create multiple series.
+     * If grain is not defined, the data set is assumed to be one time-series. This parameter is used with task type
+     * forecasting.
+     * 
      * @return the timeSeriesIdColumnNames value.
      */
     public List<String> timeSeriesIdColumnNames() {
@@ -355,9 +364,10 @@ public final class ForecastingSettings {
 
     /**
      * Set the timeSeriesIdColumnNames property: The names of columns used to group a timeseries. It can be used to
-     * create multiple series. If grain is not defined, the data set is assumed to be one time-series. This parameter is
-     * used with task type forecasting.
-     *
+     * create multiple series.
+     * If grain is not defined, the data set is assumed to be one time-series. This parameter is used with task type
+     * forecasting.
+     * 
      * @param timeSeriesIdColumnNames the timeSeriesIdColumnNames value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -368,7 +378,7 @@ public final class ForecastingSettings {
 
     /**
      * Get the useStl property: Configure STL Decomposition of the time-series target column.
-     *
+     * 
      * @return the useStl value.
      */
     public UseStl useStl() {
@@ -377,7 +387,7 @@ public final class ForecastingSettings {
 
     /**
      * Set the useStl property: Configure STL Decomposition of the time-series target column.
-     *
+     * 
      * @param useStl the useStl value to set.
      * @return the ForecastingSettings object itself.
      */
@@ -388,7 +398,7 @@ public final class ForecastingSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

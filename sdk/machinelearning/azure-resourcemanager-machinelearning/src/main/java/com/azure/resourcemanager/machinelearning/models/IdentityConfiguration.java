@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Base definition for identity configuration. */
+/**
+ * Base definition for identity configuration.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -19,17 +21,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AMLToken", value = AmlToken.class),
     @JsonSubTypes.Type(name = "Managed", value = ManagedIdentity.class),
-    @JsonSubTypes.Type(name = "UserIdentity", value = UserIdentity.class)
-})
+    @JsonSubTypes.Type(name = "UserIdentity", value = UserIdentity.class) })
 @Immutable
 public class IdentityConfiguration {
-    /** Creates an instance of IdentityConfiguration class. */
+    /**
+     * Creates an instance of IdentityConfiguration class.
+     */
     public IdentityConfiguration() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

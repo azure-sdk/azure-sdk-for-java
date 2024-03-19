@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.machinelearning.models.RegistryListCredentialsResult;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ListWorkspaceKeysResult model. */
+/**
+ * The ListWorkspaceKeysResult model.
+ */
 @Immutable
 public final class ListWorkspaceKeysResultInner {
     /*
@@ -41,13 +43,15 @@ public final class ListWorkspaceKeysResultInner {
     @JsonProperty(value = "notebookAccessKeys", access = JsonProperty.Access.WRITE_ONLY)
     private ListNotebookKeysResultInner notebookAccessKeys;
 
-    /** Creates an instance of ListWorkspaceKeysResultInner class. */
+    /**
+     * Creates an instance of ListWorkspaceKeysResultInner class.
+     */
     public ListWorkspaceKeysResultInner() {
     }
 
     /**
      * Get the userStorageKey property: The userStorageKey property.
-     *
+     * 
      * @return the userStorageKey value.
      */
     public String userStorageKey() {
@@ -56,7 +60,7 @@ public final class ListWorkspaceKeysResultInner {
 
     /**
      * Get the userStorageResourceId property: The userStorageResourceId property.
-     *
+     * 
      * @return the userStorageResourceId value.
      */
     public String userStorageResourceId() {
@@ -65,7 +69,7 @@ public final class ListWorkspaceKeysResultInner {
 
     /**
      * Get the appInsightsInstrumentationKey property: The appInsightsInstrumentationKey property.
-     *
+     * 
      * @return the appInsightsInstrumentationKey value.
      */
     public String appInsightsInstrumentationKey() {
@@ -74,7 +78,7 @@ public final class ListWorkspaceKeysResultInner {
 
     /**
      * Get the containerRegistryCredentials property: The containerRegistryCredentials property.
-     *
+     * 
      * @return the containerRegistryCredentials value.
      */
     public RegistryListCredentialsResult containerRegistryCredentials() {
@@ -83,7 +87,7 @@ public final class ListWorkspaceKeysResultInner {
 
     /**
      * Get the notebookAccessKeys property: The notebookAccessKeys property.
-     *
+     * 
      * @return the notebookAccessKeys value.
      */
     public ListNotebookKeysResultInner notebookAccessKeys() {
@@ -92,7 +96,7 @@ public final class ListWorkspaceKeysResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

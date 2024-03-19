@@ -8,37 +8,49 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** A DataFactory compute. */
+/**
+ * A DataFactory compute.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
 @JsonTypeName("DataFactory")
 @Fluent
 public final class DataFactory extends Compute {
-    /** Creates an instance of DataFactory class. */
+    /**
+     * Creates an instance of DataFactory class.
+     */
     public DataFactory() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataFactory withComputeLocation(String computeLocation) {
         super.withComputeLocation(computeLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataFactory withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataFactory withResourceId(String resourceId) {
         super.withResourceId(resourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataFactory withDisableLocalAuth(Boolean disableLocalAuth) {
         super.withDisableLocalAuth(disableLocalAuth);
@@ -47,7 +59,7 @@ public final class DataFactory extends Compute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

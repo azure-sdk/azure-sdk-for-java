@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Quota update parameters. */
+/**
+ * Quota update parameters.
+ */
 @Fluent
 public final class QuotaUpdateParameters {
     /*
@@ -23,13 +25,15 @@ public final class QuotaUpdateParameters {
     @JsonProperty(value = "location")
     private String location;
 
-    /** Creates an instance of QuotaUpdateParameters class. */
+    /**
+     * Creates an instance of QuotaUpdateParameters class.
+     */
     public QuotaUpdateParameters() {
     }
 
     /**
      * Get the value property: The list for update quota.
-     *
+     * 
      * @return the value value.
      */
     public List<QuotaBaseProperties> value() {
@@ -38,7 +42,7 @@ public final class QuotaUpdateParameters {
 
     /**
      * Set the value property: The list for update quota.
-     *
+     * 
      * @param value the value value to set.
      * @return the QuotaUpdateParameters object itself.
      */
@@ -49,7 +53,7 @@ public final class QuotaUpdateParameters {
 
     /**
      * Get the location property: Region of workspace quota to be updated.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -58,7 +62,7 @@ public final class QuotaUpdateParameters {
 
     /**
      * Set the location property: Region of workspace quota to be updated.
-     *
+     * 
      * @param location the location value to set.
      * @return the QuotaUpdateParameters object itself.
      */
@@ -69,7 +73,7 @@ public final class QuotaUpdateParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
