@@ -9,15 +9,14 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.baremetalinfrastructure.fluent.models.AzureBareMetalStorageInstanceInner;
 import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalStorageInstance;
+import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalStorageInstanceBody;
+import com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalStorageInstanceIdentity;
 import com.azure.resourcemanager.baremetalinfrastructure.models.StorageProperties;
-import com.azure.resourcemanager.baremetalinfrastructure.models.Tags;
 import java.util.Collections;
 import java.util.Map;
 
-public final class AzureBareMetalStorageInstanceImpl
-    implements AzureBareMetalStorageInstance,
-        AzureBareMetalStorageInstance.Definition,
-        AzureBareMetalStorageInstance.Update {
+public final class AzureBareMetalStorageInstanceImpl implements AzureBareMetalStorageInstance,
+    AzureBareMetalStorageInstance.Definition, AzureBareMetalStorageInstance.Update {
     private AzureBareMetalStorageInstanceInner innerObject;
 
     private final com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager serviceManager;
@@ -45,6 +44,10 @@ public final class AzureBareMetalStorageInstanceImpl
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    public AzureBareMetalStorageInstanceIdentity identity() {
+        return this.innerModel().identity();
     }
 
     public SystemData systemData() {
@@ -83,7 +86,7 @@ public final class AzureBareMetalStorageInstanceImpl
 
     private String azureBareMetalStorageInstanceName;
 
-    private Tags updateTagsParameter;
+    private AzureBareMetalStorageInstanceBody updateAzureBareMetalStorageInstanceBodyParameter;
 
     public AzureBareMetalStorageInstanceImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -91,86 +94,66 @@ public final class AzureBareMetalStorageInstanceImpl
     }
 
     public AzureBareMetalStorageInstance create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAzureBareMetalStorageInstances()
-                .createWithResponse(
-                    resourceGroupName, azureBareMetalStorageInstanceName, this.innerModel(), Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAzureBareMetalStorageInstances()
+            .createWithResponse(resourceGroupName, azureBareMetalStorageInstanceName, this.innerModel(), Context.NONE)
+            .getValue();
         return this;
     }
 
     public AzureBareMetalStorageInstance create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAzureBareMetalStorageInstances()
-                .createWithResponse(resourceGroupName, azureBareMetalStorageInstanceName, this.innerModel(), context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAzureBareMetalStorageInstances()
+            .createWithResponse(resourceGroupName, azureBareMetalStorageInstanceName, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
-    AzureBareMetalStorageInstanceImpl(
-        String name, com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager serviceManager) {
+    AzureBareMetalStorageInstanceImpl(String name,
+        com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager serviceManager) {
         this.innerObject = new AzureBareMetalStorageInstanceInner();
         this.serviceManager = serviceManager;
         this.azureBareMetalStorageInstanceName = name;
     }
 
     public AzureBareMetalStorageInstanceImpl update() {
-        this.updateTagsParameter = new Tags();
+        this.updateAzureBareMetalStorageInstanceBodyParameter = new AzureBareMetalStorageInstanceBody();
         return this;
     }
 
     public AzureBareMetalStorageInstance apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAzureBareMetalStorageInstances()
-                .updateWithResponse(
-                    resourceGroupName, azureBareMetalStorageInstanceName, updateTagsParameter, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager
+            .serviceClient().getAzureBareMetalStorageInstances().updateWithResponse(resourceGroupName,
+                azureBareMetalStorageInstanceName, updateAzureBareMetalStorageInstanceBodyParameter, Context.NONE)
+            .getValue();
         return this;
     }
 
     public AzureBareMetalStorageInstance apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAzureBareMetalStorageInstances()
-                .updateWithResponse(resourceGroupName, azureBareMetalStorageInstanceName, updateTagsParameter, context)
-                .getValue();
+        this.innerObject = serviceManager
+            .serviceClient().getAzureBareMetalStorageInstances().updateWithResponse(resourceGroupName,
+                azureBareMetalStorageInstanceName, updateAzureBareMetalStorageInstanceBodyParameter, context)
+            .getValue();
         return this;
     }
 
-    AzureBareMetalStorageInstanceImpl(
-        AzureBareMetalStorageInstanceInner innerObject,
+    AzureBareMetalStorageInstanceImpl(AzureBareMetalStorageInstanceInner innerObject,
         com.azure.resourcemanager.baremetalinfrastructure.BareMetalInfrastructureManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.azureBareMetalStorageInstanceName =
-            Utils.getValueFromIdByName(innerObject.id(), "bareMetalStorageInstances");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.azureBareMetalStorageInstanceName
+            = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "bareMetalStorageInstances");
     }
 
     public AzureBareMetalStorageInstance refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAzureBareMetalStorageInstances()
-                .getByResourceGroupWithResponse(resourceGroupName, azureBareMetalStorageInstanceName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAzureBareMetalStorageInstances()
+            .getByResourceGroupWithResponse(resourceGroupName, azureBareMetalStorageInstanceName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public AzureBareMetalStorageInstance refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAzureBareMetalStorageInstances()
-                .getByResourceGroupWithResponse(resourceGroupName, azureBareMetalStorageInstanceName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAzureBareMetalStorageInstances()
+            .getByResourceGroupWithResponse(resourceGroupName, azureBareMetalStorageInstanceName, context).getValue();
         return this;
     }
 
@@ -189,15 +172,24 @@ public final class AzureBareMetalStorageInstanceImpl
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateTagsParameter.withTags(tags);
+            this.updateAzureBareMetalStorageInstanceBodyParameter.withTags(tags);
             return this;
         }
     }
 
-    public AzureBareMetalStorageInstanceImpl withAzureBareMetalStorageInstanceUniqueIdentifier(
-        String azureBareMetalStorageInstanceUniqueIdentifier) {
-        this
-            .innerModel()
+    public AzureBareMetalStorageInstanceImpl withIdentity(AzureBareMetalStorageInstanceIdentity identity) {
+        if (isInCreateMode()) {
+            this.innerModel().withIdentity(identity);
+            return this;
+        } else {
+            this.updateAzureBareMetalStorageInstanceBodyParameter.withIdentity(identity);
+            return this;
+        }
+    }
+
+    public AzureBareMetalStorageInstanceImpl
+        withAzureBareMetalStorageInstanceUniqueIdentifier(String azureBareMetalStorageInstanceUniqueIdentifier) {
+        this.innerModel()
             .withAzureBareMetalStorageInstanceUniqueIdentifier(azureBareMetalStorageInstanceUniqueIdentifier);
         return this;
     }

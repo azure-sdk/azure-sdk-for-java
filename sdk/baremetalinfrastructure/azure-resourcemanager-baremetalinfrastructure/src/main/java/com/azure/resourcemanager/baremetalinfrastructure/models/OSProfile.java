@@ -7,7 +7,9 @@ package com.azure.resourcemanager.baremetalinfrastructure.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies the operating system settings for the Azure Bare Metal instance. */
+/**
+ * Specifies the operating system settings for the Azure Bare Metal instance.
+ */
 @Fluent
 public final class OSProfile {
     /*
@@ -34,13 +36,15 @@ public final class OSProfile {
     @JsonProperty(value = "sshPublicKey")
     private String sshPublicKey;
 
-    /** Creates an instance of OSProfile class. */
+    /**
+     * Creates an instance of OSProfile class.
+     */
     public OSProfile() {
     }
 
     /**
      * Get the computerName property: Specifies the host OS name of the Azure Bare Metal instance.
-     *
+     * 
      * @return the computerName value.
      */
     public String computerName() {
@@ -49,7 +53,7 @@ public final class OSProfile {
 
     /**
      * Set the computerName property: Specifies the host OS name of the Azure Bare Metal instance.
-     *
+     * 
      * @param computerName the computerName value to set.
      * @return the OSProfile object itself.
      */
@@ -60,7 +64,7 @@ public final class OSProfile {
 
     /**
      * Get the osType property: This property allows you to specify the type of the OS.
-     *
+     * 
      * @return the osType value.
      */
     public String osType() {
@@ -69,7 +73,7 @@ public final class OSProfile {
 
     /**
      * Get the version property: Specifies version of operating system.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -78,7 +82,7 @@ public final class OSProfile {
 
     /**
      * Get the sshPublicKey property: Specifies the SSH public key used to access the operating system.
-     *
+     * 
      * @return the sshPublicKey value.
      */
     public String sshPublicKey() {
@@ -87,7 +91,7 @@ public final class OSProfile {
 
     /**
      * Set the sshPublicKey property: Specifies the SSH public key used to access the operating system.
-     *
+     * 
      * @param sshPublicKey the sshPublicKey value to set.
      * @return the OSProfile object itself.
      */
@@ -98,7 +102,7 @@ public final class OSProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
