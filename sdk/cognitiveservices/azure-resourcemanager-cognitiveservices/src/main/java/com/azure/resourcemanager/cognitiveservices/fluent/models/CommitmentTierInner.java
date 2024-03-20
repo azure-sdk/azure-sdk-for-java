@@ -10,7 +10,9 @@ import com.azure.resourcemanager.cognitiveservices.models.CommitmentQuota;
 import com.azure.resourcemanager.cognitiveservices.models.HostingModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cognitive Services account commitment tier. */
+/**
+ * Cognitive Services account commitment tier.
+ */
 @Fluent
 public final class CommitmentTierInner {
     /*
@@ -61,13 +63,15 @@ public final class CommitmentTierInner {
     @JsonProperty(value = "cost")
     private CommitmentCost cost;
 
-    /** Creates an instance of CommitmentTierInner class. */
+    /**
+     * Creates an instance of CommitmentTierInner class.
+     */
     public CommitmentTierInner() {
     }
 
     /**
      * Get the kind property: The Kind of the resource.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -76,7 +80,7 @@ public final class CommitmentTierInner {
 
     /**
      * Set the kind property: The Kind of the resource.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the CommitmentTierInner object itself.
      */
@@ -87,7 +91,7 @@ public final class CommitmentTierInner {
 
     /**
      * Get the skuName property: The name of the SKU. Ex - P3. It is typically a letter+number code.
-     *
+     * 
      * @return the skuName value.
      */
     public String skuName() {
@@ -96,7 +100,7 @@ public final class CommitmentTierInner {
 
     /**
      * Set the skuName property: The name of the SKU. Ex - P3. It is typically a letter+number code.
-     *
+     * 
      * @param skuName the skuName value to set.
      * @return the CommitmentTierInner object itself.
      */
@@ -107,7 +111,7 @@ public final class CommitmentTierInner {
 
     /**
      * Get the hostingModel property: Account hosting model.
-     *
+     * 
      * @return the hostingModel value.
      */
     public HostingModel hostingModel() {
@@ -116,7 +120,7 @@ public final class CommitmentTierInner {
 
     /**
      * Set the hostingModel property: Account hosting model.
-     *
+     * 
      * @param hostingModel the hostingModel value to set.
      * @return the CommitmentTierInner object itself.
      */
@@ -127,7 +131,7 @@ public final class CommitmentTierInner {
 
     /**
      * Get the planType property: Commitment plan type.
-     *
+     * 
      * @return the planType value.
      */
     public String planType() {
@@ -136,7 +140,7 @@ public final class CommitmentTierInner {
 
     /**
      * Set the planType property: Commitment plan type.
-     *
+     * 
      * @param planType the planType value to set.
      * @return the CommitmentTierInner object itself.
      */
@@ -147,7 +151,7 @@ public final class CommitmentTierInner {
 
     /**
      * Get the tier property: Commitment period commitment tier.
-     *
+     * 
      * @return the tier value.
      */
     public String tier() {
@@ -156,7 +160,7 @@ public final class CommitmentTierInner {
 
     /**
      * Set the tier property: Commitment period commitment tier.
-     *
+     * 
      * @param tier the tier value to set.
      * @return the CommitmentTierInner object itself.
      */
@@ -167,7 +171,7 @@ public final class CommitmentTierInner {
 
     /**
      * Get the maxCount property: Commitment period commitment max count.
-     *
+     * 
      * @return the maxCount value.
      */
     public Integer maxCount() {
@@ -176,7 +180,7 @@ public final class CommitmentTierInner {
 
     /**
      * Set the maxCount property: Commitment period commitment max count.
-     *
+     * 
      * @param maxCount the maxCount value to set.
      * @return the CommitmentTierInner object itself.
      */
@@ -187,7 +191,7 @@ public final class CommitmentTierInner {
 
     /**
      * Get the quota property: Cognitive Services account commitment quota.
-     *
+     * 
      * @return the quota value.
      */
     public CommitmentQuota quota() {
@@ -196,7 +200,7 @@ public final class CommitmentTierInner {
 
     /**
      * Set the quota property: Cognitive Services account commitment quota.
-     *
+     * 
      * @param quota the quota value to set.
      * @return the CommitmentTierInner object itself.
      */
@@ -207,7 +211,7 @@ public final class CommitmentTierInner {
 
     /**
      * Get the cost property: Cognitive Services account commitment cost.
-     *
+     * 
      * @return the cost value.
      */
     public CommitmentCost cost() {
@@ -216,7 +220,7 @@ public final class CommitmentTierInner {
 
     /**
      * Set the cost property: Cognitive Services account commitment cost.
-     *
+     * 
      * @param cost the cost value to set.
      * @return the CommitmentTierInner object itself.
      */
@@ -227,7 +231,7 @@ public final class CommitmentTierInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.cognitiveservices.models.QuotaUsageStatus;
 import com.azure.resourcemanager.cognitiveservices.models.UnitType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The usage data for a usage request. */
+/**
+ * The usage data for a usage request.
+ */
 @Fluent
 public final class UsageInner {
     /*
@@ -55,13 +57,15 @@ public final class UsageInner {
     @JsonProperty(value = "status")
     private QuotaUsageStatus status;
 
-    /** Creates an instance of UsageInner class. */
+    /**
+     * Creates an instance of UsageInner class.
+     */
     public UsageInner() {
     }
 
     /**
      * Get the unit property: The unit of the metric.
-     *
+     * 
      * @return the unit value.
      */
     public UnitType unit() {
@@ -70,7 +74,7 @@ public final class UsageInner {
 
     /**
      * Set the unit property: The unit of the metric.
-     *
+     * 
      * @param unit the unit value to set.
      * @return the UsageInner object itself.
      */
@@ -81,7 +85,7 @@ public final class UsageInner {
 
     /**
      * Get the name property: The name information for the metric.
-     *
+     * 
      * @return the name value.
      */
     public MetricName name() {
@@ -90,7 +94,7 @@ public final class UsageInner {
 
     /**
      * Set the name property: The name information for the metric.
-     *
+     * 
      * @param name the name value to set.
      * @return the UsageInner object itself.
      */
@@ -101,7 +105,7 @@ public final class UsageInner {
 
     /**
      * Get the quotaPeriod property: The quota period used to summarize the usage values.
-     *
+     * 
      * @return the quotaPeriod value.
      */
     public String quotaPeriod() {
@@ -110,7 +114,7 @@ public final class UsageInner {
 
     /**
      * Set the quotaPeriod property: The quota period used to summarize the usage values.
-     *
+     * 
      * @param quotaPeriod the quotaPeriod value to set.
      * @return the UsageInner object itself.
      */
@@ -121,7 +125,7 @@ public final class UsageInner {
 
     /**
      * Get the limit property: Maximum value for this metric.
-     *
+     * 
      * @return the limit value.
      */
     public Double limit() {
@@ -130,7 +134,7 @@ public final class UsageInner {
 
     /**
      * Set the limit property: Maximum value for this metric.
-     *
+     * 
      * @param limit the limit value to set.
      * @return the UsageInner object itself.
      */
@@ -141,7 +145,7 @@ public final class UsageInner {
 
     /**
      * Get the currentValue property: Current value for this metric.
-     *
+     * 
      * @return the currentValue value.
      */
     public Double currentValue() {
@@ -150,7 +154,7 @@ public final class UsageInner {
 
     /**
      * Set the currentValue property: Current value for this metric.
-     *
+     * 
      * @param currentValue the currentValue value to set.
      * @return the UsageInner object itself.
      */
@@ -161,7 +165,7 @@ public final class UsageInner {
 
     /**
      * Get the nextResetTime property: Next reset time for current quota.
-     *
+     * 
      * @return the nextResetTime value.
      */
     public String nextResetTime() {
@@ -170,7 +174,7 @@ public final class UsageInner {
 
     /**
      * Set the nextResetTime property: Next reset time for current quota.
-     *
+     * 
      * @param nextResetTime the nextResetTime value to set.
      * @return the UsageInner object itself.
      */
@@ -181,7 +185,7 @@ public final class UsageInner {
 
     /**
      * Get the status property: Cognitive Services account quota usage status.
-     *
+     * 
      * @return the status value.
      */
     public QuotaUsageStatus status() {
@@ -190,7 +194,7 @@ public final class UsageInner {
 
     /**
      * Set the status property: Cognitive Services account quota usage status.
-     *
+     * 
      * @param status the status value to set.
      * @return the UsageInner object itself.
      */
@@ -201,7 +205,7 @@ public final class UsageInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

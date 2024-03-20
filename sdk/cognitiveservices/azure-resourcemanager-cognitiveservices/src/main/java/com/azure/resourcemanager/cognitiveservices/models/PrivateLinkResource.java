@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A private link resource. */
+/**
+ * A private link resource.
+ */
 @Fluent
 public final class PrivateLinkResource extends ProxyResource {
     /*
@@ -17,13 +19,15 @@ public final class PrivateLinkResource extends ProxyResource {
     @JsonProperty(value = "properties")
     private PrivateLinkResourceProperties properties;
 
-    /** Creates an instance of PrivateLinkResource class. */
+    /**
+     * Creates an instance of PrivateLinkResource class.
+     */
     public PrivateLinkResource() {
     }
 
     /**
      * Get the properties property: Resource properties.
-     *
+     * 
      * @return the properties value.
      */
     public PrivateLinkResourceProperties properties() {
@@ -32,7 +36,7 @@ public final class PrivateLinkResource extends ProxyResource {
 
     /**
      * Set the properties property: Resource properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the PrivateLinkResource object itself.
      */
@@ -43,7 +47,7 @@ public final class PrivateLinkResource extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

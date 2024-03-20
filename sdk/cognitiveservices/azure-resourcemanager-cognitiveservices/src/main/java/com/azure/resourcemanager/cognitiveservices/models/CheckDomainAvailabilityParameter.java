@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Check Domain availability parameter. */
+/**
+ * Check Domain availability parameter.
+ */
 @Fluent
 public final class CheckDomainAvailabilityParameter {
     /*
@@ -29,13 +31,15 @@ public final class CheckDomainAvailabilityParameter {
     @JsonProperty(value = "kind")
     private String kind;
 
-    /** Creates an instance of CheckDomainAvailabilityParameter class. */
+    /**
+     * Creates an instance of CheckDomainAvailabilityParameter class.
+     */
     public CheckDomainAvailabilityParameter() {
     }
 
     /**
      * Get the subdomainName property: The subdomain name to use.
-     *
+     * 
      * @return the subdomainName value.
      */
     public String subdomainName() {
@@ -44,7 +48,7 @@ public final class CheckDomainAvailabilityParameter {
 
     /**
      * Set the subdomainName property: The subdomain name to use.
-     *
+     * 
      * @param subdomainName the subdomainName value to set.
      * @return the CheckDomainAvailabilityParameter object itself.
      */
@@ -55,7 +59,7 @@ public final class CheckDomainAvailabilityParameter {
 
     /**
      * Get the type property: The Type of the resource.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -64,7 +68,7 @@ public final class CheckDomainAvailabilityParameter {
 
     /**
      * Set the type property: The Type of the resource.
-     *
+     * 
      * @param type the type value to set.
      * @return the CheckDomainAvailabilityParameter object itself.
      */
@@ -75,7 +79,7 @@ public final class CheckDomainAvailabilityParameter {
 
     /**
      * Get the kind property: The Kind of the resource.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -84,7 +88,7 @@ public final class CheckDomainAvailabilityParameter {
 
     /**
      * Set the kind property: The Kind of the resource.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the CheckDomainAvailabilityParameter object itself.
      */
@@ -95,21 +99,17 @@ public final class CheckDomainAvailabilityParameter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (subdomainName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property subdomainName in model CheckDomainAvailabilityParameter"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property subdomainName in model CheckDomainAvailabilityParameter"));
         }
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property type in model CheckDomainAvailabilityParameter"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property type in model CheckDomainAvailabilityParameter"));
         }
     }
 
