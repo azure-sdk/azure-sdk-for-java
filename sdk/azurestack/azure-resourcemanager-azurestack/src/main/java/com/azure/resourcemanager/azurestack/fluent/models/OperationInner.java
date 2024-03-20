@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.azurestack.models.Display;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes the supported REST operation. */
+/**
+ * Describes the supported REST operation.
+ */
 @Fluent
 public final class OperationInner {
     /*
@@ -29,13 +31,15 @@ public final class OperationInner {
     @JsonProperty(value = "origin")
     private String origin;
 
-    /** Creates an instance of OperationInner class. */
+    /**
+     * Creates an instance of OperationInner class.
+     */
     public OperationInner() {
     }
 
     /**
      * Get the name property: The name of the operation being performed on this particular object.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -44,7 +48,7 @@ public final class OperationInner {
 
     /**
      * Set the name property: The name of the operation being performed on this particular object.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationInner object itself.
      */
@@ -55,7 +59,7 @@ public final class OperationInner {
 
     /**
      * Get the display property: Contains the localized display information for this particular operation or action.
-     *
+     * 
      * @return the display value.
      */
     public Display display() {
@@ -64,7 +68,7 @@ public final class OperationInner {
 
     /**
      * Set the display property: Contains the localized display information for this particular operation or action.
-     *
+     * 
      * @param display the display value to set.
      * @return the OperationInner object itself.
      */
@@ -75,7 +79,7 @@ public final class OperationInner {
 
     /**
      * Get the origin property: The intended executor of the operation.
-     *
+     * 
      * @return the origin value.
      */
     public String origin() {
@@ -84,7 +88,7 @@ public final class OperationInner {
 
     /**
      * Set the origin property: The intended executor of the operation.
-     *
+     * 
      * @param origin the origin value to set.
      * @return the OperationInner object itself.
      */
@@ -95,7 +99,7 @@ public final class OperationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

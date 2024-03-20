@@ -12,7 +12,9 @@ import com.azure.resourcemanager.azurestack.models.OsDiskImage;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Extended description about the product required for installing it into Azure Stack. */
+/**
+ * Extended description about the product required for installing it into Azure Stack.
+ */
 @Immutable
 public final class ExtendedProductInner {
     /*
@@ -33,14 +35,16 @@ public final class ExtendedProductInner {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private ExtendedProductProperties innerProperties;
 
-    /** Creates an instance of ExtendedProductInner class. */
+    /**
+     * Creates an instance of ExtendedProductInner class.
+     */
     public ExtendedProductInner() {
     }
 
     /**
      * Get the galleryPackageBlobSasUri property: The URI to the .azpkg file that provides information required for
      * showing product in the gallery.
-     *
+     * 
      * @return the galleryPackageBlobSasUri value.
      */
     public String galleryPackageBlobSasUri() {
@@ -49,7 +53,7 @@ public final class ExtendedProductInner {
 
     /**
      * Get the productKind property: Specifies the kind of the product (virtualMachine or virtualMachineExtension).
-     *
+     * 
      * @return the productKind value.
      */
     public String productKind() {
@@ -58,7 +62,7 @@ public final class ExtendedProductInner {
 
     /**
      * Get the innerProperties property: Specifies additional properties describing the product.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ExtendedProductProperties innerProperties() {
@@ -67,7 +71,7 @@ public final class ExtendedProductInner {
 
     /**
      * Get the version property: Specifies product version.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -76,7 +80,7 @@ public final class ExtendedProductInner {
 
     /**
      * Get the osDiskImage property: OS disk image used by product.
-     *
+     * 
      * @return the osDiskImage value.
      */
     public OsDiskImage osDiskImage() {
@@ -85,7 +89,7 @@ public final class ExtendedProductInner {
 
     /**
      * Get the dataDiskImages property: List of attached data disks.
-     *
+     * 
      * @return the dataDiskImages value.
      */
     public List<DataDiskImage> dataDiskImages() {
@@ -94,7 +98,7 @@ public final class ExtendedProductInner {
 
     /**
      * Get the computeRole property: Specifies kind of compute role included in the package.
-     *
+     * 
      * @return the computeRole value.
      */
     public ComputeRole computeRole() {
@@ -103,7 +107,7 @@ public final class ExtendedProductInner {
 
     /**
      * Get the isSystemExtension property: Specifies if product is a Virtual Machine Extension.
-     *
+     * 
      * @return the isSystemExtension value.
      */
     public Boolean isSystemExtension() {
@@ -112,7 +116,7 @@ public final class ExtendedProductInner {
 
     /**
      * Get the uri property: The URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -121,7 +125,7 @@ public final class ExtendedProductInner {
 
     /**
      * Get the supportMultipleExtensions property: Indicates if specified product supports multiple extensions.
-     *
+     * 
      * @return the supportMultipleExtensions value.
      */
     public Boolean supportMultipleExtensions() {
@@ -130,7 +134,7 @@ public final class ExtendedProductInner {
 
     /**
      * Get the vmOsType property: Specifies operating system used by the product.
-     *
+     * 
      * @return the vmOsType value.
      */
     public OperatingSystem vmOsType() {
@@ -139,7 +143,7 @@ public final class ExtendedProductInner {
 
     /**
      * Get the vmScaleSetEnabled property: Indicates if virtual machine Scale Set is enabled in the specified product.
-     *
+     * 
      * @return the vmScaleSetEnabled value.
      */
     public Boolean vmScaleSetEnabled() {
@@ -148,7 +152,7 @@ public final class ExtendedProductInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

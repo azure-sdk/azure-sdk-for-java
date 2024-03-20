@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Update details for product log. */
+/**
+ * Update details for product log.
+ */
 @Immutable
 public final class MarketplaceProductLogUpdate {
     /*
@@ -34,13 +36,15 @@ public final class MarketplaceProductLogUpdate {
     @JsonProperty(value = "details", access = JsonProperty.Access.WRITE_ONLY)
     private String details;
 
-    /** Creates an instance of MarketplaceProductLogUpdate class. */
+    /**
+     * Creates an instance of MarketplaceProductLogUpdate class.
+     */
     public MarketplaceProductLogUpdate() {
     }
 
     /**
      * Get the operation property: Operation to log.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -49,7 +53,7 @@ public final class MarketplaceProductLogUpdate {
 
     /**
      * Get the status property: Operation status to log.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -58,7 +62,7 @@ public final class MarketplaceProductLogUpdate {
 
     /**
      * Get the error property: Error related to the operation.
-     *
+     * 
      * @return the error value.
      */
     public String error() {
@@ -67,7 +71,7 @@ public final class MarketplaceProductLogUpdate {
 
     /**
      * Get the details property: Error details related to operation.
-     *
+     * 
      * @return the details value.
      */
     public String details() {
@@ -76,7 +80,7 @@ public final class MarketplaceProductLogUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

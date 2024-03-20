@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Product compatibility. */
+/**
+ * Product compatibility.
+ */
 @Fluent
 public final class Compatibility {
     /*
@@ -35,13 +37,15 @@ public final class Compatibility {
     @JsonProperty(value = "issues")
     private List<CompatibilityIssue> issues;
 
-    /** Creates an instance of Compatibility class. */
+    /**
+     * Creates an instance of Compatibility class.
+     */
     public Compatibility() {
     }
 
     /**
      * Get the isCompatible property: Tells if product is compatible with current device.
-     *
+     * 
      * @return the isCompatible value.
      */
     public Boolean isCompatible() {
@@ -50,7 +54,7 @@ public final class Compatibility {
 
     /**
      * Set the isCompatible property: Tells if product is compatible with current device.
-     *
+     * 
      * @param isCompatible the isCompatible value to set.
      * @return the Compatibility object itself.
      */
@@ -61,7 +65,7 @@ public final class Compatibility {
 
     /**
      * Get the message property: Short error message if any compatibility issues are found.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -70,7 +74,7 @@ public final class Compatibility {
 
     /**
      * Set the message property: Short error message if any compatibility issues are found.
-     *
+     * 
      * @param message the message value to set.
      * @return the Compatibility object itself.
      */
@@ -81,7 +85,7 @@ public final class Compatibility {
 
     /**
      * Get the description property: Full error message if any compatibility issues are found.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -90,7 +94,7 @@ public final class Compatibility {
 
     /**
      * Set the description property: Full error message if any compatibility issues are found.
-     *
+     * 
      * @param description the description value to set.
      * @return the Compatibility object itself.
      */
@@ -101,7 +105,7 @@ public final class Compatibility {
 
     /**
      * Get the issues property: List of all issues found.
-     *
+     * 
      * @return the issues value.
      */
     public List<CompatibilityIssue> issues() {
@@ -110,7 +114,7 @@ public final class Compatibility {
 
     /**
      * Set the issues property: List of all issues found.
-     *
+     * 
      * @param issues the issues value to set.
      * @return the Compatibility object itself.
      */
@@ -121,7 +125,7 @@ public final class Compatibility {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

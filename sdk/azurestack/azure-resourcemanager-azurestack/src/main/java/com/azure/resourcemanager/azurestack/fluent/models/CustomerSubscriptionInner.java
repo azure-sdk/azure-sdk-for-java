@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Customer subscription. */
+/**
+ * Customer subscription.
+ */
 @Fluent
 public final class CustomerSubscriptionInner extends ProxyResource {
     /*
@@ -23,13 +25,15 @@ public final class CustomerSubscriptionInner extends ProxyResource {
     @JsonProperty(value = "etag")
     private String etag;
 
-    /** Creates an instance of CustomerSubscriptionInner class. */
+    /**
+     * Creates an instance of CustomerSubscriptionInner class.
+     */
     public CustomerSubscriptionInner() {
     }
 
     /**
      * Get the innerProperties property: Customer subscription properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CustomerSubscriptionProperties innerProperties() {
@@ -38,7 +42,7 @@ public final class CustomerSubscriptionInner extends ProxyResource {
 
     /**
      * Get the etag property: The entity tag used for optimistic concurrency when modifying the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -47,7 +51,7 @@ public final class CustomerSubscriptionInner extends ProxyResource {
 
     /**
      * Set the etag property: The entity tag used for optimistic concurrency when modifying the resource.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the CustomerSubscriptionInner object itself.
      */
@@ -58,7 +62,7 @@ public final class CustomerSubscriptionInner extends ProxyResource {
 
     /**
      * Get the tenantId property: Tenant Id.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -67,7 +71,7 @@ public final class CustomerSubscriptionInner extends ProxyResource {
 
     /**
      * Set the tenantId property: Tenant Id.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the CustomerSubscriptionInner object itself.
      */
@@ -81,7 +85,7 @@ public final class CustomerSubscriptionInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

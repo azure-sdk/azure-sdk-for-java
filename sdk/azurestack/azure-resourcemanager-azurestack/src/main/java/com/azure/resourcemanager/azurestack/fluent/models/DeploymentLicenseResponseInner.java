@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A license that can be used to deploy an Azure Stack device. */
+/**
+ * A license that can be used to deploy an Azure Stack device.
+ */
 @Fluent
 public final class DeploymentLicenseResponseInner {
     /*
@@ -23,14 +25,16 @@ public final class DeploymentLicenseResponseInner {
     @JsonProperty(value = "signature")
     private String signature;
 
-    /** Creates an instance of DeploymentLicenseResponseInner class. */
+    /**
+     * Creates an instance of DeploymentLicenseResponseInner class.
+     */
     public DeploymentLicenseResponseInner() {
     }
 
     /**
      * Get the temporaryLicenseChain property: A license chain that can be used to temporarily activate an Azure Stack
      * device.
-     *
+     * 
      * @return the temporaryLicenseChain value.
      */
     public List<String> temporaryLicenseChain() {
@@ -40,7 +44,7 @@ public final class DeploymentLicenseResponseInner {
     /**
      * Set the temporaryLicenseChain property: A license chain that can be used to temporarily activate an Azure Stack
      * device.
-     *
+     * 
      * @param temporaryLicenseChain the temporaryLicenseChain value to set.
      * @return the DeploymentLicenseResponseInner object itself.
      */
@@ -51,7 +55,7 @@ public final class DeploymentLicenseResponseInner {
 
     /**
      * Get the signature property: Signature of the license chain.
-     *
+     * 
      * @return the signature value.
      */
     public String signature() {
@@ -60,7 +64,7 @@ public final class DeploymentLicenseResponseInner {
 
     /**
      * Set the signature property: Signature of the license chain.
-     *
+     * 
      * @param signature the signature value to set.
      * @return the DeploymentLicenseResponseInner object itself.
      */
@@ -71,7 +75,7 @@ public final class DeploymentLicenseResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

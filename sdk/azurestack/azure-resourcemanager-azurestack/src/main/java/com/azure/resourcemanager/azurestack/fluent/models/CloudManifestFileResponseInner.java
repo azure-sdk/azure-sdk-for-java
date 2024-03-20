@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.azurestack.models.CloudManifestFileProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cloud specific manifest GET response. */
+/**
+ * Cloud specific manifest GET response.
+ */
 @Fluent
 public final class CloudManifestFileResponseInner extends ProxyResource {
     /*
@@ -24,13 +26,15 @@ public final class CloudManifestFileResponseInner extends ProxyResource {
     @JsonProperty(value = "etag")
     private String etag;
 
-    /** Creates an instance of CloudManifestFileResponseInner class. */
+    /**
+     * Creates an instance of CloudManifestFileResponseInner class.
+     */
     public CloudManifestFileResponseInner() {
     }
 
     /**
      * Get the properties property: Cloud specific manifest data.
-     *
+     * 
      * @return the properties value.
      */
     public CloudManifestFileProperties properties() {
@@ -39,7 +43,7 @@ public final class CloudManifestFileResponseInner extends ProxyResource {
 
     /**
      * Set the properties property: Cloud specific manifest data.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the CloudManifestFileResponseInner object itself.
      */
@@ -50,7 +54,7 @@ public final class CloudManifestFileResponseInner extends ProxyResource {
 
     /**
      * Get the etag property: The entity tag used for optimistic concurrency when modifying the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -59,7 +63,7 @@ public final class CloudManifestFileResponseInner extends ProxyResource {
 
     /**
      * Set the etag property: The entity tag used for optimistic concurrency when modifying the resource.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the CloudManifestFileResponseInner object itself.
      */
@@ -70,7 +74,7 @@ public final class CloudManifestFileResponseInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -12,7 +12,9 @@ import com.azure.resourcemanager.azurestack.models.ProductProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties portion of the product resource. */
+/**
+ * Properties portion of the product resource.
+ */
 @Fluent
 public final class ProductNestedProperties {
     /*
@@ -123,13 +125,15 @@ public final class ProductNestedProperties {
     @JsonProperty(value = "compatibility")
     private Compatibility compatibility;
 
-    /** Creates an instance of ProductNestedProperties class. */
+    /**
+     * Creates an instance of ProductNestedProperties class.
+     */
     public ProductNestedProperties() {
     }
 
     /**
      * Get the displayName property: The display name of the product.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -138,7 +142,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the displayName property: The display name of the product.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -149,7 +153,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the description property: The description of the product.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -158,7 +162,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the description property: The description of the product.
-     *
+     * 
      * @param description the description value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -169,7 +173,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the publisherDisplayName property: The user-friendly name of the product publisher.
-     *
+     * 
      * @return the publisherDisplayName value.
      */
     public String publisherDisplayName() {
@@ -178,7 +182,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the publisherDisplayName property: The user-friendly name of the product publisher.
-     *
+     * 
      * @param publisherDisplayName the publisherDisplayName value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -189,7 +193,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the publisherIdentifier property: Publisher identifier.
-     *
+     * 
      * @return the publisherIdentifier value.
      */
     public String publisherIdentifier() {
@@ -198,7 +202,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the publisherIdentifier property: Publisher identifier.
-     *
+     * 
      * @param publisherIdentifier the publisherIdentifier value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -209,7 +213,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the offer property: The offer representing the product.
-     *
+     * 
      * @return the offer value.
      */
     public String offer() {
@@ -218,7 +222,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the offer property: The offer representing the product.
-     *
+     * 
      * @param offer the offer value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -229,7 +233,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the offerVersion property: The version of the product offer.
-     *
+     * 
      * @return the offerVersion value.
      */
     public String offerVersion() {
@@ -238,7 +242,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the offerVersion property: The version of the product offer.
-     *
+     * 
      * @param offerVersion the offerVersion value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -249,7 +253,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the sku property: The product SKU.
-     *
+     * 
      * @return the sku value.
      */
     public String sku() {
@@ -258,7 +262,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the sku property: The product SKU.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -269,7 +273,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the billingPartNumber property: The part number used for billing purposes.
-     *
+     * 
      * @return the billingPartNumber value.
      */
     public String billingPartNumber() {
@@ -278,7 +282,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the billingPartNumber property: The part number used for billing purposes.
-     *
+     * 
      * @param billingPartNumber the billingPartNumber value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -289,7 +293,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the vmExtensionType property: The type of the Virtual Machine Extension.
-     *
+     * 
      * @return the vmExtensionType value.
      */
     public String vmExtensionType() {
@@ -298,7 +302,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the vmExtensionType property: The type of the Virtual Machine Extension.
-     *
+     * 
      * @param vmExtensionType the vmExtensionType value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -309,7 +313,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the galleryItemIdentity property: The identifier of the gallery item corresponding to the product.
-     *
+     * 
      * @return the galleryItemIdentity value.
      */
     public String galleryItemIdentity() {
@@ -318,7 +322,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the galleryItemIdentity property: The identifier of the gallery item corresponding to the product.
-     *
+     * 
      * @param galleryItemIdentity the galleryItemIdentity value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -329,7 +333,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the iconUris property: Additional links available for this product.
-     *
+     * 
      * @return the iconUris value.
      */
     public IconUris iconUris() {
@@ -338,7 +342,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the iconUris property: Additional links available for this product.
-     *
+     * 
      * @param iconUris the iconUris value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -349,7 +353,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the links property: Additional links available for this product.
-     *
+     * 
      * @return the links value.
      */
     public List<ProductLink> links() {
@@ -358,7 +362,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the links property: Additional links available for this product.
-     *
+     * 
      * @param links the links value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -369,7 +373,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the legalTerms property: The legal terms.
-     *
+     * 
      * @return the legalTerms value.
      */
     public String legalTerms() {
@@ -378,7 +382,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the legalTerms property: The legal terms.
-     *
+     * 
      * @param legalTerms the legalTerms value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -389,7 +393,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the privacyPolicy property: The privacy policy.
-     *
+     * 
      * @return the privacyPolicy value.
      */
     public String privacyPolicy() {
@@ -398,7 +402,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the privacyPolicy property: The privacy policy.
-     *
+     * 
      * @param privacyPolicy the privacyPolicy value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -409,7 +413,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the payloadLength property: The length of product content.
-     *
+     * 
      * @return the payloadLength value.
      */
     public Long payloadLength() {
@@ -418,7 +422,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the payloadLength property: The length of product content.
-     *
+     * 
      * @param payloadLength the payloadLength value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -429,7 +433,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the productKind property: The kind of the product (virtualMachine or virtualMachineExtension).
-     *
+     * 
      * @return the productKind value.
      */
     public String productKind() {
@@ -438,7 +442,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the productKind property: The kind of the product (virtualMachine or virtualMachineExtension).
-     *
+     * 
      * @param productKind the productKind value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -449,7 +453,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the productProperties property: Additional properties for the product.
-     *
+     * 
      * @return the productProperties value.
      */
     public ProductProperties productProperties() {
@@ -458,7 +462,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the productProperties property: Additional properties for the product.
-     *
+     * 
      * @param productProperties the productProperties value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -469,7 +473,7 @@ public final class ProductNestedProperties {
 
     /**
      * Get the compatibility property: Product compatibility with current device.
-     *
+     * 
      * @return the compatibility value.
      */
     public Compatibility compatibility() {
@@ -478,7 +482,7 @@ public final class ProductNestedProperties {
 
     /**
      * Set the compatibility property: Product compatibility with current device.
-     *
+     * 
      * @param compatibility the compatibility value to set.
      * @return the ProductNestedProperties object itself.
      */
@@ -489,7 +493,7 @@ public final class ProductNestedProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

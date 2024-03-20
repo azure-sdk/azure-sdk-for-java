@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Customer subscription properties. */
+/**
+ * Customer subscription properties.
+ */
 @Fluent
 public final class CustomerSubscriptionProperties {
     /*
@@ -16,13 +18,15 @@ public final class CustomerSubscriptionProperties {
     @JsonProperty(value = "tenantId")
     private String tenantId;
 
-    /** Creates an instance of CustomerSubscriptionProperties class. */
+    /**
+     * Creates an instance of CustomerSubscriptionProperties class.
+     */
     public CustomerSubscriptionProperties() {
     }
 
     /**
      * Get the tenantId property: Tenant Id.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -31,7 +35,7 @@ public final class CustomerSubscriptionProperties {
 
     /**
      * Set the tenantId property: Tenant Id.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the CustomerSubscriptionProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class CustomerSubscriptionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

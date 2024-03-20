@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cloud specific environment endpoints for AzureStack deployment. */
+/**
+ * Cloud specific environment endpoints for AzureStack deployment.
+ */
 @Fluent
 public final class CloudManifestFileEnvironmentEndpoints {
     /*
@@ -22,13 +24,15 @@ public final class CloudManifestFileEnvironmentEndpoints {
     @JsonProperty(value = "externalDsmsEndpoint")
     private String externalDsmsEndpoint;
 
-    /** Creates an instance of CloudManifestFileEnvironmentEndpoints class. */
+    /**
+     * Creates an instance of CloudManifestFileEnvironmentEndpoints class.
+     */
     public CloudManifestFileEnvironmentEndpoints() {
     }
 
     /**
      * Get the customCloudArmEndpoint property: ARM endpoint.
-     *
+     * 
      * @return the customCloudArmEndpoint value.
      */
     public String customCloudArmEndpoint() {
@@ -37,7 +41,7 @@ public final class CloudManifestFileEnvironmentEndpoints {
 
     /**
      * Set the customCloudArmEndpoint property: ARM endpoint.
-     *
+     * 
      * @param customCloudArmEndpoint the customCloudArmEndpoint value to set.
      * @return the CloudManifestFileEnvironmentEndpoints object itself.
      */
@@ -48,7 +52,7 @@ public final class CloudManifestFileEnvironmentEndpoints {
 
     /**
      * Get the externalDsmsEndpoint property: Dsms endpoint.
-     *
+     * 
      * @return the externalDsmsEndpoint value.
      */
     public String externalDsmsEndpoint() {
@@ -57,7 +61,7 @@ public final class CloudManifestFileEnvironmentEndpoints {
 
     /**
      * Set the externalDsmsEndpoint property: Dsms endpoint.
-     *
+     * 
      * @param externalDsmsEndpoint the externalDsmsEndpoint value to set.
      * @return the CloudManifestFileEnvironmentEndpoints object itself.
      */
@@ -68,7 +72,7 @@ public final class CloudManifestFileEnvironmentEndpoints {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

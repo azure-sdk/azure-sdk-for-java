@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Device Configuration. */
+/**
+ * Device Configuration.
+ */
 @Immutable
 public final class DeviceConfiguration {
     /*
@@ -22,13 +24,15 @@ public final class DeviceConfiguration {
     @JsonProperty(value = "identitySystem", access = JsonProperty.Access.WRITE_ONLY)
     private Category identitySystem;
 
-    /** Creates an instance of DeviceConfiguration class. */
+    /**
+     * Creates an instance of DeviceConfiguration class.
+     */
     public DeviceConfiguration() {
     }
 
     /**
      * Get the deviceVersion property: Version of the device.
-     *
+     * 
      * @return the deviceVersion value.
      */
     public String deviceVersion() {
@@ -37,7 +41,7 @@ public final class DeviceConfiguration {
 
     /**
      * Get the identitySystem property: Identity system of the device.
-     *
+     * 
      * @return the identitySystem value.
      */
     public Category identitySystem() {
@@ -46,7 +50,7 @@ public final class DeviceConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

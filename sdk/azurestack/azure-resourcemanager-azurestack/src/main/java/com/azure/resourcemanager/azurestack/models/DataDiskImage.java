@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Data disk image. */
+/**
+ * Data disk image.
+ */
 @Immutable
 public final class DataDiskImage {
     /*
@@ -22,13 +24,15 @@ public final class DataDiskImage {
     @JsonProperty(value = "sourceBlobSasUri", access = JsonProperty.Access.WRITE_ONLY)
     private String sourceBlobSasUri;
 
-    /** Creates an instance of DataDiskImage class. */
+    /**
+     * Creates an instance of DataDiskImage class.
+     */
     public DataDiskImage() {
     }
 
     /**
      * Get the lun property: The LUN.
-     *
+     * 
      * @return the lun value.
      */
     public Integer lun() {
@@ -37,7 +41,7 @@ public final class DataDiskImage {
 
     /**
      * Get the sourceBlobSasUri property: SAS key for source blob.
-     *
+     * 
      * @return the sourceBlobSasUri value.
      */
     public String sourceBlobSasUri() {
@@ -46,7 +50,7 @@ public final class DataDiskImage {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

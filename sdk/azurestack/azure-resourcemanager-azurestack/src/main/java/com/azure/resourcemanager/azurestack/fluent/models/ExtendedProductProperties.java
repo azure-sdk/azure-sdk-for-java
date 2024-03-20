@@ -11,7 +11,9 @@ import com.azure.resourcemanager.azurestack.models.VirtualMachineExtensionProduc
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Product information. */
+/**
+ * Product information.
+ */
 @Immutable
 public final class ExtendedProductProperties extends VirtualMachineExtensionProductProperties {
     /*
@@ -32,13 +34,15 @@ public final class ExtendedProductProperties extends VirtualMachineExtensionProd
     @JsonProperty(value = "dataDiskImages", access = JsonProperty.Access.WRITE_ONLY)
     private List<DataDiskImage> dataDiskImages;
 
-    /** Creates an instance of ExtendedProductProperties class. */
+    /**
+     * Creates an instance of ExtendedProductProperties class.
+     */
     public ExtendedProductProperties() {
     }
 
     /**
      * Get the version property: Specifies product version.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -47,7 +51,7 @@ public final class ExtendedProductProperties extends VirtualMachineExtensionProd
 
     /**
      * Get the osDiskImage property: OS disk image used by product.
-     *
+     * 
      * @return the osDiskImage value.
      */
     public OsDiskImage osDiskImage() {
@@ -56,7 +60,7 @@ public final class ExtendedProductProperties extends VirtualMachineExtensionProd
 
     /**
      * Get the dataDiskImages property: List of attached data disks.
-     *
+     * 
      * @return the dataDiskImages value.
      */
     public List<DataDiskImage> dataDiskImages() {
@@ -65,7 +69,7 @@ public final class ExtendedProductProperties extends VirtualMachineExtensionProd
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

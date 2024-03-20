@@ -9,7 +9,9 @@ import com.azure.core.management.Resource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Registration information. */
+/**
+ * Registration information.
+ */
 @Fluent
 public final class RegistrationInner extends Resource {
     /*
@@ -24,13 +26,15 @@ public final class RegistrationInner extends Resource {
     @JsonProperty(value = "etag")
     private String etag;
 
-    /** Creates an instance of RegistrationInner class. */
+    /**
+     * Creates an instance of RegistrationInner class.
+     */
     public RegistrationInner() {
     }
 
     /**
      * Get the innerProperties property: Registration resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RegistrationProperties innerProperties() {
@@ -39,7 +43,7 @@ public final class RegistrationInner extends Resource {
 
     /**
      * Get the etag property: The entity tag used for optimistic concurrency when modifying the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -48,7 +52,7 @@ public final class RegistrationInner extends Resource {
 
     /**
      * Set the etag property: The entity tag used for optimistic concurrency when modifying the resource.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the RegistrationInner object itself.
      */
@@ -57,14 +61,18 @@ public final class RegistrationInner extends Resource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RegistrationInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RegistrationInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -73,7 +81,7 @@ public final class RegistrationInner extends Resource {
 
     /**
      * Get the objectId property: The object identifier associated with the Azure Stack connecting to Azure.
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -82,7 +90,7 @@ public final class RegistrationInner extends Resource {
 
     /**
      * Set the objectId property: The object identifier associated with the Azure Stack connecting to Azure.
-     *
+     * 
      * @param objectId the objectId value to set.
      * @return the RegistrationInner object itself.
      */
@@ -96,7 +104,7 @@ public final class RegistrationInner extends Resource {
 
     /**
      * Get the cloudId property: The identifier of the registered Azure Stack.
-     *
+     * 
      * @return the cloudId value.
      */
     public String cloudId() {
@@ -105,7 +113,7 @@ public final class RegistrationInner extends Resource {
 
     /**
      * Set the cloudId property: The identifier of the registered Azure Stack.
-     *
+     * 
      * @param cloudId the cloudId value to set.
      * @return the RegistrationInner object itself.
      */
@@ -119,7 +127,7 @@ public final class RegistrationInner extends Resource {
 
     /**
      * Get the billingModel property: Specifies the billing mode for the Azure Stack registration.
-     *
+     * 
      * @return the billingModel value.
      */
     public String billingModel() {
@@ -128,7 +136,7 @@ public final class RegistrationInner extends Resource {
 
     /**
      * Set the billingModel property: Specifies the billing mode for the Azure Stack registration.
-     *
+     * 
      * @param billingModel the billingModel value to set.
      * @return the RegistrationInner object itself.
      */
@@ -142,7 +150,7 @@ public final class RegistrationInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

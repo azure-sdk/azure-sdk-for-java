@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cloud specific manifest JSON properties. */
+/**
+ * Cloud specific manifest JSON properties.
+ */
 @Fluent
 public final class CloudManifestFileProperties {
     /*
@@ -22,13 +24,15 @@ public final class CloudManifestFileProperties {
     @JsonProperty(value = "signature")
     private String signature;
 
-    /** Creates an instance of CloudManifestFileProperties class. */
+    /**
+     * Creates an instance of CloudManifestFileProperties class.
+     */
     public CloudManifestFileProperties() {
     }
 
     /**
      * Get the deploymentData property: Cloud specific manifest data.
-     *
+     * 
      * @return the deploymentData value.
      */
     public CloudManifestFileDeploymentData deploymentData() {
@@ -37,7 +41,7 @@ public final class CloudManifestFileProperties {
 
     /**
      * Set the deploymentData property: Cloud specific manifest data.
-     *
+     * 
      * @param deploymentData the deploymentData value to set.
      * @return the CloudManifestFileProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class CloudManifestFileProperties {
 
     /**
      * Get the signature property: Signature of the cloud specific manifest data.
-     *
+     * 
      * @return the signature value.
      */
     public String signature() {
@@ -57,7 +61,7 @@ public final class CloudManifestFileProperties {
 
     /**
      * Set the signature property: Signature of the cloud specific manifest data.
-     *
+     * 
      * @param signature the signature value to set.
      * @return the CloudManifestFileProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class CloudManifestFileProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

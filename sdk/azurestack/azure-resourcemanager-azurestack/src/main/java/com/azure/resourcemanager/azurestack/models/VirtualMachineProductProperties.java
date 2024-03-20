@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Product information. */
+/**
+ * Product information.
+ */
 @Immutable
 public class VirtualMachineProductProperties {
     /*
@@ -29,13 +31,15 @@ public class VirtualMachineProductProperties {
     @JsonProperty(value = "dataDiskImages", access = JsonProperty.Access.WRITE_ONLY)
     private List<DataDiskImage> dataDiskImages;
 
-    /** Creates an instance of VirtualMachineProductProperties class. */
+    /**
+     * Creates an instance of VirtualMachineProductProperties class.
+     */
     public VirtualMachineProductProperties() {
     }
 
     /**
      * Get the version property: Specifies product version.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -44,7 +48,7 @@ public class VirtualMachineProductProperties {
 
     /**
      * Get the osDiskImage property: OS disk image used by product.
-     *
+     * 
      * @return the osDiskImage value.
      */
     public OsDiskImage osDiskImage() {
@@ -53,7 +57,7 @@ public class VirtualMachineProductProperties {
 
     /**
      * Get the dataDiskImages property: List of attached data disks.
-     *
+     * 
      * @return the dataDiskImages value.
      */
     public List<DataDiskImage> dataDiskImages() {
@@ -62,7 +66,7 @@ public class VirtualMachineProductProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

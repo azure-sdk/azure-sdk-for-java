@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Pageable list of products. */
+/**
+ * Pageable list of products.
+ */
 @Fluent
 public final class ProductListInner {
     /*
@@ -23,13 +25,15 @@ public final class ProductListInner {
     @JsonProperty(value = "value")
     private List<ProductInner> value;
 
-    /** Creates an instance of ProductListInner class. */
+    /**
+     * Creates an instance of ProductListInner class.
+     */
     public ProductListInner() {
     }
 
     /**
      * Get the nextLink property: URI to the next page.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -38,7 +42,7 @@ public final class ProductListInner {
 
     /**
      * Set the nextLink property: URI to the next page.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ProductListInner object itself.
      */
@@ -49,7 +53,7 @@ public final class ProductListInner {
 
     /**
      * Get the value property: List of products.
-     *
+     * 
      * @return the value value.
      */
     public List<ProductInner> value() {
@@ -58,7 +62,7 @@ public final class ProductListInner {
 
     /**
      * Set the value property: List of products.
-     *
+     * 
      * @param value the value value to set.
      * @return the ProductListInner object itself.
      */
@@ -69,7 +73,7 @@ public final class ProductListInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

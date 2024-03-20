@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.azurestack.fluent.models.RegistrationParameterProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Registration resource. */
+/**
+ * Registration resource.
+ */
 @Fluent
 public final class RegistrationParameter {
     /*
@@ -24,13 +26,15 @@ public final class RegistrationParameter {
     @JsonProperty(value = "location", required = true)
     private Location location;
 
-    /** Creates an instance of RegistrationParameter class. */
+    /**
+     * Creates an instance of RegistrationParameter class.
+     */
     public RegistrationParameter() {
     }
 
     /**
      * Get the innerProperties property: Properties of the Azure Stack registration resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RegistrationParameterProperties innerProperties() {
@@ -39,7 +43,7 @@ public final class RegistrationParameter {
 
     /**
      * Get the location property: Location of the resource.
-     *
+     * 
      * @return the location value.
      */
     public Location location() {
@@ -48,7 +52,7 @@ public final class RegistrationParameter {
 
     /**
      * Set the location property: Location of the resource.
-     *
+     * 
      * @param location the location value to set.
      * @return the RegistrationParameter object itself.
      */
@@ -59,7 +63,7 @@ public final class RegistrationParameter {
 
     /**
      * Get the registrationToken property: The token identifying registered Azure Stack.
-     *
+     * 
      * @return the registrationToken value.
      */
     public String registrationToken() {
@@ -68,7 +72,7 @@ public final class RegistrationParameter {
 
     /**
      * Set the registrationToken property: The token identifying registered Azure Stack.
-     *
+     * 
      * @param registrationToken the registrationToken value to set.
      * @return the RegistrationParameter object itself.
      */
@@ -82,22 +86,19 @@ public final class RegistrationParameter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model RegistrationParameter"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model RegistrationParameter"));
         } else {
             innerProperties().validate();
         }
         if (location() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property location in model RegistrationParameter"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property location in model RegistrationParameter"));
         }
     }
 

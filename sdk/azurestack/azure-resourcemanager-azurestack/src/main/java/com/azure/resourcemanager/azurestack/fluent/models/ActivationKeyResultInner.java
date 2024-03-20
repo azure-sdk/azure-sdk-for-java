@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The resource containing the Azure Stack activation key. */
+/**
+ * The resource containing the Azure Stack activation key.
+ */
 @Fluent
 public final class ActivationKeyResultInner {
     /*
@@ -16,13 +18,15 @@ public final class ActivationKeyResultInner {
     @JsonProperty(value = "activationKey")
     private String activationKey;
 
-    /** Creates an instance of ActivationKeyResultInner class. */
+    /**
+     * Creates an instance of ActivationKeyResultInner class.
+     */
     public ActivationKeyResultInner() {
     }
 
     /**
      * Get the activationKey property: Azure Stack activation key.
-     *
+     * 
      * @return the activationKey value.
      */
     public String activationKey() {
@@ -31,7 +35,7 @@ public final class ActivationKeyResultInner {
 
     /**
      * Set the activationKey property: Azure Stack activation key.
-     *
+     * 
      * @param activationKey the activationKey value to set.
      * @return the ActivationKeyResultInner object itself.
      */
@@ -42,7 +46,7 @@ public final class ActivationKeyResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

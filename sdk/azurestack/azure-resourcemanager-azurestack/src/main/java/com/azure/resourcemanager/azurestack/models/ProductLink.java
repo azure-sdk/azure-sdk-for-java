@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Link with additional information about a product. */
+/**
+ * Link with additional information about a product.
+ */
 @Fluent
 public final class ProductLink {
     /*
@@ -22,13 +24,15 @@ public final class ProductLink {
     @JsonProperty(value = "uri")
     private String uri;
 
-    /** Creates an instance of ProductLink class. */
+    /**
+     * Creates an instance of ProductLink class.
+     */
     public ProductLink() {
     }
 
     /**
      * Get the displayName property: The description of the link.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -37,7 +41,7 @@ public final class ProductLink {
 
     /**
      * Set the displayName property: The description of the link.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ProductLink object itself.
      */
@@ -48,7 +52,7 @@ public final class ProductLink {
 
     /**
      * Get the uri property: The URI corresponding to the link.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -57,7 +61,7 @@ public final class ProductLink {
 
     /**
      * Set the uri property: The URI corresponding to the link.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the ProductLink object itself.
      */
@@ -68,7 +72,7 @@ public final class ProductLink {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

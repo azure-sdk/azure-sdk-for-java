@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Links to product icons. */
+/**
+ * Links to product icons.
+ */
 @Fluent
 public final class IconUris {
     /*
@@ -40,13 +42,15 @@ public final class IconUris {
     @JsonProperty(value = "hero")
     private String hero;
 
-    /** Creates an instance of IconUris class. */
+    /**
+     * Creates an instance of IconUris class.
+     */
     public IconUris() {
     }
 
     /**
      * Get the large property: URI to large icon.
-     *
+     * 
      * @return the large value.
      */
     public String large() {
@@ -55,7 +59,7 @@ public final class IconUris {
 
     /**
      * Set the large property: URI to large icon.
-     *
+     * 
      * @param large the large value to set.
      * @return the IconUris object itself.
      */
@@ -66,7 +70,7 @@ public final class IconUris {
 
     /**
      * Get the wide property: URI to wide icon.
-     *
+     * 
      * @return the wide value.
      */
     public String wide() {
@@ -75,7 +79,7 @@ public final class IconUris {
 
     /**
      * Set the wide property: URI to wide icon.
-     *
+     * 
      * @param wide the wide value to set.
      * @return the IconUris object itself.
      */
@@ -86,7 +90,7 @@ public final class IconUris {
 
     /**
      * Get the medium property: URI to medium icon.
-     *
+     * 
      * @return the medium value.
      */
     public String medium() {
@@ -95,7 +99,7 @@ public final class IconUris {
 
     /**
      * Set the medium property: URI to medium icon.
-     *
+     * 
      * @param medium the medium value to set.
      * @return the IconUris object itself.
      */
@@ -106,7 +110,7 @@ public final class IconUris {
 
     /**
      * Get the small property: URI to small icon.
-     *
+     * 
      * @return the small value.
      */
     public String small() {
@@ -115,7 +119,7 @@ public final class IconUris {
 
     /**
      * Set the small property: URI to small icon.
-     *
+     * 
      * @param small the small value to set.
      * @return the IconUris object itself.
      */
@@ -126,7 +130,7 @@ public final class IconUris {
 
     /**
      * Get the hero property: URI to hero icon.
-     *
+     * 
      * @return the hero value.
      */
     public String hero() {
@@ -135,7 +139,7 @@ public final class IconUris {
 
     /**
      * Set the hero property: URI to hero icon.
-     *
+     * 
      * @param hero the hero value to set.
      * @return the IconUris object itself.
      */
@@ -146,7 +150,7 @@ public final class IconUris {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

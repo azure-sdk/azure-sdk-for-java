@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** OS disk image. */
+/**
+ * OS disk image.
+ */
 @Immutable
 public final class OsDiskImage {
     /*
@@ -22,13 +24,15 @@ public final class OsDiskImage {
     @JsonProperty(value = "sourceBlobSasUri", access = JsonProperty.Access.WRITE_ONLY)
     private String sourceBlobSasUri;
 
-    /** Creates an instance of OsDiskImage class. */
+    /**
+     * Creates an instance of OsDiskImage class.
+     */
     public OsDiskImage() {
     }
 
     /**
      * Get the operatingSystem property: OS operating system type.
-     *
+     * 
      * @return the operatingSystem value.
      */
     public OperatingSystem operatingSystem() {
@@ -37,7 +41,7 @@ public final class OsDiskImage {
 
     /**
      * Get the sourceBlobSasUri property: SAS key for source blob.
-     *
+     * 
      * @return the sourceBlobSasUri value.
      */
     public String sourceBlobSasUri() {
@@ -46,7 +50,7 @@ public final class OsDiskImage {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

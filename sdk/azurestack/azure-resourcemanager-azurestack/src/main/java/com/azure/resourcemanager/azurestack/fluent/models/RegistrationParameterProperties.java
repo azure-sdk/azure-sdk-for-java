@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the Azure Stack registration resource. */
+/**
+ * Properties of the Azure Stack registration resource.
+ */
 @Fluent
 public final class RegistrationParameterProperties {
     /*
@@ -17,13 +19,15 @@ public final class RegistrationParameterProperties {
     @JsonProperty(value = "registrationToken", required = true)
     private String registrationToken;
 
-    /** Creates an instance of RegistrationParameterProperties class. */
+    /**
+     * Creates an instance of RegistrationParameterProperties class.
+     */
     public RegistrationParameterProperties() {
     }
 
     /**
      * Get the registrationToken property: The token identifying registered Azure Stack.
-     *
+     * 
      * @return the registrationToken value.
      */
     public String registrationToken() {
@@ -32,7 +36,7 @@ public final class RegistrationParameterProperties {
 
     /**
      * Set the registrationToken property: The token identifying registered Azure Stack.
-     *
+     * 
      * @param registrationToken the registrationToken value to set.
      * @return the RegistrationParameterProperties object itself.
      */
@@ -43,15 +47,13 @@ public final class RegistrationParameterProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (registrationToken() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property registrationToken in model RegistrationParameterProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property registrationToken in model RegistrationParameterProperties"));
         }
     }
 

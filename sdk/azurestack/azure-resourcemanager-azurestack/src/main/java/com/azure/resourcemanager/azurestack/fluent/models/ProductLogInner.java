@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Product action log. */
+/**
+ * Product action log.
+ */
 @Immutable
 public final class ProductLogInner {
     /*
@@ -76,13 +78,15 @@ public final class ProductLogInner {
     @JsonProperty(value = "details", access = JsonProperty.Access.WRITE_ONLY)
     private String details;
 
-    /** Creates an instance of ProductLogInner class. */
+    /**
+     * Creates an instance of ProductLogInner class.
+     */
     public ProductLogInner() {
     }
 
     /**
      * Get the id property: Log ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -91,7 +95,7 @@ public final class ProductLogInner {
 
     /**
      * Get the productId property: Logged product ID.
-     *
+     * 
      * @return the productId value.
      */
     public String productId() {
@@ -100,7 +104,7 @@ public final class ProductLogInner {
 
     /**
      * Get the subscriptionId property: Logged subscription ID.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -109,7 +113,7 @@ public final class ProductLogInner {
 
     /**
      * Get the registrationName property: Logged registration name.
-     *
+     * 
      * @return the registrationName value.
      */
     public String registrationName() {
@@ -118,7 +122,7 @@ public final class ProductLogInner {
 
     /**
      * Get the resourceGroupName property: Logged resource group name.
-     *
+     * 
      * @return the resourceGroupName value.
      */
     public String resourceGroupName() {
@@ -127,7 +131,7 @@ public final class ProductLogInner {
 
     /**
      * Get the operation property: Logged operation.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -136,7 +140,7 @@ public final class ProductLogInner {
 
     /**
      * Get the startDate property: Operation start datetime.
-     *
+     * 
      * @return the startDate value.
      */
     public String startDate() {
@@ -145,7 +149,7 @@ public final class ProductLogInner {
 
     /**
      * Get the endDate property: Operation end datetime.
-     *
+     * 
      * @return the endDate value.
      */
     public String endDate() {
@@ -154,7 +158,7 @@ public final class ProductLogInner {
 
     /**
      * Get the status property: Operation status.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -163,7 +167,7 @@ public final class ProductLogInner {
 
     /**
      * Get the error property: Operation error data.
-     *
+     * 
      * @return the error value.
      */
     public String error() {
@@ -172,7 +176,7 @@ public final class ProductLogInner {
 
     /**
      * Get the details property: Operation error details.
-     *
+     * 
      * @return the details value.
      */
     public String details() {
@@ -181,7 +185,7 @@ public final class ProductLogInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
