@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** An update to a SQL Server Instance. */
+/**
+ * An update to a SQL Server Instance.
+ */
 @Fluent
 public final class SqlServerInstanceUpdate {
     /*
@@ -19,13 +21,15 @@ public final class SqlServerInstanceUpdate {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of SqlServerInstanceUpdate class. */
+    /**
+     * Creates an instance of SqlServerInstanceUpdate class.
+     */
     public SqlServerInstanceUpdate() {
     }
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +38,7 @@ public final class SqlServerInstanceUpdate {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the SqlServerInstanceUpdate object itself.
      */
@@ -45,7 +49,7 @@ public final class SqlServerInstanceUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

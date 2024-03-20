@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of SqlServerInstance. */
+/**
+ * A list of SqlServerInstance.
+ */
 @Immutable
 public final class SqlServerInstanceListResult {
     /*
@@ -24,13 +26,15 @@ public final class SqlServerInstanceListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SqlServerInstanceListResult class. */
+    /**
+     * Creates an instance of SqlServerInstanceListResult class.
+     */
     public SqlServerInstanceListResult() {
     }
 
     /**
      * Get the value property: Array of results.
-     *
+     * 
      * @return the value value.
      */
     public List<SqlServerInstanceInner> value() {
@@ -39,7 +43,7 @@ public final class SqlServerInstanceListResult {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class SqlServerInstanceListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
