@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Level. */
+/**
+ * Defines values for Level.
+ */
 public final class Level extends ExpandableStringEnum<Level> {
-    /** Static value Noisy for Level. */
+    /**
+     * Static value Noisy for Level.
+     */
     public static final Level NOISY = fromString("Noisy");
 
-    /** Static value Normal for Level. */
+    /**
+     * Static value Normal for Level.
+     */
     public static final Level NORMAL = fromString("Normal");
 
-    /** Static value Important for Level. */
+    /**
+     * Static value Important for Level.
+     */
     public static final Level IMPORTANT = fromString("Important");
 
     /**
      * Creates a new instance of Level value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class Level extends ExpandableStringEnum<Level> {
 
     /**
      * Creates or finds a Level from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Level.
      */
@@ -41,7 +49,7 @@ public final class Level extends ExpandableStringEnum<Level> {
 
     /**
      * Gets known Level values.
-     *
+     * 
      * @return known Level values.
      */
     public static Collection<Level> values() {

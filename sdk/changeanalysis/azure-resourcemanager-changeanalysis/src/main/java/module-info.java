@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.changeanalysis {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.changeanalysis;
     exports com.azure.resourcemanager.changeanalysis.fluent;
     exports com.azure.resourcemanager.changeanalysis.fluent.models;
     exports com.azure.resourcemanager.changeanalysis.models;
-
-    opens com.azure.resourcemanager.changeanalysis.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.changeanalysis.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.changeanalysis.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.changeanalysis.models to com.azure.core, com.fasterxml.jackson.databind;
 }

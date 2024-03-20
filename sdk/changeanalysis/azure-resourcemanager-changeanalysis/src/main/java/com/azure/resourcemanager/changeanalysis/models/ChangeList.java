@@ -9,7 +9,9 @@ import com.azure.resourcemanager.changeanalysis.fluent.models.ChangeInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of detected changes. */
+/**
+ * The list of detected changes.
+ */
 @Fluent
 public final class ChangeList {
     /*
@@ -24,13 +26,15 @@ public final class ChangeList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ChangeList class. */
+    /**
+     * Creates an instance of ChangeList class.
+     */
     public ChangeList() {
     }
 
     /**
      * Get the value property: The list of changes.
-     *
+     * 
      * @return the value value.
      */
     public List<ChangeInner> value() {
@@ -39,7 +43,7 @@ public final class ChangeList {
 
     /**
      * Set the value property: The list of changes.
-     *
+     * 
      * @param value the value value to set.
      * @return the ChangeList object itself.
      */
@@ -50,7 +54,7 @@ public final class ChangeList {
 
     /**
      * Get the nextLink property: The URI that can be used to request the next page of changes.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ChangeList {
 
     /**
      * Set the nextLink property: The URI that can be used to request the next page of changes.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ChangeList object itself.
      */
@@ -70,7 +74,7 @@ public final class ChangeList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

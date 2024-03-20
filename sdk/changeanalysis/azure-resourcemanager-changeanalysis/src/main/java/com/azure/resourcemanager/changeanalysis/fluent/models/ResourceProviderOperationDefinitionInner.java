@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.changeanalysis.models.ResourceProviderOperationDisplay;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The resource provider operation definition. */
+/**
+ * The resource provider operation definition.
+ */
 @Fluent
 public final class ResourceProviderOperationDefinitionInner {
     /*
@@ -23,13 +25,15 @@ public final class ResourceProviderOperationDefinitionInner {
     @JsonProperty(value = "display")
     private ResourceProviderOperationDisplay display;
 
-    /** Creates an instance of ResourceProviderOperationDefinitionInner class. */
+    /**
+     * Creates an instance of ResourceProviderOperationDefinitionInner class.
+     */
     public ResourceProviderOperationDefinitionInner() {
     }
 
     /**
      * Get the name property: The resource provider operation name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class ResourceProviderOperationDefinitionInner {
 
     /**
      * Set the name property: The resource provider operation name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ResourceProviderOperationDefinitionInner object itself.
      */
@@ -49,7 +53,7 @@ public final class ResourceProviderOperationDefinitionInner {
 
     /**
      * Get the display property: The resource provider operation details.
-     *
+     * 
      * @return the display value.
      */
     public ResourceProviderOperationDisplay display() {
@@ -58,7 +62,7 @@ public final class ResourceProviderOperationDefinitionInner {
 
     /**
      * Set the display property: The resource provider operation details.
-     *
+     * 
      * @param display the display value to set.
      * @return the ResourceProviderOperationDefinitionInner object itself.
      */
@@ -69,7 +73,7 @@ public final class ResourceProviderOperationDefinitionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

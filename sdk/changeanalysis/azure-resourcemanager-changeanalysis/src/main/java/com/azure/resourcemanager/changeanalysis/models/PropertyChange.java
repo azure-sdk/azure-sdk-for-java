@@ -7,7 +7,9 @@ package com.azure.resourcemanager.changeanalysis.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Data of a property change. */
+/**
+ * Data of a property change.
+ */
 @Fluent
 public final class PropertyChange {
     /*
@@ -66,13 +68,15 @@ public final class PropertyChange {
     @JsonProperty(value = "isDataMasked")
     private Boolean isDataMasked;
 
-    /** Creates an instance of PropertyChange class. */
+    /**
+     * Creates an instance of PropertyChange class.
+     */
     public PropertyChange() {
     }
 
     /**
      * Get the changeType property: The type of the change.
-     *
+     * 
      * @return the changeType value.
      */
     public ChangeType changeType() {
@@ -81,7 +85,7 @@ public final class PropertyChange {
 
     /**
      * Set the changeType property: The type of the change.
-     *
+     * 
      * @param changeType the changeType value to set.
      * @return the PropertyChange object itself.
      */
@@ -92,7 +96,7 @@ public final class PropertyChange {
 
     /**
      * Get the changeCategory property: The change category.
-     *
+     * 
      * @return the changeCategory value.
      */
     public ChangeCategory changeCategory() {
@@ -101,7 +105,7 @@ public final class PropertyChange {
 
     /**
      * Set the changeCategory property: The change category.
-     *
+     * 
      * @param changeCategory the changeCategory value to set.
      * @return the PropertyChange object itself.
      */
@@ -112,7 +116,7 @@ public final class PropertyChange {
 
     /**
      * Get the jsonPath property: The json path of the changed property.
-     *
+     * 
      * @return the jsonPath value.
      */
     public String jsonPath() {
@@ -121,7 +125,7 @@ public final class PropertyChange {
 
     /**
      * Set the jsonPath property: The json path of the changed property.
-     *
+     * 
      * @param jsonPath the jsonPath value to set.
      * @return the PropertyChange object itself.
      */
@@ -131,9 +135,9 @@ public final class PropertyChange {
     }
 
     /**
-     * Get the displayName property: The enhanced display name of the json path. E.g., the json path value[0].properties
-     * will be translated to something meaningful like slots["Staging"].properties.
-     *
+     * Get the displayName property: The enhanced display name of the json path. E.g., the json path
+     * value[0].properties will be translated to something meaningful like slots["Staging"].properties.
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -141,9 +145,9 @@ public final class PropertyChange {
     }
 
     /**
-     * Set the displayName property: The enhanced display name of the json path. E.g., the json path value[0].properties
-     * will be translated to something meaningful like slots["Staging"].properties.
-     *
+     * Set the displayName property: The enhanced display name of the json path. E.g., the json path
+     * value[0].properties will be translated to something meaningful like slots["Staging"].properties.
+     * 
      * @param displayName the displayName value to set.
      * @return the PropertyChange object itself.
      */
@@ -154,7 +158,7 @@ public final class PropertyChange {
 
     /**
      * Get the level property: The level property.
-     *
+     * 
      * @return the level value.
      */
     public Level level() {
@@ -163,7 +167,7 @@ public final class PropertyChange {
 
     /**
      * Set the level property: The level property.
-     *
+     * 
      * @param level the level value to set.
      * @return the PropertyChange object itself.
      */
@@ -174,7 +178,7 @@ public final class PropertyChange {
 
     /**
      * Get the description property: The description of the changed property.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -183,7 +187,7 @@ public final class PropertyChange {
 
     /**
      * Set the description property: The description of the changed property.
-     *
+     * 
      * @param description the description value to set.
      * @return the PropertyChange object itself.
      */
@@ -194,7 +198,7 @@ public final class PropertyChange {
 
     /**
      * Get the oldValue property: The value of the property before the change.
-     *
+     * 
      * @return the oldValue value.
      */
     public String oldValue() {
@@ -203,7 +207,7 @@ public final class PropertyChange {
 
     /**
      * Set the oldValue property: The value of the property before the change.
-     *
+     * 
      * @param oldValue the oldValue value to set.
      * @return the PropertyChange object itself.
      */
@@ -214,7 +218,7 @@ public final class PropertyChange {
 
     /**
      * Get the newValue property: The value of the property after the change.
-     *
+     * 
      * @return the newValue value.
      */
     public String newValue() {
@@ -223,7 +227,7 @@ public final class PropertyChange {
 
     /**
      * Set the newValue property: The value of the property after the change.
-     *
+     * 
      * @param newValue the newValue value to set.
      * @return the PropertyChange object itself.
      */
@@ -235,7 +239,7 @@ public final class PropertyChange {
     /**
      * Get the isDataMasked property: The boolean indicating whether the oldValue and newValue are masked. The values
      * are masked if it contains sensitive information that the user doesn't have access to.
-     *
+     * 
      * @return the isDataMasked value.
      */
     public Boolean isDataMasked() {
@@ -245,7 +249,7 @@ public final class PropertyChange {
     /**
      * Set the isDataMasked property: The boolean indicating whether the oldValue and newValue are masked. The values
      * are masked if it contains sensitive information that the user doesn't have access to.
-     *
+     * 
      * @param isDataMasked the isDataMasked value to set.
      * @return the PropertyChange object itself.
      */
@@ -256,7 +260,7 @@ public final class PropertyChange {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

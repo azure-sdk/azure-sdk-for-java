@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.changeanalysis.models.ChangeProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The detected change. */
+/**
+ * The detected change.
+ */
 @Fluent
 public final class ChangeInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class ChangeInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ChangeProperties properties;
 
-    /** Creates an instance of ChangeInner class. */
+    /**
+     * Creates an instance of ChangeInner class.
+     */
     public ChangeInner() {
     }
 
     /**
      * Get the properties property: The properties of a change.
-     *
+     * 
      * @return the properties value.
      */
     public ChangeProperties properties() {
@@ -33,7 +37,7 @@ public final class ChangeInner extends ProxyResource {
 
     /**
      * Set the properties property: The properties of a change.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ChangeInner object itself.
      */
@@ -44,7 +48,7 @@ public final class ChangeInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
