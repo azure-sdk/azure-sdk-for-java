@@ -19,8 +19,7 @@ public final class ReportsImpl implements Reports {
 
     private final com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager;
 
-    public ReportsImpl(
-        ReportsClient innerClient,
+    public ReportsImpl(ReportsClient innerClient,
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -28,14 +27,14 @@ public final class ReportsImpl implements Reports {
 
     public PagedIterable<ReportResource> list() {
         PagedIterable<ReportResourceInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new ReportResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ReportResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<ReportResource> list(
-        String skipToken, Integer top, String select, String offerGuid, String reportCreatorTenantId, Context context) {
-        PagedIterable<ReportResourceInner> inner =
-            this.serviceClient().list(skipToken, top, select, offerGuid, reportCreatorTenantId, context);
-        return Utils.mapPage(inner, inner1 -> new ReportResourceImpl(inner1, this.manager()));
+    public PagedIterable<ReportResource> list(String skipToken, Integer top, String select, String offerGuid,
+        String reportCreatorTenantId, Context context) {
+        PagedIterable<ReportResourceInner> inner
+            = this.serviceClient().list(skipToken, top, select, offerGuid, reportCreatorTenantId, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ReportResourceImpl(inner1, this.manager()));
     }
 
     private ReportsClient serviceClient() {

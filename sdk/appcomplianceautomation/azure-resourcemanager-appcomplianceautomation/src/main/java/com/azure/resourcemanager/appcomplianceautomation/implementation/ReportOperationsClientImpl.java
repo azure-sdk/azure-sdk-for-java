@@ -35,126 +35,114 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in ReportOperationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ReportOperationsClient.
+ */
 public final class ReportOperationsClientImpl implements ReportOperationsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final ReportOperationsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AppComplianceAutomationToolForMicrosoft365Impl client;
 
     /**
      * Initializes an instance of ReportOperationsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     ReportOperationsClientImpl(AppComplianceAutomationToolForMicrosoft365Impl client) {
-        this.service =
-            RestProxy.create(ReportOperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(ReportOperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AppComplianceAutomationToolForMicrosoft365ReportOperations to be used
-     * by the proxy service to perform REST calls.
+     * The interface defining all the services for AppComplianceAutomationToolForMicrosoft365ReportOperations to be
+     * used by the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AppComplianceAutomat")
     public interface ReportOperationsService {
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.AppComplianceAutomation/reports/{reportName}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ReportResourceInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("reportName") String reportName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ReportResourceInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("reportName") String reportName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Put("/providers/Microsoft.AppComplianceAutomation/reports/{reportName}")
-        @ExpectedResponses({200, 201})
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("reportName") String reportName,
-            @BodyParam("application/json") ReportResourceInner parameters,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("reportName") String reportName,
+            @BodyParam("application/json") ReportResourceInner parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Patch("/providers/Microsoft.AppComplianceAutomation/reports/{reportName}")
-        @ExpectedResponses({200, 201, 202})
+        @ExpectedResponses({ 200, 201, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("reportName") String reportName,
-            @BodyParam("application/json") ReportResourcePatch parameters,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("reportName") String reportName,
+            @BodyParam("application/json") ReportResourcePatch parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Delete("/providers/Microsoft.AppComplianceAutomation/reports/{reportName}")
-        @ExpectedResponses({200, 202, 204})
+        @ExpectedResponses({ 200, 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("reportName") String reportName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("reportName") String reportName,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Get the AppComplianceAutomation report and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the AppComplianceAutomation report and its properties along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ReportResourceInner>> getWithResponseAsync(String reportName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service.get(this.client.getEndpoint(), this.client.getApiVersion(), reportName, accept, context))
+        return FluxUtil.withContext(
+            context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), reportName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the AppComplianceAutomation report and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the AppComplianceAutomation report and its properties along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ReportResourceInner>> getWithResponseAsync(String reportName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
@@ -166,7 +154,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Get the AppComplianceAutomation report and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -180,7 +168,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Get the AppComplianceAutomation report and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -195,7 +183,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Get the AppComplianceAutomation report and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -209,23 +197,21 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a class represent an AppComplianceAutomation report resource along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String reportName, ReportResourceInner parameters) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String reportName,
+        ReportResourceInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
@@ -237,22 +223,14 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            reportName,
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                reportName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -260,16 +238,14 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a class represent an AppComplianceAutomation report resource along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String reportName, ReportResourceInner parameters, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String reportName,
+        ReportResourceInner parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
@@ -281,14 +257,13 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(), this.client.getApiVersion(), reportName, parameters, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(), reportName, parameters,
+            accept, context);
     }
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -297,22 +272,16 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      * @return the {@link PollerFlux} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdateAsync(
-        String reportName, ReportResourceInner parameters) {
+    private PollerFlux<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdateAsync(String reportName,
+        ReportResourceInner parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(reportName, parameters);
-        return this
-            .client
-            .<ReportResourceInner, ReportResourceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ReportResourceInner.class,
-                ReportResourceInner.class,
-                this.client.getContext());
+        return this.client.<ReportResourceInner, ReportResourceInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ReportResourceInner.class, ReportResourceInner.class, this.client.getContext());
     }
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -322,19 +291,17 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      * @return the {@link PollerFlux} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdateAsync(
-        String reportName, ReportResourceInner parameters, Context context) {
+    private PollerFlux<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdateAsync(String reportName,
+        ReportResourceInner parameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(reportName, parameters, context);
-        return this
-            .client
-            .<ReportResourceInner, ReportResourceInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ReportResourceInner.class, ReportResourceInner.class, context);
+        return this.client.<ReportResourceInner, ReportResourceInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ReportResourceInner.class, ReportResourceInner.class, context);
     }
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -343,14 +310,14 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      * @return the {@link SyncPoller} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(
-        String reportName, ReportResourceInner parameters) {
-        return beginCreateOrUpdateAsync(reportName, parameters).getSyncPoller();
+    public SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(String reportName,
+        ReportResourceInner parameters) {
+        return this.beginCreateOrUpdateAsync(reportName, parameters).getSyncPoller();
     }
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -360,14 +327,14 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      * @return the {@link SyncPoller} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(
-        String reportName, ReportResourceInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(reportName, parameters, context).getSyncPoller();
+    public SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(String reportName,
+        ReportResourceInner parameters, Context context) {
+        return this.beginCreateOrUpdateAsync(reportName, parameters, context).getSyncPoller();
     }
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -382,7 +349,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -392,16 +359,15 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      * @return a class represent an AppComplianceAutomation report resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ReportResourceInner> createOrUpdateAsync(
-        String reportName, ReportResourceInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(reportName, parameters, context)
-            .last()
+    private Mono<ReportResourceInner> createOrUpdateAsync(String reportName, ReportResourceInner parameters,
+        Context context) {
+        return beginCreateOrUpdateAsync(reportName, parameters, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -416,7 +382,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -432,23 +398,21 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a class represent an AppComplianceAutomation report resource along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String reportName, ReportResourcePatch parameters) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String reportName,
+        ReportResourcePatch parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
@@ -460,22 +424,14 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            reportName,
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(), reportName,
+                parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -483,16 +439,14 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a class represent an AppComplianceAutomation report resource along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String reportName, ReportResourcePatch parameters, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String reportName, ReportResourcePatch parameters,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
@@ -504,13 +458,13 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(this.client.getEndpoint(), this.client.getApiVersion(), reportName, parameters, accept, context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), reportName, parameters, accept,
+            context);
     }
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -519,22 +473,16 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      * @return the {@link PollerFlux} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdateAsync(
-        String reportName, ReportResourcePatch parameters) {
+    private PollerFlux<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdateAsync(String reportName,
+        ReportResourcePatch parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(reportName, parameters);
-        return this
-            .client
-            .<ReportResourceInner, ReportResourceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ReportResourceInner.class,
-                ReportResourceInner.class,
-                this.client.getContext());
+        return this.client.<ReportResourceInner, ReportResourceInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ReportResourceInner.class, ReportResourceInner.class, this.client.getContext());
     }
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -544,19 +492,17 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      * @return the {@link PollerFlux} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdateAsync(
-        String reportName, ReportResourcePatch parameters, Context context) {
+    private PollerFlux<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdateAsync(String reportName,
+        ReportResourcePatch parameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(reportName, parameters, context);
-        return this
-            .client
-            .<ReportResourceInner, ReportResourceInner>getLroResult(
-                mono, this.client.getHttpPipeline(), ReportResourceInner.class, ReportResourceInner.class, context);
+        return this.client.<ReportResourceInner, ReportResourceInner>getLroResult(mono, this.client.getHttpPipeline(),
+            ReportResourceInner.class, ReportResourceInner.class, context);
     }
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -565,14 +511,14 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      * @return the {@link SyncPoller} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdate(
-        String reportName, ReportResourcePatch parameters) {
-        return beginUpdateAsync(reportName, parameters).getSyncPoller();
+    public SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdate(String reportName,
+        ReportResourcePatch parameters) {
+        return this.beginUpdateAsync(reportName, parameters).getSyncPoller();
     }
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -582,14 +528,14 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      * @return the {@link SyncPoller} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdate(
-        String reportName, ReportResourcePatch parameters, Context context) {
-        return beginUpdateAsync(reportName, parameters, context).getSyncPoller();
+    public SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdate(String reportName,
+        ReportResourcePatch parameters, Context context) {
+        return this.beginUpdateAsync(reportName, parameters, context).getSyncPoller();
     }
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -604,7 +550,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -620,7 +566,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -635,7 +581,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -651,7 +597,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -661,25 +607,22 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String reportName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service.delete(this.client.getEndpoint(), this.client.getApiVersion(), reportName, accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(), reportName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -690,10 +633,8 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String reportName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
@@ -705,7 +646,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -715,15 +656,13 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String reportName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(reportName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -735,14 +674,13 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String reportName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(reportName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -751,12 +689,12 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String reportName) {
-        return beginDeleteAsync(reportName).getSyncPoller();
+        return this.beginDeleteAsync(reportName).getSyncPoller();
     }
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -766,12 +704,12 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginDelete(String reportName, Context context) {
-        return beginDeleteAsync(reportName, context).getSyncPoller();
+        return this.beginDeleteAsync(reportName, context).getSyncPoller();
     }
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -785,7 +723,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -800,7 +738,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -813,7 +751,7 @@ public final class ReportOperationsClientImpl implements ReportOperationsClient 
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

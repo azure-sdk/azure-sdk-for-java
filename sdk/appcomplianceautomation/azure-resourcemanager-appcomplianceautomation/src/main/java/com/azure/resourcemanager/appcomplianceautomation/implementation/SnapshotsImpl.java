@@ -19,8 +19,7 @@ public final class SnapshotsImpl implements Snapshots {
 
     private final com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager;
 
-    public SnapshotsImpl(
-        SnapshotsClient innerClient,
+    public SnapshotsImpl(SnapshotsClient innerClient,
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -28,20 +27,14 @@ public final class SnapshotsImpl implements Snapshots {
 
     public PagedIterable<SnapshotResource> list(String reportName) {
         PagedIterable<SnapshotResourceInner> inner = this.serviceClient().list(reportName);
-        return Utils.mapPage(inner, inner1 -> new SnapshotResourceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SnapshotResourceImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<SnapshotResource> list(
-        String reportName,
-        String skipToken,
-        Integer top,
-        String select,
-        String reportCreatorTenantId,
-        String offerGuid,
-        Context context) {
-        PagedIterable<SnapshotResourceInner> inner =
-            this.serviceClient().list(reportName, skipToken, top, select, reportCreatorTenantId, offerGuid, context);
-        return Utils.mapPage(inner, inner1 -> new SnapshotResourceImpl(inner1, this.manager()));
+    public PagedIterable<SnapshotResource> list(String reportName, String skipToken, Integer top, String select,
+        String reportCreatorTenantId, String offerGuid, Context context) {
+        PagedIterable<SnapshotResourceInner> inner
+            = this.serviceClient().list(reportName, skipToken, top, select, reportCreatorTenantId, offerGuid, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SnapshotResourceImpl(inner1, this.manager()));
     }
 
     private SnapshotsClient serviceClient() {

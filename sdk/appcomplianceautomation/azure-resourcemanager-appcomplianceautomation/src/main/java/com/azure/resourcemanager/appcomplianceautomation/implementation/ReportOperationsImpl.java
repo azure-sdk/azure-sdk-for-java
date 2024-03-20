@@ -21,8 +21,7 @@ public final class ReportOperationsImpl implements ReportOperations {
 
     private final com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager;
 
-    public ReportOperationsImpl(
-        ReportOperationsClient innerClient,
+    public ReportOperationsImpl(ReportOperationsClient innerClient,
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -31,10 +30,7 @@ public final class ReportOperationsImpl implements ReportOperations {
     public Response<ReportResource> getWithResponse(String reportName, Context context) {
         Response<ReportResourceInner> inner = this.serviceClient().getWithResponse(reportName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ReportResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;

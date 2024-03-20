@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appcomplianceautomation.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Object that includes all the content for single compliance result. */
+/**
+ * Object that includes all the content for single compliance result.
+ */
 @Immutable
 public final class ComplianceReportItem {
     /*
@@ -78,8 +80,7 @@ public final class ComplianceReportItem {
 
     /*
      * The compliance result mapped resource Id - e.g.
-     * "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute"
-         + "/virtualMachines/vm1".
+     * "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute/virtualMachines/vm1".
      */
     @JsonProperty(value = "resourceId", access = JsonProperty.Access.WRITE_ONLY)
     private String resourceId;
@@ -91,13 +92,15 @@ public final class ComplianceReportItem {
     @JsonProperty(value = "statusChangeDate", access = JsonProperty.Access.WRITE_ONLY)
     private String statusChangeDate;
 
-    /** Creates an instance of ComplianceReportItem class. */
+    /**
+     * Creates an instance of ComplianceReportItem class.
+     */
     public ComplianceReportItem() {
     }
 
     /**
      * Get the categoryName property: The category name.
-     *
+     * 
      * @return the categoryName value.
      */
     public String categoryName() {
@@ -106,7 +109,7 @@ public final class ComplianceReportItem {
 
     /**
      * Get the controlId property: The control Id - e.g. "1".
-     *
+     * 
      * @return the controlId value.
      */
     public String controlId() {
@@ -115,7 +118,7 @@ public final class ComplianceReportItem {
 
     /**
      * Get the controlName property: The control name.
-     *
+     * 
      * @return the controlName value.
      */
     public String controlName() {
@@ -124,7 +127,7 @@ public final class ComplianceReportItem {
 
     /**
      * Get the controlType property: The control type.
-     *
+     * 
      * @return the controlType value.
      */
     public ControlType controlType() {
@@ -133,7 +136,7 @@ public final class ComplianceReportItem {
 
     /**
      * Get the complianceState property: The compliance result's status.
-     *
+     * 
      * @return the complianceState value.
      */
     public ComplianceState complianceState() {
@@ -142,7 +145,7 @@ public final class ComplianceReportItem {
 
     /**
      * Get the policyId property: The compliance result mapped policy Id.
-     *
+     * 
      * @return the policyId value.
      */
     public String policyId() {
@@ -151,7 +154,7 @@ public final class ComplianceReportItem {
 
     /**
      * Get the policyDisplayName property: The policy's display name.
-     *
+     * 
      * @return the policyDisplayName value.
      */
     public String policyDisplayName() {
@@ -160,7 +163,7 @@ public final class ComplianceReportItem {
 
     /**
      * Get the policyDescription property: The policy's detail description.
-     *
+     * 
      * @return the policyDescription value.
      */
     public String policyDescription() {
@@ -169,7 +172,7 @@ public final class ComplianceReportItem {
 
     /**
      * Get the subscriptionId property: The compliance result mapped subscription Id.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -178,7 +181,7 @@ public final class ComplianceReportItem {
 
     /**
      * Get the resourceGroup property: The compliance result mapped resource group.
-     *
+     * 
      * @return the resourceGroup value.
      */
     public String resourceGroup() {
@@ -187,7 +190,7 @@ public final class ComplianceReportItem {
 
     /**
      * Get the resourceType property: The compliance result mapped resource type.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -196,9 +199,8 @@ public final class ComplianceReportItem {
 
     /**
      * Get the resourceId property: The compliance result mapped resource Id - e.g.
-     * "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute"
-         + "/virtualMachines/vm1".
-     *
+     * "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute/virtualMachines/vm1".
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -206,9 +208,9 @@ public final class ComplianceReportItem {
     }
 
     /**
-     * Get the statusChangeDate property: The compliance result last changed date - e.g. "2022-10-24T02:55:16.3274379Z".
-     * For unavailable date, set it as "N/A".
-     *
+     * Get the statusChangeDate property: The compliance result last changed date - e.g.
+     * "2022-10-24T02:55:16.3274379Z". For unavailable date, set it as "N/A".
+     * 
      * @return the statusChangeDate value.
      */
     public String statusChangeDate() {
@@ -217,7 +219,7 @@ public final class ComplianceReportItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

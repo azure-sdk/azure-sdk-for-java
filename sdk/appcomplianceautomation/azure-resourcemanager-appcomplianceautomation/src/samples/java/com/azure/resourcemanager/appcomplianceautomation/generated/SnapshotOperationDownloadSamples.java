@@ -4,97 +4,84 @@
 
 package com.azure.resourcemanager.appcomplianceautomation.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcomplianceautomation.models.DownloadType;
 import com.azure.resourcemanager.appcomplianceautomation.models.SnapshotDownloadRequest;
 
-/** Samples for SnapshotOperation Download. */
+/**
+ * Samples for SnapshotOperation Download.
+ */
 public final class SnapshotOperationDownloadSamples {
     /*
-     * x-ms-original-file: specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-preview/examples/Snapshot_ComplianceReport_Download.json
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-
+     * preview/examples/Snapshot_ComplianceReport_Download.json
      */
     /**
      * Sample code: Snapshot_Download_ComplianceReport.
-     *
+     * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void snapshotDownloadComplianceReport(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager
-            .snapshotOperations()
-            .download(
-                "testReportName",
-                "testSnapshotName",
-                new SnapshotDownloadRequest()
-                    .withReportCreatorTenantId("00000000-0000-0000-0000-000000000000")
-                    .withDownloadType(DownloadType.COMPLIANCE_REPORT)
-                    .withOfferGuid("00000000-0000-0000-0000-000000000000"),
-                Context.NONE);
+        manager.snapshotOperations().download("testReportName", "testSnapshotName",
+            new SnapshotDownloadRequest().withReportCreatorTenantId("00000000-0000-0000-0000-000000000000")
+                .withDownloadType(DownloadType.COMPLIANCE_REPORT).withOfferGuid("00000000-0000-0000-0000-000000000000"),
+            com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-preview/examples/Snapshot_ResourceList_Download.json
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-
+     * preview/examples/Snapshot_ResourceList_Download.json
      */
     /**
      * Sample code: Snapshot_Download_ResourceList.
-     *
+     * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void snapshotDownloadResourceList(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager
-            .snapshotOperations()
-            .download(
-                "testReportName",
-                "testSnapshotName",
-                new SnapshotDownloadRequest()
-                    .withReportCreatorTenantId("00000000-0000-0000-0000-000000000000")
-                    .withDownloadType(DownloadType.RESOURCE_LIST)
-                    .withOfferGuid("00000000-0000-0000-0000-000000000000"),
-                Context.NONE);
+        manager.snapshotOperations().download("testReportName", "testSnapshotName",
+            new SnapshotDownloadRequest().withReportCreatorTenantId("00000000-0000-0000-0000-000000000000")
+                .withDownloadType(DownloadType.RESOURCE_LIST).withOfferGuid("00000000-0000-0000-0000-000000000000"),
+            com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-preview/examples/Snapshot_ComplianceDetailedPdfReport_Download.json
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-
+     * preview/examples/Snapshot_ComplianceDetailedPdfReport_Download.json
      */
     /**
      * Sample code: Snapshot_Download_ComplianceDetailedPdfReport.
-     *
+     * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void snapshotDownloadComplianceDetailedPdfReport(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager
-            .snapshotOperations()
-            .download(
-                "testReportName",
-                "testSnapshotName",
-                new SnapshotDownloadRequest()
-                    .withReportCreatorTenantId("00000000-0000-0000-0000-000000000000")
-                    .withDownloadType(DownloadType.COMPLIANCE_DETAILED_PDF_REPORT)
-                    .withOfferGuid("00000000-0000-0000-0000-000000000000"),
-                Context.NONE);
+        manager.snapshotOperations().download("testReportName", "testSnapshotName",
+            new SnapshotDownloadRequest().withReportCreatorTenantId("00000000-0000-0000-0000-000000000000")
+                .withDownloadType(DownloadType.COMPLIANCE_DETAILED_PDF_REPORT)
+                .withOfferGuid("00000000-0000-0000-0000-000000000000"),
+            com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-preview/examples/Snapshot_CompliancePdfReport_Download.json
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-
+     * preview/examples/Snapshot_CompliancePdfReport_Download.json
      */
     /**
      * Sample code: Snapshot_Download_CompliancePdfReport.
-     *
+     * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
     public static void snapshotDownloadCompliancePdfReport(
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager
-            .snapshotOperations()
-            .download(
-                "testReportName",
-                "testSnapshotName",
-                new SnapshotDownloadRequest()
-                    .withReportCreatorTenantId("00000000-0000-0000-0000-000000000000")
-                    .withDownloadType(DownloadType.COMPLIANCE_PDF_REPORT)
-                    .withOfferGuid("00000000-0000-0000-0000-000000000000"),
-                Context.NONE);
+        manager.snapshotOperations().download("testReportName", "testSnapshotName",
+            new SnapshotDownloadRequest().withReportCreatorTenantId("00000000-0000-0000-0000-000000000000")
+                .withDownloadType(DownloadType.COMPLIANCE_PDF_REPORT)
+                .withOfferGuid("00000000-0000-0000-0000-000000000000"),
+            com.azure.core.util.Context.NONE);
     }
 }

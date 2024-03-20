@@ -10,13 +10,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Single resource Id's metadata. */
+/**
+ * Single resource Id's metadata.
+ */
 @Fluent
 public final class ResourceMetadata {
     /*
      * Resource Id - e.g.
-     * "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute"
-         + "/virtualMachines/vm1".
+     * "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute/virtualMachines/vm1".
      */
     @JsonProperty(value = "resourceId", required = true)
     private String resourceId;
@@ -46,15 +47,16 @@ public final class ResourceMetadata {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of ResourceMetadata class. */
+    /**
+     * Creates an instance of ResourceMetadata class.
+     */
     public ResourceMetadata() {
     }
 
     /**
      * Get the resourceId property: Resource Id - e.g.
-     * "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute"
-         + "/virtualMachines/vm1".
-     *
+     * "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute/virtualMachines/vm1".
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -63,9 +65,8 @@ public final class ResourceMetadata {
 
     /**
      * Set the resourceId property: Resource Id - e.g.
-     * "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute"
-         + "/virtualMachines/vm1".
-     *
+     * "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute/virtualMachines/vm1".
+     * 
      * @param resourceId the resourceId value to set.
      * @return the ResourceMetadata object itself.
      */
@@ -76,7 +77,7 @@ public final class ResourceMetadata {
 
     /**
      * Get the resourceType property: Resource type.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -85,7 +86,7 @@ public final class ResourceMetadata {
 
     /**
      * Set the resourceType property: Resource type.
-     *
+     * 
      * @param resourceType the resourceType value to set.
      * @return the ResourceMetadata object itself.
      */
@@ -96,7 +97,7 @@ public final class ResourceMetadata {
 
     /**
      * Get the resourceKind property: Resource kind.
-     *
+     * 
      * @return the resourceKind value.
      */
     public String resourceKind() {
@@ -105,7 +106,7 @@ public final class ResourceMetadata {
 
     /**
      * Set the resourceKind property: Resource kind.
-     *
+     * 
      * @param resourceKind the resourceKind value to set.
      * @return the ResourceMetadata object itself.
      */
@@ -116,7 +117,7 @@ public final class ResourceMetadata {
 
     /**
      * Get the resourceName property: Resource name.
-     *
+     * 
      * @return the resourceName value.
      */
     public String resourceName() {
@@ -125,7 +126,7 @@ public final class ResourceMetadata {
 
     /**
      * Set the resourceName property: Resource name.
-     *
+     * 
      * @param resourceName the resourceName value to set.
      * @return the ResourceMetadata object itself.
      */
@@ -136,7 +137,7 @@ public final class ResourceMetadata {
 
     /**
      * Get the tags property: Resource's tag type.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -145,7 +146,7 @@ public final class ResourceMetadata {
 
     /**
      * Set the tags property: Resource's tag type.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ResourceMetadata object itself.
      */
@@ -156,14 +157,13 @@ public final class ResourceMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (resourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property resourceId in model ResourceMetadata"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property resourceId in model ResourceMetadata"));
         }
     }
 

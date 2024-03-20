@@ -4,20 +4,22 @@
 
 package com.azure.resourcemanager.appcomplianceautomation.generated;
 
-import com.azure.core.util.Context;
-
-/** Samples for ReportOperation Get. */
+/**
+ * Samples for ReportOperation Get.
+ */
 public final class ReportOperationGetSamples {
     /*
-     * x-ms-original-file: specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-preview/examples/Report_Get.json
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-
+     * preview/examples/Report_Get.json
      */
     /**
      * Sample code: Report_Get.
-     *
+     * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
-    public static void reportGet(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager.reportOperations().getWithResponse("testReport", Context.NONE);
+    public static void
+        reportGet(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.reportOperations().getWithResponse("testReport", com.azure.core.util.Context.NONE);
     }
 }

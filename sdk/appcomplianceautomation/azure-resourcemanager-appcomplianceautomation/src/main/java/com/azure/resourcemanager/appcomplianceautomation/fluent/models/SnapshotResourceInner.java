@@ -10,7 +10,9 @@ import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcomplianceautomation.models.SnapshotProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class represent a AppComplianceAutomation snapshot resource. */
+/**
+ * A class represent a AppComplianceAutomation snapshot resource.
+ */
 @Immutable
 public final class SnapshotResourceInner extends ProxyResource {
     /*
@@ -25,13 +27,15 @@ public final class SnapshotResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of SnapshotResourceInner class. */
+    /**
+     * Creates an instance of SnapshotResourceInner class.
+     */
     public SnapshotResourceInner() {
     }
 
     /**
      * Get the properties property: Snapshot's property'.
-     *
+     * 
      * @return the properties value.
      */
     public SnapshotProperties properties() {
@@ -40,7 +44,7 @@ public final class SnapshotResourceInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -49,7 +53,7 @@ public final class SnapshotResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

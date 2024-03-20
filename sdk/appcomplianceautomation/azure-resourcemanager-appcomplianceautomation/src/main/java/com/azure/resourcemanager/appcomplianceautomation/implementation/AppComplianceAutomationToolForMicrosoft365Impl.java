@@ -37,124 +37,146 @@ import java.time.Duration;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** Initializes a new instance of the AppComplianceAutomationToolForMicrosoft365Impl type. */
+/**
+ * Initializes a new instance of the AppComplianceAutomationToolForMicrosoft365Impl type.
+ */
 @ServiceClient(builder = AppComplianceAutomationToolForMicrosoft365Builder.class)
 public final class AppComplianceAutomationToolForMicrosoft365Impl
     implements AppComplianceAutomationToolForMicrosoft365 {
-    /** server parameter. */
+    /**
+     * server parameter.
+     */
     private final String endpoint;
 
     /**
      * Gets server parameter.
-     *
+     * 
      * @return the endpoint value.
      */
     public String getEndpoint() {
         return this.endpoint;
     }
 
-    /** Api Version. */
+    /**
+     * Api Version.
+     */
     private final String apiVersion;
 
     /**
      * Gets Api Version.
-     *
+     * 
      * @return the apiVersion value.
      */
     public String getApiVersion() {
         return this.apiVersion;
     }
 
-    /** The HTTP pipeline to send requests through. */
+    /**
+     * The HTTP pipeline to send requests through.
+     */
     private final HttpPipeline httpPipeline;
 
     /**
      * Gets The HTTP pipeline to send requests through.
-     *
+     * 
      * @return the httpPipeline value.
      */
     public HttpPipeline getHttpPipeline() {
         return this.httpPipeline;
     }
 
-    /** The serializer to serialize an object into a string. */
+    /**
+     * The serializer to serialize an object into a string.
+     */
     private final SerializerAdapter serializerAdapter;
 
     /**
      * Gets The serializer to serialize an object into a string.
-     *
+     * 
      * @return the serializerAdapter value.
      */
     SerializerAdapter getSerializerAdapter() {
         return this.serializerAdapter;
     }
 
-    /** The default poll interval for long-running operation. */
+    /**
+     * The default poll interval for long-running operation.
+     */
     private final Duration defaultPollInterval;
 
     /**
      * Gets The default poll interval for long-running operation.
-     *
+     * 
      * @return the defaultPollInterval value.
      */
     public Duration getDefaultPollInterval() {
         return this.defaultPollInterval;
     }
 
-    /** The OperationsClient object to access its operations. */
+    /**
+     * The OperationsClient object to access its operations.
+     */
     private final OperationsClient operations;
 
     /**
      * Gets the OperationsClient object to access its operations.
-     *
+     * 
      * @return the OperationsClient object.
      */
     public OperationsClient getOperations() {
         return this.operations;
     }
 
-    /** The ReportsClient object to access its operations. */
+    /**
+     * The ReportsClient object to access its operations.
+     */
     private final ReportsClient reports;
 
     /**
      * Gets the ReportsClient object to access its operations.
-     *
+     * 
      * @return the ReportsClient object.
      */
     public ReportsClient getReports() {
         return this.reports;
     }
 
-    /** The ReportOperationsClient object to access its operations. */
+    /**
+     * The ReportOperationsClient object to access its operations.
+     */
     private final ReportOperationsClient reportOperations;
 
     /**
      * Gets the ReportOperationsClient object to access its operations.
-     *
+     * 
      * @return the ReportOperationsClient object.
      */
     public ReportOperationsClient getReportOperations() {
         return this.reportOperations;
     }
 
-    /** The SnapshotsClient object to access its operations. */
+    /**
+     * The SnapshotsClient object to access its operations.
+     */
     private final SnapshotsClient snapshots;
 
     /**
      * Gets the SnapshotsClient object to access its operations.
-     *
+     * 
      * @return the SnapshotsClient object.
      */
     public SnapshotsClient getSnapshots() {
         return this.snapshots;
     }
 
-    /** The SnapshotOperationsClient object to access its operations. */
+    /**
+     * The SnapshotOperationsClient object to access its operations.
+     */
     private final SnapshotOperationsClient snapshotOperations;
 
     /**
      * Gets the SnapshotOperationsClient object to access its operations.
-     *
+     * 
      * @return the SnapshotOperationsClient object.
      */
     public SnapshotOperationsClient getSnapshotOperations() {
@@ -163,19 +185,15 @@ public final class AppComplianceAutomationToolForMicrosoft365Impl
 
     /**
      * Initializes an instance of AppComplianceAutomationToolForMicrosoft365 client.
-     *
+     * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
      * @param endpoint server parameter.
      */
-    AppComplianceAutomationToolForMicrosoft365Impl(
-        HttpPipeline httpPipeline,
-        SerializerAdapter serializerAdapter,
-        Duration defaultPollInterval,
-        AzureEnvironment environment,
-        String endpoint) {
+    AppComplianceAutomationToolForMicrosoft365Impl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
+        Duration defaultPollInterval, AzureEnvironment environment, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
@@ -190,7 +208,7 @@ public final class AppComplianceAutomationToolForMicrosoft365Impl
 
     /**
      * Gets default client context.
-     *
+     * 
      * @return the default client context.
      */
     public Context getContext() {
@@ -199,7 +217,7 @@ public final class AppComplianceAutomationToolForMicrosoft365Impl
 
     /**
      * Merges default client context with provided context.
-     *
+     * 
      * @param context the context to be merged with default client context.
      * @return the merged context.
      */
@@ -209,7 +227,7 @@ public final class AppComplianceAutomationToolForMicrosoft365Impl
 
     /**
      * Gets long running operation result.
-     *
+     * 
      * @param activationResponse the response of activation operation.
      * @param httpPipeline the http pipeline.
      * @param pollResultType type of poll result.
@@ -219,26 +237,15 @@ public final class AppComplianceAutomationToolForMicrosoft365Impl
      * @param <U> type of final result.
      * @return poller flux for poll result and final result.
      */
-    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(
-        Mono<Response<Flux<ByteBuffer>>> activationResponse,
-        HttpPipeline httpPipeline,
-        Type pollResultType,
-        Type finalResultType,
-        Context context) {
-        return PollerFactory
-            .create(
-                serializerAdapter,
-                httpPipeline,
-                pollResultType,
-                finalResultType,
-                defaultPollInterval,
-                activationResponse,
-                context);
+    public <T, U> PollerFlux<PollResult<T>, U> getLroResult(Mono<Response<Flux<ByteBuffer>>> activationResponse,
+        HttpPipeline httpPipeline, Type pollResultType, Type finalResultType, Context context) {
+        return PollerFactory.create(serializerAdapter, httpPipeline, pollResultType, finalResultType,
+            defaultPollInterval, activationResponse, context);
     }
 
     /**
      * Gets the final result, or an error, based on last async poll response.
-     *
+     * 
      * @param response the last async poll response.
      * @param <T> type of poll result.
      * @param <U> type of final result.
@@ -251,19 +258,16 @@ public final class AppComplianceAutomationToolForMicrosoft365Impl
             HttpResponse errorResponse = null;
             PollResult.Error lroError = response.getValue().getError();
             if (lroError != null) {
-                errorResponse =
-                    new HttpResponseImpl(
-                        lroError.getResponseStatusCode(), lroError.getResponseHeaders(), lroError.getResponseBody());
+                errorResponse = new HttpResponseImpl(lroError.getResponseStatusCode(), lroError.getResponseHeaders(),
+                    lroError.getResponseBody());
 
                 errorMessage = response.getValue().getError().getMessage();
                 String errorBody = response.getValue().getError().getResponseBody();
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError =
-                            this
-                                .getSerializerAdapter()
-                                .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
+                            SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }

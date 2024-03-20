@@ -11,7 +11,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcomplianceautomation.models.ReportProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class represent an AppComplianceAutomation report resource. */
+/**
+ * A class represent an AppComplianceAutomation report resource.
+ */
 @Fluent
 public final class ReportResourceInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class ReportResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ReportResourceInner class. */
+    /**
+     * Creates an instance of ReportResourceInner class.
+     */
     public ReportResourceInner() {
     }
 
     /**
      * Get the properties property: Report property.
-     *
+     * 
      * @return the properties value.
      */
     public ReportProperties properties() {
@@ -41,7 +45,7 @@ public final class ReportResourceInner extends ProxyResource {
 
     /**
      * Set the properties property: Report property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ReportResourceInner object itself.
      */
@@ -52,7 +56,7 @@ public final class ReportResourceInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -61,14 +65,13 @@ public final class ReportResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property properties in model ReportResourceInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property properties in model ReportResourceInner"));
         } else {
             properties().validate();
         }

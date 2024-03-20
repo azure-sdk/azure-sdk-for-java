@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Indicates the control type. */
+/**
+ * Indicates the control type.
+ */
 public final class ControlType extends ExpandableStringEnum<ControlType> {
-    /** Static value FullyAutomated for ControlType. */
+    /**
+     * Static value FullyAutomated for ControlType.
+     */
     public static final ControlType FULLY_AUTOMATED = fromString("FullyAutomated");
 
-    /** Static value PartiallyAutomated for ControlType. */
+    /**
+     * Static value PartiallyAutomated for ControlType.
+     */
     public static final ControlType PARTIALLY_AUTOMATED = fromString("PartiallyAutomated");
 
-    /** Static value Manual for ControlType. */
+    /**
+     * Static value Manual for ControlType.
+     */
     public static final ControlType MANUAL = fromString("Manual");
 
     /**
+     * Creates a new instance of ControlType value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ControlType() {
+    }
+
+    /**
      * Creates or finds a ControlType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ControlType.
      */
@@ -32,7 +49,7 @@ public final class ControlType extends ExpandableStringEnum<ControlType> {
 
     /**
      * Gets known ControlType values.
-     *
+     * 
      * @return known ControlType values.
      */
     public static Collection<ControlType> values() {

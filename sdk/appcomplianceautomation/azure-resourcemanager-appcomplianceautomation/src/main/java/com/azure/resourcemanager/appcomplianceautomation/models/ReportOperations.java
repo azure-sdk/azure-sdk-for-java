@@ -8,11 +8,13 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcomplianceautomation.fluent.models.ReportResourceInner;
 
-/** Resource collection API of ReportOperations. */
+/**
+ * Resource collection API of ReportOperations.
+ */
 public interface ReportOperations {
     /**
      * Get the AppComplianceAutomation report and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -24,7 +26,7 @@ public interface ReportOperations {
 
     /**
      * Get the AppComplianceAutomation report and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -35,7 +37,7 @@ public interface ReportOperations {
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -47,7 +49,7 @@ public interface ReportOperations {
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -60,7 +62,7 @@ public interface ReportOperations {
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -72,7 +74,7 @@ public interface ReportOperations {
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -85,7 +87,7 @@ public interface ReportOperations {
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -95,7 +97,7 @@ public interface ReportOperations {
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

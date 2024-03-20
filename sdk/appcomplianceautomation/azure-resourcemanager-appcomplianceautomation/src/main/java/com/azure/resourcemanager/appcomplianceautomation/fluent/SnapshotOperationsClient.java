@@ -14,11 +14,13 @@ import com.azure.resourcemanager.appcomplianceautomation.fluent.models.DownloadR
 import com.azure.resourcemanager.appcomplianceautomation.fluent.models.SnapshotResourceInner;
 import com.azure.resourcemanager.appcomplianceautomation.models.SnapshotDownloadRequest;
 
-/** An instance of this class provides access to all the operations defined in SnapshotOperationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in SnapshotOperationsClient.
+ */
 public interface SnapshotOperationsClient {
     /**
      * Get the AppComplianceAutomation snapshot and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param context The context to associate with this operation.
@@ -32,7 +34,7 @@ public interface SnapshotOperationsClient {
 
     /**
      * Get the AppComplianceAutomation snapshot and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -45,7 +47,7 @@ public interface SnapshotOperationsClient {
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -53,15 +55,15 @@ public interface SnapshotOperationsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of object that includes all the possible response for the download
-     *     operation.
+     * operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownload(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters);
+    SyncPoller<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownload(String reportName,
+        String snapshotName, SnapshotDownloadRequest parameters);
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -70,15 +72,15 @@ public interface SnapshotOperationsClient {
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of object that includes all the possible response for the download
-     *     operation.
+     * operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownload(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters, Context context);
+    SyncPoller<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownload(String reportName,
+        String snapshotName, SnapshotDownloadRequest parameters, Context context);
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -92,7 +94,7 @@ public interface SnapshotOperationsClient {
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -103,6 +105,6 @@ public interface SnapshotOperationsClient {
      * @return object that includes all the possible response for the download operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    DownloadResponseInner download(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters, Context context);
+    DownloadResponseInner download(String reportName, String snapshotName, SnapshotDownloadRequest parameters,
+        Context context);
 }

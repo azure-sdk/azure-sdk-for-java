@@ -9,7 +9,9 @@ import com.azure.resourcemanager.appcomplianceautomation.fluent.models.ReportRes
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Object that includes an array of resources and a possible link for next set. */
+/**
+ * Object that includes an array of resources and a possible link for next set.
+ */
 @Fluent
 public final class ReportResourceList {
     /*
@@ -25,13 +27,15 @@ public final class ReportResourceList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ReportResourceList class. */
+    /**
+     * Creates an instance of ReportResourceList class.
+     */
     public ReportResourceList() {
     }
 
     /**
      * Get the value property: List of the reports.
-     *
+     * 
      * @return the value value.
      */
     public List<ReportResourceInner> value() {
@@ -39,9 +43,9 @@ public final class ReportResourceList {
     }
 
     /**
-     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -49,9 +53,9 @@ public final class ReportResourceList {
     }
 
     /**
-     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ReportResourceList object itself.
      */
@@ -62,7 +66,7 @@ public final class ReportResourceList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

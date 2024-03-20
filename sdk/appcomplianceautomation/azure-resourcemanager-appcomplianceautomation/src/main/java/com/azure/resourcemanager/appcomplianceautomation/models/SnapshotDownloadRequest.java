@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Snapshot's download request. */
+/**
+ * Snapshot's download request.
+ */
 @Fluent
 public final class SnapshotDownloadRequest {
     /*
@@ -29,13 +31,15 @@ public final class SnapshotDownloadRequest {
     @JsonProperty(value = "offerGuid")
     private String offerGuid;
 
-    /** Creates an instance of SnapshotDownloadRequest class. */
+    /**
+     * Creates an instance of SnapshotDownloadRequest class.
+     */
     public SnapshotDownloadRequest() {
     }
 
     /**
      * Get the reportCreatorTenantId property: Tenant id.
-     *
+     * 
      * @return the reportCreatorTenantId value.
      */
     public String reportCreatorTenantId() {
@@ -44,7 +48,7 @@ public final class SnapshotDownloadRequest {
 
     /**
      * Set the reportCreatorTenantId property: Tenant id.
-     *
+     * 
      * @param reportCreatorTenantId the reportCreatorTenantId value to set.
      * @return the SnapshotDownloadRequest object itself.
      */
@@ -55,7 +59,7 @@ public final class SnapshotDownloadRequest {
 
     /**
      * Get the downloadType property: Indicates the download type.
-     *
+     * 
      * @return the downloadType value.
      */
     public DownloadType downloadType() {
@@ -64,7 +68,7 @@ public final class SnapshotDownloadRequest {
 
     /**
      * Set the downloadType property: Indicates the download type.
-     *
+     * 
      * @param downloadType the downloadType value to set.
      * @return the SnapshotDownloadRequest object itself.
      */
@@ -75,7 +79,7 @@ public final class SnapshotDownloadRequest {
 
     /**
      * Get the offerGuid property: The offerGuid which mapping to the reports.
-     *
+     * 
      * @return the offerGuid value.
      */
     public String offerGuid() {
@@ -84,7 +88,7 @@ public final class SnapshotDownloadRequest {
 
     /**
      * Set the offerGuid property: The offerGuid which mapping to the reports.
-     *
+     * 
      * @param offerGuid the offerGuid value to set.
      * @return the SnapshotDownloadRequest object itself.
      */
@@ -95,15 +99,13 @@ public final class SnapshotDownloadRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (downloadType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property downloadType in model SnapshotDownloadRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property downloadType in model SnapshotDownloadRequest"));
         }
     }
 

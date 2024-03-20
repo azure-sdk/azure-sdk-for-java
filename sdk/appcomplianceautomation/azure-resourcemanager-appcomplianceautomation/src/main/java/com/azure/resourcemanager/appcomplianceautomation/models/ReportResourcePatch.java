@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appcomplianceautomation.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class represent a AppComplianceAutomation report resource update properties. */
+/**
+ * A class represent a AppComplianceAutomation report resource update properties.
+ */
 @Fluent
 public final class ReportResourcePatch {
     /*
@@ -16,13 +18,15 @@ public final class ReportResourcePatch {
     @JsonProperty(value = "properties")
     private ReportProperties properties;
 
-    /** Creates an instance of ReportResourcePatch class. */
+    /**
+     * Creates an instance of ReportResourcePatch class.
+     */
     public ReportResourcePatch() {
     }
 
     /**
      * Get the properties property: Report property.
-     *
+     * 
      * @return the properties value.
      */
     public ReportProperties properties() {
@@ -31,7 +35,7 @@ public final class ReportResourcePatch {
 
     /**
      * Set the properties property: Report property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ReportResourcePatch object itself.
      */
@@ -42,7 +46,7 @@ public final class ReportResourcePatch {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.appcomplianceautomation.generated;
 
-import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcomplianceautomation.models.ReportProperties;
 import com.azure.resourcemanager.appcomplianceautomation.models.ReportResourcePatch;
 import com.azure.resourcemanager.appcomplianceautomation.models.ResourceMetadata;
@@ -13,38 +12,32 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for ReportOperation Update. */
+/**
+ * Samples for ReportOperation Update.
+ */
 public final class ReportOperationUpdateSamples {
     /*
-     * x-ms-original-file: specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-preview/examples/Report_Update.json
+     * x-ms-original-file:
+     * specification/appcomplianceautomation/resource-manager/Microsoft.AppComplianceAutomation/preview/2022-11-16-
+     * preview/examples/Report_Update.json
      */
     /**
      * Sample code: Report_Update.
-     *
+     * 
      * @param manager Entry point to AppComplianceAutomationManager.
      */
-    public static void reportUpdate(
-        com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
-        manager
-            .reportOperations()
-            .update(
-                "testReportName",
-                new ReportResourcePatch()
-                    .withProperties(
-                        new ReportProperties()
-                            .withOfferGuid("0000")
-                            .withTimeZone("GMT Standard Time")
-                            .withTriggerTime(OffsetDateTime.parse("2022-03-04T05:11:56.197Z"))
-                            .withResources(
-                                Arrays
-                                    .asList(
-                                        new ResourceMetadata()
-                                            .withResourceId(
-                                                "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/Microsoft.Network/privateEndpoints/myPrivateEndpoint")
-                                            .withTags(mapOf("key1", "value1"))))),
-                Context.NONE);
+    public static void
+        reportUpdate(com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager manager) {
+        manager.reportOperations().update("testReportName",
+            new ReportResourcePatch().withProperties(new ReportProperties().withOfferGuid("0000")
+                .withTimeZone("GMT Standard Time").withTriggerTime(OffsetDateTime.parse("2022-03-04T05:11:56.197Z"))
+                .withResources(Arrays.asList(new ResourceMetadata().withResourceId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/myResourceGroup/providers/Microsoft.Network/privateEndpoints/myPrivateEndpoint")
+                    .withTags(mapOf("key1", "fakeTokenPlaceholder"))))),
+            com.azure.core.util.Context.NONE);
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

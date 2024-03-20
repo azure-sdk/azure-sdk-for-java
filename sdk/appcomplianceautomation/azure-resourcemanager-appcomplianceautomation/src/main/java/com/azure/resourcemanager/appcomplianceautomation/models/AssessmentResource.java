@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appcomplianceautomation.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class represent the assessment resource. */
+/**
+ * A class represent the assessment resource.
+ */
 @Immutable
 public final class AssessmentResource {
     /*
@@ -34,13 +36,15 @@ public final class AssessmentResource {
     @JsonProperty(value = "statusChangeDate", access = JsonProperty.Access.WRITE_ONLY)
     private String statusChangeDate;
 
-    /** Creates an instance of AssessmentResource class. */
+    /**
+     * Creates an instance of AssessmentResource class.
+     */
     public AssessmentResource() {
     }
 
     /**
      * Get the resourceId property: The Id of the resource.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -49,7 +53,7 @@ public final class AssessmentResource {
 
     /**
      * Get the resourceStatus property: Resource status.
-     *
+     * 
      * @return the resourceStatus value.
      */
     public ResourceStatus resourceStatus() {
@@ -58,7 +62,7 @@ public final class AssessmentResource {
 
     /**
      * Get the reason property: The reason for the N/A resource.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -67,7 +71,7 @@ public final class AssessmentResource {
 
     /**
      * Get the statusChangeDate property: The status change date for the resource. For unavailable date, set it as N/A.
-     *
+     * 
      * @return the statusChangeDate value.
      */
     public String statusChangeDate() {
@@ -76,7 +80,7 @@ public final class AssessmentResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

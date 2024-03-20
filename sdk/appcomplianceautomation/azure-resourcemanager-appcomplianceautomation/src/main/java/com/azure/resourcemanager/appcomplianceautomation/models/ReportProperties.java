@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Report's properties. */
+/**
+ * Report's properties.
+ */
 @Fluent
 public final class ReportProperties {
     /*
@@ -93,13 +95,15 @@ public final class ReportProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of ReportProperties class. */
+    /**
+     * Creates an instance of ReportProperties class.
+     */
     public ReportProperties() {
     }
 
     /**
      * Get the id property: Report id in database.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -108,7 +112,7 @@ public final class ReportProperties {
 
     /**
      * Get the status property: Report status.
-     *
+     * 
      * @return the status value.
      */
     public ReportStatus status() {
@@ -117,7 +121,7 @@ public final class ReportProperties {
 
     /**
      * Get the tenantId property: Report's tenant id.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -126,7 +130,7 @@ public final class ReportProperties {
 
     /**
      * Get the reportName property: Report name.
-     *
+     * 
      * @return the reportName value.
      */
     public String reportName() {
@@ -135,7 +139,7 @@ public final class ReportProperties {
 
     /**
      * Get the offerGuid property: Report offer Guid.
-     *
+     * 
      * @return the offerGuid value.
      */
     public String offerGuid() {
@@ -144,7 +148,7 @@ public final class ReportProperties {
 
     /**
      * Set the offerGuid property: Report offer Guid.
-     *
+     * 
      * @param offerGuid the offerGuid value to set.
      * @return the ReportProperties object itself.
      */
@@ -155,9 +159,9 @@ public final class ReportProperties {
 
     /**
      * Get the timeZone property: Report collection trigger time's time zone, the available list can be obtained by
-     * executing "Get-TimeZone -ListAvailable" in PowerShell. An example of valid timezone id is "Pacific Standard
-     * Time".
-     *
+     * executing "Get-TimeZone -ListAvailable" in PowerShell.
+     * An example of valid timezone id is "Pacific Standard Time".
+     * 
      * @return the timeZone value.
      */
     public String timeZone() {
@@ -166,9 +170,9 @@ public final class ReportProperties {
 
     /**
      * Set the timeZone property: Report collection trigger time's time zone, the available list can be obtained by
-     * executing "Get-TimeZone -ListAvailable" in PowerShell. An example of valid timezone id is "Pacific Standard
-     * Time".
-     *
+     * executing "Get-TimeZone -ListAvailable" in PowerShell.
+     * An example of valid timezone id is "Pacific Standard Time".
+     * 
      * @param timeZone the timeZone value to set.
      * @return the ReportProperties object itself.
      */
@@ -179,7 +183,7 @@ public final class ReportProperties {
 
     /**
      * Get the triggerTime property: Report collection trigger time.
-     *
+     * 
      * @return the triggerTime value.
      */
     public OffsetDateTime triggerTime() {
@@ -188,7 +192,7 @@ public final class ReportProperties {
 
     /**
      * Set the triggerTime property: Report collection trigger time.
-     *
+     * 
      * @param triggerTime the triggerTime value to set.
      * @return the ReportProperties object itself.
      */
@@ -199,7 +203,7 @@ public final class ReportProperties {
 
     /**
      * Get the nextTriggerTime property: Report next collection trigger time.
-     *
+     * 
      * @return the nextTriggerTime value.
      */
     public OffsetDateTime nextTriggerTime() {
@@ -208,7 +212,7 @@ public final class ReportProperties {
 
     /**
      * Get the lastTriggerTime property: Report last collection trigger time.
-     *
+     * 
      * @return the lastTriggerTime value.
      */
     public OffsetDateTime lastTriggerTime() {
@@ -217,7 +221,7 @@ public final class ReportProperties {
 
     /**
      * Get the subscriptions property: List of subscription Ids.
-     *
+     * 
      * @return the subscriptions value.
      */
     public List<String> subscriptions() {
@@ -226,7 +230,7 @@ public final class ReportProperties {
 
     /**
      * Get the resources property: List of resource data.
-     *
+     * 
      * @return the resources value.
      */
     public List<ResourceMetadata> resources() {
@@ -235,7 +239,7 @@ public final class ReportProperties {
 
     /**
      * Set the resources property: List of resource data.
-     *
+     * 
      * @param resources the resources value to set.
      * @return the ReportProperties object itself.
      */
@@ -246,7 +250,7 @@ public final class ReportProperties {
 
     /**
      * Get the complianceStatus property: Report compliance status.
-     *
+     * 
      * @return the complianceStatus value.
      */
     public ReportComplianceStatus complianceStatus() {
@@ -255,7 +259,7 @@ public final class ReportProperties {
 
     /**
      * Get the provisioningState property: Azure lifecycle management.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -264,24 +268,21 @@ public final class ReportProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (timeZone() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property timeZone in model ReportProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property timeZone in model ReportProperties"));
         }
         if (triggerTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property triggerTime in model ReportProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property triggerTime in model ReportProperties"));
         }
         if (resources() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property resources in model ReportProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property resources in model ReportProperties"));
         } else {
             resources().forEach(e -> e.validate());
         }

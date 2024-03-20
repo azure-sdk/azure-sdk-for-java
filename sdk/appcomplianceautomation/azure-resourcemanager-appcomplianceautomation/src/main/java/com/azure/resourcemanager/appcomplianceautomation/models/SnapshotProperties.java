@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Snapshot's properties. */
+/**
+ * Snapshot's properties.
+ */
 @Immutable
 public final class SnapshotProperties {
     /*
@@ -55,13 +57,15 @@ public final class SnapshotProperties {
     @JsonProperty(value = "complianceResults", access = JsonProperty.Access.WRITE_ONLY)
     private List<ComplianceResult> complianceResults;
 
-    /** Creates an instance of SnapshotProperties class. */
+    /**
+     * Creates an instance of SnapshotProperties class.
+     */
     public SnapshotProperties() {
     }
 
     /**
      * Get the id property: Snapshot id in the database.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -70,7 +74,7 @@ public final class SnapshotProperties {
 
     /**
      * Get the snapshotName property: Snapshot name.
-     *
+     * 
      * @return the snapshotName value.
      */
     public String snapshotName() {
@@ -79,7 +83,7 @@ public final class SnapshotProperties {
 
     /**
      * Get the createdAt property: The timestamp of resource creation (UTC).
-     *
+     * 
      * @return the createdAt value.
      */
     public OffsetDateTime createdAt() {
@@ -88,7 +92,7 @@ public final class SnapshotProperties {
 
     /**
      * Get the provisioningState property: Azure lifecycle management.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -97,7 +101,7 @@ public final class SnapshotProperties {
 
     /**
      * Get the reportProperties property: The report essential info.
-     *
+     * 
      * @return the reportProperties value.
      */
     public ReportProperties reportProperties() {
@@ -106,7 +110,7 @@ public final class SnapshotProperties {
 
     /**
      * Get the reportSystemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the reportSystemData value.
      */
     public SystemData reportSystemData() {
@@ -115,7 +119,7 @@ public final class SnapshotProperties {
 
     /**
      * Get the complianceResults property: List of compliance results.
-     *
+     * 
      * @return the complianceResults value.
      */
     public List<ComplianceResult> complianceResults() {
@@ -124,7 +128,7 @@ public final class SnapshotProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
