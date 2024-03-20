@@ -6,15 +6,14 @@ package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The start and end date for a budget. */
+/**
+ * The start and end date for a budget.
+ */
 @Fluent
 public final class BudgetTimePeriod {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BudgetTimePeriod.class);
-
     /*
      * The start date for the budget.
      */
@@ -22,15 +21,20 @@ public final class BudgetTimePeriod {
     private OffsetDateTime startDate;
 
     /*
-     * The end date for the budget. If not provided, we default this to 10
-     * years from the start date.
+     * The end date for the budget. If not provided, we default this to 10 years from the start date.
      */
     @JsonProperty(value = "endDate")
     private OffsetDateTime endDate;
 
     /**
+     * Creates an instance of BudgetTimePeriod class.
+     */
+    public BudgetTimePeriod() {
+    }
+
+    /**
      * Get the startDate property: The start date for the budget.
-     *
+     * 
      * @return the startDate value.
      */
     public OffsetDateTime startDate() {
@@ -39,7 +43,7 @@ public final class BudgetTimePeriod {
 
     /**
      * Set the startDate property: The start date for the budget.
-     *
+     * 
      * @param startDate the startDate value to set.
      * @return the BudgetTimePeriod object itself.
      */
@@ -51,7 +55,7 @@ public final class BudgetTimePeriod {
     /**
      * Get the endDate property: The end date for the budget. If not provided, we default this to 10 years from the
      * start date.
-     *
+     * 
      * @return the endDate value.
      */
     public OffsetDateTime endDate() {
@@ -61,7 +65,7 @@ public final class BudgetTimePeriod {
     /**
      * Set the endDate property: The end date for the budget. If not provided, we default this to 10 years from the
      * start date.
-     *
+     * 
      * @param endDate the endDate value to set.
      * @return the BudgetTimePeriod object itself.
      */
@@ -72,14 +76,15 @@ public final class BudgetTimePeriod {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (startDate() == null) {
-            throw logger
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property startDate in model BudgetTimePeriod"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property startDate in model BudgetTimePeriod"));
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(BudgetTimePeriod.class);
 }

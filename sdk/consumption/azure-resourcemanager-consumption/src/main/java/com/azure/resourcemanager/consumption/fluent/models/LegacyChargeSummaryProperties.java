@@ -5,16 +5,14 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 
-/** The properties of legacy charge summary. */
+/**
+ * The properties of legacy charge summary.
+ */
 @Immutable
 public final class LegacyChargeSummaryProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LegacyChargeSummaryProperties.class);
-
     /*
      * The id of the billing period resource that the charge belongs to.
      */
@@ -48,8 +46,8 @@ public final class LegacyChargeSummaryProperties {
     /*
      * Marketplace Charges.
      */
-    @JsonProperty(value = "marketplaceCharges", access = JsonProperty.Access.WRITE_ONLY)
-    private BigDecimal marketplaceCharges;
+    @JsonProperty(value = "azureMarketplaceCharges", access = JsonProperty.Access.WRITE_ONLY)
+    private BigDecimal azureMarketplaceCharges;
 
     /*
      * Currency Code
@@ -58,8 +56,14 @@ public final class LegacyChargeSummaryProperties {
     private String currency;
 
     /**
+     * Creates an instance of LegacyChargeSummaryProperties class.
+     */
+    public LegacyChargeSummaryProperties() {
+    }
+
+    /**
      * Get the billingPeriodId property: The id of the billing period resource that the charge belongs to.
-     *
+     * 
      * @return the billingPeriodId value.
      */
     public String billingPeriodId() {
@@ -68,7 +72,7 @@ public final class LegacyChargeSummaryProperties {
 
     /**
      * Get the usageStart property: Usage start date.
-     *
+     * 
      * @return the usageStart value.
      */
     public String usageStart() {
@@ -77,7 +81,7 @@ public final class LegacyChargeSummaryProperties {
 
     /**
      * Get the usageEnd property: Usage end date.
-     *
+     * 
      * @return the usageEnd value.
      */
     public String usageEnd() {
@@ -86,7 +90,7 @@ public final class LegacyChargeSummaryProperties {
 
     /**
      * Get the azureCharges property: Azure Charges.
-     *
+     * 
      * @return the azureCharges value.
      */
     public BigDecimal azureCharges() {
@@ -95,7 +99,7 @@ public final class LegacyChargeSummaryProperties {
 
     /**
      * Get the chargesBilledSeparately property: Charges Billed separately.
-     *
+     * 
      * @return the chargesBilledSeparately value.
      */
     public BigDecimal chargesBilledSeparately() {
@@ -103,17 +107,17 @@ public final class LegacyChargeSummaryProperties {
     }
 
     /**
-     * Get the marketplaceCharges property: Marketplace Charges.
-     *
-     * @return the marketplaceCharges value.
+     * Get the azureMarketplaceCharges property: Marketplace Charges.
+     * 
+     * @return the azureMarketplaceCharges value.
      */
-    public BigDecimal marketplaceCharges() {
-        return this.marketplaceCharges;
+    public BigDecimal azureMarketplaceCharges() {
+        return this.azureMarketplaceCharges;
     }
 
     /**
      * Get the currency property: Currency Code.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -122,7 +126,7 @@ public final class LegacyChargeSummaryProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

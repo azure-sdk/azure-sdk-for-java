@@ -5,16 +5,14 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 
-/** The BalancePropertiesAdjustmentDetailsItem model. */
+/**
+ * The BalancePropertiesAdjustmentDetailsItem model.
+ */
 @Immutable
 public final class BalancePropertiesAdjustmentDetailsItem {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BalancePropertiesAdjustmentDetailsItem.class);
-
     /*
      * the name of new adjustment.
      */
@@ -28,8 +26,14 @@ public final class BalancePropertiesAdjustmentDetailsItem {
     private BigDecimal value;
 
     /**
+     * Creates an instance of BalancePropertiesAdjustmentDetailsItem class.
+     */
+    public BalancePropertiesAdjustmentDetailsItem() {
+    }
+
+    /**
      * Get the name property: the name of new adjustment.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class BalancePropertiesAdjustmentDetailsItem {
 
     /**
      * Get the value property: the value of new adjustment.
-     *
+     * 
      * @return the value value.
      */
     public BigDecimal value() {
@@ -47,7 +51,7 @@ public final class BalancePropertiesAdjustmentDetailsItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

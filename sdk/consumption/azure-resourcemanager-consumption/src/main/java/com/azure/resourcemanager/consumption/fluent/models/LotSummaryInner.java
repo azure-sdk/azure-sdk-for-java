@@ -6,21 +6,20 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.AmountWithExchangeRate;
 import com.azure.resourcemanager.consumption.models.LotSource;
+import com.azure.resourcemanager.consumption.models.OrganizationType;
 import com.azure.resourcemanager.consumption.models.Reseller;
 import com.azure.resourcemanager.consumption.models.Status;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** A lot summary resource. */
+/**
+ * A lot summary resource.
+ */
 @Fluent
 public final class LotSummaryInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(LotSummaryInner.class);
-
     /*
      * The lot properties.
      */
@@ -28,16 +27,21 @@ public final class LotSummaryInner extends ProxyResource {
     private LotProperties innerProperties;
 
     /*
-     * eTag of the resource. To handle concurrent update scenario, this field
-     * will be used to determine whether the user is updating the latest
-     * version or not.
+     * eTag of the resource. To handle concurrent update scenario, this field will be used to determine whether the
+     * user is updating the latest version or not.
      */
     @JsonProperty(value = "eTag")
     private String etag;
 
     /**
+     * Creates an instance of LotSummaryInner class.
+     */
+    public LotSummaryInner() {
+    }
+
+    /**
      * Get the innerProperties property: The lot properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private LotProperties innerProperties() {
@@ -47,7 +51,7 @@ public final class LotSummaryInner extends ProxyResource {
     /**
      * Get the etag property: eTag of the resource. To handle concurrent update scenario, this field will be used to
      * determine whether the user is updating the latest version or not.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -57,7 +61,7 @@ public final class LotSummaryInner extends ProxyResource {
     /**
      * Set the etag property: eTag of the resource. To handle concurrent update scenario, this field will be used to
      * determine whether the user is updating the latest version or not.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the LotSummaryInner object itself.
      */
@@ -67,8 +71,9 @@ public final class LotSummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the originalAmount property: The original amount of a lot.
-     *
+     * Get the originalAmount property: The original amount of a lot, Note: This will not be returned for Contributor
+     * Organization Type in Multi-Entity consumption commitment.
+     * 
      * @return the originalAmount value.
      */
     public Amount originalAmount() {
@@ -77,7 +82,7 @@ public final class LotSummaryInner extends ProxyResource {
 
     /**
      * Get the closedBalance property: The balance as of the last invoice.
-     *
+     * 
      * @return the closedBalance value.
      */
     public Amount closedBalance() {
@@ -86,7 +91,7 @@ public final class LotSummaryInner extends ProxyResource {
 
     /**
      * Get the source property: The source of the lot.
-     *
+     * 
      * @return the source value.
      */
     public LotSource source() {
@@ -95,7 +100,7 @@ public final class LotSummaryInner extends ProxyResource {
 
     /**
      * Get the startDate property: The date when the lot became effective.
-     *
+     * 
      * @return the startDate value.
      */
     public OffsetDateTime startDate() {
@@ -104,7 +109,7 @@ public final class LotSummaryInner extends ProxyResource {
 
     /**
      * Get the expirationDate property: The expiration date of a lot.
-     *
+     * 
      * @return the expirationDate value.
      */
     public OffsetDateTime expirationDate() {
@@ -114,7 +119,7 @@ public final class LotSummaryInner extends ProxyResource {
     /**
      * Get the poNumber property: The po number of the invoice on which the lot was added. This property is not
      * available for ConsumptionCommitment lots.
-     *
+     * 
      * @return the poNumber value.
      */
     public String poNumber() {
@@ -123,7 +128,7 @@ public final class LotSummaryInner extends ProxyResource {
 
     /**
      * Get the purchasedDate property: The date when the lot was added.
-     *
+     * 
      * @return the purchasedDate value.
      */
     public OffsetDateTime purchasedDate() {
@@ -132,7 +137,7 @@ public final class LotSummaryInner extends ProxyResource {
 
     /**
      * Get the status property: The status of the lot.
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -141,7 +146,7 @@ public final class LotSummaryInner extends ProxyResource {
 
     /**
      * Get the creditCurrency property: The currency of the lot.
-     *
+     * 
      * @return the creditCurrency value.
      */
     public String creditCurrency() {
@@ -150,7 +155,7 @@ public final class LotSummaryInner extends ProxyResource {
 
     /**
      * Get the billingCurrency property: The billing currency of the lot.
-     *
+     * 
      * @return the billingCurrency value.
      */
     public String billingCurrency() {
@@ -158,8 +163,9 @@ public final class LotSummaryInner extends ProxyResource {
     }
 
     /**
-     * Get the originalAmountInBillingCurrency property: The original amount of a lot in billing currency.
-     *
+     * Get the originalAmountInBillingCurrency property: The original amount of a lot in billing currency, Note: This
+     * will not be returned for Contributor Organization Type in Multi-Entity consumption commitment.
+     * 
      * @return the originalAmountInBillingCurrency value.
      */
     public AmountWithExchangeRate originalAmountInBillingCurrency() {
@@ -168,7 +174,7 @@ public final class LotSummaryInner extends ProxyResource {
 
     /**
      * Get the closedBalanceInBillingCurrency property: The balance as of the last invoice in billing currency.
-     *
+     * 
      * @return the closedBalanceInBillingCurrency value.
      */
     public AmountWithExchangeRate closedBalanceInBillingCurrency() {
@@ -177,7 +183,7 @@ public final class LotSummaryInner extends ProxyResource {
 
     /**
      * Get the reseller property: The reseller of the lot.
-     *
+     * 
      * @return the reseller value.
      */
     public Reseller reseller() {
@@ -185,8 +191,18 @@ public final class LotSummaryInner extends ProxyResource {
     }
 
     /**
+     * Get the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     * 
+     * @return the isEstimatedBalance value.
+     */
+    public Boolean isEstimatedBalance() {
+        return this.innerProperties() == null ? null : this.innerProperties().isEstimatedBalance();
+    }
+
+    /**
      * Get the etag property: The eTag for the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etagPropertiesEtag() {
@@ -194,8 +210,26 @@ public final class LotSummaryInner extends ProxyResource {
     }
 
     /**
+     * Get the organizationType property: The organization type of the lot.
+     * 
+     * @return the organizationType value.
+     */
+    public OrganizationType organizationType() {
+        return this.innerProperties() == null ? null : this.innerProperties().organizationType();
+    }
+
+    /**
+     * Get the usedAmount property: Amount consumed from the commitment.
+     * 
+     * @return the usedAmount value.
+     */
+    public Amount usedAmount() {
+        return this.innerProperties() == null ? null : this.innerProperties().usedAmount();
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
