@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the body of a purge request for an App Insights component. */
+/**
+ * Describes the body of a purge request for an App Insights component.
+ */
 @Fluent
 public final class ComponentPurgeBody {
     /*
@@ -24,13 +26,15 @@ public final class ComponentPurgeBody {
     @JsonProperty(value = "filters", required = true)
     private List<ComponentPurgeBodyFilters> filters;
 
-    /** Creates an instance of ComponentPurgeBody class. */
+    /**
+     * Creates an instance of ComponentPurgeBody class.
+     */
     public ComponentPurgeBody() {
     }
 
     /**
      * Get the table property: Table from which to purge data.
-     *
+     * 
      * @return the table value.
      */
     public String table() {
@@ -39,7 +43,7 @@ public final class ComponentPurgeBody {
 
     /**
      * Set the table property: Table from which to purge data.
-     *
+     * 
      * @param table the table value to set.
      * @return the ComponentPurgeBody object itself.
      */
@@ -50,7 +54,7 @@ public final class ComponentPurgeBody {
 
     /**
      * Get the filters property: The set of columns and filters (queries) to run over them to purge the resulting data.
-     *
+     * 
      * @return the filters value.
      */
     public List<ComponentPurgeBodyFilters> filters() {
@@ -59,7 +63,7 @@ public final class ComponentPurgeBody {
 
     /**
      * Set the filters property: The set of columns and filters (queries) to run over them to purge the resulting data.
-     *
+     * 
      * @param filters the filters value to set.
      * @return the ComponentPurgeBody object itself.
      */
@@ -70,19 +74,17 @@ public final class ComponentPurgeBody {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (table() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property table in model ComponentPurgeBody"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property table in model ComponentPurgeBody"));
         }
         if (filters() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property filters in model ComponentPurgeBody"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property filters in model ComponentPurgeBody"));
         } else {
             filters().forEach(e -> e.validate());
         }

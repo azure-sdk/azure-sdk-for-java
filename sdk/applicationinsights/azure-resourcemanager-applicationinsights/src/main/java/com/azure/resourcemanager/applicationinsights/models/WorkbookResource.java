@@ -9,7 +9,9 @@ import com.azure.core.management.Resource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** An azure resource object. */
+/**
+ * An azure resource object.
+ */
 @Fluent
 public class WorkbookResource extends Resource {
     /*
@@ -30,13 +32,15 @@ public class WorkbookResource extends Resource {
     @JsonProperty(value = "etag")
     private String etag;
 
-    /** Creates an instance of WorkbookResource class. */
+    /**
+     * Creates an instance of WorkbookResource class.
+     */
     public WorkbookResource() {
     }
 
     /**
      * Get the identity property: Identity used for BYOS.
-     *
+     * 
      * @return the identity value.
      */
     public WorkbookResourceIdentity identity() {
@@ -45,7 +49,7 @@ public class WorkbookResource extends Resource {
 
     /**
      * Set the identity property: Identity used for BYOS.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the WorkbookResource object itself.
      */
@@ -56,7 +60,7 @@ public class WorkbookResource extends Resource {
 
     /**
      * Get the kind property: The kind of workbook. Only valid value is shared.
-     *
+     * 
      * @return the kind value.
      */
     public WorkbookSharedTypeKind kind() {
@@ -65,7 +69,7 @@ public class WorkbookResource extends Resource {
 
     /**
      * Set the kind property: The kind of workbook. Only valid value is shared.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the WorkbookResource object itself.
      */
@@ -76,7 +80,7 @@ public class WorkbookResource extends Resource {
 
     /**
      * Get the etag property: Resource etag.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -85,7 +89,7 @@ public class WorkbookResource extends Resource {
 
     /**
      * Set the etag property: Resource etag.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the WorkbookResource object itself.
      */
@@ -94,14 +98,18 @@ public class WorkbookResource extends Resource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkbookResource withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkbookResource withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -110,7 +118,7 @@ public class WorkbookResource extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

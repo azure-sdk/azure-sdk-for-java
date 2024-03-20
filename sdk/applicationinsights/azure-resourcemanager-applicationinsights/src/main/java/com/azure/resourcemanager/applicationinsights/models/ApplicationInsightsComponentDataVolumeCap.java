@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An Application Insights component daily data volume cap. */
+/**
+ * An Application Insights component daily data volume cap.
+ */
 @Fluent
 public final class ApplicationInsightsComponentDataVolumeCap {
     /*
@@ -46,13 +48,15 @@ public final class ApplicationInsightsComponentDataVolumeCap {
     @JsonProperty(value = "MaxHistoryCap", access = JsonProperty.Access.WRITE_ONLY)
     private Float maxHistoryCap;
 
-    /** Creates an instance of ApplicationInsightsComponentDataVolumeCap class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentDataVolumeCap class.
+     */
     public ApplicationInsightsComponentDataVolumeCap() {
     }
 
     /**
      * Get the cap property: Daily data volume cap in GB.
-     *
+     * 
      * @return the cap value.
      */
     public Float cap() {
@@ -61,7 +65,7 @@ public final class ApplicationInsightsComponentDataVolumeCap {
 
     /**
      * Set the cap property: Daily data volume cap in GB.
-     *
+     * 
      * @param cap the cap value to set.
      * @return the ApplicationInsightsComponentDataVolumeCap object itself.
      */
@@ -72,7 +76,7 @@ public final class ApplicationInsightsComponentDataVolumeCap {
 
     /**
      * Get the resetTime property: Daily data volume cap UTC reset hour.
-     *
+     * 
      * @return the resetTime value.
      */
     public Integer resetTime() {
@@ -81,7 +85,7 @@ public final class ApplicationInsightsComponentDataVolumeCap {
 
     /**
      * Get the warningThreshold property: Reserved, not used for now.
-     *
+     * 
      * @return the warningThreshold value.
      */
     public Integer warningThreshold() {
@@ -90,7 +94,7 @@ public final class ApplicationInsightsComponentDataVolumeCap {
 
     /**
      * Set the warningThreshold property: Reserved, not used for now.
-     *
+     * 
      * @param warningThreshold the warningThreshold value to set.
      * @return the ApplicationInsightsComponentDataVolumeCap object itself.
      */
@@ -101,7 +105,7 @@ public final class ApplicationInsightsComponentDataVolumeCap {
 
     /**
      * Get the stopSendNotificationWhenHitThreshold property: Reserved, not used for now.
-     *
+     * 
      * @return the stopSendNotificationWhenHitThreshold value.
      */
     public Boolean stopSendNotificationWhenHitThreshold() {
@@ -110,12 +114,12 @@ public final class ApplicationInsightsComponentDataVolumeCap {
 
     /**
      * Set the stopSendNotificationWhenHitThreshold property: Reserved, not used for now.
-     *
+     * 
      * @param stopSendNotificationWhenHitThreshold the stopSendNotificationWhenHitThreshold value to set.
      * @return the ApplicationInsightsComponentDataVolumeCap object itself.
      */
-    public ApplicationInsightsComponentDataVolumeCap withStopSendNotificationWhenHitThreshold(
-        Boolean stopSendNotificationWhenHitThreshold) {
+    public ApplicationInsightsComponentDataVolumeCap
+        withStopSendNotificationWhenHitThreshold(Boolean stopSendNotificationWhenHitThreshold) {
         this.stopSendNotificationWhenHitThreshold = stopSendNotificationWhenHitThreshold;
         return this;
     }
@@ -123,7 +127,7 @@ public final class ApplicationInsightsComponentDataVolumeCap {
     /**
      * Get the stopSendNotificationWhenHitCap property: Do not send a notification email when the daily data volume cap
      * is met.
-     *
+     * 
      * @return the stopSendNotificationWhenHitCap value.
      */
     public Boolean stopSendNotificationWhenHitCap() {
@@ -133,19 +137,19 @@ public final class ApplicationInsightsComponentDataVolumeCap {
     /**
      * Set the stopSendNotificationWhenHitCap property: Do not send a notification email when the daily data volume cap
      * is met.
-     *
+     * 
      * @param stopSendNotificationWhenHitCap the stopSendNotificationWhenHitCap value to set.
      * @return the ApplicationInsightsComponentDataVolumeCap object itself.
      */
-    public ApplicationInsightsComponentDataVolumeCap withStopSendNotificationWhenHitCap(
-        Boolean stopSendNotificationWhenHitCap) {
+    public ApplicationInsightsComponentDataVolumeCap
+        withStopSendNotificationWhenHitCap(Boolean stopSendNotificationWhenHitCap) {
         this.stopSendNotificationWhenHitCap = stopSendNotificationWhenHitCap;
         return this;
     }
 
     /**
      * Get the maxHistoryCap property: Maximum daily data volume cap that the user can set for this component.
-     *
+     * 
      * @return the maxHistoryCap value.
      */
     public Float maxHistoryCap() {
@@ -154,7 +158,7 @@ public final class ApplicationInsightsComponentDataVolumeCap {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

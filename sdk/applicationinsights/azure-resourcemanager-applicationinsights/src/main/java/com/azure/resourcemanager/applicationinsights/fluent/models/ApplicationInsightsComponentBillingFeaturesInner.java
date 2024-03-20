@@ -9,7 +9,9 @@ import com.azure.resourcemanager.applicationinsights.models.ApplicationInsightsC
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An Application Insights component billing features. */
+/**
+ * An Application Insights component billing features.
+ */
 @Fluent
 public final class ApplicationInsightsComponentBillingFeaturesInner {
     /*
@@ -25,13 +27,15 @@ public final class ApplicationInsightsComponentBillingFeaturesInner {
     @JsonProperty(value = "CurrentBillingFeatures")
     private List<String> currentBillingFeatures;
 
-    /** Creates an instance of ApplicationInsightsComponentBillingFeaturesInner class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentBillingFeaturesInner class.
+     */
     public ApplicationInsightsComponentBillingFeaturesInner() {
     }
 
     /**
      * Get the dataVolumeCap property: An Application Insights component daily data volume cap.
-     *
+     * 
      * @return the dataVolumeCap value.
      */
     public ApplicationInsightsComponentDataVolumeCap dataVolumeCap() {
@@ -40,12 +44,12 @@ public final class ApplicationInsightsComponentBillingFeaturesInner {
 
     /**
      * Set the dataVolumeCap property: An Application Insights component daily data volume cap.
-     *
+     * 
      * @param dataVolumeCap the dataVolumeCap value to set.
      * @return the ApplicationInsightsComponentBillingFeaturesInner object itself.
      */
-    public ApplicationInsightsComponentBillingFeaturesInner withDataVolumeCap(
-        ApplicationInsightsComponentDataVolumeCap dataVolumeCap) {
+    public ApplicationInsightsComponentBillingFeaturesInner
+        withDataVolumeCap(ApplicationInsightsComponentDataVolumeCap dataVolumeCap) {
         this.dataVolumeCap = dataVolumeCap;
         return this;
     }
@@ -53,7 +57,7 @@ public final class ApplicationInsightsComponentBillingFeaturesInner {
     /**
      * Get the currentBillingFeatures property: Current enabled pricing plan. When the component is in the Enterprise
      * plan, this will list both 'Basic' and 'Application Insights Enterprise'.
-     *
+     * 
      * @return the currentBillingFeatures value.
      */
     public List<String> currentBillingFeatures() {
@@ -63,19 +67,19 @@ public final class ApplicationInsightsComponentBillingFeaturesInner {
     /**
      * Set the currentBillingFeatures property: Current enabled pricing plan. When the component is in the Enterprise
      * plan, this will list both 'Basic' and 'Application Insights Enterprise'.
-     *
+     * 
      * @param currentBillingFeatures the currentBillingFeatures value to set.
      * @return the ApplicationInsightsComponentBillingFeaturesInner object itself.
      */
-    public ApplicationInsightsComponentBillingFeaturesInner withCurrentBillingFeatures(
-        List<String> currentBillingFeatures) {
+    public ApplicationInsightsComponentBillingFeaturesInner
+        withCurrentBillingFeatures(List<String> currentBillingFeatures) {
         this.currentBillingFeatures = currentBillingFeatures;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

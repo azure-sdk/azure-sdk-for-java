@@ -10,7 +10,9 @@ import com.azure.resourcemanager.applicationinsights.fluent.models.ApplicationIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the list of web test locations available to an Application Insights Component. */
+/**
+ * Describes the list of web test locations available to an Application Insights Component.
+ */
 @Fluent
 public final class ApplicationInsightsWebTestLocationsListResult {
     /*
@@ -19,13 +21,15 @@ public final class ApplicationInsightsWebTestLocationsListResult {
     @JsonProperty(value = "value", required = true)
     private List<ApplicationInsightsComponentWebTestLocationInner> value;
 
-    /** Creates an instance of ApplicationInsightsWebTestLocationsListResult class. */
+    /**
+     * Creates an instance of ApplicationInsightsWebTestLocationsListResult class.
+     */
     public ApplicationInsightsWebTestLocationsListResult() {
     }
 
     /**
      * Get the value property: List of web test locations.
-     *
+     * 
      * @return the value value.
      */
     public List<ApplicationInsightsComponentWebTestLocationInner> value() {
@@ -34,27 +38,25 @@ public final class ApplicationInsightsWebTestLocationsListResult {
 
     /**
      * Set the value property: List of web test locations.
-     *
+     * 
      * @param value the value value to set.
      * @return the ApplicationInsightsWebTestLocationsListResult object itself.
      */
-    public ApplicationInsightsWebTestLocationsListResult withValue(
-        List<ApplicationInsightsComponentWebTestLocationInner> value) {
+    public ApplicationInsightsWebTestLocationsListResult
+        withValue(List<ApplicationInsightsComponentWebTestLocationInner> value) {
         this.value = value;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model ApplicationInsightsWebTestLocationsListResult"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model ApplicationInsightsWebTestLocationsListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

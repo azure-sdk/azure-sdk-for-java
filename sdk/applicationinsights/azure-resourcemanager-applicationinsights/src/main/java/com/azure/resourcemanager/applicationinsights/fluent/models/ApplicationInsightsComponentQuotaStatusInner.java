@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An Application Insights component daily data volume cap status. */
+/**
+ * An Application Insights component daily data volume cap status.
+ */
 @Immutable
 public final class ApplicationInsightsComponentQuotaStatusInner {
     /*
@@ -28,13 +30,15 @@ public final class ApplicationInsightsComponentQuotaStatusInner {
     @JsonProperty(value = "ExpirationTime", access = JsonProperty.Access.WRITE_ONLY)
     private String expirationTime;
 
-    /** Creates an instance of ApplicationInsightsComponentQuotaStatusInner class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentQuotaStatusInner class.
+     */
     public ApplicationInsightsComponentQuotaStatusInner() {
     }
 
     /**
      * Get the appId property: The Application ID for the Application Insights component.
-     *
+     * 
      * @return the appId value.
      */
     public String appId() {
@@ -43,7 +47,7 @@ public final class ApplicationInsightsComponentQuotaStatusInner {
 
     /**
      * Get the shouldBeThrottled property: The daily data volume cap is met, and data ingestion will be stopped.
-     *
+     * 
      * @return the shouldBeThrottled value.
      */
     public Boolean shouldBeThrottled() {
@@ -53,7 +57,7 @@ public final class ApplicationInsightsComponentQuotaStatusInner {
     /**
      * Get the expirationTime property: Date and time when the daily data volume cap will be reset, and data ingestion
      * will resume.
-     *
+     * 
      * @return the expirationTime value.
      */
     public String expirationTime() {
@@ -62,7 +66,7 @@ public final class ApplicationInsightsComponentQuotaStatusInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

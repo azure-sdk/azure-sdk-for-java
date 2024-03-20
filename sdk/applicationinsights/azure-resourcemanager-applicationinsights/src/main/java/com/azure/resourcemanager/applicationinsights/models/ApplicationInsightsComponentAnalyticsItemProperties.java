@@ -19,13 +19,15 @@ public final class ApplicationInsightsComponentAnalyticsItemProperties {
     @JsonProperty(value = "functionAlias")
     private String functionAlias;
 
-    /** Creates an instance of ApplicationInsightsComponentAnalyticsItemProperties class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentAnalyticsItemProperties class.
+     */
     public ApplicationInsightsComponentAnalyticsItemProperties() {
     }
 
     /**
      * Get the functionAlias property: A function alias, used when the type of the item is Function.
-     *
+     * 
      * @return the functionAlias value.
      */
     public String functionAlias() {
@@ -34,7 +36,7 @@ public final class ApplicationInsightsComponentAnalyticsItemProperties {
 
     /**
      * Set the functionAlias property: A function alias, used when the type of the item is Function.
-     *
+     * 
      * @param functionAlias the functionAlias value to set.
      * @return the ApplicationInsightsComponentAnalyticsItemProperties object itself.
      */
@@ -45,7 +47,7 @@ public final class ApplicationInsightsComponentAnalyticsItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

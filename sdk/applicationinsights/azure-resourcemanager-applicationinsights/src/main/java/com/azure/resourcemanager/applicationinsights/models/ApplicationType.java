@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Type of application being monitored. */
+/**
+ * Type of application being monitored.
+ */
 public final class ApplicationType extends ExpandableStringEnum<ApplicationType> {
-    /** Static value web for ApplicationType. */
+    /**
+     * Static value web for ApplicationType.
+     */
     public static final ApplicationType WEB = fromString("web");
 
-    /** Static value other for ApplicationType. */
+    /**
+     * Static value other for ApplicationType.
+     */
     public static final ApplicationType OTHER = fromString("other");
 
     /**
      * Creates a new instance of ApplicationType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ApplicationType extends ExpandableStringEnum<ApplicationType>
 
     /**
      * Creates or finds a ApplicationType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ApplicationType.
      */
@@ -38,7 +44,7 @@ public final class ApplicationType extends ExpandableStringEnum<ApplicationType>
 
     /**
      * Gets known ApplicationType values.
-     *
+     * 
      * @return known ApplicationType values.
      */
     public static Collection<ApplicationType> values() {

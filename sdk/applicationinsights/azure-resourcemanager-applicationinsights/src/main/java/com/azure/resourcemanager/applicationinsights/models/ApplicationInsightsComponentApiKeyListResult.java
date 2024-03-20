@@ -10,7 +10,9 @@ import com.azure.resourcemanager.applicationinsights.fluent.models.ApplicationIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the list of API Keys of an Application Insights Component. */
+/**
+ * Describes the list of API Keys of an Application Insights Component.
+ */
 @Fluent
 public final class ApplicationInsightsComponentApiKeyListResult {
     /*
@@ -19,13 +21,15 @@ public final class ApplicationInsightsComponentApiKeyListResult {
     @JsonProperty(value = "value", required = true)
     private List<ApplicationInsightsComponentApiKeyInner> value;
 
-    /** Creates an instance of ApplicationInsightsComponentApiKeyListResult class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentApiKeyListResult class.
+     */
     public ApplicationInsightsComponentApiKeyListResult() {
     }
 
     /**
      * Get the value property: List of API Key definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<ApplicationInsightsComponentApiKeyInner> value() {
@@ -34,7 +38,7 @@ public final class ApplicationInsightsComponentApiKeyListResult {
 
     /**
      * Set the value property: List of API Key definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the ApplicationInsightsComponentApiKeyListResult object itself.
      */
@@ -45,15 +49,13 @@ public final class ApplicationInsightsComponentApiKeyListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model ApplicationInsightsComponentApiKeyListResult"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model ApplicationInsightsComponentApiKeyListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

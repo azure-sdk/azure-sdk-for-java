@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** An Application Insights component API Key creation request definition. */
+/**
+ * An Application Insights component API Key creation request definition.
+ */
 @Fluent
 public final class ApiKeyRequest {
     /*
@@ -29,13 +31,15 @@ public final class ApiKeyRequest {
     @JsonProperty(value = "linkedWriteProperties")
     private List<String> linkedWriteProperties;
 
-    /** Creates an instance of ApiKeyRequest class. */
+    /**
+     * Creates an instance of ApiKeyRequest class.
+     */
     public ApiKeyRequest() {
     }
 
     /**
      * Get the name property: The name of the API Key.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -44,7 +48,7 @@ public final class ApiKeyRequest {
 
     /**
      * Set the name property: The name of the API Key.
-     *
+     * 
      * @param name the name value to set.
      * @return the ApiKeyRequest object itself.
      */
@@ -55,7 +59,7 @@ public final class ApiKeyRequest {
 
     /**
      * Get the linkedReadProperties property: The read access rights of this API Key.
-     *
+     * 
      * @return the linkedReadProperties value.
      */
     public List<String> linkedReadProperties() {
@@ -64,7 +68,7 @@ public final class ApiKeyRequest {
 
     /**
      * Set the linkedReadProperties property: The read access rights of this API Key.
-     *
+     * 
      * @param linkedReadProperties the linkedReadProperties value to set.
      * @return the ApiKeyRequest object itself.
      */
@@ -75,7 +79,7 @@ public final class ApiKeyRequest {
 
     /**
      * Get the linkedWriteProperties property: The write access rights of this API Key.
-     *
+     * 
      * @return the linkedWriteProperties value.
      */
     public List<String> linkedWriteProperties() {
@@ -84,7 +88,7 @@ public final class ApiKeyRequest {
 
     /**
      * Set the linkedWriteProperties property: The write access rights of this API Key.
-     *
+     * 
      * @param linkedWriteProperties the linkedWriteProperties value to set.
      * @return the ApiKeyRequest object itself.
      */
@@ -95,7 +99,7 @@ public final class ApiKeyRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

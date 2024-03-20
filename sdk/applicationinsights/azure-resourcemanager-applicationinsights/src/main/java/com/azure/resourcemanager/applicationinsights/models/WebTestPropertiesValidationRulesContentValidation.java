@@ -7,11 +7,13 @@ package com.azure.resourcemanager.applicationinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The collection of content validation properties. */
+/**
+ * The collection of content validation properties.
+ */
 @Fluent
 public final class WebTestPropertiesValidationRulesContentValidation {
     /*
-     * Content to look for in the return of the WebTest.  Must not be null or empty.
+     * Content to look for in the return of the WebTest. Must not be null or empty.
      */
     @JsonProperty(value = "ContentMatch")
     private String contentMatch;
@@ -23,19 +25,21 @@ public final class WebTestPropertiesValidationRulesContentValidation {
     private Boolean ignoreCase;
 
     /*
-     * When true, validation will pass if there is a match for the ContentMatch string.  If false, validation will fail
+     * When true, validation will pass if there is a match for the ContentMatch string. If false, validation will fail
      * if there is a match
      */
     @JsonProperty(value = "PassIfTextFound")
     private Boolean passIfTextFound;
 
-    /** Creates an instance of WebTestPropertiesValidationRulesContentValidation class. */
+    /**
+     * Creates an instance of WebTestPropertiesValidationRulesContentValidation class.
+     */
     public WebTestPropertiesValidationRulesContentValidation() {
     }
 
     /**
      * Get the contentMatch property: Content to look for in the return of the WebTest. Must not be null or empty.
-     *
+     * 
      * @return the contentMatch value.
      */
     public String contentMatch() {
@@ -44,7 +48,7 @@ public final class WebTestPropertiesValidationRulesContentValidation {
 
     /**
      * Set the contentMatch property: Content to look for in the return of the WebTest. Must not be null or empty.
-     *
+     * 
      * @param contentMatch the contentMatch value to set.
      * @return the WebTestPropertiesValidationRulesContentValidation object itself.
      */
@@ -55,7 +59,7 @@ public final class WebTestPropertiesValidationRulesContentValidation {
 
     /**
      * Get the ignoreCase property: When set, this value makes the ContentMatch validation case insensitive.
-     *
+     * 
      * @return the ignoreCase value.
      */
     public Boolean ignoreCase() {
@@ -64,7 +68,7 @@ public final class WebTestPropertiesValidationRulesContentValidation {
 
     /**
      * Set the ignoreCase property: When set, this value makes the ContentMatch validation case insensitive.
-     *
+     * 
      * @param ignoreCase the ignoreCase value to set.
      * @return the WebTestPropertiesValidationRulesContentValidation object itself.
      */
@@ -76,7 +80,7 @@ public final class WebTestPropertiesValidationRulesContentValidation {
     /**
      * Get the passIfTextFound property: When true, validation will pass if there is a match for the ContentMatch
      * string. If false, validation will fail if there is a match.
-     *
+     * 
      * @return the passIfTextFound value.
      */
     public Boolean passIfTextFound() {
@@ -86,7 +90,7 @@ public final class WebTestPropertiesValidationRulesContentValidation {
     /**
      * Set the passIfTextFound property: When true, validation will pass if there is a match for the ContentMatch
      * string. If false, validation will fail if there is a match.
-     *
+     * 
      * @param passIfTextFound the passIfTextFound value to set.
      * @return the WebTestPropertiesValidationRulesContentValidation object itself.
      */
@@ -97,7 +101,7 @@ public final class WebTestPropertiesValidationRulesContentValidation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

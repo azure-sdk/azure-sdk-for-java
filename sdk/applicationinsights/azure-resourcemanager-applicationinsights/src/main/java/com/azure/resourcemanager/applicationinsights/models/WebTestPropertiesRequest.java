@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The collection of request properties. */
+/**
+ * The collection of request properties.
+ */
 @Fluent
 public final class WebTestPropertiesRequest {
     /*
@@ -47,13 +49,15 @@ public final class WebTestPropertiesRequest {
     @JsonProperty(value = "FollowRedirects")
     private Boolean followRedirects;
 
-    /** Creates an instance of WebTestPropertiesRequest class. */
+    /**
+     * Creates an instance of WebTestPropertiesRequest class.
+     */
     public WebTestPropertiesRequest() {
     }
 
     /**
      * Get the requestUrl property: Url location to test.
-     *
+     * 
      * @return the requestUrl value.
      */
     public String requestUrl() {
@@ -62,7 +66,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Set the requestUrl property: Url location to test.
-     *
+     * 
      * @param requestUrl the requestUrl value to set.
      * @return the WebTestPropertiesRequest object itself.
      */
@@ -73,7 +77,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Get the headers property: List of headers and their values to add to the WebTest call.
-     *
+     * 
      * @return the headers value.
      */
     public List<HeaderField> headers() {
@@ -82,7 +86,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Set the headers property: List of headers and their values to add to the WebTest call.
-     *
+     * 
      * @param headers the headers value to set.
      * @return the WebTestPropertiesRequest object itself.
      */
@@ -93,7 +97,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Get the httpVerb property: Http verb to use for this web test.
-     *
+     * 
      * @return the httpVerb value.
      */
     public String httpVerb() {
@@ -102,7 +106,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Set the httpVerb property: Http verb to use for this web test.
-     *
+     * 
      * @param httpVerb the httpVerb value to set.
      * @return the WebTestPropertiesRequest object itself.
      */
@@ -113,7 +117,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Get the requestBody property: Base64 encoded string body to send with this web test.
-     *
+     * 
      * @return the requestBody value.
      */
     public String requestBody() {
@@ -122,7 +126,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Set the requestBody property: Base64 encoded string body to send with this web test.
-     *
+     * 
      * @param requestBody the requestBody value to set.
      * @return the WebTestPropertiesRequest object itself.
      */
@@ -133,7 +137,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Get the parseDependentRequests property: Parse Dependent request for this WebTest.
-     *
+     * 
      * @return the parseDependentRequests value.
      */
     public Boolean parseDependentRequests() {
@@ -142,7 +146,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Set the parseDependentRequests property: Parse Dependent request for this WebTest.
-     *
+     * 
      * @param parseDependentRequests the parseDependentRequests value to set.
      * @return the WebTestPropertiesRequest object itself.
      */
@@ -153,7 +157,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Get the followRedirects property: Follow redirects for this web test.
-     *
+     * 
      * @return the followRedirects value.
      */
     public Boolean followRedirects() {
@@ -162,7 +166,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Set the followRedirects property: Follow redirects for this web test.
-     *
+     * 
      * @param followRedirects the followRedirects value to set.
      * @return the WebTestPropertiesRequest object itself.
      */
@@ -173,7 +177,7 @@ public final class WebTestPropertiesRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.applicationinsights.fluent.models.ApplicationIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the list of Application Insights Resources. */
+/**
+ * Describes the list of Application Insights Resources.
+ */
 @Fluent
 public final class ApplicationInsightsComponentListResult {
     /*
@@ -26,13 +28,15 @@ public final class ApplicationInsightsComponentListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ApplicationInsightsComponentListResult class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentListResult class.
+     */
     public ApplicationInsightsComponentListResult() {
     }
 
     /**
      * Get the value property: List of Application Insights component definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<ApplicationInsightsComponentInner> value() {
@@ -41,7 +45,7 @@ public final class ApplicationInsightsComponentListResult {
 
     /**
      * Set the value property: List of Application Insights component definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the ApplicationInsightsComponentListResult object itself.
      */
@@ -53,7 +57,7 @@ public final class ApplicationInsightsComponentListResult {
     /**
      * Get the nextLink property: The URI to get the next set of Application Insights component definitions if too many
      * components where returned in the result set.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +67,7 @@ public final class ApplicationInsightsComponentListResult {
     /**
      * Set the nextLink property: The URI to get the next set of Application Insights component definitions if too many
      * components where returned in the result set.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ApplicationInsightsComponentListResult object itself.
      */
@@ -74,15 +78,13 @@ public final class ApplicationInsightsComponentListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model ApplicationInsightsComponentListResult"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model ApplicationInsightsComponentListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

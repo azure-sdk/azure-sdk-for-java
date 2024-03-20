@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.applicationinsights.models.PurgeState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Response containing status for a specific purge operation. */
+/**
+ * Response containing status for a specific purge operation.
+ */
 @Fluent
 public final class ComponentPurgeStatusResponseInner {
     /*
@@ -18,13 +20,15 @@ public final class ComponentPurgeStatusResponseInner {
     @JsonProperty(value = "status", required = true)
     private PurgeState status;
 
-    /** Creates an instance of ComponentPurgeStatusResponseInner class. */
+    /**
+     * Creates an instance of ComponentPurgeStatusResponseInner class.
+     */
     public ComponentPurgeStatusResponseInner() {
     }
 
     /**
      * Get the status property: Status of the operation represented by the requested Id.
-     *
+     * 
      * @return the status value.
      */
     public PurgeState status() {
@@ -33,7 +37,7 @@ public final class ComponentPurgeStatusResponseInner {
 
     /**
      * Set the status property: Status of the operation represented by the requested Id.
-     *
+     * 
      * @param status the status value to set.
      * @return the ComponentPurgeStatusResponseInner object itself.
      */
@@ -44,15 +48,13 @@ public final class ComponentPurgeStatusResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (status() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property status in model ComponentPurgeStatusResponseInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property status in model ComponentPurgeStatusResponseInner"));
         }
     }
 

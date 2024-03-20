@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** An Application Insights workbook template definition. */
+/**
+ * An Application Insights workbook template definition.
+ */
 @Fluent
 public final class WorkbookTemplateInner extends WorkbookTemplateResource {
     /*
@@ -21,27 +23,33 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
     @JsonProperty(value = "properties")
     private WorkbookTemplateProperties innerProperties;
 
-    /** Creates an instance of WorkbookTemplateInner class. */
+    /**
+     * Creates an instance of WorkbookTemplateInner class.
+     */
     public WorkbookTemplateInner() {
     }
 
     /**
      * Get the innerProperties property: Metadata describing a workbook template for an Azure resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WorkbookTemplateProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkbookTemplateInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkbookTemplateInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -49,9 +57,9 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
     }
 
     /**
-     * Get the priority property: Priority of the template. Determines which template to open when a workbook gallery is
-     * opened in viewer mode.
-     *
+     * Get the priority property: Priority of the template. Determines which template to open when a workbook gallery
+     * is opened in viewer mode.
+     * 
      * @return the priority value.
      */
     public Integer priority() {
@@ -59,9 +67,9 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
     }
 
     /**
-     * Set the priority property: Priority of the template. Determines which template to open when a workbook gallery is
-     * opened in viewer mode.
-     *
+     * Set the priority property: Priority of the template. Determines which template to open when a workbook gallery
+     * is opened in viewer mode.
+     * 
      * @param priority the priority value to set.
      * @return the WorkbookTemplateInner object itself.
      */
@@ -75,7 +83,7 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
 
     /**
      * Get the author property: Information about the author of the workbook template.
-     *
+     * 
      * @return the author value.
      */
     public String author() {
@@ -84,7 +92,7 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
 
     /**
      * Set the author property: Information about the author of the workbook template.
-     *
+     * 
      * @param author the author value to set.
      * @return the WorkbookTemplateInner object itself.
      */
@@ -98,7 +106,7 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
 
     /**
      * Get the templateData property: Valid JSON object containing workbook template payload.
-     *
+     * 
      * @return the templateData value.
      */
     public Object templateData() {
@@ -107,7 +115,7 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
 
     /**
      * Set the templateData property: Valid JSON object containing workbook template payload.
-     *
+     * 
      * @param templateData the templateData value to set.
      * @return the WorkbookTemplateInner object itself.
      */
@@ -121,7 +129,7 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
 
     /**
      * Get the galleries property: Workbook galleries supported by the template.
-     *
+     * 
      * @return the galleries value.
      */
     public List<WorkbookTemplateGallery> galleries() {
@@ -130,7 +138,7 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
 
     /**
      * Set the galleries property: Workbook galleries supported by the template.
-     *
+     * 
      * @param galleries the galleries value to set.
      * @return the WorkbookTemplateInner object itself.
      */
@@ -145,7 +153,7 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
     /**
      * Get the localized property: Key value pair of localized gallery. Each key is the locale code of languages
      * supported by the Azure portal.
-     *
+     * 
      * @return the localized value.
      */
     public Map<String, List<WorkbookTemplateLocalizedGallery>> localized() {
@@ -155,7 +163,7 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
     /**
      * Set the localized property: Key value pair of localized gallery. Each key is the locale code of languages
      * supported by the Azure portal.
-     *
+     * 
      * @param localized the localized value to set.
      * @return the WorkbookTemplateInner object itself.
      */
@@ -169,7 +177,7 @@ public final class WorkbookTemplateInner extends WorkbookTemplateResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

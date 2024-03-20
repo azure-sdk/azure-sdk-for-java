@@ -8,21 +8,29 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Indicates the flow of the ingestion. */
+/**
+ * Indicates the flow of the ingestion.
+ */
 public final class IngestionMode extends ExpandableStringEnum<IngestionMode> {
-    /** Static value ApplicationInsights for IngestionMode. */
+    /**
+     * Static value ApplicationInsights for IngestionMode.
+     */
     public static final IngestionMode APPLICATION_INSIGHTS = fromString("ApplicationInsights");
 
-    /** Static value ApplicationInsightsWithDiagnosticSettings for IngestionMode. */
-    public static final IngestionMode APPLICATION_INSIGHTS_WITH_DIAGNOSTIC_SETTINGS =
-        fromString("ApplicationInsightsWithDiagnosticSettings");
+    /**
+     * Static value ApplicationInsightsWithDiagnosticSettings for IngestionMode.
+     */
+    public static final IngestionMode APPLICATION_INSIGHTS_WITH_DIAGNOSTIC_SETTINGS
+        = fromString("ApplicationInsightsWithDiagnosticSettings");
 
-    /** Static value LogAnalytics for IngestionMode. */
+    /**
+     * Static value LogAnalytics for IngestionMode.
+     */
     public static final IngestionMode LOG_ANALYTICS = fromString("LogAnalytics");
 
     /**
      * Creates a new instance of IngestionMode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -31,7 +39,7 @@ public final class IngestionMode extends ExpandableStringEnum<IngestionMode> {
 
     /**
      * Creates or finds a IngestionMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding IngestionMode.
      */
@@ -42,7 +50,7 @@ public final class IngestionMode extends ExpandableStringEnum<IngestionMode> {
 
     /**
      * Gets known IngestionMode values.
-     *
+     * 
      * @return known IngestionMode values.
      */
     public static Collection<IngestionMode> values() {

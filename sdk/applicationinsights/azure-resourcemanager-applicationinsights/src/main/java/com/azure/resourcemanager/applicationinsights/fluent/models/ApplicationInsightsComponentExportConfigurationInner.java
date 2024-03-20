@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties that define a Continuous Export configuration. */
+/**
+ * Properties that define a Continuous Export configuration.
+ */
 @Fluent
 public final class ApplicationInsightsComponentExportConfigurationInner {
     /*
@@ -130,14 +132,16 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
     @JsonProperty(value = "ContainerName", access = JsonProperty.Access.WRITE_ONLY)
     private String containerName;
 
-    /** Creates an instance of ApplicationInsightsComponentExportConfigurationInner class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentExportConfigurationInner class.
+     */
     public ApplicationInsightsComponentExportConfigurationInner() {
     }
 
     /**
-     * Get the exportId property: The unique ID of the export configuration inside an Application Insights component. It
-     * is auto generated when the Continuous Export configuration is created.
-     *
+     * Get the exportId property: The unique ID of the export configuration inside an Application Insights component.
+     * It is auto generated when the Continuous Export configuration is created.
+     * 
      * @return the exportId value.
      */
     public String exportId() {
@@ -146,7 +150,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the instrumentationKey property: The instrumentation key of the Application Insights component.
-     *
+     * 
      * @return the instrumentationKey value.
      */
     public String instrumentationKey() {
@@ -157,7 +161,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
      * Get the recordTypes property: This comma separated list of document types that will be exported. The possible
      * values include 'Requests', 'Event', 'Exceptions', 'Metrics', 'PageViews', 'PageViewPerformance', 'Rdd',
      * 'PerformanceCounters', 'Availability', 'Messages'.
-     *
+     * 
      * @return the recordTypes value.
      */
     public String recordTypes() {
@@ -168,7 +172,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
      * Set the recordTypes property: This comma separated list of document types that will be exported. The possible
      * values include 'Requests', 'Event', 'Exceptions', 'Metrics', 'PageViews', 'PageViewPerformance', 'Rdd',
      * 'PerformanceCounters', 'Availability', 'Messages'.
-     *
+     * 
      * @param recordTypes the recordTypes value to set.
      * @return the ApplicationInsightsComponentExportConfigurationInner object itself.
      */
@@ -179,7 +183,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the applicationName property: The name of the Application Insights component.
-     *
+     * 
      * @return the applicationName value.
      */
     public String applicationName() {
@@ -188,7 +192,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the subscriptionId property: The subscription of the Application Insights component.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -197,7 +201,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the resourceGroup property: The resource group of the Application Insights component.
-     *
+     * 
      * @return the resourceGroup value.
      */
     public String resourceGroup() {
@@ -206,7 +210,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the destinationStorageSubscriptionId property: The destination storage account subscription ID.
-     *
+     * 
      * @return the destinationStorageSubscriptionId value.
      */
     public String destinationStorageSubscriptionId() {
@@ -215,7 +219,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the destinationStorageLocationId property: The destination account location ID.
-     *
+     * 
      * @return the destinationStorageLocationId value.
      */
     public String destinationStorageLocationId() {
@@ -224,7 +228,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the destinationAccountId property: The name of destination account.
-     *
+     * 
      * @return the destinationAccountId value.
      */
     public String destinationAccountId() {
@@ -233,7 +237,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the destinationType property: The destination type.
-     *
+     * 
      * @return the destinationType value.
      */
     public String destinationType() {
@@ -243,7 +247,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
     /**
      * Get the isUserEnabled property: This will be 'true' if the Continuous Export configuration is enabled, otherwise
      * it will be 'false'.
-     *
+     * 
      * @return the isUserEnabled value.
      */
     public String isUserEnabled() {
@@ -252,7 +256,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the lastUserUpdate property: Last time the Continuous Export configuration was updated.
-     *
+     * 
      * @return the lastUserUpdate value.
      */
     public String lastUserUpdate() {
@@ -261,7 +265,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the notificationQueueEnabled property: Deprecated.
-     *
+     * 
      * @return the notificationQueueEnabled value.
      */
     public String notificationQueueEnabled() {
@@ -270,20 +274,20 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Set the notificationQueueEnabled property: Deprecated.
-     *
+     * 
      * @param notificationQueueEnabled the notificationQueueEnabled value to set.
      * @return the ApplicationInsightsComponentExportConfigurationInner object itself.
      */
-    public ApplicationInsightsComponentExportConfigurationInner withNotificationQueueEnabled(
-        String notificationQueueEnabled) {
+    public ApplicationInsightsComponentExportConfigurationInner
+        withNotificationQueueEnabled(String notificationQueueEnabled) {
         this.notificationQueueEnabled = notificationQueueEnabled;
         return this;
     }
 
     /**
-     * Get the exportStatus property: This indicates current Continuous Export configuration status. The possible values
-     * are 'Preparing', 'Success', 'Failure'.
-     *
+     * Get the exportStatus property: This indicates current Continuous Export configuration status. The possible
+     * values are 'Preparing', 'Success', 'Failure'.
+     * 
      * @return the exportStatus value.
      */
     public String exportStatus() {
@@ -293,7 +297,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
     /**
      * Get the lastSuccessTime property: The last time data was successfully delivered to the destination storage
      * container for this Continuous Export configuration.
-     *
+     * 
      * @return the lastSuccessTime value.
      */
     public String lastSuccessTime() {
@@ -302,7 +306,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the lastGapTime property: The last time the Continuous Export configuration started failing.
-     *
+     * 
      * @return the lastGapTime value.
      */
     public String lastGapTime() {
@@ -310,9 +314,9 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
     }
 
     /**
-     * Get the permanentErrorReason property: This is the reason the Continuous Export configuration started failing. It
-     * can be 'AzureStorageNotFound' or 'AzureStorageAccessDenied'.
-     *
+     * Get the permanentErrorReason property: This is the reason the Continuous Export configuration started failing.
+     * It can be 'AzureStorageNotFound' or 'AzureStorageAccessDenied'.
+     * 
      * @return the permanentErrorReason value.
      */
     public String permanentErrorReason() {
@@ -321,7 +325,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the storageName property: The name of the destination storage account.
-     *
+     * 
      * @return the storageName value.
      */
     public String storageName() {
@@ -330,7 +334,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Get the containerName property: The name of the destination storage container.
-     *
+     * 
      * @return the containerName value.
      */
     public String containerName() {
@@ -339,7 +343,7 @@ public final class ApplicationInsightsComponentExportConfigurationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

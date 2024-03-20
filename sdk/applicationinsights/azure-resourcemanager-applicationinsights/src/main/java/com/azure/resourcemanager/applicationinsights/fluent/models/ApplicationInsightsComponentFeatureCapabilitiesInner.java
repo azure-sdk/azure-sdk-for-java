@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An Application Insights component feature capabilities. */
+/**
+ * An Application Insights component feature capabilities.
+ */
 @Immutable
 public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
     /*
@@ -106,13 +108,15 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
     @JsonProperty(value = "ThrottleRate", access = JsonProperty.Access.WRITE_ONLY)
     private Float throttleRate;
 
-    /** Creates an instance of ApplicationInsightsComponentFeatureCapabilitiesInner class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentFeatureCapabilitiesInner class.
+     */
     public ApplicationInsightsComponentFeatureCapabilitiesInner() {
     }
 
     /**
      * Get the supportExportData property: Whether allow to use continuous export feature.
-     *
+     * 
      * @return the supportExportData value.
      */
     public Boolean supportExportData() {
@@ -121,7 +125,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the burstThrottlePolicy property: Reserved, not used now.
-     *
+     * 
      * @return the burstThrottlePolicy value.
      */
     public String burstThrottlePolicy() {
@@ -130,7 +134,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the metadataClass property: Reserved, not used now.
-     *
+     * 
      * @return the metadataClass value.
      */
     public String metadataClass() {
@@ -139,7 +143,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the liveStreamMetrics property: Reserved, not used now.
-     *
+     * 
      * @return the liveStreamMetrics value.
      */
     public Boolean liveStreamMetrics() {
@@ -148,7 +152,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the applicationMap property: Reserved, not used now.
-     *
+     * 
      * @return the applicationMap value.
      */
     public Boolean applicationMap() {
@@ -157,7 +161,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the workItemIntegration property: Whether allow to use work item integration feature.
-     *
+     * 
      * @return the workItemIntegration value.
      */
     public Boolean workItemIntegration() {
@@ -166,7 +170,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the powerBIIntegration property: Reserved, not used now.
-     *
+     * 
      * @return the powerBIIntegration value.
      */
     public Boolean powerBIIntegration() {
@@ -175,7 +179,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the openSchema property: Reserved, not used now.
-     *
+     * 
      * @return the openSchema value.
      */
     public Boolean openSchema() {
@@ -184,7 +188,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the proactiveDetection property: Reserved, not used now.
-     *
+     * 
      * @return the proactiveDetection value.
      */
     public Boolean proactiveDetection() {
@@ -193,7 +197,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the analyticsIntegration property: Reserved, not used now.
-     *
+     * 
      * @return the analyticsIntegration value.
      */
     public Boolean analyticsIntegration() {
@@ -202,7 +206,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the multipleStepWebTest property: Whether allow to use multiple steps web test feature.
-     *
+     * 
      * @return the multipleStepWebTest value.
      */
     public Boolean multipleStepWebTest() {
@@ -211,7 +215,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the apiAccessLevel property: Reserved, not used now.
-     *
+     * 
      * @return the apiAccessLevel value.
      */
     public String apiAccessLevel() {
@@ -220,7 +224,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the trackingType property: The application insights component used tracking type.
-     *
+     * 
      * @return the trackingType value.
      */
     public String trackingType() {
@@ -229,7 +233,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the dailyCap property: Daily data volume cap in GB.
-     *
+     * 
      * @return the dailyCap value.
      */
     public Float dailyCap() {
@@ -238,7 +242,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the dailyCapResetTime property: Daily data volume cap UTC reset hour.
-     *
+     * 
      * @return the dailyCapResetTime value.
      */
     public Float dailyCapResetTime() {
@@ -247,7 +251,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Get the throttleRate property: Reserved, not used now.
-     *
+     * 
      * @return the throttleRate value.
      */
     public Float throttleRate() {
@@ -256,7 +260,7 @@ public final class ApplicationInsightsComponentFeatureCapabilitiesInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

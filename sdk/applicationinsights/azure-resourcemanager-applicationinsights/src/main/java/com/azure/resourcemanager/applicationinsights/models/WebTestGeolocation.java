@@ -7,7 +7,9 @@ package com.azure.resourcemanager.applicationinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Geo-physical location to run a WebTest from. You must specify one or more locations for the test to run from. */
+/**
+ * Geo-physical location to run a WebTest from. You must specify one or more locations for the test to run from.
+ */
 @Fluent
 public final class WebTestGeolocation {
     /*
@@ -16,13 +18,15 @@ public final class WebTestGeolocation {
     @JsonProperty(value = "Id")
     private String location;
 
-    /** Creates an instance of WebTestGeolocation class. */
+    /**
+     * Creates an instance of WebTestGeolocation class.
+     */
     public WebTestGeolocation() {
     }
 
     /**
      * Get the location property: Location ID for the WebTest to run from.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -31,7 +35,7 @@ public final class WebTestGeolocation {
 
     /**
      * Set the location property: Location ID for the WebTest to run from.
-     *
+     * 
      * @param location the location value to set.
      * @return the WebTestGeolocation object itself.
      */
@@ -42,7 +46,7 @@ public final class WebTestGeolocation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
