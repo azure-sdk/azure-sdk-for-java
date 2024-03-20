@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** An API key used for authenticating with a configuration store endpoint. */
+/**
+ * An API key used for authenticating with a configuration store endpoint.
+ */
 @Immutable
 public final class ApiKeyInner {
     /*
@@ -47,13 +49,15 @@ public final class ApiKeyInner {
     @JsonProperty(value = "readOnly", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean readOnly;
 
-    /** Creates an instance of ApiKeyInner class. */
+    /**
+     * Creates an instance of ApiKeyInner class.
+     */
     public ApiKeyInner() {
     }
 
     /**
      * Get the id property: The key ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -62,7 +66,7 @@ public final class ApiKeyInner {
 
     /**
      * Get the name property: A name for the key describing its usage.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -71,7 +75,7 @@ public final class ApiKeyInner {
 
     /**
      * Get the value property: The value of the key that is used for authentication purposes.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -79,8 +83,9 @@ public final class ApiKeyInner {
     }
 
     /**
-     * Get the connectionString property: A connection string that can be used by supporting clients for authentication.
-     *
+     * Get the connectionString property: A connection string that can be used by supporting clients for
+     * authentication.
+     * 
      * @return the connectionString value.
      */
     public String connectionString() {
@@ -89,7 +94,7 @@ public final class ApiKeyInner {
 
     /**
      * Get the lastModified property: The last time any of the key's properties were modified.
-     *
+     * 
      * @return the lastModified value.
      */
     public OffsetDateTime lastModified() {
@@ -98,7 +103,7 @@ public final class ApiKeyInner {
 
     /**
      * Get the readOnly property: Whether this key can only be used for read operations.
-     *
+     * 
      * @return the readOnly value.
      */
     public Boolean readOnly() {
@@ -107,7 +112,7 @@ public final class ApiKeyInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

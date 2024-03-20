@@ -9,7 +9,9 @@ import com.azure.resourcemanager.appconfiguration.fluent.models.ApiKeyInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The result of a request to list API keys. */
+/**
+ * The result of a request to list API keys.
+ */
 @Fluent
 public final class ApiKeyListResult {
     /*
@@ -24,13 +26,15 @@ public final class ApiKeyListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ApiKeyListResult class. */
+    /**
+     * Creates an instance of ApiKeyListResult class.
+     */
     public ApiKeyListResult() {
     }
 
     /**
      * Get the value property: The collection value.
-     *
+     * 
      * @return the value value.
      */
     public List<ApiKeyInner> value() {
@@ -39,7 +43,7 @@ public final class ApiKeyListResult {
 
     /**
      * Set the value property: The collection value.
-     *
+     * 
      * @param value the value value to set.
      * @return the ApiKeyListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class ApiKeyListResult {
 
     /**
      * Get the nextLink property: The URI that can be used to request the next set of paged results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ApiKeyListResult {
 
     /**
      * Set the nextLink property: The URI that can be used to request the next set of paged results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ApiKeyListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class ApiKeyListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

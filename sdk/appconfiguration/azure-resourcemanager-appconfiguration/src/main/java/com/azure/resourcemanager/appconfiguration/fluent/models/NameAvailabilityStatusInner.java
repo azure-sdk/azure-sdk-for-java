@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appconfiguration.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The result of a request to check the availability of a resource name. */
+/**
+ * The result of a request to check the availability of a resource name.
+ */
 @Immutable
 public final class NameAvailabilityStatusInner {
     /*
@@ -28,13 +30,15 @@ public final class NameAvailabilityStatusInner {
     @JsonProperty(value = "reason", access = JsonProperty.Access.WRITE_ONLY)
     private String reason;
 
-    /** Creates an instance of NameAvailabilityStatusInner class. */
+    /**
+     * Creates an instance of NameAvailabilityStatusInner class.
+     */
     public NameAvailabilityStatusInner() {
     }
 
     /**
      * Get the nameAvailable property: The value indicating whether the resource name is available.
-     *
+     * 
      * @return the nameAvailable value.
      */
     public Boolean nameAvailable() {
@@ -42,9 +46,9 @@ public final class NameAvailabilityStatusInner {
     }
 
     /**
-     * Get the message property: If any, the error message that provides more detail for the reason that the name is not
-     * available.
-     *
+     * Get the message property: If any, the error message that provides more detail for the reason that the name is
+     * not available.
+     * 
      * @return the message value.
      */
     public String message() {
@@ -53,7 +57,7 @@ public final class NameAvailabilityStatusInner {
 
     /**
      * Get the reason property: If any, the reason that the name is not available.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -62,7 +66,7 @@ public final class NameAvailabilityStatusInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
