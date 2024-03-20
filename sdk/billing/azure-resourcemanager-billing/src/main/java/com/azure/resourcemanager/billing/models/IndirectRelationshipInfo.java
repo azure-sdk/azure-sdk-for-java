@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The billing profile details of the partner of the customer for an indirect motion. */
+/**
+ * The billing profile details of the partner of the customer for an indirect motion.
+ */
 @Fluent
 public final class IndirectRelationshipInfo {
     /*
@@ -28,14 +30,16 @@ public final class IndirectRelationshipInfo {
     @JsonProperty(value = "displayName")
     private String displayName;
 
-    /** Creates an instance of IndirectRelationshipInfo class. */
+    /**
+     * Creates an instance of IndirectRelationshipInfo class.
+     */
     public IndirectRelationshipInfo() {
     }
 
     /**
      * Get the billingAccountName property: The billing account name of the partner or the customer for an indirect
      * motion.
-     *
+     * 
      * @return the billingAccountName value.
      */
     public String billingAccountName() {
@@ -45,7 +49,7 @@ public final class IndirectRelationshipInfo {
     /**
      * Set the billingAccountName property: The billing account name of the partner or the customer for an indirect
      * motion.
-     *
+     * 
      * @param billingAccountName the billingAccountName value to set.
      * @return the IndirectRelationshipInfo object itself.
      */
@@ -57,7 +61,7 @@ public final class IndirectRelationshipInfo {
     /**
      * Get the billingProfileName property: The billing profile name of the partner or the customer for an indirect
      * motion.
-     *
+     * 
      * @return the billingProfileName value.
      */
     public String billingProfileName() {
@@ -67,7 +71,7 @@ public final class IndirectRelationshipInfo {
     /**
      * Set the billingProfileName property: The billing profile name of the partner or the customer for an indirect
      * motion.
-     *
+     * 
      * @param billingProfileName the billingProfileName value to set.
      * @return the IndirectRelationshipInfo object itself.
      */
@@ -78,7 +82,7 @@ public final class IndirectRelationshipInfo {
 
     /**
      * Get the displayName property: The display name of the partner or customer for an indirect motion.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -87,7 +91,7 @@ public final class IndirectRelationshipInfo {
 
     /**
      * Set the displayName property: The display name of the partner or customer for an indirect motion.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the IndirectRelationshipInfo object itself.
      */
@@ -98,7 +102,7 @@ public final class IndirectRelationshipInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -4,14 +4,17 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for BillingSubscriptions Get. */
+/**
+ * Samples for BillingSubscriptions Get.
+ */
 public final class BillingSubscriptionsGetSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscription.json
+     * x-ms-original-file:
+     * specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscription.json
      */
     /**
      * Sample code: BillingSubscription.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void billingSubscription(com.azure.resourcemanager.billing.BillingManager manager) {

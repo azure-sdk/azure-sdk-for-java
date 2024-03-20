@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billing.fluent.models.InvoiceSectionWithCreateS
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of invoice section properties with create subscription permission. */
+/**
+ * The list of invoice section properties with create subscription permission.
+ */
 @Fluent
 public final class InvoiceSectionListWithCreateSubPermissionResult {
     /*
@@ -24,13 +26,15 @@ public final class InvoiceSectionListWithCreateSubPermissionResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of InvoiceSectionListWithCreateSubPermissionResult class. */
+    /**
+     * Creates an instance of InvoiceSectionListWithCreateSubPermissionResult class.
+     */
     public InvoiceSectionListWithCreateSubPermissionResult() {
     }
 
     /**
      * Get the value property: The list of invoice section properties with create subscription permission.
-     *
+     * 
      * @return the value value.
      */
     public List<InvoiceSectionWithCreateSubPermissionInner> value() {
@@ -39,19 +43,19 @@ public final class InvoiceSectionListWithCreateSubPermissionResult {
 
     /**
      * Set the value property: The list of invoice section properties with create subscription permission.
-     *
+     * 
      * @param value the value value to set.
      * @return the InvoiceSectionListWithCreateSubPermissionResult object itself.
      */
-    public InvoiceSectionListWithCreateSubPermissionResult withValue(
-        List<InvoiceSectionWithCreateSubPermissionInner> value) {
+    public InvoiceSectionListWithCreateSubPermissionResult
+        withValue(List<InvoiceSectionWithCreateSubPermissionInner> value) {
         this.value = value;
         return this;
     }
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,7 +64,7 @@ public final class InvoiceSectionListWithCreateSubPermissionResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

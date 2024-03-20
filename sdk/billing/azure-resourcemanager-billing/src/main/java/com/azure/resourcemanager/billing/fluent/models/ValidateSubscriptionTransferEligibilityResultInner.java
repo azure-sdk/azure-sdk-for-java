@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.billing.models.ValidateSubscriptionTransferEligibilityError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Result of the transfer eligibility validation. */
+/**
+ * Result of the transfer eligibility validation.
+ */
 @Fluent
 public final class ValidateSubscriptionTransferEligibilityResultInner {
     /*
@@ -23,13 +25,15 @@ public final class ValidateSubscriptionTransferEligibilityResultInner {
     @JsonProperty(value = "errorDetails")
     private ValidateSubscriptionTransferEligibilityError errorDetails;
 
-    /** Creates an instance of ValidateSubscriptionTransferEligibilityResultInner class. */
+    /**
+     * Creates an instance of ValidateSubscriptionTransferEligibilityResultInner class.
+     */
     public ValidateSubscriptionTransferEligibilityResultInner() {
     }
 
     /**
      * Get the isMoveEligible property: Specifies whether the subscription is eligible to be transferred.
-     *
+     * 
      * @return the isMoveEligible value.
      */
     public Boolean isMoveEligible() {
@@ -38,7 +42,7 @@ public final class ValidateSubscriptionTransferEligibilityResultInner {
 
     /**
      * Get the errorDetails property: Validation error details.
-     *
+     * 
      * @return the errorDetails value.
      */
     public ValidateSubscriptionTransferEligibilityError errorDetails() {
@@ -47,19 +51,19 @@ public final class ValidateSubscriptionTransferEligibilityResultInner {
 
     /**
      * Set the errorDetails property: Validation error details.
-     *
+     * 
      * @param errorDetails the errorDetails value to set.
      * @return the ValidateSubscriptionTransferEligibilityResultInner object itself.
      */
-    public ValidateSubscriptionTransferEligibilityResultInner withErrorDetails(
-        ValidateSubscriptionTransferEligibilityError errorDetails) {
+    public ValidateSubscriptionTransferEligibilityResultInner
+        withErrorDetails(ValidateSubscriptionTransferEligibilityError errorDetails) {
         this.errorDetails = errorDetails;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

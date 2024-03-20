@@ -17,7 +17,9 @@ import com.azure.resourcemanager.billing.models.EnrollmentAccount;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A billing account. */
+/**
+ * A billing account.
+ */
 @Fluent
 public final class BillingAccountInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class BillingAccountInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private BillingAccountProperties innerProperties;
 
-    /** Creates an instance of BillingAccountInner class. */
+    /**
+     * Creates an instance of BillingAccountInner class.
+     */
     public BillingAccountInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the billing account.
-     *
+     * 
      * @return the innerProperties value.
      */
     private BillingAccountProperties innerProperties() {
@@ -41,7 +45,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Get the displayName property: The billing account name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -50,7 +54,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Set the displayName property: The billing account name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the BillingAccountInner object itself.
      */
@@ -65,7 +69,7 @@ public final class BillingAccountInner extends ProxyResource {
     /**
      * Get the soldTo property: The address of the individual or organization that is responsible for the billing
      * account.
-     *
+     * 
      * @return the soldTo value.
      */
     public AddressDetails soldTo() {
@@ -75,7 +79,7 @@ public final class BillingAccountInner extends ProxyResource {
     /**
      * Set the soldTo property: The address of the individual or organization that is responsible for the billing
      * account.
-     *
+     * 
      * @param soldTo the soldTo value to set.
      * @return the BillingAccountInner object itself.
      */
@@ -89,7 +93,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Get the agreementType property: The type of agreement.
-     *
+     * 
      * @return the agreementType value.
      */
     public AgreementType agreementType() {
@@ -98,7 +102,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Get the accountType property: The type of customer.
-     *
+     * 
      * @return the accountType value.
      */
     public AccountType accountType() {
@@ -107,7 +111,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Get the accountStatus property: The current status of the billing account.
-     *
+     * 
      * @return the accountStatus value.
      */
     public AccountStatus accountStatus() {
@@ -117,7 +121,7 @@ public final class BillingAccountInner extends ProxyResource {
     /**
      * Get the billingProfiles property: The billing profiles associated with the billing account. By default this is
      * not populated, unless it's specified in $expand.
-     *
+     * 
      * @return the billingProfiles value.
      */
     public BillingProfilesOnExpand billingProfiles() {
@@ -127,7 +131,7 @@ public final class BillingAccountInner extends ProxyResource {
     /**
      * Set the billingProfiles property: The billing profiles associated with the billing account. By default this is
      * not populated, unless it's specified in $expand.
-     *
+     * 
      * @param billingProfiles the billingProfiles value to set.
      * @return the BillingAccountInner object itself.
      */
@@ -142,7 +146,7 @@ public final class BillingAccountInner extends ProxyResource {
     /**
      * Get the enrollmentDetails property: The details about the associated legacy enrollment. By default this is not
      * populated, unless it's specified in $expand.
-     *
+     * 
      * @return the enrollmentDetails value.
      */
     public Enrollment enrollmentDetails() {
@@ -151,7 +155,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Get the departments property: The departments associated to the enrollment.
-     *
+     * 
      * @return the departments value.
      */
     public List<Department> departments() {
@@ -160,7 +164,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Set the departments property: The departments associated to the enrollment.
-     *
+     * 
      * @param departments the departments value to set.
      * @return the BillingAccountInner object itself.
      */
@@ -174,7 +178,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Get the enrollmentAccounts property: The accounts associated to the enrollment.
-     *
+     * 
      * @return the enrollmentAccounts value.
      */
     public List<EnrollmentAccount> enrollmentAccounts() {
@@ -183,7 +187,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Set the enrollmentAccounts property: The accounts associated to the enrollment.
-     *
+     * 
      * @param enrollmentAccounts the enrollmentAccounts value to set.
      * @return the BillingAccountInner object itself.
      */
@@ -197,7 +201,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Get the hasReadAccess property: Indicates whether user has read access to the billing account.
-     *
+     * 
      * @return the hasReadAccess value.
      */
     public Boolean hasReadAccess() {
@@ -206,7 +210,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Get the notificationEmailAddress property: Notification email address, only for legacy accounts.
-     *
+     * 
      * @return the notificationEmailAddress value.
      */
     public String notificationEmailAddress() {
@@ -215,7 +219,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Set the notificationEmailAddress property: Notification email address, only for legacy accounts.
-     *
+     * 
      * @param notificationEmailAddress the notificationEmailAddress value to set.
      * @return the BillingAccountInner object itself.
      */
@@ -229,7 +233,7 @@ public final class BillingAccountInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

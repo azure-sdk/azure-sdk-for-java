@@ -29,10 +29,7 @@ public final class AddressImpl implements Address {
     public Response<ValidateAddressResponse> validateWithResponse(AddressDetails address, Context context) {
         Response<ValidateAddressResponseInner> inner = this.serviceClient().validateWithResponse(address, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ValidateAddressResponseImpl(inner.getValue(), this.manager()));
         } else {
             return null;

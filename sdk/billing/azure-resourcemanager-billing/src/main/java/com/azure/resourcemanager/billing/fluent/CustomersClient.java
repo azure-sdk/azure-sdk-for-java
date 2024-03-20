@@ -11,12 +11,14 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.billing.fluent.models.CustomerInner;
 
-/** An instance of this class provides access to all the operations defined in CustomersClient. */
+/**
+ * An instance of this class provides access to all the operations defined in CustomersClient.
+ */
 public interface CustomersClient {
     /**
      * Lists the customers that are billed to a billing profile. The operation is supported only for billing accounts
      * with agreement type Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -30,11 +32,11 @@ public interface CustomersClient {
     /**
      * Lists the customers that are billed to a billing profile. The operation is supported only for billing accounts
      * with agreement type Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param search Used for searching customers by their name. Any customer with name containing the search text will
-     *     be included in the response.
+     * be included in the response.
      * @param filter May be used to filter the list of customers.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -43,13 +45,13 @@ public interface CustomersClient {
      * @return the list of customers as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<CustomerInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName, String search, String filter, Context context);
+    PagedIterable<CustomerInner> listByBillingProfile(String billingAccountName, String billingProfileName,
+        String search, String filter, Context context);
 
     /**
      * Lists the customers that are billed to a billing account. The operation is supported only for billing accounts
      * with agreement type Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -62,10 +64,10 @@ public interface CustomersClient {
     /**
      * Lists the customers that are billed to a billing account. The operation is supported only for billing accounts
      * with agreement type Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param search Used for searching customers by their name. Any customer with name containing the search text will
-     *     be included in the response.
+     * be included in the response.
      * @param filter May be used to filter the list of customers.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -74,13 +76,13 @@ public interface CustomersClient {
      * @return the list of customers as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<CustomerInner> listByBillingAccount(
-        String billingAccountName, String search, String filter, Context context);
+    PagedIterable<CustomerInner> listByBillingAccount(String billingAccountName, String search, String filter,
+        Context context);
 
     /**
      * Gets a customer by its ID. The operation is supported only for billing accounts with agreement type Microsoft
      * Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @param expand May be used to expand enabledAzurePlans and resellers.
@@ -91,13 +93,13 @@ public interface CustomersClient {
      * @return a customer by its ID along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<CustomerInner> getWithResponse(
-        String billingAccountName, String customerName, String expand, Context context);
+    Response<CustomerInner> getWithResponse(String billingAccountName, String customerName, String expand,
+        Context context);
 
     /**
      * Gets a customer by its ID. The operation is supported only for billing accounts with agreement type Microsoft
      * Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

@@ -22,8 +22,8 @@ public final class BillingAccountImpl implements BillingAccount {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    BillingAccountImpl(
-        BillingAccountInner innerObject, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    BillingAccountImpl(BillingAccountInner innerObject,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }

@@ -4,24 +4,22 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for BillingSubscriptions ListByInvoiceSection. */
+/**
+ * Samples for BillingSubscriptions ListByInvoiceSection.
+ */
 public final class BillingSubscriptionsListByInvoiceSectionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/BillingSubscriptionsListByInvoiceSection.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/
+     * BillingSubscriptionsListByInvoiceSection.json
      */
     /**
      * Sample code: BillingSubscriptionsListByInvoiceSection.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
-    public static void billingSubscriptionsListByInvoiceSection(
-        com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .billingSubscriptions()
-            .listByInvoiceSection(
-                "{billingAccountName}",
-                "{billingProfileName}",
-                "{invoiceSectionName}",
-                com.azure.core.util.Context.NONE);
+    public static void
+        billingSubscriptionsListByInvoiceSection(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager.billingSubscriptions().listByInvoiceSection("{billingAccountName}", "{billingProfileName}",
+            "{invoiceSectionName}", com.azure.core.util.Context.NONE);
     }
 }

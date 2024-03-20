@@ -7,25 +7,27 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.resourcemanager.billing.fluent.models.BillingPermissionsPropertiesInner;
 import java.util.List;
 
-/** An immutable client-side representation of BillingPermissionsProperties. */
+/**
+ * An immutable client-side representation of BillingPermissionsProperties.
+ */
 public interface BillingPermissionsProperties {
     /**
      * Gets the actions property: The set of actions that the caller is allowed to perform.
-     *
+     * 
      * @return the actions value.
      */
     List<String> actions();
 
     /**
      * Gets the notActions property: The set of actions that the caller is not allowed to perform.
-     *
+     * 
      * @return the notActions value.
      */
     List<String> notActions();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.BillingPermissionsPropertiesInner object.
-     *
+     * 
      * @return the inner object.
      */
     BillingPermissionsPropertiesInner innerModel();

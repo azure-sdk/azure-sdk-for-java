@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billing.models.ReservationPropertyUtilization;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The property of reservation object. */
+/**
+ * The property of reservation object.
+ */
 @Fluent
 public final class ReservationProperty {
     /*
@@ -114,14 +116,16 @@ public final class ReservationProperty {
     @JsonProperty(value = "utilization", access = JsonProperty.Access.WRITE_ONLY)
     private ReservationPropertyUtilization utilization;
 
-    /** Creates an instance of ReservationProperty class. */
+    /**
+     * Creates an instance of ReservationProperty class.
+     */
     public ReservationProperty() {
     }
 
     /**
      * Get the appliedScopes property: The array of applied scopes of a reservation. Will be null if the reservation is
      * in Shared scope.
-     *
+     * 
      * @return the appliedScopes value.
      */
     public List<String> appliedScopes() {
@@ -131,7 +135,7 @@ public final class ReservationProperty {
     /**
      * Set the appliedScopes property: The array of applied scopes of a reservation. Will be null if the reservation is
      * in Shared scope.
-     *
+     * 
      * @param appliedScopes the appliedScopes value to set.
      * @return the ReservationProperty object itself.
      */
@@ -142,7 +146,7 @@ public final class ReservationProperty {
 
     /**
      * Get the appliedScopeType property: The applied scope type of the reservation.
-     *
+     * 
      * @return the appliedScopeType value.
      */
     public String appliedScopeType() {
@@ -151,7 +155,7 @@ public final class ReservationProperty {
 
     /**
      * Get the reservedResourceType property: The reserved source type of the reservation, e.g. virtual machine.
-     *
+     * 
      * @return the reservedResourceType value.
      */
     public String reservedResourceType() {
@@ -160,7 +164,7 @@ public final class ReservationProperty {
 
     /**
      * Get the quantity property: The number of the reservation.
-     *
+     * 
      * @return the quantity value.
      */
     public Float quantity() {
@@ -169,7 +173,7 @@ public final class ReservationProperty {
 
     /**
      * Get the provisioningState property: The provisioning state of the reservation, e.g. Succeeded.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -178,7 +182,7 @@ public final class ReservationProperty {
 
     /**
      * Get the expiryDate property: The expiry date of the reservation.
-     *
+     * 
      * @return the expiryDate value.
      */
     public String expiryDate() {
@@ -187,7 +191,7 @@ public final class ReservationProperty {
 
     /**
      * Get the provisioningSubState property: The provisioning state of the reservation, e.g. Succeeded.
-     *
+     * 
      * @return the provisioningSubState value.
      */
     public String provisioningSubState() {
@@ -196,7 +200,7 @@ public final class ReservationProperty {
 
     /**
      * Get the displayName property: The display name of the reservation.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -204,8 +208,9 @@ public final class ReservationProperty {
     }
 
     /**
-     * Get the displayProvisioningState property: The provisioning state of the reservation for display, e.g. Succeeded.
-     *
+     * Get the displayProvisioningState property: The provisioning state of the reservation for display, e.g.
+     * Succeeded.
+     * 
      * @return the displayProvisioningState value.
      */
     public String displayProvisioningState() {
@@ -214,7 +219,7 @@ public final class ReservationProperty {
 
     /**
      * Get the userFriendlyRenewState property: The renew state of the reservation for display, e.g. On.
-     *
+     * 
      * @return the userFriendlyRenewState value.
      */
     public String userFriendlyRenewState() {
@@ -224,7 +229,7 @@ public final class ReservationProperty {
     /**
      * Get the userFriendlyAppliedScopeType property: The applied scope type of the reservation for display, e.g.
      * Shared.
-     *
+     * 
      * @return the userFriendlyAppliedScopeType value.
      */
     public String userFriendlyAppliedScopeType() {
@@ -233,7 +238,7 @@ public final class ReservationProperty {
 
     /**
      * Get the effectiveDateTime property: The effective date time of the reservation.
-     *
+     * 
      * @return the effectiveDateTime value.
      */
     public String effectiveDateTime() {
@@ -242,7 +247,7 @@ public final class ReservationProperty {
 
     /**
      * Get the skuDescription property: The sku description of the reservation.
-     *
+     * 
      * @return the skuDescription value.
      */
     public String skuDescription() {
@@ -251,7 +256,7 @@ public final class ReservationProperty {
 
     /**
      * Get the term property: The term of the reservation, e.g. P1Y.
-     *
+     * 
      * @return the term value.
      */
     public String term() {
@@ -260,7 +265,7 @@ public final class ReservationProperty {
 
     /**
      * Get the renew property: The renew state of the reservation.
-     *
+     * 
      * @return the renew value.
      */
     public Boolean renew() {
@@ -269,7 +274,7 @@ public final class ReservationProperty {
 
     /**
      * Get the renewSource property: The renew source of the reservation.
-     *
+     * 
      * @return the renewSource value.
      */
     public String renewSource() {
@@ -278,7 +283,7 @@ public final class ReservationProperty {
 
     /**
      * Get the utilization property: Reservation utilization.
-     *
+     * 
      * @return the utilization value.
      */
     public ReservationPropertyUtilization utilization() {
@@ -287,7 +292,7 @@ public final class ReservationProperty {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

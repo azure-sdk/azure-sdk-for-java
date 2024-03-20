@@ -37,22 +37,28 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in InvoiceSectionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in InvoiceSectionsClient.
+ */
 public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final InvoiceSectionsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final BillingManagementClientImpl client;
 
     /**
      * Initializes an instance of InvoiceSectionsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     InvoiceSectionsClientImpl(BillingManagementClientImpl client) {
-        this.service =
-            RestProxy.create(InvoiceSectionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(InvoiceSectionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -63,66 +69,49 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
     @Host("{$host}")
     @ServiceInterface(name = "BillingManagementCli")
     public interface InvoiceSectionsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<InvoiceSectionListResult>> listByBillingProfile(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("billingProfileName") String billingProfileName,
-            @HeaderParam("Accept") String accept,
+        Mono<Response<InvoiceSectionListResult>> listByBillingProfile(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<InvoiceSectionInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
+        Mono<Response<InvoiceSectionInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName,
-            @PathParam("invoiceSectionName") String invoiceSectionName,
-            @HeaderParam("Accept") String accept,
+            @PathParam("invoiceSectionName") String invoiceSectionName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/invoiceSections/{invoiceSectionName}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/invoiceSections/{invoiceSectionName}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName,
             @PathParam("invoiceSectionName") String invoiceSectionName,
-            @BodyParam("application/json") InvoiceSectionInner parameters,
-            @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") InvoiceSectionInner parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<InvoiceSectionListResult>> listByBillingProfileNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Lists the invoice sections that a user has access to. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -131,13 +120,11 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return the list of invoice sections along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InvoiceSectionInner>> listByBillingProfileSinglePageAsync(
-        String billingAccountName, String billingProfileName) {
+    private Mono<PagedResponse<InvoiceSectionInner>> listByBillingProfileSinglePageAsync(String billingAccountName,
+        String billingProfileName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -150,32 +137,17 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByBillingProfile(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            accept,
-                            context))
-            .<PagedResponse<InvoiceSectionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByBillingProfile(this.client.getEndpoint(), apiVersion,
+                billingAccountName, billingProfileName, accept, context))
+            .<PagedResponse<InvoiceSectionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists the invoice sections that a user has access to. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -185,13 +157,11 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return the list of invoice sections along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InvoiceSectionInner>> listByBillingProfileSinglePageAsync(
-        String billingAccountName, String billingProfileName, Context context) {
+    private Mono<PagedResponse<InvoiceSectionInner>> listByBillingProfileSinglePageAsync(String billingAccountName,
+        String billingProfileName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -205,23 +175,16 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingProfile(
-                this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByBillingProfile(this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName, accept,
+                context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists the invoice sections that a user has access to. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -230,17 +193,16 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return the list of invoice sections as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<InvoiceSectionInner> listByBillingProfileAsync(
-        String billingAccountName, String billingProfileName) {
-        return new PagedFlux<>(
-            () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName),
+    private PagedFlux<InvoiceSectionInner> listByBillingProfileAsync(String billingAccountName,
+        String billingProfileName) {
+        return new PagedFlux<>(() -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName),
             nextLink -> listByBillingProfileNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists the invoice sections that a user has access to. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -250,8 +212,8 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return the list of invoice sections as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<InvoiceSectionInner> listByBillingProfileAsync(
-        String billingAccountName, String billingProfileName, Context context) {
+    private PagedFlux<InvoiceSectionInner> listByBillingProfileAsync(String billingAccountName,
+        String billingProfileName, Context context) {
         return new PagedFlux<>(
             () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName, context),
             nextLink -> listByBillingProfileNextSinglePageAsync(nextLink, context));
@@ -260,7 +222,7 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
     /**
      * Lists the invoice sections that a user has access to. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -269,15 +231,15 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return the list of invoice sections as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<InvoiceSectionInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName) {
+    public PagedIterable<InvoiceSectionInner> listByBillingProfile(String billingAccountName,
+        String billingProfileName) {
         return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName));
     }
 
     /**
      * Lists the invoice sections that a user has access to. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -287,15 +249,15 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return the list of invoice sections as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<InvoiceSectionInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context) {
+    public PagedIterable<InvoiceSectionInner> listByBillingProfile(String billingAccountName, String billingProfileName,
+        Context context) {
         return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName, context));
     }
 
     /**
      * Gets an invoice section by its ID. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -305,13 +267,11 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return an invoice section by its ID along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InvoiceSectionInner>> getWithResponseAsync(
-        String billingAccountName, String billingProfileName, String invoiceSectionName) {
+    private Mono<Response<InvoiceSectionInner>> getWithResponseAsync(String billingAccountName,
+        String billingProfileName, String invoiceSectionName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -328,24 +288,15 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            invoiceSectionName,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, billingAccountName,
+                billingProfileName, invoiceSectionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets an invoice section by its ID. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -356,13 +307,11 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return an invoice section by its ID along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InvoiceSectionInner>> getWithResponseAsync(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
+    private Mono<Response<InvoiceSectionInner>> getWithResponseAsync(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -379,21 +328,14 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                billingProfileName,
-                invoiceSectionName,
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName,
+            invoiceSectionName, accept, context);
     }
 
     /**
      * Gets an invoice section by its ID. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -403,8 +345,8 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return an invoice section by its ID on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<InvoiceSectionInner> getAsync(
-        String billingAccountName, String billingProfileName, String invoiceSectionName) {
+    private Mono<InvoiceSectionInner> getAsync(String billingAccountName, String billingProfileName,
+        String invoiceSectionName) {
         return getWithResponseAsync(billingAccountName, billingProfileName, invoiceSectionName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -412,7 +354,7 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
     /**
      * Gets an invoice section by its ID. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -423,15 +365,15 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return an invoice section by its ID along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<InvoiceSectionInner> getWithResponse(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
+    public Response<InvoiceSectionInner> getWithResponse(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, Context context) {
         return getWithResponseAsync(billingAccountName, billingProfileName, invoiceSectionName, context).block();
     }
 
     /**
      * Gets an invoice section by its ID. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -448,7 +390,7 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -459,16 +401,11 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return an invoice section along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, InvoiceSectionInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -490,25 +427,15 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            invoiceSectionName,
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), apiVersion, billingAccountName,
+                billingProfileName, invoiceSectionName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -520,17 +447,11 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return an invoice section along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, InvoiceSectionInner parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -552,22 +473,14 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                billingProfileName,
-                invoiceSectionName,
-                parameters,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName,
+            invoiceSectionName, parameters, accept, context);
     }
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -579,26 +492,18 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<InvoiceSectionInner>, InvoiceSectionInner> beginCreateOrUpdateAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
+        String billingAccountName, String billingProfileName, String invoiceSectionName,
         InvoiceSectionInner parameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(billingAccountName, billingProfileName, invoiceSectionName, parameters);
-        return this
-            .client
-            .<InvoiceSectionInner, InvoiceSectionInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                InvoiceSectionInner.class,
-                InvoiceSectionInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(billingAccountName, billingProfileName, invoiceSectionName, parameters);
+        return this.client.<InvoiceSectionInner, InvoiceSectionInner>getLroResult(mono, this.client.getHttpPipeline(),
+            InvoiceSectionInner.class, InvoiceSectionInner.class, this.client.getContext());
     }
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -611,25 +516,19 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<InvoiceSectionInner>, InvoiceSectionInner> beginCreateOrUpdateAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters,
+        String billingAccountName, String billingProfileName, String invoiceSectionName, InvoiceSectionInner parameters,
         Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(
-                billingAccountName, billingProfileName, invoiceSectionName, parameters, context);
-        return this
-            .client
-            .<InvoiceSectionInner, InvoiceSectionInner>getLroResult(
-                mono, this.client.getHttpPipeline(), InvoiceSectionInner.class, InvoiceSectionInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(billingAccountName, billingProfileName,
+            invoiceSectionName, parameters, context);
+        return this.client.<InvoiceSectionInner, InvoiceSectionInner>getLroResult(mono, this.client.getHttpPipeline(),
+            InvoiceSectionInner.class, InvoiceSectionInner.class, context);
     }
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -641,19 +540,16 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<InvoiceSectionInner>, InvoiceSectionInner> beginCreateOrUpdate(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
+        String billingAccountName, String billingProfileName, String invoiceSectionName,
         InvoiceSectionInner parameters) {
-        return this
-            .beginCreateOrUpdateAsync(billingAccountName, billingProfileName, invoiceSectionName, parameters)
+        return this.beginCreateOrUpdateAsync(billingAccountName, billingProfileName, invoiceSectionName, parameters)
             .getSyncPoller();
     }
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -666,10 +562,7 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<InvoiceSectionInner>, InvoiceSectionInner> beginCreateOrUpdate(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters,
+        String billingAccountName, String billingProfileName, String invoiceSectionName, InvoiceSectionInner parameters,
         Context context) {
         return this
             .beginCreateOrUpdateAsync(billingAccountName, billingProfileName, invoiceSectionName, parameters, context)
@@ -679,7 +572,7 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -690,20 +583,16 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return an invoice section on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<InvoiceSectionInner> createOrUpdateAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters) {
-        return beginCreateOrUpdateAsync(billingAccountName, billingProfileName, invoiceSectionName, parameters)
-            .last()
+    private Mono<InvoiceSectionInner> createOrUpdateAsync(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, InvoiceSectionInner parameters) {
+        return beginCreateOrUpdateAsync(billingAccountName, billingProfileName, invoiceSectionName, parameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -715,21 +604,16 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return an invoice section on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<InvoiceSectionInner> createOrUpdateAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters,
-        Context context) {
+    private Mono<InvoiceSectionInner> createOrUpdateAsync(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, InvoiceSectionInner parameters, Context context) {
         return beginCreateOrUpdateAsync(billingAccountName, billingProfileName, invoiceSectionName, parameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -740,18 +624,15 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return an invoice section.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public InvoiceSectionInner createOrUpdate(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters) {
+    public InvoiceSectionInner createOrUpdate(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, InvoiceSectionInner parameters) {
         return createOrUpdateAsync(billingAccountName, billingProfileName, invoiceSectionName, parameters).block();
     }
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -763,21 +644,18 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return an invoice section.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public InvoiceSectionInner createOrUpdate(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters,
-        Context context) {
+    public InvoiceSectionInner createOrUpdate(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, InvoiceSectionInner parameters, Context context) {
         return createOrUpdateAsync(billingAccountName, billingProfileName, invoiceSectionName, parameters, context)
             .block();
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -789,32 +667,24 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<InvoiceSectionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<InvoiceSectionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -822,29 +692,19 @@ public final class InvoiceSectionsClientImpl implements InvoiceSectionsClient {
      * @return the list of invoice sections along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InvoiceSectionInner>> listByBillingProfileNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<InvoiceSectionInner>> listByBillingProfileNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

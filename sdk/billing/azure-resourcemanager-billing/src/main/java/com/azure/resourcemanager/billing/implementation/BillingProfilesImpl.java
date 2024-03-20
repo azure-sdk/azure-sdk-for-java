@@ -21,33 +21,30 @@ public final class BillingProfilesImpl implements BillingProfiles {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    public BillingProfilesImpl(
-        BillingProfilesClient innerClient, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    public BillingProfilesImpl(BillingProfilesClient innerClient,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
     public PagedIterable<BillingProfile> listByBillingAccount(String billingAccountName) {
         PagedIterable<BillingProfileInner> inner = this.serviceClient().listByBillingAccount(billingAccountName);
-        return Utils.mapPage(inner, inner1 -> new BillingProfileImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BillingProfileImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BillingProfile> listByBillingAccount(
-        String billingAccountName, String expand, Context context) {
-        PagedIterable<BillingProfileInner> inner =
-            this.serviceClient().listByBillingAccount(billingAccountName, expand, context);
-        return Utils.mapPage(inner, inner1 -> new BillingProfileImpl(inner1, this.manager()));
+    public PagedIterable<BillingProfile> listByBillingAccount(String billingAccountName, String expand,
+        Context context) {
+        PagedIterable<BillingProfileInner> inner
+            = this.serviceClient().listByBillingAccount(billingAccountName, expand, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BillingProfileImpl(inner1, this.manager()));
     }
 
-    public Response<BillingProfile> getWithResponse(
-        String billingAccountName, String billingProfileName, String expand, Context context) {
-        Response<BillingProfileInner> inner =
-            this.serviceClient().getWithResponse(billingAccountName, billingProfileName, expand, context);
+    public Response<BillingProfile> getWithResponse(String billingAccountName, String billingProfileName, String expand,
+        Context context) {
+        Response<BillingProfileInner> inner
+            = this.serviceClient().getWithResponse(billingAccountName, billingProfileName, expand, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new BillingProfileImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -63,10 +60,10 @@ public final class BillingProfilesImpl implements BillingProfiles {
         }
     }
 
-    public BillingProfile createOrUpdate(
-        String billingAccountName, String billingProfileName, BillingProfileInner parameters) {
-        BillingProfileInner inner =
-            this.serviceClient().createOrUpdate(billingAccountName, billingProfileName, parameters);
+    public BillingProfile createOrUpdate(String billingAccountName, String billingProfileName,
+        BillingProfileInner parameters) {
+        BillingProfileInner inner
+            = this.serviceClient().createOrUpdate(billingAccountName, billingProfileName, parameters);
         if (inner != null) {
             return new BillingProfileImpl(inner, this.manager());
         } else {
@@ -74,10 +71,10 @@ public final class BillingProfilesImpl implements BillingProfiles {
         }
     }
 
-    public BillingProfile createOrUpdate(
-        String billingAccountName, String billingProfileName, BillingProfileInner parameters, Context context) {
-        BillingProfileInner inner =
-            this.serviceClient().createOrUpdate(billingAccountName, billingProfileName, parameters, context);
+    public BillingProfile createOrUpdate(String billingAccountName, String billingProfileName,
+        BillingProfileInner parameters, Context context) {
+        BillingProfileInner inner
+            = this.serviceClient().createOrUpdate(billingAccountName, billingProfileName, parameters, context);
         if (inner != null) {
             return new BillingProfileImpl(inner, this.manager());
         } else {

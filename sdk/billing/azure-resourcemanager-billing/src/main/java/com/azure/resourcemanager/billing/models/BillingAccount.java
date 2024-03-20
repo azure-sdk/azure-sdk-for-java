@@ -7,32 +7,34 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.resourcemanager.billing.fluent.models.BillingAccountInner;
 import java.util.List;
 
-/** An immutable client-side representation of BillingAccount. */
+/**
+ * An immutable client-side representation of BillingAccount.
+ */
 public interface BillingAccount {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the displayName property: The billing account name.
-     *
+     * 
      * @return the displayName value.
      */
     String displayName();
@@ -40,28 +42,28 @@ public interface BillingAccount {
     /**
      * Gets the soldTo property: The address of the individual or organization that is responsible for the billing
      * account.
-     *
+     * 
      * @return the soldTo value.
      */
     AddressDetails soldTo();
 
     /**
      * Gets the agreementType property: The type of agreement.
-     *
+     * 
      * @return the agreementType value.
      */
     AgreementType agreementType();
 
     /**
      * Gets the accountType property: The type of customer.
-     *
+     * 
      * @return the accountType value.
      */
     AccountType accountType();
 
     /**
      * Gets the accountStatus property: The current status of the billing account.
-     *
+     * 
      * @return the accountStatus value.
      */
     AccountStatus accountStatus();
@@ -69,7 +71,7 @@ public interface BillingAccount {
     /**
      * Gets the billingProfiles property: The billing profiles associated with the billing account. By default this is
      * not populated, unless it's specified in $expand.
-     *
+     * 
      * @return the billingProfiles value.
      */
     BillingProfilesOnExpand billingProfiles();
@@ -77,42 +79,42 @@ public interface BillingAccount {
     /**
      * Gets the enrollmentDetails property: The details about the associated legacy enrollment. By default this is not
      * populated, unless it's specified in $expand.
-     *
+     * 
      * @return the enrollmentDetails value.
      */
     Enrollment enrollmentDetails();
 
     /**
      * Gets the departments property: The departments associated to the enrollment.
-     *
+     * 
      * @return the departments value.
      */
     List<Department> departments();
 
     /**
      * Gets the enrollmentAccounts property: The accounts associated to the enrollment.
-     *
+     * 
      * @return the enrollmentAccounts value.
      */
     List<EnrollmentAccount> enrollmentAccounts();
 
     /**
      * Gets the hasReadAccess property: Indicates whether user has read access to the billing account.
-     *
+     * 
      * @return the hasReadAccess value.
      */
     Boolean hasReadAccess();
 
     /**
      * Gets the notificationEmailAddress property: Notification email address, only for legacy accounts.
-     *
+     * 
      * @return the notificationEmailAddress value.
      */
     String notificationEmailAddress();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.BillingAccountInner object.
-     *
+     * 
      * @return the inner object.
      */
     BillingAccountInner innerModel();

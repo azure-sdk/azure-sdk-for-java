@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** A billing instruction used during invoice generation. */
+/**
+ * A billing instruction used during invoice generation.
+ */
 @Fluent
 public final class InstructionProperties {
     /*
@@ -36,13 +38,15 @@ public final class InstructionProperties {
     @JsonProperty(value = "creationDate")
     private OffsetDateTime creationDate;
 
-    /** Creates an instance of InstructionProperties class. */
+    /**
+     * Creates an instance of InstructionProperties class.
+     */
     public InstructionProperties() {
     }
 
     /**
      * Get the amount property: The amount budgeted for this billing instruction.
-     *
+     * 
      * @return the amount value.
      */
     public float amount() {
@@ -51,7 +55,7 @@ public final class InstructionProperties {
 
     /**
      * Set the amount property: The amount budgeted for this billing instruction.
-     *
+     * 
      * @param amount the amount value to set.
      * @return the InstructionProperties object itself.
      */
@@ -62,7 +66,7 @@ public final class InstructionProperties {
 
     /**
      * Get the startDate property: The date this billing instruction goes into effect.
-     *
+     * 
      * @return the startDate value.
      */
     public OffsetDateTime startDate() {
@@ -71,7 +75,7 @@ public final class InstructionProperties {
 
     /**
      * Set the startDate property: The date this billing instruction goes into effect.
-     *
+     * 
      * @param startDate the startDate value to set.
      * @return the InstructionProperties object itself.
      */
@@ -82,7 +86,7 @@ public final class InstructionProperties {
 
     /**
      * Get the endDate property: The date this billing instruction is no longer in effect.
-     *
+     * 
      * @return the endDate value.
      */
     public OffsetDateTime endDate() {
@@ -91,7 +95,7 @@ public final class InstructionProperties {
 
     /**
      * Set the endDate property: The date this billing instruction is no longer in effect.
-     *
+     * 
      * @param endDate the endDate value to set.
      * @return the InstructionProperties object itself.
      */
@@ -102,7 +106,7 @@ public final class InstructionProperties {
 
     /**
      * Get the creationDate property: The date this billing instruction was created.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -111,7 +115,7 @@ public final class InstructionProperties {
 
     /**
      * Set the creationDate property: The date this billing instruction was created.
-     *
+     * 
      * @param creationDate the creationDate value to set.
      * @return the InstructionProperties object itself.
      */
@@ -122,19 +126,17 @@ public final class InstructionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (startDate() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property startDate in model InstructionProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property startDate in model InstructionProperties"));
         }
         if (endDate() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property endDate in model InstructionProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property endDate in model InstructionProperties"));
         }
     }
 

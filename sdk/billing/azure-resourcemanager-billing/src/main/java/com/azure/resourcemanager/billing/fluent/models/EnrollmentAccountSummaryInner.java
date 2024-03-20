@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An enrollment account resource. */
+/**
+ * An enrollment account resource.
+ */
 @Immutable
 public final class EnrollmentAccountSummaryInner extends ProxyResource {
     /*
@@ -17,13 +19,15 @@ public final class EnrollmentAccountSummaryInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private EnrollmentAccountSummaryProperties innerProperties;
 
-    /** Creates an instance of EnrollmentAccountSummaryInner class. */
+    /**
+     * Creates an instance of EnrollmentAccountSummaryInner class.
+     */
     public EnrollmentAccountSummaryInner() {
     }
 
     /**
      * Get the innerProperties property: An enrollment account.
-     *
+     * 
      * @return the innerProperties value.
      */
     private EnrollmentAccountSummaryProperties innerProperties() {
@@ -32,7 +36,7 @@ public final class EnrollmentAccountSummaryInner extends ProxyResource {
 
     /**
      * Get the principalName property: The account owner's principal name.
-     *
+     * 
      * @return the principalName value.
      */
     public String principalName() {
@@ -41,7 +45,7 @@ public final class EnrollmentAccountSummaryInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -32,22 +32,28 @@ import com.azure.resourcemanager.billing.fluent.models.InstructionInner;
 import com.azure.resourcemanager.billing.models.InstructionListResult;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in InstructionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in InstructionsClient.
+ */
 public final class InstructionsClientImpl implements InstructionsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final InstructionsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final BillingManagementClientImpl client;
 
     /**
      * Initializes an instance of InstructionsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     InstructionsClientImpl(BillingManagementClientImpl client) {
-        this.service =
-            RestProxy.create(InstructionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service
+            = RestProxy.create(InstructionsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -58,81 +64,62 @@ public final class InstructionsClientImpl implements InstructionsClient {
     @Host("{$host}")
     @ServiceInterface(name = "BillingManagementCli")
     public interface InstructionsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/instructions")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/instructions")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<InstructionListResult>> listByBillingProfile(
-            @HostParam("$host") String endpoint,
+        Mono<Response<InstructionListResult>> listByBillingProfile(@HostParam("$host") String endpoint,
             @PathParam("billingAccountName") String billingAccountName,
+            @PathParam("billingProfileName") String billingProfileName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/instructions/{instructionName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<InstructionInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
+            @PathParam("instructionName") String instructionName, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/instructions/{instructionName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}/instructions/{instructionName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<InstructionInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
-            @PathParam("billingProfileName") String billingProfileName,
-            @PathParam("instructionName") String instructionName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/billingProfiles/{billingProfileName}"
-                + "/instructions/{instructionName}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<InstructionInner>> put(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("billingAccountName") String billingAccountName,
+        Mono<Response<InstructionInner>> put(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("billingAccountName") String billingAccountName,
             @PathParam("billingProfileName") String billingProfileName,
             @PathParam("instructionName") String instructionName,
-            @BodyParam("application/json") InstructionInner parameters,
-            @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") InstructionInner parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<InstructionListResult>> listByBillingProfileNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Lists the instructions by billing profile id.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of billing instructions used during invoice generation along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InstructionInner>> listByBillingProfileSinglePageAsync(
-        String billingAccountName, String billingProfileName) {
+    private Mono<PagedResponse<InstructionInner>> listByBillingProfileSinglePageAsync(String billingAccountName,
+        String billingProfileName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -145,31 +132,16 @@ public final class InstructionsClientImpl implements InstructionsClient {
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByBillingProfile(
-                            this.client.getEndpoint(),
-                            billingAccountName,
-                            billingProfileName,
-                            apiVersion,
-                            accept,
-                            context))
-            .<PagedResponse<InstructionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByBillingProfile(this.client.getEndpoint(), billingAccountName,
+                billingProfileName, apiVersion, accept, context))
+            .<PagedResponse<InstructionInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists the instructions by billing profile id.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -177,16 +149,14 @@ public final class InstructionsClientImpl implements InstructionsClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of billing instructions used during invoice generation along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InstructionInner>> listByBillingProfileSinglePageAsync(
-        String billingAccountName, String billingProfileName, Context context) {
+    private Mono<PagedResponse<InstructionInner>> listByBillingProfileSinglePageAsync(String billingAccountName,
+        String billingProfileName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -200,53 +170,45 @@ public final class InstructionsClientImpl implements InstructionsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByBillingProfile(
-                this.client.getEndpoint(), billingAccountName, billingProfileName, apiVersion, accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByBillingProfile(this.client.getEndpoint(), billingAccountName, billingProfileName, apiVersion, accept,
+                context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists the instructions by billing profile id.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing instructions used during invoice generation as paginated response with {@link
-     *     PagedFlux}.
+     * @return the list of billing instructions used during invoice generation as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<InstructionInner> listByBillingProfileAsync(
-        String billingAccountName, String billingProfileName) {
-        return new PagedFlux<>(
-            () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName),
+    private PagedFlux<InstructionInner> listByBillingProfileAsync(String billingAccountName,
+        String billingProfileName) {
+        return new PagedFlux<>(() -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName),
             nextLink -> listByBillingProfileNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists the instructions by billing profile id.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing instructions used during invoice generation as paginated response with {@link
-     *     PagedFlux}.
+     * @return the list of billing instructions used during invoice generation as paginated response with
+     * {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<InstructionInner> listByBillingProfileAsync(
-        String billingAccountName, String billingProfileName, Context context) {
+    private PagedFlux<InstructionInner> listByBillingProfileAsync(String billingAccountName, String billingProfileName,
+        Context context) {
         return new PagedFlux<>(
             () -> listByBillingProfileSinglePageAsync(billingAccountName, billingProfileName, context),
             nextLink -> listByBillingProfileNextSinglePageAsync(nextLink, context));
@@ -254,14 +216,14 @@ public final class InstructionsClientImpl implements InstructionsClient {
 
     /**
      * Lists the instructions by billing profile id.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing instructions used during invoice generation as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of billing instructions used during invoice generation as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<InstructionInner> listByBillingProfile(String billingAccountName, String billingProfileName) {
@@ -270,25 +232,25 @@ public final class InstructionsClientImpl implements InstructionsClient {
 
     /**
      * Lists the instructions by billing profile id.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of billing instructions used during invoice generation as paginated response with {@link
-     *     PagedIterable}.
+     * @return the list of billing instructions used during invoice generation as paginated response with
+     * {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<InstructionInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context) {
+    public PagedIterable<InstructionInner> listByBillingProfile(String billingAccountName, String billingProfileName,
+        Context context) {
         return new PagedIterable<>(listByBillingProfileAsync(billingAccountName, billingProfileName, context));
     }
 
     /**
      * Get the instruction by name. These are custom billing instructions and are only applicable for certain customers.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param instructionName Instruction Name.
@@ -298,13 +260,11 @@ public final class InstructionsClientImpl implements InstructionsClient {
      * @return the instruction by name along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InstructionInner>> getWithResponseAsync(
-        String billingAccountName, String billingProfileName, String instructionName) {
+    private Mono<Response<InstructionInner>> getWithResponseAsync(String billingAccountName, String billingProfileName,
+        String instructionName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -321,23 +281,14 @@ public final class InstructionsClientImpl implements InstructionsClient {
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            instructionName,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, billingAccountName,
+                billingProfileName, instructionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the instruction by name. These are custom billing instructions and are only applicable for certain customers.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param instructionName Instruction Name.
@@ -348,13 +299,11 @@ public final class InstructionsClientImpl implements InstructionsClient {
      * @return the instruction by name along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InstructionInner>> getWithResponseAsync(
-        String billingAccountName, String billingProfileName, String instructionName, Context context) {
+    private Mono<Response<InstructionInner>> getWithResponseAsync(String billingAccountName, String billingProfileName,
+        String instructionName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -371,20 +320,13 @@ public final class InstructionsClientImpl implements InstructionsClient {
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                billingProfileName,
-                instructionName,
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName,
+            instructionName, accept, context);
     }
 
     /**
      * Get the instruction by name. These are custom billing instructions and are only applicable for certain customers.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param instructionName Instruction Name.
@@ -394,15 +336,15 @@ public final class InstructionsClientImpl implements InstructionsClient {
      * @return the instruction by name on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<InstructionInner> getAsync(
-        String billingAccountName, String billingProfileName, String instructionName) {
+    private Mono<InstructionInner> getAsync(String billingAccountName, String billingProfileName,
+        String instructionName) {
         return getWithResponseAsync(billingAccountName, billingProfileName, instructionName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Get the instruction by name. These are custom billing instructions and are only applicable for certain customers.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param instructionName Instruction Name.
@@ -413,14 +355,14 @@ public final class InstructionsClientImpl implements InstructionsClient {
      * @return the instruction by name along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<InstructionInner> getWithResponse(
-        String billingAccountName, String billingProfileName, String instructionName, Context context) {
+    public Response<InstructionInner> getWithResponse(String billingAccountName, String billingProfileName,
+        String instructionName, Context context) {
         return getWithResponseAsync(billingAccountName, billingProfileName, instructionName, context).block();
     }
 
     /**
      * Get the instruction by name. These are custom billing instructions and are only applicable for certain customers.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param instructionName Instruction Name.
@@ -437,7 +379,7 @@ public final class InstructionsClientImpl implements InstructionsClient {
     /**
      * Creates or updates an instruction. These are custom billing instructions and are only applicable for certain
      * customers.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param instructionName Instruction Name.
@@ -448,13 +390,11 @@ public final class InstructionsClientImpl implements InstructionsClient {
      * @return an instruction along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InstructionInner>> putWithResponseAsync(
-        String billingAccountName, String billingProfileName, String instructionName, InstructionInner parameters) {
+    private Mono<Response<InstructionInner>> putWithResponseAsync(String billingAccountName, String billingProfileName,
+        String instructionName, InstructionInner parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -476,25 +416,15 @@ public final class InstructionsClientImpl implements InstructionsClient {
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .put(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            billingAccountName,
-                            billingProfileName,
-                            instructionName,
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.put(this.client.getEndpoint(), apiVersion, billingAccountName,
+                billingProfileName, instructionName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Creates or updates an instruction. These are custom billing instructions and are only applicable for certain
      * customers.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param instructionName Instruction Name.
@@ -506,17 +436,11 @@ public final class InstructionsClientImpl implements InstructionsClient {
      * @return an instruction along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<InstructionInner>> putWithResponseAsync(
-        String billingAccountName,
-        String billingProfileName,
-        String instructionName,
-        InstructionInner parameters,
-        Context context) {
+    private Mono<Response<InstructionInner>> putWithResponseAsync(String billingAccountName, String billingProfileName,
+        String instructionName, InstructionInner parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (billingAccountName == null) {
             return Mono
@@ -538,22 +462,14 @@ public final class InstructionsClientImpl implements InstructionsClient {
         final String apiVersion = "2020-05-01";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .put(
-                this.client.getEndpoint(),
-                apiVersion,
-                billingAccountName,
-                billingProfileName,
-                instructionName,
-                parameters,
-                accept,
-                context);
+        return service.put(this.client.getEndpoint(), apiVersion, billingAccountName, billingProfileName,
+            instructionName, parameters, accept, context);
     }
 
     /**
      * Creates or updates an instruction. These are custom billing instructions and are only applicable for certain
      * customers.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param instructionName Instruction Name.
@@ -564,8 +480,8 @@ public final class InstructionsClientImpl implements InstructionsClient {
      * @return an instruction on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<InstructionInner> putAsync(
-        String billingAccountName, String billingProfileName, String instructionName, InstructionInner parameters) {
+    private Mono<InstructionInner> putAsync(String billingAccountName, String billingProfileName,
+        String instructionName, InstructionInner parameters) {
         return putWithResponseAsync(billingAccountName, billingProfileName, instructionName, parameters)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
@@ -573,7 +489,7 @@ public final class InstructionsClientImpl implements InstructionsClient {
     /**
      * Creates or updates an instruction. These are custom billing instructions and are only applicable for certain
      * customers.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param instructionName Instruction Name.
@@ -585,12 +501,8 @@ public final class InstructionsClientImpl implements InstructionsClient {
      * @return an instruction along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<InstructionInner> putWithResponse(
-        String billingAccountName,
-        String billingProfileName,
-        String instructionName,
-        InstructionInner parameters,
-        Context context) {
+    public Response<InstructionInner> putWithResponse(String billingAccountName, String billingProfileName,
+        String instructionName, InstructionInner parameters, Context context) {
         return putWithResponseAsync(billingAccountName, billingProfileName, instructionName, parameters, context)
             .block();
     }
@@ -598,7 +510,7 @@ public final class InstructionsClientImpl implements InstructionsClient {
     /**
      * Creates or updates an instruction. These are custom billing instructions and are only applicable for certain
      * customers.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param instructionName Instruction Name.
@@ -609,22 +521,23 @@ public final class InstructionsClientImpl implements InstructionsClient {
      * @return an instruction.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public InstructionInner put(
-        String billingAccountName, String billingProfileName, String instructionName, InstructionInner parameters) {
+    public InstructionInner put(String billingAccountName, String billingProfileName, String instructionName,
+        InstructionInner parameters) {
         return putWithResponse(billingAccountName, billingProfileName, instructionName, parameters, Context.NONE)
             .getValue();
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of billing instructions used during invoice generation along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<InstructionInner>> listByBillingProfileNextSinglePageAsync(String nextLink) {
@@ -632,63 +545,45 @@ public final class InstructionsClientImpl implements InstructionsClient {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
                 context -> service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<InstructionInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<InstructionInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of billing instructions used during invoice generation along with {@link PagedResponse} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<InstructionInner>> listByBillingProfileNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<InstructionInner>> listByBillingProfileNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByBillingProfileNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for Products ListByBillingAccount. */
+/**
+ * Samples for Products ListByBillingAccount.
+ */
 public final class ProductsListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ProductsListByBillingAccount.json
+     * x-ms-original-file:
+     * specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/ProductsListByBillingAccount.
+     * json
      */
     /**
      * Sample code: ProductsListByBillingAccount.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void productsListByBillingAccount(com.azure.resourcemanager.billing.BillingManager manager) {

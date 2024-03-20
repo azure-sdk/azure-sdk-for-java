@@ -19,7 +19,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** A billing profile. */
+/**
+ * A billing profile.
+ */
 @Fluent
 public final class BillingProfileInner extends ProxyResource {
     /*
@@ -28,13 +30,15 @@ public final class BillingProfileInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private BillingProfileProperties innerProperties;
 
-    /** Creates an instance of BillingProfileInner class. */
+    /**
+     * Creates an instance of BillingProfileInner class.
+     */
     public BillingProfileInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the billing profile.
-     *
+     * 
      * @return the innerProperties value.
      */
     private BillingProfileProperties innerProperties() {
@@ -43,7 +47,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the displayName property: The name of the billing profile.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -52,7 +56,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Set the displayName property: The name of the billing profile.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the BillingProfileInner object itself.
      */
@@ -67,7 +71,7 @@ public final class BillingProfileInner extends ProxyResource {
     /**
      * Get the poNumber property: The purchase order name that will appear on the invoices generated for the billing
      * profile.
-     *
+     * 
      * @return the poNumber value.
      */
     public String poNumber() {
@@ -77,7 +81,7 @@ public final class BillingProfileInner extends ProxyResource {
     /**
      * Set the poNumber property: The purchase order name that will appear on the invoices generated for the billing
      * profile.
-     *
+     * 
      * @param poNumber the poNumber value to set.
      * @return the BillingProfileInner object itself.
      */
@@ -91,7 +95,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the billingRelationshipType property: Identifies which services and purchases are paid by a billing profile.
-     *
+     * 
      * @return the billingRelationshipType value.
      */
     public BillingRelationshipType billingRelationshipType() {
@@ -100,7 +104,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the billTo property: Billing address.
-     *
+     * 
      * @return the billTo value.
      */
     public AddressDetails billTo() {
@@ -109,7 +113,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Set the billTo property: Billing address.
-     *
+     * 
      * @param billTo the billTo value to set.
      * @return the BillingProfileInner object itself.
      */
@@ -124,7 +128,7 @@ public final class BillingProfileInner extends ProxyResource {
     /**
      * Get the indirectRelationshipInfo property: Identifies the billing profile that is linked to another billing
      * profile in indirect purchase motion.
-     *
+     * 
      * @return the indirectRelationshipInfo value.
      */
     public IndirectRelationshipInfo indirectRelationshipInfo() {
@@ -134,7 +138,7 @@ public final class BillingProfileInner extends ProxyResource {
     /**
      * Get the invoiceEmailOptIn property: Flag controlling whether the invoices for the billing profile are sent
      * through email.
-     *
+     * 
      * @return the invoiceEmailOptIn value.
      */
     public Boolean invoiceEmailOptIn() {
@@ -144,7 +148,7 @@ public final class BillingProfileInner extends ProxyResource {
     /**
      * Set the invoiceEmailOptIn property: Flag controlling whether the invoices for the billing profile are sent
      * through email.
-     *
+     * 
      * @param invoiceEmailOptIn the invoiceEmailOptIn value to set.
      * @return the BillingProfileInner object itself.
      */
@@ -158,7 +162,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the invoiceDay property: The day of the month when the invoice for the billing profile is generated.
-     *
+     * 
      * @return the invoiceDay value.
      */
     public Integer invoiceDay() {
@@ -167,7 +171,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the currency property: The currency in which the charges for the billing profile are billed.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -176,7 +180,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the enabledAzurePlans property: Information about the enabled azure plans.
-     *
+     * 
      * @return the enabledAzurePlans value.
      */
     public List<AzurePlan> enabledAzurePlans() {
@@ -185,7 +189,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Set the enabledAzurePlans property: Information about the enabled azure plans.
-     *
+     * 
      * @param enabledAzurePlans the enabledAzurePlans value to set.
      * @return the BillingProfileInner object itself.
      */
@@ -200,7 +204,7 @@ public final class BillingProfileInner extends ProxyResource {
     /**
      * Get the invoiceSections property: The invoice sections associated to the billing profile. By default this is not
      * populated, unless it's specified in $expand.
-     *
+     * 
      * @return the invoiceSections value.
      */
     public InvoiceSectionsOnExpand invoiceSections() {
@@ -210,7 +214,7 @@ public final class BillingProfileInner extends ProxyResource {
     /**
      * Set the invoiceSections property: The invoice sections associated to the billing profile. By default this is not
      * populated, unless it's specified in $expand.
-     *
+     * 
      * @param invoiceSections the invoiceSections value to set.
      * @return the BillingProfileInner object itself.
      */
@@ -224,7 +228,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the hasReadAccess property: Indicates whether user has read access to the billing profile.
-     *
+     * 
      * @return the hasReadAccess value.
      */
     public Boolean hasReadAccess() {
@@ -233,7 +237,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the systemId property: The system generated unique identifier for a billing profile.
-     *
+     * 
      * @return the systemId value.
      */
     public String systemId() {
@@ -242,7 +246,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the status property: The status of the billing profile.
-     *
+     * 
      * @return the status value.
      */
     public BillingProfileStatus status() {
@@ -251,7 +255,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the statusReasonCode property: Reason for the specified billing profile status.
-     *
+     * 
      * @return the statusReasonCode value.
      */
     public StatusReasonCode statusReasonCode() {
@@ -260,7 +264,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the spendingLimit property: The billing profile spending limit.
-     *
+     * 
      * @return the spendingLimit value.
      */
     public SpendingLimit spendingLimit() {
@@ -268,10 +272,10 @@ public final class BillingProfileInner extends ProxyResource {
     }
 
     /**
-     * Get the targetClouds property: Identifies the cloud environments that are associated with a billing profile. This
-     * is a system managed optional field and gets updated as the billing profile gets associated with accounts in
+     * Get the targetClouds property: Identifies the cloud environments that are associated with a billing profile.
+     * This is a system managed optional field and gets updated as the billing profile gets associated with accounts in
      * various clouds.
-     *
+     * 
      * @return the targetClouds value.
      */
     public List<TargetCloud> targetClouds() {
@@ -280,7 +284,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Get the tags property: Tags of billing profiles.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -289,7 +293,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Set the tags property: Tags of billing profiles.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the BillingProfileInner object itself.
      */
@@ -303,7 +307,7 @@ public final class BillingProfileInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -21,34 +21,31 @@ public final class InstructionsImpl implements Instructions {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    public InstructionsImpl(
-        InstructionsClient innerClient, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    public InstructionsImpl(InstructionsClient innerClient,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
     public PagedIterable<Instruction> listByBillingProfile(String billingAccountName, String billingProfileName) {
-        PagedIterable<InstructionInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
-        return Utils.mapPage(inner, inner1 -> new InstructionImpl(inner1, this.manager()));
+        PagedIterable<InstructionInner> inner
+            = this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new InstructionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Instruction> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context) {
-        PagedIterable<InstructionInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, context);
-        return Utils.mapPage(inner, inner1 -> new InstructionImpl(inner1, this.manager()));
+    public PagedIterable<Instruction> listByBillingProfile(String billingAccountName, String billingProfileName,
+        Context context) {
+        PagedIterable<InstructionInner> inner
+            = this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new InstructionImpl(inner1, this.manager()));
     }
 
-    public Response<Instruction> getWithResponse(
-        String billingAccountName, String billingProfileName, String instructionName, Context context) {
-        Response<InstructionInner> inner =
-            this.serviceClient().getWithResponse(billingAccountName, billingProfileName, instructionName, context);
+    public Response<Instruction> getWithResponse(String billingAccountName, String billingProfileName,
+        String instructionName, Context context) {
+        Response<InstructionInner> inner
+            = this.serviceClient().getWithResponse(billingAccountName, billingProfileName, instructionName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new InstructionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -64,31 +61,22 @@ public final class InstructionsImpl implements Instructions {
         }
     }
 
-    public Response<Instruction> putWithResponse(
-        String billingAccountName,
-        String billingProfileName,
-        String instructionName,
-        InstructionInner parameters,
-        Context context) {
-        Response<InstructionInner> inner =
-            this
-                .serviceClient()
-                .putWithResponse(billingAccountName, billingProfileName, instructionName, parameters, context);
+    public Response<Instruction> putWithResponse(String billingAccountName, String billingProfileName,
+        String instructionName, InstructionInner parameters, Context context) {
+        Response<InstructionInner> inner = this.serviceClient().putWithResponse(billingAccountName, billingProfileName,
+            instructionName, parameters, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new InstructionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public Instruction put(
-        String billingAccountName, String billingProfileName, String instructionName, InstructionInner parameters) {
-        InstructionInner inner =
-            this.serviceClient().put(billingAccountName, billingProfileName, instructionName, parameters);
+    public Instruction put(String billingAccountName, String billingProfileName, String instructionName,
+        InstructionInner parameters) {
+        InstructionInner inner
+            = this.serviceClient().put(billingAccountName, billingProfileName, instructionName, parameters);
         if (inner != null) {
             return new InstructionImpl(inner, this.manager());
         } else {

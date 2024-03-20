@@ -6,19 +6,21 @@ package com.azure.resourcemanager.billing.generated;
 
 import com.azure.resourcemanager.billing.fluent.models.BillingPropertyInner;
 
-/** Samples for BillingProperty Update. */
+/**
+ * Samples for BillingProperty Update.
+ */
 public final class BillingPropertyUpdateSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdateBillingProperty.json
+     * x-ms-original-file:
+     * specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/UpdateBillingProperty.json
      */
     /**
      * Sample code: UpdateBillingProperty.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void updateBillingProperty(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .billingProperties()
-            .updateWithResponse(new BillingPropertyInner().withCostCenter("1010"), com.azure.core.util.Context.NONE);
+        manager.billingProperties().updateWithResponse(new BillingPropertyInner().withCostCenter("1010"),
+            com.azure.core.util.Context.NONE);
     }
 }

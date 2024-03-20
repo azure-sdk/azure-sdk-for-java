@@ -21,23 +21,18 @@ public final class BillingRoleDefinitionsImpl implements BillingRoleDefinitions 
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    public BillingRoleDefinitionsImpl(
-        BillingRoleDefinitionsClient innerClient, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    public BillingRoleDefinitionsImpl(BillingRoleDefinitionsClient innerClient,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<BillingRoleDefinition> getByBillingAccountWithResponse(
-        String billingAccountName, String billingRoleDefinitionName, Context context) {
-        Response<BillingRoleDefinitionInner> inner =
-            this
-                .serviceClient()
-                .getByBillingAccountWithResponse(billingAccountName, billingRoleDefinitionName, context);
+    public Response<BillingRoleDefinition> getByBillingAccountWithResponse(String billingAccountName,
+        String billingRoleDefinitionName, Context context) {
+        Response<BillingRoleDefinitionInner> inner = this.serviceClient()
+            .getByBillingAccountWithResponse(billingAccountName, billingRoleDefinitionName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new BillingRoleDefinitionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -45,8 +40,8 @@ public final class BillingRoleDefinitionsImpl implements BillingRoleDefinitions 
     }
 
     public BillingRoleDefinition getByBillingAccount(String billingAccountName, String billingRoleDefinitionName) {
-        BillingRoleDefinitionInner inner =
-            this.serviceClient().getByBillingAccount(billingAccountName, billingRoleDefinitionName);
+        BillingRoleDefinitionInner inner
+            = this.serviceClient().getByBillingAccount(billingAccountName, billingRoleDefinitionName);
         if (inner != null) {
             return new BillingRoleDefinitionImpl(inner, this.manager());
         } else {
@@ -54,67 +49,45 @@ public final class BillingRoleDefinitionsImpl implements BillingRoleDefinitions 
         }
     }
 
-    public Response<BillingRoleDefinition> getByInvoiceSectionWithResponse(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String billingRoleDefinitionName,
-        Context context) {
-        Response<BillingRoleDefinitionInner> inner =
-            this
-                .serviceClient()
-                .getByInvoiceSectionWithResponse(
-                    billingAccountName, billingProfileName, invoiceSectionName, billingRoleDefinitionName, context);
+    public Response<BillingRoleDefinition> getByInvoiceSectionWithResponse(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, String billingRoleDefinitionName, Context context) {
+        Response<BillingRoleDefinitionInner> inner = this.serviceClient().getByInvoiceSectionWithResponse(
+            billingAccountName, billingProfileName, invoiceSectionName, billingRoleDefinitionName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new BillingRoleDefinitionImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public BillingRoleDefinition getByInvoiceSection(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
+    public BillingRoleDefinition getByInvoiceSection(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, String billingRoleDefinitionName) {
+        BillingRoleDefinitionInner inner = this.serviceClient().getByInvoiceSection(billingAccountName,
+            billingProfileName, invoiceSectionName, billingRoleDefinitionName);
+        if (inner != null) {
+            return new BillingRoleDefinitionImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<BillingRoleDefinition> getByBillingProfileWithResponse(String billingAccountName,
+        String billingProfileName, String billingRoleDefinitionName, Context context) {
+        Response<BillingRoleDefinitionInner> inner = this.serviceClient().getByBillingProfileWithResponse(
+            billingAccountName, billingProfileName, billingRoleDefinitionName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new BillingRoleDefinitionImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public BillingRoleDefinition getByBillingProfile(String billingAccountName, String billingProfileName,
         String billingRoleDefinitionName) {
-        BillingRoleDefinitionInner inner =
-            this
-                .serviceClient()
-                .getByInvoiceSection(
-                    billingAccountName, billingProfileName, invoiceSectionName, billingRoleDefinitionName);
-        if (inner != null) {
-            return new BillingRoleDefinitionImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<BillingRoleDefinition> getByBillingProfileWithResponse(
-        String billingAccountName, String billingProfileName, String billingRoleDefinitionName, Context context) {
-        Response<BillingRoleDefinitionInner> inner =
-            this
-                .serviceClient()
-                .getByBillingProfileWithResponse(
-                    billingAccountName, billingProfileName, billingRoleDefinitionName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new BillingRoleDefinitionImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public BillingRoleDefinition getByBillingProfile(
-        String billingAccountName, String billingProfileName, String billingRoleDefinitionName) {
-        BillingRoleDefinitionInner inner =
-            this.serviceClient().getByBillingProfile(billingAccountName, billingProfileName, billingRoleDefinitionName);
+        BillingRoleDefinitionInner inner = this.serviceClient().getByBillingProfile(billingAccountName,
+            billingProfileName, billingRoleDefinitionName);
         if (inner != null) {
             return new BillingRoleDefinitionImpl(inner, this.manager());
         } else {
@@ -124,43 +97,41 @@ public final class BillingRoleDefinitionsImpl implements BillingRoleDefinitions 
 
     public PagedIterable<BillingRoleDefinition> listByBillingAccount(String billingAccountName) {
         PagedIterable<BillingRoleDefinitionInner> inner = this.serviceClient().listByBillingAccount(billingAccountName);
-        return Utils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
     }
 
     public PagedIterable<BillingRoleDefinition> listByBillingAccount(String billingAccountName, Context context) {
-        PagedIterable<BillingRoleDefinitionInner> inner =
-            this.serviceClient().listByBillingAccount(billingAccountName, context);
-        return Utils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
+        PagedIterable<BillingRoleDefinitionInner> inner
+            = this.serviceClient().listByBillingAccount(billingAccountName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BillingRoleDefinition> listByInvoiceSection(
-        String billingAccountName, String billingProfileName, String invoiceSectionName) {
-        PagedIterable<BillingRoleDefinitionInner> inner =
-            this.serviceClient().listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName);
-        return Utils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
+    public PagedIterable<BillingRoleDefinition> listByInvoiceSection(String billingAccountName,
+        String billingProfileName, String invoiceSectionName) {
+        PagedIterable<BillingRoleDefinitionInner> inner
+            = this.serviceClient().listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BillingRoleDefinition> listByInvoiceSection(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context) {
-        PagedIterable<BillingRoleDefinitionInner> inner =
-            this
-                .serviceClient()
-                .listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName, context);
-        return Utils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
+    public PagedIterable<BillingRoleDefinition> listByInvoiceSection(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, Context context) {
+        PagedIterable<BillingRoleDefinitionInner> inner = this.serviceClient().listByInvoiceSection(billingAccountName,
+            billingProfileName, invoiceSectionName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BillingRoleDefinition> listByBillingProfile(
-        String billingAccountName, String billingProfileName) {
-        PagedIterable<BillingRoleDefinitionInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
-        return Utils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
+    public PagedIterable<BillingRoleDefinition> listByBillingProfile(String billingAccountName,
+        String billingProfileName) {
+        PagedIterable<BillingRoleDefinitionInner> inner
+            = this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<BillingRoleDefinition> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context) {
-        PagedIterable<BillingRoleDefinitionInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, context);
-        return Utils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
+    public PagedIterable<BillingRoleDefinition> listByBillingProfile(String billingAccountName,
+        String billingProfileName, Context context) {
+        PagedIterable<BillingRoleDefinitionInner> inner
+            = this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BillingRoleDefinitionImpl(inner1, this.manager()));
     }
 
     private BillingRoleDefinitionsClient serviceClient() {

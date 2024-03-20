@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The properties of an invoice section. */
+/**
+ * The properties of an invoice section.
+ */
 @Fluent
 public final class InvoiceSectionProperties {
     /*
@@ -54,13 +56,15 @@ public final class InvoiceSectionProperties {
     @JsonProperty(value = "targetCloud", access = JsonProperty.Access.WRITE_ONLY)
     private TargetCloud targetCloud;
 
-    /** Creates an instance of InvoiceSectionProperties class. */
+    /**
+     * Creates an instance of InvoiceSectionProperties class.
+     */
     public InvoiceSectionProperties() {
     }
 
     /**
      * Get the displayName property: The name of the invoice section.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -69,7 +73,7 @@ public final class InvoiceSectionProperties {
 
     /**
      * Set the displayName property: The name of the invoice section.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the InvoiceSectionProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class InvoiceSectionProperties {
 
     /**
      * Get the labels property: Dictionary of metadata associated with the invoice section.
-     *
+     * 
      * @return the labels value.
      */
     public Map<String, String> labels() {
@@ -89,7 +93,7 @@ public final class InvoiceSectionProperties {
 
     /**
      * Set the labels property: Dictionary of metadata associated with the invoice section.
-     *
+     * 
      * @param labels the labels value to set.
      * @return the InvoiceSectionProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class InvoiceSectionProperties {
 
     /**
      * Get the state property: Identifies the state of an invoice section.
-     *
+     * 
      * @return the state value.
      */
     public InvoiceSectionState state() {
@@ -109,7 +113,7 @@ public final class InvoiceSectionProperties {
 
     /**
      * Get the systemId property: The system generated unique identifier for an invoice section.
-     *
+     * 
      * @return the systemId value.
      */
     public String systemId() {
@@ -118,9 +122,9 @@ public final class InvoiceSectionProperties {
 
     /**
      * Get the tags property: Dictionary of metadata associated with the invoice section. Maximum key/value length
-     * supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain &lt; &gt; % &amp; \
-     * ? /.
-     *
+     * supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain &lt; &gt; % &amp;
+     * \ ? /.
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -129,9 +133,9 @@ public final class InvoiceSectionProperties {
 
     /**
      * Set the tags property: Dictionary of metadata associated with the invoice section. Maximum key/value length
-     * supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain &lt; &gt; % &amp; \
-     * ? /.
-     *
+     * supported of 256 characters. Keys/value should not empty value nor null. Keys can not contain &lt; &gt; % &amp;
+     * \ ? /.
+     * 
      * @param tags the tags value to set.
      * @return the InvoiceSectionProperties object itself.
      */
@@ -141,10 +145,10 @@ public final class InvoiceSectionProperties {
     }
 
     /**
-     * Get the targetCloud property: Identifies the cloud environments that are associated with an invoice section. This
-     * is a system managed optional field and gets updated as the invoice section gets associated with accounts in
+     * Get the targetCloud property: Identifies the cloud environments that are associated with an invoice section.
+     * This is a system managed optional field and gets updated as the invoice section gets associated with accounts in
      * various clouds.
-     *
+     * 
      * @return the targetCloud value.
      */
     public TargetCloud targetCloud() {
@@ -153,7 +157,7 @@ public final class InvoiceSectionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

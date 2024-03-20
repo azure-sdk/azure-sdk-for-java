@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The details about a participant. */
+/**
+ * The details about a participant.
+ */
 @Immutable
 public final class Participants {
     /*
@@ -29,13 +31,15 @@ public final class Participants {
     @JsonProperty(value = "email", access = JsonProperty.Access.WRITE_ONLY)
     private String email;
 
-    /** Creates an instance of Participants class. */
+    /**
+     * Creates an instance of Participants class.
+     */
     public Participants() {
     }
 
     /**
      * Get the status property: The acceptance status of the participant.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -44,7 +48,7 @@ public final class Participants {
 
     /**
      * Get the statusDate property: The date when the status got changed.
-     *
+     * 
      * @return the statusDate value.
      */
     public OffsetDateTime statusDate() {
@@ -53,7 +57,7 @@ public final class Participants {
 
     /**
      * Get the email property: The email address of the participant.
-     *
+     * 
      * @return the email value.
      */
     public String email() {
@@ -62,7 +66,7 @@ public final class Participants {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

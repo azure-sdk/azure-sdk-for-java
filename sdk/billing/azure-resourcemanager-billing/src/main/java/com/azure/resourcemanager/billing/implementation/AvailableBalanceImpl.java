@@ -13,8 +13,8 @@ public final class AvailableBalanceImpl implements AvailableBalance {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    AvailableBalanceImpl(
-        AvailableBalanceInner innerObject, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    AvailableBalanceImpl(AvailableBalanceInner innerObject,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }

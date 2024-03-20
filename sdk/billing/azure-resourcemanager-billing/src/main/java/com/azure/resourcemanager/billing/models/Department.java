@@ -10,7 +10,9 @@ import com.azure.resourcemanager.billing.fluent.models.DepartmentProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A department. */
+/**
+ * A department.
+ */
 @Fluent
 public final class Department extends ProxyResource {
     /*
@@ -19,13 +21,15 @@ public final class Department extends ProxyResource {
     @JsonProperty(value = "properties")
     private DepartmentProperties innerProperties;
 
-    /** Creates an instance of Department class. */
+    /**
+     * Creates an instance of Department class.
+     */
     public Department() {
     }
 
     /**
      * Get the innerProperties property: A department.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DepartmentProperties innerProperties() {
@@ -34,7 +38,7 @@ public final class Department extends ProxyResource {
 
     /**
      * Get the departmentName property: The name of the department.
-     *
+     * 
      * @return the departmentName value.
      */
     public String departmentName() {
@@ -43,7 +47,7 @@ public final class Department extends ProxyResource {
 
     /**
      * Set the departmentName property: The name of the department.
-     *
+     * 
      * @param departmentName the departmentName value to set.
      * @return the Department object itself.
      */
@@ -57,7 +61,7 @@ public final class Department extends ProxyResource {
 
     /**
      * Get the costCenter property: The cost center associated with the department.
-     *
+     * 
      * @return the costCenter value.
      */
     public String costCenter() {
@@ -66,7 +70,7 @@ public final class Department extends ProxyResource {
 
     /**
      * Set the costCenter property: The cost center associated with the department.
-     *
+     * 
      * @param costCenter the costCenter value to set.
      * @return the Department object itself.
      */
@@ -80,7 +84,7 @@ public final class Department extends ProxyResource {
 
     /**
      * Get the status property: The status of the department.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -89,7 +93,7 @@ public final class Department extends ProxyResource {
 
     /**
      * Set the status property: The status of the department.
-     *
+     * 
      * @param status the status value to set.
      * @return the Department object itself.
      */
@@ -104,7 +108,7 @@ public final class Department extends ProxyResource {
     /**
      * Get the enrollmentAccounts property: Associated enrollment accounts. By default this is not populated, unless
      * it's specified in $expand.
-     *
+     * 
      * @return the enrollmentAccounts value.
      */
     public List<EnrollmentAccount> enrollmentAccounts() {
@@ -114,7 +118,7 @@ public final class Department extends ProxyResource {
     /**
      * Set the enrollmentAccounts property: Associated enrollment accounts. By default this is not populated, unless
      * it's specified in $expand.
-     *
+     * 
      * @param enrollmentAccounts the enrollmentAccounts value to set.
      * @return the Department object itself.
      */
@@ -128,7 +132,7 @@ public final class Department extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

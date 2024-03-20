@@ -26,17 +26,23 @@ import com.azure.resourcemanager.billing.fluent.models.ValidateAddressResponseIn
 import com.azure.resourcemanager.billing.models.AddressDetails;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in AddressClient. */
+/**
+ * An instance of this class provides access to all the operations defined in AddressClient.
+ */
 public final class AddressClientImpl implements AddressClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final AddressService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final BillingManagementClientImpl client;
 
     /**
      * Initializes an instance of AddressClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     AddressClientImpl(BillingManagementClientImpl client) {
@@ -51,21 +57,18 @@ public final class AddressClientImpl implements AddressClient {
     @Host("{$host}")
     @ServiceInterface(name = "BillingManagementCli")
     public interface AddressService {
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Post("/providers/Microsoft.Billing/validateAddress")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ValidateAddressResponseInner>> validate(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") AddressDetails address,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<ValidateAddressResponseInner>> validate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") AddressDetails address,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Validates an address. Use the operation to validate an address before using it as soldTo or a billTo address.
-     *
+     * 
      * @param address Address details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -75,10 +78,8 @@ public final class AddressClientImpl implements AddressClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<ValidateAddressResponseInner>> validateWithResponseAsync(AddressDetails address) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (address == null) {
             return Mono.error(new IllegalArgumentException("Parameter address is required and cannot be null."));
@@ -94,7 +95,7 @@ public final class AddressClientImpl implements AddressClient {
 
     /**
      * Validates an address. Use the operation to validate an address before using it as soldTo or a billTo address.
-     *
+     * 
      * @param address Address details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -103,13 +104,11 @@ public final class AddressClientImpl implements AddressClient {
      * @return result of the address validation along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<ValidateAddressResponseInner>> validateWithResponseAsync(
-        AddressDetails address, Context context) {
+    private Mono<Response<ValidateAddressResponseInner>> validateWithResponseAsync(AddressDetails address,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (address == null) {
             return Mono.error(new IllegalArgumentException("Parameter address is required and cannot be null."));
@@ -124,7 +123,7 @@ public final class AddressClientImpl implements AddressClient {
 
     /**
      * Validates an address. Use the operation to validate an address before using it as soldTo or a billTo address.
-     *
+     * 
      * @param address Address details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -138,7 +137,7 @@ public final class AddressClientImpl implements AddressClient {
 
     /**
      * Validates an address. Use the operation to validate an address before using it as soldTo or a billTo address.
-     *
+     * 
      * @param address Address details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -153,7 +152,7 @@ public final class AddressClientImpl implements AddressClient {
 
     /**
      * Validates an address. Use the operation to validate an address before using it as soldTo or a billTo address.
-     *
+     * 
      * @param address Address details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

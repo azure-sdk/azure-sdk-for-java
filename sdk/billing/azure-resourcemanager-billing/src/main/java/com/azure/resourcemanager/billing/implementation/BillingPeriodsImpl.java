@@ -21,29 +21,26 @@ public final class BillingPeriodsImpl implements BillingPeriods {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    public BillingPeriodsImpl(
-        BillingPeriodsClient innerClient, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    public BillingPeriodsImpl(BillingPeriodsClient innerClient,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
     public PagedIterable<BillingPeriod> list() {
         PagedIterable<BillingPeriodInner> inner = this.serviceClient().list();
-        return Utils.mapPage(inner, inner1 -> new BillingPeriodImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BillingPeriodImpl(inner1, this.manager()));
     }
 
     public PagedIterable<BillingPeriod> list(String filter, String skiptoken, Integer top, Context context) {
         PagedIterable<BillingPeriodInner> inner = this.serviceClient().list(filter, skiptoken, top, context);
-        return Utils.mapPage(inner, inner1 -> new BillingPeriodImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BillingPeriodImpl(inner1, this.manager()));
     }
 
     public Response<BillingPeriod> getWithResponse(String billingPeriodName, Context context) {
         Response<BillingPeriodInner> inner = this.serviceClient().getWithResponse(billingPeriodName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new BillingPeriodImpl(inner.getValue(), this.manager()));
         } else {
             return null;

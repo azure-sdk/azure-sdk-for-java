@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billing.fluent.models.BillingSubscriptionInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of billing subscriptions. */
+/**
+ * The list of billing subscriptions.
+ */
 @Immutable
 public final class BillingSubscriptionsListResult {
     /*
@@ -30,13 +32,15 @@ public final class BillingSubscriptionsListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of BillingSubscriptionsListResult class. */
+    /**
+     * Creates an instance of BillingSubscriptionsListResult class.
+     */
     public BillingSubscriptionsListResult() {
     }
 
     /**
      * Get the value property: The list of billing subscriptions.
-     *
+     * 
      * @return the value value.
      */
     public List<BillingSubscriptionInner> value() {
@@ -45,7 +49,7 @@ public final class BillingSubscriptionsListResult {
 
     /**
      * Get the totalCount property: Total number of records.
-     *
+     * 
      * @return the totalCount value.
      */
     public Integer totalCount() {
@@ -54,7 +58,7 @@ public final class BillingSubscriptionsListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +67,7 @@ public final class BillingSubscriptionsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

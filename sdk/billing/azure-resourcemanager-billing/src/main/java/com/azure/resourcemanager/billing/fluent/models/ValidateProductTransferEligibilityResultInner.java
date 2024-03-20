@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.billing.models.ValidateProductTransferEligibilityError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Result of the product transfer eligibility validation. */
+/**
+ * Result of the product transfer eligibility validation.
+ */
 @Fluent
 public final class ValidateProductTransferEligibilityResultInner {
     /*
@@ -23,13 +25,15 @@ public final class ValidateProductTransferEligibilityResultInner {
     @JsonProperty(value = "errorDetails")
     private ValidateProductTransferEligibilityError errorDetails;
 
-    /** Creates an instance of ValidateProductTransferEligibilityResultInner class. */
+    /**
+     * Creates an instance of ValidateProductTransferEligibilityResultInner class.
+     */
     public ValidateProductTransferEligibilityResultInner() {
     }
 
     /**
      * Get the isMoveEligible property: Specifies whether the transfer is eligible or not.
-     *
+     * 
      * @return the isMoveEligible value.
      */
     public Boolean isMoveEligible() {
@@ -38,7 +42,7 @@ public final class ValidateProductTransferEligibilityResultInner {
 
     /**
      * Get the errorDetails property: Validation error details.
-     *
+     * 
      * @return the errorDetails value.
      */
     public ValidateProductTransferEligibilityError errorDetails() {
@@ -47,19 +51,19 @@ public final class ValidateProductTransferEligibilityResultInner {
 
     /**
      * Set the errorDetails property: Validation error details.
-     *
+     * 
      * @param errorDetails the errorDetails value to set.
      * @return the ValidateProductTransferEligibilityResultInner object itself.
      */
-    public ValidateProductTransferEligibilityResultInner withErrorDetails(
-        ValidateProductTransferEligibilityError errorDetails) {
+    public ValidateProductTransferEligibilityResultInner
+        withErrorDetails(ValidateProductTransferEligibilityError errorDetails) {
         this.errorDetails = errorDetails;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

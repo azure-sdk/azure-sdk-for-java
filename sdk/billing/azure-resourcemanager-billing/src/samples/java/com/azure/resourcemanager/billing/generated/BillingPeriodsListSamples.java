@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for BillingPeriods List. */
+/**
+ * Samples for BillingPeriods List.
+ */
 public final class BillingPeriodsListSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/preview/2018-03-01-preview/examples/BillingPeriodsList.json
+     * x-ms-original-file:
+     * specification/billing/resource-manager/Microsoft.Billing/preview/2018-03-01-preview/examples/BillingPeriodsList.
+     * json
      */
     /**
      * Sample code: BillingPeriodsList.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void billingPeriodsList(com.azure.resourcemanager.billing.BillingManager manager) {

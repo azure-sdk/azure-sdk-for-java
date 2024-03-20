@@ -4,21 +4,22 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for BillingAccounts ListInvoiceSectionsByCreateSubscriptionPermission. */
+/**
+ * Samples for BillingAccounts ListInvoiceSectionsByCreateSubscriptionPermission.
+ */
 public final class BillingAccountsListInvoiceSectionsByCreateSubscriptionPermissionSamples {
     /*
-     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InvoiceSectionsListWithCreateSubPermission.json
+     * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/
+     * InvoiceSectionsListWithCreateSubPermission.json
      */
     /**
      * Sample code: InvoiceSectionsListWithCreateSubPermission.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
-    public static void invoiceSectionsListWithCreateSubPermission(
-        com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .billingAccounts()
-            .listInvoiceSectionsByCreateSubscriptionPermission(
-                "{billingAccountName}", com.azure.core.util.Context.NONE);
+    public static void
+        invoiceSectionsListWithCreateSubPermission(com.azure.resourcemanager.billing.BillingManager manager) {
+        manager.billingAccounts().listInvoiceSectionsByCreateSubscriptionPermission("{billingAccountName}",
+            com.azure.core.util.Context.NONE);
     }
 }

@@ -32,66 +32,57 @@ public final class ProductsImpl implements Products {
 
     public PagedIterable<Product> listByCustomer(String billingAccountName, String customerName) {
         PagedIterable<ProductInner> inner = this.serviceClient().listByCustomer(billingAccountName, customerName);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Product> listByCustomer(String billingAccountName, String customerName, Context context) {
-        PagedIterable<ProductInner> inner =
-            this.serviceClient().listByCustomer(billingAccountName, customerName, context);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+        PagedIterable<ProductInner> inner
+            = this.serviceClient().listByCustomer(billingAccountName, customerName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Product> listByBillingAccount(String billingAccountName) {
         PagedIterable<ProductInner> inner = this.serviceClient().listByBillingAccount(billingAccountName);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Product> listByBillingAccount(String billingAccountName, String filter, Context context) {
-        PagedIterable<ProductInner> inner =
-            this.serviceClient().listByBillingAccount(billingAccountName, filter, context);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+        PagedIterable<ProductInner> inner
+            = this.serviceClient().listByBillingAccount(billingAccountName, filter, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
     }
 
     public PagedIterable<Product> listByBillingProfile(String billingAccountName, String billingProfileName) {
-        PagedIterable<ProductInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+        PagedIterable<ProductInner> inner
+            = this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Product> listByBillingProfile(
-        String billingAccountName, String billingProfileName, String filter, Context context) {
-        PagedIterable<ProductInner> inner =
-            this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, filter, context);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+    public PagedIterable<Product> listByBillingProfile(String billingAccountName, String billingProfileName,
+        String filter, Context context) {
+        PagedIterable<ProductInner> inner
+            = this.serviceClient().listByBillingProfile(billingAccountName, billingProfileName, filter, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Product> listByInvoiceSection(
-        String billingAccountName, String billingProfileName, String invoiceSectionName) {
-        PagedIterable<ProductInner> inner =
-            this.serviceClient().listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+    public PagedIterable<Product> listByInvoiceSection(String billingAccountName, String billingProfileName,
+        String invoiceSectionName) {
+        PagedIterable<ProductInner> inner
+            = this.serviceClient().listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<Product> listByInvoiceSection(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String filter,
-        Context context) {
-        PagedIterable<ProductInner> inner =
-            this
-                .serviceClient()
-                .listByInvoiceSection(billingAccountName, billingProfileName, invoiceSectionName, filter, context);
-        return Utils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
+    public PagedIterable<Product> listByInvoiceSection(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, String filter, Context context) {
+        PagedIterable<ProductInner> inner = this.serviceClient().listByInvoiceSection(billingAccountName,
+            billingProfileName, invoiceSectionName, filter, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ProductImpl(inner1, this.manager()));
     }
 
     public Response<Product> getWithResponse(String billingAccountName, String productName, Context context) {
         Response<ProductInner> inner = this.serviceClient().getWithResponse(billingAccountName, productName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ProductImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -107,15 +98,12 @@ public final class ProductsImpl implements Products {
         }
     }
 
-    public Response<Product> updateWithResponse(
-        String billingAccountName, String productName, ProductInner parameters, Context context) {
-        Response<ProductInner> inner =
-            this.serviceClient().updateWithResponse(billingAccountName, productName, parameters, context);
+    public Response<Product> updateWithResponse(String billingAccountName, String productName, ProductInner parameters,
+        Context context) {
+        Response<ProductInner> inner
+            = this.serviceClient().updateWithResponse(billingAccountName, productName, parameters, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ProductImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -131,15 +119,12 @@ public final class ProductsImpl implements Products {
         }
     }
 
-    public Response<Product> moveWithResponse(
-        String billingAccountName, String productName, TransferProductRequestProperties parameters, Context context) {
-        ProductsMoveResponse inner =
-            this.serviceClient().moveWithResponse(billingAccountName, productName, parameters, context);
+    public Response<Product> moveWithResponse(String billingAccountName, String productName,
+        TransferProductRequestProperties parameters, Context context) {
+        ProductsMoveResponse inner
+            = this.serviceClient().moveWithResponse(billingAccountName, productName, parameters, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ProductImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -155,25 +140,22 @@ public final class ProductsImpl implements Products {
         }
     }
 
-    public Response<ValidateProductTransferEligibilityResult> validateMoveWithResponse(
-        String billingAccountName, String productName, TransferProductRequestProperties parameters, Context context) {
-        Response<ValidateProductTransferEligibilityResultInner> inner =
-            this.serviceClient().validateMoveWithResponse(billingAccountName, productName, parameters, context);
+    public Response<ValidateProductTransferEligibilityResult> validateMoveWithResponse(String billingAccountName,
+        String productName, TransferProductRequestProperties parameters, Context context) {
+        Response<ValidateProductTransferEligibilityResultInner> inner
+            = this.serviceClient().validateMoveWithResponse(billingAccountName, productName, parameters, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new ValidateProductTransferEligibilityResultImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public ValidateProductTransferEligibilityResult validateMove(
-        String billingAccountName, String productName, TransferProductRequestProperties parameters) {
-        ValidateProductTransferEligibilityResultInner inner =
-            this.serviceClient().validateMove(billingAccountName, productName, parameters);
+    public ValidateProductTransferEligibilityResult validateMove(String billingAccountName, String productName,
+        TransferProductRequestProperties parameters) {
+        ValidateProductTransferEligibilityResultInner inner
+            = this.serviceClient().validateMove(billingAccountName, productName, parameters);
         if (inner != null) {
             return new ValidateProductTransferEligibilityResultImpl(inner, this.manager());
         } else {

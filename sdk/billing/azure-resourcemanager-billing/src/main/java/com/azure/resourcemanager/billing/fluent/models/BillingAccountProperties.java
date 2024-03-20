@@ -16,7 +16,9 @@ import com.azure.resourcemanager.billing.models.EnrollmentAccount;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The properties of the billing account. */
+/**
+ * The properties of the billing account.
+ */
 @Fluent
 public final class BillingAccountProperties {
     /*
@@ -87,13 +89,15 @@ public final class BillingAccountProperties {
     @JsonProperty(value = "notificationEmailAddress")
     private String notificationEmailAddress;
 
-    /** Creates an instance of BillingAccountProperties class. */
+    /**
+     * Creates an instance of BillingAccountProperties class.
+     */
     public BillingAccountProperties() {
     }
 
     /**
      * Get the displayName property: The billing account name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -102,7 +106,7 @@ public final class BillingAccountProperties {
 
     /**
      * Set the displayName property: The billing account name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the BillingAccountProperties object itself.
      */
@@ -114,7 +118,7 @@ public final class BillingAccountProperties {
     /**
      * Get the soldTo property: The address of the individual or organization that is responsible for the billing
      * account.
-     *
+     * 
      * @return the soldTo value.
      */
     public AddressDetails soldTo() {
@@ -124,7 +128,7 @@ public final class BillingAccountProperties {
     /**
      * Set the soldTo property: The address of the individual or organization that is responsible for the billing
      * account.
-     *
+     * 
      * @param soldTo the soldTo value to set.
      * @return the BillingAccountProperties object itself.
      */
@@ -135,7 +139,7 @@ public final class BillingAccountProperties {
 
     /**
      * Get the agreementType property: The type of agreement.
-     *
+     * 
      * @return the agreementType value.
      */
     public AgreementType agreementType() {
@@ -144,7 +148,7 @@ public final class BillingAccountProperties {
 
     /**
      * Get the accountType property: The type of customer.
-     *
+     * 
      * @return the accountType value.
      */
     public AccountType accountType() {
@@ -153,7 +157,7 @@ public final class BillingAccountProperties {
 
     /**
      * Get the accountStatus property: The current status of the billing account.
-     *
+     * 
      * @return the accountStatus value.
      */
     public AccountStatus accountStatus() {
@@ -163,7 +167,7 @@ public final class BillingAccountProperties {
     /**
      * Get the billingProfiles property: The billing profiles associated with the billing account. By default this is
      * not populated, unless it's specified in $expand.
-     *
+     * 
      * @return the billingProfiles value.
      */
     public BillingProfilesOnExpand billingProfiles() {
@@ -173,7 +177,7 @@ public final class BillingAccountProperties {
     /**
      * Set the billingProfiles property: The billing profiles associated with the billing account. By default this is
      * not populated, unless it's specified in $expand.
-     *
+     * 
      * @param billingProfiles the billingProfiles value to set.
      * @return the BillingAccountProperties object itself.
      */
@@ -185,7 +189,7 @@ public final class BillingAccountProperties {
     /**
      * Get the enrollmentDetails property: The details about the associated legacy enrollment. By default this is not
      * populated, unless it's specified in $expand.
-     *
+     * 
      * @return the enrollmentDetails value.
      */
     public Enrollment enrollmentDetails() {
@@ -194,7 +198,7 @@ public final class BillingAccountProperties {
 
     /**
      * Get the departments property: The departments associated to the enrollment.
-     *
+     * 
      * @return the departments value.
      */
     public List<Department> departments() {
@@ -203,7 +207,7 @@ public final class BillingAccountProperties {
 
     /**
      * Set the departments property: The departments associated to the enrollment.
-     *
+     * 
      * @param departments the departments value to set.
      * @return the BillingAccountProperties object itself.
      */
@@ -214,7 +218,7 @@ public final class BillingAccountProperties {
 
     /**
      * Get the enrollmentAccounts property: The accounts associated to the enrollment.
-     *
+     * 
      * @return the enrollmentAccounts value.
      */
     public List<EnrollmentAccount> enrollmentAccounts() {
@@ -223,7 +227,7 @@ public final class BillingAccountProperties {
 
     /**
      * Set the enrollmentAccounts property: The accounts associated to the enrollment.
-     *
+     * 
      * @param enrollmentAccounts the enrollmentAccounts value to set.
      * @return the BillingAccountProperties object itself.
      */
@@ -234,7 +238,7 @@ public final class BillingAccountProperties {
 
     /**
      * Get the hasReadAccess property: Indicates whether user has read access to the billing account.
-     *
+     * 
      * @return the hasReadAccess value.
      */
     public Boolean hasReadAccess() {
@@ -243,7 +247,7 @@ public final class BillingAccountProperties {
 
     /**
      * Get the notificationEmailAddress property: Notification email address, only for legacy accounts.
-     *
+     * 
      * @return the notificationEmailAddress value.
      */
     public String notificationEmailAddress() {
@@ -252,7 +256,7 @@ public final class BillingAccountProperties {
 
     /**
      * Set the notificationEmailAddress property: Notification email address, only for legacy accounts.
-     *
+     * 
      * @param notificationEmailAddress the notificationEmailAddress value to set.
      * @return the BillingAccountProperties object itself.
      */
@@ -263,7 +267,7 @@ public final class BillingAccountProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

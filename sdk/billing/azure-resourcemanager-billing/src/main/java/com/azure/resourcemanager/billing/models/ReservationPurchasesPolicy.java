@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The policy that controls whether Azure reservation purchases are allowed for a billing profile. */
+/**
+ * The policy that controls whether Azure reservation purchases are allowed for a billing profile.
+ */
 public final class ReservationPurchasesPolicy extends ExpandableStringEnum<ReservationPurchasesPolicy> {
-    /** Static value Allowed for ReservationPurchasesPolicy. */
+    /**
+     * Static value Allowed for ReservationPurchasesPolicy.
+     */
     public static final ReservationPurchasesPolicy ALLOWED = fromString("Allowed");
 
-    /** Static value NotAllowed for ReservationPurchasesPolicy. */
+    /**
+     * Static value NotAllowed for ReservationPurchasesPolicy.
+     */
     public static final ReservationPurchasesPolicy NOT_ALLOWED = fromString("NotAllowed");
 
     /**
      * Creates a new instance of ReservationPurchasesPolicy value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ReservationPurchasesPolicy extends ExpandableStringEnum<Reser
 
     /**
      * Creates or finds a ReservationPurchasesPolicy from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ReservationPurchasesPolicy.
      */
@@ -38,7 +44,7 @@ public final class ReservationPurchasesPolicy extends ExpandableStringEnum<Reser
 
     /**
      * Gets known ReservationPurchasesPolicy values.
-     *
+     * 
      * @return known ReservationPurchasesPolicy values.
      */
     public static Collection<ReservationPurchasesPolicy> values() {

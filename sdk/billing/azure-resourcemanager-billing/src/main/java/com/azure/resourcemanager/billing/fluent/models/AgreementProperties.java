@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The properties of an agreement. */
+/**
+ * The properties of an agreement.
+ */
 @Fluent
 public final class AgreementProperties {
     /*
@@ -64,13 +66,15 @@ public final class AgreementProperties {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private String status;
 
-    /** Creates an instance of AgreementProperties class. */
+    /**
+     * Creates an instance of AgreementProperties class.
+     */
     public AgreementProperties() {
     }
 
     /**
      * Get the agreementLink property: The URL to download the agreement.
-     *
+     * 
      * @return the agreementLink value.
      */
     public String agreementLink() {
@@ -79,7 +83,7 @@ public final class AgreementProperties {
 
     /**
      * Get the category property: The category of the agreement signed by a customer.
-     *
+     * 
      * @return the category value.
      */
     public Category category() {
@@ -88,7 +92,7 @@ public final class AgreementProperties {
 
     /**
      * Get the acceptanceMode property: The mode of acceptance for an agreement.
-     *
+     * 
      * @return the acceptanceMode value.
      */
     public AcceptanceMode acceptanceMode() {
@@ -98,7 +102,7 @@ public final class AgreementProperties {
     /**
      * Get the billingProfileInfo property: The list of billing profiles associated with agreement and present only for
      * specific agreements.
-     *
+     * 
      * @return the billingProfileInfo value.
      */
     public BillingProfileInfo billingProfileInfo() {
@@ -107,7 +111,7 @@ public final class AgreementProperties {
 
     /**
      * Get the effectiveDate property: The date from which the agreement is effective.
-     *
+     * 
      * @return the effectiveDate value.
      */
     public OffsetDateTime effectiveDate() {
@@ -116,7 +120,7 @@ public final class AgreementProperties {
 
     /**
      * Get the expirationDate property: The date when the agreement expires.
-     *
+     * 
      * @return the expirationDate value.
      */
     public OffsetDateTime expirationDate() {
@@ -125,7 +129,7 @@ public final class AgreementProperties {
 
     /**
      * Get the participants property: The list of participants that participates in acceptance of an agreement.
-     *
+     * 
      * @return the participants value.
      */
     public List<Participants> participants() {
@@ -134,7 +138,7 @@ public final class AgreementProperties {
 
     /**
      * Set the participants property: The list of participants that participates in acceptance of an agreement.
-     *
+     * 
      * @param participants the participants value to set.
      * @return the AgreementProperties object itself.
      */
@@ -145,7 +149,7 @@ public final class AgreementProperties {
 
     /**
      * Get the status property: The current status of the agreement.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -154,7 +158,7 @@ public final class AgreementProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

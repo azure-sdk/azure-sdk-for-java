@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The set of allowed action and not allowed actions a caller has on a billing account. */
+/**
+ * The set of allowed action and not allowed actions a caller has on a billing account.
+ */
 @Immutable
 public final class BillingPermissionsPropertiesInner {
     /*
@@ -23,13 +25,15 @@ public final class BillingPermissionsPropertiesInner {
     @JsonProperty(value = "notActions", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> notActions;
 
-    /** Creates an instance of BillingPermissionsPropertiesInner class. */
+    /**
+     * Creates an instance of BillingPermissionsPropertiesInner class.
+     */
     public BillingPermissionsPropertiesInner() {
     }
 
     /**
      * Get the actions property: The set of actions that the caller is allowed to perform.
-     *
+     * 
      * @return the actions value.
      */
     public List<String> actions() {
@@ -38,7 +42,7 @@ public final class BillingPermissionsPropertiesInner {
 
     /**
      * Get the notActions property: The set of actions that the caller is not allowed to perform.
-     *
+     * 
      * @return the notActions value.
      */
     public List<String> notActions() {
@@ -47,7 +51,7 @@ public final class BillingPermissionsPropertiesInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

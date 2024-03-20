@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.UUID;
 
-/** The billing properties of a subscription. */
+/**
+ * The billing properties of a subscription.
+ */
 @Fluent
 public final class BillingSubscriptionProperties {
     /*
@@ -114,13 +116,15 @@ public final class BillingSubscriptionProperties {
     @JsonProperty(value = "suspensionReasons", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> suspensionReasons;
 
-    /** Creates an instance of BillingSubscriptionProperties class. */
+    /**
+     * Creates an instance of BillingSubscriptionProperties class.
+     */
     public BillingSubscriptionProperties() {
     }
 
     /**
      * Get the displayName property: The name of the subscription.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -129,7 +133,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Get the subscriptionId property: The ID of the subscription.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public UUID subscriptionId() {
@@ -138,7 +142,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Get the subscriptionBillingStatus property: The current billing status of the subscription.
-     *
+     * 
      * @return the subscriptionBillingStatus value.
      */
     public BillingSubscriptionStatusType subscriptionBillingStatus() {
@@ -147,19 +151,19 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Set the subscriptionBillingStatus property: The current billing status of the subscription.
-     *
+     * 
      * @param subscriptionBillingStatus the subscriptionBillingStatus value to set.
      * @return the BillingSubscriptionProperties object itself.
      */
-    public BillingSubscriptionProperties withSubscriptionBillingStatus(
-        BillingSubscriptionStatusType subscriptionBillingStatus) {
+    public BillingSubscriptionProperties
+        withSubscriptionBillingStatus(BillingSubscriptionStatusType subscriptionBillingStatus) {
         this.subscriptionBillingStatus = subscriptionBillingStatus;
         return this;
     }
 
     /**
      * Get the lastMonthCharges property: The last month charges.
-     *
+     * 
      * @return the lastMonthCharges value.
      */
     public Amount lastMonthCharges() {
@@ -168,7 +172,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Get the monthToDateCharges property: The current month to date charges.
-     *
+     * 
      * @return the monthToDateCharges value.
      */
     public Amount monthToDateCharges() {
@@ -177,7 +181,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Get the billingProfileId property: The ID of the billing profile to which the subscription is billed.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -186,7 +190,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Get the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
-     *
+     * 
      * @return the billingProfileDisplayName value.
      */
     public String billingProfileDisplayName() {
@@ -195,7 +199,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Get the costCenter property: The cost center applied to the subscription.
-     *
+     * 
      * @return the costCenter value.
      */
     public String costCenter() {
@@ -204,7 +208,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Set the costCenter property: The cost center applied to the subscription.
-     *
+     * 
      * @param costCenter the costCenter value to set.
      * @return the BillingSubscriptionProperties object itself.
      */
@@ -216,7 +220,7 @@ public final class BillingSubscriptionProperties {
     /**
      * Get the customerId property: The ID of the customer for whom the subscription was created. The field is
      * applicable only for Microsoft Partner Agreement billing account.
-     *
+     * 
      * @return the customerId value.
      */
     public String customerId() {
@@ -226,7 +230,7 @@ public final class BillingSubscriptionProperties {
     /**
      * Get the customerDisplayName property: The name of the customer for whom the subscription was created. The field
      * is applicable only for Microsoft Partner Agreement billing account.
-     *
+     * 
      * @return the customerDisplayName value.
      */
     public String customerDisplayName() {
@@ -235,7 +239,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Get the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
-     *
+     * 
      * @return the invoiceSectionId value.
      */
     public String invoiceSectionId() {
@@ -244,7 +248,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Get the invoiceSectionDisplayName property: The name of the invoice section to which the subscription is billed.
-     *
+     * 
      * @return the invoiceSectionDisplayName value.
      */
     public String invoiceSectionDisplayName() {
@@ -253,7 +257,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Get the reseller property: Reseller for this subscription.
-     *
+     * 
      * @return the reseller value.
      */
     public Reseller reseller() {
@@ -262,7 +266,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Get the skuId property: The sku ID of the Azure plan for the subscription.
-     *
+     * 
      * @return the skuId value.
      */
     public String skuId() {
@@ -271,7 +275,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Set the skuId property: The sku ID of the Azure plan for the subscription.
-     *
+     * 
      * @param skuId the skuId value to set.
      * @return the BillingSubscriptionProperties object itself.
      */
@@ -282,7 +286,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Get the skuDescription property: The sku description of the Azure plan for the subscription.
-     *
+     * 
      * @return the skuDescription value.
      */
     public String skuDescription() {
@@ -292,7 +296,7 @@ public final class BillingSubscriptionProperties {
     /**
      * Get the suspensionReasons property: The suspension reason for a subscription. Applies only to subscriptions in
      * Microsoft Online Services Program billing accounts.
-     *
+     * 
      * @return the suspensionReasons value.
      */
     public List<String> suspensionReasons() {
@@ -301,7 +305,7 @@ public final class BillingSubscriptionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

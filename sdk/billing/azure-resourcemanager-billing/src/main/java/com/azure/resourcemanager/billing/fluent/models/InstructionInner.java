@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** An instruction. */
+/**
+ * An instruction.
+ */
 @Fluent
 public final class InstructionInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class InstructionInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private InstructionProperties innerProperties;
 
-    /** Creates an instance of InstructionInner class. */
+    /**
+     * Creates an instance of InstructionInner class.
+     */
     public InstructionInner() {
     }
 
     /**
      * Get the innerProperties property: A billing instruction used during invoice generation.
-     *
+     * 
      * @return the innerProperties value.
      */
     private InstructionProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class InstructionInner extends ProxyResource {
 
     /**
      * Get the amount property: The amount budgeted for this billing instruction.
-     *
+     * 
      * @return the amount value.
      */
     public Float amount() {
@@ -42,7 +46,7 @@ public final class InstructionInner extends ProxyResource {
 
     /**
      * Set the amount property: The amount budgeted for this billing instruction.
-     *
+     * 
      * @param amount the amount value to set.
      * @return the InstructionInner object itself.
      */
@@ -56,7 +60,7 @@ public final class InstructionInner extends ProxyResource {
 
     /**
      * Get the startDate property: The date this billing instruction goes into effect.
-     *
+     * 
      * @return the startDate value.
      */
     public OffsetDateTime startDate() {
@@ -65,7 +69,7 @@ public final class InstructionInner extends ProxyResource {
 
     /**
      * Set the startDate property: The date this billing instruction goes into effect.
-     *
+     * 
      * @param startDate the startDate value to set.
      * @return the InstructionInner object itself.
      */
@@ -79,7 +83,7 @@ public final class InstructionInner extends ProxyResource {
 
     /**
      * Get the endDate property: The date this billing instruction is no longer in effect.
-     *
+     * 
      * @return the endDate value.
      */
     public OffsetDateTime endDate() {
@@ -88,7 +92,7 @@ public final class InstructionInner extends ProxyResource {
 
     /**
      * Set the endDate property: The date this billing instruction is no longer in effect.
-     *
+     * 
      * @param endDate the endDate value to set.
      * @return the InstructionInner object itself.
      */
@@ -102,7 +106,7 @@ public final class InstructionInner extends ProxyResource {
 
     /**
      * Get the creationDate property: The date this billing instruction was created.
-     *
+     * 
      * @return the creationDate value.
      */
     public OffsetDateTime creationDate() {
@@ -111,7 +115,7 @@ public final class InstructionInner extends ProxyResource {
 
     /**
      * Set the creationDate property: The date this billing instruction was created.
-     *
+     * 
      * @param creationDate the creationDate value to set.
      * @return the InstructionInner object itself.
      */
@@ -125,7 +129,7 @@ public final class InstructionInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

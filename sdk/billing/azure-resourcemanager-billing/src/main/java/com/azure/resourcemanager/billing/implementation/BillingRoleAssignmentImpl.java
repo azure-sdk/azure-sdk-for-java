@@ -12,8 +12,8 @@ public final class BillingRoleAssignmentImpl implements BillingRoleAssignment {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    BillingRoleAssignmentImpl(
-        BillingRoleAssignmentInner innerObject, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    BillingRoleAssignmentImpl(BillingRoleAssignmentInner innerObject,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
