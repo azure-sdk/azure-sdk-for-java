@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.loganalytics {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.loganalytics;
     exports com.azure.resourcemanager.loganalytics.fluent;
     exports com.azure.resourcemanager.loganalytics.fluent.models;
     exports com.azure.resourcemanager.loganalytics.models;
-
-    opens com.azure.resourcemanager.loganalytics.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.loganalytics.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.loganalytics.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.loganalytics.models to com.azure.core, com.fasterxml.jackson.databind;
 }

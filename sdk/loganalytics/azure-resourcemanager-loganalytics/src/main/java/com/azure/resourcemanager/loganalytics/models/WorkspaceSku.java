@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The SKU (tier) of a workspace. */
+/**
+ * The SKU (tier) of a workspace.
+ */
 @Fluent
 public final class WorkspaceSku {
     /*
@@ -29,13 +31,15 @@ public final class WorkspaceSku {
     @JsonProperty(value = "lastSkuUpdate", access = JsonProperty.Access.WRITE_ONLY)
     private String lastSkuUpdate;
 
-    /** Creates an instance of WorkspaceSku class. */
+    /**
+     * Creates an instance of WorkspaceSku class.
+     */
     public WorkspaceSku() {
     }
 
     /**
      * Get the name property: The name of the SKU.
-     *
+     * 
      * @return the name value.
      */
     public WorkspaceSkuNameEnum name() {
@@ -44,7 +48,7 @@ public final class WorkspaceSku {
 
     /**
      * Set the name property: The name of the SKU.
-     *
+     * 
      * @param name the name value to set.
      * @return the WorkspaceSku object itself.
      */
@@ -56,7 +60,7 @@ public final class WorkspaceSku {
     /**
      * Get the capacityReservationLevel property: The capacity reservation level in GB for this workspace, when
      * CapacityReservation sku is selected.
-     *
+     * 
      * @return the capacityReservationLevel value.
      */
     public CapacityReservationLevel capacityReservationLevel() {
@@ -66,7 +70,7 @@ public final class WorkspaceSku {
     /**
      * Set the capacityReservationLevel property: The capacity reservation level in GB for this workspace, when
      * CapacityReservation sku is selected.
-     *
+     * 
      * @param capacityReservationLevel the capacityReservationLevel value to set.
      * @return the WorkspaceSku object itself.
      */
@@ -77,7 +81,7 @@ public final class WorkspaceSku {
 
     /**
      * Get the lastSkuUpdate property: The last time when the sku was updated.
-     *
+     * 
      * @return the lastSkuUpdate value.
      */
     public String lastSkuUpdate() {
@@ -86,14 +90,13 @@ public final class WorkspaceSku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model WorkspaceSku"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model WorkspaceSku"));
         }
     }
 

@@ -4,21 +4,22 @@
 
 package com.azure.resourcemanager.loganalytics.generated;
 
-/** Samples for LinkedServices CreateOrUpdate. */
+/**
+ * Samples for LinkedServices CreateOrUpdate.
+ */
 public final class LinkedServicesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2020-08-01/examples/LinkedServicesCreate.json
+     * x-ms-original-file:
+     * specification/operationalinsights/resource-manager/Microsoft.OperationalInsights/stable/2020-08-01/examples/
+     * LinkedServicesCreate.json
      */
     /**
      * Sample code: LinkedServicesCreate.
-     *
+     * 
      * @param manager Entry point to LogAnalyticsManager.
      */
     public static void linkedServicesCreate(com.azure.resourcemanager.loganalytics.LogAnalyticsManager manager) {
-        manager
-            .linkedServices()
-            .define("Cluster")
-            .withExistingWorkspace("mms-eus", "TestLinkWS")
+        manager.linkedServices().define("Cluster").withExistingWorkspace("mms-eus", "TestLinkWS")
             .withWriteAccessResourceId(
                 "/subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/mms-eus/providers/Microsoft.OperationalInsights/clusters/testcluster")
             .create();

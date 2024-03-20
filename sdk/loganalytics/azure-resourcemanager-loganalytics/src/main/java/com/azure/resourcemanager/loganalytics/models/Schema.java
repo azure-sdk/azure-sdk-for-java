@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Table's schema. */
+/**
+ * Table's schema.
+ */
 @Fluent
 public final class Schema {
     /*
@@ -78,13 +80,15 @@ public final class Schema {
     @JsonProperty(value = "solutions", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> solutions;
 
-    /** Creates an instance of Schema class. */
+    /**
+     * Creates an instance of Schema class.
+     */
     public Schema() {
     }
 
     /**
      * Get the name property: Table name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -93,7 +97,7 @@ public final class Schema {
 
     /**
      * Set the name property: Table name.
-     *
+     * 
      * @param name the name value to set.
      * @return the Schema object itself.
      */
@@ -104,7 +108,7 @@ public final class Schema {
 
     /**
      * Get the displayName property: Table display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -113,7 +117,7 @@ public final class Schema {
 
     /**
      * Set the displayName property: Table display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the Schema object itself.
      */
@@ -124,7 +128,7 @@ public final class Schema {
 
     /**
      * Get the description property: Table description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -133,7 +137,7 @@ public final class Schema {
 
     /**
      * Set the description property: Table description.
-     *
+     * 
      * @param description the description value to set.
      * @return the Schema object itself.
      */
@@ -144,7 +148,7 @@ public final class Schema {
 
     /**
      * Get the columns property: A list of table custom columns.
-     *
+     * 
      * @return the columns value.
      */
     public List<Column> columns() {
@@ -153,7 +157,7 @@ public final class Schema {
 
     /**
      * Set the columns property: A list of table custom columns.
-     *
+     * 
      * @param columns the columns value to set.
      * @return the Schema object itself.
      */
@@ -164,7 +168,7 @@ public final class Schema {
 
     /**
      * Get the standardColumns property: A list of table standard columns.
-     *
+     * 
      * @return the standardColumns value.
      */
     public List<Column> standardColumns() {
@@ -173,7 +177,7 @@ public final class Schema {
 
     /**
      * Get the categories property: Table category.
-     *
+     * 
      * @return the categories value.
      */
     public List<String> categories() {
@@ -182,7 +186,7 @@ public final class Schema {
 
     /**
      * Get the labels property: Table labels.
-     *
+     * 
      * @return the labels value.
      */
     public List<String> labels() {
@@ -191,7 +195,7 @@ public final class Schema {
 
     /**
      * Get the source property: Table's creator.
-     *
+     * 
      * @return the source value.
      */
     public SourceEnum source() {
@@ -200,7 +204,7 @@ public final class Schema {
 
     /**
      * Get the tableType property: Table's creator.
-     *
+     * 
      * @return the tableType value.
      */
     public TableTypeEnum tableType() {
@@ -210,7 +214,7 @@ public final class Schema {
     /**
      * Get the tableSubType property: The subtype describes what APIs can be used to interact with the table, and what
      * features are available against it.
-     *
+     * 
      * @return the tableSubType value.
      */
     public TableSubTypeEnum tableSubType() {
@@ -219,7 +223,7 @@ public final class Schema {
 
     /**
      * Get the solutions property: List of solutions the table is affiliated with.
-     *
+     * 
      * @return the solutions value.
      */
     public List<String> solutions() {
@@ -228,7 +232,7 @@ public final class Schema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Properties that define a Log Analytics QueryPack resource. */
+/**
+ * Properties that define a Log Analytics QueryPack resource.
+ */
 @Immutable
 public final class LogAnalyticsQueryPackProperties {
     /*
@@ -37,13 +39,15 @@ public final class LogAnalyticsQueryPackProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
 
-    /** Creates an instance of LogAnalyticsQueryPackProperties class. */
+    /**
+     * Creates an instance of LogAnalyticsQueryPackProperties class.
+     */
     public LogAnalyticsQueryPackProperties() {
     }
 
     /**
      * Get the queryPackId property: The unique ID of your application. This field cannot be changed.
-     *
+     * 
      * @return the queryPackId value.
      */
     public String queryPackId() {
@@ -52,7 +56,7 @@ public final class LogAnalyticsQueryPackProperties {
 
     /**
      * Get the timeCreated property: Creation Date for the Log Analytics QueryPack, in ISO 8601 format.
-     *
+     * 
      * @return the timeCreated value.
      */
     public OffsetDateTime timeCreated() {
@@ -61,7 +65,7 @@ public final class LogAnalyticsQueryPackProperties {
 
     /**
      * Get the timeModified property: Last modified date of the Log Analytics QueryPack, in ISO 8601 format.
-     *
+     * 
      * @return the timeModified value.
      */
     public OffsetDateTime timeModified() {
@@ -70,9 +74,9 @@ public final class LogAnalyticsQueryPackProperties {
 
     /**
      * Get the provisioningState property: Current state of this QueryPack: whether or not is has been provisioned
-     * within the resource group it is defined. Users cannot change this value but are able to read from it. Values will
-     * include Succeeded, Deploying, Canceled, and Failed.
-     *
+     * within the resource group it is defined. Users cannot change this value but are able to read from it. Values
+     * will include Succeeded, Deploying, Canceled, and Failed.
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -81,7 +85,7 @@ public final class LogAnalyticsQueryPackProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

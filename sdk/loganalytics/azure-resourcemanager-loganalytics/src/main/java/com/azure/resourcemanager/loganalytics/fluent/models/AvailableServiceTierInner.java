@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.loganalytics.models.SkuNameEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Service Tier details. */
+/**
+ * Service Tier details.
+ */
 @Immutable
 public final class AvailableServiceTierInner {
     /*
@@ -53,13 +55,15 @@ public final class AvailableServiceTierInner {
     @JsonProperty(value = "lastSkuUpdate", access = JsonProperty.Access.WRITE_ONLY)
     private String lastSkuUpdate;
 
-    /** Creates an instance of AvailableServiceTierInner class. */
+    /**
+     * Creates an instance of AvailableServiceTierInner class.
+     */
     public AvailableServiceTierInner() {
     }
 
     /**
      * Get the serviceTier property: The name of the Service Tier.
-     *
+     * 
      * @return the serviceTier value.
      */
     public SkuNameEnum serviceTier() {
@@ -68,7 +72,7 @@ public final class AvailableServiceTierInner {
 
     /**
      * Get the enabled property: True if the Service Tier is enabled for the workspace.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -77,7 +81,7 @@ public final class AvailableServiceTierInner {
 
     /**
      * Get the minimumRetention property: The minimum retention for the Service Tier, in days.
-     *
+     * 
      * @return the minimumRetention value.
      */
     public Long minimumRetention() {
@@ -86,7 +90,7 @@ public final class AvailableServiceTierInner {
 
     /**
      * Get the maximumRetention property: The maximum retention for the Service Tier, in days.
-     *
+     * 
      * @return the maximumRetention value.
      */
     public Long maximumRetention() {
@@ -95,7 +99,7 @@ public final class AvailableServiceTierInner {
 
     /**
      * Get the defaultRetention property: The default retention for the Service Tier, in days.
-     *
+     * 
      * @return the defaultRetention value.
      */
     public Long defaultRetention() {
@@ -105,7 +109,7 @@ public final class AvailableServiceTierInner {
     /**
      * Get the capacityReservationLevel property: The capacity reservation level in GB per day. Returned for the
      * Capacity Reservation Service Tier.
-     *
+     * 
      * @return the capacityReservationLevel value.
      */
     public Long capacityReservationLevel() {
@@ -115,7 +119,7 @@ public final class AvailableServiceTierInner {
     /**
      * Get the lastSkuUpdate property: Time when the sku was last updated for the workspace. Returned for the Capacity
      * Reservation Service Tier.
-     *
+     * 
      * @return the lastSkuUpdate value.
      */
     public String lastSkuUpdate() {
@@ -124,7 +128,7 @@ public final class AvailableServiceTierInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

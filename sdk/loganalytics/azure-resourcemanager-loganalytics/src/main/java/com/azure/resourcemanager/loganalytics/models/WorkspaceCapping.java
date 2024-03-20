@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The daily volume cap for ingestion. */
+/**
+ * The daily volume cap for ingestion.
+ */
 @Fluent
 public final class WorkspaceCapping {
     /*
@@ -28,13 +30,15 @@ public final class WorkspaceCapping {
     @JsonProperty(value = "dataIngestionStatus", access = JsonProperty.Access.WRITE_ONLY)
     private DataIngestionStatus dataIngestionStatus;
 
-    /** Creates an instance of WorkspaceCapping class. */
+    /**
+     * Creates an instance of WorkspaceCapping class.
+     */
     public WorkspaceCapping() {
     }
 
     /**
      * Get the dailyQuotaGb property: The workspace daily quota for ingestion.
-     *
+     * 
      * @return the dailyQuotaGb value.
      */
     public Double dailyQuotaGb() {
@@ -43,7 +47,7 @@ public final class WorkspaceCapping {
 
     /**
      * Set the dailyQuotaGb property: The workspace daily quota for ingestion.
-     *
+     * 
      * @param dailyQuotaGb the dailyQuotaGb value to set.
      * @return the WorkspaceCapping object itself.
      */
@@ -54,7 +58,7 @@ public final class WorkspaceCapping {
 
     /**
      * Get the quotaNextResetTime property: The time when the quota will be rest.
-     *
+     * 
      * @return the quotaNextResetTime value.
      */
     public String quotaNextResetTime() {
@@ -63,7 +67,7 @@ public final class WorkspaceCapping {
 
     /**
      * Get the dataIngestionStatus property: The status of data ingestion for this workspace.
-     *
+     * 
      * @return the dataIngestionStatus value.
      */
     public DataIngestionStatus dataIngestionStatus() {
@@ -72,7 +76,7 @@ public final class WorkspaceCapping {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

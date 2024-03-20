@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Restore parameters. */
+/**
+ * Restore parameters.
+ */
 @Fluent
 public final class RestoredLogs {
     /*
@@ -35,13 +37,15 @@ public final class RestoredLogs {
     @JsonProperty(value = "azureAsyncOperationId", access = JsonProperty.Access.WRITE_ONLY)
     private String azureAsyncOperationId;
 
-    /** Creates an instance of RestoredLogs class. */
+    /**
+     * Creates an instance of RestoredLogs class.
+     */
     public RestoredLogs() {
     }
 
     /**
      * Get the startRestoreTime property: The timestamp to start the restore from (UTC).
-     *
+     * 
      * @return the startRestoreTime value.
      */
     public OffsetDateTime startRestoreTime() {
@@ -50,7 +54,7 @@ public final class RestoredLogs {
 
     /**
      * Set the startRestoreTime property: The timestamp to start the restore from (UTC).
-     *
+     * 
      * @param startRestoreTime the startRestoreTime value to set.
      * @return the RestoredLogs object itself.
      */
@@ -61,7 +65,7 @@ public final class RestoredLogs {
 
     /**
      * Get the endRestoreTime property: The timestamp to end the restore by (UTC).
-     *
+     * 
      * @return the endRestoreTime value.
      */
     public OffsetDateTime endRestoreTime() {
@@ -70,7 +74,7 @@ public final class RestoredLogs {
 
     /**
      * Set the endRestoreTime property: The timestamp to end the restore by (UTC).
-     *
+     * 
      * @param endRestoreTime the endRestoreTime value to set.
      * @return the RestoredLogs object itself.
      */
@@ -81,7 +85,7 @@ public final class RestoredLogs {
 
     /**
      * Get the sourceTable property: The table to restore data from.
-     *
+     * 
      * @return the sourceTable value.
      */
     public String sourceTable() {
@@ -90,7 +94,7 @@ public final class RestoredLogs {
 
     /**
      * Set the sourceTable property: The table to restore data from.
-     *
+     * 
      * @param sourceTable the sourceTable value to set.
      * @return the RestoredLogs object itself.
      */
@@ -101,7 +105,7 @@ public final class RestoredLogs {
 
     /**
      * Get the azureAsyncOperationId property: Search results table async operation id.
-     *
+     * 
      * @return the azureAsyncOperationId value.
      */
     public String azureAsyncOperationId() {
@@ -110,7 +114,7 @@ public final class RestoredLogs {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Identity for the resource. */
+/**
+ * Identity for the resource.
+ */
 @Fluent
 public final class Identity {
     /*
@@ -34,19 +36,22 @@ public final class Identity {
     /*
      * The list of user identities associated with the resource. The user identity dictionary key references will be
      * ARM resource ids in the form:
-     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
+     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/
+     * userAssignedIdentities/{identityName}'.
      */
     @JsonProperty(value = "userAssignedIdentities")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, UserIdentityProperties> userAssignedIdentities;
 
-    /** Creates an instance of Identity class. */
+    /**
+     * Creates an instance of Identity class.
+     */
     public Identity() {
     }
 
     /**
      * Get the principalId property: The principal ID of resource identity.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -55,7 +60,7 @@ public final class Identity {
 
     /**
      * Get the tenantId property: The tenant ID of resource.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -64,7 +69,7 @@ public final class Identity {
 
     /**
      * Get the type property: Type of managed service identity.
-     *
+     * 
      * @return the type value.
      */
     public IdentityType type() {
@@ -73,7 +78,7 @@ public final class Identity {
 
     /**
      * Set the type property: Type of managed service identity.
-     *
+     * 
      * @param type the type value to set.
      * @return the Identity object itself.
      */
@@ -86,7 +91,7 @@ public final class Identity {
      * Get the userAssignedIdentities property: The list of user identities associated with the resource. The user
      * identity dictionary key references will be ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
-     *
+     * 
      * @return the userAssignedIdentities value.
      */
     public Map<String, UserIdentityProperties> userAssignedIdentities() {
@@ -97,7 +102,7 @@ public final class Identity {
      * Set the userAssignedIdentities property: The list of user identities associated with the resource. The user
      * identity dictionary key references will be ARM resource ids in the form:
      * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
-     *
+     * 
      * @param userAssignedIdentities the userAssignedIdentities value to set.
      * @return the Identity object itself.
      */
@@ -108,7 +113,7 @@ public final class Identity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -117,14 +122,11 @@ public final class Identity {
                 .logExceptionAsError(new IllegalArgumentException("Missing required property type in model Identity"));
         }
         if (userAssignedIdentities() != null) {
-            userAssignedIdentities()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            userAssignedIdentities().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 

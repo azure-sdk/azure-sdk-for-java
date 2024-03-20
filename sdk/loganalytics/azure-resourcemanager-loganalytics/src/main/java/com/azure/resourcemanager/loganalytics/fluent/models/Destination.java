@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.loganalytics.models.Type;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Destination properties. */
+/**
+ * Destination properties.
+ */
 @Fluent
 public final class Destination {
     /*
@@ -30,14 +32,16 @@ public final class Destination {
     @JsonProperty(value = "metaData")
     private DestinationMetadata innerMetadata;
 
-    /** Creates an instance of Destination class. */
+    /**
+     * Creates an instance of Destination class.
+     */
     public Destination() {
     }
 
     /**
      * Get the resourceId property: The destination resource ID. This can be copied from the Properties entry of the
      * destination resource in Azure.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -47,7 +51,7 @@ public final class Destination {
     /**
      * Set the resourceId property: The destination resource ID. This can be copied from the Properties entry of the
      * destination resource in Azure.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the Destination object itself.
      */
@@ -58,7 +62,7 @@ public final class Destination {
 
     /**
      * Get the type property: The type of the destination resource.
-     *
+     * 
      * @return the type value.
      */
     public Type type() {
@@ -67,7 +71,7 @@ public final class Destination {
 
     /**
      * Get the innerMetadata property: destination meta data.
-     *
+     * 
      * @return the innerMetadata value.
      */
     private DestinationMetadata innerMetadata() {
@@ -77,7 +81,7 @@ public final class Destination {
     /**
      * Get the eventHubName property: Optional. Allows to define an Event Hub name. Not applicable when destination is
      * Storage Account.
-     *
+     * 
      * @return the eventHubName value.
      */
     public String eventHubName() {
@@ -87,7 +91,7 @@ public final class Destination {
     /**
      * Set the eventHubName property: Optional. Allows to define an Event Hub name. Not applicable when destination is
      * Storage Account.
-     *
+     * 
      * @param eventHubName the eventHubName value to set.
      * @return the Destination object itself.
      */
@@ -101,14 +105,13 @@ public final class Destination {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (resourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property resourceId in model Destination"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property resourceId in model Destination"));
         }
         if (innerMetadata() != null) {
             innerMetadata().validate();
