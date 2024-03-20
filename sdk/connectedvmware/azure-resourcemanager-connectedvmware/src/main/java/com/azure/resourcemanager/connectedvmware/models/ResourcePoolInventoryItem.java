@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The resource pool inventory item. */
+/**
+ * The resource pool inventory item.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "inventoryType")
 @JsonTypeName("ResourcePool")
 @Fluent
@@ -20,13 +22,15 @@ public final class ResourcePoolInventoryItem extends InventoryItemProperties {
     @JsonProperty(value = "parent")
     private InventoryItemDetails parent;
 
-    /** Creates an instance of ResourcePoolInventoryItem class. */
+    /**
+     * Creates an instance of ResourcePoolInventoryItem class.
+     */
     public ResourcePoolInventoryItem() {
     }
 
     /**
      * Get the parent property: Parent resourcePool inventory resource details.
-     *
+     * 
      * @return the parent value.
      */
     public InventoryItemDetails parent() {
@@ -35,7 +39,7 @@ public final class ResourcePoolInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the parent property: Parent resourcePool inventory resource details.
-     *
+     * 
      * @param parent the parent value to set.
      * @return the ResourcePoolInventoryItem object itself.
      */
@@ -44,21 +48,27 @@ public final class ResourcePoolInventoryItem extends InventoryItemProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourcePoolInventoryItem withManagedResourceId(String managedResourceId) {
         super.withManagedResourceId(managedResourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourcePoolInventoryItem withMoRefId(String moRefId) {
         super.withMoRefId(moRefId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourcePoolInventoryItem withMoName(String moName) {
         super.withMoName(moName);
@@ -67,7 +77,7 @@ public final class ResourcePoolInventoryItem extends InventoryItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

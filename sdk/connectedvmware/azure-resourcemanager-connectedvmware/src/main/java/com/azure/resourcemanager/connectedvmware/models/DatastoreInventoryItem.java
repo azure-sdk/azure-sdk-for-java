@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The datastore inventory item. */
+/**
+ * The datastore inventory item.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "inventoryType")
 @JsonTypeName("Datastore")
 @Fluent
@@ -26,13 +28,15 @@ public final class DatastoreInventoryItem extends InventoryItemProperties {
     @JsonProperty(value = "freeSpaceGB")
     private Long freeSpaceGB;
 
-    /** Creates an instance of DatastoreInventoryItem class. */
+    /**
+     * Creates an instance of DatastoreInventoryItem class.
+     */
     public DatastoreInventoryItem() {
     }
 
     /**
      * Get the capacityGB property: Gets or sets Maximum capacity of this datastore, in GBs.
-     *
+     * 
      * @return the capacityGB value.
      */
     public Long capacityGB() {
@@ -41,7 +45,7 @@ public final class DatastoreInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the capacityGB property: Gets or sets Maximum capacity of this datastore, in GBs.
-     *
+     * 
      * @param capacityGB the capacityGB value to set.
      * @return the DatastoreInventoryItem object itself.
      */
@@ -52,7 +56,7 @@ public final class DatastoreInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the freeSpaceGB property: Gets or sets Available space of this datastore, in GBs.
-     *
+     * 
      * @return the freeSpaceGB value.
      */
     public Long freeSpaceGB() {
@@ -61,7 +65,7 @@ public final class DatastoreInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the freeSpaceGB property: Gets or sets Available space of this datastore, in GBs.
-     *
+     * 
      * @param freeSpaceGB the freeSpaceGB value to set.
      * @return the DatastoreInventoryItem object itself.
      */
@@ -70,21 +74,27 @@ public final class DatastoreInventoryItem extends InventoryItemProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DatastoreInventoryItem withManagedResourceId(String managedResourceId) {
         super.withManagedResourceId(managedResourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DatastoreInventoryItem withMoRefId(String moRefId) {
         super.withMoRefId(moRefId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DatastoreInventoryItem withMoName(String moName) {
         super.withMoName(moName);
@@ -93,7 +103,7 @@ public final class DatastoreInventoryItem extends InventoryItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

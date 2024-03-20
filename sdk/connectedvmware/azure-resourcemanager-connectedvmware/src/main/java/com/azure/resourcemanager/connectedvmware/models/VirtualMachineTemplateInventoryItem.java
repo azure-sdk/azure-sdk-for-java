@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The VM Template inventory item. */
+/**
+ * The VM Template inventory item.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "inventoryType")
 @JsonTypeName("VirtualMachineTemplate")
 @Fluent
@@ -63,13 +65,15 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
     @JsonProperty(value = "folderPath")
     private String folderPath;
 
-    /** Creates an instance of VirtualMachineTemplateInventoryItem class. */
+    /**
+     * Creates an instance of VirtualMachineTemplateInventoryItem class.
+     */
     public VirtualMachineTemplateInventoryItem() {
     }
 
     /**
      * Get the memorySizeMB property: Gets or sets memory size in MBs for the template.
-     *
+     * 
      * @return the memorySizeMB value.
      */
     public Integer memorySizeMB() {
@@ -78,7 +82,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Set the memorySizeMB property: Gets or sets memory size in MBs for the template.
-     *
+     * 
      * @param memorySizeMB the memorySizeMB value to set.
      * @return the VirtualMachineTemplateInventoryItem object itself.
      */
@@ -89,7 +93,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Get the numCPUs property: Gets or sets the number of vCPUs for the template.
-     *
+     * 
      * @return the numCPUs value.
      */
     public Integer numCPUs() {
@@ -98,7 +102,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Set the numCPUs property: Gets or sets the number of vCPUs for the template.
-     *
+     * 
      * @param numCPUs the numCPUs value to set.
      * @return the VirtualMachineTemplateInventoryItem object itself.
      */
@@ -108,9 +112,9 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
     }
 
     /**
-     * Get the numCoresPerSocket property: Gets or sets the number of cores per socket for the template. Defaults to 1
-     * if unspecified.
-     *
+     * Get the numCoresPerSocket property: Gets or sets the number of cores per socket for the template.
+     * Defaults to 1 if unspecified.
+     * 
      * @return the numCoresPerSocket value.
      */
     public Integer numCoresPerSocket() {
@@ -118,9 +122,9 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
     }
 
     /**
-     * Set the numCoresPerSocket property: Gets or sets the number of cores per socket for the template. Defaults to 1
-     * if unspecified.
-     *
+     * Set the numCoresPerSocket property: Gets or sets the number of cores per socket for the template.
+     * Defaults to 1 if unspecified.
+     * 
      * @param numCoresPerSocket the numCoresPerSocket value to set.
      * @return the VirtualMachineTemplateInventoryItem object itself.
      */
@@ -131,7 +135,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Get the osType property: Gets or sets the type of the os.
-     *
+     * 
      * @return the osType value.
      */
     public OsType osType() {
@@ -140,7 +144,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Set the osType property: Gets or sets the type of the os.
-     *
+     * 
      * @param osType the osType value to set.
      * @return the VirtualMachineTemplateInventoryItem object itself.
      */
@@ -151,7 +155,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Get the osName property: Gets or sets os name.
-     *
+     * 
      * @return the osName value.
      */
     public String osName() {
@@ -160,7 +164,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Set the osName property: Gets or sets os name.
-     *
+     * 
      * @param osName the osName value to set.
      * @return the VirtualMachineTemplateInventoryItem object itself.
      */
@@ -172,7 +176,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
     /**
      * Get the toolsVersionStatus property: Gets or sets the current version status of VMware Tools installed in the
      * guest operating system.
-     *
+     * 
      * @return the toolsVersionStatus value.
      */
     public String toolsVersionStatus() {
@@ -181,7 +185,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Get the toolsVersion property: Gets or sets the current version of VMware Tools.
-     *
+     * 
      * @return the toolsVersion value.
      */
     public String toolsVersion() {
@@ -190,7 +194,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Get the folderPath property: Gets or sets the folder path of the template.
-     *
+     * 
      * @return the folderPath value.
      */
     public String folderPath() {
@@ -199,7 +203,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Set the folderPath property: Gets or sets the folder path of the template.
-     *
+     * 
      * @param folderPath the folderPath value to set.
      * @return the VirtualMachineTemplateInventoryItem object itself.
      */
@@ -208,21 +212,27 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualMachineTemplateInventoryItem withManagedResourceId(String managedResourceId) {
         super.withManagedResourceId(managedResourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualMachineTemplateInventoryItem withMoRefId(String moRefId) {
         super.withMoRefId(moRefId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualMachineTemplateInventoryItem withMoName(String moName) {
         super.withMoName(moName);
@@ -231,7 +241,7 @@ public final class VirtualMachineTemplateInventoryItem extends InventoryItemProp
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

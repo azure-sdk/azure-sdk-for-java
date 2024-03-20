@@ -7,7 +7,9 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies the security settings like secure boot used while creating the virtual machine. */
+/**
+ * Specifies the security settings like secure boot used while creating the virtual machine.
+ */
 @Fluent
 public final class UefiSettings {
     /*
@@ -16,13 +18,15 @@ public final class UefiSettings {
     @JsonProperty(value = "secureBootEnabled")
     private Boolean secureBootEnabled;
 
-    /** Creates an instance of UefiSettings class. */
+    /**
+     * Creates an instance of UefiSettings class.
+     */
     public UefiSettings() {
     }
 
     /**
      * Get the secureBootEnabled property: Specifies whether secure boot should be enabled on the virtual machine.
-     *
+     * 
      * @return the secureBootEnabled value.
      */
     public Boolean secureBootEnabled() {
@@ -31,7 +35,7 @@ public final class UefiSettings {
 
     /**
      * Set the secureBootEnabled property: Specifies whether secure boot should be enabled on the virtual machine.
-     *
+     * 
      * @param secureBootEnabled the secureBootEnabled value to set.
      * @return the UefiSettings object itself.
      */
@@ -42,7 +46,7 @@ public final class UefiSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

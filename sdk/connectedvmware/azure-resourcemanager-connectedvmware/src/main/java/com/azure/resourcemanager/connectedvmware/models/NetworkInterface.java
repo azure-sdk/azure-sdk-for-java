@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Network Interface model. */
+/**
+ * Network Interface model.
+ */
 @Fluent
 public final class NetworkInterface {
     /*
@@ -78,13 +80,15 @@ public final class NetworkInterface {
     @JsonProperty(value = "ipSettings")
     private NicIpSettings ipSettings;
 
-    /** Creates an instance of NetworkInterface class. */
+    /**
+     * Creates an instance of NetworkInterface class.
+     */
     public NetworkInterface() {
     }
 
     /**
      * Get the name property: Gets or sets the name of the network interface.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -93,7 +97,7 @@ public final class NetworkInterface {
 
     /**
      * Set the name property: Gets or sets the name of the network interface.
-     *
+     * 
      * @param name the name value to set.
      * @return the NetworkInterface object itself.
      */
@@ -104,7 +108,7 @@ public final class NetworkInterface {
 
     /**
      * Get the label property: Gets or sets the label of the virtual network in vCenter that the nic is connected to.
-     *
+     * 
      * @return the label value.
      */
     public String label() {
@@ -113,7 +117,7 @@ public final class NetworkInterface {
 
     /**
      * Get the ipAddresses property: Gets or sets the nic ip addresses.
-     *
+     * 
      * @return the ipAddresses value.
      */
     public List<String> ipAddresses() {
@@ -122,7 +126,7 @@ public final class NetworkInterface {
 
     /**
      * Get the macAddress property: Gets or sets the NIC MAC address.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -131,7 +135,7 @@ public final class NetworkInterface {
 
     /**
      * Get the networkId property: Gets or sets the ARM Id of the network resource to connect the virtual machine.
-     *
+     * 
      * @return the networkId value.
      */
     public String networkId() {
@@ -140,7 +144,7 @@ public final class NetworkInterface {
 
     /**
      * Set the networkId property: Gets or sets the ARM Id of the network resource to connect the virtual machine.
-     *
+     * 
      * @param networkId the networkId value to set.
      * @return the NetworkInterface object itself.
      */
@@ -151,7 +155,7 @@ public final class NetworkInterface {
 
     /**
      * Get the nicType property: NIC type.
-     *
+     * 
      * @return the nicType value.
      */
     public NicType nicType() {
@@ -160,7 +164,7 @@ public final class NetworkInterface {
 
     /**
      * Set the nicType property: NIC type.
-     *
+     * 
      * @param nicType the nicType value to set.
      * @return the NetworkInterface object itself.
      */
@@ -171,7 +175,7 @@ public final class NetworkInterface {
 
     /**
      * Get the powerOnBoot property: Gets or sets the power on boot.
-     *
+     * 
      * @return the powerOnBoot value.
      */
     public PowerOnBootOption powerOnBoot() {
@@ -180,7 +184,7 @@ public final class NetworkInterface {
 
     /**
      * Set the powerOnBoot property: Gets or sets the power on boot.
-     *
+     * 
      * @param powerOnBoot the powerOnBoot value to set.
      * @return the NetworkInterface object itself.
      */
@@ -191,8 +195,9 @@ public final class NetworkInterface {
 
     /**
      * Get the networkMoRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID of the virtual
-     * network that the nic is connected to.
-     *
+     * network
+     * that the nic is connected to.
+     * 
      * @return the networkMoRefId value.
      */
     public String networkMoRefId() {
@@ -200,9 +205,9 @@ public final class NetworkInterface {
     }
 
     /**
-     * Get the networkMoName property: Gets or sets the name of the virtual network in vCenter that the nic is connected
-     * to.
-     *
+     * Get the networkMoName property: Gets or sets the name of the virtual network in vCenter that the nic is
+     * connected to.
+     * 
      * @return the networkMoName value.
      */
     public String networkMoName() {
@@ -211,7 +216,7 @@ public final class NetworkInterface {
 
     /**
      * Get the deviceKey property: Gets or sets the device key value.
-     *
+     * 
      * @return the deviceKey value.
      */
     public Integer deviceKey() {
@@ -220,7 +225,7 @@ public final class NetworkInterface {
 
     /**
      * Set the deviceKey property: Gets or sets the device key value.
-     *
+     * 
      * @param deviceKey the deviceKey value to set.
      * @return the NetworkInterface object itself.
      */
@@ -231,7 +236,7 @@ public final class NetworkInterface {
 
     /**
      * Get the ipSettings property: Gets or sets the ipsettings.
-     *
+     * 
      * @return the ipSettings value.
      */
     public NicIpSettings ipSettings() {
@@ -240,7 +245,7 @@ public final class NetworkInterface {
 
     /**
      * Set the ipSettings property: Gets or sets the ipsettings.
-     *
+     * 
      * @param ipSettings the ipSettings value to set.
      * @return the NetworkInterface object itself.
      */
@@ -251,7 +256,7 @@ public final class NetworkInterface {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

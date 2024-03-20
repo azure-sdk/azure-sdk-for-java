@@ -43,13 +43,15 @@ public final class VirtualScsiController {
     @JsonProperty(value = "sharing")
     private VirtualScsiSharing sharing;
 
-    /** Creates an instance of VirtualScsiController class. */
+    /**
+     * Creates an instance of VirtualScsiController class.
+     */
     public VirtualScsiController() {
     }
 
     /**
      * Get the type property: Gets or sets the controller type.
-     *
+     * 
      * @return the type value.
      */
     public ScsiControllerType type() {
@@ -58,7 +60,7 @@ public final class VirtualScsiController {
 
     /**
      * Set the type property: Gets or sets the controller type.
-     *
+     * 
      * @param type the type value to set.
      * @return the VirtualScsiController object itself.
      */
@@ -69,7 +71,7 @@ public final class VirtualScsiController {
 
     /**
      * Get the controllerKey property: Gets or sets the key of the controller.
-     *
+     * 
      * @return the controllerKey value.
      */
     public Integer controllerKey() {
@@ -78,7 +80,7 @@ public final class VirtualScsiController {
 
     /**
      * Set the controllerKey property: Gets or sets the key of the controller.
-     *
+     * 
      * @param controllerKey the controllerKey value to set.
      * @return the VirtualScsiController object itself.
      */
@@ -89,7 +91,7 @@ public final class VirtualScsiController {
 
     /**
      * Get the busNumber property: Gets or sets the bus number of the controller.
-     *
+     * 
      * @return the busNumber value.
      */
     public Integer busNumber() {
@@ -98,7 +100,7 @@ public final class VirtualScsiController {
 
     /**
      * Set the busNumber property: Gets or sets the bus number of the controller.
-     *
+     * 
      * @param busNumber the busNumber value to set.
      * @return the VirtualScsiController object itself.
      */
@@ -109,7 +111,7 @@ public final class VirtualScsiController {
 
     /**
      * Get the scsiCtlrUnitNumber property: Gets or sets the SCSI controller unit number.
-     *
+     * 
      * @return the scsiCtlrUnitNumber value.
      */
     public Integer scsiCtlrUnitNumber() {
@@ -118,7 +120,7 @@ public final class VirtualScsiController {
 
     /**
      * Set the scsiCtlrUnitNumber property: Gets or sets the SCSI controller unit number.
-     *
+     * 
      * @param scsiCtlrUnitNumber the scsiCtlrUnitNumber value to set.
      * @return the VirtualScsiController object itself.
      */
@@ -129,7 +131,7 @@ public final class VirtualScsiController {
 
     /**
      * Get the sharing property: Gets or sets the sharing mode.
-     *
+     * 
      * @return the sharing value.
      */
     public VirtualScsiSharing sharing() {
@@ -138,7 +140,7 @@ public final class VirtualScsiController {
 
     /**
      * Set the sharing property: Gets or sets the sharing mode.
-     *
+     * 
      * @param sharing the sharing value to set.
      * @return the VirtualScsiController object itself.
      */
@@ -149,7 +151,7 @@ public final class VirtualScsiController {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.VirtualMachineTem
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of VirtualMachineTemplates. */
+/**
+ * List of VirtualMachineTemplates.
+ */
 @Fluent
 public final class VirtualMachineTemplatesList {
     /*
@@ -25,13 +27,15 @@ public final class VirtualMachineTemplatesList {
     @JsonProperty(value = "value", required = true)
     private List<VirtualMachineTemplateInner> value;
 
-    /** Creates an instance of VirtualMachineTemplatesList class. */
+    /**
+     * Creates an instance of VirtualMachineTemplatesList class.
+     */
     public VirtualMachineTemplatesList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of VirtualMachineTemplates.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +44,7 @@ public final class VirtualMachineTemplatesList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of VirtualMachineTemplates.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the VirtualMachineTemplatesList object itself.
      */
@@ -51,7 +55,7 @@ public final class VirtualMachineTemplatesList {
 
     /**
      * Get the value property: Array of VirtualMachineTemplates.
-     *
+     * 
      * @return the value value.
      */
     public List<VirtualMachineTemplateInner> value() {
@@ -60,7 +64,7 @@ public final class VirtualMachineTemplatesList {
 
     /**
      * Set the value property: Array of VirtualMachineTemplates.
-     *
+     * 
      * @param value the value value to set.
      * @return the VirtualMachineTemplatesList object itself.
      */
@@ -71,15 +75,13 @@ public final class VirtualMachineTemplatesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model VirtualMachineTemplatesList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model VirtualMachineTemplatesList"));
         } else {
             value().forEach(e -> e.validate());
         }

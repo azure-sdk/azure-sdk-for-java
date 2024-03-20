@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Specifies the storage settings for the virtual machine disks. */
+/**
+ * Specifies the storage settings for the virtual machine disks.
+ */
 @Fluent
 public final class StorageProfileUpdate {
     /*
@@ -17,13 +19,15 @@ public final class StorageProfileUpdate {
     @JsonProperty(value = "disks")
     private List<VirtualDiskUpdate> disks;
 
-    /** Creates an instance of StorageProfileUpdate class. */
+    /**
+     * Creates an instance of StorageProfileUpdate class.
+     */
     public StorageProfileUpdate() {
     }
 
     /**
      * Get the disks property: Gets or sets the list of virtual disks associated with the virtual machine.
-     *
+     * 
      * @return the disks value.
      */
     public List<VirtualDiskUpdate> disks() {
@@ -32,7 +36,7 @@ public final class StorageProfileUpdate {
 
     /**
      * Set the disks property: Gets or sets the list of virtual disks associated with the virtual machine.
-     *
+     * 
      * @param disks the disks value to set.
      * @return the StorageProfileUpdate object itself.
      */
@@ -43,7 +47,7 @@ public final class StorageProfileUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

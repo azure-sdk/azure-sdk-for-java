@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.VmInstanceHybridI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of HybridIdentityMetadata. */
+/**
+ * List of HybridIdentityMetadata.
+ */
 @Fluent
 public final class VmInstanceHybridIdentityMetadataList {
     /*
@@ -25,13 +27,15 @@ public final class VmInstanceHybridIdentityMetadataList {
     @JsonProperty(value = "value", required = true)
     private List<VmInstanceHybridIdentityMetadataInner> value;
 
-    /** Creates an instance of VmInstanceHybridIdentityMetadataList class. */
+    /**
+     * Creates an instance of VmInstanceHybridIdentityMetadataList class.
+     */
     public VmInstanceHybridIdentityMetadataList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of HybridIdentityMetadata.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +44,7 @@ public final class VmInstanceHybridIdentityMetadataList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of HybridIdentityMetadata.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the VmInstanceHybridIdentityMetadataList object itself.
      */
@@ -51,7 +55,7 @@ public final class VmInstanceHybridIdentityMetadataList {
 
     /**
      * Get the value property: Array of HybridIdentityMetadata.
-     *
+     * 
      * @return the value value.
      */
     public List<VmInstanceHybridIdentityMetadataInner> value() {
@@ -60,7 +64,7 @@ public final class VmInstanceHybridIdentityMetadataList {
 
     /**
      * Set the value property: Array of HybridIdentityMetadata.
-     *
+     * 
      * @param value the value value to set.
      * @return the VmInstanceHybridIdentityMetadataList object itself.
      */
@@ -71,15 +75,13 @@ public final class VmInstanceHybridIdentityMetadataList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model VmInstanceHybridIdentityMetadataList"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model VmInstanceHybridIdentityMetadataList"));
         } else {
             value().forEach(e -> e.validate());
         }

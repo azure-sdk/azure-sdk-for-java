@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines the different types of SCSI controllers. */
+/**
+ * Defines the different types of SCSI controllers.
+ */
 public final class ScsiControllerType extends ExpandableStringEnum<ScsiControllerType> {
-    /** Static value lsilogic for ScsiControllerType. */
+    /**
+     * Static value lsilogic for ScsiControllerType.
+     */
     public static final ScsiControllerType LSILOGIC = fromString("lsilogic");
 
-    /** Static value buslogic for ScsiControllerType. */
+    /**
+     * Static value buslogic for ScsiControllerType.
+     */
     public static final ScsiControllerType BUSLOGIC = fromString("buslogic");
 
-    /** Static value pvscsi for ScsiControllerType. */
+    /**
+     * Static value pvscsi for ScsiControllerType.
+     */
     public static final ScsiControllerType PVSCSI = fromString("pvscsi");
 
-    /** Static value lsilogicsas for ScsiControllerType. */
+    /**
+     * Static value lsilogicsas for ScsiControllerType.
+     */
     public static final ScsiControllerType LSILOGICSAS = fromString("lsilogicsas");
 
     /**
      * Creates a new instance of ScsiControllerType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class ScsiControllerType extends ExpandableStringEnum<ScsiControlle
 
     /**
      * Creates or finds a ScsiControllerType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ScsiControllerType.
      */
@@ -44,7 +54,7 @@ public final class ScsiControllerType extends ExpandableStringEnum<ScsiControlle
 
     /**
      * Gets known ScsiControllerType values.
-     *
+     * 
      * @return known ScsiControllerType values.
      */
     public static Collection<ScsiControllerType> values() {

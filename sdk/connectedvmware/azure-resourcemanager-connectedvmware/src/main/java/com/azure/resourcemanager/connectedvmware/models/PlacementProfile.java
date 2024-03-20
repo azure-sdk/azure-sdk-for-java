@@ -7,7 +7,9 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies the compute and storage placement settings for the virtual machine. */
+/**
+ * Specifies the compute and storage placement settings for the virtual machine.
+ */
 @Fluent
 public final class PlacementProfile {
     /*
@@ -34,14 +36,16 @@ public final class PlacementProfile {
     @JsonProperty(value = "datastoreId")
     private String datastoreId;
 
-    /** Creates an instance of PlacementProfile class. */
+    /**
+     * Creates an instance of PlacementProfile class.
+     */
     public PlacementProfile() {
     }
 
     /**
      * Get the resourcePoolId property: Gets or sets the ARM Id of the resourcePool resource on which this virtual
      * machine will deploy.
-     *
+     * 
      * @return the resourcePoolId value.
      */
     public String resourcePoolId() {
@@ -51,7 +55,7 @@ public final class PlacementProfile {
     /**
      * Set the resourcePoolId property: Gets or sets the ARM Id of the resourcePool resource on which this virtual
      * machine will deploy.
-     *
+     * 
      * @param resourcePoolId the resourcePoolId value to set.
      * @return the PlacementProfile object itself.
      */
@@ -63,7 +67,7 @@ public final class PlacementProfile {
     /**
      * Get the clusterId property: Gets or sets the ARM Id of the cluster resource on which this virtual machine will
      * deploy.
-     *
+     * 
      * @return the clusterId value.
      */
     public String clusterId() {
@@ -73,7 +77,7 @@ public final class PlacementProfile {
     /**
      * Set the clusterId property: Gets or sets the ARM Id of the cluster resource on which this virtual machine will
      * deploy.
-     *
+     * 
      * @param clusterId the clusterId value to set.
      * @return the PlacementProfile object itself.
      */
@@ -84,7 +88,7 @@ public final class PlacementProfile {
 
     /**
      * Get the hostId property: Gets or sets the ARM Id of the host resource on which this virtual machine will deploy.
-     *
+     * 
      * @return the hostId value.
      */
     public String hostId() {
@@ -93,7 +97,7 @@ public final class PlacementProfile {
 
     /**
      * Set the hostId property: Gets or sets the ARM Id of the host resource on which this virtual machine will deploy.
-     *
+     * 
      * @param hostId the hostId value to set.
      * @return the PlacementProfile object itself.
      */
@@ -103,9 +107,9 @@ public final class PlacementProfile {
     }
 
     /**
-     * Get the datastoreId property: Gets or sets the ARM Id of the datastore resource on which the data for the virtual
-     * machine will be kept.
-     *
+     * Get the datastoreId property: Gets or sets the ARM Id of the datastore resource on which the data for the
+     * virtual machine will be kept.
+     * 
      * @return the datastoreId value.
      */
     public String datastoreId() {
@@ -113,9 +117,9 @@ public final class PlacementProfile {
     }
 
     /**
-     * Set the datastoreId property: Gets or sets the ARM Id of the datastore resource on which the data for the virtual
-     * machine will be kept.
-     *
+     * Set the datastoreId property: Gets or sets the ARM Id of the datastore resource on which the data for the
+     * virtual machine will be kept.
+     * 
      * @param datastoreId the datastoreId value to set.
      * @return the PlacementProfile object itself.
      */
@@ -126,7 +130,7 @@ public final class PlacementProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies the Security profile settings for the virtual machine. */
+/**
+ * Specifies the Security profile settings for the virtual machine.
+ */
 @Fluent
 public final class SecurityProfile {
     /*
@@ -16,14 +18,16 @@ public final class SecurityProfile {
     @JsonProperty(value = "uefiSettings")
     private UefiSettings uefiSettings;
 
-    /** Creates an instance of SecurityProfile class. */
+    /**
+     * Creates an instance of SecurityProfile class.
+     */
     public SecurityProfile() {
     }
 
     /**
      * Get the uefiSettings property: Specifies the security settings like secure boot used while creating the virtual
      * machine.
-     *
+     * 
      * @return the uefiSettings value.
      */
     public UefiSettings uefiSettings() {
@@ -33,7 +37,7 @@ public final class SecurityProfile {
     /**
      * Set the uefiSettings property: Specifies the security settings like secure boot used while creating the virtual
      * machine.
-     *
+     * 
      * @param uefiSettings the uefiSettings value to set.
      * @return the SecurityProfile object itself.
      */
@@ -44,7 +48,7 @@ public final class SecurityProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

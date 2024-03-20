@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.InventoryItemInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of InventoryItems. */
+/**
+ * List of InventoryItems.
+ */
 @Fluent
 public final class InventoryItemsList {
     /*
@@ -25,13 +27,15 @@ public final class InventoryItemsList {
     @JsonProperty(value = "value", required = true)
     private List<InventoryItemInner> value;
 
-    /** Creates an instance of InventoryItemsList class. */
+    /**
+     * Creates an instance of InventoryItemsList class.
+     */
     public InventoryItemsList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of InventoryItems.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +44,7 @@ public final class InventoryItemsList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of InventoryItems.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the InventoryItemsList object itself.
      */
@@ -51,7 +55,7 @@ public final class InventoryItemsList {
 
     /**
      * Get the value property: Array of InventoryItems.
-     *
+     * 
      * @return the value value.
      */
     public List<InventoryItemInner> value() {
@@ -60,7 +64,7 @@ public final class InventoryItemsList {
 
     /**
      * Set the value property: Array of InventoryItems.
-     *
+     * 
      * @param value the value value to set.
      * @return the InventoryItemsList object itself.
      */
@@ -71,14 +75,13 @@ public final class InventoryItemsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model InventoryItemsList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model InventoryItemsList"));
         } else {
             value().forEach(e -> e.validate());
         }

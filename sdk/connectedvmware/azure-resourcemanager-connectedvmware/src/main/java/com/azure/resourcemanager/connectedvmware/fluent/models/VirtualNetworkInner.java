@@ -15,7 +15,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Define the virtualNetwork. */
+/**
+ * Define the virtualNetwork.
+ */
 @Fluent
 public final class VirtualNetworkInner extends Resource {
     /*
@@ -38,19 +40,21 @@ public final class VirtualNetworkInner extends Resource {
 
     /*
      * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g.
-     * ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist
+     * ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist
      * this value.
      */
     @JsonProperty(value = "kind")
     private String kind;
 
-    /** Creates an instance of VirtualNetworkInner class. */
+    /**
+     * Creates an instance of VirtualNetworkInner class.
+     */
     public VirtualNetworkInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private VirtualNetworkProperties innerProperties() {
@@ -59,7 +63,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the extendedLocation property: Gets or sets the extended location.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -68,7 +72,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the extendedLocation property: Gets or sets the extended location.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -79,7 +83,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the systemData property: The system data.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -90,7 +94,7 @@ public final class VirtualNetworkInner extends Resource {
      * Get the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
      * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
      * validate and persist this value.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -101,7 +105,7 @@ public final class VirtualNetworkInner extends Resource {
      * Set the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
      * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
      * validate and persist this value.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -110,14 +114,18 @@ public final class VirtualNetworkInner extends Resource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -126,7 +134,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.
-     *
+     * 
      * @return the uuid value.
      */
     public String uuid() {
@@ -135,7 +143,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this template resides.
-     *
+     * 
      * @return the vCenterId value.
      */
     public String vCenterId() {
@@ -144,7 +152,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this template resides.
-     *
+     * 
      * @param vCenterId the vCenterId value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -158,7 +166,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the moRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID for the virtual network.
-     *
+     * 
      * @return the moRefId value.
      */
     public String moRefId() {
@@ -167,7 +175,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the moRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID for the virtual network.
-     *
+     * 
      * @param moRefId the moRefId value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -181,7 +189,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the virtual network.
-     *
+     * 
      * @return the inventoryItemId value.
      */
     public String inventoryItemId() {
@@ -190,7 +198,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Set the inventoryItemId property: Gets or sets the inventory Item ID for the virtual network.
-     *
+     * 
      * @param inventoryItemId the inventoryItemId value to set.
      * @return the VirtualNetworkInner object itself.
      */
@@ -204,7 +212,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the moName property: Gets or sets the vCenter Managed Object name for the virtual network.
-     *
+     * 
      * @return the moName value.
      */
     public String moName() {
@@ -213,7 +221,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the customResourceName property: Gets the name of the corresponding resource in Kubernetes.
-     *
+     * 
      * @return the customResourceName value.
      */
     public String customResourceName() {
@@ -222,7 +230,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the statuses property: The resource status information.
-     *
+     * 
      * @return the statuses value.
      */
     public List<ResourceStatus> statuses() {
@@ -231,7 +239,7 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Get the provisioningState property: Gets the provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -240,15 +248,13 @@ public final class VirtualNetworkInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model VirtualNetworkInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model VirtualNetworkInner"));
         } else {
             innerProperties().validate();
         }
