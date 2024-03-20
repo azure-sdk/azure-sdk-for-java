@@ -10,7 +10,8 @@ package com.azure.resourcemanager.apicenter.generated;
 public final class ApiVersionsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiVersions_Get.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/ApiVersions_Get.
+     * json
      */
     /**
      * Sample code: ApiVersions_Get.
