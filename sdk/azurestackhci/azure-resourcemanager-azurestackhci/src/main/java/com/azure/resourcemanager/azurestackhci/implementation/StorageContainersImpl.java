@@ -99,20 +99,14 @@ public final class StorageContainersImpl
     }
 
     public StorageContainers create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageContainersOperations()
-                .createOrUpdate(resourceGroupName, storageContainerName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getStorageContainersOperations()
+            .createOrUpdate(resourceGroupName, storageContainerName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public StorageContainers create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageContainersOperations()
-                .createOrUpdate(resourceGroupName, storageContainerName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getStorageContainersOperations()
+            .createOrUpdate(resourceGroupName, storageContainerName, this.innerModel(), context);
         return this;
     }
 
@@ -128,49 +122,34 @@ public final class StorageContainersImpl
     }
 
     public StorageContainers apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageContainersOperations()
-                .update(resourceGroupName, storageContainerName, updateStorageContainers, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getStorageContainersOperations().update(resourceGroupName,
+            storageContainerName, updateStorageContainers, Context.NONE);
         return this;
     }
 
     public StorageContainers apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageContainersOperations()
-                .update(resourceGroupName, storageContainerName, updateStorageContainers, context);
+        this.innerObject = serviceManager.serviceClient().getStorageContainersOperations().update(resourceGroupName,
+            storageContainerName, updateStorageContainers, context);
         return this;
     }
 
-    StorageContainersImpl(
-        StorageContainersInner innerObject,
+    StorageContainersImpl(StorageContainersInner innerObject,
         com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.storageContainerName = Utils.getValueFromIdByName(innerObject.id(), "storageContainers");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.storageContainerName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "storageContainers");
     }
 
     public StorageContainers refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageContainersOperations()
-                .getByResourceGroupWithResponse(resourceGroupName, storageContainerName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getStorageContainersOperations()
+            .getByResourceGroupWithResponse(resourceGroupName, storageContainerName, Context.NONE).getValue();
         return this;
     }
 
     public StorageContainers refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getStorageContainersOperations()
-                .getByResourceGroupWithResponse(resourceGroupName, storageContainerName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getStorageContainersOperations()
+            .getByResourceGroupWithResponse(resourceGroupName, storageContainerName, context).getValue();
         return this;
     }
 

@@ -44,24 +44,24 @@ import reactor.core.publisher.Mono;
  * An instance of this class provides access to all the operations defined in MarketplaceGalleryImagesOperationsClient.
  */
 public final class MarketplaceGalleryImagesOperationsClientImpl implements MarketplaceGalleryImagesOperationsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final MarketplaceGalleryImagesOperationsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AzureStackHciClientImpl client;
 
     /**
      * Initializes an instance of MarketplaceGalleryImagesOperationsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     MarketplaceGalleryImagesOperationsClientImpl(AzureStackHciClientImpl client) {
-        this.service =
-            RestProxy
-                .create(
-                    MarketplaceGalleryImagesOperationsService.class,
-                    client.getHttpPipeline(),
-                    client.getSerializerAdapter());
+        this.service = RestProxy.create(MarketplaceGalleryImagesOperationsService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -72,112 +72,87 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
     @Host("{$host}")
     @ServiceInterface(name = "AzureStackHciClientM")
     public interface MarketplaceGalleryImagesOperationsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/{marketplaceGalleryImageName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/{marketplaceGalleryImageName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<MarketplaceGalleryImagesInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<MarketplaceGalleryImagesInner>> getByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("marketplaceGalleryImageName") String marketplaceGalleryImageName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/{marketplaceGalleryImageName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/{marketplaceGalleryImageName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("marketplaceGalleryImageName") String marketplaceGalleryImageName,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") MarketplaceGalleryImagesInner marketplaceGalleryImages,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/{marketplaceGalleryImageName}")
-        @ExpectedResponses({202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/{marketplaceGalleryImageName}")
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("marketplaceGalleryImageName") String marketplaceGalleryImageName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/{marketplaceGalleryImageName}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages/{marketplaceGalleryImageName}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("marketplaceGalleryImageName") String marketplaceGalleryImageName,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<MarketplaceGalleryImagesListResult>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<MarketplaceGalleryImagesListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.AzureStackHCI/marketplaceGalleryImages")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<MarketplaceGalleryImagesListResult>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<MarketplaceGalleryImagesListResult>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MarketplaceGalleryImagesListResult>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<MarketplaceGalleryImagesListResult>> listAllNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -186,49 +161,35 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return a marketplace gallery image along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<MarketplaceGalleryImagesInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String marketplaceGalleryImageName) {
+    private Mono<Response<MarketplaceGalleryImagesInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String marketplaceGalleryImageName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (marketplaceGalleryImageName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter marketplaceGalleryImageName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImageName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            marketplaceGalleryImageName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, marketplaceGalleryImageName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param context The context to associate with this operation.
@@ -238,46 +199,33 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return a marketplace gallery image along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<MarketplaceGalleryImagesInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String marketplaceGalleryImageName, Context context) {
+    private Mono<Response<MarketplaceGalleryImagesInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String marketplaceGalleryImageName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (marketplaceGalleryImageName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter marketplaceGalleryImageName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImageName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                marketplaceGalleryImageName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            marketplaceGalleryImageName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Gets a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -286,15 +234,15 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return a marketplace gallery image on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<MarketplaceGalleryImagesInner> getByResourceGroupAsync(
-        String resourceGroupName, String marketplaceGalleryImageName) {
+    private Mono<MarketplaceGalleryImagesInner> getByResourceGroupAsync(String resourceGroupName,
+        String marketplaceGalleryImageName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, marketplaceGalleryImageName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param context The context to associate with this operation.
@@ -304,14 +252,14 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return a marketplace gallery image along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<MarketplaceGalleryImagesInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String marketplaceGalleryImageName, Context context) {
+    public Response<MarketplaceGalleryImagesInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String marketplaceGalleryImageName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, marketplaceGalleryImageName, context).block();
     }
 
     /**
      * Gets a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -320,15 +268,15 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return a marketplace gallery image.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public MarketplaceGalleryImagesInner getByResourceGroup(
-        String resourceGroupName, String marketplaceGalleryImageName) {
+    public MarketplaceGalleryImagesInner getByResourceGroup(String resourceGroupName,
+        String marketplaceGalleryImageName) {
         return getByResourceGroupWithResponse(resourceGroupName, marketplaceGalleryImageName, Context.NONE).getValue();
     }
 
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -336,63 +284,45 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the marketplace gallery image resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesInner marketplaceGalleryImages) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String marketplaceGalleryImageName, MarketplaceGalleryImagesInner marketplaceGalleryImages) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (marketplaceGalleryImageName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter marketplaceGalleryImageName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImageName is required and cannot be null."));
         }
         if (marketplaceGalleryImages == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter marketplaceGalleryImages is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImages is required and cannot be null."));
         } else {
             marketplaceGalleryImages.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            marketplaceGalleryImageName,
-                            this.client.getApiVersion(),
-                            marketplaceGalleryImages,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, marketplaceGalleryImageName, this.client.getApiVersion(), marketplaceGalleryImages,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -401,61 +331,43 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the marketplace gallery image resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesInner marketplaceGalleryImages,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String marketplaceGalleryImageName, MarketplaceGalleryImagesInner marketplaceGalleryImages, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (marketplaceGalleryImageName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter marketplaceGalleryImageName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImageName is required and cannot be null."));
         }
         if (marketplaceGalleryImages == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter marketplaceGalleryImages is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImages is required and cannot be null."));
         } else {
             marketplaceGalleryImages.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                marketplaceGalleryImageName,
-                this.client.getApiVersion(),
-                marketplaceGalleryImages,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            marketplaceGalleryImageName, this.client.getApiVersion(), marketplaceGalleryImages, accept, context);
     }
 
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -466,26 +378,19 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner>
-        beginCreateOrUpdateAsync(
-            String resourceGroupName,
-            String marketplaceGalleryImageName,
+        beginCreateOrUpdateAsync(String resourceGroupName, String marketplaceGalleryImageName,
             MarketplaceGalleryImagesInner marketplaceGalleryImages) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages);
-        return this
-            .client
-            .<MarketplaceGalleryImagesInner, MarketplaceGalleryImagesInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                MarketplaceGalleryImagesInner.class,
-                MarketplaceGalleryImagesInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages);
+        return this.client.<MarketplaceGalleryImagesInner, MarketplaceGalleryImagesInner>getLroResult(mono,
+            this.client.getHttpPipeline(), MarketplaceGalleryImagesInner.class, MarketplaceGalleryImagesInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -497,29 +402,20 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner>
-        beginCreateOrUpdateAsync(
-            String resourceGroupName,
-            String marketplaceGalleryImageName,
-            MarketplaceGalleryImagesInner marketplaceGalleryImages,
-            Context context) {
+        beginCreateOrUpdateAsync(String resourceGroupName, String marketplaceGalleryImageName,
+            MarketplaceGalleryImagesInner marketplaceGalleryImages, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(
-                resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages, context);
-        return this
-            .client
-            .<MarketplaceGalleryImagesInner, MarketplaceGalleryImagesInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                MarketplaceGalleryImagesInner.class,
-                MarketplaceGalleryImagesInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
+            marketplaceGalleryImageName, marketplaceGalleryImages, context);
+        return this.client.<MarketplaceGalleryImagesInner, MarketplaceGalleryImagesInner>getLroResult(mono,
+            this.client.getHttpPipeline(), MarketplaceGalleryImagesInner.class, MarketplaceGalleryImagesInner.class,
+            context);
     }
 
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -530,18 +426,16 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
+        String resourceGroupName, String marketplaceGalleryImageName,
         MarketplaceGalleryImagesInner marketplaceGalleryImages) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages)
+        return this.beginCreateOrUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages)
             .getSyncPoller();
     }
 
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -553,10 +447,8 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesInner marketplaceGalleryImages,
-        Context context) {
+        String resourceGroupName, String marketplaceGalleryImageName,
+        MarketplaceGalleryImagesInner marketplaceGalleryImages, Context context) {
         return this
             .beginCreateOrUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages, context)
             .getSyncPoller();
@@ -565,7 +457,7 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -575,19 +467,16 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the marketplace gallery image resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<MarketplaceGalleryImagesInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesInner marketplaceGalleryImages) {
-        return beginCreateOrUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages)
-            .last()
+    private Mono<MarketplaceGalleryImagesInner> createOrUpdateAsync(String resourceGroupName,
+        String marketplaceGalleryImageName, MarketplaceGalleryImagesInner marketplaceGalleryImages) {
+        return beginCreateOrUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -598,21 +487,16 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the marketplace gallery image resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<MarketplaceGalleryImagesInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesInner marketplaceGalleryImages,
-        Context context) {
-        return beginCreateOrUpdateAsync(
-                resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+    private Mono<MarketplaceGalleryImagesInner> createOrUpdateAsync(String resourceGroupName,
+        String marketplaceGalleryImageName, MarketplaceGalleryImagesInner marketplaceGalleryImages, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -622,9 +506,7 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the marketplace gallery image resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public MarketplaceGalleryImagesInner createOrUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
+    public MarketplaceGalleryImagesInner createOrUpdate(String resourceGroupName, String marketplaceGalleryImageName,
         MarketplaceGalleryImagesInner marketplaceGalleryImages) {
         return createOrUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages).block();
     }
@@ -632,7 +514,7 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -643,18 +525,15 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the marketplace gallery image resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public MarketplaceGalleryImagesInner createOrUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesInner marketplaceGalleryImages,
-        Context context) {
+    public MarketplaceGalleryImagesInner createOrUpdate(String resourceGroupName, String marketplaceGalleryImageName,
+        MarketplaceGalleryImagesInner marketplaceGalleryImages, Context context) {
         return createOrUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages, context)
             .block();
     }
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -663,49 +542,34 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String marketplaceGalleryImageName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String marketplaceGalleryImageName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (marketplaceGalleryImageName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter marketplaceGalleryImageName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImageName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            marketplaceGalleryImageName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, marketplaceGalleryImageName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param context The context to associate with this operation.
@@ -715,46 +579,33 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String marketplaceGalleryImageName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String marketplaceGalleryImageName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (marketplaceGalleryImageName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter marketplaceGalleryImageName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImageName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                marketplaceGalleryImageName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            marketplaceGalleryImageName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -763,18 +614,16 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String marketplaceGalleryImageName) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName,
+        String marketplaceGalleryImageName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, marketplaceGalleryImageName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param context The context to associate with this operation.
@@ -784,19 +633,18 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String marketplaceGalleryImageName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName,
+        String marketplaceGalleryImageName, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, marketplaceGalleryImageName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, marketplaceGalleryImageName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -805,14 +653,14 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String marketplaceGalleryImageName) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName,
+        String marketplaceGalleryImageName) {
         return this.beginDeleteAsync(resourceGroupName, marketplaceGalleryImageName).getSyncPoller();
     }
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param context The context to associate with this operation.
@@ -822,14 +670,14 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String marketplaceGalleryImageName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String marketplaceGalleryImageName,
+        Context context) {
         return this.beginDeleteAsync(resourceGroupName, marketplaceGalleryImageName, context).getSyncPoller();
     }
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -839,14 +687,13 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String marketplaceGalleryImageName) {
-        return beginDeleteAsync(resourceGroupName, marketplaceGalleryImageName)
-            .last()
+        return beginDeleteAsync(resourceGroupName, marketplaceGalleryImageName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param context The context to associate with this operation.
@@ -857,14 +704,13 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String marketplaceGalleryImageName, Context context) {
-        return beginDeleteAsync(resourceGroupName, marketplaceGalleryImageName, context)
-            .last()
+        return beginDeleteAsync(resourceGroupName, marketplaceGalleryImageName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -878,7 +724,7 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param context The context to associate with this operation.
@@ -893,7 +739,7 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -901,62 +747,44 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the marketplace gallery image resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String marketplaceGalleryImageName, MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (marketplaceGalleryImageName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter marketplaceGalleryImageName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImageName is required and cannot be null."));
         }
         if (marketplaceGalleryImages == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter marketplaceGalleryImages is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImages is required and cannot be null."));
         } else {
             marketplaceGalleryImages.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            marketplaceGalleryImageName,
-                            this.client.getApiVersion(),
-                            marketplaceGalleryImages,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, marketplaceGalleryImageName, this.client.getApiVersion(), marketplaceGalleryImages,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -965,60 +793,43 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the marketplace gallery image resource definition along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages,
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String marketplaceGalleryImageName, MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages,
         Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
         if (marketplaceGalleryImageName == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter marketplaceGalleryImageName is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImageName is required and cannot be null."));
         }
         if (marketplaceGalleryImages == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException("Parameter marketplaceGalleryImages is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter marketplaceGalleryImages is required and cannot be null."));
         } else {
             marketplaceGalleryImages.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                marketplaceGalleryImageName,
-                this.client.getApiVersion(),
-                marketplaceGalleryImages,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            marketplaceGalleryImageName, this.client.getApiVersion(), marketplaceGalleryImages, accept, context);
     }
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -1029,24 +840,18 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner> beginUpdateAsync(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
+        String resourceGroupName, String marketplaceGalleryImageName,
         MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages);
-        return this
-            .client
-            .<MarketplaceGalleryImagesInner, MarketplaceGalleryImagesInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                MarketplaceGalleryImagesInner.class,
-                MarketplaceGalleryImagesInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages);
+        return this.client.<MarketplaceGalleryImagesInner, MarketplaceGalleryImagesInner>getLroResult(mono,
+            this.client.getHttpPipeline(), MarketplaceGalleryImagesInner.class, MarketplaceGalleryImagesInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -1058,26 +863,19 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner> beginUpdateAsync(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages,
-        Context context) {
+        String resourceGroupName, String marketplaceGalleryImageName,
+        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages, context);
-        return this
-            .client
-            .<MarketplaceGalleryImagesInner, MarketplaceGalleryImagesInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                MarketplaceGalleryImagesInner.class,
-                MarketplaceGalleryImagesInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceGroupName, marketplaceGalleryImageName,
+            marketplaceGalleryImages, context);
+        return this.client.<MarketplaceGalleryImagesInner, MarketplaceGalleryImagesInner>getLroResult(mono,
+            this.client.getHttpPipeline(), MarketplaceGalleryImagesInner.class, MarketplaceGalleryImagesInner.class,
+            context);
     }
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -1088,17 +886,15 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner> beginUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
+        String resourceGroupName, String marketplaceGalleryImageName,
         MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages) {
-        return this
-            .beginUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages)
+        return this.beginUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages)
             .getSyncPoller();
     }
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -1110,18 +906,15 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner> beginUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages,
-        Context context) {
-        return this
-            .beginUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages, context)
+        String resourceGroupName, String marketplaceGalleryImageName,
+        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages, Context context) {
+        return this.beginUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages, context)
             .getSyncPoller();
     }
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -1131,18 +924,15 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the marketplace gallery image resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<MarketplaceGalleryImagesInner> updateAsync(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages) {
-        return beginUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages)
-            .last()
+    private Mono<MarketplaceGalleryImagesInner> updateAsync(String resourceGroupName,
+        String marketplaceGalleryImageName, MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages) {
+        return beginUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -1153,19 +943,16 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the marketplace gallery image resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<MarketplaceGalleryImagesInner> updateAsync(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages,
+    private Mono<MarketplaceGalleryImagesInner> updateAsync(String resourceGroupName,
+        String marketplaceGalleryImageName, MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages,
         Context context) {
         return beginUpdateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
+            .last().flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -1175,16 +962,14 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the marketplace gallery image resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public MarketplaceGalleryImagesInner update(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
+    public MarketplaceGalleryImagesInner update(String resourceGroupName, String marketplaceGalleryImageName,
         MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages) {
         return updateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages).block();
     }
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -1195,18 +980,15 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the marketplace gallery image resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public MarketplaceGalleryImagesInner update(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages,
-        Context context) {
+    public MarketplaceGalleryImagesInner update(String resourceGroupName, String marketplaceGalleryImageName,
+        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages, Context context) {
         return updateAsync(resourceGroupName, marketplaceGalleryImageName, marketplaceGalleryImages, context).block();
     }
 
     /**
      * Lists all of the marketplace gallery images in the specified resource group. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1214,19 +996,15 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<MarketplaceGalleryImagesInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName) {
+    private Mono<PagedResponse<MarketplaceGalleryImagesInner>>
+        listByResourceGroupSinglePageAsync(String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1234,32 +1012,17 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<MarketplaceGalleryImagesInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<MarketplaceGalleryImagesInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists all of the marketplace gallery images in the specified resource group. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1268,19 +1031,15 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<MarketplaceGalleryImagesInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
+    private Mono<PagedResponse<MarketplaceGalleryImagesInner>>
+        listByResourceGroupSinglePageAsync(String resourceGroupName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1289,28 +1048,16 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists all of the marketplace gallery images in the specified resource group. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1319,14 +1066,14 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MarketplaceGalleryImagesInner> listByResourceGroupAsync(String resourceGroupName) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName), nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists all of the marketplace gallery images in the specified resource group. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1335,17 +1082,16 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<MarketplaceGalleryImagesInner> listByResourceGroupAsync(
-        String resourceGroupName, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
+    private PagedFlux<MarketplaceGalleryImagesInner> listByResourceGroupAsync(String resourceGroupName,
+        Context context) {
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists all of the marketplace gallery images in the specified resource group. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1360,7 +1106,7 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
     /**
      * Lists all of the marketplace gallery images in the specified resource group. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1376,7 +1122,7 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
     /**
      * Lists all of the marketplace gallery images in the specified subscription. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
@@ -1384,44 +1130,26 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MarketplaceGalleryImagesInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<MarketplaceGalleryImagesInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                this.client.getApiVersion(), accept, context))
+            .<PagedResponse<MarketplaceGalleryImagesInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists all of the marketplace gallery images in the specified subscription. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1431,41 +1159,26 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<MarketplaceGalleryImagesInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
-                accept,
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
                 context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists all of the marketplace gallery images in the specified subscription. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedFlux}.
@@ -1478,7 +1191,7 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
     /**
      * Lists all of the marketplace gallery images in the specified subscription. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1487,14 +1200,14 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<MarketplaceGalleryImagesInner> listAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listAllNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listAllNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists all of the marketplace gallery images in the specified subscription. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedIterable}.
@@ -1507,7 +1220,7 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
     /**
      * Lists all of the marketplace gallery images in the specified subscription. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1521,9 +1234,10 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1535,31 +1249,22 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<MarketplaceGalleryImagesInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<MarketplaceGalleryImagesInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1567,37 +1272,28 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<MarketplaceGalleryImagesInner>> listNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<MarketplaceGalleryImagesInner>> listNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1609,31 +1305,23 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listAllNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<MarketplaceGalleryImagesInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<MarketplaceGalleryImagesInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1641,29 +1329,19 @@ public final class MarketplaceGalleryImagesOperationsClientImpl implements Marke
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<MarketplaceGalleryImagesInner>> listAllNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<MarketplaceGalleryImagesInner>> listAllNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listAllNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listAllNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

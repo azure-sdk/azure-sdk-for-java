@@ -4,21 +4,23 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for VirtualMachineInstances Start. */
+/**
+ * Samples for VirtualMachineInstances Start.
+ */
 public final class VirtualMachineInstancesStartSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/StartVirtualMachineInstance.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * StartVirtualMachineInstance.json
      */
     /**
      * Sample code: StartVirtualMachine.
-     *
+     * 
      * @param manager Entry point to AzureStackHciManager.
      */
     public static void startVirtualMachine(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        manager
-            .virtualMachineInstances()
-            .start(
-                "subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/Microsoft.HybridCompute/machines/DemoVM/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default",
-                com.azure.core.util.Context.NONE);
+        manager.virtualMachineInstances().start(
+            "subscriptions/fd3c3665-1729-4b7b-9a38-238e83b0f98b/resourceGroups/testrg/Microsoft.HybridCompute/machines/DemoVM/providers/Microsoft.AzureStackHCI/virtualMachineInstances/default",
+            com.azure.core.util.Context.NONE);
     }
 }

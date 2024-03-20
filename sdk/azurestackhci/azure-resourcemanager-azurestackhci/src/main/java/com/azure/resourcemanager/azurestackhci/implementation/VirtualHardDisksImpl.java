@@ -129,20 +129,14 @@ public final class VirtualHardDisksImpl
     }
 
     public VirtualHardDisks create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVirtualHardDisksOperations()
-                .createOrUpdate(resourceGroupName, virtualHardDiskName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getVirtualHardDisksOperations()
+            .createOrUpdate(resourceGroupName, virtualHardDiskName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public VirtualHardDisks create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVirtualHardDisksOperations()
-                .createOrUpdate(resourceGroupName, virtualHardDiskName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getVirtualHardDisksOperations()
+            .createOrUpdate(resourceGroupName, virtualHardDiskName, this.innerModel(), context);
         return this;
     }
 
@@ -158,49 +152,34 @@ public final class VirtualHardDisksImpl
     }
 
     public VirtualHardDisks apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVirtualHardDisksOperations()
-                .update(resourceGroupName, virtualHardDiskName, updateVirtualHardDisks, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getVirtualHardDisksOperations().update(resourceGroupName,
+            virtualHardDiskName, updateVirtualHardDisks, Context.NONE);
         return this;
     }
 
     public VirtualHardDisks apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVirtualHardDisksOperations()
-                .update(resourceGroupName, virtualHardDiskName, updateVirtualHardDisks, context);
+        this.innerObject = serviceManager.serviceClient().getVirtualHardDisksOperations().update(resourceGroupName,
+            virtualHardDiskName, updateVirtualHardDisks, context);
         return this;
     }
 
-    VirtualHardDisksImpl(
-        VirtualHardDisksInner innerObject,
+    VirtualHardDisksImpl(VirtualHardDisksInner innerObject,
         com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.virtualHardDiskName = Utils.getValueFromIdByName(innerObject.id(), "virtualHardDisks");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.virtualHardDiskName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "virtualHardDisks");
     }
 
     public VirtualHardDisks refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVirtualHardDisksOperations()
-                .getByResourceGroupWithResponse(resourceGroupName, virtualHardDiskName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getVirtualHardDisksOperations()
+            .getByResourceGroupWithResponse(resourceGroupName, virtualHardDiskName, Context.NONE).getValue();
         return this;
     }
 
     public VirtualHardDisks refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getVirtualHardDisksOperations()
-                .getByResourceGroupWithResponse(resourceGroupName, virtualHardDiskName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getVirtualHardDisksOperations()
+            .getByResourceGroupWithResponse(resourceGroupName, virtualHardDiskName, context).getValue();
         return this;
     }
 

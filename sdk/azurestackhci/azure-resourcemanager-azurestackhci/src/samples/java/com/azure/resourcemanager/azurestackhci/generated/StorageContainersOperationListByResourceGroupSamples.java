@@ -4,18 +4,22 @@
 
 package com.azure.resourcemanager.azurestackhci.generated;
 
-/** Samples for StorageContainersOperation ListByResourceGroup. */
+/**
+ * Samples for StorageContainersOperation ListByResourceGroup.
+ */
 public final class StorageContainersOperationListByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/ListStorageContainerByResourceGroup.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * ListStorageContainerByResourceGroup.json
      */
     /**
      * Sample code: ListStorageContainerByResourceGroup.
-     *
+     * 
      * @param manager Entry point to AzureStackHciManager.
      */
-    public static void listStorageContainerByResourceGroup(
-        com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
+    public static void
+        listStorageContainerByResourceGroup(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
         manager.storageContainersOperations().listByResourceGroup("test-rg", com.azure.core.util.Context.NONE);
     }
 }
