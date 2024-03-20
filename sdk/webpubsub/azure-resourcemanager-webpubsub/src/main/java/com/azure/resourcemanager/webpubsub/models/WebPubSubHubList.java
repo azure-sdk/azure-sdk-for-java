@@ -9,7 +9,9 @@ import com.azure.resourcemanager.webpubsub.fluent.models.WebPubSubHubInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Hub setting list. */
+/**
+ * Hub setting list.
+ */
 @Fluent
 public final class WebPubSubHubList {
     /*
@@ -25,13 +27,15 @@ public final class WebPubSubHubList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of WebPubSubHubList class. */
+    /**
+     * Creates an instance of WebPubSubHubList class.
+     */
     public WebPubSubHubList() {
     }
 
     /**
      * Get the value property: List of hub settings to this resource.
-     *
+     * 
      * @return the value value.
      */
     public List<WebPubSubHubInner> value() {
@@ -40,7 +44,7 @@ public final class WebPubSubHubList {
 
     /**
      * Set the value property: List of hub settings to this resource.
-     *
+     * 
      * @param value the value value to set.
      * @return the WebPubSubHubList object itself.
      */
@@ -50,9 +54,9 @@ public final class WebPubSubHubList {
     }
 
     /**
-     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -61,7 +65,7 @@ public final class WebPubSubHubList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

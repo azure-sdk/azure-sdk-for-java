@@ -16,52 +16,42 @@ import com.azure.resourcemanager.webpubsub.models.ServiceKind;
 import com.azure.resourcemanager.webpubsub.models.WebPubSubNetworkACLs;
 import com.azure.resourcemanager.webpubsub.models.WebPubSubRequestType;
 import com.azure.resourcemanager.webpubsub.models.WebPubSubSkuTier;
+import com.azure.resourcemanager.webpubsub.models.WebPubSubSocketIOSettings;
 import com.azure.resourcemanager.webpubsub.models.WebPubSubTlsSettings;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for WebPubSub CreateOrUpdate. */
+/**
+ * Samples for WebPubSub CreateOrUpdate.
+ */
 public final class WebPubSubCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/webpubsub/resource-manager/Microsoft.SignalRService/preview/2023-08-01-preview/examples/WebPubSub_CreateOrUpdate.json
+     * x-ms-original-file:
+     * specification/webpubsub/resource-manager/Microsoft.SignalRService/preview/2024-01-01-preview/examples/
+     * WebPubSub_CreateOrUpdate.json
      */
     /**
      * Sample code: WebPubSub_CreateOrUpdate.
-     *
+     * 
      * @param manager Entry point to WebPubSubManager.
      */
     public static void webPubSubCreateOrUpdate(com.azure.resourcemanager.webpubsub.WebPubSubManager manager) {
-        manager
-            .webPubSubs()
-            .define("myWebPubSubService")
-            .withRegion("eastus")
-            .withExistingResourceGroup("myResourceGroup")
-            .withTags(mapOf("key1", "fakeTokenPlaceholder"))
+        manager.webPubSubs().define("myWebPubSubService").withRegion("eastus")
+            .withExistingResourceGroup("myResourceGroup").withTags(mapOf("key1", "fakeTokenPlaceholder"))
             .withSku(new ResourceSku().withName("Premium_P1").withTier(WebPubSubSkuTier.PREMIUM).withCapacity(1))
             .withKind(ServiceKind.WEB_PUB_SUB)
             .withIdentity(new ManagedIdentity().withType(ManagedIdentityType.SYSTEM_ASSIGNED))
             .withTls(new WebPubSubTlsSettings().withClientCertEnabled(false))
-            .withLiveTraceConfiguration(
-                new LiveTraceConfiguration()
-                    .withEnabled("false")
-                    .withCategories(
-                        Arrays.asList(new LiveTraceCategory().withName("ConnectivityLogs").withEnabled("true"))))
-            .withNetworkACLs(
-                new WebPubSubNetworkACLs()
-                    .withDefaultAction(AclAction.DENY)
-                    .withPublicNetwork(
-                        new NetworkAcl().withAllow(Arrays.asList(WebPubSubRequestType.CLIENT_CONNECTION)))
-                    .withPrivateEndpoints(
-                        Arrays
-                            .asList(
-                                new PrivateEndpointAcl()
-                                    .withAllow(Arrays.asList(WebPubSubRequestType.SERVER_CONNECTION))
-                                    .withName("mywebpubsubservice.1fa229cd-bf3f-47f0-8c49-afb36723997e"))))
-            .withPublicNetworkAccess("Enabled")
-            .withDisableLocalAuth(false)
-            .withDisableAadAuth(false)
-            .create();
+            .withLiveTraceConfiguration(new LiveTraceConfiguration().withEnabled("false").withCategories(
+                Arrays.asList(new LiveTraceCategory().withName("ConnectivityLogs").withEnabled("true"))))
+            .withNetworkACLs(new WebPubSubNetworkACLs().withDefaultAction(AclAction.DENY)
+                .withPublicNetwork(new NetworkAcl().withAllow(Arrays.asList(WebPubSubRequestType.CLIENT_CONNECTION)))
+                .withPrivateEndpoints(Arrays
+                    .asList(new PrivateEndpointAcl().withAllow(Arrays.asList(WebPubSubRequestType.SERVER_CONNECTION))
+                        .withName("mywebpubsubservice.1fa229cd-bf3f-47f0-8c49-afb36723997e"))))
+            .withPublicNetworkAccess("Enabled").withDisableLocalAuth(false).withDisableAadAuth(false)
+            .withSocketIO(new WebPubSubSocketIOSettings().withServiceMode("Serverless")).create();
     }
 
     // Use "Map.of" if available

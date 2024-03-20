@@ -9,23 +9,27 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** A base class for event filter which determines whether an event should be sent to an event listener. */
+/**
+ * A base class for event filter which determines whether an event should be sent to an event listener.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "type",
     defaultImpl = EventListenerFilter.class)
 @JsonTypeName("EventListenerFilter")
-@JsonSubTypes({@JsonSubTypes.Type(name = "EventName", value = EventNameFilter.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "EventName", value = EventNameFilter.class) })
 @Immutable
 public class EventListenerFilter {
-    /** Creates an instance of EventListenerFilter class. */
+    /**
+     * Creates an instance of EventListenerFilter class.
+     */
     public EventListenerFilter() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

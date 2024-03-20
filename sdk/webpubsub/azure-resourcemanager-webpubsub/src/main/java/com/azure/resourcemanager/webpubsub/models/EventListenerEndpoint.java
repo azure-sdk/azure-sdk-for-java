@@ -9,23 +9,27 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** An endpoint specifying where Web PubSub should send events to. */
+/**
+ * An endpoint specifying where Web PubSub should send events to.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
     property = "type",
     defaultImpl = EventListenerEndpoint.class)
 @JsonTypeName("EventListenerEndpoint")
-@JsonSubTypes({@JsonSubTypes.Type(name = "EventHub", value = EventHubEndpoint.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "EventHub", value = EventHubEndpoint.class) })
 @Immutable
 public class EventListenerEndpoint {
-    /** Creates an instance of EventListenerEndpoint class. */
+    /**
+     * Creates an instance of EventListenerEndpoint class.
+     */
     public EventListenerEndpoint() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

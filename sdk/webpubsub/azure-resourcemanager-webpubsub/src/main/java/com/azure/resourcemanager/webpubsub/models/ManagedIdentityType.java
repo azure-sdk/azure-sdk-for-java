@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Represents the identity type: systemAssigned, userAssigned, None. */
+/**
+ * Represents the identity type: systemAssigned, userAssigned, None.
+ */
 public final class ManagedIdentityType extends ExpandableStringEnum<ManagedIdentityType> {
-    /** Static value None for ManagedIdentityType. */
+    /**
+     * Static value None for ManagedIdentityType.
+     */
     public static final ManagedIdentityType NONE = fromString("None");
 
-    /** Static value SystemAssigned for ManagedIdentityType. */
+    /**
+     * Static value SystemAssigned for ManagedIdentityType.
+     */
     public static final ManagedIdentityType SYSTEM_ASSIGNED = fromString("SystemAssigned");
 
-    /** Static value UserAssigned for ManagedIdentityType. */
+    /**
+     * Static value UserAssigned for ManagedIdentityType.
+     */
     public static final ManagedIdentityType USER_ASSIGNED = fromString("UserAssigned");
 
     /**
      * Creates a new instance of ManagedIdentityType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class ManagedIdentityType extends ExpandableStringEnum<ManagedIdent
 
     /**
      * Creates or finds a ManagedIdentityType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ManagedIdentityType.
      */
@@ -41,7 +49,7 @@ public final class ManagedIdentityType extends ExpandableStringEnum<ManagedIdent
 
     /**
      * Gets known ManagedIdentityType values.
-     *
+     * 
      * @return known ManagedIdentityType values.
      */
     public static Collection<ManagedIdentityType> values() {

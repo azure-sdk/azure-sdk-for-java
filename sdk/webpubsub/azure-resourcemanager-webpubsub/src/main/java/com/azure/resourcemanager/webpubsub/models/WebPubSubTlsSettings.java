@@ -7,7 +7,9 @@ package com.azure.resourcemanager.webpubsub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** TLS settings for the resource. */
+/**
+ * TLS settings for the resource.
+ */
 @Fluent
 public final class WebPubSubTlsSettings {
     /*
@@ -17,14 +19,16 @@ public final class WebPubSubTlsSettings {
     @JsonProperty(value = "clientCertEnabled")
     private Boolean clientCertEnabled;
 
-    /** Creates an instance of WebPubSubTlsSettings class. */
+    /**
+     * Creates an instance of WebPubSubTlsSettings class.
+     */
     public WebPubSubTlsSettings() {
     }
 
     /**
-     * Get the clientCertEnabled property: Request client certificate during TLS handshake if enabled. Not supported for
-     * free tier. Any input will be ignored for free tier.
-     *
+     * Get the clientCertEnabled property: Request client certificate during TLS handshake if enabled. Not supported
+     * for free tier. Any input will be ignored for free tier.
+     * 
      * @return the clientCertEnabled value.
      */
     public Boolean clientCertEnabled() {
@@ -32,9 +36,9 @@ public final class WebPubSubTlsSettings {
     }
 
     /**
-     * Set the clientCertEnabled property: Request client certificate during TLS handshake if enabled. Not supported for
-     * free tier. Any input will be ignored for free tier.
-     *
+     * Set the clientCertEnabled property: Request client certificate during TLS handshake if enabled. Not supported
+     * for free tier. Any input will be ignored for free tier.
+     * 
      * @param clientCertEnabled the clientCertEnabled value to set.
      * @return the WebPubSubTlsSettings object itself.
      */
@@ -45,7 +49,7 @@ public final class WebPubSubTlsSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

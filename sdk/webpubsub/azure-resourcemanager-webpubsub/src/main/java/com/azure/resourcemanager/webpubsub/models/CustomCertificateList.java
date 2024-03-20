@@ -9,7 +9,9 @@ import com.azure.resourcemanager.webpubsub.fluent.models.CustomCertificateInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Custom certificates list. */
+/**
+ * Custom certificates list.
+ */
 @Fluent
 public final class CustomCertificateList {
     /*
@@ -25,13 +27,15 @@ public final class CustomCertificateList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of CustomCertificateList class. */
+    /**
+     * Creates an instance of CustomCertificateList class.
+     */
     public CustomCertificateList() {
     }
 
     /**
      * Get the value property: List of custom certificates of this resource.
-     *
+     * 
      * @return the value value.
      */
     public List<CustomCertificateInner> value() {
@@ -40,7 +44,7 @@ public final class CustomCertificateList {
 
     /**
      * Set the value property: List of custom certificates of this resource.
-     *
+     * 
      * @param value the value value to set.
      * @return the CustomCertificateList object itself.
      */
@@ -50,9 +54,9 @@ public final class CustomCertificateList {
     }
 
     /**
-     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,9 +64,9 @@ public final class CustomCertificateList {
     }
 
     /**
-     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the CustomCertificateList object itself.
      */
@@ -73,7 +77,7 @@ public final class CustomCertificateList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

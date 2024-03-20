@@ -9,7 +9,9 @@ import com.azure.resourcemanager.webpubsub.models.OperationDisplay;
 import com.azure.resourcemanager.webpubsub.models.OperationProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** REST API operation supported by resource provider. */
+/**
+ * REST API operation supported by resource provider.
+ */
 @Fluent
 public final class OperationInner {
     /*
@@ -43,13 +45,15 @@ public final class OperationInner {
     @JsonProperty(value = "properties")
     private OperationProperties properties;
 
-    /** Creates an instance of OperationInner class. */
+    /**
+     * Creates an instance of OperationInner class.
+     */
     public OperationInner() {
     }
 
     /**
      * Get the name property: Name of the operation with format: {provider}/{resource}/{operation}.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -58,7 +62,7 @@ public final class OperationInner {
 
     /**
      * Set the name property: Name of the operation with format: {provider}/{resource}/{operation}.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationInner object itself.
      */
@@ -69,7 +73,7 @@ public final class OperationInner {
 
     /**
      * Get the isDataAction property: If the operation is a data action. (for data plane rbac).
-     *
+     * 
      * @return the isDataAction value.
      */
     public Boolean isDataAction() {
@@ -78,7 +82,7 @@ public final class OperationInner {
 
     /**
      * Set the isDataAction property: If the operation is a data action. (for data plane rbac).
-     *
+     * 
      * @param isDataAction the isDataAction value to set.
      * @return the OperationInner object itself.
      */
@@ -89,7 +93,7 @@ public final class OperationInner {
 
     /**
      * Get the display property: The object that describes a operation.
-     *
+     * 
      * @return the display value.
      */
     public OperationDisplay display() {
@@ -98,7 +102,7 @@ public final class OperationInner {
 
     /**
      * Set the display property: The object that describes a operation.
-     *
+     * 
      * @param display the display value to set.
      * @return the OperationInner object itself.
      */
@@ -110,7 +114,7 @@ public final class OperationInner {
     /**
      * Get the origin property: Optional. The intended executor of the operation; governs the display of the operation
      * in the RBAC UX and the audit logs UX.
-     *
+     * 
      * @return the origin value.
      */
     public String origin() {
@@ -120,7 +124,7 @@ public final class OperationInner {
     /**
      * Set the origin property: Optional. The intended executor of the operation; governs the display of the operation
      * in the RBAC UX and the audit logs UX.
-     *
+     * 
      * @param origin the origin value to set.
      * @return the OperationInner object itself.
      */
@@ -131,7 +135,7 @@ public final class OperationInner {
 
     /**
      * Get the properties property: Extra Operation properties.
-     *
+     * 
      * @return the properties value.
      */
     public OperationProperties properties() {
@@ -140,7 +144,7 @@ public final class OperationInner {
 
     /**
      * Set the properties property: Extra Operation properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the OperationInner object itself.
      */
@@ -151,7 +155,7 @@ public final class OperationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

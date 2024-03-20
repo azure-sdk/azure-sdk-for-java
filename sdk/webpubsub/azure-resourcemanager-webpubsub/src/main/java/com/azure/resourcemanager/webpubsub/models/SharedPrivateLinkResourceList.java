@@ -9,7 +9,9 @@ import com.azure.resourcemanager.webpubsub.fluent.models.SharedPrivateLinkResour
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of shared private link resources. */
+/**
+ * A list of shared private link resources.
+ */
 @Fluent
 public final class SharedPrivateLinkResourceList {
     /*
@@ -25,13 +27,15 @@ public final class SharedPrivateLinkResourceList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of SharedPrivateLinkResourceList class. */
+    /**
+     * Creates an instance of SharedPrivateLinkResourceList class.
+     */
     public SharedPrivateLinkResourceList() {
     }
 
     /**
      * Get the value property: The list of the shared private link resources.
-     *
+     * 
      * @return the value value.
      */
     public List<SharedPrivateLinkResourceInner> value() {
@@ -40,7 +44,7 @@ public final class SharedPrivateLinkResourceList {
 
     /**
      * Set the value property: The list of the shared private link resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the SharedPrivateLinkResourceList object itself.
      */
@@ -52,7 +56,7 @@ public final class SharedPrivateLinkResourceList {
     /**
      * Get the nextLink property: Request URL that can be used to query next page of private endpoint connections.
      * Returned when the total number of requested private endpoint connections exceed maximum page size.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -62,7 +66,7 @@ public final class SharedPrivateLinkResourceList {
     /**
      * Set the nextLink property: Request URL that can be used to query next page of private endpoint connections.
      * Returned when the total number of requested private endpoint connections exceed maximum page size.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SharedPrivateLinkResourceList object itself.
      */
@@ -73,7 +77,7 @@ public final class SharedPrivateLinkResourceList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
