@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Update for service health event. */
+/**
+ * Update for service health event.
+ */
 @Fluent
 public final class Update {
     /*
@@ -23,13 +25,15 @@ public final class Update {
     @JsonProperty(value = "updateDateTime")
     private OffsetDateTime updateDateTime;
 
-    /** Creates an instance of Update class. */
+    /**
+     * Creates an instance of Update class.
+     */
     public Update() {
     }
 
     /**
      * Get the summary property: Summary text for the given update for the service health event.
-     *
+     * 
      * @return the summary value.
      */
     public String summary() {
@@ -38,7 +42,7 @@ public final class Update {
 
     /**
      * Set the summary property: Summary text for the given update for the service health event.
-     *
+     * 
      * @param summary the summary value to set.
      * @return the Update object itself.
      */
@@ -49,7 +53,7 @@ public final class Update {
 
     /**
      * Get the updateDateTime property: It provides the Timestamp for the given update for the service health event.
-     *
+     * 
      * @return the updateDateTime value.
      */
     public OffsetDateTime updateDateTime() {
@@ -58,7 +62,7 @@ public final class Update {
 
     /**
      * Set the updateDateTime property: It provides the Timestamp for the given update for the service health event.
-     *
+     * 
      * @param updateDateTime the updateDateTime value to set.
      * @return the Update object itself.
      */
@@ -69,7 +73,7 @@ public final class Update {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

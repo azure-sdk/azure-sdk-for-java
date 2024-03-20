@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Useful links for service health event. */
+/**
+ * Useful links for service health event.
+ */
 @Fluent
 public final class Link {
     /*
@@ -41,13 +43,15 @@ public final class Link {
     @JsonProperty(value = "parameters")
     private Object parameters;
 
-    /** Creates an instance of Link class. */
+    /**
+     * Creates an instance of Link class.
+     */
     public Link() {
     }
 
     /**
      * Get the type property: Type of link.
-     *
+     * 
      * @return the type value.
      */
     public LinkTypeValues type() {
@@ -56,7 +60,7 @@ public final class Link {
 
     /**
      * Set the type property: Type of link.
-     *
+     * 
      * @param type the type value to set.
      * @return the Link object itself.
      */
@@ -67,7 +71,7 @@ public final class Link {
 
     /**
      * Get the displayText property: Display text of link.
-     *
+     * 
      * @return the displayText value.
      */
     public LinkDisplayText displayText() {
@@ -76,7 +80,7 @@ public final class Link {
 
     /**
      * Set the displayText property: Display text of link.
-     *
+     * 
      * @param displayText the displayText value to set.
      * @return the Link object itself.
      */
@@ -86,9 +90,9 @@ public final class Link {
     }
 
     /**
-     * Get the extensionName property: It provides the name of portal extension to produce link for given service health
-     * event.
-     *
+     * Get the extensionName property: It provides the name of portal extension to produce link for given service
+     * health event.
+     * 
      * @return the extensionName value.
      */
     public String extensionName() {
@@ -96,9 +100,9 @@ public final class Link {
     }
 
     /**
-     * Set the extensionName property: It provides the name of portal extension to produce link for given service health
-     * event.
-     *
+     * Set the extensionName property: It provides the name of portal extension to produce link for given service
+     * health event.
+     * 
      * @param extensionName the extensionName value to set.
      * @return the Link object itself.
      */
@@ -110,7 +114,7 @@ public final class Link {
     /**
      * Get the bladeName property: It provides the name of portal extension blade to produce link for given service
      * health event.
-     *
+     * 
      * @return the bladeName value.
      */
     public String bladeName() {
@@ -120,7 +124,7 @@ public final class Link {
     /**
      * Set the bladeName property: It provides the name of portal extension blade to produce link for given service
      * health event.
-     *
+     * 
      * @param bladeName the bladeName value to set.
      * @return the Link object itself.
      */
@@ -132,7 +136,7 @@ public final class Link {
     /**
      * Get the parameters property: It provides a map of parameter name and value for portal extension blade to produce
      * lik for given service health event.
-     *
+     * 
      * @return the parameters value.
      */
     public Object parameters() {
@@ -142,7 +146,7 @@ public final class Link {
     /**
      * Set the parameters property: It provides a map of parameter name and value for portal extension blade to produce
      * lik for given service health event.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the Link object itself.
      */
@@ -153,7 +157,7 @@ public final class Link {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

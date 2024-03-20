@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Azure service impacted by the service health event. */
+/**
+ * Azure service impacted by the service health event.
+ */
 @Fluent
 public final class Impact {
     /*
@@ -18,18 +20,26 @@ public final class Impact {
     private String impactedService;
 
     /*
+     * Impacted service guid. This is the permanent identifier for the impacted service.
+     */
+    @JsonProperty(value = "impactedServiceGuid")
+    private String impactedServiceGuid;
+
+    /*
      * List regions impacted by the service health event.
      */
     @JsonProperty(value = "impactedRegions")
     private List<ImpactedServiceRegion> impactedRegions;
 
-    /** Creates an instance of Impact class. */
+    /**
+     * Creates an instance of Impact class.
+     */
     public Impact() {
     }
 
     /**
      * Get the impactedService property: Impacted service name.
-     *
+     * 
      * @return the impactedService value.
      */
     public String impactedService() {
@@ -38,7 +48,7 @@ public final class Impact {
 
     /**
      * Set the impactedService property: Impacted service name.
-     *
+     * 
      * @param impactedService the impactedService value to set.
      * @return the Impact object itself.
      */
@@ -48,8 +58,30 @@ public final class Impact {
     }
 
     /**
+     * Get the impactedServiceGuid property: Impacted service guid. This is the permanent identifier for the impacted
+     * service.
+     * 
+     * @return the impactedServiceGuid value.
+     */
+    public String impactedServiceGuid() {
+        return this.impactedServiceGuid;
+    }
+
+    /**
+     * Set the impactedServiceGuid property: Impacted service guid. This is the permanent identifier for the impacted
+     * service.
+     * 
+     * @param impactedServiceGuid the impactedServiceGuid value to set.
+     * @return the Impact object itself.
+     */
+    public Impact withImpactedServiceGuid(String impactedServiceGuid) {
+        this.impactedServiceGuid = impactedServiceGuid;
+        return this;
+    }
+
+    /**
      * Get the impactedRegions property: List regions impacted by the service health event.
-     *
+     * 
      * @return the impactedRegions value.
      */
     public List<ImpactedServiceRegion> impactedRegions() {
@@ -58,7 +90,7 @@ public final class Impact {
 
     /**
      * Set the impactedRegions property: List regions impacted by the service health event.
-     *
+     * 
      * @param impactedRegions the impactedRegions value to set.
      * @return the Impact object itself.
      */
@@ -69,7 +101,7 @@ public final class Impact {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

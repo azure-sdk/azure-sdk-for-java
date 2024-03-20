@@ -214,11 +214,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.resourcehealth.models.EventSubTypeValues",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.resourcehealth.models.EventSourceValues",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,

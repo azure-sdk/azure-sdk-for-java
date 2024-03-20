@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Banner type of emerging issue. */
+/**
+ * Banner type of emerging issue.
+ */
 @Fluent
 public final class StatusBanner {
     /*
@@ -35,13 +37,15 @@ public final class StatusBanner {
     @JsonProperty(value = "lastModifiedTime")
     private OffsetDateTime lastModifiedTime;
 
-    /** Creates an instance of StatusBanner class. */
+    /**
+     * Creates an instance of StatusBanner class.
+     */
     public StatusBanner() {
     }
 
     /**
      * Get the title property: The banner title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -50,7 +54,7 @@ public final class StatusBanner {
 
     /**
      * Set the title property: The banner title.
-     *
+     * 
      * @param title the title value to set.
      * @return the StatusBanner object itself.
      */
@@ -61,7 +65,7 @@ public final class StatusBanner {
 
     /**
      * Get the message property: The details of banner.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -70,7 +74,7 @@ public final class StatusBanner {
 
     /**
      * Set the message property: The details of banner.
-     *
+     * 
      * @param message the message value to set.
      * @return the StatusBanner object itself.
      */
@@ -81,7 +85,7 @@ public final class StatusBanner {
 
     /**
      * Get the cloud property: The cloud type of this banner.
-     *
+     * 
      * @return the cloud value.
      */
     public String cloud() {
@@ -90,7 +94,7 @@ public final class StatusBanner {
 
     /**
      * Set the cloud property: The cloud type of this banner.
-     *
+     * 
      * @param cloud the cloud value to set.
      * @return the StatusBanner object itself.
      */
@@ -101,7 +105,7 @@ public final class StatusBanner {
 
     /**
      * Get the lastModifiedTime property: The last time modified on this banner.
-     *
+     * 
      * @return the lastModifiedTime value.
      */
     public OffsetDateTime lastModifiedTime() {
@@ -110,7 +114,7 @@ public final class StatusBanner {
 
     /**
      * Set the lastModifiedTime property: The last time modified on this banner.
-     *
+     * 
      * @param lastModifiedTime the lastModifiedTime value to set.
      * @return the StatusBanner object itself.
      */
@@ -121,7 +125,7 @@ public final class StatusBanner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Object of the emerging issue impact on services and regions. */
+/**
+ * Object of the emerging issue impact on services and regions.
+ */
 @Fluent
 public final class EmergingIssueImpact {
     /*
@@ -29,13 +31,15 @@ public final class EmergingIssueImpact {
     @JsonProperty(value = "regions")
     private List<ImpactedRegion> regions;
 
-    /** Creates an instance of EmergingIssueImpact class. */
+    /**
+     * Creates an instance of EmergingIssueImpact class.
+     */
     public EmergingIssueImpact() {
     }
 
     /**
      * Get the id property: The impacted service id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -44,7 +48,7 @@ public final class EmergingIssueImpact {
 
     /**
      * Set the id property: The impacted service id.
-     *
+     * 
      * @param id the id value to set.
      * @return the EmergingIssueImpact object itself.
      */
@@ -55,7 +59,7 @@ public final class EmergingIssueImpact {
 
     /**
      * Get the name property: The impacted service name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -64,7 +68,7 @@ public final class EmergingIssueImpact {
 
     /**
      * Set the name property: The impacted service name.
-     *
+     * 
      * @param name the name value to set.
      * @return the EmergingIssueImpact object itself.
      */
@@ -75,7 +79,7 @@ public final class EmergingIssueImpact {
 
     /**
      * Get the regions property: The list of impacted regions for corresponding emerging issues.
-     *
+     * 
      * @return the regions value.
      */
     public List<ImpactedRegion> regions() {
@@ -84,7 +88,7 @@ public final class EmergingIssueImpact {
 
     /**
      * Set the regions property: The list of impacted regions for corresponding emerging issues.
-     *
+     * 
      * @param regions the regions value to set.
      * @return the EmergingIssueImpact object itself.
      */
@@ -95,7 +99,7 @@ public final class EmergingIssueImpact {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

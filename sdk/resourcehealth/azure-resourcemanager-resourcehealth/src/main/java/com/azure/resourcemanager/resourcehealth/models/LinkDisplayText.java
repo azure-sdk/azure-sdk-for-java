@@ -7,7 +7,9 @@ package com.azure.resourcemanager.resourcehealth.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Display text of link. */
+/**
+ * Display text of link.
+ */
 @Fluent
 public final class LinkDisplayText {
     /*
@@ -22,13 +24,15 @@ public final class LinkDisplayText {
     @JsonProperty(value = "localizedValue")
     private String localizedValue;
 
-    /** Creates an instance of LinkDisplayText class. */
+    /**
+     * Creates an instance of LinkDisplayText class.
+     */
     public LinkDisplayText() {
     }
 
     /**
      * Get the value property: Display text of link.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -37,7 +41,7 @@ public final class LinkDisplayText {
 
     /**
      * Set the value property: Display text of link.
-     *
+     * 
      * @param value the value value to set.
      * @return the LinkDisplayText object itself.
      */
@@ -48,7 +52,7 @@ public final class LinkDisplayText {
 
     /**
      * Get the localizedValue property: Localized display text of link.
-     *
+     * 
      * @return the localizedValue value.
      */
     public String localizedValue() {
@@ -57,7 +61,7 @@ public final class LinkDisplayText {
 
     /**
      * Set the localizedValue property: Localized display text of link.
-     *
+     * 
      * @param localizedValue the localizedValue value to set.
      * @return the LinkDisplayText object itself.
      */
@@ -68,7 +72,7 @@ public final class LinkDisplayText {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

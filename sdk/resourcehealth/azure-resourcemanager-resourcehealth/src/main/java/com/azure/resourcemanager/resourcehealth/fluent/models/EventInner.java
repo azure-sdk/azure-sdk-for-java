@@ -13,7 +13,6 @@ import com.azure.resourcemanager.resourcehealth.models.EventPropertiesArticle;
 import com.azure.resourcemanager.resourcehealth.models.EventPropertiesRecommendedActions;
 import com.azure.resourcemanager.resourcehealth.models.EventSourceValues;
 import com.azure.resourcemanager.resourcehealth.models.EventStatusValues;
-import com.azure.resourcemanager.resourcehealth.models.EventSubTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.EventTypeValues;
 import com.azure.resourcemanager.resourcehealth.models.Faq;
 import com.azure.resourcemanager.resourcehealth.models.Impact;
@@ -23,7 +22,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Service health event. */
+/**
+ * Service health event.
+ */
 @Fluent
 public final class EventInner extends ProxyResource {
     /*
@@ -38,13 +39,15 @@ public final class EventInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of EventInner class. */
+    /**
+     * Creates an instance of EventInner class.
+     */
     public EventInner() {
     }
 
     /**
      * Get the innerProperties property: Properties of event.
-     *
+     * 
      * @return the innerProperties value.
      */
     private EventProperties innerProperties() {
@@ -53,7 +56,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -62,7 +65,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the eventType property: Type of event.
-     *
+     * 
      * @return the eventType value.
      */
     public EventTypeValues eventType() {
@@ -71,7 +74,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the eventType property: Type of event.
-     *
+     * 
      * @param eventType the eventType value to set.
      * @return the EventInner object itself.
      */
@@ -84,33 +87,8 @@ public final class EventInner extends ProxyResource {
     }
 
     /**
-     * Get the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
-     * health advisory events.
-     *
-     * @return the eventSubType value.
-     */
-    public EventSubTypeValues eventSubType() {
-        return this.innerProperties() == null ? null : this.innerProperties().eventSubType();
-    }
-
-    /**
-     * Set the eventSubType property: Sub type of the event. Currently used to determine retirement communications for
-     * health advisory events.
-     *
-     * @param eventSubType the eventSubType value to set.
-     * @return the EventInner object itself.
-     */
-    public EventInner withEventSubType(EventSubTypeValues eventSubType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EventProperties();
-        }
-        this.innerProperties().withEventSubType(eventSubType);
-        return this;
-    }
-
-    /**
      * Get the eventSource property: Source of event.
-     *
+     * 
      * @return the eventSource value.
      */
     public EventSourceValues eventSource() {
@@ -119,7 +97,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the eventSource property: Source of event.
-     *
+     * 
      * @param eventSource the eventSource value to set.
      * @return the EventInner object itself.
      */
@@ -133,7 +111,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the status property: Current status of event.
-     *
+     * 
      * @return the status value.
      */
     public EventStatusValues status() {
@@ -142,7 +120,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the status property: Current status of event.
-     *
+     * 
      * @param status the status value to set.
      * @return the EventInner object itself.
      */
@@ -156,7 +134,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the title property: Title text of event.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -165,7 +143,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the title property: Title text of event.
-     *
+     * 
      * @param title the title value to set.
      * @return the EventInner object itself.
      */
@@ -179,7 +157,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the summary property: Summary text of event.
-     *
+     * 
      * @return the summary value.
      */
     public String summary() {
@@ -188,7 +166,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the summary property: Summary text of event.
-     *
+     * 
      * @param summary the summary value to set.
      * @return the EventInner object itself.
      */
@@ -202,7 +180,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the headerProperty property: Header text of event.
-     *
+     * 
      * @return the headerProperty value.
      */
     public String headerProperty() {
@@ -211,7 +189,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the headerProperty property: Header text of event.
-     *
+     * 
      * @param headerProperty the headerProperty value to set.
      * @return the EventInner object itself.
      */
@@ -225,7 +203,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the level property: Level of insight.
-     *
+     * 
      * @return the level value.
      */
     public LevelValues level() {
@@ -234,7 +212,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the level property: Level of insight.
-     *
+     * 
      * @param level the level value to set.
      * @return the EventInner object itself.
      */
@@ -248,7 +226,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the eventLevel property: Level of event.
-     *
+     * 
      * @return the eventLevel value.
      */
     public EventLevelValues eventLevel() {
@@ -257,7 +235,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the eventLevel property: Level of event.
-     *
+     * 
      * @param eventLevel the eventLevel value to set.
      * @return the EventInner object itself.
      */
@@ -271,7 +249,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the externalIncidentId property: The id of the Incident.
-     *
+     * 
      * @return the externalIncidentId value.
      */
     public String externalIncidentId() {
@@ -280,7 +258,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the externalIncidentId property: The id of the Incident.
-     *
+     * 
      * @param externalIncidentId the externalIncidentId value to set.
      * @return the EventInner object itself.
      */
@@ -294,7 +272,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the reason property: The reason for the Incident.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -303,7 +281,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the reason property: The reason for the Incident.
-     *
+     * 
      * @param reason the reason value to set.
      * @return the EventInner object itself.
      */
@@ -317,7 +295,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the article property: Article of event.
-     *
+     * 
      * @return the article value.
      */
     public EventPropertiesArticle article() {
@@ -326,7 +304,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the article property: Article of event.
-     *
+     * 
      * @param article the article value to set.
      * @return the EventInner object itself.
      */
@@ -340,7 +318,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the links property: Useful links of event.
-     *
+     * 
      * @return the links value.
      */
     public List<Link> links() {
@@ -349,7 +327,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the links property: Useful links of event.
-     *
+     * 
      * @param links the links value to set.
      * @return the EventInner object itself.
      */
@@ -363,7 +341,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the impactStartTime property: It provides the Timestamp for when the health impacting event started.
-     *
+     * 
      * @return the impactStartTime value.
      */
     public OffsetDateTime impactStartTime() {
@@ -372,7 +350,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the impactStartTime property: It provides the Timestamp for when the health impacting event started.
-     *
+     * 
      * @param impactStartTime the impactStartTime value to set.
      * @return the EventInner object itself.
      */
@@ -386,7 +364,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the impactMitigationTime property: It provides the Timestamp for when the health impacting event resolved.
-     *
+     * 
      * @return the impactMitigationTime value.
      */
     public OffsetDateTime impactMitigationTime() {
@@ -395,7 +373,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the impactMitigationTime property: It provides the Timestamp for when the health impacting event resolved.
-     *
+     * 
      * @param impactMitigationTime the impactMitigationTime value to set.
      * @return the EventInner object itself.
      */
@@ -409,7 +387,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the impact property: List services impacted by the service health event.
-     *
+     * 
      * @return the impact value.
      */
     public List<Impact> impact() {
@@ -418,7 +396,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the impact property: List services impacted by the service health event.
-     *
+     * 
      * @param impact the impact value to set.
      * @return the EventInner object itself.
      */
@@ -432,7 +410,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the recommendedActions property: Recommended actions of event.
-     *
+     * 
      * @return the recommendedActions value.
      */
     public EventPropertiesRecommendedActions recommendedActions() {
@@ -441,7 +419,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the recommendedActions property: Recommended actions of event.
-     *
+     * 
      * @param recommendedActions the recommendedActions value to set.
      * @return the EventInner object itself.
      */
@@ -455,7 +433,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the faqs property: Frequently asked questions for the service health event.
-     *
+     * 
      * @return the faqs value.
      */
     public List<Faq> faqs() {
@@ -464,7 +442,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the faqs property: Frequently asked questions for the service health event.
-     *
+     * 
      * @param faqs the faqs value to set.
      * @return the EventInner object itself.
      */
@@ -478,7 +456,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the isHir property: It provides information if the event is High incident rate event or not.
-     *
+     * 
      * @return the isHir value.
      */
     public Boolean isHir() {
@@ -487,7 +465,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the isHir property: It provides information if the event is High incident rate event or not.
-     *
+     * 
      * @param isHir the isHir value to set.
      * @return the EventInner object itself.
      */
@@ -501,7 +479,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the enableMicrosoftSupport property: Tells if we want to enable or disable Microsoft Support for this event.
-     *
+     * 
      * @return the enableMicrosoftSupport value.
      */
     public Boolean enableMicrosoftSupport() {
@@ -510,7 +488,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the enableMicrosoftSupport property: Tells if we want to enable or disable Microsoft Support for this event.
-     *
+     * 
      * @param enableMicrosoftSupport the enableMicrosoftSupport value to set.
      * @return the EventInner object itself.
      */
@@ -525,7 +503,7 @@ public final class EventInner extends ProxyResource {
     /**
      * Get the description property: Contains the communication message for the event, that could include summary, root
      * cause and other details.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -535,7 +513,7 @@ public final class EventInner extends ProxyResource {
     /**
      * Set the description property: Contains the communication message for the event, that could include summary, root
      * cause and other details.
-     *
+     * 
      * @param description the description value to set.
      * @return the EventInner object itself.
      */
@@ -549,7 +527,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the platformInitiated property: Is true if the event is platform initiated.
-     *
+     * 
      * @return the platformInitiated value.
      */
     public Boolean platformInitiated() {
@@ -558,7 +536,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the platformInitiated property: Is true if the event is platform initiated.
-     *
+     * 
      * @param platformInitiated the platformInitiated value to set.
      * @return the EventInner object itself.
      */
@@ -572,7 +550,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the enableChatWithUs property: Tells if we want to enable or disable Microsoft Support for this event.
-     *
+     * 
      * @return the enableChatWithUs value.
      */
     public Boolean enableChatWithUs() {
@@ -581,7 +559,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the enableChatWithUs property: Tells if we want to enable or disable Microsoft Support for this event.
-     *
+     * 
      * @param enableChatWithUs the enableChatWithUs value to set.
      * @return the EventInner object itself.
      */
@@ -598,7 +576,7 @@ public final class EventInner extends ProxyResource {
      * Service issue events have higher priority followed by planned maintenance and health advisory. Critical events
      * have higher priority followed by error, warning and informational. Furthermore, active events have higher
      * priority than resolved.
-     *
+     * 
      * @return the priority value.
      */
     public Integer priority() {
@@ -610,7 +588,7 @@ public final class EventInner extends ProxyResource {
      * Service issue events have higher priority followed by planned maintenance and health advisory. Critical events
      * have higher priority followed by error, warning and informational. Furthermore, active events have higher
      * priority than resolved.
-     *
+     * 
      * @param priority the priority value to set.
      * @return the EventInner object itself.
      */
@@ -624,7 +602,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the lastUpdateTime property: It provides the Timestamp for when the health impacting event was last updated.
-     *
+     * 
      * @return the lastUpdateTime value.
      */
     public OffsetDateTime lastUpdateTime() {
@@ -633,7 +611,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the lastUpdateTime property: It provides the Timestamp for when the health impacting event was last updated.
-     *
+     * 
      * @param lastUpdateTime the lastUpdateTime value to set.
      * @return the EventInner object itself.
      */
@@ -647,7 +625,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the hirStage property: Stage for HIR Document.
-     *
+     * 
      * @return the hirStage value.
      */
     public String hirStage() {
@@ -656,7 +634,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the hirStage property: Stage for HIR Document.
-     *
+     * 
      * @param hirStage the hirStage value to set.
      * @return the EventInner object itself.
      */
@@ -670,7 +648,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the additionalInformation property: Additional information.
-     *
+     * 
      * @return the additionalInformation value.
      */
     public EventPropertiesAdditionalInformation additionalInformation() {
@@ -679,7 +657,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the additionalInformation property: Additional information.
-     *
+     * 
      * @param additionalInformation the additionalInformation value to set.
      * @return the EventInner object itself.
      */
@@ -693,7 +671,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the duration property: duration in seconds.
-     *
+     * 
      * @return the duration value.
      */
     public Integer duration() {
@@ -702,7 +680,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the duration property: duration in seconds.
-     *
+     * 
      * @param duration the duration value to set.
      * @return the EventInner object itself.
      */
@@ -716,7 +694,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Get the impactType property: The type of the impact.
-     *
+     * 
      * @return the impactType value.
      */
     public String impactType() {
@@ -725,7 +703,7 @@ public final class EventInner extends ProxyResource {
 
     /**
      * Set the impactType property: The type of the impact.
-     *
+     * 
      * @param impactType the impactType value to set.
      * @return the EventInner object itself.
      */
@@ -738,79 +716,8 @@ public final class EventInner extends ProxyResource {
     }
 
     /**
-     * Get the maintenanceId property: Unique identifier for planned maintenance event.
-     *
-     * @return the maintenanceId value.
-     */
-    public String maintenanceId() {
-        return this.innerProperties() == null ? null : this.innerProperties().maintenanceId();
-    }
-
-    /**
-     * Set the maintenanceId property: Unique identifier for planned maintenance event.
-     *
-     * @param maintenanceId the maintenanceId value to set.
-     * @return the EventInner object itself.
-     */
-    public EventInner withMaintenanceId(String maintenanceId) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EventProperties();
-        }
-        this.innerProperties().withMaintenanceId(maintenanceId);
-        return this;
-    }
-
-    /**
-     * Get the maintenanceType property: The type of planned maintenance event.
-     *
-     * @return the maintenanceType value.
-     */
-    public String maintenanceType() {
-        return this.innerProperties() == null ? null : this.innerProperties().maintenanceType();
-    }
-
-    /**
-     * Set the maintenanceType property: The type of planned maintenance event.
-     *
-     * @param maintenanceType the maintenanceType value to set.
-     * @return the EventInner object itself.
-     */
-    public EventInner withMaintenanceType(String maintenanceType) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EventProperties();
-        }
-        this.innerProperties().withMaintenanceType(maintenanceType);
-        return this;
-    }
-
-    /**
-     * Get the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
-     * Resource Graph locations.
-     *
-     * @return the argQuery value.
-     */
-    public String argQuery() {
-        return this.innerProperties() == null ? null : this.innerProperties().argQuery();
-    }
-
-    /**
-     * Set the argQuery property: Azure Resource Graph query to fetch the affected resources from their existing Azure
-     * Resource Graph locations.
-     *
-     * @param argQuery the argQuery value to set.
-     * @return the EventInner object itself.
-     */
-    public EventInner withArgQuery(String argQuery) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new EventProperties();
-        }
-        this.innerProperties().withArgQuery(argQuery);
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

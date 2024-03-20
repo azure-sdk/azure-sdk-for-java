@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Properties of availability state. */
+/**
+ * Properties of availability state.
+ */
 @Fluent
 public final class AvailabilityStatusProperties {
     /*
@@ -142,14 +144,16 @@ public final class AvailabilityStatusProperties {
     @JsonProperty(value = "serviceImpactingEvents")
     private List<ServiceImpactingEvent> serviceImpactingEvents;
 
-    /** Creates an instance of AvailabilityStatusProperties class. */
+    /**
+     * Creates an instance of AvailabilityStatusProperties class.
+     */
     public AvailabilityStatusProperties() {
     }
 
     /**
-     * Get the availabilityState property: Availability status of the resource. When it is null, this availabilityStatus
-     * object represents an availability impacting event.
-     *
+     * Get the availabilityState property: Availability status of the resource. When it is null, this
+     * availabilityStatus object represents an availability impacting event.
+     * 
      * @return the availabilityState value.
      */
     public AvailabilityStateValues availabilityState() {
@@ -157,9 +161,9 @@ public final class AvailabilityStatusProperties {
     }
 
     /**
-     * Set the availabilityState property: Availability status of the resource. When it is null, this availabilityStatus
-     * object represents an availability impacting event.
-     *
+     * Set the availabilityState property: Availability status of the resource. When it is null, this
+     * availabilityStatus object represents an availability impacting event.
+     * 
      * @param availabilityState the availabilityState value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -170,7 +174,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Get the title property: Title description of the availability status.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -179,7 +183,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Set the title property: Title description of the availability status.
-     *
+     * 
      * @param title the title value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -190,7 +194,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Get the summary property: Summary description of the availability status.
-     *
+     * 
      * @return the summary value.
      */
     public String summary() {
@@ -199,7 +203,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Set the summary property: Summary description of the availability status.
-     *
+     * 
      * @param summary the summary value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -210,7 +214,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Get the detailedStatus property: Details of the availability status.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public String detailedStatus() {
@@ -219,7 +223,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Set the detailedStatus property: Details of the availability status.
-     *
+     * 
      * @param detailedStatus the detailedStatus value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -231,7 +235,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Get the reasonType property: When the resource's availabilityState is Unavailable, it describes where the health
      * impacting event was originated. Examples are planned, unplanned, user initiated or an outage etc.
-     *
+     * 
      * @return the reasonType value.
      */
     public String reasonType() {
@@ -241,7 +245,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Set the reasonType property: When the resource's availabilityState is Unavailable, it describes where the health
      * impacting event was originated. Examples are planned, unplanned, user initiated or an outage etc.
-     *
+     * 
      * @param reasonType the reasonType value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -253,7 +257,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Get the context property: When an event is created, it can either be triggered by a customer or the platform of
      * the resource and this field will illustrate that. This field is connected to the category field in this object.
-     *
+     * 
      * @return the context value.
      */
     public String context() {
@@ -263,7 +267,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Set the context property: When an event is created, it can either be triggered by a customer or the platform of
      * the resource and this field will illustrate that. This field is connected to the category field in this object.
-     *
+     * 
      * @param context the context value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -275,7 +279,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Get the category property: When a context field is set to Platform, this field will reflect if the event was
      * planned or unplanned. If the context field does not have a value of Platform, then this field will be ignored.
-     *
+     * 
      * @return the category value.
      */
     public String category() {
@@ -285,7 +289,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Set the category property: When a context field is set to Platform, this field will reflect if the event was
      * planned or unplanned. If the context field does not have a value of Platform, then this field will be ignored.
-     *
+     * 
      * @param category the category value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -296,7 +300,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Get the articleId property: The Article Id.
-     *
+     * 
      * @return the articleId value.
      */
     public String articleId() {
@@ -305,7 +309,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Set the articleId property: The Article Id.
-     *
+     * 
      * @param articleId the articleId value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -317,7 +321,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Get the rootCauseAttributionTime property: When the resource's availabilityState is Unavailable, it provides the
      * Timestamp for when the health impacting event was received.
-     *
+     * 
      * @return the rootCauseAttributionTime value.
      */
     public OffsetDateTime rootCauseAttributionTime() {
@@ -327,7 +331,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Set the rootCauseAttributionTime property: When the resource's availabilityState is Unavailable, it provides the
      * Timestamp for when the health impacting event was received.
-     *
+     * 
      * @param rootCauseAttributionTime the rootCauseAttributionTime value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -339,7 +343,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Get the healthEventType property: In case of an availability impacting event, it describes when the health
      * impacting event was originated. Examples are Lifecycle, Downtime, Fault Analysis etc.
-     *
+     * 
      * @return the healthEventType value.
      */
     public String healthEventType() {
@@ -349,7 +353,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Set the healthEventType property: In case of an availability impacting event, it describes when the health
      * impacting event was originated. Examples are Lifecycle, Downtime, Fault Analysis etc.
-     *
+     * 
      * @param healthEventType the healthEventType value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -361,7 +365,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Get the healthEventCause property: In case of an availability impacting event, it describes where the health
      * impacting event was originated. Examples are PlatformInitiated, UserInitiated etc.
-     *
+     * 
      * @return the healthEventCause value.
      */
     public String healthEventCause() {
@@ -371,7 +375,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Set the healthEventCause property: In case of an availability impacting event, it describes where the health
      * impacting event was originated. Examples are PlatformInitiated, UserInitiated etc.
-     *
+     * 
      * @param healthEventCause the healthEventCause value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -383,7 +387,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Get the healthEventCategory property: In case of an availability impacting event, it describes the category of a
      * PlatformInitiated health impacting event. Examples are Planned, Unplanned etc.
-     *
+     * 
      * @return the healthEventCategory value.
      */
     public String healthEventCategory() {
@@ -393,7 +397,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Set the healthEventCategory property: In case of an availability impacting event, it describes the category of a
      * PlatformInitiated health impacting event. Examples are Planned, Unplanned etc.
-     *
+     * 
      * @param healthEventCategory the healthEventCategory value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -404,7 +408,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Get the healthEventId property: It is a unique Id that identifies the event.
-     *
+     * 
      * @return the healthEventId value.
      */
     public String healthEventId() {
@@ -413,7 +417,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Set the healthEventId property: It is a unique Id that identifies the event.
-     *
+     * 
      * @param healthEventId the healthEventId value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -425,7 +429,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Get the resolutionEta property: When the resource's availabilityState is Unavailable and the reasonType is not
      * User Initiated, it provides the date and time for when the issue is expected to be resolved.
-     *
+     * 
      * @return the resolutionEta value.
      */
     public OffsetDateTime resolutionEta() {
@@ -435,7 +439,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Set the resolutionEta property: When the resource's availabilityState is Unavailable and the reasonType is not
      * User Initiated, it provides the date and time for when the issue is expected to be resolved.
-     *
+     * 
      * @param resolutionEta the resolutionEta value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -446,7 +450,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Get the occuredTime property: Timestamp for when last change in health status occurred.
-     *
+     * 
      * @return the occuredTime value.
      */
     public OffsetDateTime occuredTime() {
@@ -455,7 +459,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Set the occuredTime property: Timestamp for when last change in health status occurred.
-     *
+     * 
      * @param occuredTime the occuredTime value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -466,7 +470,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Get the reasonChronicity property: Chronicity of the availability transition.
-     *
+     * 
      * @return the reasonChronicity value.
      */
     public ReasonChronicityTypes reasonChronicity() {
@@ -475,7 +479,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Set the reasonChronicity property: Chronicity of the availability transition.
-     *
+     * 
      * @param reasonChronicity the reasonChronicity value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -486,7 +490,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Get the reportedTime property: Timestamp for when the health was last checked.
-     *
+     * 
      * @return the reportedTime value.
      */
     public OffsetDateTime reportedTime() {
@@ -495,7 +499,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Set the reportedTime property: Timestamp for when the health was last checked.
-     *
+     * 
      * @param reportedTime the reportedTime value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -507,7 +511,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Get the recentlyResolved property: An annotation describing a change in the availabilityState to Available from
      * Unavailable with a reasonType of type Unplanned.
-     *
+     * 
      * @return the recentlyResolved value.
      */
     public AvailabilityStatusPropertiesRecentlyResolved recentlyResolved() {
@@ -517,12 +521,12 @@ public final class AvailabilityStatusProperties {
     /**
      * Set the recentlyResolved property: An annotation describing a change in the availabilityState to Available from
      * Unavailable with a reasonType of type Unplanned.
-     *
+     * 
      * @param recentlyResolved the recentlyResolved value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
-    public AvailabilityStatusProperties withRecentlyResolved(
-        AvailabilityStatusPropertiesRecentlyResolved recentlyResolved) {
+    public AvailabilityStatusProperties
+        withRecentlyResolved(AvailabilityStatusPropertiesRecentlyResolved recentlyResolved) {
         this.recentlyResolved = recentlyResolved;
         return this;
     }
@@ -530,7 +534,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Get the recommendedActions property: Lists actions the user can take based on the current availabilityState of
      * the resource.
-     *
+     * 
      * @return the recommendedActions value.
      */
     public List<RecommendedAction> recommendedActions() {
@@ -540,7 +544,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Set the recommendedActions property: Lists actions the user can take based on the current availabilityState of
      * the resource.
-     *
+     * 
      * @param recommendedActions the recommendedActions value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -552,7 +556,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Get the serviceImpactingEvents property: Lists the service impacting events that may be affecting the health of
      * the resource.
-     *
+     * 
      * @return the serviceImpactingEvents value.
      */
     public List<ServiceImpactingEvent> serviceImpactingEvents() {
@@ -562,7 +566,7 @@ public final class AvailabilityStatusProperties {
     /**
      * Set the serviceImpactingEvents property: Lists the service impacting events that may be affecting the health of
      * the resource.
-     *
+     * 
      * @param serviceImpactingEvents the serviceImpactingEvents value to set.
      * @return the AvailabilityStatusProperties object itself.
      */
@@ -573,7 +577,7 @@ public final class AvailabilityStatusProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

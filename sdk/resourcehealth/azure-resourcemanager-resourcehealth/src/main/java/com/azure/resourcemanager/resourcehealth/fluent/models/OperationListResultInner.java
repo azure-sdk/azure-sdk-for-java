@@ -10,7 +10,9 @@ import com.azure.resourcemanager.resourcehealth.models.Operation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Lists the operations response. */
+/**
+ * Lists the operations response.
+ */
 @Fluent
 public final class OperationListResultInner {
     /*
@@ -19,13 +21,15 @@ public final class OperationListResultInner {
     @JsonProperty(value = "value", required = true)
     private List<Operation> value;
 
-    /** Creates an instance of OperationListResultInner class. */
+    /**
+     * Creates an instance of OperationListResultInner class.
+     */
     public OperationListResultInner() {
     }
 
     /**
      * Get the value property: List of operations available in the Microsoft.ResourceHealth resource provider.
-     *
+     * 
      * @return the value value.
      */
     public List<Operation> value() {
@@ -34,7 +38,7 @@ public final class OperationListResultInner {
 
     /**
      * Set the value property: List of operations available in the Microsoft.ResourceHealth resource provider.
-     *
+     * 
      * @param value the value value to set.
      * @return the OperationListResultInner object itself.
      */
@@ -45,14 +49,13 @@ public final class OperationListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model OperationListResultInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model OperationListResultInner"));
         } else {
             value().forEach(e -> e.validate());
         }

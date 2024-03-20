@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.resourcehealth.models.AvailabilityStatusProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** availabilityStatus of a resource. */
+/**
+ * availabilityStatus of a resource.
+ */
 @Fluent
 public final class AvailabilityStatusInner {
     /*
@@ -41,13 +43,15 @@ public final class AvailabilityStatusInner {
     @JsonProperty(value = "properties")
     private AvailabilityStatusProperties properties;
 
-    /** Creates an instance of AvailabilityStatusInner class. */
+    /**
+     * Creates an instance of AvailabilityStatusInner class.
+     */
     public AvailabilityStatusInner() {
     }
 
     /**
      * Get the id property: Azure Resource Manager Identity for the availabilityStatuses resource.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -56,7 +60,7 @@ public final class AvailabilityStatusInner {
 
     /**
      * Set the id property: Azure Resource Manager Identity for the availabilityStatuses resource.
-     *
+     * 
      * @param id the id value to set.
      * @return the AvailabilityStatusInner object itself.
      */
@@ -67,7 +71,7 @@ public final class AvailabilityStatusInner {
 
     /**
      * Get the name property: current.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -76,7 +80,7 @@ public final class AvailabilityStatusInner {
 
     /**
      * Set the name property: current.
-     *
+     * 
      * @param name the name value to set.
      * @return the AvailabilityStatusInner object itself.
      */
@@ -87,7 +91,7 @@ public final class AvailabilityStatusInner {
 
     /**
      * Get the type property: Microsoft.ResourceHealth/AvailabilityStatuses.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -96,7 +100,7 @@ public final class AvailabilityStatusInner {
 
     /**
      * Set the type property: Microsoft.ResourceHealth/AvailabilityStatuses.
-     *
+     * 
      * @param type the type value to set.
      * @return the AvailabilityStatusInner object itself.
      */
@@ -107,7 +111,7 @@ public final class AvailabilityStatusInner {
 
     /**
      * Get the location property: Azure Resource Manager geo location of the resource.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -116,7 +120,7 @@ public final class AvailabilityStatusInner {
 
     /**
      * Set the location property: Azure Resource Manager geo location of the resource.
-     *
+     * 
      * @param location the location value to set.
      * @return the AvailabilityStatusInner object itself.
      */
@@ -127,7 +131,7 @@ public final class AvailabilityStatusInner {
 
     /**
      * Get the properties property: Properties of availability state.
-     *
+     * 
      * @return the properties value.
      */
     public AvailabilityStatusProperties properties() {
@@ -136,7 +140,7 @@ public final class AvailabilityStatusInner {
 
     /**
      * Set the properties property: Properties of availability state.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the AvailabilityStatusInner object itself.
      */
@@ -147,7 +151,7 @@ public final class AvailabilityStatusInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

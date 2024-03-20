@@ -4,23 +4,24 @@
 
 package com.azure.resourcemanager.resourcehealth.generated;
 
-/** Samples for EventsOperation ListBySingleResource. */
+/**
+ * Samples for EventsOperation ListBySingleResource.
+ */
 public final class EventsOperationListBySingleResourceSamples {
     /*
-     * x-ms-original-file: specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/preview/2023-10-01-preview/examples/Events_ListBySingleResource.json
+     * x-ms-original-file:
+     * specification/resourcehealth/resource-manager/Microsoft.ResourceHealth/stable/2024-02-01/examples/
+     * Events_ListBySingleResource.json
      */
     /**
      * Sample code: ListEventsBySingleResource.
-     *
+     * 
      * @param manager Entry point to ResourceHealthManager.
      */
-    public static void listEventsBySingleResource(
-        com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
-        manager
-            .eventsOperations()
-            .listBySingleResource(
-                "subscriptions/4abcdefgh-ijkl-mnop-qrstuvwxyz/resourceGroups/rhctestenv/providers/Microsoft.Compute/virtualMachines/rhctestenvV1PI",
-                null,
-                com.azure.core.util.Context.NONE);
+    public static void
+        listEventsBySingleResource(com.azure.resourcemanager.resourcehealth.ResourceHealthManager manager) {
+        manager.eventsOperations().listBySingleResource(
+            "subscriptions/4abcdefgh-ijkl-mnop-qrstuvwxyz/resourceGroups/rhctestenv/providers/Microsoft.Compute/virtualMachines/rhctestenvV1PI",
+            null, com.azure.core.util.Context.NONE);
     }
 }

@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.resourcehealth {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.resourcehealth;
     exports com.azure.resourcemanager.resourcehealth.fluent;
     exports com.azure.resourcemanager.resourcehealth.fluent.models;
     exports com.azure.resourcemanager.resourcehealth.models;
-
-    opens com.azure.resourcemanager.resourcehealth.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.resourcehealth.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.resourcehealth.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.resourcehealth.models to com.azure.core, com.fasterxml.jackson.databind;
 }
