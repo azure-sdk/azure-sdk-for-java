@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.fluent.models.ClusterPrincipalAssignmentI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list Kusto cluster principal assignments operation response. */
+/**
+ * The list Kusto cluster principal assignments operation response.
+ */
 @Fluent
 public final class ClusterPrincipalAssignmentListResult {
     /*
@@ -18,13 +20,15 @@ public final class ClusterPrincipalAssignmentListResult {
     @JsonProperty(value = "value")
     private List<ClusterPrincipalAssignmentInner> value;
 
-    /** Creates an instance of ClusterPrincipalAssignmentListResult class. */
+    /**
+     * Creates an instance of ClusterPrincipalAssignmentListResult class.
+     */
     public ClusterPrincipalAssignmentListResult() {
     }
 
     /**
      * Get the value property: The list of Kusto cluster principal assignments.
-     *
+     * 
      * @return the value value.
      */
     public List<ClusterPrincipalAssignmentInner> value() {
@@ -33,7 +37,7 @@ public final class ClusterPrincipalAssignmentListResult {
 
     /**
      * Set the value property: The list of Kusto cluster principal assignments.
-     *
+     * 
      * @param value the value value to set.
      * @return the ClusterPrincipalAssignmentListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class ClusterPrincipalAssignmentListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

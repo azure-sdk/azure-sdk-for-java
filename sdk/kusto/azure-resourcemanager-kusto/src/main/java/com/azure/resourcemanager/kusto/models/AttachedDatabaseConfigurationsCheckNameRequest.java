@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The result returned from a AttachedDatabaseConfigurations check name availability request. */
+/**
+ * The result returned from a AttachedDatabaseConfigurations check name availability request.
+ */
 @Fluent
 public final class AttachedDatabaseConfigurationsCheckNameRequest {
     /*
@@ -23,14 +25,15 @@ public final class AttachedDatabaseConfigurationsCheckNameRequest {
     @JsonProperty(value = "type", required = true)
     private String type = "Microsoft.Kusto/clusters/attachedDatabaseConfigurations";
 
-    /** Creates an instance of AttachedDatabaseConfigurationsCheckNameRequest class. */
+    /**
+     * Creates an instance of AttachedDatabaseConfigurationsCheckNameRequest class.
+     */
     public AttachedDatabaseConfigurationsCheckNameRequest() {
-        type = "Microsoft.Kusto/clusters/attachedDatabaseConfigurations";
     }
 
     /**
      * Get the name property: Attached database resource name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -39,7 +42,7 @@ public final class AttachedDatabaseConfigurationsCheckNameRequest {
 
     /**
      * Set the name property: Attached database resource name.
-     *
+     * 
      * @param name the name value to set.
      * @return the AttachedDatabaseConfigurationsCheckNameRequest object itself.
      */
@@ -51,7 +54,7 @@ public final class AttachedDatabaseConfigurationsCheckNameRequest {
     /**
      * Get the type property: The type of resource, for instance
      * Microsoft.Kusto/clusters/attachedDatabaseConfigurations.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -61,7 +64,7 @@ public final class AttachedDatabaseConfigurationsCheckNameRequest {
     /**
      * Set the type property: The type of resource, for instance
      * Microsoft.Kusto/clusters/attachedDatabaseConfigurations.
-     *
+     * 
      * @param type the type value to set.
      * @return the AttachedDatabaseConfigurationsCheckNameRequest object itself.
      */
@@ -72,15 +75,13 @@ public final class AttachedDatabaseConfigurationsCheckNameRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property name in model AttachedDatabaseConfigurationsCheckNameRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property name in model AttachedDatabaseConfigurationsCheckNameRequest"));
         }
     }
 

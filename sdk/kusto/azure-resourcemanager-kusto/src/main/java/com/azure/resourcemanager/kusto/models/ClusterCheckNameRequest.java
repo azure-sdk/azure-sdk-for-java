@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The result returned from a cluster check name availability request. */
+/**
+ * The result returned from a cluster check name availability request.
+ */
 @Fluent
 public final class ClusterCheckNameRequest {
     /*
@@ -23,14 +25,15 @@ public final class ClusterCheckNameRequest {
     @JsonProperty(value = "type", required = true)
     private String type = "Microsoft.Kusto/clusters";
 
-    /** Creates an instance of ClusterCheckNameRequest class. */
+    /**
+     * Creates an instance of ClusterCheckNameRequest class.
+     */
     public ClusterCheckNameRequest() {
-        type = "Microsoft.Kusto/clusters";
     }
 
     /**
      * Get the name property: Cluster name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -39,7 +42,7 @@ public final class ClusterCheckNameRequest {
 
     /**
      * Set the name property: Cluster name.
-     *
+     * 
      * @param name the name value to set.
      * @return the ClusterCheckNameRequest object itself.
      */
@@ -50,7 +53,7 @@ public final class ClusterCheckNameRequest {
 
     /**
      * Get the type property: The type of resource, Microsoft.Kusto/clusters.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -59,7 +62,7 @@ public final class ClusterCheckNameRequest {
 
     /**
      * Set the type property: The type of resource, Microsoft.Kusto/clusters.
-     *
+     * 
      * @param type the type value to set.
      * @return the ClusterCheckNameRequest object itself.
      */
@@ -70,14 +73,13 @@ public final class ClusterCheckNameRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model ClusterCheckNameRequest"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model ClusterCheckNameRequest"));
         }
     }
 

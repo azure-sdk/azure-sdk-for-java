@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kusto.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The IdentityUserAssignedIdentities model. */
+/**
+ * The IdentityUserAssignedIdentities model.
+ */
 @Immutable
 public final class IdentityUserAssignedIdentities {
     /*
@@ -22,13 +24,15 @@ public final class IdentityUserAssignedIdentities {
     @JsonProperty(value = "clientId", access = JsonProperty.Access.WRITE_ONLY)
     private String clientId;
 
-    /** Creates an instance of IdentityUserAssignedIdentities class. */
+    /**
+     * Creates an instance of IdentityUserAssignedIdentities class.
+     */
     public IdentityUserAssignedIdentities() {
     }
 
     /**
      * Get the principalId property: The principal id of user assigned identity.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -37,7 +41,7 @@ public final class IdentityUserAssignedIdentities {
 
     /**
      * Get the clientId property: The client id of user assigned identity.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -46,7 +50,7 @@ public final class IdentityUserAssignedIdentities {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

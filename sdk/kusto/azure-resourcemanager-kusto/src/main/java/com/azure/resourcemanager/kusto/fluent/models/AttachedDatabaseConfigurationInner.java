@@ -12,7 +12,9 @@ import com.azure.resourcemanager.kusto.models.TableLevelSharingProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Class representing an attached database configuration. */
+/**
+ * Class representing an attached database configuration.
+ */
 @Fluent
 public final class AttachedDatabaseConfigurationInner extends ProxyResource {
     /*
@@ -27,13 +29,15 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private AttachedDatabaseConfigurationProperties innerProperties;
 
-    /** Creates an instance of AttachedDatabaseConfigurationInner class. */
+    /**
+     * Creates an instance of AttachedDatabaseConfigurationInner class.
+     */
     public AttachedDatabaseConfigurationInner() {
     }
 
     /**
      * Get the location property: Resource location.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -42,7 +46,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
 
     /**
      * Set the location property: Resource location.
-     *
+     * 
      * @param location the location value to set.
      * @return the AttachedDatabaseConfigurationInner object itself.
      */
@@ -53,7 +57,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: The properties of the attached database configuration.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AttachedDatabaseConfigurationProperties innerProperties() {
@@ -62,7 +66,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -72,7 +76,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
     /**
      * Get the databaseName property: The name of the database which you would like to attach, use * if you want to
      * follow all current and future databases.
-     *
+     * 
      * @return the databaseName value.
      */
     public String databaseName() {
@@ -82,7 +86,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
     /**
      * Set the databaseName property: The name of the database which you would like to attach, use * if you want to
      * follow all current and future databases.
-     *
+     * 
      * @param databaseName the databaseName value to set.
      * @return the AttachedDatabaseConfigurationInner object itself.
      */
@@ -97,7 +101,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
     /**
      * Get the clusterResourceId property: The resource id of the cluster where the databases you would like to attach
      * reside.
-     *
+     * 
      * @return the clusterResourceId value.
      */
     public String clusterResourceId() {
@@ -107,7 +111,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
     /**
      * Set the clusterResourceId property: The resource id of the cluster where the databases you would like to attach
      * reside.
-     *
+     * 
      * @param clusterResourceId the clusterResourceId value to set.
      * @return the AttachedDatabaseConfigurationInner object itself.
      */
@@ -122,7 +126,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
     /**
      * Get the attachedDatabaseNames property: The list of databases from the clusterResourceId which are currently
      * attached to the cluster.
-     *
+     * 
      * @return the attachedDatabaseNames value.
      */
     public List<String> attachedDatabaseNames() {
@@ -131,7 +135,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
 
     /**
      * Get the defaultPrincipalsModificationKind property: The default principals modification kind.
-     *
+     * 
      * @return the defaultPrincipalsModificationKind value.
      */
     public DefaultPrincipalsModificationKind defaultPrincipalsModificationKind() {
@@ -140,12 +144,12 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
 
     /**
      * Set the defaultPrincipalsModificationKind property: The default principals modification kind.
-     *
+     * 
      * @param defaultPrincipalsModificationKind the defaultPrincipalsModificationKind value to set.
      * @return the AttachedDatabaseConfigurationInner object itself.
      */
-    public AttachedDatabaseConfigurationInner withDefaultPrincipalsModificationKind(
-        DefaultPrincipalsModificationKind defaultPrincipalsModificationKind) {
+    public AttachedDatabaseConfigurationInner
+        withDefaultPrincipalsModificationKind(DefaultPrincipalsModificationKind defaultPrincipalsModificationKind) {
         if (this.innerProperties() == null) {
             this.innerProperties = new AttachedDatabaseConfigurationProperties();
         }
@@ -155,7 +159,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
 
     /**
      * Get the tableLevelSharingProperties property: Table level sharing specifications.
-     *
+     * 
      * @return the tableLevelSharingProperties value.
      */
     public TableLevelSharingProperties tableLevelSharingProperties() {
@@ -164,12 +168,12 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
 
     /**
      * Set the tableLevelSharingProperties property: Table level sharing specifications.
-     *
+     * 
      * @param tableLevelSharingProperties the tableLevelSharingProperties value to set.
      * @return the AttachedDatabaseConfigurationInner object itself.
      */
-    public AttachedDatabaseConfigurationInner withTableLevelSharingProperties(
-        TableLevelSharingProperties tableLevelSharingProperties) {
+    public AttachedDatabaseConfigurationInner
+        withTableLevelSharingProperties(TableLevelSharingProperties tableLevelSharingProperties) {
         if (this.innerProperties() == null) {
             this.innerProperties = new AttachedDatabaseConfigurationProperties();
         }
@@ -180,7 +184,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
     /**
      * Get the databaseNameOverride property: Overrides the original database name. Relevant only when attaching to a
      * specific database.
-     *
+     * 
      * @return the databaseNameOverride value.
      */
     public String databaseNameOverride() {
@@ -190,7 +194,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
     /**
      * Set the databaseNameOverride property: Overrides the original database name. Relevant only when attaching to a
      * specific database.
-     *
+     * 
      * @param databaseNameOverride the databaseNameOverride value to set.
      * @return the AttachedDatabaseConfigurationInner object itself.
      */
@@ -205,7 +209,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
     /**
      * Get the databaseNamePrefix property: Adds a prefix to the attached databases name. When following an entire
      * cluster, that prefix would be added to all of the databases original names from leader cluster.
-     *
+     * 
      * @return the databaseNamePrefix value.
      */
     public String databaseNamePrefix() {
@@ -215,7 +219,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
     /**
      * Set the databaseNamePrefix property: Adds a prefix to the attached databases name. When following an entire
      * cluster, that prefix would be added to all of the databases original names from leader cluster.
-     *
+     * 
      * @param databaseNamePrefix the databaseNamePrefix value to set.
      * @return the AttachedDatabaseConfigurationInner object itself.
      */
@@ -229,7 +233,7 @@ public final class AttachedDatabaseConfigurationInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

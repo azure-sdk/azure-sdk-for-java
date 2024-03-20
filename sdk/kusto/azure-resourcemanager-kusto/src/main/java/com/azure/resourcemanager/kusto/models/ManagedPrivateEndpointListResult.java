@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.fluent.models.ManagedPrivateEndpointInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list managed private endpoints operation response. */
+/**
+ * The list managed private endpoints operation response.
+ */
 @Fluent
 public final class ManagedPrivateEndpointListResult {
     /*
@@ -18,13 +20,15 @@ public final class ManagedPrivateEndpointListResult {
     @JsonProperty(value = "value")
     private List<ManagedPrivateEndpointInner> value;
 
-    /** Creates an instance of ManagedPrivateEndpointListResult class. */
+    /**
+     * Creates an instance of ManagedPrivateEndpointListResult class.
+     */
     public ManagedPrivateEndpointListResult() {
     }
 
     /**
      * Get the value property: The list of managed private endpoints.
-     *
+     * 
      * @return the value value.
      */
     public List<ManagedPrivateEndpointInner> value() {
@@ -33,7 +37,7 @@ public final class ManagedPrivateEndpointListResult {
 
     /**
      * Set the value property: The list of managed private endpoints.
-     *
+     * 
      * @param value the value value to set.
      * @return the ManagedPrivateEndpointListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class ManagedPrivateEndpointListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

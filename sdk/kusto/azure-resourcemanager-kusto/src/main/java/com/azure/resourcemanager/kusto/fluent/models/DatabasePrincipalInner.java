@@ -10,7 +10,9 @@ import com.azure.resourcemanager.kusto.models.DatabasePrincipalRole;
 import com.azure.resourcemanager.kusto.models.DatabasePrincipalType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class representing database principal entity. */
+/**
+ * A class representing database principal entity.
+ */
 @Fluent
 public final class DatabasePrincipalInner {
     /*
@@ -55,13 +57,15 @@ public final class DatabasePrincipalInner {
     @JsonProperty(value = "tenantName", access = JsonProperty.Access.WRITE_ONLY)
     private String tenantName;
 
-    /** Creates an instance of DatabasePrincipalInner class. */
+    /**
+     * Creates an instance of DatabasePrincipalInner class.
+     */
     public DatabasePrincipalInner() {
     }
 
     /**
      * Get the role property: Database principal role.
-     *
+     * 
      * @return the role value.
      */
     public DatabasePrincipalRole role() {
@@ -70,7 +74,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Set the role property: Database principal role.
-     *
+     * 
      * @param role the role value to set.
      * @return the DatabasePrincipalInner object itself.
      */
@@ -81,7 +85,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Get the name property: Database principal name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -90,7 +94,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Set the name property: Database principal name.
-     *
+     * 
      * @param name the name value to set.
      * @return the DatabasePrincipalInner object itself.
      */
@@ -101,7 +105,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Get the type property: Database principal type.
-     *
+     * 
      * @return the type value.
      */
     public DatabasePrincipalType type() {
@@ -110,7 +114,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Set the type property: Database principal type.
-     *
+     * 
      * @param type the type value to set.
      * @return the DatabasePrincipalInner object itself.
      */
@@ -121,7 +125,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Get the fqn property: Database principal fully qualified name.
-     *
+     * 
      * @return the fqn value.
      */
     public String fqn() {
@@ -130,7 +134,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Set the fqn property: Database principal fully qualified name.
-     *
+     * 
      * @param fqn the fqn value to set.
      * @return the DatabasePrincipalInner object itself.
      */
@@ -141,7 +145,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Get the email property: Database principal email if exists.
-     *
+     * 
      * @return the email value.
      */
     public String email() {
@@ -150,7 +154,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Set the email property: Database principal email if exists.
-     *
+     * 
      * @param email the email value to set.
      * @return the DatabasePrincipalInner object itself.
      */
@@ -161,7 +165,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Get the appId property: Application id - relevant only for application principal type.
-     *
+     * 
      * @return the appId value.
      */
     public String appId() {
@@ -170,7 +174,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Set the appId property: Application id - relevant only for application principal type.
-     *
+     * 
      * @param appId the appId value to set.
      * @return the DatabasePrincipalInner object itself.
      */
@@ -181,7 +185,7 @@ public final class DatabasePrincipalInner {
 
     /**
      * Get the tenantName property: The tenant name of the principal.
-     *
+     * 
      * @return the tenantName value.
      */
     public String tenantName() {
@@ -190,24 +194,21 @@ public final class DatabasePrincipalInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (role() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property role in model DatabasePrincipalInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property role in model DatabasePrincipalInner"));
         }
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property name in model DatabasePrincipalInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property name in model DatabasePrincipalInner"));
         }
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property type in model DatabasePrincipalInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model DatabasePrincipalInner"));
         }
     }
 

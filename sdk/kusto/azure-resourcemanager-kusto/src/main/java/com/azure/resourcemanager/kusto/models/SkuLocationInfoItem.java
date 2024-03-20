@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The locations and zones info for SKU. */
+/**
+ * The locations and zones info for SKU.
+ */
 @Fluent
 public final class SkuLocationInfoItem {
     /*
@@ -30,13 +32,15 @@ public final class SkuLocationInfoItem {
     @JsonProperty(value = "zoneDetails")
     private List<ResourceSkuZoneDetails> zoneDetails;
 
-    /** Creates an instance of SkuLocationInfoItem class. */
+    /**
+     * Creates an instance of SkuLocationInfoItem class.
+     */
     public SkuLocationInfoItem() {
     }
 
     /**
      * Get the location property: The available location of the SKU.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -45,7 +49,7 @@ public final class SkuLocationInfoItem {
 
     /**
      * Set the location property: The available location of the SKU.
-     *
+     * 
      * @param location the location value to set.
      * @return the SkuLocationInfoItem object itself.
      */
@@ -56,7 +60,7 @@ public final class SkuLocationInfoItem {
 
     /**
      * Get the zones property: The available zone of the SKU.
-     *
+     * 
      * @return the zones value.
      */
     public List<String> zones() {
@@ -65,7 +69,7 @@ public final class SkuLocationInfoItem {
 
     /**
      * Set the zones property: The available zone of the SKU.
-     *
+     * 
      * @param zones the zones value to set.
      * @return the SkuLocationInfoItem object itself.
      */
@@ -76,7 +80,7 @@ public final class SkuLocationInfoItem {
 
     /**
      * Get the zoneDetails property: Gets details of capabilities available to a SKU in specific zones.
-     *
+     * 
      * @return the zoneDetails value.
      */
     public List<ResourceSkuZoneDetails> zoneDetails() {
@@ -85,7 +89,7 @@ public final class SkuLocationInfoItem {
 
     /**
      * Set the zoneDetails property: Gets details of capabilities available to a SKU in specific zones.
-     *
+     * 
      * @param zoneDetails the zoneDetails value to set.
      * @return the SkuLocationInfoItem object itself.
      */
@@ -96,14 +100,13 @@ public final class SkuLocationInfoItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (location() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property location in model SkuLocationInfoItem"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property location in model SkuLocationInfoItem"));
         }
         if (zoneDetails() != null) {
             zoneDetails().forEach(e -> e.validate());

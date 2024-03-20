@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.fluent.models.DatabaseInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list Kusto databases operation response. */
+/**
+ * The list Kusto databases operation response.
+ */
 @Fluent
 public final class DatabaseListResult {
     /*
@@ -24,13 +26,15 @@ public final class DatabaseListResult {
     @JsonProperty(value = "value")
     private List<DatabaseInner> value;
 
-    /** Creates an instance of DatabaseListResult class. */
+    /**
+     * Creates an instance of DatabaseListResult class.
+     */
     public DatabaseListResult() {
     }
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class DatabaseListResult {
 
     /**
      * Set the nextLink property: Link to the next page of results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the DatabaseListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class DatabaseListResult {
 
     /**
      * Get the value property: The list of Kusto databases.
-     *
+     * 
      * @return the value value.
      */
     public List<DatabaseInner> value() {
@@ -59,7 +63,7 @@ public final class DatabaseListResult {
 
     /**
      * Set the value property: The list of Kusto databases.
-     *
+     * 
      * @param value the value value to set.
      * @return the DatabaseListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class DatabaseListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

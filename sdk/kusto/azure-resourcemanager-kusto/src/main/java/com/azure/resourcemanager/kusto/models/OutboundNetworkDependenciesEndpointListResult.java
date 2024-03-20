@@ -10,7 +10,9 @@ import com.azure.resourcemanager.kusto.fluent.models.OutboundNetworkDependencies
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Collection of Outbound Environment Endpoints. */
+/**
+ * Collection of Outbound Environment Endpoints.
+ */
 @Fluent
 public final class OutboundNetworkDependenciesEndpointListResult {
     /*
@@ -25,13 +27,15 @@ public final class OutboundNetworkDependenciesEndpointListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of OutboundNetworkDependenciesEndpointListResult class. */
+    /**
+     * Creates an instance of OutboundNetworkDependenciesEndpointListResult class.
+     */
     public OutboundNetworkDependenciesEndpointListResult() {
     }
 
     /**
      * Get the value property: Collection of resources.
-     *
+     * 
      * @return the value value.
      */
     public List<OutboundNetworkDependenciesEndpointInner> value() {
@@ -40,19 +44,19 @@ public final class OutboundNetworkDependenciesEndpointListResult {
 
     /**
      * Set the value property: Collection of resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the OutboundNetworkDependenciesEndpointListResult object itself.
      */
-    public OutboundNetworkDependenciesEndpointListResult withValue(
-        List<OutboundNetworkDependenciesEndpointInner> value) {
+    public OutboundNetworkDependenciesEndpointListResult
+        withValue(List<OutboundNetworkDependenciesEndpointInner> value) {
         this.value = value;
         return this;
     }
 
     /**
      * Get the nextLink property: Link to next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -61,15 +65,13 @@ public final class OutboundNetworkDependenciesEndpointListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model OutboundNetworkDependenciesEndpointListResult"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model OutboundNetworkDependenciesEndpointListResult"));
         } else {
             value().forEach(e -> e.validate());
         }
