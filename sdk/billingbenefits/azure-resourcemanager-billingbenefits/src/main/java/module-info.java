@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.billingbenefits {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.billingbenefits;
     exports com.azure.resourcemanager.billingbenefits.fluent;
     exports com.azure.resourcemanager.billingbenefits.fluent.models;
     exports com.azure.resourcemanager.billingbenefits.models;
-
-    opens com.azure.resourcemanager.billingbenefits.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.billingbenefits.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.billingbenefits.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.billingbenefits.models to com.azure.core, com.fasterxml.jackson.databind;
 }

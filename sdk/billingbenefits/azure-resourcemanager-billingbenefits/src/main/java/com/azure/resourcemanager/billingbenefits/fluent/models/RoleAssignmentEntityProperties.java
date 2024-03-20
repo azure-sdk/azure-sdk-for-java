@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Role assignment entity properties. */
+/**
+ * Role assignment entity properties.
+ */
 @Fluent
 public final class RoleAssignmentEntityProperties {
     /*
@@ -28,13 +30,15 @@ public final class RoleAssignmentEntityProperties {
     @JsonProperty(value = "scope")
     private String scope;
 
-    /** Creates an instance of RoleAssignmentEntityProperties class. */
+    /**
+     * Creates an instance of RoleAssignmentEntityProperties class.
+     */
     public RoleAssignmentEntityProperties() {
     }
 
     /**
      * Get the principalId property: Principal Id.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -43,7 +47,7 @@ public final class RoleAssignmentEntityProperties {
 
     /**
      * Set the principalId property: Principal Id.
-     *
+     * 
      * @param principalId the principalId value to set.
      * @return the RoleAssignmentEntityProperties object itself.
      */
@@ -54,7 +58,7 @@ public final class RoleAssignmentEntityProperties {
 
     /**
      * Get the roleDefinitionId property: Role definition id.
-     *
+     * 
      * @return the roleDefinitionId value.
      */
     public String roleDefinitionId() {
@@ -63,7 +67,7 @@ public final class RoleAssignmentEntityProperties {
 
     /**
      * Set the roleDefinitionId property: Role definition id.
-     *
+     * 
      * @param roleDefinitionId the roleDefinitionId value to set.
      * @return the RoleAssignmentEntityProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class RoleAssignmentEntityProperties {
 
     /**
      * Get the scope property: Scope of the role assignment entity.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -83,7 +87,7 @@ public final class RoleAssignmentEntityProperties {
 
     /**
      * Set the scope property: Scope of the role assignment entity.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the RoleAssignmentEntityProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class RoleAssignmentEntityProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Commitment grain. */
+/**
+ * Commitment grain.
+ */
 public final class CommitmentGrain extends ExpandableStringEnum<CommitmentGrain> {
-    /** Static value Hourly for CommitmentGrain. */
+    /**
+     * Static value Hourly for CommitmentGrain.
+     */
     public static final CommitmentGrain HOURLY = fromString("Hourly");
 
     /**
      * Creates a new instance of CommitmentGrain value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class CommitmentGrain extends ExpandableStringEnum<CommitmentGrain>
 
     /**
      * Creates or finds a CommitmentGrain from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding CommitmentGrain.
      */
@@ -35,7 +39,7 @@ public final class CommitmentGrain extends ExpandableStringEnum<CommitmentGrain>
 
     /**
      * Gets known CommitmentGrain values.
-     *
+     * 
      * @return known CommitmentGrain values.
      */
     public static Collection<CommitmentGrain> values() {

@@ -17,7 +17,9 @@ import com.azure.resourcemanager.billingbenefits.models.Utilization;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Savings plan properties. */
+/**
+ * Savings plan properties.
+ */
 @Fluent
 public final class SavingsPlanModelProperties {
     /*
@@ -161,13 +163,15 @@ public final class SavingsPlanModelProperties {
     @JsonProperty(value = "renewProperties")
     private RenewProperties renewProperties;
 
-    /** Creates an instance of SavingsPlanModelProperties class. */
+    /**
+     * Creates an instance of SavingsPlanModelProperties class.
+     */
     public SavingsPlanModelProperties() {
     }
 
     /**
      * Get the displayName property: Display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -176,7 +180,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Set the displayName property: Display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -187,7 +191,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the provisioningState property: Provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -197,7 +201,7 @@ public final class SavingsPlanModelProperties {
     /**
      * Get the displayProvisioningState property: The provisioning state of the savings plan for display, e.g.
      * Succeeded.
-     *
+     * 
      * @return the displayProvisioningState value.
      */
     public String displayProvisioningState() {
@@ -206,7 +210,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @return the billingScopeId value.
      */
     public String billingScopeId() {
@@ -215,7 +219,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Set the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @param billingScopeId the billingScopeId value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -227,7 +231,7 @@ public final class SavingsPlanModelProperties {
     /**
      * Get the billingProfileId property: Fully-qualified identifier of the billing profile where the savings plan is
      * applied. Present only for Field-led or Customer-led customers.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -237,7 +241,7 @@ public final class SavingsPlanModelProperties {
     /**
      * Get the customerId property: Fully-qualified identifier of the customer where the savings plan is applied.
      * Present only for Partner-led customers.
-     *
+     * 
      * @return the customerId value.
      */
     public String customerId() {
@@ -247,7 +251,7 @@ public final class SavingsPlanModelProperties {
     /**
      * Get the billingAccountId property: Fully-qualified identifier of the billing account where the savings plan is
      * applied. Present only for Enterprise Agreement customers.
-     *
+     * 
      * @return the billingAccountId value.
      */
     public String billingAccountId() {
@@ -256,7 +260,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @return the term value.
      */
     public Term term() {
@@ -265,7 +269,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Set the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @param term the term value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -277,7 +281,7 @@ public final class SavingsPlanModelProperties {
     /**
      * Get the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @return the billingPlan value.
      */
     public BillingPlan billingPlan() {
@@ -287,7 +291,7 @@ public final class SavingsPlanModelProperties {
     /**
      * Set the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @param billingPlan the billingPlan value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -298,7 +302,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the appliedScopeType property: Type of the Applied Scope.
-     *
+     * 
      * @return the appliedScopeType value.
      */
     public AppliedScopeType appliedScopeType() {
@@ -307,7 +311,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Set the appliedScopeType property: Type of the Applied Scope.
-     *
+     * 
      * @param appliedScopeType the appliedScopeType value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -319,7 +323,7 @@ public final class SavingsPlanModelProperties {
     /**
      * Get the userFriendlyAppliedScopeType property: The applied scope type of the savings plan for display, e.g.
      * Shared.
-     *
+     * 
      * @return the userFriendlyAppliedScopeType value.
      */
     public String userFriendlyAppliedScopeType() {
@@ -329,7 +333,7 @@ public final class SavingsPlanModelProperties {
     /**
      * Get the appliedScopeProperties property: Properties specific to applied scope type. Not required if not
      * applicable.
-     *
+     * 
      * @return the appliedScopeProperties value.
      */
     public AppliedScopeProperties appliedScopeProperties() {
@@ -339,7 +343,7 @@ public final class SavingsPlanModelProperties {
     /**
      * Set the appliedScopeProperties property: Properties specific to applied scope type. Not required if not
      * applicable.
-     *
+     * 
      * @param appliedScopeProperties the appliedScopeProperties value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -350,7 +354,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the commitment property: Commitment towards the benefit.
-     *
+     * 
      * @return the commitment value.
      */
     public Commitment commitment() {
@@ -359,7 +363,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Set the commitment property: Commitment towards the benefit.
-     *
+     * 
      * @param commitment the commitment value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -370,7 +374,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the effectiveDateTime property: DateTime of the savings plan starts providing benefit from.
-     *
+     * 
      * @return the effectiveDateTime value.
      */
     public OffsetDateTime effectiveDateTime() {
@@ -379,7 +383,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the expiryDateTime property: Expiry date time.
-     *
+     * 
      * @return the expiryDateTime value.
      */
     public OffsetDateTime expiryDateTime() {
@@ -388,7 +392,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the purchaseDateTime property: Date time when the savings plan was purchased.
-     *
+     * 
      * @return the purchaseDateTime value.
      */
     public OffsetDateTime purchaseDateTime() {
@@ -397,7 +401,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the benefitStartTime property: This is the DateTime when the savings plan benefit started.
-     *
+     * 
      * @return the benefitStartTime value.
      */
     public OffsetDateTime benefitStartTime() {
@@ -406,7 +410,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Set the benefitStartTime property: This is the DateTime when the savings plan benefit started.
-     *
+     * 
      * @param benefitStartTime the benefitStartTime value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -417,7 +421,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the extendedStatusInfo property: The extendedStatusInfo property.
-     *
+     * 
      * @return the extendedStatusInfo value.
      */
     public ExtendedStatusInfo extendedStatusInfo() {
@@ -427,7 +431,7 @@ public final class SavingsPlanModelProperties {
     /**
      * Get the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
      * time.
-     *
+     * 
      * @return the renew value.
      */
     public Boolean renew() {
@@ -437,7 +441,7 @@ public final class SavingsPlanModelProperties {
     /**
      * Set the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
      * time.
-     *
+     * 
      * @param renew the renew value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -448,7 +452,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the utilization property: Savings plan utilization.
-     *
+     * 
      * @return the utilization value.
      */
     public Utilization utilization() {
@@ -457,7 +461,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the renewSource property: SavingsPlan Id of the SavingsPlan from which this SavingsPlan is renewed.
-     *
+     * 
      * @return the renewSource value.
      */
     public String renewSource() {
@@ -466,7 +470,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Set the renewSource property: SavingsPlan Id of the SavingsPlan from which this SavingsPlan is renewed.
-     *
+     * 
      * @param renewSource the renewSource value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -477,7 +481,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the renewDestination property: SavingsPlan Id of the SavingsPlan which is purchased because of renew.
-     *
+     * 
      * @return the renewDestination value.
      */
     public String renewDestination() {
@@ -486,7 +490,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Set the renewDestination property: SavingsPlan Id of the SavingsPlan which is purchased because of renew.
-     *
+     * 
      * @param renewDestination the renewDestination value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -497,7 +501,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Get the renewProperties property: The renewProperties property.
-     *
+     * 
      * @return the renewProperties value.
      */
     public RenewProperties renewProperties() {
@@ -506,7 +510,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Set the renewProperties property: The renewProperties property.
-     *
+     * 
      * @param renewProperties the renewProperties value to set.
      * @return the SavingsPlanModelProperties object itself.
      */
@@ -517,7 +521,7 @@ public final class SavingsPlanModelProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

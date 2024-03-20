@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billingbenefits.fluent.models.SavingsPlanModelI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The SavingsPlanModelListResult model. */
+/**
+ * The SavingsPlanModelListResult model.
+ */
 @Immutable
 public final class SavingsPlanModelListResult {
     /*
@@ -30,13 +32,15 @@ public final class SavingsPlanModelListResult {
     @JsonProperty(value = "additionalProperties", access = JsonProperty.Access.WRITE_ONLY)
     private List<SavingsPlanSummary> additionalProperties;
 
-    /** Creates an instance of SavingsPlanModelListResult class. */
+    /**
+     * Creates an instance of SavingsPlanModelListResult class.
+     */
     public SavingsPlanModelListResult() {
     }
 
     /**
      * Get the value property: The list of savings plans.
-     *
+     * 
      * @return the value value.
      */
     public List<SavingsPlanModelInner> value() {
@@ -45,7 +49,7 @@ public final class SavingsPlanModelListResult {
 
     /**
      * Get the nextLink property: Url to get the next page.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -54,7 +58,7 @@ public final class SavingsPlanModelListResult {
 
     /**
      * Get the additionalProperties property: The roll out count summary of the savings plans.
-     *
+     * 
      * @return the additionalProperties value.
      */
     public List<SavingsPlanSummary> additionalProperties() {
@@ -63,7 +67,7 @@ public final class SavingsPlanModelListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

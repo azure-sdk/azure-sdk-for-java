@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billingbenefits.fluent.models.SavingsPlanOrderM
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The SavingsPlanOrderModelList model. */
+/**
+ * The SavingsPlanOrderModelList model.
+ */
 @Fluent
 public final class SavingsPlanOrderModelList {
     /*
@@ -24,13 +26,15 @@ public final class SavingsPlanOrderModelList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of SavingsPlanOrderModelList class. */
+    /**
+     * Creates an instance of SavingsPlanOrderModelList class.
+     */
     public SavingsPlanOrderModelList() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<SavingsPlanOrderModelInner> value() {
@@ -39,7 +43,7 @@ public final class SavingsPlanOrderModelList {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the SavingsPlanOrderModelList object itself.
      */
@@ -50,7 +54,7 @@ public final class SavingsPlanOrderModelList {
 
     /**
      * Get the nextLink property: Url to get the next page.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class SavingsPlanOrderModelList {
 
     /**
      * Set the nextLink property: Url to get the next page.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SavingsPlanOrderModelList object itself.
      */
@@ -70,7 +74,7 @@ public final class SavingsPlanOrderModelList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

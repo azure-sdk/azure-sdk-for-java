@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Savings plan patch request. */
+/**
+ * Savings plan patch request.
+ */
 @Fluent
 public final class SavingsPlanUpdateRequest {
     /*
@@ -16,13 +18,15 @@ public final class SavingsPlanUpdateRequest {
     @JsonProperty(value = "properties")
     private SavingsPlanUpdateRequestProperties properties;
 
-    /** Creates an instance of SavingsPlanUpdateRequest class. */
+    /**
+     * Creates an instance of SavingsPlanUpdateRequest class.
+     */
     public SavingsPlanUpdateRequest() {
     }
 
     /**
      * Get the properties property: Savings plan patch request.
-     *
+     * 
      * @return the properties value.
      */
     public SavingsPlanUpdateRequestProperties properties() {
@@ -31,7 +35,7 @@ public final class SavingsPlanUpdateRequest {
 
     /**
      * Set the properties property: Savings plan patch request.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the SavingsPlanUpdateRequest object itself.
      */
@@ -42,7 +46,7 @@ public final class SavingsPlanUpdateRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

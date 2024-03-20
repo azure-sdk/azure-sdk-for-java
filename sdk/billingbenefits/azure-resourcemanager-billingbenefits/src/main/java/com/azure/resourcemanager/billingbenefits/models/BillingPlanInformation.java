@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 import java.util.List;
 
-/** Information describing the type of billing plan for this savings plan. */
+/**
+ * Information describing the type of billing plan for this savings plan.
+ */
 @Fluent
 public final class BillingPlanInformation {
     /*
@@ -37,13 +39,15 @@ public final class BillingPlanInformation {
     @JsonProperty(value = "transactions")
     private List<PaymentDetail> transactions;
 
-    /** Creates an instance of BillingPlanInformation class. */
+    /**
+     * Creates an instance of BillingPlanInformation class.
+     */
     public BillingPlanInformation() {
     }
 
     /**
      * Get the pricingCurrencyTotal property: Amount of money to be paid for the Order. Tax is not included.
-     *
+     * 
      * @return the pricingCurrencyTotal value.
      */
     public Price pricingCurrencyTotal() {
@@ -52,7 +56,7 @@ public final class BillingPlanInformation {
 
     /**
      * Set the pricingCurrencyTotal property: Amount of money to be paid for the Order. Tax is not included.
-     *
+     * 
      * @param pricingCurrencyTotal the pricingCurrencyTotal value to set.
      * @return the BillingPlanInformation object itself.
      */
@@ -63,7 +67,7 @@ public final class BillingPlanInformation {
 
     /**
      * Get the startDate property: Date when the billing plan has started.
-     *
+     * 
      * @return the startDate value.
      */
     public LocalDate startDate() {
@@ -72,7 +76,7 @@ public final class BillingPlanInformation {
 
     /**
      * Set the startDate property: Date when the billing plan has started.
-     *
+     * 
      * @param startDate the startDate value to set.
      * @return the BillingPlanInformation object itself.
      */
@@ -84,7 +88,7 @@ public final class BillingPlanInformation {
     /**
      * Get the nextPaymentDueDate property: For recurring billing plans, indicates the date when next payment will be
      * processed. Null when total is paid off.
-     *
+     * 
      * @return the nextPaymentDueDate value.
      */
     public LocalDate nextPaymentDueDate() {
@@ -94,7 +98,7 @@ public final class BillingPlanInformation {
     /**
      * Set the nextPaymentDueDate property: For recurring billing plans, indicates the date when next payment will be
      * processed. Null when total is paid off.
-     *
+     * 
      * @param nextPaymentDueDate the nextPaymentDueDate value to set.
      * @return the BillingPlanInformation object itself.
      */
@@ -105,7 +109,7 @@ public final class BillingPlanInformation {
 
     /**
      * Get the transactions property: The transactions property.
-     *
+     * 
      * @return the transactions value.
      */
     public List<PaymentDetail> transactions() {
@@ -114,7 +118,7 @@ public final class BillingPlanInformation {
 
     /**
      * Set the transactions property: The transactions property.
-     *
+     * 
      * @param transactions the transactions value to set.
      * @return the BillingPlanInformation object itself.
      */
@@ -125,7 +129,7 @@ public final class BillingPlanInformation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

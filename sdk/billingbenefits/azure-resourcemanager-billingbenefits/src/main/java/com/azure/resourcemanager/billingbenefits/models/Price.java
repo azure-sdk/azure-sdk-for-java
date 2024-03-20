@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Price model. */
+/**
+ * The Price model.
+ */
 @Fluent
 public class Price {
     /*
@@ -22,13 +24,16 @@ public class Price {
     @JsonProperty(value = "amount")
     private Double amount;
 
-    /** Creates an instance of Price class. */
+    /**
+     * Creates an instance of Price class.
+     */
     public Price() {
     }
 
     /**
-     * Get the currencyCode property: The ISO 4217 3-letter currency code for the currency used by this purchase record.
-     *
+     * Get the currencyCode property: The ISO 4217 3-letter currency code for the currency used by this purchase
+     * record.
+     * 
      * @return the currencyCode value.
      */
     public String currencyCode() {
@@ -36,8 +41,9 @@ public class Price {
     }
 
     /**
-     * Set the currencyCode property: The ISO 4217 3-letter currency code for the currency used by this purchase record.
-     *
+     * Set the currencyCode property: The ISO 4217 3-letter currency code for the currency used by this purchase
+     * record.
+     * 
      * @param currencyCode the currencyCode value to set.
      * @return the Price object itself.
      */
@@ -48,7 +54,7 @@ public class Price {
 
     /**
      * Get the amount property: The amount property.
-     *
+     * 
      * @return the amount value.
      */
     public Double amount() {
@@ -57,7 +63,7 @@ public class Price {
 
     /**
      * Set the amount property: The amount property.
-     *
+     * 
      * @param amount the amount value to set.
      * @return the Price object itself.
      */
@@ -68,7 +74,7 @@ public class Price {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

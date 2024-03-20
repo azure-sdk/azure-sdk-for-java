@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Commitment towards the benefit. */
+/**
+ * Commitment towards the benefit.
+ */
 @Fluent
 public final class Commitment extends Price {
     /*
@@ -16,13 +18,15 @@ public final class Commitment extends Price {
     @JsonProperty(value = "grain")
     private CommitmentGrain grain;
 
-    /** Creates an instance of Commitment class. */
+    /**
+     * Creates an instance of Commitment class.
+     */
     public Commitment() {
     }
 
     /**
      * Get the grain property: Commitment grain.
-     *
+     * 
      * @return the grain value.
      */
     public CommitmentGrain grain() {
@@ -31,7 +35,7 @@ public final class Commitment extends Price {
 
     /**
      * Set the grain property: Commitment grain.
-     *
+     * 
      * @param grain the grain value to set.
      * @return the Commitment object itself.
      */
@@ -40,14 +44,18 @@ public final class Commitment extends Price {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Commitment withCurrencyCode(String currencyCode) {
         super.withCurrencyCode(currencyCode);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Commitment withAmount(Double amount) {
         super.withAmount(amount);
@@ -56,7 +64,7 @@ public final class Commitment extends Price {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

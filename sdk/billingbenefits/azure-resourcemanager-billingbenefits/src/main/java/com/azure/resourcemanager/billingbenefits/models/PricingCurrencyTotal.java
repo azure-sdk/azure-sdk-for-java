@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The PricingCurrencyTotal model. */
+/**
+ * The PricingCurrencyTotal model.
+ */
 @Fluent
 public final class PricingCurrencyTotal extends Price {
     /*
@@ -16,13 +18,15 @@ public final class PricingCurrencyTotal extends Price {
     @JsonProperty(value = "duration")
     private PricingCurrencyDuration duration;
 
-    /** Creates an instance of PricingCurrencyTotal class. */
+    /**
+     * Creates an instance of PricingCurrencyTotal class.
+     */
     public PricingCurrencyTotal() {
     }
 
     /**
      * Get the duration property: Represents either billing plan or savings plan term in ISO 8601 format.
-     *
+     * 
      * @return the duration value.
      */
     public PricingCurrencyDuration duration() {
@@ -31,7 +35,7 @@ public final class PricingCurrencyTotal extends Price {
 
     /**
      * Set the duration property: Represents either billing plan or savings plan term in ISO 8601 format.
-     *
+     * 
      * @param duration the duration value to set.
      * @return the PricingCurrencyTotal object itself.
      */
@@ -40,14 +44,18 @@ public final class PricingCurrencyTotal extends Price {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PricingCurrencyTotal withCurrencyCode(String currencyCode) {
         super.withCurrencyCode(currencyCode);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PricingCurrencyTotal withAmount(Double amount) {
         super.withAmount(amount);
@@ -56,7 +64,7 @@ public final class PricingCurrencyTotal extends Price {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

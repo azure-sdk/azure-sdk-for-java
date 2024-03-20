@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billingbenefits.fluent.models.PurchaseRequestPr
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The PurchaseRequest model. */
+/**
+ * The PurchaseRequest model.
+ */
 @Fluent
 public final class PurchaseRequest {
     /*
@@ -24,13 +26,15 @@ public final class PurchaseRequest {
     @JsonProperty(value = "properties")
     private PurchaseRequestProperties innerProperties;
 
-    /** Creates an instance of PurchaseRequest class. */
+    /**
+     * Creates an instance of PurchaseRequest class.
+     */
     public PurchaseRequest() {
     }
 
     /**
      * Get the sku property: The SKU to be applied for this resource.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -39,7 +43,7 @@ public final class PurchaseRequest {
 
     /**
      * Set the sku property: The SKU to be applied for this resource.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the PurchaseRequest object itself.
      */
@@ -50,7 +54,7 @@ public final class PurchaseRequest {
 
     /**
      * Get the innerProperties property: The properties property.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PurchaseRequestProperties innerProperties() {
@@ -59,7 +63,7 @@ public final class PurchaseRequest {
 
     /**
      * Get the displayName property: Friendly name of the savings plan.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -68,7 +72,7 @@ public final class PurchaseRequest {
 
     /**
      * Set the displayName property: Friendly name of the savings plan.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the PurchaseRequest object itself.
      */
@@ -82,7 +86,7 @@ public final class PurchaseRequest {
 
     /**
      * Get the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @return the billingScopeId value.
      */
     public String billingScopeId() {
@@ -91,7 +95,7 @@ public final class PurchaseRequest {
 
     /**
      * Set the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @param billingScopeId the billingScopeId value to set.
      * @return the PurchaseRequest object itself.
      */
@@ -105,7 +109,7 @@ public final class PurchaseRequest {
 
     /**
      * Get the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @return the term value.
      */
     public Term term() {
@@ -114,7 +118,7 @@ public final class PurchaseRequest {
 
     /**
      * Set the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @param term the term value to set.
      * @return the PurchaseRequest object itself.
      */
@@ -129,7 +133,7 @@ public final class PurchaseRequest {
     /**
      * Get the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @return the billingPlan value.
      */
     public BillingPlan billingPlan() {
@@ -139,7 +143,7 @@ public final class PurchaseRequest {
     /**
      * Set the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @param billingPlan the billingPlan value to set.
      * @return the PurchaseRequest object itself.
      */
@@ -153,7 +157,7 @@ public final class PurchaseRequest {
 
     /**
      * Get the appliedScopeType property: Type of the Applied Scope.
-     *
+     * 
      * @return the appliedScopeType value.
      */
     public AppliedScopeType appliedScopeType() {
@@ -162,7 +166,7 @@ public final class PurchaseRequest {
 
     /**
      * Set the appliedScopeType property: Type of the Applied Scope.
-     *
+     * 
      * @param appliedScopeType the appliedScopeType value to set.
      * @return the PurchaseRequest object itself.
      */
@@ -176,7 +180,7 @@ public final class PurchaseRequest {
 
     /**
      * Get the commitment property: Commitment towards the benefit.
-     *
+     * 
      * @return the commitment value.
      */
     public Commitment commitment() {
@@ -185,7 +189,7 @@ public final class PurchaseRequest {
 
     /**
      * Set the commitment property: Commitment towards the benefit.
-     *
+     * 
      * @param commitment the commitment value to set.
      * @return the PurchaseRequest object itself.
      */
@@ -199,7 +203,7 @@ public final class PurchaseRequest {
 
     /**
      * Get the effectiveDateTime property: DateTime of the savings plan starts providing benefit from.
-     *
+     * 
      * @return the effectiveDateTime value.
      */
     public OffsetDateTime effectiveDateTime() {
@@ -209,7 +213,7 @@ public final class PurchaseRequest {
     /**
      * Get the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
      * time.
-     *
+     * 
      * @return the renew value.
      */
     public Boolean renew() {
@@ -219,7 +223,7 @@ public final class PurchaseRequest {
     /**
      * Set the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
      * time.
-     *
+     * 
      * @param renew the renew value to set.
      * @return the PurchaseRequest object itself.
      */
@@ -234,7 +238,7 @@ public final class PurchaseRequest {
     /**
      * Get the appliedScopeProperties property: Properties specific to applied scope type. Not required if not
      * applicable.
-     *
+     * 
      * @return the appliedScopeProperties value.
      */
     public AppliedScopeProperties appliedScopeProperties() {
@@ -244,7 +248,7 @@ public final class PurchaseRequest {
     /**
      * Set the appliedScopeProperties property: Properties specific to applied scope type. Not required if not
      * applicable.
-     *
+     * 
      * @param appliedScopeProperties the appliedScopeProperties value to set.
      * @return the PurchaseRequest object itself.
      */
@@ -258,7 +262,7 @@ public final class PurchaseRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

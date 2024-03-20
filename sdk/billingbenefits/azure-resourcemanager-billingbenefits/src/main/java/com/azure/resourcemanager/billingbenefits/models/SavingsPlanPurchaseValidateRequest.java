@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billingbenefits.fluent.models.SavingsPlanOrderA
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The SavingsPlanPurchaseValidateRequest model. */
+/**
+ * The SavingsPlanPurchaseValidateRequest model.
+ */
 @Fluent
 public final class SavingsPlanPurchaseValidateRequest {
     /*
@@ -18,13 +20,15 @@ public final class SavingsPlanPurchaseValidateRequest {
     @JsonProperty(value = "benefits")
     private List<SavingsPlanOrderAliasModelInner> benefits;
 
-    /** Creates an instance of SavingsPlanPurchaseValidateRequest class. */
+    /**
+     * Creates an instance of SavingsPlanPurchaseValidateRequest class.
+     */
     public SavingsPlanPurchaseValidateRequest() {
     }
 
     /**
      * Get the benefits property: The benefits property.
-     *
+     * 
      * @return the benefits value.
      */
     public List<SavingsPlanOrderAliasModelInner> benefits() {
@@ -33,7 +37,7 @@ public final class SavingsPlanPurchaseValidateRequest {
 
     /**
      * Set the benefits property: The benefits property.
-     *
+     * 
      * @param benefits the benefits value to set.
      * @return the SavingsPlanPurchaseValidateRequest object itself.
      */
@@ -44,7 +48,7 @@ public final class SavingsPlanPurchaseValidateRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

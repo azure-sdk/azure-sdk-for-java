@@ -17,7 +17,9 @@ import com.azure.resourcemanager.billingbenefits.models.Sku;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Savings plan order alias. */
+/**
+ * Savings plan order alias.
+ */
 @Fluent
 public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
     /*
@@ -44,13 +46,15 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of SavingsPlanOrderAliasModelInner class. */
+    /**
+     * Creates an instance of SavingsPlanOrderAliasModelInner class.
+     */
     public SavingsPlanOrderAliasModelInner() {
     }
 
     /**
      * Get the sku property: Savings plan SKU.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -59,7 +63,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Set the sku property: Savings plan SKU.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the SavingsPlanOrderAliasModelInner object itself.
      */
@@ -70,7 +74,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Get the kind property: Resource provider kind.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -79,7 +83,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Set the kind property: Resource provider kind.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the SavingsPlanOrderAliasModelInner object itself.
      */
@@ -90,7 +94,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: Savings plan order alias properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SavingsPlanOrderAliasProperties innerProperties() {
@@ -99,7 +103,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -108,7 +112,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Get the displayName property: Display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -117,7 +121,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Set the displayName property: Display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the SavingsPlanOrderAliasModelInner object itself.
      */
@@ -131,7 +135,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Get the savingsPlanOrderId property: Identifier of the savings plan created.
-     *
+     * 
      * @return the savingsPlanOrderId value.
      */
     public String savingsPlanOrderId() {
@@ -140,7 +144,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -149,7 +153,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Get the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @return the billingScopeId value.
      */
     public String billingScopeId() {
@@ -158,7 +162,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Set the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @param billingScopeId the billingScopeId value to set.
      * @return the SavingsPlanOrderAliasModelInner object itself.
      */
@@ -172,7 +176,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Get the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @return the term value.
      */
     public Term term() {
@@ -181,7 +185,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Set the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @param term the term value to set.
      * @return the SavingsPlanOrderAliasModelInner object itself.
      */
@@ -196,7 +200,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
     /**
      * Get the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @return the billingPlan value.
      */
     public BillingPlan billingPlan() {
@@ -206,7 +210,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
     /**
      * Set the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @param billingPlan the billingPlan value to set.
      * @return the SavingsPlanOrderAliasModelInner object itself.
      */
@@ -220,7 +224,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Get the appliedScopeType property: Type of the Applied Scope.
-     *
+     * 
      * @return the appliedScopeType value.
      */
     public AppliedScopeType appliedScopeType() {
@@ -229,7 +233,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Set the appliedScopeType property: Type of the Applied Scope.
-     *
+     * 
      * @param appliedScopeType the appliedScopeType value to set.
      * @return the SavingsPlanOrderAliasModelInner object itself.
      */
@@ -244,7 +248,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
     /**
      * Get the appliedScopeProperties property: Properties specific to applied scope type. Not required if not
      * applicable.
-     *
+     * 
      * @return the appliedScopeProperties value.
      */
     public AppliedScopeProperties appliedScopeProperties() {
@@ -254,7 +258,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
     /**
      * Set the appliedScopeProperties property: Properties specific to applied scope type. Not required if not
      * applicable.
-     *
+     * 
      * @param appliedScopeProperties the appliedScopeProperties value to set.
      * @return the SavingsPlanOrderAliasModelInner object itself.
      */
@@ -268,7 +272,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Get the commitment property: Commitment towards the benefit.
-     *
+     * 
      * @return the commitment value.
      */
     public Commitment commitment() {
@@ -277,7 +281,7 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
 
     /**
      * Set the commitment property: Commitment towards the benefit.
-     *
+     * 
      * @param commitment the commitment value to set.
      * @return the SavingsPlanOrderAliasModelInner object itself.
      */
@@ -290,16 +294,39 @@ public final class SavingsPlanOrderAliasModelInner extends ProxyResource {
     }
 
     /**
+     * Get the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
+     * time.
+     * 
+     * @return the renew value.
+     */
+    public Boolean renew() {
+        return this.innerProperties() == null ? null : this.innerProperties().renew();
+    }
+
+    /**
+     * Set the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
+     * time.
+     * 
+     * @param renew the renew value to set.
+     * @return the SavingsPlanOrderAliasModelInner object itself.
+     */
+    public SavingsPlanOrderAliasModelInner withRenew(Boolean renew) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new SavingsPlanOrderAliasProperties();
+        }
+        this.innerProperties().withRenew(renew);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sku() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sku in model SavingsPlanOrderAliasModelInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sku in model SavingsPlanOrderAliasModelInner"));
         } else {
             sku().validate();
         }

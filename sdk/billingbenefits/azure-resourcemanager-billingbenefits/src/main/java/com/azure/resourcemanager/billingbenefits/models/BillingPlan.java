@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Represents the billing plan in ISO 8601 format. Required only for monthly billing plans. */
+/**
+ * Represents the billing plan in ISO 8601 format. Required only for monthly billing plans.
+ */
 public final class BillingPlan extends ExpandableStringEnum<BillingPlan> {
-    /** Static value P1M for BillingPlan. */
+    /**
+     * Static value P1M for BillingPlan.
+     */
     public static final BillingPlan P1M = fromString("P1M");
 
     /**
      * Creates a new instance of BillingPlan value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class BillingPlan extends ExpandableStringEnum<BillingPlan> {
 
     /**
      * Creates or finds a BillingPlan from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BillingPlan.
      */
@@ -35,7 +39,7 @@ public final class BillingPlan extends ExpandableStringEnum<BillingPlan> {
 
     /**
      * Gets known BillingPlan values.
-     *
+     * 
      * @return known BillingPlan values.
      */
     public static Collection<BillingPlan> values() {
