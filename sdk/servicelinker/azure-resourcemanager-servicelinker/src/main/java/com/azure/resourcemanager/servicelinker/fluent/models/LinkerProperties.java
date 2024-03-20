@@ -12,7 +12,9 @@ import com.azure.resourcemanager.servicelinker.models.TargetServiceBase;
 import com.azure.resourcemanager.servicelinker.models.VNetSolution;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of the linker. */
+/**
+ * The properties of the linker.
+ */
 @Fluent
 public final class LinkerProperties {
     /*
@@ -58,8 +60,14 @@ public final class LinkerProperties {
     private String scope;
 
     /**
+     * Creates an instance of LinkerProperties class.
+     */
+    public LinkerProperties() {
+    }
+
+    /**
      * Get the targetService property: The target service properties.
-     *
+     * 
      * @return the targetService value.
      */
     public TargetServiceBase targetService() {
@@ -68,7 +76,7 @@ public final class LinkerProperties {
 
     /**
      * Set the targetService property: The target service properties.
-     *
+     * 
      * @param targetService the targetService value to set.
      * @return the LinkerProperties object itself.
      */
@@ -79,7 +87,7 @@ public final class LinkerProperties {
 
     /**
      * Get the authInfo property: The authentication type.
-     *
+     * 
      * @return the authInfo value.
      */
     public AuthInfoBase authInfo() {
@@ -88,7 +96,7 @@ public final class LinkerProperties {
 
     /**
      * Set the authInfo property: The authentication type.
-     *
+     * 
      * @param authInfo the authInfo value to set.
      * @return the LinkerProperties object itself.
      */
@@ -99,7 +107,7 @@ public final class LinkerProperties {
 
     /**
      * Get the clientType property: The application client type.
-     *
+     * 
      * @return the clientType value.
      */
     public ClientType clientType() {
@@ -108,7 +116,7 @@ public final class LinkerProperties {
 
     /**
      * Set the clientType property: The application client type.
-     *
+     * 
      * @param clientType the clientType value to set.
      * @return the LinkerProperties object itself.
      */
@@ -119,7 +127,7 @@ public final class LinkerProperties {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -128,7 +136,7 @@ public final class LinkerProperties {
 
     /**
      * Get the vNetSolution property: The VNet solution.
-     *
+     * 
      * @return the vNetSolution value.
      */
     public VNetSolution vNetSolution() {
@@ -137,7 +145,7 @@ public final class LinkerProperties {
 
     /**
      * Set the vNetSolution property: The VNet solution.
-     *
+     * 
      * @param vNetSolution the vNetSolution value to set.
      * @return the LinkerProperties object itself.
      */
@@ -148,7 +156,7 @@ public final class LinkerProperties {
 
     /**
      * Get the secretStore property: An option to store secret value in secure place.
-     *
+     * 
      * @return the secretStore value.
      */
     public SecretStore secretStore() {
@@ -157,7 +165,7 @@ public final class LinkerProperties {
 
     /**
      * Set the secretStore property: An option to store secret value in secure place.
-     *
+     * 
      * @param secretStore the secretStore value to set.
      * @return the LinkerProperties object itself.
      */
@@ -168,7 +176,7 @@ public final class LinkerProperties {
 
     /**
      * Get the scope property: connection scope in source service.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -177,7 +185,7 @@ public final class LinkerProperties {
 
     /**
      * Set the scope property: connection scope in source service.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the LinkerProperties object itself.
      */
@@ -188,7 +196,7 @@ public final class LinkerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

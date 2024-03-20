@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.servicelinker.implementation;
 
 import com.azure.core.annotation.BodyParam;
-import com.azure.core.annotation.Delete;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
@@ -15,16 +14,11 @@ import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.Post;
-import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
-import com.azure.core.http.rest.PagedFlux;
-import com.azure.core.http.rest.PagedIterable;
-import com.azure.core.http.rest.PagedResponse;
-import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
@@ -37,23 +31,28 @@ import com.azure.resourcemanager.servicelinker.fluent.LinkersClient;
 import com.azure.resourcemanager.servicelinker.fluent.models.LinkerResourceInner;
 import com.azure.resourcemanager.servicelinker.fluent.models.SourceConfigurationResultInner;
 import com.azure.resourcemanager.servicelinker.fluent.models.ValidateOperationResultInner;
-import com.azure.resourcemanager.servicelinker.models.LinkerList;
 import com.azure.resourcemanager.servicelinker.models.LinkerPatch;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in LinkersClient. */
+/**
+ * An instance of this class provides access to all the operations defined in LinkersClient.
+ */
 public final class LinkersClientImpl implements LinkersClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final LinkersService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final ServiceLinkerManagementClientImpl client;
 
     /**
      * Initializes an instance of LinkersClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     LinkersClientImpl(ServiceLinkerManagementClientImpl client) {
@@ -67,253 +66,61 @@ public final class LinkersClientImpl implements LinkersClient {
      */
     @Host("{$host}")
     @ServiceInterface(name = "ServiceLinkerManagem")
-    private interface LinkersService {
-        @Headers({"Content-Type: application/json"})
-        @Get("/{resourceUri}/providers/Microsoft.ServiceLinker/linkers")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<LinkerList>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
+    public interface LinkersService {
+        @Headers({ "Content-Type: application/json" })
         @Get("/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<LinkerResourceInner>> get(
-            @HostParam("$host") String endpoint,
+        Mono<Response<LinkerResourceInner>> get(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("linkerName") String linkerName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @PathParam("linkerName") String linkerName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put("/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}")
-        @ExpectedResponses({200, 201})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
-            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("linkerName") String linkerName,
-            @BodyParam("application/json") LinkerResourceInner parameters,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Delete("/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}")
-        @ExpectedResponses({200, 202, 204})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
-            @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("linkerName") String linkerName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Patch("/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}")
-        @ExpectedResponses({200, 201})
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("linkerName") String linkerName,
-            @BodyParam("application/json") LinkerPatch parameters,
-            @HeaderParam("Accept") String accept,
+            @QueryParam("api-version") String apiVersion, @PathParam("linkerName") String linkerName,
+            @BodyParam("application/json") LinkerPatch parameters, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Post("/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}/validateLinker")
-        @ExpectedResponses({200, 202})
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> validate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> validate(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("linkerName") String linkerName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @PathParam("linkerName") String linkerName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Post("/{resourceUri}/providers/Microsoft.ServiceLinker/linkers/{linkerName}/listConfigurations")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SourceConfigurationResultInner>> listConfigurations(
-            @HostParam("$host") String endpoint,
+        Mono<Response<SourceConfigurationResultInner>> listConfigurations(@HostParam("$host") String endpoint,
             @PathParam(value = "resourceUri", encoded = true) String resourceUri,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("linkerName") String linkerName,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Get("{nextLink}")
-        @ExpectedResponses({200})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<LinkerList>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
-    }
-
-    /**
-     * Returns list of Linkers which connects to the resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Linker along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LinkerResourceInner>> listSinglePageAsync(String resourceUri) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceUri == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service.list(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context))
-            .<PagedResponse<LinkerResourceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Returns list of Linkers which connects to the resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Linker along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LinkerResourceInner>> listSinglePageAsync(String resourceUri, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceUri == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .list(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
-    }
-
-    /**
-     * Returns list of Linkers which connects to the resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Linker as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LinkerResourceInner> listAsync(String resourceUri) {
-        return new PagedFlux<>(() -> listSinglePageAsync(resourceUri), nextLink -> listNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Returns list of Linkers which connects to the resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Linker as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<LinkerResourceInner> listAsync(String resourceUri, Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(resourceUri, context), nextLink -> listNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Returns list of Linkers which connects to the resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Linker as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<LinkerResourceInner> list(String resourceUri) {
-        return new PagedIterable<>(listAsync(resourceUri));
-    }
-
-    /**
-     * Returns list of Linkers which connects to the resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Linker as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<LinkerResourceInner> list(String resourceUri, Context context) {
-        return new PagedIterable<>(listAsync(resourceUri, context));
+            @QueryParam("api-version") String apiVersion, @PathParam("linkerName") String linkerName,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Returns Linker resource for a given name.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return linker of source and target resource along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<LinkerResourceInner>> getWithResponseAsync(String resourceUri, String linkerName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
@@ -323,39 +130,29 @@ public final class LinkersClientImpl implements LinkersClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            resourceUri,
-                            this.client.getApiVersion(),
-                            linkerName,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(),
+                linkerName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Returns Linker resource for a given name.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return linker of source and target resource along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<LinkerResourceInner>> getWithResponseAsync(
-        String resourceUri, String linkerName, Context context) {
+    private Mono<Response<LinkerResourceInner>> getWithResponseAsync(String resourceUri, String linkerName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
@@ -365,13 +162,13 @@ public final class LinkersClientImpl implements LinkersClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), linkerName, accept, context);
+        return service.get(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), linkerName, accept,
+            context);
     }
 
     /**
      * Returns Linker resource for a given name.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -386,22 +183,7 @@ public final class LinkersClientImpl implements LinkersClient {
 
     /**
      * Returns Linker resource for a given name.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LinkerResourceInner get(String resourceUri, String linkerName) {
-        return getAsync(resourceUri, linkerName).block();
-    }
-
-    /**
-     * Returns Linker resource for a given name.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
@@ -416,478 +198,38 @@ public final class LinkersClientImpl implements LinkersClient {
     }
 
     /**
-     * Create or update linker resource.
-     *
+     * Returns Linker resource for a given name.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
-     * @param parameters Linker details.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceUri, String linkerName, LinkerResourceInner parameters) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceUri == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
-        }
-        if (linkerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter linkerName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            resourceUri,
-                            this.client.getApiVersion(),
-                            linkerName,
-                            parameters,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Create or update linker resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param parameters Linker details.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceUri, String linkerName, LinkerResourceInner parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceUri == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
-        }
-        if (linkerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter linkerName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                resourceUri,
-                this.client.getApiVersion(),
-                linkerName,
-                parameters,
-                accept,
-                context);
-    }
-
-    /**
-     * Create or update linker resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param parameters Linker details.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of linker of source and target resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<LinkerResourceInner>, LinkerResourceInner> beginCreateOrUpdateAsync(
-        String resourceUri, String linkerName, LinkerResourceInner parameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceUri, linkerName, parameters);
-        return this
-            .client
-            .<LinkerResourceInner, LinkerResourceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                LinkerResourceInner.class,
-                LinkerResourceInner.class,
-                this.client.getContext());
-    }
-
-    /**
-     * Create or update linker resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param parameters Linker details.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of linker of source and target resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<LinkerResourceInner>, LinkerResourceInner> beginCreateOrUpdateAsync(
-        String resourceUri, String linkerName, LinkerResourceInner parameters, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceUri, linkerName, parameters, context);
-        return this
-            .client
-            .<LinkerResourceInner, LinkerResourceInner>getLroResult(
-                mono, this.client.getHttpPipeline(), LinkerResourceInner.class, LinkerResourceInner.class, context);
-    }
-
-    /**
-     * Create or update linker resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param parameters Linker details.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of linker of source and target resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<LinkerResourceInner>, LinkerResourceInner> beginCreateOrUpdate(
-        String resourceUri, String linkerName, LinkerResourceInner parameters) {
-        return beginCreateOrUpdateAsync(resourceUri, linkerName, parameters).getSyncPoller();
-    }
-
-    /**
-     * Create or update linker resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param parameters Linker details.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of linker of source and target resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<LinkerResourceInner>, LinkerResourceInner> beginCreateOrUpdate(
-        String resourceUri, String linkerName, LinkerResourceInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceUri, linkerName, parameters, context).getSyncPoller();
-    }
-
-    /**
-     * Create or update linker resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param parameters Linker details.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<LinkerResourceInner> createOrUpdateAsync(
-        String resourceUri, String linkerName, LinkerResourceInner parameters) {
-        return beginCreateOrUpdateAsync(resourceUri, linkerName, parameters)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Create or update linker resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param parameters Linker details.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<LinkerResourceInner> createOrUpdateAsync(
-        String resourceUri, String linkerName, LinkerResourceInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceUri, linkerName, parameters, context)
-            .last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Create or update linker resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param parameters Linker details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return linker of source and target resource.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public LinkerResourceInner createOrUpdate(String resourceUri, String linkerName, LinkerResourceInner parameters) {
-        return createOrUpdateAsync(resourceUri, linkerName, parameters).block();
-    }
-
-    /**
-     * Create or update linker resource.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param parameters Linker details.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public LinkerResourceInner createOrUpdate(
-        String resourceUri, String linkerName, LinkerResourceInner parameters, Context context) {
-        return createOrUpdateAsync(resourceUri, linkerName, parameters, context).block();
-    }
-
-    /**
-     * Delete a link.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceUri, String linkerName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceUri == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
-        }
-        if (linkerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter linkerName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            resourceUri,
-                            this.client.getApiVersion(),
-                            linkerName,
-                            accept,
-                            context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Delete a link.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceUri, String linkerName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceUri == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
-        }
-        if (linkerName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter linkerName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .delete(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), linkerName, accept, context);
-    }
-
-    /**
-     * Delete a link.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceUri, String linkerName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri, linkerName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
-    }
-
-    /**
-     * Delete a link.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceUri, String linkerName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceUri, linkerName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
-    }
-
-    /**
-     * Delete a link.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceUri, String linkerName) {
-        return beginDeleteAsync(resourceUri, linkerName).getSyncPoller();
-    }
-
-    /**
-     * Delete a link.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceUri, String linkerName, Context context) {
-        return beginDeleteAsync(resourceUri, linkerName, context).getSyncPoller();
-    }
-
-    /**
-     * Delete a link.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceUri, String linkerName) {
-        return beginDeleteAsync(resourceUri, linkerName).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete a link.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> deleteAsync(String resourceUri, String linkerName, Context context) {
-        return beginDeleteAsync(resourceUri, linkerName, context).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Delete a link.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceUri, String linkerName) {
-        deleteAsync(resourceUri, linkerName).block();
-    }
-
-    /**
-     * Delete a link.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void delete(String resourceUri, String linkerName, Context context) {
-        deleteAsync(resourceUri, linkerName, context).block();
+    public LinkerResourceInner get(String resourceUri, String linkerName) {
+        return getWithResponse(resourceUri, linkerName, Context.NONE).getValue();
     }
 
     /**
      * Operation to update an existing link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param parameters Linker details.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return linker of source and target resource along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceUri, String linkerName, LinkerPatch parameters) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceUri, String linkerName,
+        LinkerPatch parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
@@ -902,23 +244,14 @@ public final class LinkersClientImpl implements LinkersClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            resourceUri,
-                            this.client.getApiVersion(),
-                            linkerName,
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(),
+                linkerName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Operation to update an existing link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param parameters Linker details.
@@ -926,17 +259,15 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return linker of source and target resource along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return linker of source and target resource along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceUri, String linkerName, LinkerPatch parameters, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceUri, String linkerName,
+        LinkerPatch parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
@@ -951,20 +282,13 @@ public final class LinkersClientImpl implements LinkersClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                resourceUri,
-                this.client.getApiVersion(),
-                linkerName,
-                parameters,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), linkerName,
+            parameters, accept, context);
     }
 
     /**
      * Operation to update an existing link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param parameters Linker details.
@@ -974,22 +298,16 @@ public final class LinkersClientImpl implements LinkersClient {
      * @return the {@link PollerFlux} for polling of linker of source and target resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<LinkerResourceInner>, LinkerResourceInner> beginUpdateAsync(
-        String resourceUri, String linkerName, LinkerPatch parameters) {
+    private PollerFlux<PollResult<LinkerResourceInner>, LinkerResourceInner> beginUpdateAsync(String resourceUri,
+        String linkerName, LinkerPatch parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceUri, linkerName, parameters);
-        return this
-            .client
-            .<LinkerResourceInner, LinkerResourceInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                LinkerResourceInner.class,
-                LinkerResourceInner.class,
-                this.client.getContext());
+        return this.client.<LinkerResourceInner, LinkerResourceInner>getLroResult(mono, this.client.getHttpPipeline(),
+            LinkerResourceInner.class, LinkerResourceInner.class, this.client.getContext());
     }
 
     /**
      * Operation to update an existing link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param parameters Linker details.
@@ -1000,19 +318,17 @@ public final class LinkersClientImpl implements LinkersClient {
      * @return the {@link PollerFlux} for polling of linker of source and target resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<LinkerResourceInner>, LinkerResourceInner> beginUpdateAsync(
-        String resourceUri, String linkerName, LinkerPatch parameters, Context context) {
+    private PollerFlux<PollResult<LinkerResourceInner>, LinkerResourceInner> beginUpdateAsync(String resourceUri,
+        String linkerName, LinkerPatch parameters, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = updateWithResponseAsync(resourceUri, linkerName, parameters, context);
-        return this
-            .client
-            .<LinkerResourceInner, LinkerResourceInner>getLroResult(
-                mono, this.client.getHttpPipeline(), LinkerResourceInner.class, LinkerResourceInner.class, context);
+        return this.client.<LinkerResourceInner, LinkerResourceInner>getLroResult(mono, this.client.getHttpPipeline(),
+            LinkerResourceInner.class, LinkerResourceInner.class, context);
     }
 
     /**
      * Operation to update an existing link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param parameters Linker details.
@@ -1022,14 +338,14 @@ public final class LinkersClientImpl implements LinkersClient {
      * @return the {@link SyncPoller} for polling of linker of source and target resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<LinkerResourceInner>, LinkerResourceInner> beginUpdate(
-        String resourceUri, String linkerName, LinkerPatch parameters) {
-        return beginUpdateAsync(resourceUri, linkerName, parameters).getSyncPoller();
+    public SyncPoller<PollResult<LinkerResourceInner>, LinkerResourceInner> beginUpdate(String resourceUri,
+        String linkerName, LinkerPatch parameters) {
+        return this.beginUpdateAsync(resourceUri, linkerName, parameters).getSyncPoller();
     }
 
     /**
      * Operation to update an existing link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param parameters Linker details.
@@ -1040,14 +356,14 @@ public final class LinkersClientImpl implements LinkersClient {
      * @return the {@link SyncPoller} for polling of linker of source and target resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<LinkerResourceInner>, LinkerResourceInner> beginUpdate(
-        String resourceUri, String linkerName, LinkerPatch parameters, Context context) {
-        return beginUpdateAsync(resourceUri, linkerName, parameters, context).getSyncPoller();
+    public SyncPoller<PollResult<LinkerResourceInner>, LinkerResourceInner> beginUpdate(String resourceUri,
+        String linkerName, LinkerPatch parameters, Context context) {
+        return this.beginUpdateAsync(resourceUri, linkerName, parameters, context).getSyncPoller();
     }
 
     /**
      * Operation to update an existing link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param parameters Linker details.
@@ -1058,14 +374,13 @@ public final class LinkersClientImpl implements LinkersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<LinkerResourceInner> updateAsync(String resourceUri, String linkerName, LinkerPatch parameters) {
-        return beginUpdateAsync(resourceUri, linkerName, parameters)
-            .last()
+        return beginUpdateAsync(resourceUri, linkerName, parameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Operation to update an existing link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param parameters Linker details.
@@ -1076,16 +391,15 @@ public final class LinkersClientImpl implements LinkersClient {
      * @return linker of source and target resource on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<LinkerResourceInner> updateAsync(
-        String resourceUri, String linkerName, LinkerPatch parameters, Context context) {
-        return beginUpdateAsync(resourceUri, linkerName, parameters, context)
-            .last()
+    private Mono<LinkerResourceInner> updateAsync(String resourceUri, String linkerName, LinkerPatch parameters,
+        Context context) {
+        return beginUpdateAsync(resourceUri, linkerName, parameters, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Operation to update an existing link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param parameters Linker details.
@@ -1101,7 +415,7 @@ public final class LinkersClientImpl implements LinkersClient {
 
     /**
      * Operation to update an existing link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param parameters Linker details.
@@ -1118,22 +432,20 @@ public final class LinkersClientImpl implements LinkersClient {
 
     /**
      * Validate a link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the validation operation result for a linker along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<Flux<ByteBuffer>>> validateWithResponseAsync(String resourceUri, String linkerName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
@@ -1143,22 +455,14 @@ public final class LinkersClientImpl implements LinkersClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .validate(
-                            this.client.getEndpoint(),
-                            resourceUri,
-                            this.client.getApiVersion(),
-                            linkerName,
-                            accept,
-                            context))
+            .withContext(context -> service.validate(this.client.getEndpoint(), resourceUri,
+                this.client.getApiVersion(), linkerName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Validate a link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
@@ -1166,16 +470,14 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the validation operation result for a linker along with {@link Response} on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> validateWithResponseAsync(
-        String resourceUri, String linkerName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> validateWithResponseAsync(String resourceUri, String linkerName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
@@ -1185,13 +487,13 @@ public final class LinkersClientImpl implements LinkersClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .validate(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), linkerName, accept, context);
+        return service.validate(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), linkerName, accept,
+            context);
     }
 
     /**
      * Validate a link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1200,22 +502,17 @@ public final class LinkersClientImpl implements LinkersClient {
      * @return the {@link PollerFlux} for polling of the validation operation result for a linker.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner> beginValidateAsync(
-        String resourceUri, String linkerName) {
+    private PollerFlux<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner>
+        beginValidateAsync(String resourceUri, String linkerName) {
         Mono<Response<Flux<ByteBuffer>>> mono = validateWithResponseAsync(resourceUri, linkerName);
-        return this
-            .client
-            .<ValidateOperationResultInner, ValidateOperationResultInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ValidateOperationResultInner.class,
-                ValidateOperationResultInner.class,
-                this.client.getContext());
+        return this.client.<ValidateOperationResultInner, ValidateOperationResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ValidateOperationResultInner.class, ValidateOperationResultInner.class,
+            this.client.getContext());
     }
 
     /**
      * Validate a link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
@@ -1225,23 +522,18 @@ public final class LinkersClientImpl implements LinkersClient {
      * @return the {@link PollerFlux} for polling of the validation operation result for a linker.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner> beginValidateAsync(
-        String resourceUri, String linkerName, Context context) {
+    private PollerFlux<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner>
+        beginValidateAsync(String resourceUri, String linkerName, Context context) {
         context = this.client.mergeContext(context);
         Mono<Response<Flux<ByteBuffer>>> mono = validateWithResponseAsync(resourceUri, linkerName, context);
-        return this
-            .client
-            .<ValidateOperationResultInner, ValidateOperationResultInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                ValidateOperationResultInner.class,
-                ValidateOperationResultInner.class,
-                context);
+        return this.client.<ValidateOperationResultInner, ValidateOperationResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), ValidateOperationResultInner.class, ValidateOperationResultInner.class,
+            context);
     }
 
     /**
      * Validate a link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1250,14 +542,14 @@ public final class LinkersClientImpl implements LinkersClient {
      * @return the {@link SyncPoller} for polling of the validation operation result for a linker.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner> beginValidate(
-        String resourceUri, String linkerName) {
-        return beginValidateAsync(resourceUri, linkerName).getSyncPoller();
+    public SyncPoller<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner>
+        beginValidate(String resourceUri, String linkerName) {
+        return this.beginValidateAsync(resourceUri, linkerName).getSyncPoller();
     }
 
     /**
      * Validate a link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
@@ -1267,14 +559,14 @@ public final class LinkersClientImpl implements LinkersClient {
      * @return the {@link SyncPoller} for polling of the validation operation result for a linker.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner> beginValidate(
-        String resourceUri, String linkerName, Context context) {
-        return beginValidateAsync(resourceUri, linkerName, context).getSyncPoller();
+    public SyncPoller<PollResult<ValidateOperationResultInner>, ValidateOperationResultInner>
+        beginValidate(String resourceUri, String linkerName, Context context) {
+        return this.beginValidateAsync(resourceUri, linkerName, context).getSyncPoller();
     }
 
     /**
      * Validate a link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1289,7 +581,7 @@ public final class LinkersClientImpl implements LinkersClient {
 
     /**
      * Validate a link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
@@ -1300,14 +592,13 @@ public final class LinkersClientImpl implements LinkersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ValidateOperationResultInner> validateAsync(String resourceUri, String linkerName, Context context) {
-        return beginValidateAsync(resourceUri, linkerName, context)
-            .last()
+        return beginValidateAsync(resourceUri, linkerName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Validate a link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1322,7 +613,7 @@ public final class LinkersClientImpl implements LinkersClient {
 
     /**
      * Validate a link.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
@@ -1338,23 +629,21 @@ public final class LinkersClientImpl implements LinkersClient {
 
     /**
      * list source configurations for a linker.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return configurations for source resource, include appSettings, connectionString and serviceBindings along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SourceConfigurationResultInner>> listConfigurationsWithResponseAsync(
-        String resourceUri, String linkerName) {
+    private Mono<Response<SourceConfigurationResultInner>> listConfigurationsWithResponseAsync(String resourceUri,
+        String linkerName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
@@ -1364,22 +653,14 @@ public final class LinkersClientImpl implements LinkersClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listConfigurations(
-                            this.client.getEndpoint(),
-                            resourceUri,
-                            this.client.getApiVersion(),
-                            linkerName,
-                            accept,
-                            context))
+            .withContext(context -> service.listConfigurations(this.client.getEndpoint(), resourceUri,
+                this.client.getApiVersion(), linkerName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * list source configurations for a linker.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @param context The context to associate with this operation.
@@ -1387,16 +668,14 @@ public final class LinkersClientImpl implements LinkersClient {
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return configurations for source resource, include appSettings, connectionString and serviceBindings along with
-     *     {@link Response} on successful completion of {@link Mono}.
+     * {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SourceConfigurationResultInner>> listConfigurationsWithResponseAsync(
-        String resourceUri, String linkerName, Context context) {
+    private Mono<Response<SourceConfigurationResultInner>> listConfigurationsWithResponseAsync(String resourceUri,
+        String linkerName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (resourceUri == null) {
             return Mono.error(new IllegalArgumentException("Parameter resourceUri is required and cannot be null."));
@@ -1406,21 +685,20 @@ public final class LinkersClientImpl implements LinkersClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listConfigurations(
-                this.client.getEndpoint(), resourceUri, this.client.getApiVersion(), linkerName, accept, context);
+        return service.listConfigurations(this.client.getEndpoint(), resourceUri, this.client.getApiVersion(),
+            linkerName, accept, context);
     }
 
     /**
      * list source configurations for a linker.
-     *
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return configurations for source resource, include appSettings, connectionString and serviceBindings on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<SourceConfigurationResultInner> listConfigurationsAsync(String resourceUri, String linkerName) {
@@ -1430,7 +708,25 @@ public final class LinkersClientImpl implements LinkersClient {
 
     /**
      * list source configurations for a linker.
-     *
+     * 
+     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
+     * @param linkerName The name Linker resource.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return configurations for source resource, include appSettings, connectionString and serviceBindings along with
+     * {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<SourceConfigurationResultInner> listConfigurationsWithResponse(String resourceUri,
+        String linkerName, Context context) {
+        return listConfigurationsWithResponseAsync(resourceUri, linkerName, context).block();
+    }
+
+    /**
+     * list source configurations for a linker.
+     * 
      * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
      * @param linkerName The name Linker resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1440,95 +736,6 @@ public final class LinkersClientImpl implements LinkersClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public SourceConfigurationResultInner listConfigurations(String resourceUri, String linkerName) {
-        return listConfigurationsAsync(resourceUri, linkerName).block();
-    }
-
-    /**
-     * list source configurations for a linker.
-     *
-     * @param resourceUri The fully qualified Azure Resource manager identifier of the resource to be connected.
-     * @param linkerName The name Linker resource.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return configurations for source resource, include appSettings, connectionString and serviceBindings along with
-     *     {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<SourceConfigurationResultInner> listConfigurationsWithResponse(
-        String resourceUri, String linkerName, Context context) {
-        return listConfigurationsWithResponseAsync(resourceUri, linkerName, context).block();
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Linker along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LinkerResourceInner>> listNextSinglePageAsync(String nextLink) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<LinkerResourceInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Get the next page of items.
-     *
-     * @param nextLink The nextLink parameter.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of Linker along with {@link PagedResponse} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<LinkerResourceInner>> listNextSinglePageAsync(String nextLink, Context context) {
-        if (nextLink == null) {
-            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
-        }
-        if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return listConfigurationsWithResponse(resourceUri, linkerName, Context.NONE).getValue();
     }
 }

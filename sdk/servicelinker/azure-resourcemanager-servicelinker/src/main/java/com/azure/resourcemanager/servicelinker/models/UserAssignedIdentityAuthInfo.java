@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The authentication info when authType is userAssignedIdentity. */
+/**
+ * The authentication info when authType is userAssignedIdentity.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
 @JsonTypeName("userAssignedIdentity")
 @Fluent
@@ -27,8 +29,14 @@ public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
     private String subscriptionId;
 
     /**
+     * Creates an instance of UserAssignedIdentityAuthInfo class.
+     */
+    public UserAssignedIdentityAuthInfo() {
+    }
+
+    /**
      * Get the clientId property: Client Id for userAssignedIdentity.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -37,7 +45,7 @@ public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
 
     /**
      * Set the clientId property: Client Id for userAssignedIdentity.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the UserAssignedIdentityAuthInfo object itself.
      */
@@ -48,7 +56,7 @@ public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
 
     /**
      * Get the subscriptionId property: Subscription id for userAssignedIdentity.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -57,7 +65,7 @@ public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
 
     /**
      * Set the subscriptionId property: Subscription id for userAssignedIdentity.
-     *
+     * 
      * @param subscriptionId the subscriptionId value to set.
      * @return the UserAssignedIdentityAuthInfo object itself.
      */
@@ -68,7 +76,7 @@ public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
