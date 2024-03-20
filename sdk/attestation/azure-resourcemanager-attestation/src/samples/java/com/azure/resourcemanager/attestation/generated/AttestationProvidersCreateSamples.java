@@ -5,24 +5,42 @@
 package com.azure.resourcemanager.attestation.generated;
 
 import com.azure.resourcemanager.attestation.models.AttestationServiceCreationSpecificParams;
+import com.azure.resourcemanager.attestation.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.attestation.models.TpmAttestationAuthenticationType;
+import java.util.HashMap;
+import java.util.Map;
 
-/** Samples for AttestationProviders Create. */
+/**
+ * Samples for AttestationProviders Create.
+ */
 public final class AttestationProvidersCreateSamples {
     /*
-     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2020-10-01/examples/Create_AttestationProvider.json
+     * x-ms-original-file: specification/attestation/resource-manager/Microsoft.Attestation/stable/2021-06-01/examples/
+     * Create_AttestationProvider.json
      */
     /**
      * Sample code: AttestationProviders_Create.
-     *
+     * 
      * @param manager Entry point to AttestationManager.
      */
     public static void attestationProvidersCreate(com.azure.resourcemanager.attestation.AttestationManager manager) {
-        manager
-            .attestationProviders()
-            .define("myattestationprovider")
-            .withRegion((String) null)
+        manager.attestationProviders().define("myattestationprovider").withRegion("East US")
             .withExistingResourceGroup("MyResourceGroup")
-            .withProperties((AttestationServiceCreationSpecificParams) null)
-            .create();
+            .withProperties(
+                new AttestationServiceCreationSpecificParams().withPublicNetworkAccess(PublicNetworkAccessType.ENABLED)
+                    .withTpmAttestationAuthentication(TpmAttestationAuthenticationType.ENABLED))
+            .withTags(mapOf("Property1", "Value1", "Property2", "Value2", "Property3", "Value3")).create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }

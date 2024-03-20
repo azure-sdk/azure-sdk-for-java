@@ -8,11 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.attestation.models.AttestationServiceStatus;
+import com.azure.resourcemanager.attestation.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.attestation.models.TpmAttestationAuthenticationType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Attestation service response message. */
+/**
+ * Attestation service response message.
+ */
 @Fluent
 public final class AttestationProviderInner extends Resource {
     /*
@@ -27,13 +31,15 @@ public final class AttestationProviderInner extends Resource {
     @JsonProperty(value = "properties")
     private StatusResult innerProperties;
 
-    /** Creates an instance of AttestationProviderInner class. */
+    /**
+     * Creates an instance of AttestationProviderInner class.
+     */
     public AttestationProviderInner() {
     }
 
     /**
      * Get the systemData property: The system metadata relating to this resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -42,21 +48,25 @@ public final class AttestationProviderInner extends Resource {
 
     /**
      * Get the innerProperties property: Describes Attestation service status.
-     *
+     * 
      * @return the innerProperties value.
      */
     private StatusResult innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AttestationProviderInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AttestationProviderInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -65,7 +75,7 @@ public final class AttestationProviderInner extends Resource {
 
     /**
      * Get the trustModel property: Trust model for the attestation provider.
-     *
+     * 
      * @return the trustModel value.
      */
     public String trustModel() {
@@ -74,7 +84,7 @@ public final class AttestationProviderInner extends Resource {
 
     /**
      * Set the trustModel property: Trust model for the attestation provider.
-     *
+     * 
      * @param trustModel the trustModel value to set.
      * @return the AttestationProviderInner object itself.
      */
@@ -88,7 +98,7 @@ public final class AttestationProviderInner extends Resource {
 
     /**
      * Get the status property: Status of attestation service.
-     *
+     * 
      * @return the status value.
      */
     public AttestationServiceStatus status() {
@@ -97,7 +107,7 @@ public final class AttestationProviderInner extends Resource {
 
     /**
      * Set the status property: Status of attestation service.
-     *
+     * 
      * @param status the status value to set.
      * @return the AttestationProviderInner object itself.
      */
@@ -111,7 +121,7 @@ public final class AttestationProviderInner extends Resource {
 
     /**
      * Get the attestUri property: Gets the uri of attestation service.
-     *
+     * 
      * @return the attestUri value.
      */
     public String attestUri() {
@@ -120,7 +130,7 @@ public final class AttestationProviderInner extends Resource {
 
     /**
      * Set the attestUri property: Gets the uri of attestation service.
-     *
+     * 
      * @param attestUri the attestUri value to set.
      * @return the AttestationProviderInner object itself.
      */
@@ -133,9 +143,34 @@ public final class AttestationProviderInner extends Resource {
     }
 
     /**
-     * Get the privateEndpointConnections property: List of private endpoint connections associated with the attestation
-     * provider.
-     *
+     * Get the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     * 
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkAccess();
+    }
+
+    /**
+     * Set the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     * 
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the AttestationProviderInner object itself.
+     */
+    public AttestationProviderInner withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new StatusResult();
+        }
+        this.innerProperties().withPublicNetworkAccess(publicNetworkAccess);
+        return this;
+    }
+
+    /**
+     * Get the privateEndpointConnections property: List of private endpoint connections associated with the
+     * attestation provider.
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
@@ -143,8 +178,34 @@ public final class AttestationProviderInner extends Resource {
     }
 
     /**
+     * Get the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     * 
+     * @return the tpmAttestationAuthentication value.
+     */
+    public TpmAttestationAuthenticationType tpmAttestationAuthentication() {
+        return this.innerProperties() == null ? null : this.innerProperties().tpmAttestationAuthentication();
+    }
+
+    /**
+     * Set the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     * 
+     * @param tpmAttestationAuthentication the tpmAttestationAuthentication value to set.
+     * @return the AttestationProviderInner object itself.
+     */
+    public AttestationProviderInner
+        withTpmAttestationAuthentication(TpmAttestationAuthenticationType tpmAttestationAuthentication) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new StatusResult();
+        }
+        this.innerProperties().withTpmAttestationAuthentication(tpmAttestationAuthentication);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

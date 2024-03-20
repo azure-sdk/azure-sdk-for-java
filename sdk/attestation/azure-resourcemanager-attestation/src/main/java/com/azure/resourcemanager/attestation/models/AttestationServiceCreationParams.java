@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Parameters for creating an attestation provider. */
+/**
+ * Parameters for creating an attestation provider.
+ */
 @Fluent
 public final class AttestationServiceCreationParams {
     /*
@@ -32,13 +34,15 @@ public final class AttestationServiceCreationParams {
     @JsonProperty(value = "properties", required = true)
     private AttestationServiceCreationSpecificParams properties;
 
-    /** Creates an instance of AttestationServiceCreationParams class. */
+    /**
+     * Creates an instance of AttestationServiceCreationParams class.
+     */
     public AttestationServiceCreationParams() {
     }
 
     /**
      * Get the location property: The supported Azure location where the attestation provider should be created.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -47,7 +51,7 @@ public final class AttestationServiceCreationParams {
 
     /**
      * Set the location property: The supported Azure location where the attestation provider should be created.
-     *
+     * 
      * @param location the location value to set.
      * @return the AttestationServiceCreationParams object itself.
      */
@@ -58,7 +62,7 @@ public final class AttestationServiceCreationParams {
 
     /**
      * Get the tags property: The tags that will be assigned to the attestation provider.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -67,7 +71,7 @@ public final class AttestationServiceCreationParams {
 
     /**
      * Set the tags property: The tags that will be assigned to the attestation provider.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the AttestationServiceCreationParams object itself.
      */
@@ -78,7 +82,7 @@ public final class AttestationServiceCreationParams {
 
     /**
      * Get the properties property: Properties of the attestation provider.
-     *
+     * 
      * @return the properties value.
      */
     public AttestationServiceCreationSpecificParams properties() {
@@ -87,7 +91,7 @@ public final class AttestationServiceCreationParams {
 
     /**
      * Set the properties property: Properties of the attestation provider.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the AttestationServiceCreationParams object itself.
      */
@@ -98,21 +102,17 @@ public final class AttestationServiceCreationParams {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (location() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property location in model AttestationServiceCreationParams"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property location in model AttestationServiceCreationParams"));
         }
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property properties in model AttestationServiceCreationParams"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property properties in model AttestationServiceCreationParams"));
         } else {
             properties().validate();
         }

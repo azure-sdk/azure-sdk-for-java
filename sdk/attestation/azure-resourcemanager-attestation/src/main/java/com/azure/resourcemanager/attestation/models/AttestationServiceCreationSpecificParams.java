@@ -7,9 +7,17 @@ package com.azure.resourcemanager.attestation.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Client supplied parameters used to create a new attestation provider. */
+/**
+ * Client supplied parameters used to create a new attestation provider.
+ */
 @Fluent
 public final class AttestationServiceCreationSpecificParams {
+    /*
+     * Controls whether traffic from the public network is allowed to access the Attestation Provider APIs.
+     */
+    @JsonProperty(value = "publicNetworkAccess")
+    private PublicNetworkAccessType publicNetworkAccess;
+
     /*
      * JSON Web Key Set defining a set of X.509 Certificates that will represent the parent certificate for the signing
      * certificate used for policy operations
@@ -17,14 +25,45 @@ public final class AttestationServiceCreationSpecificParams {
     @JsonProperty(value = "policySigningCertificates")
     private JsonWebKeySet policySigningCertificates;
 
-    /** Creates an instance of AttestationServiceCreationSpecificParams class. */
+    /*
+     * The setting that controls whether authentication is enabled or disabled for TPM Attestation REST APIs.
+     */
+    @JsonProperty(value = "tpmAttestationAuthentication")
+    private TpmAttestationAuthenticationType tpmAttestationAuthentication;
+
+    /**
+     * Creates an instance of AttestationServiceCreationSpecificParams class.
+     */
     public AttestationServiceCreationSpecificParams() {
+    }
+
+    /**
+     * Get the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     * 
+     * @return the publicNetworkAccess value.
+     */
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.publicNetworkAccess;
+    }
+
+    /**
+     * Set the publicNetworkAccess property: Controls whether traffic from the public network is allowed to access the
+     * Attestation Provider APIs.
+     * 
+     * @param publicNetworkAccess the publicNetworkAccess value to set.
+     * @return the AttestationServiceCreationSpecificParams object itself.
+     */
+    public AttestationServiceCreationSpecificParams
+        withPublicNetworkAccess(PublicNetworkAccessType publicNetworkAccess) {
+        this.publicNetworkAccess = publicNetworkAccess;
+        return this;
     }
 
     /**
      * Get the policySigningCertificates property: JSON Web Key Set defining a set of X.509 Certificates that will
      * represent the parent certificate for the signing certificate used for policy operations.
-     *
+     * 
      * @return the policySigningCertificates value.
      */
     public JsonWebKeySet policySigningCertificates() {
@@ -34,19 +73,42 @@ public final class AttestationServiceCreationSpecificParams {
     /**
      * Set the policySigningCertificates property: JSON Web Key Set defining a set of X.509 Certificates that will
      * represent the parent certificate for the signing certificate used for policy operations.
-     *
+     * 
      * @param policySigningCertificates the policySigningCertificates value to set.
      * @return the AttestationServiceCreationSpecificParams object itself.
      */
-    public AttestationServiceCreationSpecificParams withPolicySigningCertificates(
-        JsonWebKeySet policySigningCertificates) {
+    public AttestationServiceCreationSpecificParams
+        withPolicySigningCertificates(JsonWebKeySet policySigningCertificates) {
         this.policySigningCertificates = policySigningCertificates;
         return this;
     }
 
     /**
+     * Get the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     * 
+     * @return the tpmAttestationAuthentication value.
+     */
+    public TpmAttestationAuthenticationType tpmAttestationAuthentication() {
+        return this.tpmAttestationAuthentication;
+    }
+
+    /**
+     * Set the tpmAttestationAuthentication property: The setting that controls whether authentication is enabled or
+     * disabled for TPM Attestation REST APIs.
+     * 
+     * @param tpmAttestationAuthentication the tpmAttestationAuthentication value to set.
+     * @return the AttestationServiceCreationSpecificParams object itself.
+     */
+    public AttestationServiceCreationSpecificParams
+        withTpmAttestationAuthentication(TpmAttestationAuthenticationType tpmAttestationAuthentication) {
+        this.tpmAttestationAuthentication = tpmAttestationAuthentication;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

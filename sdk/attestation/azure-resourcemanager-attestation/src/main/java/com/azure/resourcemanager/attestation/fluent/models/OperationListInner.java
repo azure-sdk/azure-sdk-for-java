@@ -10,7 +10,9 @@ import com.azure.resourcemanager.attestation.models.OperationsDefinition;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of supported operations. */
+/**
+ * List of supported operations.
+ */
 @Fluent
 public final class OperationListInner {
     /*
@@ -25,13 +27,15 @@ public final class OperationListInner {
     @JsonProperty(value = "value")
     private List<OperationsDefinition> value;
 
-    /** Creates an instance of OperationListInner class. */
+    /**
+     * Creates an instance of OperationListInner class.
+     */
     public OperationListInner() {
     }
 
     /**
      * Get the systemData property: The system metadata relating to this resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -40,7 +44,7 @@ public final class OperationListInner {
 
     /**
      * Get the value property: List of supported operations.
-     *
+     * 
      * @return the value value.
      */
     public List<OperationsDefinition> value() {
@@ -49,7 +53,7 @@ public final class OperationListInner {
 
     /**
      * Set the value property: List of supported operations.
-     *
+     * 
      * @param value the value value to set.
      * @return the OperationListInner object itself.
      */
@@ -60,7 +64,7 @@ public final class OperationListInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

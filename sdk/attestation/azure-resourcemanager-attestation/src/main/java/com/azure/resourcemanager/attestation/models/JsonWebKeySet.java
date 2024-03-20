@@ -8,11 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The JsonWebKeySet model. */
+/**
+ * The JsonWebKeySet model.
+ */
 @Fluent
 public final class JsonWebKeySet {
     /*
-     * The value of the "keys" parameter is an array of JWK values.  By
+     * The value of the "keys" parameter is an array of JWK values. By
      * default, the order of the JWK values within the array does not imply
      * an order of preference among them, although applications of JWK Sets
      * can choose to assign a meaning to the order for their purposes, if
@@ -21,15 +23,19 @@ public final class JsonWebKeySet {
     @JsonProperty(value = "keys")
     private List<JsonWebKey> keys;
 
-    /** Creates an instance of JsonWebKeySet class. */
+    /**
+     * Creates an instance of JsonWebKeySet class.
+     */
     public JsonWebKeySet() {
     }
 
     /**
-     * Get the keys property: The value of the "keys" parameter is an array of JWK values. By default, the order of the
-     * JWK values within the array does not imply an order of preference among them, although applications of JWK Sets
-     * can choose to assign a meaning to the order for their purposes, if desired.
-     *
+     * Get the keys property: The value of the "keys" parameter is an array of JWK values. By
+     * default, the order of the JWK values within the array does not imply
+     * an order of preference among them, although applications of JWK Sets
+     * can choose to assign a meaning to the order for their purposes, if
+     * desired.
+     * 
      * @return the keys value.
      */
     public List<JsonWebKey> keys() {
@@ -37,10 +43,12 @@ public final class JsonWebKeySet {
     }
 
     /**
-     * Set the keys property: The value of the "keys" parameter is an array of JWK values. By default, the order of the
-     * JWK values within the array does not imply an order of preference among them, although applications of JWK Sets
-     * can choose to assign a meaning to the order for their purposes, if desired.
-     *
+     * Set the keys property: The value of the "keys" parameter is an array of JWK values. By
+     * default, the order of the JWK values within the array does not imply
+     * an order of preference among them, although applications of JWK Sets
+     * can choose to assign a meaning to the order for their purposes, if
+     * desired.
+     * 
      * @param keys the keys value to set.
      * @return the JsonWebKeySet object itself.
      */
@@ -51,7 +59,7 @@ public final class JsonWebKeySet {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

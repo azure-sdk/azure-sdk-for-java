@@ -13,8 +13,11 @@ import com.azure.resourcemanager.attestation.models.AttestationProvider;
 import com.azure.resourcemanager.attestation.models.AttestationServiceCreationParams;
 import com.azure.resourcemanager.attestation.models.AttestationServiceCreationSpecificParams;
 import com.azure.resourcemanager.attestation.models.AttestationServicePatchParams;
+import com.azure.resourcemanager.attestation.models.AttestationServicePatchSpecificParams;
 import com.azure.resourcemanager.attestation.models.AttestationServiceStatus;
 import com.azure.resourcemanager.attestation.models.PrivateEndpointConnection;
+import com.azure.resourcemanager.attestation.models.PublicNetworkAccessType;
+import com.azure.resourcemanager.attestation.models.TpmAttestationAuthenticationType;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -67,18 +70,22 @@ public final class AttestationProviderImpl
         return this.innerModel().attestUri();
     }
 
+    public PublicNetworkAccessType publicNetworkAccess() {
+        return this.innerModel().publicNetworkAccess();
+    }
+
     public List<PrivateEndpointConnection> privateEndpointConnections() {
         List<PrivateEndpointConnectionInner> inner = this.innerModel().privateEndpointConnections();
         if (inner != null) {
-            return Collections
-                .unmodifiableList(
-                    inner
-                        .stream()
-                        .map(inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager()))
-                        .collect(Collectors.toList()));
+            return Collections.unmodifiableList(inner.stream()
+                .map(inner1 -> new PrivateEndpointConnectionImpl(inner1, this.manager())).collect(Collectors.toList()));
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public TpmAttestationAuthenticationType tpmAttestationAuthentication() {
+        return this.innerModel().tpmAttestationAuthentication();
     }
 
     public Region region() {
@@ -115,22 +122,14 @@ public final class AttestationProviderImpl
     }
 
     public AttestationProvider create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAttestationProviders()
-                .createWithResponse(resourceGroupName, providerName, createCreationParams, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAttestationProviders()
+            .createWithResponse(resourceGroupName, providerName, createCreationParams, Context.NONE).getValue();
         return this;
     }
 
     public AttestationProvider create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAttestationProviders()
-                .createWithResponse(resourceGroupName, providerName, createCreationParams, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAttestationProviders()
+            .createWithResponse(resourceGroupName, providerName, createCreationParams, context).getValue();
         return this;
     }
 
@@ -147,50 +146,34 @@ public final class AttestationProviderImpl
     }
 
     public AttestationProvider apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAttestationProviders()
-                .updateWithResponse(resourceGroupName, providerName, updateUpdateParams, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAttestationProviders()
+            .updateWithResponse(resourceGroupName, providerName, updateUpdateParams, Context.NONE).getValue();
         return this;
     }
 
     public AttestationProvider apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAttestationProviders()
-                .updateWithResponse(resourceGroupName, providerName, updateUpdateParams, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAttestationProviders()
+            .updateWithResponse(resourceGroupName, providerName, updateUpdateParams, context).getValue();
         return this;
     }
 
-    AttestationProviderImpl(
-        AttestationProviderInner innerObject, com.azure.resourcemanager.attestation.AttestationManager serviceManager) {
+    AttestationProviderImpl(AttestationProviderInner innerObject,
+        com.azure.resourcemanager.attestation.AttestationManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.providerName = Utils.getValueFromIdByName(innerObject.id(), "attestationProviders");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.providerName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "attestationProviders");
     }
 
     public AttestationProvider refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAttestationProviders()
-                .getByResourceGroupWithResponse(resourceGroupName, providerName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAttestationProviders()
+            .getByResourceGroupWithResponse(resourceGroupName, providerName, Context.NONE).getValue();
         return this;
     }
 
     public AttestationProvider refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getAttestationProviders()
-                .getByResourceGroupWithResponse(resourceGroupName, providerName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getAttestationProviders()
+            .getByResourceGroupWithResponse(resourceGroupName, providerName, context).getValue();
         return this;
     }
 
@@ -217,6 +200,11 @@ public final class AttestationProviderImpl
             this.updateUpdateParams.withTags(tags);
             return this;
         }
+    }
+
+    public AttestationProviderImpl withProperties(AttestationServicePatchSpecificParams properties) {
+        this.updateUpdateParams.withProperties(properties);
+        return this;
     }
 
     private boolean isInCreateMode() {

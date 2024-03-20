@@ -7,7 +7,9 @@ package com.azure.resourcemanager.attestation.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Display object with properties of the operation. */
+/**
+ * Display object with properties of the operation.
+ */
 @Fluent
 public final class OperationsDisplayDefinition {
     /*
@@ -34,13 +36,15 @@ public final class OperationsDisplayDefinition {
     @JsonProperty(value = "description")
     private String description;
 
-    /** Creates an instance of OperationsDisplayDefinition class. */
+    /**
+     * Creates an instance of OperationsDisplayDefinition class.
+     */
     public OperationsDisplayDefinition() {
     }
 
     /**
      * Get the provider property: Resource provider of the operation.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -49,7 +53,7 @@ public final class OperationsDisplayDefinition {
 
     /**
      * Set the provider property: Resource provider of the operation.
-     *
+     * 
      * @param provider the provider value to set.
      * @return the OperationsDisplayDefinition object itself.
      */
@@ -60,7 +64,7 @@ public final class OperationsDisplayDefinition {
 
     /**
      * Get the resource property: Resource for the operation.
-     *
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -69,7 +73,7 @@ public final class OperationsDisplayDefinition {
 
     /**
      * Set the resource property: Resource for the operation.
-     *
+     * 
      * @param resource the resource value to set.
      * @return the OperationsDisplayDefinition object itself.
      */
@@ -80,7 +84,7 @@ public final class OperationsDisplayDefinition {
 
     /**
      * Get the operation property: Short description of the operation.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -89,7 +93,7 @@ public final class OperationsDisplayDefinition {
 
     /**
      * Set the operation property: Short description of the operation.
-     *
+     * 
      * @param operation the operation value to set.
      * @return the OperationsDisplayDefinition object itself.
      */
@@ -100,7 +104,7 @@ public final class OperationsDisplayDefinition {
 
     /**
      * Get the description property: Description of the operation.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -109,7 +113,7 @@ public final class OperationsDisplayDefinition {
 
     /**
      * Set the description property: Description of the operation.
-     *
+     * 
      * @param description the description value to set.
      * @return the OperationsDisplayDefinition object itself.
      */
@@ -120,7 +124,7 @@ public final class OperationsDisplayDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
