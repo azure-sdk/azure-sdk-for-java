@@ -17,7 +17,9 @@ import com.azure.resourcemanager.signalr.models.SignalRTlsSettings;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A class that describes the properties of the resource. */
+/**
+ * A class that describes the properties of the resource.
+ */
 @Fluent
 public final class SignalRProperties {
     /*
@@ -82,7 +84,7 @@ public final class SignalRProperties {
 
     /*
      * List of the featureFlags.
-     *
+     * 
      * FeatureFlags that are not included in the parameters for the update operation will not be modified.
      * And the response will only include featureFlags that are explicitly set.
      * When a featureFlag is not explicitly set, its globally default value will be used
@@ -161,20 +163,22 @@ public final class SignalRProperties {
     private String regionEndpointEnabled;
 
     /*
-     * Stop or start the resource.  Default to "False".
+     * Stop or start the resource. Default to "False".
      * When it's true, the data plane of the resource is shutdown.
      * When it's false, the data plane of the resource is started.
      */
     @JsonProperty(value = "resourceStopped")
     private String resourceStopped;
 
-    /** Creates an instance of SignalRProperties class. */
+    /**
+     * Creates an instance of SignalRProperties class.
+     */
     public SignalRProperties() {
     }
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -183,7 +187,7 @@ public final class SignalRProperties {
 
     /**
      * Get the externalIp property: The publicly accessible IP of the resource.
-     *
+     * 
      * @return the externalIp value.
      */
     public String externalIp() {
@@ -192,7 +196,7 @@ public final class SignalRProperties {
 
     /**
      * Get the hostname property: FQDN of the service instance.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -202,7 +206,7 @@ public final class SignalRProperties {
     /**
      * Get the publicPort property: The publicly accessible port of the resource which is designed for browser/client
      * side usage.
-     *
+     * 
      * @return the publicPort value.
      */
     public Integer publicPort() {
@@ -212,7 +216,7 @@ public final class SignalRProperties {
     /**
      * Get the serverPort property: The publicly accessible port of the resource which is designed for customer server
      * side usage.
-     *
+     * 
      * @return the serverPort value.
      */
     public Integer serverPort() {
@@ -221,7 +225,7 @@ public final class SignalRProperties {
 
     /**
      * Get the version property: Version of the resource. Probably you need the same or higher version of client SDKs.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -230,7 +234,7 @@ public final class SignalRProperties {
 
     /**
      * Get the privateEndpointConnections property: Private endpoint connections to the resource.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
@@ -239,7 +243,7 @@ public final class SignalRProperties {
 
     /**
      * Get the sharedPrivateLinkResources property: The list of shared private link resources.
-     *
+     * 
      * @return the sharedPrivateLinkResources value.
      */
     public List<SharedPrivateLinkResourceInner> sharedPrivateLinkResources() {
@@ -248,7 +252,7 @@ public final class SignalRProperties {
 
     /**
      * Get the tls property: TLS settings for the resource.
-     *
+     * 
      * @return the tls value.
      */
     public SignalRTlsSettings tls() {
@@ -257,7 +261,7 @@ public final class SignalRProperties {
 
     /**
      * Set the tls property: TLS settings for the resource.
-     *
+     * 
      * @param tls the tls value to set.
      * @return the SignalRProperties object itself.
      */
@@ -268,7 +272,7 @@ public final class SignalRProperties {
 
     /**
      * Get the hostnamePrefix property: Deprecated.
-     *
+     * 
      * @return the hostnamePrefix value.
      */
     public String hostnamePrefix() {
@@ -277,12 +281,12 @@ public final class SignalRProperties {
 
     /**
      * Get the features property: List of the featureFlags.
-     *
-     * <p>FeatureFlags that are not included in the parameters for the update operation will not be modified. And the
-     * response will only include featureFlags that are explicitly set. When a featureFlag is not explicitly set, its
-     * globally default value will be used But keep in mind, the default value doesn't mean "false". It varies in terms
-     * of different FeatureFlags.
-     *
+     * 
+     * FeatureFlags that are not included in the parameters for the update operation will not be modified.
+     * And the response will only include featureFlags that are explicitly set.
+     * When a featureFlag is not explicitly set, its globally default value will be used
+     * But keep in mind, the default value doesn't mean "false". It varies in terms of different FeatureFlags.
+     * 
      * @return the features value.
      */
     public List<SignalRFeature> features() {
@@ -291,12 +295,12 @@ public final class SignalRProperties {
 
     /**
      * Set the features property: List of the featureFlags.
-     *
-     * <p>FeatureFlags that are not included in the parameters for the update operation will not be modified. And the
-     * response will only include featureFlags that are explicitly set. When a featureFlag is not explicitly set, its
-     * globally default value will be used But keep in mind, the default value doesn't mean "false". It varies in terms
-     * of different FeatureFlags.
-     *
+     * 
+     * FeatureFlags that are not included in the parameters for the update operation will not be modified.
+     * And the response will only include featureFlags that are explicitly set.
+     * When a featureFlag is not explicitly set, its globally default value will be used
+     * But keep in mind, the default value doesn't mean "false". It varies in terms of different FeatureFlags.
+     * 
      * @param features the features value to set.
      * @return the SignalRProperties object itself.
      */
@@ -307,7 +311,7 @@ public final class SignalRProperties {
 
     /**
      * Get the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService resource.
-     *
+     * 
      * @return the liveTraceConfiguration value.
      */
     public LiveTraceConfiguration liveTraceConfiguration() {
@@ -316,7 +320,7 @@ public final class SignalRProperties {
 
     /**
      * Set the liveTraceConfiguration property: Live trace configuration of a Microsoft.SignalRService resource.
-     *
+     * 
      * @param liveTraceConfiguration the liveTraceConfiguration value to set.
      * @return the SignalRProperties object itself.
      */
@@ -327,7 +331,7 @@ public final class SignalRProperties {
 
     /**
      * Get the resourceLogConfiguration property: Resource log configuration of a Microsoft.SignalRService resource.
-     *
+     * 
      * @return the resourceLogConfiguration value.
      */
     public ResourceLogConfiguration resourceLogConfiguration() {
@@ -336,7 +340,7 @@ public final class SignalRProperties {
 
     /**
      * Set the resourceLogConfiguration property: Resource log configuration of a Microsoft.SignalRService resource.
-     *
+     * 
      * @param resourceLogConfiguration the resourceLogConfiguration value to set.
      * @return the SignalRProperties object itself.
      */
@@ -347,7 +351,7 @@ public final class SignalRProperties {
 
     /**
      * Get the cors property: Cross-Origin Resource Sharing (CORS) settings.
-     *
+     * 
      * @return the cors value.
      */
     public SignalRCorsSettings cors() {
@@ -356,7 +360,7 @@ public final class SignalRProperties {
 
     /**
      * Set the cors property: Cross-Origin Resource Sharing (CORS) settings.
-     *
+     * 
      * @param cors the cors value to set.
      * @return the SignalRProperties object itself.
      */
@@ -367,7 +371,7 @@ public final class SignalRProperties {
 
     /**
      * Get the serverless property: Serverless settings.
-     *
+     * 
      * @return the serverless value.
      */
     public ServerlessSettings serverless() {
@@ -376,7 +380,7 @@ public final class SignalRProperties {
 
     /**
      * Set the serverless property: Serverless settings.
-     *
+     * 
      * @param serverless the serverless value to set.
      * @return the SignalRProperties object itself.
      */
@@ -387,7 +391,7 @@ public final class SignalRProperties {
 
     /**
      * Get the upstream property: The settings for the Upstream when the service is in server-less mode.
-     *
+     * 
      * @return the upstream value.
      */
     public ServerlessUpstreamSettings upstream() {
@@ -396,7 +400,7 @@ public final class SignalRProperties {
 
     /**
      * Set the upstream property: The settings for the Upstream when the service is in server-less mode.
-     *
+     * 
      * @param upstream the upstream value to set.
      * @return the SignalRProperties object itself.
      */
@@ -407,7 +411,7 @@ public final class SignalRProperties {
 
     /**
      * Get the networkACLs property: Network ACLs for the resource.
-     *
+     * 
      * @return the networkACLs value.
      */
     public SignalRNetworkACLs networkACLs() {
@@ -416,7 +420,7 @@ public final class SignalRProperties {
 
     /**
      * Set the networkACLs property: Network ACLs for the resource.
-     *
+     * 
      * @param networkACLs the networkACLs value to set.
      * @return the SignalRProperties object itself.
      */
@@ -426,10 +430,10 @@ public final class SignalRProperties {
     }
 
     /**
-     * Get the publicNetworkAccess property: Enable or disable public network access. Default to "Enabled". When it's
-     * Enabled, network ACLs still apply. When it's Disabled, public network access is always disabled no matter what
-     * you set in network ACLs.
-     *
+     * Get the publicNetworkAccess property: Enable or disable public network access. Default to "Enabled".
+     * When it's Enabled, network ACLs still apply.
+     * When it's Disabled, public network access is always disabled no matter what you set in network ACLs.
+     * 
      * @return the publicNetworkAccess value.
      */
     public String publicNetworkAccess() {
@@ -437,10 +441,10 @@ public final class SignalRProperties {
     }
 
     /**
-     * Set the publicNetworkAccess property: Enable or disable public network access. Default to "Enabled". When it's
-     * Enabled, network ACLs still apply. When it's Disabled, public network access is always disabled no matter what
-     * you set in network ACLs.
-     *
+     * Set the publicNetworkAccess property: Enable or disable public network access. Default to "Enabled".
+     * When it's Enabled, network ACLs still apply.
+     * When it's Disabled, public network access is always disabled no matter what you set in network ACLs.
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the SignalRProperties object itself.
      */
@@ -450,9 +454,10 @@ public final class SignalRProperties {
     }
 
     /**
-     * Get the disableLocalAuth property: DisableLocalAuth Enable or disable local auth with AccessKey When set as true,
-     * connection with AccessKey=xxx won't work.
-     *
+     * Get the disableLocalAuth property: DisableLocalAuth
+     * Enable or disable local auth with AccessKey
+     * When set as true, connection with AccessKey=xxx won't work.
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -460,9 +465,10 @@ public final class SignalRProperties {
     }
 
     /**
-     * Set the disableLocalAuth property: DisableLocalAuth Enable or disable local auth with AccessKey When set as true,
-     * connection with AccessKey=xxx won't work.
-     *
+     * Set the disableLocalAuth property: DisableLocalAuth
+     * Enable or disable local auth with AccessKey
+     * When set as true, connection with AccessKey=xxx won't work.
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the SignalRProperties object itself.
      */
@@ -472,9 +478,10 @@ public final class SignalRProperties {
     }
 
     /**
-     * Get the disableAadAuth property: DisableLocalAuth Enable or disable aad auth When set as true, connection with
-     * AuthType=aad won't work.
-     *
+     * Get the disableAadAuth property: DisableLocalAuth
+     * Enable or disable aad auth
+     * When set as true, connection with AuthType=aad won't work.
+     * 
      * @return the disableAadAuth value.
      */
     public Boolean disableAadAuth() {
@@ -482,9 +489,10 @@ public final class SignalRProperties {
     }
 
     /**
-     * Set the disableAadAuth property: DisableLocalAuth Enable or disable aad auth When set as true, connection with
-     * AuthType=aad won't work.
-     *
+     * Set the disableAadAuth property: DisableLocalAuth
+     * Enable or disable aad auth
+     * When set as true, connection with AuthType=aad won't work.
+     * 
      * @param disableAadAuth the disableAadAuth value to set.
      * @return the SignalRProperties object itself.
      */
@@ -494,10 +502,11 @@ public final class SignalRProperties {
     }
 
     /**
-     * Get the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled". When it's
-     * Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected.
+     * Get the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled".
+     * When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not
+     * be affected.
      * This property is replica specific. Disable the regional endpoint without replica is not allowed.
-     *
+     * 
      * @return the regionEndpointEnabled value.
      */
     public String regionEndpointEnabled() {
@@ -505,10 +514,11 @@ public final class SignalRProperties {
     }
 
     /**
-     * Set the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled". When it's
-     * Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected.
+     * Set the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled".
+     * When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not
+     * be affected.
      * This property is replica specific. Disable the regional endpoint without replica is not allowed.
-     *
+     * 
      * @param regionEndpointEnabled the regionEndpointEnabled value to set.
      * @return the SignalRProperties object itself.
      */
@@ -518,9 +528,10 @@ public final class SignalRProperties {
     }
 
     /**
-     * Get the resourceStopped property: Stop or start the resource. Default to "False". When it's true, the data plane
-     * of the resource is shutdown. When it's false, the data plane of the resource is started.
-     *
+     * Get the resourceStopped property: Stop or start the resource. Default to "False".
+     * When it's true, the data plane of the resource is shutdown.
+     * When it's false, the data plane of the resource is started.
+     * 
      * @return the resourceStopped value.
      */
     public String resourceStopped() {
@@ -528,9 +539,10 @@ public final class SignalRProperties {
     }
 
     /**
-     * Set the resourceStopped property: Stop or start the resource. Default to "False". When it's true, the data plane
-     * of the resource is shutdown. When it's false, the data plane of the resource is started.
-     *
+     * Set the resourceStopped property: Stop or start the resource. Default to "False".
+     * When it's true, the data plane of the resource is shutdown.
+     * When it's false, the data plane of the resource is started.
+     * 
      * @param resourceStopped the resourceStopped value to set.
      * @return the SignalRProperties object itself.
      */
@@ -541,7 +553,7 @@ public final class SignalRProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

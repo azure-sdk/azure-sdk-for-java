@@ -9,32 +9,41 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * FeatureFlags is the supported features of Azure SignalR service. - ServiceMode: Flag for backend server for SignalR
- * service. Values allowed: "Default": have your own backend server; "Serverless": your application doesn't have a
- * backend server; "Classic": for backward compatibility. Support both Default and Serverless mode but not recommended;
- * "PredefinedOnly": for future use. - EnableConnectivityLogs: "true"/"false", to enable/disable the connectivity log
- * category respectively. - EnableMessagingLogs: "true"/"false", to enable/disable the connectivity log category
- * respectively. - EnableLiveTrace: Live Trace allows you to know what's happening inside Azure SignalR service, it will
- * give you live traces in real time, it will be helpful when you developing your own Azure SignalR based web
- * application or self-troubleshooting some issues. Please note that live traces are counted as outbound messages that
- * will be charged. Values allowed: "true"/"false", to enable/disable live trace feature.
+ * FeatureFlags is the supported features of Azure SignalR service.
+ * - ServiceMode: Flag for backend server for SignalR service. Values allowed: "Default": have your own backend server;
+ * "Serverless": your application doesn't have a backend server; "Classic": for backward compatibility. Support both
+ * Default and Serverless mode but not recommended; "PredefinedOnly": for future use.
+ * - EnableConnectivityLogs: "true"/"false", to enable/disable the connectivity log category respectively.
+ * - EnableMessagingLogs: "true"/"false", to enable/disable the connectivity log category respectively.
+ * - EnableLiveTrace: Live Trace allows you to know what's happening inside Azure SignalR service, it will give you live
+ * traces in real time, it will be helpful when you developing your own Azure SignalR based web application or
+ * self-troubleshooting some issues. Please note that live traces are counted as outbound messages that will be charged.
+ * Values allowed: "true"/"false", to enable/disable live trace feature.
  */
 public final class FeatureFlags extends ExpandableStringEnum<FeatureFlags> {
-    /** Static value ServiceMode for FeatureFlags. */
+    /**
+     * Static value ServiceMode for FeatureFlags.
+     */
     public static final FeatureFlags SERVICE_MODE = fromString("ServiceMode");
 
-    /** Static value EnableConnectivityLogs for FeatureFlags. */
+    /**
+     * Static value EnableConnectivityLogs for FeatureFlags.
+     */
     public static final FeatureFlags ENABLE_CONNECTIVITY_LOGS = fromString("EnableConnectivityLogs");
 
-    /** Static value EnableMessagingLogs for FeatureFlags. */
+    /**
+     * Static value EnableMessagingLogs for FeatureFlags.
+     */
     public static final FeatureFlags ENABLE_MESSAGING_LOGS = fromString("EnableMessagingLogs");
 
-    /** Static value EnableLiveTrace for FeatureFlags. */
+    /**
+     * Static value EnableLiveTrace for FeatureFlags.
+     */
     public static final FeatureFlags ENABLE_LIVE_TRACE = fromString("EnableLiveTrace");
 
     /**
      * Creates a new instance of FeatureFlags value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -43,7 +52,7 @@ public final class FeatureFlags extends ExpandableStringEnum<FeatureFlags> {
 
     /**
      * Creates or finds a FeatureFlags from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding FeatureFlags.
      */
@@ -54,7 +63,7 @@ public final class FeatureFlags extends ExpandableStringEnum<FeatureFlags> {
 
     /**
      * Gets known FeatureFlags values.
-     *
+     * 
      * @return known FeatureFlags values.
      */
     public static Collection<FeatureFlags> values() {

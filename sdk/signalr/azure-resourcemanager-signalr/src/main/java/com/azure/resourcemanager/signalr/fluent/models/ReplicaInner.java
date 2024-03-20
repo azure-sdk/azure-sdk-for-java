@@ -12,7 +12,9 @@ import com.azure.resourcemanager.signalr.models.ResourceSku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** A class represent a replica resource. */
+/**
+ * A class represent a replica resource.
+ */
 @Fluent
 public final class ReplicaInner extends Resource {
     /*
@@ -33,13 +35,15 @@ public final class ReplicaInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of ReplicaInner class. */
+    /**
+     * Creates an instance of ReplicaInner class.
+     */
     public ReplicaInner() {
     }
 
     /**
      * Get the sku property: The billing information of the resource.
-     *
+     * 
      * @return the sku value.
      */
     public ResourceSku sku() {
@@ -48,7 +52,7 @@ public final class ReplicaInner extends Resource {
 
     /**
      * Set the sku property: The billing information of the resource.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ReplicaInner object itself.
      */
@@ -59,7 +63,7 @@ public final class ReplicaInner extends Resource {
 
     /**
      * Get the innerProperties property: The properties property.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ReplicaProperties innerProperties() {
@@ -68,21 +72,25 @@ public final class ReplicaInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ReplicaInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ReplicaInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -91,7 +99,7 @@ public final class ReplicaInner extends Resource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -99,9 +107,10 @@ public final class ReplicaInner extends Resource {
     }
 
     /**
-     * Get the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled". When it's
-     * Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected.
-     *
+     * Get the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled".
+     * When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not
+     * be affected.
+     * 
      * @return the regionEndpointEnabled value.
      */
     public String regionEndpointEnabled() {
@@ -109,9 +118,10 @@ public final class ReplicaInner extends Resource {
     }
 
     /**
-     * Set the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled". When it's
-     * Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected.
-     *
+     * Set the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled".
+     * When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not
+     * be affected.
+     * 
      * @param regionEndpointEnabled the regionEndpointEnabled value to set.
      * @return the ReplicaInner object itself.
      */
@@ -124,9 +134,10 @@ public final class ReplicaInner extends Resource {
     }
 
     /**
-     * Get the resourceStopped property: Stop or start the resource. Default to "false". When it's true, the data plane
-     * of the resource is shutdown. When it's false, the data plane of the resource is started.
-     *
+     * Get the resourceStopped property: Stop or start the resource. Default to "false".
+     * When it's true, the data plane of the resource is shutdown.
+     * When it's false, the data plane of the resource is started.
+     * 
      * @return the resourceStopped value.
      */
     public String resourceStopped() {
@@ -134,9 +145,10 @@ public final class ReplicaInner extends Resource {
     }
 
     /**
-     * Set the resourceStopped property: Stop or start the resource. Default to "false". When it's true, the data plane
-     * of the resource is shutdown. When it's false, the data plane of the resource is started.
-     *
+     * Set the resourceStopped property: Stop or start the resource. Default to "false".
+     * When it's true, the data plane of the resource is shutdown.
+     * When it's false, the data plane of the resource is started.
+     * 
      * @param resourceStopped the resourceStopped value to set.
      * @return the ReplicaInner object itself.
      */
@@ -150,7 +162,7 @@ public final class ReplicaInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

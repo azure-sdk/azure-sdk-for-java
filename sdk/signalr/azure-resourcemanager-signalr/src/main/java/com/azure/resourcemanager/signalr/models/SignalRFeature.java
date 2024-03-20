@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Feature of a resource, which controls the runtime behavior. */
+/**
+ * Feature of a resource, which controls the runtime behavior.
+ */
 @Fluent
 public final class SignalRFeature {
     /*
@@ -42,22 +44,24 @@ public final class SignalRFeature {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> properties;
 
-    /** Creates an instance of SignalRFeature class. */
+    /**
+     * Creates an instance of SignalRFeature class.
+     */
     public SignalRFeature() {
     }
 
     /**
-     * Get the flag property: FeatureFlags is the supported features of Azure SignalR service. - ServiceMode: Flag for
-     * backend server for SignalR service. Values allowed: "Default": have your own backend server; "Serverless": your
-     * application doesn't have a backend server; "Classic": for backward compatibility. Support both Default and
-     * Serverless mode but not recommended; "PredefinedOnly": for future use. - EnableConnectivityLogs: "true"/"false",
-     * to enable/disable the connectivity log category respectively. - EnableMessagingLogs: "true"/"false", to
-     * enable/disable the connectivity log category respectively. - EnableLiveTrace: Live Trace allows you to know
-     * what's happening inside Azure SignalR service, it will give you live traces in real time, it will be helpful when
-     * you developing your own Azure SignalR based web application or self-troubleshooting some issues. Please note that
-     * live traces are counted as outbound messages that will be charged. Values allowed: "true"/"false", to
-     * enable/disable live trace feature.
-     *
+     * Get the flag property: FeatureFlags is the supported features of Azure SignalR service.
+     * - ServiceMode: Flag for backend server for SignalR service. Values allowed: "Default": have your own backend
+     * server; "Serverless": your application doesn't have a backend server; "Classic": for backward compatibility.
+     * Support both Default and Serverless mode but not recommended; "PredefinedOnly": for future use.
+     * - EnableConnectivityLogs: "true"/"false", to enable/disable the connectivity log category respectively.
+     * - EnableMessagingLogs: "true"/"false", to enable/disable the connectivity log category respectively.
+     * - EnableLiveTrace: Live Trace allows you to know what's happening inside Azure SignalR service, it will give you
+     * live traces in real time, it will be helpful when you developing your own Azure SignalR based web application or
+     * self-troubleshooting some issues. Please note that live traces are counted as outbound messages that will be
+     * charged. Values allowed: "true"/"false", to enable/disable live trace feature.
+     * 
      * @return the flag value.
      */
     public FeatureFlags flag() {
@@ -65,17 +69,17 @@ public final class SignalRFeature {
     }
 
     /**
-     * Set the flag property: FeatureFlags is the supported features of Azure SignalR service. - ServiceMode: Flag for
-     * backend server for SignalR service. Values allowed: "Default": have your own backend server; "Serverless": your
-     * application doesn't have a backend server; "Classic": for backward compatibility. Support both Default and
-     * Serverless mode but not recommended; "PredefinedOnly": for future use. - EnableConnectivityLogs: "true"/"false",
-     * to enable/disable the connectivity log category respectively. - EnableMessagingLogs: "true"/"false", to
-     * enable/disable the connectivity log category respectively. - EnableLiveTrace: Live Trace allows you to know
-     * what's happening inside Azure SignalR service, it will give you live traces in real time, it will be helpful when
-     * you developing your own Azure SignalR based web application or self-troubleshooting some issues. Please note that
-     * live traces are counted as outbound messages that will be charged. Values allowed: "true"/"false", to
-     * enable/disable live trace feature.
-     *
+     * Set the flag property: FeatureFlags is the supported features of Azure SignalR service.
+     * - ServiceMode: Flag for backend server for SignalR service. Values allowed: "Default": have your own backend
+     * server; "Serverless": your application doesn't have a backend server; "Classic": for backward compatibility.
+     * Support both Default and Serverless mode but not recommended; "PredefinedOnly": for future use.
+     * - EnableConnectivityLogs: "true"/"false", to enable/disable the connectivity log category respectively.
+     * - EnableMessagingLogs: "true"/"false", to enable/disable the connectivity log category respectively.
+     * - EnableLiveTrace: Live Trace allows you to know what's happening inside Azure SignalR service, it will give you
+     * live traces in real time, it will be helpful when you developing your own Azure SignalR based web application or
+     * self-troubleshooting some issues. Please note that live traces are counted as outbound messages that will be
+     * charged. Values allowed: "true"/"false", to enable/disable live trace feature.
+     * 
      * @param flag the flag value to set.
      * @return the SignalRFeature object itself.
      */
@@ -87,7 +91,7 @@ public final class SignalRFeature {
     /**
      * Get the value property: Value of the feature flag. See Azure SignalR service document
      * https://docs.microsoft.com/azure/azure-signalr/ for allowed values.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -97,7 +101,7 @@ public final class SignalRFeature {
     /**
      * Set the value property: Value of the feature flag. See Azure SignalR service document
      * https://docs.microsoft.com/azure/azure-signalr/ for allowed values.
-     *
+     * 
      * @param value the value value to set.
      * @return the SignalRFeature object itself.
      */
@@ -108,7 +112,7 @@ public final class SignalRFeature {
 
     /**
      * Get the properties property: Optional properties related to this feature.
-     *
+     * 
      * @return the properties value.
      */
     public Map<String, String> properties() {
@@ -117,7 +121,7 @@ public final class SignalRFeature {
 
     /**
      * Set the properties property: Optional properties related to this feature.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the SignalRFeature object itself.
      */
@@ -128,19 +132,17 @@ public final class SignalRFeature {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (flag() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property flag in model SignalRFeature"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property flag in model SignalRFeature"));
         }
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model SignalRFeature"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model SignalRFeature"));
         }
     }
 

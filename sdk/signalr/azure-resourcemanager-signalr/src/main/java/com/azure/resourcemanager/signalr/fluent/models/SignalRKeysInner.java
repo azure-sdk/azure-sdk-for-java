@@ -7,7 +7,9 @@ package com.azure.resourcemanager.signalr.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A class represents the access keys of the resource. */
+/**
+ * A class represents the access keys of the resource.
+ */
 @Fluent
 public final class SignalRKeysInner {
     /*
@@ -34,13 +36,15 @@ public final class SignalRKeysInner {
     @JsonProperty(value = "secondaryConnectionString")
     private String secondaryConnectionString;
 
-    /** Creates an instance of SignalRKeysInner class. */
+    /**
+     * Creates an instance of SignalRKeysInner class.
+     */
     public SignalRKeysInner() {
     }
 
     /**
      * Get the primaryKey property: The primary access key.
-     *
+     * 
      * @return the primaryKey value.
      */
     public String primaryKey() {
@@ -49,7 +53,7 @@ public final class SignalRKeysInner {
 
     /**
      * Set the primaryKey property: The primary access key.
-     *
+     * 
      * @param primaryKey the primaryKey value to set.
      * @return the SignalRKeysInner object itself.
      */
@@ -60,7 +64,7 @@ public final class SignalRKeysInner {
 
     /**
      * Get the secondaryKey property: The secondary access key.
-     *
+     * 
      * @return the secondaryKey value.
      */
     public String secondaryKey() {
@@ -69,7 +73,7 @@ public final class SignalRKeysInner {
 
     /**
      * Set the secondaryKey property: The secondary access key.
-     *
+     * 
      * @param secondaryKey the secondaryKey value to set.
      * @return the SignalRKeysInner object itself.
      */
@@ -80,7 +84,7 @@ public final class SignalRKeysInner {
 
     /**
      * Get the primaryConnectionString property: Connection string constructed via the primaryKey.
-     *
+     * 
      * @return the primaryConnectionString value.
      */
     public String primaryConnectionString() {
@@ -89,7 +93,7 @@ public final class SignalRKeysInner {
 
     /**
      * Set the primaryConnectionString property: Connection string constructed via the primaryKey.
-     *
+     * 
      * @param primaryConnectionString the primaryConnectionString value to set.
      * @return the SignalRKeysInner object itself.
      */
@@ -100,7 +104,7 @@ public final class SignalRKeysInner {
 
     /**
      * Get the secondaryConnectionString property: Connection string constructed via the secondaryKey.
-     *
+     * 
      * @return the secondaryConnectionString value.
      */
     public String secondaryConnectionString() {
@@ -109,7 +113,7 @@ public final class SignalRKeysInner {
 
     /**
      * Set the secondaryConnectionString property: Connection string constructed via the secondaryKey.
-     *
+     * 
      * @param secondaryConnectionString the secondaryConnectionString value to set.
      * @return the SignalRKeysInner object itself.
      */
@@ -120,7 +124,7 @@ public final class SignalRKeysInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

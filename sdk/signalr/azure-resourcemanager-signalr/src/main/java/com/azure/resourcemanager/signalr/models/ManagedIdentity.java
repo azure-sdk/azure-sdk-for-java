@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** A class represent managed identities used for request and response. */
+/**
+ * A class represent managed identities used for request and response.
+ */
 @Fluent
 public final class ManagedIdentity {
     /*
@@ -39,13 +41,15 @@ public final class ManagedIdentity {
     @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
     private String tenantId;
 
-    /** Creates an instance of ManagedIdentity class. */
+    /**
+     * Creates an instance of ManagedIdentity class.
+     */
     public ManagedIdentity() {
     }
 
     /**
      * Get the type property: Represents the identity type: systemAssigned, userAssigned, None.
-     *
+     * 
      * @return the type value.
      */
     public ManagedIdentityType type() {
@@ -54,7 +58,7 @@ public final class ManagedIdentity {
 
     /**
      * Set the type property: Represents the identity type: systemAssigned, userAssigned, None.
-     *
+     * 
      * @param type the type value to set.
      * @return the ManagedIdentity object itself.
      */
@@ -65,7 +69,7 @@ public final class ManagedIdentity {
 
     /**
      * Get the userAssignedIdentities property: Get or set the user assigned identities.
-     *
+     * 
      * @return the userAssignedIdentities value.
      */
     public Map<String, UserAssignedIdentityProperty> userAssignedIdentities() {
@@ -74,19 +78,20 @@ public final class ManagedIdentity {
 
     /**
      * Set the userAssignedIdentities property: Get or set the user assigned identities.
-     *
+     * 
      * @param userAssignedIdentities the userAssignedIdentities value to set.
      * @return the ManagedIdentity object itself.
      */
-    public ManagedIdentity withUserAssignedIdentities(
-        Map<String, UserAssignedIdentityProperty> userAssignedIdentities) {
+    public ManagedIdentity
+        withUserAssignedIdentities(Map<String, UserAssignedIdentityProperty> userAssignedIdentities) {
         this.userAssignedIdentities = userAssignedIdentities;
         return this;
     }
 
     /**
-     * Get the principalId property: Get the principal id for the system assigned identity. Only be used in response.
-     *
+     * Get the principalId property: Get the principal id for the system assigned identity.
+     * Only be used in response.
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -94,8 +99,9 @@ public final class ManagedIdentity {
     }
 
     /**
-     * Get the tenantId property: Get the tenant id for the system assigned identity. Only be used in response.
-     *
+     * Get the tenantId property: Get the tenant id for the system assigned identity.
+     * Only be used in response.
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -104,19 +110,16 @@ public final class ManagedIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (userAssignedIdentities() != null) {
-            userAssignedIdentities()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            userAssignedIdentities().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

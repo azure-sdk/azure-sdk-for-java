@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.signalr.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ReplicaProperties model. */
+/**
+ * The ReplicaProperties model.
+ */
 @Fluent
 public final class ReplicaProperties {
     /*
@@ -26,20 +28,22 @@ public final class ReplicaProperties {
     private String regionEndpointEnabled;
 
     /*
-     * Stop or start the resource.  Default to "false".
+     * Stop or start the resource. Default to "false".
      * When it's true, the data plane of the resource is shutdown.
      * When it's false, the data plane of the resource is started.
      */
     @JsonProperty(value = "resourceStopped")
     private String resourceStopped;
 
-    /** Creates an instance of ReplicaProperties class. */
+    /**
+     * Creates an instance of ReplicaProperties class.
+     */
     public ReplicaProperties() {
     }
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -47,9 +51,10 @@ public final class ReplicaProperties {
     }
 
     /**
-     * Get the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled". When it's
-     * Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected.
-     *
+     * Get the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled".
+     * When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not
+     * be affected.
+     * 
      * @return the regionEndpointEnabled value.
      */
     public String regionEndpointEnabled() {
@@ -57,9 +62,10 @@ public final class ReplicaProperties {
     }
 
     /**
-     * Set the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled". When it's
-     * Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected.
-     *
+     * Set the regionEndpointEnabled property: Enable or disable the regional endpoint. Default to "Enabled".
+     * When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not
+     * be affected.
+     * 
      * @param regionEndpointEnabled the regionEndpointEnabled value to set.
      * @return the ReplicaProperties object itself.
      */
@@ -69,9 +75,10 @@ public final class ReplicaProperties {
     }
 
     /**
-     * Get the resourceStopped property: Stop or start the resource. Default to "false". When it's true, the data plane
-     * of the resource is shutdown. When it's false, the data plane of the resource is started.
-     *
+     * Get the resourceStopped property: Stop or start the resource. Default to "false".
+     * When it's true, the data plane of the resource is shutdown.
+     * When it's false, the data plane of the resource is started.
+     * 
      * @return the resourceStopped value.
      */
     public String resourceStopped() {
@@ -79,9 +86,10 @@ public final class ReplicaProperties {
     }
 
     /**
-     * Set the resourceStopped property: Stop or start the resource. Default to "false". When it's true, the data plane
-     * of the resource is shutdown. When it's false, the data plane of the resource is started.
-     *
+     * Set the resourceStopped property: Stop or start the resource. Default to "false".
+     * When it's true, the data plane of the resource is shutdown.
+     * When it's false, the data plane of the resource is started.
+     * 
      * @param resourceStopped the resourceStopped value to set.
      * @return the ReplicaProperties object itself.
      */
@@ -92,7 +100,7 @@ public final class ReplicaProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.signalr.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed identity settings for upstream. */
+/**
+ * Managed identity settings for upstream.
+ */
 @Fluent
 public final class ManagedIdentitySettings {
     /*
@@ -17,14 +19,16 @@ public final class ManagedIdentitySettings {
     @JsonProperty(value = "resource")
     private String resource;
 
-    /** Creates an instance of ManagedIdentitySettings class. */
+    /**
+     * Creates an instance of ManagedIdentitySettings class.
+     */
     public ManagedIdentitySettings() {
     }
 
     /**
-     * Get the resource property: The Resource indicating the App ID URI of the target resource. It also appears in the
-     * aud (audience) claim of the issued token.
-     *
+     * Get the resource property: The Resource indicating the App ID URI of the target resource.
+     * It also appears in the aud (audience) claim of the issued token.
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -32,9 +36,9 @@ public final class ManagedIdentitySettings {
     }
 
     /**
-     * Set the resource property: The Resource indicating the App ID URI of the target resource. It also appears in the
-     * aud (audience) claim of the issued token.
-     *
+     * Set the resource property: The Resource indicating the App ID URI of the target resource.
+     * It also appears in the aud (audience) claim of the issued token.
+     * 
      * @param resource the resource value to set.
      * @return the ManagedIdentitySettings object itself.
      */
@@ -45,7 +49,7 @@ public final class ManagedIdentitySettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

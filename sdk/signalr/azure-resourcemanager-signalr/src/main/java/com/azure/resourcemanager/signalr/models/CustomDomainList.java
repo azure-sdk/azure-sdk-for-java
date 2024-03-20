@@ -9,7 +9,9 @@ import com.azure.resourcemanager.signalr.fluent.models.CustomDomainInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Custom domains list. */
+/**
+ * Custom domains list.
+ */
 @Fluent
 public final class CustomDomainList {
     /*
@@ -25,13 +27,15 @@ public final class CustomDomainList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of CustomDomainList class. */
+    /**
+     * Creates an instance of CustomDomainList class.
+     */
     public CustomDomainList() {
     }
 
     /**
      * Get the value property: List of custom domains that bind to this resource.
-     *
+     * 
      * @return the value value.
      */
     public List<CustomDomainInner> value() {
@@ -40,7 +44,7 @@ public final class CustomDomainList {
 
     /**
      * Set the value property: List of custom domains that bind to this resource.
-     *
+     * 
      * @param value the value value to set.
      * @return the CustomDomainList object itself.
      */
@@ -50,9 +54,9 @@ public final class CustomDomainList {
     }
 
     /**
-     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,9 +64,9 @@ public final class CustomDomainList {
     }
 
     /**
-     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the CustomDomainList object itself.
      */
@@ -73,7 +77,7 @@ public final class CustomDomainList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.signalr.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of user assigned identity. */
+/**
+ * Properties of user assigned identity.
+ */
 @Immutable
 public final class UserAssignedIdentityProperty {
     /*
@@ -22,13 +24,15 @@ public final class UserAssignedIdentityProperty {
     @JsonProperty(value = "clientId", access = JsonProperty.Access.WRITE_ONLY)
     private String clientId;
 
-    /** Creates an instance of UserAssignedIdentityProperty class. */
+    /**
+     * Creates an instance of UserAssignedIdentityProperty class.
+     */
     public UserAssignedIdentityProperty() {
     }
 
     /**
      * Get the principalId property: Get the principal id for the user assigned identity.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -37,7 +41,7 @@ public final class UserAssignedIdentityProperty {
 
     /**
      * Get the clientId property: Get the client id for the user assigned identity.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -46,7 +50,7 @@ public final class UserAssignedIdentityProperty {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
