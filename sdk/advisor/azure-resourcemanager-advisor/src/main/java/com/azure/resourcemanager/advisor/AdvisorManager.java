@@ -25,15 +25,19 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.advisor.fluent.AdvisorManagementClient;
 import com.azure.resourcemanager.advisor.implementation.AdvisorManagementClientBuilder;
+import com.azure.resourcemanager.advisor.implementation.AdvisorScoresImpl;
 import com.azure.resourcemanager.advisor.implementation.ConfigurationsImpl;
 import com.azure.resourcemanager.advisor.implementation.OperationsImpl;
 import com.azure.resourcemanager.advisor.implementation.RecommendationMetadatasImpl;
 import com.azure.resourcemanager.advisor.implementation.RecommendationsImpl;
+import com.azure.resourcemanager.advisor.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.advisor.implementation.SuppressionsImpl;
+import com.azure.resourcemanager.advisor.models.AdvisorScores;
 import com.azure.resourcemanager.advisor.models.Configurations;
 import com.azure.resourcemanager.advisor.models.Operations;
 import com.azure.resourcemanager.advisor.models.RecommendationMetadatas;
 import com.azure.resourcemanager.advisor.models.Recommendations;
+import com.azure.resourcemanager.advisor.models.ResourceProviders;
 import com.azure.resourcemanager.advisor.models.Suppressions;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -42,7 +46,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-/** Entry point to AdvisorManager. REST APIs for Azure Advisor. */
+/**
+ * Entry point to AdvisorManager.
+ * REST APIs for Azure Advisor.
+ */
 public final class AdvisorManager {
     private RecommendationMetadatas recommendationMetadatas;
 
@@ -54,23 +61,23 @@ public final class AdvisorManager {
 
     private Suppressions suppressions;
 
+    private ResourceProviders resourceProviders;
+
+    private AdvisorScores advisorScores;
+
     private final AdvisorManagementClient clientObject;
 
     private AdvisorManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new AdvisorManagementClientBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new AdvisorManagementClientBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of Advisor service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the Advisor service API instance.
@@ -83,7 +90,7 @@ public final class AdvisorManager {
 
     /**
      * Creates an instance of Advisor service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the Advisor service API instance.
@@ -96,14 +103,16 @@ public final class AdvisorManager {
 
     /**
      * Gets a Configurable instance that can be used to create AdvisorManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new AdvisorManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -175,8 +184,8 @@ public final class AdvisorManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -193,8 +202,8 @@ public final class AdvisorManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -214,21 +223,12 @@ public final class AdvisorManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.advisor")
-                .append("/")
-                .append("1.0.0-beta.2");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.advisor").append("/")
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -247,51 +247,38 @@ public final class AdvisorManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new AdvisorManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
      * Gets the resource collection API of RecommendationMetadatas.
-     *
+     * 
      * @return Resource collection API of RecommendationMetadatas.
      */
     public RecommendationMetadatas recommendationMetadatas() {
         if (this.recommendationMetadatas == null) {
-            this.recommendationMetadatas =
-                new RecommendationMetadatasImpl(clientObject.getRecommendationMetadatas(), this);
+            this.recommendationMetadatas
+                = new RecommendationMetadatasImpl(clientObject.getRecommendationMetadatas(), this);
         }
         return recommendationMetadatas;
     }
 
     /**
      * Gets the resource collection API of Configurations. It manages ConfigData.
-     *
+     * 
      * @return Resource collection API of Configurations.
      */
     public Configurations configurations() {
@@ -303,7 +290,7 @@ public final class AdvisorManager {
 
     /**
      * Gets the resource collection API of Recommendations.
-     *
+     * 
      * @return Resource collection API of Recommendations.
      */
     public Recommendations recommendations() {
@@ -315,7 +302,7 @@ public final class AdvisorManager {
 
     /**
      * Gets the resource collection API of Operations.
-     *
+     * 
      * @return Resource collection API of Operations.
      */
     public Operations operations() {
@@ -327,7 +314,7 @@ public final class AdvisorManager {
 
     /**
      * Gets the resource collection API of Suppressions. It manages SuppressionContract.
-     *
+     * 
      * @return Resource collection API of Suppressions.
      */
     public Suppressions suppressions() {
@@ -338,8 +325,34 @@ public final class AdvisorManager {
     }
 
     /**
-     * @return Wrapped service client AdvisorManagementClient providing direct access to the underlying auto-generated
-     *     API implementation, based on Azure REST API.
+     * Gets the resource collection API of ResourceProviders.
+     * 
+     * @return Resource collection API of ResourceProviders.
+     */
+    public ResourceProviders resourceProviders() {
+        if (this.resourceProviders == null) {
+            this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
+        }
+        return resourceProviders;
+    }
+
+    /**
+     * Gets the resource collection API of AdvisorScores.
+     * 
+     * @return Resource collection API of AdvisorScores.
+     */
+    public AdvisorScores advisorScores() {
+        if (this.advisorScores == null) {
+            this.advisorScores = new AdvisorScoresImpl(clientObject.getAdvisorScores(), this);
+        }
+        return advisorScores;
+    }
+
+    /**
+     * Gets wrapped service client AdvisorManagementClient providing direct access to the underlying auto-generated API
+     * implementation, based on Azure REST API.
+     * 
+     * @return Wrapped service client AdvisorManagementClient.
      */
     public AdvisorManagementClient serviceClient() {
         return this.clientObject;

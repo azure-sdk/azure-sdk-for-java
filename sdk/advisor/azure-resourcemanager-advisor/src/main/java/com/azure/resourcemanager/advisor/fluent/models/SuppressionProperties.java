@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The properties of the suppression. */
+/**
+ * The properties of the suppression.
+ */
 @Fluent
 public final class SuppressionProperties {
     /*
@@ -29,13 +31,15 @@ public final class SuppressionProperties {
     @JsonProperty(value = "expirationTimeStamp", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime expirationTimestamp;
 
-    /** Creates an instance of SuppressionProperties class. */
+    /**
+     * Creates an instance of SuppressionProperties class.
+     */
     public SuppressionProperties() {
     }
 
     /**
      * Get the suppressionId property: The GUID of the suppression.
-     *
+     * 
      * @return the suppressionId value.
      */
     public String suppressionId() {
@@ -44,7 +48,7 @@ public final class SuppressionProperties {
 
     /**
      * Set the suppressionId property: The GUID of the suppression.
-     *
+     * 
      * @param suppressionId the suppressionId value to set.
      * @return the SuppressionProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class SuppressionProperties {
 
     /**
      * Get the ttl property: The duration for which the suppression is valid.
-     *
+     * 
      * @return the ttl value.
      */
     public String ttl() {
@@ -64,7 +68,7 @@ public final class SuppressionProperties {
 
     /**
      * Set the ttl property: The duration for which the suppression is valid.
-     *
+     * 
      * @param ttl the ttl value to set.
      * @return the SuppressionProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class SuppressionProperties {
 
     /**
      * Get the expirationTimestamp property: Gets or sets the expiration time stamp.
-     *
+     * 
      * @return the expirationTimestamp value.
      */
     public OffsetDateTime expirationTimestamp() {
@@ -84,7 +88,7 @@ public final class SuppressionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

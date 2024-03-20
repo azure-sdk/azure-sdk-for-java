@@ -9,7 +9,9 @@ import com.azure.resourcemanager.advisor.fluent.models.ResourceRecommendationBas
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of Advisor recommendations. */
+/**
+ * The list of Advisor recommendations.
+ */
 @Fluent
 public final class ResourceRecommendationBaseListResult {
     /*
@@ -24,13 +26,15 @@ public final class ResourceRecommendationBaseListResult {
     @JsonProperty(value = "value")
     private List<ResourceRecommendationBaseInner> value;
 
-    /** Creates an instance of ResourceRecommendationBaseListResult class. */
+    /**
+     * Creates an instance of ResourceRecommendationBaseListResult class.
+     */
     public ResourceRecommendationBaseListResult() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of recommendations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class ResourceRecommendationBaseListResult {
 
     /**
      * Set the nextLink property: The link used to get the next page of recommendations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ResourceRecommendationBaseListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class ResourceRecommendationBaseListResult {
 
     /**
      * Get the value property: The list of recommendations.
-     *
+     * 
      * @return the value value.
      */
     public List<ResourceRecommendationBaseInner> value() {
@@ -59,7 +63,7 @@ public final class ResourceRecommendationBaseListResult {
 
     /**
      * Set the value property: The list of recommendations.
-     *
+     * 
      * @param value the value value to set.
      * @return the ResourceRecommendationBaseListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class ResourceRecommendationBaseListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -4,36 +4,46 @@
 
 package com.azure.resourcemanager.advisor.models;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.advisor.fluent.models.ConfigDataInner;
 import java.util.List;
 
-/** An immutable client-side representation of ConfigData. */
+/**
+ * An immutable client-side representation of ConfigData.
+ */
 public interface ConfigData {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    SystemData systemData();
+
+    /**
      * Gets the exclude property: Exclude the resource from Advisor evaluations. Valid values: False (default) or True.
-     *
+     * 
      * @return the exclude value.
      */
     Boolean exclude();
@@ -41,93 +51,136 @@ public interface ConfigData {
     /**
      * Gets the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
      * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
-     *
+     * 
      * @return the lowCpuThreshold value.
      */
     CpuThreshold lowCpuThreshold();
 
     /**
+     * Gets the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     * 
+     * @return the duration value.
+     */
+    DurationModel duration();
+
+    /**
      * Gets the digests property: Advisor digest configuration. Valid only for subscriptions.
-     *
+     * 
      * @return the digests value.
      */
     List<DigestConfig> digests();
 
     /**
      * Gets the inner com.azure.resourcemanager.advisor.fluent.models.ConfigDataInner object.
-     *
+     * 
      * @return the inner object.
      */
     ConfigDataInner innerModel();
 
-    /** The entirety of the ConfigData definition. */
+    /**
+     * The entirety of the ConfigData definition.
+     */
     interface Definition
         extends DefinitionStages.Blank, DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
-    /** The ConfigData definition stages. */
+
+    /**
+     * The ConfigData definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the ConfigData definition. */
+        /**
+         * The first stage of the ConfigData definition.
+         */
         interface Blank extends WithResourceGroup {
         }
-        /** The stage of the ConfigData definition allowing to specify parent resource. */
+
+        /**
+         * The stage of the ConfigData definition allowing to specify parent resource.
+         */
         interface WithResourceGroup {
             /**
              * Specifies resourceGroup.
-             *
+             * 
              * @param resourceGroup The name of the Azure resource group.
              * @return the next definition stage.
              */
             WithCreate withExistingResourceGroup(String resourceGroup);
         }
+
         /**
          * The stage of the ConfigData definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithExclude, DefinitionStages.WithLowCpuThreshold, DefinitionStages.WithDigests {
+        interface WithCreate extends DefinitionStages.WithExclude, DefinitionStages.WithLowCpuThreshold,
+            DefinitionStages.WithDuration, DefinitionStages.WithDigests {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             ConfigData create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             ConfigData create(Context context);
         }
-        /** The stage of the ConfigData definition allowing to specify exclude. */
+
+        /**
+         * The stage of the ConfigData definition allowing to specify exclude.
+         */
         interface WithExclude {
             /**
              * Specifies the exclude property: Exclude the resource from Advisor evaluations. Valid values: False
              * (default) or True..
-             *
+             * 
              * @param exclude Exclude the resource from Advisor evaluations. Valid values: False (default) or True.
              * @return the next definition stage.
              */
             WithCreate withExclude(Boolean exclude);
         }
-        /** The stage of the ConfigData definition allowing to specify lowCpuThreshold. */
+
+        /**
+         * The stage of the ConfigData definition allowing to specify lowCpuThreshold.
+         */
         interface WithLowCpuThreshold {
             /**
              * Specifies the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization
              * evaluation. Valid only for subscriptions. Valid values: 5 (default), 10, 15 or 20..
-             *
+             * 
              * @param lowCpuThreshold Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
-             *     only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
+             * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
              * @return the next definition stage.
              */
             WithCreate withLowCpuThreshold(CpuThreshold lowCpuThreshold);
         }
-        /** The stage of the ConfigData definition allowing to specify digests. */
+
+        /**
+         * The stage of the ConfigData definition allowing to specify duration.
+         */
+        interface WithDuration {
+            /**
+             * Specifies the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only
+             * for subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90..
+             * 
+             * @param duration Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+             * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+             * @return the next definition stage.
+             */
+            WithCreate withDuration(DurationModel duration);
+        }
+
+        /**
+         * The stage of the ConfigData definition allowing to specify digests.
+         */
         interface WithDigests {
             /**
              * Specifies the digests property: Advisor digest configuration. Valid only for subscriptions.
-             *
+             * 
              * @param digests Advisor digest configuration. Valid only for subscriptions.
              * @return the next definition stage.
              */

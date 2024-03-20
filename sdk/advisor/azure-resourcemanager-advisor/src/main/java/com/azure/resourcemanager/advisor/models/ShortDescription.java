@@ -7,7 +7,9 @@ package com.azure.resourcemanager.advisor.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** A summary of the recommendation. */
+/**
+ * A summary of the recommendation.
+ */
 @Fluent
 public final class ShortDescription {
     /*
@@ -22,13 +24,15 @@ public final class ShortDescription {
     @JsonProperty(value = "solution")
     private String solution;
 
-    /** Creates an instance of ShortDescription class. */
+    /**
+     * Creates an instance of ShortDescription class.
+     */
     public ShortDescription() {
     }
 
     /**
      * Get the problem property: The issue or opportunity identified by the recommendation and proposed solution.
-     *
+     * 
      * @return the problem value.
      */
     public String problem() {
@@ -37,7 +41,7 @@ public final class ShortDescription {
 
     /**
      * Set the problem property: The issue or opportunity identified by the recommendation and proposed solution.
-     *
+     * 
      * @param problem the problem value to set.
      * @return the ShortDescription object itself.
      */
@@ -48,7 +52,7 @@ public final class ShortDescription {
 
     /**
      * Get the solution property: The issue or opportunity identified by the recommendation and proposed solution.
-     *
+     * 
      * @return the solution value.
      */
     public String solution() {
@@ -57,7 +61,7 @@ public final class ShortDescription {
 
     /**
      * Set the solution property: The issue or opportunity identified by the recommendation and proposed solution.
-     *
+     * 
      * @param solution the solution value to set.
      * @return the ShortDescription object itself.
      */
@@ -68,7 +72,7 @@ public final class ShortDescription {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -6,12 +6,16 @@ package com.azure.resourcemanager.advisor.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.advisor.models.CpuThreshold;
 import com.azure.resourcemanager.advisor.models.DigestConfig;
+import com.azure.resourcemanager.advisor.models.DurationModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The Advisor configuration data structure. */
+/**
+ * The Advisor configuration data structure.
+ */
 @Fluent
 public final class ConfigDataInner extends ProxyResource {
     /*
@@ -20,13 +24,21 @@ public final class ConfigDataInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ConfigDataProperties innerProperties;
 
-    /** Creates an instance of ConfigDataInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ConfigDataInner class.
+     */
     public ConfigDataInner() {
     }
 
     /**
      * Get the innerProperties property: The Advisor configuration data structure.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ConfigDataProperties innerProperties() {
@@ -34,8 +46,17 @@ public final class ConfigDataInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the exclude property: Exclude the resource from Advisor evaluations. Valid values: False (default) or True.
-     *
+     * 
      * @return the exclude value.
      */
     public Boolean exclude() {
@@ -44,7 +65,7 @@ public final class ConfigDataInner extends ProxyResource {
 
     /**
      * Set the exclude property: Exclude the resource from Advisor evaluations. Valid values: False (default) or True.
-     *
+     * 
      * @param exclude the exclude value to set.
      * @return the ConfigDataInner object itself.
      */
@@ -59,7 +80,7 @@ public final class ConfigDataInner extends ProxyResource {
     /**
      * Get the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
      * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
-     *
+     * 
      * @return the lowCpuThreshold value.
      */
     public CpuThreshold lowCpuThreshold() {
@@ -69,7 +90,7 @@ public final class ConfigDataInner extends ProxyResource {
     /**
      * Set the lowCpuThreshold property: Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid
      * only for subscriptions. Valid values: 5 (default), 10, 15 or 20.
-     *
+     * 
      * @param lowCpuThreshold the lowCpuThreshold value to set.
      * @return the ConfigDataInner object itself.
      */
@@ -82,8 +103,33 @@ public final class ConfigDataInner extends ProxyResource {
     }
 
     /**
+     * Get the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     * 
+     * @return the duration value.
+     */
+    public DurationModel duration() {
+        return this.innerProperties() == null ? null : this.innerProperties().duration();
+    }
+
+    /**
+     * Set the duration property: Minimum duration for Advisor low CPU utilization evaluation. Valid only for
+     * subscriptions. Valid values: 7 (default), 14, 21, 30, 60 or 90.
+     * 
+     * @param duration the duration value to set.
+     * @return the ConfigDataInner object itself.
+     */
+    public ConfigDataInner withDuration(DurationModel duration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ConfigDataProperties();
+        }
+        this.innerProperties().withDuration(duration);
+        return this;
+    }
+
+    /**
      * Get the digests property: Advisor digest configuration. Valid only for subscriptions.
-     *
+     * 
      * @return the digests value.
      */
     public List<DigestConfig> digests() {
@@ -92,7 +138,7 @@ public final class ConfigDataInner extends ProxyResource {
 
     /**
      * Set the digests property: Advisor digest configuration. Valid only for subscriptions.
-     *
+     * 
      * @param digests the digests value to set.
      * @return the ConfigDataInner object itself.
      */
@@ -106,7 +152,7 @@ public final class ConfigDataInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.advisor.models.OperationDisplayInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The operation supported by Advisor. */
+/**
+ * The operation supported by Advisor.
+ */
 @Fluent
 public final class OperationEntityInner {
     /*
@@ -23,13 +25,15 @@ public final class OperationEntityInner {
     @JsonProperty(value = "display")
     private OperationDisplayInfo display;
 
-    /** Creates an instance of OperationEntityInner class. */
+    /**
+     * Creates an instance of OperationEntityInner class.
+     */
     public OperationEntityInner() {
     }
 
     /**
      * Get the name property: Operation name: {provider}/{resource}/{operation}.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -38,7 +42,7 @@ public final class OperationEntityInner {
 
     /**
      * Set the name property: Operation name: {provider}/{resource}/{operation}.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationEntityInner object itself.
      */
@@ -49,7 +53,7 @@ public final class OperationEntityInner {
 
     /**
      * Get the display property: The operation supported by Advisor.
-     *
+     * 
      * @return the display value.
      */
     public OperationDisplayInfo display() {
@@ -58,7 +62,7 @@ public final class OperationEntityInner {
 
     /**
      * Set the display property: The operation supported by Advisor.
-     *
+     * 
      * @param display the display value to set.
      * @return the OperationEntityInner object itself.
      */
@@ -69,7 +73,7 @@ public final class OperationEntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

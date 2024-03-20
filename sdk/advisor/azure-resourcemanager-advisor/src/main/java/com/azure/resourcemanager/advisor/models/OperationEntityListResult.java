@@ -9,7 +9,9 @@ import com.azure.resourcemanager.advisor.fluent.models.OperationEntityInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of Advisor operations. */
+/**
+ * The list of Advisor operations.
+ */
 @Fluent
 public final class OperationEntityListResult {
     /*
@@ -24,13 +26,15 @@ public final class OperationEntityListResult {
     @JsonProperty(value = "value")
     private List<OperationEntityInner> value;
 
-    /** Creates an instance of OperationEntityListResult class. */
+    /**
+     * Creates an instance of OperationEntityListResult class.
+     */
     public OperationEntityListResult() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class OperationEntityListResult {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the OperationEntityListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class OperationEntityListResult {
 
     /**
      * Get the value property: The list of operations.
-     *
+     * 
      * @return the value value.
      */
     public List<OperationEntityInner> value() {
@@ -59,7 +63,7 @@ public final class OperationEntityListResult {
 
     /**
      * Set the value property: The list of operations.
-     *
+     * 
      * @param value the value value to set.
      * @return the OperationEntityListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class OperationEntityListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

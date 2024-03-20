@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Advisor Digest configuration entity. */
+/**
+ * Advisor Digest configuration entity.
+ */
 @Fluent
 public final class DigestConfig {
     /*
@@ -48,14 +50,16 @@ public final class DigestConfig {
     @JsonProperty(value = "state")
     private DigestConfigState state;
 
-    /** Creates an instance of DigestConfig class. */
+    /**
+     * Creates an instance of DigestConfig class.
+     */
     public DigestConfig() {
     }
 
     /**
      * Get the name property: Name of digest configuration. Value is case-insensitive and must be unique within a
      * subscription.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -65,7 +69,7 @@ public final class DigestConfig {
     /**
      * Set the name property: Name of digest configuration. Value is case-insensitive and must be unique within a
      * subscription.
-     *
+     * 
      * @param name the name value to set.
      * @return the DigestConfig object itself.
      */
@@ -76,7 +80,7 @@ public final class DigestConfig {
 
     /**
      * Get the actionGroupResourceId property: Action group resource id used by digest.
-     *
+     * 
      * @return the actionGroupResourceId value.
      */
     public String actionGroupResourceId() {
@@ -85,7 +89,7 @@ public final class DigestConfig {
 
     /**
      * Set the actionGroupResourceId property: Action group resource id used by digest.
-     *
+     * 
      * @param actionGroupResourceId the actionGroupResourceId value to set.
      * @return the DigestConfig object itself.
      */
@@ -95,9 +99,9 @@ public final class DigestConfig {
     }
 
     /**
-     * Get the frequency property: Frequency that digest will be triggered, in days. Value must be between 7 and 30 days
-     * inclusive.
-     *
+     * Get the frequency property: Frequency that digest will be triggered, in days. Value must be between 7 and 30
+     * days inclusive.
+     * 
      * @return the frequency value.
      */
     public Integer frequency() {
@@ -105,9 +109,9 @@ public final class DigestConfig {
     }
 
     /**
-     * Set the frequency property: Frequency that digest will be triggered, in days. Value must be between 7 and 30 days
-     * inclusive.
-     *
+     * Set the frequency property: Frequency that digest will be triggered, in days. Value must be between 7 and 30
+     * days inclusive.
+     * 
      * @param frequency the frequency value to set.
      * @return the DigestConfig object itself.
      */
@@ -119,7 +123,7 @@ public final class DigestConfig {
     /**
      * Get the categories property: Categories to send digest for. If categories are not provided, then digest will be
      * sent for all categories.
-     *
+     * 
      * @return the categories value.
      */
     public List<Category> categories() {
@@ -129,7 +133,7 @@ public final class DigestConfig {
     /**
      * Set the categories property: Categories to send digest for. If categories are not provided, then digest will be
      * sent for all categories.
-     *
+     * 
      * @param categories the categories value to set.
      * @return the DigestConfig object itself.
      */
@@ -139,9 +143,9 @@ public final class DigestConfig {
     }
 
     /**
-     * Get the language property: Language for digest content body. Value must be ISO 639-1 code for one of Azure portal
-     * supported languages. Otherwise, it will be converted into one. Default value is English (en).
-     *
+     * Get the language property: Language for digest content body. Value must be ISO 639-1 code for one of Azure
+     * portal supported languages. Otherwise, it will be converted into one. Default value is English (en).
+     * 
      * @return the language value.
      */
     public String language() {
@@ -149,9 +153,9 @@ public final class DigestConfig {
     }
 
     /**
-     * Set the language property: Language for digest content body. Value must be ISO 639-1 code for one of Azure portal
-     * supported languages. Otherwise, it will be converted into one. Default value is English (en).
-     *
+     * Set the language property: Language for digest content body. Value must be ISO 639-1 code for one of Azure
+     * portal supported languages. Otherwise, it will be converted into one. Default value is English (en).
+     * 
      * @param language the language value to set.
      * @return the DigestConfig object itself.
      */
@@ -162,7 +166,7 @@ public final class DigestConfig {
 
     /**
      * Get the state property: State of digest configuration.
-     *
+     * 
      * @return the state value.
      */
     public DigestConfigState state() {
@@ -171,7 +175,7 @@ public final class DigestConfig {
 
     /**
      * Set the state property: State of digest configuration.
-     *
+     * 
      * @param state the state value to set.
      * @return the DigestConfig object itself.
      */
@@ -182,7 +186,7 @@ public final class DigestConfig {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
