@@ -8,10 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
-import com.azure.resourcemanager.chaos.models.ChaosTargetSelector;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
 import com.azure.resourcemanager.chaos.models.ProvisioningState;
 import com.azure.resourcemanager.chaos.models.ResourceIdentity;
+import com.azure.resourcemanager.chaos.models.Selector;
+import com.azure.resourcemanager.chaos.models.Step;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
@@ -115,7 +116,7 @@ public final class ExperimentInner extends Resource {
      * 
      * @return the steps value.
      */
-    public List<ChaosExperimentStep> steps() {
+    public List<Step> steps() {
         return this.innerProperties() == null ? null : this.innerProperties().steps();
     }
 
@@ -125,7 +126,7 @@ public final class ExperimentInner extends Resource {
      * @param steps the steps value to set.
      * @return the ExperimentInner object itself.
      */
-    public ExperimentInner withSteps(List<ChaosExperimentStep> steps) {
+    public ExperimentInner withSteps(List<Step> steps) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ExperimentProperties();
         }
@@ -138,7 +139,7 @@ public final class ExperimentInner extends Resource {
      * 
      * @return the selectors value.
      */
-    public List<ChaosTargetSelector> selectors() {
+    public List<Selector> selectors() {
         return this.innerProperties() == null ? null : this.innerProperties().selectors();
     }
 
@@ -148,11 +149,36 @@ public final class ExperimentInner extends Resource {
      * @param selectors the selectors value to set.
      * @return the ExperimentInner object itself.
      */
-    public ExperimentInner withSelectors(List<ChaosTargetSelector> selectors) {
+    public ExperimentInner withSelectors(List<Selector> selectors) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ExperimentProperties();
         }
         this.innerProperties().withSelectors(selectors);
+        return this;
+    }
+
+    /**
+     * Get the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     * 
+     * @return the customerDataStorage value.
+     */
+    public CustomerDataStorageProperties customerDataStorage() {
+        return this.innerProperties() == null ? null : this.innerProperties().customerDataStorage();
+    }
+
+    /**
+     * Set the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     * 
+     * @param customerDataStorage the customerDataStorage value to set.
+     * @return the ExperimentInner object itself.
+     */
+    public ExperimentInner withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ExperimentProperties();
+        }
+        this.innerProperties().withCustomerDataStorage(customerDataStorage);
         return this;
     }
 

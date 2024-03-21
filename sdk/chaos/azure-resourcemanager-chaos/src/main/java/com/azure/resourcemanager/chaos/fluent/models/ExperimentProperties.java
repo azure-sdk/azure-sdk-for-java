@@ -6,9 +6,10 @@ package com.azure.resourcemanager.chaos.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
-import com.azure.resourcemanager.chaos.models.ChaosTargetSelector;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
 import com.azure.resourcemanager.chaos.models.ProvisioningState;
+import com.azure.resourcemanager.chaos.models.Selector;
+import com.azure.resourcemanager.chaos.models.Step;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -27,13 +28,19 @@ public final class ExperimentProperties {
      * List of steps.
      */
     @JsonProperty(value = "steps", required = true)
-    private List<ChaosExperimentStep> steps;
+    private List<Step> steps;
 
     /*
      * List of selectors.
      */
     @JsonProperty(value = "selectors", required = true)
-    private List<ChaosTargetSelector> selectors;
+    private List<Selector> selectors;
+
+    /*
+     * Optional customer-managed Storage account where Experiment schema will be stored.
+     */
+    @JsonProperty(value = "customerDataStorage")
+    private CustomerDataStorageProperties customerDataStorage;
 
     /**
      * Creates an instance of ExperimentProperties class.
@@ -55,7 +62,7 @@ public final class ExperimentProperties {
      * 
      * @return the steps value.
      */
-    public List<ChaosExperimentStep> steps() {
+    public List<Step> steps() {
         return this.steps;
     }
 
@@ -65,7 +72,7 @@ public final class ExperimentProperties {
      * @param steps the steps value to set.
      * @return the ExperimentProperties object itself.
      */
-    public ExperimentProperties withSteps(List<ChaosExperimentStep> steps) {
+    public ExperimentProperties withSteps(List<Step> steps) {
         this.steps = steps;
         return this;
     }
@@ -75,7 +82,7 @@ public final class ExperimentProperties {
      * 
      * @return the selectors value.
      */
-    public List<ChaosTargetSelector> selectors() {
+    public List<Selector> selectors() {
         return this.selectors;
     }
 
@@ -85,8 +92,30 @@ public final class ExperimentProperties {
      * @param selectors the selectors value to set.
      * @return the ExperimentProperties object itself.
      */
-    public ExperimentProperties withSelectors(List<ChaosTargetSelector> selectors) {
+    public ExperimentProperties withSelectors(List<Selector> selectors) {
         this.selectors = selectors;
+        return this;
+    }
+
+    /**
+     * Get the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     * 
+     * @return the customerDataStorage value.
+     */
+    public CustomerDataStorageProperties customerDataStorage() {
+        return this.customerDataStorage;
+    }
+
+    /**
+     * Set the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     * 
+     * @param customerDataStorage the customerDataStorage value to set.
+     * @return the ExperimentProperties object itself.
+     */
+    public ExperimentProperties withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage) {
+        this.customerDataStorage = customerDataStorage;
         return this;
     }
 
@@ -107,6 +136,9 @@ public final class ExperimentProperties {
                 new IllegalArgumentException("Missing required property selectors in model ExperimentProperties"));
         } else {
             selectors().forEach(e -> e.validate());
+        }
+        if (customerDataStorage() != null) {
+            customerDataStorage().validate();
         }
     }
 

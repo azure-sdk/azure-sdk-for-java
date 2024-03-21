@@ -76,14 +76,22 @@ public interface Experiment {
      * 
      * @return the steps value.
      */
-    List<ChaosExperimentStep> steps();
+    List<Step> steps();
 
     /**
      * Gets the selectors property: List of selectors.
      * 
      * @return the selectors value.
      */
-    List<ChaosTargetSelector> selectors();
+    List<Selector> selectors();
+
+    /**
+     * Gets the customerDataStorage property: Optional customer-managed Storage account where Experiment schema will be
+     * stored.
+     * 
+     * @return the customerDataStorage value.
+     */
+    CustomerDataStorageProperties customerDataStorage();
 
     /**
      * Gets the region of the resource.
@@ -175,7 +183,7 @@ public interface Experiment {
              * @param steps List of steps.
              * @return the next definition stage.
              */
-            WithSelectors withSteps(List<ChaosExperimentStep> steps);
+            WithSelectors withSteps(List<Step> steps);
         }
 
         /**
@@ -188,14 +196,15 @@ public interface Experiment {
              * @param selectors List of selectors.
              * @return the next definition stage.
              */
-            WithCreate withSelectors(List<ChaosTargetSelector> selectors);
+            WithCreate withSelectors(List<Selector> selectors);
         }
 
         /**
          * The stage of the Experiment definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithCustomerDataStorage {
             /**
              * Executes the create request.
              * 
@@ -236,6 +245,21 @@ public interface Experiment {
              * @return the next definition stage.
              */
             WithCreate withIdentity(ResourceIdentity identity);
+        }
+
+        /**
+         * The stage of the Experiment definition allowing to specify customerDataStorage.
+         */
+        interface WithCustomerDataStorage {
+            /**
+             * Specifies the customerDataStorage property: Optional customer-managed Storage account where Experiment
+             * schema will be stored..
+             * 
+             * @param customerDataStorage Optional customer-managed Storage account where Experiment schema will be
+             * stored.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage);
         }
     }
 

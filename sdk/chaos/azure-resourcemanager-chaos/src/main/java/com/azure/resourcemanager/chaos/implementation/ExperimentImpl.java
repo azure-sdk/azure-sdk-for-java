@@ -8,12 +8,13 @@ import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.chaos.fluent.models.ExperimentInner;
-import com.azure.resourcemanager.chaos.models.ChaosExperimentStep;
-import com.azure.resourcemanager.chaos.models.ChaosTargetSelector;
+import com.azure.resourcemanager.chaos.models.CustomerDataStorageProperties;
 import com.azure.resourcemanager.chaos.models.Experiment;
 import com.azure.resourcemanager.chaos.models.ExperimentUpdate;
 import com.azure.resourcemanager.chaos.models.ProvisioningState;
 import com.azure.resourcemanager.chaos.models.ResourceIdentity;
+import com.azure.resourcemanager.chaos.models.Selector;
+import com.azure.resourcemanager.chaos.models.Step;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -60,8 +61,8 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
         return this.innerModel().provisioningState();
     }
 
-    public List<ChaosExperimentStep> steps() {
-        List<ChaosExperimentStep> inner = this.innerModel().steps();
+    public List<Step> steps() {
+        List<Step> inner = this.innerModel().steps();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
@@ -69,13 +70,17 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
         }
     }
 
-    public List<ChaosTargetSelector> selectors() {
-        List<ChaosTargetSelector> inner = this.innerModel().selectors();
+    public List<Selector> selectors() {
+        List<Selector> inner = this.innerModel().selectors();
         if (inner != null) {
             return Collections.unmodifiableList(inner);
         } else {
             return Collections.emptyList();
         }
+    }
+
+    public CustomerDataStorageProperties customerDataStorage() {
+        return this.innerModel().customerDataStorage();
     }
 
     public Region region() {
@@ -189,12 +194,12 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
         return this;
     }
 
-    public ExperimentImpl withSteps(List<ChaosExperimentStep> steps) {
+    public ExperimentImpl withSteps(List<Step> steps) {
         this.innerModel().withSteps(steps);
         return this;
     }
 
-    public ExperimentImpl withSelectors(List<ChaosTargetSelector> selectors) {
+    public ExperimentImpl withSelectors(List<Selector> selectors) {
         this.innerModel().withSelectors(selectors);
         return this;
     }
@@ -217,6 +222,11 @@ public final class ExperimentImpl implements Experiment, Experiment.Definition, 
             this.updateExperiment.withIdentity(identity);
             return this;
         }
+    }
+
+    public ExperimentImpl withCustomerDataStorage(CustomerDataStorageProperties customerDataStorage) {
+        this.innerModel().withCustomerDataStorage(customerDataStorage);
+        return this;
     }
 
     private boolean isInCreateMode() {

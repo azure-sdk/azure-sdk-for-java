@@ -10,7 +10,7 @@ package com.azure.resourcemanager.chaos.generated;
 public final class ExperimentsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/GetExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-03-22-preview/examples/GetExperiment.json
      */
     /**
      * Sample code: Get a Experiment in a resource group.
