@@ -12,7 +12,7 @@ import com.azure.resourcemanager.mobilenetwork.models.PacketCoreControlPlaneColl
 public final class PacketCoreControlPlanesCollectDiagnosticsPackageSamples {
     /*
      * x-ms-original-file:
-     * specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2024-02-01/examples/
+     * specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2024-04-01/examples/
      * PacketCoreControlPlaneCollectDiagnosticsPackage.json
      */
     /**

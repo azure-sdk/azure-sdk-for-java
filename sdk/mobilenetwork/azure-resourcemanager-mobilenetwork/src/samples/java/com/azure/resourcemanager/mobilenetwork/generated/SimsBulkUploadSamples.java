@@ -19,7 +19,7 @@ import java.util.Arrays;
 public final class SimsBulkUploadSamples {
     /*
      * x-ms-original-file:
-     * specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2024-02-01/examples/SimBulkUpload.
+     * specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2024-04-01/examples/SimBulkUpload.
      * json
      */
     /**

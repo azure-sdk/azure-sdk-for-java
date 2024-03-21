@@ -12,7 +12,7 @@ import com.azure.resourcemanager.mobilenetwork.models.InterfaceProperties;
 public final class PacketCoreDataPlanesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2024-02-01/examples/
+     * specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2024-04-01/examples/
      * PacketCoreDataPlaneCreate.json
      */
     /**

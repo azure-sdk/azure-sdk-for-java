@@ -393,7 +393,7 @@ public final class MobileNetworkManagementClientImpl implements MobileNetworkMan
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-02-01";
+        this.apiVersion = "2024-04-01";
         this.attachedDataNetworks = new AttachedDataNetworksClientImpl(this);
         this.dataNetworks = new DataNetworksClientImpl(this);
         this.diagnosticsPackages = new DiagnosticsPackagesClientImpl(this);
