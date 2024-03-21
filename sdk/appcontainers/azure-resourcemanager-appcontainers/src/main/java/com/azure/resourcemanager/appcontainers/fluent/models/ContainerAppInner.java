@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppPropertiesPatchingConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.ExtendedLocation;
 import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentity;
@@ -237,6 +238,30 @@ public final class ContainerAppInner extends Resource {
             this.innerProperties = new ContainerAppProperties();
         }
         this.innerProperties().withWorkloadProfileName(workloadProfileName);
+        return this;
+    }
+
+    /**
+     * Get the patchingConfiguration property: Container App auto patch configuration.
+     * 
+     * @return the patchingConfiguration value.
+     */
+    public ContainerAppPropertiesPatchingConfiguration patchingConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().patchingConfiguration();
+    }
+
+    /**
+     * Set the patchingConfiguration property: Container App auto patch configuration.
+     * 
+     * @param patchingConfiguration the patchingConfiguration value to set.
+     * @return the ContainerAppInner object itself.
+     */
+    public ContainerAppInner
+        withPatchingConfiguration(ContainerAppPropertiesPatchingConfiguration patchingConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ContainerAppProperties();
+        }
+        this.innerProperties().withPatchingConfiguration(patchingConfiguration);
         return this;
     }
 

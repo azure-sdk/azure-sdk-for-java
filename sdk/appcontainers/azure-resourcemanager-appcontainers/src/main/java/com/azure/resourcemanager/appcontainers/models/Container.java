@@ -58,6 +58,15 @@ public final class Container extends BaseContainer {
      * {@inheritDoc}
      */
     @Override
+    public Container withImageType(ImageType imageType) {
+        super.withImageType(imageType);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Container withName(String name) {
         super.withName(name);
         return this;
