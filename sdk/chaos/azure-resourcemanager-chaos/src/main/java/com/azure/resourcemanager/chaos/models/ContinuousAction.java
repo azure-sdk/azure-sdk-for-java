@@ -18,7 +18,7 @@ import java.util.List;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("continuous")
 @Fluent
-public final class ContinuousAction extends ChaosExperimentAction {
+public final class ContinuousAction extends Action {
     /*
      * ISO8601 formatted string that represents a duration.
      */

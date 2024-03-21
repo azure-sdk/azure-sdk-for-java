@@ -17,7 +17,7 @@ import java.time.Duration;
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("delay")
 @Fluent
-public final class DelayAction extends ChaosExperimentAction {
+public final class DelayAction extends Action {
     /*
      * ISO8601 formatted string that represents a duration.
      */
