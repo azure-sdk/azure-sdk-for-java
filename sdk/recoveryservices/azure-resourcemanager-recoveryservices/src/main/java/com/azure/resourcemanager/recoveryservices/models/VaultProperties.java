@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties of the vault. */
+/**
+ * Properties of the vault.
+ */
 @Fluent
 public final class VaultProperties {
     /*
@@ -101,13 +103,21 @@ public final class VaultProperties {
     @JsonProperty(value = "secureScore", access = JsonProperty.Access.WRITE_ONLY)
     private SecureScoreLevel secureScore;
 
-    /** Creates an instance of VaultProperties class. */
+    /*
+     * Security levels of Recovery Services Vault for business continuity and disaster recovery
+     */
+    @JsonProperty(value = "bcdrSecurityLevel", access = JsonProperty.Access.WRITE_ONLY)
+    private BcdrSecurityLevel bcdrSecurityLevel;
+
+    /**
+     * Creates an instance of VaultProperties class.
+     */
     public VaultProperties() {
     }
 
     /**
      * Get the provisioningState property: Provisioning State.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -116,7 +126,7 @@ public final class VaultProperties {
 
     /**
      * Get the upgradeDetails property: Details for upgrading vault.
-     *
+     * 
      * @return the upgradeDetails value.
      */
     public UpgradeDetails upgradeDetails() {
@@ -125,7 +135,7 @@ public final class VaultProperties {
 
     /**
      * Set the upgradeDetails property: Details for upgrading vault.
-     *
+     * 
      * @param upgradeDetails the upgradeDetails value to set.
      * @return the VaultProperties object itself.
      */
@@ -136,7 +146,7 @@ public final class VaultProperties {
 
     /**
      * Get the privateEndpointConnections property: List of private endpoint connection.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionVaultProperties> privateEndpointConnections() {
@@ -145,7 +155,7 @@ public final class VaultProperties {
 
     /**
      * Get the privateEndpointStateForBackup property: Private endpoint state for backup.
-     *
+     * 
      * @return the privateEndpointStateForBackup value.
      */
     public VaultPrivateEndpointState privateEndpointStateForBackup() {
@@ -154,7 +164,7 @@ public final class VaultProperties {
 
     /**
      * Get the privateEndpointStateForSiteRecovery property: Private endpoint state for site recovery.
-     *
+     * 
      * @return the privateEndpointStateForSiteRecovery value.
      */
     public VaultPrivateEndpointState privateEndpointStateForSiteRecovery() {
@@ -163,7 +173,7 @@ public final class VaultProperties {
 
     /**
      * Get the encryption property: Customer Managed Key details of the resource.
-     *
+     * 
      * @return the encryption value.
      */
     public VaultPropertiesEncryption encryption() {
@@ -172,7 +182,7 @@ public final class VaultProperties {
 
     /**
      * Set the encryption property: Customer Managed Key details of the resource.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the VaultProperties object itself.
      */
@@ -183,7 +193,7 @@ public final class VaultProperties {
 
     /**
      * Get the moveDetails property: The details of the latest move operation performed on the Azure Resource.
-     *
+     * 
      * @return the moveDetails value.
      */
     public VaultPropertiesMoveDetails moveDetails() {
@@ -192,7 +202,7 @@ public final class VaultProperties {
 
     /**
      * Set the moveDetails property: The details of the latest move operation performed on the Azure Resource.
-     *
+     * 
      * @param moveDetails the moveDetails value to set.
      * @return the VaultProperties object itself.
      */
@@ -203,7 +213,7 @@ public final class VaultProperties {
 
     /**
      * Get the moveState property: The State of the Resource after the move operation.
-     *
+     * 
      * @return the moveState value.
      */
     public ResourceMoveState moveState() {
@@ -212,7 +222,7 @@ public final class VaultProperties {
 
     /**
      * Get the backupStorageVersion property: Backup storage version.
-     *
+     * 
      * @return the backupStorageVersion value.
      */
     public BackupStorageVersion backupStorageVersion() {
@@ -222,7 +232,7 @@ public final class VaultProperties {
     /**
      * Get the publicNetworkAccess property: property to enable or disable resource provider inbound network traffic
      * from public clients.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -232,7 +242,7 @@ public final class VaultProperties {
     /**
      * Set the publicNetworkAccess property: property to enable or disable resource provider inbound network traffic
      * from public clients.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the VaultProperties object itself.
      */
@@ -243,7 +253,7 @@ public final class VaultProperties {
 
     /**
      * Get the monitoringSettings property: Monitoring Settings of the vault.
-     *
+     * 
      * @return the monitoringSettings value.
      */
     public MonitoringSettings monitoringSettings() {
@@ -252,7 +262,7 @@ public final class VaultProperties {
 
     /**
      * Set the monitoringSettings property: Monitoring Settings of the vault.
-     *
+     * 
      * @param monitoringSettings the monitoringSettings value to set.
      * @return the VaultProperties object itself.
      */
@@ -263,7 +273,7 @@ public final class VaultProperties {
 
     /**
      * Get the restoreSettings property: Restore Settings of the vault.
-     *
+     * 
      * @return the restoreSettings value.
      */
     public RestoreSettings restoreSettings() {
@@ -272,7 +282,7 @@ public final class VaultProperties {
 
     /**
      * Set the restoreSettings property: Restore Settings of the vault.
-     *
+     * 
      * @param restoreSettings the restoreSettings value to set.
      * @return the VaultProperties object itself.
      */
@@ -283,7 +293,7 @@ public final class VaultProperties {
 
     /**
      * Get the redundancySettings property: The redundancy Settings of a Vault.
-     *
+     * 
      * @return the redundancySettings value.
      */
     public VaultPropertiesRedundancySettings redundancySettings() {
@@ -292,7 +302,7 @@ public final class VaultProperties {
 
     /**
      * Set the redundancySettings property: The redundancy Settings of a Vault.
-     *
+     * 
      * @param redundancySettings the redundancySettings value to set.
      * @return the VaultProperties object itself.
      */
@@ -303,7 +313,7 @@ public final class VaultProperties {
 
     /**
      * Get the securitySettings property: Security Settings of the vault.
-     *
+     * 
      * @return the securitySettings value.
      */
     public SecuritySettings securitySettings() {
@@ -312,7 +322,7 @@ public final class VaultProperties {
 
     /**
      * Set the securitySettings property: Security Settings of the vault.
-     *
+     * 
      * @param securitySettings the securitySettings value to set.
      * @return the VaultProperties object itself.
      */
@@ -323,7 +333,7 @@ public final class VaultProperties {
 
     /**
      * Get the secureScore property: Secure Score of Recovery Services Vault.
-     *
+     * 
      * @return the secureScore value.
      */
     public SecureScoreLevel secureScore() {
@@ -331,8 +341,18 @@ public final class VaultProperties {
     }
 
     /**
+     * Get the bcdrSecurityLevel property: Security levels of Recovery Services Vault for business continuity and
+     * disaster recovery.
+     * 
+     * @return the bcdrSecurityLevel value.
+     */
+    public BcdrSecurityLevel bcdrSecurityLevel() {
+        return this.bcdrSecurityLevel;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
