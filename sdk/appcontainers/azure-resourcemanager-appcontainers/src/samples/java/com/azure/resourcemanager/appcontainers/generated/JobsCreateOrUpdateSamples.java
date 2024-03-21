@@ -13,6 +13,8 @@ import com.azure.resourcemanager.appcontainers.models.ContainerAppProbeHttpGetHt
 import com.azure.resourcemanager.appcontainers.models.ContainerResources;
 import com.azure.resourcemanager.appcontainers.models.ExtendedLocation;
 import com.azure.resourcemanager.appcontainers.models.ExtendedLocationTypes;
+import com.azure.resourcemanager.appcontainers.models.IdentitySettings;
+import com.azure.resourcemanager.appcontainers.models.IdentitySettingsLifeCycle;
 import com.azure.resourcemanager.appcontainers.models.InitContainer;
 import com.azure.resourcemanager.appcontainers.models.JobConfiguration;
 import com.azure.resourcemanager.appcontainers.models.JobConfigurationEventTriggerConfig;
@@ -20,18 +22,23 @@ import com.azure.resourcemanager.appcontainers.models.JobConfigurationManualTrig
 import com.azure.resourcemanager.appcontainers.models.JobScale;
 import com.azure.resourcemanager.appcontainers.models.JobScaleRule;
 import com.azure.resourcemanager.appcontainers.models.JobTemplate;
+import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentity;
+import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentityType;
 import com.azure.resourcemanager.appcontainers.models.TriggerType;
 import com.azure.resourcemanager.appcontainers.models.Type;
+import com.azure.resourcemanager.appcontainers.models.UserAssignedIdentity;
 import com.azure.resourcemanager.appcontainers.models.VolumeMount;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Samples for Jobs CreateOrUpdate.
  */
 public final class JobsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
      * Job_CreateorUpdate_ConnectedEnvironment.json
      */
     /**
@@ -67,7 +74,7 @@ public final class JobsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
      * Job_CreateorUpdate_EventTrigger.json
      */
     /**
@@ -100,7 +107,7 @@ public final class JobsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/Job_CreateorUpdate.json
+     * specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/Job_CreateorUpdate.json
      */
     /**
      * Sample code: Create or Update Container Apps Job.
@@ -110,11 +117,21 @@ public final class JobsCreateOrUpdateSamples {
     public static void
         createOrUpdateContainerAppsJob(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
         manager.jobs().define("testcontainerAppsJob0").withRegion("East US").withExistingResourceGroup("rg")
+            .withIdentity(new ManagedServiceIdentity()
+                .withType(ManagedServiceIdentityType.SYSTEM_ASSIGNED_USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourcegroups/rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myidentity",
+                    new UserAssignedIdentity())))
             .withEnvironmentId(
                 "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourceGroups/rg/providers/Microsoft.App/managedEnvironments/demokube")
             .withConfiguration(new JobConfiguration().withTriggerType(TriggerType.MANUAL).withReplicaTimeout(10)
-                .withReplicaRetryLimit(10).withManualTriggerConfig(
-                    new JobConfigurationManualTriggerConfig().withReplicaCompletionCount(1).withParallelism(4)))
+                .withReplicaRetryLimit(10)
+                .withManualTriggerConfig(
+                    new JobConfigurationManualTriggerConfig().withReplicaCompletionCount(1).withParallelism(4))
+                .withIdentitySettings(Arrays.asList(new IdentitySettings().withIdentity(
+                    "/subscriptions/34adfa4f-cedf-4dc0-ba29-b6d1a69ab345/resourcegroups/rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myidentity")
+                    .withLifecycle(IdentitySettingsLifeCycle.ALL),
+                    new IdentitySettings().withIdentity("system").withLifecycle(IdentitySettingsLifeCycle.INIT))))
             .withTemplate(
                 new JobTemplate()
                     .withInitContainers(Arrays.asList(new InitContainer().withImage("repo/testcontainerAppsJob0:v4")
@@ -135,5 +152,17 @@ public final class JobsCreateOrUpdateSamples {
                                     .withPath("/health").withPort(8080))
                                 .withInitialDelaySeconds(5).withPeriodSeconds(3).withType(Type.LIVENESS))))))
             .create();
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }

@@ -111,6 +111,13 @@ public interface ContainerApp {
     String workloadProfileName();
 
     /**
+     * Gets the patchingConfiguration property: Container App auto patch configuration.
+     * 
+     * @return the patchingConfiguration value.
+     */
+    ContainerAppPropertiesPatchingConfiguration patchingConfiguration();
+
+    /**
      * Gets the latestRevisionName property: Name of the latest revision of the Container App.
      * 
      * @return the latestRevisionName value.
@@ -252,7 +259,8 @@ public interface ContainerApp {
         interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithExtendedLocation,
             DefinitionStages.WithIdentity, DefinitionStages.WithManagedBy, DefinitionStages.WithManagedEnvironmentId,
             DefinitionStages.WithEnvironmentId, DefinitionStages.WithWorkloadProfileName,
-            DefinitionStages.WithConfiguration, DefinitionStages.WithTemplate {
+            DefinitionStages.WithPatchingConfiguration, DefinitionStages.WithConfiguration,
+            DefinitionStages.WithTemplate {
             /**
              * Executes the create request.
              * 
@@ -368,6 +376,19 @@ public interface ContainerApp {
         }
 
         /**
+         * The stage of the ContainerApp definition allowing to specify patchingConfiguration.
+         */
+        interface WithPatchingConfiguration {
+            /**
+             * Specifies the patchingConfiguration property: Container App auto patch configuration..
+             * 
+             * @param patchingConfiguration Container App auto patch configuration.
+             * @return the next definition stage.
+             */
+            WithCreate withPatchingConfiguration(ContainerAppPropertiesPatchingConfiguration patchingConfiguration);
+        }
+
+        /**
          * The stage of the ContainerApp definition allowing to specify configuration.
          */
         interface WithConfiguration {
@@ -405,8 +426,8 @@ public interface ContainerApp {
      * The template for ContainerApp update.
      */
     interface Update extends UpdateStages.WithTags, UpdateStages.WithExtendedLocation, UpdateStages.WithIdentity,
-        UpdateStages.WithManagedBy, UpdateStages.WithWorkloadProfileName, UpdateStages.WithConfiguration,
-        UpdateStages.WithTemplate {
+        UpdateStages.WithManagedBy, UpdateStages.WithWorkloadProfileName, UpdateStages.WithPatchingConfiguration,
+        UpdateStages.WithConfiguration, UpdateStages.WithTemplate {
         /**
          * Executes the update request.
          * 
@@ -497,6 +518,19 @@ public interface ContainerApp {
              * @return the next definition stage.
              */
             Update withWorkloadProfileName(String workloadProfileName);
+        }
+
+        /**
+         * The stage of the ContainerApp update allowing to specify patchingConfiguration.
+         */
+        interface WithPatchingConfiguration {
+            /**
+             * Specifies the patchingConfiguration property: Container App auto patch configuration..
+             * 
+             * @param patchingConfiguration Container App auto patch configuration.
+             * @return the next definition stage.
+             */
+            Update withPatchingConfiguration(ContainerAppPropertiesPatchingConfiguration patchingConfiguration);
         }
 
         /**

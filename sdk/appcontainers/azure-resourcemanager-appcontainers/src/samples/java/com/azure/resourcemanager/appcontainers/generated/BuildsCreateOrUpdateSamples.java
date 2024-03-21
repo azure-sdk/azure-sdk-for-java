@@ -17,7 +17,7 @@ import java.util.Arrays;
 public final class BuildsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/Builds_CreateOrUpdate.json
+     * specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/Builds_CreateOrUpdate.json
      */
     /**
      * Sample code: Builds_CreateOrUpdate_WithConfig.
@@ -48,7 +48,7 @@ public final class BuildsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
      * Builds_CreateOrUpdate_NoConfig.json
      */
     /**

@@ -15,7 +15,7 @@ import com.azure.resourcemanager.appcontainers.models.DaprComponentResiliencyPol
  */
 public final class DaprComponentResiliencyPoliciesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
      * DaprComponentResiliencyPolicy_CreateOrUpdate_OutboundOnly.json
      */
     /**
@@ -39,7 +39,7 @@ public final class DaprComponentResiliencyPoliciesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
      * DaprComponentResiliencyPolicy_CreateOrUpdate_AllOptions.json
      */
     /**
@@ -71,7 +71,7 @@ public final class DaprComponentResiliencyPoliciesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
      * DaprComponentResiliencyPolicy_CreateOrUpdate_SparseOptions.json
      */
     /**

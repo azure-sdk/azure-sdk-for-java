@@ -12,6 +12,7 @@ import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerAuthentication;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerTrafficConfiguration;
 import com.azure.resourcemanager.appcontainers.models.OpenTelemetryConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
@@ -134,6 +135,12 @@ public final class ManagedEnvironmentProperties {
      */
     @JsonProperty(value = "peerAuthentication")
     private ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication;
+
+    /*
+     * Peer traffic settings for the Managed Environment
+     */
+    @JsonProperty(value = "peerTrafficConfiguration")
+    private ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration;
 
     /**
      * Creates an instance of ManagedEnvironmentProperties class.
@@ -463,6 +470,27 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
+     * Get the peerTrafficConfiguration property: Peer traffic settings for the Managed Environment.
+     * 
+     * @return the peerTrafficConfiguration value.
+     */
+    public ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration() {
+        return this.peerTrafficConfiguration;
+    }
+
+    /**
+     * Set the peerTrafficConfiguration property: Peer traffic settings for the Managed Environment.
+     * 
+     * @param peerTrafficConfiguration the peerTrafficConfiguration value to set.
+     * @return the ManagedEnvironmentProperties object itself.
+     */
+    public ManagedEnvironmentProperties
+        withPeerTrafficConfiguration(ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration) {
+        this.peerTrafficConfiguration = peerTrafficConfiguration;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -494,6 +522,9 @@ public final class ManagedEnvironmentProperties {
         }
         if (peerAuthentication() != null) {
             peerAuthentication().validate();
+        }
+        if (peerTrafficConfiguration() != null) {
+            peerTrafficConfiguration().validate();
         }
     }
 }

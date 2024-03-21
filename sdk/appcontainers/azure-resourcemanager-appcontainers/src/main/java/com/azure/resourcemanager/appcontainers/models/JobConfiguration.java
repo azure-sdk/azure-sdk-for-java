@@ -64,6 +64,13 @@ public final class JobConfiguration {
     @JsonProperty(value = "registries")
     private List<RegistryCredentials> registries;
 
+    /*
+     * Optional settings for Managed Identities that are assigned to the Container App Job. If a Managed Identity is
+     * not specified here, default settings will be used.
+     */
+    @JsonProperty(value = "identitySettings")
+    private List<IdentitySettings> identitySettings;
+
     /**
      * Creates an instance of JobConfiguration class.
      */
@@ -235,6 +242,28 @@ public final class JobConfiguration {
     }
 
     /**
+     * Get the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
+     * App Job. If a Managed Identity is not specified here, default settings will be used.
+     * 
+     * @return the identitySettings value.
+     */
+    public List<IdentitySettings> identitySettings() {
+        return this.identitySettings;
+    }
+
+    /**
+     * Set the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
+     * App Job. If a Managed Identity is not specified here, default settings will be used.
+     * 
+     * @param identitySettings the identitySettings value to set.
+     * @return the JobConfiguration object itself.
+     */
+    public JobConfiguration withIdentitySettings(List<IdentitySettings> identitySettings) {
+        this.identitySettings = identitySettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -258,6 +287,9 @@ public final class JobConfiguration {
         }
         if (registries() != null) {
             registries().forEach(e -> e.validate());
+        }
+        if (identitySettings() != null) {
+            identitySettings().forEach(e -> e.validate());
         }
     }
 

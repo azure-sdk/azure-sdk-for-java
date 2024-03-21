@@ -46,6 +46,12 @@ public final class Configuration {
     private Dapr dapr;
 
     /*
+     * App runtime configuration for the Container App.
+     */
+    @JsonProperty(value = "runtime")
+    private Runtime runtime;
+
+    /*
      * Optional. Max inactive revisions a Container App can have.
      */
     @JsonProperty(value = "maxInactiveRevisions")
@@ -56,6 +62,13 @@ public final class Configuration {
      */
     @JsonProperty(value = "service")
     private Service service;
+
+    /*
+     * Optional settings for Managed Identities that are assigned to the Container App. If a Managed Identity is not
+     * specified here, default settings will be used.
+     */
+    @JsonProperty(value = "identitySettings")
+    private List<IdentitySettings> identitySettings;
 
     /**
      * Creates an instance of Configuration class.
@@ -174,6 +187,26 @@ public final class Configuration {
     }
 
     /**
+     * Get the runtime property: App runtime configuration for the Container App.
+     * 
+     * @return the runtime value.
+     */
+    public Runtime runtime() {
+        return this.runtime;
+    }
+
+    /**
+     * Set the runtime property: App runtime configuration for the Container App.
+     * 
+     * @param runtime the runtime value to set.
+     * @return the Configuration object itself.
+     */
+    public Configuration withRuntime(Runtime runtime) {
+        this.runtime = runtime;
+        return this;
+    }
+
+    /**
      * Get the maxInactiveRevisions property: Optional. Max inactive revisions a Container App can have.
      * 
      * @return the maxInactiveRevisions value.
@@ -214,6 +247,28 @@ public final class Configuration {
     }
 
     /**
+     * Get the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
+     * App. If a Managed Identity is not specified here, default settings will be used.
+     * 
+     * @return the identitySettings value.
+     */
+    public List<IdentitySettings> identitySettings() {
+        return this.identitySettings;
+    }
+
+    /**
+     * Set the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
+     * App. If a Managed Identity is not specified here, default settings will be used.
+     * 
+     * @param identitySettings the identitySettings value to set.
+     * @return the Configuration object itself.
+     */
+    public Configuration withIdentitySettings(List<IdentitySettings> identitySettings) {
+        this.identitySettings = identitySettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -231,8 +286,14 @@ public final class Configuration {
         if (dapr() != null) {
             dapr().validate();
         }
+        if (runtime() != null) {
+            runtime().validate();
+        }
         if (service() != null) {
             service().validate();
+        }
+        if (identitySettings() != null) {
+            identitySettings().forEach(e -> e.validate());
         }
     }
 }
