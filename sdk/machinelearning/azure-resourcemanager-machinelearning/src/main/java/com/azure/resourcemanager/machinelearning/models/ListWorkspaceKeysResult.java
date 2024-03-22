@@ -6,46 +6,48 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.resourcemanager.machinelearning.fluent.models.ListWorkspaceKeysResultInner;
 
-/** An immutable client-side representation of ListWorkspaceKeysResult. */
+/**
+ * An immutable client-side representation of ListWorkspaceKeysResult.
+ */
 public interface ListWorkspaceKeysResult {
     /**
-     * Gets the userStorageKey property: The userStorageKey property.
-     *
-     * @return the userStorageKey value.
-     */
-    String userStorageKey();
-
-    /**
-     * Gets the userStorageResourceId property: The userStorageResourceId property.
-     *
-     * @return the userStorageResourceId value.
-     */
-    String userStorageResourceId();
-
-    /**
-     * Gets the appInsightsInstrumentationKey property: The appInsightsInstrumentationKey property.
-     *
+     * Gets the appInsightsInstrumentationKey property: The access key of the workspace app insights.
+     * 
      * @return the appInsightsInstrumentationKey value.
      */
     String appInsightsInstrumentationKey();
 
     /**
      * Gets the containerRegistryCredentials property: The containerRegistryCredentials property.
-     *
+     * 
      * @return the containerRegistryCredentials value.
      */
     RegistryListCredentialsResult containerRegistryCredentials();
 
     /**
      * Gets the notebookAccessKeys property: The notebookAccessKeys property.
-     *
+     * 
      * @return the notebookAccessKeys value.
      */
     ListNotebookKeysResult notebookAccessKeys();
 
     /**
+     * Gets the userStorageArmId property: The arm Id key of the workspace storage.
+     * 
+     * @return the userStorageArmId value.
+     */
+    String userStorageArmId();
+
+    /**
+     * Gets the userStorageKey property: The access key of the workspace storage.
+     * 
+     * @return the userStorageKey value.
+     */
+    String userStorageKey();
+
+    /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.ListWorkspaceKeysResultInner object.
-     *
+     * 
      * @return the inner object.
      */
     ListWorkspaceKeysResultInner innerModel();

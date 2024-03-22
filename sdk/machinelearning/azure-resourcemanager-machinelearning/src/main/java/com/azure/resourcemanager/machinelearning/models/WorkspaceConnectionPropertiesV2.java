@@ -5,12 +5,18 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
 
-/** The WorkspaceConnectionPropertiesV2 model. */
+/**
+ * The WorkspaceConnectionPropertiesV2 model.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -18,12 +24,20 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     defaultImpl = WorkspaceConnectionPropertiesV2.class)
 @JsonTypeName("WorkspaceConnectionPropertiesV2")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "AAD", value = AadAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "AccessKey", value = AccessKeyAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "AccountKey", value = AccountKeyAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "ApiKey", value = ApiKeyAuthWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "CustomKeys", value = CustomKeysWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "ManagedIdentity", value = ManagedIdentityAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "None", value = NoneAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(name = "OAuth2", value = OAuth2AuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "PAT", value = PatAuthTypeWorkspaceConnectionProperties.class),
     @JsonSubTypes.Type(name = "SAS", value = SasAuthTypeWorkspaceConnectionProperties.class),
-    @JsonSubTypes.Type(name = "UsernamePassword", value = UsernamePasswordAuthTypeWorkspaceConnectionProperties.class),
-    @JsonSubTypes.Type(name = "None", value = NoneAuthTypeWorkspaceConnectionProperties.class),
-    @JsonSubTypes.Type(name = "ManagedIdentity", value = ManagedIdentityAuthTypeWorkspaceConnectionProperties.class)
-})
+    @JsonSubTypes.Type(name = "ServicePrincipal", value = ServicePrincipalAuthTypeWorkspaceConnectionProperties.class),
+    @JsonSubTypes.Type(
+        name = "UsernamePassword",
+        value = UsernamePasswordAuthTypeWorkspaceConnectionProperties.class) })
 @Fluent
 public class WorkspaceConnectionPropertiesV2 {
     /*
@@ -33,30 +47,57 @@ public class WorkspaceConnectionPropertiesV2 {
     private ConnectionCategory category;
 
     /*
+     * The createdByWorkspaceArmId property.
+     */
+    @JsonProperty(value = "createdByWorkspaceArmId", access = JsonProperty.Access.WRITE_ONLY)
+    private String createdByWorkspaceArmId;
+
+    /*
+     * The expiryTime property.
+     */
+    @JsonProperty(value = "expiryTime")
+    private OffsetDateTime expiryTime;
+
+    /*
+     * Group based on connection category
+     */
+    @JsonProperty(value = "group", access = JsonProperty.Access.WRITE_ONLY)
+    private ConnectionGroup group;
+
+    /*
+     * The isSharedToAll property.
+     */
+    @JsonProperty(value = "isSharedToAll")
+    private Boolean isSharedToAll;
+
+    /*
+     * Store user metadata for this connection
+     */
+    @JsonProperty(value = "metadata")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, String> metadata;
+
+    /*
+     * The sharedUserList property.
+     */
+    @JsonProperty(value = "sharedUserList")
+    private List<String> sharedUserList;
+
+    /*
      * The target property.
      */
     @JsonProperty(value = "target")
     private String target;
 
-    /*
-     * Value details of the workspace connection.
+    /**
+     * Creates an instance of WorkspaceConnectionPropertiesV2 class.
      */
-    @JsonProperty(value = "value")
-    private String value;
-
-    /*
-     * format for the workspace connection value
-     */
-    @JsonProperty(value = "valueFormat")
-    private ValueFormat valueFormat;
-
-    /** Creates an instance of WorkspaceConnectionPropertiesV2 class. */
     public WorkspaceConnectionPropertiesV2() {
     }
 
     /**
      * Get the category property: Category of the connection.
-     *
+     * 
      * @return the category value.
      */
     public ConnectionCategory category() {
@@ -65,7 +106,7 @@ public class WorkspaceConnectionPropertiesV2 {
 
     /**
      * Set the category property: Category of the connection.
-     *
+     * 
      * @param category the category value to set.
      * @return the WorkspaceConnectionPropertiesV2 object itself.
      */
@@ -75,8 +116,106 @@ public class WorkspaceConnectionPropertiesV2 {
     }
 
     /**
+     * Get the createdByWorkspaceArmId property: The createdByWorkspaceArmId property.
+     * 
+     * @return the createdByWorkspaceArmId value.
+     */
+    public String createdByWorkspaceArmId() {
+        return this.createdByWorkspaceArmId;
+    }
+
+    /**
+     * Get the expiryTime property: The expiryTime property.
+     * 
+     * @return the expiryTime value.
+     */
+    public OffsetDateTime expiryTime() {
+        return this.expiryTime;
+    }
+
+    /**
+     * Set the expiryTime property: The expiryTime property.
+     * 
+     * @param expiryTime the expiryTime value to set.
+     * @return the WorkspaceConnectionPropertiesV2 object itself.
+     */
+    public WorkspaceConnectionPropertiesV2 withExpiryTime(OffsetDateTime expiryTime) {
+        this.expiryTime = expiryTime;
+        return this;
+    }
+
+    /**
+     * Get the group property: Group based on connection category.
+     * 
+     * @return the group value.
+     */
+    public ConnectionGroup group() {
+        return this.group;
+    }
+
+    /**
+     * Get the isSharedToAll property: The isSharedToAll property.
+     * 
+     * @return the isSharedToAll value.
+     */
+    public Boolean isSharedToAll() {
+        return this.isSharedToAll;
+    }
+
+    /**
+     * Set the isSharedToAll property: The isSharedToAll property.
+     * 
+     * @param isSharedToAll the isSharedToAll value to set.
+     * @return the WorkspaceConnectionPropertiesV2 object itself.
+     */
+    public WorkspaceConnectionPropertiesV2 withIsSharedToAll(Boolean isSharedToAll) {
+        this.isSharedToAll = isSharedToAll;
+        return this;
+    }
+
+    /**
+     * Get the metadata property: Store user metadata for this connection.
+     * 
+     * @return the metadata value.
+     */
+    public Map<String, String> metadata() {
+        return this.metadata;
+    }
+
+    /**
+     * Set the metadata property: Store user metadata for this connection.
+     * 
+     * @param metadata the metadata value to set.
+     * @return the WorkspaceConnectionPropertiesV2 object itself.
+     */
+    public WorkspaceConnectionPropertiesV2 withMetadata(Map<String, String> metadata) {
+        this.metadata = metadata;
+        return this;
+    }
+
+    /**
+     * Get the sharedUserList property: The sharedUserList property.
+     * 
+     * @return the sharedUserList value.
+     */
+    public List<String> sharedUserList() {
+        return this.sharedUserList;
+    }
+
+    /**
+     * Set the sharedUserList property: The sharedUserList property.
+     * 
+     * @param sharedUserList the sharedUserList value to set.
+     * @return the WorkspaceConnectionPropertiesV2 object itself.
+     */
+    public WorkspaceConnectionPropertiesV2 withSharedUserList(List<String> sharedUserList) {
+        this.sharedUserList = sharedUserList;
+        return this;
+    }
+
+    /**
      * Get the target property: The target property.
-     *
+     * 
      * @return the target value.
      */
     public String target() {
@@ -85,7 +224,7 @@ public class WorkspaceConnectionPropertiesV2 {
 
     /**
      * Set the target property: The target property.
-     *
+     * 
      * @param target the target value to set.
      * @return the WorkspaceConnectionPropertiesV2 object itself.
      */
@@ -95,48 +234,8 @@ public class WorkspaceConnectionPropertiesV2 {
     }
 
     /**
-     * Get the value property: Value details of the workspace connection.
-     *
-     * @return the value value.
-     */
-    public String value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: Value details of the workspace connection.
-     *
-     * @param value the value value to set.
-     * @return the WorkspaceConnectionPropertiesV2 object itself.
-     */
-    public WorkspaceConnectionPropertiesV2 withValue(String value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Get the valueFormat property: format for the workspace connection value.
-     *
-     * @return the valueFormat value.
-     */
-    public ValueFormat valueFormat() {
-        return this.valueFormat;
-    }
-
-    /**
-     * Set the valueFormat property: format for the workspace connection value.
-     *
-     * @param valueFormat the valueFormat value to set.
-     * @return the WorkspaceConnectionPropertiesV2 object itself.
-     */
-    public WorkspaceConnectionPropertiesV2 withValueFormat(ValueFormat valueFormat) {
-        this.valueFormat = valueFormat;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

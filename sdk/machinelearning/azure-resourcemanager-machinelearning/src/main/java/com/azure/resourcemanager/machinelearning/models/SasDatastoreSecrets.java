@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Datastore SAS secrets. */
+/**
+ * Datastore SAS secrets.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "secretsType")
 @JsonTypeName("Sas")
 @Fluent
@@ -21,13 +23,15 @@ public final class SasDatastoreSecrets extends DatastoreSecretsInner {
     @JsonProperty(value = "sasToken")
     private String sasToken;
 
-    /** Creates an instance of SasDatastoreSecrets class. */
+    /**
+     * Creates an instance of SasDatastoreSecrets class.
+     */
     public SasDatastoreSecrets() {
     }
 
     /**
      * Get the sasToken property: Storage container SAS token.
-     *
+     * 
      * @return the sasToken value.
      */
     public String sasToken() {
@@ -36,7 +40,7 @@ public final class SasDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Set the sasToken property: Storage container SAS token.
-     *
+     * 
      * @param sasToken the sasToken value to set.
      * @return the SasDatastoreSecrets object itself.
      */
@@ -47,7 +51,7 @@ public final class SasDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

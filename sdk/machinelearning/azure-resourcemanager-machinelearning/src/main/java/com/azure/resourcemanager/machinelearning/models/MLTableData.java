@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** MLTable data definition. */
+/**
+ * MLTable data definition.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "dataType")
 @JsonTypeName("mltable")
 @Fluent
@@ -22,13 +24,15 @@ public final class MLTableData extends DataVersionBaseProperties {
     @JsonProperty(value = "referencedUris")
     private List<String> referencedUris;
 
-    /** Creates an instance of MLTableData class. */
+    /**
+     * Creates an instance of MLTableData class.
+     */
     public MLTableData() {
     }
 
     /**
      * Get the referencedUris property: Uris referenced in the MLTable definition (required for lineage).
-     *
+     * 
      * @return the referencedUris value.
      */
     public List<String> referencedUris() {
@@ -37,7 +41,7 @@ public final class MLTableData extends DataVersionBaseProperties {
 
     /**
      * Set the referencedUris property: Uris referenced in the MLTable definition (required for lineage).
-     *
+     * 
      * @param referencedUris the referencedUris value to set.
      * @return the MLTableData object itself.
      */
@@ -46,42 +50,81 @@ public final class MLTableData extends DataVersionBaseProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withDataUri(String dataUri) {
         super.withDataUri(dataUri);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MLTableData withIntellectualProperty(IntellectualProperty intellectualProperty) {
+        super.withIntellectualProperty(intellectualProperty);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MLTableData withStage(String stage) {
+        super.withStage(stage);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public MLTableData withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        super.withAutoDeleteSetting(autoDeleteSetting);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withIsAnonymous(Boolean isAnonymous) {
         super.withIsAnonymous(isAnonymous);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -90,7 +133,7 @@ public final class MLTableData extends DataVersionBaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

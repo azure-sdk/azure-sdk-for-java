@@ -23,21 +23,39 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.machinelearning.fluent.AzureMachineLearningWorkspaces;
-import com.azure.resourcemanager.machinelearning.implementation.AzureMachineLearningWorkspacesBuilder;
+import com.azure.resourcemanager.machinelearning.fluent.AzureMachineLearningServices;
+import com.azure.resourcemanager.machinelearning.implementation.AzureMachineLearningServicesBuilder;
 import com.azure.resourcemanager.machinelearning.implementation.BatchDeploymentsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.BatchEndpointsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.CapacityReservationGroupsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.CodeContainersImpl;
 import com.azure.resourcemanager.machinelearning.implementation.CodeVersionsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.ComponentContainersImpl;
 import com.azure.resourcemanager.machinelearning.implementation.ComponentVersionsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.ComputesImpl;
+import com.azure.resourcemanager.machinelearning.implementation.ConnectionRaiPoliciesImpl;
+import com.azure.resourcemanager.machinelearning.implementation.ConnectionRaiPolicyOperationsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.ConnectionsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.DataContainersImpl;
 import com.azure.resourcemanager.machinelearning.implementation.DataVersionsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.DatastoresImpl;
+import com.azure.resourcemanager.machinelearning.implementation.EndpointDeploymentsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.EndpointsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.EnvironmentContainersImpl;
 import com.azure.resourcemanager.machinelearning.implementation.EnvironmentVersionsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.FeaturesImpl;
+import com.azure.resourcemanager.machinelearning.implementation.FeaturesetContainersImpl;
+import com.azure.resourcemanager.machinelearning.implementation.FeaturesetVersionsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.FeaturestoreEntityContainersImpl;
+import com.azure.resourcemanager.machinelearning.implementation.FeaturestoreEntityVersionsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.InferenceEndpointsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.InferenceGroupsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.InferencePoolsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.JobsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.LabelingJobsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.ManagedNetworkProvisionsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.ManagedNetworkSettingsRulesImpl;
+import com.azure.resourcemanager.machinelearning.implementation.MarketplaceSubscriptionsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.ModelContainersImpl;
 import com.azure.resourcemanager.machinelearning.implementation.ModelVersionsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.OnlineDeploymentsImpl;
@@ -46,7 +64,22 @@ import com.azure.resourcemanager.machinelearning.implementation.OperationsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.PrivateEndpointConnectionsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.PrivateLinkResourcesImpl;
 import com.azure.resourcemanager.machinelearning.implementation.QuotasImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RaiPoliciesImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RaiPolicyOperationsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistriesImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistryCodeContainersImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistryCodeVersionsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistryComponentContainersImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistryComponentVersionsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistryDataContainersImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistryDataReferencesImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistryDataVersionsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistryEnvironmentContainersImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistryEnvironmentVersionsImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistryModelContainersImpl;
+import com.azure.resourcemanager.machinelearning.implementation.RegistryModelVersionsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.SchedulesImpl;
+import com.azure.resourcemanager.machinelearning.implementation.ServerlessEndpointsImpl;
 import com.azure.resourcemanager.machinelearning.implementation.UsagesImpl;
 import com.azure.resourcemanager.machinelearning.implementation.VirtualMachineSizesImpl;
 import com.azure.resourcemanager.machinelearning.implementation.WorkspaceConnectionsImpl;
@@ -54,17 +87,35 @@ import com.azure.resourcemanager.machinelearning.implementation.WorkspaceFeature
 import com.azure.resourcemanager.machinelearning.implementation.WorkspacesImpl;
 import com.azure.resourcemanager.machinelearning.models.BatchDeployments;
 import com.azure.resourcemanager.machinelearning.models.BatchEndpoints;
+import com.azure.resourcemanager.machinelearning.models.CapacityReservationGroups;
 import com.azure.resourcemanager.machinelearning.models.CodeContainers;
 import com.azure.resourcemanager.machinelearning.models.CodeVersions;
 import com.azure.resourcemanager.machinelearning.models.ComponentContainers;
 import com.azure.resourcemanager.machinelearning.models.ComponentVersions;
 import com.azure.resourcemanager.machinelearning.models.Computes;
+import com.azure.resourcemanager.machinelearning.models.ConnectionRaiPolicies;
+import com.azure.resourcemanager.machinelearning.models.ConnectionRaiPolicyOperations;
+import com.azure.resourcemanager.machinelearning.models.Connections;
 import com.azure.resourcemanager.machinelearning.models.DataContainers;
 import com.azure.resourcemanager.machinelearning.models.DataVersions;
 import com.azure.resourcemanager.machinelearning.models.Datastores;
+import com.azure.resourcemanager.machinelearning.models.EndpointDeployments;
+import com.azure.resourcemanager.machinelearning.models.Endpoints;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentContainers;
 import com.azure.resourcemanager.machinelearning.models.EnvironmentVersions;
+import com.azure.resourcemanager.machinelearning.models.Features;
+import com.azure.resourcemanager.machinelearning.models.FeaturesetContainers;
+import com.azure.resourcemanager.machinelearning.models.FeaturesetVersions;
+import com.azure.resourcemanager.machinelearning.models.FeaturestoreEntityContainers;
+import com.azure.resourcemanager.machinelearning.models.FeaturestoreEntityVersions;
+import com.azure.resourcemanager.machinelearning.models.InferenceEndpoints;
+import com.azure.resourcemanager.machinelearning.models.InferenceGroups;
+import com.azure.resourcemanager.machinelearning.models.InferencePools;
 import com.azure.resourcemanager.machinelearning.models.Jobs;
+import com.azure.resourcemanager.machinelearning.models.LabelingJobs;
+import com.azure.resourcemanager.machinelearning.models.ManagedNetworkProvisions;
+import com.azure.resourcemanager.machinelearning.models.ManagedNetworkSettingsRules;
+import com.azure.resourcemanager.machinelearning.models.MarketplaceSubscriptions;
 import com.azure.resourcemanager.machinelearning.models.ModelContainers;
 import com.azure.resourcemanager.machinelearning.models.ModelVersions;
 import com.azure.resourcemanager.machinelearning.models.OnlineDeployments;
@@ -73,7 +124,22 @@ import com.azure.resourcemanager.machinelearning.models.Operations;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointConnections;
 import com.azure.resourcemanager.machinelearning.models.PrivateLinkResources;
 import com.azure.resourcemanager.machinelearning.models.Quotas;
+import com.azure.resourcemanager.machinelearning.models.RaiPolicies;
+import com.azure.resourcemanager.machinelearning.models.RaiPolicyOperations;
+import com.azure.resourcemanager.machinelearning.models.Registries;
+import com.azure.resourcemanager.machinelearning.models.RegistryCodeContainers;
+import com.azure.resourcemanager.machinelearning.models.RegistryCodeVersions;
+import com.azure.resourcemanager.machinelearning.models.RegistryComponentContainers;
+import com.azure.resourcemanager.machinelearning.models.RegistryComponentVersions;
+import com.azure.resourcemanager.machinelearning.models.RegistryDataContainers;
+import com.azure.resourcemanager.machinelearning.models.RegistryDataReferences;
+import com.azure.resourcemanager.machinelearning.models.RegistryDataVersions;
+import com.azure.resourcemanager.machinelearning.models.RegistryEnvironmentContainers;
+import com.azure.resourcemanager.machinelearning.models.RegistryEnvironmentVersions;
+import com.azure.resourcemanager.machinelearning.models.RegistryModelContainers;
+import com.azure.resourcemanager.machinelearning.models.RegistryModelVersions;
 import com.azure.resourcemanager.machinelearning.models.Schedules;
+import com.azure.resourcemanager.machinelearning.models.ServerlessEndpoints;
 import com.azure.resourcemanager.machinelearning.models.Usages;
 import com.azure.resourcemanager.machinelearning.models.VirtualMachineSizes;
 import com.azure.resourcemanager.machinelearning.models.WorkspaceConnections;
@@ -87,14 +153,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Entry point to MachineLearningManager. These APIs allow end users to operate on Azure Machine Learning Workspace
- * resources.
+ * Entry point to MachineLearningManager.
+ * These APIs allow end users to operate on Azure Machine Learning Workspace resources.
  */
 public final class MachineLearningManager {
-    private Operations operations;
-
-    private Workspaces workspaces;
-
     private Usages usages;
 
     private VirtualMachineSizes virtualMachineSizes;
@@ -103,11 +165,31 @@ public final class MachineLearningManager {
 
     private Computes computes;
 
-    private PrivateEndpointConnections privateEndpointConnections;
+    private CapacityReservationGroups capacityReservationGroups;
 
-    private PrivateLinkResources privateLinkResources;
+    private RegistryCodeContainers registryCodeContainers;
 
-    private WorkspaceConnections workspaceConnections;
+    private RegistryCodeVersions registryCodeVersions;
+
+    private RegistryComponentContainers registryComponentContainers;
+
+    private RegistryComponentVersions registryComponentVersions;
+
+    private RegistryDataContainers registryDataContainers;
+
+    private RegistryDataVersions registryDataVersions;
+
+    private RegistryDataReferences registryDataReferences;
+
+    private RegistryEnvironmentContainers registryEnvironmentContainers;
+
+    private RegistryEnvironmentVersions registryEnvironmentVersions;
+
+    private MarketplaceSubscriptions marketplaceSubscriptions;
+
+    private RegistryModelContainers registryModelContainers;
+
+    private RegistryModelVersions registryModelVersions;
 
     private BatchEndpoints batchEndpoints;
 
@@ -131,7 +213,25 @@ public final class MachineLearningManager {
 
     private EnvironmentVersions environmentVersions;
 
+    private FeaturesetContainers featuresetContainers;
+
+    private Features features;
+
+    private FeaturesetVersions featuresetVersions;
+
+    private FeaturestoreEntityContainers featurestoreEntityContainers;
+
+    private FeaturestoreEntityVersions featurestoreEntityVersions;
+
+    private InferencePools inferencePools;
+
+    private InferenceEndpoints inferenceEndpoints;
+
+    private InferenceGroups inferenceGroups;
+
     private Jobs jobs;
+
+    private LabelingJobs labelingJobs;
 
     private ModelContainers modelContainers;
 
@@ -143,25 +243,53 @@ public final class MachineLearningManager {
 
     private Schedules schedules;
 
+    private ServerlessEndpoints serverlessEndpoints;
+
+    private Registries registries;
+
     private WorkspaceFeatures workspaceFeatures;
 
-    private final AzureMachineLearningWorkspaces clientObject;
+    private Operations operations;
+
+    private Workspaces workspaces;
+
+    private WorkspaceConnections workspaceConnections;
+
+    private Connections connections;
+
+    private ConnectionRaiPolicies connectionRaiPolicies;
+
+    private ConnectionRaiPolicyOperations connectionRaiPolicyOperations;
+
+    private EndpointDeployments endpointDeployments;
+
+    private Endpoints endpoints;
+
+    private RaiPolicies raiPolicies;
+
+    private RaiPolicyOperations raiPolicyOperations;
+
+    private ManagedNetworkSettingsRules managedNetworkSettingsRules;
+
+    private PrivateEndpointConnections privateEndpointConnections;
+
+    private PrivateLinkResources privateLinkResources;
+
+    private ManagedNetworkProvisions managedNetworkProvisions;
+
+    private final AzureMachineLearningServices clientObject;
 
     private MachineLearningManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject =
-            new AzureMachineLearningWorkspacesBuilder()
-                .pipeline(httpPipeline)
-                .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .subscriptionId(profile.getSubscriptionId())
-                .defaultPollInterval(defaultPollInterval)
-                .buildClient();
+        this.clientObject = new AzureMachineLearningServicesBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
      * Creates an instance of Machine Learning service API entry point.
-     *
+     * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
      * @return the Machine Learning service API instance.
@@ -174,7 +302,7 @@ public final class MachineLearningManager {
 
     /**
      * Creates an instance of Machine Learning service API entry point.
-     *
+     * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
      * @return the Machine Learning service API instance.
@@ -187,14 +315,16 @@ public final class MachineLearningManager {
 
     /**
      * Gets a Configurable instance that can be used to create MachineLearningManager with optional configuration.
-     *
+     * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
         return new MachineLearningManager.Configurable();
     }
 
-    /** The Configurable allowing configurations to be set. */
+    /**
+     * The Configurable allowing configurations to be set.
+     */
     public static final class Configurable {
         private static final ClientLogger LOGGER = new ClientLogger(Configurable.class);
 
@@ -266,8 +396,8 @@ public final class MachineLearningManager {
 
         /**
          * Sets the retry options for the HTTP pipeline retry policy.
-         *
-         * <p>This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
+         * <p>
+         * This setting has no effect, if retry policy is set via {@link #withRetryPolicy(RetryPolicy)}.
          *
          * @param retryOptions the retry options for the HTTP pipeline retry policy.
          * @return the configurable object itself.
@@ -284,8 +414,8 @@ public final class MachineLearningManager {
          * @return the configurable object itself.
          */
         public Configurable withDefaultPollInterval(Duration defaultPollInterval) {
-            this.defaultPollInterval =
-                Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
+            this.defaultPollInterval
+                = Objects.requireNonNull(defaultPollInterval, "'defaultPollInterval' cannot be null.");
             if (this.defaultPollInterval.isNegative()) {
                 throw LOGGER
                     .logExceptionAsError(new IllegalArgumentException("'defaultPollInterval' cannot be negative"));
@@ -305,21 +435,12 @@ public final class MachineLearningManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder
-                .append("azsdk-java")
-                .append("-")
-                .append("com.azure.resourcemanager.machinelearning")
-                .append("/")
-                .append("1.0.0");
+            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.machinelearning")
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder
-                    .append(" (")
-                    .append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.name"))
-                    .append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version"))
-                    .append("; auto-generated)");
+                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -338,62 +459,25 @@ public final class MachineLearningManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
-            policies
-                .addAll(
-                    this
-                        .policies
-                        .stream()
-                        .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
-                        .collect(Collectors.toList()));
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
-            HttpPipeline httpPipeline =
-                new HttpPipelineBuilder()
-                    .httpClient(httpClient)
-                    .policies(policies.toArray(new HttpPipelinePolicy[0]))
-                    .build();
+            HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
+                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
             return new MachineLearningManager(httpPipeline, profile, defaultPollInterval);
         }
     }
 
     /**
-     * Gets the resource collection API of Operations.
-     *
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
-    }
-
-    /**
-     * Gets the resource collection API of Workspaces. It manages Workspace.
-     *
-     * @return Resource collection API of Workspaces.
-     */
-    public Workspaces workspaces() {
-        if (this.workspaces == null) {
-            this.workspaces = new WorkspacesImpl(clientObject.getWorkspaces(), this);
-        }
-        return workspaces;
-    }
-
-    /**
      * Gets the resource collection API of Usages.
-     *
+     * 
      * @return Resource collection API of Usages.
      */
     public Usages usages() {
@@ -405,7 +489,7 @@ public final class MachineLearningManager {
 
     /**
      * Gets the resource collection API of VirtualMachineSizes.
-     *
+     * 
      * @return Resource collection API of VirtualMachineSizes.
      */
     public VirtualMachineSizes virtualMachineSizes() {
@@ -417,7 +501,7 @@ public final class MachineLearningManager {
 
     /**
      * Gets the resource collection API of Quotas.
-     *
+     * 
      * @return Resource collection API of Quotas.
      */
     public Quotas quotas() {
@@ -429,7 +513,7 @@ public final class MachineLearningManager {
 
     /**
      * Gets the resource collection API of Computes. It manages ComputeResource.
-     *
+     * 
      * @return Resource collection API of Computes.
      */
     public Computes computes() {
@@ -440,46 +524,174 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of PrivateEndpointConnections. It manages PrivateEndpointConnection.
-     *
-     * @return Resource collection API of PrivateEndpointConnections.
+     * Gets the resource collection API of CapacityReservationGroups. It manages CapacityReservationGroup.
+     * 
+     * @return Resource collection API of CapacityReservationGroups.
      */
-    public PrivateEndpointConnections privateEndpointConnections() {
-        if (this.privateEndpointConnections == null) {
-            this.privateEndpointConnections =
-                new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
+    public CapacityReservationGroups capacityReservationGroups() {
+        if (this.capacityReservationGroups == null) {
+            this.capacityReservationGroups
+                = new CapacityReservationGroupsImpl(clientObject.getCapacityReservationGroups(), this);
         }
-        return privateEndpointConnections;
+        return capacityReservationGroups;
     }
 
     /**
-     * Gets the resource collection API of PrivateLinkResources.
-     *
-     * @return Resource collection API of PrivateLinkResources.
+     * Gets the resource collection API of RegistryCodeContainers. It manages CodeContainer.
+     * 
+     * @return Resource collection API of RegistryCodeContainers.
      */
-    public PrivateLinkResources privateLinkResources() {
-        if (this.privateLinkResources == null) {
-            this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
+    public RegistryCodeContainers registryCodeContainers() {
+        if (this.registryCodeContainers == null) {
+            this.registryCodeContainers
+                = new RegistryCodeContainersImpl(clientObject.getRegistryCodeContainers(), this);
         }
-        return privateLinkResources;
+        return registryCodeContainers;
     }
 
     /**
-     * Gets the resource collection API of WorkspaceConnections. It manages
-     * WorkspaceConnectionPropertiesV2BasicResource.
-     *
-     * @return Resource collection API of WorkspaceConnections.
+     * Gets the resource collection API of RegistryCodeVersions. It manages CodeVersion.
+     * 
+     * @return Resource collection API of RegistryCodeVersions.
      */
-    public WorkspaceConnections workspaceConnections() {
-        if (this.workspaceConnections == null) {
-            this.workspaceConnections = new WorkspaceConnectionsImpl(clientObject.getWorkspaceConnections(), this);
+    public RegistryCodeVersions registryCodeVersions() {
+        if (this.registryCodeVersions == null) {
+            this.registryCodeVersions = new RegistryCodeVersionsImpl(clientObject.getRegistryCodeVersions(), this);
         }
-        return workspaceConnections;
+        return registryCodeVersions;
+    }
+
+    /**
+     * Gets the resource collection API of RegistryComponentContainers. It manages ComponentContainer.
+     * 
+     * @return Resource collection API of RegistryComponentContainers.
+     */
+    public RegistryComponentContainers registryComponentContainers() {
+        if (this.registryComponentContainers == null) {
+            this.registryComponentContainers
+                = new RegistryComponentContainersImpl(clientObject.getRegistryComponentContainers(), this);
+        }
+        return registryComponentContainers;
+    }
+
+    /**
+     * Gets the resource collection API of RegistryComponentVersions. It manages ComponentVersion.
+     * 
+     * @return Resource collection API of RegistryComponentVersions.
+     */
+    public RegistryComponentVersions registryComponentVersions() {
+        if (this.registryComponentVersions == null) {
+            this.registryComponentVersions
+                = new RegistryComponentVersionsImpl(clientObject.getRegistryComponentVersions(), this);
+        }
+        return registryComponentVersions;
+    }
+
+    /**
+     * Gets the resource collection API of RegistryDataContainers. It manages DataContainer.
+     * 
+     * @return Resource collection API of RegistryDataContainers.
+     */
+    public RegistryDataContainers registryDataContainers() {
+        if (this.registryDataContainers == null) {
+            this.registryDataContainers
+                = new RegistryDataContainersImpl(clientObject.getRegistryDataContainers(), this);
+        }
+        return registryDataContainers;
+    }
+
+    /**
+     * Gets the resource collection API of RegistryDataVersions. It manages DataVersionBase.
+     * 
+     * @return Resource collection API of RegistryDataVersions.
+     */
+    public RegistryDataVersions registryDataVersions() {
+        if (this.registryDataVersions == null) {
+            this.registryDataVersions = new RegistryDataVersionsImpl(clientObject.getRegistryDataVersions(), this);
+        }
+        return registryDataVersions;
+    }
+
+    /**
+     * Gets the resource collection API of RegistryDataReferences.
+     * 
+     * @return Resource collection API of RegistryDataReferences.
+     */
+    public RegistryDataReferences registryDataReferences() {
+        if (this.registryDataReferences == null) {
+            this.registryDataReferences
+                = new RegistryDataReferencesImpl(clientObject.getRegistryDataReferences(), this);
+        }
+        return registryDataReferences;
+    }
+
+    /**
+     * Gets the resource collection API of RegistryEnvironmentContainers. It manages EnvironmentContainer.
+     * 
+     * @return Resource collection API of RegistryEnvironmentContainers.
+     */
+    public RegistryEnvironmentContainers registryEnvironmentContainers() {
+        if (this.registryEnvironmentContainers == null) {
+            this.registryEnvironmentContainers
+                = new RegistryEnvironmentContainersImpl(clientObject.getRegistryEnvironmentContainers(), this);
+        }
+        return registryEnvironmentContainers;
+    }
+
+    /**
+     * Gets the resource collection API of RegistryEnvironmentVersions. It manages EnvironmentVersion.
+     * 
+     * @return Resource collection API of RegistryEnvironmentVersions.
+     */
+    public RegistryEnvironmentVersions registryEnvironmentVersions() {
+        if (this.registryEnvironmentVersions == null) {
+            this.registryEnvironmentVersions
+                = new RegistryEnvironmentVersionsImpl(clientObject.getRegistryEnvironmentVersions(), this);
+        }
+        return registryEnvironmentVersions;
+    }
+
+    /**
+     * Gets the resource collection API of MarketplaceSubscriptions. It manages MarketplaceSubscription.
+     * 
+     * @return Resource collection API of MarketplaceSubscriptions.
+     */
+    public MarketplaceSubscriptions marketplaceSubscriptions() {
+        if (this.marketplaceSubscriptions == null) {
+            this.marketplaceSubscriptions
+                = new MarketplaceSubscriptionsImpl(clientObject.getMarketplaceSubscriptions(), this);
+        }
+        return marketplaceSubscriptions;
+    }
+
+    /**
+     * Gets the resource collection API of RegistryModelContainers. It manages ModelContainer.
+     * 
+     * @return Resource collection API of RegistryModelContainers.
+     */
+    public RegistryModelContainers registryModelContainers() {
+        if (this.registryModelContainers == null) {
+            this.registryModelContainers
+                = new RegistryModelContainersImpl(clientObject.getRegistryModelContainers(), this);
+        }
+        return registryModelContainers;
+    }
+
+    /**
+     * Gets the resource collection API of RegistryModelVersions. It manages ModelVersion.
+     * 
+     * @return Resource collection API of RegistryModelVersions.
+     */
+    public RegistryModelVersions registryModelVersions() {
+        if (this.registryModelVersions == null) {
+            this.registryModelVersions = new RegistryModelVersionsImpl(clientObject.getRegistryModelVersions(), this);
+        }
+        return registryModelVersions;
     }
 
     /**
      * Gets the resource collection API of BatchEndpoints. It manages BatchEndpoint.
-     *
+     * 
      * @return Resource collection API of BatchEndpoints.
      */
     public BatchEndpoints batchEndpoints() {
@@ -491,7 +703,7 @@ public final class MachineLearningManager {
 
     /**
      * Gets the resource collection API of BatchDeployments. It manages BatchDeployment.
-     *
+     * 
      * @return Resource collection API of BatchDeployments.
      */
     public BatchDeployments batchDeployments() {
@@ -502,8 +714,8 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of CodeContainers. It manages CodeContainer.
-     *
+     * Gets the resource collection API of CodeContainers.
+     * 
      * @return Resource collection API of CodeContainers.
      */
     public CodeContainers codeContainers() {
@@ -514,8 +726,8 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of CodeVersions. It manages CodeVersion.
-     *
+     * Gets the resource collection API of CodeVersions.
+     * 
      * @return Resource collection API of CodeVersions.
      */
     public CodeVersions codeVersions() {
@@ -526,8 +738,8 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of ComponentContainers. It manages ComponentContainer.
-     *
+     * Gets the resource collection API of ComponentContainers.
+     * 
      * @return Resource collection API of ComponentContainers.
      */
     public ComponentContainers componentContainers() {
@@ -538,8 +750,8 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of ComponentVersions. It manages ComponentVersion.
-     *
+     * Gets the resource collection API of ComponentVersions.
+     * 
      * @return Resource collection API of ComponentVersions.
      */
     public ComponentVersions componentVersions() {
@@ -550,8 +762,8 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of DataContainers. It manages DataContainer.
-     *
+     * Gets the resource collection API of DataContainers.
+     * 
      * @return Resource collection API of DataContainers.
      */
     public DataContainers dataContainers() {
@@ -562,8 +774,8 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of DataVersions. It manages DataVersionBase.
-     *
+     * Gets the resource collection API of DataVersions.
+     * 
      * @return Resource collection API of DataVersions.
      */
     public DataVersions dataVersions() {
@@ -575,7 +787,7 @@ public final class MachineLearningManager {
 
     /**
      * Gets the resource collection API of Datastores. It manages Datastore.
-     *
+     * 
      * @return Resource collection API of Datastores.
      */
     public Datastores datastores() {
@@ -586,8 +798,8 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of EnvironmentContainers. It manages EnvironmentContainer.
-     *
+     * Gets the resource collection API of EnvironmentContainers.
+     * 
      * @return Resource collection API of EnvironmentContainers.
      */
     public EnvironmentContainers environmentContainers() {
@@ -598,8 +810,8 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of EnvironmentVersions. It manages EnvironmentVersion.
-     *
+     * Gets the resource collection API of EnvironmentVersions.
+     * 
      * @return Resource collection API of EnvironmentVersions.
      */
     public EnvironmentVersions environmentVersions() {
@@ -610,8 +822,106 @@ public final class MachineLearningManager {
     }
 
     /**
+     * Gets the resource collection API of FeaturesetContainers. It manages FeaturesetContainer.
+     * 
+     * @return Resource collection API of FeaturesetContainers.
+     */
+    public FeaturesetContainers featuresetContainers() {
+        if (this.featuresetContainers == null) {
+            this.featuresetContainers = new FeaturesetContainersImpl(clientObject.getFeaturesetContainers(), this);
+        }
+        return featuresetContainers;
+    }
+
+    /**
+     * Gets the resource collection API of Features.
+     * 
+     * @return Resource collection API of Features.
+     */
+    public Features features() {
+        if (this.features == null) {
+            this.features = new FeaturesImpl(clientObject.getFeatures(), this);
+        }
+        return features;
+    }
+
+    /**
+     * Gets the resource collection API of FeaturesetVersions. It manages FeaturesetVersion.
+     * 
+     * @return Resource collection API of FeaturesetVersions.
+     */
+    public FeaturesetVersions featuresetVersions() {
+        if (this.featuresetVersions == null) {
+            this.featuresetVersions = new FeaturesetVersionsImpl(clientObject.getFeaturesetVersions(), this);
+        }
+        return featuresetVersions;
+    }
+
+    /**
+     * Gets the resource collection API of FeaturestoreEntityContainers. It manages FeaturestoreEntityContainer.
+     * 
+     * @return Resource collection API of FeaturestoreEntityContainers.
+     */
+    public FeaturestoreEntityContainers featurestoreEntityContainers() {
+        if (this.featurestoreEntityContainers == null) {
+            this.featurestoreEntityContainers
+                = new FeaturestoreEntityContainersImpl(clientObject.getFeaturestoreEntityContainers(), this);
+        }
+        return featurestoreEntityContainers;
+    }
+
+    /**
+     * Gets the resource collection API of FeaturestoreEntityVersions. It manages FeaturestoreEntityVersion.
+     * 
+     * @return Resource collection API of FeaturestoreEntityVersions.
+     */
+    public FeaturestoreEntityVersions featurestoreEntityVersions() {
+        if (this.featurestoreEntityVersions == null) {
+            this.featurestoreEntityVersions
+                = new FeaturestoreEntityVersionsImpl(clientObject.getFeaturestoreEntityVersions(), this);
+        }
+        return featurestoreEntityVersions;
+    }
+
+    /**
+     * Gets the resource collection API of InferencePools. It manages InferencePool.
+     * 
+     * @return Resource collection API of InferencePools.
+     */
+    public InferencePools inferencePools() {
+        if (this.inferencePools == null) {
+            this.inferencePools = new InferencePoolsImpl(clientObject.getInferencePools(), this);
+        }
+        return inferencePools;
+    }
+
+    /**
+     * Gets the resource collection API of InferenceEndpoints. It manages InferenceEndpoint.
+     * 
+     * @return Resource collection API of InferenceEndpoints.
+     */
+    public InferenceEndpoints inferenceEndpoints() {
+        if (this.inferenceEndpoints == null) {
+            this.inferenceEndpoints = new InferenceEndpointsImpl(clientObject.getInferenceEndpoints(), this);
+        }
+        return inferenceEndpoints;
+    }
+
+    /**
+     * Gets the resource collection API of InferenceGroups. It manages InferenceGroup.
+     * 
+     * @return Resource collection API of InferenceGroups.
+     */
+    public InferenceGroups inferenceGroups() {
+        if (this.inferenceGroups == null) {
+            this.inferenceGroups = new InferenceGroupsImpl(clientObject.getInferenceGroups(), this);
+        }
+        return inferenceGroups;
+    }
+
+    /**
      * Gets the resource collection API of Jobs. It manages JobBase.
-     *
+     * 
      * @return Resource collection API of Jobs.
      */
     public Jobs jobs() {
@@ -622,8 +932,20 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of ModelContainers. It manages ModelContainer.
-     *
+     * Gets the resource collection API of LabelingJobs. It manages LabelingJob.
+     * 
+     * @return Resource collection API of LabelingJobs.
+     */
+    public LabelingJobs labelingJobs() {
+        if (this.labelingJobs == null) {
+            this.labelingJobs = new LabelingJobsImpl(clientObject.getLabelingJobs(), this);
+        }
+        return labelingJobs;
+    }
+
+    /**
+     * Gets the resource collection API of ModelContainers.
+     * 
      * @return Resource collection API of ModelContainers.
      */
     public ModelContainers modelContainers() {
@@ -634,8 +956,8 @@ public final class MachineLearningManager {
     }
 
     /**
-     * Gets the resource collection API of ModelVersions. It manages ModelVersion.
-     *
+     * Gets the resource collection API of ModelVersions.
+     * 
      * @return Resource collection API of ModelVersions.
      */
     public ModelVersions modelVersions() {
@@ -647,7 +969,7 @@ public final class MachineLearningManager {
 
     /**
      * Gets the resource collection API of OnlineEndpoints. It manages OnlineEndpoint.
-     *
+     * 
      * @return Resource collection API of OnlineEndpoints.
      */
     public OnlineEndpoints onlineEndpoints() {
@@ -659,7 +981,7 @@ public final class MachineLearningManager {
 
     /**
      * Gets the resource collection API of OnlineDeployments. It manages OnlineDeployment.
-     *
+     * 
      * @return Resource collection API of OnlineDeployments.
      */
     public OnlineDeployments onlineDeployments() {
@@ -671,7 +993,7 @@ public final class MachineLearningManager {
 
     /**
      * Gets the resource collection API of Schedules. It manages Schedule.
-     *
+     * 
      * @return Resource collection API of Schedules.
      */
     public Schedules schedules() {
@@ -682,8 +1004,32 @@ public final class MachineLearningManager {
     }
 
     /**
+     * Gets the resource collection API of ServerlessEndpoints. It manages ServerlessEndpoint.
+     * 
+     * @return Resource collection API of ServerlessEndpoints.
+     */
+    public ServerlessEndpoints serverlessEndpoints() {
+        if (this.serverlessEndpoints == null) {
+            this.serverlessEndpoints = new ServerlessEndpointsImpl(clientObject.getServerlessEndpoints(), this);
+        }
+        return serverlessEndpoints;
+    }
+
+    /**
+     * Gets the resource collection API of Registries. It manages Registry.
+     * 
+     * @return Resource collection API of Registries.
+     */
+    public Registries registries() {
+        if (this.registries == null) {
+            this.registries = new RegistriesImpl(clientObject.getRegistries(), this);
+        }
+        return registries;
+    }
+
+    /**
      * Gets the resource collection API of WorkspaceFeatures.
-     *
+     * 
      * @return Resource collection API of WorkspaceFeatures.
      */
     public WorkspaceFeatures workspaceFeatures() {
@@ -694,10 +1040,185 @@ public final class MachineLearningManager {
     }
 
     /**
-     * @return Wrapped service client AzureMachineLearningWorkspaces providing direct access to the underlying
-     *     auto-generated API implementation, based on Azure REST API.
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
      */
-    public AzureMachineLearningWorkspaces serviceClient() {
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
+    }
+
+    /**
+     * Gets the resource collection API of Workspaces. It manages Workspace.
+     * 
+     * @return Resource collection API of Workspaces.
+     */
+    public Workspaces workspaces() {
+        if (this.workspaces == null) {
+            this.workspaces = new WorkspacesImpl(clientObject.getWorkspaces(), this);
+        }
+        return workspaces;
+    }
+
+    /**
+     * Gets the resource collection API of WorkspaceConnections. It manages
+     * WorkspaceConnectionPropertiesV2BasicResource.
+     * 
+     * @return Resource collection API of WorkspaceConnections.
+     */
+    public WorkspaceConnections workspaceConnections() {
+        if (this.workspaceConnections == null) {
+            this.workspaceConnections = new WorkspaceConnectionsImpl(clientObject.getWorkspaceConnections(), this);
+        }
+        return workspaceConnections;
+    }
+
+    /**
+     * Gets the resource collection API of Connections. It manages EndpointDeploymentResourcePropertiesBasicResource.
+     * 
+     * @return Resource collection API of Connections.
+     */
+    public Connections connections() {
+        if (this.connections == null) {
+            this.connections = new ConnectionsImpl(clientObject.getConnections(), this);
+        }
+        return connections;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectionRaiPolicies.
+     * 
+     * @return Resource collection API of ConnectionRaiPolicies.
+     */
+    public ConnectionRaiPolicies connectionRaiPolicies() {
+        if (this.connectionRaiPolicies == null) {
+            this.connectionRaiPolicies = new ConnectionRaiPoliciesImpl(clientObject.getConnectionRaiPolicies(), this);
+        }
+        return connectionRaiPolicies;
+    }
+
+    /**
+     * Gets the resource collection API of ConnectionRaiPolicyOperations. It manages RaiPolicyPropertiesBasicResource.
+     * 
+     * @return Resource collection API of ConnectionRaiPolicyOperations.
+     */
+    public ConnectionRaiPolicyOperations connectionRaiPolicyOperations() {
+        if (this.connectionRaiPolicyOperations == null) {
+            this.connectionRaiPolicyOperations
+                = new ConnectionRaiPolicyOperationsImpl(clientObject.getConnectionRaiPolicyOperations(), this);
+        }
+        return connectionRaiPolicyOperations;
+    }
+
+    /**
+     * Gets the resource collection API of EndpointDeployments.
+     * 
+     * @return Resource collection API of EndpointDeployments.
+     */
+    public EndpointDeployments endpointDeployments() {
+        if (this.endpointDeployments == null) {
+            this.endpointDeployments = new EndpointDeploymentsImpl(clientObject.getEndpointDeployments(), this);
+        }
+        return endpointDeployments;
+    }
+
+    /**
+     * Gets the resource collection API of Endpoints. It manages EndpointResourcePropertiesBasicResource.
+     * 
+     * @return Resource collection API of Endpoints.
+     */
+    public Endpoints endpoints() {
+        if (this.endpoints == null) {
+            this.endpoints = new EndpointsImpl(clientObject.getEndpoints(), this);
+        }
+        return endpoints;
+    }
+
+    /**
+     * Gets the resource collection API of RaiPolicies.
+     * 
+     * @return Resource collection API of RaiPolicies.
+     */
+    public RaiPolicies raiPolicies() {
+        if (this.raiPolicies == null) {
+            this.raiPolicies = new RaiPoliciesImpl(clientObject.getRaiPolicies(), this);
+        }
+        return raiPolicies;
+    }
+
+    /**
+     * Gets the resource collection API of RaiPolicyOperations.
+     * 
+     * @return Resource collection API of RaiPolicyOperations.
+     */
+    public RaiPolicyOperations raiPolicyOperations() {
+        if (this.raiPolicyOperations == null) {
+            this.raiPolicyOperations = new RaiPolicyOperationsImpl(clientObject.getRaiPolicyOperations(), this);
+        }
+        return raiPolicyOperations;
+    }
+
+    /**
+     * Gets the resource collection API of ManagedNetworkSettingsRules. It manages OutboundRuleBasicResource.
+     * 
+     * @return Resource collection API of ManagedNetworkSettingsRules.
+     */
+    public ManagedNetworkSettingsRules managedNetworkSettingsRules() {
+        if (this.managedNetworkSettingsRules == null) {
+            this.managedNetworkSettingsRules
+                = new ManagedNetworkSettingsRulesImpl(clientObject.getManagedNetworkSettingsRules(), this);
+        }
+        return managedNetworkSettingsRules;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateEndpointConnections. It manages PrivateEndpointConnection.
+     * 
+     * @return Resource collection API of PrivateEndpointConnections.
+     */
+    public PrivateEndpointConnections privateEndpointConnections() {
+        if (this.privateEndpointConnections == null) {
+            this.privateEndpointConnections
+                = new PrivateEndpointConnectionsImpl(clientObject.getPrivateEndpointConnections(), this);
+        }
+        return privateEndpointConnections;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateLinkResources.
+     * 
+     * @return Resource collection API of PrivateLinkResources.
+     */
+    public PrivateLinkResources privateLinkResources() {
+        if (this.privateLinkResources == null) {
+            this.privateLinkResources = new PrivateLinkResourcesImpl(clientObject.getPrivateLinkResources(), this);
+        }
+        return privateLinkResources;
+    }
+
+    /**
+     * Gets the resource collection API of ManagedNetworkProvisions.
+     * 
+     * @return Resource collection API of ManagedNetworkProvisions.
+     */
+    public ManagedNetworkProvisions managedNetworkProvisions() {
+        if (this.managedNetworkProvisions == null) {
+            this.managedNetworkProvisions
+                = new ManagedNetworkProvisionsImpl(clientObject.getManagedNetworkProvisions(), this);
+        }
+        return managedNetworkProvisions;
+    }
+
+    /**
+     * Gets wrapped service client AzureMachineLearningServices providing direct access to the underlying auto-generated
+     * API implementation, based on Azure REST API.
+     * 
+     * @return Wrapped service client AzureMachineLearningServices.
+     */
+    public AzureMachineLearningServices serviceClient() {
         return this.clientObject;
     }
 }

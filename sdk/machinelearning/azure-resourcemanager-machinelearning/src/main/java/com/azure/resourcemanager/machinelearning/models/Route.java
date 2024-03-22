@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Route model. */
+/**
+ * The Route model.
+ */
 @Fluent
 public final class Route {
     /*
@@ -23,13 +25,15 @@ public final class Route {
     @JsonProperty(value = "port", required = true)
     private int port;
 
-    /** Creates an instance of Route class. */
+    /**
+     * Creates an instance of Route class.
+     */
     public Route() {
     }
 
     /**
      * Get the path property: [Required] The path for the route.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -38,7 +42,7 @@ public final class Route {
 
     /**
      * Set the path property: [Required] The path for the route.
-     *
+     * 
      * @param path the path value to set.
      * @return the Route object itself.
      */
@@ -49,7 +53,7 @@ public final class Route {
 
     /**
      * Get the port property: [Required] The port for the route.
-     *
+     * 
      * @return the port value.
      */
     public int port() {
@@ -58,7 +62,7 @@ public final class Route {
 
     /**
      * Set the port property: [Required] The port for the route.
-     *
+     * 
      * @param port the port value to set.
      * @return the Route object itself.
      */
@@ -69,7 +73,7 @@ public final class Route {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
