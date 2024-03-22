@@ -10,8 +10,8 @@ package com.azure.resourcemanager.storagecache.generated;
 public final class StorageTargetsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/
-     * StorageTargets_Get.json
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/StorageTargets_Get.
+     * json
      */
     /**
      * Sample code: StorageTargets_Get.

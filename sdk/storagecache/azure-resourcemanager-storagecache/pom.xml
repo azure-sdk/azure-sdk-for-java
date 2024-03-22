@@ -18,7 +18,7 @@
   <packaging>jar</packaging>
 
   <name>Microsoft Azure SDK for StorageCache Management</name>
-  <description>This package contains Microsoft Azure SDK for StorageCache Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Azure Managed Lustre provides a fully managed Lustre® file system, integrated with Blob storage, for use on demand. These operations create and manage Azure Managed Lustre file systems. Package tag package-preview-2023-11.</description>
+  <description>This package contains Microsoft Azure SDK for StorageCache Management SDK. For documentation on how to use this package, please see https://aka.ms/azsdk/java/mgmt. Azure Managed Lustre provides a fully managed Lustre® file system, integrated with Blob storage, for use on demand. These operations create and manage Azure Managed Lustre file systems. Package tag package-2024-03.</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <licenses>

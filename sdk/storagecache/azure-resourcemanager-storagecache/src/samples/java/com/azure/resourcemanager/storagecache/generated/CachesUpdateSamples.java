@@ -28,7 +28,7 @@ import java.util.Map;
 public final class CachesUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
      * Caches_Update_ldap_only.json
      */
     /**
@@ -79,8 +79,7 @@ public final class CachesUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/
-     * Caches_Update.json
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/Caches_Update.json
      */
     /**
      * Sample code: Caches_Update.

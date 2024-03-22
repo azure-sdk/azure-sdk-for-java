@@ -28,6 +28,7 @@ import com.azure.resourcemanager.storagecache.implementation.AmlFilesystemsImpl;
 import com.azure.resourcemanager.storagecache.implementation.AscOperationsImpl;
 import com.azure.resourcemanager.storagecache.implementation.AscUsagesImpl;
 import com.azure.resourcemanager.storagecache.implementation.CachesImpl;
+import com.azure.resourcemanager.storagecache.implementation.ImportJobsImpl;
 import com.azure.resourcemanager.storagecache.implementation.OperationsImpl;
 import com.azure.resourcemanager.storagecache.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.storagecache.implementation.SkusImpl;
@@ -39,6 +40,7 @@ import com.azure.resourcemanager.storagecache.models.AmlFilesystems;
 import com.azure.resourcemanager.storagecache.models.AscOperations;
 import com.azure.resourcemanager.storagecache.models.AscUsages;
 import com.azure.resourcemanager.storagecache.models.Caches;
+import com.azure.resourcemanager.storagecache.models.ImportJobs;
 import com.azure.resourcemanager.storagecache.models.Operations;
 import com.azure.resourcemanager.storagecache.models.ResourceProviders;
 import com.azure.resourcemanager.storagecache.models.Skus;
@@ -59,6 +61,8 @@ import java.util.stream.Collectors;
  */
 public final class StorageCacheManager {
     private AmlFilesystems amlFilesystems;
+
+    private ImportJobs importJobs;
 
     private ResourceProviders resourceProviders;
 
@@ -237,7 +241,7 @@ public final class StorageCacheManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.storagecache")
-                .append("/").append("1.0.0-beta.10");
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -286,6 +290,18 @@ public final class StorageCacheManager {
             this.amlFilesystems = new AmlFilesystemsImpl(clientObject.getAmlFilesystems(), this);
         }
         return amlFilesystems;
+    }
+
+    /**
+     * Gets the resource collection API of ImportJobs. It manages ImportJob.
+     * 
+     * @return Resource collection API of ImportJobs.
+     */
+    public ImportJobs importJobs() {
+        if (this.importJobs == null) {
+            this.importJobs = new ImportJobsImpl(clientObject.getImportJobs(), this);
+        }
+        return importJobs;
     }
 
     /**

@@ -21,7 +21,7 @@ import java.util.Map;
 public final class AmlFilesystemsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
      * amlFilesystems_Update.json
      */
     /**

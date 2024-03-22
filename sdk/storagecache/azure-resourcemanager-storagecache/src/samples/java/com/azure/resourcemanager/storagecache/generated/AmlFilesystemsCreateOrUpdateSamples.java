@@ -27,7 +27,7 @@ import java.util.Map;
 public final class AmlFilesystemsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/storagecache/resource-manager/Microsoft.StorageCache/preview/2023-11-01-preview/examples/
+     * specification/storagecache/resource-manager/Microsoft.StorageCache/stable/2024-03-01/examples/
      * amlFilesystems_CreateOrUpdate.json
      */
     /**
@@ -57,7 +57,7 @@ public final class AmlFilesystemsCreateOrUpdateSamples {
                 "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Storage/storageAccounts/storageaccountname/blobServices/default/containers/containername")
                 .withLoggingContainer(
                     "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/scgroup/providers/Microsoft.Storage/storageAccounts/storageaccountname/blobServices/default/containers/loggingcontainername")
-                .withImportPrefix("/")))
+                .withImportPrefixesInitial(Arrays.asList("/"))))
             .withRootSquashSettings(new AmlFilesystemRootSquashSettings().withMode(AmlFilesystemSquashMode.ALL)
                 .withNoSquashNidLists("10.0.0.[5-6]@tcp;10.0.1.2@tcp").withSquashUid(99L).withSquashGid(99L))
             .create();

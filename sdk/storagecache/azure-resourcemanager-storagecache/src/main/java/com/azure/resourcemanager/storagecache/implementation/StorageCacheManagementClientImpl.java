@@ -26,6 +26,7 @@ import com.azure.resourcemanager.storagecache.fluent.AmlFilesystemsClient;
 import com.azure.resourcemanager.storagecache.fluent.AscOperationsClient;
 import com.azure.resourcemanager.storagecache.fluent.AscUsagesClient;
 import com.azure.resourcemanager.storagecache.fluent.CachesClient;
+import com.azure.resourcemanager.storagecache.fluent.ImportJobsClient;
 import com.azure.resourcemanager.storagecache.fluent.OperationsClient;
 import com.azure.resourcemanager.storagecache.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.storagecache.fluent.SkusClient;
@@ -143,6 +144,20 @@ public final class StorageCacheManagementClientImpl implements StorageCacheManag
      */
     public AmlFilesystemsClient getAmlFilesystems() {
         return this.amlFilesystems;
+    }
+
+    /**
+     * The ImportJobsClient object to access its operations.
+     */
+    private final ImportJobsClient importJobs;
+
+    /**
+     * Gets the ImportJobsClient object to access its operations.
+     * 
+     * @return the ImportJobsClient object.
+     */
+    public ImportJobsClient getImportJobs() {
+        return this.importJobs;
     }
 
     /**
@@ -288,8 +303,9 @@ public final class StorageCacheManagementClientImpl implements StorageCacheManag
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-11-01-preview";
+        this.apiVersion = "2024-03-01";
         this.amlFilesystems = new AmlFilesystemsClientImpl(this);
+        this.importJobs = new ImportJobsClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.skus = new SkusClientImpl(this);

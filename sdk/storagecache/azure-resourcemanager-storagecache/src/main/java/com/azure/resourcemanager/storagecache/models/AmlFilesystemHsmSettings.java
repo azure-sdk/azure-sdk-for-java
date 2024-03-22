@@ -7,6 +7,7 @@ package com.azure.resourcemanager.storagecache.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * AML file system HSM settings.
@@ -29,11 +30,20 @@ public final class AmlFilesystemHsmSettings {
     private String loggingContainer;
 
     /*
-     * Only blobs in the non-logging container that start with this path/prefix get hydrated into the cluster
-     * namespace.
+     * Only blobs in the non-logging container that start with this path/prefix get imported into the cluster
+     * namespace. This is only used during initial creation of the AML file system. It automatically creates an import
+     * job resource that can be deleted.
      */
     @JsonProperty(value = "importPrefix")
     private String importPrefix;
+
+    /*
+     * Only blobs in the non-logging container that start with one of the paths/prefixes in this array get imported
+     * into the cluster namespace. This is only used during initial creation of the AML file system and has '/' as the
+     * default value. It automatically creates an import job resource that can be deleted.
+     */
+    @JsonProperty(value = "importPrefixesInitial")
+    private List<String> importPrefixesInitial;
 
     /**
      * Creates an instance of AmlFilesystemHsmSettings class.
@@ -89,7 +99,8 @@ public final class AmlFilesystemHsmSettings {
 
     /**
      * Get the importPrefix property: Only blobs in the non-logging container that start with this path/prefix get
-     * hydrated into the cluster namespace.
+     * imported into the cluster namespace. This is only used during initial creation of the AML file system. It
+     * automatically creates an import job resource that can be deleted.
      * 
      * @return the importPrefix value.
      */
@@ -99,13 +110,40 @@ public final class AmlFilesystemHsmSettings {
 
     /**
      * Set the importPrefix property: Only blobs in the non-logging container that start with this path/prefix get
-     * hydrated into the cluster namespace.
+     * imported into the cluster namespace. This is only used during initial creation of the AML file system. It
+     * automatically creates an import job resource that can be deleted.
      * 
      * @param importPrefix the importPrefix value to set.
      * @return the AmlFilesystemHsmSettings object itself.
      */
     public AmlFilesystemHsmSettings withImportPrefix(String importPrefix) {
         this.importPrefix = importPrefix;
+        return this;
+    }
+
+    /**
+     * Get the importPrefixesInitial property: Only blobs in the non-logging container that start with one of the
+     * paths/prefixes in this array get imported into the cluster namespace. This is only used during initial creation
+     * of the AML file system and has '/' as the default value. It automatically creates an import job resource that
+     * can be deleted.
+     * 
+     * @return the importPrefixesInitial value.
+     */
+    public List<String> importPrefixesInitial() {
+        return this.importPrefixesInitial;
+    }
+
+    /**
+     * Set the importPrefixesInitial property: Only blobs in the non-logging container that start with one of the
+     * paths/prefixes in this array get imported into the cluster namespace. This is only used during initial creation
+     * of the AML file system and has '/' as the default value. It automatically creates an import job resource that
+     * can be deleted.
+     * 
+     * @param importPrefixesInitial the importPrefixesInitial value to set.
+     * @return the AmlFilesystemHsmSettings object itself.
+     */
+    public AmlFilesystemHsmSettings withImportPrefixesInitial(List<String> importPrefixesInitial) {
+        this.importPrefixesInitial = importPrefixesInitial;
         return this;
     }
 
