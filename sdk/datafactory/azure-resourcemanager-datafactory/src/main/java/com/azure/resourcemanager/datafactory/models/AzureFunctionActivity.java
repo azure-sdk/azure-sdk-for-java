@@ -168,7 +168,7 @@ public final class AzureFunctionActivity extends ExecutionActivity {
      * 
      * @return the headers value.
      */
-    public Map<String, String> headers() {
+    public Map<String, Object> headers() {
         return this.innerTypeProperties() == null ? null : this.innerTypeProperties().headers();
     }
 
@@ -180,7 +180,7 @@ public final class AzureFunctionActivity extends ExecutionActivity {
      * @param headers the headers value to set.
      * @return the AzureFunctionActivity object itself.
      */
-    public AzureFunctionActivity withHeaders(Map<String, String> headers) {
+    public AzureFunctionActivity withHeaders(Map<String, Object> headers) {
         if (this.innerTypeProperties() == null) {
             this.innerTypeProperties = new AzureFunctionActivityTypeProperties();
         }
