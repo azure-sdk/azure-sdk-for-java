@@ -159,20 +159,6 @@ public final class DataFactoryManagementClientImpl implements DataFactoryManagem
     }
 
     /**
-     * The FactoriesClient object to access its operations.
-     */
-    private final FactoriesClient factories;
-
-    /**
-     * Gets the FactoriesClient object to access its operations.
-     * 
-     * @return the FactoriesClient object.
-     */
-    public FactoriesClient getFactories() {
-        return this.factories;
-    }
-
-    /**
      * The ExposureControlsClient object to access its operations.
      */
     private final ExposureControlsClient exposureControls;
@@ -184,6 +170,20 @@ public final class DataFactoryManagementClientImpl implements DataFactoryManagem
      */
     public ExposureControlsClient getExposureControls() {
         return this.exposureControls;
+    }
+
+    /**
+     * The FactoriesClient object to access its operations.
+     */
+    private final FactoriesClient factories;
+
+    /**
+     * Gets the FactoriesClient object to access its operations.
+     * 
+     * @return the FactoriesClient object.
+     */
+    public FactoriesClient getFactories() {
+        return this.factories;
     }
 
     /**
@@ -485,8 +485,8 @@ public final class DataFactoryManagementClientImpl implements DataFactoryManagem
         this.endpoint = endpoint;
         this.apiVersion = "2018-06-01";
         this.operations = new OperationsClientImpl(this);
-        this.factories = new FactoriesClientImpl(this);
         this.exposureControls = new ExposureControlsClientImpl(this);
+        this.factories = new FactoriesClientImpl(this);
         this.integrationRuntimes = new IntegrationRuntimesClientImpl(this);
         this.integrationRuntimeObjectMetadatas = new IntegrationRuntimeObjectMetadatasClientImpl(this);
         this.integrationRuntimeNodes = new IntegrationRuntimeNodesClientImpl(this);

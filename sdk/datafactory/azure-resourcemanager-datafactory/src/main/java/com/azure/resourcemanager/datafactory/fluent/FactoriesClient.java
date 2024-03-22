@@ -12,7 +12,6 @@ import com.azure.core.util.Context;
 import com.azure.resourcemanager.datafactory.fluent.models.AccessPolicyResponseInner;
 import com.azure.resourcemanager.datafactory.fluent.models.FactoryInner;
 import com.azure.resourcemanager.datafactory.fluent.models.GitHubAccessTokenResponseInner;
-import com.azure.resourcemanager.datafactory.models.FactoryRepoUpdate;
 import com.azure.resourcemanager.datafactory.models.FactoryUpdateParameters;
 import com.azure.resourcemanager.datafactory.models.GitHubAccessTokenRequest;
 import com.azure.resourcemanager.datafactory.models.UserAccessPolicy;
@@ -21,56 +20,6 @@ import com.azure.resourcemanager.datafactory.models.UserAccessPolicy;
  * An instance of this class provides access to all the operations defined in FactoriesClient.
  */
 public interface FactoriesClient {
-    /**
-     * Lists factories under the specified subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FactoryInner> list();
-
-    /**
-     * Lists factories under the specified subscription.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of factory resources as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<FactoryInner> list(Context context);
-
-    /**
-     * Updates a factory's repo information.
-     * 
-     * @param locationId The location identifier.
-     * @param factoryRepoUpdate Update factory repo request definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return factory resource type along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<FactoryInner> configureFactoryRepoWithResponse(String locationId, FactoryRepoUpdate factoryRepoUpdate,
-        Context context);
-
-    /**
-     * Updates a factory's repo information.
-     * 
-     * @param locationId The location identifier.
-     * @param factoryRepoUpdate Update factory repo request definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return factory resource type.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    FactoryInner configureFactoryRepo(String locationId, FactoryRepoUpdate factoryRepoUpdate);
-
     /**
      * Lists factories.
      * 

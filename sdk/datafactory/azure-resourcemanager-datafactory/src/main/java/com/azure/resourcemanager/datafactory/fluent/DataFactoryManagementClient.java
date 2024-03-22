@@ -54,18 +54,18 @@ public interface DataFactoryManagementClient {
     OperationsClient getOperations();
 
     /**
-     * Gets the FactoriesClient object to access its operations.
-     * 
-     * @return the FactoriesClient object.
-     */
-    FactoriesClient getFactories();
-
-    /**
      * Gets the ExposureControlsClient object to access its operations.
      * 
      * @return the ExposureControlsClient object.
      */
     ExposureControlsClient getExposureControls();
+
+    /**
+     * Gets the FactoriesClient object to access its operations.
+     * 
+     * @return the FactoriesClient object.
+     */
+    FactoriesClient getFactories();
 
     /**
      * Gets the IntegrationRuntimesClient object to access its operations.

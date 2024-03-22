@@ -16,7 +16,6 @@ import com.azure.resourcemanager.datafactory.fluent.models.GitHubAccessTokenResp
 import com.azure.resourcemanager.datafactory.models.AccessPolicyResponse;
 import com.azure.resourcemanager.datafactory.models.Factories;
 import com.azure.resourcemanager.datafactory.models.Factory;
-import com.azure.resourcemanager.datafactory.models.FactoryRepoUpdate;
 import com.azure.resourcemanager.datafactory.models.GitHubAccessTokenRequest;
 import com.azure.resourcemanager.datafactory.models.GitHubAccessTokenResponse;
 import com.azure.resourcemanager.datafactory.models.UserAccessPolicy;
@@ -32,37 +31,6 @@ public final class FactoriesImpl implements Factories {
         com.azure.resourcemanager.datafactory.DataFactoryManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
-    }
-
-    public PagedIterable<Factory> list() {
-        PagedIterable<FactoryInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FactoryImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<Factory> list(Context context) {
-        PagedIterable<FactoryInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new FactoryImpl(inner1, this.manager()));
-    }
-
-    public Response<Factory> configureFactoryRepoWithResponse(String locationId, FactoryRepoUpdate factoryRepoUpdate,
-        Context context) {
-        Response<FactoryInner> inner
-            = this.serviceClient().configureFactoryRepoWithResponse(locationId, factoryRepoUpdate, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new FactoryImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public Factory configureFactoryRepo(String locationId, FactoryRepoUpdate factoryRepoUpdate) {
-        FactoryInner inner = this.serviceClient().configureFactoryRepo(locationId, factoryRepoUpdate);
-        if (inner != null) {
-            return new FactoryImpl(inner, this.manager());
-        } else {
-            return null;
-        }
     }
 
     public PagedIterable<Factory> listByResourceGroup(String resourceGroupName) {
