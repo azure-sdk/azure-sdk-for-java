@@ -104,6 +104,7 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "Drill", value = DrillLinkedService.class),
     @JsonSubTypes.Type(name = "Eloqua", value = EloquaLinkedService.class),
     @JsonSubTypes.Type(name = "GoogleBigQuery", value = GoogleBigQueryLinkedService.class),
+    @JsonSubTypes.Type(name = "GoogleBigQueryV2", value = GoogleBigQueryV2LinkedService.class),
     @JsonSubTypes.Type(name = "Greenplum", value = GreenplumLinkedService.class),
     @JsonSubTypes.Type(name = "HBase", value = HBaseLinkedService.class),
     @JsonSubTypes.Type(name = "Hive", value = HiveLinkedService.class),
@@ -145,7 +146,8 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "LakeHouse", value = LakeHouseLinkedService.class),
     @JsonSubTypes.Type(name = "SalesforceV2", value = SalesforceV2LinkedService.class),
     @JsonSubTypes.Type(name = "SalesforceServiceCloudV2", value = SalesforceServiceCloudV2LinkedService.class),
-    @JsonSubTypes.Type(name = "Warehouse", value = WarehouseLinkedService.class) })
+    @JsonSubTypes.Type(name = "Warehouse", value = WarehouseLinkedService.class),
+    @JsonSubTypes.Type(name = "ServiceNowV2", value = ServiceNowV2LinkedService.class) })
 @Fluent
 public class LinkedService {
     /*
