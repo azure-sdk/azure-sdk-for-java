@@ -17,7 +17,7 @@ import java.util.Map;
 public final class ExperimentsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/UpdateExperiment.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-03-22-preview/examples/UpdateExperiment.json
      */
     /**
      * Sample code: Update an Experiment in a resource group.
