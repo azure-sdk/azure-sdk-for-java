@@ -11,7 +11,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.CommandLineSetting
 import com.azure.resourcemanager.desktopvirtualization.models.RemoteApplicationType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Schema for Application properties. */
+/**
+ * Schema for Application properties.
+ */
 @Fluent
 public final class ApplicationProperties {
     /*
@@ -99,13 +101,15 @@ public final class ApplicationProperties {
     @JsonProperty(value = "iconContent", access = JsonProperty.Access.WRITE_ONLY)
     private byte[] iconContent;
 
-    /** Creates an instance of ApplicationProperties class. */
+    /**
+     * Creates an instance of ApplicationProperties class.
+     */
     public ApplicationProperties() {
     }
 
     /**
      * Get the objectId property: ObjectId of Application. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -114,7 +118,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the description property: Description of Application.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -123,7 +127,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the description property: Description of Application.
-     *
+     * 
      * @param description the description value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -134,7 +138,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the friendlyName property: Friendly name of Application.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -143,7 +147,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the friendlyName property: Friendly name of Application.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -154,7 +158,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the filePath property: Specifies a path for the executable file for the application.
-     *
+     * 
      * @return the filePath value.
      */
     public String filePath() {
@@ -163,7 +167,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the filePath property: Specifies a path for the executable file for the application.
-     *
+     * 
      * @param filePath the filePath value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -174,7 +178,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the msixPackageFamilyName property: Specifies the package family name for MSIX applications.
-     *
+     * 
      * @return the msixPackageFamilyName value.
      */
     public String msixPackageFamilyName() {
@@ -183,7 +187,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the msixPackageFamilyName property: Specifies the package family name for MSIX applications.
-     *
+     * 
      * @param msixPackageFamilyName the msixPackageFamilyName value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -194,7 +198,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the msixPackageApplicationId property: Specifies the package application Id for MSIX applications.
-     *
+     * 
      * @return the msixPackageApplicationId value.
      */
     public String msixPackageApplicationId() {
@@ -203,7 +207,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the msixPackageApplicationId property: Specifies the package application Id for MSIX applications.
-     *
+     * 
      * @param msixPackageApplicationId the msixPackageApplicationId value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -214,7 +218,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the applicationType property: Resource Type of Application.
-     *
+     * 
      * @return the applicationType value.
      */
     public RemoteApplicationType applicationType() {
@@ -223,7 +227,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the applicationType property: Resource Type of Application.
-     *
+     * 
      * @param applicationType the applicationType value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -236,7 +240,7 @@ public final class ApplicationProperties {
      * Get the commandLineSetting property: Specifies whether this published application can be launched with command
      * line arguments provided by the client, command line arguments specified at publish time, or no command line
      * arguments at all.
-     *
+     * 
      * @return the commandLineSetting value.
      */
     public CommandLineSetting commandLineSetting() {
@@ -247,7 +251,7 @@ public final class ApplicationProperties {
      * Set the commandLineSetting property: Specifies whether this published application can be launched with command
      * line arguments provided by the client, command line arguments specified at publish time, or no command line
      * arguments at all.
-     *
+     * 
      * @param commandLineSetting the commandLineSetting value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -258,7 +262,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the commandLineArguments property: Command Line Arguments for Application.
-     *
+     * 
      * @return the commandLineArguments value.
      */
     public String commandLineArguments() {
@@ -267,7 +271,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the commandLineArguments property: Command Line Arguments for Application.
-     *
+     * 
      * @param commandLineArguments the commandLineArguments value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -278,7 +282,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the showInPortal property: Specifies whether to show the RemoteApp program in the RD Web Access server.
-     *
+     * 
      * @return the showInPortal value.
      */
     public Boolean showInPortal() {
@@ -287,7 +291,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the showInPortal property: Specifies whether to show the RemoteApp program in the RD Web Access server.
-     *
+     * 
      * @param showInPortal the showInPortal value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -298,7 +302,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the iconPath property: Path to icon.
-     *
+     * 
      * @return the iconPath value.
      */
     public String iconPath() {
@@ -307,7 +311,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the iconPath property: Path to icon.
-     *
+     * 
      * @param iconPath the iconPath value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -318,7 +322,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the iconIndex property: Index of the icon.
-     *
+     * 
      * @return the iconIndex value.
      */
     public Integer iconIndex() {
@@ -327,7 +331,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the iconIndex property: Index of the icon.
-     *
+     * 
      * @param iconIndex the iconIndex value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -338,7 +342,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the iconHash property: Hash of the icon.
-     *
+     * 
      * @return the iconHash value.
      */
     public String iconHash() {
@@ -347,7 +351,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the iconContent property: the icon a 64 bit string as a byte array.
-     *
+     * 
      * @return the iconContent value.
      */
     public byte[] iconContent() {
@@ -356,15 +360,13 @@ public final class ApplicationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (commandLineSetting() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property commandLineSetting in model ApplicationProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property commandLineSetting in model ApplicationProperties"));
         }
     }
 

@@ -15,7 +15,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.ResourceModelWithA
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Represents a ApplicationGroup definition. */
+/**
+ * Represents a ApplicationGroup definition.
+ */
 @Fluent
 public final class ApplicationGroupInner extends ResourceModelWithAllowedPropertySet {
     /*
@@ -30,13 +32,15 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
     @JsonProperty(value = "properties", required = true)
     private ApplicationGroupProperties innerProperties = new ApplicationGroupProperties();
 
-    /** Creates an instance of ApplicationGroupInner class. */
+    /**
+     * Creates an instance of ApplicationGroupInner class.
+     */
     public ApplicationGroupInner() {
     }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -45,56 +49,70 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Get the innerProperties property: Detailed properties for ApplicationGroup.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ApplicationGroupProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ApplicationGroupInner withManagedBy(String managedBy) {
         super.withManagedBy(managedBy);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ApplicationGroupInner withKind(String kind) {
         super.withKind(kind);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ApplicationGroupInner withIdentity(ResourceModelWithAllowedPropertySetIdentity identity) {
         super.withIdentity(identity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ApplicationGroupInner withSku(ResourceModelWithAllowedPropertySetSku sku) {
         super.withSku(sku);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ApplicationGroupInner withPlan(ResourceModelWithAllowedPropertySetPlan plan) {
         super.withPlan(plan);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ApplicationGroupInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ApplicationGroupInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -103,7 +121,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Get the objectId property: ObjectId of ApplicationGroup. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -112,7 +130,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Get the description property: Description of ApplicationGroup.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -121,7 +139,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Set the description property: Description of ApplicationGroup.
-     *
+     * 
      * @param description the description value to set.
      * @return the ApplicationGroupInner object itself.
      */
@@ -135,7 +153,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Get the friendlyName property: Friendly name of ApplicationGroup.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -144,7 +162,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Set the friendlyName property: Friendly name of ApplicationGroup.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the ApplicationGroupInner object itself.
      */
@@ -158,7 +176,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Get the hostPoolArmPath property: HostPool arm path of ApplicationGroup.
-     *
+     * 
      * @return the hostPoolArmPath value.
      */
     public String hostPoolArmPath() {
@@ -167,7 +185,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Set the hostPoolArmPath property: HostPool arm path of ApplicationGroup.
-     *
+     * 
      * @param hostPoolArmPath the hostPoolArmPath value to set.
      * @return the ApplicationGroupInner object itself.
      */
@@ -181,7 +199,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Get the workspaceArmPath property: Workspace arm path of ApplicationGroup.
-     *
+     * 
      * @return the workspaceArmPath value.
      */
     public String workspaceArmPath() {
@@ -190,7 +208,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Get the applicationGroupType property: Resource Type of ApplicationGroup.
-     *
+     * 
      * @return the applicationGroupType value.
      */
     public ApplicationGroupType applicationGroupType() {
@@ -199,7 +217,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Set the applicationGroupType property: Resource Type of ApplicationGroup.
-     *
+     * 
      * @param applicationGroupType the applicationGroupType value to set.
      * @return the ApplicationGroupInner object itself.
      */
@@ -213,7 +231,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Get the cloudPcResource property: Is cloud pc resource.
-     *
+     * 
      * @return the cloudPcResource value.
      */
     public Boolean cloudPcResource() {
@@ -222,7 +240,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Get the showInFeed property: Boolean representing whether the applicationGroup is show in the feed.
-     *
+     * 
      * @return the showInFeed value.
      */
     public Boolean showInFeed() {
@@ -231,7 +249,7 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Set the showInFeed property: Boolean representing whether the applicationGroup is show in the feed.
-     *
+     * 
      * @param showInFeed the showInFeed value to set.
      * @return the ApplicationGroupInner object itself.
      */
@@ -245,17 +263,15 @@ public final class ApplicationGroupInner extends ResourceModelWithAllowedPropert
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model ApplicationGroupInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model ApplicationGroupInner"));
         } else {
             innerProperties().validate();
         }

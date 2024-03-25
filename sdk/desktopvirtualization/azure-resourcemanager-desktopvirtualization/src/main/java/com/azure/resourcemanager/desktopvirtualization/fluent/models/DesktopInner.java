@@ -9,9 +9,13 @@ import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Schema for Desktop properties. */
+/**
+ * Schema for Desktop properties.
+ */
 @Fluent
 public final class DesktopInner extends ProxyResource {
+    private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
+
     /*
      * Metadata pertaining to creation and last modification of the resource.
      */
@@ -24,13 +28,15 @@ public final class DesktopInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private DesktopProperties innerProperties;
 
-    /** Creates an instance of DesktopInner class. */
+    /**
+     * Creates an instance of DesktopInner class.
+     */
     public DesktopInner() {
     }
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -39,7 +45,7 @@ public final class DesktopInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: Detailed properties for Desktop.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DesktopProperties innerProperties() {
@@ -48,7 +54,7 @@ public final class DesktopInner extends ProxyResource {
 
     /**
      * Get the objectId property: ObjectId of Desktop. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -57,7 +63,7 @@ public final class DesktopInner extends ProxyResource {
 
     /**
      * Get the description property: Description of Desktop.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -66,7 +72,7 @@ public final class DesktopInner extends ProxyResource {
 
     /**
      * Set the description property: Description of Desktop.
-     *
+     * 
      * @param description the description value to set.
      * @return the DesktopInner object itself.
      */
@@ -80,7 +86,7 @@ public final class DesktopInner extends ProxyResource {
 
     /**
      * Get the friendlyName property: Friendly name of Desktop.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -89,7 +95,7 @@ public final class DesktopInner extends ProxyResource {
 
     /**
      * Set the friendlyName property: Friendly name of Desktop.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the DesktopInner object itself.
      */
@@ -103,7 +109,7 @@ public final class DesktopInner extends ProxyResource {
 
     /**
      * Get the iconHash property: Hash of the icon.
-     *
+     * 
      * @return the iconHash value.
      */
     public String iconHash() {
@@ -112,16 +118,16 @@ public final class DesktopInner extends ProxyResource {
 
     /**
      * Get the iconContent property: The icon a 64 bit string as a byte array.
-     *
+     * 
      * @return the iconContent value.
      */
     public byte[] iconContent() {
-        return this.innerProperties() == null ? new byte[0] : this.innerProperties().iconContent();
+        return this.innerProperties() == null ? EMPTY_BYTE_ARRAY : this.innerProperties().iconContent();
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

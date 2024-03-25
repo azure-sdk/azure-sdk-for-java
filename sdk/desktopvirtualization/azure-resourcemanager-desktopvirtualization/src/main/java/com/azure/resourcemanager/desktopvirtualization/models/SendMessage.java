@@ -7,7 +7,9 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents message sent to a UserSession. */
+/**
+ * Represents message sent to a UserSession.
+ */
 @Fluent
 public final class SendMessage {
     /*
@@ -22,13 +24,15 @@ public final class SendMessage {
     @JsonProperty(value = "messageBody")
     private String messageBody;
 
-    /** Creates an instance of SendMessage class. */
+    /**
+     * Creates an instance of SendMessage class.
+     */
     public SendMessage() {
     }
 
     /**
      * Get the messageTitle property: Title of message.
-     *
+     * 
      * @return the messageTitle value.
      */
     public String messageTitle() {
@@ -37,7 +41,7 @@ public final class SendMessage {
 
     /**
      * Set the messageTitle property: Title of message.
-     *
+     * 
      * @param messageTitle the messageTitle value to set.
      * @return the SendMessage object itself.
      */
@@ -48,7 +52,7 @@ public final class SendMessage {
 
     /**
      * Get the messageBody property: Body of message.
-     *
+     * 
      * @return the messageBody value.
      */
     public String messageBody() {
@@ -57,7 +61,7 @@ public final class SendMessage {
 
     /**
      * Set the messageBody property: Body of message.
-     *
+     * 
      * @param messageBody the messageBody value to set.
      * @return the SendMessage object itself.
      */
@@ -68,7 +72,7 @@ public final class SendMessage {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

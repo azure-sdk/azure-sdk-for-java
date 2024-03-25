@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * ScalingPlanPooledScheduleList
- *
- * <p>List of ScalingPlanPooledSchedule definitions.
+ * 
+ * List of ScalingPlanPooledSchedule definitions.
  */
 @Fluent
 public final class ScalingPlanPooledScheduleList {
@@ -28,13 +28,15 @@ public final class ScalingPlanPooledScheduleList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ScalingPlanPooledScheduleList class. */
+    /**
+     * Creates an instance of ScalingPlanPooledScheduleList class.
+     */
     public ScalingPlanPooledScheduleList() {
     }
 
     /**
      * Get the value property: List of ScalingPlanPooledSchedule definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<ScalingPlanPooledScheduleInner> value() {
@@ -43,7 +45,7 @@ public final class ScalingPlanPooledScheduleList {
 
     /**
      * Set the value property: List of ScalingPlanPooledSchedule definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the ScalingPlanPooledScheduleList object itself.
      */
@@ -54,7 +56,7 @@ public final class ScalingPlanPooledScheduleList {
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +65,7 @@ public final class ScalingPlanPooledScheduleList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -6,12 +6,16 @@ package com.azure.resourcemanager.desktopvirtualization.generated;
 
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdatePatchProperties;
 import com.azure.resourcemanager.desktopvirtualization.models.DayOfWeek;
+import com.azure.resourcemanager.desktopvirtualization.models.DirectUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.HostPool;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
 import com.azure.resourcemanager.desktopvirtualization.models.MaintenanceWindowPatchProperties;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedPrivateUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
+import com.azure.resourcemanager.desktopvirtualization.models.PublicUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationTokenOperation;
+import com.azure.resourcemanager.desktopvirtualization.models.RelayUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.SessionHostComponentUpdateType;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import java.time.OffsetDateTime;
@@ -19,52 +23,42 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for HostPools Update. */
+/**
+ * Samples for HostPools Update.
+ */
 public final class HostPoolsUpdateSamples {
     /*
-     * x-ms-original-file: specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/stable/2023-09-05/examples/HostPool_Update.json
+     * x-ms-original-file:
+     * specification/desktopvirtualization/resource-manager/Microsoft.DesktopVirtualization/preview/2024-03-06-preview/
+     * examples/HostPool_Update.json
      */
     /**
      * Sample code: HostPool_Update.
-     *
+     * 
      * @param manager Entry point to DesktopVirtualizationManager.
      */
-    public static void hostPoolUpdate(
-        com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
-        HostPool resource =
-            manager
-                .hostPools()
-                .getByResourceGroupWithResponse("resourceGroup1", "hostPool1", com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
-            .withFriendlyName("friendly")
-            .withDescription("des1")
-            .withMaxSessionLimit(999999)
+    public static void
+        hostPoolUpdate(com.azure.resourcemanager.desktopvirtualization.DesktopVirtualizationManager manager) {
+        HostPool resource = manager.hostPools()
+            .getByResourceGroupWithResponse("resourceGroup1", "hostPool1", com.azure.core.util.Context.NONE).getValue();
+        resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).withFriendlyName("friendly")
+            .withDescription("des1").withMaxSessionLimit(999999)
             .withPersonalDesktopAssignmentType(PersonalDesktopAssignmentType.AUTOMATIC)
             .withLoadBalancerType(LoadBalancerType.BREADTH_FIRST)
             .withRegistrationInfo(
-                new RegistrationInfoPatch()
-                    .withExpirationTime(OffsetDateTime.parse("2020-10-01T15:01:54.9571247Z"))
+                new RegistrationInfoPatch().withExpirationTime(OffsetDateTime.parse("2020-10-01T15:01:54.9571247Z"))
                     .withRegistrationTokenOperation(RegistrationTokenOperation.UPDATE))
-            .withVmTemplate("{json:json}")
-            .withSsoadfsAuthority("https://adfs")
-            .withSsoClientId("client")
-            .withSsoClientSecretKeyVaultPath("https://keyvault/secret")
-            .withSsoSecretType(SsoSecretType.SHARED_KEY)
+            .withVmTemplate("{json:json}").withSsoadfsAuthority("https://adfs").withSsoClientId("client")
+            .withSsoClientSecretKeyVaultPath("https://keyvault/secret").withSsoSecretType(SsoSecretType.SHARED_KEY)
             .withStartVMOnConnect(false)
             .withAgentUpdate(
-                new AgentUpdatePatchProperties()
-                    .withType(SessionHostComponentUpdateType.SCHEDULED)
-                    .withUseSessionHostLocalTime(false)
-                    .withMaintenanceWindowTimeZone("Alaskan Standard Time")
-                    .withMaintenanceWindows(
-                        Arrays
-                            .asList(
-                                new MaintenanceWindowPatchProperties().withHour(7).withDayOfWeek(DayOfWeek.FRIDAY),
-                                new MaintenanceWindowPatchProperties().withHour(8).withDayOfWeek(DayOfWeek.SATURDAY))))
-            .apply();
+                new AgentUpdatePatchProperties().withType(SessionHostComponentUpdateType.SCHEDULED)
+                    .withUseSessionHostLocalTime(false).withMaintenanceWindowTimeZone("Alaskan Standard Time")
+                    .withMaintenanceWindows(Arrays.asList(
+                        new MaintenanceWindowPatchProperties().withHour(7).withDayOfWeek(DayOfWeek.FRIDAY),
+                        new MaintenanceWindowPatchProperties().withHour(8).withDayOfWeek(DayOfWeek.SATURDAY))))
+            .withManagedPrivateUdp(ManagedPrivateUdp.ENABLED).withDirectUdp(DirectUdp.ENABLED)
+            .withPublicUdp(PublicUdp.ENABLED).withRelayUdp(RelayUdp.ENABLED).apply();
     }
 
     // Use "Map.of" if available

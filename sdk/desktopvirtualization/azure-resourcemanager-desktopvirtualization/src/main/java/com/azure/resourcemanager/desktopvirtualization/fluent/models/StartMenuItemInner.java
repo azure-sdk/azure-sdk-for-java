@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a StartMenuItem definition. */
+/**
+ * Represents a StartMenuItem definition.
+ */
 @Fluent
 public final class StartMenuItemInner extends ProxyResource {
     /*
@@ -17,13 +19,15 @@ public final class StartMenuItemInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private StartMenuItemProperties innerProperties;
 
-    /** Creates an instance of StartMenuItemInner class. */
+    /**
+     * Creates an instance of StartMenuItemInner class.
+     */
     public StartMenuItemInner() {
     }
 
     /**
      * Get the innerProperties property: Detailed properties for StartMenuItem.
-     *
+     * 
      * @return the innerProperties value.
      */
     private StartMenuItemProperties innerProperties() {
@@ -32,7 +36,7 @@ public final class StartMenuItemInner extends ProxyResource {
 
     /**
      * Get the appAlias property: Alias of StartMenuItem.
-     *
+     * 
      * @return the appAlias value.
      */
     public String appAlias() {
@@ -41,7 +45,7 @@ public final class StartMenuItemInner extends ProxyResource {
 
     /**
      * Set the appAlias property: Alias of StartMenuItem.
-     *
+     * 
      * @param appAlias the appAlias value to set.
      * @return the StartMenuItemInner object itself.
      */
@@ -55,7 +59,7 @@ public final class StartMenuItemInner extends ProxyResource {
 
     /**
      * Get the filePath property: Path to the file of StartMenuItem.
-     *
+     * 
      * @return the filePath value.
      */
     public String filePath() {
@@ -64,7 +68,7 @@ public final class StartMenuItemInner extends ProxyResource {
 
     /**
      * Set the filePath property: Path to the file of StartMenuItem.
-     *
+     * 
      * @param filePath the filePath value to set.
      * @return the StartMenuItemInner object itself.
      */
@@ -78,7 +82,7 @@ public final class StartMenuItemInner extends ProxyResource {
 
     /**
      * Get the commandLineArguments property: Command line arguments for StartMenuItem.
-     *
+     * 
      * @return the commandLineArguments value.
      */
     public String commandLineArguments() {
@@ -87,7 +91,7 @@ public final class StartMenuItemInner extends ProxyResource {
 
     /**
      * Set the commandLineArguments property: Command line arguments for StartMenuItem.
-     *
+     * 
      * @param commandLineArguments the commandLineArguments value to set.
      * @return the StartMenuItemInner object itself.
      */
@@ -101,7 +105,7 @@ public final class StartMenuItemInner extends ProxyResource {
 
     /**
      * Get the iconPath property: Path to the icon.
-     *
+     * 
      * @return the iconPath value.
      */
     public String iconPath() {
@@ -110,7 +114,7 @@ public final class StartMenuItemInner extends ProxyResource {
 
     /**
      * Set the iconPath property: Path to the icon.
-     *
+     * 
      * @param iconPath the iconPath value to set.
      * @return the StartMenuItemInner object itself.
      */
@@ -124,7 +128,7 @@ public final class StartMenuItemInner extends ProxyResource {
 
     /**
      * Get the iconIndex property: Index of the icon.
-     *
+     * 
      * @return the iconIndex value.
      */
     public Integer iconIndex() {
@@ -133,7 +137,7 @@ public final class StartMenuItemInner extends ProxyResource {
 
     /**
      * Set the iconIndex property: Index of the icon.
-     *
+     * 
      * @param iconIndex the iconIndex value to set.
      * @return the StartMenuItemInner object itself.
      */
@@ -147,7 +151,7 @@ public final class StartMenuItemInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

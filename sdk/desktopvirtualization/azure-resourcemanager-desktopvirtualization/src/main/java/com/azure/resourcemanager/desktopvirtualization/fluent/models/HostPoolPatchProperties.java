@@ -6,15 +6,21 @@ package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.desktopvirtualization.models.AgentUpdatePatchProperties;
+import com.azure.resourcemanager.desktopvirtualization.models.DirectUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.HostpoolPublicNetworkAccess;
 import com.azure.resourcemanager.desktopvirtualization.models.LoadBalancerType;
+import com.azure.resourcemanager.desktopvirtualization.models.ManagedPrivateUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.PersonalDesktopAssignmentType;
 import com.azure.resourcemanager.desktopvirtualization.models.PreferredAppGroupType;
+import com.azure.resourcemanager.desktopvirtualization.models.PublicUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.RegistrationInfoPatch;
+import com.azure.resourcemanager.desktopvirtualization.models.RelayUdp;
 import com.azure.resourcemanager.desktopvirtualization.models.SsoSecretType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of HostPool. */
+/**
+ * Properties of HostPool.
+ */
 @Fluent
 public final class HostPoolPatchProperties {
     /*
@@ -125,13 +131,51 @@ public final class HostPoolPatchProperties {
     @JsonProperty(value = "agentUpdate")
     private AgentUpdatePatchProperties agentUpdate;
 
-    /** Creates an instance of HostPoolPatchProperties class. */
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    @JsonProperty(value = "managedPrivateUDP")
+    private ManagedPrivateUdp managedPrivateUdp;
+
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    @JsonProperty(value = "directUDP")
+    private DirectUdp directUdp;
+
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    @JsonProperty(value = "publicUDP")
+    private PublicUdp publicUdp;
+
+    /*
+     * Default: AVD-wide settings are used to determine connection availability, Enabled: UDP will attempt this
+     * connection type when making connections. This means that this connection is possible, but is not guaranteed, as
+     * there are other factors that may prevent this connection type, Disabled: UDP will not attempt this connection
+     * type when making connections
+     */
+    @JsonProperty(value = "relayUDP")
+    private RelayUdp relayUdp;
+
+    /**
+     * Creates an instance of HostPoolPatchProperties class.
+     */
     public HostPoolPatchProperties() {
     }
 
     /**
      * Get the friendlyName property: Friendly name of HostPool.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -140,7 +184,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the friendlyName property: Friendly name of HostPool.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -151,7 +195,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the description property: Description of HostPool.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -160,7 +204,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the description property: Description of HostPool.
-     *
+     * 
      * @param description the description value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -171,7 +215,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the customRdpProperty property: Custom rdp property of HostPool.
-     *
+     * 
      * @return the customRdpProperty value.
      */
     public String customRdpProperty() {
@@ -180,7 +224,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the customRdpProperty property: Custom rdp property of HostPool.
-     *
+     * 
      * @param customRdpProperty the customRdpProperty value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -191,7 +235,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the maxSessionLimit property: The max session limit of HostPool.
-     *
+     * 
      * @return the maxSessionLimit value.
      */
     public Integer maxSessionLimit() {
@@ -200,7 +244,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the maxSessionLimit property: The max session limit of HostPool.
-     *
+     * 
      * @param maxSessionLimit the maxSessionLimit value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -211,7 +255,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the personalDesktopAssignmentType property: PersonalDesktopAssignment type for HostPool.
-     *
+     * 
      * @return the personalDesktopAssignmentType value.
      */
     public PersonalDesktopAssignmentType personalDesktopAssignmentType() {
@@ -220,19 +264,19 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the personalDesktopAssignmentType property: PersonalDesktopAssignment type for HostPool.
-     *
+     * 
      * @param personalDesktopAssignmentType the personalDesktopAssignmentType value to set.
      * @return the HostPoolPatchProperties object itself.
      */
-    public HostPoolPatchProperties withPersonalDesktopAssignmentType(
-        PersonalDesktopAssignmentType personalDesktopAssignmentType) {
+    public HostPoolPatchProperties
+        withPersonalDesktopAssignmentType(PersonalDesktopAssignmentType personalDesktopAssignmentType) {
         this.personalDesktopAssignmentType = personalDesktopAssignmentType;
         return this;
     }
 
     /**
      * Get the loadBalancerType property: The type of the load balancer.
-     *
+     * 
      * @return the loadBalancerType value.
      */
     public LoadBalancerType loadBalancerType() {
@@ -241,7 +285,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the loadBalancerType property: The type of the load balancer.
-     *
+     * 
      * @param loadBalancerType the loadBalancerType value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -252,7 +296,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the ring property: The ring number of HostPool.
-     *
+     * 
      * @return the ring value.
      */
     public Integer ring() {
@@ -261,7 +305,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the ring property: The ring number of HostPool.
-     *
+     * 
      * @param ring the ring value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -272,7 +316,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the validationEnvironment property: Is validation environment.
-     *
+     * 
      * @return the validationEnvironment value.
      */
     public Boolean validationEnvironment() {
@@ -281,7 +325,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the validationEnvironment property: Is validation environment.
-     *
+     * 
      * @param validationEnvironment the validationEnvironment value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -292,7 +336,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the registrationInfo property: The registration info of HostPool.
-     *
+     * 
      * @return the registrationInfo value.
      */
     public RegistrationInfoPatch registrationInfo() {
@@ -301,7 +345,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the registrationInfo property: The registration info of HostPool.
-     *
+     * 
      * @param registrationInfo the registrationInfo value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -312,7 +356,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the vmTemplate property: VM template for sessionhosts configuration within hostpool.
-     *
+     * 
      * @return the vmTemplate value.
      */
     public String vmTemplate() {
@@ -321,7 +365,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the vmTemplate property: VM template for sessionhosts configuration within hostpool.
-     *
+     * 
      * @param vmTemplate the vmTemplate value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -332,7 +376,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the ssoadfsAuthority property: URL to customer ADFS server for signing WVD SSO certificates.
-     *
+     * 
      * @return the ssoadfsAuthority value.
      */
     public String ssoadfsAuthority() {
@@ -341,7 +385,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the ssoadfsAuthority property: URL to customer ADFS server for signing WVD SSO certificates.
-     *
+     * 
      * @param ssoadfsAuthority the ssoadfsAuthority value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -352,7 +396,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the ssoClientId property: ClientId for the registered Relying Party used to issue WVD SSO certificates.
-     *
+     * 
      * @return the ssoClientId value.
      */
     public String ssoClientId() {
@@ -361,7 +405,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the ssoClientId property: ClientId for the registered Relying Party used to issue WVD SSO certificates.
-     *
+     * 
      * @param ssoClientId the ssoClientId value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -371,9 +415,9 @@ public final class HostPoolPatchProperties {
     }
 
     /**
-     * Get the ssoClientSecretKeyVaultPath property: Path to Azure KeyVault storing the secret used for communication to
-     * ADFS.
-     *
+     * Get the ssoClientSecretKeyVaultPath property: Path to Azure KeyVault storing the secret used for communication
+     * to ADFS.
+     * 
      * @return the ssoClientSecretKeyVaultPath value.
      */
     public String ssoClientSecretKeyVaultPath() {
@@ -381,9 +425,9 @@ public final class HostPoolPatchProperties {
     }
 
     /**
-     * Set the ssoClientSecretKeyVaultPath property: Path to Azure KeyVault storing the secret used for communication to
-     * ADFS.
-     *
+     * Set the ssoClientSecretKeyVaultPath property: Path to Azure KeyVault storing the secret used for communication
+     * to ADFS.
+     * 
      * @param ssoClientSecretKeyVaultPath the ssoClientSecretKeyVaultPath value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -394,7 +438,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the ssoSecretType property: The type of single sign on Secret Type.
-     *
+     * 
      * @return the ssoSecretType value.
      */
     public SsoSecretType ssoSecretType() {
@@ -403,7 +447,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the ssoSecretType property: The type of single sign on Secret Type.
-     *
+     * 
      * @param ssoSecretType the ssoSecretType value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -415,7 +459,7 @@ public final class HostPoolPatchProperties {
     /**
      * Get the preferredAppGroupType property: The type of preferred application group type, default to Desktop
      * Application Group.
-     *
+     * 
      * @return the preferredAppGroupType value.
      */
     public PreferredAppGroupType preferredAppGroupType() {
@@ -425,7 +469,7 @@ public final class HostPoolPatchProperties {
     /**
      * Set the preferredAppGroupType property: The type of preferred application group type, default to Desktop
      * Application Group.
-     *
+     * 
      * @param preferredAppGroupType the preferredAppGroupType value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -436,7 +480,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the startVMOnConnect property: The flag to turn on/off StartVMOnConnect feature.
-     *
+     * 
      * @return the startVMOnConnect value.
      */
     public Boolean startVMOnConnect() {
@@ -445,7 +489,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the startVMOnConnect property: The flag to turn on/off StartVMOnConnect feature.
-     *
+     * 
      * @param startVMOnConnect the startVMOnConnect value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -456,7 +500,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Get the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public HostpoolPublicNetworkAccess publicNetworkAccess() {
@@ -465,7 +509,7 @@ public final class HostPoolPatchProperties {
 
     /**
      * Set the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -477,7 +521,7 @@ public final class HostPoolPatchProperties {
     /**
      * Get the agentUpdate property: The session host configuration for updating agent, monitoring agent, and stack
      * component.
-     *
+     * 
      * @return the agentUpdate value.
      */
     public AgentUpdatePatchProperties agentUpdate() {
@@ -487,7 +531,7 @@ public final class HostPoolPatchProperties {
     /**
      * Set the agentUpdate property: The session host configuration for updating agent, monitoring agent, and stack
      * component.
-     *
+     * 
      * @param agentUpdate the agentUpdate value to set.
      * @return the HostPoolPatchProperties object itself.
      */
@@ -497,8 +541,112 @@ public final class HostPoolPatchProperties {
     }
 
     /**
+     * Get the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @return the managedPrivateUdp value.
+     */
+    public ManagedPrivateUdp managedPrivateUdp() {
+        return this.managedPrivateUdp;
+    }
+
+    /**
+     * Set the managedPrivateUdp property: Default: AVD-wide settings are used to determine connection availability,
+     * Enabled: UDP will attempt this connection type when making connections. This means that this connection is
+     * possible, but is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP
+     * will not attempt this connection type when making connections.
+     * 
+     * @param managedPrivateUdp the managedPrivateUdp value to set.
+     * @return the HostPoolPatchProperties object itself.
+     */
+    public HostPoolPatchProperties withManagedPrivateUdp(ManagedPrivateUdp managedPrivateUdp) {
+        this.managedPrivateUdp = managedPrivateUdp;
+        return this;
+    }
+
+    /**
+     * Get the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the directUdp value.
+     */
+    public DirectUdp directUdp() {
+        return this.directUdp;
+    }
+
+    /**
+     * Set the directUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param directUdp the directUdp value to set.
+     * @return the HostPoolPatchProperties object itself.
+     */
+    public HostPoolPatchProperties withDirectUdp(DirectUdp directUdp) {
+        this.directUdp = directUdp;
+        return this;
+    }
+
+    /**
+     * Get the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the publicUdp value.
+     */
+    public PublicUdp publicUdp() {
+        return this.publicUdp;
+    }
+
+    /**
+     * Set the publicUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param publicUdp the publicUdp value to set.
+     * @return the HostPoolPatchProperties object itself.
+     */
+    public HostPoolPatchProperties withPublicUdp(PublicUdp publicUdp) {
+        this.publicUdp = publicUdp;
+        return this;
+    }
+
+    /**
+     * Get the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @return the relayUdp value.
+     */
+    public RelayUdp relayUdp() {
+        return this.relayUdp;
+    }
+
+    /**
+     * Set the relayUdp property: Default: AVD-wide settings are used to determine connection availability, Enabled:
+     * UDP will attempt this connection type when making connections. This means that this connection is possible, but
+     * is not guaranteed, as there are other factors that may prevent this connection type, Disabled: UDP will not
+     * attempt this connection type when making connections.
+     * 
+     * @param relayUdp the relayUdp value to set.
+     * @return the HostPoolPatchProperties object itself.
+     */
+    public HostPoolPatchProperties withRelayUdp(RelayUdp relayUdp) {
+        this.relayUdp = relayUdp;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
