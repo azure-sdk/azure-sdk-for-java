@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.springappdiscovery.generated;
 
-import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsPatch;
+import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsModel;
 
 /**
  * Samples for Springbootapps Update.
@@ -12,7 +12,7 @@ import com.azure.resourcemanager.springappdiscovery.models.SpringbootappsPatch;
 public final class SpringbootappsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2023-01-01-preview/
+     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
      * examples/springbootapps_Update_MinimumSet_Gen.json
      */
     /**
@@ -22,14 +22,16 @@ public final class SpringbootappsUpdateSamples {
      */
     public static void springbootappsUpdateMinimumSetGen(
         com.azure.resourcemanager.springappdiscovery.SpringAppDiscoveryManager manager) {
-        manager.springbootapps().update("rgspringbootapps", "pdfosfhtemfsaglvwjdyqlyeipucrd",
-            "ofjeesoahqtnovlbuvflyknpbhcpeqqhekntvqxyemuwbcqnuxjgfhsf", new SpringbootappsPatch(),
-            com.azure.core.util.Context.NONE);
+        SpringbootappsModel resource = manager.springbootapps()
+            .getWithResponse("rgspringbootapps", "pdfosfhtemfsaglvwjdyqlyeipucrd",
+                "ofjeesoahqtnovlbuvflyknpbhcpeqqhekntvqxyemuwbcqnuxjgfhsf", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().apply();
     }
 
     /*
      * x-ms-original-file:
-     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2023-01-01-preview/
+     * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
      * examples/springbootapps_Update_MaximumSet_Gen.json
      */
     /**
@@ -39,8 +41,10 @@ public final class SpringbootappsUpdateSamples {
      */
     public static void springbootappsUpdateMaximumSetGen(
         com.azure.resourcemanager.springappdiscovery.SpringAppDiscoveryManager manager) {
-        manager.springbootapps().update("rgspringbootapps", "pdfosfhtemfsaglvwjdyqlyeipucrd",
-            "ofjeesoahqtnovlbuvflyknpbhcpeqqhekntvqxyemuwbcqnuxjgfhsf", new SpringbootappsPatch(),
-            com.azure.core.util.Context.NONE);
+        SpringbootappsModel resource = manager.springbootapps()
+            .getWithResponse("rgspringbootapps", "pdfosfhtemfsaglvwjdyqlyeipucrd",
+                "ofjeesoahqtnovlbuvflyknpbhcpeqqhekntvqxyemuwbcqnuxjgfhsf", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update().apply();
     }
 }

@@ -7,7 +7,6 @@ package com.azure.resourcemanager.springappdiscovery.models;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.springappdiscovery.fluent.models.SpringbootserversModelInner;
-import java.util.Map;
 
 /**
  * An immutable client-side representation of SpringbootserversModel.
@@ -33,13 +32,6 @@ public interface SpringbootserversModel {
      * @return the type value.
      */
     String type();
-
-    /**
-     * Gets the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    Map<String, String> tags();
 
     /**
      * Gets the properties property: The springbootservers resource definition.
@@ -104,7 +96,7 @@ public interface SpringbootserversModel {
          * The stage of the SpringbootserversModel definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithProperties {
             /**
              * Executes the create request.
              * 
@@ -119,19 +111,6 @@ public interface SpringbootserversModel {
              * @return the created resource.
              */
             SpringbootserversModel create(Context context);
-        }
-
-        /**
-         * The stage of the SpringbootserversModel definition allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags.
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            WithCreate withTags(Map<String, String> tags);
         }
 
         /**
@@ -158,7 +137,7 @@ public interface SpringbootserversModel {
     /**
      * The template for SpringbootserversModel update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
+    interface Update extends UpdateStages.WithProperties {
         /**
          * Executes the update request.
          * 
@@ -179,19 +158,6 @@ public interface SpringbootserversModel {
      * The SpringbootserversModel update stages.
      */
     interface UpdateStages {
-        /**
-         * The stage of the SpringbootserversModel update allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: Resource tags.
-             * 
-             * @param tags Resource tags.
-             * @return the next definition stage.
-             */
-            Update withTags(Map<String, String> tags);
-        }
-
         /**
          * The stage of the SpringbootserversModel update allowing to specify properties.
          */

@@ -228,7 +228,7 @@ public final class SpringAppDiscoveryMgmtClientImpl implements SpringAppDiscover
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-01-01-preview";
+        this.apiVersion = "2024-04-01-preview";
         this.springbootsites = new SpringbootsitesClientImpl(this);
         this.operations = new OperationsClientImpl(this);
         this.springbootservers = new SpringbootserversClientImpl(this);

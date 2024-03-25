@@ -5,36 +5,38 @@
 package com.azure.resourcemanager.springappdiscovery.generated;
 
 /**
- * Samples for Springbootsites List.
+ * Samples for Springbootapps Delete.
  */
-public final class SpringbootsitesListSamples {
+public final class SpringbootappsDeleteSamples {
     /*
      * x-ms-original-file:
      * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
-     * examples/springbootsites_ListBySubscription_MaximumSet_Gen.json
+     * examples/springbootapps_Delete_MaximumSet_Gen.json
      */
     /**
-     * Sample code: springbootsites_ListBySubscription_MaximumSet_Gen.
+     * Sample code: springbootapps_Delete_MaximumSet_Gen.
      * 
      * @param manager Entry point to SpringAppDiscoveryManager.
      */
-    public static void springbootsitesListBySubscriptionMaximumSetGen(
+    public static void springbootappsDeleteMaximumSetGen(
         com.azure.resourcemanager.springappdiscovery.SpringAppDiscoveryManager manager) {
-        manager.springbootsites().list(com.azure.core.util.Context.NONE);
+        manager.springbootapps().delete("rgspringbootapps", "pdfosfhtemfsaglvwjdyqlyeipucrd",
+            "ofjeesoahqtnovlbuvflyknpbhcpeqqhekntvqxyemuwbcqnuxjgfhsf", com.azure.core.util.Context.NONE);
     }
 
     /*
      * x-ms-original-file:
      * specification/offazurespringboot/resource-manager/Microsoft.OffAzureSpringBoot/preview/2024-04-01-preview/
-     * examples/springbootsites_ListBySubscription_MinimumSet_Gen.json
+     * examples/springbootapps_Delete_MinimumSet_Gen.json
      */
     /**
-     * Sample code: springbootsites_ListBySubscription_MinimumSet_Gen.
+     * Sample code: springbootapps_Delete_MinimumSet_Gen.
      * 
      * @param manager Entry point to SpringAppDiscoveryManager.
      */
-    public static void springbootsitesListBySubscriptionMinimumSetGen(
+    public static void springbootappsDeleteMinimumSetGen(
         com.azure.resourcemanager.springappdiscovery.SpringAppDiscoveryManager manager) {
-        manager.springbootsites().list(com.azure.core.util.Context.NONE);
+        manager.springbootapps().delete("rgspringbootapps", "pdfosfhtemfsaglvwjdyqlyeipucrd",
+            "ofjeesoahqtnovlbuvflyknpbhcpeqqhekntvqxyemuwbcqnuxjgfhsf", com.azure.core.util.Context.NONE);
     }
 }
