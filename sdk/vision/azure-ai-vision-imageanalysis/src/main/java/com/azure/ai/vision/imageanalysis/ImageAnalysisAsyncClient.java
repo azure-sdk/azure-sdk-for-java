@@ -30,18 +30,6 @@ import reactor.core.publisher.Mono;
 
 /**
  * Initializes a new instance of the asynchronous ImageAnalysisClient type.
- *
- * <!-- src_embed com.azure.ai.vision.imageanalysis.async-client -->
- * <pre>
- * &#47;&#47;
- * &#47;&#47; Create an asynchronous Image Analysis client.
- * &#47;&#47;
- * ImageAnalysisAsyncClient client = new ImageAnalysisClientBuilder&#40;&#41;
- *     .endpoint&#40;endpoint&#41;
- *     .credential&#40;new KeyCredential&#40;key&#41;&#41;
- *     .buildAsyncClient&#40;&#41;;
- * </pre>
- * <!-- end com.azure.ai.vision.imageanalysis.async-client -->
  */
 @ServiceClient(builder = ImageAnalysisClientBuilder.class, isAsync = true)
 public final class ImageAnalysisAsyncClient {
@@ -214,20 +202,20 @@ public final class ImageAnalysisAsyncClient {
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
-     * @param imageContent The image to be analyzed.
+     * @param imageUrl The image to be analyzed.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return represents the outcome of an Image Analysis operation along with <a href="https://learn.microsoft.com/java/api/com.azure.core.http.rest.response">Response</a> on successful
+     * @return represents the outcome of an Image Analysis operation along with {@link Response} on successful
      * completion of {@link Mono}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> analyzeFromUrlWithResponse(List<String> visualFeatures, BinaryData imageContent,
+    Mono<Response<BinaryData>> analyzeFromUrlWithResponse(List<String> visualFeatures, BinaryData imageUrl,
         RequestOptions requestOptions) {
-        return this.serviceClient.analyzeFromUrlWithResponseAsync(visualFeatures, imageContent, requestOptions);
+        return this.serviceClient.analyzeFromUrlWithResponseAsync(visualFeatures, imageUrl, requestOptions);
     }
 
     /**
@@ -236,7 +224,7 @@ public final class ImageAnalysisAsyncClient {
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
-     * @param imageContent The image to be analyzed.
+     * @param imageUrl The image to be analyzed.
      * @param language The desired language for result generation (a two-letter language code).
      * If this option is not specified, the default value 'en' is used (English).
      * See https://aka.ms/cv-languages for a list of supported languages.
@@ -265,8 +253,8 @@ public final class ImageAnalysisAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<ImageAnalysisResult> analyzeFromUrl(List<VisualFeatures> visualFeatures, ImageUrl imageContent,
-        String language, Boolean genderNeutralCaption, List<Double> smartCropsAspectRatios, String modelVersion) {
+    Mono<ImageAnalysisResult> analyzeFromUrl(List<VisualFeatures> visualFeatures, ImageUrl imageUrl, String language,
+        Boolean genderNeutralCaption, List<Double> smartCropsAspectRatios, String modelVersion) {
         // Generated convenience method for analyzeFromUrlWithResponse
         RequestOptions requestOptions = new RequestOptions();
         if (language != null) {
@@ -284,7 +272,7 @@ public final class ImageAnalysisAsyncClient {
         }
         return analyzeFromUrlWithResponse(visualFeatures.stream()
             .map(paramItemValue -> Objects.toString(paramItemValue, "")).collect(Collectors.toList()),
-            BinaryData.fromObject(imageContent), requestOptions).flatMap(FluxUtil::toMono)
+            BinaryData.fromObject(imageUrl), requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(ImageAnalysisResult.class));
     }
 
@@ -294,7 +282,7 @@ public final class ImageAnalysisAsyncClient {
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
-     * @param imageContent The image to be analyzed.
+     * @param imageUrl The image to be analyzed.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -305,12 +293,12 @@ public final class ImageAnalysisAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<ImageAnalysisResult> analyzeFromUrl(List<VisualFeatures> visualFeatures, ImageUrl imageContent) {
+    Mono<ImageAnalysisResult> analyzeFromUrl(List<VisualFeatures> visualFeatures, ImageUrl imageUrl) {
         // Generated convenience method for analyzeFromUrlWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return analyzeFromUrlWithResponse(visualFeatures.stream()
             .map(paramItemValue -> Objects.toString(paramItemValue, "")).collect(Collectors.toList()),
-            BinaryData.fromObject(imageContent), requestOptions).flatMap(FluxUtil::toMono)
+            BinaryData.fromObject(imageUrl), requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(ImageAnalysisResult.class));
     }
 
@@ -467,20 +455,20 @@ public final class ImageAnalysisAsyncClient {
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
-     * @param imageContent The image to be analyzed.
+     * @param imageData The image to be analyzed.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return represents the outcome of an Image Analysis operation along with <a href="https://learn.microsoft.com/java/api/com.azure.core.http.rest.response">Response</a> on successful
+     * @return represents the outcome of an Image Analysis operation along with {@link Response} on successful
      * completion of {@link Mono}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<Response<BinaryData>> analyzeFromImageDataWithResponse(List<String> visualFeatures, BinaryData imageContent,
+    Mono<Response<BinaryData>> analyzeFromImageDataWithResponse(List<String> visualFeatures, BinaryData imageData,
         RequestOptions requestOptions) {
-        return this.serviceClient.analyzeFromImageDataWithResponseAsync(visualFeatures, imageContent, requestOptions);
+        return this.serviceClient.analyzeFromImageDataWithResponseAsync(visualFeatures, imageData, requestOptions);
     }
 
     /**
@@ -489,7 +477,7 @@ public final class ImageAnalysisAsyncClient {
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
-     * @param imageContent The image to be analyzed.
+     * @param imageData The image to be analyzed.
      * @param language The desired language for result generation (a two-letter language code).
      * If this option is not specified, the default value 'en' is used (English).
      * See https://aka.ms/cv-languages for a list of supported languages.
@@ -518,7 +506,7 @@ public final class ImageAnalysisAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<ImageAnalysisResult> analyzeFromImageData(List<VisualFeatures> visualFeatures, BinaryData imageContent,
+    Mono<ImageAnalysisResult> analyzeFromImageData(List<VisualFeatures> visualFeatures, BinaryData imageData,
         String language, Boolean genderNeutralCaption, List<Double> smartCropsAspectRatios, String modelVersion) {
         // Generated convenience method for analyzeFromImageDataWithResponse
         RequestOptions requestOptions = new RequestOptions();
@@ -536,7 +524,7 @@ public final class ImageAnalysisAsyncClient {
             requestOptions.addQueryParam("model-version", modelVersion, false);
         }
         return analyzeFromImageDataWithResponse(visualFeatures.stream()
-            .map(paramItemValue -> Objects.toString(paramItemValue, "")).collect(Collectors.toList()), imageContent,
+            .map(paramItemValue -> Objects.toString(paramItemValue, "")).collect(Collectors.toList()), imageData,
             requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(ImageAnalysisResult.class));
     }
@@ -547,7 +535,7 @@ public final class ImageAnalysisAsyncClient {
      * @param visualFeatures A list of visual features to analyze.
      * Seven visual features are supported: Caption, DenseCaptions, Read (OCR), Tags, Objects, SmartCrops, and People.
      * At least one visual feature must be specified.
-     * @param imageContent The image to be analyzed.
+     * @param imageData The image to be analyzed.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -558,11 +546,11 @@ public final class ImageAnalysisAsyncClient {
      */
     @Generated
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Mono<ImageAnalysisResult> analyzeFromImageData(List<VisualFeatures> visualFeatures, BinaryData imageContent) {
+    Mono<ImageAnalysisResult> analyzeFromImageData(List<VisualFeatures> visualFeatures, BinaryData imageData) {
         // Generated convenience method for analyzeFromImageDataWithResponse
         RequestOptions requestOptions = new RequestOptions();
         return analyzeFromImageDataWithResponse(visualFeatures.stream()
-            .map(paramItemValue -> Objects.toString(paramItemValue, "")).collect(Collectors.toList()), imageContent,
+            .map(paramItemValue -> Objects.toString(paramItemValue, "")).collect(Collectors.toList()), imageData,
             requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(ImageAnalysisResult.class));
     }
