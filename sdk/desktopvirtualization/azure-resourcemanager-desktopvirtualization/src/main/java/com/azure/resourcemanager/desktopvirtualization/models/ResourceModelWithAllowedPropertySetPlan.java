@@ -6,42 +6,56 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceModelWithAllowedPropertySetPlan model. */
+/**
+ * The ResourceModelWithAllowedPropertySetPlan model.
+ */
 @Fluent
 public final class ResourceModelWithAllowedPropertySetPlan extends Plan {
-    /** Creates an instance of ResourceModelWithAllowedPropertySetPlan class. */
+    /**
+     * Creates an instance of ResourceModelWithAllowedPropertySetPlan class.
+     */
     public ResourceModelWithAllowedPropertySetPlan() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySetPlan withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySetPlan withPublisher(String publisher) {
         super.withPublisher(publisher);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySetPlan withProduct(String product) {
         super.withProduct(product);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySetPlan withPromotionCode(String promotionCode) {
         super.withPromotionCode(promotionCode);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySetPlan withVersion(String version) {
         super.withVersion(version);
@@ -50,7 +64,7 @@ public final class ResourceModelWithAllowedPropertySetPlan extends Plan {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

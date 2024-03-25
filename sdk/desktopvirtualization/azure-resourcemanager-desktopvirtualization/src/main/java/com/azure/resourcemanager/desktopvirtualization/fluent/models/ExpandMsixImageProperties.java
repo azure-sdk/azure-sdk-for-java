@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Schema for Expand MSIX Image properties. */
+/**
+ * Schema for Expand MSIX Image properties.
+ */
 @Fluent
 public final class ExpandMsixImageProperties {
     /*
@@ -92,13 +94,27 @@ public final class ExpandMsixImageProperties {
     @JsonProperty(value = "packageApplications")
     private List<MsixPackageApplications> packageApplications;
 
-    /** Creates an instance of ExpandMsixImageProperties class. */
+    /*
+     * Certificate name found in the appxmanifest.xml.
+     */
+    @JsonProperty(value = "certificateName")
+    private String certificateName;
+
+    /*
+     * Date certificate expires, found in the appxmanifest.xml.
+     */
+    @JsonProperty(value = "certificateExpiry")
+    private OffsetDateTime certificateExpiry;
+
+    /**
+     * Creates an instance of ExpandMsixImageProperties class.
+     */
     public ExpandMsixImageProperties() {
     }
 
     /**
      * Get the packageAlias property: Alias of MSIX Package.
-     *
+     * 
      * @return the packageAlias value.
      */
     public String packageAlias() {
@@ -107,7 +123,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the packageAlias property: Alias of MSIX Package.
-     *
+     * 
      * @param packageAlias the packageAlias value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -118,7 +134,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Get the imagePath property: VHD/CIM image path on Network Share.
-     *
+     * 
      * @return the imagePath value.
      */
     public String imagePath() {
@@ -127,7 +143,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the imagePath property: VHD/CIM image path on Network Share.
-     *
+     * 
      * @param imagePath the imagePath value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -138,7 +154,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Get the packageName property: Package Name from appxmanifest.xml.
-     *
+     * 
      * @return the packageName value.
      */
     public String packageName() {
@@ -147,7 +163,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the packageName property: Package Name from appxmanifest.xml.
-     *
+     * 
      * @param packageName the packageName value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -159,7 +175,7 @@ public final class ExpandMsixImageProperties {
     /**
      * Get the packageFamilyName property: Package Family Name from appxmanifest.xml. Contains Package Name and
      * Publisher name.
-     *
+     * 
      * @return the packageFamilyName value.
      */
     public String packageFamilyName() {
@@ -169,7 +185,7 @@ public final class ExpandMsixImageProperties {
     /**
      * Set the packageFamilyName property: Package Family Name from appxmanifest.xml. Contains Package Name and
      * Publisher name.
-     *
+     * 
      * @param packageFamilyName the packageFamilyName value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -180,7 +196,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Get the packageFullName property: Package Full Name from appxmanifest.xml.
-     *
+     * 
      * @return the packageFullName value.
      */
     public String packageFullName() {
@@ -189,7 +205,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the packageFullName property: Package Full Name from appxmanifest.xml.
-     *
+     * 
      * @param packageFullName the packageFullName value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -200,7 +216,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Get the displayName property: User friendly Name to be displayed in the portal.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -209,7 +225,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the displayName property: User friendly Name to be displayed in the portal.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -220,7 +236,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Get the packageRelativePath property: Relative Path to the package inside the image.
-     *
+     * 
      * @return the packageRelativePath value.
      */
     public String packageRelativePath() {
@@ -229,7 +245,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the packageRelativePath property: Relative Path to the package inside the image.
-     *
+     * 
      * @param packageRelativePath the packageRelativePath value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -240,7 +256,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Get the isRegularRegistration property: Specifies how to register Package in feed.
-     *
+     * 
      * @return the isRegularRegistration value.
      */
     public Boolean isRegularRegistration() {
@@ -249,7 +265,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the isRegularRegistration property: Specifies how to register Package in feed.
-     *
+     * 
      * @param isRegularRegistration the isRegularRegistration value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -260,7 +276,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Get the isActive property: Make this version of the package the active one across the hostpool.
-     *
+     * 
      * @return the isActive value.
      */
     public Boolean isActive() {
@@ -269,7 +285,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the isActive property: Make this version of the package the active one across the hostpool.
-     *
+     * 
      * @param isActive the isActive value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -280,7 +296,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Get the packageDependencies property: List of package dependencies.
-     *
+     * 
      * @return the packageDependencies value.
      */
     public List<MsixPackageDependencies> packageDependencies() {
@@ -289,7 +305,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the packageDependencies property: List of package dependencies.
-     *
+     * 
      * @param packageDependencies the packageDependencies value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -300,7 +316,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Get the version property: Package Version found in the appxmanifest.xml.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -309,7 +325,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the version property: Package Version found in the appxmanifest.xml.
-     *
+     * 
      * @param version the version value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -320,7 +336,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Get the lastUpdated property: Date Package was last updated, found in the appxmanifest.xml.
-     *
+     * 
      * @return the lastUpdated value.
      */
     public OffsetDateTime lastUpdated() {
@@ -329,7 +345,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the lastUpdated property: Date Package was last updated, found in the appxmanifest.xml.
-     *
+     * 
      * @param lastUpdated the lastUpdated value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -340,7 +356,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Get the packageApplications property: List of package applications.
-     *
+     * 
      * @return the packageApplications value.
      */
     public List<MsixPackageApplications> packageApplications() {
@@ -349,7 +365,7 @@ public final class ExpandMsixImageProperties {
 
     /**
      * Set the packageApplications property: List of package applications.
-     *
+     * 
      * @param packageApplications the packageApplications value to set.
      * @return the ExpandMsixImageProperties object itself.
      */
@@ -359,8 +375,48 @@ public final class ExpandMsixImageProperties {
     }
 
     /**
+     * Get the certificateName property: Certificate name found in the appxmanifest.xml.
+     * 
+     * @return the certificateName value.
+     */
+    public String certificateName() {
+        return this.certificateName;
+    }
+
+    /**
+     * Set the certificateName property: Certificate name found in the appxmanifest.xml.
+     * 
+     * @param certificateName the certificateName value to set.
+     * @return the ExpandMsixImageProperties object itself.
+     */
+    public ExpandMsixImageProperties withCertificateName(String certificateName) {
+        this.certificateName = certificateName;
+        return this;
+    }
+
+    /**
+     * Get the certificateExpiry property: Date certificate expires, found in the appxmanifest.xml.
+     * 
+     * @return the certificateExpiry value.
+     */
+    public OffsetDateTime certificateExpiry() {
+        return this.certificateExpiry;
+    }
+
+    /**
+     * Set the certificateExpiry property: Date certificate expires, found in the appxmanifest.xml.
+     * 
+     * @param certificateExpiry the certificateExpiry value to set.
+     * @return the ExpandMsixImageProperties object itself.
+     */
+    public ExpandMsixImageProperties withCertificateExpiry(OffsetDateTime certificateExpiry) {
+        this.certificateExpiry = certificateExpiry;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

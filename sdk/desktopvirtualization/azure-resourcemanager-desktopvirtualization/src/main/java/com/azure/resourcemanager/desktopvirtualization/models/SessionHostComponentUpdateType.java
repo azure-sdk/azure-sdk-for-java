@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The type of maintenance for session host components. */
+/**
+ * The type of maintenance for session host components.
+ */
 public final class SessionHostComponentUpdateType extends ExpandableStringEnum<SessionHostComponentUpdateType> {
-    /** Static value Default for SessionHostComponentUpdateType. */
+    /**
+     * Static value Default for SessionHostComponentUpdateType.
+     */
     public static final SessionHostComponentUpdateType DEFAULT = fromString("Default");
 
-    /** Static value Scheduled for SessionHostComponentUpdateType. */
+    /**
+     * Static value Scheduled for SessionHostComponentUpdateType.
+     */
     public static final SessionHostComponentUpdateType SCHEDULED = fromString("Scheduled");
 
     /**
      * Creates a new instance of SessionHostComponentUpdateType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class SessionHostComponentUpdateType extends ExpandableStringEnum<S
 
     /**
      * Creates or finds a SessionHostComponentUpdateType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SessionHostComponentUpdateType.
      */
@@ -38,7 +44,7 @@ public final class SessionHostComponentUpdateType extends ExpandableStringEnum<S
 
     /**
      * Gets known SessionHostComponentUpdateType values.
-     *
+     * 
      * @return known SessionHostComponentUpdateType values.
      */
     public static Collection<SessionHostComponentUpdateType> values() {

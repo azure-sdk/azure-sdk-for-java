@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * MsixPackageList
- *
- * <p>List of MSIX Package definitions.
+ * 
+ * List of MSIX Package definitions.
  */
 @Fluent
 public final class MsixPackageList {
@@ -28,13 +28,15 @@ public final class MsixPackageList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of MsixPackageList class. */
+    /**
+     * Creates an instance of MsixPackageList class.
+     */
     public MsixPackageList() {
     }
 
     /**
      * Get the value property: List of MSIX Package definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<MsixPackageInner> value() {
@@ -43,7 +45,7 @@ public final class MsixPackageList {
 
     /**
      * Set the value property: List of MSIX Package definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the MsixPackageList object itself.
      */
@@ -54,7 +56,7 @@ public final class MsixPackageList {
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +65,7 @@ public final class MsixPackageList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
