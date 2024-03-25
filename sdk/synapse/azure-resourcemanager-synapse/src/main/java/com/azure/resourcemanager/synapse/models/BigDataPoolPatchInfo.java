@@ -11,8 +11,8 @@ import java.util.Map;
 
 /**
  * Patch for a Big Data pool
- *
- * <p>Properties patch for a Big Data pool.
+ * 
+ * Properties patch for a Big Data pool.
  */
 @Fluent
 public final class BigDataPoolPatchInfo {
@@ -23,13 +23,15 @@ public final class BigDataPoolPatchInfo {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of BigDataPoolPatchInfo class. */
+    /**
+     * Creates an instance of BigDataPoolPatchInfo class.
+     */
     public BigDataPoolPatchInfo() {
     }
 
     /**
      * Get the tags property: Updated tags for the Big Data pool.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -38,7 +40,7 @@ public final class BigDataPoolPatchInfo {
 
     /**
      * Set the tags property: Updated tags for the Big Data pool.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the BigDataPoolPatchInfo object itself.
      */
@@ -49,7 +51,7 @@ public final class BigDataPoolPatchInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

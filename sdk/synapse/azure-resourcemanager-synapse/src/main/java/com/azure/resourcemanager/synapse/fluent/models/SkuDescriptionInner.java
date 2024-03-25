@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.models.SkuLocationInfoItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The Kusto SKU description of given resource type. */
+/**
+ * The Kusto SKU description of given resource type.
+ */
 @Immutable
 public final class SkuDescriptionInner {
     /*
@@ -48,13 +50,15 @@ public final class SkuDescriptionInner {
     @JsonProperty(value = "restrictions", access = JsonProperty.Access.WRITE_ONLY)
     private List<Object> restrictions;
 
-    /** Creates an instance of SkuDescriptionInner class. */
+    /**
+     * Creates an instance of SkuDescriptionInner class.
+     */
     public SkuDescriptionInner() {
     }
 
     /**
      * Get the resourceType property: The resource type.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -63,7 +67,7 @@ public final class SkuDescriptionInner {
 
     /**
      * Get the name property: The name of the SKU.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -72,7 +76,7 @@ public final class SkuDescriptionInner {
 
     /**
      * Get the size property: The size of the SKU.
-     *
+     * 
      * @return the size value.
      */
     public String size() {
@@ -81,7 +85,7 @@ public final class SkuDescriptionInner {
 
     /**
      * Get the locations property: The set of locations that the SKU is available.
-     *
+     * 
      * @return the locations value.
      */
     public List<String> locations() {
@@ -90,7 +94,7 @@ public final class SkuDescriptionInner {
 
     /**
      * Get the locationInfo property: Locations and zones.
-     *
+     * 
      * @return the locationInfo value.
      */
     public List<SkuLocationInfoItem> locationInfo() {
@@ -99,7 +103,7 @@ public final class SkuDescriptionInner {
 
     /**
      * Get the restrictions property: The restrictions because of which SKU cannot be used.
-     *
+     * 
      * @return the restrictions value.
      */
     public List<Object> restrictions() {
@@ -108,7 +112,7 @@ public final class SkuDescriptionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

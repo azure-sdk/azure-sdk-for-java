@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.synapse.models.TransparentDataEncryptionStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents the properties of a database transparent data encryption. */
+/**
+ * Represents the properties of a database transparent data encryption.
+ */
 @Fluent
 public final class TransparentDataEncryptionProperties {
     /*
@@ -17,13 +19,15 @@ public final class TransparentDataEncryptionProperties {
     @JsonProperty(value = "status")
     private TransparentDataEncryptionStatus status;
 
-    /** Creates an instance of TransparentDataEncryptionProperties class. */
+    /**
+     * Creates an instance of TransparentDataEncryptionProperties class.
+     */
     public TransparentDataEncryptionProperties() {
     }
 
     /**
      * Get the status property: The status of the database transparent data encryption.
-     *
+     * 
      * @return the status value.
      */
     public TransparentDataEncryptionStatus status() {
@@ -32,7 +36,7 @@ public final class TransparentDataEncryptionProperties {
 
     /**
      * Set the status property: The status of the database transparent data encryption.
-     *
+     * 
      * @param status the status value to set.
      * @return the TransparentDataEncryptionProperties object itself.
      */
@@ -43,7 +47,7 @@ public final class TransparentDataEncryptionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

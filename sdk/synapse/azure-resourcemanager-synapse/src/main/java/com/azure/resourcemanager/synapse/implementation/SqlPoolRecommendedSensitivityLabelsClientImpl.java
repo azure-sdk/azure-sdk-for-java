@@ -26,57 +26,52 @@ import com.azure.resourcemanager.synapse.models.RecommendedSensitivityLabelUpdat
 import reactor.core.publisher.Mono;
 
 /**
- * An instance of this class provides access to all the operations defined in SqlPoolRecommendedSensitivityLabelsClient.
+ * An instance of this class provides access to all the operations defined in
+ * SqlPoolRecommendedSensitivityLabelsClient.
  */
 public final class SqlPoolRecommendedSensitivityLabelsClientImpl implements SqlPoolRecommendedSensitivityLabelsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final SqlPoolRecommendedSensitivityLabelsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final SynapseManagementClientImpl client;
 
     /**
      * Initializes an instance of SqlPoolRecommendedSensitivityLabelsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     SqlPoolRecommendedSensitivityLabelsClientImpl(SynapseManagementClientImpl client) {
-        this.service =
-            RestProxy
-                .create(
-                    SqlPoolRecommendedSensitivityLabelsService.class,
-                    client.getHttpPipeline(),
-                    client.getSerializerAdapter());
+        this.service = RestProxy.create(SqlPoolRecommendedSensitivityLabelsService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for SynapseManagementClientSqlPoolRecommendedSensitivityLabels to be used
-     * by the proxy service to perform REST calls.
+     * The interface defining all the services for SynapseManagementClientSqlPoolRecommendedSensitivityLabels to be
+     * used by the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "SynapseManagementCli")
     public interface SqlPoolRecommendedSensitivityLabelsService {
-        @Headers({"Accept: application/json;q=0.9", "Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces"
-                + "/{workspaceName}/sqlPools/{sqlPoolName}/recommendedSensitivityLabels")
-        @ExpectedResponses({200})
+        @Headers({ "Accept: application/json;q=0.9", "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Synapse/workspaces/{workspaceName}/sqlPools/{sqlPoolName}/recommendedSensitivityLabels")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> update(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> update(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("workspaceName") String workspaceName,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("workspaceName") String workspaceName,
             @PathParam("sqlPoolName") String sqlPoolName,
-            @BodyParam("application/json") RecommendedSensitivityLabelUpdateList parameters,
-            Context context);
+            @BodyParam("application/json") RecommendedSensitivityLabelUpdateList parameters, Context context);
     }
 
     /**
      * Update recommended sensitivity labels states of a given SQL Pool using an operations batch.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -87,22 +82,15 @@ public final class SqlPoolRecommendedSensitivityLabelsClientImpl implements SqlP
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> updateWithResponseAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
-        RecommendedSensitivityLabelUpdateList parameters) {
+    private Mono<Response<Void>> updateWithResponseAsync(String resourceGroupName, String workspaceName,
+        String sqlPoolName, RecommendedSensitivityLabelUpdateList parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -121,24 +109,14 @@ public final class SqlPoolRecommendedSensitivityLabelsClientImpl implements SqlP
         }
         final String apiVersion = "2021-06-01";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            apiVersion,
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            workspaceName,
-                            sqlPoolName,
-                            parameters,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), apiVersion,
+                this.client.getSubscriptionId(), resourceGroupName, workspaceName, sqlPoolName, parameters, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Update recommended sensitivity labels states of a given SQL Pool using an operations batch.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -150,23 +128,15 @@ public final class SqlPoolRecommendedSensitivityLabelsClientImpl implements SqlP
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> updateWithResponseAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
-        RecommendedSensitivityLabelUpdateList parameters,
-        Context context) {
+    private Mono<Response<Void>> updateWithResponseAsync(String resourceGroupName, String workspaceName,
+        String sqlPoolName, RecommendedSensitivityLabelUpdateList parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -185,21 +155,13 @@ public final class SqlPoolRecommendedSensitivityLabelsClientImpl implements SqlP
         }
         final String apiVersion = "2021-06-01";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                apiVersion,
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                workspaceName,
-                sqlPoolName,
-                parameters,
-                context);
+        return service.update(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), resourceGroupName,
+            workspaceName, sqlPoolName, parameters, context);
     }
 
     /**
      * Update recommended sensitivity labels states of a given SQL Pool using an operations batch.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -210,10 +172,7 @@ public final class SqlPoolRecommendedSensitivityLabelsClientImpl implements SqlP
      * @return A {@link Mono} that completes when a successful response is received.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> updateAsync(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
+    private Mono<Void> updateAsync(String resourceGroupName, String workspaceName, String sqlPoolName,
         RecommendedSensitivityLabelUpdateList parameters) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, parameters)
             .flatMap(ignored -> Mono.empty());
@@ -221,7 +180,7 @@ public final class SqlPoolRecommendedSensitivityLabelsClientImpl implements SqlP
 
     /**
      * Update recommended sensitivity labels states of a given SQL Pool using an operations batch.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -233,18 +192,14 @@ public final class SqlPoolRecommendedSensitivityLabelsClientImpl implements SqlP
      * @return the {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> updateWithResponse(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
-        RecommendedSensitivityLabelUpdateList parameters,
-        Context context) {
+    public Response<Void> updateWithResponse(String resourceGroupName, String workspaceName, String sqlPoolName,
+        RecommendedSensitivityLabelUpdateList parameters, Context context) {
         return updateWithResponseAsync(resourceGroupName, workspaceName, sqlPoolName, parameters, context).block();
     }
 
     /**
      * Update recommended sensitivity labels states of a given SQL Pool using an operations batch.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName The name of the workspace.
      * @param sqlPoolName SQL pool name.
@@ -254,10 +209,7 @@ public final class SqlPoolRecommendedSensitivityLabelsClientImpl implements SqlP
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void update(
-        String resourceGroupName,
-        String workspaceName,
-        String sqlPoolName,
+    public void update(String resourceGroupName, String workspaceName, String sqlPoolName,
         RecommendedSensitivityLabelUpdateList parameters) {
         updateWithResponse(resourceGroupName, workspaceName, sqlPoolName, parameters, Context.NONE);
     }

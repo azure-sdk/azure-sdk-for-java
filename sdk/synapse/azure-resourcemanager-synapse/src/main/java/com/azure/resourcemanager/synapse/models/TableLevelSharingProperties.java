@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Tables that will be included and excluded in the follower database. */
+/**
+ * Tables that will be included and excluded in the follower database.
+ */
 @Fluent
 public final class TableLevelSharingProperties {
     /*
@@ -47,13 +49,15 @@ public final class TableLevelSharingProperties {
     @JsonProperty(value = "materializedViewsToExclude")
     private List<String> materializedViewsToExclude;
 
-    /** Creates an instance of TableLevelSharingProperties class. */
+    /**
+     * Creates an instance of TableLevelSharingProperties class.
+     */
     public TableLevelSharingProperties() {
     }
 
     /**
      * Get the tablesToInclude property: List of tables to include in the follower database.
-     *
+     * 
      * @return the tablesToInclude value.
      */
     public List<String> tablesToInclude() {
@@ -62,7 +66,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Set the tablesToInclude property: List of tables to include in the follower database.
-     *
+     * 
      * @param tablesToInclude the tablesToInclude value to set.
      * @return the TableLevelSharingProperties object itself.
      */
@@ -73,7 +77,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Get the tablesToExclude property: List of tables to exclude from the follower database.
-     *
+     * 
      * @return the tablesToExclude value.
      */
     public List<String> tablesToExclude() {
@@ -82,7 +86,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Set the tablesToExclude property: List of tables to exclude from the follower database.
-     *
+     * 
      * @param tablesToExclude the tablesToExclude value to set.
      * @return the TableLevelSharingProperties object itself.
      */
@@ -93,7 +97,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Get the externalTablesToInclude property: List of external tables to include in the follower database.
-     *
+     * 
      * @return the externalTablesToInclude value.
      */
     public List<String> externalTablesToInclude() {
@@ -102,7 +106,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Set the externalTablesToInclude property: List of external tables to include in the follower database.
-     *
+     * 
      * @param externalTablesToInclude the externalTablesToInclude value to set.
      * @return the TableLevelSharingProperties object itself.
      */
@@ -113,7 +117,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Get the externalTablesToExclude property: List of external tables exclude from the follower database.
-     *
+     * 
      * @return the externalTablesToExclude value.
      */
     public List<String> externalTablesToExclude() {
@@ -122,7 +126,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Set the externalTablesToExclude property: List of external tables exclude from the follower database.
-     *
+     * 
      * @param externalTablesToExclude the externalTablesToExclude value to set.
      * @return the TableLevelSharingProperties object itself.
      */
@@ -133,7 +137,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Get the materializedViewsToInclude property: List of materialized views to include in the follower database.
-     *
+     * 
      * @return the materializedViewsToInclude value.
      */
     public List<String> materializedViewsToInclude() {
@@ -142,7 +146,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Set the materializedViewsToInclude property: List of materialized views to include in the follower database.
-     *
+     * 
      * @param materializedViewsToInclude the materializedViewsToInclude value to set.
      * @return the TableLevelSharingProperties object itself.
      */
@@ -153,7 +157,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Get the materializedViewsToExclude property: List of materialized views exclude from the follower database.
-     *
+     * 
      * @return the materializedViewsToExclude value.
      */
     public List<String> materializedViewsToExclude() {
@@ -162,7 +166,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Set the materializedViewsToExclude property: List of materialized views exclude from the follower database.
-     *
+     * 
      * @param materializedViewsToExclude the materializedViewsToExclude value to set.
      * @return the TableLevelSharingProperties object itself.
      */
@@ -173,7 +177,7 @@ public final class TableLevelSharingProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** A privateLinkHub. */
+/**
+ * A privateLinkHub.
+ */
 @Fluent
 public final class PrivateLinkHubInner extends Resource {
     /*
@@ -20,27 +22,33 @@ public final class PrivateLinkHubInner extends Resource {
     @JsonProperty(value = "properties")
     private PrivateLinkHubProperties innerProperties;
 
-    /** Creates an instance of PrivateLinkHubInner class. */
+    /**
+     * Creates an instance of PrivateLinkHubInner class.
+     */
     public PrivateLinkHubInner() {
     }
 
     /**
      * Get the innerProperties property: PrivateLinkHub resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PrivateLinkHubProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PrivateLinkHubInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PrivateLinkHubInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -49,7 +57,7 @@ public final class PrivateLinkHubInner extends Resource {
 
     /**
      * Get the provisioningState property: PrivateLinkHub provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -58,7 +66,7 @@ public final class PrivateLinkHubInner extends Resource {
 
     /**
      * Set the provisioningState property: PrivateLinkHub provisioning state.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the PrivateLinkHubInner object itself.
      */
@@ -72,7 +80,7 @@ public final class PrivateLinkHubInner extends Resource {
 
     /**
      * Get the privateEndpointConnections property: List of private endpoint connections.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionForPrivateLinkHubBasic> privateEndpointConnections() {
@@ -81,7 +89,7 @@ public final class PrivateLinkHubInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

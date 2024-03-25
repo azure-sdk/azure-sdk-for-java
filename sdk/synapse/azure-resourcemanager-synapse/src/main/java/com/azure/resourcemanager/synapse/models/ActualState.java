@@ -7,24 +7,38 @@ package com.azure.resourcemanager.synapse.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Actual state. */
+/**
+ * Actual state.
+ */
 public enum ActualState {
-    /** Enum value Enabling. */
+    /**
+     * Enum value Enabling.
+     */
     ENABLING("Enabling"),
 
-    /** Enum value Enabled. */
+    /**
+     * Enum value Enabled.
+     */
     ENABLED("Enabled"),
 
-    /** Enum value Disabling. */
+    /**
+     * Enum value Disabling.
+     */
     DISABLING("Disabling"),
 
-    /** Enum value Disabled. */
+    /**
+     * Enum value Disabled.
+     */
     DISABLED("Disabled"),
 
-    /** Enum value Unknown. */
+    /**
+     * Enum value Unknown.
+     */
     UNKNOWN("Unknown");
 
-    /** The actual serialized value for a ActualState instance. */
+    /**
+     * The actual serialized value for a ActualState instance.
+     */
     private final String value;
 
     ActualState(String value) {
@@ -33,7 +47,7 @@ public enum ActualState {
 
     /**
      * Parses a serialized value to a ActualState instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed ActualState object, or null if unable to parse.
      */
@@ -51,7 +65,9 @@ public enum ActualState {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

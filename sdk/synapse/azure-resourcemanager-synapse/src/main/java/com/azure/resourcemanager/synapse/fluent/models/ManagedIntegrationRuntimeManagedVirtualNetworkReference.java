@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Managed integration runtime managed virtual network reference. */
+/**
+ * Managed integration runtime managed virtual network reference.
+ */
 @Fluent
 public final class ManagedIntegrationRuntimeManagedVirtualNetworkReference {
     /*
@@ -28,13 +30,15 @@ public final class ManagedIntegrationRuntimeManagedVirtualNetworkReference {
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of ManagedIntegrationRuntimeManagedVirtualNetworkReference class. */
+    /**
+     * Creates an instance of ManagedIntegrationRuntimeManagedVirtualNetworkReference class.
+     */
     public ManagedIntegrationRuntimeManagedVirtualNetworkReference() {
     }
 
     /**
      * Get the referenceName property: The reference name of the managed virtual network.
-     *
+     * 
      * @return the referenceName value.
      */
     public String referenceName() {
@@ -43,7 +47,7 @@ public final class ManagedIntegrationRuntimeManagedVirtualNetworkReference {
 
     /**
      * Set the referenceName property: The reference name of the managed virtual network.
-     *
+     * 
      * @param referenceName the referenceName value to set.
      * @return the ManagedIntegrationRuntimeManagedVirtualNetworkReference object itself.
      */
@@ -54,7 +58,7 @@ public final class ManagedIntegrationRuntimeManagedVirtualNetworkReference {
 
     /**
      * Get the type property: The type of the managed virtual network.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -63,7 +67,7 @@ public final class ManagedIntegrationRuntimeManagedVirtualNetworkReference {
 
     /**
      * Set the type property: The type of the managed virtual network.
-     *
+     * 
      * @param type the type value to set.
      * @return the ManagedIntegrationRuntimeManagedVirtualNetworkReference object itself.
      */
@@ -74,7 +78,7 @@ public final class ManagedIntegrationRuntimeManagedVirtualNetworkReference {
 
     /**
      * Get the id property: The id of the managed virtual network.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -83,7 +87,7 @@ public final class ManagedIntegrationRuntimeManagedVirtualNetworkReference {
 
     /**
      * Set the id property: The id of the managed virtual network.
-     *
+     * 
      * @param id the id value to set.
      * @return the ManagedIntegrationRuntimeManagedVirtualNetworkReference object itself.
      */
@@ -94,7 +98,7 @@ public final class ManagedIntegrationRuntimeManagedVirtualNetworkReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

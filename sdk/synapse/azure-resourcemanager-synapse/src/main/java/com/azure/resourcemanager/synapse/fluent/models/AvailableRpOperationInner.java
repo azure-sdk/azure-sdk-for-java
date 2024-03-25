@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.models.AvailableRpOperationDisplayInfo;
 import com.azure.resourcemanager.synapse.models.OperationMetaServiceSpecification;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An operation that is available in this resource provider. */
+/**
+ * An operation that is available in this resource provider.
+ */
 @Fluent
 public final class AvailableRpOperationInner {
     /*
@@ -42,13 +44,15 @@ public final class AvailableRpOperationInner {
     @JsonProperty(value = "origin")
     private String origin;
 
-    /** Creates an instance of AvailableRpOperationInner class. */
+    /**
+     * Creates an instance of AvailableRpOperationInner class.
+     */
     public AvailableRpOperationInner() {
     }
 
     /**
      * Get the display property: Display properties of the operation.
-     *
+     * 
      * @return the display value.
      */
     public AvailableRpOperationDisplayInfo display() {
@@ -57,7 +61,7 @@ public final class AvailableRpOperationInner {
 
     /**
      * Set the display property: Display properties of the operation.
-     *
+     * 
      * @param display the display value to set.
      * @return the AvailableRpOperationInner object itself.
      */
@@ -68,7 +72,7 @@ public final class AvailableRpOperationInner {
 
     /**
      * Get the isDataAction property: Whether this operation is a data action.
-     *
+     * 
      * @return the isDataAction value.
      */
     public String isDataAction() {
@@ -77,7 +81,7 @@ public final class AvailableRpOperationInner {
 
     /**
      * Set the isDataAction property: Whether this operation is a data action.
-     *
+     * 
      * @param isDataAction the isDataAction value to set.
      * @return the AvailableRpOperationInner object itself.
      */
@@ -88,7 +92,7 @@ public final class AvailableRpOperationInner {
 
     /**
      * Get the name property: Operation name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -97,7 +101,7 @@ public final class AvailableRpOperationInner {
 
     /**
      * Set the name property: Operation name.
-     *
+     * 
      * @param name the name value to set.
      * @return the AvailableRpOperationInner object itself.
      */
@@ -108,7 +112,7 @@ public final class AvailableRpOperationInner {
 
     /**
      * Get the innerProperties property: Operation properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private OperationMetaPropertyInfo innerProperties() {
@@ -117,7 +121,7 @@ public final class AvailableRpOperationInner {
 
     /**
      * Get the origin property: Operation origin.
-     *
+     * 
      * @return the origin value.
      */
     public String origin() {
@@ -126,7 +130,7 @@ public final class AvailableRpOperationInner {
 
     /**
      * Set the origin property: Operation origin.
-     *
+     * 
      * @param origin the origin value to set.
      * @return the AvailableRpOperationInner object itself.
      */
@@ -137,7 +141,7 @@ public final class AvailableRpOperationInner {
 
     /**
      * Get the serviceSpecification property: Operation service specification.
-     *
+     * 
      * @return the serviceSpecification value.
      */
     public OperationMetaServiceSpecification serviceSpecification() {
@@ -146,7 +150,7 @@ public final class AvailableRpOperationInner {
 
     /**
      * Set the serviceSpecification property: Operation service specification.
-     *
+     * 
      * @param serviceSpecification the serviceSpecification value to set.
      * @return the AvailableRpOperationInner object itself.
      */
@@ -160,7 +164,7 @@ public final class AvailableRpOperationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.KeyInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of keys. */
+/**
+ * List of keys.
+ */
 @Fluent
 public final class KeyInfoListResult {
     /*
@@ -24,13 +26,15 @@ public final class KeyInfoListResult {
     @JsonProperty(value = "value")
     private List<KeyInner> value;
 
-    /** Creates an instance of KeyInfoListResult class. */
+    /**
+     * Creates an instance of KeyInfoListResult class.
+     */
     public KeyInfoListResult() {
     }
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class KeyInfoListResult {
 
     /**
      * Set the nextLink property: Link to the next page of results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the KeyInfoListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class KeyInfoListResult {
 
     /**
      * Get the value property: List of keys.
-     *
+     * 
      * @return the value value.
      */
     public List<KeyInner> value() {
@@ -59,7 +63,7 @@ public final class KeyInfoListResult {
 
     /**
      * Set the value property: List of keys.
-     *
+     * 
      * @param value the value value to set.
      * @return the KeyInfoListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class KeyInfoListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The kind of nodes that the Big Data pool provides. */
+/**
+ * The kind of nodes that the Big Data pool provides.
+ */
 public final class NodeSizeFamily extends ExpandableStringEnum<NodeSizeFamily> {
-    /** Static value None for NodeSizeFamily. */
+    /**
+     * Static value None for NodeSizeFamily.
+     */
     public static final NodeSizeFamily NONE = fromString("None");
 
-    /** Static value MemoryOptimized for NodeSizeFamily. */
+    /**
+     * Static value MemoryOptimized for NodeSizeFamily.
+     */
     public static final NodeSizeFamily MEMORY_OPTIMIZED = fromString("MemoryOptimized");
 
-    /** Static value HardwareAcceleratedFPGA for NodeSizeFamily. */
+    /**
+     * Static value HardwareAcceleratedFPGA for NodeSizeFamily.
+     */
     public static final NodeSizeFamily HARDWARE_ACCELERATED_FPGA = fromString("HardwareAcceleratedFPGA");
 
-    /** Static value HardwareAcceleratedGPU for NodeSizeFamily. */
+    /**
+     * Static value HardwareAcceleratedGPU for NodeSizeFamily.
+     */
     public static final NodeSizeFamily HARDWARE_ACCELERATED_GPU = fromString("HardwareAcceleratedGPU");
 
     /**
      * Creates a new instance of NodeSizeFamily value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class NodeSizeFamily extends ExpandableStringEnum<NodeSizeFamily> {
 
     /**
      * Creates or finds a NodeSizeFamily from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding NodeSizeFamily.
      */
@@ -44,7 +54,7 @@ public final class NodeSizeFamily extends ExpandableStringEnum<NodeSizeFamily> {
 
     /**
      * Gets known NodeSizeFamily values.
-     *
+     * 
      * @return known NodeSizeFamily values.
      */
     public static Collection<NodeSizeFamily> values() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.synapse.models.LinkedIntegrationRuntimeType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The self-hosted integration runtime properties. */
+/**
+ * The self-hosted integration runtime properties.
+ */
 @Fluent
 public final class SelfHostedIntegrationRuntimeTypeProperties {
     /*
@@ -17,13 +19,15 @@ public final class SelfHostedIntegrationRuntimeTypeProperties {
     @JsonProperty(value = "linkedInfo")
     private LinkedIntegrationRuntimeType linkedInfo;
 
-    /** Creates an instance of SelfHostedIntegrationRuntimeTypeProperties class. */
+    /**
+     * Creates an instance of SelfHostedIntegrationRuntimeTypeProperties class.
+     */
     public SelfHostedIntegrationRuntimeTypeProperties() {
     }
 
     /**
      * Get the linkedInfo property: Linked integration runtime type from data factory.
-     *
+     * 
      * @return the linkedInfo value.
      */
     public LinkedIntegrationRuntimeType linkedInfo() {
@@ -32,7 +36,7 @@ public final class SelfHostedIntegrationRuntimeTypeProperties {
 
     /**
      * Set the linkedInfo property: Linked integration runtime type from data factory.
-     *
+     * 
      * @param linkedInfo the linkedInfo value to set.
      * @return the SelfHostedIntegrationRuntimeTypeProperties object itself.
      */
@@ -43,7 +47,7 @@ public final class SelfHostedIntegrationRuntimeTypeProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

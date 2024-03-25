@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Replace all IP firewall rules request. */
+/**
+ * Replace all IP firewall rules request.
+ */
 @Fluent
 public final class ReplaceAllIpFirewallRulesRequest {
     /*
@@ -20,13 +22,15 @@ public final class ReplaceAllIpFirewallRulesRequest {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, IpFirewallRuleProperties> ipFirewallRules;
 
-    /** Creates an instance of ReplaceAllIpFirewallRulesRequest class. */
+    /**
+     * Creates an instance of ReplaceAllIpFirewallRulesRequest class.
+     */
     public ReplaceAllIpFirewallRulesRequest() {
     }
 
     /**
      * Get the ipFirewallRules property: IP firewall rule properties.
-     *
+     * 
      * @return the ipFirewallRules value.
      */
     public Map<String, IpFirewallRuleProperties> ipFirewallRules() {
@@ -35,7 +39,7 @@ public final class ReplaceAllIpFirewallRulesRequest {
 
     /**
      * Set the ipFirewallRules property: IP firewall rule properties.
-     *
+     * 
      * @param ipFirewallRules the ipFirewallRules value to set.
      * @return the ReplaceAllIpFirewallRulesRequest object itself.
      */
@@ -46,19 +50,16 @@ public final class ReplaceAllIpFirewallRulesRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (ipFirewallRules() != null) {
-            ipFirewallRules()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            ipFirewallRules().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

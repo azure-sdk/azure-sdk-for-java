@@ -8,9 +8,11 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** User Assigned Managed Identity. */
+/**
+ * User Assigned Managed Identity.
+ */
 @Immutable
-public class UserAssignedManagedIdentity {
+public final class UserAssignedManagedIdentity {
     /*
      * The client ID.
      */
@@ -23,13 +25,15 @@ public class UserAssignedManagedIdentity {
     @JsonProperty(value = "principalId", access = JsonProperty.Access.WRITE_ONLY)
     private UUID principalId;
 
-    /** Creates an instance of UserAssignedManagedIdentity class. */
+    /**
+     * Creates an instance of UserAssignedManagedIdentity class.
+     */
     public UserAssignedManagedIdentity() {
     }
 
     /**
      * Get the clientId property: The client ID.
-     *
+     * 
      * @return the clientId value.
      */
     public UUID clientId() {
@@ -38,7 +42,7 @@ public class UserAssignedManagedIdentity {
 
     /**
      * Get the principalId property: The principal ID.
-     *
+     * 
      * @return the principalId value.
      */
     public UUID principalId() {
@@ -47,7 +51,7 @@ public class UserAssignedManagedIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

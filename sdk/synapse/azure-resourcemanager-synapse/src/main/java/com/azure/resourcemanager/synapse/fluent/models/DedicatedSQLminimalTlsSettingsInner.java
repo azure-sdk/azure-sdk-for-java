@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Dedicated Sql Minimal Tls Settings Info. */
+/**
+ * Dedicated Sql Minimal Tls Settings Info.
+ */
 @Fluent
 public final class DedicatedSQLminimalTlsSettingsInner extends ProxyResource {
     /*
@@ -23,13 +25,15 @@ public final class DedicatedSQLminimalTlsSettingsInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private DedicatedSQLminimalTlsSettingsProperties innerProperties;
 
-    /** Creates an instance of DedicatedSQLminimalTlsSettingsInner class. */
+    /**
+     * Creates an instance of DedicatedSQLminimalTlsSettingsInner class.
+     */
     public DedicatedSQLminimalTlsSettingsInner() {
     }
 
     /**
      * Get the location property: Resource location.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -38,7 +42,7 @@ public final class DedicatedSQLminimalTlsSettingsInner extends ProxyResource {
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DedicatedSQLminimalTlsSettingsProperties innerProperties() {
@@ -47,7 +51,7 @@ public final class DedicatedSQLminimalTlsSettingsInner extends ProxyResource {
 
     /**
      * Get the minimalTlsVersion property: The minimal tls version of the sql server.
-     *
+     * 
      * @return the minimalTlsVersion value.
      */
     public String minimalTlsVersion() {
@@ -56,7 +60,7 @@ public final class DedicatedSQLminimalTlsSettingsInner extends ProxyResource {
 
     /**
      * Set the minimalTlsVersion property: The minimal tls version of the sql server.
-     *
+     * 
      * @param minimalTlsVersion the minimalTlsVersion value to set.
      * @return the DedicatedSQLminimalTlsSettingsInner object itself.
      */
@@ -70,7 +74,7 @@ public final class DedicatedSQLminimalTlsSettingsInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

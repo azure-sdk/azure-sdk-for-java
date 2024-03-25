@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details of the customer managed key associated with the workspace. */
+/**
+ * Details of the customer managed key associated with the workspace.
+ */
 @Fluent
 public final class CustomerManagedKeyDetails {
     /*
@@ -28,13 +30,15 @@ public final class CustomerManagedKeyDetails {
     @JsonProperty(value = "kekIdentity")
     private KekIdentityProperties kekIdentity;
 
-    /** Creates an instance of CustomerManagedKeyDetails class. */
+    /**
+     * Creates an instance of CustomerManagedKeyDetails class.
+     */
     public CustomerManagedKeyDetails() {
     }
 
     /**
      * Get the status property: The customer managed key status on the workspace.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -43,7 +47,7 @@ public final class CustomerManagedKeyDetails {
 
     /**
      * Get the key property: The key object of the workspace.
-     *
+     * 
      * @return the key value.
      */
     public WorkspaceKeyDetails key() {
@@ -52,7 +56,7 @@ public final class CustomerManagedKeyDetails {
 
     /**
      * Set the key property: The key object of the workspace.
-     *
+     * 
      * @param key the key value to set.
      * @return the CustomerManagedKeyDetails object itself.
      */
@@ -63,7 +67,7 @@ public final class CustomerManagedKeyDetails {
 
     /**
      * Get the kekIdentity property: Key encryption key.
-     *
+     * 
      * @return the kekIdentity value.
      */
     public KekIdentityProperties kekIdentity() {
@@ -72,7 +76,7 @@ public final class CustomerManagedKeyDetails {
 
     /**
      * Set the kekIdentity property: Key encryption key.
-     *
+     * 
      * @param kekIdentity the kekIdentity value to set.
      * @return the CustomerManagedKeyDetails object itself.
      */
@@ -83,7 +87,7 @@ public final class CustomerManagedKeyDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

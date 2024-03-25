@@ -9,7 +9,9 @@ import com.azure.resourcemanager.synapse.fluent.models.RecoverableSqlPoolInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response to a list recoverable sql pools request. */
+/**
+ * The response to a list recoverable sql pools request.
+ */
 @Immutable
 public final class RecoverableSqlPoolListResult {
     /*
@@ -24,13 +26,15 @@ public final class RecoverableSqlPoolListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of RecoverableSqlPoolListResult class. */
+    /**
+     * Creates an instance of RecoverableSqlPoolListResult class.
+     */
     public RecoverableSqlPoolListResult() {
     }
 
     /**
      * Get the value property: A list of recoverable sql pool.
-     *
+     * 
      * @return the value value.
      */
     public List<RecoverableSqlPoolInner> value() {
@@ -39,7 +43,7 @@ public final class RecoverableSqlPoolListResult {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class RecoverableSqlPoolListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

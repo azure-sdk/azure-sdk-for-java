@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for GeoBackupPolicyName. */
+/**
+ * Defines values for GeoBackupPolicyName.
+ */
 public final class GeoBackupPolicyName extends ExpandableStringEnum<GeoBackupPolicyName> {
-    /** Static value Default for GeoBackupPolicyName. */
+    /**
+     * Static value Default for GeoBackupPolicyName.
+     */
     public static final GeoBackupPolicyName DEFAULT = fromString("Default");
 
     /**
      * Creates a new instance of GeoBackupPolicyName value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class GeoBackupPolicyName extends ExpandableStringEnum<GeoBackupPol
 
     /**
      * Creates or finds a GeoBackupPolicyName from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding GeoBackupPolicyName.
      */
@@ -35,7 +39,7 @@ public final class GeoBackupPolicyName extends ExpandableStringEnum<GeoBackupPol
 
     /**
      * Gets known GeoBackupPolicyName values.
-     *
+     * 
      * @return known GeoBackupPolicyName values.
      */
     public static Collection<GeoBackupPolicyName> values() {

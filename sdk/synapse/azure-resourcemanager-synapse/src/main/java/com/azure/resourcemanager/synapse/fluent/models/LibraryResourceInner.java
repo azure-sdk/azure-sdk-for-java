@@ -10,26 +10,30 @@ import com.azure.resourcemanager.synapse.models.EntityResource;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Library response details. */
+/**
+ * Library response details.
+ */
 @Fluent
 public final class LibraryResourceInner extends EntityResource {
     /*
      * Information about a library/package created at the workspace level.
-     *
+     * 
      * Library/package properties.
      */
     @JsonProperty(value = "properties", required = true)
     private LibraryInfo innerProperties = new LibraryInfo();
 
-    /** Creates an instance of LibraryResourceInner class. */
+    /**
+     * Creates an instance of LibraryResourceInner class.
+     */
     public LibraryResourceInner() {
     }
 
     /**
      * Get the innerProperties property: Information about a library/package created at the workspace level.
-     *
-     * <p>Library/package properties.
-     *
+     * 
+     * Library/package properties.
+     * 
      * @return the innerProperties value.
      */
     private LibraryInfo innerProperties() {
@@ -38,7 +42,7 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Get the name property: Name of the library.
-     *
+     * 
      * @return the name value.
      */
     public String namePropertiesName() {
@@ -47,7 +51,7 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Set the name property: Name of the library.
-     *
+     * 
      * @param name the name value to set.
      * @return the LibraryResourceInner object itself.
      */
@@ -61,7 +65,7 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Get the path property: Storage blob path of library.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -70,7 +74,7 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Set the path property: Storage blob path of library.
-     *
+     * 
      * @param path the path value to set.
      * @return the LibraryResourceInner object itself.
      */
@@ -84,7 +88,7 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Get the containerName property: Storage blob container name.
-     *
+     * 
      * @return the containerName value.
      */
     public String containerName() {
@@ -93,7 +97,7 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Set the containerName property: Storage blob container name.
-     *
+     * 
      * @param containerName the containerName value to set.
      * @return the LibraryResourceInner object itself.
      */
@@ -107,7 +111,7 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Get the uploadedTimestamp property: The last update time of the library.
-     *
+     * 
      * @return the uploadedTimestamp value.
      */
     public OffsetDateTime uploadedTimestamp() {
@@ -116,7 +120,7 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Get the type property: Type of the library.
-     *
+     * 
      * @return the type value.
      */
     public String typePropertiesType() {
@@ -125,7 +129,7 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Set the type property: Type of the library.
-     *
+     * 
      * @param type the type value to set.
      * @return the LibraryResourceInner object itself.
      */
@@ -139,7 +143,7 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Get the provisioningStatus property: Provisioning status of the library/package.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public String provisioningStatus() {
@@ -148,7 +152,7 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Get the creatorId property: Creator Id of the library/package.
-     *
+     * 
      * @return the creatorId value.
      */
     public String creatorId() {
@@ -157,17 +161,15 @@ public final class LibraryResourceInner extends EntityResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model LibraryResourceInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model LibraryResourceInner"));
         } else {
             innerProperties().validate();
         }

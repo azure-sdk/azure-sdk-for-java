@@ -7,7 +7,9 @@ package com.azure.resourcemanager.synapse.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Key properties. */
+/**
+ * Key properties.
+ */
 @Fluent
 public final class KeyProperties {
     /*
@@ -22,13 +24,15 @@ public final class KeyProperties {
     @JsonProperty(value = "keyVaultUrl")
     private String keyVaultUrl;
 
-    /** Creates an instance of KeyProperties class. */
+    /**
+     * Creates an instance of KeyProperties class.
+     */
     public KeyProperties() {
     }
 
     /**
      * Get the isActiveCmk property: Used to activate the workspace after a customer managed key is provided.
-     *
+     * 
      * @return the isActiveCmk value.
      */
     public Boolean isActiveCmk() {
@@ -37,7 +41,7 @@ public final class KeyProperties {
 
     /**
      * Set the isActiveCmk property: Used to activate the workspace after a customer managed key is provided.
-     *
+     * 
      * @param isActiveCmk the isActiveCmk value to set.
      * @return the KeyProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class KeyProperties {
 
     /**
      * Get the keyVaultUrl property: The Key Vault Url of the workspace key.
-     *
+     * 
      * @return the keyVaultUrl value.
      */
     public String keyVaultUrl() {
@@ -57,7 +61,7 @@ public final class KeyProperties {
 
     /**
      * Set the keyVaultUrl property: The Key Vault Url of the workspace key.
-     *
+     * 
      * @param keyVaultUrl the keyVaultUrl value to set.
      * @return the KeyProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class KeyProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Managed integration runtime, including managed elastic and managed dedicated integration runtimes. */
+/**
+ * Managed integration runtime, including managed elastic and managed dedicated integration runtimes.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonTypeName("Managed")
 @Fluent
@@ -35,13 +37,15 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
     @JsonProperty(value = "managedVirtualNetwork")
     private ManagedIntegrationRuntimeManagedVirtualNetworkReference innerManagedVirtualNetwork;
 
-    /** Creates an instance of ManagedIntegrationRuntime class. */
+    /**
+     * Creates an instance of ManagedIntegrationRuntime class.
+     */
     public ManagedIntegrationRuntime() {
     }
 
     /**
      * Get the state property: Integration runtime state, only valid for managed dedicated integration runtime.
-     *
+     * 
      * @return the state value.
      */
     public IntegrationRuntimeState state() {
@@ -50,7 +54,7 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Get the innerTypeProperties property: Managed integration runtime properties.
-     *
+     * 
      * @return the innerTypeProperties value.
      */
     private ManagedIntegrationRuntimeTypeProperties innerTypeProperties() {
@@ -59,14 +63,16 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Get the innerManagedVirtualNetwork property: Managed integration runtime managed virtual network.
-     *
+     * 
      * @return the innerManagedVirtualNetwork value.
      */
     private ManagedIntegrationRuntimeManagedVirtualNetworkReference innerManagedVirtualNetwork() {
         return this.innerManagedVirtualNetwork;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedIntegrationRuntime withDescription(String description) {
         super.withDescription(description);
@@ -75,7 +81,7 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Get the computeProperties property: The compute resource for managed integration runtime.
-     *
+     * 
      * @return the computeProperties value.
      */
     public IntegrationRuntimeComputeProperties computeProperties() {
@@ -84,7 +90,7 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Set the computeProperties property: The compute resource for managed integration runtime.
-     *
+     * 
      * @param computeProperties the computeProperties value to set.
      * @return the ManagedIntegrationRuntime object itself.
      */
@@ -98,7 +104,7 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Get the ssisProperties property: SSIS properties for managed integration runtime.
-     *
+     * 
      * @return the ssisProperties value.
      */
     public IntegrationRuntimeSsisProperties ssisProperties() {
@@ -107,7 +113,7 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Set the ssisProperties property: SSIS properties for managed integration runtime.
-     *
+     * 
      * @param ssisProperties the ssisProperties value to set.
      * @return the ManagedIntegrationRuntime object itself.
      */
@@ -121,7 +127,7 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Get the referenceName property: The reference name of the managed virtual network.
-     *
+     * 
      * @return the referenceName value.
      */
     public String referenceName() {
@@ -130,7 +136,7 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Set the referenceName property: The reference name of the managed virtual network.
-     *
+     * 
      * @param referenceName the referenceName value to set.
      * @return the ManagedIntegrationRuntime object itself.
      */
@@ -144,7 +150,7 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Get the type property: The type of the managed virtual network.
-     *
+     * 
      * @return the type value.
      */
     public String typeManagedVirtualNetworkType() {
@@ -153,7 +159,7 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Set the type property: The type of the managed virtual network.
-     *
+     * 
      * @param type the type value to set.
      * @return the ManagedIntegrationRuntime object itself.
      */
@@ -167,7 +173,7 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Get the id property: The id of the managed virtual network.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -176,7 +182,7 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Set the id property: The id of the managed virtual network.
-     *
+     * 
      * @param id the id value to set.
      * @return the ManagedIntegrationRuntime object itself.
      */
@@ -190,17 +196,15 @@ public final class ManagedIntegrationRuntime extends IntegrationRuntime {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerTypeProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerTypeProperties in model ManagedIntegrationRuntime"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerTypeProperties in model ManagedIntegrationRuntime"));
         } else {
             innerTypeProperties().validate();
         }

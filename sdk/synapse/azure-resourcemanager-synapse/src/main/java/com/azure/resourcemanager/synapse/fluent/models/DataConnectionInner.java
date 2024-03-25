@@ -15,7 +15,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Class representing a data connection. */
+/**
+ * Class representing a data connection.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -25,8 +27,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "EventHub", value = EventHubDataConnection.class),
     @JsonSubTypes.Type(name = "IotHub", value = IotHubDataConnection.class),
-    @JsonSubTypes.Type(name = "EventGrid", value = EventGridDataConnection.class)
-})
+    @JsonSubTypes.Type(name = "EventGrid", value = EventGridDataConnection.class) })
 @Fluent
 public class DataConnectionInner extends ProxyResource {
     /*
@@ -41,13 +42,15 @@ public class DataConnectionInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of DataConnectionInner class. */
+    /**
+     * Creates an instance of DataConnectionInner class.
+     */
     public DataConnectionInner() {
     }
 
     /**
      * Get the location property: Resource location.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -56,7 +59,7 @@ public class DataConnectionInner extends ProxyResource {
 
     /**
      * Set the location property: Resource location.
-     *
+     * 
      * @param location the location value to set.
      * @return the DataConnectionInner object itself.
      */
@@ -67,7 +70,7 @@ public class DataConnectionInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -76,7 +79,7 @@ public class DataConnectionInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

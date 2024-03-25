@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Enable or Disable public network access to workspace. */
+/**
+ * Enable or Disable public network access to workspace.
+ */
 public final class WorkspacePublicNetworkAccess extends ExpandableStringEnum<WorkspacePublicNetworkAccess> {
-    /** Static value Enabled for WorkspacePublicNetworkAccess. */
+    /**
+     * Static value Enabled for WorkspacePublicNetworkAccess.
+     */
     public static final WorkspacePublicNetworkAccess ENABLED = fromString("Enabled");
 
-    /** Static value Disabled for WorkspacePublicNetworkAccess. */
+    /**
+     * Static value Disabled for WorkspacePublicNetworkAccess.
+     */
     public static final WorkspacePublicNetworkAccess DISABLED = fromString("Disabled");
 
     /**
      * Creates a new instance of WorkspacePublicNetworkAccess value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class WorkspacePublicNetworkAccess extends ExpandableStringEnum<Wor
 
     /**
      * Creates or finds a WorkspacePublicNetworkAccess from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding WorkspacePublicNetworkAccess.
      */
@@ -38,7 +44,7 @@ public final class WorkspacePublicNetworkAccess extends ExpandableStringEnum<Wor
 
     /**
      * Gets known WorkspacePublicNetworkAccess values.
-     *
+     * 
      * @return known WorkspacePublicNetworkAccess values.
      */
     public static Collection<WorkspacePublicNetworkAccess> values() {

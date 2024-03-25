@@ -13,7 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/** SSIS properties for managed integration runtime. */
+/**
+ * SSIS properties for managed integration runtime.
+ */
 @Fluent
 public final class IntegrationRuntimeSsisProperties {
     /*
@@ -55,15 +57,18 @@ public final class IntegrationRuntimeSsisProperties {
     /*
      * SSIS properties for managed integration runtime.
      */
-    @JsonIgnore private Map<String, Object> additionalProperties;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
 
-    /** Creates an instance of IntegrationRuntimeSsisProperties class. */
+    /**
+     * Creates an instance of IntegrationRuntimeSsisProperties class.
+     */
     public IntegrationRuntimeSsisProperties() {
     }
 
     /**
      * Get the catalogInfo property: Catalog information for managed dedicated integration runtime.
-     *
+     * 
      * @return the catalogInfo value.
      */
     public IntegrationRuntimeSsisCatalogInfo catalogInfo() {
@@ -72,7 +77,7 @@ public final class IntegrationRuntimeSsisProperties {
 
     /**
      * Set the catalogInfo property: Catalog information for managed dedicated integration runtime.
-     *
+     * 
      * @param catalogInfo the catalogInfo value to set.
      * @return the IntegrationRuntimeSsisProperties object itself.
      */
@@ -83,7 +88,7 @@ public final class IntegrationRuntimeSsisProperties {
 
     /**
      * Get the licenseType property: License type for bringing your own license scenario.
-     *
+     * 
      * @return the licenseType value.
      */
     public IntegrationRuntimeLicenseType licenseType() {
@@ -92,7 +97,7 @@ public final class IntegrationRuntimeSsisProperties {
 
     /**
      * Set the licenseType property: License type for bringing your own license scenario.
-     *
+     * 
      * @param licenseType the licenseType value to set.
      * @return the IntegrationRuntimeSsisProperties object itself.
      */
@@ -104,7 +109,7 @@ public final class IntegrationRuntimeSsisProperties {
     /**
      * Get the customSetupScriptProperties property: Custom setup script properties for a managed dedicated integration
      * runtime.
-     *
+     * 
      * @return the customSetupScriptProperties value.
      */
     public IntegrationRuntimeCustomSetupScriptProperties customSetupScriptProperties() {
@@ -114,19 +119,19 @@ public final class IntegrationRuntimeSsisProperties {
     /**
      * Set the customSetupScriptProperties property: Custom setup script properties for a managed dedicated integration
      * runtime.
-     *
+     * 
      * @param customSetupScriptProperties the customSetupScriptProperties value to set.
      * @return the IntegrationRuntimeSsisProperties object itself.
      */
-    public IntegrationRuntimeSsisProperties withCustomSetupScriptProperties(
-        IntegrationRuntimeCustomSetupScriptProperties customSetupScriptProperties) {
+    public IntegrationRuntimeSsisProperties
+        withCustomSetupScriptProperties(IntegrationRuntimeCustomSetupScriptProperties customSetupScriptProperties) {
         this.customSetupScriptProperties = customSetupScriptProperties;
         return this;
     }
 
     /**
      * Get the dataProxyProperties property: Data proxy properties for a managed dedicated integration runtime.
-     *
+     * 
      * @return the dataProxyProperties value.
      */
     public IntegrationRuntimeDataProxyProperties dataProxyProperties() {
@@ -135,19 +140,19 @@ public final class IntegrationRuntimeSsisProperties {
 
     /**
      * Set the dataProxyProperties property: Data proxy properties for a managed dedicated integration runtime.
-     *
+     * 
      * @param dataProxyProperties the dataProxyProperties value to set.
      * @return the IntegrationRuntimeSsisProperties object itself.
      */
-    public IntegrationRuntimeSsisProperties withDataProxyProperties(
-        IntegrationRuntimeDataProxyProperties dataProxyProperties) {
+    public IntegrationRuntimeSsisProperties
+        withDataProxyProperties(IntegrationRuntimeDataProxyProperties dataProxyProperties) {
         this.dataProxyProperties = dataProxyProperties;
         return this;
     }
 
     /**
      * Get the edition property: The edition for the SSIS Integration Runtime.
-     *
+     * 
      * @return the edition value.
      */
     public IntegrationRuntimeEdition edition() {
@@ -156,7 +161,7 @@ public final class IntegrationRuntimeSsisProperties {
 
     /**
      * Set the edition property: The edition for the SSIS Integration Runtime.
-     *
+     * 
      * @param edition the edition value to set.
      * @return the IntegrationRuntimeSsisProperties object itself.
      */
@@ -168,7 +173,7 @@ public final class IntegrationRuntimeSsisProperties {
     /**
      * Get the expressCustomSetupProperties property: Custom setup without script properties for a SSIS integration
      * runtime.
-     *
+     * 
      * @return the expressCustomSetupProperties value.
      */
     public List<CustomSetupBase> expressCustomSetupProperties() {
@@ -178,19 +183,19 @@ public final class IntegrationRuntimeSsisProperties {
     /**
      * Set the expressCustomSetupProperties property: Custom setup without script properties for a SSIS integration
      * runtime.
-     *
+     * 
      * @param expressCustomSetupProperties the expressCustomSetupProperties value to set.
      * @return the IntegrationRuntimeSsisProperties object itself.
      */
-    public IntegrationRuntimeSsisProperties withExpressCustomSetupProperties(
-        List<CustomSetupBase> expressCustomSetupProperties) {
+    public IntegrationRuntimeSsisProperties
+        withExpressCustomSetupProperties(List<CustomSetupBase> expressCustomSetupProperties) {
         this.expressCustomSetupProperties = expressCustomSetupProperties;
         return this;
     }
 
     /**
      * Get the additionalProperties property: SSIS properties for managed integration runtime.
-     *
+     * 
      * @return the additionalProperties value.
      */
     @JsonAnyGetter
@@ -200,7 +205,7 @@ public final class IntegrationRuntimeSsisProperties {
 
     /**
      * Set the additionalProperties property: SSIS properties for managed integration runtime.
-     *
+     * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the IntegrationRuntimeSsisProperties object itself.
      */
@@ -219,7 +224,7 @@ public final class IntegrationRuntimeSsisProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

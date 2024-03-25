@@ -11,7 +11,9 @@ import com.azure.resourcemanager.synapse.models.EventGridDataFormat;
 import com.azure.resourcemanager.synapse.models.ResourceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Class representing the Kusto event grid connection properties. */
+/**
+ * Class representing the Kusto event grid connection properties.
+ */
 @Fluent
 public final class EventGridConnectionProperties {
     /*
@@ -68,13 +70,15 @@ public final class EventGridConnectionProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ResourceProvisioningState provisioningState;
 
-    /** Creates an instance of EventGridConnectionProperties class. */
+    /**
+     * Creates an instance of EventGridConnectionProperties class.
+     */
     public EventGridConnectionProperties() {
     }
 
     /**
      * Get the storageAccountResourceId property: The resource ID of the storage account where the data resides.
-     *
+     * 
      * @return the storageAccountResourceId value.
      */
     public String storageAccountResourceId() {
@@ -83,7 +87,7 @@ public final class EventGridConnectionProperties {
 
     /**
      * Set the storageAccountResourceId property: The resource ID of the storage account where the data resides.
-     *
+     * 
      * @param storageAccountResourceId the storageAccountResourceId value to set.
      * @return the EventGridConnectionProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class EventGridConnectionProperties {
 
     /**
      * Get the eventHubResourceId property: The resource ID where the event grid is configured to send events.
-     *
+     * 
      * @return the eventHubResourceId value.
      */
     public String eventHubResourceId() {
@@ -103,7 +107,7 @@ public final class EventGridConnectionProperties {
 
     /**
      * Set the eventHubResourceId property: The resource ID where the event grid is configured to send events.
-     *
+     * 
      * @param eventHubResourceId the eventHubResourceId value to set.
      * @return the EventGridConnectionProperties object itself.
      */
@@ -114,7 +118,7 @@ public final class EventGridConnectionProperties {
 
     /**
      * Get the consumerGroup property: The event hub consumer group.
-     *
+     * 
      * @return the consumerGroup value.
      */
     public String consumerGroup() {
@@ -123,7 +127,7 @@ public final class EventGridConnectionProperties {
 
     /**
      * Set the consumerGroup property: The event hub consumer group.
-     *
+     * 
      * @param consumerGroup the consumerGroup value to set.
      * @return the EventGridConnectionProperties object itself.
      */
@@ -135,7 +139,7 @@ public final class EventGridConnectionProperties {
     /**
      * Get the tableName property: The table where the data should be ingested. Optionally the table information can be
      * added to each message.
-     *
+     * 
      * @return the tableName value.
      */
     public String tableName() {
@@ -145,7 +149,7 @@ public final class EventGridConnectionProperties {
     /**
      * Set the tableName property: The table where the data should be ingested. Optionally the table information can be
      * added to each message.
-     *
+     * 
      * @param tableName the tableName value to set.
      * @return the EventGridConnectionProperties object itself.
      */
@@ -157,7 +161,7 @@ public final class EventGridConnectionProperties {
     /**
      * Get the mappingRuleName property: The mapping rule to be used to ingest the data. Optionally the mapping
      * information can be added to each message.
-     *
+     * 
      * @return the mappingRuleName value.
      */
     public String mappingRuleName() {
@@ -167,7 +171,7 @@ public final class EventGridConnectionProperties {
     /**
      * Set the mappingRuleName property: The mapping rule to be used to ingest the data. Optionally the mapping
      * information can be added to each message.
-     *
+     * 
      * @param mappingRuleName the mappingRuleName value to set.
      * @return the EventGridConnectionProperties object itself.
      */
@@ -179,7 +183,7 @@ public final class EventGridConnectionProperties {
     /**
      * Get the dataFormat property: The data format of the message. Optionally the data format can be added to each
      * message.
-     *
+     * 
      * @return the dataFormat value.
      */
     public EventGridDataFormat dataFormat() {
@@ -189,7 +193,7 @@ public final class EventGridConnectionProperties {
     /**
      * Set the dataFormat property: The data format of the message. Optionally the data format can be added to each
      * message.
-     *
+     * 
      * @param dataFormat the dataFormat value to set.
      * @return the EventGridConnectionProperties object itself.
      */
@@ -201,7 +205,7 @@ public final class EventGridConnectionProperties {
     /**
      * Get the ignoreFirstRecord property: A Boolean value that, if set to true, indicates that ingestion should ignore
      * the first record of every file.
-     *
+     * 
      * @return the ignoreFirstRecord value.
      */
     public Boolean ignoreFirstRecord() {
@@ -211,7 +215,7 @@ public final class EventGridConnectionProperties {
     /**
      * Set the ignoreFirstRecord property: A Boolean value that, if set to true, indicates that ingestion should ignore
      * the first record of every file.
-     *
+     * 
      * @param ignoreFirstRecord the ignoreFirstRecord value to set.
      * @return the EventGridConnectionProperties object itself.
      */
@@ -222,7 +226,7 @@ public final class EventGridConnectionProperties {
 
     /**
      * Get the blobStorageEventType property: The name of blob storage event type to process.
-     *
+     * 
      * @return the blobStorageEventType value.
      */
     public BlobStorageEventType blobStorageEventType() {
@@ -231,7 +235,7 @@ public final class EventGridConnectionProperties {
 
     /**
      * Set the blobStorageEventType property: The name of blob storage event type to process.
-     *
+     * 
      * @param blobStorageEventType the blobStorageEventType value to set.
      * @return the EventGridConnectionProperties object itself.
      */
@@ -242,7 +246,7 @@ public final class EventGridConnectionProperties {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceProvisioningState provisioningState() {
@@ -251,27 +255,21 @@ public final class EventGridConnectionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (storageAccountResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storageAccountResourceId in model EventGridConnectionProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property storageAccountResourceId in model EventGridConnectionProperties"));
         }
         if (eventHubResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property eventHubResourceId in model EventGridConnectionProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property eventHubResourceId in model EventGridConnectionProperties"));
         }
         if (consumerGroup() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property consumerGroup in model EventGridConnectionProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property consumerGroup in model EventGridConnectionProperties"));
         }
     }
 
