@@ -4,25 +4,22 @@
 
 package com.azure.resourcemanager.consumption.fluent.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.MeterDetails;
 import com.azure.resourcemanager.consumption.models.PriceSheetProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** An pricesheet resource. */
-@Fluent
+/**
+ * An pricesheet resource.
+ */
+@Immutable
 public final class PriceSheetResultInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PriceSheetResultInner.class);
-
     /*
-     * price sheet result. It contains the pricesheet associated with billing
-     * period
+     * price sheet result. It contains the pricesheet associated with billing period
      */
     @JsonProperty(value = "properties")
     private PriceSheetModel innerProperties;
@@ -41,8 +38,14 @@ public final class PriceSheetResultInner extends ProxyResource {
     private Map<String, String> tags;
 
     /**
+     * Creates an instance of PriceSheetResultInner class.
+     */
+    public PriceSheetResultInner() {
+    }
+
+    /**
      * Get the innerProperties property: price sheet result. It contains the pricesheet associated with billing period.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PriceSheetModel innerProperties() {
@@ -51,7 +54,7 @@ public final class PriceSheetResultInner extends ProxyResource {
 
     /**
      * Get the etag property: The etag for the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -60,7 +63,7 @@ public final class PriceSheetResultInner extends ProxyResource {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -69,7 +72,7 @@ public final class PriceSheetResultInner extends ProxyResource {
 
     /**
      * Get the pricesheets property: Price sheet.
-     *
+     * 
      * @return the pricesheets value.
      */
     public List<PriceSheetProperties> pricesheets() {
@@ -78,7 +81,7 @@ public final class PriceSheetResultInner extends ProxyResource {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -87,7 +90,7 @@ public final class PriceSheetResultInner extends ProxyResource {
 
     /**
      * Get the download property: Pricesheet download details.
-     *
+     * 
      * @return the download value.
      */
     public MeterDetails download() {
@@ -96,7 +99,7 @@ public final class PriceSheetResultInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
