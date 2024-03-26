@@ -72,7 +72,6 @@ import com.azure.resourcemanager.security.implementation.PricingsImpl;
 import com.azure.resourcemanager.security.implementation.RegulatoryComplianceAssessmentsImpl;
 import com.azure.resourcemanager.security.implementation.RegulatoryComplianceControlsImpl;
 import com.azure.resourcemanager.security.implementation.RegulatoryComplianceStandardsImpl;
-import com.azure.resourcemanager.security.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.security.implementation.SecureScoreControlDefinitionsImpl;
 import com.azure.resourcemanager.security.implementation.SecureScoreControlsImpl;
 import com.azure.resourcemanager.security.implementation.SecureScoresImpl;
@@ -144,7 +143,6 @@ import com.azure.resourcemanager.security.models.Pricings;
 import com.azure.resourcemanager.security.models.RegulatoryComplianceAssessments;
 import com.azure.resourcemanager.security.models.RegulatoryComplianceControls;
 import com.azure.resourcemanager.security.models.RegulatoryComplianceStandards;
-import com.azure.resourcemanager.security.models.ResourceProviders;
 import com.azure.resourcemanager.security.models.SecureScoreControlDefinitions;
 import com.azure.resourcemanager.security.models.SecureScoreControls;
 import com.azure.resourcemanager.security.models.SecureScores;
@@ -238,8 +236,6 @@ public final class SecurityManager {
     private SqlVulnerabilityAssessmentScans sqlVulnerabilityAssessmentScans;
 
     private SqlVulnerabilityAssessmentScanResults sqlVulnerabilityAssessmentScanResults;
-
-    private ResourceProviders resourceProviders;
 
     private SensitivitySettings sensitivitySettings;
 
@@ -480,7 +476,7 @@ public final class SecurityManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.security").append("/")
-                .append("1.0.0-beta.6");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -890,18 +886,6 @@ public final class SecurityManager {
                 clientObject.getSqlVulnerabilityAssessmentScanResults(), this);
         }
         return sqlVulnerabilityAssessmentScanResults;
-    }
-
-    /**
-     * Gets the resource collection API of ResourceProviders.
-     * 
-     * @return Resource collection API of ResourceProviders.
-     */
-    public ResourceProviders resourceProviders() {
-        if (this.resourceProviders == null) {
-            this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
-        }
-        return resourceProviders;
     }
 
     /**
