@@ -5,14 +5,13 @@
 package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.appcontainers.models.AppInsightsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.AppLogsConfiguration;
 import com.azure.resourcemanager.appcontainers.models.CustomDomainConfiguration;
 import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerAuthentication;
-import com.azure.resourcemanager.appcontainers.models.OpenTelemetryConfiguration;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerTrafficConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -74,18 +73,6 @@ public final class ManagedEnvironmentProperties {
     private AppLogsConfiguration appLogsConfiguration;
 
     /*
-     * Environment level Application Insights configuration
-     */
-    @JsonProperty(value = "appInsightsConfiguration")
-    private AppInsightsConfiguration appInsightsConfiguration;
-
-    /*
-     * Environment Open Telemetry configuration
-     */
-    @JsonProperty(value = "openTelemetryConfiguration")
-    private OpenTelemetryConfiguration openTelemetryConfiguration;
-
-    /*
      * Whether or not this Managed Environment is zone-redundant.
      */
     @JsonProperty(value = "zoneRedundant")
@@ -134,6 +121,12 @@ public final class ManagedEnvironmentProperties {
      */
     @JsonProperty(value = "peerAuthentication")
     private ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication;
+
+    /*
+     * Peer traffic settings for the Managed Environment
+     */
+    @JsonProperty(value = "peerTrafficConfiguration")
+    private ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration;
 
     /**
      * Creates an instance of ManagedEnvironmentProperties class.
@@ -262,48 +255,6 @@ public final class ManagedEnvironmentProperties {
      */
     public ManagedEnvironmentProperties withAppLogsConfiguration(AppLogsConfiguration appLogsConfiguration) {
         this.appLogsConfiguration = appLogsConfiguration;
-        return this;
-    }
-
-    /**
-     * Get the appInsightsConfiguration property: Environment level Application Insights configuration.
-     * 
-     * @return the appInsightsConfiguration value.
-     */
-    public AppInsightsConfiguration appInsightsConfiguration() {
-        return this.appInsightsConfiguration;
-    }
-
-    /**
-     * Set the appInsightsConfiguration property: Environment level Application Insights configuration.
-     * 
-     * @param appInsightsConfiguration the appInsightsConfiguration value to set.
-     * @return the ManagedEnvironmentProperties object itself.
-     */
-    public ManagedEnvironmentProperties
-        withAppInsightsConfiguration(AppInsightsConfiguration appInsightsConfiguration) {
-        this.appInsightsConfiguration = appInsightsConfiguration;
-        return this;
-    }
-
-    /**
-     * Get the openTelemetryConfiguration property: Environment Open Telemetry configuration.
-     * 
-     * @return the openTelemetryConfiguration value.
-     */
-    public OpenTelemetryConfiguration openTelemetryConfiguration() {
-        return this.openTelemetryConfiguration;
-    }
-
-    /**
-     * Set the openTelemetryConfiguration property: Environment Open Telemetry configuration.
-     * 
-     * @param openTelemetryConfiguration the openTelemetryConfiguration value to set.
-     * @return the ManagedEnvironmentProperties object itself.
-     */
-    public ManagedEnvironmentProperties
-        withOpenTelemetryConfiguration(OpenTelemetryConfiguration openTelemetryConfiguration) {
-        this.openTelemetryConfiguration = openTelemetryConfiguration;
         return this;
     }
 
@@ -463,6 +414,27 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
+     * Get the peerTrafficConfiguration property: Peer traffic settings for the Managed Environment.
+     * 
+     * @return the peerTrafficConfiguration value.
+     */
+    public ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration() {
+        return this.peerTrafficConfiguration;
+    }
+
+    /**
+     * Set the peerTrafficConfiguration property: Peer traffic settings for the Managed Environment.
+     * 
+     * @param peerTrafficConfiguration the peerTrafficConfiguration value to set.
+     * @return the ManagedEnvironmentProperties object itself.
+     */
+    public ManagedEnvironmentProperties
+        withPeerTrafficConfiguration(ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration) {
+        this.peerTrafficConfiguration = peerTrafficConfiguration;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -473,12 +445,6 @@ public final class ManagedEnvironmentProperties {
         }
         if (appLogsConfiguration() != null) {
             appLogsConfiguration().validate();
-        }
-        if (appInsightsConfiguration() != null) {
-            appInsightsConfiguration().validate();
-        }
-        if (openTelemetryConfiguration() != null) {
-            openTelemetryConfiguration().validate();
         }
         if (customDomainConfiguration() != null) {
             customDomainConfiguration().validate();
@@ -494,6 +460,9 @@ public final class ManagedEnvironmentProperties {
         }
         if (peerAuthentication() != null) {
             peerAuthentication().validate();
+        }
+        if (peerTrafficConfiguration() != null) {
+            peerTrafficConfiguration().validate();
         }
     }
 }

@@ -81,14 +81,6 @@ public interface AuthConfig {
     HttpSettings httpSettings();
 
     /**
-     * Gets the encryptionSettings property: The configuration settings of the secrets references of encryption key and
-     * signing key for ContainerApp Service Authentication/Authorization.
-     * 
-     * @return the encryptionSettings value.
-     */
-    EncryptionSettings encryptionSettings();
-
-    /**
      * Gets the name of the resource group.
      * 
      * @return the name of the resource group.
@@ -138,8 +130,7 @@ public interface AuthConfig {
          * be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate extends DefinitionStages.WithPlatform, DefinitionStages.WithGlobalValidation,
-            DefinitionStages.WithIdentityProviders, DefinitionStages.WithLogin, DefinitionStages.WithHttpSettings,
-            DefinitionStages.WithEncryptionSettings {
+            DefinitionStages.WithIdentityProviders, DefinitionStages.WithLogin, DefinitionStages.WithHttpSettings {
             /**
              * Executes the create request.
              * 
@@ -230,21 +221,6 @@ public interface AuthConfig {
              */
             WithCreate withHttpSettings(HttpSettings httpSettings);
         }
-
-        /**
-         * The stage of the AuthConfig definition allowing to specify encryptionSettings.
-         */
-        interface WithEncryptionSettings {
-            /**
-             * Specifies the encryptionSettings property: The configuration settings of the secrets references of
-             * encryption key and signing key for ContainerApp Service Authentication/Authorization..
-             * 
-             * @param encryptionSettings The configuration settings of the secrets references of encryption key and
-             * signing key for ContainerApp Service Authentication/Authorization.
-             * @return the next definition stage.
-             */
-            WithCreate withEncryptionSettings(EncryptionSettings encryptionSettings);
-        }
     }
 
     /**
@@ -257,9 +233,8 @@ public interface AuthConfig {
     /**
      * The template for AuthConfig update.
      */
-    interface Update
-        extends UpdateStages.WithPlatform, UpdateStages.WithGlobalValidation, UpdateStages.WithIdentityProviders,
-        UpdateStages.WithLogin, UpdateStages.WithHttpSettings, UpdateStages.WithEncryptionSettings {
+    interface Update extends UpdateStages.WithPlatform, UpdateStages.WithGlobalValidation,
+        UpdateStages.WithIdentityProviders, UpdateStages.WithLogin, UpdateStages.WithHttpSettings {
         /**
          * Executes the update request.
          * 
@@ -353,21 +328,6 @@ public interface AuthConfig {
              * @return the next definition stage.
              */
             Update withHttpSettings(HttpSettings httpSettings);
-        }
-
-        /**
-         * The stage of the AuthConfig update allowing to specify encryptionSettings.
-         */
-        interface WithEncryptionSettings {
-            /**
-             * Specifies the encryptionSettings property: The configuration settings of the secrets references of
-             * encryption key and signing key for ContainerApp Service Authentication/Authorization..
-             * 
-             * @param encryptionSettings The configuration settings of the secrets references of encryption key and
-             * signing key for ContainerApp Service Authentication/Authorization.
-             * @return the next definition stage.
-             */
-            Update withEncryptionSettings(EncryptionSettings encryptionSettings);
         }
     }
 
