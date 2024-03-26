@@ -9,9 +9,8 @@ package com.azure.resourcemanager.chaos.generated;
  */
 public final class ExperimentsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListExperimentsInASubscription.
-     * json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-03-22-preview/examples/
+     * ListExperimentsInASubscription.json
      */
     /**
      * Sample code: List all Experiments in a subscription.
