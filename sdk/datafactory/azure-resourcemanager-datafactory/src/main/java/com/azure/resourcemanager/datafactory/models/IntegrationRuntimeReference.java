@@ -19,7 +19,7 @@ public final class IntegrationRuntimeReference {
      * Type of integration runtime.
      */
     @JsonProperty(value = "type", required = true)
-    private String type = "IntegrationRuntimeReference";
+    private IntegrationRuntimeReferenceType type;
 
     /*
      * Reference integration runtime name.
@@ -45,7 +45,7 @@ public final class IntegrationRuntimeReference {
      * 
      * @return the type value.
      */
-    public String type() {
+    public IntegrationRuntimeReferenceType type() {
         return this.type;
     }
 
@@ -55,7 +55,7 @@ public final class IntegrationRuntimeReference {
      * @param type the type value to set.
      * @return the IntegrationRuntimeReference object itself.
      */
-    public IntegrationRuntimeReference withType(String type) {
+    public IntegrationRuntimeReference withType(IntegrationRuntimeReferenceType type) {
         this.type = type;
         return this;
     }
@@ -106,6 +106,10 @@ public final class IntegrationRuntimeReference {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (type() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model IntegrationRuntimeReference"));
+        }
         if (referenceName() == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 "Missing required property referenceName in model IntegrationRuntimeReference"));

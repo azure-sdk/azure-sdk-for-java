@@ -19,7 +19,7 @@ public final class DatasetReference {
      * Dataset reference type.
      */
     @JsonProperty(value = "type", required = true)
-    private String type = "DatasetReference";
+    private DataSetReferenceType type;
 
     /*
      * Reference dataset name.
@@ -45,7 +45,7 @@ public final class DatasetReference {
      * 
      * @return the type value.
      */
-    public String type() {
+    public DataSetReferenceType type() {
         return this.type;
     }
 
@@ -55,7 +55,7 @@ public final class DatasetReference {
      * @param type the type value to set.
      * @return the DatasetReference object itself.
      */
-    public DatasetReference withType(String type) {
+    public DatasetReference withType(DataSetReferenceType type) {
         this.type = type;
         return this;
     }
@@ -106,6 +106,10 @@ public final class DatasetReference {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (type() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model DatasetReference"));
+        }
         if (referenceName() == null) {
             throw LOGGER.logExceptionAsError(
                 new IllegalArgumentException("Missing required property referenceName in model DatasetReference"));

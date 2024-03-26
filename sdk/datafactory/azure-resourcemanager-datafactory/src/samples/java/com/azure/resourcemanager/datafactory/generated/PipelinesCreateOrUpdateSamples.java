@@ -9,8 +9,10 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.datafactory.models.BlobSink;
 import com.azure.resourcemanager.datafactory.models.BlobSource;
 import com.azure.resourcemanager.datafactory.models.CopyActivity;
+import com.azure.resourcemanager.datafactory.models.DataSetReferenceType;
 import com.azure.resourcemanager.datafactory.models.DatasetReference;
 import com.azure.resourcemanager.datafactory.models.Expression;
+import com.azure.resourcemanager.datafactory.models.ExpressionType;
 import com.azure.resourcemanager.datafactory.models.ForEachActivity;
 import com.azure.resourcemanager.datafactory.models.ParameterSpecification;
 import com.azure.resourcemanager.datafactory.models.ParameterType;
@@ -42,11 +44,14 @@ public final class PipelinesCreateOrUpdateSamples {
         manager.pipelines().define("examplePipeline").withExistingFactory("exampleResourceGroup", "exampleFactoryName")
             .withActivities(Arrays.asList(new ForEachActivity().withName("ExampleForeachActivity")
                 .withIsSequential(true)
-                .withItems(new Expression().withValue("@pipeline().parameters.OutputBlobNameList"))
+                .withItems(new Expression().withType(ExpressionType.EXPRESSION)
+                    .withValue("@pipeline().parameters.OutputBlobNameList"))
                 .withActivities(Arrays.asList(new CopyActivity().withName("ExampleCopyActivity")
-                    .withInputs(Arrays.asList(new DatasetReference().withReferenceName("exampleDataset").withParameters(
-                        mapOf("MyFileName", "examplecontainer.csv", "MyFolderPath", "examplecontainer"))))
-                    .withOutputs(Arrays.asList(new DatasetReference().withReferenceName("exampleDataset")
+                    .withInputs(Arrays.asList(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("exampleDataset").withParameters(
+                            mapOf("MyFileName", "examplecontainer.csv", "MyFolderPath", "examplecontainer"))))
+                    .withOutputs(Arrays.asList(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("exampleDataset")
                         .withParameters(mapOf("MyFileName",
                             SerializerFactory.createDefaultManagementSerializerAdapter().deserialize(
                                 "{\"type\":\"Expression\",\"value\":\"@item()\"}", Object.class,
@@ -80,11 +85,14 @@ public final class PipelinesCreateOrUpdateSamples {
             "examplePipeline", null, com.azure.core.util.Context.NONE).getValue();
         resource.update().withDescription("Example description").withActivities(Arrays.asList(new ForEachActivity()
             .withName("ExampleForeachActivity").withIsSequential(true)
-            .withItems(new Expression().withValue("@pipeline().parameters.OutputBlobNameList"))
+            .withItems(new Expression().withType(ExpressionType.EXPRESSION)
+                .withValue("@pipeline().parameters.OutputBlobNameList"))
             .withActivities(Arrays.asList(new CopyActivity().withName("ExampleCopyActivity")
-                .withInputs(Arrays.asList(new DatasetReference().withReferenceName("exampleDataset")
+                .withInputs(Arrays.asList(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                    .withReferenceName("exampleDataset")
                     .withParameters(mapOf("MyFileName", "examplecontainer.csv", "MyFolderPath", "examplecontainer"))))
-                .withOutputs(Arrays.asList(new DatasetReference().withReferenceName("exampleDataset")
+                .withOutputs(Arrays.asList(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                    .withReferenceName("exampleDataset")
                     .withParameters(mapOf("MyFileName",
                         SerializerFactory.createDefaultManagementSerializerAdapter().deserialize(
                             "{\"type\":\"Expression\",\"value\":\"@item()\"}", Object.class, SerializerEncoding.JSON),

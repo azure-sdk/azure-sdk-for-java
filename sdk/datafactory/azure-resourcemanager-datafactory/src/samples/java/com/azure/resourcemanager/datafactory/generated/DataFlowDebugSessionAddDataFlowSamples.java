@@ -13,6 +13,7 @@ import com.azure.resourcemanager.datafactory.models.DataFlowDebugPackageDebugSet
 import com.azure.resourcemanager.datafactory.models.DataFlowDebugResource;
 import com.azure.resourcemanager.datafactory.models.DataFlowSource;
 import com.azure.resourcemanager.datafactory.models.DataFlowSourceSetting;
+import com.azure.resourcemanager.datafactory.models.DataSetReferenceType;
 import com.azure.resourcemanager.datafactory.models.DatasetDebugResource;
 import com.azure.resourcemanager.datafactory.models.DatasetReference;
 import com.azure.resourcemanager.datafactory.models.DelimitedTextDataset;
@@ -41,11 +42,13 @@ public final class DataFlowDebugSessionAddDataFlowSamples {
         throws IOException {
         manager.dataFlowDebugSessions().addDataFlowWithResponse("exampleResourceGroup", "exampleFactoryName",
             new DataFlowDebugPackage().withSessionId("f06ed247-9d07-49b2-b05e-2cb4a2fc871e")
-                .withDataFlow(new DataFlowDebugResource().withName("dataflow1").withProperties(new MappingDataFlow()
-                    .withSources(Arrays.asList(new DataFlowSource().withName("source1")
-                        .withDataset(new DatasetReference().withReferenceName("DelimitedText2"))))
-                    .withSinks(Arrays.asList()).withTransformations(Arrays.asList()).withScript(
-                        "\n\nsource(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1")))
+                .withDataFlow(new DataFlowDebugResource().withName("dataflow1")
+                    .withProperties(new MappingDataFlow()
+                        .withSources(Arrays.asList(new DataFlowSource().withName("source1")
+                            .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                                .withReferenceName("DelimitedText2"))))
+                        .withSinks(Arrays.asList()).withTransformations(Arrays.asList()).withScript(
+                            "\n\nsource(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1")))
                 .withDatasets(Arrays.asList(new DatasetDebugResource().withName("dataset1")
                     .withProperties(new DelimitedTextDataset()
                         .withSchema(SerializerFactory.createDefaultManagementSerializerAdapter()

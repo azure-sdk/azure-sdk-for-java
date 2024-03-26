@@ -17,7 +17,7 @@ public final class PipelineReference {
      * Pipeline reference type.
      */
     @JsonProperty(value = "type", required = true)
-    private String type = "PipelineReference";
+    private PipelineReferenceType type;
 
     /*
      * Reference pipeline name.
@@ -42,7 +42,7 @@ public final class PipelineReference {
      * 
      * @return the type value.
      */
-    public String type() {
+    public PipelineReferenceType type() {
         return this.type;
     }
 
@@ -52,7 +52,7 @@ public final class PipelineReference {
      * @param type the type value to set.
      * @return the PipelineReference object itself.
      */
-    public PipelineReference withType(String type) {
+    public PipelineReference withType(PipelineReferenceType type) {
         this.type = type;
         return this;
     }
@@ -103,6 +103,10 @@ public final class PipelineReference {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (type() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model PipelineReference"));
+        }
         if (referenceName() == null) {
             throw LOGGER.logExceptionAsError(
                 new IllegalArgumentException("Missing required property referenceName in model PipelineReference"));

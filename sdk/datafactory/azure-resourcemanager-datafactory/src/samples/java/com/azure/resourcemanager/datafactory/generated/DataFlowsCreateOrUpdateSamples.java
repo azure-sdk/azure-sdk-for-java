@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.generated;
 import com.azure.resourcemanager.datafactory.models.DataFlowResource;
 import com.azure.resourcemanager.datafactory.models.DataFlowSink;
 import com.azure.resourcemanager.datafactory.models.DataFlowSource;
+import com.azure.resourcemanager.datafactory.models.DataSetReferenceType;
 import com.azure.resourcemanager.datafactory.models.DatasetReference;
 import com.azure.resourcemanager.datafactory.models.MappingDataFlow;
 import java.util.Arrays;
@@ -30,14 +31,18 @@ public final class DataFlowsCreateOrUpdateSamples {
                 "Sample demo data flow to convert currencies showing usage of union, derive and conditional split transformation.")
                 .withSources(Arrays.asList(
                     new DataFlowSource().withName("USDCurrency")
-                        .withDataset(new DatasetReference().withReferenceName("CurrencyDatasetUSD")),
+                        .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                            .withReferenceName("CurrencyDatasetUSD")),
                     new DataFlowSource().withName("CADSource")
-                        .withDataset(new DatasetReference().withReferenceName("CurrencyDatasetCAD"))))
+                        .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                            .withReferenceName("CurrencyDatasetCAD"))))
                 .withSinks(Arrays.asList(
                     new DataFlowSink().withName("USDSink")
-                        .withDataset(new DatasetReference().withReferenceName("USDOutput")),
+                        .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                            .withReferenceName("USDOutput")),
                     new DataFlowSink().withName("CADSink")
-                        .withDataset(new DatasetReference().withReferenceName("CADOutput"))))
+                        .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                            .withReferenceName("CADOutput"))))
                 .withScriptLines(Arrays.asList("source(output(", "PreviousConversionRate as double,",
                     "Country as string,", "DateTime1 as string,", "CurrentConversionRate as double", "),",
                     "allowSchemaDrift: false,", "validateSchema: false) ~> USDCurrency", "source(output(",
@@ -68,14 +73,18 @@ public final class DataFlowsCreateOrUpdateSamples {
             "Sample demo data flow to convert currencies showing usage of union, derive and conditional split transformation.")
             .withSources(Arrays.asList(
                 new DataFlowSource().withName("USDCurrency")
-                    .withDataset(new DatasetReference().withReferenceName("CurrencyDatasetUSD")),
+                    .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("CurrencyDatasetUSD")),
                 new DataFlowSource().withName("CADSource")
-                    .withDataset(new DatasetReference().withReferenceName("CurrencyDatasetCAD"))))
+                    .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("CurrencyDatasetCAD"))))
             .withSinks(Arrays.asList(
                 new DataFlowSink().withName("USDSink")
-                    .withDataset(new DatasetReference().withReferenceName("USDOutput")),
+                    .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("USDOutput")),
                 new DataFlowSink().withName("CADSink")
-                    .withDataset(new DatasetReference().withReferenceName("CADOutput"))))
+                    .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("CADOutput"))))
             .withScriptLines(Arrays.asList("source(output(", "PreviousConversionRate as double,", "Country as string,",
                 "DateTime1 as string,", "CurrentConversionRate as double", "),", "allowSchemaDrift: false,",
                 "validateSchema: false) ~> USDCurrency", "source(output(", "PreviousConversionRate as double,",

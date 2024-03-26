@@ -6,7 +6,7 @@ package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.datafactory.fluent.models.ManagedIdentityCredentialResourceInner;
+import com.azure.resourcemanager.datafactory.fluent.models.CredentialResourceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public final class CredentialListResponse {
      * List of credentials.
      */
     @JsonProperty(value = "value", required = true)
-    private List<ManagedIdentityCredentialResourceInner> value;
+    private List<CredentialResourceInner> value;
 
     /*
      * The link to the next page of results, if any remaining results exist.
@@ -38,7 +38,7 @@ public final class CredentialListResponse {
      * 
      * @return the value value.
      */
-    public List<ManagedIdentityCredentialResourceInner> value() {
+    public List<CredentialResourceInner> value() {
         return this.value;
     }
 
@@ -48,7 +48,7 @@ public final class CredentialListResponse {
      * @param value the value value to set.
      * @return the CredentialListResponse object itself.
      */
-    public CredentialListResponse withValue(List<ManagedIdentityCredentialResourceInner> value) {
+    public CredentialListResponse withValue(List<CredentialResourceInner> value) {
         this.value = value;
         return this;
     }

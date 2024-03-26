@@ -7,6 +7,7 @@ package com.azure.resourcemanager.datafactory.generated;
 import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.datafactory.models.PipelineReference;
+import com.azure.resourcemanager.datafactory.models.PipelineReferenceType;
 import com.azure.resourcemanager.datafactory.models.RecurrenceFrequency;
 import com.azure.resourcemanager.datafactory.models.ScheduleTrigger;
 import com.azure.resourcemanager.datafactory.models.ScheduleTriggerRecurrence;
@@ -33,13 +34,11 @@ public final class TriggersCreateOrUpdateSamples {
      */
     public static void triggersCreate(com.azure.resourcemanager.datafactory.DataFactoryManager manager)
         throws IOException {
-        manager
-            .triggers().define(
-                "exampleTrigger")
-            .withExistingFactory("exampleResourceGroup", "exampleFactoryName")
+        manager.triggers().define("exampleTrigger").withExistingFactory("exampleResourceGroup", "exampleFactoryName")
             .withProperties(new ScheduleTrigger()
                 .withPipelines(Arrays.asList(new TriggerPipelineReference()
-                    .withPipelineReference(new PipelineReference().withReferenceName("examplePipeline"))
+                    .withPipelineReference(new PipelineReference().withType(PipelineReferenceType.PIPELINE_REFERENCE)
+                        .withReferenceName("examplePipeline"))
                     .withParameters(mapOf("OutputBlobNameList",
                         SerializerFactory.createDefaultManagementSerializerAdapter()
                             .deserialize("[\"exampleoutput.csv\"]", Object.class, SerializerEncoding.JSON)))))
@@ -66,7 +65,8 @@ public final class TriggersCreateOrUpdateSamples {
         resource.update()
             .withProperties(new ScheduleTrigger().withDescription("Example description")
                 .withPipelines(Arrays.asList(new TriggerPipelineReference()
-                    .withPipelineReference(new PipelineReference().withReferenceName("examplePipeline"))
+                    .withPipelineReference(new PipelineReference().withType(PipelineReferenceType.PIPELINE_REFERENCE)
+                        .withReferenceName("examplePipeline"))
                     .withParameters(mapOf("OutputBlobNameList",
                         SerializerFactory.createDefaultManagementSerializerAdapter()
                             .deserialize("[\"exampleoutput.csv\"]", Object.class, SerializerEncoding.JSON)))))

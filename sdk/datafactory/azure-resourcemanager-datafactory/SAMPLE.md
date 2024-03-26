@@ -395,6 +395,7 @@ public final class ChangeDataCaptureStopSamples {
 ### CredentialOperations_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.datafactory.fluent.models.CredentialResourceInner;
 import com.azure.resourcemanager.datafactory.models.ManagedIdentityCredential;
 
 /**
@@ -412,11 +413,9 @@ public final class CredentialOperationsCreateOrUpdateSamples {
      * @param manager Entry point to DataFactoryManager.
      */
     public static void credentialsCreate(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
-        manager.credentialOperations().define("exampleCredential")
-            .withExistingFactory("exampleResourceGroup", "exampleFactoryName")
-            .withProperties(new ManagedIdentityCredential().withResourceId(
-                "/subscriptions/12345678-1234-1234-1234-12345678abc/resourcegroups/exampleResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/exampleUami"))
-            .create();
+        manager.credentialOperations().createOrUpdateWithResponse("exampleResourceGroup", "exampleFactoryName",
+            "exampleCredential", new CredentialResourceInner().withProperties(new ManagedIdentityCredential()), null,
+            com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -503,6 +502,7 @@ import com.azure.resourcemanager.datafactory.models.DataFlowDebugPackageDebugSet
 import com.azure.resourcemanager.datafactory.models.DataFlowDebugResource;
 import com.azure.resourcemanager.datafactory.models.DataFlowSource;
 import com.azure.resourcemanager.datafactory.models.DataFlowSourceSetting;
+import com.azure.resourcemanager.datafactory.models.DataSetReferenceType;
 import com.azure.resourcemanager.datafactory.models.DatasetDebugResource;
 import com.azure.resourcemanager.datafactory.models.DatasetReference;
 import com.azure.resourcemanager.datafactory.models.DelimitedTextDataset;
@@ -531,11 +531,13 @@ public final class DataFlowDebugSessionAddDataFlowSamples {
         throws IOException {
         manager.dataFlowDebugSessions().addDataFlowWithResponse("exampleResourceGroup", "exampleFactoryName",
             new DataFlowDebugPackage().withSessionId("f06ed247-9d07-49b2-b05e-2cb4a2fc871e")
-                .withDataFlow(new DataFlowDebugResource().withName("dataflow1").withProperties(new MappingDataFlow()
-                    .withSources(Arrays.asList(new DataFlowSource().withName("source1")
-                        .withDataset(new DatasetReference().withReferenceName("DelimitedText2"))))
-                    .withSinks(Arrays.asList()).withTransformations(Arrays.asList()).withScript(
-                        "\n\nsource(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1")))
+                .withDataFlow(new DataFlowDebugResource().withName("dataflow1")
+                    .withProperties(new MappingDataFlow()
+                        .withSources(Arrays.asList(new DataFlowSource().withName("source1")
+                            .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                                .withReferenceName("DelimitedText2"))))
+                        .withSinks(Arrays.asList()).withTransformations(Arrays.asList()).withScript(
+                            "\n\nsource(output(\n\t\tColumn_1 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false) ~> source1")))
                 .withDatasets(Arrays.asList(new DatasetDebugResource().withName("dataset1")
                     .withProperties(new DelimitedTextDataset()
                         .withSchema(SerializerFactory.createDefaultManagementSerializerAdapter()
@@ -718,6 +720,7 @@ public final class DataFlowDebugSessionQueryByFactorySamples {
 import com.azure.resourcemanager.datafactory.models.DataFlowResource;
 import com.azure.resourcemanager.datafactory.models.DataFlowSink;
 import com.azure.resourcemanager.datafactory.models.DataFlowSource;
+import com.azure.resourcemanager.datafactory.models.DataSetReferenceType;
 import com.azure.resourcemanager.datafactory.models.DatasetReference;
 import com.azure.resourcemanager.datafactory.models.MappingDataFlow;
 import java.util.Arrays;
@@ -741,14 +744,18 @@ public final class DataFlowsCreateOrUpdateSamples {
                 "Sample demo data flow to convert currencies showing usage of union, derive and conditional split transformation.")
                 .withSources(Arrays.asList(
                     new DataFlowSource().withName("USDCurrency")
-                        .withDataset(new DatasetReference().withReferenceName("CurrencyDatasetUSD")),
+                        .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                            .withReferenceName("CurrencyDatasetUSD")),
                     new DataFlowSource().withName("CADSource")
-                        .withDataset(new DatasetReference().withReferenceName("CurrencyDatasetCAD"))))
+                        .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                            .withReferenceName("CurrencyDatasetCAD"))))
                 .withSinks(Arrays.asList(
                     new DataFlowSink().withName("USDSink")
-                        .withDataset(new DatasetReference().withReferenceName("USDOutput")),
+                        .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                            .withReferenceName("USDOutput")),
                     new DataFlowSink().withName("CADSink")
-                        .withDataset(new DatasetReference().withReferenceName("CADOutput"))))
+                        .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                            .withReferenceName("CADOutput"))))
                 .withScriptLines(Arrays.asList("source(output(", "PreviousConversionRate as double,",
                     "Country as string,", "DateTime1 as string,", "CurrentConversionRate as double", "),",
                     "allowSchemaDrift: false,", "validateSchema: false) ~> USDCurrency", "source(output(",
@@ -779,14 +786,18 @@ public final class DataFlowsCreateOrUpdateSamples {
             "Sample demo data flow to convert currencies showing usage of union, derive and conditional split transformation.")
             .withSources(Arrays.asList(
                 new DataFlowSource().withName("USDCurrency")
-                    .withDataset(new DatasetReference().withReferenceName("CurrencyDatasetUSD")),
+                    .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("CurrencyDatasetUSD")),
                 new DataFlowSource().withName("CADSource")
-                    .withDataset(new DatasetReference().withReferenceName("CurrencyDatasetCAD"))))
+                    .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("CurrencyDatasetCAD"))))
             .withSinks(Arrays.asList(
                 new DataFlowSink().withName("USDSink")
-                    .withDataset(new DatasetReference().withReferenceName("USDOutput")),
+                    .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("USDOutput")),
                 new DataFlowSink().withName("CADSink")
-                    .withDataset(new DatasetReference().withReferenceName("CADOutput"))))
+                    .withDataset(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("CADOutput"))))
             .withScriptLines(Arrays.asList("source(output(", "PreviousConversionRate as double,", "Country as string,",
                 "DateTime1 as string,", "CurrentConversionRate as double", "),", "allowSchemaDrift: false,",
                 "validateSchema: false) ~> USDCurrency", "source(output(", "PreviousConversionRate as double,",
@@ -2474,8 +2485,10 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.datafactory.models.BlobSink;
 import com.azure.resourcemanager.datafactory.models.BlobSource;
 import com.azure.resourcemanager.datafactory.models.CopyActivity;
+import com.azure.resourcemanager.datafactory.models.DataSetReferenceType;
 import com.azure.resourcemanager.datafactory.models.DatasetReference;
 import com.azure.resourcemanager.datafactory.models.Expression;
+import com.azure.resourcemanager.datafactory.models.ExpressionType;
 import com.azure.resourcemanager.datafactory.models.ForEachActivity;
 import com.azure.resourcemanager.datafactory.models.ParameterSpecification;
 import com.azure.resourcemanager.datafactory.models.ParameterType;
@@ -2507,11 +2520,14 @@ public final class PipelinesCreateOrUpdateSamples {
         manager.pipelines().define("examplePipeline").withExistingFactory("exampleResourceGroup", "exampleFactoryName")
             .withActivities(Arrays.asList(new ForEachActivity().withName("ExampleForeachActivity")
                 .withIsSequential(true)
-                .withItems(new Expression().withValue("@pipeline().parameters.OutputBlobNameList"))
+                .withItems(new Expression().withType(ExpressionType.EXPRESSION)
+                    .withValue("@pipeline().parameters.OutputBlobNameList"))
                 .withActivities(Arrays.asList(new CopyActivity().withName("ExampleCopyActivity")
-                    .withInputs(Arrays.asList(new DatasetReference().withReferenceName("exampleDataset").withParameters(
-                        mapOf("MyFileName", "examplecontainer.csv", "MyFolderPath", "examplecontainer"))))
-                    .withOutputs(Arrays.asList(new DatasetReference().withReferenceName("exampleDataset")
+                    .withInputs(Arrays.asList(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("exampleDataset").withParameters(
+                            mapOf("MyFileName", "examplecontainer.csv", "MyFolderPath", "examplecontainer"))))
+                    .withOutputs(Arrays.asList(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                        .withReferenceName("exampleDataset")
                         .withParameters(mapOf("MyFileName",
                             SerializerFactory.createDefaultManagementSerializerAdapter().deserialize(
                                 "{\"type\":\"Expression\",\"value\":\"@item()\"}", Object.class,
@@ -2545,11 +2561,14 @@ public final class PipelinesCreateOrUpdateSamples {
             "examplePipeline", null, com.azure.core.util.Context.NONE).getValue();
         resource.update().withDescription("Example description").withActivities(Arrays.asList(new ForEachActivity()
             .withName("ExampleForeachActivity").withIsSequential(true)
-            .withItems(new Expression().withValue("@pipeline().parameters.OutputBlobNameList"))
+            .withItems(new Expression().withType(ExpressionType.EXPRESSION)
+                .withValue("@pipeline().parameters.OutputBlobNameList"))
             .withActivities(Arrays.asList(new CopyActivity().withName("ExampleCopyActivity")
-                .withInputs(Arrays.asList(new DatasetReference().withReferenceName("exampleDataset")
+                .withInputs(Arrays.asList(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                    .withReferenceName("exampleDataset")
                     .withParameters(mapOf("MyFileName", "examplecontainer.csv", "MyFolderPath", "examplecontainer"))))
-                .withOutputs(Arrays.asList(new DatasetReference().withReferenceName("exampleDataset")
+                .withOutputs(Arrays.asList(new DatasetReference().withType(DataSetReferenceType.DATASET_REFERENCE)
+                    .withReferenceName("exampleDataset")
                     .withParameters(mapOf("MyFileName",
                         SerializerFactory.createDefaultManagementSerializerAdapter().deserialize(
                             "{\"type\":\"Expression\",\"value\":\"@item()\"}", Object.class, SerializerEncoding.JSON),
@@ -2908,6 +2927,7 @@ public final class TriggerRunsRerunSamples {
 import com.azure.core.management.serializer.SerializerFactory;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.datafactory.models.PipelineReference;
+import com.azure.resourcemanager.datafactory.models.PipelineReferenceType;
 import com.azure.resourcemanager.datafactory.models.RecurrenceFrequency;
 import com.azure.resourcemanager.datafactory.models.ScheduleTrigger;
 import com.azure.resourcemanager.datafactory.models.ScheduleTriggerRecurrence;
@@ -2934,13 +2954,11 @@ public final class TriggersCreateOrUpdateSamples {
      */
     public static void triggersCreate(com.azure.resourcemanager.datafactory.DataFactoryManager manager)
         throws IOException {
-        manager
-            .triggers().define(
-                "exampleTrigger")
-            .withExistingFactory("exampleResourceGroup", "exampleFactoryName")
+        manager.triggers().define("exampleTrigger").withExistingFactory("exampleResourceGroup", "exampleFactoryName")
             .withProperties(new ScheduleTrigger()
                 .withPipelines(Arrays.asList(new TriggerPipelineReference()
-                    .withPipelineReference(new PipelineReference().withReferenceName("examplePipeline"))
+                    .withPipelineReference(new PipelineReference().withType(PipelineReferenceType.PIPELINE_REFERENCE)
+                        .withReferenceName("examplePipeline"))
                     .withParameters(mapOf("OutputBlobNameList",
                         SerializerFactory.createDefaultManagementSerializerAdapter()
                             .deserialize("[\"exampleoutput.csv\"]", Object.class, SerializerEncoding.JSON)))))
@@ -2967,7 +2985,8 @@ public final class TriggersCreateOrUpdateSamples {
         resource.update()
             .withProperties(new ScheduleTrigger().withDescription("Example description")
                 .withPipelines(Arrays.asList(new TriggerPipelineReference()
-                    .withPipelineReference(new PipelineReference().withReferenceName("examplePipeline"))
+                    .withPipelineReference(new PipelineReference().withType(PipelineReferenceType.PIPELINE_REFERENCE)
+                        .withReferenceName("examplePipeline"))
                     .withParameters(mapOf("OutputBlobNameList",
                         SerializerFactory.createDefaultManagementSerializerAdapter()
                             .deserialize("[\"exampleoutput.csv\"]", Object.class, SerializerEncoding.JSON)))))

@@ -17,7 +17,7 @@ public final class Expression {
      * Expression type.
      */
     @JsonProperty(value = "type", required = true)
-    private String type = "Expression";
+    private ExpressionType type;
 
     /*
      * Expression value.
@@ -36,7 +36,7 @@ public final class Expression {
      * 
      * @return the type value.
      */
-    public String type() {
+    public ExpressionType type() {
         return this.type;
     }
 
@@ -46,7 +46,7 @@ public final class Expression {
      * @param type the type value to set.
      * @return the Expression object itself.
      */
-    public Expression withType(String type) {
+    public Expression withType(ExpressionType type) {
         this.type = type;
         return this;
     }
@@ -77,6 +77,10 @@ public final class Expression {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (type() == null) {
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property type in model Expression"));
+        }
         if (value() == null) {
             throw LOGGER.logExceptionAsError(
                 new IllegalArgumentException("Missing required property value in model Expression"));
