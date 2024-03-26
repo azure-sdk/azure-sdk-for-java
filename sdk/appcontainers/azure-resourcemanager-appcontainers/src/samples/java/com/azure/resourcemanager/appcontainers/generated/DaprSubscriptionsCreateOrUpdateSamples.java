@@ -16,7 +16,7 @@ import java.util.Map;
  */
 public final class DaprSubscriptionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
      * DaprSubscriptions_CreateOrUpdate_RouteRulesAndMetadata.json
      */
     /**
@@ -38,7 +38,7 @@ public final class DaprSubscriptionsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
      * DaprSubscriptions_CreateOrUpdate_DefaultRoute.json
      */
     /**
@@ -54,7 +54,7 @@ public final class DaprSubscriptionsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/
      * DaprSubscriptions_CreateOrUpdate_BulkSubscribeAndScopes.json
      */
     /**

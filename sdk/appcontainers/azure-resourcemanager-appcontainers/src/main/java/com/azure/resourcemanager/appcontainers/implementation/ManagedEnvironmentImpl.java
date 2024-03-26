@@ -18,6 +18,7 @@ import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningSta
 import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerAuthentication;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerTrafficConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.appcontainers.models.OpenTelemetryConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
@@ -144,6 +145,10 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication() {
         return this.innerModel().peerAuthentication();
+    }
+
+    public ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration() {
+        return this.innerModel().peerTrafficConfiguration();
     }
 
     public Region region() {
@@ -328,6 +333,12 @@ public final class ManagedEnvironmentImpl
     public ManagedEnvironmentImpl
         withPeerAuthentication(ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication) {
         this.innerModel().withPeerAuthentication(peerAuthentication);
+        return this;
+    }
+
+    public ManagedEnvironmentImpl
+        withPeerTrafficConfiguration(ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration) {
+        this.innerModel().withPeerTrafficConfiguration(peerTrafficConfiguration);
         return this;
     }
 }

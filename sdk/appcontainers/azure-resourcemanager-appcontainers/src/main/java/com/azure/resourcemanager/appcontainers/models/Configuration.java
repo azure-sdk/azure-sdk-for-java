@@ -46,6 +46,12 @@ public final class Configuration {
     private Dapr dapr;
 
     /*
+     * App runtime configuration for the Container App.
+     */
+    @JsonProperty(value = "runtime")
+    private Runtime runtime;
+
+    /*
      * Optional. Max inactive revisions a Container App can have.
      */
     @JsonProperty(value = "maxInactiveRevisions")
@@ -174,6 +180,26 @@ public final class Configuration {
     }
 
     /**
+     * Get the runtime property: App runtime configuration for the Container App.
+     * 
+     * @return the runtime value.
+     */
+    public Runtime runtime() {
+        return this.runtime;
+    }
+
+    /**
+     * Set the runtime property: App runtime configuration for the Container App.
+     * 
+     * @param runtime the runtime value to set.
+     * @return the Configuration object itself.
+     */
+    public Configuration withRuntime(Runtime runtime) {
+        this.runtime = runtime;
+        return this;
+    }
+
+    /**
      * Get the maxInactiveRevisions property: Optional. Max inactive revisions a Container App can have.
      * 
      * @return the maxInactiveRevisions value.
@@ -230,6 +256,9 @@ public final class Configuration {
         }
         if (dapr() != null) {
             dapr().validate();
+        }
+        if (runtime() != null) {
+            runtime().validate();
         }
         if (service() != null) {
             service().validate();

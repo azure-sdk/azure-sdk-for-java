@@ -23,6 +23,11 @@ import com.azure.resourcemanager.appcontainers.models.IngressStickySessions;
 import com.azure.resourcemanager.appcontainers.models.InitContainer;
 import com.azure.resourcemanager.appcontainers.models.IpSecurityRestrictionRule;
 import com.azure.resourcemanager.appcontainers.models.LogLevel;
+import com.azure.resourcemanager.appcontainers.models.LogLevelSetting;
+import com.azure.resourcemanager.appcontainers.models.Runtime;
+import com.azure.resourcemanager.appcontainers.models.RuntimeDotnet;
+import com.azure.resourcemanager.appcontainers.models.RuntimeJava;
+import com.azure.resourcemanager.appcontainers.models.RuntimeJavaAgent;
 import com.azure.resourcemanager.appcontainers.models.Scale;
 import com.azure.resourcemanager.appcontainers.models.ScaleRule;
 import com.azure.resourcemanager.appcontainers.models.Service;
@@ -40,7 +45,7 @@ import java.util.Map;
 public final class ContainerAppsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/ContainerApps_Patch.json
+     * specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/ContainerApps_Patch.json
      */
     /**
      * Sample code: Patch Container App.
@@ -73,6 +78,12 @@ public final class ContainerAppsUpdateSamples {
                 .withDapr(new Dapr().withEnabled(true).withAppProtocol(AppProtocol.HTTP).withAppPort(3000)
                     .withHttpReadBufferSize(30).withHttpMaxRequestSize(10).withLogLevel(LogLevel.DEBUG)
                     .withEnableApiLogging(true))
+                .withRuntime(new Runtime()
+                    .withJava(new RuntimeJava().withEnableMetrics(true)
+                        .withJavaAgent(new RuntimeJavaAgent().withEnabled(true)
+                            .withLogLevelSettings(Arrays.asList(
+                                new LogLevelSetting().withLogger("org.springframework.boot").withLevel("debug")))))
+                    .withDotnet(new RuntimeDotnet().withAutoConfigureDataProtection(true)))
                 .withMaxInactiveRevisions(10).withService(new Service().withType("redis")))
             .withTemplate(
                 new Template()
