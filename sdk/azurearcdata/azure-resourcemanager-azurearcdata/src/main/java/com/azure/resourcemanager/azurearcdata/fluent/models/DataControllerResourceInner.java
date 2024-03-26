@@ -13,7 +13,9 @@ import com.azure.resourcemanager.azurearcdata.models.ExtendedLocation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Data controller resource. */
+/**
+ * Data controller resource.
+ */
 @Fluent
 public final class DataControllerResourceInner extends Resource {
     /*
@@ -29,18 +31,20 @@ public final class DataControllerResourceInner extends Resource {
     private DataControllerProperties properties;
 
     /*
-     * Read only system data
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of DataControllerResourceInner class. */
+    /**
+     * Creates an instance of DataControllerResourceInner class.
+     */
     public DataControllerResourceInner() {
     }
 
     /**
      * Get the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @return the extendedLocation value.
      */
     public ExtendedLocation extendedLocation() {
@@ -49,7 +53,7 @@ public final class DataControllerResourceInner extends Resource {
 
     /**
      * Set the extendedLocation property: The extendedLocation of the resource.
-     *
+     * 
      * @param extendedLocation the extendedLocation value to set.
      * @return the DataControllerResourceInner object itself.
      */
@@ -60,7 +64,7 @@ public final class DataControllerResourceInner extends Resource {
 
     /**
      * Get the properties property: The data controller's properties.
-     *
+     * 
      * @return the properties value.
      */
     public DataControllerProperties properties() {
@@ -69,7 +73,7 @@ public final class DataControllerResourceInner extends Resource {
 
     /**
      * Set the properties property: The data controller's properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the DataControllerResourceInner object itself.
      */
@@ -79,22 +83,26 @@ public final class DataControllerResourceInner extends Resource {
     }
 
     /**
-     * Get the systemData property: Read only system data.
-     *
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataControllerResourceInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataControllerResourceInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -103,7 +111,7 @@ public final class DataControllerResourceInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -111,10 +119,8 @@ public final class DataControllerResourceInner extends Resource {
             extendedLocation().validate();
         }
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property properties in model DataControllerResourceInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property properties in model DataControllerResourceInner"));
         } else {
             properties().validate();
         }

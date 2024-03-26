@@ -4,108 +4,119 @@
 
 package com.azure.resourcemanager.azurearcdata.models;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceInner;
+import java.util.List;
 import java.util.Map;
 
-/** An immutable client-side representation of SqlServerInstance. */
+/**
+ * An immutable client-side representation of SqlServerInstance.
+ */
 public interface SqlServerInstance {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
 
     /**
      * Gets the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     String location();
 
     /**
      * Gets the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     Map<String, String> tags();
 
     /**
      * Gets the properties property: null.
-     *
+     * 
      * @return the properties value.
      */
     SqlServerInstanceProperties properties();
 
     /**
-     * Gets the systemData property: Read only system data.
-     *
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
      * @return the systemData value.
      */
     SystemData systemData();
 
     /**
      * Gets the region of the resource.
-     *
+     * 
      * @return the region of the resource.
      */
     Region region();
 
     /**
      * Gets the name of the resource region.
-     *
+     * 
      * @return the name of the resource region.
      */
     String regionName();
 
     /**
      * Gets the name of the resource group.
-     *
+     * 
      * @return the name of the resource group.
      */
     String resourceGroupName();
 
     /**
      * Gets the inner com.azure.resourcemanager.azurearcdata.fluent.models.SqlServerInstanceInner object.
-     *
+     * 
      * @return the inner object.
      */
     SqlServerInstanceInner innerModel();
 
-    /** The entirety of the SqlServerInstance definition. */
-    interface Definition
-        extends DefinitionStages.Blank,
-            DefinitionStages.WithLocation,
-            DefinitionStages.WithResourceGroup,
-            DefinitionStages.WithCreate {
+    /**
+     * The entirety of the SqlServerInstance definition.
+     */
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
-    /** The SqlServerInstance definition stages. */
+
+    /**
+     * The SqlServerInstance definition stages.
+     */
     interface DefinitionStages {
-        /** The first stage of the SqlServerInstance definition. */
+        /**
+         * The first stage of the SqlServerInstance definition.
+         */
         interface Blank extends WithLocation {
         }
-        /** The stage of the SqlServerInstance definition allowing to specify location. */
+
+        /**
+         * The stage of the SqlServerInstance definition allowing to specify location.
+         */
         interface WithLocation {
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
@@ -113,22 +124,26 @@ public interface SqlServerInstance {
 
             /**
              * Specifies the region for the resource.
-             *
+             * 
              * @param location The geo-location where the resource lives.
              * @return the next definition stage.
              */
             WithResourceGroup withRegion(String location);
         }
-        /** The stage of the SqlServerInstance definition allowing to specify parent resource. */
+
+        /**
+         * The stage of the SqlServerInstance definition allowing to specify parent resource.
+         */
         interface WithResourceGroup {
             /**
              * Specifies resourceGroupName.
-             *
+             * 
              * @param resourceGroupName The name of the Azure resource group.
              * @return the next definition stage.
              */
             WithCreate withExistingResourceGroup(String resourceGroupName);
         }
+
         /**
          * The stage of the SqlServerInstance definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
@@ -136,89 +151,143 @@ public interface SqlServerInstance {
         interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithProperties {
             /**
              * Executes the create request.
-             *
+             * 
              * @return the created resource.
              */
             SqlServerInstance create();
 
             /**
              * Executes the create request.
-             *
+             * 
              * @param context The context to associate with this operation.
              * @return the created resource.
              */
             SqlServerInstance create(Context context);
         }
-        /** The stage of the SqlServerInstance definition allowing to specify tags. */
+
+        /**
+         * The stage of the SqlServerInstance definition allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
         }
-        /** The stage of the SqlServerInstance definition allowing to specify properties. */
+
+        /**
+         * The stage of the SqlServerInstance definition allowing to specify properties.
+         */
         interface WithProperties {
             /**
              * Specifies the properties property: null.
-             *
+             * 
              * @param properties null.
              * @return the next definition stage.
              */
             WithCreate withProperties(SqlServerInstanceProperties properties);
         }
     }
+
     /**
      * Begins update for the SqlServerInstance resource.
-     *
+     * 
      * @return the stage of resource update.
      */
     SqlServerInstance.Update update();
 
-    /** The template for SqlServerInstance update. */
-    interface Update extends UpdateStages.WithTags {
+    /**
+     * The template for SqlServerInstance update.
+     */
+    interface Update extends UpdateStages.WithTags, UpdateStages.WithProperties {
         /**
          * Executes the update request.
-         *
+         * 
          * @return the updated resource.
          */
         SqlServerInstance apply();
 
         /**
          * Executes the update request.
-         *
+         * 
          * @param context The context to associate with this operation.
          * @return the updated resource.
          */
         SqlServerInstance apply(Context context);
     }
-    /** The SqlServerInstance update stages. */
+
+    /**
+     * The SqlServerInstance update stages.
+     */
     interface UpdateStages {
-        /** The stage of the SqlServerInstance update allowing to specify tags. */
+        /**
+         * The stage of the SqlServerInstance update allowing to specify tags.
+         */
         interface WithTags {
             /**
              * Specifies the tags property: Resource tags..
-             *
+             * 
              * @param tags Resource tags.
              * @return the next definition stage.
              */
             Update withTags(Map<String, String> tags);
         }
+
+        /**
+         * The stage of the SqlServerInstance update allowing to specify properties.
+         */
+        interface WithProperties {
+            /**
+             * Specifies the properties property: null.
+             * 
+             * @param properties null.
+             * @return the next definition stage.
+             */
+            Update withProperties(SqlServerInstanceUpdateProperties properties);
+        }
     }
+
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @return the refreshed resource.
      */
     SqlServerInstance refresh();
 
     /**
      * Refreshes the resource to sync with Azure.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @return the refreshed resource.
      */
     SqlServerInstance refresh(Context context);
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     * 
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with
+     * {@link PagedIterable}.
+     */
+    PagedIterable<List<String>> getTelemetry(SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest);
+
+    /**
+     * Retrieves SQL Server instance telemetry.
+     * 
+     * @param sqlServerInstanceTelemetryRequest Contains the parameters to get SQL Server instance telemetry.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return a section of the telemetry response for the SQL Server instance as paginated response with
+     * {@link PagedIterable}.
+     */
+    PagedIterable<List<String>> getTelemetry(SqlServerInstanceTelemetryRequest sqlServerInstanceTelemetryRequest,
+        Context context);
 }

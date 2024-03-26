@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** Properties from the Kubernetes data controller. */
+/**
+ * Properties from the Kubernetes data controller.
+ */
 @Fluent
 public final class OnPremiseProperty {
     /*
@@ -30,13 +32,15 @@ public final class OnPremiseProperty {
     @JsonProperty(value = "signingCertificateThumbprint")
     private String signingCertificateThumbprint;
 
-    /** Creates an instance of OnPremiseProperty class. */
+    /**
+     * Creates an instance of OnPremiseProperty class.
+     */
     public OnPremiseProperty() {
     }
 
     /**
      * Get the id property: A globally unique ID identifying the associated Kubernetes cluster.
-     *
+     * 
      * @return the id value.
      */
     public UUID id() {
@@ -45,7 +49,7 @@ public final class OnPremiseProperty {
 
     /**
      * Set the id property: A globally unique ID identifying the associated Kubernetes cluster.
-     *
+     * 
      * @param id the id value to set.
      * @return the OnPremiseProperty object itself.
      */
@@ -57,7 +61,7 @@ public final class OnPremiseProperty {
     /**
      * Get the publicSigningKey property: Certificate that contains the Kubernetes cluster public key used to verify
      * signing.
-     *
+     * 
      * @return the publicSigningKey value.
      */
     public String publicSigningKey() {
@@ -67,7 +71,7 @@ public final class OnPremiseProperty {
     /**
      * Set the publicSigningKey property: Certificate that contains the Kubernetes cluster public key used to verify
      * signing.
-     *
+     * 
      * @param publicSigningKey the publicSigningKey value to set.
      * @return the OnPremiseProperty object itself.
      */
@@ -79,7 +83,7 @@ public final class OnPremiseProperty {
     /**
      * Get the signingCertificateThumbprint property: Unique thumbprint returned to customer to verify the certificate
      * being uploaded.
-     *
+     * 
      * @return the signingCertificateThumbprint value.
      */
     public String signingCertificateThumbprint() {
@@ -89,7 +93,7 @@ public final class OnPremiseProperty {
     /**
      * Set the signingCertificateThumbprint property: Unique thumbprint returned to customer to verify the certificate
      * being uploaded.
-     *
+     * 
      * @param signingCertificateThumbprint the signingCertificateThumbprint value to set.
      * @return the OnPremiseProperty object itself.
      */
@@ -100,20 +104,17 @@ public final class OnPremiseProperty {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property id in model OnPremiseProperty"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property id in model OnPremiseProperty"));
         }
         if (publicSigningKey() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property publicSigningKey in model OnPremiseProperty"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property publicSigningKey in model OnPremiseProperty"));
         }
     }
 
