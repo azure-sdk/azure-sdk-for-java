@@ -9,9 +9,17 @@ import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The result of a request to list machine learning workspaces. */
+/**
+ * The result of a request to list machine learning workspaces.
+ */
 @Fluent
 public final class WorkspaceListResult {
+    /*
+     * The link to the next page constructed using the continuationToken. If null, there are no additional pages.
+     */
+    @JsonProperty(value = "nextLink")
+    private String nextLink;
+
     /*
      * The list of machine learning workspaces. Since this list may be incomplete, the nextLink field should be used to
      * request the next list of machine learning workspaces.
@@ -19,41 +27,16 @@ public final class WorkspaceListResult {
     @JsonProperty(value = "value")
     private List<WorkspaceInner> value;
 
-    /*
-     * The URI that can be used to request the next list of machine learning workspaces.
+    /**
+     * Creates an instance of WorkspaceListResult class.
      */
-    @JsonProperty(value = "nextLink")
-    private String nextLink;
-
-    /** Creates an instance of WorkspaceListResult class. */
     public WorkspaceListResult() {
     }
 
     /**
-     * Get the value property: The list of machine learning workspaces. Since this list may be incomplete, the nextLink
-     * field should be used to request the next list of machine learning workspaces.
-     *
-     * @return the value value.
-     */
-    public List<WorkspaceInner> value() {
-        return this.value;
-    }
-
-    /**
-     * Set the value property: The list of machine learning workspaces. Since this list may be incomplete, the nextLink
-     * field should be used to request the next list of machine learning workspaces.
-     *
-     * @param value the value value to set.
-     * @return the WorkspaceListResult object itself.
-     */
-    public WorkspaceListResult withValue(List<WorkspaceInner> value) {
-        this.value = value;
-        return this;
-    }
-
-    /**
-     * Get the nextLink property: The URI that can be used to request the next list of machine learning workspaces.
-     *
+     * Get the nextLink property: The link to the next page constructed using the continuationToken. If null, there
+     * are no additional pages.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -61,8 +44,9 @@ public final class WorkspaceListResult {
     }
 
     /**
-     * Set the nextLink property: The URI that can be used to request the next list of machine learning workspaces.
-     *
+     * Set the nextLink property: The link to the next page constructed using the continuationToken. If null, there
+     * are no additional pages.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the WorkspaceListResult object itself.
      */
@@ -72,8 +56,30 @@ public final class WorkspaceListResult {
     }
 
     /**
+     * Get the value property: The list of machine learning workspaces. Since this list may be incomplete, the nextLink
+     * field should be used to request the next list of machine learning workspaces.
+     * 
+     * @return the value value.
+     */
+    public List<WorkspaceInner> value() {
+        return this.value;
+    }
+
+    /**
+     * Set the value property: The list of machine learning workspaces. Since this list may be incomplete, the nextLink
+     * field should be used to request the next list of machine learning workspaces.
+     * 
+     * @param value the value value to set.
+     * @return the WorkspaceListResult object itself.
+     */
+    public WorkspaceListResult withValue(List<WorkspaceInner> value) {
+        this.value = value;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

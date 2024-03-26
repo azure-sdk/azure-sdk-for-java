@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The DiagnoseResponseResultValue model. */
+/**
+ * The DiagnoseResponseResultValue model.
+ */
 @Fluent
 public final class DiagnoseResponseResultValue {
     /*
@@ -65,13 +67,15 @@ public final class DiagnoseResponseResultValue {
     @JsonProperty(value = "otherResults")
     private List<DiagnoseResult> otherResults;
 
-    /** Creates an instance of DiagnoseResponseResultValue class. */
+    /**
+     * Creates an instance of DiagnoseResponseResultValue class.
+     */
     public DiagnoseResponseResultValue() {
     }
 
     /**
      * Get the userDefinedRouteResults property: The userDefinedRouteResults property.
-     *
+     * 
      * @return the userDefinedRouteResults value.
      */
     public List<DiagnoseResult> userDefinedRouteResults() {
@@ -80,7 +84,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Set the userDefinedRouteResults property: The userDefinedRouteResults property.
-     *
+     * 
      * @param userDefinedRouteResults the userDefinedRouteResults value to set.
      * @return the DiagnoseResponseResultValue object itself.
      */
@@ -91,7 +95,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Get the networkSecurityRuleResults property: The networkSecurityRuleResults property.
-     *
+     * 
      * @return the networkSecurityRuleResults value.
      */
     public List<DiagnoseResult> networkSecurityRuleResults() {
@@ -100,7 +104,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Set the networkSecurityRuleResults property: The networkSecurityRuleResults property.
-     *
+     * 
      * @param networkSecurityRuleResults the networkSecurityRuleResults value to set.
      * @return the DiagnoseResponseResultValue object itself.
      */
@@ -111,7 +115,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Get the resourceLockResults property: The resourceLockResults property.
-     *
+     * 
      * @return the resourceLockResults value.
      */
     public List<DiagnoseResult> resourceLockResults() {
@@ -120,7 +124,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Set the resourceLockResults property: The resourceLockResults property.
-     *
+     * 
      * @param resourceLockResults the resourceLockResults value to set.
      * @return the DiagnoseResponseResultValue object itself.
      */
@@ -131,7 +135,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Get the dnsResolutionResults property: The dnsResolutionResults property.
-     *
+     * 
      * @return the dnsResolutionResults value.
      */
     public List<DiagnoseResult> dnsResolutionResults() {
@@ -140,7 +144,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Set the dnsResolutionResults property: The dnsResolutionResults property.
-     *
+     * 
      * @param dnsResolutionResults the dnsResolutionResults value to set.
      * @return the DiagnoseResponseResultValue object itself.
      */
@@ -151,7 +155,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Get the storageAccountResults property: The storageAccountResults property.
-     *
+     * 
      * @return the storageAccountResults value.
      */
     public List<DiagnoseResult> storageAccountResults() {
@@ -160,7 +164,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Set the storageAccountResults property: The storageAccountResults property.
-     *
+     * 
      * @param storageAccountResults the storageAccountResults value to set.
      * @return the DiagnoseResponseResultValue object itself.
      */
@@ -171,7 +175,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Get the keyVaultResults property: The keyVaultResults property.
-     *
+     * 
      * @return the keyVaultResults value.
      */
     public List<DiagnoseResult> keyVaultResults() {
@@ -180,7 +184,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Set the keyVaultResults property: The keyVaultResults property.
-     *
+     * 
      * @param keyVaultResults the keyVaultResults value to set.
      * @return the DiagnoseResponseResultValue object itself.
      */
@@ -191,7 +195,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Get the containerRegistryResults property: The containerRegistryResults property.
-     *
+     * 
      * @return the containerRegistryResults value.
      */
     public List<DiagnoseResult> containerRegistryResults() {
@@ -200,7 +204,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Set the containerRegistryResults property: The containerRegistryResults property.
-     *
+     * 
      * @param containerRegistryResults the containerRegistryResults value to set.
      * @return the DiagnoseResponseResultValue object itself.
      */
@@ -211,7 +215,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Get the applicationInsightsResults property: The applicationInsightsResults property.
-     *
+     * 
      * @return the applicationInsightsResults value.
      */
     public List<DiagnoseResult> applicationInsightsResults() {
@@ -220,7 +224,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Set the applicationInsightsResults property: The applicationInsightsResults property.
-     *
+     * 
      * @param applicationInsightsResults the applicationInsightsResults value to set.
      * @return the DiagnoseResponseResultValue object itself.
      */
@@ -231,7 +235,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Get the otherResults property: The otherResults property.
-     *
+     * 
      * @return the otherResults value.
      */
     public List<DiagnoseResult> otherResults() {
@@ -240,7 +244,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Set the otherResults property: The otherResults property.
-     *
+     * 
      * @param otherResults the otherResults value to set.
      * @return the DiagnoseResponseResultValue object itself.
      */
@@ -251,7 +255,7 @@ public final class DiagnoseResponseResultValue {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

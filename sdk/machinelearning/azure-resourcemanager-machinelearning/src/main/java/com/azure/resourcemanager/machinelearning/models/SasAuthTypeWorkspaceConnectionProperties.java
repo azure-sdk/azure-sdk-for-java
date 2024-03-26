@@ -8,8 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
 
-/** The SasAuthTypeWorkspaceConnectionProperties model. */
+/**
+ * The SasAuthTypeWorkspaceConnectionProperties model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
 @JsonTypeName("SAS")
 @Fluent
@@ -20,13 +25,15 @@ public final class SasAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
     @JsonProperty(value = "credentials")
     private WorkspaceConnectionSharedAccessSignature credentials;
 
-    /** Creates an instance of SasAuthTypeWorkspaceConnectionProperties class. */
+    /**
+     * Creates an instance of SasAuthTypeWorkspaceConnectionProperties class.
+     */
     public SasAuthTypeWorkspaceConnectionProperties() {
     }
 
     /**
      * Get the credentials property: The credentials property.
-     *
+     * 
      * @return the credentials value.
      */
     public WorkspaceConnectionSharedAccessSignature credentials() {
@@ -35,47 +42,73 @@ public final class SasAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
 
     /**
      * Set the credentials property: The credentials property.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the SasAuthTypeWorkspaceConnectionProperties object itself.
      */
-    public SasAuthTypeWorkspaceConnectionProperties withCredentials(
-        WorkspaceConnectionSharedAccessSignature credentials) {
+    public SasAuthTypeWorkspaceConnectionProperties
+        withCredentials(WorkspaceConnectionSharedAccessSignature credentials) {
         this.credentials = credentials;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SasAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SasAuthTypeWorkspaceConnectionProperties withExpiryTime(OffsetDateTime expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SasAuthTypeWorkspaceConnectionProperties withIsSharedToAll(Boolean isSharedToAll) {
+        super.withIsSharedToAll(isSharedToAll);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SasAuthTypeWorkspaceConnectionProperties withMetadata(Map<String, String> metadata) {
+        super.withMetadata(metadata);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SasAuthTypeWorkspaceConnectionProperties withSharedUserList(List<String> sharedUserList) {
+        super.withSharedUserList(sharedUserList);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SasAuthTypeWorkspaceConnectionProperties withTarget(String target) {
         super.withTarget(target);
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public SasAuthTypeWorkspaceConnectionProperties withValue(String value) {
-        super.withValue(value);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public SasAuthTypeWorkspaceConnectionProperties withValueFormat(ValueFormat valueFormat) {
-        super.withValueFormat(valueFormat);
-        return this;
-    }
-
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
