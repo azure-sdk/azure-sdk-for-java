@@ -13,7 +13,7 @@ import com.azure.resourcemanager.dataprotection.models.FeatureValidationRequest;
 public final class DataProtectionCheckFeatureSupportSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-03-01/examples/
      * CheckfeatureSupport.json
      */
     /**

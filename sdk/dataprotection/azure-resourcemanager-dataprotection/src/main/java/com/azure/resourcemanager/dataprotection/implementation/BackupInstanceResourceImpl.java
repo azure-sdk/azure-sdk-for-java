@@ -116,9 +116,9 @@ public final class BackupInstanceResourceImpl
         com.azure.resourcemanager.dataprotection.DataProtectionManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.vaultName = Utils.getValueFromIdByName(innerObject.id(), "backupVaults");
-        this.backupInstanceName = Utils.getValueFromIdByName(innerObject.id(), "backupInstances");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.vaultName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "backupVaults");
+        this.backupInstanceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "backupInstances");
     }
 
     public BackupInstanceResource refresh() {

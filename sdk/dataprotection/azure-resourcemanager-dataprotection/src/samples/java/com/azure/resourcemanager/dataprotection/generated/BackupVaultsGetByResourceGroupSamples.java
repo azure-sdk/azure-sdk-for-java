@@ -10,7 +10,7 @@ package com.azure.resourcemanager.dataprotection.generated;
 public final class BackupVaultsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-03-01/examples/VaultCRUD/
      * GetBackupVault.json
      */
     /**
@@ -25,7 +25,7 @@ public final class BackupVaultsGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/VaultCRUD/
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-03-01/examples/VaultCRUD/
      * GetBackupVaultWithMSI.json
      */
     /**
@@ -34,6 +34,21 @@ public final class BackupVaultsGetByResourceGroupSamples {
      * @param manager Entry point to DataProtectionManager.
      */
     public static void getBackupVaultWithMSI(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
+        manager.backupVaults().getByResourceGroupWithResponse("SampleResourceGroup", "swaggerExample",
+            com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-03-01/examples/VaultCRUD/
+     * GetBackupVaultWithCMK.json
+     */
+    /**
+     * Sample code: Get BackupVault With CMK.
+     * 
+     * @param manager Entry point to DataProtectionManager.
+     */
+    public static void getBackupVaultWithCMK(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
         manager.backupVaults().getByResourceGroupWithResponse("SampleResourceGroup", "swaggerExample",
             com.azure.core.util.Context.NONE);
     }

@@ -71,6 +71,12 @@ public final class BackupVault {
     private SecureScoreLevel secureScore;
 
     /*
+     * Security Level of Backup Vault
+     */
+    @JsonProperty(value = "bcdrSecurityLevel", access = JsonProperty.Access.WRITE_ONLY)
+    private BcdrSecurityLevel bcdrSecurityLevel;
+
+    /*
      * List of replicated regions for Backup Vault
      */
     @JsonProperty(value = "replicatedRegions")
@@ -205,6 +211,15 @@ public final class BackupVault {
      */
     public SecureScoreLevel secureScore() {
         return this.secureScore;
+    }
+
+    /**
+     * Get the bcdrSecurityLevel property: Security Level of Backup Vault.
+     * 
+     * @return the bcdrSecurityLevel value.
+     */
+    public BcdrSecurityLevel bcdrSecurityLevel() {
+        return this.bcdrSecurityLevel;
     }
 
     /**
