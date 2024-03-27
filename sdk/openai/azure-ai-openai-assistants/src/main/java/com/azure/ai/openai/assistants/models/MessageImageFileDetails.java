@@ -19,7 +19,17 @@ public final class MessageImageFileDetails {
      */
     @Generated
     @JsonProperty(value = "file_id")
-    private MessageImageFileIdDetails fileId;
+    private String fileId;
+
+    /**
+     * Get the fileId property: The ID for the file associated with this image.
+     *
+     * @return the fileId value.
+     */
+    @Generated
+    public String getFileId() {
+        return this.fileId;
+    }
 
     /**
      * Creates an instance of MessageImageFileDetails class.
@@ -28,17 +38,7 @@ public final class MessageImageFileDetails {
      */
     @Generated
     @JsonCreator
-    private MessageImageFileDetails(@JsonProperty(value = "file_id") MessageImageFileIdDetails fileId) {
+    private MessageImageFileDetails(@JsonProperty(value = "file_id") String fileId) {
         this.fileId = fileId;
-    }
-
-    /**
-     * Get the fileId property: The ID for the file associated with this image.
-     *
-     * @return the fileId value.
-     */
-    @Generated
-    public MessageImageFileIdDetails getFileId() {
-        return this.fileId;
     }
 }
