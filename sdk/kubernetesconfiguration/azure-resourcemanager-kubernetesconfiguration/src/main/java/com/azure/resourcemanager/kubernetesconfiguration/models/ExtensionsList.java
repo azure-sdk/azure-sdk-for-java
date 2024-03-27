@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Result of the request to list Extensions. It contains a list of Extension objects and a URL link to get the next set
- * of results.
+ * Result of the request to list Extensions. It contains a list of Extension objects and a URL link to get the next
+ * set of results.
  */
 @Immutable
 public final class ExtensionsList {
@@ -27,13 +27,15 @@ public final class ExtensionsList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ExtensionsList class. */
+    /**
+     * Creates an instance of ExtensionsList class.
+     */
     public ExtensionsList() {
     }
 
     /**
      * Get the value property: List of Extensions within a Kubernetes cluster.
-     *
+     * 
      * @return the value value.
      */
     public List<ExtensionInner> value() {
@@ -42,7 +44,7 @@ public final class ExtensionsList {
 
     /**
      * Get the nextLink property: URL to get the next set of extension objects, if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -51,7 +53,7 @@ public final class ExtensionsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Status condition of Kubernetes object. */
+/**
+ * Status condition of Kubernetes object.
+ */
 @Fluent
 public final class ObjectStatusConditionDefinition {
     /*
@@ -41,13 +43,15 @@ public final class ObjectStatusConditionDefinition {
     @JsonProperty(value = "type")
     private String type;
 
-    /** Creates an instance of ObjectStatusConditionDefinition class. */
+    /**
+     * Creates an instance of ObjectStatusConditionDefinition class.
+     */
     public ObjectStatusConditionDefinition() {
     }
 
     /**
      * Get the lastTransitionTime property: Last time this status condition has changed.
-     *
+     * 
      * @return the lastTransitionTime value.
      */
     public OffsetDateTime lastTransitionTime() {
@@ -56,7 +60,7 @@ public final class ObjectStatusConditionDefinition {
 
     /**
      * Set the lastTransitionTime property: Last time this status condition has changed.
-     *
+     * 
      * @param lastTransitionTime the lastTransitionTime value to set.
      * @return the ObjectStatusConditionDefinition object itself.
      */
@@ -67,7 +71,7 @@ public final class ObjectStatusConditionDefinition {
 
     /**
      * Get the message property: A more verbose description of the object status condition.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -76,7 +80,7 @@ public final class ObjectStatusConditionDefinition {
 
     /**
      * Set the message property: A more verbose description of the object status condition.
-     *
+     * 
      * @param message the message value to set.
      * @return the ObjectStatusConditionDefinition object itself.
      */
@@ -87,7 +91,7 @@ public final class ObjectStatusConditionDefinition {
 
     /**
      * Get the reason property: Reason for the specified status condition type status.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -96,7 +100,7 @@ public final class ObjectStatusConditionDefinition {
 
     /**
      * Set the reason property: Reason for the specified status condition type status.
-     *
+     * 
      * @param reason the reason value to set.
      * @return the ObjectStatusConditionDefinition object itself.
      */
@@ -107,7 +111,7 @@ public final class ObjectStatusConditionDefinition {
 
     /**
      * Get the status property: Status of the Kubernetes object condition type.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -116,7 +120,7 @@ public final class ObjectStatusConditionDefinition {
 
     /**
      * Set the status property: Status of the Kubernetes object condition type.
-     *
+     * 
      * @param status the status value to set.
      * @return the ObjectStatusConditionDefinition object itself.
      */
@@ -127,7 +131,7 @@ public final class ObjectStatusConditionDefinition {
 
     /**
      * Get the type property: Object status condition type for this object.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -136,7 +140,7 @@ public final class ObjectStatusConditionDefinition {
 
     /**
      * Set the type property: Object status condition type for this object.
-     *
+     * 
      * @param type the type value to set.
      * @return the ObjectStatusConditionDefinition object itself.
      */
@@ -147,7 +151,7 @@ public final class ObjectStatusConditionDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

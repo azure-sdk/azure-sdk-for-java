@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Parameters to reconcile to the AzureBlob source kind type. */
+/**
+ * Parameters to reconcile to the AzureBlob source kind type.
+ */
 @Fluent
 public final class AzureBlobPatchDefinition {
     /*
@@ -65,13 +67,15 @@ public final class AzureBlobPatchDefinition {
     @JsonProperty(value = "localAuthRef")
     private String localAuthRef;
 
-    /** Creates an instance of AzureBlobPatchDefinition class. */
+    /**
+     * Creates an instance of AzureBlobPatchDefinition class.
+     */
     public AzureBlobPatchDefinition() {
     }
 
     /**
      * Get the url property: The URL to sync for the flux configuration Azure Blob storage account.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -80,7 +84,7 @@ public final class AzureBlobPatchDefinition {
 
     /**
      * Set the url property: The URL to sync for the flux configuration Azure Blob storage account.
-     *
+     * 
      * @param url the url value to set.
      * @return the AzureBlobPatchDefinition object itself.
      */
@@ -92,7 +96,7 @@ public final class AzureBlobPatchDefinition {
     /**
      * Get the containerName property: The Azure Blob container name to sync from the url endpoint for the flux
      * configuration.
-     *
+     * 
      * @return the containerName value.
      */
     public String containerName() {
@@ -102,7 +106,7 @@ public final class AzureBlobPatchDefinition {
     /**
      * Set the containerName property: The Azure Blob container name to sync from the url endpoint for the flux
      * configuration.
-     *
+     * 
      * @param containerName the containerName value to set.
      * @return the AzureBlobPatchDefinition object itself.
      */
@@ -114,7 +118,7 @@ public final class AzureBlobPatchDefinition {
     /**
      * Get the timeoutInSeconds property: The maximum time to attempt to reconcile the cluster Azure Blob source with
      * the remote.
-     *
+     * 
      * @return the timeoutInSeconds value.
      */
     public Long timeoutInSeconds() {
@@ -124,7 +128,7 @@ public final class AzureBlobPatchDefinition {
     /**
      * Set the timeoutInSeconds property: The maximum time to attempt to reconcile the cluster Azure Blob source with
      * the remote.
-     *
+     * 
      * @param timeoutInSeconds the timeoutInSeconds value to set.
      * @return the AzureBlobPatchDefinition object itself.
      */
@@ -136,7 +140,7 @@ public final class AzureBlobPatchDefinition {
     /**
      * Get the syncIntervalInSeconds property: The interval at which to re-reconcile the cluster Azure Blob source with
      * the remote.
-     *
+     * 
      * @return the syncIntervalInSeconds value.
      */
     public Long syncIntervalInSeconds() {
@@ -146,7 +150,7 @@ public final class AzureBlobPatchDefinition {
     /**
      * Set the syncIntervalInSeconds property: The interval at which to re-reconcile the cluster Azure Blob source with
      * the remote.
-     *
+     * 
      * @param syncIntervalInSeconds the syncIntervalInSeconds value to set.
      * @return the AzureBlobPatchDefinition object itself.
      */
@@ -157,7 +161,7 @@ public final class AzureBlobPatchDefinition {
 
     /**
      * Get the servicePrincipal property: Parameters to authenticate using Service Principal.
-     *
+     * 
      * @return the servicePrincipal value.
      */
     public ServicePrincipalPatchDefinition servicePrincipal() {
@@ -166,7 +170,7 @@ public final class AzureBlobPatchDefinition {
 
     /**
      * Set the servicePrincipal property: Parameters to authenticate using Service Principal.
-     *
+     * 
      * @param servicePrincipal the servicePrincipal value to set.
      * @return the AzureBlobPatchDefinition object itself.
      */
@@ -177,7 +181,7 @@ public final class AzureBlobPatchDefinition {
 
     /**
      * Get the accountKey property: The account key (shared key) to access the storage account.
-     *
+     * 
      * @return the accountKey value.
      */
     public String accountKey() {
@@ -186,7 +190,7 @@ public final class AzureBlobPatchDefinition {
 
     /**
      * Set the accountKey property: The account key (shared key) to access the storage account.
-     *
+     * 
      * @param accountKey the accountKey value to set.
      * @return the AzureBlobPatchDefinition object itself.
      */
@@ -197,7 +201,7 @@ public final class AzureBlobPatchDefinition {
 
     /**
      * Get the sasToken property: The Shared Access token to access the storage container.
-     *
+     * 
      * @return the sasToken value.
      */
     public String sasToken() {
@@ -206,7 +210,7 @@ public final class AzureBlobPatchDefinition {
 
     /**
      * Set the sasToken property: The Shared Access token to access the storage container.
-     *
+     * 
      * @param sasToken the sasToken value to set.
      * @return the AzureBlobPatchDefinition object itself.
      */
@@ -217,7 +221,7 @@ public final class AzureBlobPatchDefinition {
 
     /**
      * Get the managedIdentity property: Parameters to authenticate using a Managed Identity.
-     *
+     * 
      * @return the managedIdentity value.
      */
     public ManagedIdentityPatchDefinition managedIdentity() {
@@ -226,7 +230,7 @@ public final class AzureBlobPatchDefinition {
 
     /**
      * Set the managedIdentity property: Parameters to authenticate using a Managed Identity.
-     *
+     * 
      * @param managedIdentity the managedIdentity value to set.
      * @return the AzureBlobPatchDefinition object itself.
      */
@@ -238,7 +242,7 @@ public final class AzureBlobPatchDefinition {
     /**
      * Get the localAuthRef property: Name of a local secret on the Kubernetes cluster to use as the authentication
      * secret rather than the managed or user-provided configuration secrets.
-     *
+     * 
      * @return the localAuthRef value.
      */
     public String localAuthRef() {
@@ -248,7 +252,7 @@ public final class AzureBlobPatchDefinition {
     /**
      * Set the localAuthRef property: Name of a local secret on the Kubernetes cluster to use as the authentication
      * secret rather than the managed or user-provided configuration secrets.
-     *
+     * 
      * @param localAuthRef the localAuthRef value to set.
      * @return the AzureBlobPatchDefinition object itself.
      */
@@ -259,7 +263,7 @@ public final class AzureBlobPatchDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

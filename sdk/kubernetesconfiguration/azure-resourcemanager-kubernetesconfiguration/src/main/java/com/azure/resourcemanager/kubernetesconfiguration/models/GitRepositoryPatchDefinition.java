@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Parameters to reconcile to the GitRepository source kind type. */
+/**
+ * Parameters to reconcile to the GitRepository source kind type.
+ */
 @Fluent
 public final class GitRepositoryPatchDefinition {
     /*
@@ -59,13 +61,15 @@ public final class GitRepositoryPatchDefinition {
     @JsonProperty(value = "localAuthRef")
     private String localAuthRef;
 
-    /** Creates an instance of GitRepositoryPatchDefinition class. */
+    /**
+     * Creates an instance of GitRepositoryPatchDefinition class.
+     */
     public GitRepositoryPatchDefinition() {
     }
 
     /**
      * Get the url property: The URL to sync for the flux configuration git repository.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -74,7 +78,7 @@ public final class GitRepositoryPatchDefinition {
 
     /**
      * Set the url property: The URL to sync for the flux configuration git repository.
-     *
+     * 
      * @param url the url value to set.
      * @return the GitRepositoryPatchDefinition object itself.
      */
@@ -86,7 +90,7 @@ public final class GitRepositoryPatchDefinition {
     /**
      * Get the timeoutInSeconds property: The maximum time to attempt to reconcile the cluster git repository source
      * with the remote.
-     *
+     * 
      * @return the timeoutInSeconds value.
      */
     public Long timeoutInSeconds() {
@@ -96,7 +100,7 @@ public final class GitRepositoryPatchDefinition {
     /**
      * Set the timeoutInSeconds property: The maximum time to attempt to reconcile the cluster git repository source
      * with the remote.
-     *
+     * 
      * @param timeoutInSeconds the timeoutInSeconds value to set.
      * @return the GitRepositoryPatchDefinition object itself.
      */
@@ -108,7 +112,7 @@ public final class GitRepositoryPatchDefinition {
     /**
      * Get the syncIntervalInSeconds property: The interval at which to re-reconcile the cluster git repository source
      * with the remote.
-     *
+     * 
      * @return the syncIntervalInSeconds value.
      */
     public Long syncIntervalInSeconds() {
@@ -118,7 +122,7 @@ public final class GitRepositoryPatchDefinition {
     /**
      * Set the syncIntervalInSeconds property: The interval at which to re-reconcile the cluster git repository source
      * with the remote.
-     *
+     * 
      * @param syncIntervalInSeconds the syncIntervalInSeconds value to set.
      * @return the GitRepositoryPatchDefinition object itself.
      */
@@ -129,7 +133,7 @@ public final class GitRepositoryPatchDefinition {
 
     /**
      * Get the repositoryRef property: The source reference for the GitRepository object.
-     *
+     * 
      * @return the repositoryRef value.
      */
     public RepositoryRefDefinition repositoryRef() {
@@ -138,7 +142,7 @@ public final class GitRepositoryPatchDefinition {
 
     /**
      * Set the repositoryRef property: The source reference for the GitRepository object.
-     *
+     * 
      * @param repositoryRef the repositoryRef value to set.
      * @return the GitRepositoryPatchDefinition object itself.
      */
@@ -150,7 +154,7 @@ public final class GitRepositoryPatchDefinition {
     /**
      * Get the sshKnownHosts property: Base64-encoded known_hosts value containing public SSH keys required to access
      * private git repositories over SSH.
-     *
+     * 
      * @return the sshKnownHosts value.
      */
     public String sshKnownHosts() {
@@ -160,7 +164,7 @@ public final class GitRepositoryPatchDefinition {
     /**
      * Set the sshKnownHosts property: Base64-encoded known_hosts value containing public SSH keys required to access
      * private git repositories over SSH.
-     *
+     * 
      * @param sshKnownHosts the sshKnownHosts value to set.
      * @return the GitRepositoryPatchDefinition object itself.
      */
@@ -171,7 +175,7 @@ public final class GitRepositoryPatchDefinition {
 
     /**
      * Get the httpsUser property: Plaintext HTTPS username used to access private git repositories over HTTPS.
-     *
+     * 
      * @return the httpsUser value.
      */
     public String httpsUser() {
@@ -180,7 +184,7 @@ public final class GitRepositoryPatchDefinition {
 
     /**
      * Set the httpsUser property: Plaintext HTTPS username used to access private git repositories over HTTPS.
-     *
+     * 
      * @param httpsUser the httpsUser value to set.
      * @return the GitRepositoryPatchDefinition object itself.
      */
@@ -192,7 +196,7 @@ public final class GitRepositoryPatchDefinition {
     /**
      * Get the httpsCACert property: Base64-encoded HTTPS certificate authority contents used to access git private git
      * repositories over HTTPS.
-     *
+     * 
      * @return the httpsCACert value.
      */
     public String httpsCACert() {
@@ -202,7 +206,7 @@ public final class GitRepositoryPatchDefinition {
     /**
      * Set the httpsCACert property: Base64-encoded HTTPS certificate authority contents used to access git private git
      * repositories over HTTPS.
-     *
+     * 
      * @param httpsCACert the httpsCACert value to set.
      * @return the GitRepositoryPatchDefinition object itself.
      */
@@ -214,7 +218,7 @@ public final class GitRepositoryPatchDefinition {
     /**
      * Get the localAuthRef property: Name of a local secret on the Kubernetes cluster to use as the authentication
      * secret rather than the managed or user-provided configuration secrets.
-     *
+     * 
      * @return the localAuthRef value.
      */
     public String localAuthRef() {
@@ -224,7 +228,7 @@ public final class GitRepositoryPatchDefinition {
     /**
      * Set the localAuthRef property: Name of a local secret on the Kubernetes cluster to use as the authentication
      * secret rather than the managed or user-provided configuration secrets.
-     *
+     * 
      * @param localAuthRef the localAuthRef value to set.
      * @return the GitRepositoryPatchDefinition object itself.
      */
@@ -235,7 +239,7 @@ public final class GitRepositoryPatchDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

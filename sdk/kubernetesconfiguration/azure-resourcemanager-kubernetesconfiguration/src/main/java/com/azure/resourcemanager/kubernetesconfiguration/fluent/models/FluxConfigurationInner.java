@@ -21,7 +21,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** The Flux Configuration object returned in Get &amp; Put response. */
+/**
+ * The Flux Configuration object returned in Get &amp; Put response.
+ */
 @Fluent
 public final class FluxConfigurationInner extends ProxyResource {
     /*
@@ -32,18 +34,21 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /*
      * Top level metadata
-     * https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/common-api-contracts.md#system-metadata-for-all-azure-resources
+     * https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/common-api-contracts.md#system-metadata-for-
+     * all-azure-resources
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of FluxConfigurationInner class. */
+    /**
+     * Creates an instance of FluxConfigurationInner class.
+     */
     public FluxConfigurationInner() {
     }
 
     /**
      * Get the innerProperties property: Properties to create a Flux Configuration resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private FluxConfigurationProperties innerProperties() {
@@ -53,7 +58,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Get the systemData property: Top level metadata
      * https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/common-api-contracts.md#system-metadata-for-all-azure-resources.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -62,7 +67,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Get the scope property: Scope at which the operator will be installed.
-     *
+     * 
      * @return the scope value.
      */
     public ScopeType scope() {
@@ -71,7 +76,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Set the scope property: Scope at which the operator will be installed.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the FluxConfigurationInner object itself.
      */
@@ -86,7 +91,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Get the namespace property: The namespace to which this configuration is installed to. Maximum of 253 lower case
      * alphanumeric characters, hyphen and period only.
-     *
+     * 
      * @return the namespace value.
      */
     public String namespace() {
@@ -96,7 +101,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Set the namespace property: The namespace to which this configuration is installed to. Maximum of 253 lower case
      * alphanumeric characters, hyphen and period only.
-     *
+     * 
      * @param namespace the namespace value to set.
      * @return the FluxConfigurationInner object itself.
      */
@@ -110,7 +115,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Get the sourceKind property: Source Kind to pull the configuration data from.
-     *
+     * 
      * @return the sourceKind value.
      */
     public SourceKindType sourceKind() {
@@ -119,7 +124,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Set the sourceKind property: Source Kind to pull the configuration data from.
-     *
+     * 
      * @param sourceKind the sourceKind value to set.
      * @return the FluxConfigurationInner object itself.
      */
@@ -134,7 +139,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Get the suspend property: Whether this configuration should suspend its reconciliation of its kustomizations and
      * sources.
-     *
+     * 
      * @return the suspend value.
      */
     public Boolean suspend() {
@@ -144,7 +149,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Set the suspend property: Whether this configuration should suspend its reconciliation of its kustomizations and
      * sources.
-     *
+     * 
      * @param suspend the suspend value to set.
      * @return the FluxConfigurationInner object itself.
      */
@@ -158,7 +163,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Get the gitRepository property: Parameters to reconcile to the GitRepository source kind type.
-     *
+     * 
      * @return the gitRepository value.
      */
     public GitRepositoryDefinition gitRepository() {
@@ -167,7 +172,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Set the gitRepository property: Parameters to reconcile to the GitRepository source kind type.
-     *
+     * 
      * @param gitRepository the gitRepository value to set.
      * @return the FluxConfigurationInner object itself.
      */
@@ -181,7 +186,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Get the bucket property: Parameters to reconcile to the Bucket source kind type.
-     *
+     * 
      * @return the bucket value.
      */
     public BucketDefinition bucket() {
@@ -190,7 +195,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Set the bucket property: Parameters to reconcile to the Bucket source kind type.
-     *
+     * 
      * @param bucket the bucket value to set.
      * @return the FluxConfigurationInner object itself.
      */
@@ -204,7 +209,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Get the azureBlob property: Parameters to reconcile to the AzureBlob source kind type.
-     *
+     * 
      * @return the azureBlob value.
      */
     public AzureBlobDefinition azureBlob() {
@@ -213,7 +218,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Set the azureBlob property: Parameters to reconcile to the AzureBlob source kind type.
-     *
+     * 
      * @param azureBlob the azureBlob value to set.
      * @return the FluxConfigurationInner object itself.
      */
@@ -226,9 +231,9 @@ public final class FluxConfigurationInner extends ProxyResource {
     }
 
     /**
-     * Get the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source type
-     * on the cluster.
-     *
+     * Get the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source
+     * type on the cluster.
+     * 
      * @return the kustomizations value.
      */
     public Map<String, KustomizationDefinition> kustomizations() {
@@ -236,9 +241,9 @@ public final class FluxConfigurationInner extends ProxyResource {
     }
 
     /**
-     * Set the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source type
-     * on the cluster.
-     *
+     * Set the kustomizations property: Array of kustomizations used to reconcile the artifact pulled by the source
+     * type on the cluster.
+     * 
      * @param kustomizations the kustomizations value to set.
      * @return the FluxConfigurationInner object itself.
      */
@@ -253,7 +258,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Get the configurationProtectedSettings property: Key-value pairs of protected configuration settings for the
      * configuration.
-     *
+     * 
      * @return the configurationProtectedSettings value.
      */
     public Map<String, String> configurationProtectedSettings() {
@@ -263,12 +268,12 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Set the configurationProtectedSettings property: Key-value pairs of protected configuration settings for the
      * configuration.
-     *
+     * 
      * @param configurationProtectedSettings the configurationProtectedSettings value to set.
      * @return the FluxConfigurationInner object itself.
      */
-    public FluxConfigurationInner withConfigurationProtectedSettings(
-        Map<String, String> configurationProtectedSettings) {
+    public FluxConfigurationInner
+        withConfigurationProtectedSettings(Map<String, String> configurationProtectedSettings) {
         if (this.innerProperties() == null) {
             this.innerProperties = new FluxConfigurationProperties();
         }
@@ -279,7 +284,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Get the statuses property: Statuses of the Flux Kubernetes resources created by the fluxConfiguration or created
      * by the managed objects provisioned by the fluxConfiguration.
-     *
+     * 
      * @return the statuses value.
      */
     public List<ObjectStatusDefinition> statuses() {
@@ -289,7 +294,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Get the repositoryPublicKey property: Public Key associated with this fluxConfiguration (either generated within
      * the cluster or provided by the user).
-     *
+     * 
      * @return the repositoryPublicKey value.
      */
     public String repositoryPublicKey() {
@@ -298,7 +303,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Get the sourceSyncedCommitId property: Branch and/or SHA of the source commit synced with the cluster.
-     *
+     * 
      * @return the sourceSyncedCommitId value.
      */
     public String sourceSyncedCommitId() {
@@ -307,7 +312,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Get the sourceUpdatedAt property: Datetime the fluxConfiguration synced its source on the cluster.
-     *
+     * 
      * @return the sourceUpdatedAt value.
      */
     public OffsetDateTime sourceUpdatedAt() {
@@ -316,7 +321,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Get the statusUpdatedAt property: Datetime the fluxConfiguration synced its status on the cluster with Azure.
-     *
+     * 
      * @return the statusUpdatedAt value.
      */
     public OffsetDateTime statusUpdatedAt() {
@@ -326,7 +331,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Get the waitForReconciliation property: Whether flux configuration deployment should wait for cluster to
      * reconcile the kustomizations.
-     *
+     * 
      * @return the waitForReconciliation value.
      */
     public Boolean waitForReconciliation() {
@@ -336,7 +341,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Set the waitForReconciliation property: Whether flux configuration deployment should wait for cluster to
      * reconcile the kustomizations.
-     *
+     * 
      * @param waitForReconciliation the waitForReconciliation value to set.
      * @return the FluxConfigurationInner object itself.
      */
@@ -351,7 +356,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Get the reconciliationWaitDuration property: Maximum duration to wait for flux configuration reconciliation. E.g
      * PT1H, PT5M, P1D.
-     *
+     * 
      * @return the reconciliationWaitDuration value.
      */
     public String reconciliationWaitDuration() {
@@ -361,7 +366,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Set the reconciliationWaitDuration property: Maximum duration to wait for flux configuration reconciliation. E.g
      * PT1H, PT5M, P1D.
-     *
+     * 
      * @param reconciliationWaitDuration the reconciliationWaitDuration value to set.
      * @return the FluxConfigurationInner object itself.
      */
@@ -376,7 +381,7 @@ public final class FluxConfigurationInner extends ProxyResource {
     /**
      * Get the complianceState property: Combined status of the Flux Kubernetes resources created by the
      * fluxConfiguration or created by the managed objects.
-     *
+     * 
      * @return the complianceState value.
      */
     public FluxComplianceState complianceState() {
@@ -385,7 +390,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Status of the creation of the fluxConfiguration.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -394,7 +399,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Get the errorMessage property: Error message returned to the user in the case of provisioning failure.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -403,7 +408,7 @@ public final class FluxConfigurationInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

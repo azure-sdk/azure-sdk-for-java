@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Compliance Status details. */
+/**
+ * Compliance Status details.
+ */
 @Fluent
 public final class ComplianceStatus {
     /*
@@ -35,13 +37,15 @@ public final class ComplianceStatus {
     @JsonProperty(value = "messageLevel")
     private MessageLevelType messageLevel;
 
-    /** Creates an instance of ComplianceStatus class. */
+    /**
+     * Creates an instance of ComplianceStatus class.
+     */
     public ComplianceStatus() {
     }
 
     /**
      * Get the complianceState property: The compliance state of the configuration.
-     *
+     * 
      * @return the complianceState value.
      */
     public ComplianceStateType complianceState() {
@@ -50,7 +54,7 @@ public final class ComplianceStatus {
 
     /**
      * Get the lastConfigApplied property: Datetime the configuration was last applied.
-     *
+     * 
      * @return the lastConfigApplied value.
      */
     public OffsetDateTime lastConfigApplied() {
@@ -59,7 +63,7 @@ public final class ComplianceStatus {
 
     /**
      * Set the lastConfigApplied property: Datetime the configuration was last applied.
-     *
+     * 
      * @param lastConfigApplied the lastConfigApplied value to set.
      * @return the ComplianceStatus object itself.
      */
@@ -70,7 +74,7 @@ public final class ComplianceStatus {
 
     /**
      * Get the message property: Message from when the configuration was applied.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -79,7 +83,7 @@ public final class ComplianceStatus {
 
     /**
      * Set the message property: Message from when the configuration was applied.
-     *
+     * 
      * @param message the message value to set.
      * @return the ComplianceStatus object itself.
      */
@@ -90,7 +94,7 @@ public final class ComplianceStatus {
 
     /**
      * Get the messageLevel property: Level of the message.
-     *
+     * 
      * @return the messageLevel value.
      */
     public MessageLevelType messageLevel() {
@@ -99,7 +103,7 @@ public final class ComplianceStatus {
 
     /**
      * Set the messageLevel property: Level of the message.
-     *
+     * 
      * @param messageLevel the messageLevel value to set.
      * @return the ComplianceStatus object itself.
      */
@@ -110,7 +114,7 @@ public final class ComplianceStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
