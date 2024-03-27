@@ -29,7 +29,7 @@ public final class RouterChannel {
     private int capacityCostPerJob;
 
     /*
-     * The maximum number of jobs that can be supported concurrently for this channel.
+     * The maximum number of jobs that can be supported concurrently for this channel. Value must be greater than zero.
      */
     @Generated
     @JsonProperty(value = "maxNumberOfJobs")
@@ -72,7 +72,7 @@ public final class RouterChannel {
 
     /**
      * Get the maxNumberOfJobs property: The maximum number of jobs that can be supported concurrently for this
-     * channel.
+     * channel. Value must be greater than zero.
      *
      * @return the maxNumberOfJobs value.
      */
@@ -83,7 +83,7 @@ public final class RouterChannel {
 
     /**
      * Set the maxNumberOfJobs property: The maximum number of jobs that can be supported concurrently for this
-     * channel.
+     * channel. Value must be greater than zero.
      *
      * @param maxNumberOfJobs the maxNumberOfJobs value to set.
      * @return the RouterChannel object itself.
