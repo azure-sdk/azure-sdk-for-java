@@ -30,6 +30,7 @@ import com.azure.resourcemanager.chaos.implementation.ChaosManagementClientBuild
 import com.azure.resourcemanager.chaos.implementation.ExperimentsImpl;
 import com.azure.resourcemanager.chaos.implementation.OperationStatusesImpl;
 import com.azure.resourcemanager.chaos.implementation.OperationsImpl;
+import com.azure.resourcemanager.chaos.implementation.PrivateAccessesImpl;
 import com.azure.resourcemanager.chaos.implementation.TargetTypesImpl;
 import com.azure.resourcemanager.chaos.implementation.TargetsImpl;
 import com.azure.resourcemanager.chaos.models.Capabilities;
@@ -37,6 +38,7 @@ import com.azure.resourcemanager.chaos.models.CapabilityTypes;
 import com.azure.resourcemanager.chaos.models.Experiments;
 import com.azure.resourcemanager.chaos.models.OperationStatuses;
 import com.azure.resourcemanager.chaos.models.Operations;
+import com.azure.resourcemanager.chaos.models.PrivateAccesses;
 import com.azure.resourcemanager.chaos.models.TargetTypes;
 import com.azure.resourcemanager.chaos.models.Targets;
 import java.time.Duration;
@@ -60,6 +62,8 @@ public final class ChaosManager {
     private OperationStatuses operationStatuses;
 
     private Operations operations;
+
+    private PrivateAccesses privateAccesses;
 
     private TargetTypes targetTypes;
 
@@ -224,7 +228,7 @@ public final class ChaosManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.chaos").append("/")
-                .append("1.1.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -321,6 +325,18 @@ public final class ChaosManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of PrivateAccesses. It manages PrivateAccess.
+     * 
+     * @return Resource collection API of PrivateAccesses.
+     */
+    public PrivateAccesses privateAccesses() {
+        if (this.privateAccesses == null) {
+            this.privateAccesses = new PrivateAccessesImpl(clientObject.getPrivateAccesses(), this);
+        }
+        return privateAccesses;
     }
 
     /**

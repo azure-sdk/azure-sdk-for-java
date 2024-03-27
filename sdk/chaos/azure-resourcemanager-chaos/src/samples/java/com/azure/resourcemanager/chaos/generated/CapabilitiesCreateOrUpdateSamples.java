@@ -12,7 +12,8 @@ import com.azure.resourcemanager.chaos.fluent.models.CapabilityInner;
 public final class CapabilitiesCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/CreateUpdateCapability.json
+     * specification/chaos/resource-manager/Microsoft.Chaos/preview/2024-03-22-preview/examples/CreateUpdateCapability.
+     * json
      */
     /**
      * Sample code: Create/update a Capability that extends a virtual machine Target resource.
