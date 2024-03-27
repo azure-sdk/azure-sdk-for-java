@@ -94,12 +94,6 @@ public final class Ingress {
     @JsonProperty(value = "additionalPortMappings")
     private List<IngressPortMapping> additionalPortMappings;
 
-    /*
-     * Whether an http app listens on http or https
-     */
-    @JsonProperty(value = "targetPortHttpScheme")
-    private IngressTargetPortHttpScheme targetPortHttpScheme;
-
     /**
      * Creates an instance of Ingress class.
      */
@@ -358,26 +352,6 @@ public final class Ingress {
      */
     public Ingress withAdditionalPortMappings(List<IngressPortMapping> additionalPortMappings) {
         this.additionalPortMappings = additionalPortMappings;
-        return this;
-    }
-
-    /**
-     * Get the targetPortHttpScheme property: Whether an http app listens on http or https.
-     * 
-     * @return the targetPortHttpScheme value.
-     */
-    public IngressTargetPortHttpScheme targetPortHttpScheme() {
-        return this.targetPortHttpScheme;
-    }
-
-    /**
-     * Set the targetPortHttpScheme property: Whether an http app listens on http or https.
-     * 
-     * @param targetPortHttpScheme the targetPortHttpScheme value to set.
-     * @return the Ingress object itself.
-     */
-    public Ingress withTargetPortHttpScheme(IngressTargetPortHttpScheme targetPortHttpScheme) {
-        this.targetPortHttpScheme = targetPortHttpScheme;
         return this;
     }
 
