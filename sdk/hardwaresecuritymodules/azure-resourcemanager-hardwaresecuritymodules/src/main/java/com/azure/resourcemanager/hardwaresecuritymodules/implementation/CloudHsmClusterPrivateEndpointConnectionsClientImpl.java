@@ -81,7 +81,7 @@ public final class CloudHsmClusterPrivateEndpointConnectionsClientImpl
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections/{peConnectionName}")
-        @ExpectedResponses({ 200, 202, 204 })
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
@@ -144,11 +144,11 @@ public final class CloudHsmClusterPrivateEndpointConnectionsClientImpl
         } else {
             properties.validate();
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.create(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, cloudHsmClusterName, apiVersion, peConnectionName, properties, accept, context))
+            .withContext(
+                context -> service.create(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    cloudHsmClusterName, this.client.getApiVersion(), peConnectionName, properties, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -196,11 +196,10 @@ public final class CloudHsmClusterPrivateEndpointConnectionsClientImpl
         } else {
             properties.validate();
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.create(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            cloudHsmClusterName, apiVersion, peConnectionName, properties, accept, context);
+            cloudHsmClusterName, this.client.getApiVersion(), peConnectionName, properties, accept, context);
     }
 
     /**
@@ -300,11 +299,10 @@ public final class CloudHsmClusterPrivateEndpointConnectionsClientImpl
             return Mono
                 .error(new IllegalArgumentException("Parameter peConnectionName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, cloudHsmClusterName, apiVersion, peConnectionName, accept, context))
+                resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), peConnectionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -344,11 +342,10 @@ public final class CloudHsmClusterPrivateEndpointConnectionsClientImpl
             return Mono
                 .error(new IllegalArgumentException("Parameter peConnectionName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            cloudHsmClusterName, apiVersion, peConnectionName, accept, context);
+            cloudHsmClusterName, this.client.getApiVersion(), peConnectionName, accept, context);
     }
 
     /**
@@ -539,11 +536,10 @@ public final class CloudHsmClusterPrivateEndpointConnectionsClientImpl
             return Mono
                 .error(new IllegalArgumentException("Parameter peConnectionName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, cloudHsmClusterName, apiVersion, peConnectionName, accept, context))
+                resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), peConnectionName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -584,11 +580,10 @@ public final class CloudHsmClusterPrivateEndpointConnectionsClientImpl
             return Mono
                 .error(new IllegalArgumentException("Parameter peConnectionName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            cloudHsmClusterName, apiVersion, peConnectionName, accept, context);
+            cloudHsmClusterName, this.client.getApiVersion(), peConnectionName, accept, context);
     }
 
     /**

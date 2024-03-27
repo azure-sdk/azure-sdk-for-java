@@ -57,9 +57,9 @@ public final class HardwareSecurityModulesManager {
 
     private PrivateEndpointConnections privateEndpointConnections;
 
-    private Operations operations;
-
     private DedicatedHsms dedicatedHsms;
+
+    private Operations operations;
 
     private final AzureHsmResourceProvider clientObject;
 
@@ -222,7 +222,7 @@ public final class HardwareSecurityModulesManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-")
-                .append("com.azure.resourcemanager.hardwaresecuritymodules").append("/").append("1.0.0-beta.2");
+                .append("com.azure.resourcemanager.hardwaresecuritymodules").append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -314,18 +314,6 @@ public final class HardwareSecurityModulesManager {
     }
 
     /**
-     * Gets the resource collection API of Operations.
-     * 
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
-    }
-
-    /**
      * Gets the resource collection API of DedicatedHsms. It manages DedicatedHsm.
      * 
      * @return Resource collection API of DedicatedHsms.
@@ -335,6 +323,18 @@ public final class HardwareSecurityModulesManager {
             this.dedicatedHsms = new DedicatedHsmsImpl(clientObject.getDedicatedHsms(), this);
         }
         return dedicatedHsms;
+    }
+
+    /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
     }
 
     /**

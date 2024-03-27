@@ -10,8 +10,8 @@ package com.azure.resourcemanager.hardwaresecuritymodules.generated;
 public final class CloudHsmClustersGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/preview/2023-12-10-
-     * preview/examples/CloudHsmCluster_Get_MaximumSet_Gen.json
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/
+     * examples/CloudHsmCluster_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: CloudHsmCluster_Get_MaximumSet_Gen.

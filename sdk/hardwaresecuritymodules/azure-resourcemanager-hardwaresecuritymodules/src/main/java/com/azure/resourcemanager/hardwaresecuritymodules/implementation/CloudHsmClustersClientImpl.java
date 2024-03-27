@@ -106,7 +106,7 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}")
-        @ExpectedResponses({ 200, 202, 204 })
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
@@ -185,11 +185,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
         } else {
             body.validate();
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, cloudHsmClusterName, apiVersion, body, accept, context))
+                resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -231,11 +230,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
         } else {
             body.validate();
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            cloudHsmClusterName, apiVersion, body, accept, context);
+            cloudHsmClusterName, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
@@ -432,11 +430,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
         } else {
             body.validate();
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, cloudHsmClusterName, apiVersion, body, accept, context))
+                resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), body, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -478,11 +475,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
         } else {
             body.validate();
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            cloudHsmClusterName, apiVersion, body, accept, context);
+            cloudHsmClusterName, this.client.getApiVersion(), body, accept, context);
     }
 
     /**
@@ -671,11 +667,11 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, cloudHsmClusterName, apiVersion, accept, context))
+            .withContext(
+                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -710,11 +706,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            cloudHsmClusterName, apiVersion, accept, context);
+            cloudHsmClusterName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -798,11 +793,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, cloudHsmClusterName, apiVersion, accept, context))
+                resourceGroupName, cloudHsmClusterName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -837,11 +831,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter cloudHsmClusterName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            cloudHsmClusterName, apiVersion, accept, context);
+            cloudHsmClusterName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -1010,11 +1003,11 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, skiptoken, apiVersion, accept, context))
+            .withContext(
+                context -> service.listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, skiptoken, this.client.getApiVersion(), accept, context))
             .<PagedResponse<CloudHsmClusterInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1047,12 +1040,11 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                skiptoken, apiVersion, accept, context)
+                skiptoken, this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -1163,11 +1155,10 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), skiptoken,
-                apiVersion, accept, context))
+                this.client.getApiVersion(), accept, context))
             .<PagedResponse<CloudHsmClusterInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -1193,11 +1184,11 @@ public final class CloudHsmClustersClientImpl implements CloudHsmClustersClient 
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-10-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), skiptoken, apiVersion, accept, context)
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), skiptoken, this.client.getApiVersion(),
+                accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

@@ -50,18 +50,18 @@ public interface CloudHsmCluster {
     Map<String, String> tags();
 
     /**
-     * Gets the sku property: SKU details.
-     * 
-     * @return the sku value.
-     */
-    CloudHsmClusterSku sku();
-
-    /**
      * Gets the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
      * @return the identity value.
      */
     ManagedServiceIdentity identity();
+
+    /**
+     * Gets the sku property: SKU details.
+     * 
+     * @return the sku value.
+     */
+    CloudHsmClusterSku sku();
 
     /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -160,7 +160,7 @@ public interface CloudHsmCluster {
          * The stage of the CloudHsmCluster definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithSku, DefinitionStages.WithIdentity,
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithSku,
             DefinitionStages.WithProperties {
             /**
              * Executes the create request.
@@ -192,19 +192,6 @@ public interface CloudHsmCluster {
         }
 
         /**
-         * The stage of the CloudHsmCluster definition allowing to specify sku.
-         */
-        interface WithSku {
-            /**
-             * Specifies the sku property: SKU details.
-             * 
-             * @param sku SKU details.
-             * @return the next definition stage.
-             */
-            WithCreate withSku(CloudHsmClusterSku sku);
-        }
-
-        /**
          * The stage of the CloudHsmCluster definition allowing to specify identity.
          */
         interface WithIdentity {
@@ -216,6 +203,19 @@ public interface CloudHsmCluster {
              * @return the next definition stage.
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
+         * The stage of the CloudHsmCluster definition allowing to specify sku.
+         */
+        interface WithSku {
+            /**
+             * Specifies the sku property: SKU details.
+             * 
+             * @param sku SKU details.
+             * @return the next definition stage.
+             */
+            WithCreate withSku(CloudHsmClusterSku sku);
         }
 
         /**
