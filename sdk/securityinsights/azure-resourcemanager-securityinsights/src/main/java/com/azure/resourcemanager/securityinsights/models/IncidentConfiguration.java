@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Incident Configuration property bag. */
+/**
+ * Incident Configuration property bag.
+ */
 @Fluent
 public final class IncidentConfiguration {
     /*
@@ -23,8 +25,14 @@ public final class IncidentConfiguration {
     private GroupingConfiguration groupingConfiguration;
 
     /**
+     * Creates an instance of IncidentConfiguration class.
+     */
+    public IncidentConfiguration() {
+    }
+
+    /**
      * Get the createIncident property: Create incidents from alerts triggered by this analytics rule.
-     *
+     * 
      * @return the createIncident value.
      */
     public boolean createIncident() {
@@ -33,7 +41,7 @@ public final class IncidentConfiguration {
 
     /**
      * Set the createIncident property: Create incidents from alerts triggered by this analytics rule.
-     *
+     * 
      * @param createIncident the createIncident value to set.
      * @return the IncidentConfiguration object itself.
      */
@@ -43,9 +51,9 @@ public final class IncidentConfiguration {
     }
 
     /**
-     * Get the groupingConfiguration property: Set how the alerts that are triggered by this analytics rule, are grouped
-     * into incidents.
-     *
+     * Get the groupingConfiguration property: Set how the alerts that are triggered by this analytics rule, are
+     * grouped into incidents.
+     * 
      * @return the groupingConfiguration value.
      */
     public GroupingConfiguration groupingConfiguration() {
@@ -53,9 +61,9 @@ public final class IncidentConfiguration {
     }
 
     /**
-     * Set the groupingConfiguration property: Set how the alerts that are triggered by this analytics rule, are grouped
-     * into incidents.
-     *
+     * Set the groupingConfiguration property: Set how the alerts that are triggered by this analytics rule, are
+     * grouped into incidents.
+     * 
      * @param groupingConfiguration the groupingConfiguration value to set.
      * @return the IncidentConfiguration object itself.
      */
@@ -66,7 +74,7 @@ public final class IncidentConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

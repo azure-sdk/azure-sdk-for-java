@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of all the settings. */
+/**
+ * List of all the settings.
+ */
 @Fluent
 public final class SettingListInner {
     /*
@@ -19,8 +21,14 @@ public final class SettingListInner {
     private List<SettingsInner> value;
 
     /**
+     * Creates an instance of SettingListInner class.
+     */
+    public SettingListInner() {
+    }
+
+    /**
      * Get the value property: Array of settings.
-     *
+     * 
      * @return the value value.
      */
     public List<SettingsInner> value() {
@@ -29,7 +37,7 @@ public final class SettingListInner {
 
     /**
      * Set the value property: Array of settings.
-     *
+     * 
      * @param value the value value to set.
      * @return the SettingListInner object itself.
      */
@@ -40,14 +48,13 @@ public final class SettingListInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model SettingListInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model SettingListInner"));
         } else {
             value().forEach(e -> e.validate());
         }

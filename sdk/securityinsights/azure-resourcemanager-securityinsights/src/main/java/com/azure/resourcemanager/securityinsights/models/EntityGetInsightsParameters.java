@@ -11,7 +11,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.UUID;
 
-/** The parameters required to execute insights operation on the given entity. */
+/**
+ * The parameters required to execute insights operation on the given entity.
+ */
 @Fluent
 public final class EntityGetInsightsParameters {
     /*
@@ -39,8 +41,14 @@ public final class EntityGetInsightsParameters {
     private List<UUID> insightQueryIds;
 
     /**
+     * Creates an instance of EntityGetInsightsParameters class.
+     */
+    public EntityGetInsightsParameters() {
+    }
+
+    /**
      * Get the startTime property: The start timeline date, so the results returned are after this date.
-     *
+     * 
      * @return the startTime value.
      */
     public OffsetDateTime startTime() {
@@ -49,7 +57,7 @@ public final class EntityGetInsightsParameters {
 
     /**
      * Set the startTime property: The start timeline date, so the results returned are after this date.
-     *
+     * 
      * @param startTime the startTime value to set.
      * @return the EntityGetInsightsParameters object itself.
      */
@@ -60,7 +68,7 @@ public final class EntityGetInsightsParameters {
 
     /**
      * Get the endTime property: The end timeline date, so the results returned are before this date.
-     *
+     * 
      * @return the endTime value.
      */
     public OffsetDateTime endTime() {
@@ -69,7 +77,7 @@ public final class EntityGetInsightsParameters {
 
     /**
      * Set the endTime property: The end timeline date, so the results returned are before this date.
-     *
+     * 
      * @param endTime the endTime value to set.
      * @return the EntityGetInsightsParameters object itself.
      */
@@ -81,7 +89,7 @@ public final class EntityGetInsightsParameters {
     /**
      * Get the addDefaultExtendedTimeRange property: Indicates if query time range should be extended with default time
      * range of the query. Default value is false.
-     *
+     * 
      * @return the addDefaultExtendedTimeRange value.
      */
     public Boolean addDefaultExtendedTimeRange() {
@@ -91,7 +99,7 @@ public final class EntityGetInsightsParameters {
     /**
      * Set the addDefaultExtendedTimeRange property: Indicates if query time range should be extended with default time
      * range of the query. Default value is false.
-     *
+     * 
      * @param addDefaultExtendedTimeRange the addDefaultExtendedTimeRange value to set.
      * @return the EntityGetInsightsParameters object itself.
      */
@@ -103,7 +111,7 @@ public final class EntityGetInsightsParameters {
     /**
      * Get the insightQueryIds property: List of Insights Query Id. If empty, default value is all insights of this
      * entity.
-     *
+     * 
      * @return the insightQueryIds value.
      */
     public List<UUID> insightQueryIds() {
@@ -113,7 +121,7 @@ public final class EntityGetInsightsParameters {
     /**
      * Set the insightQueryIds property: List of Insights Query Id. If empty, default value is all insights of this
      * entity.
-     *
+     * 
      * @param insightQueryIds the insightQueryIds value to set.
      * @return the EntityGetInsightsParameters object itself.
      */
@@ -124,21 +132,17 @@ public final class EntityGetInsightsParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (startTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property startTime in model EntityGetInsightsParameters"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property startTime in model EntityGetInsightsParameters"));
         }
         if (endTime() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property endTime in model EntityGetInsightsParameters"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property endTime in model EntityGetInsightsParameters"));
         }
     }
 

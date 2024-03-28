@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Settings with single toggle. */
+/**
+ * Settings with single toggle.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("EyesOn")
 @Fluent
@@ -23,15 +25,23 @@ public final class EyesOn extends SettingsInner {
     private EyesOnSettingsProperties innerProperties;
 
     /**
+     * Creates an instance of EyesOn class.
+     */
+    public EyesOn() {
+    }
+
+    /**
      * Get the innerProperties property: EyesOn properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private EyesOnSettingsProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EyesOn withEtag(String etag) {
         super.withEtag(etag);
@@ -40,7 +50,7 @@ public final class EyesOn extends SettingsInner {
 
     /**
      * Get the isEnabled property: Determines whether the setting is enable or disabled.
-     *
+     * 
      * @return the isEnabled value.
      */
     public Boolean isEnabled() {
@@ -49,7 +59,7 @@ public final class EyesOn extends SettingsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
