@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a source subtype under a source signal consumed in Fusion detection. */
+/**
+ * Represents a source subtype under a source signal consumed in Fusion detection.
+ */
 @Fluent
 public final class FusionTemplateSourceSubType {
     /*
@@ -30,9 +32,15 @@ public final class FusionTemplateSourceSubType {
     private FusionTemplateSubTypeSeverityFilter severityFilter;
 
     /**
+     * Creates an instance of FusionTemplateSourceSubType class.
+     */
+    public FusionTemplateSourceSubType() {
+    }
+
+    /**
      * Get the sourceSubTypeName property: The name of source subtype under a source signal consumed in Fusion
      * detection.
-     *
+     * 
      * @return the sourceSubTypeName value.
      */
     public String sourceSubTypeName() {
@@ -42,7 +50,7 @@ public final class FusionTemplateSourceSubType {
     /**
      * Set the sourceSubTypeName property: The name of source subtype under a source signal consumed in Fusion
      * detection.
-     *
+     * 
      * @param sourceSubTypeName the sourceSubTypeName value to set.
      * @return the FusionTemplateSourceSubType object itself.
      */
@@ -54,7 +62,7 @@ public final class FusionTemplateSourceSubType {
     /**
      * Get the sourceSubTypeDisplayName property: The display name of source subtype under a source signal consumed in
      * Fusion detection.
-     *
+     * 
      * @return the sourceSubTypeDisplayName value.
      */
     public String sourceSubTypeDisplayName() {
@@ -64,7 +72,7 @@ public final class FusionTemplateSourceSubType {
     /**
      * Get the severityFilter property: Severity configuration available for a source subtype consumed in fusion
      * detection.
-     *
+     * 
      * @return the severityFilter value.
      */
     public FusionTemplateSubTypeSeverityFilter severityFilter() {
@@ -74,7 +82,7 @@ public final class FusionTemplateSourceSubType {
     /**
      * Set the severityFilter property: Severity configuration available for a source subtype consumed in fusion
      * detection.
-     *
+     * 
      * @param severityFilter the severityFilter value to set.
      * @return the FusionTemplateSourceSubType object itself.
      */
@@ -85,21 +93,17 @@ public final class FusionTemplateSourceSubType {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceSubTypeName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceSubTypeName in model FusionTemplateSourceSubType"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property sourceSubTypeName in model FusionTemplateSourceSubType"));
         }
         if (severityFilter() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property severityFilter in model FusionTemplateSourceSubType"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property severityFilter in model FusionTemplateSourceSubType"));
         } else {
             severityFilter().validate();
         }

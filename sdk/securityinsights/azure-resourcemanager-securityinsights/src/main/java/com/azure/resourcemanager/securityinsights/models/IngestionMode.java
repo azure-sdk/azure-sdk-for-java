@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Describes how to ingest the records in the file. */
+/**
+ * Describes how to ingest the records in the file.
+ */
 public final class IngestionMode extends ExpandableStringEnum<IngestionMode> {
-    /** Static value IngestOnlyIfAllAreValid for IngestionMode. */
+    /**
+     * Static value IngestOnlyIfAllAreValid for IngestionMode.
+     */
     public static final IngestionMode INGEST_ONLY_IF_ALL_ARE_VALID = fromString("IngestOnlyIfAllAreValid");
 
-    /** Static value IngestAnyValidRecords for IngestionMode. */
+    /**
+     * Static value IngestAnyValidRecords for IngestionMode.
+     */
     public static final IngestionMode INGEST_ANY_VALID_RECORDS = fromString("IngestAnyValidRecords");
 
-    /** Static value Unspecified for IngestionMode. */
+    /**
+     * Static value Unspecified for IngestionMode.
+     */
     public static final IngestionMode UNSPECIFIED = fromString("Unspecified");
 
     /**
+     * Creates a new instance of IngestionMode value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public IngestionMode() {
+    }
+
+    /**
      * Creates or finds a IngestionMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding IngestionMode.
      */
@@ -32,7 +49,7 @@ public final class IngestionMode extends ExpandableStringEnum<IngestionMode> {
 
     /**
      * Gets known IngestionMode values.
-     *
+     * 
      * @return known IngestionMode values.
      */
     public static Collection<IngestionMode> values() {

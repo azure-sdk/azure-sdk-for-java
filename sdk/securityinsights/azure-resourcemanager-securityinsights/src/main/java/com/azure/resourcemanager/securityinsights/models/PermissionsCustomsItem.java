@@ -6,17 +6,29 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The PermissionsCustomsItem model. */
+/**
+ * The PermissionsCustomsItem model.
+ */
 @Fluent
 public final class PermissionsCustomsItem extends Customs {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of PermissionsCustomsItem class.
+     */
+    public PermissionsCustomsItem() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PermissionsCustomsItem withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PermissionsCustomsItem withDescription(String description) {
         super.withDescription(description);
@@ -25,7 +37,7 @@ public final class PermissionsCustomsItem extends Customs {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.models.AwsCloudTrailDataConnectorDataTypes;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Amazon Web Services CloudTrail data connector properties. */
+/**
+ * Amazon Web Services CloudTrail data connector properties.
+ */
 @Fluent
 public final class AwsCloudTrailDataConnectorProperties {
     /*
@@ -25,9 +27,15 @@ public final class AwsCloudTrailDataConnectorProperties {
     private AwsCloudTrailDataConnectorDataTypes dataTypes;
 
     /**
+     * Creates an instance of AwsCloudTrailDataConnectorProperties class.
+     */
+    public AwsCloudTrailDataConnectorProperties() {
+    }
+
+    /**
      * Get the awsRoleArn property: The Aws Role Arn (with CloudTrailReadOnly policy) that is used to access the Aws
      * account.
-     *
+     * 
      * @return the awsRoleArn value.
      */
     public String awsRoleArn() {
@@ -37,7 +45,7 @@ public final class AwsCloudTrailDataConnectorProperties {
     /**
      * Set the awsRoleArn property: The Aws Role Arn (with CloudTrailReadOnly policy) that is used to access the Aws
      * account.
-     *
+     * 
      * @param awsRoleArn the awsRoleArn value to set.
      * @return the AwsCloudTrailDataConnectorProperties object itself.
      */
@@ -48,7 +56,7 @@ public final class AwsCloudTrailDataConnectorProperties {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AwsCloudTrailDataConnectorDataTypes dataTypes() {
@@ -57,7 +65,7 @@ public final class AwsCloudTrailDataConnectorProperties {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the AwsCloudTrailDataConnectorProperties object itself.
      */
@@ -68,15 +76,13 @@ public final class AwsCloudTrailDataConnectorProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (dataTypes() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property dataTypes in model AwsCloudTrailDataConnectorProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property dataTypes in model AwsCloudTrailDataConnectorProperties"));
         } else {
             dataTypes().validate();
         }

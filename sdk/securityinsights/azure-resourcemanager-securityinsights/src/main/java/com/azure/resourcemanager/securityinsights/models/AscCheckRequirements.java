@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents ASC (Azure Security Center) requirements check request. */
+/**
+ * Represents ASC (Azure Security Center) requirements check request.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("AzureSecurityCenter")
 @Fluent
@@ -22,8 +24,14 @@ public final class AscCheckRequirements extends DataConnectorsCheckRequirements 
     private AscCheckRequirementsProperties innerProperties;
 
     /**
+     * Creates an instance of AscCheckRequirements class.
+     */
+    public AscCheckRequirements() {
+    }
+
+    /**
      * Get the innerProperties property: ASC (Azure Security Center) requirements check properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AscCheckRequirementsProperties innerProperties() {
@@ -32,7 +40,7 @@ public final class AscCheckRequirements extends DataConnectorsCheckRequirements 
 
     /**
      * Get the subscriptionId property: The subscription id to connect to, and get the data from.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -41,7 +49,7 @@ public final class AscCheckRequirements extends DataConnectorsCheckRequirements 
 
     /**
      * Set the subscriptionId property: The subscription id to connect to, and get the data from.
-     *
+     * 
      * @param subscriptionId the subscriptionId value to set.
      * @return the AscCheckRequirements object itself.
      */
@@ -55,7 +63,7 @@ public final class AscCheckRequirements extends DataConnectorsCheckRequirements 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -4,7 +4,7 @@
 
 package com.azure.resourcemanager.securityinsights.models;
 
-import com.azure.core.annotation.Fluent;
+import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.MailboxEntityProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -13,10 +13,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 import java.util.UUID;
 
-/** Represents a mailbox entity. */
+/**
+ * Represents a mailbox entity.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("Mailbox")
-@Fluent
+@Immutable
 public final class MailboxEntity extends EntityInner {
     /*
      * Mailbox entity properties
@@ -25,8 +27,14 @@ public final class MailboxEntity extends EntityInner {
     private MailboxEntityProperties innerProperties;
 
     /**
+     * Creates an instance of MailboxEntity class.
+     */
+    public MailboxEntity() {
+    }
+
+    /**
      * Get the innerProperties property: Mailbox entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private MailboxEntityProperties innerProperties() {
@@ -35,7 +43,7 @@ public final class MailboxEntity extends EntityInner {
 
     /**
      * Get the mailboxPrimaryAddress property: The mailbox's primary address.
-     *
+     * 
      * @return the mailboxPrimaryAddress value.
      */
     public String mailboxPrimaryAddress() {
@@ -44,7 +52,7 @@ public final class MailboxEntity extends EntityInner {
 
     /**
      * Get the displayName property: The mailbox's display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -53,7 +61,7 @@ public final class MailboxEntity extends EntityInner {
 
     /**
      * Get the upn property: The mailbox's UPN.
-     *
+     * 
      * @return the upn value.
      */
     public String upn() {
@@ -63,7 +71,7 @@ public final class MailboxEntity extends EntityInner {
     /**
      * Get the externalDirectoryObjectId property: The AzureAD identifier of mailbox. Similar to AadUserId in account
      * entity but this property is specific to mailbox object on office side.
-     *
+     * 
      * @return the externalDirectoryObjectId value.
      */
     public UUID externalDirectoryObjectId() {
@@ -73,7 +81,7 @@ public final class MailboxEntity extends EntityInner {
     /**
      * Get the additionalData property: A bag of custom fields that should be part of the entity and will be presented
      * to the user.
-     *
+     * 
      * @return the additionalData value.
      */
     public Map<String, Object> additionalData() {
@@ -83,7 +91,7 @@ public final class MailboxEntity extends EntityInner {
     /**
      * Get the friendlyName property: The graph item display name which is a short humanly readable description of the
      * graph item instance. This property is optional and might be system generated.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -92,7 +100,7 @@ public final class MailboxEntity extends EntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

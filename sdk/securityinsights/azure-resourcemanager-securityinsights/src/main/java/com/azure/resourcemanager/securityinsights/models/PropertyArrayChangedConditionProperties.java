@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule condition that evaluates an array property's value change. */
+/**
+ * Describes an automation rule condition that evaluates an array property's value change.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "conditionType")
 @JsonTypeName("PropertyArrayChanged")
 @Fluent
@@ -21,8 +23,14 @@ public final class PropertyArrayChangedConditionProperties extends AutomationRul
     private AutomationRulePropertyArrayChangedValuesCondition conditionProperties;
 
     /**
+     * Creates an instance of PropertyArrayChangedConditionProperties class.
+     */
+    public PropertyArrayChangedConditionProperties() {
+    }
+
+    /**
      * Get the conditionProperties property: The conditionProperties property.
-     *
+     * 
      * @return the conditionProperties value.
      */
     public AutomationRulePropertyArrayChangedValuesCondition conditionProperties() {
@@ -31,19 +39,19 @@ public final class PropertyArrayChangedConditionProperties extends AutomationRul
 
     /**
      * Set the conditionProperties property: The conditionProperties property.
-     *
+     * 
      * @param conditionProperties the conditionProperties value to set.
      * @return the PropertyArrayChangedConditionProperties object itself.
      */
-    public PropertyArrayChangedConditionProperties withConditionProperties(
-        AutomationRulePropertyArrayChangedValuesCondition conditionProperties) {
+    public PropertyArrayChangedConditionProperties
+        withConditionProperties(AutomationRulePropertyArrayChangedValuesCondition conditionProperties) {
         this.conditionProperties = conditionProperties;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

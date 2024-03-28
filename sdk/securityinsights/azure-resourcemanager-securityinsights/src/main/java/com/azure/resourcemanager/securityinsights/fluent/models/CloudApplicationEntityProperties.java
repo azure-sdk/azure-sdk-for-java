@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** CloudApplication entity property bag. */
+/**
+ * CloudApplication entity property bag.
+ */
 @Immutable
 public final class CloudApplicationEntityProperties extends EntityCommonProperties {
     /*
@@ -31,8 +33,14 @@ public final class CloudApplicationEntityProperties extends EntityCommonProperti
     private String instanceName;
 
     /**
+     * Creates an instance of CloudApplicationEntityProperties class.
+     */
+    public CloudApplicationEntityProperties() {
+    }
+
+    /**
      * Get the appId property: The technical identifier of the application.
-     *
+     * 
      * @return the appId value.
      */
     public Integer appId() {
@@ -41,7 +49,7 @@ public final class CloudApplicationEntityProperties extends EntityCommonProperti
 
     /**
      * Get the appName property: The name of the related cloud application.
-     *
+     * 
      * @return the appName value.
      */
     public String appName() {
@@ -51,7 +59,7 @@ public final class CloudApplicationEntityProperties extends EntityCommonProperti
     /**
      * Get the instanceName property: The user defined instance name of the cloud application. It is often used to
      * distinguish between several applications of the same type that a customer has.
-     *
+     * 
      * @return the instanceName value.
      */
     public String instanceName() {
@@ -60,7 +68,7 @@ public final class CloudApplicationEntityProperties extends EntityCommonProperti
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
