@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of the Sentinel onboarding states. */
+/**
+ * List of the Sentinel onboarding states.
+ */
 @Fluent
 public final class SentinelOnboardingStatesListInner {
     /*
@@ -19,8 +21,14 @@ public final class SentinelOnboardingStatesListInner {
     private List<SentinelOnboardingStateInner> value;
 
     /**
+     * Creates an instance of SentinelOnboardingStatesListInner class.
+     */
+    public SentinelOnboardingStatesListInner() {
+    }
+
+    /**
      * Get the value property: Array of Sentinel onboarding states.
-     *
+     * 
      * @return the value value.
      */
     public List<SentinelOnboardingStateInner> value() {
@@ -29,7 +37,7 @@ public final class SentinelOnboardingStatesListInner {
 
     /**
      * Set the value property: Array of Sentinel onboarding states.
-     *
+     * 
      * @param value the value value to set.
      * @return the SentinelOnboardingStatesListInner object itself.
      */
@@ -40,15 +48,13 @@ public final class SentinelOnboardingStatesListInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model SentinelOnboardingStatesListInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property value in model SentinelOnboardingStatesListInner"));
         } else {
             value().forEach(e -> e.validate());
         }

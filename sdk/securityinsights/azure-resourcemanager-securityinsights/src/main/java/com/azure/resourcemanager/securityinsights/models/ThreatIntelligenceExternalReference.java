@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Describes external reference. */
+/**
+ * Describes external reference.
+ */
 @Fluent
 public final class ThreatIntelligenceExternalReference {
     /*
@@ -44,8 +46,14 @@ public final class ThreatIntelligenceExternalReference {
     private Map<String, String> hashes;
 
     /**
+     * Creates an instance of ThreatIntelligenceExternalReference class.
+     */
+    public ThreatIntelligenceExternalReference() {
+    }
+
+    /**
      * Get the description property: External reference description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -54,7 +62,7 @@ public final class ThreatIntelligenceExternalReference {
 
     /**
      * Set the description property: External reference description.
-     *
+     * 
      * @param description the description value to set.
      * @return the ThreatIntelligenceExternalReference object itself.
      */
@@ -65,7 +73,7 @@ public final class ThreatIntelligenceExternalReference {
 
     /**
      * Get the externalId property: External reference ID.
-     *
+     * 
      * @return the externalId value.
      */
     public String externalId() {
@@ -74,7 +82,7 @@ public final class ThreatIntelligenceExternalReference {
 
     /**
      * Set the externalId property: External reference ID.
-     *
+     * 
      * @param externalId the externalId value to set.
      * @return the ThreatIntelligenceExternalReference object itself.
      */
@@ -85,7 +93,7 @@ public final class ThreatIntelligenceExternalReference {
 
     /**
      * Get the sourceName property: External reference source name.
-     *
+     * 
      * @return the sourceName value.
      */
     public String sourceName() {
@@ -94,7 +102,7 @@ public final class ThreatIntelligenceExternalReference {
 
     /**
      * Set the sourceName property: External reference source name.
-     *
+     * 
      * @param sourceName the sourceName value to set.
      * @return the ThreatIntelligenceExternalReference object itself.
      */
@@ -105,7 +113,7 @@ public final class ThreatIntelligenceExternalReference {
 
     /**
      * Get the url property: External reference URL.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -114,7 +122,7 @@ public final class ThreatIntelligenceExternalReference {
 
     /**
      * Set the url property: External reference URL.
-     *
+     * 
      * @param url the url value to set.
      * @return the ThreatIntelligenceExternalReference object itself.
      */
@@ -125,7 +133,7 @@ public final class ThreatIntelligenceExternalReference {
 
     /**
      * Get the hashes property: External reference hashes.
-     *
+     * 
      * @return the hashes value.
      */
     public Map<String, String> hashes() {
@@ -134,7 +142,7 @@ public final class ThreatIntelligenceExternalReference {
 
     /**
      * Set the hashes property: External reference hashes.
-     *
+     * 
      * @param hashes the hashes value to set.
      * @return the ThreatIntelligenceExternalReference object itself.
      */
@@ -145,7 +153,7 @@ public final class ThreatIntelligenceExternalReference {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

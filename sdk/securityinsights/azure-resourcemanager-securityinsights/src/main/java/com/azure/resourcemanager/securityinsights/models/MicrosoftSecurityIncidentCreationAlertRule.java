@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Represents MicrosoftSecurityIncidentCreation rule. */
+/**
+ * Represents MicrosoftSecurityIncidentCreation rule.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("MicrosoftSecurityIncidentCreation")
 @Fluent
@@ -25,15 +27,23 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
     private MicrosoftSecurityIncidentCreationAlertRuleProperties innerProperties;
 
     /**
+     * Creates an instance of MicrosoftSecurityIncidentCreationAlertRule class.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRule() {
+    }
+
+    /**
      * Get the innerProperties property: MicrosoftSecurityIncidentCreation rule properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private MicrosoftSecurityIncidentCreationAlertRuleProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MicrosoftSecurityIncidentCreationAlertRule withEtag(String etag) {
         super.withEtag(etag);
@@ -42,7 +52,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @return the alertRuleTemplateName value.
      */
     public String alertRuleTemplateName() {
@@ -51,7 +61,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Set the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @param alertRuleTemplateName the alertRuleTemplateName value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRule object itself.
      */
@@ -65,7 +75,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Get the description property: The description of the alert rule.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -74,7 +84,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Set the description property: The description of the alert rule.
-     *
+     * 
      * @param description the description value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRule object itself.
      */
@@ -88,7 +98,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Get the displayName property: The display name for alerts created by this alert rule.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -97,7 +107,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Set the displayName property: The display name for alerts created by this alert rule.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRule object itself.
      */
@@ -111,7 +121,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Get the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -120,7 +130,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Set the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRule object itself.
      */
@@ -134,7 +144,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Get the lastModifiedUtc property: The last time that this alert has been modified.
-     *
+     * 
      * @return the lastModifiedUtc value.
      */
     public OffsetDateTime lastModifiedUtc() {
@@ -143,7 +153,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Get the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
-     *
+     * 
      * @return the displayNamesFilter value.
      */
     public List<String> displayNamesFilter() {
@@ -152,7 +162,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Set the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
-     *
+     * 
      * @param displayNamesFilter the displayNamesFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRule object itself.
      */
@@ -166,7 +176,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Get the displayNamesExcludeFilter property: the alerts' displayNames on which the cases will not be generated.
-     *
+     * 
      * @return the displayNamesExcludeFilter value.
      */
     public List<String> displayNamesExcludeFilter() {
@@ -175,12 +185,12 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Set the displayNamesExcludeFilter property: the alerts' displayNames on which the cases will not be generated.
-     *
+     * 
      * @param displayNamesExcludeFilter the displayNamesExcludeFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRule object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRule withDisplayNamesExcludeFilter(
-        List<String> displayNamesExcludeFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRule
+        withDisplayNamesExcludeFilter(List<String> displayNamesExcludeFilter) {
         if (this.innerProperties() == null) {
             this.innerProperties = new MicrosoftSecurityIncidentCreationAlertRuleProperties();
         }
@@ -190,7 +200,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Get the productFilter property: The alerts' productName on which the cases will be generated.
-     *
+     * 
      * @return the productFilter value.
      */
     public MicrosoftSecurityProductName productFilter() {
@@ -199,7 +209,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Set the productFilter property: The alerts' productName on which the cases will be generated.
-     *
+     * 
      * @param productFilter the productFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRule object itself.
      */
@@ -213,7 +223,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Get the severitiesFilter property: the alerts' severities on which the cases will be generated.
-     *
+     * 
      * @return the severitiesFilter value.
      */
     public List<AlertSeverity> severitiesFilter() {
@@ -222,7 +232,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Set the severitiesFilter property: the alerts' severities on which the cases will be generated.
-     *
+     * 
      * @param severitiesFilter the severitiesFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRule object itself.
      */
@@ -236,7 +246,7 @@ public final class MicrosoftSecurityIncidentCreationAlertRule extends AlertRuleI
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

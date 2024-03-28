@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Activity query definitions. */
+/**
+ * The Activity query definitions.
+ */
 @Fluent
 public final class ActivityEntityQueriesPropertiesQueryDefinitions {
     /*
@@ -17,8 +19,14 @@ public final class ActivityEntityQueriesPropertiesQueryDefinitions {
     private String query;
 
     /**
+     * Creates an instance of ActivityEntityQueriesPropertiesQueryDefinitions class.
+     */
+    public ActivityEntityQueriesPropertiesQueryDefinitions() {
+    }
+
+    /**
      * Get the query property: The Activity query to run on a given entity.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -27,7 +35,7 @@ public final class ActivityEntityQueriesPropertiesQueryDefinitions {
 
     /**
      * Set the query property: The Activity query to run on a given entity.
-     *
+     * 
      * @param query the query value to set.
      * @return the ActivityEntityQueriesPropertiesQueryDefinitions object itself.
      */
@@ -38,7 +46,7 @@ public final class ActivityEntityQueriesPropertiesQueryDefinitions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

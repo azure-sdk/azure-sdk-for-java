@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.AlertsDataTypeOfDataCon
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** OfficeIRM (Microsoft Insider Risk Management) data connector properties. */
+/**
+ * OfficeIRM (Microsoft Insider Risk Management) data connector properties.
+ */
 @Fluent
 public final class OfficeIrmDataConnectorProperties extends DataConnectorTenantId {
     /*
@@ -19,8 +21,14 @@ public final class OfficeIrmDataConnectorProperties extends DataConnectorTenantI
     private AlertsDataTypeOfDataConnector dataTypes;
 
     /**
+     * Creates an instance of OfficeIrmDataConnectorProperties class.
+     */
+    public OfficeIrmDataConnectorProperties() {
+    }
+
+    /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AlertsDataTypeOfDataConnector dataTypes() {
@@ -29,7 +37,7 @@ public final class OfficeIrmDataConnectorProperties extends DataConnectorTenantI
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the OfficeIrmDataConnectorProperties object itself.
      */
@@ -38,7 +46,9 @@ public final class OfficeIrmDataConnectorProperties extends DataConnectorTenantI
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficeIrmDataConnectorProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -47,7 +57,7 @@ public final class OfficeIrmDataConnectorProperties extends DataConnectorTenantI
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

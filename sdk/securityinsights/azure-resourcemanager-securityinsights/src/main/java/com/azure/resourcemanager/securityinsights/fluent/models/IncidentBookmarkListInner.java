@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.models.HuntingBookmark;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of incident bookmarks. */
+/**
+ * List of incident bookmarks.
+ */
 @Fluent
 public final class IncidentBookmarkListInner {
     /*
@@ -20,8 +22,14 @@ public final class IncidentBookmarkListInner {
     private List<HuntingBookmark> value;
 
     /**
+     * Creates an instance of IncidentBookmarkListInner class.
+     */
+    public IncidentBookmarkListInner() {
+    }
+
+    /**
      * Get the value property: Array of incident bookmarks.
-     *
+     * 
      * @return the value value.
      */
     public List<HuntingBookmark> value() {
@@ -30,7 +38,7 @@ public final class IncidentBookmarkListInner {
 
     /**
      * Set the value property: Array of incident bookmarks.
-     *
+     * 
      * @param value the value value to set.
      * @return the IncidentBookmarkListInner object itself.
      */
@@ -41,14 +49,13 @@ public final class IncidentBookmarkListInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model IncidentBookmarkListInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model IncidentBookmarkListInner"));
         } else {
             value().forEach(e -> e.validate());
         }

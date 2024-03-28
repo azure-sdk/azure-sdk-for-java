@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** MLBehaviorAnalytics alert rule base property bag. */
+/**
+ * MLBehaviorAnalytics alert rule base property bag.
+ */
 @Fluent
 public final class MLBehaviorAnalyticsAlertRuleProperties {
     /*
@@ -63,9 +65,21 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
     @JsonProperty(value = "techniques", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> techniques;
 
+    /*
+     * The sub-techniques of the alert rule
+     */
+    @JsonProperty(value = "subTechniques", access = JsonProperty.Access.WRITE_ONLY)
+    private List<String> subTechniques;
+
+    /**
+     * Creates an instance of MLBehaviorAnalyticsAlertRuleProperties class.
+     */
+    public MLBehaviorAnalyticsAlertRuleProperties() {
+    }
+
     /**
      * Get the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @return the alertRuleTemplateName value.
      */
     public String alertRuleTemplateName() {
@@ -74,7 +88,7 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
 
     /**
      * Set the alertRuleTemplateName property: The Name of the alert rule template used to create this rule.
-     *
+     * 
      * @param alertRuleTemplateName the alertRuleTemplateName value to set.
      * @return the MLBehaviorAnalyticsAlertRuleProperties object itself.
      */
@@ -85,7 +99,7 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
 
     /**
      * Get the description property: The description of the alert rule.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -94,7 +108,7 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
 
     /**
      * Get the displayName property: The display name for alerts created by this alert rule.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -103,7 +117,7 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
 
     /**
      * Get the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @return the enabled value.
      */
     public boolean enabled() {
@@ -112,7 +126,7 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
 
     /**
      * Set the enabled property: Determines whether this alert rule is enabled or disabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the MLBehaviorAnalyticsAlertRuleProperties object itself.
      */
@@ -123,7 +137,7 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
 
     /**
      * Get the lastModifiedUtc property: The last time that this alert rule has been modified.
-     *
+     * 
      * @return the lastModifiedUtc value.
      */
     public OffsetDateTime lastModifiedUtc() {
@@ -132,7 +146,7 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
 
     /**
      * Get the severity property: The severity for alerts created by this alert rule.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -141,7 +155,7 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
 
     /**
      * Get the tactics property: The tactics of the alert rule.
-     *
+     * 
      * @return the tactics value.
      */
     public List<AttackTactic> tactics() {
@@ -150,7 +164,7 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
 
     /**
      * Get the techniques property: The techniques of the alert rule.
-     *
+     * 
      * @return the techniques value.
      */
     public List<String> techniques() {
@@ -158,17 +172,23 @@ public final class MLBehaviorAnalyticsAlertRuleProperties {
     }
 
     /**
+     * Get the subTechniques property: The sub-techniques of the alert rule.
+     * 
+     * @return the subTechniques value.
+     */
+    public List<String> subTechniques() {
+        return this.subTechniques;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (alertRuleTemplateName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property alertRuleTemplateName in model"
-                            + " MLBehaviorAnalyticsAlertRuleProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property alertRuleTemplateName in model MLBehaviorAnalyticsAlertRuleProperties"));
         }
     }
 

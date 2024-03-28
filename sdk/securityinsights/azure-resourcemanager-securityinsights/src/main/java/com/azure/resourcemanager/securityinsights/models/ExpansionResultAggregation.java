@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Information of a specific aggregation in the expansion result. */
+/**
+ * Information of a specific aggregation in the expansion result.
+ */
 @Fluent
 public final class ExpansionResultAggregation {
     /*
@@ -33,11 +35,17 @@ public final class ExpansionResultAggregation {
      * The kind of the aggregated entity.
      */
     @JsonProperty(value = "entityKind", required = true)
-    private EntityKind entityKind;
+    private EntityKindEnum entityKind;
+
+    /**
+     * Creates an instance of ExpansionResultAggregation class.
+     */
+    public ExpansionResultAggregation() {
+    }
 
     /**
      * Get the aggregationType property: The common type of the aggregation. (for e.g. entity field name).
-     *
+     * 
      * @return the aggregationType value.
      */
     public String aggregationType() {
@@ -46,7 +54,7 @@ public final class ExpansionResultAggregation {
 
     /**
      * Set the aggregationType property: The common type of the aggregation. (for e.g. entity field name).
-     *
+     * 
      * @param aggregationType the aggregationType value to set.
      * @return the ExpansionResultAggregation object itself.
      */
@@ -58,7 +66,7 @@ public final class ExpansionResultAggregation {
     /**
      * Get the count property: Total number of aggregations of the given kind (and aggregationType if given) in the
      * expansion result.
-     *
+     * 
      * @return the count value.
      */
     public int count() {
@@ -68,7 +76,7 @@ public final class ExpansionResultAggregation {
     /**
      * Set the count property: Total number of aggregations of the given kind (and aggregationType if given) in the
      * expansion result.
-     *
+     * 
      * @param count the count value to set.
      * @return the ExpansionResultAggregation object itself.
      */
@@ -79,7 +87,7 @@ public final class ExpansionResultAggregation {
 
     /**
      * Get the displayName property: The display name of the aggregation by type.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -88,7 +96,7 @@ public final class ExpansionResultAggregation {
 
     /**
      * Set the displayName property: The display name of the aggregation by type.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ExpansionResultAggregation object itself.
      */
@@ -99,35 +107,33 @@ public final class ExpansionResultAggregation {
 
     /**
      * Get the entityKind property: The kind of the aggregated entity.
-     *
+     * 
      * @return the entityKind value.
      */
-    public EntityKind entityKind() {
+    public EntityKindEnum entityKind() {
         return this.entityKind;
     }
 
     /**
      * Set the entityKind property: The kind of the aggregated entity.
-     *
+     * 
      * @param entityKind the entityKind value to set.
      * @return the ExpansionResultAggregation object itself.
      */
-    public ExpansionResultAggregation withEntityKind(EntityKind entityKind) {
+    public ExpansionResultAggregation withEntityKind(EntityKindEnum entityKind) {
         this.entityKind = entityKind;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (entityKind() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property entityKind in model ExpansionResultAggregation"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property entityKind in model ExpansionResultAggregation"));
         }
     }
 

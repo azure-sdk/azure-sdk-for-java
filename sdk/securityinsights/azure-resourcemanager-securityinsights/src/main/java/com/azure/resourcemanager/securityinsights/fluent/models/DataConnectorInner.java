@@ -13,9 +13,11 @@ import com.azure.resourcemanager.securityinsights.models.AwsS3DataConnector;
 import com.azure.resourcemanager.securityinsights.models.CodelessApiPollingDataConnector;
 import com.azure.resourcemanager.securityinsights.models.CodelessUiDataConnector;
 import com.azure.resourcemanager.securityinsights.models.Dynamics365DataConnector;
+import com.azure.resourcemanager.securityinsights.models.GcpDataConnector;
 import com.azure.resourcemanager.securityinsights.models.IoTDataConnector;
 import com.azure.resourcemanager.securityinsights.models.McasDataConnector;
 import com.azure.resourcemanager.securityinsights.models.MdatpDataConnector;
+import com.azure.resourcemanager.securityinsights.models.MicrosoftPurviewInformationProtectionDataConnector;
 import com.azure.resourcemanager.securityinsights.models.MstiDataConnector;
 import com.azure.resourcemanager.securityinsights.models.MtpDataConnector;
 import com.azure.resourcemanager.securityinsights.models.Office365ProjectDataConnector;
@@ -24,13 +26,16 @@ import com.azure.resourcemanager.securityinsights.models.OfficeDataConnector;
 import com.azure.resourcemanager.securityinsights.models.OfficeIrmDataConnector;
 import com.azure.resourcemanager.securityinsights.models.OfficePowerBIDataConnector;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
+import com.azure.resourcemanager.securityinsights.models.RestApiPollerDataConnector;
 import com.azure.resourcemanager.securityinsights.models.TIDataConnector;
 import com.azure.resourcemanager.securityinsights.models.TiTaxiiDataConnector;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Data connector. */
+/**
+ * Data connector.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -45,9 +50,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "AzureSecurityCenter", value = AscDataConnector.class),
     @JsonSubTypes.Type(name = "AmazonWebServicesCloudTrail", value = AwsCloudTrailDataConnector.class),
     @JsonSubTypes.Type(name = "AmazonWebServicesS3", value = AwsS3DataConnector.class),
+    @JsonSubTypes.Type(name = "RestApiPoller", value = RestApiPollerDataConnector.class),
+    @JsonSubTypes.Type(name = "GCP", value = GcpDataConnector.class),
     @JsonSubTypes.Type(name = "MicrosoftCloudAppSecurity", value = McasDataConnector.class),
     @JsonSubTypes.Type(name = "Dynamics365", value = Dynamics365DataConnector.class),
     @JsonSubTypes.Type(name = "OfficeATP", value = OfficeAtpDataConnector.class),
+    @JsonSubTypes.Type(
+        name = "MicrosoftPurviewInformationProtection",
+        value = MicrosoftPurviewInformationProtectionDataConnector.class),
     @JsonSubTypes.Type(name = "Office365Project", value = Office365ProjectDataConnector.class),
     @JsonSubTypes.Type(name = "OfficePowerBI", value = OfficePowerBIDataConnector.class),
     @JsonSubTypes.Type(name = "OfficeIRM", value = OfficeIrmDataConnector.class),
@@ -57,11 +67,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "ThreatIntelligenceTaxii", value = TiTaxiiDataConnector.class),
     @JsonSubTypes.Type(name = "IOT", value = IoTDataConnector.class),
     @JsonSubTypes.Type(name = "GenericUI", value = CodelessUiDataConnector.class),
-    @JsonSubTypes.Type(name = "APIPolling", value = CodelessApiPollingDataConnector.class)
-})
+    @JsonSubTypes.Type(name = "APIPolling", value = CodelessApiPollingDataConnector.class) })
 @Fluent
 public class DataConnectorInner extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of DataConnectorInner class.
+     */
+    public DataConnectorInner() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataConnectorInner withEtag(String etag) {
         super.withEtag(etag);
@@ -70,7 +87,7 @@ public class DataConnectorInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

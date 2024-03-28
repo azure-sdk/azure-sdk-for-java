@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The available data types for Amazon Web Services S3 data connector. */
+/**
+ * The available data types for Amazon Web Services S3 data connector.
+ */
 @Fluent
 public final class AwsS3DataConnectorDataTypes {
     /*
@@ -18,8 +20,14 @@ public final class AwsS3DataConnectorDataTypes {
     private AwsS3DataConnectorDataTypesLogs logs;
 
     /**
+     * Creates an instance of AwsS3DataConnectorDataTypes class.
+     */
+    public AwsS3DataConnectorDataTypes() {
+    }
+
+    /**
      * Get the logs property: Logs data type.
-     *
+     * 
      * @return the logs value.
      */
     public AwsS3DataConnectorDataTypesLogs logs() {
@@ -28,7 +36,7 @@ public final class AwsS3DataConnectorDataTypes {
 
     /**
      * Set the logs property: Logs data type.
-     *
+     * 
      * @param logs the logs value to set.
      * @return the AwsS3DataConnectorDataTypes object itself.
      */
@@ -39,15 +47,13 @@ public final class AwsS3DataConnectorDataTypes {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (logs() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property logs in model AwsS3DataConnectorDataTypes"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property logs in model AwsS3DataConnectorDataTypes"));
         } else {
             logs().validate();
         }

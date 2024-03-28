@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** The ManualTriggerRequestBody model. */
+/**
+ * The ManualTriggerRequestBody model.
+ */
 @Fluent
 public final class ManualTriggerRequestBody {
     /*
@@ -25,8 +27,14 @@ public final class ManualTriggerRequestBody {
     private String logicAppsResourceId;
 
     /**
+     * Creates an instance of ManualTriggerRequestBody class.
+     */
+    public ManualTriggerRequestBody() {
+    }
+
+    /**
      * Get the tenantId property: The tenantId property.
-     *
+     * 
      * @return the tenantId value.
      */
     public UUID tenantId() {
@@ -35,7 +43,7 @@ public final class ManualTriggerRequestBody {
 
     /**
      * Set the tenantId property: The tenantId property.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the ManualTriggerRequestBody object itself.
      */
@@ -46,7 +54,7 @@ public final class ManualTriggerRequestBody {
 
     /**
      * Get the logicAppsResourceId property: The logicAppsResourceId property.
-     *
+     * 
      * @return the logicAppsResourceId value.
      */
     public String logicAppsResourceId() {
@@ -55,7 +63,7 @@ public final class ManualTriggerRequestBody {
 
     /**
      * Set the logicAppsResourceId property: The logicAppsResourceId property.
-     *
+     * 
      * @param logicAppsResourceId the logicAppsResourceId value to set.
      * @return the ManualTriggerRequestBody object itself.
      */
@@ -66,15 +74,13 @@ public final class ManualTriggerRequestBody {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (logicAppsResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property logicAppsResourceId in model ManualTriggerRequestBody"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property logicAppsResourceId in model ManualTriggerRequestBody"));
         }
     }
 

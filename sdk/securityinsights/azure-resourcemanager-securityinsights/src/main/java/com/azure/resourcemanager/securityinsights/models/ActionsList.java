@@ -10,7 +10,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.ActionResponseIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List all the actions. */
+/**
+ * List all the actions.
+ */
 @Fluent
 public final class ActionsList {
     /*
@@ -26,8 +28,14 @@ public final class ActionsList {
     private List<ActionResponseInner> value;
 
     /**
+     * Creates an instance of ActionsList class.
+     */
+    public ActionsList() {
+    }
+
+    /**
      * Get the nextLink property: URL to fetch the next set of actions.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -36,7 +44,7 @@ public final class ActionsList {
 
     /**
      * Get the value property: Array of actions.
-     *
+     * 
      * @return the value value.
      */
     public List<ActionResponseInner> value() {
@@ -45,7 +53,7 @@ public final class ActionsList {
 
     /**
      * Set the value property: Array of actions.
-     *
+     * 
      * @param value the value value to set.
      * @return the ActionsList object itself.
      */
@@ -56,14 +64,13 @@ public final class ActionsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model ActionsList"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model ActionsList"));
         } else {
             value().forEach(e -> e.validate());
         }

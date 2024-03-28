@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** MicrosoftSecurityIncidentCreation rule common property bag. */
+/**
+ * MicrosoftSecurityIncidentCreation rule common property bag.
+ */
 @Fluent
 public class MicrosoftSecurityIncidentCreationAlertRuleCommonProperties {
     /*
@@ -37,8 +39,14 @@ public class MicrosoftSecurityIncidentCreationAlertRuleCommonProperties {
     private List<AlertSeverity> severitiesFilter;
 
     /**
+     * Creates an instance of MicrosoftSecurityIncidentCreationAlertRuleCommonProperties class.
+     */
+    public MicrosoftSecurityIncidentCreationAlertRuleCommonProperties() {
+    }
+
+    /**
      * Get the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
-     *
+     * 
      * @return the displayNamesFilter value.
      */
     public List<String> displayNamesFilter() {
@@ -47,19 +55,19 @@ public class MicrosoftSecurityIncidentCreationAlertRuleCommonProperties {
 
     /**
      * Set the displayNamesFilter property: the alerts' displayNames on which the cases will be generated.
-     *
+     * 
      * @param displayNamesFilter the displayNamesFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleCommonProperties object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRuleCommonProperties withDisplayNamesFilter(
-        List<String> displayNamesFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleCommonProperties
+        withDisplayNamesFilter(List<String> displayNamesFilter) {
         this.displayNamesFilter = displayNamesFilter;
         return this;
     }
 
     /**
      * Get the displayNamesExcludeFilter property: the alerts' displayNames on which the cases will not be generated.
-     *
+     * 
      * @return the displayNamesExcludeFilter value.
      */
     public List<String> displayNamesExcludeFilter() {
@@ -68,19 +76,19 @@ public class MicrosoftSecurityIncidentCreationAlertRuleCommonProperties {
 
     /**
      * Set the displayNamesExcludeFilter property: the alerts' displayNames on which the cases will not be generated.
-     *
+     * 
      * @param displayNamesExcludeFilter the displayNamesExcludeFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleCommonProperties object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRuleCommonProperties withDisplayNamesExcludeFilter(
-        List<String> displayNamesExcludeFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleCommonProperties
+        withDisplayNamesExcludeFilter(List<String> displayNamesExcludeFilter) {
         this.displayNamesExcludeFilter = displayNamesExcludeFilter;
         return this;
     }
 
     /**
      * Get the productFilter property: The alerts' productName on which the cases will be generated.
-     *
+     * 
      * @return the productFilter value.
      */
     public MicrosoftSecurityProductName productFilter() {
@@ -89,19 +97,19 @@ public class MicrosoftSecurityIncidentCreationAlertRuleCommonProperties {
 
     /**
      * Set the productFilter property: The alerts' productName on which the cases will be generated.
-     *
+     * 
      * @param productFilter the productFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleCommonProperties object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRuleCommonProperties withProductFilter(
-        MicrosoftSecurityProductName productFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleCommonProperties
+        withProductFilter(MicrosoftSecurityProductName productFilter) {
         this.productFilter = productFilter;
         return this;
     }
 
     /**
      * Get the severitiesFilter property: the alerts' severities on which the cases will be generated.
-     *
+     * 
      * @return the severitiesFilter value.
      */
     public List<AlertSeverity> severitiesFilter() {
@@ -110,31 +118,28 @@ public class MicrosoftSecurityIncidentCreationAlertRuleCommonProperties {
 
     /**
      * Set the severitiesFilter property: the alerts' severities on which the cases will be generated.
-     *
+     * 
      * @param severitiesFilter the severitiesFilter value to set.
      * @return the MicrosoftSecurityIncidentCreationAlertRuleCommonProperties object itself.
      */
-    public MicrosoftSecurityIncidentCreationAlertRuleCommonProperties withSeveritiesFilter(
-        List<AlertSeverity> severitiesFilter) {
+    public MicrosoftSecurityIncidentCreationAlertRuleCommonProperties
+        withSeveritiesFilter(List<AlertSeverity> severitiesFilter) {
         this.severitiesFilter = severitiesFilter;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (productFilter() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property productFilter in model"
-                            + " MicrosoftSecurityIncidentCreationAlertRuleCommonProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property productFilter in model MicrosoftSecurityIncidentCreationAlertRuleCommonProperties"));
         }
     }
 
-    private static final ClientLogger LOGGER =
-        new ClientLogger(MicrosoftSecurityIncidentCreationAlertRuleCommonProperties.class);
+    private static final ClientLogger LOGGER
+        = new ClientLogger(MicrosoftSecurityIncidentCreationAlertRuleCommonProperties.class);
 }

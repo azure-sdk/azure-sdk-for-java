@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** ThreatIntelligence property bag. */
+/**
+ * ThreatIntelligence property bag.
+ */
 @Immutable
 public final class ThreatIntelligence {
     /*
@@ -47,8 +49,14 @@ public final class ThreatIntelligence {
     private String threatType;
 
     /**
+     * Creates an instance of ThreatIntelligence class.
+     */
+    public ThreatIntelligence() {
+    }
+
+    /**
      * Get the confidence property: Confidence (must be between 0 and 1).
-     *
+     * 
      * @return the confidence value.
      */
     public Double confidence() {
@@ -57,7 +65,7 @@ public final class ThreatIntelligence {
 
     /**
      * Get the providerName property: Name of the provider from whom this Threat Intelligence information was received.
-     *
+     * 
      * @return the providerName value.
      */
     public String providerName() {
@@ -66,7 +74,7 @@ public final class ThreatIntelligence {
 
     /**
      * Get the reportLink property: Report link.
-     *
+     * 
      * @return the reportLink value.
      */
     public String reportLink() {
@@ -75,7 +83,7 @@ public final class ThreatIntelligence {
 
     /**
      * Get the threatDescription property: Threat description (free text).
-     *
+     * 
      * @return the threatDescription value.
      */
     public String threatDescription() {
@@ -84,7 +92,7 @@ public final class ThreatIntelligence {
 
     /**
      * Get the threatName property: Threat name (e.g. "Jedobot malware").
-     *
+     * 
      * @return the threatName value.
      */
     public String threatName() {
@@ -93,7 +101,7 @@ public final class ThreatIntelligence {
 
     /**
      * Get the threatType property: Threat type (e.g. "Botnet").
-     *
+     * 
      * @return the threatType value.
      */
     public String threatType() {
@@ -102,7 +110,7 @@ public final class ThreatIntelligence {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

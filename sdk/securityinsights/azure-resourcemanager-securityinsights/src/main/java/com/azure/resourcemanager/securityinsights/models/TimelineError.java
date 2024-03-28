@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Timeline Query Errors. */
+/**
+ * Timeline Query Errors.
+ */
 @Fluent
 public final class TimelineError {
     /*
@@ -30,8 +32,14 @@ public final class TimelineError {
     private String errorMessage;
 
     /**
+     * Creates an instance of TimelineError class.
+     */
+    public TimelineError() {
+    }
+
+    /**
      * Get the kind property: the query kind.
-     *
+     * 
      * @return the kind value.
      */
     public EntityTimelineKind kind() {
@@ -40,7 +48,7 @@ public final class TimelineError {
 
     /**
      * Set the kind property: the query kind.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the TimelineError object itself.
      */
@@ -51,7 +59,7 @@ public final class TimelineError {
 
     /**
      * Get the queryId property: the query id.
-     *
+     * 
      * @return the queryId value.
      */
     public String queryId() {
@@ -60,7 +68,7 @@ public final class TimelineError {
 
     /**
      * Set the queryId property: the query id.
-     *
+     * 
      * @param queryId the queryId value to set.
      * @return the TimelineError object itself.
      */
@@ -71,7 +79,7 @@ public final class TimelineError {
 
     /**
      * Get the errorMessage property: the error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -80,7 +88,7 @@ public final class TimelineError {
 
     /**
      * Set the errorMessage property: the error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the TimelineError object itself.
      */
@@ -91,19 +99,17 @@ public final class TimelineError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (kind() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property kind in model TimelineError"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property kind in model TimelineError"));
         }
         if (errorMessage() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property errorMessage in model TimelineError"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property errorMessage in model TimelineError"));
         }
     }
 
