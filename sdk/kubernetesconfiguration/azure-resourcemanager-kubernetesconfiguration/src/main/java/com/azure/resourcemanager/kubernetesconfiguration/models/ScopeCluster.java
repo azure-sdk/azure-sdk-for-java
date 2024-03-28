@@ -7,24 +7,28 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies that the scope of the extension is Cluster. */
+/**
+ * Specifies that the scope of the extension is Cluster.
+ */
 @Fluent
 public final class ScopeCluster {
     /*
-     * Namespace where the extension Release must be placed, for a Cluster scoped extension.  If this namespace does
+     * Namespace where the extension Release must be placed, for a Cluster scoped extension. If this namespace does
      * not exist, it will be created
      */
     @JsonProperty(value = "releaseNamespace")
     private String releaseNamespace;
 
-    /** Creates an instance of ScopeCluster class. */
+    /**
+     * Creates an instance of ScopeCluster class.
+     */
     public ScopeCluster() {
     }
 
     /**
      * Get the releaseNamespace property: Namespace where the extension Release must be placed, for a Cluster scoped
      * extension. If this namespace does not exist, it will be created.
-     *
+     * 
      * @return the releaseNamespace value.
      */
     public String releaseNamespace() {
@@ -34,7 +38,7 @@ public final class ScopeCluster {
     /**
      * Set the releaseNamespace property: Namespace where the extension Release must be placed, for a Cluster scoped
      * extension. If this namespace does not exist, it will be created.
-     *
+     * 
      * @param releaseNamespace the releaseNamespace value to set.
      * @return the ScopeCluster object itself.
      */
@@ -45,7 +49,7 @@ public final class ScopeCluster {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

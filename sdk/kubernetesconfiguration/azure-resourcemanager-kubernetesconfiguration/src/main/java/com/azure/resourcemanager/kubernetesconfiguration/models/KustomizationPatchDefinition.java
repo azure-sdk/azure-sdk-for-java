@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The Kustomization defining how to reconcile the artifact pulled by the source type on the cluster. */
+/**
+ * The Kustomization defining how to reconcile the artifact pulled by the source type on the cluster.
+ */
 @Fluent
 public final class KustomizationPatchDefinition {
     /*
@@ -66,15 +68,17 @@ public final class KustomizationPatchDefinition {
      * Used for variable substitution for this Kustomization after kustomize build.
      */
     @JsonProperty(value = "postBuild")
-    private PostBuildDefinition postBuild;
+    private PostBuildPatchDefinition postBuild;
 
-    /** Creates an instance of KustomizationPatchDefinition class. */
+    /**
+     * Creates an instance of KustomizationPatchDefinition class.
+     */
     public KustomizationPatchDefinition() {
     }
 
     /**
      * Get the path property: The path in the source reference to reconcile on the cluster.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -83,7 +87,7 @@ public final class KustomizationPatchDefinition {
 
     /**
      * Set the path property: The path in the source reference to reconcile on the cluster.
-     *
+     * 
      * @param path the path value to set.
      * @return the KustomizationPatchDefinition object itself.
      */
@@ -93,9 +97,9 @@ public final class KustomizationPatchDefinition {
     }
 
     /**
-     * Get the dependsOn property: Specifies other Kustomizations that this Kustomization depends on. This Kustomization
-     * will not reconcile until all dependencies have completed their reconciliation.
-     *
+     * Get the dependsOn property: Specifies other Kustomizations that this Kustomization depends on. This
+     * Kustomization will not reconcile until all dependencies have completed their reconciliation.
+     * 
      * @return the dependsOn value.
      */
     public List<String> dependsOn() {
@@ -103,9 +107,9 @@ public final class KustomizationPatchDefinition {
     }
 
     /**
-     * Set the dependsOn property: Specifies other Kustomizations that this Kustomization depends on. This Kustomization
-     * will not reconcile until all dependencies have completed their reconciliation.
-     *
+     * Set the dependsOn property: Specifies other Kustomizations that this Kustomization depends on. This
+     * Kustomization will not reconcile until all dependencies have completed their reconciliation.
+     * 
      * @param dependsOn the dependsOn value to set.
      * @return the KustomizationPatchDefinition object itself.
      */
@@ -116,7 +120,7 @@ public final class KustomizationPatchDefinition {
 
     /**
      * Get the timeoutInSeconds property: The maximum time to attempt to reconcile the Kustomization on the cluster.
-     *
+     * 
      * @return the timeoutInSeconds value.
      */
     public Long timeoutInSeconds() {
@@ -125,7 +129,7 @@ public final class KustomizationPatchDefinition {
 
     /**
      * Set the timeoutInSeconds property: The maximum time to attempt to reconcile the Kustomization on the cluster.
-     *
+     * 
      * @param timeoutInSeconds the timeoutInSeconds value to set.
      * @return the KustomizationPatchDefinition object itself.
      */
@@ -136,7 +140,7 @@ public final class KustomizationPatchDefinition {
 
     /**
      * Get the syncIntervalInSeconds property: The interval at which to re-reconcile the Kustomization on the cluster.
-     *
+     * 
      * @return the syncIntervalInSeconds value.
      */
     public Long syncIntervalInSeconds() {
@@ -145,7 +149,7 @@ public final class KustomizationPatchDefinition {
 
     /**
      * Set the syncIntervalInSeconds property: The interval at which to re-reconcile the Kustomization on the cluster.
-     *
+     * 
      * @param syncIntervalInSeconds the syncIntervalInSeconds value to set.
      * @return the KustomizationPatchDefinition object itself.
      */
@@ -157,7 +161,7 @@ public final class KustomizationPatchDefinition {
     /**
      * Get the retryIntervalInSeconds property: The interval at which to re-reconcile the Kustomization on the cluster
      * in the event of failure on reconciliation.
-     *
+     * 
      * @return the retryIntervalInSeconds value.
      */
     public Long retryIntervalInSeconds() {
@@ -167,7 +171,7 @@ public final class KustomizationPatchDefinition {
     /**
      * Set the retryIntervalInSeconds property: The interval at which to re-reconcile the Kustomization on the cluster
      * in the event of failure on reconciliation.
-     *
+     * 
      * @param retryIntervalInSeconds the retryIntervalInSeconds value to set.
      * @return the KustomizationPatchDefinition object itself.
      */
@@ -178,7 +182,7 @@ public final class KustomizationPatchDefinition {
 
     /**
      * Get the prune property: Enable/disable garbage collections of Kubernetes objects created by this Kustomization.
-     *
+     * 
      * @return the prune value.
      */
     public Boolean prune() {
@@ -187,7 +191,7 @@ public final class KustomizationPatchDefinition {
 
     /**
      * Set the prune property: Enable/disable garbage collections of Kubernetes objects created by this Kustomization.
-     *
+     * 
      * @param prune the prune value to set.
      * @return the KustomizationPatchDefinition object itself.
      */
@@ -197,9 +201,9 @@ public final class KustomizationPatchDefinition {
     }
 
     /**
-     * Get the force property: Enable/disable re-creating Kubernetes resources on the cluster when patching fails due to
-     * an immutable field change.
-     *
+     * Get the force property: Enable/disable re-creating Kubernetes resources on the cluster when patching fails due
+     * to an immutable field change.
+     * 
      * @return the force value.
      */
     public Boolean force() {
@@ -207,9 +211,9 @@ public final class KustomizationPatchDefinition {
     }
 
     /**
-     * Set the force property: Enable/disable re-creating Kubernetes resources on the cluster when patching fails due to
-     * an immutable field change.
-     *
+     * Set the force property: Enable/disable re-creating Kubernetes resources on the cluster when patching fails due
+     * to an immutable field change.
+     * 
      * @param force the force value to set.
      * @return the KustomizationPatchDefinition object itself.
      */
@@ -221,7 +225,7 @@ public final class KustomizationPatchDefinition {
     /**
      * Get the enableWait property: Enable/disable health check for all Kubernetes objects created by this
      * Kustomization.
-     *
+     * 
      * @return the enableWait value.
      */
     public Boolean enableWait() {
@@ -231,7 +235,7 @@ public final class KustomizationPatchDefinition {
     /**
      * Set the enableWait property: Enable/disable health check for all Kubernetes objects created by this
      * Kustomization.
-     *
+     * 
      * @param enableWait the enableWait value to set.
      * @return the KustomizationPatchDefinition object itself.
      */
@@ -242,27 +246,27 @@ public final class KustomizationPatchDefinition {
 
     /**
      * Get the postBuild property: Used for variable substitution for this Kustomization after kustomize build.
-     *
+     * 
      * @return the postBuild value.
      */
-    public PostBuildDefinition postBuild() {
+    public PostBuildPatchDefinition postBuild() {
         return this.postBuild;
     }
 
     /**
      * Set the postBuild property: Used for variable substitution for this Kustomization after kustomize build.
-     *
+     * 
      * @param postBuild the postBuild value to set.
      * @return the KustomizationPatchDefinition object itself.
      */
-    public KustomizationPatchDefinition withPostBuild(PostBuildDefinition postBuild) {
+    public KustomizationPatchDefinition withPostBuild(PostBuildPatchDefinition postBuild) {
         this.postBuild = postBuild;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

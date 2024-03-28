@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Result of the request to list Flux Configurations. It contains a list of FluxConfiguration objects and a URL link to
- * get the next set of results.
+ * Result of the request to list Flux Configurations. It contains a list of FluxConfiguration objects and a URL link
+ * to get the next set of results.
  */
 @Immutable
 public final class FluxConfigurationsList {
@@ -27,13 +27,15 @@ public final class FluxConfigurationsList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of FluxConfigurationsList class. */
+    /**
+     * Creates an instance of FluxConfigurationsList class.
+     */
     public FluxConfigurationsList() {
     }
 
     /**
      * Get the value property: List of Flux Configurations within a Kubernetes cluster.
-     *
+     * 
      * @return the value value.
      */
     public List<FluxConfigurationInner> value() {
@@ -42,7 +44,7 @@ public final class FluxConfigurationsList {
 
     /**
      * Get the nextLink property: URL to get the next set of configuration objects, if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -51,7 +53,7 @@ public final class FluxConfigurationsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

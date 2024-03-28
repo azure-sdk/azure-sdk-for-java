@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Object reference to a Kubernetes object on a cluster. */
+/**
+ * Object reference to a Kubernetes object on a cluster.
+ */
 @Fluent
 public final class ObjectReferenceDefinition {
     /*
@@ -22,13 +24,15 @@ public final class ObjectReferenceDefinition {
     @JsonProperty(value = "namespace")
     private String namespace;
 
-    /** Creates an instance of ObjectReferenceDefinition class. */
+    /**
+     * Creates an instance of ObjectReferenceDefinition class.
+     */
     public ObjectReferenceDefinition() {
     }
 
     /**
      * Get the name property: Name of the object.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class ObjectReferenceDefinition {
 
     /**
      * Set the name property: Name of the object.
-     *
+     * 
      * @param name the name value to set.
      * @return the ObjectReferenceDefinition object itself.
      */
@@ -48,7 +52,7 @@ public final class ObjectReferenceDefinition {
 
     /**
      * Get the namespace property: Namespace of the object.
-     *
+     * 
      * @return the namespace value.
      */
     public String namespace() {
@@ -57,7 +61,7 @@ public final class ObjectReferenceDefinition {
 
     /**
      * Set the namespace property: Namespace of the object.
-     *
+     * 
      * @param namespace the namespace value to set.
      * @return the ObjectReferenceDefinition object itself.
      */
@@ -68,7 +72,7 @@ public final class ObjectReferenceDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

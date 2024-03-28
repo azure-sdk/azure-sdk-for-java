@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Array of ConfigMaps/Secrets from which the variables are substituted for this Kustomization. */
+/**
+ * Array of ConfigMaps/Secrets from which the variables are substituted for this Kustomization.
+ */
 @Fluent
 public final class SubstituteFromDefinition {
     /*
@@ -28,14 +30,16 @@ public final class SubstituteFromDefinition {
     @JsonProperty(value = "optional")
     private Boolean optional;
 
-    /** Creates an instance of SubstituteFromDefinition class. */
+    /**
+     * Creates an instance of SubstituteFromDefinition class.
+     */
     public SubstituteFromDefinition() {
     }
 
     /**
      * Get the kind property: Define whether it is ConfigMap or Secret that holds the variables to be used in
      * substitution.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -45,7 +49,7 @@ public final class SubstituteFromDefinition {
     /**
      * Set the kind property: Define whether it is ConfigMap or Secret that holds the variables to be used in
      * substitution.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the SubstituteFromDefinition object itself.
      */
@@ -56,7 +60,7 @@ public final class SubstituteFromDefinition {
 
     /**
      * Get the name property: Name of the ConfigMap/Secret that holds the variables to be used in substitution.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -65,7 +69,7 @@ public final class SubstituteFromDefinition {
 
     /**
      * Set the name property: Name of the ConfigMap/Secret that holds the variables to be used in substitution.
-     *
+     * 
      * @param name the name value to set.
      * @return the SubstituteFromDefinition object itself.
      */
@@ -76,7 +80,7 @@ public final class SubstituteFromDefinition {
 
     /**
      * Get the optional property: Set to True to proceed without ConfigMap/Secret, if it is not present.
-     *
+     * 
      * @return the optional value.
      */
     public Boolean optional() {
@@ -85,7 +89,7 @@ public final class SubstituteFromDefinition {
 
     /**
      * Set the optional property: Set to True to proceed without ConfigMap/Secret, if it is not present.
-     *
+     * 
      * @param optional the optional value to set.
      * @return the SubstituteFromDefinition object itself.
      */
@@ -96,7 +100,7 @@ public final class SubstituteFromDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
