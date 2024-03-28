@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** N-Cross validations are specified by user. */
+/**
+ * N-Cross validations are specified by user.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
 @JsonTypeName("Custom")
 @Fluent
@@ -20,13 +22,15 @@ public final class CustomNCrossValidations extends NCrossValidations {
     @JsonProperty(value = "value", required = true)
     private int value;
 
-    /** Creates an instance of CustomNCrossValidations class. */
+    /**
+     * Creates an instance of CustomNCrossValidations class.
+     */
     public CustomNCrossValidations() {
     }
 
     /**
      * Get the value property: [Required] N-Cross validations value.
-     *
+     * 
      * @return the value value.
      */
     public int value() {
@@ -35,7 +39,7 @@ public final class CustomNCrossValidations extends NCrossValidations {
 
     /**
      * Set the value property: [Required] N-Cross validations value.
-     *
+     * 
      * @param value the value value to set.
      * @return the CustomNCrossValidations object itself.
      */
@@ -46,7 +50,7 @@ public final class CustomNCrossValidations extends NCrossValidations {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

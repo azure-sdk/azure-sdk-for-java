@@ -9,34 +9,29 @@ import com.azure.resourcemanager.machinelearning.models.PartialBatchDeployment;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for BatchDeployments Update. */
+/**
+ * Samples for BatchDeployments Update.
+ */
 public final class BatchDeploymentsUpdateSamples {
     /*
-     * x-ms-original-file: specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/stable/2022-10-01/examples/BatchDeployment/update.json
+     * x-ms-original-file:
+     * specification/machinelearningservices/resource-manager/Microsoft.MachineLearningServices/preview/2024-04-01-
+     * preview/examples/Workspace/BatchDeployment/update.json
      */
     /**
-     * Sample code: Update Batch Deployment.
-     *
+     * Sample code: Update Workspace Batch Deployment.
+     * 
      * @param manager Entry point to MachineLearningManager.
      */
-    public static void updateBatchDeployment(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
-        BatchDeployment resource =
-            manager
-                .batchDeployments()
-                .getWithResponse(
-                    "test-rg",
-                    "my-aml-workspace",
-                    "testEndpointName",
-                    "testDeploymentName",
-                    com.azure.core.util.Context.NONE)
-                .getValue();
-        resource
-            .update()
-            .withTags(mapOf())
-            .withProperties(new PartialBatchDeployment().withDescription("string"))
+    public static void
+        updateWorkspaceBatchDeployment(com.azure.resourcemanager.machinelearning.MachineLearningManager manager) {
+        BatchDeployment resource = manager.batchDeployments().getWithResponse("test-rg", "my-aml-workspace",
+            "testEndpointName", "testDeploymentName", com.azure.core.util.Context.NONE).getValue();
+        resource.update().withTags(mapOf()).withProperties(new PartialBatchDeployment().withDescription("string"))
             .apply();
     }
 
+    // Use "Map.of" if available
     @SuppressWarnings("unchecked")
     private static <T> Map<String, T> mapOf(Object... inputs) {
         Map<String, T> map = new HashMap<>();

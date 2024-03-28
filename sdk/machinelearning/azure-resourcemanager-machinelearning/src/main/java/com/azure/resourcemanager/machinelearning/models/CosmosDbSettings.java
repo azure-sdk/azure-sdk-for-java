@@ -7,22 +7,26 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The CosmosDbSettings model. */
+/**
+ * The CosmosDbSettings model.
+ */
 @Fluent
 public final class CosmosDbSettings {
     /*
-     * The throughput of the collections in cosmosdb database
+     * The collectionsThroughput property.
      */
     @JsonProperty(value = "collectionsThroughput")
     private Integer collectionsThroughput;
 
-    /** Creates an instance of CosmosDbSettings class. */
+    /**
+     * Creates an instance of CosmosDbSettings class.
+     */
     public CosmosDbSettings() {
     }
 
     /**
-     * Get the collectionsThroughput property: The throughput of the collections in cosmosdb database.
-     *
+     * Get the collectionsThroughput property: The collectionsThroughput property.
+     * 
      * @return the collectionsThroughput value.
      */
     public Integer collectionsThroughput() {
@@ -30,8 +34,8 @@ public final class CosmosDbSettings {
     }
 
     /**
-     * Set the collectionsThroughput property: The throughput of the collections in cosmosdb database.
-     *
+     * Set the collectionsThroughput property: The collectionsThroughput property.
+     * 
      * @param collectionsThroughput the collectionsThroughput value to set.
      * @return the CosmosDbSettings object itself.
      */
@@ -42,7 +46,7 @@ public final class CosmosDbSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
