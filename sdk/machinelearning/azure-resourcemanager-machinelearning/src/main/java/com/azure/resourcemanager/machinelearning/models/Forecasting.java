@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Forecasting task in AutoML Table vertical. */
+/**
+ * Forecasting task in AutoML Table vertical.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("Forecasting")
 @Fluent
@@ -93,13 +95,15 @@ public final class Forecasting extends AutoMLVertical {
     @JsonProperty(value = "weightColumnName")
     private String weightColumnName;
 
-    /** Creates an instance of Forecasting class. */
+    /**
+     * Creates an instance of Forecasting class.
+     */
     public Forecasting() {
     }
 
     /**
      * Get the forecastingSettings property: Forecasting task specific inputs.
-     *
+     * 
      * @return the forecastingSettings value.
      */
     public ForecastingSettings forecastingSettings() {
@@ -108,7 +112,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the forecastingSettings property: Forecasting task specific inputs.
-     *
+     * 
      * @param forecastingSettings the forecastingSettings value to set.
      * @return the Forecasting object itself.
      */
@@ -119,7 +123,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the primaryMetric property: Primary metric for forecasting task.
-     *
+     * 
      * @return the primaryMetric value.
      */
     public ForecastingPrimaryMetrics primaryMetric() {
@@ -128,7 +132,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the primaryMetric property: Primary metric for forecasting task.
-     *
+     * 
      * @param primaryMetric the primaryMetric value to set.
      * @return the Forecasting object itself.
      */
@@ -139,7 +143,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the trainingSettings property: Inputs for training phase for an AutoML Job.
-     *
+     * 
      * @return the trainingSettings value.
      */
     public ForecastingTrainingSettings trainingSettings() {
@@ -148,7 +152,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the trainingSettings property: Inputs for training phase for an AutoML Job.
-     *
+     * 
      * @param trainingSettings the trainingSettings value to set.
      * @return the Forecasting object itself.
      */
@@ -159,7 +163,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the cvSplitColumnNames property: Columns to use for CVSplit data.
-     *
+     * 
      * @return the cvSplitColumnNames value.
      */
     public List<String> cvSplitColumnNames() {
@@ -168,7 +172,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the cvSplitColumnNames property: Columns to use for CVSplit data.
-     *
+     * 
      * @param cvSplitColumnNames the cvSplitColumnNames value to set.
      * @return the Forecasting object itself.
      */
@@ -179,7 +183,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @return the featurizationSettings value.
      */
     public TableVerticalFeaturizationSettings featurizationSettings() {
@@ -188,7 +192,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @param featurizationSettings the featurizationSettings value to set.
      * @return the Forecasting object itself.
      */
@@ -199,7 +203,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @return the limitSettings value.
      */
     public TableVerticalLimitSettings limitSettings() {
@@ -208,7 +212,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the Forecasting object itself.
      */
@@ -218,9 +222,9 @@ public final class Forecasting extends AutoMLVertical {
     }
 
     /**
-     * Get the nCrossValidations property: Number of cross validation folds to be applied on training dataset when
-     * validation dataset is not provided.
-     *
+     * Get the nCrossValidations property: Number of cross validation folds to be applied on training dataset
+     * when validation dataset is not provided.
+     * 
      * @return the nCrossValidations value.
      */
     public NCrossValidations nCrossValidations() {
@@ -228,9 +232,9 @@ public final class Forecasting extends AutoMLVertical {
     }
 
     /**
-     * Set the nCrossValidations property: Number of cross validation folds to be applied on training dataset when
-     * validation dataset is not provided.
-     *
+     * Set the nCrossValidations property: Number of cross validation folds to be applied on training dataset
+     * when validation dataset is not provided.
+     * 
      * @param nCrossValidations the nCrossValidations value to set.
      * @return the Forecasting object itself.
      */
@@ -241,7 +245,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the testData property: Test data input.
-     *
+     * 
      * @return the testData value.
      */
     public MLTableJobInput testData() {
@@ -250,7 +254,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the testData property: Test data input.
-     *
+     * 
      * @param testData the testData value to set.
      * @return the Forecasting object itself.
      */
@@ -261,8 +265,9 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @return the testDataSize value.
      */
     public Double testDataSize() {
@@ -271,8 +276,9 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the testDataSize property: The fraction of test dataset that needs to be set aside for validation purpose.
-     * Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @param testDataSize the testDataSize value to set.
      * @return the Forecasting object itself.
      */
@@ -283,7 +289,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -292,7 +298,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the Forecasting object itself.
      */
@@ -303,8 +309,10 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Get the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @return the validationDataSize value.
      */
     public Double validationDataSize() {
@@ -313,8 +321,10 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Set the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @param validationDataSize the validationDataSize value to set.
      * @return the Forecasting object itself.
      */
@@ -326,7 +336,7 @@ public final class Forecasting extends AutoMLVertical {
     /**
      * Get the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
      * as an input, causing rows in the data to be weighted up or down.
-     *
+     * 
      * @return the weightColumnName value.
      */
     public String weightColumnName() {
@@ -336,7 +346,7 @@ public final class Forecasting extends AutoMLVertical {
     /**
      * Set the weightColumnName property: The name of the sample weight column. Automated ML supports a weighted column
      * as an input, causing rows in the data to be weighted up or down.
-     *
+     * 
      * @param weightColumnName the weightColumnName value to set.
      * @return the Forecasting object itself.
      */
@@ -345,21 +355,27 @@ public final class Forecasting extends AutoMLVertical {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Forecasting withLogVerbosity(LogVerbosity logVerbosity) {
         super.withLogVerbosity(logVerbosity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Forecasting withTargetColumnName(String targetColumnName) {
         super.withTargetColumnName(targetColumnName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Forecasting withTrainingData(MLTableJobInput trainingData) {
         super.withTrainingData(trainingData);
@@ -368,7 +384,7 @@ public final class Forecasting extends AutoMLVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

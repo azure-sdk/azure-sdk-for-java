@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Sweep job definition. */
+/**
+ * Sweep job definition.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobType")
 @JsonTypeName("Sweep")
 @Fluent
@@ -50,6 +52,12 @@ public final class SweepJob extends JobBaseProperties {
     private Map<String, JobOutput> outputs;
 
     /*
+     * Queue settings for the job
+     */
+    @JsonProperty(value = "queueSettings")
+    private QueueSettings queueSettings;
+
+    /*
      * [Required] The hyperparameter sampling algorithm
      */
     @JsonProperty(value = "samplingAlgorithm", required = true)
@@ -68,14 +76,16 @@ public final class SweepJob extends JobBaseProperties {
     @JsonProperty(value = "trial", required = true)
     private TrialComponent trial;
 
-    /** Creates an instance of SweepJob class. */
+    /**
+     * Creates an instance of SweepJob class.
+     */
     public SweepJob() {
     }
 
     /**
      * Get the earlyTermination property: Early termination policies enable canceling poor-performing runs before they
      * complete.
-     *
+     * 
      * @return the earlyTermination value.
      */
     public EarlyTerminationPolicy earlyTermination() {
@@ -85,7 +95,7 @@ public final class SweepJob extends JobBaseProperties {
     /**
      * Set the earlyTermination property: Early termination policies enable canceling poor-performing runs before they
      * complete.
-     *
+     * 
      * @param earlyTermination the earlyTermination value to set.
      * @return the SweepJob object itself.
      */
@@ -96,7 +106,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Get the inputs property: Mapping of input data bindings used in the job.
-     *
+     * 
      * @return the inputs value.
      */
     public Map<String, JobInput> inputs() {
@@ -105,7 +115,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Set the inputs property: Mapping of input data bindings used in the job.
-     *
+     * 
      * @param inputs the inputs value to set.
      * @return the SweepJob object itself.
      */
@@ -116,7 +126,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Get the limits property: Sweep Job limit.
-     *
+     * 
      * @return the limits value.
      */
     public SweepJobLimits limits() {
@@ -125,7 +135,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Set the limits property: Sweep Job limit.
-     *
+     * 
      * @param limits the limits value to set.
      * @return the SweepJob object itself.
      */
@@ -136,7 +146,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Get the objective property: [Required] Optimization objective.
-     *
+     * 
      * @return the objective value.
      */
     public Objective objective() {
@@ -145,7 +155,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Set the objective property: [Required] Optimization objective.
-     *
+     * 
      * @param objective the objective value to set.
      * @return the SweepJob object itself.
      */
@@ -156,7 +166,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Get the outputs property: Mapping of output data bindings used in the job.
-     *
+     * 
      * @return the outputs value.
      */
     public Map<String, JobOutput> outputs() {
@@ -165,7 +175,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Set the outputs property: Mapping of output data bindings used in the job.
-     *
+     * 
      * @param outputs the outputs value to set.
      * @return the SweepJob object itself.
      */
@@ -175,8 +185,28 @@ public final class SweepJob extends JobBaseProperties {
     }
 
     /**
+     * Get the queueSettings property: Queue settings for the job.
+     * 
+     * @return the queueSettings value.
+     */
+    public QueueSettings queueSettings() {
+        return this.queueSettings;
+    }
+
+    /**
+     * Set the queueSettings property: Queue settings for the job.
+     * 
+     * @param queueSettings the queueSettings value to set.
+     * @return the SweepJob object itself.
+     */
+    public SweepJob withQueueSettings(QueueSettings queueSettings) {
+        this.queueSettings = queueSettings;
+        return this;
+    }
+
+    /**
      * Get the samplingAlgorithm property: [Required] The hyperparameter sampling algorithm.
-     *
+     * 
      * @return the samplingAlgorithm value.
      */
     public SamplingAlgorithm samplingAlgorithm() {
@@ -185,7 +215,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Set the samplingAlgorithm property: [Required] The hyperparameter sampling algorithm.
-     *
+     * 
      * @param samplingAlgorithm the samplingAlgorithm value to set.
      * @return the SweepJob object itself.
      */
@@ -197,7 +227,7 @@ public final class SweepJob extends JobBaseProperties {
     /**
      * Get the searchSpace property: [Required] A dictionary containing each parameter and its distribution. The
      * dictionary key is the name of the parameter.
-     *
+     * 
      * @return the searchSpace value.
      */
     public Object searchSpace() {
@@ -207,7 +237,7 @@ public final class SweepJob extends JobBaseProperties {
     /**
      * Set the searchSpace property: [Required] A dictionary containing each parameter and its distribution. The
      * dictionary key is the name of the parameter.
-     *
+     * 
      * @param searchSpace the searchSpace value to set.
      * @return the SweepJob object itself.
      */
@@ -218,7 +248,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Get the trial property: [Required] Trial component definition.
-     *
+     * 
      * @return the trial value.
      */
     public TrialComponent trial() {
@@ -227,7 +257,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Set the trial property: [Required] Trial component definition.
-     *
+     * 
      * @param trial the trial value to set.
      * @return the SweepJob object itself.
      */
@@ -236,70 +266,99 @@ public final class SweepJob extends JobBaseProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SweepJob withComponentId(String componentId) {
         super.withComponentId(componentId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SweepJob withComputeId(String computeId) {
         super.withComputeId(computeId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SweepJob withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SweepJob withExperimentName(String experimentName) {
         super.withExperimentName(experimentName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SweepJob withIdentity(IdentityConfiguration identity) {
         super.withIdentity(identity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SweepJob withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SweepJob withNotificationSetting(NotificationSetting notificationSetting) {
+        super.withNotificationSetting(notificationSetting);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SweepJob withServices(Map<String, JobService> services) {
         super.withServices(services);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SweepJob withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SweepJob withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SweepJob withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -308,7 +367,7 @@ public final class SweepJob extends JobBaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -318,46 +377,40 @@ public final class SweepJob extends JobBaseProperties {
             earlyTermination().validate();
         }
         if (inputs() != null) {
-            inputs()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            inputs().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
         if (limits() != null) {
             limits().validate();
         }
         if (objective() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property objective in model SweepJob"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property objective in model SweepJob"));
         } else {
             objective().validate();
         }
         if (outputs() != null) {
-            outputs()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            outputs().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
+        }
+        if (queueSettings() != null) {
+            queueSettings().validate();
         }
         if (samplingAlgorithm() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property samplingAlgorithm in model SweepJob"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property samplingAlgorithm in model SweepJob"));
         } else {
             samplingAlgorithm().validate();
         }
         if (searchSpace() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property searchSpace in model SweepJob"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property searchSpace in model SweepJob"));
         }
         if (trial() == null) {
             throw LOGGER

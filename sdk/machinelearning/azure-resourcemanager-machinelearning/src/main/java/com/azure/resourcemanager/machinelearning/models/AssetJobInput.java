@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Asset input type. */
+/**
+ * Asset input type.
+ */
 @Fluent
 public class AssetJobInput {
     /*
@@ -23,13 +25,15 @@ public class AssetJobInput {
     @JsonProperty(value = "uri", required = true)
     private String uri;
 
-    /** Creates an instance of AssetJobInput class. */
+    /**
+     * Creates an instance of AssetJobInput class.
+     */
     public AssetJobInput() {
     }
 
     /**
      * Get the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public InputDeliveryMode mode() {
@@ -38,7 +42,7 @@ public class AssetJobInput {
 
     /**
      * Set the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the AssetJobInput object itself.
      */
@@ -49,7 +53,7 @@ public class AssetJobInput {
 
     /**
      * Get the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -58,7 +62,7 @@ public class AssetJobInput {
 
     /**
      * Set the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the AssetJobInput object itself.
      */
@@ -69,14 +73,13 @@ public class AssetJobInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (uri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property uri in model AssetJobInput"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property uri in model AssetJobInput"));
         }
     }
 

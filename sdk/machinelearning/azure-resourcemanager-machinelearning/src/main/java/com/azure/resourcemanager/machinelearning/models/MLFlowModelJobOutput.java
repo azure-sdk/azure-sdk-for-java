@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The MLFlowModelJobOutput model. */
+/**
+ * The MLFlowModelJobOutput model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobOutputType")
 @JsonTypeName("mlflow_model")
 @Fluent
@@ -26,13 +28,15 @@ public final class MLFlowModelJobOutput extends JobOutput {
     @JsonProperty(value = "uri")
     private String uri;
 
-    /** Creates an instance of MLFlowModelJobOutput class. */
+    /**
+     * Creates an instance of MLFlowModelJobOutput class.
+     */
     public MLFlowModelJobOutput() {
     }
 
     /**
      * Get the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public OutputDeliveryMode mode() {
@@ -41,7 +45,7 @@ public final class MLFlowModelJobOutput extends JobOutput {
 
     /**
      * Set the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the MLFlowModelJobOutput object itself.
      */
@@ -52,7 +56,7 @@ public final class MLFlowModelJobOutput extends JobOutput {
 
     /**
      * Get the uri property: Output Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -61,7 +65,7 @@ public final class MLFlowModelJobOutput extends JobOutput {
 
     /**
      * Set the uri property: Output Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the MLFlowModelJobOutput object itself.
      */
@@ -70,7 +74,9 @@ public final class MLFlowModelJobOutput extends JobOutput {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLFlowModelJobOutput withDescription(String description) {
         super.withDescription(description);
@@ -79,7 +85,7 @@ public final class MLFlowModelJobOutput extends JobOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

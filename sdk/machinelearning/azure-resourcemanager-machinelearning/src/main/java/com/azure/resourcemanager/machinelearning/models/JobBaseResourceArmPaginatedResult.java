@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.JobBaseInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of JobBase entities. */
+/**
+ * A paginated list of JobBase entities.
+ */
 @Fluent
 public final class JobBaseResourceArmPaginatedResult {
     /*
@@ -24,13 +26,15 @@ public final class JobBaseResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<JobBaseInner> value;
 
-    /** Creates an instance of JobBaseResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of JobBaseResourceArmPaginatedResult class.
+     */
     public JobBaseResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of JobBase objects. If null, there are no additional pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class JobBaseResourceArmPaginatedResult {
 
     /**
      * Set the nextLink property: The link to the next page of JobBase objects. If null, there are no additional pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the JobBaseResourceArmPaginatedResult object itself.
      */
@@ -50,7 +54,7 @@ public final class JobBaseResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type JobBase.
-     *
+     * 
      * @return the value value.
      */
     public List<JobBaseInner> value() {
@@ -59,7 +63,7 @@ public final class JobBaseResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type JobBase.
-     *
+     * 
      * @param value the value value to set.
      * @return the JobBaseResourceArmPaginatedResult object itself.
      */
@@ -70,7 +74,7 @@ public final class JobBaseResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
