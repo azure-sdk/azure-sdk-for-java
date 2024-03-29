@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** SecurityProfile - Specifies the security settings for the virtual machine instance. */
+/**
+ * SecurityProfile - Specifies the security settings for the virtual machine instance.
+ */
 @Fluent
 public final class VirtualMachineInstancePropertiesSecurityProfile {
     /*
@@ -29,13 +31,15 @@ public final class VirtualMachineInstancePropertiesSecurityProfile {
     @JsonProperty(value = "securityType")
     private SecurityTypes securityType;
 
-    /** Creates an instance of VirtualMachineInstancePropertiesSecurityProfile class. */
+    /**
+     * Creates an instance of VirtualMachineInstancePropertiesSecurityProfile class.
+     */
     public VirtualMachineInstancePropertiesSecurityProfile() {
     }
 
     /**
      * Get the enableTpm property: The enableTPM property.
-     *
+     * 
      * @return the enableTpm value.
      */
     public Boolean enableTpm() {
@@ -44,7 +48,7 @@ public final class VirtualMachineInstancePropertiesSecurityProfile {
 
     /**
      * Set the enableTpm property: The enableTPM property.
-     *
+     * 
      * @param enableTpm the enableTpm value to set.
      * @return the VirtualMachineInstancePropertiesSecurityProfile object itself.
      */
@@ -55,7 +59,7 @@ public final class VirtualMachineInstancePropertiesSecurityProfile {
 
     /**
      * Get the uefiSettings property: The uefiSettings property.
-     *
+     * 
      * @return the uefiSettings value.
      */
     public VirtualMachineInstancePropertiesSecurityProfileUefiSettings uefiSettings() {
@@ -64,20 +68,20 @@ public final class VirtualMachineInstancePropertiesSecurityProfile {
 
     /**
      * Set the uefiSettings property: The uefiSettings property.
-     *
+     * 
      * @param uefiSettings the uefiSettings value to set.
      * @return the VirtualMachineInstancePropertiesSecurityProfile object itself.
      */
-    public VirtualMachineInstancePropertiesSecurityProfile withUefiSettings(
-        VirtualMachineInstancePropertiesSecurityProfileUefiSettings uefiSettings) {
+    public VirtualMachineInstancePropertiesSecurityProfile
+        withUefiSettings(VirtualMachineInstancePropertiesSecurityProfileUefiSettings uefiSettings) {
         this.uefiSettings = uefiSettings;
         return this;
     }
 
     /**
-     * Get the securityType property: Specifies the SecurityType of the virtual machine. EnableTPM and SecureBootEnabled
-     * must be set to true for SecurityType to function.
-     *
+     * Get the securityType property: Specifies the SecurityType of the virtual machine. EnableTPM and
+     * SecureBootEnabled must be set to true for SecurityType to function.
+     * 
      * @return the securityType value.
      */
     public SecurityTypes securityType() {
@@ -85,9 +89,9 @@ public final class VirtualMachineInstancePropertiesSecurityProfile {
     }
 
     /**
-     * Set the securityType property: Specifies the SecurityType of the virtual machine. EnableTPM and SecureBootEnabled
-     * must be set to true for SecurityType to function.
-     *
+     * Set the securityType property: Specifies the SecurityType of the virtual machine. EnableTPM and
+     * SecureBootEnabled must be set to true for SecurityType to function.
+     * 
      * @param securityType the securityType value to set.
      * @return the VirtualMachineInstancePropertiesSecurityProfile object itself.
      */
@@ -98,7 +102,7 @@ public final class VirtualMachineInstancePropertiesSecurityProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -15,7 +15,9 @@ import com.azure.resourcemanager.azurestackhci.models.OperatingSystemTypes;
 import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties under the marketplace gallery image resource. */
+/**
+ * Properties under the marketplace gallery image resource.
+ */
 @Fluent
 public final class MarketplaceGalleryImageProperties {
     /*
@@ -66,14 +68,16 @@ public final class MarketplaceGalleryImageProperties {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private MarketplaceGalleryImageStatus status;
 
-    /** Creates an instance of MarketplaceGalleryImageProperties class. */
+    /**
+     * Creates an instance of MarketplaceGalleryImageProperties class.
+     */
     public MarketplaceGalleryImageProperties() {
     }
 
     /**
      * Get the containerId property: Storage ContainerID of the storage container to be used for marketplace gallery
      * image.
-     *
+     * 
      * @return the containerId value.
      */
     public String containerId() {
@@ -83,7 +87,7 @@ public final class MarketplaceGalleryImageProperties {
     /**
      * Set the containerId property: Storage ContainerID of the storage container to be used for marketplace gallery
      * image.
-     *
+     * 
      * @param containerId the containerId value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Get the osType property: Operating system type that the gallery image uses [Windows, Linux].
-     *
+     * 
      * @return the osType value.
      */
     public OperatingSystemTypes osType() {
@@ -103,7 +107,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Set the osType property: Operating system type that the gallery image uses [Windows, Linux].
-     *
+     * 
      * @param osType the osType value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -115,7 +119,7 @@ public final class MarketplaceGalleryImageProperties {
     /**
      * Get the cloudInitDataSource property: Datasource for the gallery image when provisioning with cloud-init
      * [NoCloud, Azure].
-     *
+     * 
      * @return the cloudInitDataSource value.
      */
     public CloudInitDataSource cloudInitDataSource() {
@@ -125,7 +129,7 @@ public final class MarketplaceGalleryImageProperties {
     /**
      * Set the cloudInitDataSource property: Datasource for the gallery image when provisioning with cloud-init
      * [NoCloud, Azure].
-     *
+     * 
      * @param cloudInitDataSource the cloudInitDataSource value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -136,7 +140,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Get the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @return the hyperVGeneration value.
      */
     public HyperVGeneration hyperVGeneration() {
@@ -145,7 +149,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Set the hyperVGeneration property: The hypervisor generation of the Virtual Machine [V1, V2].
-     *
+     * 
      * @param hyperVGeneration the hyperVGeneration value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -156,7 +160,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Get the identifier property: This is the gallery image definition identifier.
-     *
+     * 
      * @return the identifier value.
      */
     public GalleryImageIdentifier identifier() {
@@ -165,7 +169,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Set the identifier property: This is the gallery image definition identifier.
-     *
+     * 
      * @param identifier the identifier value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -177,7 +181,7 @@ public final class MarketplaceGalleryImageProperties {
     /**
      * Get the version property: Specifies information about the gallery image version that you want to create or
      * update.
-     *
+     * 
      * @return the version value.
      */
     public GalleryImageVersion version() {
@@ -187,7 +191,7 @@ public final class MarketplaceGalleryImageProperties {
     /**
      * Set the version property: Specifies information about the gallery image version that you want to create or
      * update.
-     *
+     * 
      * @param version the version value to set.
      * @return the MarketplaceGalleryImageProperties object itself.
      */
@@ -198,7 +202,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the marketplace gallery image.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -207,7 +211,7 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Get the status property: The observed state of marketplace gallery images.
-     *
+     * 
      * @return the status value.
      */
     public MarketplaceGalleryImageStatus status() {
@@ -216,15 +220,13 @@ public final class MarketplaceGalleryImageProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (osType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property osType in model MarketplaceGalleryImageProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property osType in model MarketplaceGalleryImageProperties"));
         }
         if (identifier() != null) {
             identifier().validate();

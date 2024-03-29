@@ -17,7 +17,9 @@ import com.azure.resourcemanager.azurestackhci.models.VirtualMachineInstanceStat
 import com.azure.resourcemanager.azurestackhci.models.VirtualMachineInstanceView;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties under the virtual machine instance resource. */
+/**
+ * Properties under the virtual machine instance resource.
+ */
 @Fluent
 public final class VirtualMachineInstanceProperties {
     /*
@@ -92,14 +94,16 @@ public final class VirtualMachineInstanceProperties {
     @JsonProperty(value = "resourceUid")
     private String resourceUid;
 
-    /** Creates an instance of VirtualMachineInstanceProperties class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceProperties class.
+     */
     public VirtualMachineInstanceProperties() {
     }
 
     /**
      * Get the hardwareProfile property: HardwareProfile - Specifies the hardware settings for the virtual machine
      * instance.
-     *
+     * 
      * @return the hardwareProfile value.
      */
     public VirtualMachineInstancePropertiesHardwareProfile hardwareProfile() {
@@ -109,12 +113,12 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Set the hardwareProfile property: HardwareProfile - Specifies the hardware settings for the virtual machine
      * instance.
-     *
+     * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
-    public VirtualMachineInstanceProperties withHardwareProfile(
-        VirtualMachineInstancePropertiesHardwareProfile hardwareProfile) {
+    public VirtualMachineInstanceProperties
+        withHardwareProfile(VirtualMachineInstancePropertiesHardwareProfile hardwareProfile) {
         this.hardwareProfile = hardwareProfile;
         return this;
     }
@@ -122,7 +126,7 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Get the networkProfile property: NetworkProfile - describes the network configuration the virtual machine
      * instance.
-     *
+     * 
      * @return the networkProfile value.
      */
     public VirtualMachineInstancePropertiesNetworkProfile networkProfile() {
@@ -132,19 +136,19 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Set the networkProfile property: NetworkProfile - describes the network configuration the virtual machine
      * instance.
-     *
+     * 
      * @param networkProfile the networkProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
-    public VirtualMachineInstanceProperties withNetworkProfile(
-        VirtualMachineInstancePropertiesNetworkProfile networkProfile) {
+    public VirtualMachineInstanceProperties
+        withNetworkProfile(VirtualMachineInstancePropertiesNetworkProfile networkProfile) {
         this.networkProfile = networkProfile;
         return this;
     }
 
     /**
      * Get the osProfile property: OsProfile - describes the configuration of the operating system and sets login data.
-     *
+     * 
      * @return the osProfile value.
      */
     public VirtualMachineInstancePropertiesOsProfile osProfile() {
@@ -153,7 +157,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the osProfile property: OsProfile - describes the configuration of the operating system and sets login data.
-     *
+     * 
      * @param osProfile the osProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -165,7 +169,7 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Get the securityProfile property: SecurityProfile - Specifies the security settings for the virtual machine
      * instance.
-     *
+     * 
      * @return the securityProfile value.
      */
     public VirtualMachineInstancePropertiesSecurityProfile securityProfile() {
@@ -175,12 +179,12 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Set the securityProfile property: SecurityProfile - Specifies the security settings for the virtual machine
      * instance.
-     *
+     * 
      * @param securityProfile the securityProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
-    public VirtualMachineInstanceProperties withSecurityProfile(
-        VirtualMachineInstancePropertiesSecurityProfile securityProfile) {
+    public VirtualMachineInstanceProperties
+        withSecurityProfile(VirtualMachineInstancePropertiesSecurityProfile securityProfile) {
         this.securityProfile = securityProfile;
         return this;
     }
@@ -188,7 +192,7 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Get the storageProfile property: StorageProfile - contains information about the disks and storage information
      * for the virtual machine instance.
-     *
+     * 
      * @return the storageProfile value.
      */
     public VirtualMachineInstancePropertiesStorageProfile storageProfile() {
@@ -198,19 +202,19 @@ public final class VirtualMachineInstanceProperties {
     /**
      * Set the storageProfile property: StorageProfile - contains information about the disks and storage information
      * for the virtual machine instance.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
-    public VirtualMachineInstanceProperties withStorageProfile(
-        VirtualMachineInstancePropertiesStorageProfile storageProfile) {
+    public VirtualMachineInstanceProperties
+        withStorageProfile(VirtualMachineInstancePropertiesStorageProfile storageProfile) {
         this.storageProfile = storageProfile;
         return this;
     }
 
     /**
      * Get the httpProxyConfig property: HTTP Proxy configuration for the VM.
-     *
+     * 
      * @return the httpProxyConfig value.
      */
     public HttpProxyConfiguration httpProxyConfig() {
@@ -219,7 +223,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the httpProxyConfig property: HTTP Proxy configuration for the VM.
-     *
+     * 
      * @param httpProxyConfig the httpProxyConfig value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -230,7 +234,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the virtual machine instance.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -239,7 +243,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the instanceView property: The virtual machine instance view.
-     *
+     * 
      * @return the instanceView value.
      */
     public VirtualMachineInstanceView instanceView() {
@@ -248,7 +252,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the status property: The observed state of virtual machine instances.
-     *
+     * 
      * @return the status value.
      */
     public VirtualMachineInstanceStatus status() {
@@ -257,7 +261,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the guestAgentInstallStatus property: Guest agent install status.
-     *
+     * 
      * @return the guestAgentInstallStatus value.
      */
     public GuestAgentInstallStatus guestAgentInstallStatus() {
@@ -266,19 +270,19 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the guestAgentInstallStatus property: Guest agent install status.
-     *
+     * 
      * @param guestAgentInstallStatus the guestAgentInstallStatus value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
-    public VirtualMachineInstanceProperties withGuestAgentInstallStatus(
-        GuestAgentInstallStatus guestAgentInstallStatus) {
+    public VirtualMachineInstanceProperties
+        withGuestAgentInstallStatus(GuestAgentInstallStatus guestAgentInstallStatus) {
         this.guestAgentInstallStatus = guestAgentInstallStatus;
         return this;
     }
 
     /**
      * Get the vmId property: Unique identifier for the vm resource.
-     *
+     * 
      * @return the vmId value.
      */
     public String vmId() {
@@ -287,7 +291,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the resourceUid property: Unique identifier defined by ARC to identify the guest of the VM.
-     *
+     * 
      * @return the resourceUid value.
      */
     public String resourceUid() {
@@ -296,7 +300,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the resourceUid property: Unique identifier defined by ARC to identify the guest of the VM.
-     *
+     * 
      * @param resourceUid the resourceUid value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -307,7 +311,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

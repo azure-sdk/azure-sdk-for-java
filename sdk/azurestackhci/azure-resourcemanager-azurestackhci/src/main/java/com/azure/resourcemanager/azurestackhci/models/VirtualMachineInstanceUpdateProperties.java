@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the resource properties for the update. */
+/**
+ * Defines the resource properties for the update.
+ */
 @Fluent
 public final class VirtualMachineInstanceUpdateProperties {
     /*
@@ -34,14 +36,16 @@ public final class VirtualMachineInstanceUpdateProperties {
     @JsonProperty(value = "osProfile")
     private OsProfileUpdate osProfile;
 
-    /** Creates an instance of VirtualMachineInstanceUpdateProperties class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceUpdateProperties class.
+     */
     public VirtualMachineInstanceUpdateProperties() {
     }
 
     /**
      * Get the hardwareProfile property: HardwareProfile - Specifies the hardware settings for the virtual machine
      * instance.
-     *
+     * 
      * @return the hardwareProfile value.
      */
     public HardwareProfileUpdate hardwareProfile() {
@@ -51,7 +55,7 @@ public final class VirtualMachineInstanceUpdateProperties {
     /**
      * Set the hardwareProfile property: HardwareProfile - Specifies the hardware settings for the virtual machine
      * instance.
-     *
+     * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the VirtualMachineInstanceUpdateProperties object itself.
      */
@@ -62,7 +66,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Get the storageProfile property: The storageProfile property.
-     *
+     * 
      * @return the storageProfile value.
      */
     public StorageProfileUpdate storageProfile() {
@@ -71,7 +75,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Set the storageProfile property: The storageProfile property.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the VirtualMachineInstanceUpdateProperties object itself.
      */
@@ -83,7 +87,7 @@ public final class VirtualMachineInstanceUpdateProperties {
     /**
      * Get the networkProfile property: NetworkProfile - describes the network update configuration the virtual machine
      * instance.
-     *
+     * 
      * @return the networkProfile value.
      */
     public NetworkProfileUpdate networkProfile() {
@@ -93,7 +97,7 @@ public final class VirtualMachineInstanceUpdateProperties {
     /**
      * Set the networkProfile property: NetworkProfile - describes the network update configuration the virtual machine
      * instance.
-     *
+     * 
      * @param networkProfile the networkProfile value to set.
      * @return the VirtualMachineInstanceUpdateProperties object itself.
      */
@@ -104,7 +108,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Get the osProfile property: OsProfile - describes the update configuration of the operating system.
-     *
+     * 
      * @return the osProfile value.
      */
     public OsProfileUpdate osProfile() {
@@ -113,7 +117,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Set the osProfile property: OsProfile - describes the update configuration of the operating system.
-     *
+     * 
      * @param osProfile the osProfile value to set.
      * @return the VirtualMachineInstanceUpdateProperties object itself.
      */
@@ -124,7 +128,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
