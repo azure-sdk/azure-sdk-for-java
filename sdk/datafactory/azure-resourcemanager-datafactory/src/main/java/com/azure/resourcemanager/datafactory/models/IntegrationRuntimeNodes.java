@@ -104,35 +104,4 @@ public interface IntegrationRuntimeNodes {
      */
     SelfHostedIntegrationRuntimeNode update(String resourceGroupName, String factoryName, String integrationRuntimeName,
         String nodeName, UpdateIntegrationRuntimeNodeRequest updateIntegrationRuntimeNodeRequest);
-
-    /**
-     * Get the IP address of self-hosted integration runtime node.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param factoryName The factory name.
-     * @param integrationRuntimeName The integration runtime name.
-     * @param nodeName The integration runtime node name.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the IP address of self-hosted integration runtime node along with {@link Response}.
-     */
-    Response<IntegrationRuntimeNodeIpAddress> getIpAddressWithResponse(String resourceGroupName, String factoryName,
-        String integrationRuntimeName, String nodeName, Context context);
-
-    /**
-     * Get the IP address of self-hosted integration runtime node.
-     * 
-     * @param resourceGroupName The resource group name.
-     * @param factoryName The factory name.
-     * @param integrationRuntimeName The integration runtime name.
-     * @param nodeName The integration runtime node name.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the IP address of self-hosted integration runtime node.
-     */
-    IntegrationRuntimeNodeIpAddress getIpAddress(String resourceGroupName, String factoryName,
-        String integrationRuntimeName, String nodeName);
 }

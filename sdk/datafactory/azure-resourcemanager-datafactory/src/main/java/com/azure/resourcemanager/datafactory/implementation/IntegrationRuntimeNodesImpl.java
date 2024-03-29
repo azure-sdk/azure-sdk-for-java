@@ -9,9 +9,7 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.fluent.IntegrationRuntimeNodesClient;
-import com.azure.resourcemanager.datafactory.fluent.models.IntegrationRuntimeNodeIpAddressInner;
 import com.azure.resourcemanager.datafactory.fluent.models.SelfHostedIntegrationRuntimeNodeInner;
-import com.azure.resourcemanager.datafactory.models.IntegrationRuntimeNodeIpAddress;
 import com.azure.resourcemanager.datafactory.models.IntegrationRuntimeNodes;
 import com.azure.resourcemanager.datafactory.models.SelfHostedIntegrationRuntimeNode;
 import com.azure.resourcemanager.datafactory.models.UpdateIntegrationRuntimeNodeRequest;
@@ -83,29 +81,6 @@ public final class IntegrationRuntimeNodesImpl implements IntegrationRuntimeNode
             integrationRuntimeName, nodeName, updateIntegrationRuntimeNodeRequest);
         if (inner != null) {
             return new SelfHostedIntegrationRuntimeNodeImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<IntegrationRuntimeNodeIpAddress> getIpAddressWithResponse(String resourceGroupName,
-        String factoryName, String integrationRuntimeName, String nodeName, Context context) {
-        Response<IntegrationRuntimeNodeIpAddressInner> inner = this.serviceClient()
-            .getIpAddressWithResponse(resourceGroupName, factoryName, integrationRuntimeName, nodeName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new IntegrationRuntimeNodeIpAddressImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public IntegrationRuntimeNodeIpAddress getIpAddress(String resourceGroupName, String factoryName,
-        String integrationRuntimeName, String nodeName) {
-        IntegrationRuntimeNodeIpAddressInner inner
-            = this.serviceClient().getIpAddress(resourceGroupName, factoryName, integrationRuntimeName, nodeName);
-        if (inner != null) {
-            return new IntegrationRuntimeNodeIpAddressImpl(inner, this.manager());
         } else {
             return null;
         }
