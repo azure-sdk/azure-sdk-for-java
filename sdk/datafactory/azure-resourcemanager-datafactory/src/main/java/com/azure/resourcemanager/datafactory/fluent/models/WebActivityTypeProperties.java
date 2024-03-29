@@ -40,7 +40,7 @@ public final class WebActivityTypeProperties {
      */
     @JsonProperty(value = "headers")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> headers;
+    private Map<String, Object> headers;
 
     /*
      * Represents the payload that will be sent to the endpoint. Required for POST/PUT method, not allowed for GET
@@ -150,7 +150,7 @@ public final class WebActivityTypeProperties {
      * 
      * @return the headers value.
      */
-    public Map<String, String> headers() {
+    public Map<String, Object> headers() {
         return this.headers;
     }
 
@@ -162,7 +162,7 @@ public final class WebActivityTypeProperties {
      * @param headers the headers value to set.
      * @return the WebActivityTypeProperties object itself.
      */
-    public WebActivityTypeProperties withHeaders(Map<String, String> headers) {
+    public WebActivityTypeProperties withHeaders(Map<String, Object> headers) {
         this.headers = headers;
         return this;
     }
