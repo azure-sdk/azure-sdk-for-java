@@ -5,18 +5,16 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-/** The properties of the marketplace usage detail. */
+/**
+ * The properties of the marketplace usage detail.
+ */
 @Immutable
 public final class MarketplaceProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(MarketplaceProperties.class);
-
     /*
      * The id of the billing period resource that the usage belongs to.
      */
@@ -144,15 +142,13 @@ public final class MarketplaceProperties {
     private String consumedService;
 
     /*
-     * The cost center of this department if it is a department and a
-     * costcenter exists
+     * The cost center of this department if it is a department and a costcenter exists
      */
     @JsonProperty(value = "costCenter", access = JsonProperty.Access.WRITE_ONLY)
     private String costCenter;
 
     /*
-     * Additional details of this usage item. By default this is not populated,
-     * unless it's specified in $expand.
+     * Additional details of this usage item. By default this is not populated, unless it's specified in $expand.
      */
     @JsonProperty(value = "additionalProperties", access = JsonProperty.Access.WRITE_ONLY)
     private String additionalProperties;
@@ -176,8 +172,14 @@ public final class MarketplaceProperties {
     private Boolean isRecurringCharge;
 
     /**
+     * Creates an instance of MarketplaceProperties class.
+     */
+    public MarketplaceProperties() {
+    }
+
+    /**
      * Get the billingPeriodId property: The id of the billing period resource that the usage belongs to.
-     *
+     * 
      * @return the billingPeriodId value.
      */
     public String billingPeriodId() {
@@ -186,7 +188,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the usageStart property: The start of the date time range covered by the usage detail.
-     *
+     * 
      * @return the usageStart value.
      */
     public OffsetDateTime usageStart() {
@@ -195,7 +197,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the usageEnd property: The end of the date time range covered by the usage detail.
-     *
+     * 
      * @return the usageEnd value.
      */
     public OffsetDateTime usageEnd() {
@@ -204,7 +206,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the resourceRate property: The marketplace resource rate.
-     *
+     * 
      * @return the resourceRate value.
      */
     public BigDecimal resourceRate() {
@@ -213,7 +215,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the offerName property: The type of offer.
-     *
+     * 
      * @return the offerName value.
      */
     public String offerName() {
@@ -222,7 +224,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the resourceGroup property: The name of resource group.
-     *
+     * 
      * @return the resourceGroup value.
      */
     public String resourceGroup() {
@@ -231,7 +233,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the additionalInfo property: Additional information.
-     *
+     * 
      * @return the additionalInfo value.
      */
     public String additionalInfo() {
@@ -240,7 +242,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the orderNumber property: The order number.
-     *
+     * 
      * @return the orderNumber value.
      */
     public String orderNumber() {
@@ -249,7 +251,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the instanceName property: The name of the resource instance that the usage is about.
-     *
+     * 
      * @return the instanceName value.
      */
     public String instanceName() {
@@ -258,7 +260,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the instanceId property: The uri of the resource instance that the usage is about.
-     *
+     * 
      * @return the instanceId value.
      */
     public String instanceId() {
@@ -267,7 +269,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the currency property: The ISO currency in which the meter is charged, for example, USD.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -276,7 +278,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the consumedQuantity property: The quantity of usage.
-     *
+     * 
      * @return the consumedQuantity value.
      */
     public BigDecimal consumedQuantity() {
@@ -285,7 +287,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the unitOfMeasure property: The unit of measure.
-     *
+     * 
      * @return the unitOfMeasure value.
      */
     public String unitOfMeasure() {
@@ -294,7 +296,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the pretaxCost property: The amount of cost before tax.
-     *
+     * 
      * @return the pretaxCost value.
      */
     public BigDecimal pretaxCost() {
@@ -303,7 +305,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the isEstimated property: The estimated usage is subject to change.
-     *
+     * 
      * @return the isEstimated value.
      */
     public Boolean isEstimated() {
@@ -312,7 +314,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the meterId property: The meter id (GUID).
-     *
+     * 
      * @return the meterId value.
      */
     public UUID meterId() {
@@ -321,7 +323,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the subscriptionGuid property: Subscription guid.
-     *
+     * 
      * @return the subscriptionGuid value.
      */
     public UUID subscriptionGuid() {
@@ -330,7 +332,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the subscriptionName property: Subscription name.
-     *
+     * 
      * @return the subscriptionName value.
      */
     public String subscriptionName() {
@@ -339,7 +341,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the accountName property: Account name.
-     *
+     * 
      * @return the accountName value.
      */
     public String accountName() {
@@ -348,7 +350,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the departmentName property: Department name.
-     *
+     * 
      * @return the departmentName value.
      */
     public String departmentName() {
@@ -357,7 +359,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the consumedService property: Consumed service name.
-     *
+     * 
      * @return the consumedService value.
      */
     public String consumedService() {
@@ -366,7 +368,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the costCenter property: The cost center of this department if it is a department and a costcenter exists.
-     *
+     * 
      * @return the costCenter value.
      */
     public String costCenter() {
@@ -376,7 +378,7 @@ public final class MarketplaceProperties {
     /**
      * Get the additionalProperties property: Additional details of this usage item. By default this is not populated,
      * unless it's specified in $expand.
-     *
+     * 
      * @return the additionalProperties value.
      */
     public String additionalProperties() {
@@ -385,7 +387,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the publisherName property: The name of publisher.
-     *
+     * 
      * @return the publisherName value.
      */
     public String publisherName() {
@@ -394,7 +396,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the planName property: The name of plan.
-     *
+     * 
      * @return the planName value.
      */
     public String planName() {
@@ -403,7 +405,7 @@ public final class MarketplaceProperties {
 
     /**
      * Get the isRecurringCharge property: Flag indicating whether this is a recurring charge or not.
-     *
+     * 
      * @return the isRecurringCharge value.
      */
     public Boolean isRecurringCharge() {
@@ -412,7 +414,7 @@ public final class MarketplaceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
