@@ -203,7 +203,7 @@ public final class WebhookActivity extends ControlActivity {
      * 
      * @return the headers value.
      */
-    public Map<String, String> headers() {
+    public Map<String, Object> headers() {
         return this.innerTypeProperties() == null ? null : this.innerTypeProperties().headers();
     }
 
@@ -215,7 +215,7 @@ public final class WebhookActivity extends ControlActivity {
      * @param headers the headers value to set.
      * @return the WebhookActivity object itself.
      */
-    public WebhookActivity withHeaders(Map<String, String> headers) {
+    public WebhookActivity withHeaders(Map<String, Object> headers) {
         if (this.innerTypeProperties() == null) {
             this.innerTypeProperties = new WebhookActivityTypeProperties();
         }

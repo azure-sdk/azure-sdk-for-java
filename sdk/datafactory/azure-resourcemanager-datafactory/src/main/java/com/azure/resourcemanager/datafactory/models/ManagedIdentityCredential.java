@@ -5,8 +5,6 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.datafactory.fluent.models.ManagedIdentityTypeProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -18,25 +16,10 @@ import java.util.List;
 @JsonTypeName("ManagedIdentity")
 @Fluent
 public final class ManagedIdentityCredential extends Credential {
-    /*
-     * Managed identity credential properties.
-     */
-    @JsonProperty(value = "typeProperties")
-    private ManagedIdentityTypeProperties innerTypeProperties;
-
     /**
      * Creates an instance of ManagedIdentityCredential class.
      */
     public ManagedIdentityCredential() {
-    }
-
-    /**
-     * Get the innerTypeProperties property: Managed identity credential properties.
-     * 
-     * @return the innerTypeProperties value.
-     */
-    private ManagedIdentityTypeProperties innerTypeProperties() {
-        return this.innerTypeProperties;
     }
 
     /**
@@ -58,29 +41,6 @@ public final class ManagedIdentityCredential extends Credential {
     }
 
     /**
-     * Get the resourceId property: The resource id of user assigned managed identity.
-     * 
-     * @return the resourceId value.
-     */
-    public String resourceId() {
-        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().resourceId();
-    }
-
-    /**
-     * Set the resourceId property: The resource id of user assigned managed identity.
-     * 
-     * @param resourceId the resourceId value to set.
-     * @return the ManagedIdentityCredential object itself.
-     */
-    public ManagedIdentityCredential withResourceId(String resourceId) {
-        if (this.innerTypeProperties() == null) {
-            this.innerTypeProperties = new ManagedIdentityTypeProperties();
-        }
-        this.innerTypeProperties().withResourceId(resourceId);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -88,8 +48,5 @@ public final class ManagedIdentityCredential extends Credential {
     @Override
     public void validate() {
         super.validate();
-        if (innerTypeProperties() != null) {
-            innerTypeProperties().validate();
-        }
     }
 }
