@@ -1,0 +1,101 @@
+[ {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.OperationListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.fluent.models.OperationInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.OperationDisplay",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.ExtensionManagerListResult",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.fluent.models.ExtensionManagerInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.fluent.models.ExtensionManagerProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.ScenarioProfileObject",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.ExtensionObject",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.ManagedIdentity",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.ExtensionManagerPatch",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.ManagedIdentityUpdate",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.AddCustomLocationDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.DisableExtensionsRequestDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.EnableExtensionsRequestDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.RemoveCustomLocationDetails",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.Origin",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.ActionType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.ProvisioningState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.ExtensionState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.hybridonboarding.models.ManagedIdentityType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+} ]

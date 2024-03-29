@@ -102,6 +102,7 @@
     <module>sdk/hybridcontainerservice</module>
     <module>sdk/hybridkubernetes</module>
     <module>sdk/hybridnetwork</module>
+    <module>sdk/hybridonboarding</module>
     <module>sdk/identity</module>
     <module>sdk/imagebuilder</module>
     <module>sdk/iotcentral</module>

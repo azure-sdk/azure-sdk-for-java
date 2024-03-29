@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/hybridonboarding/ci.yml
+      - sdk/hybridonboarding/azure-resourcemanager-hybridonboarding/
+    exclude:
+      - sdk/hybridonboarding/pom.xml
+      - sdk/hybridonboarding/azure-resourcemanager-hybridonboarding/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/hybridonboarding/ci.yml
+      - sdk/hybridonboarding/azure-resourcemanager-hybridonboarding/
+    exclude:
+      - sdk/hybridonboarding/pom.xml
+      - sdk/hybridonboarding/azure-resourcemanager-hybridonboarding/pom.xml
+
+parameters:
+  - name: release_azureresourcemanagerhybridonboarding
+    displayName: azure-resourcemanager-hybridonboarding
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: hybridonboarding
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-hybridonboarding
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagerhybridonboarding
+        releaseInBatch: ${{ parameters.release_azureresourcemanagerhybridonboarding }}
