@@ -8,24 +8,24 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Defender CSPM Permissions Management discovery configuration.
+ * The kubernetes data collection connection configuration.
  */
 @Fluent
-public final class DefenderCspmAwsOfferingCiemDiscovery {
+public final class DefenderForContainersAwsOfferingKubernetesDataCollection {
     /*
-     * The cloud role ARN in AWS for Permissions Management discovery
+     * The cloud role ARN in AWS for this feature used for reading data
      */
     @JsonProperty(value = "cloudRoleArn")
     private String cloudRoleArn;
 
     /**
-     * Creates an instance of DefenderCspmAwsOfferingCiemDiscovery class.
+     * Creates an instance of DefenderForContainersAwsOfferingKubernetesDataCollection class.
      */
-    public DefenderCspmAwsOfferingCiemDiscovery() {
+    public DefenderForContainersAwsOfferingKubernetesDataCollection() {
     }
 
     /**
-     * Get the cloudRoleArn property: The cloud role ARN in AWS for Permissions Management discovery.
+     * Get the cloudRoleArn property: The cloud role ARN in AWS for this feature used for reading data.
      * 
      * @return the cloudRoleArn value.
      */
@@ -34,12 +34,12 @@ public final class DefenderCspmAwsOfferingCiemDiscovery {
     }
 
     /**
-     * Set the cloudRoleArn property: The cloud role ARN in AWS for Permissions Management discovery.
+     * Set the cloudRoleArn property: The cloud role ARN in AWS for this feature used for reading data.
      * 
      * @param cloudRoleArn the cloudRoleArn value to set.
-     * @return the DefenderCspmAwsOfferingCiemDiscovery object itself.
+     * @return the DefenderForContainersAwsOfferingKubernetesDataCollection object itself.
      */
-    public DefenderCspmAwsOfferingCiemDiscovery withCloudRoleArn(String cloudRoleArn) {
+    public DefenderForContainersAwsOfferingKubernetesDataCollection withCloudRoleArn(String cloudRoleArn) {
         this.cloudRoleArn = cloudRoleArn;
         return this;
     }

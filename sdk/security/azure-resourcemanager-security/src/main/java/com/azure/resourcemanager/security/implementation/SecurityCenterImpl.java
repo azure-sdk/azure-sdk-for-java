@@ -70,7 +70,6 @@ import com.azure.resourcemanager.security.fluent.PricingsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceAssessmentsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceControlsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceStandardsClient;
-import com.azure.resourcemanager.security.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.security.fluent.SecureScoreControlDefinitionsClient;
 import com.azure.resourcemanager.security.fluent.SecureScoreControlsClient;
 import com.azure.resourcemanager.security.fluent.SecureScoresClient;
@@ -596,20 +595,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
      */
     public SqlVulnerabilityAssessmentScanResultsClient getSqlVulnerabilityAssessmentScanResults() {
         return this.sqlVulnerabilityAssessmentScanResults;
-    }
-
-    /**
-     * The ResourceProvidersClient object to access its operations.
-     */
-    private final ResourceProvidersClient resourceProviders;
-
-    /**
-     * Gets the ResourceProvidersClient object to access its operations.
-     * 
-     * @return the ResourceProvidersClient object.
-     */
-    public ResourceProvidersClient getResourceProviders() {
-        return this.resourceProviders;
     }
 
     /**
@@ -1219,7 +1204,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.sqlVulnerabilityAssessmentBaselineRules = new SqlVulnerabilityAssessmentBaselineRulesClientImpl(this);
         this.sqlVulnerabilityAssessmentScans = new SqlVulnerabilityAssessmentScansClientImpl(this);
         this.sqlVulnerabilityAssessmentScanResults = new SqlVulnerabilityAssessmentScanResultsClientImpl(this);
-        this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.sensitivitySettings = new SensitivitySettingsClientImpl(this);
         this.healthReports = new HealthReportsClientImpl(this);
         this.azureDevOpsOrgs = new AzureDevOpsOrgsClientImpl(this);

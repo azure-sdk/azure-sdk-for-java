@@ -7,21 +7,21 @@ package com.azure.resourcemanager.security.models;
 import com.azure.core.annotation.Fluent;
 
 /**
- * The ARC autoprovisioning configuration.
+ * The ARC autoprovisioning configuration for an GCP environment.
  */
 @Fluent
-public final class DefenderForServersGcpOfferingArcAutoProvisioning extends ArcAutoProvisioningGcp {
+public class ArcAutoProvisioningGcp extends ArcAutoProvisioning {
     /**
-     * Creates an instance of DefenderForServersGcpOfferingArcAutoProvisioning class.
+     * Creates an instance of ArcAutoProvisioningGcp class.
      */
-    public DefenderForServersGcpOfferingArcAutoProvisioning() {
+    public ArcAutoProvisioningGcp() {
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public DefenderForServersGcpOfferingArcAutoProvisioning withEnabled(Boolean enabled) {
+    public ArcAutoProvisioningGcp withEnabled(Boolean enabled) {
         super.withEnabled(enabled);
         return this;
     }
@@ -30,8 +30,7 @@ public final class DefenderForServersGcpOfferingArcAutoProvisioning extends ArcA
      * {@inheritDoc}
      */
     @Override
-    public DefenderForServersGcpOfferingArcAutoProvisioning
-        withConfiguration(ArcAutoProvisioningConfiguration configuration) {
+    public ArcAutoProvisioningGcp withConfiguration(ArcAutoProvisioningConfiguration configuration) {
         super.withConfiguration(configuration);
         return this;
     }
