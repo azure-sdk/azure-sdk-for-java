@@ -13,35 +13,35 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Credential resource type.
  */
 @Fluent
-public final class ManagedIdentityCredentialResource extends CredentialResourceInner {
+public final class ServicePrincipalCredentialResource extends CredentialResourceInner {
     /*
-     * Managed Identity Credential properties.
+     * Service Principal Credential properties.
      */
     @JsonProperty(value = "properties", required = true)
-    private ManagedIdentityCredential properties;
+    private ServicePrincipalCredential properties;
 
     /**
-     * Creates an instance of ManagedIdentityCredentialResource class.
+     * Creates an instance of ServicePrincipalCredentialResource class.
      */
-    public ManagedIdentityCredentialResource() {
+    public ServicePrincipalCredentialResource() {
     }
 
     /**
-     * Get the properties property: Managed Identity Credential properties.
+     * Get the properties property: Service Principal Credential properties.
      * 
      * @return the properties value.
      */
-    public ManagedIdentityCredential properties() {
+    public ServicePrincipalCredential properties() {
         return this.properties;
     }
 
     /**
-     * Set the properties property: Managed Identity Credential properties.
+     * Set the properties property: Service Principal Credential properties.
      * 
      * @param properties the properties value to set.
-     * @return the ManagedIdentityCredentialResource object itself.
+     * @return the ServicePrincipalCredentialResource object itself.
      */
-    public ManagedIdentityCredentialResource withProperties(ManagedIdentityCredential properties) {
+    public ServicePrincipalCredentialResource withProperties(ServicePrincipalCredential properties) {
         this.properties = properties;
         return this;
     }
@@ -50,7 +50,7 @@ public final class ManagedIdentityCredentialResource extends CredentialResourceI
      * {@inheritDoc}
      */
     @Override
-    public ManagedIdentityCredentialResource withId(String id) {
+    public ServicePrincipalCredentialResource withId(String id) {
         super.withId(id);
         return this;
     }
@@ -65,11 +65,11 @@ public final class ManagedIdentityCredentialResource extends CredentialResourceI
         super.validate();
         if (properties() == null) {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property properties in model ManagedIdentityCredentialResource"));
+                "Missing required property properties in model ServicePrincipalCredentialResource"));
         } else {
             properties().validate();
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(ManagedIdentityCredentialResource.class);
+    private static final ClientLogger LOGGER = new ClientLogger(ServicePrincipalCredentialResource.class);
 }
