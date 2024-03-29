@@ -10,7 +10,7 @@ package com.azure.resourcemanager.hardwaresecuritymodules.generated;
 public final class DedicatedHsmListOutboundNetworkDependenciesEndpointsSamples {
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/
      * examples/GetOutboundNetworkDependenciesEndpointsList.json
      */
     /**

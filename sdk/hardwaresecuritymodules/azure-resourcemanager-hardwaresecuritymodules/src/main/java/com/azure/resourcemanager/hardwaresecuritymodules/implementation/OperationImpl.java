@@ -4,16 +4,18 @@
 
 package com.azure.resourcemanager.hardwaresecuritymodules.implementation;
 
-import com.azure.resourcemanager.hardwaresecuritymodules.fluent.models.DedicatedHsmOperationInner;
-import com.azure.resourcemanager.hardwaresecuritymodules.models.DedicatedHsmOperation;
-import com.azure.resourcemanager.hardwaresecuritymodules.models.DedicatedHsmOperationDisplay;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.models.OperationInner;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.ActionType;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.Operation;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.OperationDisplay;
+import com.azure.resourcemanager.hardwaresecuritymodules.models.Origin;
 
-public final class DedicatedHsmOperationImpl implements DedicatedHsmOperation {
-    private DedicatedHsmOperationInner innerObject;
+public final class OperationImpl implements Operation {
+    private OperationInner innerObject;
 
     private final com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager serviceManager;
 
-    DedicatedHsmOperationImpl(DedicatedHsmOperationInner innerObject,
+    OperationImpl(OperationInner innerObject,
         com.azure.resourcemanager.hardwaresecuritymodules.HardwareSecurityModulesManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -27,15 +29,19 @@ public final class DedicatedHsmOperationImpl implements DedicatedHsmOperation {
         return this.innerModel().isDataAction();
     }
 
-    public String origin() {
-        return this.innerModel().origin();
-    }
-
-    public DedicatedHsmOperationDisplay display() {
+    public OperationDisplay display() {
         return this.innerModel().display();
     }
 
-    public DedicatedHsmOperationInner innerModel() {
+    public Origin origin() {
+        return this.innerModel().origin();
+    }
+
+    public ActionType actionType() {
+        return this.innerModel().actionType();
+    }
+
+    public OperationInner innerModel() {
         return this.innerObject;
     }
 

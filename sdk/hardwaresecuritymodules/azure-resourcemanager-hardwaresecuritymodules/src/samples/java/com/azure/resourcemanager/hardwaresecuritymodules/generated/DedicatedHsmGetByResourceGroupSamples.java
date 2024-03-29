@@ -10,7 +10,7 @@ package com.azure.resourcemanager.hardwaresecuritymodules.generated;
 public final class DedicatedHsmGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/
      * examples/PaymentHsm_Get.json
      */
     /**
@@ -25,7 +25,7 @@ public final class DedicatedHsmGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/
      * examples/PaymentHsm_Get_With_2018-10-31Preview_Version.json
      */
     /**
@@ -40,7 +40,7 @@ public final class DedicatedHsmGetByResourceGroupSamples {
 
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2021-11-30/
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/
      * examples/DedicatedHsm_Get.json
      */
     /**

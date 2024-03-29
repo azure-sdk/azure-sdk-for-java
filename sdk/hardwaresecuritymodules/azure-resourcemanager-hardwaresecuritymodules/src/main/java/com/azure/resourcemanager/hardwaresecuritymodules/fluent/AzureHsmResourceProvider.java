@@ -26,6 +26,13 @@ public interface AzureHsmResourceProvider {
     String getEndpoint();
 
     /**
+     * Gets Api Version.
+     * 
+     * @return the apiVersion value.
+     */
+    String getApiVersion();
+
+    /**
      * Gets The HTTP pipeline to send requests through.
      * 
      * @return the httpPipeline value.
@@ -68,16 +75,16 @@ public interface AzureHsmResourceProvider {
     PrivateEndpointConnectionsClient getPrivateEndpointConnections();
 
     /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
      * Gets the DedicatedHsmsClient object to access its operations.
      * 
      * @return the DedicatedHsmsClient object.
      */
     DedicatedHsmsClient getDedicatedHsms();
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
 }

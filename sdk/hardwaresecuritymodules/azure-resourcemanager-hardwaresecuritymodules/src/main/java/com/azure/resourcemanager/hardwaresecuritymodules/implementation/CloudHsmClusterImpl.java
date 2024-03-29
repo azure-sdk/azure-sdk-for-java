@@ -47,12 +47,12 @@ public final class CloudHsmClusterImpl implements CloudHsmCluster, CloudHsmClust
         }
     }
 
-    public CloudHsmClusterSku sku() {
-        return this.innerModel().sku();
-    }
-
     public ManagedServiceIdentity identity() {
         return this.innerModel().identity();
+    }
+
+    public CloudHsmClusterSku sku() {
+        return this.innerModel().sku();
     }
 
     public SystemData systemData() {
@@ -170,22 +170,22 @@ public final class CloudHsmClusterImpl implements CloudHsmCluster, CloudHsmClust
         }
     }
 
-    public CloudHsmClusterImpl withSku(CloudHsmClusterSku sku) {
-        if (isInCreateMode()) {
-            this.innerModel().withSku(sku);
-            return this;
-        } else {
-            this.updateBody.withSku(sku);
-            return this;
-        }
-    }
-
     public CloudHsmClusterImpl withIdentity(ManagedServiceIdentity identity) {
         if (isInCreateMode()) {
             this.innerModel().withIdentity(identity);
             return this;
         } else {
             this.updateBody.withIdentity(identity);
+            return this;
+        }
+    }
+
+    public CloudHsmClusterImpl withSku(CloudHsmClusterSku sku) {
+        if (isInCreateMode()) {
+            this.innerModel().withSku(sku);
+            return this;
+        } else {
+            this.updateBody.withSku(sku);
             return this;
         }
     }

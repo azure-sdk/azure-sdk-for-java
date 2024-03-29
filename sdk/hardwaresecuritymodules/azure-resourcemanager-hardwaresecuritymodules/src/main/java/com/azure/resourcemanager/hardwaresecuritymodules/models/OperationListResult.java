@@ -4,21 +4,22 @@
 
 package com.azure.resourcemanager.hardwaresecuritymodules.models;
 
-import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.hardwaresecuritymodules.fluent.models.PrivateLinkResourceInner;
+import com.azure.core.annotation.Immutable;
+import com.azure.resourcemanager.hardwaresecuritymodules.fluent.models.OperationInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * A list of private link resources.
+ * A list of REST API operations supported by an Azure Resource Provider. It contains an URL link to get the next set
+ * of results.
  */
-@Fluent
-public final class PrivateLinkResourceListResult {
+@Immutable
+public final class OperationListResult {
     /*
-     * Array of private link resources
+     * List of operations supported by the resource provider
      */
-    @JsonProperty(value = "value")
-    private List<PrivateLinkResourceInner> value;
+    @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
+    private List<OperationInner> value;
 
     /*
      * URL to get the next set of operation list results (if there are any).
@@ -27,29 +28,18 @@ public final class PrivateLinkResourceListResult {
     private String nextLink;
 
     /**
-     * Creates an instance of PrivateLinkResourceListResult class.
+     * Creates an instance of OperationListResult class.
      */
-    public PrivateLinkResourceListResult() {
+    public OperationListResult() {
     }
 
     /**
-     * Get the value property: Array of private link resources.
+     * Get the value property: List of operations supported by the resource provider.
      * 
      * @return the value value.
      */
-    public List<PrivateLinkResourceInner> value() {
+    public List<OperationInner> value() {
         return this.value;
-    }
-
-    /**
-     * Set the value property: Array of private link resources.
-     * 
-     * @param value the value value to set.
-     * @return the PrivateLinkResourceListResult object itself.
-     */
-    public PrivateLinkResourceListResult withValue(List<PrivateLinkResourceInner> value) {
-        this.value = value;
-        return this;
     }
 
     /**

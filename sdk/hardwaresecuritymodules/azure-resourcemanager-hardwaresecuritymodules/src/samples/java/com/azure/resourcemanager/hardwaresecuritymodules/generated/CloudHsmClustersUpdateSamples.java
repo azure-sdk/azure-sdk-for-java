@@ -19,8 +19,8 @@ import java.util.Map;
 public final class CloudHsmClustersUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/preview/2023-12-10-
-     * preview/examples/CloudHsmCluster_Update_MaximumSet_Gen.json
+     * specification/hardwaresecuritymodules/resource-manager/Microsoft.HardwareSecurityModules/stable/2024-06-30/
+     * examples/CloudHsmCluster_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: CloudHsmCluster_Update_MaximumSet_Gen.
@@ -36,8 +36,8 @@ public final class CloudHsmClustersUpdateSamples {
                 .withUserAssignedIdentities(mapOf(
                     "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-resources/providers/Microsoft.ManagedIdentity/userAssignedIdentities/identity-1",
                     new UserAssignedIdentity())))
-            .withProperties(new CloudHsmClusterPatchParametersProperties()
-                .withBackupProperties(new BackupProperties().withAzureStorageResourceUri("testStorageResourceUri")))
+            .withProperties(new CloudHsmClusterPatchParametersProperties().withBackupProperties(
+                new BackupProperties().withAzureStorageContainerUri("testAzureStorageContainerUri")))
             .apply();
     }
 

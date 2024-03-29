@@ -53,8 +53,8 @@ public final class CloudHsmClusterInner extends CloudHsmClusterResource {
      * {@inheritDoc}
      */
     @Override
-    public CloudHsmClusterInner withSku(CloudHsmClusterSku sku) {
-        super.withSku(sku);
+    public CloudHsmClusterInner withIdentity(ManagedServiceIdentity identity) {
+        super.withIdentity(identity);
         return this;
     }
 
@@ -62,8 +62,8 @@ public final class CloudHsmClusterInner extends CloudHsmClusterResource {
      * {@inheritDoc}
      */
     @Override
-    public CloudHsmClusterInner withIdentity(ManagedServiceIdentity identity) {
-        super.withIdentity(identity);
+    public CloudHsmClusterInner withSku(CloudHsmClusterSku sku) {
+        super.withSku(sku);
         return this;
     }
 

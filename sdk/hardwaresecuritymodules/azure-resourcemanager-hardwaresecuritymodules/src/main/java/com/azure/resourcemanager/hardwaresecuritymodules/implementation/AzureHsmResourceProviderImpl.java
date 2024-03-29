@@ -72,6 +72,20 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
     }
 
     /**
+     * Api Version.
+     */
+    private final String apiVersion;
+
+    /**
+     * Gets Api Version.
+     * 
+     * @return the apiVersion value.
+     */
+    public String getApiVersion() {
+        return this.apiVersion;
+    }
+
+    /**
      * The HTTP pipeline to send requests through.
      */
     private final HttpPipeline httpPipeline;
@@ -170,20 +184,6 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
     }
 
     /**
-     * The OperationsClient object to access its operations.
-     */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /**
      * The DedicatedHsmsClient object to access its operations.
      */
     private final DedicatedHsmsClient dedicatedHsms;
@@ -195,6 +195,20 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
      */
     public DedicatedHsmsClient getDedicatedHsms() {
         return this.dedicatedHsms;
+    }
+
+    /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
     }
 
     /**
@@ -214,12 +228,13 @@ public final class AzureHsmResourceProviderImpl implements AzureHsmResourceProvi
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
+        this.apiVersion = "2024-06-30";
         this.cloudHsmClusters = new CloudHsmClustersClientImpl(this);
         this.cloudHsmClusterPrivateLinkResources = new CloudHsmClusterPrivateLinkResourcesClientImpl(this);
         this.cloudHsmClusterPrivateEndpointConnections = new CloudHsmClusterPrivateEndpointConnectionsClientImpl(this);
         this.privateEndpointConnections = new PrivateEndpointConnectionsClientImpl(this);
-        this.operations = new OperationsClientImpl(this);
         this.dedicatedHsms = new DedicatedHsmsClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
     }
 
     /**
