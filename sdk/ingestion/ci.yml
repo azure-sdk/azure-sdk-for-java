@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/ingestion/ci.yml
+      - sdk/ingestion/speechingestion/
+    exclude:
+      - sdk/ingestion/pom.xml
+      - sdk/ingestion/speechingestion/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/ingestion/ci.yml
+      - sdk/ingestion/speechingestion/
+    exclude:
+      - sdk/ingestion/pom.xml
+      - sdk/ingestion/speechingestion/pom.xml
+
+parameters:
+  - name: release_speechingestion
+    displayName: speechingestion
+    type: boolean
+    default: true
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: ingestion
+    EnableBatchRelease: true
+    Artifacts:
+      - name: speechingestion
+        groupId: com.azure
+        safeName: speechingestion
+        releaseInBatch: ${{ parameters.release_speechingestion }}

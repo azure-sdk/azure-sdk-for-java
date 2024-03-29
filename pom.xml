@@ -104,6 +104,7 @@
     <module>sdk/hybridnetwork</module>
     <module>sdk/identity</module>
     <module>sdk/imagebuilder</module>
+    <module>sdk/ingestion</module>
     <module>sdk/iotcentral</module>
     <module>sdk/iotfirmwaredefense</module>
     <module>sdk/iothub</module>
