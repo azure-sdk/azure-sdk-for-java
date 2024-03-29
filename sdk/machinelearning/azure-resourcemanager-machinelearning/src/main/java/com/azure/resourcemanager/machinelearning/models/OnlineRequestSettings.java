@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 
-/** Online deployment scoring requests configuration. */
+/**
+ * Online deployment scoring requests configuration.
+ */
 @Fluent
 public final class OnlineRequestSettings {
     /*
@@ -18,8 +20,10 @@ public final class OnlineRequestSettings {
     private Integer maxConcurrentRequestsPerInstance;
 
     /*
-     * The maximum amount of time a request will stay in the queue in ISO 8601 format.
+     * (Deprecated for Managed Online Endpoints) The maximum amount of time a request will stay in the queue in ISO
+     * 8601 format.
      * Defaults to 500ms.
+     * (Now increase `request_timeout_ms` to account for any networking/queue delays)
      */
     @JsonProperty(value = "maxQueueWait")
     private Duration maxQueueWait;
@@ -31,14 +35,16 @@ public final class OnlineRequestSettings {
     @JsonProperty(value = "requestTimeout")
     private Duration requestTimeout;
 
-    /** Creates an instance of OnlineRequestSettings class. */
+    /**
+     * Creates an instance of OnlineRequestSettings class.
+     */
     public OnlineRequestSettings() {
     }
 
     /**
-     * Get the maxConcurrentRequestsPerInstance property: The number of maximum concurrent requests per node allowed per
-     * deployment. Defaults to 1.
-     *
+     * Get the maxConcurrentRequestsPerInstance property: The number of maximum concurrent requests per node allowed
+     * per deployment. Defaults to 1.
+     * 
      * @return the maxConcurrentRequestsPerInstance value.
      */
     public Integer maxConcurrentRequestsPerInstance() {
@@ -46,9 +52,9 @@ public final class OnlineRequestSettings {
     }
 
     /**
-     * Set the maxConcurrentRequestsPerInstance property: The number of maximum concurrent requests per node allowed per
-     * deployment. Defaults to 1.
-     *
+     * Set the maxConcurrentRequestsPerInstance property: The number of maximum concurrent requests per node allowed
+     * per deployment. Defaults to 1.
+     * 
      * @param maxConcurrentRequestsPerInstance the maxConcurrentRequestsPerInstance value to set.
      * @return the OnlineRequestSettings object itself.
      */
@@ -58,9 +64,11 @@ public final class OnlineRequestSettings {
     }
 
     /**
-     * Get the maxQueueWait property: The maximum amount of time a request will stay in the queue in ISO 8601 format.
+     * Get the maxQueueWait property: (Deprecated for Managed Online Endpoints) The maximum amount of time a request
+     * will stay in the queue in ISO 8601 format.
      * Defaults to 500ms.
-     *
+     * (Now increase `request_timeout_ms` to account for any networking/queue delays).
+     * 
      * @return the maxQueueWait value.
      */
     public Duration maxQueueWait() {
@@ -68,9 +76,11 @@ public final class OnlineRequestSettings {
     }
 
     /**
-     * Set the maxQueueWait property: The maximum amount of time a request will stay in the queue in ISO 8601 format.
+     * Set the maxQueueWait property: (Deprecated for Managed Online Endpoints) The maximum amount of time a request
+     * will stay in the queue in ISO 8601 format.
      * Defaults to 500ms.
-     *
+     * (Now increase `request_timeout_ms` to account for any networking/queue delays).
+     * 
      * @param maxQueueWait the maxQueueWait value to set.
      * @return the OnlineRequestSettings object itself.
      */
@@ -80,8 +90,9 @@ public final class OnlineRequestSettings {
     }
 
     /**
-     * Get the requestTimeout property: The scoring timeout in ISO 8601 format. Defaults to 5000ms.
-     *
+     * Get the requestTimeout property: The scoring timeout in ISO 8601 format.
+     * Defaults to 5000ms.
+     * 
      * @return the requestTimeout value.
      */
     public Duration requestTimeout() {
@@ -89,8 +100,9 @@ public final class OnlineRequestSettings {
     }
 
     /**
-     * Set the requestTimeout property: The scoring timeout in ISO 8601 format. Defaults to 5000ms.
-     *
+     * Set the requestTimeout property: The scoring timeout in ISO 8601 format.
+     * Defaults to 5000ms.
+     * 
      * @param requestTimeout the requestTimeout value to set.
      * @return the OnlineRequestSettings object itself.
      */
@@ -101,7 +113,7 @@ public final class OnlineRequestSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

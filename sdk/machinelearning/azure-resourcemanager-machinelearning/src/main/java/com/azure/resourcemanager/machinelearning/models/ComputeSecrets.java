@@ -6,11 +6,13 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.resourcemanager.machinelearning.fluent.models.ComputeSecretsInner;
 
-/** An immutable client-side representation of ComputeSecrets. */
+/**
+ * An immutable client-side representation of ComputeSecrets.
+ */
 public interface ComputeSecrets {
     /**
      * Gets the inner com.azure.resourcemanager.machinelearning.fluent.models.ComputeSecretsInner object.
-     *
+     * 
      * @return the inner object.
      */
     ComputeSecretsInner innerModel();

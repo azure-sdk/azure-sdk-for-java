@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Base definition for datastore contents configuration. */
+/**
+ * Base definition for datastore contents configuration.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -23,8 +25,8 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "AzureBlob", value = AzureBlobDatastore.class),
     @JsonSubTypes.Type(name = "AzureDataLakeGen1", value = AzureDataLakeGen1Datastore.class),
     @JsonSubTypes.Type(name = "AzureDataLakeGen2", value = AzureDataLakeGen2Datastore.class),
-    @JsonSubTypes.Type(name = "AzureFile", value = AzureFileDatastore.class)
-})
+    @JsonSubTypes.Type(name = "AzureFile", value = AzureFileDatastore.class),
+    @JsonSubTypes.Type(name = "OneLake", value = OneLakeDatastore.class) })
 @Fluent
 public class DatastoreProperties extends ResourceBase {
     /*
@@ -39,13 +41,15 @@ public class DatastoreProperties extends ResourceBase {
     @JsonProperty(value = "isDefault", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isDefault;
 
-    /** Creates an instance of DatastoreProperties class. */
+    /**
+     * Creates an instance of DatastoreProperties class.
+     */
     public DatastoreProperties() {
     }
 
     /**
      * Get the credentials property: [Required] Account credentials.
-     *
+     * 
      * @return the credentials value.
      */
     public DatastoreCredentials credentials() {
@@ -54,7 +58,7 @@ public class DatastoreProperties extends ResourceBase {
 
     /**
      * Set the credentials property: [Required] Account credentials.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the DatastoreProperties object itself.
      */
@@ -65,28 +69,34 @@ public class DatastoreProperties extends ResourceBase {
 
     /**
      * Get the isDefault property: Readonly property to indicate if datastore is the workspace default datastore.
-     *
+     * 
      * @return the isDefault value.
      */
     public Boolean isDefault() {
         return this.isDefault;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DatastoreProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DatastoreProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DatastoreProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -95,16 +105,15 @@ public class DatastoreProperties extends ResourceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (credentials() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property credentials in model DatastoreProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property credentials in model DatastoreProperties"));
         } else {
             credentials().validate();
         }

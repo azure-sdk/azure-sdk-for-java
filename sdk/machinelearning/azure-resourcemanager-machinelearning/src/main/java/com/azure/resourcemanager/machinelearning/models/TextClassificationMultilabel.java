@@ -9,7 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Text Classification Multilabel task in AutoML NLP vertical. NLP - Natural Language Processing. */
+/**
+ * Text Classification Multilabel task in AutoML NLP vertical.
+ * NLP - Natural Language Processing.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
 @JsonTypeName("TextClassificationMultilabel")
 @Fluent
@@ -39,14 +42,16 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
     @JsonProperty(value = "validationData")
     private MLTableJobInput validationData;
 
-    /** Creates an instance of TextClassificationMultilabel class. */
+    /**
+     * Creates an instance of TextClassificationMultilabel class.
+     */
     public TextClassificationMultilabel() {
     }
 
     /**
-     * Get the primaryMetric property: Primary metric for Text-Classification-Multilabel task. Currently only Accuracy
-     * is supported as primary metric, hence user need not set it explicitly.
-     *
+     * Get the primaryMetric property: Primary metric for Text-Classification-Multilabel task.
+     * Currently only Accuracy is supported as primary metric, hence user need not set it explicitly.
+     * 
      * @return the primaryMetric value.
      */
     public ClassificationMultilabelPrimaryMetrics primaryMetric() {
@@ -55,7 +60,7 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @return the featurizationSettings value.
      */
     public NlpVerticalFeaturizationSettings featurizationSettings() {
@@ -64,19 +69,19 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @param featurizationSettings the featurizationSettings value to set.
      * @return the TextClassificationMultilabel object itself.
      */
-    public TextClassificationMultilabel withFeaturizationSettings(
-        NlpVerticalFeaturizationSettings featurizationSettings) {
+    public TextClassificationMultilabel
+        withFeaturizationSettings(NlpVerticalFeaturizationSettings featurizationSettings) {
         this.featurizationSettings = featurizationSettings;
         return this;
     }
 
     /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @return the limitSettings value.
      */
     public NlpVerticalLimitSettings limitSettings() {
@@ -85,7 +90,7 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Set the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the TextClassificationMultilabel object itself.
      */
@@ -96,7 +101,7 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -105,7 +110,7 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the TextClassificationMultilabel object itself.
      */
@@ -114,21 +119,27 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassificationMultilabel withLogVerbosity(LogVerbosity logVerbosity) {
         super.withLogVerbosity(logVerbosity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassificationMultilabel withTargetColumnName(String targetColumnName) {
         super.withTargetColumnName(targetColumnName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassificationMultilabel withTrainingData(MLTableJobInput trainingData) {
         super.withTrainingData(trainingData);
@@ -137,7 +148,7 @@ public final class TextClassificationMultilabel extends AutoMLVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

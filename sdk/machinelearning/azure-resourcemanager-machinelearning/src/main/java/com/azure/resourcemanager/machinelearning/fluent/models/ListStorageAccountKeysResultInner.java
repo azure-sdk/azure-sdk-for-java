@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ListStorageAccountKeysResult model. */
+/**
+ * The ListStorageAccountKeysResult model.
+ */
 @Immutable
 public final class ListStorageAccountKeysResultInner {
     /*
@@ -16,13 +18,15 @@ public final class ListStorageAccountKeysResultInner {
     @JsonProperty(value = "userStorageKey", access = JsonProperty.Access.WRITE_ONLY)
     private String userStorageKey;
 
-    /** Creates an instance of ListStorageAccountKeysResultInner class. */
+    /**
+     * Creates an instance of ListStorageAccountKeysResultInner class.
+     */
     public ListStorageAccountKeysResultInner() {
     }
 
     /**
      * Get the userStorageKey property: The userStorageKey property.
-     *
+     * 
      * @return the userStorageKey value.
      */
     public String userStorageKey() {
@@ -31,7 +35,7 @@ public final class ListStorageAccountKeysResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

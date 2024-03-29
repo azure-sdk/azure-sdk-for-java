@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DatabricksSchema model. */
+/**
+ * The DatabricksSchema model.
+ */
 @Fluent
 public class DatabricksSchema {
     /*
@@ -16,13 +18,15 @@ public class DatabricksSchema {
     @JsonProperty(value = "properties")
     private DatabricksProperties properties;
 
-    /** Creates an instance of DatabricksSchema class. */
+    /**
+     * Creates an instance of DatabricksSchema class.
+     */
     public DatabricksSchema() {
     }
 
     /**
      * Get the properties property: Properties of Databricks.
-     *
+     * 
      * @return the properties value.
      */
     public DatabricksProperties properties() {
@@ -31,7 +35,7 @@ public class DatabricksSchema {
 
     /**
      * Set the properties property: Properties of Databricks.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the DatabricksSchema object itself.
      */
@@ -42,7 +46,7 @@ public class DatabricksSchema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

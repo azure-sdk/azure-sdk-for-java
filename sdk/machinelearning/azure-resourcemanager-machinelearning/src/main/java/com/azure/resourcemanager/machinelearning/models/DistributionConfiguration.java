@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Base definition for job distribution configuration. */
+/**
+ * Base definition for job distribution configuration.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -19,17 +21,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Mpi", value = Mpi.class),
     @JsonSubTypes.Type(name = "PyTorch", value = PyTorch.class),
-    @JsonSubTypes.Type(name = "TensorFlow", value = TensorFlow.class)
-})
+    @JsonSubTypes.Type(name = "TensorFlow", value = TensorFlow.class) })
 @Immutable
 public class DistributionConfiguration {
-    /** Creates an instance of DistributionConfiguration class. */
+    /**
+     * Creates an instance of DistributionConfiguration class.
+     */
     public DistributionConfiguration() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
