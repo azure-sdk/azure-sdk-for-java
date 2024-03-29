@@ -7,25 +7,27 @@ package com.azure.resourcemanager.consumption.models;
 import com.azure.resourcemanager.consumption.fluent.models.LotSummaryInner;
 import java.time.OffsetDateTime;
 
-/** An immutable client-side representation of LotSummary. */
+/**
+ * An immutable client-side representation of LotSummary.
+ */
 public interface LotSummary {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
@@ -33,42 +35,64 @@ public interface LotSummary {
     /**
      * Gets the etag property: eTag of the resource. To handle concurrent update scenario, this field will be used to
      * determine whether the user is updating the latest version or not.
-     *
+     * 
      * @return the etag value.
      */
     String etag();
 
     /**
-     * Gets the originalAmount property: The original amount of a lot.
-     *
+     * Gets the originalAmount property: The original amount of a lot, Note: This will not be returned for Contributor
+     * Organization Type in Multi-Entity consumption commitment.
+     * 
      * @return the originalAmount value.
      */
     Amount originalAmount();
 
     /**
+     * Gets the usedAmount property: The used amount from the lot.
+     * 
+     * @return the usedAmount value.
+     */
+    Amount usedAmount();
+
+    /**
      * Gets the closedBalance property: The balance as of the last invoice.
-     *
+     * 
      * @return the closedBalance value.
      */
     Amount closedBalance();
 
     /**
      * Gets the source property: The source of the lot.
-     *
+     * 
      * @return the source value.
      */
     LotSource source();
 
     /**
+     * Gets the lotSource property: The source of the lot.
+     * 
+     * @return the lotSource value.
+     */
+    LotSource lotSource();
+
+    /**
+     * Gets the lotType property: The type of the lot.
+     * 
+     * @return the lotType value.
+     */
+    LotType lotType();
+
+    /**
      * Gets the startDate property: The date when the lot became effective.
-     *
+     * 
      * @return the startDate value.
      */
     OffsetDateTime startDate();
 
     /**
      * Gets the expirationDate property: The expiration date of a lot.
-     *
+     * 
      * @return the expirationDate value.
      */
     OffsetDateTime expirationDate();
@@ -76,70 +100,94 @@ public interface LotSummary {
     /**
      * Gets the poNumber property: The po number of the invoice on which the lot was added. This property is not
      * available for ConsumptionCommitment lots.
-     *
+     * 
      * @return the poNumber value.
      */
     String poNumber();
 
     /**
      * Gets the purchasedDate property: The date when the lot was added.
-     *
+     * 
      * @return the purchasedDate value.
      */
     OffsetDateTime purchasedDate();
 
     /**
      * Gets the status property: The status of the lot.
-     *
+     * 
      * @return the status value.
      */
     Status status();
 
     /**
      * Gets the creditCurrency property: The currency of the lot.
-     *
+     * 
      * @return the creditCurrency value.
      */
     String creditCurrency();
 
     /**
      * Gets the billingCurrency property: The billing currency of the lot.
-     *
+     * 
      * @return the billingCurrency value.
      */
     String billingCurrency();
 
     /**
-     * Gets the originalAmountInBillingCurrency property: The original amount of a lot in billing currency.
-     *
+     * Gets the originalAmountInBillingCurrency property: The original amount of a lot in billing currency, Note: This
+     * will not be returned for Contributor Organization Type in Multi-Entity consumption commitment.
+     * 
      * @return the originalAmountInBillingCurrency value.
      */
     AmountWithExchangeRate originalAmountInBillingCurrency();
 
     /**
      * Gets the closedBalanceInBillingCurrency property: The balance as of the last invoice in billing currency.
-     *
+     * 
      * @return the closedBalanceInBillingCurrency value.
      */
     AmountWithExchangeRate closedBalanceInBillingCurrency();
 
     /**
      * Gets the reseller property: The reseller of the lot.
-     *
+     * 
      * @return the reseller value.
      */
     Reseller reseller();
 
     /**
+     * Gets the isEstimatedBalance property: If true, the listed details are based on an estimation and it will be
+     * subjected to change.
+     * 
+     * @return the isEstimatedBalance value.
+     */
+    Boolean isEstimatedBalance();
+
+    /**
      * Gets the etagPropertiesEtag property: The eTag for the resource.
-     *
+     * 
      * @return the etagPropertiesEtag value.
      */
     String etagPropertiesEtag();
 
     /**
+     * Gets the organizationType property: The organization type of the lot.
+     * 
+     * @return the organizationType value.
+     */
+    OrganizationType organizationType();
+
+    /**
+     * Gets the extendedProperties property: The extended properties of the lot returned as a json string. This is only
+     * returned when extendedProperties=true in query string params.
+     * 
+     * @return the extendedProperties value.
+     */
+    Object extendedProperties();
+
+    /**
      * Gets the inner com.azure.resourcemanager.consumption.fluent.models.LotSummaryInner object.
-     *
+     * 
      * @return the inner object.
      */
     LotSummaryInner innerModel();

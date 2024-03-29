@@ -9,6 +9,8 @@ import com.azure.resourcemanager.consumption.models.Amount;
 import com.azure.resourcemanager.consumption.models.AmountWithExchangeRate;
 import com.azure.resourcemanager.consumption.models.LotSource;
 import com.azure.resourcemanager.consumption.models.LotSummary;
+import com.azure.resourcemanager.consumption.models.LotType;
+import com.azure.resourcemanager.consumption.models.OrganizationType;
 import com.azure.resourcemanager.consumption.models.Reseller;
 import com.azure.resourcemanager.consumption.models.Status;
 import java.time.OffsetDateTime;
@@ -18,8 +20,8 @@ public final class LotSummaryImpl implements LotSummary {
 
     private final com.azure.resourcemanager.consumption.ConsumptionManager serviceManager;
 
-    LotSummaryImpl(
-        LotSummaryInner innerObject, com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
+    LotSummaryImpl(LotSummaryInner innerObject,
+        com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -44,12 +46,24 @@ public final class LotSummaryImpl implements LotSummary {
         return this.innerModel().originalAmount();
     }
 
+    public Amount usedAmount() {
+        return this.innerModel().usedAmount();
+    }
+
     public Amount closedBalance() {
         return this.innerModel().closedBalance();
     }
 
     public LotSource source() {
         return this.innerModel().source();
+    }
+
+    public LotSource lotSource() {
+        return this.innerModel().lotSource();
+    }
+
+    public LotType lotType() {
+        return this.innerModel().lotType();
     }
 
     public OffsetDateTime startDate() {
@@ -92,8 +106,20 @@ public final class LotSummaryImpl implements LotSummary {
         return this.innerModel().reseller();
     }
 
+    public Boolean isEstimatedBalance() {
+        return this.innerModel().isEstimatedBalance();
+    }
+
     public String etagPropertiesEtag() {
         return this.innerModel().etagPropertiesEtag();
+    }
+
+    public OrganizationType organizationType() {
+        return this.innerModel().organizationType();
+    }
+
+    public Object extendedProperties() {
+        return this.innerModel().extendedProperties();
     }
 
     public LotSummaryInner innerModel() {

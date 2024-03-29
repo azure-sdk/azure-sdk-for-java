@@ -6,17 +6,15 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Tag;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A resource listing all tags. */
+/**
+ * A resource listing all tags.
+ */
 @Fluent
 public final class TagsResultInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(TagsResultInner.class);
-
     /*
      * The properties of the tag.
      */
@@ -24,16 +22,21 @@ public final class TagsResultInner extends ProxyResource {
     private TagProperties innerProperties;
 
     /*
-     * eTag of the resource. To handle concurrent update scenario, this field
-     * will be used to determine whether the user is updating the latest
-     * version or not.
+     * eTag of the resource. To handle concurrent update scenario, this field will be used to determine whether the
+     * user is updating the latest version or not.
      */
     @JsonProperty(value = "eTag")
     private String etag;
 
     /**
+     * Creates an instance of TagsResultInner class.
+     */
+    public TagsResultInner() {
+    }
+
+    /**
      * Get the innerProperties property: The properties of the tag.
-     *
+     * 
      * @return the innerProperties value.
      */
     private TagProperties innerProperties() {
@@ -43,7 +46,7 @@ public final class TagsResultInner extends ProxyResource {
     /**
      * Get the etag property: eTag of the resource. To handle concurrent update scenario, this field will be used to
      * determine whether the user is updating the latest version or not.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -53,7 +56,7 @@ public final class TagsResultInner extends ProxyResource {
     /**
      * Set the etag property: eTag of the resource. To handle concurrent update scenario, this field will be used to
      * determine whether the user is updating the latest version or not.
-     *
+     * 
      * @param etag the etag value to set.
      * @return the TagsResultInner object itself.
      */
@@ -64,7 +67,7 @@ public final class TagsResultInner extends ProxyResource {
 
     /**
      * Get the tags property: A list of Tag.
-     *
+     * 
      * @return the tags value.
      */
     public List<Tag> tags() {
@@ -73,7 +76,7 @@ public final class TagsResultInner extends ProxyResource {
 
     /**
      * Set the tags property: A list of Tag.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the TagsResultInner object itself.
      */
@@ -87,7 +90,7 @@ public final class TagsResultInner extends ProxyResource {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -96,7 +99,7 @@ public final class TagsResultInner extends ProxyResource {
 
     /**
      * Get the previousLink property: The link (url) to the previous page of results.
-     *
+     * 
      * @return the previousLink value.
      */
     public String previousLink() {
@@ -105,7 +108,7 @@ public final class TagsResultInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
