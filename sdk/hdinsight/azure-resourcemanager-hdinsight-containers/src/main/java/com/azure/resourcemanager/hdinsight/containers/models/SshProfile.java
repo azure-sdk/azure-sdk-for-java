@@ -7,7 +7,9 @@ package com.azure.resourcemanager.hdinsight.containers.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Ssh profile for the cluster. */
+/**
+ * Ssh profile for the cluster.
+ */
 @Fluent
 public final class SshProfile {
     /*
@@ -23,13 +25,21 @@ public final class SshProfile {
     @JsonProperty(value = "podPrefix", access = JsonProperty.Access.WRITE_ONLY)
     private String podPrefix;
 
-    /** Creates an instance of SshProfile class. */
+    /*
+     * The virtual machine SKU.
+     */
+    @JsonProperty(value = "vmSize")
+    private String vmSize;
+
+    /**
+     * Creates an instance of SshProfile class.
+     */
     public SshProfile() {
     }
 
     /**
      * Get the count property: Number of ssh pods per cluster.
-     *
+     * 
      * @return the count value.
      */
     public int count() {
@@ -38,7 +48,7 @@ public final class SshProfile {
 
     /**
      * Set the count property: Number of ssh pods per cluster.
-     *
+     * 
      * @param count the count value to set.
      * @return the SshProfile object itself.
      */
@@ -50,7 +60,7 @@ public final class SshProfile {
     /**
      * Get the podPrefix property: Prefix of the pod names. Pod number will be appended to the prefix. The ingress URLs
      * for the pods will be available at &lt;clusterFqdn&gt;/&lt;sshBasePath&gt;/&lt;prefix&gt;-&lt;number&gt;.
-     *
+     * 
      * @return the podPrefix value.
      */
     public String podPrefix() {
@@ -58,8 +68,28 @@ public final class SshProfile {
     }
 
     /**
+     * Get the vmSize property: The virtual machine SKU.
+     * 
+     * @return the vmSize value.
+     */
+    public String vmSize() {
+        return this.vmSize;
+    }
+
+    /**
+     * Set the vmSize property: The virtual machine SKU.
+     * 
+     * @param vmSize the vmSize value to set.
+     * @return the SshProfile object itself.
+     */
+    public SshProfile withVmSize(String vmSize) {
+        this.vmSize = vmSize;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
