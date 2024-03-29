@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.fluent.models.LinkedServiceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list linked service operation response. */
+/**
+ * The list linked service operation response.
+ */
 @Fluent
 public final class LinkedServiceListResult {
     /*
@@ -18,13 +20,15 @@ public final class LinkedServiceListResult {
     @JsonProperty(value = "value")
     private List<LinkedServiceInner> value;
 
-    /** Creates an instance of LinkedServiceListResult class. */
+    /**
+     * Creates an instance of LinkedServiceListResult class.
+     */
     public LinkedServiceListResult() {
     }
 
     /**
      * Get the value property: The list of linked service instances.
-     *
+     * 
      * @return the value value.
      */
     public List<LinkedServiceInner> value() {
@@ -33,7 +37,7 @@ public final class LinkedServiceListResult {
 
     /**
      * Set the value property: The list of linked service instances.
-     *
+     * 
      * @param value the value value to set.
      * @return the LinkedServiceListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class LinkedServiceListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

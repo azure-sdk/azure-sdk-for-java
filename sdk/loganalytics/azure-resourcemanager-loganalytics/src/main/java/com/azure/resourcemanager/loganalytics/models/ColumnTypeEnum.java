@@ -8,35 +8,53 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Column data type. */
+/**
+ * Column data type.
+ */
 public final class ColumnTypeEnum extends ExpandableStringEnum<ColumnTypeEnum> {
-    /** Static value string for ColumnTypeEnum. */
+    /**
+     * Static value string for ColumnTypeEnum.
+     */
     public static final ColumnTypeEnum STRING = fromString("string");
 
-    /** Static value int for ColumnTypeEnum. */
+    /**
+     * Static value int for ColumnTypeEnum.
+     */
     public static final ColumnTypeEnum INT = fromString("int");
 
-    /** Static value long for ColumnTypeEnum. */
+    /**
+     * Static value long for ColumnTypeEnum.
+     */
     public static final ColumnTypeEnum LONG = fromString("long");
 
-    /** Static value real for ColumnTypeEnum. */
+    /**
+     * Static value real for ColumnTypeEnum.
+     */
     public static final ColumnTypeEnum REAL = fromString("real");
 
-    /** Static value boolean for ColumnTypeEnum. */
+    /**
+     * Static value boolean for ColumnTypeEnum.
+     */
     public static final ColumnTypeEnum BOOLEAN = fromString("boolean");
 
-    /** Static value dateTime for ColumnTypeEnum. */
+    /**
+     * Static value dateTime for ColumnTypeEnum.
+     */
     public static final ColumnTypeEnum DATE_TIME = fromString("dateTime");
 
-    /** Static value guid for ColumnTypeEnum. */
+    /**
+     * Static value guid for ColumnTypeEnum.
+     */
     public static final ColumnTypeEnum GUID = fromString("guid");
 
-    /** Static value dynamic for ColumnTypeEnum. */
+    /**
+     * Static value dynamic for ColumnTypeEnum.
+     */
     public static final ColumnTypeEnum DYNAMIC = fromString("dynamic");
 
     /**
      * Creates a new instance of ColumnTypeEnum value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -45,7 +63,7 @@ public final class ColumnTypeEnum extends ExpandableStringEnum<ColumnTypeEnum> {
 
     /**
      * Creates or finds a ColumnTypeEnum from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ColumnTypeEnum.
      */
@@ -56,7 +74,7 @@ public final class ColumnTypeEnum extends ExpandableStringEnum<ColumnTypeEnum> {
 
     /**
      * Gets known ColumnTypeEnum values.
-     *
+     * 
      * @return known ColumnTypeEnum values.
      */
     public static Collection<ColumnTypeEnum> values() {

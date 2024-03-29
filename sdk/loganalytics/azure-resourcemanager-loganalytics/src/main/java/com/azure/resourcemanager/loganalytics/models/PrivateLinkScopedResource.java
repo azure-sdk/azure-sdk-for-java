@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The private link scope resource reference. */
+/**
+ * The private link scope resource reference.
+ */
 @Fluent
 public final class PrivateLinkScopedResource {
     /*
@@ -22,13 +24,15 @@ public final class PrivateLinkScopedResource {
     @JsonProperty(value = "scopeId")
     private String scopeId;
 
-    /** Creates an instance of PrivateLinkScopedResource class. */
+    /**
+     * Creates an instance of PrivateLinkScopedResource class.
+     */
     public PrivateLinkScopedResource() {
     }
 
     /**
      * Get the resourceId property: The full resource Id of the private link scope resource.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -37,7 +41,7 @@ public final class PrivateLinkScopedResource {
 
     /**
      * Set the resourceId property: The full resource Id of the private link scope resource.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the PrivateLinkScopedResource object itself.
      */
@@ -48,7 +52,7 @@ public final class PrivateLinkScopedResource {
 
     /**
      * Get the scopeId property: The private link scope unique Identifier.
-     *
+     * 
      * @return the scopeId value.
      */
     public String scopeId() {
@@ -57,7 +61,7 @@ public final class PrivateLinkScopedResource {
 
     /**
      * Set the scopeId property: The private link scope unique Identifier.
-     *
+     * 
      * @param scopeId the scopeId value to set.
      * @return the PrivateLinkScopedResource object itself.
      */
@@ -68,7 +72,7 @@ public final class PrivateLinkScopedResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

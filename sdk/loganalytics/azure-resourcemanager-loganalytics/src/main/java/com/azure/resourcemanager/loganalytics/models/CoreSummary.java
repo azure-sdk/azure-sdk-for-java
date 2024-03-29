@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The core summary of a search. */
+/**
+ * The core summary of a search.
+ */
 @Fluent
 public final class CoreSummary {
     /*
@@ -22,13 +24,15 @@ public final class CoreSummary {
     @JsonProperty(value = "numberOfDocuments", required = true)
     private long numberOfDocuments;
 
-    /** Creates an instance of CoreSummary class. */
+    /**
+     * Creates an instance of CoreSummary class.
+     */
     public CoreSummary() {
     }
 
     /**
      * Get the status property: The status of a core summary.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -37,7 +41,7 @@ public final class CoreSummary {
 
     /**
      * Set the status property: The status of a core summary.
-     *
+     * 
      * @param status the status value to set.
      * @return the CoreSummary object itself.
      */
@@ -48,7 +52,7 @@ public final class CoreSummary {
 
     /**
      * Get the numberOfDocuments property: The number of documents of a core summary.
-     *
+     * 
      * @return the numberOfDocuments value.
      */
     public long numberOfDocuments() {
@@ -57,7 +61,7 @@ public final class CoreSummary {
 
     /**
      * Set the numberOfDocuments property: The number of documents of a core summary.
-     *
+     * 
      * @param numberOfDocuments the numberOfDocuments value to set.
      * @return the CoreSummary object itself.
      */
@@ -68,7 +72,7 @@ public final class CoreSummary {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
