@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** PyTorch distribution configuration. */
+/**
+ * PyTorch distribution configuration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "distributionType")
 @JsonTypeName("PyTorch")
 @Fluent
@@ -20,13 +22,15 @@ public final class PyTorch extends DistributionConfiguration {
     @JsonProperty(value = "processCountPerInstance")
     private Integer processCountPerInstance;
 
-    /** Creates an instance of PyTorch class. */
+    /**
+     * Creates an instance of PyTorch class.
+     */
     public PyTorch() {
     }
 
     /**
      * Get the processCountPerInstance property: Number of processes per node.
-     *
+     * 
      * @return the processCountPerInstance value.
      */
     public Integer processCountPerInstance() {
@@ -35,7 +39,7 @@ public final class PyTorch extends DistributionConfiguration {
 
     /**
      * Set the processCountPerInstance property: Number of processes per node.
-     *
+     * 
      * @param processCountPerInstance the processCountPerInstance value to set.
      * @return the PyTorch object itself.
      */
@@ -46,7 +50,7 @@ public final class PyTorch extends DistributionConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

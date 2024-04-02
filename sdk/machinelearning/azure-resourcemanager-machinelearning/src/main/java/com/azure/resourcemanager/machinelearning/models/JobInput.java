@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Command job definition. */
+/**
+ * Command job definition.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -24,8 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "literal", value = LiteralJobInput.class),
     @JsonSubTypes.Type(name = "triton_model", value = TritonModelJobInput.class),
     @JsonSubTypes.Type(name = "uri_file", value = UriFileJobInput.class),
-    @JsonSubTypes.Type(name = "uri_folder", value = UriFolderJobInput.class)
-})
+    @JsonSubTypes.Type(name = "uri_folder", value = UriFolderJobInput.class) })
 @Fluent
 public class JobInput {
     /*
@@ -34,13 +35,15 @@ public class JobInput {
     @JsonProperty(value = "description")
     private String description;
 
-    /** Creates an instance of JobInput class. */
+    /**
+     * Creates an instance of JobInput class.
+     */
     public JobInput() {
     }
 
     /**
      * Get the description property: Description for the input.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -49,7 +52,7 @@ public class JobInput {
 
     /**
      * Set the description property: Description for the input.
-     *
+     * 
      * @param description the description value to set.
      * @return the JobInput object itself.
      */
@@ -60,7 +63,7 @@ public class JobInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
