@@ -10,7 +10,9 @@ import com.azure.core.client.traits.ConfigurationTrait;
 import com.azure.core.client.traits.EndpointTrait;
 import com.azure.core.client.traits.HttpTrait;
 import com.azure.core.client.traits.KeyCredentialTrait;
+import com.azure.core.client.traits.TokenCredentialTrait;
 import com.azure.core.credential.KeyCredential;
+import com.azure.core.credential.TokenCredential;
 import com.azure.core.http.HttpClient;
 import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
@@ -20,6 +22,7 @@ import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
 import com.azure.core.http.policy.AddHeadersPolicy;
+import com.azure.core.http.policy.BearerTokenAuthenticationPolicy;
 import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
 import com.azure.core.http.policy.HttpPipelinePolicy;
@@ -42,35 +45,10 @@ import java.util.Objects;
 
 /**
  * A builder for creating a new instance of the ImageAnalysisClient type.
- *
- * <!-- src_embed com.azure.ai.vision.imageanalysis.sync-client -->
- * <pre>
- * &#47;&#47;
- * &#47;&#47; Create a synchronous Image Analysis client.
- * &#47;&#47;
- * ImageAnalysisClient client = new ImageAnalysisClientBuilder&#40;&#41;
- *     .endpoint&#40;endpoint&#41;
- *     .credential&#40;new KeyCredential&#40;key&#41;&#41;
- *     .buildClient&#40;&#41;;
- * </pre>
- * <!-- end com.azure.ai.vision.imageanalysis.sync-client -->
- * 
- * <!-- src_embed com.azure.ai.vision.imageanalysis.async-client -->
- * <pre>
- * &#47;&#47;
- * &#47;&#47; Create an asynchronous Image Analysis client.
- * &#47;&#47;
- * ImageAnalysisAsyncClient client = new ImageAnalysisClientBuilder&#40;&#41;
- *     .endpoint&#40;endpoint&#41;
- *     .credential&#40;new KeyCredential&#40;key&#41;&#41;
- *     .buildAsyncClient&#40;&#41;;
- * </pre>
- * <!-- end com.azure.ai.vision.imageanalysis.async-client -->
- *
  */
 @ServiceClientBuilder(serviceClients = { ImageAnalysisClient.class, ImageAnalysisAsyncClient.class })
-public final class ImageAnalysisClientBuilder
-    implements HttpTrait<ImageAnalysisClientBuilder>, ConfigurationTrait<ImageAnalysisClientBuilder>,
+public final class ImageAnalysisClientBuilder implements HttpTrait<ImageAnalysisClientBuilder>,
+    ConfigurationTrait<ImageAnalysisClientBuilder>, TokenCredentialTrait<ImageAnalysisClientBuilder>,
     KeyCredentialTrait<ImageAnalysisClientBuilder>, EndpointTrait<ImageAnalysisClientBuilder> {
 
     @Generated
@@ -314,6 +292,9 @@ public final class ImageAnalysisClientBuilder
         if (keyCredential != null) {
             policies.add(new KeyCredentialPolicy("Ocp-Apim-Subscription-Key", keyCredential));
         }
+        if (tokenCredential != null) {
+            policies.add(new BearerTokenAuthenticationPolicy(tokenCredential, DEFAULT_SCOPES));
+        }
         this.pipelinePolicies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
             .forEach(p -> policies.add(p));
         HttpPolicyProviders.addAfterRetryPolicies(policies);
@@ -344,4 +325,23 @@ public final class ImageAnalysisClientBuilder
     }
 
     private static final ClientLogger LOGGER = new ClientLogger(ImageAnalysisClientBuilder.class);
+
+    @Generated
+    private static final String[] DEFAULT_SCOPES = new String[] { "https://cognitiveservices.azure.com/.default" };
+
+    /*
+     * The TokenCredential used for authentication.
+     */
+    @Generated
+    private TokenCredential tokenCredential;
+
+    /**
+     * {@inheritDoc}.
+     */
+    @Generated
+    @Override
+    public ImageAnalysisClientBuilder credential(TokenCredential tokenCredential) {
+        this.tokenCredential = tokenCredential;
+        return this;
+    }
 }
