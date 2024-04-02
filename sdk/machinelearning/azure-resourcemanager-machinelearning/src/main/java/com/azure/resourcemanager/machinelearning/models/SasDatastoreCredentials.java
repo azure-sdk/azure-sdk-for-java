@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** SAS datastore credentials configuration. */
+/**
+ * SAS datastore credentials configuration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "credentialsType")
 @JsonTypeName("Sas")
 @Fluent
@@ -18,16 +20,18 @@ public final class SasDatastoreCredentials extends DatastoreCredentials {
     /*
      * [Required] Storage container secrets.
      */
-    @JsonProperty(value = "secrets", required = true)
+    @JsonProperty(value = "secrets")
     private SasDatastoreSecrets secrets;
 
-    /** Creates an instance of SasDatastoreCredentials class. */
+    /**
+     * Creates an instance of SasDatastoreCredentials class.
+     */
     public SasDatastoreCredentials() {
     }
 
     /**
      * Get the secrets property: [Required] Storage container secrets.
-     *
+     * 
      * @return the secrets value.
      */
     public SasDatastoreSecrets secrets() {
@@ -36,7 +40,7 @@ public final class SasDatastoreCredentials extends DatastoreCredentials {
 
     /**
      * Set the secrets property: [Required] Storage container secrets.
-     *
+     * 
      * @param secrets the secrets value to set.
      * @return the SasDatastoreCredentials object itself.
      */
@@ -47,16 +51,15 @@ public final class SasDatastoreCredentials extends DatastoreCredentials {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (secrets() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property secrets in model SasDatastoreCredentials"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property secrets in model SasDatastoreCredentials"));
         } else {
             secrets().validate();
         }

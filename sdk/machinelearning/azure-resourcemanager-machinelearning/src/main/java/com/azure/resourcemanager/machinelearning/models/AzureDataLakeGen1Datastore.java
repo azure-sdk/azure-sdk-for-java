@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Azure Data Lake Gen1 datastore configuration. */
+/**
+ * Azure Data Lake Gen1 datastore configuration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "datastoreType")
 @JsonTypeName("AzureDataLakeGen1")
 @Fluent
@@ -28,14 +30,28 @@ public final class AzureDataLakeGen1Datastore extends DatastoreProperties {
     @JsonProperty(value = "storeName", required = true)
     private String storeName;
 
-    /** Creates an instance of AzureDataLakeGen1Datastore class. */
+    /*
+     * Azure Resource Group name
+     */
+    @JsonProperty(value = "resourceGroup")
+    private String resourceGroup;
+
+    /*
+     * Azure Subscription Id
+     */
+    @JsonProperty(value = "subscriptionId")
+    private String subscriptionId;
+
+    /**
+     * Creates an instance of AzureDataLakeGen1Datastore class.
+     */
     public AzureDataLakeGen1Datastore() {
     }
 
     /**
      * Get the serviceDataAccessAuthIdentity property: Indicates which identity to use to authenticate service data
      * access to customer's storage.
-     *
+     * 
      * @return the serviceDataAccessAuthIdentity value.
      */
     public ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity() {
@@ -45,19 +61,19 @@ public final class AzureDataLakeGen1Datastore extends DatastoreProperties {
     /**
      * Set the serviceDataAccessAuthIdentity property: Indicates which identity to use to authenticate service data
      * access to customer's storage.
-     *
+     * 
      * @param serviceDataAccessAuthIdentity the serviceDataAccessAuthIdentity value to set.
      * @return the AzureDataLakeGen1Datastore object itself.
      */
-    public AzureDataLakeGen1Datastore withServiceDataAccessAuthIdentity(
-        ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity) {
+    public AzureDataLakeGen1Datastore
+        withServiceDataAccessAuthIdentity(ServiceDataAccessAuthIdentity serviceDataAccessAuthIdentity) {
         this.serviceDataAccessAuthIdentity = serviceDataAccessAuthIdentity;
         return this;
     }
 
     /**
      * Get the storeName property: [Required] Azure Data Lake store name.
-     *
+     * 
      * @return the storeName value.
      */
     public String storeName() {
@@ -66,7 +82,7 @@ public final class AzureDataLakeGen1Datastore extends DatastoreProperties {
 
     /**
      * Set the storeName property: [Required] Azure Data Lake store name.
-     *
+     * 
      * @param storeName the storeName value to set.
      * @return the AzureDataLakeGen1Datastore object itself.
      */
@@ -75,28 +91,76 @@ public final class AzureDataLakeGen1Datastore extends DatastoreProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the resourceGroup property: Azure Resource Group name.
+     * 
+     * @return the resourceGroup value.
+     */
+    public String resourceGroup() {
+        return this.resourceGroup;
+    }
+
+    /**
+     * Set the resourceGroup property: Azure Resource Group name.
+     * 
+     * @param resourceGroup the resourceGroup value to set.
+     * @return the AzureDataLakeGen1Datastore object itself.
+     */
+    public AzureDataLakeGen1Datastore withResourceGroup(String resourceGroup) {
+        this.resourceGroup = resourceGroup;
+        return this;
+    }
+
+    /**
+     * Get the subscriptionId property: Azure Subscription Id.
+     * 
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
+     * Set the subscriptionId property: Azure Subscription Id.
+     * 
+     * @param subscriptionId the subscriptionId value to set.
+     * @return the AzureDataLakeGen1Datastore object itself.
+     */
+    public AzureDataLakeGen1Datastore withSubscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureDataLakeGen1Datastore withCredentials(DatastoreCredentials credentials) {
         super.withCredentials(credentials);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureDataLakeGen1Datastore withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureDataLakeGen1Datastore withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureDataLakeGen1Datastore withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -105,17 +169,15 @@ public final class AzureDataLakeGen1Datastore extends DatastoreProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (storeName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storeName in model AzureDataLakeGen1Datastore"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property storeName in model AzureDataLakeGen1Datastore"));
         }
     }
 

@@ -97,8 +97,8 @@ public final class BatchDeploymentImpl implements BatchDeployment, BatchDeployme
 
     private PartialBatchDeploymentPartialMinimalTrackedResourceWithProperties updateBody;
 
-    public BatchDeploymentImpl withExistingBatchEndpoint(
-        String resourceGroupName, String workspaceName, String endpointName) {
+    public BatchDeploymentImpl withExistingBatchEndpoint(String resourceGroupName, String workspaceName,
+        String endpointName) {
         this.resourceGroupName = resourceGroupName;
         this.workspaceName = workspaceName;
         this.endpointName = endpointName;
@@ -106,22 +106,14 @@ public final class BatchDeploymentImpl implements BatchDeployment, BatchDeployme
     }
 
     public BatchDeployment create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getBatchDeployments()
-                .createOrUpdate(
-                    resourceGroupName, workspaceName, endpointName, deploymentName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getBatchDeployments().createOrUpdate(resourceGroupName,
+            workspaceName, endpointName, deploymentName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public BatchDeployment create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getBatchDeployments()
-                .createOrUpdate(
-                    resourceGroupName, workspaceName, endpointName, deploymentName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getBatchDeployments().createOrUpdate(resourceGroupName,
+            workspaceName, endpointName, deploymentName, this.innerModel(), context);
         return this;
     }
 
@@ -137,51 +129,36 @@ public final class BatchDeploymentImpl implements BatchDeployment, BatchDeployme
     }
 
     public BatchDeployment apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getBatchDeployments()
-                .update(resourceGroupName, workspaceName, endpointName, deploymentName, updateBody, Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getBatchDeployments().update(resourceGroupName, workspaceName,
+            endpointName, deploymentName, updateBody, Context.NONE);
         return this;
     }
 
     public BatchDeployment apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getBatchDeployments()
-                .update(resourceGroupName, workspaceName, endpointName, deploymentName, updateBody, context);
+        this.innerObject = serviceManager.serviceClient().getBatchDeployments().update(resourceGroupName, workspaceName,
+            endpointName, deploymentName, updateBody, context);
         return this;
     }
 
-    BatchDeploymentImpl(
-        BatchDeploymentInner innerObject,
+    BatchDeploymentImpl(BatchDeploymentInner innerObject,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.workspaceName = Utils.getValueFromIdByName(innerObject.id(), "workspaces");
-        this.endpointName = Utils.getValueFromIdByName(innerObject.id(), "batchEndpoints");
-        this.deploymentName = Utils.getValueFromIdByName(innerObject.id(), "deployments");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.workspaceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "workspaces");
+        this.endpointName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "batchEndpoints");
+        this.deploymentName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "deployments");
     }
 
     public BatchDeployment refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getBatchDeployments()
-                .getWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getBatchDeployments()
+            .getWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, Context.NONE).getValue();
         return this;
     }
 
     public BatchDeployment refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getBatchDeployments()
-                .getWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getBatchDeployments()
+            .getWithResponse(resourceGroupName, workspaceName, endpointName, deploymentName, context).getValue();
         return this;
     }
 

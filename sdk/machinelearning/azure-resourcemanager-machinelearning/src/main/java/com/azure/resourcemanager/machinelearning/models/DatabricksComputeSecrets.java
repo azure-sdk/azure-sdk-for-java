@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Secrets related to a Machine Learning compute based on Databricks. */
+/**
+ * Secrets related to a Machine Learning compute based on Databricks.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
 @JsonTypeName("Databricks")
 @Fluent
@@ -21,13 +23,15 @@ public final class DatabricksComputeSecrets extends ComputeSecretsInner {
     @JsonProperty(value = "databricksAccessToken")
     private String databricksAccessToken;
 
-    /** Creates an instance of DatabricksComputeSecrets class. */
+    /**
+     * Creates an instance of DatabricksComputeSecrets class.
+     */
     public DatabricksComputeSecrets() {
     }
 
     /**
      * Get the databricksAccessToken property: access token for databricks account.
-     *
+     * 
      * @return the databricksAccessToken value.
      */
     public String databricksAccessToken() {
@@ -36,7 +40,7 @@ public final class DatabricksComputeSecrets extends ComputeSecretsInner {
 
     /**
      * Set the databricksAccessToken property: access token for databricks account.
-     *
+     * 
      * @param databricksAccessToken the databricksAccessToken value to set.
      * @return the DatabricksComputeSecrets object itself.
      */
@@ -47,7 +51,7 @@ public final class DatabricksComputeSecrets extends ComputeSecretsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

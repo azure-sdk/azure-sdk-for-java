@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** An Azure Machine Learning compute instance. */
+/**
+ * An Azure Machine Learning compute instance.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
 @JsonTypeName("ComputeInstance")
 @Fluent
@@ -20,13 +22,15 @@ public final class ComputeInstance extends Compute {
     @JsonProperty(value = "properties")
     private ComputeInstanceProperties properties;
 
-    /** Creates an instance of ComputeInstance class. */
+    /**
+     * Creates an instance of ComputeInstance class.
+     */
     public ComputeInstance() {
     }
 
     /**
      * Get the properties property: Properties of ComputeInstance.
-     *
+     * 
      * @return the properties value.
      */
     public ComputeInstanceProperties properties() {
@@ -35,7 +39,7 @@ public final class ComputeInstance extends Compute {
 
     /**
      * Set the properties property: Properties of ComputeInstance.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ComputeInstance object itself.
      */
@@ -44,28 +48,36 @@ public final class ComputeInstance extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ComputeInstance withComputeLocation(String computeLocation) {
         super.withComputeLocation(computeLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ComputeInstance withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ComputeInstance withResourceId(String resourceId) {
         super.withResourceId(resourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ComputeInstance withDisableLocalAuth(Boolean disableLocalAuth) {
         super.withDisableLocalAuth(disableLocalAuth);
@@ -74,7 +86,7 @@ public final class ComputeInstance extends Compute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
