@@ -94,6 +94,7 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "DrillTable", value = DrillTableDataset.class),
     @JsonSubTypes.Type(name = "EloquaObject", value = EloquaObjectDataset.class),
     @JsonSubTypes.Type(name = "GoogleBigQueryObject", value = GoogleBigQueryObjectDataset.class),
+    @JsonSubTypes.Type(name = "GoogleBigQueryV2Object", value = GoogleBigQueryV2ObjectDataset.class),
     @JsonSubTypes.Type(name = "GreenplumTable", value = GreenplumTableDataset.class),
     @JsonSubTypes.Type(name = "HBaseObject", value = HBaseObjectDataset.class),
     @JsonSubTypes.Type(name = "HiveObject", value = HiveObjectDataset.class),
@@ -129,7 +130,8 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "LakeHouseTable", value = LakeHouseTableDataset.class),
     @JsonSubTypes.Type(name = "SalesforceV2Object", value = SalesforceV2ObjectDataset.class),
     @JsonSubTypes.Type(name = "SalesforceServiceCloudV2Object", value = SalesforceServiceCloudV2ObjectDataset.class),
-    @JsonSubTypes.Type(name = "WarehouseTable", value = WarehouseTableDataset.class) })
+    @JsonSubTypes.Type(name = "WarehouseTable", value = WarehouseTableDataset.class),
+    @JsonSubTypes.Type(name = "ServiceNowV2Object", value = ServiceNowV2ObjectDataset.class) })
 @Fluent
 public class Dataset {
     /*
