@@ -1167,6 +1167,7 @@ public final class OpenAIClientImpl {
      *             }
      *         }
      *     ]
+     *     model: String (Optional)
      *     prompt_filter_results (Optional): [
      *          (Optional){
      *             prompt_index: int (Required)
@@ -1397,6 +1398,7 @@ public final class OpenAIClientImpl {
      *             }
      *         }
      *     ]
+     *     model: String (Optional)
      *     prompt_filter_results (Optional): [
      *          (Optional){
      *             prompt_index: int (Required)

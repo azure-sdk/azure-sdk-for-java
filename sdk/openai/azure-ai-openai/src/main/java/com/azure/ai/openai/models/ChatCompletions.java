@@ -172,4 +172,21 @@ public final class ChatCompletions {
         @JsonProperty(value = "usage") CompletionsUsage usage) {
         this(id, OffsetDateTime.ofInstant(Instant.ofEpochSecond(createdAt), ZoneOffset.UTC), choices, usage);
     }
+
+    /*
+     * The model name used for this completions request.
+     */
+    @Generated
+    @JsonProperty(value = "model")
+    private String model;
+
+    /**
+     * Get the model property: The model name used for this completions request.
+     *
+     * @return the model value.
+     */
+    @Generated
+    public String getModel() {
+        return this.model;
+    }
 }
