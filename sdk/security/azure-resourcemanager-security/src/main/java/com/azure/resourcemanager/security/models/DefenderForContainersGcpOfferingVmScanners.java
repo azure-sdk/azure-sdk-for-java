@@ -7,21 +7,21 @@ package com.azure.resourcemanager.security.models;
 import com.azure.core.annotation.Fluent;
 
 /**
- * The ARC autoprovisioning configuration.
+ * The Microsoft Defender for Container K8s VM host scanning configuration.
  */
 @Fluent
-public final class DefenderForServersGcpOfferingArcAutoProvisioning extends ArcAutoProvisioningGcp {
+public final class DefenderForContainersGcpOfferingVmScanners extends VmScannersGcp {
     /**
-     * Creates an instance of DefenderForServersGcpOfferingArcAutoProvisioning class.
+     * Creates an instance of DefenderForContainersGcpOfferingVmScanners class.
      */
-    public DefenderForServersGcpOfferingArcAutoProvisioning() {
+    public DefenderForContainersGcpOfferingVmScanners() {
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public DefenderForServersGcpOfferingArcAutoProvisioning withEnabled(Boolean enabled) {
+    public DefenderForContainersGcpOfferingVmScanners withEnabled(Boolean enabled) {
         super.withEnabled(enabled);
         return this;
     }
@@ -30,8 +30,7 @@ public final class DefenderForServersGcpOfferingArcAutoProvisioning extends ArcA
      * {@inheritDoc}
      */
     @Override
-    public DefenderForServersGcpOfferingArcAutoProvisioning
-        withConfiguration(ArcAutoProvisioningConfiguration configuration) {
+    public DefenderForContainersGcpOfferingVmScanners withConfiguration(VmScannersBaseConfiguration configuration) {
         super.withConfiguration(configuration);
         return this;
     }

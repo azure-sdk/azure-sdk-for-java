@@ -250,13 +250,6 @@ public interface SecurityCenter {
     SqlVulnerabilityAssessmentScanResultsClient getSqlVulnerabilityAssessmentScanResults();
 
     /**
-     * Gets the ResourceProvidersClient object to access its operations.
-     * 
-     * @return the ResourceProvidersClient object.
-     */
-    ResourceProvidersClient getResourceProviders();
-
-    /**
      * Gets the SensitivitySettingsClient object to access its operations.
      * 
      * @return the SensitivitySettingsClient object.
