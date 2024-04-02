@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.selfhelp.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.selfhelp.fluent.models.SolutionResourceInner;
@@ -12,6 +13,7 @@ import com.azure.resourcemanager.selfhelp.models.Section;
 import com.azure.resourcemanager.selfhelp.models.SolutionPatchRequestBody;
 import com.azure.resourcemanager.selfhelp.models.SolutionProvisioningState;
 import com.azure.resourcemanager.selfhelp.models.SolutionResource;
+import com.azure.resourcemanager.selfhelp.models.SolutionWarmUpRequestBody;
 import com.azure.resourcemanager.selfhelp.models.TriggerCriterion;
 import java.util.Collections;
 import java.util.List;
@@ -144,9 +146,9 @@ public final class SolutionResourceImpl
         com.azure.resourcemanager.selfhelp.SelfHelpManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.scope = Utils.getValueFromIdByParameterName(innerObject.id(),
+        this.scope = ResourceManagerUtils.getValueFromIdByParameterName(innerObject.id(),
             "/{scope}/providers/Microsoft.Help/solutions/{solutionResourceName}", "scope");
-        this.solutionResourceName = Utils.getValueFromIdByParameterName(innerObject.id(),
+        this.solutionResourceName = ResourceManagerUtils.getValueFromIdByParameterName(innerObject.id(),
             "/{scope}/providers/Microsoft.Help/solutions/{solutionResourceName}", "solutionResourceName");
     }
 
@@ -160,6 +162,15 @@ public final class SolutionResourceImpl
         this.innerObject = serviceManager.serviceClient().getSolutionOperations()
             .getWithResponse(scope, solutionResourceName, context).getValue();
         return this;
+    }
+
+    public Response<Void> warmUpWithResponse(SolutionWarmUpRequestBody solutionWarmUpRequestBody, Context context) {
+        return serviceManager.solutionOperations().warmUpWithResponse(scope, solutionResourceName,
+            solutionWarmUpRequestBody, context);
+    }
+
+    public void warmUp() {
+        serviceManager.solutionOperations().warmUp(scope, solutionResourceName);
     }
 
     public SolutionResourceImpl withTriggerCriteria(List<TriggerCriterion> triggerCriteria) {
