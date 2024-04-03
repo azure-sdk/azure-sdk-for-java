@@ -1,0 +1,1 @@
+[ [ "com.azure.resourcemanager.codesigning.implementation.OperationsClientImpl$OperationsService" ], [ "com.azure.resourcemanager.codesigning.implementation.CodeSigningAccountsClientImpl$CodeSigningAccountsService" ], [ "com.azure.resourcemanager.codesigning.implementation.CertificateProfilesClientImpl$CertificateProfilesService" ] ]
