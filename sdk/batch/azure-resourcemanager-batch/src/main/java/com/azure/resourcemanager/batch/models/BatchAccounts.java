@@ -62,28 +62,6 @@ public interface BatchAccounts {
     BatchAccount getByResourceGroup(String resourceGroupName, String accountName);
 
     /**
-     * Gets information about the Batch accounts associated with the subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the Batch accounts associated with the subscription as paginated response with
-     * {@link PagedIterable}.
-     */
-    PagedIterable<BatchAccount> list();
-
-    /**
-     * Gets information about the Batch accounts associated with the subscription.
-     * 
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the Batch accounts associated with the subscription as paginated response with
-     * {@link PagedIterable}.
-     */
-    PagedIterable<BatchAccount> list(Context context);
-
-    /**
      * Gets information about the Batch accounts associated with the specified resource group.
      * 
      * @param resourceGroupName The name of the resource group that contains the Batch account.
