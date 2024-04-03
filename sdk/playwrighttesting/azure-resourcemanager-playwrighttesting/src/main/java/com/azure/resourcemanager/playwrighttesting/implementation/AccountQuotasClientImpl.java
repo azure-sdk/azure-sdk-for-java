@@ -25,20 +25,20 @@ import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.resourcemanager.playwrighttesting.fluent.QuotasClient;
-import com.azure.resourcemanager.playwrighttesting.fluent.models.QuotaInner;
-import com.azure.resourcemanager.playwrighttesting.models.QuotaListResult;
+import com.azure.resourcemanager.playwrighttesting.fluent.AccountQuotasClient;
+import com.azure.resourcemanager.playwrighttesting.fluent.models.AccountQuotaInner;
+import com.azure.resourcemanager.playwrighttesting.models.AccountQuotaListResult;
 import com.azure.resourcemanager.playwrighttesting.models.QuotaNames;
 import reactor.core.publisher.Mono;
 
 /**
- * An instance of this class provides access to all the operations defined in QuotasClient.
+ * An instance of this class provides access to all the operations defined in AccountQuotasClient.
  */
-public final class QuotasClientImpl implements QuotasClient {
+public final class AccountQuotasClientImpl implements AccountQuotasClient {
     /**
      * The proxy service used to perform REST calls.
      */
-    private final QuotasService service;
+    private final AccountQuotasService service;
 
     /**
      * The service client containing this operation class.
@@ -46,60 +46,64 @@ public final class QuotasClientImpl implements QuotasClient {
     private final PlaywrightTestingMgmtClientImpl client;
 
     /**
-     * Initializes an instance of QuotasClientImpl.
+     * Initializes an instance of AccountQuotasClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    QuotasClientImpl(PlaywrightTestingMgmtClientImpl client) {
-        this.service = RestProxy.create(QuotasService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+    AccountQuotasClientImpl(PlaywrightTestingMgmtClientImpl client) {
+        this.service
+            = RestProxy.create(AccountQuotasService.class, client.getHttpPipeline(), client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for PlaywrightTestingMgmtClientQuotas to be used by the proxy service to
-     * perform REST calls.
+     * The interface defining all the services for PlaywrightTestingMgmtClientAccountQuotas to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "PlaywrightTestingMgm")
-    public interface QuotasService {
+    public interface AccountQuotasService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.AzurePlaywrightService/locations/{location}/quotas")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzurePlaywrightService/accounts/{accountName}/quotas")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<QuotaListResult>> listBySubscription(@HostParam("$host") String endpoint,
+        Mono<Response<AccountQuotaListResult>> listByAccount(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("location") String location, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("accountName") String accountName,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.AzurePlaywrightService/locations/{location}/quotas/{quotaName}")
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzurePlaywrightService/accounts/{accountName}/quotas/{quotaName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<QuotaInner>> get(@HostParam("$host") String endpoint,
+        Mono<Response<AccountQuotaInner>> get(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("location") String location, @PathParam("quotaName") QuotaNames quotaName,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("accountName") String accountName,
+            @PathParam("quotaName") QuotaNames quotaName, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<QuotaListResult>> listBySubscriptionNext(
+        Mono<Response<AccountQuotaListResult>> listByAccountNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
-     * List quotas for a given subscription Id.
+     * List quotas for a given account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a AccountQuota list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<QuotaInner>> listBySubscriptionSinglePageAsync(String location) {
+    private Mono<PagedResponse<AccountQuotaInner>> listByAccountSinglePageAsync(String resourceGroupName,
+        String accountName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -108,31 +112,37 @@ public final class QuotasClientImpl implements QuotasClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (accountName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.listBySubscription(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), location, accept, context))
-            .<PagedResponse<QuotaInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+            .withContext(context -> service.listByAccount(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, accountName, accept, context))
+            .<PagedResponse<AccountQuotaInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * List quotas for a given subscription Id.
+     * List quotas for a given account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a AccountQuota list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<QuotaInner>> listBySubscriptionSinglePageAsync(String location, Context context) {
+    private Mono<PagedResponse<AccountQuotaInner>> listByAccountSinglePageAsync(String resourceGroupName,
+        String accountName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -141,90 +151,102 @@ public final class QuotasClientImpl implements QuotasClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (accountName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listBySubscription(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                location, accept, context)
+            .listByAccount(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, accountName, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * List quotas for a given subscription Id.
+     * List quotas for a given account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation as paginated response with {@link PagedFlux}.
+     * @return the response of a AccountQuota list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<QuotaInner> listBySubscriptionAsync(String location) {
-        return new PagedFlux<>(() -> listBySubscriptionSinglePageAsync(location),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink));
+    private PagedFlux<AccountQuotaInner> listByAccountAsync(String resourceGroupName, String accountName) {
+        return new PagedFlux<>(() -> listByAccountSinglePageAsync(resourceGroupName, accountName),
+            nextLink -> listByAccountNextSinglePageAsync(nextLink));
     }
 
     /**
-     * List quotas for a given subscription Id.
+     * List quotas for a given account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation as paginated response with {@link PagedFlux}.
+     * @return the response of a AccountQuota list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<QuotaInner> listBySubscriptionAsync(String location, Context context) {
-        return new PagedFlux<>(() -> listBySubscriptionSinglePageAsync(location, context),
-            nextLink -> listBySubscriptionNextSinglePageAsync(nextLink, context));
+    private PagedFlux<AccountQuotaInner> listByAccountAsync(String resourceGroupName, String accountName,
+        Context context) {
+        return new PagedFlux<>(() -> listByAccountSinglePageAsync(resourceGroupName, accountName, context),
+            nextLink -> listByAccountNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * List quotas for a given subscription Id.
+     * List quotas for a given account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a AccountQuota list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<QuotaInner> listBySubscription(String location) {
-        return new PagedIterable<>(listBySubscriptionAsync(location));
+    public PagedIterable<AccountQuotaInner> listByAccount(String resourceGroupName, String accountName) {
+        return new PagedIterable<>(listByAccountAsync(resourceGroupName, accountName));
     }
 
     /**
-     * List quotas for a given subscription Id.
+     * List quotas for a given account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a AccountQuota list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<QuotaInner> listBySubscription(String location, Context context) {
-        return new PagedIterable<>(listBySubscriptionAsync(location, context));
+    public PagedIterable<AccountQuotaInner> listByAccount(String resourceGroupName, String accountName,
+        Context context) {
+        return new PagedIterable<>(listByAccountAsync(resourceGroupName, accountName, context));
     }
 
     /**
-     * Get subscription quota by name.
+     * Get quota by name for an account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
-     * @param quotaName The quota name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
+     * @param quotaName The Playwright service account quota name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quota by name along with {@link Response} on successful completion of {@link Mono}.
+     * @return quota by name for an account along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<QuotaInner>> getWithResponseAsync(String location, QuotaNames quotaName) {
+    private Mono<Response<AccountQuotaInner>> getWithResponseAsync(String resourceGroupName, String accountName,
+        QuotaNames quotaName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -233,8 +255,12 @@ public final class QuotasClientImpl implements QuotasClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (accountName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
         if (quotaName == null) {
             return Mono.error(new IllegalArgumentException("Parameter quotaName is required and cannot be null."));
@@ -242,23 +268,25 @@ public final class QuotasClientImpl implements QuotasClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), location, quotaName, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, accountName, quotaName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Get subscription quota by name.
+     * Get quota by name for an account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
-     * @param quotaName The quota name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
+     * @param quotaName The Playwright service account quota name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quota by name along with {@link Response} on successful completion of {@link Mono}.
+     * @return quota by name for an account along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<QuotaInner>> getWithResponseAsync(String location, QuotaNames quotaName, Context context) {
+    private Mono<Response<AccountQuotaInner>> getWithResponseAsync(String resourceGroupName, String accountName,
+        QuotaNames quotaName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -267,8 +295,12 @@ public final class QuotasClientImpl implements QuotasClient {
             return Mono.error(new IllegalArgumentException(
                 "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
-        if (location == null) {
-            return Mono.error(new IllegalArgumentException("Parameter location is required and cannot be null."));
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (accountName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter accountName is required and cannot be null."));
         }
         if (quotaName == null) {
             return Mono.error(new IllegalArgumentException("Parameter quotaName is required and cannot be null."));
@@ -276,53 +308,58 @@ public final class QuotasClientImpl implements QuotasClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            location, quotaName, accept, context);
+            resourceGroupName, accountName, quotaName, accept, context);
     }
 
     /**
-     * Get subscription quota by name.
+     * Get quota by name for an account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
-     * @param quotaName The quota name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
+     * @param quotaName The Playwright service account quota name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quota by name on successful completion of {@link Mono}.
+     * @return quota by name for an account on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<QuotaInner> getAsync(String location, QuotaNames quotaName) {
-        return getWithResponseAsync(location, quotaName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    private Mono<AccountQuotaInner> getAsync(String resourceGroupName, String accountName, QuotaNames quotaName) {
+        return getWithResponseAsync(resourceGroupName, accountName, quotaName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Get subscription quota by name.
+     * Get quota by name for an account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
-     * @param quotaName The quota name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
+     * @param quotaName The Playwright service account quota name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quota by name along with {@link Response}.
+     * @return quota by name for an account along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<QuotaInner> getWithResponse(String location, QuotaNames quotaName, Context context) {
-        return getWithResponseAsync(location, quotaName, context).block();
+    public Response<AccountQuotaInner> getWithResponse(String resourceGroupName, String accountName,
+        QuotaNames quotaName, Context context) {
+        return getWithResponseAsync(resourceGroupName, accountName, quotaName, context).block();
     }
 
     /**
-     * Get subscription quota by name.
+     * Get quota by name for an account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
-     * @param quotaName The quota name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
+     * @param quotaName The Playwright service account quota name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quota by name.
+     * @return quota by name for an account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public QuotaInner get(String location, QuotaNames quotaName) {
-        return getWithResponse(location, quotaName, Context.NONE).getValue();
+    public AccountQuotaInner get(String resourceGroupName, String accountName, QuotaNames quotaName) {
+        return getWithResponse(resourceGroupName, accountName, quotaName, Context.NONE).getValue();
     }
 
     /**
@@ -334,11 +371,11 @@ public final class QuotasClientImpl implements QuotasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a AccountQuota list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<QuotaInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
+    private Mono<PagedResponse<AccountQuotaInner>> listByAccountNextSinglePageAsync(String nextLink) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -348,9 +385,8 @@ public final class QuotasClientImpl implements QuotasClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<QuotaInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+            .withContext(context -> service.listByAccountNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<AccountQuotaInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -365,11 +401,11 @@ public final class QuotasClientImpl implements QuotasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a AccountQuota list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<QuotaInner>> listBySubscriptionNextSinglePageAsync(String nextLink, Context context) {
+    private Mono<PagedResponse<AccountQuotaInner>> listByAccountNextSinglePageAsync(String nextLink, Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
@@ -379,7 +415,7 @@ public final class QuotasClientImpl implements QuotasClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.listBySubscriptionNext(nextLink, this.client.getEndpoint(), accept, context)
+        return service.listByAccountNext(nextLink, this.client.getEndpoint(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }

@@ -9,62 +9,67 @@ import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
-import com.azure.resourcemanager.playwrighttesting.fluent.models.QuotaInner;
+import com.azure.resourcemanager.playwrighttesting.fluent.models.AccountQuotaInner;
 import com.azure.resourcemanager.playwrighttesting.models.QuotaNames;
 
 /**
- * An instance of this class provides access to all the operations defined in QuotasClient.
+ * An instance of this class provides access to all the operations defined in AccountQuotasClient.
  */
-public interface QuotasClient {
+public interface AccountQuotasClient {
     /**
-     * List quotas for a given subscription Id.
+     * List quotas for a given account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a AccountQuota list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<QuotaInner> listBySubscription(String location);
+    PagedIterable<AccountQuotaInner> listByAccount(String resourceGroupName, String accountName);
 
     /**
-     * List quotas for a given subscription Id.
+     * List quotas for a given account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a AccountQuota list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<QuotaInner> listBySubscription(String location, Context context);
+    PagedIterable<AccountQuotaInner> listByAccount(String resourceGroupName, String accountName, Context context);
 
     /**
-     * Get subscription quota by name.
+     * Get quota by name for an account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
-     * @param quotaName The quota name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
+     * @param quotaName The Playwright service account quota name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quota by name along with {@link Response}.
+     * @return quota by name for an account along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<QuotaInner> getWithResponse(String location, QuotaNames quotaName, Context context);
+    Response<AccountQuotaInner> getWithResponse(String resourceGroupName, String accountName, QuotaNames quotaName,
+        Context context);
 
     /**
-     * Get subscription quota by name.
+     * Get quota by name for an account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
-     * @param quotaName The quota name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
+     * @param quotaName The Playwright service account quota name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quota by name.
+     * @return quota by name for an account.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    QuotaInner get(String location, QuotaNames quotaName);
+    AccountQuotaInner get(String resourceGroupName, String accountName, QuotaNames quotaName);
 }

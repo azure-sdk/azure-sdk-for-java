@@ -16,7 +16,7 @@ import java.util.Map;
 public final class AccountsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2023-10-01-preview/
+     * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2024-02-01-preview/
      * examples/Accounts_Update.json
      */
     /**

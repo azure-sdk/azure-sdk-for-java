@@ -24,10 +24,12 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.playwrighttesting.fluent.PlaywrightTestingMgmtClient;
+import com.azure.resourcemanager.playwrighttesting.implementation.AccountQuotasImpl;
 import com.azure.resourcemanager.playwrighttesting.implementation.AccountsImpl;
 import com.azure.resourcemanager.playwrighttesting.implementation.OperationsImpl;
 import com.azure.resourcemanager.playwrighttesting.implementation.PlaywrightTestingMgmtClientBuilder;
 import com.azure.resourcemanager.playwrighttesting.implementation.QuotasImpl;
+import com.azure.resourcemanager.playwrighttesting.models.AccountQuotas;
 import com.azure.resourcemanager.playwrighttesting.models.Accounts;
 import com.azure.resourcemanager.playwrighttesting.models.Operations;
 import com.azure.resourcemanager.playwrighttesting.models.Quotas;
@@ -48,6 +50,8 @@ public final class PlaywrightTestingManager {
     private Accounts accounts;
 
     private Quotas quotas;
+
+    private AccountQuotas accountQuotas;
 
     private final PlaywrightTestingMgmtClient clientObject;
 
@@ -208,7 +212,7 @@ public final class PlaywrightTestingManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.playwrighttesting")
-                .append("/").append("1.0.0-beta.2");
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -281,6 +285,18 @@ public final class PlaywrightTestingManager {
             this.quotas = new QuotasImpl(clientObject.getQuotas(), this);
         }
         return quotas;
+    }
+
+    /**
+     * Gets the resource collection API of AccountQuotas.
+     * 
+     * @return Resource collection API of AccountQuotas.
+     */
+    public AccountQuotas accountQuotas() {
+        if (this.accountQuotas == null) {
+            this.accountQuotas = new AccountQuotasImpl(clientObject.getAccountQuotas(), this);
+        }
+        return accountQuotas;
     }
 
     /**

@@ -75,7 +75,7 @@ public final class AccountImpl implements Account, Account.Definition, Account.U
 
     private String resourceGroupName;
 
-    private String name;
+    private String accountName;
 
     private AccountUpdate updateProperties;
 
@@ -85,13 +85,13 @@ public final class AccountImpl implements Account, Account.Definition, Account.U
     }
 
     public Account create() {
-        this.innerObject = serviceManager.serviceClient().getAccounts().createOrUpdate(resourceGroupName, name,
+        this.innerObject = serviceManager.serviceClient().getAccounts().createOrUpdate(resourceGroupName, accountName,
             this.innerModel(), Context.NONE);
         return this;
     }
 
     public Account create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getAccounts().createOrUpdate(resourceGroupName, name,
+        this.innerObject = serviceManager.serviceClient().getAccounts().createOrUpdate(resourceGroupName, accountName,
             this.innerModel(), context);
         return this;
     }
@@ -99,7 +99,7 @@ public final class AccountImpl implements Account, Account.Definition, Account.U
     AccountImpl(String name, com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager serviceManager) {
         this.innerObject = new AccountInner();
         this.serviceManager = serviceManager;
-        this.name = name;
+        this.accountName = name;
     }
 
     public AccountImpl update() {
@@ -109,13 +109,13 @@ public final class AccountImpl implements Account, Account.Definition, Account.U
 
     public Account apply() {
         this.innerObject = serviceManager.serviceClient().getAccounts()
-            .updateWithResponse(resourceGroupName, name, updateProperties, Context.NONE).getValue();
+            .updateWithResponse(resourceGroupName, accountName, updateProperties, Context.NONE).getValue();
         return this;
     }
 
     public Account apply(Context context) {
         this.innerObject = serviceManager.serviceClient().getAccounts()
-            .updateWithResponse(resourceGroupName, name, updateProperties, context).getValue();
+            .updateWithResponse(resourceGroupName, accountName, updateProperties, context).getValue();
         return this;
     }
 
@@ -124,18 +124,18 @@ public final class AccountImpl implements Account, Account.Definition, Account.U
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
         this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
-        this.name = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "accounts");
+        this.accountName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "accounts");
     }
 
     public Account refresh() {
         this.innerObject = serviceManager.serviceClient().getAccounts()
-            .getByResourceGroupWithResponse(resourceGroupName, name, Context.NONE).getValue();
+            .getByResourceGroupWithResponse(resourceGroupName, accountName, Context.NONE).getValue();
         return this;
     }
 
     public Account refresh(Context context) {
         this.innerObject = serviceManager.serviceClient().getAccounts()
-            .getByResourceGroupWithResponse(resourceGroupName, name, context).getValue();
+            .getByResourceGroupWithResponse(resourceGroupName, accountName, context).getValue();
         return this;
     }
 

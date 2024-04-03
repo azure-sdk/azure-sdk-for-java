@@ -7,20 +7,21 @@ package com.azure.resourcemanager.playwrighttesting.generated;
 import com.azure.resourcemanager.playwrighttesting.models.QuotaNames;
 
 /**
- * Samples for Quotas Get.
+ * Samples for AccountQuotas Get.
  */
-public final class QuotasGetSamples {
+public final class AccountQuotasGetSamples {
     /*
      * x-ms-original-file:
      * specification/playwrighttesting/resource-manager/Microsoft.AzurePlaywrightService/preview/2024-02-01-preview/
-     * examples/Quotas_Get.json
+     * examples/AccountQuotas_Get.json
      */
     /**
-     * Sample code: Quotas_Get.
+     * Sample code: AccountQuotas_Get.
      * 
      * @param manager Entry point to PlaywrightTestingManager.
      */
-    public static void quotasGet(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
-        manager.quotas().getWithResponse("eastus", QuotaNames.SCALABLE_EXECUTION, com.azure.core.util.Context.NONE);
+    public static void accountQuotasGet(com.azure.resourcemanager.playwrighttesting.PlaywrightTestingManager manager) {
+        manager.accountQuotas().getWithResponse("dummyrg", "myPlaywrightAccount", QuotaNames.SCALABLE_EXECUTION,
+            com.azure.core.util.Context.NONE);
     }
 }

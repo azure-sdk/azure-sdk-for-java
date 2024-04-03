@@ -9,54 +9,59 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
 /**
- * Resource collection API of Quotas.
+ * Resource collection API of AccountQuotas.
  */
-public interface Quotas {
+public interface AccountQuotas {
     /**
-     * List quotas for a given subscription Id.
+     * List quotas for a given account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a AccountQuota list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Quota> listBySubscription(String location);
+    PagedIterable<AccountQuota> listByAccount(String resourceGroupName, String accountName);
 
     /**
-     * List quotas for a given subscription Id.
+     * List quotas for a given account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Quota list operation as paginated response with {@link PagedIterable}.
+     * @return the response of a AccountQuota list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Quota> listBySubscription(String location, Context context);
+    PagedIterable<AccountQuota> listByAccount(String resourceGroupName, String accountName, Context context);
 
     /**
-     * Get subscription quota by name.
+     * Get quota by name for an account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
-     * @param quotaName The quota name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
+     * @param quotaName The Playwright service account quota name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quota by name along with {@link Response}.
+     * @return quota by name for an account along with {@link Response}.
      */
-    Response<Quota> getWithResponse(String location, QuotaNames quotaName, Context context);
+    Response<AccountQuota> getWithResponse(String resourceGroupName, String accountName, QuotaNames quotaName,
+        Context context);
 
     /**
-     * Get subscription quota by name.
+     * Get quota by name for an account.
      * 
-     * @param location The location of quota in ARM Normalized format like eastus, southeastasia etc.
-     * @param quotaName The quota name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param accountName Name of account.
+     * @param quotaName The Playwright service account quota name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return subscription quota by name.
+     * @return quota by name for an account.
      */
-    Quota get(String location, QuotaNames quotaName);
+    AccountQuota get(String resourceGroupName, String accountName, QuotaNames quotaName);
 }
