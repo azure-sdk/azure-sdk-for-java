@@ -5,18 +5,27 @@
 package com.azure.resourcemanager.loadtesting.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Check quota availability response object. */
+/**
+ * Check quota availability response object.
+ */
 @Fluent
-public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
+public final class CheckQuotaAvailabilityResponseInner {
     /*
-     * Check quota availability response properties.
+     * Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{
+     * resourceType}/{resourceName}
      */
-    @JsonProperty(value = "properties")
-    private CheckQuotaAvailabilityResponseProperties innerProperties;
+    @JsonProperty(value = "id", required = true, access = JsonProperty.Access.WRITE_ONLY)
+    private String id;
+
+    /*
+     * The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts"
+     */
+    @JsonProperty(value = "type", required = true, access = JsonProperty.Access.WRITE_ONLY)
+    private String type;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -24,22 +33,47 @@ public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of CheckQuotaAvailabilityResponseInner class. */
+    /*
+     * The name of the resource.
+     */
+    @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
+    private String name;
+
+    /*
+     * Check quota availability response properties.
+     */
+    @JsonProperty(value = "properties")
+    private CheckQuotaAvailabilityResponseProperties innerProperties;
+
+    /**
+     * Creates an instance of CheckQuotaAvailabilityResponseInner class.
+     */
     public CheckQuotaAvailabilityResponseInner() {
     }
 
     /**
-     * Get the innerProperties property: Check quota availability response properties.
-     *
-     * @return the innerProperties value.
+     * Get the id property: Fully qualified resource ID for the resource. Ex -
+     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     * 
+     * @return the id value.
      */
-    private CheckQuotaAvailabilityResponseProperties innerProperties() {
-        return this.innerProperties;
+    public String id() {
+        return this.id;
+    }
+
+    /**
+     * Get the type property: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     * "Microsoft.Storage/storageAccounts".
+     * 
+     * @return the type value.
+     */
+    public String type() {
+        return this.type;
     }
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -47,8 +81,26 @@ public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
     }
 
     /**
+     * Get the name property: The name of the resource.
+     * 
+     * @return the name value.
+     */
+    public String name() {
+        return this.name;
+    }
+
+    /**
+     * Get the innerProperties property: Check quota availability response properties.
+     * 
+     * @return the innerProperties value.
+     */
+    private CheckQuotaAvailabilityResponseProperties innerProperties() {
+        return this.innerProperties;
+    }
+
+    /**
      * Get the isAvailable property: True/False indicating whether the quota request be granted based on availability.
-     *
+     * 
      * @return the isAvailable value.
      */
     public Boolean isAvailable() {
@@ -57,7 +109,7 @@ public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
 
     /**
      * Set the isAvailable property: True/False indicating whether the quota request be granted based on availability.
-     *
+     * 
      * @param isAvailable the isAvailable value to set.
      * @return the CheckQuotaAvailabilityResponseInner object itself.
      */
@@ -71,7 +123,7 @@ public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
 
     /**
      * Get the availabilityStatus property: Message indicating additional details to add to quota support request.
-     *
+     * 
      * @return the availabilityStatus value.
      */
     public String availabilityStatus() {
@@ -80,7 +132,7 @@ public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
 
     /**
      * Set the availabilityStatus property: Message indicating additional details to add to quota support request.
-     *
+     * 
      * @param availabilityStatus the availabilityStatus value to set.
      * @return the CheckQuotaAvailabilityResponseInner object itself.
      */
@@ -94,7 +146,7 @@ public final class CheckQuotaAvailabilityResponseInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

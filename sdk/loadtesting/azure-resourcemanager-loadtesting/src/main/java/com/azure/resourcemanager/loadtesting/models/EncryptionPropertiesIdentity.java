@@ -13,29 +13,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Vault.
  */
 @Fluent
-public class EncryptionPropertiesIdentity {
+public final class EncryptionPropertiesIdentity {
     /*
-     * Managed identity type to use for accessing encryption key Url
+     * Managed identity type to use for accessing encryption key Url.
      */
     @JsonProperty(value = "type")
     private Type type;
 
     /*
-     * user assigned identity to use for accessing key encryption key Url. Ex:
+     * User assigned identity to use for accessing key encryption key Url. Ex:
      * /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/<resource
-     * group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId
+     * group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId.
      */
     @JsonProperty(value = "resourceId")
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     private String resourceId;
 
-    /** Creates an instance of EncryptionPropertiesIdentity class. */
+    /**
+     * Creates an instance of EncryptionPropertiesIdentity class.
+     */
     public EncryptionPropertiesIdentity() {
     }
 
     /**
      * Get the type property: Managed identity type to use for accessing encryption key Url.
-     *
+     * 
      * @return the type value.
      */
     public Type type() {
@@ -44,7 +46,7 @@ public class EncryptionPropertiesIdentity {
 
     /**
      * Set the type property: Managed identity type to use for accessing encryption key Url.
-     *
+     * 
      * @param type the type value to set.
      * @return the EncryptionPropertiesIdentity object itself.
      */
@@ -54,10 +56,10 @@ public class EncryptionPropertiesIdentity {
     }
 
     /**
-     * Get the resourceId property: user assigned identity to use for accessing key encryption key Url. Ex:
+     * Get the resourceId property: User assigned identity to use for accessing key encryption key Url. Ex:
      * /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/&lt;resource
      * group&gt;/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -65,10 +67,10 @@ public class EncryptionPropertiesIdentity {
     }
 
     /**
-     * Set the resourceId property: user assigned identity to use for accessing key encryption key Url. Ex:
+     * Set the resourceId property: User assigned identity to use for accessing key encryption key Url. Ex:
      * /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/&lt;resource
      * group&gt;/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the EncryptionPropertiesIdentity object itself.
      */
@@ -79,7 +81,7 @@ public class EncryptionPropertiesIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

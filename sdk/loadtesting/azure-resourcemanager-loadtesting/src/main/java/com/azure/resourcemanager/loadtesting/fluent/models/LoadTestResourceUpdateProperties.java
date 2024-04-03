@@ -8,9 +8,11 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.loadtesting.models.EncryptionProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Load Test resource properties. */
+/**
+ * The updatable properties of the LoadTestResource.
+ */
 @Fluent
-public final class LoadTestResourcePatchRequestBodyProperties {
+public final class LoadTestResourceUpdateProperties {
     /*
      * Description of the resource.
      */
@@ -23,13 +25,15 @@ public final class LoadTestResourcePatchRequestBodyProperties {
     @JsonProperty(value = "encryption")
     private EncryptionProperties encryption;
 
-    /** Creates an instance of LoadTestResourcePatchRequestBodyProperties class. */
-    public LoadTestResourcePatchRequestBodyProperties() {
+    /**
+     * Creates an instance of LoadTestResourceUpdateProperties class.
+     */
+    public LoadTestResourceUpdateProperties() {
     }
 
     /**
      * Get the description property: Description of the resource.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -38,18 +42,18 @@ public final class LoadTestResourcePatchRequestBodyProperties {
 
     /**
      * Set the description property: Description of the resource.
-     *
+     * 
      * @param description the description value to set.
-     * @return the LoadTestResourcePatchRequestBodyProperties object itself.
+     * @return the LoadTestResourceUpdateProperties object itself.
      */
-    public LoadTestResourcePatchRequestBodyProperties withDescription(String description) {
+    public LoadTestResourceUpdateProperties withDescription(String description) {
         this.description = description;
         return this;
     }
 
     /**
      * Get the encryption property: CMK Encryption property.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionProperties encryption() {
@@ -58,18 +62,18 @@ public final class LoadTestResourcePatchRequestBodyProperties {
 
     /**
      * Set the encryption property: CMK Encryption property.
-     *
+     * 
      * @param encryption the encryption value to set.
-     * @return the LoadTestResourcePatchRequestBodyProperties object itself.
+     * @return the LoadTestResourceUpdateProperties object itself.
      */
-    public LoadTestResourcePatchRequestBodyProperties withEncryption(EncryptionProperties encryption) {
+    public LoadTestResourceUpdateProperties withEncryption(EncryptionProperties encryption) {
         this.encryption = encryption;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

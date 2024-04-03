@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loadtesting.models.EncryptionProperties;
 import com.azure.resourcemanager.loadtesting.models.ResourceState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** LoadTest resource properties. */
+/**
+ * LoadTest resource properties.
+ */
 @Fluent
 public final class LoadTestProperties {
     /*
@@ -36,13 +38,15 @@ public final class LoadTestProperties {
     @JsonProperty(value = "encryption")
     private EncryptionProperties encryption;
 
-    /** Creates an instance of LoadTestProperties class. */
+    /**
+     * Creates an instance of LoadTestProperties class.
+     */
     public LoadTestProperties() {
     }
 
     /**
      * Get the description property: Description of the resource.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -51,7 +55,7 @@ public final class LoadTestProperties {
 
     /**
      * Set the description property: Description of the resource.
-     *
+     * 
      * @param description the description value to set.
      * @return the LoadTestProperties object itself.
      */
@@ -62,7 +66,7 @@ public final class LoadTestProperties {
 
     /**
      * Get the provisioningState property: Resource provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceState provisioningState() {
@@ -71,7 +75,7 @@ public final class LoadTestProperties {
 
     /**
      * Get the dataPlaneUri property: Resource data plane URI.
-     *
+     * 
      * @return the dataPlaneUri value.
      */
     public String dataPlaneUri() {
@@ -80,7 +84,7 @@ public final class LoadTestProperties {
 
     /**
      * Get the encryption property: CMK Encryption property.
-     *
+     * 
      * @return the encryption value.
      */
     public EncryptionProperties encryption() {
@@ -89,7 +93,7 @@ public final class LoadTestProperties {
 
     /**
      * Set the encryption property: CMK Encryption property.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the LoadTestProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class LoadTestProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
