@@ -1,7 +1,6 @@
 ## Generate autorest code
 
 ```yaml
-require: https://github.com/Azure/azure-rest-api-specs/blob/3e27c70e7c02c07b458bc0e94716c3d82d3fdd19/specification/loadtestservice/data-plane/readme.md
 use: '@autorest/java@4.1.26'
 java: true
 data-plane: true
@@ -16,16 +15,17 @@ enable-sync-stack: true
 partial-update: true
 output-folder: $(azure-sdk-for-java-folder)/sdk/loadtesting/azure-developer-loadtesting
 service-versions:
-- '2022-11-01'
+  - '2022-11-01'
 directive:
-- rename-operation:
-    from: LoadTestRun_ListMetricNamespaces
-    to: LoadTestRun_GetMetricNamespaces
-- rename-operation:
-    from: LoadTestRun_ListMetricDefinitions
-    to: LoadTestRun_GetMetricDefinitions
-- where-operation: LoadTestRun_ListMetrics
-  transform: $['parameters'][3]['x-ms-client-name'] = 'metricName'
-- where-operation: LoadTestRun_ListMetricDimensionValues
-  transform: $['parameters'][3]['x-ms-client-name'] = 'metricName'
+  - rename-operation:
+      from: LoadTestRun_ListMetricNamespaces
+      to: LoadTestRun_GetMetricNamespaces
+  - rename-operation:
+      from: LoadTestRun_ListMetricDefinitions
+      to: LoadTestRun_GetMetricDefinitions
+  - where-operation: LoadTestRun_ListMetrics
+    transform: $['parameters'][3]['x-ms-client-name'] = 'metricName'
+  - where-operation: LoadTestRun_ListMetricDimensionValues
+    transform: $['parameters'][3]['x-ms-client-name'] = 'metricName'
+require: /mnt/vss/_work/1/s/azure-rest-api-specs/specification/loadtestservice/data-plane/readme.md
 ```
