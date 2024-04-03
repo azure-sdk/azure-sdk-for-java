@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class DefenderCspmAwsOffering extends CloudOffering {
     /*
-     * The Microsoft Defender for Server VM scanning configuration
+     * The Microsoft Defender for CSPM offering VM scanning configuration
      */
     @JsonProperty(value = "vmScanners")
     private DefenderCspmAwsOfferingVmScanners vmScanners;
@@ -35,7 +35,7 @@ public final class DefenderCspmAwsOffering extends CloudOffering {
     private DefenderCspmAwsOfferingDatabasesDspm databasesDspm;
 
     /*
-     * Defenders CSPM Cloud infrastructure entitlement management (CIEM) offering configurations
+     * Defenders CSPM Permissions Management offering configurations
      */
     @JsonProperty(value = "ciem")
     private DefenderCspmAwsOfferingCiem ciem;
@@ -59,7 +59,7 @@ public final class DefenderCspmAwsOffering extends CloudOffering {
     }
 
     /**
-     * Get the vmScanners property: The Microsoft Defender for Server VM scanning configuration.
+     * Get the vmScanners property: The Microsoft Defender for CSPM offering VM scanning configuration.
      * 
      * @return the vmScanners value.
      */
@@ -68,7 +68,7 @@ public final class DefenderCspmAwsOffering extends CloudOffering {
     }
 
     /**
-     * Set the vmScanners property: The Microsoft Defender for Server VM scanning configuration.
+     * Set the vmScanners property: The Microsoft Defender for CSPM offering VM scanning configuration.
      * 
      * @param vmScanners the vmScanners value to set.
      * @return the DefenderCspmAwsOffering object itself.
@@ -120,8 +120,7 @@ public final class DefenderCspmAwsOffering extends CloudOffering {
     }
 
     /**
-     * Get the ciem property: Defenders CSPM Cloud infrastructure entitlement management (CIEM) offering
-     * configurations.
+     * Get the ciem property: Defenders CSPM Permissions Management offering configurations.
      * 
      * @return the ciem value.
      */
@@ -130,8 +129,7 @@ public final class DefenderCspmAwsOffering extends CloudOffering {
     }
 
     /**
-     * Set the ciem property: Defenders CSPM Cloud infrastructure entitlement management (CIEM) offering
-     * configurations.
+     * Set the ciem property: Defenders CSPM Permissions Management offering configurations.
      * 
      * @param ciem the ciem value to set.
      * @return the DefenderCspmAwsOffering object itself.

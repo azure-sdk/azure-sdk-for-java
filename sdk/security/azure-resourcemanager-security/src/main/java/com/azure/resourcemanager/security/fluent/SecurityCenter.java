@@ -250,13 +250,6 @@ public interface SecurityCenter {
     SqlVulnerabilityAssessmentScanResultsClient getSqlVulnerabilityAssessmentScanResults();
 
     /**
-     * Gets the ResourceProvidersClient object to access its operations.
-     * 
-     * @return the ResourceProvidersClient object.
-     */
-    ResourceProvidersClient getResourceProviders();
-
-    /**
      * Gets the SensitivitySettingsClient object to access its operations.
      * 
      * @return the SensitivitySettingsClient object.
@@ -339,6 +332,13 @@ public interface SecurityCenter {
      * @return the DevOpsOperationResultsClient object.
      */
     DevOpsOperationResultsClient getDevOpsOperationResults();
+
+    /**
+     * Gets the DataScannersClient object to access its operations.
+     * 
+     * @return the DataScannersClient object.
+     */
+    DataScannersClient getDataScanners();
 
     /**
      * Gets the SecurityConnectorsClient object to access its operations.

@@ -45,6 +45,7 @@ import com.azure.resourcemanager.security.implementation.CompliancesImpl;
 import com.azure.resourcemanager.security.implementation.ConnectorsImpl;
 import com.azure.resourcemanager.security.implementation.CustomAssessmentAutomationsImpl;
 import com.azure.resourcemanager.security.implementation.CustomEntityStoreAssignmentsImpl;
+import com.azure.resourcemanager.security.implementation.DataScannersImpl;
 import com.azure.resourcemanager.security.implementation.DefenderForStoragesImpl;
 import com.azure.resourcemanager.security.implementation.DevOpsConfigurationsImpl;
 import com.azure.resourcemanager.security.implementation.DevOpsOperationResultsImpl;
@@ -72,7 +73,6 @@ import com.azure.resourcemanager.security.implementation.PricingsImpl;
 import com.azure.resourcemanager.security.implementation.RegulatoryComplianceAssessmentsImpl;
 import com.azure.resourcemanager.security.implementation.RegulatoryComplianceControlsImpl;
 import com.azure.resourcemanager.security.implementation.RegulatoryComplianceStandardsImpl;
-import com.azure.resourcemanager.security.implementation.ResourceProvidersImpl;
 import com.azure.resourcemanager.security.implementation.SecureScoreControlDefinitionsImpl;
 import com.azure.resourcemanager.security.implementation.SecureScoreControlsImpl;
 import com.azure.resourcemanager.security.implementation.SecureScoresImpl;
@@ -117,6 +117,7 @@ import com.azure.resourcemanager.security.models.Compliances;
 import com.azure.resourcemanager.security.models.Connectors;
 import com.azure.resourcemanager.security.models.CustomAssessmentAutomations;
 import com.azure.resourcemanager.security.models.CustomEntityStoreAssignments;
+import com.azure.resourcemanager.security.models.DataScanners;
 import com.azure.resourcemanager.security.models.DefenderForStorages;
 import com.azure.resourcemanager.security.models.DevOpsConfigurations;
 import com.azure.resourcemanager.security.models.DevOpsOperationResults;
@@ -144,7 +145,6 @@ import com.azure.resourcemanager.security.models.Pricings;
 import com.azure.resourcemanager.security.models.RegulatoryComplianceAssessments;
 import com.azure.resourcemanager.security.models.RegulatoryComplianceControls;
 import com.azure.resourcemanager.security.models.RegulatoryComplianceStandards;
-import com.azure.resourcemanager.security.models.ResourceProviders;
 import com.azure.resourcemanager.security.models.SecureScoreControlDefinitions;
 import com.azure.resourcemanager.security.models.SecureScoreControls;
 import com.azure.resourcemanager.security.models.SecureScores;
@@ -239,8 +239,6 @@ public final class SecurityManager {
 
     private SqlVulnerabilityAssessmentScanResults sqlVulnerabilityAssessmentScanResults;
 
-    private ResourceProviders resourceProviders;
-
     private SensitivitySettings sensitivitySettings;
 
     private HealthReports healthReports;
@@ -264,6 +262,8 @@ public final class SecurityManager {
     private GitLabProjects gitLabProjects;
 
     private DevOpsOperationResults devOpsOperationResults;
+
+    private DataScanners dataScanners;
 
     private SecurityConnectors securityConnectors;
 
@@ -480,7 +480,7 @@ public final class SecurityManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.security").append("/")
-                .append("1.0.0-beta.6");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -893,18 +893,6 @@ public final class SecurityManager {
     }
 
     /**
-     * Gets the resource collection API of ResourceProviders.
-     * 
-     * @return Resource collection API of ResourceProviders.
-     */
-    public ResourceProviders resourceProviders() {
-        if (this.resourceProviders == null) {
-            this.resourceProviders = new ResourceProvidersImpl(clientObject.getResourceProviders(), this);
-        }
-        return resourceProviders;
-    }
-
-    /**
      * Gets the resource collection API of SensitivitySettings.
      * 
      * @return Resource collection API of SensitivitySettings.
@@ -1047,6 +1035,18 @@ public final class SecurityManager {
                 = new DevOpsOperationResultsImpl(clientObject.getDevOpsOperationResults(), this);
         }
         return devOpsOperationResults;
+    }
+
+    /**
+     * Gets the resource collection API of DataScanners.
+     * 
+     * @return Resource collection API of DataScanners.
+     */
+    public DataScanners dataScanners() {
+        if (this.dataScanners == null) {
+            this.dataScanners = new DataScannersImpl(clientObject.getDataScanners(), this);
+        }
+        return dataScanners;
     }
 
     /**

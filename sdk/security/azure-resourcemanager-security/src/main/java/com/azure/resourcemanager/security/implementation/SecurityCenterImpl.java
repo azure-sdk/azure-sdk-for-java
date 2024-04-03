@@ -43,6 +43,7 @@ import com.azure.resourcemanager.security.fluent.CompliancesClient;
 import com.azure.resourcemanager.security.fluent.ConnectorsClient;
 import com.azure.resourcemanager.security.fluent.CustomAssessmentAutomationsClient;
 import com.azure.resourcemanager.security.fluent.CustomEntityStoreAssignmentsClient;
+import com.azure.resourcemanager.security.fluent.DataScannersClient;
 import com.azure.resourcemanager.security.fluent.DefenderForStoragesClient;
 import com.azure.resourcemanager.security.fluent.DevOpsConfigurationsClient;
 import com.azure.resourcemanager.security.fluent.DevOpsOperationResultsClient;
@@ -70,7 +71,6 @@ import com.azure.resourcemanager.security.fluent.PricingsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceAssessmentsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceControlsClient;
 import com.azure.resourcemanager.security.fluent.RegulatoryComplianceStandardsClient;
-import com.azure.resourcemanager.security.fluent.ResourceProvidersClient;
 import com.azure.resourcemanager.security.fluent.SecureScoreControlDefinitionsClient;
 import com.azure.resourcemanager.security.fluent.SecureScoreControlsClient;
 import com.azure.resourcemanager.security.fluent.SecureScoresClient;
@@ -599,20 +599,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
     }
 
     /**
-     * The ResourceProvidersClient object to access its operations.
-     */
-    private final ResourceProvidersClient resourceProviders;
-
-    /**
-     * Gets the ResourceProvidersClient object to access its operations.
-     * 
-     * @return the ResourceProvidersClient object.
-     */
-    public ResourceProvidersClient getResourceProviders() {
-        return this.resourceProviders;
-    }
-
-    /**
      * The SensitivitySettingsClient object to access its operations.
      */
     private final SensitivitySettingsClient sensitivitySettings;
@@ -778,6 +764,20 @@ public final class SecurityCenterImpl implements SecurityCenter {
      */
     public DevOpsOperationResultsClient getDevOpsOperationResults() {
         return this.devOpsOperationResults;
+    }
+
+    /**
+     * The DataScannersClient object to access its operations.
+     */
+    private final DataScannersClient dataScanners;
+
+    /**
+     * Gets the DataScannersClient object to access its operations.
+     * 
+     * @return the DataScannersClient object.
+     */
+    public DataScannersClient getDataScanners() {
+        return this.dataScanners;
     }
 
     /**
@@ -1219,7 +1219,6 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.sqlVulnerabilityAssessmentBaselineRules = new SqlVulnerabilityAssessmentBaselineRulesClientImpl(this);
         this.sqlVulnerabilityAssessmentScans = new SqlVulnerabilityAssessmentScansClientImpl(this);
         this.sqlVulnerabilityAssessmentScanResults = new SqlVulnerabilityAssessmentScanResultsClientImpl(this);
-        this.resourceProviders = new ResourceProvidersClientImpl(this);
         this.sensitivitySettings = new SensitivitySettingsClientImpl(this);
         this.healthReports = new HealthReportsClientImpl(this);
         this.azureDevOpsOrgs = new AzureDevOpsOrgsClientImpl(this);
@@ -1232,6 +1231,7 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.gitLabSubgroups = new GitLabSubgroupsClientImpl(this);
         this.gitLabProjects = new GitLabProjectsClientImpl(this);
         this.devOpsOperationResults = new DevOpsOperationResultsClientImpl(this);
+        this.dataScanners = new DataScannersClientImpl(this);
         this.securityConnectors = new SecurityConnectorsClientImpl(this);
         this.complianceResults = new ComplianceResultsClientImpl(this);
         this.advancedThreatProtections = new AdvancedThreatProtectionsClientImpl(this);

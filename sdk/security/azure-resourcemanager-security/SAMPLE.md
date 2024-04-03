@@ -156,6 +156,13 @@
 - [List](#customentitystoreassignments_list)
 - [ListByResourceGroup](#customentitystoreassignments_listbyresourcegroup)
 
+## DataScanners
+
+- [CreateOrUpdate](#datascanners_createorupdate)
+- [Delete](#datascanners_delete)
+- [Get](#datascanners_get)
+- [List](#datascanners_list)
+
 ## DefenderForStorage
 
 - [Create](#defenderforstorage_create)
@@ -313,11 +320,6 @@
 - [Get](#regulatorycompliancestandards_get)
 - [List](#regulatorycompliancestandards_list)
 
-## ResourceProvider
-
-- [GetSensitivitySettings](#resourceprovider_getsensitivitysettings)
-- [UpdateSensitivitySettings](#resourceprovider_updatesensitivitysettings)
-
 ## SecureScoreControlDefinitions
 
 - [List](#securescorecontroldefinitions_list)
@@ -378,6 +380,8 @@
 
 ## SensitivitySettings
 
+- [CreateOrUpdate](#sensitivitysettings_createorupdate)
+- [Get](#sensitivitysettings_get)
 - [List](#sensitivitysettings_list)
 
 ## ServerVulnerabilityAssessment
@@ -3168,6 +3172,100 @@ public final class CustomEntityStoreAssignmentsListByResourceGroupSamples {
 }
 ```
 
+### DataScanners_CreateOrUpdate
+
+```java
+/**
+ * Samples for DataScanners CreateOrUpdate.
+ */
+public final class DataScannersCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-01-01-preview/examples/
+     * PutDataScanner_example.json
+     */
+    /**
+     * Sample code: Create a security data scanner.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void createASecurityDataScanner(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.dataScanners().createOrUpdateWithResponse("datascanner", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataScanners_Delete
+
+```java
+/**
+ * Samples for DataScanners Delete.
+ */
+public final class DataScannersDeleteSamples {
+    /*
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-01-01-preview/examples/
+     * DeleteDataScanner_example.json
+     */
+    /**
+     * Sample code: Delete a security data scanner.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void deleteASecurityDataScanner(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.dataScanners().deleteWithResponse("datascanner", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataScanners_Get
+
+```java
+/**
+ * Samples for DataScanners Get.
+ */
+public final class DataScannersGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-01-01-preview/examples/
+     * GetDataScanner_example.json
+     */
+    /**
+     * Sample code: Get a specific security scanner by scope and scannerName.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void
+        getASpecificSecurityScannerByScopeAndScannerName(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.dataScanners().getWithResponse("datascanner", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DataScanners_List
+
+```java
+/**
+ * Samples for DataScanners List.
+ */
+public final class DataScannersListSamples {
+    /*
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-01-01-preview/examples/
+     * ListBySubscriptionDataScanners_example.json
+     */
+    /**
+     * Sample code: List security data scanners by subscription level scope.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void
+        listSecurityDataScannersBySubscriptionLevelScope(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.dataScanners().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### DefenderForStorage_Create
 
 ```java
@@ -5805,63 +5903,6 @@ public final class RegulatoryComplianceStandardsListSamples {
 }
 ```
 
-### ResourceProvider_GetSensitivitySettings
-
-```java
-/**
- * Samples for ResourceProvider GetSensitivitySettings.
- */
-public final class ResourceProviderGetSensitivitySettingsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/
-     * SensitivitySettings/GetSensitivitySettings_example.json
-     */
-    /**
-     * Sample code: Get sensitivity settings.
-     * 
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void getSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.resourceProviders().getSensitivitySettingsWithResponse(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ResourceProvider_UpdateSensitivitySettings
-
-```java
-import com.azure.resourcemanager.security.models.UpdateSensitivitySettingsRequest;
-import java.util.Arrays;
-import java.util.UUID;
-
-/**
- * Samples for ResourceProvider UpdateSensitivitySettings.
- */
-public final class ResourceProviderUpdateSensitivitySettingsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/
-     * SensitivitySettings/PutSensitivitySettings_example.json
-     */
-    /**
-     * Sample code: Update sensitivity settings.
-     * 
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void updateSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.resourceProviders().updateSensitivitySettingsWithResponse(
-            new UpdateSensitivitySettingsRequest()
-                .withSensitiveInfoTypesIds(Arrays.asList(UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb"),
-                    UUID.fromString("b452f22b-f87d-4f48-8490-ecf0873325b5"),
-                    UUID.fromString("d59ee8b6-2618-404b-a5e7-aa377cd67543")))
-                .withSensitivityThresholdLabelOrder(2.0F).withSensitivityThresholdLabelId(
-                    UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb")),
-            com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### SecureScoreControlDefinitions_List
 
 ```java
@@ -6150,7 +6191,7 @@ import java.util.Map;
 public final class SecurityConnectorsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /PutSecurityConnector_example.json
      */
     /**
@@ -6191,7 +6232,7 @@ public final class SecurityConnectorsCreateOrUpdateSamples {
 public final class SecurityConnectorsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /DeleteSecurityConnector_example.json
      */
     /**
@@ -6215,7 +6256,7 @@ public final class SecurityConnectorsDeleteSamples {
 public final class SecurityConnectorsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /GetSecurityConnectorSingleResource_example.json
      */
     /**
@@ -6239,7 +6280,7 @@ public final class SecurityConnectorsGetByResourceGroupSamples {
 public final class SecurityConnectorsListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /GetSecurityConnectorsSubscription_example.json
      */
     /**
@@ -6263,7 +6304,7 @@ public final class SecurityConnectorsListSamples {
 public final class SecurityConnectorsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /GetSecurityConnectorsResourceGroup_example.json
      */
     /**
@@ -6296,7 +6337,7 @@ import java.util.Map;
 public final class SecurityConnectorsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /PatchSecurityConnector_example.json
      */
     /**
@@ -6630,6 +6671,63 @@ public final class SecuritySolutionsReferenceDataListByHomeRegionSamples {
         getSecuritySolutionsFromASecurityDataLocation(com.azure.resourcemanager.security.SecurityManager manager) {
         manager.securitySolutionsReferenceDatas().listByHomeRegionWithResponse("westcentralus",
             com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SensitivitySettings_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.security.models.UpdateSensitivitySettingsRequest;
+import java.util.Arrays;
+import java.util.UUID;
+
+/**
+ * Samples for SensitivitySettings CreateOrUpdate.
+ */
+public final class SensitivitySettingsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/
+     * SensitivitySettings/PutSensitivitySettings_example.json
+     */
+    /**
+     * Sample code: Update sensitivity settings.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void updateSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.sensitivitySettings().createOrUpdateWithResponse(
+            new UpdateSensitivitySettingsRequest()
+                .withSensitiveInfoTypesIds(Arrays.asList(UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb"),
+                    UUID.fromString("b452f22b-f87d-4f48-8490-ecf0873325b5"),
+                    UUID.fromString("d59ee8b6-2618-404b-a5e7-aa377cd67543")))
+                .withSensitivityThresholdLabelOrder(2.0F).withSensitivityThresholdLabelId(
+                    UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb")),
+            com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SensitivitySettings_Get
+
+```java
+/**
+ * Samples for SensitivitySettings Get.
+ */
+public final class SensitivitySettingsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/
+     * SensitivitySettings/GetSensitivitySettings_example.json
+     */
+    /**
+     * Sample code: Get sensitivity settings.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.sensitivitySettings().getWithResponse(com.azure.core.util.Context.NONE);
     }
 }
 ```
