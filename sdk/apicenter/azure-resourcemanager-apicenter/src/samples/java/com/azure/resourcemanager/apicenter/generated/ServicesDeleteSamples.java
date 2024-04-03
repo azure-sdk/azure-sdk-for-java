@@ -10,7 +10,8 @@ package com.azure.resourcemanager.apicenter.generated;
 public final class ServicesDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Services_Delete.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/Services_Delete.
+     * json
      */
     /**
      * Sample code: Services_Delete.

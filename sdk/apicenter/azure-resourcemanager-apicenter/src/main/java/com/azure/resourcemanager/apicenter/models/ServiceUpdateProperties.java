@@ -8,16 +8,10 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The properties of the service.
+ * The updatable properties of the Service.
  */
 @Fluent
-public final class ServiceProperties {
-    /*
-     * Provisioning state of the service.
-     */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
-    private ProvisioningState provisioningState;
-
+public final class ServiceUpdateProperties {
     /*
      * Flag used to restore soft-deleted API Center service. If specified and set to 'true' all other properties will
      * be ignored.
@@ -26,18 +20,9 @@ public final class ServiceProperties {
     private Boolean restore;
 
     /**
-     * Creates an instance of ServiceProperties class.
+     * Creates an instance of ServiceUpdateProperties class.
      */
-    public ServiceProperties() {
-    }
-
-    /**
-     * Get the provisioningState property: Provisioning state of the service.
-     * 
-     * @return the provisioningState value.
-     */
-    public ProvisioningState provisioningState() {
-        return this.provisioningState;
+    public ServiceUpdateProperties() {
     }
 
     /**
@@ -55,9 +40,9 @@ public final class ServiceProperties {
      * all other properties will be ignored.
      * 
      * @param restore the restore value to set.
-     * @return the ServiceProperties object itself.
+     * @return the ServiceUpdateProperties object itself.
      */
-    public ServiceProperties withRestore(Boolean restore) {
+    public ServiceUpdateProperties withRestore(Boolean restore) {
         this.restore = restore;
         return this;
     }

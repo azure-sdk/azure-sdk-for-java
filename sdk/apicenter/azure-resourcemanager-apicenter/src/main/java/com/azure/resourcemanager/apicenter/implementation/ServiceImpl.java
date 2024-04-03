@@ -14,6 +14,7 @@ import com.azure.resourcemanager.apicenter.models.MetadataSchemaExportResult;
 import com.azure.resourcemanager.apicenter.models.Service;
 import com.azure.resourcemanager.apicenter.models.ServiceProperties;
 import com.azure.resourcemanager.apicenter.models.ServiceUpdate;
+import com.azure.resourcemanager.apicenter.models.ServiceUpdateProperties;
 import java.util.Collections;
 import java.util.Map;
 
@@ -185,6 +186,11 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
             this.updateProperties.withIdentity(identity);
             return this;
         }
+    }
+
+    public ServiceImpl withProperties(ServiceUpdateProperties properties) {
+        this.updateProperties.withProperties(properties);
+        return this;
     }
 
     private boolean isInCreateMode() {
