@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines an early termination policy that cancels a given percentage of runs at each evaluation interval. */
+/**
+ * Defines an early termination policy that cancels a given percentage of runs at each evaluation interval.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "policyType")
 @JsonTypeName("TruncationSelection")
 @Fluent
@@ -20,13 +22,15 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
     @JsonProperty(value = "truncationPercentage")
     private Integer truncationPercentage;
 
-    /** Creates an instance of TruncationSelectionPolicy class. */
+    /**
+     * Creates an instance of TruncationSelectionPolicy class.
+     */
     public TruncationSelectionPolicy() {
     }
 
     /**
      * Get the truncationPercentage property: The percentage of runs to cancel at each evaluation interval.
-     *
+     * 
      * @return the truncationPercentage value.
      */
     public Integer truncationPercentage() {
@@ -35,7 +39,7 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
 
     /**
      * Set the truncationPercentage property: The percentage of runs to cancel at each evaluation interval.
-     *
+     * 
      * @param truncationPercentage the truncationPercentage value to set.
      * @return the TruncationSelectionPolicy object itself.
      */
@@ -44,14 +48,18 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TruncationSelectionPolicy withDelayEvaluation(Integer delayEvaluation) {
         super.withDelayEvaluation(delayEvaluation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TruncationSelectionPolicy withEvaluationInterval(Integer evaluationInterval) {
         super.withEvaluationInterval(evaluationInterval);
@@ -60,7 +68,7 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

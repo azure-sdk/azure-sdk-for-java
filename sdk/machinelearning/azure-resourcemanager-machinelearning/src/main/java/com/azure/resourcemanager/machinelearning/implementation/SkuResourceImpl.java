@@ -14,8 +14,8 @@ public final class SkuResourceImpl implements SkuResource {
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
 
-    SkuResourceImpl(
-        SkuResourceInner innerObject, com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
+    SkuResourceImpl(SkuResourceInner innerObject,
+        com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
