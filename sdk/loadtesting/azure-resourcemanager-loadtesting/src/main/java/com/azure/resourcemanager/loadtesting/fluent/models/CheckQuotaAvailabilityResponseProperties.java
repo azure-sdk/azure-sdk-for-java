@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loadtesting.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Check quota availability response properties. */
+/**
+ * Check quota availability response properties.
+ */
 @Fluent
 public final class CheckQuotaAvailabilityResponseProperties {
     /*
@@ -22,13 +24,15 @@ public final class CheckQuotaAvailabilityResponseProperties {
     @JsonProperty(value = "availabilityStatus")
     private String availabilityStatus;
 
-    /** Creates an instance of CheckQuotaAvailabilityResponseProperties class. */
+    /**
+     * Creates an instance of CheckQuotaAvailabilityResponseProperties class.
+     */
     public CheckQuotaAvailabilityResponseProperties() {
     }
 
     /**
      * Get the isAvailable property: True/False indicating whether the quota request be granted based on availability.
-     *
+     * 
      * @return the isAvailable value.
      */
     public Boolean isAvailable() {
@@ -37,7 +41,7 @@ public final class CheckQuotaAvailabilityResponseProperties {
 
     /**
      * Set the isAvailable property: True/False indicating whether the quota request be granted based on availability.
-     *
+     * 
      * @param isAvailable the isAvailable value to set.
      * @return the CheckQuotaAvailabilityResponseProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class CheckQuotaAvailabilityResponseProperties {
 
     /**
      * Get the availabilityStatus property: Message indicating additional details to add to quota support request.
-     *
+     * 
      * @return the availabilityStatus value.
      */
     public String availabilityStatus() {
@@ -57,7 +61,7 @@ public final class CheckQuotaAvailabilityResponseProperties {
 
     /**
      * Set the availabilityStatus property: Message indicating additional details to add to quota support request.
-     *
+     * 
      * @param availabilityStatus the availabilityStatus value to set.
      * @return the CheckQuotaAvailabilityResponseProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class CheckQuotaAvailabilityResponseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.loadtesting.models.ResourceState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Quota bucket resource properties. */
+/**
+ * Quota bucket resource properties.
+ */
 @Fluent
 public final class QuotaResourceProperties {
     /*
@@ -29,13 +31,15 @@ public final class QuotaResourceProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ResourceState provisioningState;
 
-    /** Creates an instance of QuotaResourceProperties class. */
+    /**
+     * Creates an instance of QuotaResourceProperties class.
+     */
     public QuotaResourceProperties() {
     }
 
     /**
      * Get the limit property: Current quota limit of the quota bucket.
-     *
+     * 
      * @return the limit value.
      */
     public Integer limit() {
@@ -44,7 +48,7 @@ public final class QuotaResourceProperties {
 
     /**
      * Set the limit property: Current quota limit of the quota bucket.
-     *
+     * 
      * @param limit the limit value to set.
      * @return the QuotaResourceProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class QuotaResourceProperties {
 
     /**
      * Get the usage property: Current quota usage of the quota bucket.
-     *
+     * 
      * @return the usage value.
      */
     public Integer usage() {
@@ -64,7 +68,7 @@ public final class QuotaResourceProperties {
 
     /**
      * Set the usage property: Current quota usage of the quota bucket.
-     *
+     * 
      * @param usage the usage value to set.
      * @return the QuotaResourceProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class QuotaResourceProperties {
 
     /**
      * Get the provisioningState property: Resource provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ResourceState provisioningState() {
@@ -84,7 +88,7 @@ public final class QuotaResourceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
