@@ -8,15 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The subscription quota resource properties.
+ * The Playwright service account quota resource properties.
  */
 @Fluent
-public final class QuotaProperties {
+public final class AccountQuotaProperties {
     /*
-     * The subscription quota resource free-trial properties.
+     * The Playwright service account quota resource free-trial properties.
      */
     @JsonProperty(value = "freeTrial")
-    private FreeTrialProperties freeTrial;
+    private AccountFreeTrialProperties freeTrial;
 
     /*
      * The status of the last operation.
@@ -25,27 +25,27 @@ public final class QuotaProperties {
     private ProvisioningState provisioningState;
 
     /**
-     * Creates an instance of QuotaProperties class.
+     * Creates an instance of AccountQuotaProperties class.
      */
-    public QuotaProperties() {
+    public AccountQuotaProperties() {
     }
 
     /**
-     * Get the freeTrial property: The subscription quota resource free-trial properties.
+     * Get the freeTrial property: The Playwright service account quota resource free-trial properties.
      * 
      * @return the freeTrial value.
      */
-    public FreeTrialProperties freeTrial() {
+    public AccountFreeTrialProperties freeTrial() {
         return this.freeTrial;
     }
 
     /**
-     * Set the freeTrial property: The subscription quota resource free-trial properties.
+     * Set the freeTrial property: The Playwright service account quota resource free-trial properties.
      * 
      * @param freeTrial the freeTrial value to set.
-     * @return the QuotaProperties object itself.
+     * @return the AccountQuotaProperties object itself.
      */
-    public QuotaProperties withFreeTrial(FreeTrialProperties freeTrial) {
+    public AccountQuotaProperties withFreeTrial(AccountFreeTrialProperties freeTrial) {
         this.freeTrial = freeTrial;
         return this;
     }
