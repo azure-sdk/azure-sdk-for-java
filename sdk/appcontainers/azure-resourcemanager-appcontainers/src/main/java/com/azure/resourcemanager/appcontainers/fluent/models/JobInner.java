@@ -7,7 +7,6 @@ package com.azure.resourcemanager.appcontainers.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.appcontainers.models.ExtendedLocation;
 import com.azure.resourcemanager.appcontainers.models.JobConfiguration;
 import com.azure.resourcemanager.appcontainers.models.JobProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.JobTemplate;
@@ -21,12 +20,6 @@ import java.util.Map;
  */
 @Fluent
 public final class JobInner extends Resource {
-    /*
-     * The complex type of the extended location.
-     */
-    @JsonProperty(value = "extendedLocation")
-    private ExtendedLocation extendedLocation;
-
     /*
      * Managed identities needed by a container app job to interact with other Azure services to not maintain any
      * secrets or credentials in code.
@@ -50,26 +43,6 @@ public final class JobInner extends Resource {
      * Creates an instance of JobInner class.
      */
     public JobInner() {
-    }
-
-    /**
-     * Get the extendedLocation property: The complex type of the extended location.
-     * 
-     * @return the extendedLocation value.
-     */
-    public ExtendedLocation extendedLocation() {
-        return this.extendedLocation;
-    }
-
-    /**
-     * Set the extendedLocation property: The complex type of the extended location.
-     * 
-     * @param extendedLocation the extendedLocation value to set.
-     * @return the JobInner object itself.
-     */
-    public JobInner withExtendedLocation(ExtendedLocation extendedLocation) {
-        this.extendedLocation = extendedLocation;
-        return this;
     }
 
     /**
@@ -255,9 +228,6 @@ public final class JobInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (extendedLocation() != null) {
-            extendedLocation().validate();
-        }
         if (identity() != null) {
             identity().validate();
         }
