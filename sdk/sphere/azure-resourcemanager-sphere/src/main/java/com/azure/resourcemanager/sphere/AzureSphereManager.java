@@ -228,7 +228,7 @@ public final class AzureSphereManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.sphere").append("/")
-                .append("1.0.0");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
