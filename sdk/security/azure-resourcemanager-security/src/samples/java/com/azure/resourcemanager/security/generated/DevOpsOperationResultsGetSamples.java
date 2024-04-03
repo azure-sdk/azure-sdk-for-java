@@ -10,8 +10,8 @@ package com.azure.resourcemanager.security.generated;
 public final class DevOpsOperationResultsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetDevOpsOperationResultsFailed_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetDevOpsOperationResultsFailed_example.json
      */
     /**
      * Sample code: Get_DevOpsOperationResults_Failed.
@@ -25,8 +25,8 @@ public final class DevOpsOperationResultsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetDevOpsOperationResultsSucceeded_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetDevOpsOperationResultsSucceeded_example.json
      */
     /**
      * Sample code: Get_DevOpsOperationResults_Succeeded.

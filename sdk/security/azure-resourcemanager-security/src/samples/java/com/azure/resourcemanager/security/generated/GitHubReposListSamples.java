@@ -10,8 +10,8 @@ package com.azure.resourcemanager.security.generated;
 public final class GitHubReposListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListGitHubRepos_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListGitHubRepos_example.json
      */
     /**
      * Sample code: List_GitHubRepos.

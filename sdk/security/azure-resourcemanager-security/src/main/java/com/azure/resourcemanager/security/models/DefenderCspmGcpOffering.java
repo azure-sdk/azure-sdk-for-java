@@ -17,13 +17,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @Fluent
 public final class DefenderCspmGcpOffering extends CloudOffering {
     /*
-     * GCP Defenders CSPM Cloud infrastructure entitlement management (CIEM) discovery offering configurations
+     * GCP Defenders CSPM Permissions Management OIDC (Open ID connect) connection configurations
      */
     @JsonProperty(value = "ciemDiscovery")
     private DefenderCspmGcpOfferingCiemDiscovery ciemDiscovery;
 
     /*
-     * The Microsoft Defender for Server VM scanning configuration
+     * The Microsoft Defender for CSPM VM scanning configuration
      */
     @JsonProperty(value = "vmScanners")
     private DefenderCspmGcpOfferingVmScanners vmScanners;
@@ -53,8 +53,8 @@ public final class DefenderCspmGcpOffering extends CloudOffering {
     }
 
     /**
-     * Get the ciemDiscovery property: GCP Defenders CSPM Cloud infrastructure entitlement management (CIEM) discovery
-     * offering configurations.
+     * Get the ciemDiscovery property: GCP Defenders CSPM Permissions Management OIDC (Open ID connect) connection
+     * configurations.
      * 
      * @return the ciemDiscovery value.
      */
@@ -63,8 +63,8 @@ public final class DefenderCspmGcpOffering extends CloudOffering {
     }
 
     /**
-     * Set the ciemDiscovery property: GCP Defenders CSPM Cloud infrastructure entitlement management (CIEM) discovery
-     * offering configurations.
+     * Set the ciemDiscovery property: GCP Defenders CSPM Permissions Management OIDC (Open ID connect) connection
+     * configurations.
      * 
      * @param ciemDiscovery the ciemDiscovery value to set.
      * @return the DefenderCspmGcpOffering object itself.
@@ -75,7 +75,7 @@ public final class DefenderCspmGcpOffering extends CloudOffering {
     }
 
     /**
-     * Get the vmScanners property: The Microsoft Defender for Server VM scanning configuration.
+     * Get the vmScanners property: The Microsoft Defender for CSPM VM scanning configuration.
      * 
      * @return the vmScanners value.
      */
@@ -84,7 +84,7 @@ public final class DefenderCspmGcpOffering extends CloudOffering {
     }
 
     /**
-     * Set the vmScanners property: The Microsoft Defender for Server VM scanning configuration.
+     * Set the vmScanners property: The Microsoft Defender for CSPM VM scanning configuration.
      * 
      * @param vmScanners the vmScanners value to set.
      * @return the DefenderCspmGcpOffering object itself.

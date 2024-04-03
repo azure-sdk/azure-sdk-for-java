@@ -16,8 +16,8 @@ import com.azure.resourcemanager.security.models.OnboardingState;
 public final class AzureDevOpsProjectsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/UpdateAzureDevOpsProjects_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * UpdateAzureDevOpsProjects_example.json
      */
     /**
      * Sample code: Update_AzureDevOpsProjects.

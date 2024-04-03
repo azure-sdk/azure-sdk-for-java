@@ -313,11 +313,6 @@
 - [Get](#regulatorycompliancestandards_get)
 - [List](#regulatorycompliancestandards_list)
 
-## ResourceProvider
-
-- [GetSensitivitySettings](#resourceprovider_getsensitivitysettings)
-- [UpdateSensitivitySettings](#resourceprovider_updatesensitivitysettings)
-
 ## SecureScoreControlDefinitions
 
 - [List](#securescorecontroldefinitions_list)
@@ -378,6 +373,8 @@
 
 ## SensitivitySettings
 
+- [CreateOrUpdate](#sensitivitysettings_createorupdate)
+- [Get](#sensitivitysettings_get)
 - [List](#sensitivitysettings_list)
 
 ## ServerVulnerabilityAssessment
@@ -2307,8 +2304,8 @@ import com.azure.resourcemanager.security.models.OnboardingState;
 public final class AzureDevOpsOrgsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/CreateOrUpdateAzureDevOpsOrgs_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * CreateOrUpdateAzureDevOpsOrgs_example.json
      */
     /**
      * Sample code: CreateOrUpdate_AzureDevOpsOrgs.
@@ -2334,8 +2331,8 @@ public final class AzureDevOpsOrgsCreateOrUpdateSamples {
 public final class AzureDevOpsOrgsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetAzureDevOpsOrgs_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetAzureDevOpsOrgs_example.json
      */
     /**
      * Sample code: Get_AzureDevOpsOrgs.
@@ -2358,8 +2355,8 @@ public final class AzureDevOpsOrgsGetSamples {
 public final class AzureDevOpsOrgsListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListAzureDevOpsOrgs_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListAzureDevOpsOrgs_example.json
      */
     /**
      * Sample code: List_AzureDevOpsOrgs.
@@ -2381,8 +2378,8 @@ public final class AzureDevOpsOrgsListSamples {
 public final class AzureDevOpsOrgsListAvailableSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListAvailableAzureDevOpsOrgs_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListAvailableAzureDevOpsOrgs_example.json
      */
     /**
      * Sample code: ListAvailable_AzureDevOpsOrgs.
@@ -2411,8 +2408,8 @@ import com.azure.resourcemanager.security.models.OnboardingState;
 public final class AzureDevOpsOrgsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/UpdateAzureDevOpsOrgs_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * UpdateAzureDevOpsOrgs_example.json
      */
     /**
      * Sample code: Update_AzureDevOpsOrgs.
@@ -2445,8 +2442,8 @@ import com.azure.resourcemanager.security.models.OnboardingState;
 public final class AzureDevOpsProjectsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/CreateOrUpdateAzureDevOpsProjects_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * CreateOrUpdateAzureDevOpsProjects_example.json
      */
     /**
      * Sample code: CreateOrUpdate_AzureDevOpsProjects.
@@ -2472,8 +2469,8 @@ public final class AzureDevOpsProjectsCreateOrUpdateSamples {
 public final class AzureDevOpsProjectsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetAzureDevOpsProjects_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetAzureDevOpsProjects_example.json
      */
     /**
      * Sample code: Get_AzureDevOpsProjects.
@@ -2496,8 +2493,8 @@ public final class AzureDevOpsProjectsGetSamples {
 public final class AzureDevOpsProjectsListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListAzureDevOpsProjects_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListAzureDevOpsProjects_example.json
      */
     /**
      * Sample code: List_AzureDevOpsProjects.
@@ -2526,8 +2523,8 @@ import com.azure.resourcemanager.security.models.OnboardingState;
 public final class AzureDevOpsProjectsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/UpdateAzureDevOpsProjects_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * UpdateAzureDevOpsProjects_example.json
      */
     /**
      * Sample code: Update_AzureDevOpsProjects.
@@ -2559,8 +2556,8 @@ import com.azure.resourcemanager.security.models.OnboardingState;
 public final class AzureDevOpsReposCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/CreateOrUpdateAzureDevOpsRepos_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * CreateOrUpdateAzureDevOpsRepos_example.json
      */
     /**
      * Sample code: CreateOrUpdate_AzureDevOpsRepos.
@@ -2586,8 +2583,8 @@ public final class AzureDevOpsReposCreateOrUpdateSamples {
 public final class AzureDevOpsReposGetSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetAzureDevOpsRepos_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetAzureDevOpsRepos_example.json
      */
     /**
      * Sample code: Get_AzureDevOpsRepos.
@@ -2610,8 +2607,8 @@ public final class AzureDevOpsReposGetSamples {
 public final class AzureDevOpsReposListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListAzureDevOpsRepos_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListAzureDevOpsRepos_example.json
      */
     /**
      * Sample code: List_AzureDevOpsRepos.
@@ -2640,8 +2637,8 @@ import com.azure.resourcemanager.security.models.OnboardingState;
 public final class AzureDevOpsReposUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/UpdateAzureDevOpsRepos_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * UpdateAzureDevOpsRepos_example.json
      */
     /**
      * Sample code: Update_AzureDevOpsRepos.
@@ -3243,8 +3240,8 @@ import java.util.Arrays;
 public final class DevOpsConfigurationsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardCurrentAndFuture_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * CreateOrUpdateDevOpsConfigurationsOnboardCurrentAndFuture_example.json
      */
     /**
      * Sample code: CreateOrUpdate_DevOpsConfigurations_OnboardCurrentAndFuture.
@@ -3262,8 +3259,8 @@ public final class DevOpsConfigurationsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardCurrentOnly_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * CreateOrUpdateDevOpsConfigurationsOnboardCurrentOnly_example.json
      */
     /**
      * Sample code: CreateOrUpdate_DevOpsConfigurations_OnboardCurrentOnly.
@@ -3281,8 +3278,8 @@ public final class DevOpsConfigurationsCreateOrUpdateSamples {
 
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/CreateOrUpdateDevOpsConfigurationsOnboardSelected_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * CreateOrUpdateDevOpsConfigurationsOnboardSelected_example.json
      */
     /**
      * Sample code: CreateOrUpdate_DevOpsConfigurations_OnboardSelected.
@@ -3309,8 +3306,8 @@ public final class DevOpsConfigurationsCreateOrUpdateSamples {
 public final class DevOpsConfigurationsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/DeleteDevOpsConfigurations_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * DeleteDevOpsConfigurations_example.json
      */
     /**
      * Sample code: Delete_DevOpsConfigurations.
@@ -3332,8 +3329,24 @@ public final class DevOpsConfigurationsDeleteSamples {
 public final class DevOpsConfigurationsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetDevOpsConfigurations_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetDevOpsConfigurationsWithCapabilities_example.json
+     */
+    /**
+     * Sample code: Get_DevOpsConfigurations_WithCapabilities.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void
+        getDevOpsConfigurationsWithCapabilities(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.devOpsConfigurations().getWithResponse("myRg", "mySecurityConnectorName",
+            com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetDevOpsConfigurations_example.json
      */
     /**
      * Sample code: Get_DevOpsConfigurations.
@@ -3356,8 +3369,8 @@ public final class DevOpsConfigurationsGetSamples {
 public final class DevOpsConfigurationsListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListDevOpsConfigurations_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListDevOpsConfigurations_example.json
      */
     /**
      * Sample code: List_DevOpsConfigurations.
@@ -3383,8 +3396,8 @@ import com.azure.resourcemanager.security.models.DevOpsConfigurationProperties;
 public final class DevOpsConfigurationsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/UpdateDevOpsConfigurations_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * UpdateDevOpsConfigurations_example.json
      */
     /**
      * Sample code: Update_DevOpsConfigurations.
@@ -3409,8 +3422,8 @@ public final class DevOpsConfigurationsUpdateSamples {
 public final class DevOpsOperationResultsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetDevOpsOperationResultsFailed_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetDevOpsOperationResultsFailed_example.json
      */
     /**
      * Sample code: Get_DevOpsOperationResults_Failed.
@@ -3424,8 +3437,8 @@ public final class DevOpsOperationResultsGetSamples {
 
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetDevOpsOperationResultsSucceeded_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetDevOpsOperationResultsSucceeded_example.json
      */
     /**
      * Sample code: Get_DevOpsOperationResults_Succeeded.
@@ -3702,8 +3715,8 @@ public final class ExternalSecuritySolutionsListByHomeRegionSamples {
 public final class GitHubOwnersGetSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetGitHubOwners_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetGitHubOwners_example.json
      */
     /**
      * Sample code: Get_GitHubOwners.
@@ -3726,8 +3739,8 @@ public final class GitHubOwnersGetSamples {
 public final class GitHubOwnersListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListGitHubOwners_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListGitHubOwners_example.json
      */
     /**
      * Sample code: List_GitHubOwners.
@@ -3749,8 +3762,8 @@ public final class GitHubOwnersListSamples {
 public final class GitHubOwnersListAvailableSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListAvailableGitHubOwners_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListAvailableGitHubOwners_example.json
      */
     /**
      * Sample code: ListAvailable_GitHubOwners.
@@ -3773,8 +3786,8 @@ public final class GitHubOwnersListAvailableSamples {
 public final class GitHubReposGetSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetGitHubRepos_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetGitHubRepos_example.json
      */
     /**
      * Sample code: Get_GitHubRepos.
@@ -3797,8 +3810,8 @@ public final class GitHubReposGetSamples {
 public final class GitHubReposListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListGitHubRepos_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListGitHubRepos_example.json
      */
     /**
      * Sample code: List_GitHubRepos.
@@ -3821,8 +3834,8 @@ public final class GitHubReposListSamples {
 public final class GitLabGroupsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetGitLabGroups_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetGitLabGroups_example.json
      */
     /**
      * Sample code: Get_GitLabGroups.
@@ -3845,8 +3858,8 @@ public final class GitLabGroupsGetSamples {
 public final class GitLabGroupsListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListGitLabGroups_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListGitLabGroups_example.json
      */
     /**
      * Sample code: List_GitLabGroups.
@@ -3868,8 +3881,8 @@ public final class GitLabGroupsListSamples {
 public final class GitLabGroupsListAvailableSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListAvailableGitLabGroups_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListAvailableGitLabGroups_example.json
      */
     /**
      * Sample code: ListAvailable_GitLabGroups.
@@ -3892,8 +3905,8 @@ public final class GitLabGroupsListAvailableSamples {
 public final class GitLabProjectsGetSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/GetGitLabProjects_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * GetGitLabProjects_example.json
      */
     /**
      * Sample code: Get_GitLabProjects.
@@ -3916,8 +3929,8 @@ public final class GitLabProjectsGetSamples {
 public final class GitLabProjectsListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListGitLabProjects_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListGitLabProjects_example.json
      */
     /**
      * Sample code: List_GitLabProjects.
@@ -3940,8 +3953,8 @@ public final class GitLabProjectsListSamples {
 public final class GitLabSubgroupsListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-09-01-preview/examples/
-     * SecurityConnectorsDevOps/ListGitLabSubgroups_example.json
+     * specification/security/resource-manager/Microsoft.Security/stable/2024-04-01/examples/SecurityConnectorsDevOps/
+     * ListGitLabSubgroups_example.json
      */
     /**
      * Sample code: List_GitLabSubgroups.
@@ -5805,63 +5818,6 @@ public final class RegulatoryComplianceStandardsListSamples {
 }
 ```
 
-### ResourceProvider_GetSensitivitySettings
-
-```java
-/**
- * Samples for ResourceProvider GetSensitivitySettings.
- */
-public final class ResourceProviderGetSensitivitySettingsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/
-     * SensitivitySettings/GetSensitivitySettings_example.json
-     */
-    /**
-     * Sample code: Get sensitivity settings.
-     * 
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void getSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.resourceProviders().getSensitivitySettingsWithResponse(com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### ResourceProvider_UpdateSensitivitySettings
-
-```java
-import com.azure.resourcemanager.security.models.UpdateSensitivitySettingsRequest;
-import java.util.Arrays;
-import java.util.UUID;
-
-/**
- * Samples for ResourceProvider UpdateSensitivitySettings.
- */
-public final class ResourceProviderUpdateSensitivitySettingsSamples {
-    /*
-     * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/
-     * SensitivitySettings/PutSensitivitySettings_example.json
-     */
-    /**
-     * Sample code: Update sensitivity settings.
-     * 
-     * @param manager Entry point to SecurityManager.
-     */
-    public static void updateSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
-        manager.resourceProviders().updateSensitivitySettingsWithResponse(
-            new UpdateSensitivitySettingsRequest()
-                .withSensitiveInfoTypesIds(Arrays.asList(UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb"),
-                    UUID.fromString("b452f22b-f87d-4f48-8490-ecf0873325b5"),
-                    UUID.fromString("d59ee8b6-2618-404b-a5e7-aa377cd67543")))
-                .withSensitivityThresholdLabelOrder(2.0F).withSensitivityThresholdLabelId(
-                    UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb")),
-            com.azure.core.util.Context.NONE);
-    }
-}
-```
-
 ### SecureScoreControlDefinitions_List
 
 ```java
@@ -6150,7 +6106,7 @@ import java.util.Map;
 public final class SecurityConnectorsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /PutSecurityConnector_example.json
      */
     /**
@@ -6191,7 +6147,7 @@ public final class SecurityConnectorsCreateOrUpdateSamples {
 public final class SecurityConnectorsDeleteSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /DeleteSecurityConnector_example.json
      */
     /**
@@ -6215,7 +6171,7 @@ public final class SecurityConnectorsDeleteSamples {
 public final class SecurityConnectorsGetByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /GetSecurityConnectorSingleResource_example.json
      */
     /**
@@ -6239,7 +6195,7 @@ public final class SecurityConnectorsGetByResourceGroupSamples {
 public final class SecurityConnectorsListSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /GetSecurityConnectorsSubscription_example.json
      */
     /**
@@ -6263,7 +6219,7 @@ public final class SecurityConnectorsListSamples {
 public final class SecurityConnectorsListByResourceGroupSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /GetSecurityConnectorsResourceGroup_example.json
      */
     /**
@@ -6296,7 +6252,7 @@ import java.util.Map;
 public final class SecurityConnectorsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/security/resource-manager/Microsoft.Security/preview/2023-10-01-preview/examples/SecurityConnectors
+     * specification/security/resource-manager/Microsoft.Security/preview/2024-03-01-preview/examples/SecurityConnectors
      * /PatchSecurityConnector_example.json
      */
     /**
@@ -6630,6 +6586,63 @@ public final class SecuritySolutionsReferenceDataListByHomeRegionSamples {
         getSecuritySolutionsFromASecurityDataLocation(com.azure.resourcemanager.security.SecurityManager manager) {
         manager.securitySolutionsReferenceDatas().listByHomeRegionWithResponse("westcentralus",
             com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SensitivitySettings_CreateOrUpdate
+
+```java
+import com.azure.resourcemanager.security.models.UpdateSensitivitySettingsRequest;
+import java.util.Arrays;
+import java.util.UUID;
+
+/**
+ * Samples for SensitivitySettings CreateOrUpdate.
+ */
+public final class SensitivitySettingsCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/
+     * SensitivitySettings/PutSensitivitySettings_example.json
+     */
+    /**
+     * Sample code: Update sensitivity settings.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void updateSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.sensitivitySettings().createOrUpdateWithResponse(
+            new UpdateSensitivitySettingsRequest()
+                .withSensitiveInfoTypesIds(Arrays.asList(UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb"),
+                    UUID.fromString("b452f22b-f87d-4f48-8490-ecf0873325b5"),
+                    UUID.fromString("d59ee8b6-2618-404b-a5e7-aa377cd67543")))
+                .withSensitivityThresholdLabelOrder(2.0F).withSensitivityThresholdLabelId(
+                    UUID.fromString("f2f8a7a1-28c0-404b-9ab4-30a0a7af18cb")),
+            com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### SensitivitySettings_Get
+
+```java
+/**
+ * Samples for SensitivitySettings Get.
+ */
+public final class SensitivitySettingsGetSamples {
+    /*
+     * x-ms-original-file:
+     * specification/security/resource-manager/Microsoft.Security/preview/2023-02-15-preview/examples/
+     * SensitivitySettings/GetSensitivitySettings_example.json
+     */
+    /**
+     * Sample code: Get sensitivity settings.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void getSensitivitySettings(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.sensitivitySettings().getWithResponse(com.azure.core.util.Context.NONE);
     }
 }
 ```

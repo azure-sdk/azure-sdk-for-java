@@ -24,7 +24,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "DefenderForContainersAws", value = DefenderForContainersAwsOffering.class),
     @JsonSubTypes.Type(name = "DefenderForServersAws", value = DefenderForServersAwsOffering.class),
     @JsonSubTypes.Type(name = "DefenderForDatabasesAws", value = DefenderFoDatabasesAwsOffering.class),
-    @JsonSubTypes.Type(name = "InformationProtectionAws", value = InformationProtectionAwsOffering.class),
     @JsonSubTypes.Type(name = "CspmMonitorGcp", value = CspmMonitorGcpOffering.class),
     @JsonSubTypes.Type(name = "DefenderForServersGcp", value = DefenderForServersGcpOffering.class),
     @JsonSubTypes.Type(name = "DefenderForDatabasesGcp", value = DefenderForDatabasesGcpOffering.class),
@@ -33,10 +32,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "CspmMonitorAzureDevOps", value = CspmMonitorAzureDevOpsOffering.class),
     @JsonSubTypes.Type(name = "DefenderCspmAws", value = DefenderCspmAwsOffering.class),
     @JsonSubTypes.Type(name = "DefenderCspmGcp", value = DefenderCspmGcpOffering.class),
-    @JsonSubTypes.Type(name = "DefenderForDevOpsGithub", value = DefenderForDevOpsGithubOffering.class),
-    @JsonSubTypes.Type(name = "DefenderForDevOpsAzureDevOps", value = DefenderForDevOpsAzureDevOpsOffering.class),
-    @JsonSubTypes.Type(name = "CspmMonitorGitLab", value = CspmMonitorGitLabOffering.class),
-    @JsonSubTypes.Type(name = "DefenderForDevOpsGitLab", value = DefenderForDevOpsGitLabOffering.class) })
+    @JsonSubTypes.Type(name = "CspmMonitorGitLab", value = CspmMonitorGitLabOffering.class) })
 @Immutable
 public class CloudOffering {
     /*
