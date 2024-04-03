@@ -10,7 +10,8 @@ package com.azure.resourcemanager.apicenter.generated;
 public final class ApiDefinitionsHeadSamples {
     /*
      * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiDefinitions_Head.json
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/
+     * ApiDefinitions_Head.json
      */
     /**
      * Sample code: ApiDefinitions_Head.
