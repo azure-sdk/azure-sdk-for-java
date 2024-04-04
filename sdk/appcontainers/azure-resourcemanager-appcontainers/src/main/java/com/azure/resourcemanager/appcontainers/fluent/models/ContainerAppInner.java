@@ -8,8 +8,10 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppPropertiesPatchingConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.ExtendedLocation;
+import com.azure.resourcemanager.appcontainers.models.Kind;
 import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.appcontainers.models.Template;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -41,6 +43,13 @@ public final class ContainerAppInner extends Resource {
      */
     @JsonProperty(value = "managedBy")
     private String managedBy;
+
+    /*
+     * Metadata used to render different experiences for resources of the same type; e.g. WorkflowApp is a kind of
+     * Microsoft.App/ContainerApps type. If supported, the resource provider must validate and persist this value.
+     */
+    @JsonProperty(value = "kind")
+    private Kind kind;
 
     /*
      * ContainerApp resource specific properties
@@ -123,6 +132,30 @@ public final class ContainerAppInner extends Resource {
      */
     public ContainerAppInner withManagedBy(String managedBy) {
         this.managedBy = managedBy;
+        return this;
+    }
+
+    /**
+     * Get the kind property: Metadata used to render different experiences for resources of the same type; e.g.
+     * WorkflowApp is a kind of Microsoft.App/ContainerApps type. If supported, the resource provider must validate and
+     * persist this value.
+     * 
+     * @return the kind value.
+     */
+    public Kind kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: Metadata used to render different experiences for resources of the same type; e.g.
+     * WorkflowApp is a kind of Microsoft.App/ContainerApps type. If supported, the resource provider must validate and
+     * persist this value.
+     * 
+     * @param kind the kind value to set.
+     * @return the ContainerAppInner object itself.
+     */
+    public ContainerAppInner withKind(Kind kind) {
+        this.kind = kind;
         return this;
     }
 
@@ -237,6 +270,30 @@ public final class ContainerAppInner extends Resource {
             this.innerProperties = new ContainerAppProperties();
         }
         this.innerProperties().withWorkloadProfileName(workloadProfileName);
+        return this;
+    }
+
+    /**
+     * Get the patchingConfiguration property: Container App auto patch configuration.
+     * 
+     * @return the patchingConfiguration value.
+     */
+    public ContainerAppPropertiesPatchingConfiguration patchingConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().patchingConfiguration();
+    }
+
+    /**
+     * Set the patchingConfiguration property: Container App auto patch configuration.
+     * 
+     * @param patchingConfiguration the patchingConfiguration value to set.
+     * @return the ContainerAppInner object itself.
+     */
+    public ContainerAppInner
+        withPatchingConfiguration(ContainerAppPropertiesPatchingConfiguration patchingConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ContainerAppProperties();
+        }
+        this.innerProperties().withPatchingConfiguration(patchingConfiguration);
         return this;
     }
 

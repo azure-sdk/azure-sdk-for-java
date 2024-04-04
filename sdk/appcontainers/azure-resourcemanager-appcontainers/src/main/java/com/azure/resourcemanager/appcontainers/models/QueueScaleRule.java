@@ -31,6 +31,13 @@ public final class QueueScaleRule {
     @JsonProperty(value = "auth")
     private List<ScaleRuleAuth> auth;
 
+    /*
+     * The resource ID of a user-assigned managed identity that is assigned to the Container App, or 'system' for
+     * system-assigned identity.
+     */
+    @JsonProperty(value = "identity")
+    private String identity;
+
     /**
      * Creates an instance of QueueScaleRule class.
      */
@@ -94,6 +101,28 @@ public final class QueueScaleRule {
      */
     public QueueScaleRule withAuth(List<ScaleRuleAuth> auth) {
         this.auth = auth;
+        return this;
+    }
+
+    /**
+     * Get the identity property: The resource ID of a user-assigned managed identity that is assigned to the Container
+     * App, or 'system' for system-assigned identity.
+     * 
+     * @return the identity value.
+     */
+    public String identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The resource ID of a user-assigned managed identity that is assigned to the Container
+     * App, or 'system' for system-assigned identity.
+     * 
+     * @param identity the identity value to set.
+     * @return the QueueScaleRule object itself.
+     */
+    public QueueScaleRule withIdentity(String identity) {
+        this.identity = identity;
         return this;
     }
 
