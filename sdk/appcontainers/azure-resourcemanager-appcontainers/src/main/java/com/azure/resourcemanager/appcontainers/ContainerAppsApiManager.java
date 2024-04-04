@@ -38,8 +38,12 @@ import com.azure.resourcemanager.appcontainers.implementation.ConnectedEnvironme
 import com.azure.resourcemanager.appcontainers.implementation.ConnectedEnvironmentsStoragesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsApiClientBuilder;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsAuthConfigsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsBuildsByContainerAppsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsBuildsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsDiagnosticsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsLabelsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsPatchesImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevisionReplicasImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsRevisionsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.ContainerAppsSourceControlsImpl;
@@ -47,6 +51,7 @@ import com.azure.resourcemanager.appcontainers.implementation.DaprComponentResil
 import com.azure.resourcemanager.appcontainers.implementation.DaprComponentsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.DaprSubscriptionsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.DotNetComponentsImpl;
+import com.azure.resourcemanager.appcontainers.implementation.FunctionsExtensionsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.JavaComponentsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.JobsExecutionsImpl;
 import com.azure.resourcemanager.appcontainers.implementation.JobsImpl;
@@ -74,7 +79,11 @@ import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironmentsDaprC
 import com.azure.resourcemanager.appcontainers.models.ConnectedEnvironmentsStorages;
 import com.azure.resourcemanager.appcontainers.models.ContainerApps;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsAuthConfigs;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppsBuilds;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppsBuildsByContainerApps;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsDiagnostics;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppsLabels;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppsPatches;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisionReplicas;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsRevisions;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppsSourceControls;
@@ -82,6 +91,7 @@ import com.azure.resourcemanager.appcontainers.models.DaprComponentResiliencyPol
 import com.azure.resourcemanager.appcontainers.models.DaprComponents;
 import com.azure.resourcemanager.appcontainers.models.DaprSubscriptions;
 import com.azure.resourcemanager.appcontainers.models.DotNetComponents;
+import com.azure.resourcemanager.appcontainers.models.FunctionsExtensions;
 import com.azure.resourcemanager.appcontainers.models.JavaComponents;
 import com.azure.resourcemanager.appcontainers.models.Jobs;
 import com.azure.resourcemanager.appcontainers.models.JobsExecutions;
@@ -104,6 +114,9 @@ import java.util.stream.Collectors;
 
 /**
  * Entry point to ContainerAppsApiManager.
+ * Functions is an extension resource to revisions and the api listed is used to proxy the call from Web RP to the
+ * function app's host process, this api is not exposed to users and only Web RP is allowed to invoke functions
+ * extension resource.
  */
 public final class ContainerAppsApiManager {
     private AppResiliencies appResiliencies;
@@ -136,6 +149,12 @@ public final class ContainerAppsApiManager {
 
     private ContainerAppsRevisionReplicas containerAppsRevisionReplicas;
 
+    private ContainerAppsBuildsByContainerApps containerAppsBuildsByContainerApps;
+
+    private ContainerAppsBuilds containerAppsBuilds;
+
+    private ContainerAppsPatches containerAppsPatches;
+
     private ContainerAppsDiagnostics containerAppsDiagnostics;
 
     private ManagedEnvironmentDiagnostics managedEnvironmentDiagnostics;
@@ -144,7 +163,11 @@ public final class ContainerAppsApiManager {
 
     private Jobs jobs;
 
+    private DotNetComponents dotNetComponents;
+
     private Operations operations;
+
+    private JavaComponents javaComponents;
 
     private JobsExecutions jobsExecutions;
 
@@ -172,9 +195,9 @@ public final class ContainerAppsApiManager {
 
     private ManagedEnvironmentUsages managedEnvironmentUsages;
 
-    private JavaComponents javaComponents;
+    private FunctionsExtensions functionsExtensions;
 
-    private DotNetComponents dotNetComponents;
+    private ContainerAppsLabels containerAppsLabels;
 
     private final ContainerAppsApiClient clientObject;
 
@@ -335,7 +358,7 @@ public final class ContainerAppsApiManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.appcontainers")
-                .append("/").append("1.0.0-beta.7");
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -563,6 +586,43 @@ public final class ContainerAppsApiManager {
     }
 
     /**
+     * Gets the resource collection API of ContainerAppsBuildsByContainerApps.
+     * 
+     * @return Resource collection API of ContainerAppsBuildsByContainerApps.
+     */
+    public ContainerAppsBuildsByContainerApps containerAppsBuildsByContainerApps() {
+        if (this.containerAppsBuildsByContainerApps == null) {
+            this.containerAppsBuildsByContainerApps = new ContainerAppsBuildsByContainerAppsImpl(
+                clientObject.getContainerAppsBuildsByContainerApps(), this);
+        }
+        return containerAppsBuildsByContainerApps;
+    }
+
+    /**
+     * Gets the resource collection API of ContainerAppsBuilds.
+     * 
+     * @return Resource collection API of ContainerAppsBuilds.
+     */
+    public ContainerAppsBuilds containerAppsBuilds() {
+        if (this.containerAppsBuilds == null) {
+            this.containerAppsBuilds = new ContainerAppsBuildsImpl(clientObject.getContainerAppsBuilds(), this);
+        }
+        return containerAppsBuilds;
+    }
+
+    /**
+     * Gets the resource collection API of ContainerAppsPatches.
+     * 
+     * @return Resource collection API of ContainerAppsPatches.
+     */
+    public ContainerAppsPatches containerAppsPatches() {
+        if (this.containerAppsPatches == null) {
+            this.containerAppsPatches = new ContainerAppsPatchesImpl(clientObject.getContainerAppsPatches(), this);
+        }
+        return containerAppsPatches;
+    }
+
+    /**
      * Gets the resource collection API of ContainerAppsDiagnostics.
      * 
      * @return Resource collection API of ContainerAppsDiagnostics.
@@ -614,6 +674,18 @@ public final class ContainerAppsApiManager {
     }
 
     /**
+     * Gets the resource collection API of DotNetComponents. It manages DotNetComponent.
+     * 
+     * @return Resource collection API of DotNetComponents.
+     */
+    public DotNetComponents dotNetComponents() {
+        if (this.dotNetComponents == null) {
+            this.dotNetComponents = new DotNetComponentsImpl(clientObject.getDotNetComponents(), this);
+        }
+        return dotNetComponents;
+    }
+
+    /**
      * Gets the resource collection API of Operations.
      * 
      * @return Resource collection API of Operations.
@@ -623,6 +695,18 @@ public final class ContainerAppsApiManager {
             this.operations = new OperationsImpl(clientObject.getOperations(), this);
         }
         return operations;
+    }
+
+    /**
+     * Gets the resource collection API of JavaComponents. It manages JavaComponent.
+     * 
+     * @return Resource collection API of JavaComponents.
+     */
+    public JavaComponents javaComponents() {
+        if (this.javaComponents == null) {
+            this.javaComponents = new JavaComponentsImpl(clientObject.getJavaComponents(), this);
+        }
+        return javaComponents;
     }
 
     /**
@@ -786,27 +870,27 @@ public final class ContainerAppsApiManager {
     }
 
     /**
-     * Gets the resource collection API of JavaComponents. It manages JavaComponent.
+     * Gets the resource collection API of FunctionsExtensions.
      * 
-     * @return Resource collection API of JavaComponents.
+     * @return Resource collection API of FunctionsExtensions.
      */
-    public JavaComponents javaComponents() {
-        if (this.javaComponents == null) {
-            this.javaComponents = new JavaComponentsImpl(clientObject.getJavaComponents(), this);
+    public FunctionsExtensions functionsExtensions() {
+        if (this.functionsExtensions == null) {
+            this.functionsExtensions = new FunctionsExtensionsImpl(clientObject.getFunctionsExtensions(), this);
         }
-        return javaComponents;
+        return functionsExtensions;
     }
 
     /**
-     * Gets the resource collection API of DotNetComponents. It manages DotNetComponent.
+     * Gets the resource collection API of ContainerAppsLabels. It manages Labels.
      * 
-     * @return Resource collection API of DotNetComponents.
+     * @return Resource collection API of ContainerAppsLabels.
      */
-    public DotNetComponents dotNetComponents() {
-        if (this.dotNetComponents == null) {
-            this.dotNetComponents = new DotNetComponentsImpl(clientObject.getDotNetComponents(), this);
+    public ContainerAppsLabels containerAppsLabels() {
+        if (this.containerAppsLabels == null) {
+            this.containerAppsLabels = new ContainerAppsLabelsImpl(clientObject.getContainerAppsLabels(), this);
         }
-        return dotNetComponents;
+        return containerAppsLabels;
     }
 
     /**

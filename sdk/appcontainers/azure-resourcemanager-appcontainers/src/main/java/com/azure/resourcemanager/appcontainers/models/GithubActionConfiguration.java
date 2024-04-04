@@ -73,6 +73,13 @@ public final class GithubActionConfiguration {
     @JsonProperty(value = "buildEnvironmentVariables")
     private List<EnvironmentVariable> buildEnvironmentVariables;
 
+    /*
+     * The label that will be assigned to the new revision created by the deployment. Only applicable if 'labeled'
+     * activeRevisionMode is used
+     */
+    @JsonProperty(value = "label")
+    private String label;
+
     /**
      * Creates an instance of GithubActionConfiguration class.
      */
@@ -277,6 +284,28 @@ public final class GithubActionConfiguration {
     public GithubActionConfiguration
         withBuildEnvironmentVariables(List<EnvironmentVariable> buildEnvironmentVariables) {
         this.buildEnvironmentVariables = buildEnvironmentVariables;
+        return this;
+    }
+
+    /**
+     * Get the label property: The label that will be assigned to the new revision created by the deployment. Only
+     * applicable if 'labeled' activeRevisionMode is used.
+     * 
+     * @return the label value.
+     */
+    public String label() {
+        return this.label;
+    }
+
+    /**
+     * Set the label property: The label that will be assigned to the new revision created by the deployment. Only
+     * applicable if 'labeled' activeRevisionMode is used.
+     * 
+     * @param label the label value to set.
+     * @return the GithubActionConfiguration object itself.
+     */
+    public GithubActionConfiguration withLabel(String label) {
+        this.label = label;
         return this;
     }
 

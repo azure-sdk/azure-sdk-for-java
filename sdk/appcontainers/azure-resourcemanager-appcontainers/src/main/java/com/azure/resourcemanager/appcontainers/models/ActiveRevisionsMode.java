@@ -12,7 +12,8 @@ import java.util.Collection;
  * ActiveRevisionsMode controls how active revisions are handled for the Container app:
  * &lt;list&gt;&lt;item&gt;Multiple: multiple revisions can be active.&lt;/item&gt;&lt;item&gt;Single: Only one revision
  * can be active at a time. Revision weights can not be used in this mode. If no value if provided, this is the
- * default.&lt;/item&gt;&lt;/list&gt;.
+ * default.&lt;/item&gt;&lt;item&gt;Labeled: Only the revisions that have labels attached to them are
+ * active.&lt;/item&gt;&lt;/list&gt;.
  */
 public final class ActiveRevisionsMode extends ExpandableStringEnum<ActiveRevisionsMode> {
     /**
@@ -24,6 +25,11 @@ public final class ActiveRevisionsMode extends ExpandableStringEnum<ActiveRevisi
      * Static value Single for ActiveRevisionsMode.
      */
     public static final ActiveRevisionsMode SINGLE = fromString("Single");
+
+    /**
+     * Static value Labeled for ActiveRevisionsMode.
+     */
+    public static final ActiveRevisionsMode LABELED = fromString("Labeled");
 
     /**
      * Creates a new instance of ActiveRevisionsMode value.
