@@ -24,10 +24,14 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.selfhelp.fluent.CheckNameAvailabilitiesClient;
 import com.azure.resourcemanager.selfhelp.fluent.DiagnosticsClient;
+import com.azure.resourcemanager.selfhelp.fluent.DiscoverySolutionNlpSubscriptionScopesClient;
+import com.azure.resourcemanager.selfhelp.fluent.DiscoverySolutionNlpTenantScopesClient;
 import com.azure.resourcemanager.selfhelp.fluent.DiscoverySolutionsClient;
 import com.azure.resourcemanager.selfhelp.fluent.HelpRP;
 import com.azure.resourcemanager.selfhelp.fluent.OperationsClient;
+import com.azure.resourcemanager.selfhelp.fluent.SimplifiedSolutionsClient;
 import com.azure.resourcemanager.selfhelp.fluent.SolutionOperationsClient;
+import com.azure.resourcemanager.selfhelp.fluent.SolutionSelfHelpsClient;
 import com.azure.resourcemanager.selfhelp.fluent.TroubleshootersClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -43,6 +47,20 @@ import reactor.core.publisher.Mono;
  */
 @ServiceClient(builder = HelpRPBuilder.class)
 public final class HelpRPImpl implements HelpRP {
+    /**
+     * The ID of the target subscription. The value must be an UUID.
+     */
+    private final String subscriptionId;
+
+    /**
+     * Gets The ID of the target subscription. The value must be an UUID.
+     * 
+     * @return the subscriptionId value.
+     */
+    public String getSubscriptionId() {
+        return this.subscriptionId;
+    }
+
     /**
      * server parameter.
      */
@@ -184,6 +202,20 @@ public final class HelpRPImpl implements HelpRP {
     }
 
     /**
+     * The SimplifiedSolutionsClient object to access its operations.
+     */
+    private final SimplifiedSolutionsClient simplifiedSolutions;
+
+    /**
+     * Gets the SimplifiedSolutionsClient object to access its operations.
+     * 
+     * @return the SimplifiedSolutionsClient object.
+     */
+    public SimplifiedSolutionsClient getSimplifiedSolutions() {
+        return this.simplifiedSolutions;
+    }
+
+    /**
      * The TroubleshootersClient object to access its operations.
      */
     private final TroubleshootersClient troubleshooters;
@@ -198,27 +230,75 @@ public final class HelpRPImpl implements HelpRP {
     }
 
     /**
+     * The SolutionSelfHelpsClient object to access its operations.
+     */
+    private final SolutionSelfHelpsClient solutionSelfHelps;
+
+    /**
+     * Gets the SolutionSelfHelpsClient object to access its operations.
+     * 
+     * @return the SolutionSelfHelpsClient object.
+     */
+    public SolutionSelfHelpsClient getSolutionSelfHelps() {
+        return this.solutionSelfHelps;
+    }
+
+    /**
+     * The DiscoverySolutionNlpTenantScopesClient object to access its operations.
+     */
+    private final DiscoverySolutionNlpTenantScopesClient discoverySolutionNlpTenantScopes;
+
+    /**
+     * Gets the DiscoverySolutionNlpTenantScopesClient object to access its operations.
+     * 
+     * @return the DiscoverySolutionNlpTenantScopesClient object.
+     */
+    public DiscoverySolutionNlpTenantScopesClient getDiscoverySolutionNlpTenantScopes() {
+        return this.discoverySolutionNlpTenantScopes;
+    }
+
+    /**
+     * The DiscoverySolutionNlpSubscriptionScopesClient object to access its operations.
+     */
+    private final DiscoverySolutionNlpSubscriptionScopesClient discoverySolutionNlpSubscriptionScopes;
+
+    /**
+     * Gets the DiscoverySolutionNlpSubscriptionScopesClient object to access its operations.
+     * 
+     * @return the DiscoverySolutionNlpSubscriptionScopesClient object.
+     */
+    public DiscoverySolutionNlpSubscriptionScopesClient getDiscoverySolutionNlpSubscriptionScopes() {
+        return this.discoverySolutionNlpSubscriptionScopes;
+    }
+
+    /**
      * Initializes an instance of HelpRP client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
      * @param defaultPollInterval The default poll interval for long-running operation.
      * @param environment The Azure environment.
+     * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
     HelpRPImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter, Duration defaultPollInterval,
-        AzureEnvironment environment, String endpoint) {
+        AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
         this.defaultPollInterval = defaultPollInterval;
+        this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-09-01-preview";
+        this.apiVersion = "2024-03-01-preview";
         this.operations = new OperationsClientImpl(this);
         this.checkNameAvailabilities = new CheckNameAvailabilitiesClientImpl(this);
         this.diagnostics = new DiagnosticsClientImpl(this);
         this.discoverySolutions = new DiscoverySolutionsClientImpl(this);
         this.solutionOperations = new SolutionOperationsClientImpl(this);
+        this.simplifiedSolutions = new SimplifiedSolutionsClientImpl(this);
         this.troubleshooters = new TroubleshootersClientImpl(this);
+        this.solutionSelfHelps = new SolutionSelfHelpsClientImpl(this);
+        this.discoverySolutionNlpTenantScopes = new DiscoverySolutionNlpTenantScopesClientImpl(this);
+        this.discoverySolutionNlpSubscriptionScopes = new DiscoverySolutionNlpSubscriptionScopesClientImpl(this);
     }
 
     /**

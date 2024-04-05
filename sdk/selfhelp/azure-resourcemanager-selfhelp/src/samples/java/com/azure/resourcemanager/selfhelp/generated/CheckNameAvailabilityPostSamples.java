@@ -11,7 +11,7 @@ import com.azure.resourcemanager.selfhelp.models.CheckNameAvailabilityRequest;
  */
 public final class CheckNameAvailabilityPostSamples {
     /*
-     * x-ms-original-file: specification/help/resource-manager/Microsoft.Help/preview/2023-09-01-preview/examples/
+     * x-ms-original-file: specification/help/resource-manager/Microsoft.Help/preview/2024-03-01-preview/examples/
      * CheckNameAvailabilityForDiagnosticWhenNameIsNotAvailable.json
      */
     /**
@@ -27,7 +27,7 @@ public final class CheckNameAvailabilityPostSamples {
     }
 
     /*
-     * x-ms-original-file: specification/help/resource-manager/Microsoft.Help/preview/2023-09-01-preview/examples/
+     * x-ms-original-file: specification/help/resource-manager/Microsoft.Help/preview/2024-03-01-preview/examples/
      * CheckNameAvailabilityForDiagnosticWhenNameIsAvailable.json
      */
     /**
