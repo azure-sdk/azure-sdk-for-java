@@ -13,6 +13,7 @@ import com.azure.resourcemanager.recoveryservicesbackup.fluent.RecoveryPointsCli
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.RecoveryPointResourceInner;
 import com.azure.resourcemanager.recoveryservicesbackup.models.RecoveryPointResource;
 import com.azure.resourcemanager.recoveryservicesbackup.models.RecoveryPoints;
+import com.azure.resourcemanager.recoveryservicesbackup.models.UpdateRecoveryPointRequest;
 
 public final class RecoveryPointsImpl implements RecoveryPoints {
     private static final ClientLogger LOGGER = new ClientLogger(RecoveryPointsImpl.class);
@@ -57,6 +58,30 @@ public final class RecoveryPointsImpl implements RecoveryPoints {
         String containerName, String protectedItemName, String recoveryPointId) {
         RecoveryPointResourceInner inner = this.serviceClient().get(vaultName, resourceGroupName, fabricName,
             containerName, protectedItemName, recoveryPointId);
+        if (inner != null) {
+            return new RecoveryPointResourceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<RecoveryPointResource> updateWithResponse(String resourceGroupName, String vaultName,
+        String fabricName, String containerName, String protectedItemName, String recoveryPointId,
+        UpdateRecoveryPointRequest parameters, Context context) {
+        Response<RecoveryPointResourceInner> inner = this.serviceClient().updateWithResponse(resourceGroupName,
+            vaultName, fabricName, containerName, protectedItemName, recoveryPointId, parameters, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new RecoveryPointResourceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public RecoveryPointResource update(String resourceGroupName, String vaultName, String fabricName,
+        String containerName, String protectedItemName, String recoveryPointId, UpdateRecoveryPointRequest parameters) {
+        RecoveryPointResourceInner inner = this.serviceClient().update(resourceGroupName, vaultName, fabricName,
+            containerName, protectedItemName, recoveryPointId, parameters);
         if (inner != null) {
             return new RecoveryPointResourceImpl(inner, this.manager());
         } else {

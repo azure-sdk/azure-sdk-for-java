@@ -209,6 +209,21 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.recoveryservicesbackup.models.UpdateRecoveryPointRequest",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicesbackup.models.PatchRecoveryPointInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicesbackup.models.PatchRecoveryPointPropertiesInput",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.recoveryservicesbackup.models.RestoreRequestResource",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -1645,6 +1660,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.recoveryservicesbackup.models.IaasvmPolicyType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.recoveryservicesbackup.models.IaasVMSnapshotConsistencyType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

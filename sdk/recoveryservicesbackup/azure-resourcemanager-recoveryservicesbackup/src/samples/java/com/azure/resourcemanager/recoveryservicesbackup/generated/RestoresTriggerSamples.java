@@ -22,7 +22,7 @@ import com.azure.resourcemanager.recoveryservicesbackup.models.TargetDiskNetwork
 public final class RestoresTriggerSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
      * AzureIaasVm/TriggerRestore_ALR_IaasVMRestoreWithRehydrationRequest.json
      */
     /**
@@ -58,7 +58,7 @@ public final class RestoresTriggerSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
      * AzureIaasVm/TriggerRestore_ALR_IaasVMRestoreRequest.json
      */
     /**
@@ -93,7 +93,7 @@ public final class RestoresTriggerSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
      * AzureIaasVm/TriggerRestore_RestoreDisks_IaasVMRestoreWithRehydrationRequest.json
      */
     /**
@@ -121,7 +121,7 @@ public final class RestoresTriggerSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
      * AzureIaasVm/TriggerRestore_ALR_IaasVMRestoreRequest_IdentityBasedRestoreDetails.json
      */
     /**
@@ -156,7 +156,7 @@ public final class RestoresTriggerSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
      * AzureIaasVm/TriggerRestore_RestoreDisks_IaasVMRestoreRequest.json
      */
     /**
@@ -189,7 +189,7 @@ public final class RestoresTriggerSamples {
 
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
      * AzureIaasVm/TriggerRestore_RestoreDisks_IaasVMRestoreRequest_IdentityBasedRestoreDetails.json
      */
     /**

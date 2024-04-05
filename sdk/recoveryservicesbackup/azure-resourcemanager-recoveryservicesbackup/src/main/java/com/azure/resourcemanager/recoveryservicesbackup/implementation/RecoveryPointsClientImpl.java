@@ -4,12 +4,14 @@
 
 package com.azure.resourcemanager.recoveryservicesbackup.implementation;
 
+import com.azure.core.annotation.BodyParam;
 import com.azure.core.annotation.ExpectedResponses;
 import com.azure.core.annotation.Get;
 import com.azure.core.annotation.HeaderParam;
 import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
+import com.azure.core.annotation.Patch;
 import com.azure.core.annotation.PathParam;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
@@ -28,6 +30,7 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.RecoveryPointsClient;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.RecoveryPointResourceInner;
 import com.azure.resourcemanager.recoveryservicesbackup.models.RecoveryPointResourceList;
+import com.azure.resourcemanager.recoveryservicesbackup.models.UpdateRecoveryPointRequest;
 import reactor.core.publisher.Mono;
 
 /**
@@ -83,6 +86,19 @@ public final class RecoveryPointsClientImpl implements RecoveryPointsClient {
             @PathParam("subscriptionId") String subscriptionId, @PathParam("fabricName") String fabricName,
             @PathParam("containerName") String containerName, @PathParam("protectedItemName") String protectedItemName,
             @PathParam("recoveryPointId") String recoveryPointId, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{vaultName}/backupFabrics/{fabricName}/protectionContainers/{containerName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointId}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<RecoveryPointResourceInner>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("vaultName") String vaultName,
+            @PathParam("fabricName") String fabricName, @PathParam("containerName") String containerName,
+            @PathParam("protectedItemName") String protectedItemName,
+            @PathParam("recoveryPointId") String recoveryPointId,
+            @BodyParam("application/json") UpdateRecoveryPointRequest parameters, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -488,6 +504,196 @@ public final class RecoveryPointsClientImpl implements RecoveryPointsClient {
         String containerName, String protectedItemName, String recoveryPointId) {
         return getWithResponse(vaultName, resourceGroupName, fabricName, containerName, protectedItemName,
             recoveryPointId, Context.NONE).getValue();
+    }
+
+    /**
+     * UpdateRecoveryPoint to update recovery point for given RecoveryPointID.
+     * 
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @param fabricName Fabric name associated with backed up item.
+     * @param containerName Container name associated with backed up item.
+     * @param protectedItemName Backed up item name whose backup data needs to be fetched.
+     * @param recoveryPointId RecoveryPointID represents the backed up data to be fetched.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for backup copies along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<RecoveryPointResourceInner>> updateWithResponseAsync(String resourceGroupName,
+        String vaultName, String fabricName, String containerName, String protectedItemName, String recoveryPointId,
+        UpdateRecoveryPointRequest parameters) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        if (fabricName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter fabricName is required and cannot be null."));
+        }
+        if (containerName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter containerName is required and cannot be null."));
+        }
+        if (protectedItemName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
+        }
+        if (recoveryPointId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter recoveryPointId is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, vaultName, fabricName, containerName,
+                protectedItemName, recoveryPointId, parameters, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * UpdateRecoveryPoint to update recovery point for given RecoveryPointID.
+     * 
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @param fabricName Fabric name associated with backed up item.
+     * @param containerName Container name associated with backed up item.
+     * @param protectedItemName Backed up item name whose backup data needs to be fetched.
+     * @param recoveryPointId RecoveryPointID represents the backed up data to be fetched.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for backup copies along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<RecoveryPointResourceInner>> updateWithResponseAsync(String resourceGroupName,
+        String vaultName, String fabricName, String containerName, String protectedItemName, String recoveryPointId,
+        UpdateRecoveryPointRequest parameters, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (vaultName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter vaultName is required and cannot be null."));
+        }
+        if (fabricName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter fabricName is required and cannot be null."));
+        }
+        if (containerName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter containerName is required and cannot be null."));
+        }
+        if (protectedItemName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter protectedItemName is required and cannot be null."));
+        }
+        if (recoveryPointId == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter recoveryPointId is required and cannot be null."));
+        }
+        if (parameters == null) {
+            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
+        } else {
+            parameters.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, vaultName, fabricName, containerName, protectedItemName, recoveryPointId, parameters,
+            accept, context);
+    }
+
+    /**
+     * UpdateRecoveryPoint to update recovery point for given RecoveryPointID.
+     * 
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @param fabricName Fabric name associated with backed up item.
+     * @param containerName Container name associated with backed up item.
+     * @param protectedItemName Backed up item name whose backup data needs to be fetched.
+     * @param recoveryPointId RecoveryPointID represents the backed up data to be fetched.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for backup copies on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<RecoveryPointResourceInner> updateAsync(String resourceGroupName, String vaultName, String fabricName,
+        String containerName, String protectedItemName, String recoveryPointId, UpdateRecoveryPointRequest parameters) {
+        return updateWithResponseAsync(resourceGroupName, vaultName, fabricName, containerName, protectedItemName,
+            recoveryPointId, parameters).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * UpdateRecoveryPoint to update recovery point for given RecoveryPointID.
+     * 
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @param fabricName Fabric name associated with backed up item.
+     * @param containerName Container name associated with backed up item.
+     * @param protectedItemName Backed up item name whose backup data needs to be fetched.
+     * @param recoveryPointId RecoveryPointID represents the backed up data to be fetched.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for backup copies along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<RecoveryPointResourceInner> updateWithResponse(String resourceGroupName, String vaultName,
+        String fabricName, String containerName, String protectedItemName, String recoveryPointId,
+        UpdateRecoveryPointRequest parameters, Context context) {
+        return updateWithResponseAsync(resourceGroupName, vaultName, fabricName, containerName, protectedItemName,
+            recoveryPointId, parameters, context).block();
+    }
+
+    /**
+     * UpdateRecoveryPoint to update recovery point for given RecoveryPointID.
+     * 
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @param fabricName Fabric name associated with backed up item.
+     * @param containerName Container name associated with backed up item.
+     * @param protectedItemName Backed up item name whose backup data needs to be fetched.
+     * @param recoveryPointId RecoveryPointID represents the backed up data to be fetched.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for backup copies.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public RecoveryPointResourceInner update(String resourceGroupName, String vaultName, String fabricName,
+        String containerName, String protectedItemName, String recoveryPointId, UpdateRecoveryPointRequest parameters) {
+        return updateWithResponse(resourceGroupName, vaultName, fabricName, containerName, protectedItemName,
+            recoveryPointId, parameters, Context.NONE).getValue();
     }
 
     /**

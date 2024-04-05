@@ -15,7 +15,7 @@ import com.azure.resourcemanager.recoveryservicesbackup.models.InfrastructureEnc
 public final class BackupResourceEncryptionConfigsUpdateSamples {
     /*
      * x-ms-original-file:
-     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2023-06-01/examples/
+     * specification/recoveryservicesbackup/resource-manager/Microsoft.RecoveryServices/stable/2024-04-01/examples/
      * BackupResourceEncryptionConfig_Put.json
      */
     /**

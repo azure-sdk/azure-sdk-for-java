@@ -10,6 +10,7 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.recoveryservicesbackup.fluent.models.RecoveryPointResourceInner;
+import com.azure.resourcemanager.recoveryservicesbackup.models.UpdateRecoveryPointRequest;
 
 /**
  * An instance of this class provides access to all the operations defined in RecoveryPointsClient.
@@ -91,4 +92,44 @@ public interface RecoveryPointsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     RecoveryPointResourceInner get(String vaultName, String resourceGroupName, String fabricName, String containerName,
         String protectedItemName, String recoveryPointId);
+
+    /**
+     * UpdateRecoveryPoint to update recovery point for given RecoveryPointID.
+     * 
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @param fabricName Fabric name associated with backed up item.
+     * @param containerName Container name associated with backed up item.
+     * @param protectedItemName Backed up item name whose backup data needs to be fetched.
+     * @param recoveryPointId RecoveryPointID represents the backed up data to be fetched.
+     * @param parameters Request body for operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for backup copies along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<RecoveryPointResourceInner> updateWithResponse(String resourceGroupName, String vaultName,
+        String fabricName, String containerName, String protectedItemName, String recoveryPointId,
+        UpdateRecoveryPointRequest parameters, Context context);
+
+    /**
+     * UpdateRecoveryPoint to update recovery point for given RecoveryPointID.
+     * 
+     * @param resourceGroupName The name of the resource group where the recovery services vault is present.
+     * @param vaultName The name of the recovery services vault.
+     * @param fabricName Fabric name associated with backed up item.
+     * @param containerName Container name associated with backed up item.
+     * @param protectedItemName Backed up item name whose backup data needs to be fetched.
+     * @param recoveryPointId RecoveryPointID represents the backed up data to be fetched.
+     * @param parameters Request body for operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return base class for backup copies.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    RecoveryPointResourceInner update(String resourceGroupName, String vaultName, String fabricName,
+        String containerName, String protectedItemName, String recoveryPointId, UpdateRecoveryPointRequest parameters);
 }
