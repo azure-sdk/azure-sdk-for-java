@@ -13,7 +13,7 @@ import com.azure.resourcemanager.quota.models.ResourceName;
  */
 public final class QuotaCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/quota/resource-manager/Microsoft.Quota/stable/2023-02-01/examples/
+     * x-ms-original-file: specification/quota/resource-manager/Microsoft.Quota/preview/2023-06-01-preview/examples/
      * putMachineLearningServicesQuotaRequestLowPriority.json
      */
     /**
@@ -31,7 +31,7 @@ public final class QuotaCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/quota/resource-manager/Microsoft.Quota/stable/2023-02-01/examples/
+     * x-ms-original-file: specification/quota/resource-manager/Microsoft.Quota/preview/2023-06-01-preview/examples/
      * putNetworkOneSkuQuotaRequestStandardSkuPublicIpAddresses.json
      */
     /**
@@ -51,8 +51,8 @@ public final class QuotaCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/quota/resource-manager/Microsoft.Quota/stable/2023-02-01/examples/putComputeOneSkuQuotaRequest.json
+     * x-ms-original-file: specification/quota/resource-manager/Microsoft.Quota/preview/2023-06-01-preview/examples/
+     * putComputeOneSkuQuotaRequest.json
      */
     /**
      * Sample code: Quotas_Put_Request_ForCompute.
@@ -69,8 +69,8 @@ public final class QuotaCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/quota/resource-manager/Microsoft.Quota/stable/2023-02-01/examples/putNetworkOneSkuQuotaRequest.json
+     * x-ms-original-file: specification/quota/resource-manager/Microsoft.Quota/preview/2023-06-01-preview/examples/
+     * putNetworkOneSkuQuotaRequest.json
      */
     /**
      * Sample code: Quotas_PutRequest_ForNetwork.

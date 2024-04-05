@@ -20,6 +20,22 @@ import java.time.Duration;
 @ServiceClientBuilder(serviceClients = { AzureQuotaExtensionApiImpl.class })
 public final class AzureQuotaExtensionApiBuilder {
     /*
+     * The ID of the target subscription. The value must be an UUID.
+     */
+    private String subscriptionId;
+
+    /**
+     * Sets The ID of the target subscription. The value must be an UUID.
+     * 
+     * @param subscriptionId the subscriptionId value.
+     * @return the AzureQuotaExtensionApiBuilder.
+     */
+    public AzureQuotaExtensionApiBuilder subscriptionId(String subscriptionId) {
+        this.subscriptionId = subscriptionId;
+        return this;
+    }
+
+    /*
      * server parameter
      */
     private String endpoint;
@@ -114,7 +130,7 @@ public final class AzureQuotaExtensionApiBuilder {
         SerializerAdapter localSerializerAdapter = (serializerAdapter != null) ? serializerAdapter
             : SerializerFactory.createDefaultManagementSerializerAdapter();
         AzureQuotaExtensionApiImpl client = new AzureQuotaExtensionApiImpl(localPipeline, localSerializerAdapter,
-            localDefaultPollInterval, localEnvironment, localEndpoint);
+            localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }
 }

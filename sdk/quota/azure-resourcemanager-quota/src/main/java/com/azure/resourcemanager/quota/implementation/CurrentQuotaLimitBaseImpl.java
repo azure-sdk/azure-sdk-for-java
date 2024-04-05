@@ -86,9 +86,9 @@ public final class CurrentQuotaLimitBaseImpl
         com.azure.resourcemanager.quota.QuotaManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.resourceName = Utils.getValueFromIdByParameterName(innerObject.id(),
+        this.resourceName = ResourceManagerUtils.getValueFromIdByParameterName(innerObject.id(),
             "/{scope}/providers/Microsoft.Quota/quotas/{resourceName}", "resourceName");
-        this.scope = Utils.getValueFromIdByParameterName(innerObject.id(),
+        this.scope = ResourceManagerUtils.getValueFromIdByParameterName(innerObject.id(),
             "/{scope}/providers/Microsoft.Quota/quotas/{resourceName}", "scope");
     }
 
