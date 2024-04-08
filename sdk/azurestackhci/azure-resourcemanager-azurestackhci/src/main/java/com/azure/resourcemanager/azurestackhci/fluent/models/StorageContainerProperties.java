@@ -10,7 +10,9 @@ import com.azure.resourcemanager.azurestackhci.models.ProvisioningStateEnum;
 import com.azure.resourcemanager.azurestackhci.models.StorageContainerStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties under the storage container resource. */
+/**
+ * Properties under the storage container resource.
+ */
 @Fluent
 public final class StorageContainerProperties {
     /*
@@ -31,13 +33,15 @@ public final class StorageContainerProperties {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private StorageContainerStatus status;
 
-    /** Creates an instance of StorageContainerProperties class. */
+    /**
+     * Creates an instance of StorageContainerProperties class.
+     */
     public StorageContainerProperties() {
     }
 
     /**
      * Get the path property: Path of the storage container on the disk.
-     *
+     * 
      * @return the path value.
      */
     public String path() {
@@ -46,7 +50,7 @@ public final class StorageContainerProperties {
 
     /**
      * Set the path property: Path of the storage container on the disk.
-     *
+     * 
      * @param path the path value to set.
      * @return the StorageContainerProperties object itself.
      */
@@ -57,7 +61,7 @@ public final class StorageContainerProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the storage container.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningStateEnum provisioningState() {
@@ -66,7 +70,7 @@ public final class StorageContainerProperties {
 
     /**
      * Get the status property: The observed state of storage containers.
-     *
+     * 
      * @return the status value.
      */
     public StorageContainerStatus status() {
@@ -75,14 +79,13 @@ public final class StorageContainerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (path() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property path in model StorageContainerProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property path in model StorageContainerProperties"));
         }
         if (status() != null) {
             status().validate();

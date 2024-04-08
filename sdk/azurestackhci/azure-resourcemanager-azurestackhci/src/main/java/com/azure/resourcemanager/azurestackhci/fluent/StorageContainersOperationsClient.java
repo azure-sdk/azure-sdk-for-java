@@ -14,11 +14,13 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.azurestackhci.fluent.models.StorageContainersInner;
 import com.azure.resourcemanager.azurestackhci.models.StorageContainersUpdateRequest;
 
-/** An instance of this class provides access to all the operations defined in StorageContainersOperationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in StorageContainersOperationsClient.
+ */
 public interface StorageContainersOperationsClient {
     /**
      * Gets a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param context The context to associate with this operation.
@@ -28,12 +30,12 @@ public interface StorageContainersOperationsClient {
      * @return a storage container along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<StorageContainersInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String storageContainerName, Context context);
+    Response<StorageContainersInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String storageContainerName, Context context);
 
     /**
      * Gets a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -47,7 +49,7 @@ public interface StorageContainersOperationsClient {
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -57,13 +59,13 @@ public interface StorageContainersOperationsClient {
      * @return the {@link SyncPoller} for polling of the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginCreateOrUpdate(
-        String resourceGroupName, String storageContainerName, StorageContainersInner storageContainers);
+    SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginCreateOrUpdate(String resourceGroupName,
+        String storageContainerName, StorageContainersInner storageContainers);
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -74,16 +76,13 @@ public interface StorageContainersOperationsClient {
      * @return the {@link SyncPoller} for polling of the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersInner storageContainers,
-        Context context);
+    SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginCreateOrUpdate(String resourceGroupName,
+        String storageContainerName, StorageContainersInner storageContainers, Context context);
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -93,13 +92,13 @@ public interface StorageContainersOperationsClient {
      * @return the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    StorageContainersInner createOrUpdate(
-        String resourceGroupName, String storageContainerName, StorageContainersInner storageContainers);
+    StorageContainersInner createOrUpdate(String resourceGroupName, String storageContainerName,
+        StorageContainersInner storageContainers);
 
     /**
      * The operation to create or update a storage container. Please note some properties can be set only during storage
      * container creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource definition.
@@ -110,15 +109,12 @@ public interface StorageContainersOperationsClient {
      * @return the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    StorageContainersInner createOrUpdate(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersInner storageContainers,
-        Context context);
+    StorageContainersInner createOrUpdate(String resourceGroupName, String storageContainerName,
+        StorageContainersInner storageContainers, Context context);
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -131,7 +127,7 @@ public interface StorageContainersOperationsClient {
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param context The context to associate with this operation.
@@ -141,12 +137,12 @@ public interface StorageContainersOperationsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String storageContainerName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String storageContainerName,
+        Context context);
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -158,7 +154,7 @@ public interface StorageContainersOperationsClient {
 
     /**
      * The operation to delete a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param context The context to associate with this operation.
@@ -171,7 +167,7 @@ public interface StorageContainersOperationsClient {
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -181,12 +177,12 @@ public interface StorageContainersOperationsClient {
      * @return the {@link SyncPoller} for polling of the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginUpdate(
-        String resourceGroupName, String storageContainerName, StorageContainersUpdateRequest storageContainers);
+    SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginUpdate(String resourceGroupName,
+        String storageContainerName, StorageContainersUpdateRequest storageContainers);
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -197,15 +193,12 @@ public interface StorageContainersOperationsClient {
      * @return the {@link SyncPoller} for polling of the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginUpdate(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersUpdateRequest storageContainers,
-        Context context);
+    SyncPoller<PollResult<StorageContainersInner>, StorageContainersInner> beginUpdate(String resourceGroupName,
+        String storageContainerName, StorageContainersUpdateRequest storageContainers, Context context);
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -215,12 +208,12 @@ public interface StorageContainersOperationsClient {
      * @return the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    StorageContainersInner update(
-        String resourceGroupName, String storageContainerName, StorageContainersUpdateRequest storageContainers);
+    StorageContainersInner update(String resourceGroupName, String storageContainerName,
+        StorageContainersUpdateRequest storageContainers);
 
     /**
      * The operation to update a storage container.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageContainerName Name of the storage container.
      * @param storageContainers The storage container resource patch definition.
@@ -231,16 +224,13 @@ public interface StorageContainersOperationsClient {
      * @return the storage container resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    StorageContainersInner update(
-        String resourceGroupName,
-        String storageContainerName,
-        StorageContainersUpdateRequest storageContainers,
-        Context context);
+    StorageContainersInner update(String resourceGroupName, String storageContainerName,
+        StorageContainersUpdateRequest storageContainers, Context context);
 
     /**
      * Lists all of the storage containers in the specified resource group. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -253,7 +243,7 @@ public interface StorageContainersOperationsClient {
     /**
      * Lists all of the storage containers in the specified resource group. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -267,7 +257,7 @@ public interface StorageContainersOperationsClient {
     /**
      * Lists all of the storage containers in the specified subscription. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedIterable}.
@@ -278,7 +268,7 @@ public interface StorageContainersOperationsClient {
     /**
      * Lists all of the storage containers in the specified subscription. Use the nextLink property in the response to
      * get the next page of storage containers.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

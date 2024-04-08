@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** InterfaceIPConfigurationPropertiesFormat properties of IP configuration. */
+/**
+ * InterfaceIPConfigurationPropertiesFormat properties of IP configuration.
+ */
 @Fluent
 public final class IpConfigurationProperties {
     /*
@@ -34,13 +36,15 @@ public final class IpConfigurationProperties {
     @JsonProperty(value = "subnet")
     private IpConfigurationPropertiesSubnet subnet;
 
-    /** Creates an instance of IpConfigurationProperties class. */
+    /**
+     * Creates an instance of IpConfigurationProperties class.
+     */
     public IpConfigurationProperties() {
     }
 
     /**
      * Get the gateway property: Gateway for network interface.
-     *
+     * 
      * @return the gateway value.
      */
     public String gateway() {
@@ -49,7 +53,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Get the prefixLength property: prefixLength for network interface.
-     *
+     * 
      * @return the prefixLength value.
      */
     public String prefixLength() {
@@ -58,7 +62,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Get the privateIpAddress property: PrivateIPAddress - Private IP address of the IP configuration.
-     *
+     * 
      * @return the privateIpAddress value.
      */
     public String privateIpAddress() {
@@ -67,7 +71,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Set the privateIpAddress property: PrivateIPAddress - Private IP address of the IP configuration.
-     *
+     * 
      * @param privateIpAddress the privateIpAddress value to set.
      * @return the IpConfigurationProperties object itself.
      */
@@ -78,7 +82,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Get the subnet property: Subnet - Name of Subnet bound to the IP configuration.
-     *
+     * 
      * @return the subnet value.
      */
     public IpConfigurationPropertiesSubnet subnet() {
@@ -87,7 +91,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Set the subnet property: Subnet - Name of Subnet bound to the IP configuration.
-     *
+     * 
      * @param subnet the subnet value to set.
      * @return the IpConfigurationProperties object itself.
      */
@@ -98,7 +102,7 @@ public final class IpConfigurationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

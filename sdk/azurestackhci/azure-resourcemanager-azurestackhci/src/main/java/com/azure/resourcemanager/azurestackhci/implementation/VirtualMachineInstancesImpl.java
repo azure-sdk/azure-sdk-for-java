@@ -22,8 +22,7 @@ public final class VirtualMachineInstancesImpl implements VirtualMachineInstance
 
     private final com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager;
 
-    public VirtualMachineInstancesImpl(
-        VirtualMachineInstancesClient innerClient,
+    public VirtualMachineInstancesImpl(VirtualMachineInstancesClient innerClient,
         com.azure.resourcemanager.azurestackhci.AzureStackHciManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -32,10 +31,7 @@ public final class VirtualMachineInstancesImpl implements VirtualMachineInstance
     public Response<VirtualMachineInstance> getWithResponse(String resourceUri, Context context) {
         Response<VirtualMachineInstanceInner> inner = this.serviceClient().getWithResponse(resourceUri, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new VirtualMachineInstanceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -51,8 +47,8 @@ public final class VirtualMachineInstancesImpl implements VirtualMachineInstance
         }
     }
 
-    public VirtualMachineInstance createOrUpdate(
-        String resourceUri, VirtualMachineInstanceInner virtualMachineInstance) {
+    public VirtualMachineInstance createOrUpdate(String resourceUri,
+        VirtualMachineInstanceInner virtualMachineInstance) {
         VirtualMachineInstanceInner inner = this.serviceClient().createOrUpdate(resourceUri, virtualMachineInstance);
         if (inner != null) {
             return new VirtualMachineInstanceImpl(inner, this.manager());
@@ -61,10 +57,10 @@ public final class VirtualMachineInstancesImpl implements VirtualMachineInstance
         }
     }
 
-    public VirtualMachineInstance createOrUpdate(
-        String resourceUri, VirtualMachineInstanceInner virtualMachineInstance, Context context) {
-        VirtualMachineInstanceInner inner =
-            this.serviceClient().createOrUpdate(resourceUri, virtualMachineInstance, context);
+    public VirtualMachineInstance createOrUpdate(String resourceUri, VirtualMachineInstanceInner virtualMachineInstance,
+        Context context) {
+        VirtualMachineInstanceInner inner
+            = this.serviceClient().createOrUpdate(resourceUri, virtualMachineInstance, context);
         if (inner != null) {
             return new VirtualMachineInstanceImpl(inner, this.manager());
         } else {
@@ -80,8 +76,8 @@ public final class VirtualMachineInstancesImpl implements VirtualMachineInstance
         this.serviceClient().delete(resourceUri, context);
     }
 
-    public VirtualMachineInstance update(
-        String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
+    public VirtualMachineInstance update(String resourceUri,
+        VirtualMachineInstanceUpdateRequest virtualMachineInstance) {
         VirtualMachineInstanceInner inner = this.serviceClient().update(resourceUri, virtualMachineInstance);
         if (inner != null) {
             return new VirtualMachineInstanceImpl(inner, this.manager());
@@ -90,8 +86,8 @@ public final class VirtualMachineInstancesImpl implements VirtualMachineInstance
         }
     }
 
-    public VirtualMachineInstance update(
-        String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance, Context context) {
+    public VirtualMachineInstance update(String resourceUri, VirtualMachineInstanceUpdateRequest virtualMachineInstance,
+        Context context) {
         VirtualMachineInstanceInner inner = this.serviceClient().update(resourceUri, virtualMachineInstance, context);
         if (inner != null) {
             return new VirtualMachineInstanceImpl(inner, this.manager());
@@ -156,12 +152,12 @@ public final class VirtualMachineInstancesImpl implements VirtualMachineInstance
 
     public PagedIterable<VirtualMachineInstance> list(String resourceUri) {
         PagedIterable<VirtualMachineInstanceInner> inner = this.serviceClient().list(resourceUri);
-        return Utils.mapPage(inner, inner1 -> new VirtualMachineInstanceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VirtualMachineInstanceImpl(inner1, this.manager()));
     }
 
     public PagedIterable<VirtualMachineInstance> list(String resourceUri, Context context) {
         PagedIterable<VirtualMachineInstanceInner> inner = this.serviceClient().list(resourceUri, context);
-        return Utils.mapPage(inner, inner1 -> new VirtualMachineInstanceImpl(inner1, this.manager()));
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new VirtualMachineInstanceImpl(inner1, this.manager()));
     }
 
     private VirtualMachineInstancesClient serviceClient() {
