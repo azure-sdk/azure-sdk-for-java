@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** Service principal for uploading billing, metrics and logs. */
+/**
+ * Service principal for uploading billing, metrics and logs.
+ */
 @Fluent
 public final class UploadServicePrincipal {
     /*
@@ -35,13 +37,15 @@ public final class UploadServicePrincipal {
     @JsonProperty(value = "clientSecret")
     private String clientSecret;
 
-    /** Creates an instance of UploadServicePrincipal class. */
+    /**
+     * Creates an instance of UploadServicePrincipal class.
+     */
     public UploadServicePrincipal() {
     }
 
     /**
      * Get the clientId property: Client ID of the service principal for uploading data.
-     *
+     * 
      * @return the clientId value.
      */
     public UUID clientId() {
@@ -50,7 +54,7 @@ public final class UploadServicePrincipal {
 
     /**
      * Set the clientId property: Client ID of the service principal for uploading data.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the UploadServicePrincipal object itself.
      */
@@ -61,7 +65,7 @@ public final class UploadServicePrincipal {
 
     /**
      * Get the tenantId property: Tenant ID of the service principal.
-     *
+     * 
      * @return the tenantId value.
      */
     public UUID tenantId() {
@@ -70,7 +74,7 @@ public final class UploadServicePrincipal {
 
     /**
      * Set the tenantId property: Tenant ID of the service principal.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the UploadServicePrincipal object itself.
      */
@@ -81,7 +85,7 @@ public final class UploadServicePrincipal {
 
     /**
      * Get the authority property: Authority for the service principal. Example: https://login.microsoftonline.com/.
-     *
+     * 
      * @return the authority value.
      */
     public String authority() {
@@ -90,7 +94,7 @@ public final class UploadServicePrincipal {
 
     /**
      * Set the authority property: Authority for the service principal. Example: https://login.microsoftonline.com/.
-     *
+     * 
      * @param authority the authority value to set.
      * @return the UploadServicePrincipal object itself.
      */
@@ -101,7 +105,7 @@ public final class UploadServicePrincipal {
 
     /**
      * Get the clientSecret property: Secret of the service principal.
-     *
+     * 
      * @return the clientSecret value.
      */
     public String clientSecret() {
@@ -110,7 +114,7 @@ public final class UploadServicePrincipal {
 
     /**
      * Set the clientSecret property: Secret of the service principal.
-     *
+     * 
      * @param clientSecret the clientSecret value to set.
      * @return the UploadServicePrincipal object itself.
      */
@@ -121,7 +125,7 @@ public final class UploadServicePrincipal {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

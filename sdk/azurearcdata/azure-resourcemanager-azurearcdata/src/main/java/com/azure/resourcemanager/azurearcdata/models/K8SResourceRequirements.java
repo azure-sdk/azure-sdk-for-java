@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.Map;
 
-/** The kubernetes resource limits and requests used to restrict or reserve resource usage. */
+/**
+ * The kubernetes resource limits and requests used to restrict or reserve resource usage.
+ */
 @Fluent
 public final class K8SResourceRequirements {
     /*
@@ -37,9 +39,12 @@ public final class K8SResourceRequirements {
     /*
      * The kubernetes resource limits and requests used to restrict or reserve resource usage.
      */
-    @JsonIgnore private Map<String, Object> additionalProperties;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
 
-    /** Creates an instance of K8SResourceRequirements class. */
+    /**
+     * Creates an instance of K8SResourceRequirements class.
+     */
     public K8SResourceRequirements() {
     }
 
@@ -47,7 +52,7 @@ public final class K8SResourceRequirements {
      * Get the requests property: Requests for a kubernetes resource type (e.g 'cpu', 'memory'). The 'cpu' request must
      * be less than or equal to 'cpu' limit. Default 'cpu' is 2, minimum is 1. Default 'memory' is '4Gi', minimum is
      * '2Gi. If sku.tier is GeneralPurpose, maximum 'cpu' is 24 and maximum 'memory' is '128Gi'.
-     *
+     * 
      * @return the requests value.
      */
     public Map<String, String> requests() {
@@ -58,7 +63,7 @@ public final class K8SResourceRequirements {
      * Set the requests property: Requests for a kubernetes resource type (e.g 'cpu', 'memory'). The 'cpu' request must
      * be less than or equal to 'cpu' limit. Default 'cpu' is 2, minimum is 1. Default 'memory' is '4Gi', minimum is
      * '2Gi. If sku.tier is GeneralPurpose, maximum 'cpu' is 24 and maximum 'memory' is '128Gi'.
-     *
+     * 
      * @param requests the requests value to set.
      * @return the K8SResourceRequirements object itself.
      */
@@ -71,7 +76,7 @@ public final class K8SResourceRequirements {
      * Get the limits property: Limits for a kubernetes resource type (e.g 'cpu', 'memory'). The 'cpu' request must be
      * less than or equal to 'cpu' limit. Default 'cpu' is 2, minimum is 1. Default 'memory' is '4Gi', minimum is '2Gi.
      * If sku.tier is GeneralPurpose, maximum 'cpu' is 24 and maximum 'memory' is '128Gi'.
-     *
+     * 
      * @return the limits value.
      */
     public Map<String, String> limits() {
@@ -82,7 +87,7 @@ public final class K8SResourceRequirements {
      * Set the limits property: Limits for a kubernetes resource type (e.g 'cpu', 'memory'). The 'cpu' request must be
      * less than or equal to 'cpu' limit. Default 'cpu' is 2, minimum is 1. Default 'memory' is '4Gi', minimum is '2Gi.
      * If sku.tier is GeneralPurpose, maximum 'cpu' is 24 and maximum 'memory' is '128Gi'.
-     *
+     * 
      * @param limits the limits value to set.
      * @return the K8SResourceRequirements object itself.
      */
@@ -94,7 +99,7 @@ public final class K8SResourceRequirements {
     /**
      * Get the additionalProperties property: The kubernetes resource limits and requests used to restrict or reserve
      * resource usage.
-     *
+     * 
      * @return the additionalProperties value.
      */
     @JsonAnyGetter
@@ -105,7 +110,7 @@ public final class K8SResourceRequirements {
     /**
      * Set the additionalProperties property: The kubernetes resource limits and requests used to restrict or reserve
      * resource usage.
-     *
+     * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the K8SResourceRequirements object itself.
      */
@@ -124,7 +129,7 @@ public final class K8SResourceRequirements {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

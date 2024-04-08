@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Used for updating a data controller resource. */
+/**
+ * Used for updating a data controller resource.
+ */
 @Fluent
 public final class DataControllerUpdate {
     /*
@@ -19,13 +21,21 @@ public final class DataControllerUpdate {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of DataControllerUpdate class. */
+    /*
+     * The data controller's properties
+     */
+    @JsonProperty(value = "properties")
+    private DataControllerProperties properties;
+
+    /**
+     * Creates an instance of DataControllerUpdate class.
+     */
     public DataControllerUpdate() {
     }
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +44,7 @@ public final class DataControllerUpdate {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the DataControllerUpdate object itself.
      */
@@ -44,10 +54,33 @@ public final class DataControllerUpdate {
     }
 
     /**
+     * Get the properties property: The data controller's properties.
+     * 
+     * @return the properties value.
+     */
+    public DataControllerProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The data controller's properties.
+     * 
+     * @param properties the properties value to set.
+     * @return the DataControllerUpdate object itself.
+     */
+    public DataControllerUpdate withProperties(DataControllerProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (properties() != null) {
+            properties().validate();
+        }
     }
 }

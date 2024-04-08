@@ -9,11 +9,13 @@ import com.azure.resourcemanager.azurearcdata.fluent.models.DataControllerResour
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The PageOfDataControllerResource model. */
+/**
+ * A list of data controllers.
+ */
 @Fluent
 public final class PageOfDataControllerResource {
     /*
-     * The value property.
+     * Array of results.
      */
     @JsonProperty(value = "value")
     private List<DataControllerResourceInner> value;
@@ -24,13 +26,15 @@ public final class PageOfDataControllerResource {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of PageOfDataControllerResource class. */
+    /**
+     * Creates an instance of PageOfDataControllerResource class.
+     */
     public PageOfDataControllerResource() {
     }
 
     /**
-     * Get the value property: The value property.
-     *
+     * Get the value property: Array of results.
+     * 
      * @return the value value.
      */
     public List<DataControllerResourceInner> value() {
@@ -38,8 +42,8 @@ public final class PageOfDataControllerResource {
     }
 
     /**
-     * Set the value property: The value property.
-     *
+     * Set the value property: Array of results.
+     * 
      * @param value the value value to set.
      * @return the PageOfDataControllerResource object itself.
      */
@@ -50,7 +54,7 @@ public final class PageOfDataControllerResource {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class PageOfDataControllerResource {
 
     /**
      * Set the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the PageOfDataControllerResource object itself.
      */
@@ -70,7 +74,7 @@ public final class PageOfDataControllerResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

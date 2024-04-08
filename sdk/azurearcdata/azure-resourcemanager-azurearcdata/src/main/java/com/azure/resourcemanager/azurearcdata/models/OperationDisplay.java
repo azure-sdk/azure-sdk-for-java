@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Display metadata associated with the operation. */
+/**
+ * Display metadata associated with the operation.
+ */
 @Fluent
 public final class OperationDisplay {
     /*
@@ -35,13 +37,15 @@ public final class OperationDisplay {
     @JsonProperty(value = "description", required = true)
     private String description;
 
-    /** Creates an instance of OperationDisplay class. */
+    /**
+     * Creates an instance of OperationDisplay class.
+     */
     public OperationDisplay() {
     }
 
     /**
      * Get the provider property: The localized friendly form of the resource provider name.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -50,7 +54,7 @@ public final class OperationDisplay {
 
     /**
      * Set the provider property: The localized friendly form of the resource provider name.
-     *
+     * 
      * @param provider the provider value to set.
      * @return the OperationDisplay object itself.
      */
@@ -61,7 +65,7 @@ public final class OperationDisplay {
 
     /**
      * Get the resource property: The localized friendly form of the resource type related to this action/operation.
-     *
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -70,7 +74,7 @@ public final class OperationDisplay {
 
     /**
      * Set the resource property: The localized friendly form of the resource type related to this action/operation.
-     *
+     * 
      * @param resource the resource value to set.
      * @return the OperationDisplay object itself.
      */
@@ -81,7 +85,7 @@ public final class OperationDisplay {
 
     /**
      * Get the operation property: The localized friendly name for the operation.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -90,7 +94,7 @@ public final class OperationDisplay {
 
     /**
      * Set the operation property: The localized friendly name for the operation.
-     *
+     * 
      * @param operation the operation value to set.
      * @return the OperationDisplay object itself.
      */
@@ -101,7 +105,7 @@ public final class OperationDisplay {
 
     /**
      * Get the description property: The localized friendly description for the operation.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -110,7 +114,7 @@ public final class OperationDisplay {
 
     /**
      * Set the description property: The localized friendly description for the operation.
-     *
+     * 
      * @param description the description value to set.
      * @return the OperationDisplay object itself.
      */
@@ -121,29 +125,25 @@ public final class OperationDisplay {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (provider() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property provider in model OperationDisplay"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property provider in model OperationDisplay"));
         }
         if (resource() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property resource in model OperationDisplay"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property resource in model OperationDisplay"));
         }
         if (operation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property operation in model OperationDisplay"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property operation in model OperationDisplay"));
         }
         if (description() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property description in model OperationDisplay"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property description in model OperationDisplay"));
         }
     }
 
