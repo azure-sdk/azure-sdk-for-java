@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Marketplace Subscription. */
+/**
+ * Marketplace Subscription.
+ */
 @Fluent
 public final class MarketplaceSaaSInfoMarketplaceSubscription {
     /*
@@ -16,13 +18,15 @@ public final class MarketplaceSaaSInfoMarketplaceSubscription {
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of MarketplaceSaaSInfoMarketplaceSubscription class. */
+    /**
+     * Creates an instance of MarketplaceSaaSInfoMarketplaceSubscription class.
+     */
     public MarketplaceSaaSInfoMarketplaceSubscription() {
     }
 
     /**
      * Get the id property: Marketplace Subscription Id. This is a GUID-formatted string.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class MarketplaceSaaSInfoMarketplaceSubscription {
 
     /**
      * Set the id property: Marketplace Subscription Id. This is a GUID-formatted string.
-     *
+     * 
      * @param id the id value to set.
      * @return the MarketplaceSaaSInfoMarketplaceSubscription object itself.
      */
@@ -42,7 +46,7 @@ public final class MarketplaceSaaSInfoMarketplaceSubscription {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

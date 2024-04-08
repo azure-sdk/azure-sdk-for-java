@@ -16,8 +16,7 @@ public final class CreateAndAssociatePLFiltersImpl implements CreateAndAssociate
 
     private final com.azure.resourcemanager.elastic.ElasticManager serviceManager;
 
-    public CreateAndAssociatePLFiltersImpl(
-        CreateAndAssociatePLFiltersClient innerClient,
+    public CreateAndAssociatePLFiltersImpl(CreateAndAssociatePLFiltersClient innerClient,
         com.azure.resourcemanager.elastic.ElasticManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -27,16 +26,10 @@ public final class CreateAndAssociatePLFiltersImpl implements CreateAndAssociate
         this.serviceClient().create(resourceGroupName, monitorName);
     }
 
-    public void create(
-        String resourceGroupName,
-        String monitorName,
-        String name,
-        String privateEndpointGuid,
-        String privateEndpointName,
-        Context context) {
-        this
-            .serviceClient()
-            .create(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName, context);
+    public void create(String resourceGroupName, String monitorName, String name, String privateEndpointGuid,
+        String privateEndpointName, Context context) {
+        this.serviceClient().create(resourceGroupName, monitorName, name, privateEndpointGuid, privateEndpointName,
+            context);
     }
 
     private CreateAndAssociatePLFiltersClient serviceClient() {

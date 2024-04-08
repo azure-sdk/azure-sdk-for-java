@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.elastic {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.elastic;
     exports com.azure.resourcemanager.elastic.fluent;
     exports com.azure.resourcemanager.elastic.fluent.models;
     exports com.azure.resourcemanager.elastic.models;
-
-    opens com.azure.resourcemanager.elastic.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.elastic.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.elastic.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.elastic.models to com.azure.core, com.fasterxml.jackson.databind;
 }

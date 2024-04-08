@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Elastic Version Properties. */
+/**
+ * Elastic Version Properties.
+ */
 @Fluent
 public final class ElasticVersionListProperties {
     /*
@@ -16,13 +18,15 @@ public final class ElasticVersionListProperties {
     @JsonProperty(value = "version")
     private String version;
 
-    /** Creates an instance of ElasticVersionListProperties class. */
+    /**
+     * Creates an instance of ElasticVersionListProperties class.
+     */
     public ElasticVersionListProperties() {
     }
 
     /**
      * Get the version property: Available elastic version of the given region.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -31,7 +35,7 @@ public final class ElasticVersionListProperties {
 
     /**
      * Set the version property: Available elastic version of the given region.
-     *
+     * 
      * @param version the version value to set.
      * @return the ElasticVersionListProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class ElasticVersionListProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

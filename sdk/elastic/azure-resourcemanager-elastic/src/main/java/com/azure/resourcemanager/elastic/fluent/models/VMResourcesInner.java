@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The vm resource properties that is currently being monitored by the Elastic monitor resource. */
+/**
+ * The vm resource properties that is currently being monitored by the Elastic monitor resource.
+ */
 @Fluent
 public final class VMResourcesInner {
     /*
@@ -16,13 +18,15 @@ public final class VMResourcesInner {
     @JsonProperty(value = "vmResourceId")
     private String vmResourceId;
 
-    /** Creates an instance of VMResourcesInner class. */
+    /**
+     * Creates an instance of VMResourcesInner class.
+     */
     public VMResourcesInner() {
     }
 
     /**
      * Get the vmResourceId property: The ARM id of the VM resource.
-     *
+     * 
      * @return the vmResourceId value.
      */
     public String vmResourceId() {
@@ -31,7 +35,7 @@ public final class VMResourcesInner {
 
     /**
      * Set the vmResourceId property: The ARM id of the VM resource.
-     *
+     * 
      * @param vmResourceId the vmResourceId value to set.
      * @return the VMResourcesInner object itself.
      */
@@ -42,7 +46,7 @@ public final class VMResourcesInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Elastic traffic filter rule object. */
+/**
+ * Elastic traffic filter rule object.
+ */
 @Fluent
 public final class ElasticTrafficFilterRule {
     /*
@@ -40,13 +42,15 @@ public final class ElasticTrafficFilterRule {
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of ElasticTrafficFilterRule class. */
+    /**
+     * Creates an instance of ElasticTrafficFilterRule class.
+     */
     public ElasticTrafficFilterRule() {
     }
 
     /**
      * Get the source property: IP of the elastic filter rule.
-     *
+     * 
      * @return the source value.
      */
     public String source() {
@@ -55,7 +59,7 @@ public final class ElasticTrafficFilterRule {
 
     /**
      * Set the source property: IP of the elastic filter rule.
-     *
+     * 
      * @param source the source value to set.
      * @return the ElasticTrafficFilterRule object itself.
      */
@@ -66,7 +70,7 @@ public final class ElasticTrafficFilterRule {
 
     /**
      * Get the description property: Description of the elastic filter rule.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -75,7 +79,7 @@ public final class ElasticTrafficFilterRule {
 
     /**
      * Set the description property: Description of the elastic filter rule.
-     *
+     * 
      * @param description the description value to set.
      * @return the ElasticTrafficFilterRule object itself.
      */
@@ -86,7 +90,7 @@ public final class ElasticTrafficFilterRule {
 
     /**
      * Get the azureEndpointGuid property: Guid of Private Endpoint in the elastic filter rule.
-     *
+     * 
      * @return the azureEndpointGuid value.
      */
     public String azureEndpointGuid() {
@@ -95,7 +99,7 @@ public final class ElasticTrafficFilterRule {
 
     /**
      * Set the azureEndpointGuid property: Guid of Private Endpoint in the elastic filter rule.
-     *
+     * 
      * @param azureEndpointGuid the azureEndpointGuid value to set.
      * @return the ElasticTrafficFilterRule object itself.
      */
@@ -106,7 +110,7 @@ public final class ElasticTrafficFilterRule {
 
     /**
      * Get the azureEndpointName property: Name of the Private Endpoint in the elastic filter rule.
-     *
+     * 
      * @return the azureEndpointName value.
      */
     public String azureEndpointName() {
@@ -115,7 +119,7 @@ public final class ElasticTrafficFilterRule {
 
     /**
      * Set the azureEndpointName property: Name of the Private Endpoint in the elastic filter rule.
-     *
+     * 
      * @param azureEndpointName the azureEndpointName value to set.
      * @return the ElasticTrafficFilterRule object itself.
      */
@@ -126,7 +130,7 @@ public final class ElasticTrafficFilterRule {
 
     /**
      * Get the id property: Id of the elastic filter rule.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -135,7 +139,7 @@ public final class ElasticTrafficFilterRule {
 
     /**
      * Set the id property: Id of the elastic filter rule.
-     *
+     * 
      * @param id the id value to set.
      * @return the ElasticTrafficFilterRule object itself.
      */
@@ -146,7 +150,7 @@ public final class ElasticTrafficFilterRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

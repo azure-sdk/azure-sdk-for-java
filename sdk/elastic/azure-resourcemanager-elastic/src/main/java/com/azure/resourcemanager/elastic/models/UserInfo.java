@@ -7,7 +7,9 @@ package com.azure.resourcemanager.elastic.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** User Information to be passed to partners. */
+/**
+ * User Information to be passed to partners.
+ */
 @Fluent
 public final class UserInfo {
     /*
@@ -40,13 +42,15 @@ public final class UserInfo {
     @JsonProperty(value = "companyInfo")
     private CompanyInfo companyInfo;
 
-    /** Creates an instance of UserInfo class. */
+    /**
+     * Creates an instance of UserInfo class.
+     */
     public UserInfo() {
     }
 
     /**
      * Get the firstName property: First name of the user.
-     *
+     * 
      * @return the firstName value.
      */
     public String firstName() {
@@ -55,7 +59,7 @@ public final class UserInfo {
 
     /**
      * Set the firstName property: First name of the user.
-     *
+     * 
      * @param firstName the firstName value to set.
      * @return the UserInfo object itself.
      */
@@ -66,7 +70,7 @@ public final class UserInfo {
 
     /**
      * Get the lastName property: Last name of the user.
-     *
+     * 
      * @return the lastName value.
      */
     public String lastName() {
@@ -75,7 +79,7 @@ public final class UserInfo {
 
     /**
      * Set the lastName property: Last name of the user.
-     *
+     * 
      * @param lastName the lastName value to set.
      * @return the UserInfo object itself.
      */
@@ -86,7 +90,7 @@ public final class UserInfo {
 
     /**
      * Get the companyName property: Company name of the user.
-     *
+     * 
      * @return the companyName value.
      */
     public String companyName() {
@@ -95,7 +99,7 @@ public final class UserInfo {
 
     /**
      * Set the companyName property: Company name of the user.
-     *
+     * 
      * @param companyName the companyName value to set.
      * @return the UserInfo object itself.
      */
@@ -106,7 +110,7 @@ public final class UserInfo {
 
     /**
      * Get the emailAddress property: Email of the user used by Elastic for contacting them if needed.
-     *
+     * 
      * @return the emailAddress value.
      */
     public String emailAddress() {
@@ -115,7 +119,7 @@ public final class UserInfo {
 
     /**
      * Set the emailAddress property: Email of the user used by Elastic for contacting them if needed.
-     *
+     * 
      * @param emailAddress the emailAddress value to set.
      * @return the UserInfo object itself.
      */
@@ -126,7 +130,7 @@ public final class UserInfo {
 
     /**
      * Get the companyInfo property: Company information of the user to be passed to partners.
-     *
+     * 
      * @return the companyInfo value.
      */
     public CompanyInfo companyInfo() {
@@ -135,7 +139,7 @@ public final class UserInfo {
 
     /**
      * Set the companyInfo property: Company information of the user to be passed to partners.
-     *
+     * 
      * @param companyInfo the companyInfo value to set.
      * @return the UserInfo object itself.
      */
@@ -146,7 +150,7 @@ public final class UserInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
