@@ -20,6 +20,13 @@ public class BaseContainer {
     private String image;
 
     /*
+     * The type of the image. Set to CloudBuild to let the system manages the image, where user will not be able to
+     * update image through image field. Set to ContainerImage for user provided image.
+     */
+    @JsonProperty(value = "imageType")
+    private ImageType imageType;
+
+    /*
      * Custom container name.
      */
     @JsonProperty(value = "name")
@@ -78,6 +85,28 @@ public class BaseContainer {
      */
     public BaseContainer withImage(String image) {
         this.image = image;
+        return this;
+    }
+
+    /**
+     * Get the imageType property: The type of the image. Set to CloudBuild to let the system manages the image, where
+     * user will not be able to update image through image field. Set to ContainerImage for user provided image.
+     * 
+     * @return the imageType value.
+     */
+    public ImageType imageType() {
+        return this.imageType;
+    }
+
+    /**
+     * Set the imageType property: The type of the image. Set to CloudBuild to let the system manages the image, where
+     * user will not be able to update image through image field. Set to ContainerImage for user provided image.
+     * 
+     * @param imageType the imageType value to set.
+     * @return the BaseContainer object itself.
+     */
+    public BaseContainer withImageType(ImageType imageType) {
+        this.imageType = imageType;
         return this;
     }
 
