@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.fluent.models.SecuritySettingsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The security settings of a device. */
+/**
+ * The security settings of a device.
+ */
 @Fluent
 public final class SecuritySettings extends ArmBaseModel {
     /*
@@ -18,13 +20,15 @@ public final class SecuritySettings extends ArmBaseModel {
     @JsonProperty(value = "properties", required = true)
     private SecuritySettingsProperties innerProperties = new SecuritySettingsProperties();
 
-    /** Creates an instance of SecuritySettings class. */
+    /**
+     * Creates an instance of SecuritySettings class.
+     */
     public SecuritySettings() {
     }
 
     /**
      * Get the innerProperties property: Properties of the security settings.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SecuritySettingsProperties innerProperties() {
@@ -35,7 +39,7 @@ public final class SecuritySettings extends ArmBaseModel {
      * Get the deviceAdminPassword property: Device administrator password as an encrypted string (encrypted using RSA
      * PKCS #1) is used to sign into the local web UI of the device. The Actual password should have at least 8
      * characters that are a combination of uppercase, lowercase, numeric, and special characters.
-     *
+     * 
      * @return the deviceAdminPassword value.
      */
     public AsymmetricEncryptedSecret deviceAdminPassword() {
@@ -46,7 +50,7 @@ public final class SecuritySettings extends ArmBaseModel {
      * Set the deviceAdminPassword property: Device administrator password as an encrypted string (encrypted using RSA
      * PKCS #1) is used to sign into the local web UI of the device. The Actual password should have at least 8
      * characters that are a combination of uppercase, lowercase, numeric, and special characters.
-     *
+     * 
      * @param deviceAdminPassword the deviceAdminPassword value to set.
      * @return the SecuritySettings object itself.
      */
@@ -60,17 +64,15 @@ public final class SecuritySettings extends ArmBaseModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model SecuritySettings"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model SecuritySettings"));
         } else {
             innerProperties().validate();
         }

@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.AuthenticationType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Raw Certificate Data. */
+/**
+ * Raw Certificate Data.
+ */
 @Fluent
 public final class RawCertificateData {
     /*
@@ -24,13 +26,15 @@ public final class RawCertificateData {
     @JsonProperty(value = "certificate", required = true)
     private String certificate;
 
-    /** Creates an instance of RawCertificateData class. */
+    /**
+     * Creates an instance of RawCertificateData class.
+     */
     public RawCertificateData() {
     }
 
     /**
      * Get the authenticationType property: The authentication type.
-     *
+     * 
      * @return the authenticationType value.
      */
     public AuthenticationType authenticationType() {
@@ -39,7 +43,7 @@ public final class RawCertificateData {
 
     /**
      * Set the authenticationType property: The authentication type.
-     *
+     * 
      * @param authenticationType the authenticationType value to set.
      * @return the RawCertificateData object itself.
      */
@@ -50,7 +54,7 @@ public final class RawCertificateData {
 
     /**
      * Get the certificate property: The base64 encoded certificate raw data.
-     *
+     * 
      * @return the certificate value.
      */
     public String certificate() {
@@ -59,7 +63,7 @@ public final class RawCertificateData {
 
     /**
      * Set the certificate property: The base64 encoded certificate raw data.
-     *
+     * 
      * @param certificate the certificate value to set.
      * @return the RawCertificateData object itself.
      */
@@ -70,14 +74,13 @@ public final class RawCertificateData {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (certificate() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property certificate in model RawCertificateData"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property certificate in model RawCertificateData"));
         }
     }
 

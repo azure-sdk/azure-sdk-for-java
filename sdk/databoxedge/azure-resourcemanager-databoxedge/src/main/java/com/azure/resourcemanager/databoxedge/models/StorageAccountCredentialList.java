@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.StorageAccountCredent
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The collection of storage account credentials. */
+/**
+ * The collection of storage account credentials.
+ */
 @Immutable
 public final class StorageAccountCredentialList {
     /*
@@ -24,13 +26,15 @@ public final class StorageAccountCredentialList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of StorageAccountCredentialList class. */
+    /**
+     * Creates an instance of StorageAccountCredentialList class.
+     */
     public StorageAccountCredentialList() {
     }
 
     /**
      * Get the value property: The value.
-     *
+     * 
      * @return the value value.
      */
     public List<StorageAccountCredentialInner> value() {
@@ -39,7 +43,7 @@ public final class StorageAccountCredentialList {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class StorageAccountCredentialList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

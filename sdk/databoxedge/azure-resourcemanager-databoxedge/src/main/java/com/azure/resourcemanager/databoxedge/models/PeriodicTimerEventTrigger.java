@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Trigger details. */
+/**
+ * Trigger details.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("PeriodicTimerEvent")
 @Fluent
@@ -23,13 +25,15 @@ public final class PeriodicTimerEventTrigger extends TriggerInner {
     @JsonProperty(value = "properties", required = true)
     private PeriodicTimerProperties innerProperties = new PeriodicTimerProperties();
 
-    /** Creates an instance of PeriodicTimerEventTrigger class. */
+    /**
+     * Creates an instance of PeriodicTimerEventTrigger class.
+     */
     public PeriodicTimerEventTrigger() {
     }
 
     /**
      * Get the innerProperties property: Periodic timer trigger properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PeriodicTimerProperties innerProperties() {
@@ -38,7 +42,7 @@ public final class PeriodicTimerEventTrigger extends TriggerInner {
 
     /**
      * Get the sourceInfo property: Periodic timer details.
-     *
+     * 
      * @return the sourceInfo value.
      */
     public PeriodicTimerSourceInfo sourceInfo() {
@@ -47,7 +51,7 @@ public final class PeriodicTimerEventTrigger extends TriggerInner {
 
     /**
      * Set the sourceInfo property: Periodic timer details.
-     *
+     * 
      * @param sourceInfo the sourceInfo value to set.
      * @return the PeriodicTimerEventTrigger object itself.
      */
@@ -61,7 +65,7 @@ public final class PeriodicTimerEventTrigger extends TriggerInner {
 
     /**
      * Get the sinkInfo property: Role Sink information.
-     *
+     * 
      * @return the sinkInfo value.
      */
     public RoleSinkInfo sinkInfo() {
@@ -70,7 +74,7 @@ public final class PeriodicTimerEventTrigger extends TriggerInner {
 
     /**
      * Set the sinkInfo property: Role Sink information.
-     *
+     * 
      * @param sinkInfo the sinkInfo value to set.
      * @return the PeriodicTimerEventTrigger object itself.
      */
@@ -86,7 +90,7 @@ public final class PeriodicTimerEventTrigger extends TriggerInner {
      * Get the customContextTag property: A custom context tag typically used to correlate the trigger against its
      * usage. For example, if a periodic timer trigger is intended for certain specific IoT modules in the device, the
      * tag can be the name or the image URL of the module.
-     *
+     * 
      * @return the customContextTag value.
      */
     public String customContextTag() {
@@ -97,7 +101,7 @@ public final class PeriodicTimerEventTrigger extends TriggerInner {
      * Set the customContextTag property: A custom context tag typically used to correlate the trigger against its
      * usage. For example, if a periodic timer trigger is intended for certain specific IoT modules in the device, the
      * tag can be the name or the image URL of the module.
-     *
+     * 
      * @param customContextTag the customContextTag value to set.
      * @return the PeriodicTimerEventTrigger object itself.
      */
@@ -111,17 +115,15 @@ public final class PeriodicTimerEventTrigger extends TriggerInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model PeriodicTimerEventTrigger"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model PeriodicTimerEventTrigger"));
         } else {
             innerProperties().validate();
         }

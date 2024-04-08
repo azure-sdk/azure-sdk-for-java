@@ -10,7 +10,9 @@ import com.azure.resourcemanager.databoxedge.models.PeriodicTimerSourceInfo;
 import com.azure.resourcemanager.databoxedge.models.RoleSinkInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Periodic timer trigger properties. */
+/**
+ * Periodic timer trigger properties.
+ */
 @Fluent
 public final class PeriodicTimerProperties {
     /*
@@ -33,13 +35,15 @@ public final class PeriodicTimerProperties {
     @JsonProperty(value = "customContextTag")
     private String customContextTag;
 
-    /** Creates an instance of PeriodicTimerProperties class. */
+    /**
+     * Creates an instance of PeriodicTimerProperties class.
+     */
     public PeriodicTimerProperties() {
     }
 
     /**
      * Get the sourceInfo property: Periodic timer details.
-     *
+     * 
      * @return the sourceInfo value.
      */
     public PeriodicTimerSourceInfo sourceInfo() {
@@ -48,7 +52,7 @@ public final class PeriodicTimerProperties {
 
     /**
      * Set the sourceInfo property: Periodic timer details.
-     *
+     * 
      * @param sourceInfo the sourceInfo value to set.
      * @return the PeriodicTimerProperties object itself.
      */
@@ -59,7 +63,7 @@ public final class PeriodicTimerProperties {
 
     /**
      * Get the sinkInfo property: Role Sink information.
-     *
+     * 
      * @return the sinkInfo value.
      */
     public RoleSinkInfo sinkInfo() {
@@ -68,7 +72,7 @@ public final class PeriodicTimerProperties {
 
     /**
      * Set the sinkInfo property: Role Sink information.
-     *
+     * 
      * @param sinkInfo the sinkInfo value to set.
      * @return the PeriodicTimerProperties object itself.
      */
@@ -81,7 +85,7 @@ public final class PeriodicTimerProperties {
      * Get the customContextTag property: A custom context tag typically used to correlate the trigger against its
      * usage. For example, if a periodic timer trigger is intended for certain specific IoT modules in the device, the
      * tag can be the name or the image URL of the module.
-     *
+     * 
      * @return the customContextTag value.
      */
     public String customContextTag() {
@@ -92,7 +96,7 @@ public final class PeriodicTimerProperties {
      * Set the customContextTag property: A custom context tag typically used to correlate the trigger against its
      * usage. For example, if a periodic timer trigger is intended for certain specific IoT modules in the device, the
      * tag can be the name or the image URL of the module.
-     *
+     * 
      * @param customContextTag the customContextTag value to set.
      * @return the PeriodicTimerProperties object itself.
      */
@@ -103,23 +107,19 @@ public final class PeriodicTimerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (sourceInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sourceInfo in model PeriodicTimerProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sourceInfo in model PeriodicTimerProperties"));
         } else {
             sourceInfo().validate();
         }
         if (sinkInfo() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sinkInfo in model PeriodicTimerProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property sinkInfo in model PeriodicTimerProperties"));
         } else {
             sinkInfo().validate();
         }

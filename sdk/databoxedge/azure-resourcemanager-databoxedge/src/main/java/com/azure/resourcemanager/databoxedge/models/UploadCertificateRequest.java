@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.fluent.models.RawCertificateData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The upload certificate request. */
+/**
+ * The upload certificate request.
+ */
 @Fluent
 public final class UploadCertificateRequest {
     /*
@@ -18,13 +20,15 @@ public final class UploadCertificateRequest {
     @JsonProperty(value = "properties", required = true)
     private RawCertificateData innerProperties = new RawCertificateData();
 
-    /** Creates an instance of UploadCertificateRequest class. */
+    /**
+     * Creates an instance of UploadCertificateRequest class.
+     */
     public UploadCertificateRequest() {
     }
 
     /**
      * Get the innerProperties property: The Base 64 encoded certificate raw data.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RawCertificateData innerProperties() {
@@ -33,7 +37,7 @@ public final class UploadCertificateRequest {
 
     /**
      * Get the authenticationType property: The authentication type.
-     *
+     * 
      * @return the authenticationType value.
      */
     public AuthenticationType authenticationType() {
@@ -42,7 +46,7 @@ public final class UploadCertificateRequest {
 
     /**
      * Set the authenticationType property: The authentication type.
-     *
+     * 
      * @param authenticationType the authenticationType value to set.
      * @return the UploadCertificateRequest object itself.
      */
@@ -56,7 +60,7 @@ public final class UploadCertificateRequest {
 
     /**
      * Get the certificate property: The base64 encoded certificate raw data.
-     *
+     * 
      * @return the certificate value.
      */
     public String certificate() {
@@ -65,7 +69,7 @@ public final class UploadCertificateRequest {
 
     /**
      * Set the certificate property: The base64 encoded certificate raw data.
-     *
+     * 
      * @param certificate the certificate value to set.
      * @return the UploadCertificateRequest object itself.
      */
@@ -79,15 +83,13 @@ public final class UploadCertificateRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model UploadCertificateRequest"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model UploadCertificateRequest"));
         } else {
             innerProperties().validate();
         }

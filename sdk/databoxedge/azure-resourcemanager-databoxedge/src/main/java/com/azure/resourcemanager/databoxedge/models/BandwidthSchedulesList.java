@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.BandwidthScheduleInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The collection of bandwidth schedules. */
+/**
+ * The collection of bandwidth schedules.
+ */
 @Immutable
 public final class BandwidthSchedulesList {
     /*
@@ -24,13 +26,15 @@ public final class BandwidthSchedulesList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of BandwidthSchedulesList class. */
+    /**
+     * Creates an instance of BandwidthSchedulesList class.
+     */
     public BandwidthSchedulesList() {
     }
 
     /**
      * Get the value property: The list of bandwidth schedules.
-     *
+     * 
      * @return the value value.
      */
     public List<BandwidthScheduleInner> value() {
@@ -39,7 +43,7 @@ public final class BandwidthSchedulesList {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class BandwidthSchedulesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

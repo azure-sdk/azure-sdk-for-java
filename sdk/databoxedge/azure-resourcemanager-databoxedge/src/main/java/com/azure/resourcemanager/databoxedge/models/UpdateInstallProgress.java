@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Progress details during installation of updates. */
+/**
+ * Progress details during installation of updates.
+ */
 @Immutable
 public final class UpdateInstallProgress {
     /*
@@ -28,13 +30,15 @@ public final class UpdateInstallProgress {
     @JsonProperty(value = "numberOfUpdatesInstalled", access = JsonProperty.Access.WRITE_ONLY)
     private Integer numberOfUpdatesInstalled;
 
-    /** Creates an instance of UpdateInstallProgress class. */
+    /**
+     * Creates an instance of UpdateInstallProgress class.
+     */
     public UpdateInstallProgress() {
     }
 
     /**
      * Get the percentComplete property: Percentage completed.
-     *
+     * 
      * @return the percentComplete value.
      */
     public Integer percentComplete() {
@@ -43,7 +47,7 @@ public final class UpdateInstallProgress {
 
     /**
      * Get the numberOfUpdatesToInstall property: Number of updates to install.
-     *
+     * 
      * @return the numberOfUpdatesToInstall value.
      */
     public Integer numberOfUpdatesToInstall() {
@@ -52,7 +56,7 @@ public final class UpdateInstallProgress {
 
     /**
      * Get the numberOfUpdatesInstalled property: Number of updates installed.
-     *
+     * 
      * @return the numberOfUpdatesInstalled value.
      */
     public Integer numberOfUpdatesInstalled() {
@@ -61,7 +65,7 @@ public final class UpdateInstallProgress {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

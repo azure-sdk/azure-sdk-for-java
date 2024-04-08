@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.AsymmetricEncryptedSecret;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of security settings. */
+/**
+ * The properties of security settings.
+ */
 @Fluent
 public final class SecuritySettingsProperties {
     /*
@@ -20,7 +22,9 @@ public final class SecuritySettingsProperties {
     @JsonProperty(value = "deviceAdminPassword", required = true)
     private AsymmetricEncryptedSecret deviceAdminPassword;
 
-    /** Creates an instance of SecuritySettingsProperties class. */
+    /**
+     * Creates an instance of SecuritySettingsProperties class.
+     */
     public SecuritySettingsProperties() {
     }
 
@@ -28,7 +32,7 @@ public final class SecuritySettingsProperties {
      * Get the deviceAdminPassword property: Device administrator password as an encrypted string (encrypted using RSA
      * PKCS #1) is used to sign into the local web UI of the device. The Actual password should have at least 8
      * characters that are a combination of uppercase, lowercase, numeric, and special characters.
-     *
+     * 
      * @return the deviceAdminPassword value.
      */
     public AsymmetricEncryptedSecret deviceAdminPassword() {
@@ -39,7 +43,7 @@ public final class SecuritySettingsProperties {
      * Set the deviceAdminPassword property: Device administrator password as an encrypted string (encrypted using RSA
      * PKCS #1) is used to sign into the local web UI of the device. The Actual password should have at least 8
      * characters that are a combination of uppercase, lowercase, numeric, and special characters.
-     *
+     * 
      * @param deviceAdminPassword the deviceAdminPassword value to set.
      * @return the SecuritySettingsProperties object itself.
      */
@@ -50,15 +54,13 @@ public final class SecuritySettingsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (deviceAdminPassword() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property deviceAdminPassword in model SecuritySettingsProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property deviceAdminPassword in model SecuritySettingsProperties"));
         } else {
             deviceAdminPassword().validate();
         }

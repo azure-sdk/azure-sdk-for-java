@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details related to the IPv6 address configuration. */
+/**
+ * Details related to the IPv6 address configuration.
+ */
 @Immutable
 public final class Ipv6Config {
     /*
@@ -28,13 +30,15 @@ public final class Ipv6Config {
     @JsonProperty(value = "gateway", access = JsonProperty.Access.WRITE_ONLY)
     private String gateway;
 
-    /** Creates an instance of Ipv6Config class. */
+    /**
+     * Creates an instance of Ipv6Config class.
+     */
     public Ipv6Config() {
     }
 
     /**
      * Get the ipAddress property: The IPv6 address of the network adapter.
-     *
+     * 
      * @return the ipAddress value.
      */
     public String ipAddress() {
@@ -43,7 +47,7 @@ public final class Ipv6Config {
 
     /**
      * Get the prefixLength property: The IPv6 prefix of the network adapter.
-     *
+     * 
      * @return the prefixLength value.
      */
     public Integer prefixLength() {
@@ -52,7 +56,7 @@ public final class Ipv6Config {
 
     /**
      * Get the gateway property: The IPv6 gateway of the network adapter.
-     *
+     * 
      * @return the gateway value.
      */
     public String gateway() {
@@ -61,7 +65,7 @@ public final class Ipv6Config {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

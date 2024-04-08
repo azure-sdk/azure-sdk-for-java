@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The mapping between a particular user and the access type on the SMB share. */
+/**
+ * The mapping between a particular user and the access type on the SMB share.
+ */
 @Fluent
 public final class UserAccessRight {
     /*
@@ -23,13 +25,15 @@ public final class UserAccessRight {
     @JsonProperty(value = "accessType", required = true)
     private ShareAccessType accessType;
 
-    /** Creates an instance of UserAccessRight class. */
+    /**
+     * Creates an instance of UserAccessRight class.
+     */
     public UserAccessRight() {
     }
 
     /**
      * Get the userId property: User ID (already existing in the device).
-     *
+     * 
      * @return the userId value.
      */
     public String userId() {
@@ -38,7 +42,7 @@ public final class UserAccessRight {
 
     /**
      * Set the userId property: User ID (already existing in the device).
-     *
+     * 
      * @param userId the userId value to set.
      * @return the UserAccessRight object itself.
      */
@@ -49,7 +53,7 @@ public final class UserAccessRight {
 
     /**
      * Get the accessType property: Type of access to be allowed for the user.
-     *
+     * 
      * @return the accessType value.
      */
     public ShareAccessType accessType() {
@@ -58,7 +62,7 @@ public final class UserAccessRight {
 
     /**
      * Set the accessType property: Type of access to be allowed for the user.
-     *
+     * 
      * @param accessType the accessType value to set.
      * @return the UserAccessRight object itself.
      */
@@ -69,19 +73,17 @@ public final class UserAccessRight {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (userId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property userId in model UserAccessRight"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property userId in model UserAccessRight"));
         }
         if (accessType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property accessType in model UserAccessRight"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property accessType in model UserAccessRight"));
         }
     }
 

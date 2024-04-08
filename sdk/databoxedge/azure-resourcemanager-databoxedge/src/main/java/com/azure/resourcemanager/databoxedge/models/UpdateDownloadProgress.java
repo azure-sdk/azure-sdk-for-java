@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details about the download progress of update. */
+/**
+ * Details about the download progress of update.
+ */
 @Immutable
 public final class UpdateDownloadProgress {
     /*
@@ -46,13 +48,15 @@ public final class UpdateDownloadProgress {
     @JsonProperty(value = "numberOfUpdatesDownloaded", access = JsonProperty.Access.WRITE_ONLY)
     private Integer numberOfUpdatesDownloaded;
 
-    /** Creates an instance of UpdateDownloadProgress class. */
+    /**
+     * Creates an instance of UpdateDownloadProgress class.
+     */
     public UpdateDownloadProgress() {
     }
 
     /**
      * Get the downloadPhase property: The download phase.
-     *
+     * 
      * @return the downloadPhase value.
      */
     public DownloadPhase downloadPhase() {
@@ -61,7 +65,7 @@ public final class UpdateDownloadProgress {
 
     /**
      * Get the percentComplete property: Percentage of completion.
-     *
+     * 
      * @return the percentComplete value.
      */
     public Integer percentComplete() {
@@ -70,7 +74,7 @@ public final class UpdateDownloadProgress {
 
     /**
      * Get the totalBytesToDownload property: Total bytes to download.
-     *
+     * 
      * @return the totalBytesToDownload value.
      */
     public Double totalBytesToDownload() {
@@ -79,7 +83,7 @@ public final class UpdateDownloadProgress {
 
     /**
      * Get the totalBytesDownloaded property: Total bytes downloaded.
-     *
+     * 
      * @return the totalBytesDownloaded value.
      */
     public Double totalBytesDownloaded() {
@@ -88,7 +92,7 @@ public final class UpdateDownloadProgress {
 
     /**
      * Get the numberOfUpdatesToDownload property: Number of updates to download.
-     *
+     * 
      * @return the numberOfUpdatesToDownload value.
      */
     public Integer numberOfUpdatesToDownload() {
@@ -97,7 +101,7 @@ public final class UpdateDownloadProgress {
 
     /**
      * Get the numberOfUpdatesDownloaded property: Number of updates downloaded.
-     *
+     * 
      * @return the numberOfUpdatesDownloaded value.
      */
     public Integer numberOfUpdatesDownloaded() {
@@ -106,7 +110,7 @@ public final class UpdateDownloadProgress {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

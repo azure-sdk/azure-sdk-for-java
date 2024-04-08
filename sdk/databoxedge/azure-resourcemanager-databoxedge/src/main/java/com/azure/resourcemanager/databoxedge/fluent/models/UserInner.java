@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
 import com.azure.resourcemanager.databoxedge.models.AsymmetricEncryptedSecret;
@@ -13,7 +14,9 @@ import com.azure.resourcemanager.databoxedge.models.UserType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Represents a user who has access to one or more shares on the Data Box Edge/Gateway device. */
+/**
+ * Represents a user who has access to one or more shares on the Data Box Edge/Gateway device.
+ */
 @Fluent
 public final class UserInner extends ArmBaseModel {
     /*
@@ -22,13 +25,21 @@ public final class UserInner extends ArmBaseModel {
     @JsonProperty(value = "properties", required = true)
     private UserProperties innerProperties = new UserProperties();
 
-    /** Creates an instance of UserInner class. */
+    /*
+     * Metadata pertaining to creation and last modification of User
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of UserInner class.
+     */
     public UserInner() {
     }
 
     /**
      * Get the innerProperties property: The storage account credential properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private UserProperties innerProperties() {
@@ -36,8 +47,17 @@ public final class UserInner extends ArmBaseModel {
     }
 
     /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of User.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the encryptedPassword property: The password details.
-     *
+     * 
      * @return the encryptedPassword value.
      */
     public AsymmetricEncryptedSecret encryptedPassword() {
@@ -46,7 +66,7 @@ public final class UserInner extends ArmBaseModel {
 
     /**
      * Set the encryptedPassword property: The password details.
-     *
+     * 
      * @param encryptedPassword the encryptedPassword value to set.
      * @return the UserInner object itself.
      */
@@ -61,7 +81,7 @@ public final class UserInner extends ArmBaseModel {
     /**
      * Get the shareAccessRights property: List of shares that the user has rights on. This field should not be
      * specified during user creation.
-     *
+     * 
      * @return the shareAccessRights value.
      */
     public List<ShareAccessRight> shareAccessRights() {
@@ -69,23 +89,8 @@ public final class UserInner extends ArmBaseModel {
     }
 
     /**
-     * Set the shareAccessRights property: List of shares that the user has rights on. This field should not be
-     * specified during user creation.
-     *
-     * @param shareAccessRights the shareAccessRights value to set.
-     * @return the UserInner object itself.
-     */
-    public UserInner withShareAccessRights(List<ShareAccessRight> shareAccessRights) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new UserProperties();
-        }
-        this.innerProperties().withShareAccessRights(shareAccessRights);
-        return this;
-    }
-
-    /**
      * Get the userType property: Type of the user.
-     *
+     * 
      * @return the userType value.
      */
     public UserType userType() {
@@ -94,7 +99,7 @@ public final class UserInner extends ArmBaseModel {
 
     /**
      * Set the userType property: Type of the user.
-     *
+     * 
      * @param userType the userType value to set.
      * @return the UserInner object itself.
      */
@@ -108,16 +113,15 @@ public final class UserInner extends ArmBaseModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property innerProperties in model UserInner"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model UserInner"));
         } else {
             innerProperties().validate();
         }

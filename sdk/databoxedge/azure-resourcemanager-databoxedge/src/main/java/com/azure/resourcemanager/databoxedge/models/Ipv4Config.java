@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details related to the IPv4 address configuration. */
+/**
+ * Details related to the IPv4 address configuration.
+ */
 @Immutable
 public final class Ipv4Config {
     /*
@@ -28,13 +30,15 @@ public final class Ipv4Config {
     @JsonProperty(value = "gateway", access = JsonProperty.Access.WRITE_ONLY)
     private String gateway;
 
-    /** Creates an instance of Ipv4Config class. */
+    /**
+     * Creates an instance of Ipv4Config class.
+     */
     public Ipv4Config() {
     }
 
     /**
      * Get the ipAddress property: The IPv4 address of the network adapter.
-     *
+     * 
      * @return the ipAddress value.
      */
     public String ipAddress() {
@@ -43,7 +47,7 @@ public final class Ipv4Config {
 
     /**
      * Get the subnet property: The IPv4 subnet of the network adapter.
-     *
+     * 
      * @return the subnet value.
      */
     public String subnet() {
@@ -52,7 +56,7 @@ public final class Ipv4Config {
 
     /**
      * Get the gateway property: The IPv4 gateway of the network adapter.
-     *
+     * 
      * @return the gateway value.
      */
     public String gateway() {
@@ -61,7 +65,7 @@ public final class Ipv4Config {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

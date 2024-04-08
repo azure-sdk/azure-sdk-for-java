@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.databoxedge.models.NodeStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** This class represents the nodes in a highly available cluster. */
+/**
+ * This class represents the nodes in a highly available cluster.
+ */
 @Immutable
 public final class NodeProperties {
     /*
@@ -53,13 +55,15 @@ public final class NodeProperties {
     @JsonProperty(value = "nodeInstanceId", access = JsonProperty.Access.WRITE_ONLY)
     private String nodeInstanceId;
 
-    /** Creates an instance of NodeProperties class. */
+    /**
+     * Creates an instance of NodeProperties class.
+     */
     public NodeProperties() {
     }
 
     /**
      * Get the nodeStatus property: The current status of the individual node.
-     *
+     * 
      * @return the nodeStatus value.
      */
     public NodeStatus nodeStatus() {
@@ -68,7 +72,7 @@ public final class NodeProperties {
 
     /**
      * Get the nodeChassisSerialNumber property: Serial number of the Chassis.
-     *
+     * 
      * @return the nodeChassisSerialNumber value.
      */
     public String nodeChassisSerialNumber() {
@@ -77,7 +81,7 @@ public final class NodeProperties {
 
     /**
      * Get the nodeSerialNumber property: Serial number of the individual node.
-     *
+     * 
      * @return the nodeSerialNumber value.
      */
     public String nodeSerialNumber() {
@@ -86,7 +90,7 @@ public final class NodeProperties {
 
     /**
      * Get the nodeDisplayName property: Display Name of the individual node.
-     *
+     * 
      * @return the nodeDisplayName value.
      */
     public String nodeDisplayName() {
@@ -96,7 +100,7 @@ public final class NodeProperties {
     /**
      * Get the nodeFriendlySoftwareVersion property: Friendly software version name that is currently installed on the
      * node.
-     *
+     * 
      * @return the nodeFriendlySoftwareVersion value.
      */
     public String nodeFriendlySoftwareVersion() {
@@ -105,7 +109,7 @@ public final class NodeProperties {
 
     /**
      * Get the nodeHcsVersion property: HCS version that is currently installed on the node.
-     *
+     * 
      * @return the nodeHcsVersion value.
      */
     public String nodeHcsVersion() {
@@ -114,7 +118,7 @@ public final class NodeProperties {
 
     /**
      * Get the nodeInstanceId property: Guid instance id of the node.
-     *
+     * 
      * @return the nodeInstanceId value.
      */
     public String nodeInstanceId() {
@@ -123,7 +127,7 @@ public final class NodeProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

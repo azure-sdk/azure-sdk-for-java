@@ -5,14 +5,19 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
 import com.azure.resourcemanager.databoxedge.models.InstallRebootBehavior;
+import com.azure.resourcemanager.databoxedge.models.JobStatus;
+import com.azure.resourcemanager.databoxedge.models.UpdateDetails;
 import com.azure.resourcemanager.databoxedge.models.UpdateOperation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Details about ongoing updates and availability of updates on the device. */
+/**
+ * Details about ongoing updates and availability of updates on the device.
+ */
 @Fluent
 public final class UpdateSummaryInner extends ArmBaseModel {
     /*
@@ -21,13 +26,21 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     @JsonProperty(value = "properties")
     private UpdateSummaryProperties innerProperties;
 
-    /** Creates an instance of UpdateSummaryInner class. */
+    /*
+     * Metadata pertaining to creation and last modification of UpdateSummary
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of UpdateSummaryInner class.
+     */
     public UpdateSummaryInner() {
     }
 
     /**
      * Get the innerProperties property: The device update information summary.
-     *
+     * 
      * @return the innerProperties value.
      */
     private UpdateSummaryProperties innerProperties() {
@@ -35,8 +48,17 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     }
 
     /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of UpdateSummary.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the deviceVersionNumber property: The current version of the device in format: 1.2.17312.13.",.
-     *
+     * 
      * @return the deviceVersionNumber value.
      */
     public String deviceVersionNumber() {
@@ -45,7 +67,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
 
     /**
      * Set the deviceVersionNumber property: The current version of the device in format: 1.2.17312.13.",.
-     *
+     * 
      * @param deviceVersionNumber the deviceVersionNumber value to set.
      * @return the UpdateSummaryInner object itself.
      */
@@ -59,7 +81,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
 
     /**
      * Get the friendlyDeviceVersionName property: The current version of the device in text format.
-     *
+     * 
      * @return the friendlyDeviceVersionName value.
      */
     public String friendlyDeviceVersionName() {
@@ -68,7 +90,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
 
     /**
      * Set the friendlyDeviceVersionName property: The current version of the device in text format.
-     *
+     * 
      * @param friendlyDeviceVersionName the friendlyDeviceVersionName value to set.
      * @return the UpdateSummaryInner object itself.
      */
@@ -82,7 +104,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
 
     /**
      * Get the deviceLastScannedDateTime property: The last time when a scan was done on the device.
-     *
+     * 
      * @return the deviceLastScannedDateTime value.
      */
     public OffsetDateTime deviceLastScannedDateTime() {
@@ -91,7 +113,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
 
     /**
      * Set the deviceLastScannedDateTime property: The last time when a scan was done on the device.
-     *
+     * 
      * @param deviceLastScannedDateTime the deviceLastScannedDateTime value to set.
      * @return the UpdateSummaryInner object itself.
      */
@@ -106,7 +128,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     /**
      * Get the lastCompletedScanJobDateTime property: The time when the last scan job was completed
      * (success/cancelled/failed) on the appliance.
-     *
+     * 
      * @return the lastCompletedScanJobDateTime value.
      */
     public OffsetDateTime lastCompletedScanJobDateTime() {
@@ -116,7 +138,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     /**
      * Set the lastCompletedScanJobDateTime property: The time when the last scan job was completed
      * (success/cancelled/failed) on the appliance.
-     *
+     * 
      * @param lastCompletedScanJobDateTime the lastCompletedScanJobDateTime value to set.
      * @return the UpdateSummaryInner object itself.
      */
@@ -129,9 +151,32 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     }
 
     /**
+     * Get the lastSuccessfulScanJobTime property: Time when the last scan job is successfully completed.
+     * 
+     * @return the lastSuccessfulScanJobTime value.
+     */
+    public OffsetDateTime lastSuccessfulScanJobTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastSuccessfulScanJobTime();
+    }
+
+    /**
+     * Set the lastSuccessfulScanJobTime property: Time when the last scan job is successfully completed.
+     * 
+     * @param lastSuccessfulScanJobTime the lastSuccessfulScanJobTime value to set.
+     * @return the UpdateSummaryInner object itself.
+     */
+    public UpdateSummaryInner withLastSuccessfulScanJobTime(OffsetDateTime lastSuccessfulScanJobTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UpdateSummaryProperties();
+        }
+        this.innerProperties().withLastSuccessfulScanJobTime(lastSuccessfulScanJobTime);
+        return this;
+    }
+
+    /**
      * Get the lastCompletedDownloadJobDateTime property: The time when the last Download job was completed
      * (success/cancelled/failed) on the appliance.
-     *
+     * 
      * @return the lastCompletedDownloadJobDateTime value.
      */
     public OffsetDateTime lastCompletedDownloadJobDateTime() {
@@ -139,9 +184,53 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     }
 
     /**
+     * Get the lastCompletedDownloadJobId property: JobId of the last ran download job.(Can be
+     * success/cancelled/failed).
+     * 
+     * @return the lastCompletedDownloadJobId value.
+     */
+    public String lastCompletedDownloadJobId() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastCompletedDownloadJobId();
+    }
+
+    /**
+     * Get the lastDownloadJobStatus property: JobStatus of the last ran download job.
+     * 
+     * @return the lastDownloadJobStatus value.
+     */
+    public JobStatus lastDownloadJobStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastDownloadJobStatus();
+    }
+
+    /**
+     * Get the lastSuccessfulInstallJobDateTime property: The time when the Last Install job was completed successfully
+     * on the appliance.
+     * 
+     * @return the lastSuccessfulInstallJobDateTime value.
+     */
+    public OffsetDateTime lastSuccessfulInstallJobDateTime() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastSuccessfulInstallJobDateTime();
+    }
+
+    /**
+     * Set the lastSuccessfulInstallJobDateTime property: The time when the Last Install job was completed successfully
+     * on the appliance.
+     * 
+     * @param lastSuccessfulInstallJobDateTime the lastSuccessfulInstallJobDateTime value to set.
+     * @return the UpdateSummaryInner object itself.
+     */
+    public UpdateSummaryInner withLastSuccessfulInstallJobDateTime(OffsetDateTime lastSuccessfulInstallJobDateTime) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UpdateSummaryProperties();
+        }
+        this.innerProperties().withLastSuccessfulInstallJobDateTime(lastSuccessfulInstallJobDateTime);
+        return this;
+    }
+
+    /**
      * Get the lastCompletedInstallJobDateTime property: The time when the last Install job was completed
      * (success/cancelled/failed) on the appliance.
-     *
+     * 
      * @return the lastCompletedInstallJobDateTime value.
      */
     public OffsetDateTime lastCompletedInstallJobDateTime() {
@@ -149,9 +238,27 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     }
 
     /**
-     * Get the totalNumberOfUpdatesAvailable property: The number of updates available for the current device version as
-     * per the last device scan.
-     *
+     * Get the lastCompletedInstallJobId property: JobId of the last ran install job.(Can be success/cancelled/failed).
+     * 
+     * @return the lastCompletedInstallJobId value.
+     */
+    public String lastCompletedInstallJobId() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastCompletedInstallJobId();
+    }
+
+    /**
+     * Get the lastInstallJobStatus property: JobStatus of the last ran install job.
+     * 
+     * @return the lastInstallJobStatus value.
+     */
+    public JobStatus lastInstallJobStatus() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastInstallJobStatus();
+    }
+
+    /**
+     * Get the totalNumberOfUpdatesAvailable property: The number of updates available for the current device version
+     * as per the last device scan.
+     * 
      * @return the totalNumberOfUpdatesAvailable value.
      */
     public Integer totalNumberOfUpdatesAvailable() {
@@ -160,7 +267,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
 
     /**
      * Get the totalNumberOfUpdatesPendingDownload property: The total number of items pending download.
-     *
+     * 
      * @return the totalNumberOfUpdatesPendingDownload value.
      */
     public Integer totalNumberOfUpdatesPendingDownload() {
@@ -169,7 +276,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
 
     /**
      * Get the totalNumberOfUpdatesPendingInstall property: The total number of items pending install.
-     *
+     * 
      * @return the totalNumberOfUpdatesPendingInstall value.
      */
     public Integer totalNumberOfUpdatesPendingInstall() {
@@ -179,7 +286,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     /**
      * Get the rebootBehavior property: Indicates if updates are available and at least one of the updates needs a
      * reboot.
-     *
+     * 
      * @return the rebootBehavior value.
      */
     public InstallRebootBehavior rebootBehavior() {
@@ -188,7 +295,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
 
     /**
      * Get the ongoingUpdateOperation property: The current update operation.
-     *
+     * 
      * @return the ongoingUpdateOperation value.
      */
     public UpdateOperation ongoingUpdateOperation() {
@@ -197,7 +304,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
 
     /**
      * Get the inProgressDownloadJobId property: The job ID of the download job in progress.
-     *
+     * 
      * @return the inProgressDownloadJobId value.
      */
     public String inProgressDownloadJobId() {
@@ -206,7 +313,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
 
     /**
      * Get the inProgressInstallJobId property: The job ID of the install job in progress.
-     *
+     * 
      * @return the inProgressInstallJobId value.
      */
     public String inProgressInstallJobId() {
@@ -216,7 +323,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     /**
      * Get the inProgressDownloadJobStartedDateTime property: The time when the currently running download (if any)
      * started.
-     *
+     * 
      * @return the inProgressDownloadJobStartedDateTime value.
      */
     public OffsetDateTime inProgressDownloadJobStartedDateTime() {
@@ -226,7 +333,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     /**
      * Get the inProgressInstallJobStartedDateTime property: The time when the currently running install (if any)
      * started.
-     *
+     * 
      * @return the inProgressInstallJobStartedDateTime value.
      */
     public OffsetDateTime inProgressInstallJobStartedDateTime() {
@@ -235,7 +342,7 @@ public final class UpdateSummaryInner extends ArmBaseModel {
 
     /**
      * Get the updateTitles property: The list of updates available for install.
-     *
+     * 
      * @return the updateTitles value.
      */
     public List<String> updateTitles() {
@@ -243,8 +350,17 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     }
 
     /**
+     * Get the updates property: The list of updates available for install.
+     * 
+     * @return the updates value.
+     */
+    public List<UpdateDetails> updates() {
+        return this.innerProperties() == null ? null : this.innerProperties().updates();
+    }
+
+    /**
      * Get the totalUpdateSizeInBytes property: The total size of updates available for download in bytes.
-     *
+     * 
      * @return the totalUpdateSizeInBytes value.
      */
     public Double totalUpdateSizeInBytes() {
@@ -252,8 +368,17 @@ public final class UpdateSummaryInner extends ArmBaseModel {
     }
 
     /**
+     * Get the totalTimeInMinutes property: The total time in Minutes.
+     * 
+     * @return the totalTimeInMinutes value.
+     */
+    public Integer totalTimeInMinutes() {
+        return this.innerProperties() == null ? null : this.innerProperties().totalTimeInMinutes();
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

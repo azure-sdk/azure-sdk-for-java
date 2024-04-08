@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Tracking courier information. */
+/**
+ * Tracking courier information.
+ */
 @Fluent
 public final class TrackingInfo {
     /*
@@ -34,13 +36,15 @@ public final class TrackingInfo {
     @JsonProperty(value = "trackingUrl")
     private String trackingUrl;
 
-    /** Creates an instance of TrackingInfo class. */
+    /**
+     * Creates an instance of TrackingInfo class.
+     */
     public TrackingInfo() {
     }
 
     /**
      * Get the serialNumber property: Serial number of the device being tracked.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -49,7 +53,7 @@ public final class TrackingInfo {
 
     /**
      * Set the serialNumber property: Serial number of the device being tracked.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the TrackingInfo object itself.
      */
@@ -60,7 +64,7 @@ public final class TrackingInfo {
 
     /**
      * Get the carrierName property: Name of the carrier used in the delivery.
-     *
+     * 
      * @return the carrierName value.
      */
     public String carrierName() {
@@ -69,7 +73,7 @@ public final class TrackingInfo {
 
     /**
      * Set the carrierName property: Name of the carrier used in the delivery.
-     *
+     * 
      * @param carrierName the carrierName value to set.
      * @return the TrackingInfo object itself.
      */
@@ -80,7 +84,7 @@ public final class TrackingInfo {
 
     /**
      * Get the trackingId property: Tracking ID of the shipment.
-     *
+     * 
      * @return the trackingId value.
      */
     public String trackingId() {
@@ -89,7 +93,7 @@ public final class TrackingInfo {
 
     /**
      * Set the trackingId property: Tracking ID of the shipment.
-     *
+     * 
      * @param trackingId the trackingId value to set.
      * @return the TrackingInfo object itself.
      */
@@ -100,7 +104,7 @@ public final class TrackingInfo {
 
     /**
      * Get the trackingUrl property: Tracking URL of the shipment.
-     *
+     * 
      * @return the trackingUrl value.
      */
     public String trackingUrl() {
@@ -109,7 +113,7 @@ public final class TrackingInfo {
 
     /**
      * Set the trackingUrl property: Tracking URL of the shipment.
-     *
+     * 
      * @param trackingUrl the trackingUrl value to set.
      * @return the TrackingInfo object itself.
      */
@@ -120,7 +124,7 @@ public final class TrackingInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

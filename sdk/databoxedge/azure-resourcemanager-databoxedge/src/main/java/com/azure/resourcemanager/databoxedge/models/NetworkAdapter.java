@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Represents the networkAdapter on a device. */
+/**
+ * Represents the networkAdapter on a device.
+ */
 @Fluent
 public final class NetworkAdapter {
     /*
@@ -101,13 +103,15 @@ public final class NetworkAdapter {
     @JsonProperty(value = "dnsServers", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> dnsServers;
 
-    /** Creates an instance of NetworkAdapter class. */
+    /**
+     * Creates an instance of NetworkAdapter class.
+     */
     public NetworkAdapter() {
     }
 
     /**
      * Get the adapterId property: Instance ID of network adapter.
-     *
+     * 
      * @return the adapterId value.
      */
     public String adapterId() {
@@ -116,7 +120,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the adapterPosition property: Hardware position of network adapter.
-     *
+     * 
      * @return the adapterPosition value.
      */
     public NetworkAdapterPosition adapterPosition() {
@@ -125,7 +129,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the index property: Logical index of the adapter.
-     *
+     * 
      * @return the index value.
      */
     public Integer index() {
@@ -134,7 +138,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the nodeId property: Node ID of the network adapter.
-     *
+     * 
      * @return the nodeId value.
      */
     public String nodeId() {
@@ -143,7 +147,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the networkAdapterName property: Network adapter name.
-     *
+     * 
      * @return the networkAdapterName value.
      */
     public String networkAdapterName() {
@@ -152,7 +156,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the label property: Hardware label for the adapter.
-     *
+     * 
      * @return the label value.
      */
     public String label() {
@@ -161,7 +165,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the macAddress property: MAC address.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -170,7 +174,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the linkSpeed property: Link speed.
-     *
+     * 
      * @return the linkSpeed value.
      */
     public Long linkSpeed() {
@@ -179,7 +183,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the status property: Value indicating whether this adapter is valid.
-     *
+     * 
      * @return the status value.
      */
     public NetworkAdapterStatus status() {
@@ -188,7 +192,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the rdmaStatus property: Value indicating whether this adapter is RDMA capable.
-     *
+     * 
      * @return the rdmaStatus value.
      */
     public NetworkAdapterRdmaStatus rdmaStatus() {
@@ -197,7 +201,7 @@ public final class NetworkAdapter {
 
     /**
      * Set the rdmaStatus property: Value indicating whether this adapter is RDMA capable.
-     *
+     * 
      * @param rdmaStatus the rdmaStatus value to set.
      * @return the NetworkAdapter object itself.
      */
@@ -208,7 +212,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the dhcpStatus property: Value indicating whether this adapter has DHCP enabled.
-     *
+     * 
      * @return the dhcpStatus value.
      */
     public NetworkAdapterDhcpStatus dhcpStatus() {
@@ -217,7 +221,7 @@ public final class NetworkAdapter {
 
     /**
      * Set the dhcpStatus property: Value indicating whether this adapter has DHCP enabled.
-     *
+     * 
      * @param dhcpStatus the dhcpStatus value to set.
      * @return the NetworkAdapter object itself.
      */
@@ -228,7 +232,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the ipv4Configuration property: The IPv4 configuration of the network adapter.
-     *
+     * 
      * @return the ipv4Configuration value.
      */
     public Ipv4Config ipv4Configuration() {
@@ -237,7 +241,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the ipv6Configuration property: The IPv6 configuration of the network adapter.
-     *
+     * 
      * @return the ipv6Configuration value.
      */
     public Ipv6Config ipv6Configuration() {
@@ -246,7 +250,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the ipv6LinkLocalAddress property: The IPv6 local address.
-     *
+     * 
      * @return the ipv6LinkLocalAddress value.
      */
     public String ipv6LinkLocalAddress() {
@@ -255,7 +259,7 @@ public final class NetworkAdapter {
 
     /**
      * Get the dnsServers property: The list of DNS Servers of the device.
-     *
+     * 
      * @return the dnsServers value.
      */
     public List<String> dnsServers() {
@@ -264,7 +268,7 @@ public final class NetworkAdapter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

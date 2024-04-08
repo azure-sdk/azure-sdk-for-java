@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Authentication mechanism for IoT devices. */
+/**
+ * Authentication mechanism for IoT devices.
+ */
 @Fluent
 public final class Authentication {
     /*
@@ -16,13 +18,15 @@ public final class Authentication {
     @JsonProperty(value = "symmetricKey")
     private SymmetricKey symmetricKey;
 
-    /** Creates an instance of Authentication class. */
+    /**
+     * Creates an instance of Authentication class.
+     */
     public Authentication() {
     }
 
     /**
      * Get the symmetricKey property: Symmetric key for authentication.
-     *
+     * 
      * @return the symmetricKey value.
      */
     public SymmetricKey symmetricKey() {
@@ -31,7 +35,7 @@ public final class Authentication {
 
     /**
      * Set the symmetricKey property: Symmetric key for authentication.
-     *
+     * 
      * @param symmetricKey the symmetricKey value to set.
      * @return the Authentication object itself.
      */
@@ -42,7 +46,7 @@ public final class Authentication {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

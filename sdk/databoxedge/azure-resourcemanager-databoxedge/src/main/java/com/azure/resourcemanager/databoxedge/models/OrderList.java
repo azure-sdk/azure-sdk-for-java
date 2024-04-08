@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.OrderInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of order entities. */
+/**
+ * List of order entities.
+ */
 @Immutable
 public final class OrderList {
     /*
@@ -24,13 +26,15 @@ public final class OrderList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of OrderList class. */
+    /**
+     * Creates an instance of OrderList class.
+     */
     public OrderList() {
     }
 
     /**
      * Get the value property: The list of orders.
-     *
+     * 
      * @return the value value.
      */
     public List<OrderInner> value() {
@@ -39,7 +43,7 @@ public final class OrderList {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class OrderList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

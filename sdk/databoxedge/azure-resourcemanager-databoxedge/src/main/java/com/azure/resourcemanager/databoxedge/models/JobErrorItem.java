@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The job error items. */
+/**
+ * The job error items.
+ */
 @Immutable
 public final class JobErrorItem {
     /*
@@ -29,13 +31,15 @@ public final class JobErrorItem {
     @JsonProperty(value = "message", access = JsonProperty.Access.WRITE_ONLY)
     private String message;
 
-    /** Creates an instance of JobErrorItem class. */
+    /**
+     * Creates an instance of JobErrorItem class.
+     */
     public JobErrorItem() {
     }
 
     /**
      * Get the recommendations property: The recommended actions.
-     *
+     * 
      * @return the recommendations value.
      */
     public List<String> recommendations() {
@@ -44,7 +48,7 @@ public final class JobErrorItem {
 
     /**
      * Get the code property: The code intended for programmatic access.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -53,7 +57,7 @@ public final class JobErrorItem {
 
     /**
      * Get the message property: The message that describes the error in detail.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -62,7 +66,7 @@ public final class JobErrorItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

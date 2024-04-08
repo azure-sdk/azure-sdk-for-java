@@ -8,53 +8,98 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Status of the order as per the allowed status types. */
+/**
+ * Status of the order as per the allowed status types.
+ */
 public final class OrderState extends ExpandableStringEnum<OrderState> {
-    /** Static value Untracked for OrderState. */
+    /**
+     * Static value Untracked for OrderState.
+     */
     public static final OrderState UNTRACKED = fromString("Untracked");
 
-    /** Static value AwaitingFulfilment for OrderState. */
-    public static final OrderState AWAITING_FULFILMENT = fromString("AwaitingFulfilment");
+    /**
+     * Static value AwaitingFulfillment for OrderState.
+     */
+    public static final OrderState AWAITING_FULFILLMENT = fromString("AwaitingFulfillment");
 
-    /** Static value AwaitingPreparation for OrderState. */
+    /**
+     * Static value AwaitingPreparation for OrderState.
+     */
     public static final OrderState AWAITING_PREPARATION = fromString("AwaitingPreparation");
 
-    /** Static value AwaitingShipment for OrderState. */
+    /**
+     * Static value AwaitingShipment for OrderState.
+     */
     public static final OrderState AWAITING_SHIPMENT = fromString("AwaitingShipment");
 
-    /** Static value Shipped for OrderState. */
+    /**
+     * Static value Shipped for OrderState.
+     */
     public static final OrderState SHIPPED = fromString("Shipped");
 
-    /** Static value Arriving for OrderState. */
+    /**
+     * Static value Arriving for OrderState.
+     */
     public static final OrderState ARRIVING = fromString("Arriving");
 
-    /** Static value Delivered for OrderState. */
+    /**
+     * Static value Delivered for OrderState.
+     */
     public static final OrderState DELIVERED = fromString("Delivered");
 
-    /** Static value ReplacementRequested for OrderState. */
+    /**
+     * Static value ReplacementRequested for OrderState.
+     */
     public static final OrderState REPLACEMENT_REQUESTED = fromString("ReplacementRequested");
 
-    /** Static value LostDevice for OrderState. */
+    /**
+     * Static value LostDevice for OrderState.
+     */
     public static final OrderState LOST_DEVICE = fromString("LostDevice");
 
-    /** Static value Declined for OrderState. */
+    /**
+     * Static value Declined for OrderState.
+     */
     public static final OrderState DECLINED = fromString("Declined");
 
-    /** Static value ReturnInitiated for OrderState. */
+    /**
+     * Static value ReturnInitiated for OrderState.
+     */
     public static final OrderState RETURN_INITIATED = fromString("ReturnInitiated");
 
-    /** Static value AwaitingReturnShipment for OrderState. */
+    /**
+     * Static value AwaitingReturnShipment for OrderState.
+     */
     public static final OrderState AWAITING_RETURN_SHIPMENT = fromString("AwaitingReturnShipment");
 
-    /** Static value ShippedBack for OrderState. */
+    /**
+     * Static value ShippedBack for OrderState.
+     */
     public static final OrderState SHIPPED_BACK = fromString("ShippedBack");
 
-    /** Static value CollectedAtMicrosoft for OrderState. */
+    /**
+     * Static value CollectedAtMicrosoft for OrderState.
+     */
     public static final OrderState COLLECTED_AT_MICROSOFT = fromString("CollectedAtMicrosoft");
 
     /**
+     * Static value AwaitingPickup for OrderState.
+     */
+    public static final OrderState AWAITING_PICKUP = fromString("AwaitingPickup");
+
+    /**
+     * Static value PickupCompleted for OrderState.
+     */
+    public static final OrderState PICKUP_COMPLETED = fromString("PickupCompleted");
+
+    /**
+     * Static value AwaitingDrop for OrderState.
+     */
+    public static final OrderState AWAITING_DROP = fromString("AwaitingDrop");
+
+    /**
      * Creates a new instance of OrderState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -63,7 +108,7 @@ public final class OrderState extends ExpandableStringEnum<OrderState> {
 
     /**
      * Creates or finds a OrderState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding OrderState.
      */
@@ -74,7 +119,7 @@ public final class OrderState extends ExpandableStringEnum<OrderState> {
 
     /**
      * Gets known OrderState values.
-     *
+     * 
      * @return known OrderState values.
      */
     public static Collection<OrderState> values() {

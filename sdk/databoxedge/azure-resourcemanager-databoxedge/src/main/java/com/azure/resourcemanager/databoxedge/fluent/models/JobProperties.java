@@ -11,7 +11,9 @@ import com.azure.resourcemanager.databoxedge.models.UpdateInstallProgress;
 import com.azure.resourcemanager.databoxedge.models.UpdateOperationStage;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties for the job. */
+/**
+ * The properties for the job.
+ */
 @Fluent
 public final class JobProperties {
     /*
@@ -63,13 +65,15 @@ public final class JobProperties {
     @JsonProperty(value = "folder")
     private String folder;
 
-    /** Creates an instance of JobProperties class. */
+    /**
+     * Creates an instance of JobProperties class.
+     */
     public JobProperties() {
     }
 
     /**
      * Get the jobType property: The type of the job.
-     *
+     * 
      * @return the jobType value.
      */
     public JobType jobType() {
@@ -78,7 +82,7 @@ public final class JobProperties {
 
     /**
      * Get the currentStage property: Current stage of the update operation.
-     *
+     * 
      * @return the currentStage value.
      */
     public UpdateOperationStage currentStage() {
@@ -87,7 +91,7 @@ public final class JobProperties {
 
     /**
      * Get the downloadProgress property: The download progress.
-     *
+     * 
      * @return the downloadProgress value.
      */
     public UpdateDownloadProgress downloadProgress() {
@@ -96,7 +100,7 @@ public final class JobProperties {
 
     /**
      * Get the installProgress property: The install progress.
-     *
+     * 
      * @return the installProgress value.
      */
     public UpdateInstallProgress installProgress() {
@@ -105,7 +109,7 @@ public final class JobProperties {
 
     /**
      * Get the totalRefreshErrors property: Total number of errors encountered during the refresh process.
-     *
+     * 
      * @return the totalRefreshErrors value.
      */
     public Integer totalRefreshErrors() {
@@ -115,7 +119,7 @@ public final class JobProperties {
     /**
      * Get the errorManifestFile property: Local share/remote container relative path to the error manifest file of the
      * refresh.
-     *
+     * 
      * @return the errorManifestFile value.
      */
     public String errorManifestFile() {
@@ -124,7 +128,7 @@ public final class JobProperties {
 
     /**
      * Get the refreshedEntityId property: ARM ID of the entity that was refreshed.
-     *
+     * 
      * @return the refreshedEntityId value.
      */
     public String refreshedEntityId() {
@@ -134,7 +138,7 @@ public final class JobProperties {
     /**
      * Get the folder property: If only subfolders need to be refreshed, then the subfolder path inside the share or
      * container. (The path is empty if there are no subfolders.).
-     *
+     * 
      * @return the folder value.
      */
     public String folder() {
@@ -144,7 +148,7 @@ public final class JobProperties {
     /**
      * Set the folder property: If only subfolders need to be refreshed, then the subfolder path inside the share or
      * container. (The path is empty if there are no subfolders.).
-     *
+     * 
      * @param folder the folder value to set.
      * @return the JobProperties object itself.
      */
@@ -155,7 +159,7 @@ public final class JobProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

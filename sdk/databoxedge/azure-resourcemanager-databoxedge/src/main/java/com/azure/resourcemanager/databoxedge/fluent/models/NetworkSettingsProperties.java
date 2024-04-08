@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.models.NetworkAdapter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The properties of network settings. */
+/**
+ * The properties of network settings.
+ */
 @Immutable
 public final class NetworkSettingsProperties {
     /*
@@ -18,13 +20,15 @@ public final class NetworkSettingsProperties {
     @JsonProperty(value = "networkAdapters", access = JsonProperty.Access.WRITE_ONLY)
     private List<NetworkAdapter> networkAdapters;
 
-    /** Creates an instance of NetworkSettingsProperties class. */
+    /**
+     * Creates an instance of NetworkSettingsProperties class.
+     */
     public NetworkSettingsProperties() {
     }
 
     /**
      * Get the networkAdapters property: The network adapter list on the device.
-     *
+     * 
      * @return the networkAdapters value.
      */
     public List<NetworkAdapter> networkAdapters() {
@@ -33,7 +37,7 @@ public final class NetworkSettingsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

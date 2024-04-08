@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Trigger details. */
+/**
+ * Trigger details.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
 @JsonTypeName("FileEvent")
 @Fluent
@@ -23,13 +25,15 @@ public final class FileEventTrigger extends TriggerInner {
     @JsonProperty(value = "properties", required = true)
     private FileTriggerProperties innerProperties = new FileTriggerProperties();
 
-    /** Creates an instance of FileEventTrigger class. */
+    /**
+     * Creates an instance of FileEventTrigger class.
+     */
     public FileEventTrigger() {
     }
 
     /**
      * Get the innerProperties property: File trigger properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private FileTriggerProperties innerProperties() {
@@ -38,7 +42,7 @@ public final class FileEventTrigger extends TriggerInner {
 
     /**
      * Get the sourceInfo property: File event source details.
-     *
+     * 
      * @return the sourceInfo value.
      */
     public FileSourceInfo sourceInfo() {
@@ -47,7 +51,7 @@ public final class FileEventTrigger extends TriggerInner {
 
     /**
      * Set the sourceInfo property: File event source details.
-     *
+     * 
      * @param sourceInfo the sourceInfo value to set.
      * @return the FileEventTrigger object itself.
      */
@@ -61,7 +65,7 @@ public final class FileEventTrigger extends TriggerInner {
 
     /**
      * Get the sinkInfo property: Role sink info.
-     *
+     * 
      * @return the sinkInfo value.
      */
     public RoleSinkInfo sinkInfo() {
@@ -70,7 +74,7 @@ public final class FileEventTrigger extends TriggerInner {
 
     /**
      * Set the sinkInfo property: Role sink info.
-     *
+     * 
      * @param sinkInfo the sinkInfo value to set.
      * @return the FileEventTrigger object itself.
      */
@@ -86,7 +90,7 @@ public final class FileEventTrigger extends TriggerInner {
      * Get the customContextTag property: A custom context tag typically used to correlate the trigger against its
      * usage. For example, if a periodic timer trigger is intended for certain specific IoT modules in the device, the
      * tag can be the name or the image URL of the module.
-     *
+     * 
      * @return the customContextTag value.
      */
     public String customContextTag() {
@@ -97,7 +101,7 @@ public final class FileEventTrigger extends TriggerInner {
      * Set the customContextTag property: A custom context tag typically used to correlate the trigger against its
      * usage. For example, if a periodic timer trigger is intended for certain specific IoT modules in the device, the
      * tag can be the name or the image URL of the module.
-     *
+     * 
      * @param customContextTag the customContextTag value to set.
      * @return the FileEventTrigger object itself.
      */
@@ -111,17 +115,15 @@ public final class FileEventTrigger extends TriggerInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model FileEventTrigger"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property innerProperties in model FileEventTrigger"));
         } else {
             innerProperties().validate();
         }

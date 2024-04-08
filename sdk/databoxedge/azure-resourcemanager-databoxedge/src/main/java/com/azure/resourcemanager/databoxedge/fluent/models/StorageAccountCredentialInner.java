@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.databoxedge.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.databoxedge.models.AccountType;
 import com.azure.resourcemanager.databoxedge.models.ArmBaseModel;
@@ -12,7 +13,9 @@ import com.azure.resourcemanager.databoxedge.models.AsymmetricEncryptedSecret;
 import com.azure.resourcemanager.databoxedge.models.SslStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The storage account credential. */
+/**
+ * The storage account credential.
+ */
 @Fluent
 public final class StorageAccountCredentialInner extends ArmBaseModel {
     /*
@@ -21,13 +24,21 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
     @JsonProperty(value = "properties", required = true)
     private StorageAccountCredentialProperties innerProperties = new StorageAccountCredentialProperties();
 
-    /** Creates an instance of StorageAccountCredentialInner class. */
+    /*
+     * Metadata pertaining to creation and last modification of StorageAccountCredential
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of StorageAccountCredentialInner class.
+     */
     public StorageAccountCredentialInner() {
     }
 
     /**
      * Get the innerProperties property: The storage account credential properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private StorageAccountCredentialProperties innerProperties() {
@@ -35,8 +46,17 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
     }
 
     /**
+     * Get the systemData property: Metadata pertaining to creation and last modification of StorageAccountCredential.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the alias property: Alias for the storage account.
-     *
+     * 
      * @return the alias value.
      */
     public String alias() {
@@ -45,7 +65,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Set the alias property: Alias for the storage account.
-     *
+     * 
      * @param alias the alias value to set.
      * @return the StorageAccountCredentialInner object itself.
      */
@@ -59,7 +79,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Get the username property: Username for the storage account.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -68,7 +88,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Set the username property: Username for the storage account.
-     *
+     * 
      * @param username the username value to set.
      * @return the StorageAccountCredentialInner object itself.
      */
@@ -82,7 +102,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Get the accountKey property: Encrypted storage key.
-     *
+     * 
      * @return the accountKey value.
      */
     public AsymmetricEncryptedSecret accountKey() {
@@ -91,7 +111,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Set the accountKey property: Encrypted storage key.
-     *
+     * 
      * @param accountKey the accountKey value to set.
      * @return the StorageAccountCredentialInner object itself.
      */
@@ -106,7 +126,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
     /**
      * Get the connectionString property: Connection string for the storage account. Use this string if username and
      * account key are not specified.
-     *
+     * 
      * @return the connectionString value.
      */
     public String connectionString() {
@@ -116,7 +136,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
     /**
      * Set the connectionString property: Connection string for the storage account. Use this string if username and
      * account key are not specified.
-     *
+     * 
      * @param connectionString the connectionString value to set.
      * @return the StorageAccountCredentialInner object itself.
      */
@@ -130,7 +150,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Get the sslStatus property: Signifies whether SSL needs to be enabled or not.
-     *
+     * 
      * @return the sslStatus value.
      */
     public SslStatus sslStatus() {
@@ -139,7 +159,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Set the sslStatus property: Signifies whether SSL needs to be enabled or not.
-     *
+     * 
      * @param sslStatus the sslStatus value to set.
      * @return the StorageAccountCredentialInner object itself.
      */
@@ -153,7 +173,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Get the blobDomainName property: Blob end point for private clouds.
-     *
+     * 
      * @return the blobDomainName value.
      */
     public String blobDomainName() {
@@ -162,7 +182,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Set the blobDomainName property: Blob end point for private clouds.
-     *
+     * 
      * @param blobDomainName the blobDomainName value to set.
      * @return the StorageAccountCredentialInner object itself.
      */
@@ -176,7 +196,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Get the accountType property: Type of storage accessed on the storage account.
-     *
+     * 
      * @return the accountType value.
      */
     public AccountType accountType() {
@@ -185,7 +205,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Set the accountType property: Type of storage accessed on the storage account.
-     *
+     * 
      * @param accountType the accountType value to set.
      * @return the StorageAccountCredentialInner object itself.
      */
@@ -199,7 +219,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Get the storageAccountId property: Id of the storage account.
-     *
+     * 
      * @return the storageAccountId value.
      */
     public String storageAccountId() {
@@ -208,7 +228,7 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Set the storageAccountId property: Id of the storage account.
-     *
+     * 
      * @param storageAccountId the storageAccountId value to set.
      * @return the StorageAccountCredentialInner object itself.
      */
@@ -222,17 +242,15 @@ public final class StorageAccountCredentialInner extends ArmBaseModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model StorageAccountCredentialInner"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property innerProperties in model StorageAccountCredentialInner"));
         } else {
             innerProperties().validate();
         }

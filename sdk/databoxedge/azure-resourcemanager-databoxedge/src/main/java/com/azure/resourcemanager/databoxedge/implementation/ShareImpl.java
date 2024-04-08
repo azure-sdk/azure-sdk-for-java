@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.databoxedge.fluent.models.ShareInner;
 import com.azure.resourcemanager.databoxedge.models.AzureContainerInfo;
@@ -34,6 +35,10 @@ public final class ShareImpl implements Share, Share.Definition, Share.Update {
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public String description() {
@@ -116,20 +121,14 @@ public final class ShareImpl implements Share, Share.Definition, Share.Update {
     }
 
     public Share create() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getShares()
-                .createOrUpdate(deviceName, name, resourceGroupName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getShares().createOrUpdate(deviceName, name,
+            resourceGroupName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Share create(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getShares()
-                .createOrUpdate(deviceName, name, resourceGroupName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getShares().createOrUpdate(deviceName, name,
+            resourceGroupName, this.innerModel(), context);
         return this;
     }
 
@@ -144,48 +143,34 @@ public final class ShareImpl implements Share, Share.Definition, Share.Update {
     }
 
     public Share apply() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getShares()
-                .createOrUpdate(deviceName, name, resourceGroupName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient().getShares().createOrUpdate(deviceName, name,
+            resourceGroupName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Share apply(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getShares()
-                .createOrUpdate(deviceName, name, resourceGroupName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient().getShares().createOrUpdate(deviceName, name,
+            resourceGroupName, this.innerModel(), context);
         return this;
     }
 
     ShareImpl(ShareInner innerObject, com.azure.resourcemanager.databoxedge.DataBoxEdgeManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
-        this.deviceName = Utils.getValueFromIdByName(innerObject.id(), "dataBoxEdgeDevices");
-        this.name = Utils.getValueFromIdByName(innerObject.id(), "shares");
-        this.resourceGroupName = Utils.getValueFromIdByName(innerObject.id(), "resourceGroups");
+        this.deviceName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "dataBoxEdgeDevices");
+        this.name = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "shares");
+        this.resourceGroupName = ResourceManagerUtils.getValueFromIdByName(innerObject.id(), "resourceGroups");
     }
 
     public Share refresh() {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getShares()
-                .getWithResponse(deviceName, name, resourceGroupName, Context.NONE)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getShares()
+            .getWithResponse(deviceName, name, resourceGroupName, Context.NONE).getValue();
         return this;
     }
 
     public Share refresh(Context context) {
-        this.innerObject =
-            serviceManager
-                .serviceClient()
-                .getShares()
-                .getWithResponse(deviceName, name, resourceGroupName, context)
-                .getValue();
+        this.innerObject = serviceManager.serviceClient().getShares()
+            .getWithResponse(deviceName, name, resourceGroupName, context).getValue();
         return this;
     }
 

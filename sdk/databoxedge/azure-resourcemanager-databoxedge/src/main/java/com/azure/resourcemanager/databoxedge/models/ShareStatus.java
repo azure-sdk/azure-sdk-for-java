@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Current status of the share. */
+/**
+ * Current status of the share.
+ */
 public final class ShareStatus extends ExpandableStringEnum<ShareStatus> {
-    /** Static value Offline for ShareStatus. */
+    /**
+     * Static value Offline for ShareStatus.
+     */
     public static final ShareStatus OFFLINE = fromString("Offline");
 
-    /** Static value Unknown for ShareStatus. */
+    /**
+     * Static value Unknown for ShareStatus.
+     */
     public static final ShareStatus UNKNOWN = fromString("Unknown");
 
-    /** Static value OK for ShareStatus. */
+    /**
+     * Static value OK for ShareStatus.
+     */
     public static final ShareStatus OK = fromString("OK");
 
-    /** Static value Updating for ShareStatus. */
+    /**
+     * Static value Updating for ShareStatus.
+     */
     public static final ShareStatus UPDATING = fromString("Updating");
 
-    /** Static value NeedsAttention for ShareStatus. */
+    /**
+     * Static value NeedsAttention for ShareStatus.
+     */
     public static final ShareStatus NEEDS_ATTENTION = fromString("NeedsAttention");
 
     /**
      * Creates a new instance of ShareStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class ShareStatus extends ExpandableStringEnum<ShareStatus> {
 
     /**
      * Creates or finds a ShareStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ShareStatus.
      */
@@ -47,7 +59,7 @@ public final class ShareStatus extends ExpandableStringEnum<ShareStatus> {
 
     /**
      * Gets known ShareStatus values.
-     *
+     * 
      * @return known ShareStatus values.
      */
     public static Collection<ShareStatus> values() {

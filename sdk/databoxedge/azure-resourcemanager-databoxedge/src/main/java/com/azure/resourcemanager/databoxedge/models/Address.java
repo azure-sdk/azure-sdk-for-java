@@ -8,13 +8,15 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The shipping address of the customer. */
+/**
+ * The shipping address of the customer.
+ */
 @Fluent
 public final class Address {
     /*
      * The address line1.
      */
-    @JsonProperty(value = "addressLine1", required = true)
+    @JsonProperty(value = "addressLine1")
     private String addressLine1;
 
     /*
@@ -32,19 +34,19 @@ public final class Address {
     /*
      * The postal code.
      */
-    @JsonProperty(value = "postalCode", required = true)
+    @JsonProperty(value = "postalCode")
     private String postalCode;
 
     /*
      * The city name.
      */
-    @JsonProperty(value = "city", required = true)
+    @JsonProperty(value = "city")
     private String city;
 
     /*
      * The state name.
      */
-    @JsonProperty(value = "state", required = true)
+    @JsonProperty(value = "state")
     private String state;
 
     /*
@@ -53,13 +55,15 @@ public final class Address {
     @JsonProperty(value = "country", required = true)
     private String country;
 
-    /** Creates an instance of Address class. */
+    /**
+     * Creates an instance of Address class.
+     */
     public Address() {
     }
 
     /**
      * Get the addressLine1 property: The address line1.
-     *
+     * 
      * @return the addressLine1 value.
      */
     public String addressLine1() {
@@ -68,7 +72,7 @@ public final class Address {
 
     /**
      * Set the addressLine1 property: The address line1.
-     *
+     * 
      * @param addressLine1 the addressLine1 value to set.
      * @return the Address object itself.
      */
@@ -79,7 +83,7 @@ public final class Address {
 
     /**
      * Get the addressLine2 property: The address line2.
-     *
+     * 
      * @return the addressLine2 value.
      */
     public String addressLine2() {
@@ -88,7 +92,7 @@ public final class Address {
 
     /**
      * Set the addressLine2 property: The address line2.
-     *
+     * 
      * @param addressLine2 the addressLine2 value to set.
      * @return the Address object itself.
      */
@@ -99,7 +103,7 @@ public final class Address {
 
     /**
      * Get the addressLine3 property: The address line3.
-     *
+     * 
      * @return the addressLine3 value.
      */
     public String addressLine3() {
@@ -108,7 +112,7 @@ public final class Address {
 
     /**
      * Set the addressLine3 property: The address line3.
-     *
+     * 
      * @param addressLine3 the addressLine3 value to set.
      * @return the Address object itself.
      */
@@ -119,7 +123,7 @@ public final class Address {
 
     /**
      * Get the postalCode property: The postal code.
-     *
+     * 
      * @return the postalCode value.
      */
     public String postalCode() {
@@ -128,7 +132,7 @@ public final class Address {
 
     /**
      * Set the postalCode property: The postal code.
-     *
+     * 
      * @param postalCode the postalCode value to set.
      * @return the Address object itself.
      */
@@ -139,7 +143,7 @@ public final class Address {
 
     /**
      * Get the city property: The city name.
-     *
+     * 
      * @return the city value.
      */
     public String city() {
@@ -148,7 +152,7 @@ public final class Address {
 
     /**
      * Set the city property: The city name.
-     *
+     * 
      * @param city the city value to set.
      * @return the Address object itself.
      */
@@ -159,7 +163,7 @@ public final class Address {
 
     /**
      * Get the state property: The state name.
-     *
+     * 
      * @return the state value.
      */
     public String state() {
@@ -168,7 +172,7 @@ public final class Address {
 
     /**
      * Set the state property: The state name.
-     *
+     * 
      * @param state the state value to set.
      * @return the Address object itself.
      */
@@ -179,7 +183,7 @@ public final class Address {
 
     /**
      * Get the country property: The country name.
-     *
+     * 
      * @return the country value.
      */
     public String country() {
@@ -188,7 +192,7 @@ public final class Address {
 
     /**
      * Set the country property: The country name.
-     *
+     * 
      * @param country the country value to set.
      * @return the Address object itself.
      */
@@ -199,32 +203,13 @@ public final class Address {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (addressLine1() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property addressLine1 in model Address"));
-        }
-        if (postalCode() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property postalCode in model Address"));
-        }
-        if (city() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property city in model Address"));
-        }
-        if (state() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property state in model Address"));
-        }
         if (country() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property country in model Address"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property country in model Address"));
         }
     }
 

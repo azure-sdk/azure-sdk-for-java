@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The mapping between a particular client IP and the type of access client has on the NFS share. */
+/**
+ * The mapping between a particular client IP and the type of access client has on the NFS share.
+ */
 @Fluent
 public final class ClientAccessRight {
     /*
@@ -23,13 +25,15 @@ public final class ClientAccessRight {
     @JsonProperty(value = "accessPermission", required = true)
     private ClientPermissionType accessPermission;
 
-    /** Creates an instance of ClientAccessRight class. */
+    /**
+     * Creates an instance of ClientAccessRight class.
+     */
     public ClientAccessRight() {
     }
 
     /**
      * Get the client property: IP of the client.
-     *
+     * 
      * @return the client value.
      */
     public String client() {
@@ -38,7 +42,7 @@ public final class ClientAccessRight {
 
     /**
      * Set the client property: IP of the client.
-     *
+     * 
      * @param client the client value to set.
      * @return the ClientAccessRight object itself.
      */
@@ -49,7 +53,7 @@ public final class ClientAccessRight {
 
     /**
      * Get the accessPermission property: Type of access to be allowed for the client.
-     *
+     * 
      * @return the accessPermission value.
      */
     public ClientPermissionType accessPermission() {
@@ -58,7 +62,7 @@ public final class ClientAccessRight {
 
     /**
      * Set the accessPermission property: Type of access to be allowed for the client.
-     *
+     * 
      * @param accessPermission the accessPermission value to set.
      * @return the ClientAccessRight object itself.
      */
@@ -69,20 +73,17 @@ public final class ClientAccessRight {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (client() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property client in model ClientAccessRight"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property client in model ClientAccessRight"));
         }
         if (accessPermission() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property accessPermission in model ClientAccessRight"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property accessPermission in model ClientAccessRight"));
         }
     }
 

@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.databoxedge.implementation;
 
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.databoxedge.fluent.models.NetworkSettingsInner;
 import com.azure.resourcemanager.databoxedge.models.NetworkAdapter;
 import com.azure.resourcemanager.databoxedge.models.NetworkSettings;
@@ -15,8 +16,8 @@ public final class NetworkSettingsImpl implements NetworkSettings {
 
     private final com.azure.resourcemanager.databoxedge.DataBoxEdgeManager serviceManager;
 
-    NetworkSettingsImpl(
-        NetworkSettingsInner innerObject, com.azure.resourcemanager.databoxedge.DataBoxEdgeManager serviceManager) {
+    NetworkSettingsImpl(NetworkSettingsInner innerObject,
+        com.azure.resourcemanager.databoxedge.DataBoxEdgeManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -31,6 +32,10 @@ public final class NetworkSettingsImpl implements NetworkSettings {
 
     public String type() {
         return this.innerModel().type();
+    }
+
+    public SystemData systemData() {
+        return this.innerModel().systemData();
     }
 
     public List<NetworkAdapter> networkAdapters() {

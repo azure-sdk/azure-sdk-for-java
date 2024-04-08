@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databoxedge.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Symmetric key for authentication. */
+/**
+ * Symmetric key for authentication.
+ */
 @Fluent
 public final class SymmetricKey {
     /*
@@ -16,13 +18,15 @@ public final class SymmetricKey {
     @JsonProperty(value = "connectionString")
     private AsymmetricEncryptedSecret connectionString;
 
-    /** Creates an instance of SymmetricKey class. */
+    /**
+     * Creates an instance of SymmetricKey class.
+     */
     public SymmetricKey() {
     }
 
     /**
      * Get the connectionString property: Connection string based on the symmetric key.
-     *
+     * 
      * @return the connectionString value.
      */
     public AsymmetricEncryptedSecret connectionString() {
@@ -31,7 +35,7 @@ public final class SymmetricKey {
 
     /**
      * Set the connectionString property: Connection string based on the symmetric key.
-     *
+     * 
      * @param connectionString the connectionString value to set.
      * @return the SymmetricKey object itself.
      */
@@ -42,7 +46,7 @@ public final class SymmetricKey {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

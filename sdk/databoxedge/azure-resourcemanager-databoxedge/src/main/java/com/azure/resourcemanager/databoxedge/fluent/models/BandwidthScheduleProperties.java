@@ -10,7 +10,9 @@ import com.azure.resourcemanager.databoxedge.models.DayOfWeek;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The properties of the bandwidth schedule. */
+/**
+ * The properties of the bandwidth schedule.
+ */
 @Fluent
 public final class BandwidthScheduleProperties {
     /*
@@ -37,13 +39,15 @@ public final class BandwidthScheduleProperties {
     @JsonProperty(value = "days", required = true)
     private List<DayOfWeek> days;
 
-    /** Creates an instance of BandwidthScheduleProperties class. */
+    /**
+     * Creates an instance of BandwidthScheduleProperties class.
+     */
     public BandwidthScheduleProperties() {
     }
 
     /**
      * Get the start property: The start time of the schedule in UTC.
-     *
+     * 
      * @return the start value.
      */
     public String start() {
@@ -52,7 +56,7 @@ public final class BandwidthScheduleProperties {
 
     /**
      * Set the start property: The start time of the schedule in UTC.
-     *
+     * 
      * @param start the start value to set.
      * @return the BandwidthScheduleProperties object itself.
      */
@@ -63,7 +67,7 @@ public final class BandwidthScheduleProperties {
 
     /**
      * Get the stop property: The stop time of the schedule in UTC.
-     *
+     * 
      * @return the stop value.
      */
     public String stop() {
@@ -72,7 +76,7 @@ public final class BandwidthScheduleProperties {
 
     /**
      * Set the stop property: The stop time of the schedule in UTC.
-     *
+     * 
      * @param stop the stop value to set.
      * @return the BandwidthScheduleProperties object itself.
      */
@@ -83,7 +87,7 @@ public final class BandwidthScheduleProperties {
 
     /**
      * Get the rateInMbps property: The bandwidth rate in Mbps.
-     *
+     * 
      * @return the rateInMbps value.
      */
     public int rateInMbps() {
@@ -92,7 +96,7 @@ public final class BandwidthScheduleProperties {
 
     /**
      * Set the rateInMbps property: The bandwidth rate in Mbps.
-     *
+     * 
      * @param rateInMbps the rateInMbps value to set.
      * @return the BandwidthScheduleProperties object itself.
      */
@@ -103,7 +107,7 @@ public final class BandwidthScheduleProperties {
 
     /**
      * Get the days property: The days of the week when this schedule is applicable.
-     *
+     * 
      * @return the days value.
      */
     public List<DayOfWeek> days() {
@@ -112,7 +116,7 @@ public final class BandwidthScheduleProperties {
 
     /**
      * Set the days property: The days of the week when this schedule is applicable.
-     *
+     * 
      * @param days the days value to set.
      * @return the BandwidthScheduleProperties object itself.
      */
@@ -123,27 +127,21 @@ public final class BandwidthScheduleProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (start() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property start in model BandwidthScheduleProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property start in model BandwidthScheduleProperties"));
         }
         if (stop() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property stop in model BandwidthScheduleProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property stop in model BandwidthScheduleProperties"));
         }
         if (days() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property days in model BandwidthScheduleProperties"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property days in model BandwidthScheduleProperties"));
         }
     }
 

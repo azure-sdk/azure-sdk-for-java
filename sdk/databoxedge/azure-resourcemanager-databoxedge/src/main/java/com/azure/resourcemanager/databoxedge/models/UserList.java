@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.UserInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Collection of users. */
+/**
+ * Collection of users.
+ */
 @Immutable
 public final class UserList {
     /*
@@ -24,13 +26,15 @@ public final class UserList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of UserList class. */
+    /**
+     * Creates an instance of UserList class.
+     */
     public UserList() {
     }
 
     /**
      * Get the value property: The list of users.
-     *
+     * 
      * @return the value value.
      */
     public List<UserInner> value() {
@@ -39,7 +43,7 @@ public final class UserList {
 
     /**
      * Get the nextLink property: Link to the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class UserList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** Properties of alert. */
+/**
+ * Properties of alert.
+ */
 @Immutable
 public final class AlertProperties {
     /*
@@ -58,13 +60,15 @@ public final class AlertProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> detailedInformation;
 
-    /** Creates an instance of AlertProperties class. */
+    /**
+     * Creates an instance of AlertProperties class.
+     */
     public AlertProperties() {
     }
 
     /**
      * Get the title property: Alert title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -73,7 +77,7 @@ public final class AlertProperties {
 
     /**
      * Get the alertType property: Alert type.
-     *
+     * 
      * @return the alertType value.
      */
     public String alertType() {
@@ -82,7 +86,7 @@ public final class AlertProperties {
 
     /**
      * Get the appearedAtDateTime property: UTC time when the alert appeared.
-     *
+     * 
      * @return the appearedAtDateTime value.
      */
     public OffsetDateTime appearedAtDateTime() {
@@ -91,7 +95,7 @@ public final class AlertProperties {
 
     /**
      * Get the recommendation property: Alert recommendation.
-     *
+     * 
      * @return the recommendation value.
      */
     public String recommendation() {
@@ -100,7 +104,7 @@ public final class AlertProperties {
 
     /**
      * Get the severity property: Severity of the alert.
-     *
+     * 
      * @return the severity value.
      */
     public AlertSeverity severity() {
@@ -109,7 +113,7 @@ public final class AlertProperties {
 
     /**
      * Get the errorDetails property: Error details of the alert.
-     *
+     * 
      * @return the errorDetails value.
      */
     public AlertErrorDetails errorDetails() {
@@ -118,7 +122,7 @@ public final class AlertProperties {
 
     /**
      * Get the detailedInformation property: Alert details.
-     *
+     * 
      * @return the detailedInformation value.
      */
     public Map<String, String> detailedInformation() {
@@ -127,7 +131,7 @@ public final class AlertProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.models.OperationDisplay;
 import com.azure.resourcemanager.databoxedge.models.ServiceSpecification;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Operations. */
+/**
+ * Operations.
+ */
 @Fluent
 public final class OperationInner {
     /*
@@ -17,6 +19,12 @@ public final class OperationInner {
      */
     @JsonProperty(value = "name")
     private String name;
+
+    /*
+     * Is data action.
+     */
+    @JsonProperty(value = "isDataAction")
+    private Boolean isDataAction;
 
     /*
      * Properties displayed for the operation.
@@ -36,13 +44,15 @@ public final class OperationInner {
     @JsonProperty(value = "properties")
     private OperationProperties innerProperties;
 
-    /** Creates an instance of OperationInner class. */
+    /**
+     * Creates an instance of OperationInner class.
+     */
     public OperationInner() {
     }
 
     /**
      * Get the name property: Name of the operation.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -51,7 +61,7 @@ public final class OperationInner {
 
     /**
      * Set the name property: Name of the operation.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationInner object itself.
      */
@@ -61,8 +71,28 @@ public final class OperationInner {
     }
 
     /**
+     * Get the isDataAction property: Is data action.
+     * 
+     * @return the isDataAction value.
+     */
+    public Boolean isDataAction() {
+        return this.isDataAction;
+    }
+
+    /**
+     * Set the isDataAction property: Is data action.
+     * 
+     * @param isDataAction the isDataAction value to set.
+     * @return the OperationInner object itself.
+     */
+    public OperationInner withIsDataAction(Boolean isDataAction) {
+        this.isDataAction = isDataAction;
+        return this;
+    }
+
+    /**
      * Get the display property: Properties displayed for the operation.
-     *
+     * 
      * @return the display value.
      */
     public OperationDisplay display() {
@@ -71,7 +101,7 @@ public final class OperationInner {
 
     /**
      * Set the display property: Properties displayed for the operation.
-     *
+     * 
      * @param display the display value to set.
      * @return the OperationInner object itself.
      */
@@ -82,7 +112,7 @@ public final class OperationInner {
 
     /**
      * Get the origin property: Origin of the operation.
-     *
+     * 
      * @return the origin value.
      */
     public String origin() {
@@ -91,7 +121,7 @@ public final class OperationInner {
 
     /**
      * Set the origin property: Origin of the operation.
-     *
+     * 
      * @param origin the origin value to set.
      * @return the OperationInner object itself.
      */
@@ -102,7 +132,7 @@ public final class OperationInner {
 
     /**
      * Get the innerProperties property: Operation properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private OperationProperties innerProperties() {
@@ -111,7 +141,7 @@ public final class OperationInner {
 
     /**
      * Get the serviceSpecification property: Service specification.
-     *
+     * 
      * @return the serviceSpecification value.
      */
     public ServiceSpecification serviceSpecification() {
@@ -120,7 +150,7 @@ public final class OperationInner {
 
     /**
      * Set the serviceSpecification property: Service specification.
-     *
+     * 
      * @param serviceSpecification the serviceSpecification value to set.
      * @return the OperationInner object itself.
      */
@@ -134,7 +164,7 @@ public final class OperationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databoxedge.fluent.models.NodeInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Collection of Nodes. */
+/**
+ * Collection of Nodes.
+ */
 @Immutable
 public final class NodeList {
     /*
@@ -18,13 +20,21 @@ public final class NodeList {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<NodeInner> value;
 
-    /** Creates an instance of NodeList class. */
+    /*
+     * Link to the next set of results.
+     */
+    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    private String nextLink;
+
+    /**
+     * Creates an instance of NodeList class.
+     */
     public NodeList() {
     }
 
     /**
      * Get the value property: The list of Nodes.
-     *
+     * 
      * @return the value value.
      */
     public List<NodeInner> value() {
@@ -32,8 +42,17 @@ public final class NodeList {
     }
 
     /**
+     * Get the nextLink property: Link to the next set of results.
+     * 
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

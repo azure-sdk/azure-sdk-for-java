@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The authentication type. */
+/**
+ * The authentication type.
+ */
 public final class AuthenticationType extends ExpandableStringEnum<AuthenticationType> {
-    /** Static value Invalid for AuthenticationType. */
+    /**
+     * Static value Invalid for AuthenticationType.
+     */
     public static final AuthenticationType INVALID = fromString("Invalid");
 
-    /** Static value AzureActiveDirectory for AuthenticationType. */
+    /**
+     * Static value AzureActiveDirectory for AuthenticationType.
+     */
     public static final AuthenticationType AZURE_ACTIVE_DIRECTORY = fromString("AzureActiveDirectory");
 
     /**
      * Creates a new instance of AuthenticationType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class AuthenticationType extends ExpandableStringEnum<Authenticatio
 
     /**
      * Creates or finds a AuthenticationType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AuthenticationType.
      */
@@ -38,7 +44,7 @@ public final class AuthenticationType extends ExpandableStringEnum<Authenticatio
 
     /**
      * Gets known AuthenticationType values.
-     *
+     * 
      * @return known AuthenticationType values.
      */
     public static Collection<AuthenticationType> values() {
