@@ -20,7 +20,7 @@ import com.azure.resourcemanager.azurestackhci.models.MarketplaceGalleryImagesUp
 public interface MarketplaceGalleryImagesOperationsClient {
     /**
      * Gets a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param context The context to associate with this operation.
@@ -30,12 +30,12 @@ public interface MarketplaceGalleryImagesOperationsClient {
      * @return a marketplace gallery image along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<MarketplaceGalleryImagesInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String marketplaceGalleryImageName, Context context);
+    Response<MarketplaceGalleryImagesInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String marketplaceGalleryImageName, Context context);
 
     /**
      * Gets a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -49,7 +49,7 @@ public interface MarketplaceGalleryImagesOperationsClient {
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -60,14 +60,13 @@ public interface MarketplaceGalleryImagesOperationsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
+        String resourceGroupName, String marketplaceGalleryImageName,
         MarketplaceGalleryImagesInner marketplaceGalleryImages);
 
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -79,15 +78,13 @@ public interface MarketplaceGalleryImagesOperationsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesInner marketplaceGalleryImages,
-        Context context);
+        String resourceGroupName, String marketplaceGalleryImageName,
+        MarketplaceGalleryImagesInner marketplaceGalleryImages, Context context);
 
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -97,15 +94,13 @@ public interface MarketplaceGalleryImagesOperationsClient {
      * @return the marketplace gallery image resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MarketplaceGalleryImagesInner createOrUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
+    MarketplaceGalleryImagesInner createOrUpdate(String resourceGroupName, String marketplaceGalleryImageName,
         MarketplaceGalleryImagesInner marketplaceGalleryImages);
 
     /**
      * The operation to create or update a marketplace gallery image. Please note some properties can be set only during
      * marketplace gallery image creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource definition.
@@ -116,15 +111,12 @@ public interface MarketplaceGalleryImagesOperationsClient {
      * @return the marketplace gallery image resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MarketplaceGalleryImagesInner createOrUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesInner marketplaceGalleryImages,
-        Context context);
+    MarketplaceGalleryImagesInner createOrUpdate(String resourceGroupName, String marketplaceGalleryImageName,
+        MarketplaceGalleryImagesInner marketplaceGalleryImages, Context context);
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -137,7 +129,7 @@ public interface MarketplaceGalleryImagesOperationsClient {
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param context The context to associate with this operation.
@@ -147,12 +139,12 @@ public interface MarketplaceGalleryImagesOperationsClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String marketplaceGalleryImageName, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String marketplaceGalleryImageName,
+        Context context);
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -164,7 +156,7 @@ public interface MarketplaceGalleryImagesOperationsClient {
 
     /**
      * The operation to delete a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param context The context to associate with this operation.
@@ -177,7 +169,7 @@ public interface MarketplaceGalleryImagesOperationsClient {
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -188,13 +180,12 @@ public interface MarketplaceGalleryImagesOperationsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner> beginUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
+        String resourceGroupName, String marketplaceGalleryImageName,
         MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages);
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -206,14 +197,12 @@ public interface MarketplaceGalleryImagesOperationsClient {
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     SyncPoller<PollResult<MarketplaceGalleryImagesInner>, MarketplaceGalleryImagesInner> beginUpdate(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages,
-        Context context);
+        String resourceGroupName, String marketplaceGalleryImageName,
+        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages, Context context);
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -223,14 +212,12 @@ public interface MarketplaceGalleryImagesOperationsClient {
      * @return the marketplace gallery image resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MarketplaceGalleryImagesInner update(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
+    MarketplaceGalleryImagesInner update(String resourceGroupName, String marketplaceGalleryImageName,
         MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages);
 
     /**
      * The operation to update a marketplace gallery image.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param marketplaceGalleryImageName Name of the marketplace gallery image.
      * @param marketplaceGalleryImages The marketplace gallery image resource patch definition.
@@ -241,16 +228,13 @@ public interface MarketplaceGalleryImagesOperationsClient {
      * @return the marketplace gallery image resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    MarketplaceGalleryImagesInner update(
-        String resourceGroupName,
-        String marketplaceGalleryImageName,
-        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages,
-        Context context);
+    MarketplaceGalleryImagesInner update(String resourceGroupName, String marketplaceGalleryImageName,
+        MarketplaceGalleryImagesUpdateRequest marketplaceGalleryImages, Context context);
 
     /**
      * Lists all of the marketplace gallery images in the specified resource group. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -263,7 +247,7 @@ public interface MarketplaceGalleryImagesOperationsClient {
     /**
      * Lists all of the marketplace gallery images in the specified resource group. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -277,7 +261,7 @@ public interface MarketplaceGalleryImagesOperationsClient {
     /**
      * Lists all of the marketplace gallery images in the specified subscription. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedIterable}.
@@ -288,7 +272,7 @@ public interface MarketplaceGalleryImagesOperationsClient {
     /**
      * Lists all of the marketplace gallery images in the specified subscription. Use the nextLink property in the
      * response to get the next page of marketplace gallery images.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

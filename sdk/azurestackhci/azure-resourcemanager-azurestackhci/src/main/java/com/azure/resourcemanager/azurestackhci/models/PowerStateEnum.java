@@ -8,32 +8,48 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The power state of the virtual machine instance. */
+/**
+ * The power state of the virtual machine instance.
+ */
 public final class PowerStateEnum extends ExpandableStringEnum<PowerStateEnum> {
-    /** Static value Deallocated for PowerStateEnum. */
+    /**
+     * Static value Deallocated for PowerStateEnum.
+     */
     public static final PowerStateEnum DEALLOCATED = fromString("Deallocated");
 
-    /** Static value Deallocating for PowerStateEnum. */
+    /**
+     * Static value Deallocating for PowerStateEnum.
+     */
     public static final PowerStateEnum DEALLOCATING = fromString("Deallocating");
 
-    /** Static value Running for PowerStateEnum. */
+    /**
+     * Static value Running for PowerStateEnum.
+     */
     public static final PowerStateEnum RUNNING = fromString("Running");
 
-    /** Static value Starting for PowerStateEnum. */
+    /**
+     * Static value Starting for PowerStateEnum.
+     */
     public static final PowerStateEnum STARTING = fromString("Starting");
 
-    /** Static value Stopped for PowerStateEnum. */
+    /**
+     * Static value Stopped for PowerStateEnum.
+     */
     public static final PowerStateEnum STOPPED = fromString("Stopped");
 
-    /** Static value Stopping for PowerStateEnum. */
+    /**
+     * Static value Stopping for PowerStateEnum.
+     */
     public static final PowerStateEnum STOPPING = fromString("Stopping");
 
-    /** Static value Unknown for PowerStateEnum. */
+    /**
+     * Static value Unknown for PowerStateEnum.
+     */
     public static final PowerStateEnum UNKNOWN = fromString("Unknown");
 
     /**
      * Creates a new instance of PowerStateEnum value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -42,7 +58,7 @@ public final class PowerStateEnum extends ExpandableStringEnum<PowerStateEnum> {
 
     /**
      * Creates or finds a PowerStateEnum from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding PowerStateEnum.
      */
@@ -53,7 +69,7 @@ public final class PowerStateEnum extends ExpandableStringEnum<PowerStateEnum> {
 
     /**
      * Gets known PowerStateEnum values.
-     *
+     * 
      * @return known PowerStateEnum values.
      */
     public static Collection<PowerStateEnum> values() {

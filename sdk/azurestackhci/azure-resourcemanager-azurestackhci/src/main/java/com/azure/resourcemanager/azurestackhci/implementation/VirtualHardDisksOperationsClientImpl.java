@@ -40,140 +40,117 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in VirtualHardDisksOperationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in VirtualHardDisksOperationsClient.
+ */
 public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDisksOperationsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final VirtualHardDisksOperationsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AzureStackHciClientImpl client;
 
     /**
      * Initializes an instance of VirtualHardDisksOperationsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     VirtualHardDisksOperationsClientImpl(AzureStackHciClientImpl client) {
-        this.service =
-            RestProxy
-                .create(
-                    VirtualHardDisksOperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service = RestProxy.create(VirtualHardDisksOperationsService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for AzureStackHciClientVirtualHardDisksOperations to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for AzureStackHciClientVirtualHardDisksOperations to be used by the
+     * proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureStackHciClientV")
     public interface VirtualHardDisksOperationsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/virtualHardDisks/{virtualHardDiskName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/virtualHardDisks/{virtualHardDiskName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualHardDisksInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<VirtualHardDisksInner>> getByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualHardDiskName") String virtualHardDiskName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
+            @PathParam("virtualHardDiskName") String virtualHardDiskName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/virtualHardDisks/{virtualHardDiskName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("virtualHardDiskName") String virtualHardDiskName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") VirtualHardDisksInner virtualHardDisks, @HeaderParam("Accept") String accept,
             Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/virtualHardDisks/{virtualHardDiskName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/virtualHardDisks/{virtualHardDiskName}")
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualHardDiskName") String virtualHardDiskName,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") VirtualHardDisksInner virtualHardDisks,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("virtualHardDiskName") String virtualHardDiskName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/virtualHardDisks/{virtualHardDiskName}")
-        @ExpectedResponses({202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/virtualHardDisks/{virtualHardDiskName}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualHardDiskName") String virtualHardDiskName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/virtualHardDisks/{virtualHardDiskName}")
-        @ExpectedResponses({200, 202})
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("virtualHardDiskName") String virtualHardDiskName,
-            @QueryParam("api-version") String apiVersion,
+            @PathParam("virtualHardDiskName") String virtualHardDiskName, @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") VirtualHardDisksUpdateRequest virtualHardDisks,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/virtualHardDisks")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/virtualHardDisks")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualHardDisksListResult>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<VirtualHardDisksListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.AzureStackHCI/virtualHardDisks")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<VirtualHardDisksListResult>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<VirtualHardDisksListResult>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualHardDisksListResult>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<VirtualHardDisksListResult>> listAllNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -182,19 +159,15 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return a virtual hard disk along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<VirtualHardDisksInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String virtualHardDiskName) {
+    private Mono<Response<VirtualHardDisksInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String virtualHardDiskName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -207,22 +180,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualHardDiskName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, virtualHardDiskName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param context The context to associate with this operation.
@@ -232,19 +197,15 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return a virtual hard disk along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<VirtualHardDisksInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String virtualHardDiskName, Context context) {
+    private Mono<Response<VirtualHardDisksInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String virtualHardDiskName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -256,20 +217,13 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualHardDiskName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            virtualHardDiskName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Gets a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -285,7 +239,7 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
 
     /**
      * Gets a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param context The context to associate with this operation.
@@ -295,14 +249,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return a virtual hard disk along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<VirtualHardDisksInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String virtualHardDiskName, Context context) {
+    public Response<VirtualHardDisksInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String virtualHardDiskName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, virtualHardDiskName, context).block();
     }
 
     /**
      * Gets a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -318,30 +272,26 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtual hard disk resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the virtual hard disk resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -359,25 +309,15 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualHardDiskName,
-                            this.client.getApiVersion(),
-                            virtualHardDisks,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, virtualHardDiskName, this.client.getApiVersion(), virtualHardDisks, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -385,23 +325,19 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtual hard disk resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the virtual hard disk resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -419,22 +355,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualHardDiskName,
-                this.client.getApiVersion(),
-                virtualHardDisks,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            virtualHardDiskName, this.client.getApiVersion(), virtualHardDisks, accept, context);
     }
 
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -446,22 +374,17 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks);
-        return this
-            .client
-            .<VirtualHardDisksInner, VirtualHardDisksInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualHardDisksInner.class,
-                VirtualHardDisksInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks);
+        return this.client.<VirtualHardDisksInner, VirtualHardDisksInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualHardDisksInner.class, VirtualHardDisksInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -475,18 +398,16 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     private PollerFlux<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context);
-        return this
-            .client
-            .<VirtualHardDisksInner, VirtualHardDisksInner>getLroResult(
-                mono, this.client.getHttpPipeline(), VirtualHardDisksInner.class, VirtualHardDisksInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context);
+        return this.client.<VirtualHardDisksInner, VirtualHardDisksInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualHardDisksInner.class, VirtualHardDisksInner.class, context);
     }
 
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -504,7 +425,7 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -517,15 +438,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginCreateOrUpdate(
         String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks, Context context) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context)
+        return this.beginCreateOrUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context)
             .getSyncPoller();
     }
 
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -535,17 +455,16 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the virtual hard disk resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualHardDisksInner> createOrUpdateAsync(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks)
-            .last()
+    private Mono<VirtualHardDisksInner> createOrUpdateAsync(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksInner virtualHardDisks) {
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -556,17 +475,16 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the virtual hard disk resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualHardDisksInner> createOrUpdateAsync(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context)
-            .last()
+    private Mono<VirtualHardDisksInner> createOrUpdateAsync(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksInner virtualHardDisks, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -576,15 +494,15 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualHardDisksInner createOrUpdate(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks) {
+    public VirtualHardDisksInner createOrUpdate(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksInner virtualHardDisks) {
         return createOrUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks).block();
     }
 
     /**
      * The operation to create or update a virtual hard disk. Please note some properties can be set only during virtual
      * hard disk creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource definition.
@@ -595,14 +513,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualHardDisksInner createOrUpdate(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksInner virtualHardDisks, Context context) {
+    public VirtualHardDisksInner createOrUpdate(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksInner virtualHardDisks, Context context) {
         return createOrUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context).block();
     }
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -611,19 +529,15 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String virtualHardDiskName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String virtualHardDiskName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -635,23 +549,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualHardDiskName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, virtualHardDiskName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param context The context to associate with this operation.
@@ -661,19 +566,15 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String virtualHardDiskName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String virtualHardDiskName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -685,20 +586,13 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualHardDiskName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            virtualHardDiskName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -709,15 +603,13 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualHardDiskName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, virtualHardDiskName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param context The context to associate with this operation.
@@ -727,19 +619,18 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String virtualHardDiskName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String virtualHardDiskName,
+        Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, virtualHardDiskName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, virtualHardDiskName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -754,7 +645,7 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param context The context to associate with this operation.
@@ -764,14 +655,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String virtualHardDiskName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String virtualHardDiskName,
+        Context context) {
         return this.beginDeleteAsync(resourceGroupName, virtualHardDiskName, context).getSyncPoller();
     }
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -781,14 +672,13 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String virtualHardDiskName) {
-        return beginDeleteAsync(resourceGroupName, virtualHardDiskName)
-            .last()
+        return beginDeleteAsync(resourceGroupName, virtualHardDiskName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param context The context to associate with this operation.
@@ -799,14 +689,13 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String virtualHardDiskName, Context context) {
-        return beginDeleteAsync(resourceGroupName, virtualHardDiskName, context)
-            .last()
+        return beginDeleteAsync(resourceGroupName, virtualHardDiskName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -820,7 +709,7 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
 
     /**
      * The operation to delete a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param context The context to associate with this operation.
@@ -835,30 +724,26 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtual hard disk resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the virtual hard disk resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -876,24 +761,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            virtualHardDiskName,
-                            this.client.getApiVersion(),
-                            virtualHardDisks,
-                            accept,
-                            context))
+            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, virtualHardDiskName, this.client.getApiVersion(), virtualHardDisks, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -901,26 +776,19 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the virtual hard disk resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the virtual hard disk resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName,
-        String virtualHardDiskName,
-        VirtualHardDisksUpdateRequest virtualHardDisks,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -938,21 +806,13 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                virtualHardDiskName,
-                this.client.getApiVersion(),
-                virtualHardDisks,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            virtualHardDiskName, this.client.getApiVersion(), virtualHardDisks, accept, context);
     }
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -964,21 +824,16 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginUpdateAsync(
         String resourceGroupName, String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks);
-        return this
-            .client
-            .<VirtualHardDisksInner, VirtualHardDisksInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                VirtualHardDisksInner.class,
-                VirtualHardDisksInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks);
+        return this.client.<VirtualHardDisksInner, VirtualHardDisksInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualHardDisksInner.class, VirtualHardDisksInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -990,22 +845,18 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginUpdateAsync(
-        String resourceGroupName,
-        String virtualHardDiskName,
-        VirtualHardDisksUpdateRequest virtualHardDisks,
+        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks,
         Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context);
-        return this
-            .client
-            .<VirtualHardDisksInner, VirtualHardDisksInner>getLroResult(
-                mono, this.client.getHttpPipeline(), VirtualHardDisksInner.class, VirtualHardDisksInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context);
+        return this.client.<VirtualHardDisksInner, VirtualHardDisksInner>getLroResult(mono,
+            this.client.getHttpPipeline(), VirtualHardDisksInner.class, VirtualHardDisksInner.class, context);
     }
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -1015,14 +866,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the {@link SyncPoller} for polling of the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginUpdate(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks) {
+    public SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginUpdate(String resourceGroupName,
+        String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks) {
         return this.beginUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks).getSyncPoller();
     }
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -1033,17 +884,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the {@link SyncPoller} for polling of the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginUpdate(
-        String resourceGroupName,
-        String virtualHardDiskName,
-        VirtualHardDisksUpdateRequest virtualHardDisks,
-        Context context) {
+    public SyncPoller<PollResult<VirtualHardDisksInner>, VirtualHardDisksInner> beginUpdate(String resourceGroupName,
+        String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks, Context context) {
         return this.beginUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context).getSyncPoller();
     }
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -1053,16 +901,15 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the virtual hard disk resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualHardDisksInner> updateAsync(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks) {
-        return beginUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks)
-            .last()
+    private Mono<VirtualHardDisksInner> updateAsync(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksUpdateRequest virtualHardDisks) {
+        return beginUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -1073,19 +920,15 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the virtual hard disk resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<VirtualHardDisksInner> updateAsync(
-        String resourceGroupName,
-        String virtualHardDiskName,
-        VirtualHardDisksUpdateRequest virtualHardDisks,
-        Context context) {
-        return beginUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context)
-            .last()
+    private Mono<VirtualHardDisksInner> updateAsync(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksUpdateRequest virtualHardDisks, Context context) {
+        return beginUpdateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -1095,14 +938,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualHardDisksInner update(
-        String resourceGroupName, String virtualHardDiskName, VirtualHardDisksUpdateRequest virtualHardDisks) {
+    public VirtualHardDisksInner update(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksUpdateRequest virtualHardDisks) {
         return updateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks).block();
     }
 
     /**
      * The operation to update a virtual hard disk.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param virtualHardDiskName Name of the virtual hard disk.
      * @param virtualHardDisks The virtual hard disk resource patch definition.
@@ -1113,18 +956,15 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the virtual hard disk resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public VirtualHardDisksInner update(
-        String resourceGroupName,
-        String virtualHardDiskName,
-        VirtualHardDisksUpdateRequest virtualHardDisks,
-        Context context) {
+    public VirtualHardDisksInner update(String resourceGroupName, String virtualHardDiskName,
+        VirtualHardDisksUpdateRequest virtualHardDisks, Context context) {
         return updateAsync(resourceGroupName, virtualHardDiskName, virtualHardDisks, context).block();
     }
 
     /**
      * Lists all of the virtual hard disks in the specified resource group. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1134,16 +974,12 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualHardDisksInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1151,32 +987,17 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<VirtualHardDisksInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<VirtualHardDisksInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists all of the virtual hard disks in the specified resource group. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1185,19 +1006,15 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<VirtualHardDisksInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
+    private Mono<PagedResponse<VirtualHardDisksInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1206,28 +1023,16 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists all of the virtual hard disks in the specified resource group. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1236,14 +1041,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualHardDisksInner> listByResourceGroupAsync(String resourceGroupName) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName), nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists all of the virtual hard disks in the specified resource group. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1253,15 +1058,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualHardDisksInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists all of the virtual hard disks in the specified resource group. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1276,7 +1080,7 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     /**
      * Lists all of the virtual hard disks in the specified resource group. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1292,7 +1096,7 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     /**
      * Lists all of the virtual hard disks in the specified subscription. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
@@ -1300,44 +1104,26 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualHardDisksInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<VirtualHardDisksInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                this.client.getApiVersion(), accept, context))
+            .<PagedResponse<VirtualHardDisksInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists all of the virtual hard disks in the specified subscription. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1347,41 +1133,26 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<VirtualHardDisksInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
-                accept,
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
                 context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists all of the virtual hard disks in the specified subscription. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedFlux}.
@@ -1394,7 +1165,7 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     /**
      * Lists all of the virtual hard disks in the specified subscription. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1403,14 +1174,14 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<VirtualHardDisksInner> listAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listAllNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listAllNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists all of the virtual hard disks in the specified subscription. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedIterable}.
@@ -1423,7 +1194,7 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
     /**
      * Lists all of the virtual hard disks in the specified subscription. Use the nextLink property in the response to
      * get the next page of virtual hard disks.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1437,9 +1208,10 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1451,31 +1223,22 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<VirtualHardDisksInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<VirtualHardDisksInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1488,31 +1251,22 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1524,31 +1278,23 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listAllNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<VirtualHardDisksInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<VirtualHardDisksInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1561,23 +1307,13 @@ public final class VirtualHardDisksOperationsClientImpl implements VirtualHardDi
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listAllNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listAllNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

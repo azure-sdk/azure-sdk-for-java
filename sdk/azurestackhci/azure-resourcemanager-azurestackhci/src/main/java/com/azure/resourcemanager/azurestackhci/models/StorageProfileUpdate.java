@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The StorageProfileUpdate model. */
+/**
+ * The StorageProfileUpdate model.
+ */
 @Fluent
 public final class StorageProfileUpdate {
     /*
@@ -17,13 +19,15 @@ public final class StorageProfileUpdate {
     @JsonProperty(value = "dataDisks")
     private List<StorageProfileUpdateDataDisksItem> dataDisks;
 
-    /** Creates an instance of StorageProfileUpdate class. */
+    /**
+     * Creates an instance of StorageProfileUpdate class.
+     */
     public StorageProfileUpdate() {
     }
 
     /**
      * Get the dataDisks property: adds data disks to the virtual machine instance for the update call.
-     *
+     * 
      * @return the dataDisks value.
      */
     public List<StorageProfileUpdateDataDisksItem> dataDisks() {
@@ -32,7 +36,7 @@ public final class StorageProfileUpdate {
 
     /**
      * Set the dataDisks property: adds data disks to the virtual machine instance for the update call.
-     *
+     * 
      * @param dataDisks the dataDisks value to set.
      * @return the StorageProfileUpdate object itself.
      */
@@ -43,7 +47,7 @@ public final class StorageProfileUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

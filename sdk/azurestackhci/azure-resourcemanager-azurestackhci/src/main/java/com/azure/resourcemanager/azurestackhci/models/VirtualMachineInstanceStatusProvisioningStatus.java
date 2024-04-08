@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The VirtualMachineInstanceStatusProvisioningStatus model. */
+/**
+ * The VirtualMachineInstanceStatusProvisioningStatus model.
+ */
 @Fluent
 public final class VirtualMachineInstanceStatusProvisioningStatus {
     /*
@@ -22,13 +24,15 @@ public final class VirtualMachineInstanceStatusProvisioningStatus {
     @JsonProperty(value = "status")
     private Status status;
 
-    /** Creates an instance of VirtualMachineInstanceStatusProvisioningStatus class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceStatusProvisioningStatus class.
+     */
     public VirtualMachineInstanceStatusProvisioningStatus() {
     }
 
     /**
      * Get the operationId property: The ID of the operation performed on the virtual machine instance.
-     *
+     * 
      * @return the operationId value.
      */
     public String operationId() {
@@ -37,7 +41,7 @@ public final class VirtualMachineInstanceStatusProvisioningStatus {
 
     /**
      * Set the operationId property: The ID of the operation performed on the virtual machine instance.
-     *
+     * 
      * @param operationId the operationId value to set.
      * @return the VirtualMachineInstanceStatusProvisioningStatus object itself.
      */
@@ -49,7 +53,7 @@ public final class VirtualMachineInstanceStatusProvisioningStatus {
     /**
      * Get the status property: The status of the operation performed on the virtual machine instance [Succeeded,
      * Failed, InProgress].
-     *
+     * 
      * @return the status value.
      */
     public Status status() {
@@ -59,7 +63,7 @@ public final class VirtualMachineInstanceStatusProvisioningStatus {
     /**
      * Set the status property: The status of the operation performed on the virtual machine instance [Succeeded,
      * Failed, InProgress].
-     *
+     * 
      * @param status the status value to set.
      * @return the VirtualMachineInstanceStatusProvisioningStatus object itself.
      */
@@ -70,7 +74,7 @@ public final class VirtualMachineInstanceStatusProvisioningStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
