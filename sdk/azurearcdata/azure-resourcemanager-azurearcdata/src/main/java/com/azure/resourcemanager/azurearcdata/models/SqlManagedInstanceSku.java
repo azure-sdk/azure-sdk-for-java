@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurearcdata.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The resource model definition representing SKU for Azure Managed Instance - Azure Arc. */
+/**
+ * The resource model definition representing SKU for Azure Managed Instance - Azure Arc.
+ */
 @Fluent
 public final class SqlManagedInstanceSku {
     /*
@@ -36,25 +38,26 @@ public final class SqlManagedInstanceSku {
     private String size;
 
     /*
-     * The family property.
+     * The SKU family
      */
     @JsonProperty(value = "family")
     private String family;
 
     /*
-     * The capacity property.
+     * The SKU capacity
      */
     @JsonProperty(value = "capacity")
     private Integer capacity;
 
-    /** Creates an instance of SqlManagedInstanceSku class. */
+    /**
+     * Creates an instance of SqlManagedInstanceSku class.
+     */
     public SqlManagedInstanceSku() {
-        name = "vCore";
     }
 
     /**
      * Get the name property: The name of the SKU.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -63,7 +66,7 @@ public final class SqlManagedInstanceSku {
 
     /**
      * Set the name property: The name of the SKU.
-     *
+     * 
      * @param name the name value to set.
      * @return the SqlManagedInstanceSku object itself.
      */
@@ -74,7 +77,7 @@ public final class SqlManagedInstanceSku {
 
     /**
      * Get the tier property: The pricing tier for the instance.
-     *
+     * 
      * @return the tier value.
      */
     public SqlManagedInstanceSkuTier tier() {
@@ -83,7 +86,7 @@ public final class SqlManagedInstanceSku {
 
     /**
      * Set the tier property: The pricing tier for the instance.
-     *
+     * 
      * @param tier the tier value to set.
      * @return the SqlManagedInstanceSku object itself.
      */
@@ -95,7 +98,7 @@ public final class SqlManagedInstanceSku {
     /**
      * Get the dev property: Whether dev/test is enabled. When the dev field is set to true, the resource is used for
      * dev/test purpose.
-     *
+     * 
      * @return the dev value.
      */
     public Boolean dev() {
@@ -105,7 +108,7 @@ public final class SqlManagedInstanceSku {
     /**
      * Set the dev property: Whether dev/test is enabled. When the dev field is set to true, the resource is used for
      * dev/test purpose.
-     *
+     * 
      * @param dev the dev value to set.
      * @return the SqlManagedInstanceSku object itself.
      */
@@ -117,7 +120,7 @@ public final class SqlManagedInstanceSku {
     /**
      * Get the size property: The SKU size. When the name field is the combination of tier and some other value, this
      * would be the standalone code.
-     *
+     * 
      * @return the size value.
      */
     public String size() {
@@ -127,7 +130,7 @@ public final class SqlManagedInstanceSku {
     /**
      * Set the size property: The SKU size. When the name field is the combination of tier and some other value, this
      * would be the standalone code.
-     *
+     * 
      * @param size the size value to set.
      * @return the SqlManagedInstanceSku object itself.
      */
@@ -137,8 +140,8 @@ public final class SqlManagedInstanceSku {
     }
 
     /**
-     * Get the family property: The family property.
-     *
+     * Get the family property: The SKU family.
+     * 
      * @return the family value.
      */
     public String family() {
@@ -146,8 +149,8 @@ public final class SqlManagedInstanceSku {
     }
 
     /**
-     * Set the family property: The family property.
-     *
+     * Set the family property: The SKU family.
+     * 
      * @param family the family value to set.
      * @return the SqlManagedInstanceSku object itself.
      */
@@ -157,8 +160,8 @@ public final class SqlManagedInstanceSku {
     }
 
     /**
-     * Get the capacity property: The capacity property.
-     *
+     * Get the capacity property: The SKU capacity.
+     * 
      * @return the capacity value.
      */
     public Integer capacity() {
@@ -166,8 +169,8 @@ public final class SqlManagedInstanceSku {
     }
 
     /**
-     * Set the capacity property: The capacity property.
-     *
+     * Set the capacity property: The SKU capacity.
+     * 
      * @param capacity the capacity value to set.
      * @return the SqlManagedInstanceSku object itself.
      */
@@ -178,7 +181,7 @@ public final class SqlManagedInstanceSku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

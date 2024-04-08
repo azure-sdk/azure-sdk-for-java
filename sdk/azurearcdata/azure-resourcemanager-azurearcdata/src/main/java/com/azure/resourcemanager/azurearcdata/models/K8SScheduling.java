@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.Map;
 
-/** The kubernetes scheduling information. */
+/**
+ * The kubernetes scheduling information.
+ */
 @Fluent
 public final class K8SScheduling {
     /*
@@ -25,16 +27,19 @@ public final class K8SScheduling {
     /*
      * The kubernetes scheduling information.
      */
-    @JsonIgnore private Map<String, Object> additionalProperties;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
 
-    /** Creates an instance of K8SScheduling class. */
+    /**
+     * Creates an instance of K8SScheduling class.
+     */
     public K8SScheduling() {
     }
 
     /**
      * Get the defaultProperty property: The kubernetes scheduling options. It describes restrictions used to help
      * Kubernetes select appropriate nodes to host the database service.
-     *
+     * 
      * @return the defaultProperty value.
      */
     public K8SSchedulingOptions defaultProperty() {
@@ -44,7 +49,7 @@ public final class K8SScheduling {
     /**
      * Set the defaultProperty property: The kubernetes scheduling options. It describes restrictions used to help
      * Kubernetes select appropriate nodes to host the database service.
-     *
+     * 
      * @param defaultProperty the defaultProperty value to set.
      * @return the K8SScheduling object itself.
      */
@@ -55,7 +60,7 @@ public final class K8SScheduling {
 
     /**
      * Get the additionalProperties property: The kubernetes scheduling information.
-     *
+     * 
      * @return the additionalProperties value.
      */
     @JsonAnyGetter
@@ -65,7 +70,7 @@ public final class K8SScheduling {
 
     /**
      * Set the additionalProperties property: The kubernetes scheduling information.
-     *
+     * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the K8SScheduling object itself.
      */
@@ -84,7 +89,7 @@ public final class K8SScheduling {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
