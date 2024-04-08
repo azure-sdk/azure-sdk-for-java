@@ -9,7 +9,8 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class ServicesExportMetadataSchemaSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
+     * x-ms-original-file:
+     * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/
      * Services_ExportMetadataSchema.json
      */
     /**
