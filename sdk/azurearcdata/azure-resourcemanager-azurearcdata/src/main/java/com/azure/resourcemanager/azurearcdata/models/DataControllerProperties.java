@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The data controller properties. */
+/**
+ * The data controller properties.
+ */
 @Fluent
 public final class DataControllerProperties {
     /*
@@ -30,7 +32,7 @@ public final class DataControllerProperties {
     private Object k8SRaw;
 
     /*
-     * Properties on upload watermark.  Mostly timestamp for each upload data type
+     * Properties on upload watermark. Mostly timestamp for each upload data type
      */
     @JsonProperty(value = "uploadWatermark")
     private UploadWatermark uploadWatermark;
@@ -42,10 +44,23 @@ public final class DataControllerProperties {
     private OffsetDateTime lastUploadedDate;
 
     /*
-     * Username and password for basic login authentication.
+     * Deprecated. Azure Arc Data Services data controller no longer expose any endpoint. All traffic are exposed
+     * through Kubernetes native API.
      */
     @JsonProperty(value = "basicLoginInformation")
     private BasicLoginInformation basicLoginInformation;
+
+    /*
+     * Login credential for metrics dashboard on the Kubernetes cluster.
+     */
+    @JsonProperty(value = "metricsDashboardCredential")
+    private BasicLoginInformation metricsDashboardCredential;
+
+    /*
+     * Login credential for logs dashboard on the Kubernetes cluster.
+     */
+    @JsonProperty(value = "logsDashboardCredential")
+    private BasicLoginInformation logsDashboardCredential;
 
     /*
      * Log analytics workspace id and primary key
@@ -54,13 +69,13 @@ public final class DataControllerProperties {
     private LogAnalyticsWorkspaceConfig logAnalyticsWorkspaceConfig;
 
     /*
-     * Service principal for uploading billing, metrics and logs.
+     * Deprecated. Service principal is deprecated in favor of Arc Kubernetes service extension managed identity.
      */
     @JsonProperty(value = "uploadServicePrincipal")
     private UploadServicePrincipal uploadServicePrincipal;
 
     /*
-     * The provisioningState property.
+     * The provisioning state of the Arc Data Controller resource.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private String provisioningState;
@@ -78,13 +93,15 @@ public final class DataControllerProperties {
     @JsonProperty(value = "extensionId")
     private String extensionId;
 
-    /** Creates an instance of DataControllerProperties class. */
+    /**
+     * Creates an instance of DataControllerProperties class.
+     */
     public DataControllerProperties() {
     }
 
     /**
      * Get the infrastructure property: The infrastructure the data controller is running on.
-     *
+     * 
      * @return the infrastructure value.
      */
     public Infrastructure infrastructure() {
@@ -93,7 +110,7 @@ public final class DataControllerProperties {
 
     /**
      * Set the infrastructure property: The infrastructure the data controller is running on.
-     *
+     * 
      * @param infrastructure the infrastructure value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -104,7 +121,7 @@ public final class DataControllerProperties {
 
     /**
      * Get the onPremiseProperty property: Properties from the Kubernetes data controller.
-     *
+     * 
      * @return the onPremiseProperty value.
      */
     public OnPremiseProperty onPremiseProperty() {
@@ -113,7 +130,7 @@ public final class DataControllerProperties {
 
     /**
      * Set the onPremiseProperty property: Properties from the Kubernetes data controller.
-     *
+     * 
      * @param onPremiseProperty the onPremiseProperty value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -124,7 +141,7 @@ public final class DataControllerProperties {
 
     /**
      * Get the k8SRaw property: The raw kubernetes information.
-     *
+     * 
      * @return the k8SRaw value.
      */
     public Object k8SRaw() {
@@ -133,7 +150,7 @@ public final class DataControllerProperties {
 
     /**
      * Set the k8SRaw property: The raw kubernetes information.
-     *
+     * 
      * @param k8SRaw the k8SRaw value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -144,7 +161,7 @@ public final class DataControllerProperties {
 
     /**
      * Get the uploadWatermark property: Properties on upload watermark. Mostly timestamp for each upload data type.
-     *
+     * 
      * @return the uploadWatermark value.
      */
     public UploadWatermark uploadWatermark() {
@@ -153,7 +170,7 @@ public final class DataControllerProperties {
 
     /**
      * Set the uploadWatermark property: Properties on upload watermark. Mostly timestamp for each upload data type.
-     *
+     * 
      * @param uploadWatermark the uploadWatermark value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -164,7 +181,7 @@ public final class DataControllerProperties {
 
     /**
      * Get the lastUploadedDate property: Last uploaded date from Kubernetes cluster. Defaults to current date time.
-     *
+     * 
      * @return the lastUploadedDate value.
      */
     public OffsetDateTime lastUploadedDate() {
@@ -173,7 +190,7 @@ public final class DataControllerProperties {
 
     /**
      * Set the lastUploadedDate property: Last uploaded date from Kubernetes cluster. Defaults to current date time.
-     *
+     * 
      * @param lastUploadedDate the lastUploadedDate value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -183,8 +200,9 @@ public final class DataControllerProperties {
     }
 
     /**
-     * Get the basicLoginInformation property: Username and password for basic login authentication.
-     *
+     * Get the basicLoginInformation property: Deprecated. Azure Arc Data Services data controller no longer expose any
+     * endpoint. All traffic are exposed through Kubernetes native API.
+     * 
      * @return the basicLoginInformation value.
      */
     public BasicLoginInformation basicLoginInformation() {
@@ -192,8 +210,9 @@ public final class DataControllerProperties {
     }
 
     /**
-     * Set the basicLoginInformation property: Username and password for basic login authentication.
-     *
+     * Set the basicLoginInformation property: Deprecated. Azure Arc Data Services data controller no longer expose any
+     * endpoint. All traffic are exposed through Kubernetes native API.
+     * 
      * @param basicLoginInformation the basicLoginInformation value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -203,8 +222,48 @@ public final class DataControllerProperties {
     }
 
     /**
+     * Get the metricsDashboardCredential property: Login credential for metrics dashboard on the Kubernetes cluster.
+     * 
+     * @return the metricsDashboardCredential value.
+     */
+    public BasicLoginInformation metricsDashboardCredential() {
+        return this.metricsDashboardCredential;
+    }
+
+    /**
+     * Set the metricsDashboardCredential property: Login credential for metrics dashboard on the Kubernetes cluster.
+     * 
+     * @param metricsDashboardCredential the metricsDashboardCredential value to set.
+     * @return the DataControllerProperties object itself.
+     */
+    public DataControllerProperties withMetricsDashboardCredential(BasicLoginInformation metricsDashboardCredential) {
+        this.metricsDashboardCredential = metricsDashboardCredential;
+        return this;
+    }
+
+    /**
+     * Get the logsDashboardCredential property: Login credential for logs dashboard on the Kubernetes cluster.
+     * 
+     * @return the logsDashboardCredential value.
+     */
+    public BasicLoginInformation logsDashboardCredential() {
+        return this.logsDashboardCredential;
+    }
+
+    /**
+     * Set the logsDashboardCredential property: Login credential for logs dashboard on the Kubernetes cluster.
+     * 
+     * @param logsDashboardCredential the logsDashboardCredential value to set.
+     * @return the DataControllerProperties object itself.
+     */
+    public DataControllerProperties withLogsDashboardCredential(BasicLoginInformation logsDashboardCredential) {
+        this.logsDashboardCredential = logsDashboardCredential;
+        return this;
+    }
+
+    /**
      * Get the logAnalyticsWorkspaceConfig property: Log analytics workspace id and primary key.
-     *
+     * 
      * @return the logAnalyticsWorkspaceConfig value.
      */
     public LogAnalyticsWorkspaceConfig logAnalyticsWorkspaceConfig() {
@@ -213,19 +272,20 @@ public final class DataControllerProperties {
 
     /**
      * Set the logAnalyticsWorkspaceConfig property: Log analytics workspace id and primary key.
-     *
+     * 
      * @param logAnalyticsWorkspaceConfig the logAnalyticsWorkspaceConfig value to set.
      * @return the DataControllerProperties object itself.
      */
-    public DataControllerProperties withLogAnalyticsWorkspaceConfig(
-        LogAnalyticsWorkspaceConfig logAnalyticsWorkspaceConfig) {
+    public DataControllerProperties
+        withLogAnalyticsWorkspaceConfig(LogAnalyticsWorkspaceConfig logAnalyticsWorkspaceConfig) {
         this.logAnalyticsWorkspaceConfig = logAnalyticsWorkspaceConfig;
         return this;
     }
 
     /**
-     * Get the uploadServicePrincipal property: Service principal for uploading billing, metrics and logs.
-     *
+     * Get the uploadServicePrincipal property: Deprecated. Service principal is deprecated in favor of Arc Kubernetes
+     * service extension managed identity.
+     * 
      * @return the uploadServicePrincipal value.
      */
     public UploadServicePrincipal uploadServicePrincipal() {
@@ -233,8 +293,9 @@ public final class DataControllerProperties {
     }
 
     /**
-     * Set the uploadServicePrincipal property: Service principal for uploading billing, metrics and logs.
-     *
+     * Set the uploadServicePrincipal property: Deprecated. Service principal is deprecated in favor of Arc Kubernetes
+     * service extension managed identity.
+     * 
      * @param uploadServicePrincipal the uploadServicePrincipal value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -244,8 +305,8 @@ public final class DataControllerProperties {
     }
 
     /**
-     * Get the provisioningState property: The provisioningState property.
-     *
+     * Get the provisioningState property: The provisioning state of the Arc Data Controller resource.
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -255,7 +316,7 @@ public final class DataControllerProperties {
     /**
      * Get the clusterId property: If a CustomLocation is provided, this contains the ARM id of the connected cluster
      * the custom location belongs to.
-     *
+     * 
      * @return the clusterId value.
      */
     public String clusterId() {
@@ -265,7 +326,7 @@ public final class DataControllerProperties {
     /**
      * Set the clusterId property: If a CustomLocation is provided, this contains the ARM id of the connected cluster
      * the custom location belongs to.
-     *
+     * 
      * @param clusterId the clusterId value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -277,7 +338,7 @@ public final class DataControllerProperties {
     /**
      * Get the extensionId property: If a CustomLocation is provided, this contains the ARM id of the extension the
      * custom location belongs to.
-     *
+     * 
      * @return the extensionId value.
      */
     public String extensionId() {
@@ -287,7 +348,7 @@ public final class DataControllerProperties {
     /**
      * Set the extensionId property: If a CustomLocation is provided, this contains the ARM id of the extension the
      * custom location belongs to.
-     *
+     * 
      * @param extensionId the extensionId value to set.
      * @return the DataControllerProperties object itself.
      */
@@ -298,7 +359,7 @@ public final class DataControllerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -310,6 +371,12 @@ public final class DataControllerProperties {
         }
         if (basicLoginInformation() != null) {
             basicLoginInformation().validate();
+        }
+        if (metricsDashboardCredential() != null) {
+            metricsDashboardCredential().validate();
+        }
+        if (logsDashboardCredential() != null) {
+            logsDashboardCredential().validate();
         }
         if (logAnalyticsWorkspaceConfig() != null) {
             logAnalyticsWorkspaceConfig().validate();

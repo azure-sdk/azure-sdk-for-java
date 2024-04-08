@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** Log analytics workspace id and primary key. */
+/**
+ * Log analytics workspace id and primary key.
+ */
 @Fluent
 public final class LogAnalyticsWorkspaceConfig {
     /*
@@ -23,13 +25,15 @@ public final class LogAnalyticsWorkspaceConfig {
     @JsonProperty(value = "primaryKey")
     private String primaryKey;
 
-    /** Creates an instance of LogAnalyticsWorkspaceConfig class. */
+    /**
+     * Creates an instance of LogAnalyticsWorkspaceConfig class.
+     */
     public LogAnalyticsWorkspaceConfig() {
     }
 
     /**
      * Get the workspaceId property: Azure Log Analytics workspace ID.
-     *
+     * 
      * @return the workspaceId value.
      */
     public UUID workspaceId() {
@@ -38,7 +42,7 @@ public final class LogAnalyticsWorkspaceConfig {
 
     /**
      * Set the workspaceId property: Azure Log Analytics workspace ID.
-     *
+     * 
      * @param workspaceId the workspaceId value to set.
      * @return the LogAnalyticsWorkspaceConfig object itself.
      */
@@ -49,7 +53,7 @@ public final class LogAnalyticsWorkspaceConfig {
 
     /**
      * Get the primaryKey property: Primary key of the workspace.
-     *
+     * 
      * @return the primaryKey value.
      */
     public String primaryKey() {
@@ -58,7 +62,7 @@ public final class LogAnalyticsWorkspaceConfig {
 
     /**
      * Set the primaryKey property: Primary key of the workspace.
-     *
+     * 
      * @param primaryKey the primaryKey value to set.
      * @return the LogAnalyticsWorkspaceConfig object itself.
      */
@@ -69,7 +73,7 @@ public final class LogAnalyticsWorkspaceConfig {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

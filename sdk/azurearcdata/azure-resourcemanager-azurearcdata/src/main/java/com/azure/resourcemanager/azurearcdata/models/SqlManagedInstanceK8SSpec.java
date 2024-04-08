@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.Map;
 
-/** The kubernetes spec information. */
+/**
+ * The kubernetes spec information.
+ */
 @Fluent
 public final class SqlManagedInstanceK8SSpec {
     /*
@@ -30,17 +32,32 @@ public final class SqlManagedInstanceK8SSpec {
     private Integer replicas;
 
     /*
+     * The kubernetes security information.
+     */
+    @JsonProperty(value = "security")
+    private K8SSecurity security;
+
+    /*
+     * The kubernetes settings information.
+     */
+    @JsonProperty(value = "settings")
+    private K8SSettings settings;
+
+    /*
      * The kubernetes spec information.
      */
-    @JsonIgnore private Map<String, Object> additionalProperties;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
 
-    /** Creates an instance of SqlManagedInstanceK8SSpec class. */
+    /**
+     * Creates an instance of SqlManagedInstanceK8SSpec class.
+     */
     public SqlManagedInstanceK8SSpec() {
     }
 
     /**
      * Get the scheduling property: The kubernetes scheduling information.
-     *
+     * 
      * @return the scheduling value.
      */
     public K8SScheduling scheduling() {
@@ -49,7 +66,7 @@ public final class SqlManagedInstanceK8SSpec {
 
     /**
      * Set the scheduling property: The kubernetes scheduling information.
-     *
+     * 
      * @param scheduling the scheduling value to set.
      * @return the SqlManagedInstanceK8SSpec object itself.
      */
@@ -62,7 +79,7 @@ public final class SqlManagedInstanceK8SSpec {
      * Get the replicas property: This option specifies the number of SQL Managed Instance replicas that will be
      * deployed in your Kubernetes cluster for high availability purposes. If sku.tier is BusinessCritical, allowed
      * values are '2' or '3' with default of '3'. If sku.tier is GeneralPurpose, replicas must be '1'.
-     *
+     * 
      * @return the replicas value.
      */
     public Integer replicas() {
@@ -73,7 +90,7 @@ public final class SqlManagedInstanceK8SSpec {
      * Set the replicas property: This option specifies the number of SQL Managed Instance replicas that will be
      * deployed in your Kubernetes cluster for high availability purposes. If sku.tier is BusinessCritical, allowed
      * values are '2' or '3' with default of '3'. If sku.tier is GeneralPurpose, replicas must be '1'.
-     *
+     * 
      * @param replicas the replicas value to set.
      * @return the SqlManagedInstanceK8SSpec object itself.
      */
@@ -83,8 +100,48 @@ public final class SqlManagedInstanceK8SSpec {
     }
 
     /**
+     * Get the security property: The kubernetes security information.
+     * 
+     * @return the security value.
+     */
+    public K8SSecurity security() {
+        return this.security;
+    }
+
+    /**
+     * Set the security property: The kubernetes security information.
+     * 
+     * @param security the security value to set.
+     * @return the SqlManagedInstanceK8SSpec object itself.
+     */
+    public SqlManagedInstanceK8SSpec withSecurity(K8SSecurity security) {
+        this.security = security;
+        return this;
+    }
+
+    /**
+     * Get the settings property: The kubernetes settings information.
+     * 
+     * @return the settings value.
+     */
+    public K8SSettings settings() {
+        return this.settings;
+    }
+
+    /**
+     * Set the settings property: The kubernetes settings information.
+     * 
+     * @param settings the settings value to set.
+     * @return the SqlManagedInstanceK8SSpec object itself.
+     */
+    public SqlManagedInstanceK8SSpec withSettings(K8SSettings settings) {
+        this.settings = settings;
+        return this;
+    }
+
+    /**
      * Get the additionalProperties property: The kubernetes spec information.
-     *
+     * 
      * @return the additionalProperties value.
      */
     @JsonAnyGetter
@@ -94,7 +151,7 @@ public final class SqlManagedInstanceK8SSpec {
 
     /**
      * Set the additionalProperties property: The kubernetes spec information.
-     *
+     * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the SqlManagedInstanceK8SSpec object itself.
      */
@@ -113,12 +170,18 @@ public final class SqlManagedInstanceK8SSpec {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (scheduling() != null) {
             scheduling().validate();
+        }
+        if (security() != null) {
+            security().validate();
+        }
+        if (settings() != null) {
+            settings().validate();
         }
     }
 }
