@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Primary metrics for Image ObjectDetection task. */
+/**
+ * Primary metrics for Image ObjectDetection task.
+ */
 public final class ObjectDetectionPrimaryMetrics extends ExpandableStringEnum<ObjectDetectionPrimaryMetrics> {
-    /** Static value MeanAveragePrecision for ObjectDetectionPrimaryMetrics. */
+    /**
+     * Static value MeanAveragePrecision for ObjectDetectionPrimaryMetrics.
+     */
     public static final ObjectDetectionPrimaryMetrics MEAN_AVERAGE_PRECISION = fromString("MeanAveragePrecision");
 
     /**
      * Creates a new instance of ObjectDetectionPrimaryMetrics value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class ObjectDetectionPrimaryMetrics extends ExpandableStringEnum<Ob
 
     /**
      * Creates or finds a ObjectDetectionPrimaryMetrics from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ObjectDetectionPrimaryMetrics.
      */
@@ -35,7 +39,7 @@ public final class ObjectDetectionPrimaryMetrics extends ExpandableStringEnum<Ob
 
     /**
      * Gets known ObjectDetectionPrimaryMetrics values.
-     *
+     * 
      * @return known ObjectDetectionPrimaryMetrics values.
      */
     public static Collection<ObjectDetectionPrimaryMetrics> values() {

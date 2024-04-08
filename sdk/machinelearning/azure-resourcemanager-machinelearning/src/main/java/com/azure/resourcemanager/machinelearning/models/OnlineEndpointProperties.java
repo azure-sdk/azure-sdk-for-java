@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Online endpoint configuration. */
+/**
+ * Online endpoint configuration.
+ */
 @Fluent
 public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner {
     /*
@@ -20,6 +22,14 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
      */
     @JsonProperty(value = "compute")
     private String compute;
+
+    /*
+     * Percentage of traffic to be mirrored to each deployment without using returned scoring. Traffic values need to
+     * sum to utmost 50.
+     */
+    @JsonProperty(value = "mirrorTraffic")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Integer> mirrorTraffic;
 
     /*
      * Provisioning state for the endpoint.
@@ -40,13 +50,16 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Integer> traffic;
 
-    /** Creates an instance of OnlineEndpointProperties class. */
+    /**
+     * Creates an instance of OnlineEndpointProperties class.
+     */
     public OnlineEndpointProperties() {
     }
 
     /**
-     * Get the compute property: ARM resource ID of the compute if it exists. optional.
-     *
+     * Get the compute property: ARM resource ID of the compute if it exists.
+     * optional.
+     * 
      * @return the compute value.
      */
     public String compute() {
@@ -54,8 +67,9 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
     }
 
     /**
-     * Set the compute property: ARM resource ID of the compute if it exists. optional.
-     *
+     * Set the compute property: ARM resource ID of the compute if it exists.
+     * optional.
+     * 
      * @param compute the compute value to set.
      * @return the OnlineEndpointProperties object itself.
      */
@@ -65,8 +79,30 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
     }
 
     /**
+     * Get the mirrorTraffic property: Percentage of traffic to be mirrored to each deployment without using returned
+     * scoring. Traffic values need to sum to utmost 50.
+     * 
+     * @return the mirrorTraffic value.
+     */
+    public Map<String, Integer> mirrorTraffic() {
+        return this.mirrorTraffic;
+    }
+
+    /**
+     * Set the mirrorTraffic property: Percentage of traffic to be mirrored to each deployment without using returned
+     * scoring. Traffic values need to sum to utmost 50.
+     * 
+     * @param mirrorTraffic the mirrorTraffic value to set.
+     * @return the OnlineEndpointProperties object itself.
+     */
+    public OnlineEndpointProperties withMirrorTraffic(Map<String, Integer> mirrorTraffic) {
+        this.mirrorTraffic = mirrorTraffic;
+        return this;
+    }
+
+    /**
      * Get the provisioningState property: Provisioning state for the endpoint.
-     *
+     * 
      * @return the provisioningState value.
      */
     public EndpointProvisioningState provisioningState() {
@@ -74,9 +110,9 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
     }
 
     /**
-     * Get the publicNetworkAccess property: Set to "Enabled" for endpoints that should allow public access when Private
-     * Link is enabled.
-     *
+     * Get the publicNetworkAccess property: Set to "Enabled" for endpoints that should allow public access when
+     * Private Link is enabled.
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccessType publicNetworkAccess() {
@@ -84,9 +120,9 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
     }
 
     /**
-     * Set the publicNetworkAccess property: Set to "Enabled" for endpoints that should allow public access when Private
-     * Link is enabled.
-     *
+     * Set the publicNetworkAccess property: Set to "Enabled" for endpoints that should allow public access when
+     * Private Link is enabled.
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the OnlineEndpointProperties object itself.
      */
@@ -98,7 +134,7 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
     /**
      * Get the traffic property: Percentage of traffic from endpoint to divert to each deployment. Traffic values need
      * to sum to 100.
-     *
+     * 
      * @return the traffic value.
      */
     public Map<String, Integer> traffic() {
@@ -108,7 +144,7 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
     /**
      * Set the traffic property: Percentage of traffic from endpoint to divert to each deployment. Traffic values need
      * to sum to 100.
-     *
+     * 
      * @param traffic the traffic value to set.
      * @return the OnlineEndpointProperties object itself.
      */
@@ -117,28 +153,36 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OnlineEndpointProperties withAuthMode(EndpointAuthMode authMode) {
         super.withAuthMode(authMode);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OnlineEndpointProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OnlineEndpointProperties withKeys(EndpointAuthKeysInner keys) {
         super.withKeys(keys);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OnlineEndpointProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
@@ -147,7 +191,7 @@ public final class OnlineEndpointProperties extends EndpointPropertiesBaseInner 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

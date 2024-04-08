@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Secrets related to a Machine Learning compute. Might differ for every type of compute. */
+/**
+ * Secrets related to a Machine Learning compute. Might differ for every type of compute.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -22,17 +24,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AKS", value = AksComputeSecrets.class),
     @JsonSubTypes.Type(name = "VirtualMachine", value = VirtualMachineSecrets.class),
-    @JsonSubTypes.Type(name = "Databricks", value = DatabricksComputeSecrets.class)
-})
+    @JsonSubTypes.Type(name = "Databricks", value = DatabricksComputeSecrets.class) })
 @Immutable
 public class ComputeSecretsInner {
-    /** Creates an instance of ComputeSecretsInner class. */
+    /**
+     * Creates an instance of ComputeSecretsInner class.
+     */
     public ComputeSecretsInner() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

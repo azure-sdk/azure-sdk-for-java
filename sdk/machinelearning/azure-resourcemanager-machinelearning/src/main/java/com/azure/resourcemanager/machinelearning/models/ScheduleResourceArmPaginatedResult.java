@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ScheduleInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of Schedule entities. */
+/**
+ * A paginated list of Schedule entities.
+ */
 @Fluent
 public final class ScheduleResourceArmPaginatedResult {
     /*
@@ -24,13 +26,16 @@ public final class ScheduleResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<ScheduleInner> value;
 
-    /** Creates an instance of ScheduleResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of ScheduleResourceArmPaginatedResult class.
+     */
     public ScheduleResourceArmPaginatedResult() {
     }
 
     /**
-     * Get the nextLink property: The link to the next page of Schedule objects. If null, there are no additional pages.
-     *
+     * Get the nextLink property: The link to the next page of Schedule objects. If null, there are no additional
+     * pages.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -38,8 +43,9 @@ public final class ScheduleResourceArmPaginatedResult {
     }
 
     /**
-     * Set the nextLink property: The link to the next page of Schedule objects. If null, there are no additional pages.
-     *
+     * Set the nextLink property: The link to the next page of Schedule objects. If null, there are no additional
+     * pages.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ScheduleResourceArmPaginatedResult object itself.
      */
@@ -50,7 +56,7 @@ public final class ScheduleResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type Schedule.
-     *
+     * 
      * @return the value value.
      */
     public List<ScheduleInner> value() {
@@ -59,7 +65,7 @@ public final class ScheduleResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type Schedule.
-     *
+     * 
      * @param value the value value to set.
      * @return the ScheduleResourceArmPaginatedResult object itself.
      */
@@ -70,7 +76,7 @@ public final class ScheduleResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

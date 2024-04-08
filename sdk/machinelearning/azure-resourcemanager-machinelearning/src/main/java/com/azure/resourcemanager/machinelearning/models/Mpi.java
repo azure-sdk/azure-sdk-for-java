@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** MPI distribution configuration. */
+/**
+ * MPI distribution configuration.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "distributionType")
 @JsonTypeName("Mpi")
 @Fluent
@@ -20,13 +22,15 @@ public final class Mpi extends DistributionConfiguration {
     @JsonProperty(value = "processCountPerInstance")
     private Integer processCountPerInstance;
 
-    /** Creates an instance of Mpi class. */
+    /**
+     * Creates an instance of Mpi class.
+     */
     public Mpi() {
     }
 
     /**
      * Get the processCountPerInstance property: Number of processes per MPI node.
-     *
+     * 
      * @return the processCountPerInstance value.
      */
     public Integer processCountPerInstance() {
@@ -35,7 +39,7 @@ public final class Mpi extends DistributionConfiguration {
 
     /**
      * Set the processCountPerInstance property: Number of processes per MPI node.
-     *
+     * 
      * @param processCountPerInstance the processCountPerInstance value to set.
      * @return the Mpi object itself.
      */
@@ -46,7 +50,7 @@ public final class Mpi extends DistributionConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
