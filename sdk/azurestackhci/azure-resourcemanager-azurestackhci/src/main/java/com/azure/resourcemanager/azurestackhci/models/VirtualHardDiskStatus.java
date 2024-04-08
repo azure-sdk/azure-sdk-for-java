@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The observed state of virtual hard disks. */
+/**
+ * The observed state of virtual hard disks.
+ */
 @Fluent
 public final class VirtualHardDiskStatus {
     /*
@@ -28,13 +30,15 @@ public final class VirtualHardDiskStatus {
     @JsonProperty(value = "provisioningStatus")
     private VirtualHardDiskStatusProvisioningStatus provisioningStatus;
 
-    /** Creates an instance of VirtualHardDiskStatus class. */
+    /**
+     * Creates an instance of VirtualHardDiskStatus class.
+     */
     public VirtualHardDiskStatus() {
     }
 
     /**
      * Get the errorCode property: VirtualHardDisk provisioning error code.
-     *
+     * 
      * @return the errorCode value.
      */
     public String errorCode() {
@@ -43,7 +47,7 @@ public final class VirtualHardDiskStatus {
 
     /**
      * Set the errorCode property: VirtualHardDisk provisioning error code.
-     *
+     * 
      * @param errorCode the errorCode value to set.
      * @return the VirtualHardDiskStatus object itself.
      */
@@ -54,7 +58,7 @@ public final class VirtualHardDiskStatus {
 
     /**
      * Get the errorMessage property: Descriptive error message.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -63,7 +67,7 @@ public final class VirtualHardDiskStatus {
 
     /**
      * Set the errorMessage property: Descriptive error message.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the VirtualHardDiskStatus object itself.
      */
@@ -74,7 +78,7 @@ public final class VirtualHardDiskStatus {
 
     /**
      * Get the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public VirtualHardDiskStatusProvisioningStatus provisioningStatus() {
@@ -83,7 +87,7 @@ public final class VirtualHardDiskStatus {
 
     /**
      * Set the provisioningStatus property: The provisioningStatus property.
-     *
+     * 
      * @param provisioningStatus the provisioningStatus value to set.
      * @return the VirtualHardDiskStatus object itself.
      */
@@ -94,7 +98,7 @@ public final class VirtualHardDiskStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

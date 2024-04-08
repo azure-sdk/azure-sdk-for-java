@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestackhci.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The IpPool model. */
+/**
+ * The IpPool model.
+ */
 @Fluent
 public final class IpPool {
     /*
@@ -40,13 +42,15 @@ public final class IpPool {
     @JsonProperty(value = "info")
     private IpPoolInfo info;
 
-    /** Creates an instance of IpPool class. */
+    /**
+     * Creates an instance of IpPool class.
+     */
     public IpPool() {
     }
 
     /**
      * Get the name property: Name of the IP-Pool.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -55,7 +59,7 @@ public final class IpPool {
 
     /**
      * Set the name property: Name of the IP-Pool.
-     *
+     * 
      * @param name the name value to set.
      * @return the IpPool object itself.
      */
@@ -66,7 +70,7 @@ public final class IpPool {
 
     /**
      * Get the ipPoolType property: Type of the IP Pool [vm, vippool].
-     *
+     * 
      * @return the ipPoolType value.
      */
     public IpPoolTypeEnum ipPoolType() {
@@ -75,7 +79,7 @@ public final class IpPool {
 
     /**
      * Set the ipPoolType property: Type of the IP Pool [vm, vippool].
-     *
+     * 
      * @param ipPoolType the ipPoolType value to set.
      * @return the IpPool object itself.
      */
@@ -86,7 +90,7 @@ public final class IpPool {
 
     /**
      * Get the start property: Start of the IP address pool.
-     *
+     * 
      * @return the start value.
      */
     public String start() {
@@ -95,7 +99,7 @@ public final class IpPool {
 
     /**
      * Set the start property: Start of the IP address pool.
-     *
+     * 
      * @param start the start value to set.
      * @return the IpPool object itself.
      */
@@ -106,7 +110,7 @@ public final class IpPool {
 
     /**
      * Get the end property: End of the IP address pool.
-     *
+     * 
      * @return the end value.
      */
     public String end() {
@@ -115,7 +119,7 @@ public final class IpPool {
 
     /**
      * Set the end property: End of the IP address pool.
-     *
+     * 
      * @param end the end value to set.
      * @return the IpPool object itself.
      */
@@ -126,7 +130,7 @@ public final class IpPool {
 
     /**
      * Get the info property: The info property.
-     *
+     * 
      * @return the info value.
      */
     public IpPoolInfo info() {
@@ -135,7 +139,7 @@ public final class IpPool {
 
     /**
      * Set the info property: The info property.
-     *
+     * 
      * @param info the info value to set.
      * @return the IpPool object itself.
      */
@@ -146,7 +150,7 @@ public final class IpPool {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

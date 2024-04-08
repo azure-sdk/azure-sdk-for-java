@@ -40,24 +40,28 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in NetworkInterfacesOperationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in NetworkInterfacesOperationsClient.
+ */
 public final class NetworkInterfacesOperationsClientImpl implements NetworkInterfacesOperationsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final NetworkInterfacesOperationsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AzureStackHciClientImpl client;
 
     /**
      * Initializes an instance of NetworkInterfacesOperationsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     NetworkInterfacesOperationsClientImpl(AzureStackHciClientImpl client) {
-        this.service =
-            RestProxy
-                .create(
-                    NetworkInterfacesOperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service = RestProxy.create(NetworkInterfacesOperationsService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -68,112 +72,87 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     @Host("{$host}")
     @ServiceInterface(name = "AzureStackHciClientN")
     public interface NetworkInterfacesOperationsService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/networkInterfaces/{networkInterfaceName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/networkInterfaces/{networkInterfaceName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<NetworkInterfacesInner>> getByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<NetworkInterfacesInner>> getByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("networkInterfaceName") String networkInterfaceName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Put(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/networkInterfaces/{networkInterfaceName}")
-        @ExpectedResponses({200, 201})
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/networkInterfaces/{networkInterfaceName}")
+        @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("networkInterfaceName") String networkInterfaceName,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") NetworkInterfacesInner networkInterfaces,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Delete(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/networkInterfaces/{networkInterfaceName}")
-        @ExpectedResponses({202, 204})
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/networkInterfaces/{networkInterfaceName}")
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("networkInterfaceName") String networkInterfaceName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Patch(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/networkInterfaces/{networkInterfaceName}")
-        @ExpectedResponses({200, 202})
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/networkInterfaces/{networkInterfaceName}")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> update(
-            @HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("networkInterfaceName") String networkInterfaceName,
             @QueryParam("api-version") String apiVersion,
             @BodyParam("application/json") NetworkInterfacesUpdateRequest networkInterfaces,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/networkInterfaces")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureStackHCI/networkInterfaces")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<NetworkInterfacesListResult>> listByResourceGroup(
-            @HostParam("$host") String endpoint,
+        Mono<Response<NetworkInterfacesListResult>> listByResourceGroup(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.AzureStackHCI/networkInterfaces")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<NetworkInterfacesListResult>> list(
-            @HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<NetworkInterfacesListResult>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NetworkInterfacesListResult>> listNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<NetworkInterfacesListResult>> listAllNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * Gets a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -182,19 +161,15 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return a network interface along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NetworkInterfacesInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String networkInterfaceName) {
+    private Mono<Response<NetworkInterfacesInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String networkInterfaceName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -207,22 +182,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .getByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            networkInterfaceName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+                context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                    resourceGroupName, networkInterfaceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param context The context to associate with this operation.
@@ -232,19 +199,15 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return a network interface along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<NetworkInterfacesInner>> getByResourceGroupWithResponseAsync(
-        String resourceGroupName, String networkInterfaceName, Context context) {
+    private Mono<Response<NetworkInterfacesInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+        String networkInterfaceName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -256,20 +219,13 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                networkInterfaceName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            networkInterfaceName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * Gets a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -278,15 +234,15 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return a network interface on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NetworkInterfacesInner> getByResourceGroupAsync(
-        String resourceGroupName, String networkInterfaceName) {
+    private Mono<NetworkInterfacesInner> getByResourceGroupAsync(String resourceGroupName,
+        String networkInterfaceName) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, networkInterfaceName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param context The context to associate with this operation.
@@ -296,14 +252,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return a network interface along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<NetworkInterfacesInner> getByResourceGroupWithResponse(
-        String resourceGroupName, String networkInterfaceName, Context context) {
+    public Response<NetworkInterfacesInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String networkInterfaceName, Context context) {
         return getByResourceGroupWithResponseAsync(resourceGroupName, networkInterfaceName, context).block();
     }
 
     /**
      * Gets a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -319,30 +275,26 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the network interface resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the network interface resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName, String networkInterfaceName, NetworkInterfacesInner networkInterfaces) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String networkInterfaceName, NetworkInterfacesInner networkInterfaces) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -360,25 +312,16 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .createOrUpdate(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            networkInterfaceName,
-                            this.client.getApiVersion(),
-                            networkInterfaces,
-                            accept,
-                            context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, networkInterfaceName, this.client.getApiVersion(), networkInterfaces, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -386,26 +329,19 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the network interface resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the network interface resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesInner networkInterfaces,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String networkInterfaceName, NetworkInterfacesInner networkInterfaces, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -423,22 +359,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .createOrUpdate(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                networkInterfaceName,
-                this.client.getApiVersion(),
-                networkInterfaces,
-                accept,
-                context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            networkInterfaceName, this.client.getApiVersion(), networkInterfaces, accept, context);
     }
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -450,22 +378,17 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginCreateOrUpdateAsync(
         String resourceGroupName, String networkInterfaceName, NetworkInterfacesInner networkInterfaces) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, networkInterfaceName, networkInterfaces);
-        return this
-            .client
-            .<NetworkInterfacesInner, NetworkInterfacesInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                NetworkInterfacesInner.class,
-                NetworkInterfacesInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, networkInterfaceName, networkInterfaces);
+        return this.client.<NetworkInterfacesInner, NetworkInterfacesInner>getLroResult(mono,
+            this.client.getHttpPipeline(), NetworkInterfacesInner.class, NetworkInterfacesInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -477,27 +400,19 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginCreateOrUpdateAsync(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesInner networkInterfaces,
+        String resourceGroupName, String networkInterfaceName, NetworkInterfacesInner networkInterfaces,
         Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            createOrUpdateWithResponseAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context);
-        return this
-            .client
-            .<NetworkInterfacesInner, NetworkInterfacesInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                NetworkInterfacesInner.class,
-                NetworkInterfacesInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context);
+        return this.client.<NetworkInterfacesInner, NetworkInterfacesInner>getLroResult(mono,
+            this.client.getHttpPipeline(), NetworkInterfacesInner.class, NetworkInterfacesInner.class, context);
     }
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -509,15 +424,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginCreateOrUpdate(
         String resourceGroupName, String networkInterfaceName, NetworkInterfacesInner networkInterfaces) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces)
+        return this.beginCreateOrUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces)
             .getSyncPoller();
     }
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -529,19 +443,16 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginCreateOrUpdate(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesInner networkInterfaces,
+        String resourceGroupName, String networkInterfaceName, NetworkInterfacesInner networkInterfaces,
         Context context) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context)
+        return this.beginCreateOrUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context)
             .getSyncPoller();
     }
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -551,17 +462,16 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the network interface resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NetworkInterfacesInner> createOrUpdateAsync(
-        String resourceGroupName, String networkInterfaceName, NetworkInterfacesInner networkInterfaces) {
-        return beginCreateOrUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces)
-            .last()
+    private Mono<NetworkInterfacesInner> createOrUpdateAsync(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesInner networkInterfaces) {
+        return beginCreateOrUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -572,20 +482,16 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the network interface resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NetworkInterfacesInner> createOrUpdateAsync(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesInner networkInterfaces,
-        Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context)
-            .last()
+    private Mono<NetworkInterfacesInner> createOrUpdateAsync(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesInner networkInterfaces, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -595,15 +501,15 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public NetworkInterfacesInner createOrUpdate(
-        String resourceGroupName, String networkInterfaceName, NetworkInterfacesInner networkInterfaces) {
+    public NetworkInterfacesInner createOrUpdate(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesInner networkInterfaces) {
         return createOrUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces).block();
     }
 
     /**
      * The operation to create or update a network interface. Please note some properties can be set only during network
      * interface creation.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource definition.
@@ -614,17 +520,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public NetworkInterfacesInner createOrUpdate(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesInner networkInterfaces,
-        Context context) {
+    public NetworkInterfacesInner createOrUpdate(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesInner networkInterfaces, Context context) {
         return createOrUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context).block();
     }
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -633,19 +536,15 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String networkInterfaceName) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String networkInterfaceName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -657,23 +556,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .delete(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            networkInterfaceName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, networkInterfaceName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param context The context to associate with this operation.
@@ -683,19 +573,15 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(
-        String resourceGroupName, String networkInterfaceName, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> deleteWithResponseAsync(String resourceGroupName,
+        String networkInterfaceName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -707,20 +593,13 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .delete(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                networkInterfaceName,
-                this.client.getApiVersion(),
-                accept,
-                context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            networkInterfaceName, this.client.getApiVersion(), accept, context);
     }
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -731,15 +610,13 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String networkInterfaceName) {
         Mono<Response<Flux<ByteBuffer>>> mono = deleteWithResponseAsync(resourceGroupName, networkInterfaceName);
-        return this
-            .client
-            .<Void, Void>getLroResult(
-                mono, this.client.getHttpPipeline(), Void.class, Void.class, this.client.getContext());
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param context The context to associate with this operation.
@@ -749,19 +626,18 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(
-        String resourceGroupName, String networkInterfaceName, Context context) {
+    private PollerFlux<PollResult<Void>, Void> beginDeleteAsync(String resourceGroupName, String networkInterfaceName,
+        Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            deleteWithResponseAsync(resourceGroupName, networkInterfaceName, context);
-        return this
-            .client
-            .<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = deleteWithResponseAsync(resourceGroupName, networkInterfaceName, context);
+        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
+            context);
     }
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -776,7 +652,7 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param context The context to associate with this operation.
@@ -786,14 +662,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String networkInterfaceName, Context context) {
+    public SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String networkInterfaceName,
+        Context context) {
         return this.beginDeleteAsync(resourceGroupName, networkInterfaceName, context).getSyncPoller();
     }
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -803,14 +679,13 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String networkInterfaceName) {
-        return beginDeleteAsync(resourceGroupName, networkInterfaceName)
-            .last()
+        return beginDeleteAsync(resourceGroupName, networkInterfaceName).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param context The context to associate with this operation.
@@ -821,14 +696,13 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Void> deleteAsync(String resourceGroupName, String networkInterfaceName, Context context) {
-        return beginDeleteAsync(resourceGroupName, networkInterfaceName, context)
-            .last()
+        return beginDeleteAsync(resourceGroupName, networkInterfaceName, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -842,7 +716,7 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
 
     /**
      * The operation to delete a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param context The context to associate with this operation.
@@ -857,30 +731,26 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the network interface resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the network interface resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName, String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -899,23 +769,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
         final String accept = "application/json";
         return FluxUtil
             .withContext(
-                context ->
-                    service
-                        .update(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            networkInterfaceName,
-                            this.client.getApiVersion(),
-                            networkInterfaces,
-                            accept,
-                            context))
+                context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    networkInterfaceName, this.client.getApiVersion(), networkInterfaces, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -923,26 +784,19 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the network interface resource definition along with {@link Response} on successful completion of {@link
-     *     Mono}.
+     * @return the network interface resource definition along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesUpdateRequest networkInterfaces,
-        Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> updateWithResponseAsync(String resourceGroupName,
+        String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -960,21 +814,13 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .update(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                networkInterfaceName,
-                this.client.getApiVersion(),
-                networkInterfaces,
-                accept,
-                context);
+        return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            networkInterfaceName, this.client.getApiVersion(), networkInterfaces, accept, context);
     }
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -986,21 +832,16 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginUpdateAsync(
         String resourceGroupName, String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces) {
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, networkInterfaceName, networkInterfaces);
-        return this
-            .client
-            .<NetworkInterfacesInner, NetworkInterfacesInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                NetworkInterfacesInner.class,
-                NetworkInterfacesInner.class,
-                this.client.getContext());
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, networkInterfaceName, networkInterfaces);
+        return this.client.<NetworkInterfacesInner, NetworkInterfacesInner>getLroResult(mono,
+            this.client.getHttpPipeline(), NetworkInterfacesInner.class, NetworkInterfacesInner.class,
+            this.client.getContext());
     }
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -1012,26 +853,18 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     private PollerFlux<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginUpdateAsync(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesUpdateRequest networkInterfaces,
+        String resourceGroupName, String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces,
         Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            updateWithResponseAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context);
-        return this
-            .client
-            .<NetworkInterfacesInner, NetworkInterfacesInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                NetworkInterfacesInner.class,
-                NetworkInterfacesInner.class,
-                context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = updateWithResponseAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context);
+        return this.client.<NetworkInterfacesInner, NetworkInterfacesInner>getLroResult(mono,
+            this.client.getHttpPipeline(), NetworkInterfacesInner.class, NetworkInterfacesInner.class, context);
     }
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -1041,14 +874,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the {@link SyncPoller} for polling of the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginUpdate(
-        String resourceGroupName, String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces) {
+    public SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginUpdate(String resourceGroupName,
+        String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces) {
         return this.beginUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces).getSyncPoller();
     }
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -1059,19 +892,15 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the {@link SyncPoller} for polling of the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginUpdate(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesUpdateRequest networkInterfaces,
-        Context context) {
-        return this
-            .beginUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context)
+    public SyncPoller<PollResult<NetworkInterfacesInner>, NetworkInterfacesInner> beginUpdate(String resourceGroupName,
+        String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces, Context context) {
+        return this.beginUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context)
             .getSyncPoller();
     }
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -1081,16 +910,15 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the network interface resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NetworkInterfacesInner> updateAsync(
-        String resourceGroupName, String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces) {
-        return beginUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces)
-            .last()
+    private Mono<NetworkInterfacesInner> updateAsync(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesUpdateRequest networkInterfaces) {
+        return beginUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -1101,19 +929,15 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the network interface resource definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<NetworkInterfacesInner> updateAsync(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesUpdateRequest networkInterfaces,
-        Context context) {
-        return beginUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context)
-            .last()
+    private Mono<NetworkInterfacesInner> updateAsync(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesUpdateRequest networkInterfaces, Context context) {
+        return beginUpdateAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -1123,14 +947,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public NetworkInterfacesInner update(
-        String resourceGroupName, String networkInterfaceName, NetworkInterfacesUpdateRequest networkInterfaces) {
+    public NetworkInterfacesInner update(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesUpdateRequest networkInterfaces) {
         return updateAsync(resourceGroupName, networkInterfaceName, networkInterfaces).block();
     }
 
     /**
      * The operation to update a network interface.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param networkInterfaceName Name of the network interface.
      * @param networkInterfaces The network interface resource patch definition.
@@ -1141,18 +965,15 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the network interface resource definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public NetworkInterfacesInner update(
-        String resourceGroupName,
-        String networkInterfaceName,
-        NetworkInterfacesUpdateRequest networkInterfaces,
-        Context context) {
+    public NetworkInterfacesInner update(String resourceGroupName, String networkInterfaceName,
+        NetworkInterfacesUpdateRequest networkInterfaces, Context context) {
         return updateAsync(resourceGroupName, networkInterfaceName, networkInterfaces, context).block();
     }
 
     /**
      * Lists all of the network interfaces in the specified resource group. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1162,16 +983,12 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NetworkInterfacesInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1179,32 +996,17 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByResourceGroup(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<NetworkInterfacesInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByResourceGroup(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, this.client.getApiVersion(), accept, context))
+            .<PagedResponse<NetworkInterfacesInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists all of the network interfaces in the specified resource group. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1213,19 +1015,15 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<NetworkInterfacesInner>> listByResourceGroupSinglePageAsync(
-        String resourceGroupName, Context context) {
+    private Mono<PagedResponse<NetworkInterfacesInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -1234,28 +1032,16 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByResourceGroup(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                this.client.getApiVersion(),
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByResourceGroup(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                this.client.getApiVersion(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists all of the network interfaces in the specified resource group. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1264,14 +1050,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NetworkInterfacesInner> listByResourceGroupAsync(String resourceGroupName) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName), nextLink -> listNextSinglePageAsync(nextLink));
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName),
+            nextLink -> listNextSinglePageAsync(nextLink));
     }
 
     /**
      * Lists all of the network interfaces in the specified resource group. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1281,15 +1067,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NetworkInterfacesInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
-        return new PagedFlux<>(
-            () -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
+        return new PagedFlux<>(() -> listByResourceGroupSinglePageAsync(resourceGroupName, context),
             nextLink -> listNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists all of the network interfaces in the specified resource group. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1304,7 +1089,7 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     /**
      * Lists all of the network interfaces in the specified resource group. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -1320,7 +1105,7 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     /**
      * Lists all of the network interfaces in the specified subscription. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response body along with {@link PagedResponse} on successful completion of {@link Mono}.
@@ -1328,44 +1113,26 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NetworkInterfacesInner>> listSinglePageAsync() {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .list(
-                            this.client.getEndpoint(),
-                            this.client.getSubscriptionId(),
-                            this.client.getApiVersion(),
-                            accept,
-                            context))
-            .<PagedResponse<NetworkInterfacesInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                this.client.getApiVersion(), accept, context))
+            .<PagedResponse<NetworkInterfacesInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Lists all of the network interfaces in the specified subscription. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1375,41 +1142,26 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<NetworkInterfacesInner>> listSinglePageAsync(Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(
-                this.client.getEndpoint(),
-                this.client.getSubscriptionId(),
-                this.client.getApiVersion(),
-                accept,
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), this.client.getApiVersion(), accept,
                 context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Lists all of the network interfaces in the specified subscription. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedFlux}.
@@ -1422,7 +1174,7 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     /**
      * Lists all of the network interfaces in the specified subscription. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1431,14 +1183,14 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<NetworkInterfacesInner> listAsync(Context context) {
-        return new PagedFlux<>(
-            () -> listSinglePageAsync(context), nextLink -> listAllNextSinglePageAsync(nextLink, context));
+        return new PagedFlux<>(() -> listSinglePageAsync(context),
+            nextLink -> listAllNextSinglePageAsync(nextLink, context));
     }
 
     /**
      * Lists all of the network interfaces in the specified subscription. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the paginated response with {@link PagedIterable}.
@@ -1451,7 +1203,7 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
     /**
      * Lists all of the network interfaces in the specified subscription. Use the nextLink property in the response to
      * get the next page of network interfaces.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1465,9 +1217,10 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1479,31 +1232,22 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<NetworkInterfacesInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+        return FluxUtil.withContext(context -> service.listNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<NetworkInterfacesInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1516,31 +1260,22 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -1552,31 +1287,23 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listAllNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<NetworkInterfacesInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<NetworkInterfacesInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -1589,23 +1316,13 @@ public final class NetworkInterfacesOperationsClientImpl implements NetworkInter
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listAllNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listAllNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

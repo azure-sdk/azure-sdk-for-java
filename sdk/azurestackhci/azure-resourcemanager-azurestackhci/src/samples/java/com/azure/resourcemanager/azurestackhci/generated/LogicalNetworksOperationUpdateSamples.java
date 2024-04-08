@@ -8,22 +8,23 @@ import com.azure.resourcemanager.azurestackhci.models.LogicalNetworks;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for LogicalNetworksOperation Update. */
+/**
+ * Samples for LogicalNetworksOperation Update.
+ */
 public final class LogicalNetworksOperationUpdateSamples {
     /*
-     * x-ms-original-file: specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/preview/2023-09-01-preview/examples/UpdateLogicalNetwork.json
+     * x-ms-original-file:
+     * specification/azurestackhci/resource-manager/Microsoft.AzureStackHCI/stable/2024-01-01/examples/
+     * UpdateLogicalNetwork.json
      */
     /**
      * Sample code: UpdateLogicalNetwork.
-     *
+     * 
      * @param manager Entry point to AzureStackHciManager.
      */
     public static void updateLogicalNetwork(com.azure.resourcemanager.azurestackhci.AzureStackHciManager manager) {
-        LogicalNetworks resource =
-            manager
-                .logicalNetworksOperations()
-                .getByResourceGroupWithResponse("test-rg", "test-lnet", com.azure.core.util.Context.NONE)
-                .getValue();
+        LogicalNetworks resource = manager.logicalNetworksOperations()
+            .getByResourceGroupWithResponse("test-rg", "test-lnet", com.azure.core.util.Context.NONE).getValue();
         resource.update().withTags(mapOf("additionalProperties", "sample")).apply();
     }
 
