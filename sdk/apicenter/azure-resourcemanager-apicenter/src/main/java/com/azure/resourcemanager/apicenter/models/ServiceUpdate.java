@@ -27,6 +27,12 @@ public final class ServiceUpdate {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
+    /*
+     * The updatable properties of the Service.
+     */
+    @JsonProperty(value = "properties")
+    private ServiceUpdateProperties properties;
+
     /**
      * Creates an instance of ServiceUpdate class.
      */
@@ -74,6 +80,26 @@ public final class ServiceUpdate {
     }
 
     /**
+     * Get the properties property: The updatable properties of the Service.
+     * 
+     * @return the properties value.
+     */
+    public ServiceUpdateProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: The updatable properties of the Service.
+     * 
+     * @param properties the properties value to set.
+     * @return the ServiceUpdate object itself.
+     */
+    public ServiceUpdate withProperties(ServiceUpdateProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -81,6 +107,9 @@ public final class ServiceUpdate {
     public void validate() {
         if (identity() != null) {
             identity().validate();
+        }
+        if (properties() != null) {
+            properties().validate();
         }
     }
 }
