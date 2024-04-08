@@ -5,20 +5,21 @@
 package com.azure.resourcemanager.apicenter.generated;
 
 /**
- * Samples for Apis CreateOrUpdate.
+ * Samples for DeletedServices Delete.
  */
-public final class ApisCreateOrUpdateSamples {
+public final class DeletedServicesDeleteSamples {
     /*
      * x-ms-original-file:
      * specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/
-     * Apis_CreateOrUpdate.json
+     * DeletedServices_Delete.json
      */
     /**
-     * Sample code: Apis_CreateOrUpdate.
+     * Sample code: DeletedServices_Delete.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void apisCreateOrUpdate(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.apis().define("echo-api").withExistingWorkspace("contoso-resources", "contoso", "default").create();
+    public static void deletedServicesDelete(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+        manager.deletedServices().deleteByResourceGroupWithResponse("contoso-resources", "contoso",
+            com.azure.core.util.Context.NONE);
     }
 }
