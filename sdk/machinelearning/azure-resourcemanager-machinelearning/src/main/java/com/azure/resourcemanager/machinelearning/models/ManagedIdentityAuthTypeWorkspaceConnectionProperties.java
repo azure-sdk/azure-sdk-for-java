@@ -8,8 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
 
-/** The ManagedIdentityAuthTypeWorkspaceConnectionProperties model. */
+/**
+ * The ManagedIdentityAuthTypeWorkspaceConnectionProperties model.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
 @JsonTypeName("ManagedIdentity")
 @Fluent
@@ -20,13 +25,15 @@ public final class ManagedIdentityAuthTypeWorkspaceConnectionProperties extends 
     @JsonProperty(value = "credentials")
     private WorkspaceConnectionManagedIdentity credentials;
 
-    /** Creates an instance of ManagedIdentityAuthTypeWorkspaceConnectionProperties class. */
+    /**
+     * Creates an instance of ManagedIdentityAuthTypeWorkspaceConnectionProperties class.
+     */
     public ManagedIdentityAuthTypeWorkspaceConnectionProperties() {
     }
 
     /**
      * Get the credentials property: The credentials property.
-     *
+     * 
      * @return the credentials value.
      */
     public WorkspaceConnectionManagedIdentity credentials() {
@@ -35,38 +42,82 @@ public final class ManagedIdentityAuthTypeWorkspaceConnectionProperties extends 
 
     /**
      * Set the credentials property: The credentials property.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the ManagedIdentityAuthTypeWorkspaceConnectionProperties object itself.
      */
-    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withCredentials(
-        WorkspaceConnectionManagedIdentity credentials) {
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties
+        withCredentials(WorkspaceConnectionManagedIdentity credentials) {
         this.credentials = credentials;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedIdentityAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withExpiryTime(OffsetDateTime expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withIsSharedToAll(Boolean isSharedToAll) {
+        super.withIsSharedToAll(isSharedToAll);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedIdentityAuthTypeWorkspaceConnectionProperties withTarget(String target) {
         super.withTarget(target);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withMetadata(Map<String, String> metadata) {
+        super.withMetadata(metadata);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedIdentityAuthTypeWorkspaceConnectionProperties withSharedUserList(List<String> sharedUserList) {
+        super.withSharedUserList(sharedUserList);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedIdentityAuthTypeWorkspaceConnectionProperties withValue(String value) {
         super.withValue(value);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedIdentityAuthTypeWorkspaceConnectionProperties withValueFormat(ValueFormat valueFormat) {
         super.withValueFormat(valueFormat);
@@ -75,7 +126,7 @@ public final class ManagedIdentityAuthTypeWorkspaceConnectionProperties extends 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

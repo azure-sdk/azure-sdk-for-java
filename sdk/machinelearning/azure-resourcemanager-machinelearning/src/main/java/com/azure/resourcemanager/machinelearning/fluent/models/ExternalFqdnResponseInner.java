@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.models.FqdnEndpoints;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ExternalFqdnResponse model. */
+/**
+ * The ExternalFqdnResponse model.
+ */
 @Fluent
 public final class ExternalFqdnResponseInner {
     /*
@@ -18,13 +20,15 @@ public final class ExternalFqdnResponseInner {
     @JsonProperty(value = "value")
     private List<FqdnEndpoints> value;
 
-    /** Creates an instance of ExternalFqdnResponseInner class. */
+    /**
+     * Creates an instance of ExternalFqdnResponseInner class.
+     */
     public ExternalFqdnResponseInner() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<FqdnEndpoints> value() {
@@ -33,7 +37,7 @@ public final class ExternalFqdnResponseInner {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the ExternalFqdnResponseInner object itself.
      */
@@ -44,7 +48,7 @@ public final class ExternalFqdnResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

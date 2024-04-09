@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Environment information. */
+/**
+ * Environment information.
+ */
 @Fluent
 public final class ComputeInstanceEnvironmentInfo {
     /*
@@ -22,13 +24,15 @@ public final class ComputeInstanceEnvironmentInfo {
     @JsonProperty(value = "version")
     private String version;
 
-    /** Creates an instance of ComputeInstanceEnvironmentInfo class. */
+    /**
+     * Creates an instance of ComputeInstanceEnvironmentInfo class.
+     */
     public ComputeInstanceEnvironmentInfo() {
     }
 
     /**
      * Get the name property: name of environment.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class ComputeInstanceEnvironmentInfo {
 
     /**
      * Set the name property: name of environment.
-     *
+     * 
      * @param name the name value to set.
      * @return the ComputeInstanceEnvironmentInfo object itself.
      */
@@ -48,7 +52,7 @@ public final class ComputeInstanceEnvironmentInfo {
 
     /**
      * Get the version property: version of environment.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -57,7 +61,7 @@ public final class ComputeInstanceEnvironmentInfo {
 
     /**
      * Set the version property: version of environment.
-     *
+     * 
      * @param version the version value to set.
      * @return the ComputeInstanceEnvironmentInfo object itself.
      */
@@ -68,7 +72,7 @@ public final class ComputeInstanceEnvironmentInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,18 +8,22 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Empty/none datastore credentials. */
+/**
+ * Empty/none datastore credentials.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "credentialsType")
 @JsonTypeName("None")
 @Immutable
 public final class NoneDatastoreCredentials extends DatastoreCredentials {
-    /** Creates an instance of NoneDatastoreCredentials class. */
+    /**
+     * Creates an instance of NoneDatastoreCredentials class.
+     */
     public NoneDatastoreCredentials() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

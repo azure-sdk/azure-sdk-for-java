@@ -12,8 +12,7 @@ public final class ComputeSecretsImpl implements ComputeSecrets {
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
 
-    ComputeSecretsImpl(
-        ComputeSecretsInner innerObject,
+    ComputeSecretsImpl(ComputeSecretsInner innerObject,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

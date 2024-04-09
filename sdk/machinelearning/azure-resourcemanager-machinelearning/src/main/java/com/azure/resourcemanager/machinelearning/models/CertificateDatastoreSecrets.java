@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Datastore certificate secrets. */
+/**
+ * Datastore certificate secrets.
+ */
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "secretsType")
 @JsonTypeName("Certificate")
 @Fluent
@@ -21,13 +23,15 @@ public final class CertificateDatastoreSecrets extends DatastoreSecretsInner {
     @JsonProperty(value = "certificate")
     private String certificate;
 
-    /** Creates an instance of CertificateDatastoreSecrets class. */
+    /**
+     * Creates an instance of CertificateDatastoreSecrets class.
+     */
     public CertificateDatastoreSecrets() {
     }
 
     /**
      * Get the certificate property: Service principal certificate.
-     *
+     * 
      * @return the certificate value.
      */
     public String certificate() {
@@ -36,7 +40,7 @@ public final class CertificateDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Set the certificate property: Service principal certificate.
-     *
+     * 
      * @param certificate the certificate value to set.
      * @return the CertificateDatastoreSecrets object itself.
      */
@@ -47,7 +51,7 @@ public final class CertificateDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

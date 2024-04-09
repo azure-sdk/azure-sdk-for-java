@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The WorkspaceConnectionSharedAccessSignature model. */
+/**
+ * The WorkspaceConnectionSharedAccessSignature model.
+ */
 @Fluent
 public final class WorkspaceConnectionSharedAccessSignature {
     /*
@@ -16,13 +18,15 @@ public final class WorkspaceConnectionSharedAccessSignature {
     @JsonProperty(value = "sas")
     private String sas;
 
-    /** Creates an instance of WorkspaceConnectionSharedAccessSignature class. */
+    /**
+     * Creates an instance of WorkspaceConnectionSharedAccessSignature class.
+     */
     public WorkspaceConnectionSharedAccessSignature() {
     }
 
     /**
      * Get the sas property: The sas property.
-     *
+     * 
      * @return the sas value.
      */
     public String sas() {
@@ -31,7 +35,7 @@ public final class WorkspaceConnectionSharedAccessSignature {
 
     /**
      * Set the sas property: The sas property.
-     *
+     * 
      * @param sas the sas value to set.
      * @return the WorkspaceConnectionSharedAccessSignature object itself.
      */
@@ -42,7 +46,7 @@ public final class WorkspaceConnectionSharedAccessSignature {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

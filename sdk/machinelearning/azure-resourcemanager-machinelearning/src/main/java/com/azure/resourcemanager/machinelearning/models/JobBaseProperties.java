@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Base definition for a job. */
+/**
+ * Base definition for a job.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
     include = JsonTypeInfo.As.PROPERTY,
@@ -23,8 +25,8 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "AutoML", value = AutoMLJob.class),
     @JsonSubTypes.Type(name = "Command", value = CommandJob.class),
     @JsonSubTypes.Type(name = "Pipeline", value = PipelineJob.class),
-    @JsonSubTypes.Type(name = "Sweep", value = SweepJob.class)
-})
+    @JsonSubTypes.Type(name = "Spark", value = SparkJob.class),
+    @JsonSubTypes.Type(name = "Sweep", value = SweepJob.class) })
 @Fluent
 public class JobBaseProperties extends ResourceBase {
     /*
@@ -65,6 +67,12 @@ public class JobBaseProperties extends ResourceBase {
     private Boolean isArchived;
 
     /*
+     * Notification setting for the job
+     */
+    @JsonProperty(value = "notificationSetting")
+    private NotificationSetting notificationSetting;
+
+    /*
      * List of JobEndpoints.
      * For local jobs, a job endpoint will have an endpoint value of FileStreamObject.
      */
@@ -78,13 +86,15 @@ public class JobBaseProperties extends ResourceBase {
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private JobStatus status;
 
-    /** Creates an instance of JobBaseProperties class. */
+    /**
+     * Creates an instance of JobBaseProperties class.
+     */
     public JobBaseProperties() {
     }
 
     /**
      * Get the componentId property: ARM resource ID of the component resource.
-     *
+     * 
      * @return the componentId value.
      */
     public String componentId() {
@@ -93,7 +103,7 @@ public class JobBaseProperties extends ResourceBase {
 
     /**
      * Set the componentId property: ARM resource ID of the component resource.
-     *
+     * 
      * @param componentId the componentId value to set.
      * @return the JobBaseProperties object itself.
      */
@@ -104,7 +114,7 @@ public class JobBaseProperties extends ResourceBase {
 
     /**
      * Get the computeId property: ARM resource ID of the compute resource.
-     *
+     * 
      * @return the computeId value.
      */
     public String computeId() {
@@ -113,7 +123,7 @@ public class JobBaseProperties extends ResourceBase {
 
     /**
      * Set the computeId property: ARM resource ID of the compute resource.
-     *
+     * 
      * @param computeId the computeId value to set.
      * @return the JobBaseProperties object itself.
      */
@@ -124,7 +134,7 @@ public class JobBaseProperties extends ResourceBase {
 
     /**
      * Get the displayName property: Display name of job.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -133,7 +143,7 @@ public class JobBaseProperties extends ResourceBase {
 
     /**
      * Set the displayName property: Display name of job.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the JobBaseProperties object itself.
      */
@@ -145,7 +155,7 @@ public class JobBaseProperties extends ResourceBase {
     /**
      * Get the experimentName property: The name of the experiment the job belongs to. If not set, the job is placed in
      * the "Default" experiment.
-     *
+     * 
      * @return the experimentName value.
      */
     public String experimentName() {
@@ -155,7 +165,7 @@ public class JobBaseProperties extends ResourceBase {
     /**
      * Set the experimentName property: The name of the experiment the job belongs to. If not set, the job is placed in
      * the "Default" experiment.
-     *
+     * 
      * @param experimentName the experimentName value to set.
      * @return the JobBaseProperties object itself.
      */
@@ -166,8 +176,9 @@ public class JobBaseProperties extends ResourceBase {
 
     /**
      * Get the identity property: Identity configuration. If set, this should be one of AmlToken, ManagedIdentity,
-     * UserIdentity or null. Defaults to AmlToken if null.
-     *
+     * UserIdentity or null.
+     * Defaults to AmlToken if null.
+     * 
      * @return the identity value.
      */
     public IdentityConfiguration identity() {
@@ -176,8 +187,9 @@ public class JobBaseProperties extends ResourceBase {
 
     /**
      * Set the identity property: Identity configuration. If set, this should be one of AmlToken, ManagedIdentity,
-     * UserIdentity or null. Defaults to AmlToken if null.
-     *
+     * UserIdentity or null.
+     * Defaults to AmlToken if null.
+     * 
      * @param identity the identity value to set.
      * @return the JobBaseProperties object itself.
      */
@@ -188,7 +200,7 @@ public class JobBaseProperties extends ResourceBase {
 
     /**
      * Get the isArchived property: Is the asset archived?.
-     *
+     * 
      * @return the isArchived value.
      */
     public Boolean isArchived() {
@@ -197,7 +209,7 @@ public class JobBaseProperties extends ResourceBase {
 
     /**
      * Set the isArchived property: Is the asset archived?.
-     *
+     * 
      * @param isArchived the isArchived value to set.
      * @return the JobBaseProperties object itself.
      */
@@ -207,9 +219,29 @@ public class JobBaseProperties extends ResourceBase {
     }
 
     /**
-     * Get the services property: List of JobEndpoints. For local jobs, a job endpoint will have an endpoint value of
-     * FileStreamObject.
-     *
+     * Get the notificationSetting property: Notification setting for the job.
+     * 
+     * @return the notificationSetting value.
+     */
+    public NotificationSetting notificationSetting() {
+        return this.notificationSetting;
+    }
+
+    /**
+     * Set the notificationSetting property: Notification setting for the job.
+     * 
+     * @param notificationSetting the notificationSetting value to set.
+     * @return the JobBaseProperties object itself.
+     */
+    public JobBaseProperties withNotificationSetting(NotificationSetting notificationSetting) {
+        this.notificationSetting = notificationSetting;
+        return this;
+    }
+
+    /**
+     * Get the services property: List of JobEndpoints.
+     * For local jobs, a job endpoint will have an endpoint value of FileStreamObject.
+     * 
      * @return the services value.
      */
     public Map<String, JobService> services() {
@@ -217,9 +249,9 @@ public class JobBaseProperties extends ResourceBase {
     }
 
     /**
-     * Set the services property: List of JobEndpoints. For local jobs, a job endpoint will have an endpoint value of
-     * FileStreamObject.
-     *
+     * Set the services property: List of JobEndpoints.
+     * For local jobs, a job endpoint will have an endpoint value of FileStreamObject.
+     * 
      * @param services the services value to set.
      * @return the JobBaseProperties object itself.
      */
@@ -230,28 +262,34 @@ public class JobBaseProperties extends ResourceBase {
 
     /**
      * Get the status property: Status of the job.
-     *
+     * 
      * @return the status value.
      */
     public JobStatus status() {
         return this.status;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JobBaseProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JobBaseProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public JobBaseProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -260,7 +298,7 @@ public class JobBaseProperties extends ResourceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -269,15 +307,15 @@ public class JobBaseProperties extends ResourceBase {
         if (identity() != null) {
             identity().validate();
         }
+        if (notificationSetting() != null) {
+            notificationSetting().validate();
+        }
         if (services() != null) {
-            services()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            services().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }
