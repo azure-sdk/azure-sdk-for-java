@@ -10,7 +10,9 @@ import com.azure.resourcemanager.hybridcompute.fluent.models.LicenseProfileInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The List hybrid machine license profile operation response. */
+/**
+ * The List hybrid machine license profile operation response.
+ */
 @Fluent
 public final class LicenseProfilesListResult {
     /*
@@ -26,13 +28,15 @@ public final class LicenseProfilesListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of LicenseProfilesListResult class. */
+    /**
+     * Creates an instance of LicenseProfilesListResult class.
+     */
     public LicenseProfilesListResult() {
     }
 
     /**
      * Get the value property: The list of license profiles.
-     *
+     * 
      * @return the value value.
      */
     public List<LicenseProfileInner> value() {
@@ -41,7 +45,7 @@ public final class LicenseProfilesListResult {
 
     /**
      * Set the value property: The list of license profiles.
-     *
+     * 
      * @param value the value value to set.
      * @return the LicenseProfilesListResult object itself.
      */
@@ -51,9 +55,9 @@ public final class LicenseProfilesListResult {
     }
 
     /**
-     * Get the nextLink property: The URI to fetch the next page of Machines. Call ListNext() with this URI to fetch the
-     * next page of license profile.
-     *
+     * Get the nextLink property: The URI to fetch the next page of Machines. Call ListNext() with this URI to fetch
+     * the next page of license profile.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -61,9 +65,9 @@ public final class LicenseProfilesListResult {
     }
 
     /**
-     * Set the nextLink property: The URI to fetch the next page of Machines. Call ListNext() with this URI to fetch the
-     * next page of license profile.
-     *
+     * Set the nextLink property: The URI to fetch the next page of Machines. Call ListNext() with this URI to fetch
+     * the next page of license profile.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the LicenseProfilesListResult object itself.
      */
@@ -74,14 +78,13 @@ public final class LicenseProfilesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model LicenseProfilesListResult"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property value in model LicenseProfilesListResult"));
         } else {
             value().forEach(e -> e.validate());
         }

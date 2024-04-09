@@ -4,14 +4,18 @@
 
 package com.azure.resourcemanager.hybridcompute.generated;
 
-/** Samples for AgentVersion List. */
+/**
+ * Samples for AgentVersion List.
+ */
 public final class AgentVersionListSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-06-20-preview/examples/AgentVersions_Get.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-04-09-preview/examples/
+     * AgentVersions_Get.json
      */
     /**
      * Sample code: GET Agent Versions.
-     *
+     * 
      * @param manager Entry point to HybridComputeManager.
      */
     public static void gETAgentVersions(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {

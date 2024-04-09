@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for InstanceViewTypes. */
+/**
+ * Defines values for InstanceViewTypes.
+ */
 public final class InstanceViewTypes extends ExpandableStringEnum<InstanceViewTypes> {
-    /** Static value instanceView for InstanceViewTypes. */
+    /**
+     * Static value instanceView for InstanceViewTypes.
+     */
     public static final InstanceViewTypes INSTANCE_VIEW = fromString("instanceView");
 
     /**
      * Creates a new instance of InstanceViewTypes value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class InstanceViewTypes extends ExpandableStringEnum<InstanceViewTy
 
     /**
      * Creates or finds a InstanceViewTypes from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding InstanceViewTypes.
      */
@@ -35,7 +39,7 @@ public final class InstanceViewTypes extends ExpandableStringEnum<InstanceViewTy
 
     /**
      * Gets known InstanceViewTypes values.
-     *
+     * 
      * @return known InstanceViewTypes values.
      */
     public static Collection<InstanceViewTypes> values() {

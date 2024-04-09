@@ -7,41 +7,38 @@ package com.azure.resourcemanager.hybridcompute.generated;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for PrivateLinkScopes CreateOrUpdate. */
+/**
+ * Samples for PrivateLinkScopes CreateOrUpdate.
+ */
 public final class PrivateLinkScopesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-06-20-preview/examples/privateLinkScope/PrivateLinkScopes_Create.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-04-09-preview/examples/
+     * privateLinkScope/PrivateLinkScopes_Create.json
      */
     /**
      * Sample code: PrivateLinkScopeCreate.
-     *
+     * 
      * @param manager Entry point to HybridComputeManager.
      */
     public static void privateLinkScopeCreate(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
-        manager
-            .privateLinkScopes()
-            .define("my-privatelinkscope")
-            .withRegion("westus")
-            .withExistingResourceGroup("my-resource-group")
-            .create();
+        manager.privateLinkScopes().define("my-privatelinkscope").withRegion("westus")
+            .withExistingResourceGroup("my-resource-group").create();
     }
 
     /*
-     * x-ms-original-file: specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2023-06-20-preview/examples/privateLinkScope/PrivateLinkScopes_Update.json
+     * x-ms-original-file:
+     * specification/hybridcompute/resource-manager/Microsoft.HybridCompute/preview/2024-04-09-preview/examples/
+     * privateLinkScope/PrivateLinkScopes_Update.json
      */
     /**
      * Sample code: PrivateLinkScopeUpdate.
-     *
+     * 
      * @param manager Entry point to HybridComputeManager.
      */
     public static void privateLinkScopeUpdate(com.azure.resourcemanager.hybridcompute.HybridComputeManager manager) {
-        manager
-            .privateLinkScopes()
-            .define("my-privatelinkscope")
-            .withRegion("westus")
-            .withExistingResourceGroup("my-resource-group")
-            .withTags(mapOf("Tag1", "Value1"))
-            .create();
+        manager.privateLinkScopes().define("my-privatelinkscope").withRegion("westus")
+            .withExistingResourceGroup("my-resource-group").withTags(mapOf("Tag1", "Value1")).create();
     }
 
     // Use "Map.of" if available

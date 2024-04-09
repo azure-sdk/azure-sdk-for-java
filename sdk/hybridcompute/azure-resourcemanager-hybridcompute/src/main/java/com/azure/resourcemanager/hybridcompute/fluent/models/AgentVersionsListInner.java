@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes AgentVersions List. */
+/**
+ * Describes AgentVersions List.
+ */
 @Fluent
 public final class AgentVersionsListInner {
     /*
@@ -23,13 +25,15 @@ public final class AgentVersionsListInner {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of AgentVersionsListInner class. */
+    /**
+     * Creates an instance of AgentVersionsListInner class.
+     */
     public AgentVersionsListInner() {
     }
 
     /**
      * Get the value property: The list of available Agent Versions.
-     *
+     * 
      * @return the value value.
      */
     public List<AgentVersionInner> value() {
@@ -38,7 +42,7 @@ public final class AgentVersionsListInner {
 
     /**
      * Set the value property: The list of available Agent Versions.
-     *
+     * 
      * @param value the value value to set.
      * @return the AgentVersionsListInner object itself.
      */
@@ -49,7 +53,7 @@ public final class AgentVersionsListInner {
 
     /**
      * Get the nextLink property: The URI to fetch the next 10 available Agent Versions.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -58,7 +62,7 @@ public final class AgentVersionsListInner {
 
     /**
      * Set the nextLink property: The URI to fetch the next 10 available Agent Versions.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the AgentVersionsListInner object itself.
      */
@@ -69,7 +73,7 @@ public final class AgentVersionsListInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

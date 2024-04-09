@@ -14,7 +14,9 @@ import com.azure.resourcemanager.hybridcompute.models.VMGuestPatchRebootStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The result summary of an installation operation. */
+/**
+ * The result summary of an installation operation.
+ */
 @Immutable
 public final class MachineInstallPatchesResultInner {
     /*
@@ -109,7 +111,9 @@ public final class MachineInstallPatchesResultInner {
     @JsonProperty(value = "errorDetails", access = JsonProperty.Access.WRITE_ONLY)
     private ManagementError errorDetails;
 
-    /** Creates an instance of MachineInstallPatchesResultInner class. */
+    /**
+     * Creates an instance of MachineInstallPatchesResultInner class.
+     */
     public MachineInstallPatchesResultInner() {
     }
 
@@ -117,7 +121,7 @@ public final class MachineInstallPatchesResultInner {
      * Get the status property: The overall success or failure status of the operation. It remains "InProgress" until
      * the operation completes. At that point it will become "Failed", "Succeeded", "Unknown" or
      * "CompletedWithWarnings.".
-     *
+     * 
      * @return the status value.
      */
     public PatchOperationStatus status() {
@@ -126,7 +130,7 @@ public final class MachineInstallPatchesResultInner {
 
     /**
      * Get the installationActivityId property: The activity ID of the operation that produced this result.
-     *
+     * 
      * @return the installationActivityId value.
      */
     public String installationActivityId() {
@@ -135,7 +139,7 @@ public final class MachineInstallPatchesResultInner {
 
     /**
      * Get the rebootStatus property: The reboot state of the VM following completion of the operation.
-     *
+     * 
      * @return the rebootStatus value.
      */
     public VMGuestPatchRebootStatus rebootStatus() {
@@ -145,7 +149,7 @@ public final class MachineInstallPatchesResultInner {
     /**
      * Get the maintenanceWindowExceeded property: Whether the operation ran out of time before it completed all its
      * intended actions.
-     *
+     * 
      * @return the maintenanceWindowExceeded value.
      */
     public Boolean maintenanceWindowExceeded() {
@@ -153,9 +157,9 @@ public final class MachineInstallPatchesResultInner {
     }
 
     /**
-     * Get the excludedPatchCount property: The number of patches that were not installed due to the user blocking their
-     * installation.
-     *
+     * Get the excludedPatchCount property: The number of patches that were not installed due to the user blocking
+     * their installation.
+     * 
      * @return the excludedPatchCount value.
      */
     public Integer excludedPatchCount() {
@@ -165,7 +169,7 @@ public final class MachineInstallPatchesResultInner {
     /**
      * Get the notSelectedPatchCount property: The number of patches that were detected as available for install, but
      * did not meet the operation's criteria.
-     *
+     * 
      * @return the notSelectedPatchCount value.
      */
     public Integer notSelectedPatchCount() {
@@ -175,7 +179,7 @@ public final class MachineInstallPatchesResultInner {
     /**
      * Get the pendingPatchCount property: The number of patches that were identified as meeting the installation
      * criteria, but were not able to be installed. Typically this happens when maintenanceWindowExceeded == true.
-     *
+     * 
      * @return the pendingPatchCount value.
      */
     public Integer pendingPatchCount() {
@@ -184,7 +188,7 @@ public final class MachineInstallPatchesResultInner {
 
     /**
      * Get the installedPatchCount property: The number of patches successfully installed.
-     *
+     * 
      * @return the installedPatchCount value.
      */
     public Integer installedPatchCount() {
@@ -194,7 +198,7 @@ public final class MachineInstallPatchesResultInner {
     /**
      * Get the failedPatchCount property: The number of patches that could not be installed due to some issue. See
      * errors for details.
-     *
+     * 
      * @return the failedPatchCount value.
      */
     public Integer failedPatchCount() {
@@ -203,7 +207,7 @@ public final class MachineInstallPatchesResultInner {
 
     /**
      * Get the startDateTime property: The UTC timestamp when the operation began.
-     *
+     * 
      * @return the startDateTime value.
      */
     public OffsetDateTime startDateTime() {
@@ -212,7 +216,7 @@ public final class MachineInstallPatchesResultInner {
 
     /**
      * Get the lastModifiedDateTime property: The UTC timestamp when the operation finished.
-     *
+     * 
      * @return the lastModifiedDateTime value.
      */
     public OffsetDateTime lastModifiedDateTime() {
@@ -221,7 +225,7 @@ public final class MachineInstallPatchesResultInner {
 
     /**
      * Get the startedBy property: Indicates if operation was triggered by user or by platform.
-     *
+     * 
      * @return the startedBy value.
      */
     public PatchOperationStartedBy startedBy() {
@@ -230,7 +234,7 @@ public final class MachineInstallPatchesResultInner {
 
     /**
      * Get the patchServiceUsed property: Specifies the patch service used for the operation.
-     *
+     * 
      * @return the patchServiceUsed value.
      */
     public PatchServiceUsed patchServiceUsed() {
@@ -239,7 +243,7 @@ public final class MachineInstallPatchesResultInner {
 
     /**
      * Get the osType property: The operating system type of the machine.
-     *
+     * 
      * @return the osType value.
      */
     public OsType osType() {
@@ -249,7 +253,7 @@ public final class MachineInstallPatchesResultInner {
     /**
      * Get the errorDetails property: The errors that were encountered during execution of the operation. The details
      * array contains the list of them.
-     *
+     * 
      * @return the errorDetails value.
      */
     public ManagementError errorDetails() {
@@ -258,7 +262,7 @@ public final class MachineInstallPatchesResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
