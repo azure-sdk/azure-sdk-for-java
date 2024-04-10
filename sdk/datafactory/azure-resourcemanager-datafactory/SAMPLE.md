@@ -121,10 +121,6 @@
 - [Get](#managedvirtualnetworks_get)
 - [ListByFactory](#managedvirtualnetworks_listbyfactory)
 
-## Operations
-
-- [List](#operations_list)
-
 ## PipelineRuns
 
 - [Cancel](#pipelineruns_cancel)
@@ -395,6 +391,7 @@ public final class ChangeDataCaptureStopSamples {
 ### CredentialOperations_CreateOrUpdate
 
 ```java
+import com.azure.resourcemanager.datafactory.fluent.models.CredentialResourceInner;
 import com.azure.resourcemanager.datafactory.models.ManagedIdentityCredential;
 
 /**
@@ -412,11 +409,9 @@ public final class CredentialOperationsCreateOrUpdateSamples {
      * @param manager Entry point to DataFactoryManager.
      */
     public static void credentialsCreate(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
-        manager.credentialOperations().define("exampleCredential")
-            .withExistingFactory("exampleResourceGroup", "exampleFactoryName")
-            .withProperties(new ManagedIdentityCredential().withResourceId(
-                "/subscriptions/12345678-1234-1234-1234-12345678abc/resourcegroups/exampleResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/exampleUami"))
-            .create();
+        manager.credentialOperations().createOrUpdateWithResponse("exampleResourceGroup", "exampleFactoryName",
+            "exampleCredential", new CredentialResourceInner().withProperties(new ManagedIdentityCredential()), null,
+            com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2359,28 +2354,6 @@ public final class ManagedVirtualNetworksListByFactorySamples {
         managedVirtualNetworksListByFactory(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
         manager.managedVirtualNetworks().listByFactory("exampleResourceGroup", "exampleFactoryName",
             com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### Operations_List
-
-```java
-/**
- * Samples for Operations List.
- */
-public final class OperationsListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/datafactory/resource-manager/Microsoft.DataFactory/stable/2018-06-01/examples/Operations_List.json
-     */
-    /**
-     * Sample code: Operations_List.
-     * 
-     * @param manager Entry point to DataFactoryManager.
-     */
-    public static void operationsList(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
-        manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }
 ```
