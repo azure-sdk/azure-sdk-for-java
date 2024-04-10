@@ -30,11 +30,15 @@ import com.azure.resourcemanager.communication.implementation.DomainsImpl;
 import com.azure.resourcemanager.communication.implementation.EmailServicesImpl;
 import com.azure.resourcemanager.communication.implementation.OperationsImpl;
 import com.azure.resourcemanager.communication.implementation.SenderUsernamesImpl;
+import com.azure.resourcemanager.communication.implementation.SuppressionListAddressesImpl;
+import com.azure.resourcemanager.communication.implementation.SuppressionListsImpl;
 import com.azure.resourcemanager.communication.models.CommunicationServices;
 import com.azure.resourcemanager.communication.models.Domains;
 import com.azure.resourcemanager.communication.models.EmailServices;
 import com.azure.resourcemanager.communication.models.Operations;
 import com.azure.resourcemanager.communication.models.SenderUsernames;
+import com.azure.resourcemanager.communication.models.SuppressionListAddresses;
+import com.azure.resourcemanager.communication.models.SuppressionLists;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -56,6 +60,10 @@ public final class CommunicationManager {
     private EmailServices emailServices;
 
     private SenderUsernames senderUsernames;
+
+    private SuppressionLists suppressionLists;
+
+    private SuppressionListAddresses suppressionListAddresses;
 
     private final CommunicationServiceManagementClient clientObject;
 
@@ -216,7 +224,7 @@ public final class CommunicationManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.communication")
-                .append("/").append("2.1.0");
+                .append("/").append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -313,6 +321,31 @@ public final class CommunicationManager {
             this.senderUsernames = new SenderUsernamesImpl(clientObject.getSenderUsernames(), this);
         }
         return senderUsernames;
+    }
+
+    /**
+     * Gets the resource collection API of SuppressionLists. It manages SuppressionListResource.
+     * 
+     * @return Resource collection API of SuppressionLists.
+     */
+    public SuppressionLists suppressionLists() {
+        if (this.suppressionLists == null) {
+            this.suppressionLists = new SuppressionListsImpl(clientObject.getSuppressionLists(), this);
+        }
+        return suppressionLists;
+    }
+
+    /**
+     * Gets the resource collection API of SuppressionListAddresses. It manages SuppressionListAddressResource.
+     * 
+     * @return Resource collection API of SuppressionListAddresses.
+     */
+    public SuppressionListAddresses suppressionListAddresses() {
+        if (this.suppressionListAddresses == null) {
+            this.suppressionListAddresses
+                = new SuppressionListAddressesImpl(clientObject.getSuppressionListAddresses(), this);
+        }
+        return suppressionListAddresses;
     }
 
     /**

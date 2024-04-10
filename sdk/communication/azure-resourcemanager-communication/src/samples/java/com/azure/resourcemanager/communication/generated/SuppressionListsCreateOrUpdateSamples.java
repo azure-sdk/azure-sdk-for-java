@@ -5,23 +5,23 @@
 package com.azure.resourcemanager.communication.generated;
 
 /**
- * Samples for SenderUsernames CreateOrUpdate.
+ * Samples for SuppressionLists CreateOrUpdate.
  */
-public final class SenderUsernamesCreateOrUpdateSamples {
+public final class SuppressionListsCreateOrUpdateSamples {
     /*
      * x-ms-original-file:
      * specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/
-     * senderUsernames/createOrUpdate.json
+     * suppressionLists/createOrUpdateSuppressionList.json
      */
     /**
-     * Sample code: Create or update SenderUsernames resource.
+     * Sample code: CreateOrUpdate SuppressionLists resource.
      * 
      * @param manager Entry point to CommunicationManager.
      */
     public static void
-        createOrUpdateSenderUsernamesResource(com.azure.resourcemanager.communication.CommunicationManager manager) {
-        manager.senderUsernames().define("contosoNewsAlerts")
+        createOrUpdateSuppressionListsResource(com.azure.resourcemanager.communication.CommunicationManager manager) {
+        manager.suppressionLists().define("aaaa1111-bbbb-2222-3333-aaaa11112222")
             .withExistingDomain("contosoResourceGroup", "contosoEmailService", "contoso.com")
-            .withUsername("contosoNewsAlerts").withDisplayName("Contoso News Alerts").create();
+            .withListName("contosoNewsAlerts").create();
     }
 }
