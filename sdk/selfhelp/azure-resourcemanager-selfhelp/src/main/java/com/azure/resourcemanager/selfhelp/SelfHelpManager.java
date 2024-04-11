@@ -26,16 +26,24 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.selfhelp.fluent.HelpRP;
 import com.azure.resourcemanager.selfhelp.implementation.CheckNameAvailabilitiesImpl;
 import com.azure.resourcemanager.selfhelp.implementation.DiagnosticsImpl;
+import com.azure.resourcemanager.selfhelp.implementation.DiscoverySolutionNlpSubscriptionScopesImpl;
+import com.azure.resourcemanager.selfhelp.implementation.DiscoverySolutionNlpTenantScopesImpl;
 import com.azure.resourcemanager.selfhelp.implementation.DiscoverySolutionsImpl;
 import com.azure.resourcemanager.selfhelp.implementation.HelpRPBuilder;
 import com.azure.resourcemanager.selfhelp.implementation.OperationsImpl;
+import com.azure.resourcemanager.selfhelp.implementation.SimplifiedSolutionsImpl;
 import com.azure.resourcemanager.selfhelp.implementation.SolutionOperationsImpl;
+import com.azure.resourcemanager.selfhelp.implementation.SolutionSelfHelpsImpl;
 import com.azure.resourcemanager.selfhelp.implementation.TroubleshootersImpl;
 import com.azure.resourcemanager.selfhelp.models.CheckNameAvailabilities;
 import com.azure.resourcemanager.selfhelp.models.Diagnostics;
+import com.azure.resourcemanager.selfhelp.models.DiscoverySolutionNlpSubscriptionScopes;
+import com.azure.resourcemanager.selfhelp.models.DiscoverySolutionNlpTenantScopes;
 import com.azure.resourcemanager.selfhelp.models.DiscoverySolutions;
 import com.azure.resourcemanager.selfhelp.models.Operations;
+import com.azure.resourcemanager.selfhelp.models.SimplifiedSolutions;
 import com.azure.resourcemanager.selfhelp.models.SolutionOperations;
+import com.azure.resourcemanager.selfhelp.models.SolutionSelfHelps;
 import com.azure.resourcemanager.selfhelp.models.Troubleshooters;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -59,7 +67,15 @@ public final class SelfHelpManager {
 
     private SolutionOperations solutionOperations;
 
+    private SimplifiedSolutions simplifiedSolutions;
+
     private Troubleshooters troubleshooters;
+
+    private SolutionSelfHelps solutionSelfHelps;
+
+    private DiscoverySolutionNlpTenantScopes discoverySolutionNlpTenantScopes;
+
+    private DiscoverySolutionNlpSubscriptionScopes discoverySolutionNlpSubscriptionScopes;
 
     private final HelpRP clientObject;
 
@@ -68,7 +84,7 @@ public final class SelfHelpManager {
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject
             = new HelpRPBuilder().pipeline(httpPipeline).endpoint(profile.getEnvironment().getResourceManagerEndpoint())
-                .defaultPollInterval(defaultPollInterval).buildClient();
+                .subscriptionId(profile.getSubscriptionId()).defaultPollInterval(defaultPollInterval).buildClient();
     }
 
     /**
@@ -220,7 +236,7 @@ public final class SelfHelpManager {
 
             StringBuilder userAgentBuilder = new StringBuilder();
             userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.selfhelp").append("/")
-                .append("1.1.0-beta.2");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
                     .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
@@ -321,6 +337,18 @@ public final class SelfHelpManager {
     }
 
     /**
+     * Gets the resource collection API of SimplifiedSolutions. It manages SimplifiedSolutionsResource.
+     * 
+     * @return Resource collection API of SimplifiedSolutions.
+     */
+    public SimplifiedSolutions simplifiedSolutions() {
+        if (this.simplifiedSolutions == null) {
+            this.simplifiedSolutions = new SimplifiedSolutionsImpl(clientObject.getSimplifiedSolutions(), this);
+        }
+        return simplifiedSolutions;
+    }
+
+    /**
      * Gets the resource collection API of Troubleshooters. It manages TroubleshooterResource.
      * 
      * @return Resource collection API of Troubleshooters.
@@ -330,6 +358,44 @@ public final class SelfHelpManager {
             this.troubleshooters = new TroubleshootersImpl(clientObject.getTroubleshooters(), this);
         }
         return troubleshooters;
+    }
+
+    /**
+     * Gets the resource collection API of SolutionSelfHelps.
+     * 
+     * @return Resource collection API of SolutionSelfHelps.
+     */
+    public SolutionSelfHelps solutionSelfHelps() {
+        if (this.solutionSelfHelps == null) {
+            this.solutionSelfHelps = new SolutionSelfHelpsImpl(clientObject.getSolutionSelfHelps(), this);
+        }
+        return solutionSelfHelps;
+    }
+
+    /**
+     * Gets the resource collection API of DiscoverySolutionNlpTenantScopes.
+     * 
+     * @return Resource collection API of DiscoverySolutionNlpTenantScopes.
+     */
+    public DiscoverySolutionNlpTenantScopes discoverySolutionNlpTenantScopes() {
+        if (this.discoverySolutionNlpTenantScopes == null) {
+            this.discoverySolutionNlpTenantScopes
+                = new DiscoverySolutionNlpTenantScopesImpl(clientObject.getDiscoverySolutionNlpTenantScopes(), this);
+        }
+        return discoverySolutionNlpTenantScopes;
+    }
+
+    /**
+     * Gets the resource collection API of DiscoverySolutionNlpSubscriptionScopes.
+     * 
+     * @return Resource collection API of DiscoverySolutionNlpSubscriptionScopes.
+     */
+    public DiscoverySolutionNlpSubscriptionScopes discoverySolutionNlpSubscriptionScopes() {
+        if (this.discoverySolutionNlpSubscriptionScopes == null) {
+            this.discoverySolutionNlpSubscriptionScopes = new DiscoverySolutionNlpSubscriptionScopesImpl(
+                clientObject.getDiscoverySolutionNlpSubscriptionScopes(), this);
+        }
+        return discoverySolutionNlpSubscriptionScopes;
     }
 
     /**
