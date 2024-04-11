@@ -12,8 +12,7 @@ public final class DatastoreSecretsImpl implements DatastoreSecrets {
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
 
-    DatastoreSecretsImpl(
-        DatastoreSecretsInner innerObject,
+    DatastoreSecretsImpl(DatastoreSecretsInner innerObject,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

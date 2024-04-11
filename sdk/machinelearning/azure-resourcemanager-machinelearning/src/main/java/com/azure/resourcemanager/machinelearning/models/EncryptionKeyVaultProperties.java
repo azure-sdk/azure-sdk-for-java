@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The EncryptionKeyVaultProperties model. */
+/**
+ * The EncryptionKeyVaultProperties model.
+ */
 @Fluent
 public final class EncryptionKeyVaultProperties {
     /*
@@ -29,13 +31,15 @@ public final class EncryptionKeyVaultProperties {
     @JsonProperty(value = "identityClientId")
     private String identityClientId;
 
-    /** Creates an instance of EncryptionKeyVaultProperties class. */
+    /**
+     * Creates an instance of EncryptionKeyVaultProperties class.
+     */
     public EncryptionKeyVaultProperties() {
     }
 
     /**
      * Get the keyVaultArmId property: The ArmId of the keyVault where the customer owned encryption key is present.
-     *
+     * 
      * @return the keyVaultArmId value.
      */
     public String keyVaultArmId() {
@@ -44,7 +48,7 @@ public final class EncryptionKeyVaultProperties {
 
     /**
      * Set the keyVaultArmId property: The ArmId of the keyVault where the customer owned encryption key is present.
-     *
+     * 
      * @param keyVaultArmId the keyVaultArmId value to set.
      * @return the EncryptionKeyVaultProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class EncryptionKeyVaultProperties {
 
     /**
      * Get the keyIdentifier property: Key vault uri to access the encryption key.
-     *
+     * 
      * @return the keyIdentifier value.
      */
     public String keyIdentifier() {
@@ -64,7 +68,7 @@ public final class EncryptionKeyVaultProperties {
 
     /**
      * Set the keyIdentifier property: Key vault uri to access the encryption key.
-     *
+     * 
      * @param keyIdentifier the keyIdentifier value to set.
      * @return the EncryptionKeyVaultProperties object itself.
      */
@@ -76,7 +80,7 @@ public final class EncryptionKeyVaultProperties {
     /**
      * Get the identityClientId property: For future use - The client id of the identity which will be used to access
      * key vault.
-     *
+     * 
      * @return the identityClientId value.
      */
     public String identityClientId() {
@@ -86,7 +90,7 @@ public final class EncryptionKeyVaultProperties {
     /**
      * Set the identityClientId property: For future use - The client id of the identity which will be used to access
      * key vault.
-     *
+     * 
      * @param identityClientId the identityClientId value to set.
      * @return the EncryptionKeyVaultProperties object itself.
      */
@@ -97,21 +101,17 @@ public final class EncryptionKeyVaultProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (keyVaultArmId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property keyVaultArmId in model EncryptionKeyVaultProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property keyVaultArmId in model EncryptionKeyVaultProperties"));
         }
         if (keyIdentifier() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property keyIdentifier in model EncryptionKeyVaultProperties"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property keyIdentifier in model EncryptionKeyVaultProperties"));
         }
     }
 

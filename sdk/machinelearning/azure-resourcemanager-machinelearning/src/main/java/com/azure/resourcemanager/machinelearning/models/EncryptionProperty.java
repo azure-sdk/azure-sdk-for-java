@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The EncryptionProperty model. */
+/**
+ * The EncryptionProperty model.
+ */
 @Fluent
 public final class EncryptionProperty {
     /*
@@ -29,13 +31,15 @@ public final class EncryptionProperty {
     @JsonProperty(value = "keyVaultProperties", required = true)
     private EncryptionKeyVaultProperties keyVaultProperties;
 
-    /** Creates an instance of EncryptionProperty class. */
+    /**
+     * Creates an instance of EncryptionProperty class.
+     */
     public EncryptionProperty() {
     }
 
     /**
      * Get the status property: Indicates whether or not the encryption is enabled for the workspace.
-     *
+     * 
      * @return the status value.
      */
     public EncryptionStatus status() {
@@ -44,7 +48,7 @@ public final class EncryptionProperty {
 
     /**
      * Set the status property: Indicates whether or not the encryption is enabled for the workspace.
-     *
+     * 
      * @param status the status value to set.
      * @return the EncryptionProperty object itself.
      */
@@ -55,7 +59,7 @@ public final class EncryptionProperty {
 
     /**
      * Get the identity property: The identity that will be used to access the key vault for encryption at rest.
-     *
+     * 
      * @return the identity value.
      */
     public IdentityForCmk identity() {
@@ -64,7 +68,7 @@ public final class EncryptionProperty {
 
     /**
      * Set the identity property: The identity that will be used to access the key vault for encryption at rest.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the EncryptionProperty object itself.
      */
@@ -75,7 +79,7 @@ public final class EncryptionProperty {
 
     /**
      * Get the keyVaultProperties property: Customer Key vault properties.
-     *
+     * 
      * @return the keyVaultProperties value.
      */
     public EncryptionKeyVaultProperties keyVaultProperties() {
@@ -84,7 +88,7 @@ public final class EncryptionProperty {
 
     /**
      * Set the keyVaultProperties property: Customer Key vault properties.
-     *
+     * 
      * @param keyVaultProperties the keyVaultProperties value to set.
      * @return the EncryptionProperty object itself.
      */
@@ -95,23 +99,20 @@ public final class EncryptionProperty {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (status() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property status in model EncryptionProperty"));
+            throw LOGGER.logExceptionAsError(
+                new IllegalArgumentException("Missing required property status in model EncryptionProperty"));
         }
         if (identity() != null) {
             identity().validate();
         }
         if (keyVaultProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property keyVaultProperties in model EncryptionProperty"));
+            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
+                "Missing required property keyVaultProperties in model EncryptionProperty"));
         } else {
             keyVaultProperties().validate();
         }
