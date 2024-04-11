@@ -4,47 +4,55 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-/** Samples for Extensions Get. */
+/**
+ * Samples for Extensions Get.
+ */
 public final class ExtensionsGetSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/examples/GetExtensionWithPlan.json
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-06-01-
+     * preview/examples/GetExtension.json
      */
     /**
-     * Sample code: Get Extension with Plan.
-     *
+     * Sample code: Extensions_Get.
+     * 
      * @param manager Entry point to SourceControlConfigurationManager.
      */
-    public static void getExtensionWithPlan(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager
-            .extensions()
-            .getWithResponse(
-                "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
-                "clusterName1",
-                "azureVote",
-                com.azure.core.util.Context.NONE);
+    public static void
+        extensionsGet(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.extensions().getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1",
+            "ClusterMonitor", com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/examples/GetExtension.json
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-06-01-
+     * preview/examples/GetExtensionAsyncOperationStatus.json
      */
     /**
-     * Sample code: Get Extension.
-     *
+     * Sample code: Extensions_Get_Async.
+     * 
      * @param manager Entry point to SourceControlConfigurationManager.
      */
-    public static void getExtension(
+    public static void extensionsGetAsync(
         com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager
-            .extensions()
-            .getWithResponse(
-                "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
-                "clusterName1",
-                "ClusterMonitor",
-                com.azure.core.util.Context.NONE);
+        manager.extensions().getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1",
+            "ClusterMonitor", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-06-01-
+     * preview/examples/GetExtensionWithPlan.json
+     */
+    /**
+     * Sample code: Extensions_Get_Plan.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void
+        extensionsGetPlan(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.extensions().getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1",
+            "azureVote", com.azure.core.util.Context.NONE);
     }
 }

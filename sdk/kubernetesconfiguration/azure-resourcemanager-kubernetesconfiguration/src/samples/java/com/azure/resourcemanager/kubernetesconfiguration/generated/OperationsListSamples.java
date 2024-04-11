@@ -4,17 +4,36 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-/** Samples for Operations List. */
+/**
+ * Samples for Operations List.
+ */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/examples/OperationsList.json
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-06-01-
+     * preview/examples/OperationsList.json
      */
     /**
-     * Sample code: BatchAccountDelete.
-     *
+     * Sample code: Operations_List.
+     * 
      * @param manager Entry point to SourceControlConfigurationManager.
      */
-    public static void batchAccountDelete(
+    public static void
+        operationsList(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.operations().list(com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-06-01-
+     * preview/examples/ListAsyncOperationStatus.json
+     */
+    /**
+     * Sample code: Operations_List_Async.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void operationsListAsync(
         com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }

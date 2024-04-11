@@ -4,27 +4,23 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-/** Samples for Extensions Delete. */
+/**
+ * Samples for Extensions Delete.
+ */
 public final class ExtensionsDeleteSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/examples/DeleteExtension.json
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-06-01-
+     * preview/examples/DeleteExtension.json
      */
     /**
-     * Sample code: Delete Extension.
-     *
+     * Sample code: Extensions_Delete.
+     * 
      * @param manager Entry point to SourceControlConfigurationManager.
      */
-    public static void deleteExtension(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager
-            .extensions()
-            .delete(
-                "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
-                "clusterName1",
-                "ClusterMonitor",
-                null,
-                com.azure.core.util.Context.NONE);
+    public static void
+        extensionsDelete(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.extensions().delete("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1",
+            "ClusterMonitor", null, com.azure.core.util.Context.NONE);
     }
 }

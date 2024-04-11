@@ -4,26 +4,22 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-/** Samples for SourceControlConfigurations Delete. */
+/**
+ * Samples for SourceControlConfigurations Delete.
+ */
 public final class SourceControlConfigurationsDeleteSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/examples/DeleteSourceControlConfiguration.json
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-06-01-
+     * preview/examples/DeleteSourceControlConfiguration.json
      */
     /**
-     * Sample code: Delete Source Control Configuration.
-     *
+     * Sample code: SourceControlConfigurations_Delete.
+     * 
      * @param manager Entry point to SourceControlConfigurationManager.
      */
-    public static void deleteSourceControlConfiguration(
+    public static void sourceControlConfigurationsDelete(
         com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager
-            .sourceControlConfigurations()
-            .delete(
-                "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
-                "clusterName1",
-                "SRS_GitHubConfig",
-                com.azure.core.util.Context.NONE);
+        manager.sourceControlConfigurations().delete("rg1", "SRS_GitHubConfig", com.azure.core.util.Context.NONE);
     }
 }

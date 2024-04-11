@@ -4,61 +4,23 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-import com.azure.resourcemanager.kubernetesconfiguration.models.FluxConfigurationPatch;
-import com.azure.resourcemanager.kubernetesconfiguration.models.GitRepositoryPatchDefinition;
-import com.azure.resourcemanager.kubernetesconfiguration.models.KustomizationPatchDefinition;
-import java.util.HashMap;
-import java.util.Map;
-
-/** Samples for FluxConfigurations Update. */
+/**
+ * Samples for FluxConfigurations Update.
+ */
 public final class FluxConfigurationsUpdateSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/examples/PatchFluxConfiguration.json
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-06-01-
+     * preview/examples/PatchFluxConfiguration.json
      */
     /**
-     * Sample code: Patch Flux Configuration.
-     *
+     * Sample code: FluxConfigurations_Update.
+     * 
      * @param manager Entry point to SourceControlConfigurationManager.
      */
-    public static void patchFluxConfiguration(
+    public static void fluxConfigurationsUpdate(
         com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager
-            .fluxConfigurations()
-            .update(
-                "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
-                "clusterName1",
-                "srs-fluxconfig",
-                new FluxConfigurationPatch()
-                    .withSuspend(true)
-                    .withGitRepository(
-                        new GitRepositoryPatchDefinition()
-                            .withUrl("https://github.com/jonathan-innis/flux2-kustomize-helm-example.git"))
-                    .withKustomizations(
-                        mapOf(
-                            "srs-kustomization1",
-                            null,
-                            "srs-kustomization2",
-                            new KustomizationPatchDefinition()
-                                .withPath("./test/alt-path")
-                                .withSyncIntervalInSeconds(300L),
-                            "srs-kustomization3",
-                            new KustomizationPatchDefinition()
-                                .withPath("./test/another-path")
-                                .withSyncIntervalInSeconds(300L))),
-                com.azure.core.util.Context.NONE);
-    }
-
-    // Use "Map.of" if available
-    @SuppressWarnings("unchecked")
-    private static <T> Map<String, T> mapOf(Object... inputs) {
-        Map<String, T> map = new HashMap<>();
-        for (int i = 0; i < inputs.length; i += 2) {
-            String key = (String) inputs[i];
-            T value = (T) inputs[i + 1];
-            map.put(key, value);
-        }
-        return map;
+        manager.fluxConfigurations().updateWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters",
+            "clusterName1", "srs-fluxconfig", null, com.azure.core.util.Context.NONE);
     }
 }

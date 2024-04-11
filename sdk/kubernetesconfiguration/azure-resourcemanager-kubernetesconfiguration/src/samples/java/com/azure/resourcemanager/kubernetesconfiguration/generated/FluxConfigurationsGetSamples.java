@@ -4,26 +4,39 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-/** Samples for FluxConfigurations Get. */
+/**
+ * Samples for FluxConfigurations Get.
+ */
 public final class FluxConfigurationsGetSamples {
     /*
-     * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/examples/GetFluxConfiguration.json
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-06-01-
+     * preview/examples/GetFluxConfiguration.json
      */
     /**
-     * Sample code: Get Flux Configuration.
-     *
+     * Sample code: FluxConfigurations_Get.
+     * 
      * @param manager Entry point to SourceControlConfigurationManager.
      */
-    public static void getFluxConfiguration(
+    public static void fluxConfigurationsGet(
         com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager
-            .fluxConfigurations()
-            .getWithResponse(
-                "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
-                "clusterName1",
-                "srs-fluxconfig",
-                com.azure.core.util.Context.NONE);
+        manager.fluxConfigurations().getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1",
+            "srs-fluxconfig", com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file:
+     * specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/preview/2024-06-01-
+     * preview/examples/GetFluxConfigurationAsyncOperationStatus.json
+     */
+    /**
+     * Sample code: FluxConfigurations_Get_Async.
+     * 
+     * @param manager Entry point to SourceControlConfigurationManager.
+     */
+    public static void fluxConfigurationsGetAsync(
+        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.fluxConfigurations().getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1",
+            "srs-fluxconfig", com.azure.core.util.Context.NONE);
     }
 }
