@@ -6,14 +6,24 @@ package com.azure.resourcemanager.servicelinker.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The secret info when type is rawValue. It's for scenarios that user input the secret. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "secretType")
+/**
+ * The secret info when type is rawValue. It's for scenarios that user input the secret.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "secretType", defaultImpl = ValueSecretInfo.class, visible = true)
 @JsonTypeName("rawValue")
 @Fluent
 public final class ValueSecretInfo extends SecretInfoBase {
+    /*
+     * The secret type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "secretType", required = true)
+    private SecretType secretType = SecretType.RAW_VALUE;
+
     /*
      * The actual value of the secret.
      */
@@ -21,8 +31,24 @@ public final class ValueSecretInfo extends SecretInfoBase {
     private String value;
 
     /**
+     * Creates an instance of ValueSecretInfo class.
+     */
+    public ValueSecretInfo() {
+    }
+
+    /**
+     * Get the secretType property: The secret type.
+     * 
+     * @return the secretType value.
+     */
+    @Override
+    public SecretType secretType() {
+        return this.secretType;
+    }
+
+    /**
      * Get the value property: The actual value of the secret.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -31,7 +57,7 @@ public final class ValueSecretInfo extends SecretInfoBase {
 
     /**
      * Set the value property: The actual value of the secret.
-     *
+     * 
      * @param value the value value to set.
      * @return the ValueSecretInfo object itself.
      */
@@ -42,7 +68,7 @@ public final class ValueSecretInfo extends SecretInfoBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

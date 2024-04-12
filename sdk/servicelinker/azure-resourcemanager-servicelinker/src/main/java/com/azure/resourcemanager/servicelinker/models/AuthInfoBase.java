@@ -4,30 +4,85 @@
 
 package com.azure.resourcemanager.servicelinker.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The authentication info. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "authType",
-    defaultImpl = AuthInfoBase.class)
+/**
+ * The authentication info.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "authType", defaultImpl = AuthInfoBase.class, visible = true)
 @JsonTypeName("AuthInfoBase")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "accessKey", value = AccessKeyInfoBase.class),
     @JsonSubTypes.Type(name = "secret", value = SecretAuthInfo.class),
     @JsonSubTypes.Type(name = "userAssignedIdentity", value = UserAssignedIdentityAuthInfo.class),
     @JsonSubTypes.Type(name = "systemAssignedIdentity", value = SystemAssignedIdentityAuthInfo.class),
     @JsonSubTypes.Type(name = "servicePrincipalSecret", value = ServicePrincipalSecretAuthInfo.class),
-    @JsonSubTypes.Type(name = "servicePrincipalCertificate", value = ServicePrincipalCertificateAuthInfo.class)
-})
-@Immutable
+    @JsonSubTypes.Type(name = "servicePrincipalCertificate", value = ServicePrincipalCertificateAuthInfo.class),
+    @JsonSubTypes.Type(name = "userAccount", value = UserAccountAuthInfo.class),
+    @JsonSubTypes.Type(name = "easyAuthMicrosoftEntraID", value = EasyAuthMicrosoftEntraIdAuthInfo.class) })
+@Fluent
 public class AuthInfoBase {
+    /*
+     * The authentication type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "authType", required = true)
+    private AuthType authType;
+
+    /*
+     * Optional. Indicates how to configure authentication. If optInAllAuth, service linker configures authentication such as enabling identity on source resource and granting RBAC roles. If optOutAllAuth, opt out authentication setup. Default is optInAllAuth.
+     */
+    @JsonProperty(value = "authMode")
+    private AuthMode authMode;
+
+    /**
+     * Creates an instance of AuthInfoBase class.
+     */
+    public AuthInfoBase() {
+        this.authType = AuthType.fromString("AuthInfoBase");
+    }
+
+    /**
+     * Get the authType property: The authentication type.
+     * 
+     * @return the authType value.
+     */
+    public AuthType authType() {
+        return this.authType;
+    }
+
+    /**
+     * Get the authMode property: Optional. Indicates how to configure authentication. If optInAllAuth, service linker
+     * configures authentication such as enabling identity on source resource and granting RBAC roles. If optOutAllAuth,
+     * opt out authentication setup. Default is optInAllAuth.
+     * 
+     * @return the authMode value.
+     */
+    public AuthMode authMode() {
+        return this.authMode;
+    }
+
+    /**
+     * Set the authMode property: Optional. Indicates how to configure authentication. If optInAllAuth, service linker
+     * configures authentication such as enabling identity on source resource and granting RBAC roles. If optOutAllAuth,
+     * opt out authentication setup. Default is optInAllAuth.
+     * 
+     * @param authMode the authMode value to set.
+     * @return the AuthInfoBase object itself.
+     */
+    public AuthInfoBase withAuthMode(AuthMode authMode) {
+        this.authMode = authMode;
+        return this;
+    }
+
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

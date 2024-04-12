@@ -10,29 +10,39 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.servicelinker.models.AuthInfoBase;
 import com.azure.resourcemanager.servicelinker.models.ClientType;
+import com.azure.resourcemanager.servicelinker.models.ConfigurationInfo;
+import com.azure.resourcemanager.servicelinker.models.PublicNetworkSolution;
 import com.azure.resourcemanager.servicelinker.models.SecretStore;
 import com.azure.resourcemanager.servicelinker.models.TargetServiceBase;
 import com.azure.resourcemanager.servicelinker.models.VNetSolution;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Linker of source and target resource. */
+/**
+ * Linker of source and target resource.
+ */
 @Fluent
 public final class LinkerResourceInner extends ProxyResource {
     /*
-     * The properties of the linker.
+     * The properties of the Linker.
      */
     @JsonProperty(value = "properties", required = true)
     private LinkerProperties innerProperties = new LinkerProperties();
 
     /*
-     * The system data.
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
     /**
-     * Get the innerProperties property: The properties of the linker.
-     *
+     * Creates an instance of LinkerResourceInner class.
+     */
+    public LinkerResourceInner() {
+    }
+
+    /**
+     * Get the innerProperties property: The properties of the Linker.
+     * 
      * @return the innerProperties value.
      */
     private LinkerProperties innerProperties() {
@@ -40,8 +50,8 @@ public final class LinkerResourceInner extends ProxyResource {
     }
 
     /**
-     * Get the systemData property: The system data.
-     *
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -50,7 +60,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the targetService property: The target service properties.
-     *
+     * 
      * @return the targetService value.
      */
     public TargetServiceBase targetService() {
@@ -59,7 +69,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the targetService property: The target service properties.
-     *
+     * 
      * @param targetService the targetService value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -73,7 +83,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the authInfo property: The authentication type.
-     *
+     * 
      * @return the authInfo value.
      */
     public AuthInfoBase authInfo() {
@@ -82,7 +92,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the authInfo property: The authentication type.
-     *
+     * 
      * @param authInfo the authInfo value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -96,7 +106,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the clientType property: The application client type.
-     *
+     * 
      * @return the clientType value.
      */
     public ClientType clientType() {
@@ -105,7 +115,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the clientType property: The application client type.
-     *
+     * 
      * @param clientType the clientType value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -119,7 +129,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: The provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public String provisioningState() {
@@ -128,7 +138,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the vNetSolution property: The VNet solution.
-     *
+     * 
      * @return the vNetSolution value.
      */
     public VNetSolution vNetSolution() {
@@ -137,7 +147,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the vNetSolution property: The VNet solution.
-     *
+     * 
      * @param vNetSolution the vNetSolution value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -151,7 +161,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the secretStore property: An option to store secret value in secure place.
-     *
+     * 
      * @return the secretStore value.
      */
     public SecretStore secretStore() {
@@ -160,7 +170,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the secretStore property: An option to store secret value in secure place.
-     *
+     * 
      * @param secretStore the secretStore value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -174,7 +184,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Get the scope property: connection scope in source service.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -183,7 +193,7 @@ public final class LinkerResourceInner extends ProxyResource {
 
     /**
      * Set the scope property: connection scope in source service.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the LinkerResourceInner object itself.
      */
@@ -196,16 +206,63 @@ public final class LinkerResourceInner extends ProxyResource {
     }
 
     /**
+     * Get the publicNetworkSolution property: The network solution.
+     * 
+     * @return the publicNetworkSolution value.
+     */
+    public PublicNetworkSolution publicNetworkSolution() {
+        return this.innerProperties() == null ? null : this.innerProperties().publicNetworkSolution();
+    }
+
+    /**
+     * Set the publicNetworkSolution property: The network solution.
+     * 
+     * @param publicNetworkSolution the publicNetworkSolution value to set.
+     * @return the LinkerResourceInner object itself.
+     */
+    public LinkerResourceInner withPublicNetworkSolution(PublicNetworkSolution publicNetworkSolution) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LinkerProperties();
+        }
+        this.innerProperties().withPublicNetworkSolution(publicNetworkSolution);
+        return this;
+    }
+
+    /**
+     * Get the configurationInfo property: The connection information consumed by applications, including secrets,
+     * connection strings.
+     * 
+     * @return the configurationInfo value.
+     */
+    public ConfigurationInfo configurationInfo() {
+        return this.innerProperties() == null ? null : this.innerProperties().configurationInfo();
+    }
+
+    /**
+     * Set the configurationInfo property: The connection information consumed by applications, including secrets,
+     * connection strings.
+     * 
+     * @param configurationInfo the configurationInfo value to set.
+     * @return the LinkerResourceInner object itself.
+     */
+    public LinkerResourceInner withConfigurationInfo(ConfigurationInfo configurationInfo) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new LinkerProperties();
+        }
+        this.innerProperties().withConfigurationInfo(configurationInfo);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model LinkerResourceInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property innerProperties in model LinkerResourceInner"));
         } else {
             innerProperties().validate();
         }

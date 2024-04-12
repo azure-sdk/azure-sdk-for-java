@@ -6,14 +6,29 @@ package com.azure.resourcemanager.servicelinker.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
-/** The authentication info when authType is userAssignedIdentity. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
+/**
+ * The authentication info when authType is userAssignedIdentity.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "authType",
+    defaultImpl = UserAssignedIdentityAuthInfo.class,
+    visible = true)
 @JsonTypeName("userAssignedIdentity")
 @Fluent
 public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
+    /*
+     * The authentication type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "authType", required = true)
+    private AuthType authType = AuthType.USER_ASSIGNED_IDENTITY;
+
     /*
      * Client Id for userAssignedIdentity.
      */
@@ -26,9 +41,43 @@ public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
     @JsonProperty(value = "subscriptionId")
     private String subscriptionId;
 
+    /*
+     * Indicates whether to clean up previous operation when Linker is updating or deleting
+     */
+    @JsonProperty(value = "deleteOrUpdateBehavior")
+    private DeleteOrUpdateBehavior deleteOrUpdateBehavior;
+
+    /*
+     * Optional, this value specifies the Azure role to be assigned
+     */
+    @JsonProperty(value = "roles")
+    private List<String> roles;
+
+    /*
+     * Username created in the database which is mapped to a user in AAD.
+     */
+    @JsonProperty(value = "userName")
+    private String username;
+
+    /**
+     * Creates an instance of UserAssignedIdentityAuthInfo class.
+     */
+    public UserAssignedIdentityAuthInfo() {
+    }
+
+    /**
+     * Get the authType property: The authentication type.
+     * 
+     * @return the authType value.
+     */
+    @Override
+    public AuthType authType() {
+        return this.authType;
+    }
+
     /**
      * Get the clientId property: Client Id for userAssignedIdentity.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -37,7 +86,7 @@ public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
 
     /**
      * Set the clientId property: Client Id for userAssignedIdentity.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the UserAssignedIdentityAuthInfo object itself.
      */
@@ -48,7 +97,7 @@ public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
 
     /**
      * Get the subscriptionId property: Subscription id for userAssignedIdentity.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -57,7 +106,7 @@ public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
 
     /**
      * Set the subscriptionId property: Subscription id for userAssignedIdentity.
-     *
+     * 
      * @param subscriptionId the subscriptionId value to set.
      * @return the UserAssignedIdentityAuthInfo object itself.
      */
@@ -67,8 +116,79 @@ public final class UserAssignedIdentityAuthInfo extends AuthInfoBase {
     }
 
     /**
+     * Get the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is updating
+     * or deleting.
+     * 
+     * @return the deleteOrUpdateBehavior value.
+     */
+    public DeleteOrUpdateBehavior deleteOrUpdateBehavior() {
+        return this.deleteOrUpdateBehavior;
+    }
+
+    /**
+     * Set the deleteOrUpdateBehavior property: Indicates whether to clean up previous operation when Linker is updating
+     * or deleting.
+     * 
+     * @param deleteOrUpdateBehavior the deleteOrUpdateBehavior value to set.
+     * @return the UserAssignedIdentityAuthInfo object itself.
+     */
+    public UserAssignedIdentityAuthInfo withDeleteOrUpdateBehavior(DeleteOrUpdateBehavior deleteOrUpdateBehavior) {
+        this.deleteOrUpdateBehavior = deleteOrUpdateBehavior;
+        return this;
+    }
+
+    /**
+     * Get the roles property: Optional, this value specifies the Azure role to be assigned.
+     * 
+     * @return the roles value.
+     */
+    public List<String> roles() {
+        return this.roles;
+    }
+
+    /**
+     * Set the roles property: Optional, this value specifies the Azure role to be assigned.
+     * 
+     * @param roles the roles value to set.
+     * @return the UserAssignedIdentityAuthInfo object itself.
+     */
+    public UserAssignedIdentityAuthInfo withRoles(List<String> roles) {
+        this.roles = roles;
+        return this;
+    }
+
+    /**
+     * Get the username property: Username created in the database which is mapped to a user in AAD.
+     * 
+     * @return the username value.
+     */
+    public String username() {
+        return this.username;
+    }
+
+    /**
+     * Set the username property: Username created in the database which is mapped to a user in AAD.
+     * 
+     * @param username the username value to set.
+     * @return the UserAssignedIdentityAuthInfo object itself.
+     */
+    public UserAssignedIdentityAuthInfo withUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public UserAssignedIdentityAuthInfo withAuthMode(AuthMode authMode) {
+        super.withAuthMode(authMode);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

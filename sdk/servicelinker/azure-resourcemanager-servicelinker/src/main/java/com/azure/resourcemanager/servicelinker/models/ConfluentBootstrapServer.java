@@ -6,14 +6,28 @@ package com.azure.resourcemanager.servicelinker.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The service properties when target service type is ConfluentBootstrapServer. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+/**
+ * The service properties when target service type is ConfluentBootstrapServer.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ConfluentBootstrapServer.class,
+    visible = true)
 @JsonTypeName("ConfluentBootstrapServer")
 @Fluent
 public final class ConfluentBootstrapServer extends TargetServiceBase {
+    /*
+     * The target service type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private TargetServiceType type = TargetServiceType.CONFLUENT_BOOTSTRAP_SERVER;
+
     /*
      * The endpoint of service.
      */
@@ -21,8 +35,24 @@ public final class ConfluentBootstrapServer extends TargetServiceBase {
     private String endpoint;
 
     /**
+     * Creates an instance of ConfluentBootstrapServer class.
+     */
+    public ConfluentBootstrapServer() {
+    }
+
+    /**
+     * Get the type property: The target service type.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public TargetServiceType type() {
+        return this.type;
+    }
+
+    /**
      * Get the endpoint property: The endpoint of service.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -31,7 +61,7 @@ public final class ConfluentBootstrapServer extends TargetServiceBase {
 
     /**
      * Set the endpoint property: The endpoint of service.
-     *
+     * 
      * @param endpoint the endpoint value to set.
      * @return the ConfluentBootstrapServer object itself.
      */
@@ -42,7 +72,7 @@ public final class ConfluentBootstrapServer extends TargetServiceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

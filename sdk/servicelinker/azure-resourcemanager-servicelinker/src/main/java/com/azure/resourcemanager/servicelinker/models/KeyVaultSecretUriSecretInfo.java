@@ -6,6 +6,7 @@ package com.azure.resourcemanager.servicelinker.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -13,10 +14,21 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * The secret info when type is keyVaultSecretUri. It's for scenario that user provides a secret stored in user's
  * keyvault and source is Web App, Spring Cloud or Container App.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "secretType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "secretType",
+    defaultImpl = KeyVaultSecretUriSecretInfo.class,
+    visible = true)
 @JsonTypeName("keyVaultSecretUri")
 @Fluent
 public final class KeyVaultSecretUriSecretInfo extends SecretInfoBase {
+    /*
+     * The secret type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "secretType", required = true)
+    private SecretType secretType = SecretType.KEY_VAULT_SECRET_URI;
+
     /*
      * URI to the keyvault secret
      */
@@ -24,8 +36,24 @@ public final class KeyVaultSecretUriSecretInfo extends SecretInfoBase {
     private String value;
 
     /**
+     * Creates an instance of KeyVaultSecretUriSecretInfo class.
+     */
+    public KeyVaultSecretUriSecretInfo() {
+    }
+
+    /**
+     * Get the secretType property: The secret type.
+     * 
+     * @return the secretType value.
+     */
+    @Override
+    public SecretType secretType() {
+        return this.secretType;
+    }
+
+    /**
      * Get the value property: URI to the keyvault secret.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -34,7 +62,7 @@ public final class KeyVaultSecretUriSecretInfo extends SecretInfoBase {
 
     /**
      * Set the value property: URI to the keyvault secret.
-     *
+     * 
      * @param value the value value to set.
      * @return the KeyVaultSecretUriSecretInfo object itself.
      */
@@ -45,7 +73,7 @@ public final class KeyVaultSecretUriSecretInfo extends SecretInfoBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
