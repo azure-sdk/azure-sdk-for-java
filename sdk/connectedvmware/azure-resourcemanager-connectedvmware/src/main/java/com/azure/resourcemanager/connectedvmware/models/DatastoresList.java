@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.DatastoreInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Datastores. */
+/**
+ * List of Datastores.
+ */
 @Fluent
 public final class DatastoresList {
     /*
@@ -25,13 +27,15 @@ public final class DatastoresList {
     @JsonProperty(value = "value", required = true)
     private List<DatastoreInner> value;
 
-    /** Creates an instance of DatastoresList class. */
+    /**
+     * Creates an instance of DatastoresList class.
+     */
     public DatastoresList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of Datastores.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +44,7 @@ public final class DatastoresList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of Datastores.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the DatastoresList object itself.
      */
@@ -51,7 +55,7 @@ public final class DatastoresList {
 
     /**
      * Get the value property: Array of Datastores.
-     *
+     * 
      * @return the value value.
      */
     public List<DatastoreInner> value() {
@@ -60,7 +64,7 @@ public final class DatastoresList {
 
     /**
      * Set the value property: Array of Datastores.
-     *
+     * 
      * @param value the value value to set.
      * @return the DatastoresList object itself.
      */
@@ -71,14 +75,13 @@ public final class DatastoresList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model DatastoresList"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model DatastoresList"));
         } else {
             value().forEach(e -> e.validate());
         }

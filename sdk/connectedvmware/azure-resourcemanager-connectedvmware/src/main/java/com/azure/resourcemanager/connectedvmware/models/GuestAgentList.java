@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.GuestAgentInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of GuestAgent. */
+/**
+ * List of GuestAgent.
+ */
 @Fluent
 public final class GuestAgentList {
     /*
@@ -25,13 +27,15 @@ public final class GuestAgentList {
     @JsonProperty(value = "value", required = true)
     private List<GuestAgentInner> value;
 
-    /** Creates an instance of GuestAgentList class. */
+    /**
+     * Creates an instance of GuestAgentList class.
+     */
     public GuestAgentList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of GuestAgent.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +44,7 @@ public final class GuestAgentList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of GuestAgent.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the GuestAgentList object itself.
      */
@@ -51,7 +55,7 @@ public final class GuestAgentList {
 
     /**
      * Get the value property: Array of GuestAgent.
-     *
+     * 
      * @return the value value.
      */
     public List<GuestAgentInner> value() {
@@ -60,7 +64,7 @@ public final class GuestAgentList {
 
     /**
      * Set the value property: Array of GuestAgent.
-     *
+     * 
      * @param value the value value to set.
      * @return the GuestAgentList object itself.
      */
@@ -71,14 +75,13 @@ public final class GuestAgentList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model GuestAgentList"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model GuestAgentList"));
         } else {
             value().forEach(e -> e.validate());
         }

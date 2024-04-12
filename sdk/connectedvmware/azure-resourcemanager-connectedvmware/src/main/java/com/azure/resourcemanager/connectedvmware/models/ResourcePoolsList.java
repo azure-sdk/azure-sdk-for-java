@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.ResourcePoolInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of ResourcePools. */
+/**
+ * List of ResourcePools.
+ */
 @Fluent
 public final class ResourcePoolsList {
     /*
@@ -25,13 +27,15 @@ public final class ResourcePoolsList {
     @JsonProperty(value = "value", required = true)
     private List<ResourcePoolInner> value;
 
-    /** Creates an instance of ResourcePoolsList class. */
+    /**
+     * Creates an instance of ResourcePoolsList class.
+     */
     public ResourcePoolsList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of ResourcePools.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +44,7 @@ public final class ResourcePoolsList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of ResourcePools.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ResourcePoolsList object itself.
      */
@@ -51,7 +55,7 @@ public final class ResourcePoolsList {
 
     /**
      * Get the value property: Array of ResourcePools.
-     *
+     * 
      * @return the value value.
      */
     public List<ResourcePoolInner> value() {
@@ -60,7 +64,7 @@ public final class ResourcePoolsList {
 
     /**
      * Set the value property: Array of ResourcePools.
-     *
+     * 
      * @param value the value value to set.
      * @return the ResourcePoolsList object itself.
      */
@@ -71,14 +75,13 @@ public final class ResourcePoolsList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model ResourcePoolsList"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model ResourcePoolsList"));
         } else {
             value().forEach(e -> e.validate());
         }

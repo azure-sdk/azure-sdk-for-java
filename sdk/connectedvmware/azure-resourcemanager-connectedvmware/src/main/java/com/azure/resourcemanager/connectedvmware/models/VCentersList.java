@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.VCenterInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of VCenters. */
+/**
+ * List of VCenters.
+ */
 @Fluent
 public final class VCentersList {
     /*
@@ -25,13 +27,15 @@ public final class VCentersList {
     @JsonProperty(value = "value", required = true)
     private List<VCenterInner> value;
 
-    /** Creates an instance of VCentersList class. */
+    /**
+     * Creates an instance of VCentersList class.
+     */
     public VCentersList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of VCenters.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +44,7 @@ public final class VCentersList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of VCenters.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the VCentersList object itself.
      */
@@ -51,7 +55,7 @@ public final class VCentersList {
 
     /**
      * Get the value property: Array of VCenters.
-     *
+     * 
      * @return the value value.
      */
     public List<VCenterInner> value() {
@@ -60,7 +64,7 @@ public final class VCentersList {
 
     /**
      * Set the value property: Array of VCenters.
-     *
+     * 
      * @param value the value value to set.
      * @return the VCentersList object itself.
      */
@@ -71,14 +75,13 @@ public final class VCentersList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model VCentersList"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model VCentersList"));
         } else {
             value().forEach(e -> e.validate());
         }

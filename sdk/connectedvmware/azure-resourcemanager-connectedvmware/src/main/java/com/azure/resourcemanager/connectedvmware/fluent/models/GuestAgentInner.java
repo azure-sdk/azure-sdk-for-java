@@ -16,7 +16,9 @@ import com.azure.resourcemanager.connectedvmware.models.ResourceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the GuestAgent. */
+/**
+ * Defines the GuestAgent.
+ */
 @Fluent
 public final class GuestAgentInner extends ProxyResource {
     /*
@@ -31,13 +33,15 @@ public final class GuestAgentInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of GuestAgentInner class. */
+    /**
+     * Creates an instance of GuestAgentInner class.
+     */
     public GuestAgentInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private GuestAgentProperties innerProperties() {
@@ -46,7 +50,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -55,7 +59,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.
-     *
+     * 
      * @return the uuid value.
      */
     public String uuid() {
@@ -64,7 +68,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the credentials property: Username / Password Credentials to provision guest agent.
-     *
+     * 
      * @return the credentials value.
      */
     public GuestCredential credentials() {
@@ -73,7 +77,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Set the credentials property: Username / Password Credentials to provision guest agent.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the GuestAgentInner object itself.
      */
@@ -88,7 +92,7 @@ public final class GuestAgentInner extends ProxyResource {
     /**
      * Get the privateLinkScopeResourceId property: The resource id of the private link scope this machine is assigned
      * to, if any.
-     *
+     * 
      * @return the privateLinkScopeResourceId value.
      */
     public String privateLinkScopeResourceId() {
@@ -98,7 +102,7 @@ public final class GuestAgentInner extends ProxyResource {
     /**
      * Set the privateLinkScopeResourceId property: The resource id of the private link scope this machine is assigned
      * to, if any.
-     *
+     * 
      * @param privateLinkScopeResourceId the privateLinkScopeResourceId value to set.
      * @return the GuestAgentInner object itself.
      */
@@ -112,7 +116,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the httpProxyConfig property: HTTP Proxy configuration for the VM.
-     *
+     * 
      * @return the httpProxyConfig value.
      */
     public HttpProxyConfiguration httpProxyConfig() {
@@ -121,7 +125,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Set the httpProxyConfig property: HTTP Proxy configuration for the VM.
-     *
+     * 
      * @param httpProxyConfig the httpProxyConfig value to set.
      * @return the GuestAgentInner object itself.
      */
@@ -135,7 +139,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the provisioningAction property: Gets or sets the guest agent provisioning action.
-     *
+     * 
      * @return the provisioningAction value.
      */
     public ProvisioningAction provisioningAction() {
@@ -144,7 +148,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Set the provisioningAction property: Gets or sets the guest agent provisioning action.
-     *
+     * 
      * @param provisioningAction the provisioningAction value to set.
      * @return the GuestAgentInner object itself.
      */
@@ -158,7 +162,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the status property: Gets or sets the guest agent status.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -167,7 +171,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the customResourceName property: Gets the name of the corresponding resource in Kubernetes.
-     *
+     * 
      * @return the customResourceName value.
      */
     public String customResourceName() {
@@ -176,7 +180,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the statuses property: The resource status information.
-     *
+     * 
      * @return the statuses value.
      */
     public List<ResourceStatus> statuses() {
@@ -185,7 +189,7 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Gets the provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -194,13 +198,13 @@ public final class GuestAgentInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property innerProperties in model GuestAgentInner"));
         } else {
             innerProperties().validate();

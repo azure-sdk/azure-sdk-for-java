@@ -11,15 +11,17 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.connectedvmware.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the HybridIdentityMetadata. */
+/**
+ * Defines the HybridIdentityMetadata.
+ */
 @Fluent
 public final class VmInstanceHybridIdentityMetadataInner extends ProxyResource {
     /*
      * Resource properties.
      */
     @JsonProperty(value = "properties", required = true)
-    private VmInstanceHybridIdentityMetadataProperties innerProperties =
-        new VmInstanceHybridIdentityMetadataProperties();
+    private VmInstanceHybridIdentityMetadataProperties innerProperties
+        = new VmInstanceHybridIdentityMetadataProperties();
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -27,13 +29,15 @@ public final class VmInstanceHybridIdentityMetadataInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of VmInstanceHybridIdentityMetadataInner class. */
+    /**
+     * Creates an instance of VmInstanceHybridIdentityMetadataInner class.
+     */
     public VmInstanceHybridIdentityMetadataInner() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private VmInstanceHybridIdentityMetadataProperties innerProperties() {
@@ -42,7 +46,7 @@ public final class VmInstanceHybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -51,7 +55,7 @@ public final class VmInstanceHybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the resourceUid property: The unique identifier for the resource.
-     *
+     * 
      * @return the resourceUid value.
      */
     public String resourceUid() {
@@ -60,7 +64,7 @@ public final class VmInstanceHybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Set the resourceUid property: The unique identifier for the resource.
-     *
+     * 
      * @param resourceUid the resourceUid value to set.
      * @return the VmInstanceHybridIdentityMetadataInner object itself.
      */
@@ -74,7 +78,7 @@ public final class VmInstanceHybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the publicKey property: Gets or sets the Public Key.
-     *
+     * 
      * @return the publicKey value.
      */
     public String publicKey() {
@@ -83,7 +87,7 @@ public final class VmInstanceHybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Set the publicKey property: Gets or sets the Public Key.
-     *
+     * 
      * @param publicKey the publicKey value to set.
      * @return the VmInstanceHybridIdentityMetadataInner object itself.
      */
@@ -97,7 +101,7 @@ public final class VmInstanceHybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Gets the provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -106,15 +110,14 @@ public final class VmInstanceHybridIdentityMetadataInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model VmInstanceHybridIdentityMetadataInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property innerProperties in model VmInstanceHybridIdentityMetadataInner"));
         } else {
             innerProperties().validate();
         }
