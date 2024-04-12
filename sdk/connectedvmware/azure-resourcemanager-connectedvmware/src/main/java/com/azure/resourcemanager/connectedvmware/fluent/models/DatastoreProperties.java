@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.models.ResourceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the properties of a Datastore. */
+/**
+ * Describes the properties of a Datastore.
+ */
 @Fluent
 public final class DatastoreProperties {
     /*
@@ -73,13 +75,15 @@ public final class DatastoreProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of DatastoreProperties class. */
+    /**
+     * Creates an instance of DatastoreProperties class.
+     */
     public DatastoreProperties() {
     }
 
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.
-     *
+     * 
      * @return the uuid value.
      */
     public String uuid() {
@@ -88,7 +92,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this datastore resides.
-     *
+     * 
      * @return the vCenterId value.
      */
     public String vCenterId() {
@@ -97,7 +101,7 @@ public final class DatastoreProperties {
 
     /**
      * Set the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this datastore resides.
-     *
+     * 
      * @param vCenterId the vCenterId value to set.
      * @return the DatastoreProperties object itself.
      */
@@ -108,7 +112,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the moRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID for the datastore.
-     *
+     * 
      * @return the moRefId value.
      */
     public String moRefId() {
@@ -117,7 +121,7 @@ public final class DatastoreProperties {
 
     /**
      * Set the moRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID for the datastore.
-     *
+     * 
      * @param moRefId the moRefId value to set.
      * @return the DatastoreProperties object itself.
      */
@@ -128,7 +132,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the datastore.
-     *
+     * 
      * @return the inventoryItemId value.
      */
     public String inventoryItemId() {
@@ -137,7 +141,7 @@ public final class DatastoreProperties {
 
     /**
      * Set the inventoryItemId property: Gets or sets the inventory Item ID for the datastore.
-     *
+     * 
      * @param inventoryItemId the inventoryItemId value to set.
      * @return the DatastoreProperties object itself.
      */
@@ -148,7 +152,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the moName property: Gets or sets the vCenter Managed Object name for the datastore.
-     *
+     * 
      * @return the moName value.
      */
     public String moName() {
@@ -157,7 +161,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the statuses property: The resource status information.
-     *
+     * 
      * @return the statuses value.
      */
     public List<ResourceStatus> statuses() {
@@ -166,7 +170,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the customResourceName property: Gets the name of the corresponding resource in Kubernetes.
-     *
+     * 
      * @return the customResourceName value.
      */
     public String customResourceName() {
@@ -175,7 +179,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the capacityGB property: Gets or sets Maximum capacity of this datastore in GBs.
-     *
+     * 
      * @return the capacityGB value.
      */
     public Long capacityGB() {
@@ -184,7 +188,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the freeSpaceGB property: Gets or sets Available space of this datastore in GBs.
-     *
+     * 
      * @return the freeSpaceGB value.
      */
     public Long freeSpaceGB() {
@@ -193,7 +197,7 @@ public final class DatastoreProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -202,7 +206,7 @@ public final class DatastoreProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Username / Password Credentials to connect to vcenter. */
+/**
+ * Username / Password Credentials to connect to vcenter.
+ */
 @Fluent
 public final class VICredential {
     /*
@@ -22,13 +24,15 @@ public final class VICredential {
     @JsonProperty(value = "password")
     private String password;
 
-    /** Creates an instance of VICredential class. */
+    /**
+     * Creates an instance of VICredential class.
+     */
     public VICredential() {
     }
 
     /**
      * Get the username property: Gets or sets username to connect with the vCenter.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -37,7 +41,7 @@ public final class VICredential {
 
     /**
      * Set the username property: Gets or sets username to connect with the vCenter.
-     *
+     * 
      * @param username the username value to set.
      * @return the VICredential object itself.
      */
@@ -48,7 +52,7 @@ public final class VICredential {
 
     /**
      * Get the password property: Gets or sets the password to connect with the vCenter.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -57,7 +61,7 @@ public final class VICredential {
 
     /**
      * Set the password property: Gets or sets the password to connect with the vCenter.
-     *
+     * 
      * @param password the password value to set.
      * @return the VICredential object itself.
      */
@@ -68,7 +72,7 @@ public final class VICredential {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
