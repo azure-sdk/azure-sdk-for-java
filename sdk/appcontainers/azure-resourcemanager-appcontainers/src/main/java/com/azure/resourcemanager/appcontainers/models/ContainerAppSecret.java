@@ -25,8 +25,7 @@ public final class ContainerAppSecret {
     private String value;
 
     /*
-     * Resource ID of a managed identity to authenticate with Azure Key Vault, or System to use a system-assigned
-     * identity.
+     * Resource ID of a managed identity to authenticate with Azure Key Vault, or System to use a system-assigned identity.
      */
     @JsonProperty(value = "identity", access = JsonProperty.Access.WRITE_ONLY)
     private String identity;

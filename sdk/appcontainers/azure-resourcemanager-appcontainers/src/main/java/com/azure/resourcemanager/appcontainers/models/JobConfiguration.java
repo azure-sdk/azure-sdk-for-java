@@ -39,15 +39,13 @@ public final class JobConfiguration {
     private Integer replicaRetryLimit;
 
     /*
-     * Manual trigger configuration for a single execution job. Properties replicaCompletionCount and parallelism would
-     * be set to 1 by default
+     * Manual trigger configuration for a single execution job. Properties replicaCompletionCount and parallelism would be set to 1 by default
      */
     @JsonProperty(value = "manualTriggerConfig")
     private JobConfigurationManualTriggerConfig manualTriggerConfig;
 
     /*
-     * Cron formatted repeating trigger schedule ("* * * * *") for cronjobs. Properties completions and parallelism
-     * would be set to 1 by default
+     * Cron formatted repeating trigger schedule ("* * * * *") for cronjobs. Properties completions and parallelism would be set to 1 by default
      */
     @JsonProperty(value = "scheduleTriggerConfig")
     private JobConfigurationScheduleTriggerConfig scheduleTriggerConfig;
@@ -244,8 +242,8 @@ public final class JobConfiguration {
             secrets().forEach(e -> e.validate());
         }
         if (triggerType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property triggerType in model JobConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property triggerType in model JobConfiguration"));
         }
         if (manualTriggerConfig() != null) {
             manualTriggerConfig().validate();

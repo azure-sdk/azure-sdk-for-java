@@ -12,6 +12,7 @@ import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerAuthentication;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerTrafficConfiguration;
 import com.azure.resourcemanager.appcontainers.models.OpenTelemetryConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
@@ -122,9 +123,7 @@ public final class ManagedEnvironmentProperties {
     private DaprConfiguration daprConfiguration;
 
     /*
-     * Name of the platform-managed resource group created for the Managed Environment to host infrastructure
-     * resources. If a subnet ID is provided, this resource group will be created in the same subscription as the
-     * subnet.
+     * Name of the platform-managed resource group created for the Managed Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be created in the same subscription as the subnet.
      */
     @JsonProperty(value = "infrastructureResourceGroup")
     private String infrastructureResourceGroup;
@@ -134,6 +133,12 @@ public final class ManagedEnvironmentProperties {
      */
     @JsonProperty(value = "peerAuthentication")
     private ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication;
+
+    /*
+     * Peer traffic settings for the Managed Environment
+     */
+    @JsonProperty(value = "peerTrafficConfiguration")
+    private ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration;
 
     /**
      * Creates an instance of ManagedEnvironmentProperties class.
@@ -173,8 +178,8 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
-     * Get the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service
-     * to Service communication telemetry.
+     * Get the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service to
+     * Service communication telemetry.
      * 
      * @return the daprAIConnectionString value.
      */
@@ -183,8 +188,8 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
-     * Set the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service
-     * to Service communication telemetry.
+     * Set the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service to
+     * Service communication telemetry.
      * 
      * @param daprAIConnectionString the daprAIConnectionString value to set.
      * @return the ManagedEnvironmentProperties object itself.
@@ -418,9 +423,9 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
-     * Get the infrastructureResourceGroup property: Name of the platform-managed resource group created for the
-     * Managed Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be
-     * created in the same subscription as the subnet.
+     * Get the infrastructureResourceGroup property: Name of the platform-managed resource group created for the Managed
+     * Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be created in
+     * the same subscription as the subnet.
      * 
      * @return the infrastructureResourceGroup value.
      */
@@ -429,9 +434,9 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
-     * Set the infrastructureResourceGroup property: Name of the platform-managed resource group created for the
-     * Managed Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be
-     * created in the same subscription as the subnet.
+     * Set the infrastructureResourceGroup property: Name of the platform-managed resource group created for the Managed
+     * Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be created in
+     * the same subscription as the subnet.
      * 
      * @param infrastructureResourceGroup the infrastructureResourceGroup value to set.
      * @return the ManagedEnvironmentProperties object itself.
@@ -459,6 +464,27 @@ public final class ManagedEnvironmentProperties {
     public ManagedEnvironmentProperties
         withPeerAuthentication(ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication) {
         this.peerAuthentication = peerAuthentication;
+        return this;
+    }
+
+    /**
+     * Get the peerTrafficConfiguration property: Peer traffic settings for the Managed Environment.
+     * 
+     * @return the peerTrafficConfiguration value.
+     */
+    public ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration() {
+        return this.peerTrafficConfiguration;
+    }
+
+    /**
+     * Set the peerTrafficConfiguration property: Peer traffic settings for the Managed Environment.
+     * 
+     * @param peerTrafficConfiguration the peerTrafficConfiguration value to set.
+     * @return the ManagedEnvironmentProperties object itself.
+     */
+    public ManagedEnvironmentProperties
+        withPeerTrafficConfiguration(ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration) {
+        this.peerTrafficConfiguration = peerTrafficConfiguration;
         return this;
     }
 
@@ -494,6 +520,9 @@ public final class ManagedEnvironmentProperties {
         }
         if (peerAuthentication() != null) {
             peerAuthentication().validate();
+        }
+        if (peerTrafficConfiguration() != null) {
+            peerTrafficConfiguration().validate();
         }
     }
 }

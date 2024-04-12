@@ -13,8 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class VnetConfiguration {
     /*
-     * Boolean indicating the environment only has an internal load balancer. These environments do not have a public
-     * static IP resource. They must provide infrastructureSubnetId if enabling this property
+     * Boolean indicating the environment only has an internal load balancer. These environments do not have a public static IP resource. They must provide infrastructureSubnetId if enabling this property
      */
     @JsonProperty(value = "internal")
     private Boolean internal;
@@ -26,22 +25,19 @@ public final class VnetConfiguration {
     private String infrastructureSubnetId;
 
     /*
-     * CIDR notation IP range assigned to the Docker bridge, network. Must not overlap with any other provided IP
-     * ranges.
+     * CIDR notation IP range assigned to the Docker bridge, network. Must not overlap with any other provided IP ranges.
      */
     @JsonProperty(value = "dockerBridgeCidr")
     private String dockerBridgeCidr;
 
     /*
-     * IP range in CIDR notation that can be reserved for environment infrastructure IP addresses. Must not overlap
-     * with any other provided IP ranges.
+     * IP range in CIDR notation that can be reserved for environment infrastructure IP addresses. Must not overlap with any other provided IP ranges.
      */
     @JsonProperty(value = "platformReservedCidr")
     private String platformReservedCidr;
 
     /*
-     * An IP address from the IP range defined by platformReservedCidr that will be reserved for the internal DNS
-     * server.
+     *  An IP address from the IP range defined by platformReservedCidr that will be reserved for the internal DNS server.
      */
     @JsonProperty(value = "platformReservedDnsIP")
     private String platformReservedDnsIp;
@@ -143,8 +139,8 @@ public final class VnetConfiguration {
     }
 
     /**
-     * Get the platformReservedDnsIp property: An IP address from the IP range defined by platformReservedCidr that
-     * will be reserved for the internal DNS server.
+     * Get the platformReservedDnsIp property: An IP address from the IP range defined by platformReservedCidr that will
+     * be reserved for the internal DNS server.
      * 
      * @return the platformReservedDnsIp value.
      */
@@ -153,8 +149,8 @@ public final class VnetConfiguration {
     }
 
     /**
-     * Set the platformReservedDnsIp property: An IP address from the IP range defined by platformReservedCidr that
-     * will be reserved for the internal DNS server.
+     * Set the platformReservedDnsIp property: An IP address from the IP range defined by platformReservedCidr that will
+     * be reserved for the internal DNS server.
      * 
      * @param platformReservedDnsIp the platformReservedDnsIp value to set.
      * @return the VnetConfiguration object itself.

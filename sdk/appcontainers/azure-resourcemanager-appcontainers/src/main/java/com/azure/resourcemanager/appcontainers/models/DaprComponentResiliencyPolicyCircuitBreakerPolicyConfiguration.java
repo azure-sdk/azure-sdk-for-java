@@ -25,8 +25,7 @@ public final class DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguratio
     private Integer timeoutInSeconds;
 
     /*
-     * The optional interval in seconds after which the error count resets to 0. An interval of 0 will never reset. If
-     * not specified, the timeoutInSeconds value will be used.
+     * The optional interval in seconds after which the error count resets to 0. An interval of 0 will never reset. If not specified, the timeoutInSeconds value will be used.
      */
     @JsonProperty(value = "intervalInSeconds")
     private Integer intervalInSeconds;

@@ -18,11 +18,6 @@ public final class DotNetComponentType extends ExpandableStringEnum<DotNetCompon
     public static final DotNetComponentType ASPIRE_DASHBOARD = fromString("AspireDashboard");
 
     /**
-     * Static value AspireResourceServerApi for DotNetComponentType.
-     */
-    public static final DotNetComponentType ASPIRE_RESOURCE_SERVER_API = fromString("AspireResourceServerApi");
-
-    /**
      * Creates a new instance of DotNetComponentType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

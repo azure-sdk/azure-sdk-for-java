@@ -9,8 +9,7 @@ package com.azure.resourcemanager.appcontainers.generated;
  */
 public final class ManagedEnvironmentsStoragesGetSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * ManagedEnvironmentsStorages_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/ManagedEnvironmentsStorages_Get.json
      */
     /**
      * Sample code: get a environments storage.
@@ -19,13 +18,12 @@ public final class ManagedEnvironmentsStoragesGetSamples {
      */
     public static void
         getAEnvironmentsStorage(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.managedEnvironmentsStorages().getWithResponse("examplerg", "managedEnv", "jlaw-demo1",
-            com.azure.core.util.Context.NONE);
+        manager.managedEnvironmentsStorages()
+            .getWithResponse("examplerg", "managedEnv", "jlaw-demo1", com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * ManagedEnvironmentsStorages_Get_NfsAzureFile.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/ManagedEnvironmentsStorages_Get_NfsAzureFile.json
      */
     /**
      * Sample code: get a environments storage for NFS Azure file.
@@ -34,7 +32,7 @@ public final class ManagedEnvironmentsStoragesGetSamples {
      */
     public static void getAEnvironmentsStorageForNFSAzureFile(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.managedEnvironmentsStorages().getWithResponse("examplerg", "managedEnv", "jlaw-demo1",
-            com.azure.core.util.Context.NONE);
+        manager.managedEnvironmentsStorages()
+            .getWithResponse("examplerg", "managedEnv", "jlaw-demo1", com.azure.core.util.Context.NONE);
     }
 }

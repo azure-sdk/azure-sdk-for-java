@@ -9,8 +9,7 @@ package com.azure.resourcemanager.appcontainers.generated;
  */
 public final class ConnectedEnvironmentsCertificatesListSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * ConnectedEnvironmentsCertificates_ListByConnectedEnvironment.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/ConnectedEnvironmentsCertificates_ListByConnectedEnvironment.json
      */
     /**
      * Sample code: List Certificates by Connected Environment.
@@ -19,7 +18,7 @@ public final class ConnectedEnvironmentsCertificatesListSamples {
      */
     public static void listCertificatesByConnectedEnvironment(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.connectedEnvironmentsCertificates().list("examplerg", "testcontainerenv",
-            com.azure.core.util.Context.NONE);
+        manager.connectedEnvironmentsCertificates()
+            .list("examplerg", "testcontainerenv", com.azure.core.util.Context.NONE);
     }
 }

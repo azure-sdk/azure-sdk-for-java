@@ -19,8 +19,7 @@ public final class CircuitBreakerPolicy {
     private Integer consecutiveErrors;
 
     /*
-     * The time interval, in seconds, between endpoint checks. This can result in opening the circuit breaker if the
-     * check fails as well as closing the circuit breaker if the check succeeds. Defaults to 10s.
+     * The time interval, in seconds, between endpoint checks. This can result in opening the circuit breaker if the check fails as well as closing the circuit breaker if the check succeeds. Defaults to 10s.
      */
     @JsonProperty(value = "intervalInSeconds")
     private Integer intervalInSeconds;
@@ -82,8 +81,8 @@ public final class CircuitBreakerPolicy {
     }
 
     /**
-     * Get the maxEjectionPercent property: Maximum percentage of hosts that will be ejected after failure threshold
-     * has been met.
+     * Get the maxEjectionPercent property: Maximum percentage of hosts that will be ejected after failure threshold has
+     * been met.
      * 
      * @return the maxEjectionPercent value.
      */
@@ -92,8 +91,8 @@ public final class CircuitBreakerPolicy {
     }
 
     /**
-     * Set the maxEjectionPercent property: Maximum percentage of hosts that will be ejected after failure threshold
-     * has been met.
+     * Set the maxEjectionPercent property: Maximum percentage of hosts that will be ejected after failure threshold has
+     * been met.
      * 
      * @param maxEjectionPercent the maxEjectionPercent value to set.
      * @return the CircuitBreakerPolicy object itself.

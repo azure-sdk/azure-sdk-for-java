@@ -105,8 +105,7 @@ public final class HttpGet {
      */
     public void validate() {
         if (url() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property url in model HttpGet"));
+            throw LOGGER.atError().log(new IllegalArgumentException("Missing required property url in model HttpGet"));
         }
     }
 

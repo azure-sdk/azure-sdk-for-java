@@ -54,8 +54,9 @@ public final class BlobStorageTokenStore {
      */
     public void validate() {
         if (sasUrlSettingName() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property sasUrlSettingName in model BlobStorageTokenStore"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sasUrlSettingName in model BlobStorageTokenStore"));
         }
     }
 

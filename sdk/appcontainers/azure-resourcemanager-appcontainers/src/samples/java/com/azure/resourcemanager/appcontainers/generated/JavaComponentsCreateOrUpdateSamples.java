@@ -6,7 +6,7 @@ package com.azure.resourcemanager.appcontainers.generated;
 
 import com.azure.resourcemanager.appcontainers.models.JavaComponentConfigurationProperty;
 import com.azure.resourcemanager.appcontainers.models.JavaComponentServiceBind;
-import com.azure.resourcemanager.appcontainers.models.JavaComponentType;
+import com.azure.resourcemanager.appcontainers.models.SpringBootAdminComponent;
 import java.util.Arrays;
 
 /**
@@ -14,8 +14,7 @@ import java.util.Arrays;
  */
 public final class JavaComponentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * JavaComponents_CreateOrUpdate_ServiceBind.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/JavaComponents_CreateOrUpdate_ServiceBind.json
      */
     /**
      * Sample code: Create or Update Java Component with ServiceBinds.
@@ -24,21 +23,22 @@ public final class JavaComponentsCreateOrUpdateSamples {
      */
     public static void createOrUpdateJavaComponentWithServiceBinds(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.javaComponents().define("myjavacomponent").withExistingManagedEnvironment("examplerg", "myenvironment")
-            .withComponentType(JavaComponentType.SPRING_BOOT_ADMIN)
-            .withConfigurations(Arrays.asList(
+        manager.javaComponents()
+            .define("myjavacomponent")
+            .withExistingManagedEnvironment("examplerg", "myenvironment")
+            .withProperties(new SpringBootAdminComponent().withConfigurations(Arrays.asList(
                 new JavaComponentConfigurationProperty().withPropertyName("spring.boot.admin.ui.enable-toasts")
                     .withValue("true"),
                 new JavaComponentConfigurationProperty().withPropertyName("spring.boot.admin.monitor.status-interval")
                     .withValue("10000ms")))
-            .withServiceBinds(Arrays.asList(new JavaComponentServiceBind().withName("yellowcat").withServiceId(
-                "/subscriptions/8efdecc5-919e-44eb-b179-915dca89ebf9/resourceGroups/examplerg/providers/Microsoft.App/managedEnvironments/myenvironment/javaComponents/yellowcat")))
+                .withServiceBinds(Arrays.asList(new JavaComponentServiceBind().withName("yellowcat")
+                    .withServiceId(
+                        "/subscriptions/8efdecc5-919e-44eb-b179-915dca89ebf9/resourceGroups/examplerg/providers/Microsoft.App/managedEnvironments/myenvironment/javaComponents/yellowcat"))))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * JavaComponents_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/JavaComponents_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Java Component.
@@ -47,13 +47,14 @@ public final class JavaComponentsCreateOrUpdateSamples {
      */
     public static void
         createOrUpdateJavaComponent(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.javaComponents().define("myjavacomponent").withExistingManagedEnvironment("examplerg", "myenvironment")
-            .withComponentType(JavaComponentType.SPRING_BOOT_ADMIN)
-            .withConfigurations(Arrays.asList(
+        manager.javaComponents()
+            .define("myjavacomponent")
+            .withExistingManagedEnvironment("examplerg", "myenvironment")
+            .withProperties(new SpringBootAdminComponent().withConfigurations(Arrays.asList(
                 new JavaComponentConfigurationProperty().withPropertyName("spring.boot.admin.ui.enable-toasts")
                     .withValue("true"),
                 new JavaComponentConfigurationProperty().withPropertyName("spring.boot.admin.monitor.status-interval")
-                    .withValue("10000ms")))
+                    .withValue("10000ms"))))
             .create();
     }
 }

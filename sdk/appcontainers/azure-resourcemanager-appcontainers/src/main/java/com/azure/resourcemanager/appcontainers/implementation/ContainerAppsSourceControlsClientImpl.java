@@ -584,8 +584,10 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<SourceControlInner>, SourceControlInner> beginCreateOrUpdate(String resourceGroupName,
         String containerAppName, String sourceControlName, SourceControlInner sourceControlEnvelope, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, containerAppName, sourceControlName,
-            sourceControlEnvelope, context).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, containerAppName, sourceControlName, sourceControlEnvelope,
+                context)
+            .getSyncPoller();
     }
 
     /**
@@ -604,7 +606,8 @@ public final class ContainerAppsSourceControlsClientImpl implements ContainerApp
     private Mono<SourceControlInner> createOrUpdateAsync(String resourceGroupName, String containerAppName,
         String sourceControlName, SourceControlInner sourceControlEnvelope) {
         return beginCreateOrUpdateAsync(resourceGroupName, containerAppName, sourceControlName, sourceControlEnvelope)
-            .last().flatMap(this.client::getLroFinalResultOrError);
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**

@@ -40,15 +40,13 @@ public final class CustomHostnameAnalysisResultInner {
     private CustomHostnameAnalysisResultCustomDomainVerificationFailureInfo customDomainVerificationFailureInfo;
 
     /*
-     * <code>true</code> if there is a conflict on the Container App's managed environment; otherwise,
-     * <code>false</code>.
+     * <code>true</code> if there is a conflict on the Container App's managed environment; otherwise, <code>false</code>.
      */
     @JsonProperty(value = "hasConflictOnManagedEnvironment", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean hasConflictOnManagedEnvironment;
 
     /*
-     * <code>true</code> if there is a conflict on the Container App's managed environment level custom domain;
-     * otherwise, <code>false</code>.
+     * <code>true</code> if there is a conflict on the Container App's managed environment level custom domain; otherwise, <code>false</code>.
      */
     @JsonProperty(value = "conflictWithEnvironmentCustomDomain", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean conflictWithEnvironmentCustomDomain;
@@ -143,8 +141,8 @@ public final class CustomHostnameAnalysisResultInner {
     }
 
     /**
-     * Get the conflictWithEnvironmentCustomDomain property: &lt;code&gt;true&lt;/code&gt; if there is a conflict on
-     * the Container App's managed environment level custom domain; otherwise, &lt;code&gt;false&lt;/code&gt;.
+     * Get the conflictWithEnvironmentCustomDomain property: &lt;code&gt;true&lt;/code&gt; if there is a conflict on the
+     * Container App's managed environment level custom domain; otherwise, &lt;code&gt;false&lt;/code&gt;.
      * 
      * @return the conflictWithEnvironmentCustomDomain value.
      */

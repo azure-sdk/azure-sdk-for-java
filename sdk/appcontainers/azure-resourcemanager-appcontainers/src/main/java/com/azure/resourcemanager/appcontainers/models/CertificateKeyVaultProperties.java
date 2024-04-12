@@ -13,8 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class CertificateKeyVaultProperties {
     /*
-     * Resource ID of a managed identity to authenticate with Azure Key Vault, or System to use a system-assigned
-     * identity.
+     * Resource ID of a managed identity to authenticate with Azure Key Vault, or System to use a system-assigned identity.
      */
     @JsonProperty(value = "identity")
     private String identity;

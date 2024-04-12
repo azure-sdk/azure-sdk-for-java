@@ -14,8 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ContainerRegistryWithCustomImage {
     /*
-     * Login server of the container registry that the final image should be uploaded to. Builder resource needs to
-     * have this container registry defined along with an identity to use to access it.
+     * Login server of the container registry that the final image should be uploaded to. Builder resource needs to have this container registry defined along with an identity to use to access it.
      */
     @JsonProperty(value = "server", required = true)
     private String server;
@@ -81,8 +80,9 @@ public final class ContainerRegistryWithCustomImage {
      */
     public void validate() {
         if (server() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property server in model ContainerRegistryWithCustomImage"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property server in model ContainerRegistryWithCustomImage"));
         }
     }
 

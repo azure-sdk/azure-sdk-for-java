@@ -466,8 +466,10 @@ public final class ManagedCertificatesClientImpl implements ManagedCertificatesC
     public SyncPoller<PollResult<ManagedCertificateInner>, ManagedCertificateInner>
         beginCreateOrUpdate(String resourceGroupName, String environmentName, String managedCertificateName) {
         final ManagedCertificateInner managedCertificateEnvelope = null;
-        return this.beginCreateOrUpdateAsync(resourceGroupName, environmentName, managedCertificateName,
-            managedCertificateEnvelope).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, environmentName, managedCertificateName,
+                managedCertificateEnvelope)
+            .getSyncPoller();
     }
 
     /**
@@ -489,8 +491,10 @@ public final class ManagedCertificatesClientImpl implements ManagedCertificatesC
     public SyncPoller<PollResult<ManagedCertificateInner>, ManagedCertificateInner> beginCreateOrUpdate(
         String resourceGroupName, String environmentName, String managedCertificateName,
         ManagedCertificateInner managedCertificateEnvelope, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, environmentName, managedCertificateName,
-            managedCertificateEnvelope, context).getSyncPoller();
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, environmentName, managedCertificateName,
+                managedCertificateEnvelope, context)
+            .getSyncPoller();
     }
 
     /**

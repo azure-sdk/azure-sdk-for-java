@@ -9,8 +9,7 @@ package com.azure.resourcemanager.appcontainers.generated;
  */
 public final class DotNetComponentsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/DotNetComponents_List.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/DotNetComponents_List.json
      */
     /**
      * Sample code: List .NET Components.
@@ -22,8 +21,7 @@ public final class DotNetComponentsListSamples {
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * DotNetComponents_List_ServiceBind.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/DotNetComponents_List_ServiceBind.json
      */
     /**
      * Sample code: List .NET Components with ServiceBinds.

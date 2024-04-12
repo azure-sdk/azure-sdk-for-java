@@ -9,8 +9,7 @@ package com.azure.resourcemanager.appcontainers.generated;
  */
 public final class ConnectedEnvironmentsStoragesGetSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * ConnectedEnvironmentsStorages_Get.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2024-02-02-preview/examples/ConnectedEnvironmentsStorages_Get.json
      */
     /**
      * Sample code: get a environments storage properties by subscription.
@@ -19,7 +18,7 @@ public final class ConnectedEnvironmentsStoragesGetSamples {
      */
     public static void getAEnvironmentsStoragePropertiesBySubscription(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.connectedEnvironmentsStorages().getWithResponse("examplerg", "env", "jlaw-demo1",
-            com.azure.core.util.Context.NONE);
+        manager.connectedEnvironmentsStorages()
+            .getWithResponse("examplerg", "env", "jlaw-demo1", com.azure.core.util.Context.NONE);
     }
 }

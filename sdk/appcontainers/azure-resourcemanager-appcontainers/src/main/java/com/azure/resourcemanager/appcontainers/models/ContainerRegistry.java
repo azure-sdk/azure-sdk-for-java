@@ -78,12 +78,14 @@ public final class ContainerRegistry {
      */
     public void validate() {
         if (containerRegistryServer() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property containerRegistryServer in model ContainerRegistry"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property containerRegistryServer in model ContainerRegistry"));
         }
         if (identityResourceId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property identityResourceId in model ContainerRegistry"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property identityResourceId in model ContainerRegistry"));
         }
     }
 

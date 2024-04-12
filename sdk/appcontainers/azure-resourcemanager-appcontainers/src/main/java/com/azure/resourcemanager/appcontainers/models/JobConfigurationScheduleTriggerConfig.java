@@ -9,8 +9,8 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Cron formatted repeating trigger schedule ("* * * * *") for cronjobs. Properties completions and parallelism would
- * be set to 1 by default.
+ * Cron formatted repeating trigger schedule ("* * * * *") for cronjobs. Properties completions and parallelism would be
+ * set to 1 by default.
  */
 @Fluent
 public final class JobConfigurationScheduleTriggerConfig {
@@ -107,8 +107,9 @@ public final class JobConfigurationScheduleTriggerConfig {
      */
     public void validate() {
         if (cronExpression() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property cronExpression in model JobConfigurationScheduleTriggerConfig"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property cronExpression in model JobConfigurationScheduleTriggerConfig"));
         }
     }
 
