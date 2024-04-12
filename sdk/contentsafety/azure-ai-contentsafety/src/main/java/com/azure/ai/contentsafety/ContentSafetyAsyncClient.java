@@ -6,7 +6,11 @@ package com.azure.ai.contentsafety;
 import com.azure.ai.contentsafety.implementation.ContentSafetyClientImpl;
 import com.azure.ai.contentsafety.models.AnalyzeImageOptions;
 import com.azure.ai.contentsafety.models.AnalyzeImageResult;
+import com.azure.ai.contentsafety.models.AnalyzeTextJailbreakOptions;
+import com.azure.ai.contentsafety.models.AnalyzeTextJailbreakResult;
 import com.azure.ai.contentsafety.models.AnalyzeTextOptions;
+import com.azure.ai.contentsafety.models.AnalyzeTextProtectedMaterialOptions;
+import com.azure.ai.contentsafety.models.AnalyzeTextProtectedMaterialResult;
 import com.azure.ai.contentsafety.models.AnalyzeTextResult;
 import com.azure.ai.contentsafety.models.ContentSafetyImageData;
 import com.azure.core.annotation.Generated;
@@ -256,5 +260,128 @@ public final class ContentSafetyAsyncClient {
         /// Customized convenience method for analyzeImage
         AnalyzeImageOptions options = new AnalyzeImageOptions(new ContentSafetyImageData().setContent(content));
         return analyzeImage(options);
+    }
+
+    /**
+     * Analyze Text Jailbreak
+     *
+     * A synchronous API for the analysis of text jailbreak.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     jailbreakAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     *
+     * @param options The text jailbreak analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the text jailbreak analysis request along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> detectTextJailbreakWithResponse(BinaryData options,
+        RequestOptions requestOptions) {
+        return this.serviceClient.detectTextJailbreakWithResponseAsync(options, requestOptions);
+    }
+
+    /**
+     * Analyze Protected Material
+     *
+     * A synchronous API for the analysis of protected material.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     protectedMaterialAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     *
+     * @param options The text protected material analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the protected material analysis response along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> detectTextProtectedMaterialWithResponse(BinaryData options,
+        RequestOptions requestOptions) {
+        return this.serviceClient.detectTextProtectedMaterialWithResponseAsync(options, requestOptions);
+    }
+
+    /**
+     * Analyze Text Jailbreak
+     *
+     * A synchronous API for the analysis of text jailbreak.
+     *
+     * @param options The text jailbreak analysis request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the text jailbreak analysis request on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<AnalyzeTextJailbreakResult> detectTextJailbreak(AnalyzeTextJailbreakOptions options) {
+        // Generated convenience method for detectTextJailbreakWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return detectTextJailbreakWithResponse(BinaryData.fromObject(options), requestOptions).flatMap(FluxUtil::toMono)
+            .map(protocolMethodData -> protocolMethodData.toObject(AnalyzeTextJailbreakResult.class));
+    }
+
+    /**
+     * Analyze Protected Material
+     *
+     * A synchronous API for the analysis of protected material.
+     *
+     * @param options The text protected material analysis request.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the protected material analysis response on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<AnalyzeTextProtectedMaterialResult>
+        detectTextProtectedMaterial(AnalyzeTextProtectedMaterialOptions options) {
+        // Generated convenience method for detectTextProtectedMaterialWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return detectTextProtectedMaterialWithResponse(BinaryData.fromObject(options), requestOptions)
+            .flatMap(FluxUtil::toMono)
+            .map(protocolMethodData -> protocolMethodData.toObject(AnalyzeTextProtectedMaterialResult.class));
     }
 }
