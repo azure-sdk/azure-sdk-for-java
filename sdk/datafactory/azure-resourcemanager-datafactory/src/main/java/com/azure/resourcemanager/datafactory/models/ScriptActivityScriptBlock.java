@@ -105,12 +105,12 @@ public final class ScriptActivityScriptBlock {
      */
     public void validate() {
         if (text() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property text in model ScriptActivityScriptBlock"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property text in model ScriptActivityScriptBlock"));
         }
         if (type() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property type in model ScriptActivityScriptBlock"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property type in model ScriptActivityScriptBlock"));
         }
         if (parameters() != null) {
             parameters().forEach(e -> e.validate());

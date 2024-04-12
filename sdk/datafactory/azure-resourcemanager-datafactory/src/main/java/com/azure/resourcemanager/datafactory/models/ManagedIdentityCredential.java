@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.datafactory.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.datafactory.fluent.models.ManagedIdentityTypeProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,15 +14,20 @@ import java.util.List;
 /**
  * Managed identity credential.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ManagedIdentityCredential.class,
+    visible = true)
 @JsonTypeName("ManagedIdentity")
 @Fluent
 public final class ManagedIdentityCredential extends Credential {
     /*
-     * Managed identity credential properties.
+     * Type of credential.
      */
-    @JsonProperty(value = "typeProperties")
-    private ManagedIdentityTypeProperties innerTypeProperties;
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "ManagedIdentity";
 
     /**
      * Creates an instance of ManagedIdentityCredential class.
@@ -31,12 +36,13 @@ public final class ManagedIdentityCredential extends Credential {
     }
 
     /**
-     * Get the innerTypeProperties property: Managed identity credential properties.
+     * Get the type property: Type of credential.
      * 
-     * @return the innerTypeProperties value.
+     * @return the type value.
      */
-    private ManagedIdentityTypeProperties innerTypeProperties() {
-        return this.innerTypeProperties;
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -58,29 +64,6 @@ public final class ManagedIdentityCredential extends Credential {
     }
 
     /**
-     * Get the resourceId property: The resource id of user assigned managed identity.
-     * 
-     * @return the resourceId value.
-     */
-    public String resourceId() {
-        return this.innerTypeProperties() == null ? null : this.innerTypeProperties().resourceId();
-    }
-
-    /**
-     * Set the resourceId property: The resource id of user assigned managed identity.
-     * 
-     * @param resourceId the resourceId value to set.
-     * @return the ManagedIdentityCredential object itself.
-     */
-    public ManagedIdentityCredential withResourceId(String resourceId) {
-        if (this.innerTypeProperties() == null) {
-            this.innerTypeProperties = new ManagedIdentityTypeProperties();
-        }
-        this.innerTypeProperties().withResourceId(resourceId);
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -88,8 +71,5 @@ public final class ManagedIdentityCredential extends Credential {
     @Override
     public void validate() {
         super.validate();
-        if (innerTypeProperties() != null) {
-            innerTypeProperties().validate();
-        }
     }
 }
