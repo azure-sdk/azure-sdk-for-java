@@ -7,6 +7,7 @@ package com.azure.resourcemanager.hdinsight.containers.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
@@ -14,10 +15,17 @@ import java.util.Map;
 /**
  * Properties of flink job.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "jobType", defaultImpl = FlinkJobProperties.class, visible = true)
 @JsonTypeName("FlinkJob")
 @Fluent
 public final class FlinkJobProperties extends ClusterJobProperties {
+    /*
+     * Type of cluster job.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobType", required = true)
+    private JobType jobType = JobType.FLINK_JOB;
+
     /*
      * Run id of job
      */
@@ -61,16 +69,13 @@ public final class FlinkJobProperties extends ClusterJobProperties {
     private String savePointName;
 
     /*
-     * A string property that indicates the action to be performed on the Flink job. It can have one of the following
-     * enum values => NEW, UPDATE, STATELESS_UPDATE, STOP, START, CANCEL, SAVEPOINT, LIST_SAVEPOINT, or DELETE.
+     * A string property that indicates the action to be performed on the Flink job. It can have one of the following enum values => NEW, UPDATE, STATELESS_UPDATE, STOP, START, CANCEL, SAVEPOINT, LIST_SAVEPOINT, or DELETE.
      */
     @JsonProperty(value = "action")
     private Action action;
 
     /*
-     * Additional properties used to configure Flink jobs. It allows users to set properties such as parallelism and
-     * jobSavePointDirectory. It accepts additional key-value pairs as properties, where the keys are strings and the
-     * values are strings as well.
+     * Additional properties used to configure Flink jobs. It allows users to set properties such as parallelism and jobSavePointDirectory. It accepts additional key-value pairs as properties, where the keys are strings and the values are strings as well.
      */
     @JsonProperty(value = "flinkConfiguration")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
@@ -110,6 +115,16 @@ public final class FlinkJobProperties extends ClusterJobProperties {
      * Creates an instance of FlinkJobProperties class.
      */
     public FlinkJobProperties() {
+    }
+
+    /**
+     * Get the jobType property: Type of cluster job.
+     * 
+     * @return the jobType value.
+     */
+    @Override
+    public JobType jobType() {
+        return this.jobType;
     }
 
     /**

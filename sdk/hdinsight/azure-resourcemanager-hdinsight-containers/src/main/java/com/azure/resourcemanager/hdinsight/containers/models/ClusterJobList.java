@@ -80,8 +80,8 @@ public final class ClusterJobList {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property value in model ClusterJobList"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model ClusterJobList"));
         } else {
             value().forEach(e -> e.validate());
         }

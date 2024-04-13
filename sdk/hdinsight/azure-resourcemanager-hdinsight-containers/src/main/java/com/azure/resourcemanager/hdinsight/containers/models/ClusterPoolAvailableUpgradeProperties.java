@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,19 +16,36 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "upgradeType",
-    defaultImpl = ClusterPoolAvailableUpgradeProperties.class)
+    defaultImpl = ClusterPoolAvailableUpgradeProperties.class,
+    visible = true)
 @JsonTypeName("ClusterPoolAvailableUpgradeProperties")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AKSPatchUpgrade", value = ClusterPoolAvailableUpgradeAksPatchUpgradeProperties.class),
     @JsonSubTypes.Type(name = "NodeOsUpgrade", value = ClusterPoolAvailableUpgradeNodeOsUpgradeProperties.class) })
 @Immutable
 public class ClusterPoolAvailableUpgradeProperties {
+    /*
+     * Type of upgrade.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "upgradeType", required = true)
+    private ClusterPoolAvailableUpgradeType upgradeType;
+
     /**
      * Creates an instance of ClusterPoolAvailableUpgradeProperties class.
      */
     public ClusterPoolAvailableUpgradeProperties() {
+        this.upgradeType = ClusterPoolAvailableUpgradeType.fromString("ClusterPoolAvailableUpgradeProperties");
+    }
+
+    /**
+     * Get the upgradeType property: Type of upgrade.
+     * 
+     * @return the upgradeType value.
+     */
+    public ClusterPoolAvailableUpgradeType upgradeType() {
+        return this.upgradeType;
     }
 
     /**

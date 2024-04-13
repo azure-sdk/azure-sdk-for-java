@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,17 +16,34 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "jobType",
-    defaultImpl = ClusterJobProperties.class)
+    defaultImpl = ClusterJobProperties.class,
+    visible = true)
 @JsonTypeName("ClusterJobProperties")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "FlinkJob", value = FlinkJobProperties.class) })
 @Immutable
 public class ClusterJobProperties {
+    /*
+     * Type of cluster job.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobType", required = true)
+    private JobType jobType;
+
     /**
      * Creates an instance of ClusterJobProperties class.
      */
     public ClusterJobProperties() {
+        this.jobType = JobType.fromString("ClusterJobProperties");
+    }
+
+    /**
+     * Get the jobType property: Type of cluster job.
+     * 
+     * @return the jobType value.
+     */
+    public JobType jobType() {
+        return this.jobType;
     }
 
     /**

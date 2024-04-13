@@ -38,8 +38,7 @@ public final class RangerUsersyncSpec {
     private String userMappingLocation;
 
     /*
-     * List of user names that should be synced. These usernames should match the User principal name of the respective
-     * AAD users.
+     * List of user names that should be synced. These usernames should match the User principal name of the respective AAD users.
      */
     @JsonProperty(value = "users")
     private List<String> users;
@@ -135,8 +134,8 @@ public final class RangerUsersyncSpec {
     }
 
     /**
-     * Get the users property: List of user names that should be synced. These usernames should match the User
-     * principal name of the respective AAD users.
+     * Get the users property: List of user names that should be synced. These usernames should match the User principal
+     * name of the respective AAD users.
      * 
      * @return the users value.
      */
@@ -145,8 +144,8 @@ public final class RangerUsersyncSpec {
     }
 
     /**
-     * Set the users property: List of user names that should be synced. These usernames should match the User
-     * principal name of the respective AAD users.
+     * Set the users property: List of user names that should be synced. These usernames should match the User principal
+     * name of the respective AAD users.
      * 
      * @param users the users value to set.
      * @return the RangerUsersyncSpec object itself.

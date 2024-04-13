@@ -104,8 +104,9 @@ public class ClusterInstanceViewStatus {
      */
     public void validate() {
         if (ready() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property ready in model ClusterInstanceViewStatus"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property ready in model ClusterInstanceViewStatus"));
         }
     }
 

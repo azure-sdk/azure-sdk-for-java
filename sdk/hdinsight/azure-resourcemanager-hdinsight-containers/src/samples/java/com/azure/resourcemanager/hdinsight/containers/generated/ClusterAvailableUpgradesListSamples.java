@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hdinsight.containers.generated;
  */
 public final class ClusterAvailableUpgradesListSamples {
     /*
-     * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/preview/2023-11-01-preview/examples/
-     * ListClusterAvailableUpgrades.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/stable/2024-05-01/examples/ListClusterAvailableUpgrades.json
      */
     /**
      * Sample code: GetClusterAvailableUpgrade.
@@ -20,7 +18,7 @@ public final class ClusterAvailableUpgradesListSamples {
      */
     public static void
         getClusterAvailableUpgrade(com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
-        manager.clusterAvailableUpgrades().list("hiloResourcegroup", "clusterpool1", "cluster1",
-            com.azure.core.util.Context.NONE);
+        manager.clusterAvailableUpgrades()
+            .list("hiloResourcegroup", "clusterpool1", "cluster1", com.azure.core.util.Context.NONE);
     }
 }

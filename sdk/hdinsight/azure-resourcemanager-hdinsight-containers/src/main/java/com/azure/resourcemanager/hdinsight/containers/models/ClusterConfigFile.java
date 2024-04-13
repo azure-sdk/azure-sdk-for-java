@@ -28,8 +28,7 @@ public final class ClusterConfigFile {
     private String content;
 
     /*
-     * This property indicates if the content is encoded and is case-insensitive. Please set the value to base64 if the
-     * content is base64 encoded. Set it to none or skip it if the content is plain text.
+     * This property indicates if the content is encoded and is case-insensitive. Please set the value to base64 if the content is base64 encoded. Set it to none or skip it if the content is plain text.
      */
     @JsonProperty(value = "encoding")
     private ContentEncoding encoding;
@@ -165,8 +164,8 @@ public final class ClusterConfigFile {
      */
     public void validate() {
         if (fileName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property fileName in model ClusterConfigFile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property fileName in model ClusterConfigFile"));
         }
     }
 

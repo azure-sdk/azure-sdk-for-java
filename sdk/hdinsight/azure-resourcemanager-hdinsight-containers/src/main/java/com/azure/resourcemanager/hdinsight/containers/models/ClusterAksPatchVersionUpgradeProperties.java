@@ -5,20 +5,43 @@
 package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Properties of upgrading cluster's AKS patch version.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "upgradeType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "upgradeType",
+    defaultImpl = ClusterAksPatchVersionUpgradeProperties.class,
+    visible = true)
 @JsonTypeName("AKSPatchUpgrade")
 @Immutable
 public final class ClusterAksPatchVersionUpgradeProperties extends ClusterUpgradeProperties {
+    /*
+     * Type of upgrade.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "upgradeType", required = true)
+    private ClusterUpgradeType upgradeType = ClusterUpgradeType.AKSPATCH_UPGRADE;
+
     /**
      * Creates an instance of ClusterAksPatchVersionUpgradeProperties class.
      */
     public ClusterAksPatchVersionUpgradeProperties() {
+    }
+
+    /**
+     * Get the upgradeType property: Type of upgrade.
+     * 
+     * @return the upgradeType value.
+     */
+    @Override
+    public ClusterUpgradeType upgradeType() {
+        return this.upgradeType;
     }
 
     /**

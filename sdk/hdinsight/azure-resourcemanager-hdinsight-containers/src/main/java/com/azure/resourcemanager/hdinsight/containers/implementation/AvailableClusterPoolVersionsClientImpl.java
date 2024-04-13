@@ -56,8 +56,8 @@ public final class AvailableClusterPoolVersionsClientImpl implements AvailableCl
     }
 
     /**
-     * The interface defining all the services for HDInsightContainersManagementClientAvailableClusterPoolVersions to
-     * be used by the proxy service to perform REST calls.
+     * The interface defining all the services for HDInsightContainersManagementClientAvailableClusterPoolVersions to be
+     * used by the proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "HDInsightContainersM")

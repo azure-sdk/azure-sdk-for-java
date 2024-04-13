@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Cluster available AKS patch version upgrade.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "upgradeType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "upgradeType",
+    defaultImpl = ClusterAvailableUpgradeAksPatchUpgradeProperties.class,
+    visible = true)
 @JsonTypeName("AKSPatchUpgrade")
 @Fluent
 public final class ClusterAvailableUpgradeAksPatchUpgradeProperties extends ClusterAvailableUpgradeProperties {
+    /*
+     * Type of upgrade.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "upgradeType", required = true)
+    private ClusterAvailableUpgradeType upgradeType = ClusterAvailableUpgradeType.AKSPATCH_UPGRADE;
+
     /*
      * Current node pool version.
      */
@@ -38,6 +50,16 @@ public final class ClusterAvailableUpgradeAksPatchUpgradeProperties extends Clus
      * Creates an instance of ClusterAvailableUpgradeAksPatchUpgradeProperties class.
      */
     public ClusterAvailableUpgradeAksPatchUpgradeProperties() {
+    }
+
+    /**
+     * Get the upgradeType property: Type of upgrade.
+     * 
+     * @return the upgradeType value.
+     */
+    @Override
+    public ClusterAvailableUpgradeType upgradeType() {
+        return this.upgradeType;
     }
 
     /**

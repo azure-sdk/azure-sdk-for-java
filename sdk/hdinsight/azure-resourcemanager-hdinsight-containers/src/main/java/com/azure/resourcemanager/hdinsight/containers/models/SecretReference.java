@@ -130,16 +130,17 @@ public final class SecretReference {
      */
     public void validate() {
         if (referenceName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property referenceName in model SecretReference"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property referenceName in model SecretReference"));
         }
         if (type() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property type in model SecretReference"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property type in model SecretReference"));
         }
         if (keyVaultObjectName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property keyVaultObjectName in model SecretReference"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property keyVaultObjectName in model SecretReference"));
         }
     }
 

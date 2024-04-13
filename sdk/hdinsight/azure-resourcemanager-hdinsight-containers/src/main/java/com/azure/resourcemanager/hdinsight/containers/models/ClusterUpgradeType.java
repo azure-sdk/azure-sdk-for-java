@@ -23,6 +23,11 @@ public final class ClusterUpgradeType extends ExpandableStringEnum<ClusterUpgrad
     public static final ClusterUpgradeType HOTFIX_UPGRADE = fromString("HotfixUpgrade");
 
     /**
+     * Static value PatchVersionUpgrade for ClusterUpgradeType.
+     */
+    public static final ClusterUpgradeType PATCH_VERSION_UPGRADE = fromString("PatchVersionUpgrade");
+
+    /**
      * Creates a new instance of ClusterUpgradeType value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

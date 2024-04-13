@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,19 +16,36 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "upgradeType",
-    defaultImpl = ClusterUpgradeProperties.class)
+    defaultImpl = ClusterUpgradeProperties.class,
+    visible = true)
 @JsonTypeName("ClusterUpgradeProperties")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AKSPatchUpgrade", value = ClusterAksPatchVersionUpgradeProperties.class),
-    @JsonSubTypes.Type(name = "HotfixUpgrade", value = ClusterHotfixUpgradeProperties.class) })
+    @JsonSubTypes.Type(name = "ClusterInPlaceUpgradeProperties", value = ClusterInPlaceUpgradeProperties.class) })
 @Immutable
 public class ClusterUpgradeProperties {
+    /*
+     * Type of upgrade.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "upgradeType", required = true)
+    private ClusterUpgradeType upgradeType;
+
     /**
      * Creates an instance of ClusterUpgradeProperties class.
      */
     public ClusterUpgradeProperties() {
+        this.upgradeType = ClusterUpgradeType.fromString("ClusterUpgradeProperties");
+    }
+
+    /**
+     * Get the upgradeType property: Type of upgrade.
+     * 
+     * @return the upgradeType value.
+     */
+    public ClusterUpgradeType upgradeType() {
+        return this.upgradeType;
     }
 
     /**

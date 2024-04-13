@@ -53,8 +53,8 @@ public final class ClusterAccessProfile {
     }
 
     /**
-     * Get the privateLinkServiceId property: Private link service resource ID. Only when enableInternalIngress is
-     * true, this property will be returned.
+     * Get the privateLinkServiceId property: Private link service resource ID. Only when enableInternalIngress is true,
+     * this property will be returned.
      * 
      * @return the privateLinkServiceId value.
      */

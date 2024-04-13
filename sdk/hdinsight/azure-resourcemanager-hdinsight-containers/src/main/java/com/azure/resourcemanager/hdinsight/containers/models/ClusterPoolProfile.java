@@ -52,8 +52,9 @@ public class ClusterPoolProfile {
      */
     public void validate() {
         if (clusterPoolVersion() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property clusterPoolVersion in model ClusterPoolProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property clusterPoolVersion in model ClusterPoolProfile"));
         }
     }
 

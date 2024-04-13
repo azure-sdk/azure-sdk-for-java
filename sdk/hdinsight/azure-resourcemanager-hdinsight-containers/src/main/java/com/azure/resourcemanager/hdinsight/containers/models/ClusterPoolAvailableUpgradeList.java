@@ -80,8 +80,9 @@ public final class ClusterPoolAvailableUpgradeList {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property value in model ClusterPoolAvailableUpgradeList"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model ClusterPoolAvailableUpgradeList"));
         } else {
             value().forEach(e -> e.validate());
         }

@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Cluster pool available node OS update.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "upgradeType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "upgradeType",
+    defaultImpl = ClusterPoolAvailableUpgradeNodeOsUpgradeProperties.class,
+    visible = true)
 @JsonTypeName("NodeOsUpgrade")
 @Fluent
 public final class ClusterPoolAvailableUpgradeNodeOsUpgradeProperties extends ClusterPoolAvailableUpgradeProperties {
+    /*
+     * Type of upgrade.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "upgradeType", required = true)
+    private ClusterPoolAvailableUpgradeType upgradeType = ClusterPoolAvailableUpgradeType.NODE_OS_UPGRADE;
+
     /*
      * The latest node OS version.
      */
@@ -26,6 +38,16 @@ public final class ClusterPoolAvailableUpgradeNodeOsUpgradeProperties extends Cl
      * Creates an instance of ClusterPoolAvailableUpgradeNodeOsUpgradeProperties class.
      */
     public ClusterPoolAvailableUpgradeNodeOsUpgradeProperties() {
+    }
+
+    /**
+     * Get the upgradeType property: Type of upgrade.
+     * 
+     * @return the upgradeType value.
+     */
+    @Override
+    public ClusterPoolAvailableUpgradeType upgradeType() {
+        return this.upgradeType;
     }
 
     /**

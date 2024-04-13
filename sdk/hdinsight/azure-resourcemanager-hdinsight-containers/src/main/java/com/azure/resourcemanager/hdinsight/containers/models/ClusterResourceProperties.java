@@ -149,18 +149,21 @@ public final class ClusterResourceProperties {
      */
     public void validate() {
         if (clusterType() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property clusterType in model ClusterResourceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property clusterType in model ClusterResourceProperties"));
         }
         if (computeProfile() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property computeProfile in model ClusterResourceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property computeProfile in model ClusterResourceProperties"));
         } else {
             computeProfile().validate();
         }
         if (clusterProfile() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property clusterProfile in model ClusterResourceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property clusterProfile in model ClusterResourceProperties"));
         } else {
             clusterProfile().validate();
         }

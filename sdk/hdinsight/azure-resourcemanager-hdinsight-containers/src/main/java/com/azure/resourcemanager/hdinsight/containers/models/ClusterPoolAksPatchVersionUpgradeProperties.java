@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Properties of upgrading cluster pool's AKS patch version.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "upgradeType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "upgradeType",
+    defaultImpl = ClusterPoolAksPatchVersionUpgradeProperties.class,
+    visible = true)
 @JsonTypeName("AKSPatchUpgrade")
 @Fluent
 public final class ClusterPoolAksPatchVersionUpgradeProperties extends ClusterPoolUpgradeProperties {
+    /*
+     * Type of upgrade.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "upgradeType", required = true)
+    private ClusterPoolUpgradeType upgradeType = ClusterPoolUpgradeType.AKSPATCH_UPGRADE;
+
     /*
      * whether upgrade cluster pool or not. If it's true, upgradeAllClusterNodes should be false.
      */
@@ -29,10 +41,7 @@ public final class ClusterPoolAksPatchVersionUpgradeProperties extends ClusterPo
     private Boolean upgradeAllClusterNodes;
 
     /*
-     * Target AKS version. When it's not set, latest version will be used. When upgradeClusterPool is true and
-     * upgradeAllClusterNodes is false, target version should be greater or equal to current version. When
-     * upgradeClusterPool is false and upgradeAllClusterNodes is true, target version should be equal to AKS version of
-     * cluster pool.
+     * Target AKS version. When it's not set, latest version will be used. When upgradeClusterPool is true and upgradeAllClusterNodes is false, target version should be greater or equal to current version. When upgradeClusterPool is false and upgradeAllClusterNodes is true, target version should be equal to AKS version of cluster pool.
      */
     @JsonProperty(value = "targetAksVersion")
     private String targetAksVersion;
@@ -41,6 +50,16 @@ public final class ClusterPoolAksPatchVersionUpgradeProperties extends ClusterPo
      * Creates an instance of ClusterPoolAksPatchVersionUpgradeProperties class.
      */
     public ClusterPoolAksPatchVersionUpgradeProperties() {
+    }
+
+    /**
+     * Get the upgradeType property: Type of upgrade.
+     * 
+     * @return the upgradeType value.
+     */
+    @Override
+    public ClusterPoolUpgradeType upgradeType() {
+        return this.upgradeType;
     }
 
     /**

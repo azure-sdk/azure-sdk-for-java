@@ -23,15 +23,13 @@ public class ClusterPoolNetworkProfile {
     /*
      * The outbound (egress) routing method.
      * 
-     * This can only be set at cluster pool creation time and cannot be changed later.
+     * This can only be set at cluster pool creation time and cannot be changed later. 
      */
     @JsonProperty(value = "outboundType")
     private OutboundType outboundType;
 
     /*
-     * ClusterPool is based on AKS cluster. AKS cluster exposes the API server to public internet by default. If you
-     * set this property to true, a private AKS cluster will be created, and it will use private apiserver, which is
-     * not exposed to public internet.
+     * ClusterPool is based on AKS cluster. AKS cluster exposes the API server to public internet by default. If you set this property to true, a private AKS cluster will be created, and it will use private apiserver, which is not exposed to public internet.
      */
     @JsonProperty(value = "enablePrivateApiServer")
     private Boolean enablePrivateApiServer;
@@ -39,8 +37,7 @@ public class ClusterPoolNetworkProfile {
     /*
      * The IP ranges authorized to access the AKS API server.
      * 
-     * IP ranges are specified in CIDR format, e.g. 137.117.106.88/29. This feature is not compatible with private AKS
-     * clusters. So you cannot set enablePrivateApiServer to true and apiServerAuthorizedIpRanges at the same time.
+     * IP ranges are specified in CIDR format, e.g. 137.117.106.88/29. This feature is not compatible with private AKS clusters. So you cannot set enablePrivateApiServer to true and apiServerAuthorizedIpRanges at the same time.
      */
     @JsonProperty(value = "apiServerAuthorizedIpRanges")
     private List<String> apiServerAuthorizedIpRanges;
@@ -152,8 +149,9 @@ public class ClusterPoolNetworkProfile {
      */
     public void validate() {
         if (subnetId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property subnetId in model ClusterPoolNetworkProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property subnetId in model ClusterPoolNetworkProfile"));
         }
     }
 
