@@ -7,20 +7,20 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The resource names object for network interface and related resources. */
+/**
+ * The resource names object for network interface and related resources.
+ */
 @Fluent
 public final class NetworkInterfaceResourceNames {
     /*
-     * The full name for network interface. If name is not provided, service uses a default name based on the
-     * deployment type. For SingleServer, default name is {SID}-Nic. In case of HA-AvZone systems, default name will be
-     * {SID}-{App/ASCS/DB}-Zone{A/B}-Nic with an incrementor at the end in case of more than 1 instance per layer. For
-     * distributed and HA-AvSet systems, default name will be {SID}-{App/ASCS/DB}-Nic with an incrementor at the end in
-     * case of more than 1 instance per layer.
+     * The full name for network interface. If name is not provided, service uses a default name based on the deployment type. For SingleServer, default name is {SID}-Nic. In case of HA-AvZone systems, default name will be {SID}-{App/ASCS/DB}-Zone{A/B}-Nic with an incrementor at the end in case of more than 1 instance per layer. For distributed and HA-AvSet systems, default name will be {SID}-{App/ASCS/DB}-Nic with an incrementor at the end in case of more than 1 instance per layer.
      */
     @JsonProperty(value = "networkInterfaceName")
     private String networkInterfaceName;
 
-    /** Creates an instance of NetworkInterfaceResourceNames class. */
+    /**
+     * Creates an instance of NetworkInterfaceResourceNames class.
+     */
     public NetworkInterfaceResourceNames() {
     }
 
@@ -30,7 +30,7 @@ public final class NetworkInterfaceResourceNames {
      * systems, default name will be {SID}-{App/ASCS/DB}-Zone{A/B}-Nic with an incrementor at the end in case of more
      * than 1 instance per layer. For distributed and HA-AvSet systems, default name will be {SID}-{App/ASCS/DB}-Nic
      * with an incrementor at the end in case of more than 1 instance per layer.
-     *
+     * 
      * @return the networkInterfaceName value.
      */
     public String networkInterfaceName() {
@@ -43,7 +43,7 @@ public final class NetworkInterfaceResourceNames {
      * systems, default name will be {SID}-{App/ASCS/DB}-Zone{A/B}-Nic with an incrementor at the end in case of more
      * than 1 instance per layer. For distributed and HA-AvSet systems, default name will be {SID}-{App/ASCS/DB}-Nic
      * with an incrementor at the end in case of more than 1 instance per layer.
-     *
+     * 
      * @param networkInterfaceName the networkInterfaceName value to set.
      * @return the NetworkInterfaceResourceNames object itself.
      */
@@ -54,7 +54,7 @@ public final class NetworkInterfaceResourceNames {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

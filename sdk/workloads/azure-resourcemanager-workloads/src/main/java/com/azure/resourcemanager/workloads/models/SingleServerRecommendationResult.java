@@ -7,27 +7,53 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.workloads.fluent.models.SapSizingRecommendationResultInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The recommended configuration for a single server SAP system. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "deploymentType")
+/**
+ * The recommended configuration for a single server SAP system.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "deploymentType",
+    defaultImpl = SingleServerRecommendationResult.class,
+    visible = true)
 @JsonTypeName("SingleServer")
 @Fluent
 public final class SingleServerRecommendationResult extends SapSizingRecommendationResultInner {
+    /*
+     * The type of SAP deployment, single server or Three tier.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "deploymentType", required = true)
+    private SapDeploymentType deploymentType = SapDeploymentType.SINGLE_SERVER;
+
     /*
      * The recommended VM SKU for single server.
      */
     @JsonProperty(value = "vmSku")
     private String vmSku;
 
-    /** Creates an instance of SingleServerRecommendationResult class. */
+    /**
+     * Creates an instance of SingleServerRecommendationResult class.
+     */
     public SingleServerRecommendationResult() {
     }
 
     /**
+     * Get the deploymentType property: The type of SAP deployment, single server or Three tier.
+     * 
+     * @return the deploymentType value.
+     */
+    @Override
+    public SapDeploymentType deploymentType() {
+        return this.deploymentType;
+    }
+
+    /**
      * Get the vmSku property: The recommended VM SKU for single server.
-     *
+     * 
      * @return the vmSku value.
      */
     public String vmSku() {
@@ -36,7 +62,7 @@ public final class SingleServerRecommendationResult extends SapSizingRecommendat
 
     /**
      * Set the vmSku property: The recommended VM SKU for single server.
-     *
+     * 
      * @param vmSku the vmSku value to set.
      * @return the SingleServerRecommendationResult object itself.
      */
@@ -47,7 +73,7 @@ public final class SingleServerRecommendationResult extends SapSizingRecommendat
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

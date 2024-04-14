@@ -7,7 +7,9 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the SAP Message Server properties. */
+/**
+ * Defines the SAP Message Server properties.
+ */
 @Immutable
 public final class MessageServerProperties {
     /*
@@ -52,13 +54,15 @@ public final class MessageServerProperties {
     @JsonProperty(value = "health", access = JsonProperty.Access.WRITE_ONLY)
     private SapHealthState health;
 
-    /** Creates an instance of MessageServerProperties class. */
+    /**
+     * Creates an instance of MessageServerProperties class.
+     */
     public MessageServerProperties() {
     }
 
     /**
      * Get the msPort property: Message Server port.
-     *
+     * 
      * @return the msPort value.
      */
     public Long msPort() {
@@ -67,7 +71,7 @@ public final class MessageServerProperties {
 
     /**
      * Get the internalMsPort property: Message Server internal MS port.
-     *
+     * 
      * @return the internalMsPort value.
      */
     public Long internalMsPort() {
@@ -76,7 +80,7 @@ public final class MessageServerProperties {
 
     /**
      * Get the httpPort property: Message Server HTTP Port.
-     *
+     * 
      * @return the httpPort value.
      */
     public Long httpPort() {
@@ -85,7 +89,7 @@ public final class MessageServerProperties {
 
     /**
      * Get the httpsPort property: Message Server HTTPS Port.
-     *
+     * 
      * @return the httpsPort value.
      */
     public Long httpsPort() {
@@ -94,7 +98,7 @@ public final class MessageServerProperties {
 
     /**
      * Get the hostname property: Message Server SAP Hostname.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -103,7 +107,7 @@ public final class MessageServerProperties {
 
     /**
      * Get the ipAddress property: Message server IP Address.
-     *
+     * 
      * @return the ipAddress value.
      */
     public String ipAddress() {
@@ -112,7 +116,7 @@ public final class MessageServerProperties {
 
     /**
      * Get the health property: Defines the health of SAP Instances.
-     *
+     * 
      * @return the health value.
      */
     public SapHealthState health() {
@@ -121,7 +125,7 @@ public final class MessageServerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

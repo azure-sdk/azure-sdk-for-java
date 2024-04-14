@@ -6,28 +6,54 @@ package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The SAP Software configuration Input when the software is installed externally outside the service. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "softwareInstallationType")
+/**
+ * The SAP Software configuration Input when the software is installed externally outside the service.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "softwareInstallationType",
+    defaultImpl = ExternalInstallationSoftwareConfiguration.class,
+    visible = true)
 @JsonTypeName("External")
 @Fluent
 public final class ExternalInstallationSoftwareConfiguration extends SoftwareConfiguration {
+    /*
+     * The SAP software installation Type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "softwareInstallationType", required = true)
+    private SapSoftwareInstallationType softwareInstallationType = SapSoftwareInstallationType.EXTERNAL;
+
     /*
      * The resource ID of the virtual machine containing the central server instance.
      */
     @JsonProperty(value = "centralServerVmId")
     private String centralServerVmId;
 
-    /** Creates an instance of ExternalInstallationSoftwareConfiguration class. */
+    /**
+     * Creates an instance of ExternalInstallationSoftwareConfiguration class.
+     */
     public ExternalInstallationSoftwareConfiguration() {
+    }
+
+    /**
+     * Get the softwareInstallationType property: The SAP software installation Type.
+     * 
+     * @return the softwareInstallationType value.
+     */
+    @Override
+    public SapSoftwareInstallationType softwareInstallationType() {
+        return this.softwareInstallationType;
     }
 
     /**
      * Get the centralServerVmId property: The resource ID of the virtual machine containing the central server
      * instance.
-     *
+     * 
      * @return the centralServerVmId value.
      */
     public String centralServerVmId() {
@@ -37,7 +63,7 @@ public final class ExternalInstallationSoftwareConfiguration extends SoftwareCon
     /**
      * Set the centralServerVmId property: The resource ID of the virtual machine containing the central server
      * instance.
-     *
+     * 
      * @param centralServerVmId the centralServerVmId value to set.
      * @return the ExternalInstallationSoftwareConfiguration object itself.
      */
@@ -48,7 +74,7 @@ public final class ExternalInstallationSoftwareConfiguration extends SoftwareCon
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
