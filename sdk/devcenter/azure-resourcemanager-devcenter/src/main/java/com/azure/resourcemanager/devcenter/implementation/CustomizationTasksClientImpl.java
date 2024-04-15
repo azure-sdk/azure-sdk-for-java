@@ -32,22 +32,28 @@ import com.azure.resourcemanager.devcenter.fluent.models.CustomizationTaskInner;
 import com.azure.resourcemanager.devcenter.models.CustomizationTaskListResult;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in CustomizationTasksClient. */
+/**
+ * An instance of this class provides access to all the operations defined in CustomizationTasksClient.
+ */
 public final class CustomizationTasksClientImpl implements CustomizationTasksClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final CustomizationTasksService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final DevCenterManagementClientImpl client;
 
     /**
      * Initializes an instance of CustomizationTasksClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     CustomizationTasksClientImpl(DevCenterManagementClientImpl client) {
-        this.service =
-            RestProxy.create(CustomizationTasksService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service = RestProxy.create(CustomizationTasksService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -58,68 +64,48 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
     @Host("{$host}")
     @ServiceInterface(name = "DevCenterManagementC")
     public interface CustomizationTasksService {
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/tasks")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/tasks")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CustomizationTaskListResult>> listByCatalog(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("devCenterName") String devCenterName,
-            @PathParam("catalogName") String catalogName,
-            @QueryParam("$top") Integer top,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<CustomizationTaskListResult>> listByCatalog(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("devCenterName") String devCenterName,
+            @PathParam("catalogName") String catalogName, @QueryParam("$top") Integer top,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Get(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/tasks/{taskName}")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/tasks/{taskName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CustomizationTaskInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("devCenterName") String devCenterName,
-            @PathParam("catalogName") String catalogName,
-            @PathParam("taskName") String taskName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<CustomizationTaskInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("devCenterName") String devCenterName,
+            @PathParam("catalogName") String catalogName, @PathParam("taskName") String taskName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
-        @Post(
-            "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/tasks/{taskName}/getErrorDetails")
-        @ExpectedResponses({200})
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/devcenters/{devCenterName}/catalogs/{catalogName}/tasks/{taskName}/getErrorDetails")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<CatalogResourceValidationErrorDetailsInner>> getErrorDetails(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("devCenterName") String devCenterName,
-            @PathParam("catalogName") String catalogName,
-            @PathParam("taskName") String taskName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<CatalogResourceValidationErrorDetailsInner>> getErrorDetails(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("devCenterName") String devCenterName,
+            @PathParam("catalogName") String catalogName, @PathParam("taskName") String taskName,
+            @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<CustomizationTaskListResult>> listByCatalogNext(
-            @PathParam(value = "nextLink", encoded = true) String nextLink,
-            @HostParam("$host") String endpoint,
-            @HeaderParam("Accept") String accept,
-            Context context);
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
      * List Tasks in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -127,23 +113,19 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return results of the Task list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return results of the Task list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CustomizationTaskInner>> listByCatalogSinglePageAsync(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top) {
+    private Mono<PagedResponse<CustomizationTaskInner>> listByCatalogSinglePageAsync(String resourceGroupName,
+        String devCenterName, String catalogName, Integer top) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -157,34 +139,16 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .listByCatalog(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            devCenterName,
-                            catalogName,
-                            top,
-                            accept,
-                            context))
-            .<PagedResponse<CustomizationTaskInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .withContext(context -> service.listByCatalog(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, devCenterName, catalogName, top, accept, context))
+            .<PagedResponse<CustomizationTaskInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * List Tasks in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -193,23 +157,19 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return results of the Task list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return results of the Task list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CustomizationTaskInner>> listByCatalogSinglePageAsync(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context) {
+    private Mono<PagedResponse<CustomizationTaskInner>> listByCatalogSinglePageAsync(String resourceGroupName,
+        String devCenterName, String catalogName, Integer top, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -224,30 +184,15 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .listByCatalog(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                devCenterName,
-                catalogName,
-                top,
-                accept,
-                context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+            .listByCatalog(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+                resourceGroupName, devCenterName, catalogName, top, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
      * List Tasks in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -258,16 +203,15 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return results of the Task list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<CustomizationTaskInner> listByCatalogAsync(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top) {
-        return new PagedFlux<>(
-            () -> listByCatalogSinglePageAsync(resourceGroupName, devCenterName, catalogName, top),
+    private PagedFlux<CustomizationTaskInner> listByCatalogAsync(String resourceGroupName, String devCenterName,
+        String catalogName, Integer top) {
+        return new PagedFlux<>(() -> listByCatalogSinglePageAsync(resourceGroupName, devCenterName, catalogName, top),
             nextLink -> listByCatalogNextSinglePageAsync(nextLink));
     }
 
     /**
      * List Tasks in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -277,17 +221,16 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return results of the Task list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<CustomizationTaskInner> listByCatalogAsync(
-        String resourceGroupName, String devCenterName, String catalogName) {
+    private PagedFlux<CustomizationTaskInner> listByCatalogAsync(String resourceGroupName, String devCenterName,
+        String catalogName) {
         final Integer top = null;
-        return new PagedFlux<>(
-            () -> listByCatalogSinglePageAsync(resourceGroupName, devCenterName, catalogName, top),
+        return new PagedFlux<>(() -> listByCatalogSinglePageAsync(resourceGroupName, devCenterName, catalogName, top),
             nextLink -> listByCatalogNextSinglePageAsync(nextLink));
     }
 
     /**
      * List Tasks in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -299,8 +242,8 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return results of the Task list operation as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<CustomizationTaskInner> listByCatalogAsync(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context) {
+    private PagedFlux<CustomizationTaskInner> listByCatalogAsync(String resourceGroupName, String devCenterName,
+        String catalogName, Integer top, Context context) {
         return new PagedFlux<>(
             () -> listByCatalogSinglePageAsync(resourceGroupName, devCenterName, catalogName, top, context),
             nextLink -> listByCatalogNextSinglePageAsync(nextLink, context));
@@ -308,7 +251,7 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
 
     /**
      * List Tasks in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -318,15 +261,15 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return results of the Task list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<CustomizationTaskInner> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName) {
+    public PagedIterable<CustomizationTaskInner> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName) {
         final Integer top = null;
         return new PagedIterable<>(listByCatalogAsync(resourceGroupName, devCenterName, catalogName, top));
     }
 
     /**
      * List Tasks in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -338,14 +281,14 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return results of the Task list operation as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<CustomizationTaskInner> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context) {
+    public PagedIterable<CustomizationTaskInner> listByCatalog(String resourceGroupName, String devCenterName,
+        String catalogName, Integer top, Context context) {
         return new PagedIterable<>(listByCatalogAsync(resourceGroupName, devCenterName, catalogName, top, context));
     }
 
     /**
      * Gets a Task from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -356,19 +299,15 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return a Task from the catalog along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CustomizationTaskInner>> getWithResponseAsync(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName) {
+    private Mono<Response<CustomizationTaskInner>> getWithResponseAsync(String resourceGroupName, String devCenterName,
+        String catalogName, String taskName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -384,26 +323,14 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
             return Mono.error(new IllegalArgumentException("Parameter taskName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            devCenterName,
-                            catalogName,
-                            taskName,
-                            accept,
-                            context))
+        return FluxUtil.withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, devCenterName, catalogName, taskName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets a Task from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -415,19 +342,15 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return a Task from the catalog along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<CustomizationTaskInner>> getWithResponseAsync(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName, Context context) {
+    private Mono<Response<CustomizationTaskInner>> getWithResponseAsync(String resourceGroupName, String devCenterName,
+        String catalogName, String taskName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -444,22 +367,13 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                devCenterName,
-                catalogName,
-                taskName,
-                accept,
-                context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, devCenterName, catalogName, taskName, accept, context);
     }
 
     /**
      * Gets a Task from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -470,15 +384,15 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return a Task from the catalog on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CustomizationTaskInner> getAsync(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName) {
+    private Mono<CustomizationTaskInner> getAsync(String resourceGroupName, String devCenterName, String catalogName,
+        String taskName) {
         return getWithResponseAsync(resourceGroupName, devCenterName, catalogName, taskName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets a Task from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -490,14 +404,14 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return a Task from the catalog along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CustomizationTaskInner> getWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName, Context context) {
+    public Response<CustomizationTaskInner> getWithResponse(String resourceGroupName, String devCenterName,
+        String catalogName, String taskName, Context context) {
         return getWithResponseAsync(resourceGroupName, devCenterName, catalogName, taskName, context).block();
     }
 
     /**
      * Gets a Task from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -508,14 +422,14 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return a Task from the catalog.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CustomizationTaskInner get(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName) {
+    public CustomizationTaskInner get(String resourceGroupName, String devCenterName, String catalogName,
+        String taskName) {
         return getWithResponse(resourceGroupName, devCenterName, catalogName, taskName, Context.NONE).getValue();
     }
 
     /**
      * Gets Customization Task error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -529,16 +443,12 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
     private Mono<Response<CatalogResourceValidationErrorDetailsInner>> getErrorDetailsWithResponseAsync(
         String resourceGroupName, String devCenterName, String catalogName, String taskName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -555,25 +465,15 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .getErrorDetails(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            this.client.getSubscriptionId(),
-                            resourceGroupName,
-                            devCenterName,
-                            catalogName,
-                            taskName,
-                            accept,
-                            context))
+            .withContext(context -> service.getErrorDetails(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, devCenterName, catalogName, taskName, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Gets Customization Task error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -588,16 +488,12 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
     private Mono<Response<CatalogResourceValidationErrorDetailsInner>> getErrorDetailsWithResponseAsync(
         String resourceGroupName, String devCenterName, String catalogName, String taskName, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (this.client.getSubscriptionId() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
         }
         if (resourceGroupName == null) {
             return Mono
@@ -614,22 +510,13 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .getErrorDetails(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                this.client.getSubscriptionId(),
-                resourceGroupName,
-                devCenterName,
-                catalogName,
-                taskName,
-                accept,
-                context);
+        return service.getErrorDetails(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, devCenterName, catalogName, taskName, accept, context);
     }
 
     /**
      * Gets Customization Task error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -640,15 +527,15 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return customization Task error details on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<CatalogResourceValidationErrorDetailsInner> getErrorDetailsAsync(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName) {
+    private Mono<CatalogResourceValidationErrorDetailsInner> getErrorDetailsAsync(String resourceGroupName,
+        String devCenterName, String catalogName, String taskName) {
         return getErrorDetailsWithResponseAsync(resourceGroupName, devCenterName, catalogName, taskName)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
      * Gets Customization Task error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -660,15 +547,15 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return customization Task error details along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<CatalogResourceValidationErrorDetailsInner> getErrorDetailsWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName, Context context) {
+    public Response<CatalogResourceValidationErrorDetailsInner> getErrorDetailsWithResponse(String resourceGroupName,
+        String devCenterName, String catalogName, String taskName, Context context) {
         return getErrorDetailsWithResponseAsync(resourceGroupName, devCenterName, catalogName, taskName, context)
             .block();
     }
 
     /**
      * Gets Customization Task error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -679,22 +566,23 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
      * @return customization Task error details.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public CatalogResourceValidationErrorDetailsInner getErrorDetails(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName) {
+    public CatalogResourceValidationErrorDetailsInner getErrorDetails(String resourceGroupName, String devCenterName,
+        String catalogName, String taskName) {
         return getErrorDetailsWithResponse(resourceGroupName, devCenterName, catalogName, taskName, Context.NONE)
             .getValue();
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return results of the Task list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return results of the Task list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<CustomizationTaskInner>> listByCatalogNextSinglePageAsync(String nextLink) {
@@ -702,62 +590,44 @@ public final class CustomizationTasksClientImpl implements CustomizationTasksCli
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listByCatalogNext(nextLink, this.client.getEndpoint(), accept, context))
-            .<PagedResponse<CustomizationTaskInner>>map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null))
+            .<PagedResponse<CustomizationTaskInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the next page of items.
-     *
+     * 
      * @param nextLink The URL to get the next list of items
-     *     <p>The nextLink parameter.
+     * 
+     * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return results of the Task list operation along with {@link PagedResponse} on successful completion of {@link
-     *     Mono}.
+     * @return results of the Task list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<CustomizationTaskInner>> listByCatalogNextSinglePageAsync(
-        String nextLink, Context context) {
+    private Mono<PagedResponse<CustomizationTaskInner>> listByCatalogNextSinglePageAsync(String nextLink,
+        Context context) {
         if (nextLink == null) {
             return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
         }
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .listByCatalogNext(nextLink, this.client.getEndpoint(), accept, context)
-            .map(
-                res ->
-                    new PagedResponseBase<>(
-                        res.getRequest(),
-                        res.getStatusCode(),
-                        res.getHeaders(),
-                        res.getValue().value(),
-                        res.getValue().nextLink(),
-                        null));
+        return service.listByCatalogNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

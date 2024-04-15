@@ -4,19 +4,20 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
-/** Samples for CustomizationTasks Get. */
+/**
+ * Samples for CustomizationTasks Get.
+ */
 public final class CustomizationTasksGetSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-10-01-preview/examples/CustomizationTasks_Get.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-05-01-preview/examples/CustomizationTasks_Get.json
      */
     /**
      * Sample code: CustomizationTasks_Get.
-     *
+     * 
      * @param manager Entry point to DevCenterManager.
      */
     public static void customizationTasksGet(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager
-            .customizationTasks()
+        manager.customizationTasks()
             .getWithResponse("rg1", "Contoso", "CentralCatalog", "SampleTask", com.azure.core.util.Context.NONE);
     }
 }

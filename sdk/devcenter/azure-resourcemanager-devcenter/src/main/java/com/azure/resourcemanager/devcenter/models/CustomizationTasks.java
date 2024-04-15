@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of CustomizationTasks. */
+/**
+ * Resource collection API of CustomizationTasks.
+ */
 public interface CustomizationTasks {
     /**
      * List Tasks in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -25,7 +27,7 @@ public interface CustomizationTasks {
 
     /**
      * List Tasks in the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -36,12 +38,12 @@ public interface CustomizationTasks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return results of the Task list operation as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<CustomizationTask> listByCatalog(
-        String resourceGroupName, String devCenterName, String catalogName, Integer top, Context context);
+    PagedIterable<CustomizationTask> listByCatalog(String resourceGroupName, String devCenterName, String catalogName,
+        Integer top, Context context);
 
     /**
      * Gets a Task from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -52,12 +54,12 @@ public interface CustomizationTasks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a Task from the catalog along with {@link Response}.
      */
-    Response<CustomizationTask> getWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName, Context context);
+    Response<CustomizationTask> getWithResponse(String resourceGroupName, String devCenterName, String catalogName,
+        String taskName, Context context);
 
     /**
      * Gets a Task from the catalog.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -71,7 +73,7 @@ public interface CustomizationTasks {
 
     /**
      * Gets Customization Task error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -82,12 +84,12 @@ public interface CustomizationTasks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return customization Task error details along with {@link Response}.
      */
-    Response<CatalogResourceValidationErrorDetails> getErrorDetailsWithResponse(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName, Context context);
+    Response<CatalogResourceValidationErrorDetails> getErrorDetailsWithResponse(String resourceGroupName,
+        String devCenterName, String catalogName, String taskName, Context context);
 
     /**
      * Gets Customization Task error details.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param devCenterName The name of the devcenter.
      * @param catalogName The name of the Catalog.
@@ -97,6 +99,6 @@ public interface CustomizationTasks {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return customization Task error details.
      */
-    CatalogResourceValidationErrorDetails getErrorDetails(
-        String resourceGroupName, String devCenterName, String catalogName, String taskName);
+    CatalogResourceValidationErrorDetails getErrorDetails(String resourceGroupName, String devCenterName,
+        String catalogName, String taskName);
 }

@@ -5,15 +5,25 @@
 package com.azure.resourcemanager.devcenter.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devcenter.models.DevBoxProvisioningSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterNetworkSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterProjectCatalogSettings;
 import com.azure.resourcemanager.devcenter.models.Encryption;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the devcenter. These properties can be updated after the resource has been created. */
+/**
+ * Properties of the devcenter. These properties can be updated after the resource has been created.
+ */
 @Fluent
 public class DevCenterUpdateProperties {
     /*
-     * Encryption settings to be used for server-side encryption for proprietary content (such as catalogs, logs,
-     * customizations).
+     * Resource Id of an associated Plan
+     */
+    @JsonProperty(value = "planId")
+    private String planId;
+
+    /*
+     * Encryption settings to be used for server-side encryption for proprietary content (such as catalogs, logs, customizations).
      */
     @JsonProperty(value = "encryption")
     private Encryption encryption;
@@ -24,14 +34,54 @@ public class DevCenterUpdateProperties {
     @JsonProperty(value = "displayName")
     private String displayName;
 
-    /** Creates an instance of DevCenterUpdateProperties class. */
+    /*
+     * Dev Center settings to be used when associating a project with a catalog.
+     */
+    @JsonProperty(value = "projectCatalogSettings")
+    private DevCenterProjectCatalogSettings projectCatalogSettings;
+
+    /*
+     * Network settings that will be enforced on network resources associated with the Dev Center.
+     */
+    @JsonProperty(value = "networkSettings")
+    private DevCenterNetworkSettings networkSettings;
+
+    /*
+     * Settings to be used in the provisioning of all Dev Boxes that belong to this dev center.
+     */
+    @JsonProperty(value = "devBoxProvisioningSettings")
+    private DevBoxProvisioningSettings devBoxProvisioningSettings;
+
+    /**
+     * Creates an instance of DevCenterUpdateProperties class.
+     */
     public DevCenterUpdateProperties() {
+    }
+
+    /**
+     * Get the planId property: Resource Id of an associated Plan.
+     * 
+     * @return the planId value.
+     */
+    public String planId() {
+        return this.planId;
+    }
+
+    /**
+     * Set the planId property: Resource Id of an associated Plan.
+     * 
+     * @param planId the planId value to set.
+     * @return the DevCenterUpdateProperties object itself.
+     */
+    public DevCenterUpdateProperties withPlanId(String planId) {
+        this.planId = planId;
+        return this;
     }
 
     /**
      * Get the encryption property: Encryption settings to be used for server-side encryption for proprietary content
      * (such as catalogs, logs, customizations).
-     *
+     * 
      * @return the encryption value.
      */
     public Encryption encryption() {
@@ -41,7 +91,7 @@ public class DevCenterUpdateProperties {
     /**
      * Set the encryption property: Encryption settings to be used for server-side encryption for proprietary content
      * (such as catalogs, logs, customizations).
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the DevCenterUpdateProperties object itself.
      */
@@ -52,7 +102,7 @@ public class DevCenterUpdateProperties {
 
     /**
      * Get the displayName property: The display name of the devcenter.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -61,7 +111,7 @@ public class DevCenterUpdateProperties {
 
     /**
      * Set the displayName property: The display name of the devcenter.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the DevCenterUpdateProperties object itself.
      */
@@ -71,13 +121,90 @@ public class DevCenterUpdateProperties {
     }
 
     /**
+     * Get the projectCatalogSettings property: Dev Center settings to be used when associating a project with a
+     * catalog.
+     * 
+     * @return the projectCatalogSettings value.
+     */
+    public DevCenterProjectCatalogSettings projectCatalogSettings() {
+        return this.projectCatalogSettings;
+    }
+
+    /**
+     * Set the projectCatalogSettings property: Dev Center settings to be used when associating a project with a
+     * catalog.
+     * 
+     * @param projectCatalogSettings the projectCatalogSettings value to set.
+     * @return the DevCenterUpdateProperties object itself.
+     */
+    public DevCenterUpdateProperties
+        withProjectCatalogSettings(DevCenterProjectCatalogSettings projectCatalogSettings) {
+        this.projectCatalogSettings = projectCatalogSettings;
+        return this;
+    }
+
+    /**
+     * Get the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @return the networkSettings value.
+     */
+    public DevCenterNetworkSettings networkSettings() {
+        return this.networkSettings;
+    }
+
+    /**
+     * Set the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @param networkSettings the networkSettings value to set.
+     * @return the DevCenterUpdateProperties object itself.
+     */
+    public DevCenterUpdateProperties withNetworkSettings(DevCenterNetworkSettings networkSettings) {
+        this.networkSettings = networkSettings;
+        return this;
+    }
+
+    /**
+     * Get the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @return the devBoxProvisioningSettings value.
+     */
+    public DevBoxProvisioningSettings devBoxProvisioningSettings() {
+        return this.devBoxProvisioningSettings;
+    }
+
+    /**
+     * Set the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @param devBoxProvisioningSettings the devBoxProvisioningSettings value to set.
+     * @return the DevCenterUpdateProperties object itself.
+     */
+    public DevCenterUpdateProperties
+        withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings) {
+        this.devBoxProvisioningSettings = devBoxProvisioningSettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (encryption() != null) {
             encryption().validate();
+        }
+        if (projectCatalogSettings() != null) {
+            projectCatalogSettings().validate();
+        }
+        if (networkSettings() != null) {
+            networkSettings().validate();
+        }
+        if (devBoxProvisioningSettings() != null) {
+            devBoxProvisioningSettings().validate();
         }
     }
 }

@@ -4,95 +4,139 @@
 
 package com.azure.resourcemanager.devcenter.generated;
 
+import com.azure.resourcemanager.devcenter.models.CatalogItemSyncEnableStatus;
 import com.azure.resourcemanager.devcenter.models.CustomerManagedKeyEncryption;
 import com.azure.resourcemanager.devcenter.models.CustomerManagedKeyEncryptionKeyIdentity;
+import com.azure.resourcemanager.devcenter.models.DevBoxProvisioningSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterNetworkSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterProjectCatalogSettings;
 import com.azure.resourcemanager.devcenter.models.Encryption;
 import com.azure.resourcemanager.devcenter.models.IdentityType;
+import com.azure.resourcemanager.devcenter.models.InstallAzureMonitorAgentEnableStatus;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.devcenter.models.ManagedServiceIdentityType;
+import com.azure.resourcemanager.devcenter.models.MicrosoftHostedNetworkEnableStatus;
 import com.azure.resourcemanager.devcenter.models.UserAssignedIdentity;
 import java.util.HashMap;
 import java.util.Map;
 
-/** Samples for DevCenters CreateOrUpdate. */
+/**
+ * Samples for DevCenters CreateOrUpdate.
+ */
 public final class DevCentersCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-10-01-preview/examples/DevCenters_Create.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-05-01-preview/examples/DevCenters_Create.json
      */
     /**
      * Sample code: DevCenters_Create.
-     *
+     * 
      * @param manager Entry point to DevCenterManager.
      */
     public static void devCentersCreate(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager
-            .devCenters()
+        manager.devCenters()
             .define("Contoso")
             .withRegion("centralus")
             .withExistingResourceGroup("rg1")
             .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
             .withDisplayName("ContosoDevCenter")
+            .withProjectCatalogSettings(new DevCenterProjectCatalogSettings()
+                .withCatalogItemSyncEnableStatus(CatalogItemSyncEnableStatus.ENABLED))
+            .withDevBoxProvisioningSettings(new DevBoxProvisioningSettings()
+                .withInstallAzureMonitorAgentEnableStatus(InstallAzureMonitorAgentEnableStatus.ENABLED))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-10-01-preview/examples/DevCenters_CreateWithUserIdentity.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-05-01-preview/examples/DevCenters_CreateWithDisabledManagedNetworks.json
+     */
+    /**
+     * Sample code: DevCenters_CreateWithDisabledManagedNetworks.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void
+        devCentersCreateWithDisabledManagedNetworks(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenters()
+            .define("Contoso")
+            .withRegion("centralus")
+            .withExistingResourceGroup("rg1")
+            .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
+                    new UserAssignedIdentity())))
+            .withDisplayName("ContosoDevCenter")
+            .withNetworkSettings(new DevCenterNetworkSettings()
+                .withMicrosoftHostedNetworkEnableStatus(MicrosoftHostedNetworkEnableStatus.DISABLED))
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-05-01-preview/examples/DevCenters_CreateWithPlanId.json
+     */
+    /**
+     * Sample code: DevCenters_CreateWithPlanId.
+     * 
+     * @param manager Entry point to DevCenterManager.
+     */
+    public static void devCentersCreateWithPlanId(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
+        manager.devCenters()
+            .define("Contoso")
+            .withRegion("centralus")
+            .withExistingResourceGroup("rg1")
+            .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
+            .withPlanId(
+                "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/plans/ContosoPlan")
+            .withDisplayName("ContosoDevCenter")
+            .create();
+    }
+
+    /*
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-05-01-preview/examples/DevCenters_CreateWithUserIdentity.json
      */
     /**
      * Sample code: DevCenters_CreateWithUserIdentity.
-     *
+     * 
      * @param manager Entry point to DevCenterManager.
      */
     public static void devCentersCreateWithUserIdentity(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager
-            .devCenters()
+        manager.devCenters()
             .define("Contoso")
             .withRegion("centralus")
             .withExistingResourceGroup("rg1")
             .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
-            .withIdentity(
-                new ManagedServiceIdentity()
-                    .withType(ManagedServiceIdentityType.USER_ASSIGNED)
-                    .withUserAssignedIdentities(
-                        mapOf(
-                            "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
-                            new UserAssignedIdentity())))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
+                    new UserAssignedIdentity())))
             .withDisplayName("ContosoDevCenter")
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2023-10-01-preview/examples/DevCenters_CreateWithEncryption.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-05-01-preview/examples/DevCenters_CreateWithEncryption.json
      */
     /**
      * Sample code: DevCenters_CreateWithEncryption.
-     *
+     * 
      * @param manager Entry point to DevCenterManager.
      */
     public static void devCentersCreateWithEncryption(com.azure.resourcemanager.devcenter.DevCenterManager manager) {
-        manager
-            .devCenters()
+        manager.devCenters()
             .define("Contoso")
             .withRegion("centralus")
             .withExistingResourceGroup("rg1")
             .withTags(mapOf("CostCode", "fakeTokenPlaceholder"))
-            .withIdentity(
-                new ManagedServiceIdentity()
-                    .withType(ManagedServiceIdentityType.USER_ASSIGNED)
-                    .withUserAssignedIdentities(
-                        mapOf(
-                            "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
-                            new UserAssignedIdentity())))
-            .withEncryption(
-                new Encryption()
-                    .withCustomerManagedKeyEncryption(
-                        new CustomerManagedKeyEncryption()
-                            .withKeyEncryptionKeyIdentity(
-                                new CustomerManagedKeyEncryptionKeyIdentity()
-                                    .withIdentityType(IdentityType.USER_ASSIGNED_IDENTITY)
-                                    .withUserAssignedIdentityResourceId(
-                                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1"))
-                            .withKeyEncryptionKeyUrl("fakeTokenPlaceholder")))
+            .withIdentity(new ManagedServiceIdentity().withType(ManagedServiceIdentityType.USER_ASSIGNED)
+                .withUserAssignedIdentities(mapOf(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1",
+                    new UserAssignedIdentity())))
+            .withEncryption(new Encryption().withCustomerManagedKeyEncryption(new CustomerManagedKeyEncryption()
+                .withKeyEncryptionKeyIdentity(new CustomerManagedKeyEncryptionKeyIdentity()
+                    .withIdentityType(IdentityType.USER_ASSIGNED_IDENTITY)
+                    .withUserAssignedIdentityResourceId(
+                        "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/identityGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/testidentity1"))
+                .withKeyEncryptionKeyUrl("fakeTokenPlaceholder")))
             .withDisplayName("ContosoDevCenter")
             .create();
     }

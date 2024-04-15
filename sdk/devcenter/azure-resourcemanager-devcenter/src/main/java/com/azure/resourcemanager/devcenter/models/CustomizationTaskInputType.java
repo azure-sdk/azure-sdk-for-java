@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Type of the input. */
+/**
+ * Type of the input.
+ */
 public final class CustomizationTaskInputType extends ExpandableStringEnum<CustomizationTaskInputType> {
-    /** Static value string for CustomizationTaskInputType. */
+    /**
+     * Static value string for CustomizationTaskInputType.
+     */
     public static final CustomizationTaskInputType STRING = fromString("string");
 
-    /** Static value number for CustomizationTaskInputType. */
+    /**
+     * Static value number for CustomizationTaskInputType.
+     */
     public static final CustomizationTaskInputType NUMBER = fromString("number");
 
-    /** Static value boolean for CustomizationTaskInputType. */
+    /**
+     * Static value boolean for CustomizationTaskInputType.
+     */
     public static final CustomizationTaskInputType BOOLEAN = fromString("boolean");
 
     /**
      * Creates a new instance of CustomizationTaskInputType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class CustomizationTaskInputType extends ExpandableStringEnum<Custo
 
     /**
      * Creates or finds a CustomizationTaskInputType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding CustomizationTaskInputType.
      */
@@ -41,7 +49,7 @@ public final class CustomizationTaskInputType extends ExpandableStringEnum<Custo
 
     /**
      * Gets known CustomizationTaskInputType values.
-     *
+     * 
      * @return known CustomizationTaskInputType values.
      */
     public static Collection<CustomizationTaskInputType> values() {

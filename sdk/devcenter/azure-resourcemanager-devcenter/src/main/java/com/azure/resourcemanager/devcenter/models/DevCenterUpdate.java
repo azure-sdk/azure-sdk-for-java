@@ -9,7 +9,9 @@ import com.azure.resourcemanager.devcenter.fluent.models.DevCenterUpdateProperti
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The devcenter resource for partial updates. Properties not provided in the update request will not be changed. */
+/**
+ * The devcenter resource for partial updates. Properties not provided in the update request will not be changed.
+ */
 @Fluent
 public final class DevCenterUpdate extends TrackedResourceUpdate {
     /*
@@ -24,13 +26,15 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
     @JsonProperty(value = "properties")
     private DevCenterUpdateProperties innerProperties;
 
-    /** Creates an instance of DevCenterUpdate class. */
+    /**
+     * Creates an instance of DevCenterUpdate class.
+     */
     public DevCenterUpdate() {
     }
 
     /**
      * Get the identity property: Managed identity properties.
-     *
+     * 
      * @return the identity value.
      */
     public ManagedServiceIdentity identity() {
@@ -39,7 +43,7 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
 
     /**
      * Set the identity property: Managed identity properties.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the DevCenterUpdate object itself.
      */
@@ -50,21 +54,25 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
 
     /**
      * Get the innerProperties property: Properties of a Dev Center to be updated.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DevCenterUpdateProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DevCenterUpdate withTags(Map<String, String> tags) {
         super.withTags(tags);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DevCenterUpdate withLocation(String location) {
         super.withLocation(location);
@@ -72,9 +80,32 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
     }
 
     /**
+     * Get the planId property: Resource Id of an associated Plan.
+     * 
+     * @return the planId value.
+     */
+    public String planId() {
+        return this.innerProperties() == null ? null : this.innerProperties().planId();
+    }
+
+    /**
+     * Set the planId property: Resource Id of an associated Plan.
+     * 
+     * @param planId the planId value to set.
+     * @return the DevCenterUpdate object itself.
+     */
+    public DevCenterUpdate withPlanId(String planId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DevCenterUpdateProperties();
+        }
+        this.innerProperties().withPlanId(planId);
+        return this;
+    }
+
+    /**
      * Get the encryption property: Encryption settings to be used for server-side encryption for proprietary content
      * (such as catalogs, logs, customizations).
-     *
+     * 
      * @return the encryption value.
      */
     public Encryption encryption() {
@@ -84,7 +115,7 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
     /**
      * Set the encryption property: Encryption settings to be used for server-side encryption for proprietary content
      * (such as catalogs, logs, customizations).
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the DevCenterUpdate object itself.
      */
@@ -98,7 +129,7 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
 
     /**
      * Get the displayName property: The display name of the devcenter.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -107,7 +138,7 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
 
     /**
      * Set the displayName property: The display name of the devcenter.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the DevCenterUpdate object itself.
      */
@@ -120,8 +151,83 @@ public final class DevCenterUpdate extends TrackedResourceUpdate {
     }
 
     /**
+     * Get the projectCatalogSettings property: Dev Center settings to be used when associating a project with a
+     * catalog.
+     * 
+     * @return the projectCatalogSettings value.
+     */
+    public DevCenterProjectCatalogSettings projectCatalogSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().projectCatalogSettings();
+    }
+
+    /**
+     * Set the projectCatalogSettings property: Dev Center settings to be used when associating a project with a
+     * catalog.
+     * 
+     * @param projectCatalogSettings the projectCatalogSettings value to set.
+     * @return the DevCenterUpdate object itself.
+     */
+    public DevCenterUpdate withProjectCatalogSettings(DevCenterProjectCatalogSettings projectCatalogSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DevCenterUpdateProperties();
+        }
+        this.innerProperties().withProjectCatalogSettings(projectCatalogSettings);
+        return this;
+    }
+
+    /**
+     * Get the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @return the networkSettings value.
+     */
+    public DevCenterNetworkSettings networkSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().networkSettings();
+    }
+
+    /**
+     * Set the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @param networkSettings the networkSettings value to set.
+     * @return the DevCenterUpdate object itself.
+     */
+    public DevCenterUpdate withNetworkSettings(DevCenterNetworkSettings networkSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DevCenterUpdateProperties();
+        }
+        this.innerProperties().withNetworkSettings(networkSettings);
+        return this;
+    }
+
+    /**
+     * Get the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @return the devBoxProvisioningSettings value.
+     */
+    public DevBoxProvisioningSettings devBoxProvisioningSettings() {
+        return this.innerProperties() == null ? null : this.innerProperties().devBoxProvisioningSettings();
+    }
+
+    /**
+     * Set the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @param devBoxProvisioningSettings the devBoxProvisioningSettings value to set.
+     * @return the DevCenterUpdate object itself.
+     */
+    public DevCenterUpdate withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DevCenterUpdateProperties();
+        }
+        this.innerProperties().withDevBoxProvisioningSettings(devBoxProvisioningSettings);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -12,7 +12,9 @@ import com.azure.resourcemanager.devcenter.models.CustomizationTaskInput;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Represents a Task to be used in customizing a Dev Box. */
+/**
+ * Represents a Task to be used in customizing a Dev Box.
+ */
 @Immutable
 public final class CustomizationTaskInner extends ProxyResource {
     /*
@@ -27,13 +29,15 @@ public final class CustomizationTaskInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of CustomizationTaskInner class. */
+    /**
+     * Creates an instance of CustomizationTaskInner class.
+     */
     public CustomizationTaskInner() {
     }
 
     /**
      * Get the innerProperties property: Task properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CustomizationTaskProperties innerProperties() {
@@ -42,7 +46,7 @@ public final class CustomizationTaskInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -51,7 +55,7 @@ public final class CustomizationTaskInner extends ProxyResource {
 
     /**
      * Get the inputs property: Inputs to the task.
-     *
+     * 
      * @return the inputs value.
      */
     public Map<String, CustomizationTaskInput> inputs() {
@@ -60,7 +64,7 @@ public final class CustomizationTaskInner extends ProxyResource {
 
     /**
      * Get the timeout property: The default timeout for the task.
-     *
+     * 
      * @return the timeout value.
      */
     public Integer timeout() {
@@ -69,7 +73,7 @@ public final class CustomizationTaskInner extends ProxyResource {
 
     /**
      * Get the validationStatus property: Validation status for the Task.
-     *
+     * 
      * @return the validationStatus value.
      */
     public CatalogResourceValidationStatus validationStatus() {
@@ -78,7 +82,7 @@ public final class CustomizationTaskInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
