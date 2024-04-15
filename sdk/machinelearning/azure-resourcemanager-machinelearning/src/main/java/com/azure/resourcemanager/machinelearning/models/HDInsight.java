@@ -6,27 +6,49 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** A HDInsight compute. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
+/**
+ * A HDInsight compute.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "computeType", defaultImpl = HDInsight.class, visible = true)
 @JsonTypeName("HDInsight")
 @Fluent
 public final class HDInsight extends Compute {
+    /*
+     * The type of compute
+     */
+    @JsonTypeId
+    @JsonProperty(value = "computeType", required = true)
+    private ComputeType computeType = ComputeType.HDINSIGHT;
+
     /*
      * HDInsight compute properties
      */
     @JsonProperty(value = "properties")
     private HDInsightProperties properties;
 
-    /** Creates an instance of HDInsight class. */
+    /**
+     * Creates an instance of HDInsight class.
+     */
     public HDInsight() {
     }
 
     /**
+     * Get the computeType property: The type of compute.
+     * 
+     * @return the computeType value.
+     */
+    @Override
+    public ComputeType computeType() {
+        return this.computeType;
+    }
+
+    /**
      * Get the properties property: HDInsight compute properties.
-     *
+     * 
      * @return the properties value.
      */
     public HDInsightProperties properties() {
@@ -35,7 +57,7 @@ public final class HDInsight extends Compute {
 
     /**
      * Set the properties property: HDInsight compute properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the HDInsight object itself.
      */
@@ -44,28 +66,36 @@ public final class HDInsight extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HDInsight withComputeLocation(String computeLocation) {
         super.withComputeLocation(computeLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HDInsight withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HDInsight withResourceId(String resourceId) {
         super.withResourceId(resourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HDInsight withDisableLocalAuth(Boolean disableLocalAuth) {
         super.withDisableLocalAuth(disableLocalAuth);
@@ -74,7 +104,7 @@ public final class HDInsight extends Compute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

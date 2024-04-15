@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of schedules to be applied on the computes. */
+/**
+ * The list of schedules to be applied on the computes.
+ */
 @Fluent
 public final class ComputeSchedules {
     /*
@@ -17,13 +19,15 @@ public final class ComputeSchedules {
     @JsonProperty(value = "computeStartStop")
     private List<ComputeStartStopSchedule> computeStartStop;
 
-    /** Creates an instance of ComputeSchedules class. */
+    /**
+     * Creates an instance of ComputeSchedules class.
+     */
     public ComputeSchedules() {
     }
 
     /**
      * Get the computeStartStop property: The list of compute start stop schedules to be applied.
-     *
+     * 
      * @return the computeStartStop value.
      */
     public List<ComputeStartStopSchedule> computeStartStop() {
@@ -32,7 +36,7 @@ public final class ComputeSchedules {
 
     /**
      * Set the computeStartStop property: The list of compute start stop schedules to be applied.
-     *
+     * 
      * @param computeStartStop the computeStartStop value to set.
      * @return the ComputeSchedules object itself.
      */
@@ -43,7 +47,7 @@ public final class ComputeSchedules {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

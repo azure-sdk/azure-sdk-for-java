@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.CodeContainerInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of CodeContainer entities. */
+/**
+ * A paginated list of CodeContainer entities.
+ */
 @Fluent
 public final class CodeContainerResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class CodeContainerResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<CodeContainerInner> value;
 
-    /** Creates an instance of CodeContainerResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of CodeContainerResourceArmPaginatedResult class.
+     */
     public CodeContainerResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of CodeContainer objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class CodeContainerResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of CodeContainer objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the CodeContainerResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class CodeContainerResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type CodeContainer.
-     *
+     * 
      * @return the value value.
      */
     public List<CodeContainerInner> value() {
@@ -61,7 +65,7 @@ public final class CodeContainerResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type CodeContainer.
-     *
+     * 
      * @param value the value value to set.
      * @return the CodeContainerResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class CodeContainerResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -13,8 +13,7 @@ public final class NotebookResourceInfoImpl implements NotebookResourceInfo {
 
     private final com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager;
 
-    NotebookResourceInfoImpl(
-        NotebookResourceInfoInner innerObject,
+    NotebookResourceInfoImpl(NotebookResourceInfoInner innerObject,
         com.azure.resourcemanager.machinelearning.MachineLearningManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
@@ -24,12 +23,16 @@ public final class NotebookResourceInfoImpl implements NotebookResourceInfo {
         return this.innerModel().fqdn();
     }
 
-    public String resourceId() {
-        return this.innerModel().resourceId();
+    public Boolean isPrivateLinkEnabled() {
+        return this.innerModel().isPrivateLinkEnabled();
     }
 
     public NotebookPreparationError notebookPreparationError() {
         return this.innerModel().notebookPreparationError();
+    }
+
+    public String resourceId() {
+        return this.innerModel().resourceId();
     }
 
     public NotebookResourceInfoInner innerModel() {

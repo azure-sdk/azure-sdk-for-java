@@ -5,20 +5,49 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.Duration;
 
-/** Command Job limit class. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobLimitsType")
+/**
+ * Command Job limit class.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "jobLimitsType",
+    defaultImpl = CommandJobLimits.class,
+    visible = true)
 @JsonTypeName("Command")
 @Fluent
 public final class CommandJobLimits extends JobLimits {
-    /** Creates an instance of CommandJobLimits class. */
+    /*
+     * [Required] JobLimit type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobLimitsType", required = true)
+    private JobLimitsType jobLimitsType = JobLimitsType.COMMAND;
+
+    /**
+     * Creates an instance of CommandJobLimits class.
+     */
     public CommandJobLimits() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the jobLimitsType property: [Required] JobLimit type.
+     * 
+     * @return the jobLimitsType value.
+     */
+    @Override
+    public JobLimitsType jobLimitsType() {
+        return this.jobLimitsType;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJobLimits withTimeout(Duration timeout) {
         super.withTimeout(timeout);
@@ -27,7 +56,7 @@ public final class CommandJobLimits extends JobLimits {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

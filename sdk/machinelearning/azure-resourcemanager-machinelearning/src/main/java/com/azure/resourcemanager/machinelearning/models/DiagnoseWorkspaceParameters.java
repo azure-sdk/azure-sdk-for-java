@@ -7,22 +7,26 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Parameters to diagnose a workspace. */
+/**
+ * Parameters to diagnose a workspace.
+ */
 @Fluent
 public final class DiagnoseWorkspaceParameters {
     /*
-     * Value of Parameters
+     * The value property.
      */
     @JsonProperty(value = "value")
     private DiagnoseRequestProperties value;
 
-    /** Creates an instance of DiagnoseWorkspaceParameters class. */
+    /**
+     * Creates an instance of DiagnoseWorkspaceParameters class.
+     */
     public DiagnoseWorkspaceParameters() {
     }
 
     /**
-     * Get the value property: Value of Parameters.
-     *
+     * Get the value property: The value property.
+     * 
      * @return the value value.
      */
     public DiagnoseRequestProperties value() {
@@ -30,8 +34,8 @@ public final class DiagnoseWorkspaceParameters {
     }
 
     /**
-     * Set the value property: Value of Parameters.
-     *
+     * Set the value property: The value property.
+     * 
      * @param value the value value to set.
      * @return the DiagnoseWorkspaceParameters object itself.
      */
@@ -42,7 +46,7 @@ public final class DiagnoseWorkspaceParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

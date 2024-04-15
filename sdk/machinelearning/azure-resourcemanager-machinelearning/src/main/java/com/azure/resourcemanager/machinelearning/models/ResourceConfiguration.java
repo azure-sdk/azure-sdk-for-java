@@ -7,9 +7,12 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import java.util.Map;
 
-/** The ResourceConfiguration model. */
+/**
+ * The ResourceConfiguration model.
+ */
 @Fluent
 public class ResourceConfiguration {
     /*
@@ -25,19 +28,34 @@ public class ResourceConfiguration {
     private String instanceType;
 
     /*
+     * Locations where the job can run.
+     */
+    @JsonProperty(value = "locations")
+    private List<String> locations;
+
+    /*
+     * Optional max allowed number of instances or nodes to be used by the compute target.
+     * For use with elastic training, currently supported by PyTorch distribution type only.
+     */
+    @JsonProperty(value = "maxInstanceCount")
+    private Integer maxInstanceCount;
+
+    /*
      * Additional properties bag.
      */
     @JsonProperty(value = "properties")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> properties;
 
-    /** Creates an instance of ResourceConfiguration class. */
+    /**
+     * Creates an instance of ResourceConfiguration class.
+     */
     public ResourceConfiguration() {
     }
 
     /**
      * Get the instanceCount property: Optional number of instances or nodes used by the compute target.
-     *
+     * 
      * @return the instanceCount value.
      */
     public Integer instanceCount() {
@@ -46,7 +64,7 @@ public class ResourceConfiguration {
 
     /**
      * Set the instanceCount property: Optional number of instances or nodes used by the compute target.
-     *
+     * 
      * @param instanceCount the instanceCount value to set.
      * @return the ResourceConfiguration object itself.
      */
@@ -57,7 +75,7 @@ public class ResourceConfiguration {
 
     /**
      * Get the instanceType property: Optional type of VM used as supported by the compute target.
-     *
+     * 
      * @return the instanceType value.
      */
     public String instanceType() {
@@ -66,7 +84,7 @@ public class ResourceConfiguration {
 
     /**
      * Set the instanceType property: Optional type of VM used as supported by the compute target.
-     *
+     * 
      * @param instanceType the instanceType value to set.
      * @return the ResourceConfiguration object itself.
      */
@@ -76,8 +94,52 @@ public class ResourceConfiguration {
     }
 
     /**
+     * Get the locations property: Locations where the job can run.
+     * 
+     * @return the locations value.
+     */
+    public List<String> locations() {
+        return this.locations;
+    }
+
+    /**
+     * Set the locations property: Locations where the job can run.
+     * 
+     * @param locations the locations value to set.
+     * @return the ResourceConfiguration object itself.
+     */
+    public ResourceConfiguration withLocations(List<String> locations) {
+        this.locations = locations;
+        return this;
+    }
+
+    /**
+     * Get the maxInstanceCount property: Optional max allowed number of instances or nodes to be used by the compute
+     * target.
+     * For use with elastic training, currently supported by PyTorch distribution type only.
+     * 
+     * @return the maxInstanceCount value.
+     */
+    public Integer maxInstanceCount() {
+        return this.maxInstanceCount;
+    }
+
+    /**
+     * Set the maxInstanceCount property: Optional max allowed number of instances or nodes to be used by the compute
+     * target.
+     * For use with elastic training, currently supported by PyTorch distribution type only.
+     * 
+     * @param maxInstanceCount the maxInstanceCount value to set.
+     * @return the ResourceConfiguration object itself.
+     */
+    public ResourceConfiguration withMaxInstanceCount(Integer maxInstanceCount) {
+        this.maxInstanceCount = maxInstanceCount;
+        return this;
+    }
+
+    /**
      * Get the properties property: Additional properties bag.
-     *
+     * 
      * @return the properties value.
      */
     public Map<String, Object> properties() {
@@ -86,7 +148,7 @@ public class ResourceConfiguration {
 
     /**
      * Set the properties property: Additional properties bag.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ResourceConfiguration object itself.
      */
@@ -97,7 +159,7 @@ public class ResourceConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
