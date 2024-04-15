@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Gets or sets the HA software configuration. */
+/**
+ * Gets or sets the HA software configuration.
+ */
 @Fluent
 public final class HighAvailabilitySoftwareConfiguration {
     /*
@@ -18,19 +20,20 @@ public final class HighAvailabilitySoftwareConfiguration {
     private String fencingClientId;
 
     /*
-     * The fencing client id secret/password. The secret should never expire. This will be used pacemaker to start/stop
-     * the cluster VMs.
+     * The fencing client id secret/password. The secret should never expire. This will be used pacemaker to start/stop the cluster VMs.
      */
-    @JsonProperty(value = "fencingClientPassword", required = true)
+    @JsonProperty(value = "fencingClientPassword")
     private String fencingClientPassword;
 
-    /** Creates an instance of HighAvailabilitySoftwareConfiguration class. */
+    /**
+     * Creates an instance of HighAvailabilitySoftwareConfiguration class.
+     */
     public HighAvailabilitySoftwareConfiguration() {
     }
 
     /**
      * Get the fencingClientId property: The fencing client id.
-     *
+     * 
      * @return the fencingClientId value.
      */
     public String fencingClientId() {
@@ -39,7 +42,7 @@ public final class HighAvailabilitySoftwareConfiguration {
 
     /**
      * Set the fencingClientId property: The fencing client id.
-     *
+     * 
      * @param fencingClientId the fencingClientId value to set.
      * @return the HighAvailabilitySoftwareConfiguration object itself.
      */
@@ -51,7 +54,7 @@ public final class HighAvailabilitySoftwareConfiguration {
     /**
      * Get the fencingClientPassword property: The fencing client id secret/password. The secret should never expire.
      * This will be used pacemaker to start/stop the cluster VMs.
-     *
+     * 
      * @return the fencingClientPassword value.
      */
     public String fencingClientPassword() {
@@ -61,7 +64,7 @@ public final class HighAvailabilitySoftwareConfiguration {
     /**
      * Set the fencingClientPassword property: The fencing client id secret/password. The secret should never expire.
      * This will be used pacemaker to start/stop the cluster VMs.
-     *
+     * 
      * @param fencingClientPassword the fencingClientPassword value to set.
      * @return the HighAvailabilitySoftwareConfiguration object itself.
      */
@@ -72,22 +75,19 @@ public final class HighAvailabilitySoftwareConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (fencingClientId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property fencingClientId in model HighAvailabilitySoftwareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property fencingClientId in model HighAvailabilitySoftwareConfiguration"));
         }
         if (fencingClientPassword() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property fencingClientPassword in model"
-                            + " HighAvailabilitySoftwareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property fencingClientPassword in model HighAvailabilitySoftwareConfiguration"));
         }
     }
 

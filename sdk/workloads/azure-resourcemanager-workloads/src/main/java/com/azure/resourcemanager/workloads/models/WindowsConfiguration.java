@@ -5,21 +5,44 @@
 package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Specifies Windows operating system settings on the virtual machine. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "osType")
+/**
+ * Specifies Windows operating system settings on the virtual machine.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "osType", defaultImpl = WindowsConfiguration.class, visible = true)
 @JsonTypeName("Windows")
 @Immutable
 public final class WindowsConfiguration extends OSConfiguration {
-    /** Creates an instance of WindowsConfiguration class. */
+    /*
+     * The OS Type
+     */
+    @JsonTypeId
+    @JsonProperty(value = "osType", required = true)
+    private OSType osType = OSType.WINDOWS;
+
+    /**
+     * Creates an instance of WindowsConfiguration class.
+     */
     public WindowsConfiguration() {
     }
 
     /**
+     * Get the osType property: The OS Type.
+     * 
+     * @return the osType value.
+     */
+    @Override
+    public OSType osType() {
+        return this.osType;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,24 +17,42 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "configurationType",
-    defaultImpl = FileShareConfiguration.class)
+    defaultImpl = FileShareConfiguration.class,
+    visible = true)
 @JsonTypeName("FileShareConfiguration")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Skip", value = SkipFileShareConfiguration.class),
     @JsonSubTypes.Type(name = "CreateAndMount", value = CreateAndMountFileShareConfiguration.class),
-    @JsonSubTypes.Type(name = "Mount", value = MountFileShareConfiguration.class)
-})
+    @JsonSubTypes.Type(name = "Mount", value = MountFileShareConfiguration.class) })
 @Immutable
 public class FileShareConfiguration {
-    /** Creates an instance of FileShareConfiguration class. */
+    /*
+     * The type of file share config.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "configurationType", required = true)
+    private ConfigurationType configurationType;
+
+    /**
+     * Creates an instance of FileShareConfiguration class.
+     */
     public FileShareConfiguration() {
+        this.configurationType = ConfigurationType.fromString("FileShareConfiguration");
+    }
+
+    /**
+     * Get the configurationType property: The type of file share config.
+     * 
+     * @return the configurationType value.
+     */
+    public ConfigurationType configurationType() {
+        return this.configurationType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

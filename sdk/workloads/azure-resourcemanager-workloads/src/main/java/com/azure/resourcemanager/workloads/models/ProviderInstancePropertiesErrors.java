@@ -6,16 +6,20 @@ package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Immutable;
 
-/** Defines the provider instance errors. */
+/**
+ * Defines the provider instance errors.
+ */
 @Immutable
 public final class ProviderInstancePropertiesErrors extends Error {
-    /** Creates an instance of ProviderInstancePropertiesErrors class. */
+    /**
+     * Creates an instance of ProviderInstancePropertiesErrors class.
+     */
     public ProviderInstancePropertiesErrors() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

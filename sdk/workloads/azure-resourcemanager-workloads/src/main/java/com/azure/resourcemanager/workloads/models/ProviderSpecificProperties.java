@@ -5,16 +5,20 @@
 package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Gets or sets the provider specific properties. */
+/**
+ * Gets or sets the provider specific properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "providerType",
-    defaultImpl = ProviderSpecificProperties.class)
+    defaultImpl = ProviderSpecificProperties.class,
+    visible = true)
 @JsonTypeName("ProviderSpecificProperties")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "SapHana", value = HanaDbProviderInstanceProperties.class),
@@ -22,17 +26,35 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "PrometheusOS", value = PrometheusOSProviderInstanceProperties.class),
     @JsonSubTypes.Type(name = "Db2", value = DB2ProviderInstanceProperties.class),
     @JsonSubTypes.Type(name = "PrometheusHaCluster", value = PrometheusHaClusterProviderInstanceProperties.class),
-    @JsonSubTypes.Type(name = "MsSqlServer", value = MsSqlServerProviderInstanceProperties.class)
-})
+    @JsonSubTypes.Type(name = "MsSqlServer", value = MsSqlServerProviderInstanceProperties.class) })
 @Immutable
 public class ProviderSpecificProperties {
-    /** Creates an instance of ProviderSpecificProperties class. */
+    /*
+     * The provider type. For example, the value can be SapHana.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "providerType", required = true)
+    private String providerType;
+
+    /**
+     * Creates an instance of ProviderSpecificProperties class.
+     */
     public ProviderSpecificProperties() {
+        this.providerType = "ProviderSpecificProperties";
+    }
+
+    /**
+     * Get the providerType property: The provider type. For example, the value can be SapHana.
+     * 
+     * @return the providerType value.
+     */
+    public String providerType() {
+        return this.providerType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

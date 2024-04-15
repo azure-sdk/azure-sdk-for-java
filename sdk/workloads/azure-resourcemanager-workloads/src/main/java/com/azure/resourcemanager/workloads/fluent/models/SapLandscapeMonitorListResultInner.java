@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response from the List SAP Landscape Monitor Dashboard operation. */
+/**
+ * The response from the List SAP Landscape Monitor Dashboard operation.
+ */
 @Fluent
 public final class SapLandscapeMonitorListResultInner {
     /*
@@ -23,13 +25,15 @@ public final class SapLandscapeMonitorListResultInner {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of SapLandscapeMonitorListResultInner class. */
+    /**
+     * Creates an instance of SapLandscapeMonitorListResultInner class.
+     */
     public SapLandscapeMonitorListResultInner() {
     }
 
     /**
      * Get the value property: The list of Sap Landscape Monitor configuration.
-     *
+     * 
      * @return the value value.
      */
     public List<SapLandscapeMonitorInner> value() {
@@ -38,7 +42,7 @@ public final class SapLandscapeMonitorListResultInner {
 
     /**
      * Set the value property: The list of Sap Landscape Monitor configuration.
-     *
+     * 
      * @param value the value value to set.
      * @return the SapLandscapeMonitorListResultInner object itself.
      */
@@ -49,7 +53,7 @@ public final class SapLandscapeMonitorListResultInner {
 
     /**
      * Get the nextLink property: The URL to get the next set of SAP Landscape Monitor Dashboard.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -58,7 +62,7 @@ public final class SapLandscapeMonitorListResultInner {
 
     /**
      * Set the nextLink property: The URL to get the next set of SAP Landscape Monitor Dashboard.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SapLandscapeMonitorListResultInner object itself.
      */
@@ -69,7 +73,7 @@ public final class SapLandscapeMonitorListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

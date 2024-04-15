@@ -6,6 +6,7 @@ package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,13 +15,23 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * the create infra flow. Please pre-create the resource group you intend to place the transport directory in. The
  * storage account and fileshare will be auto-created by the ACSS and doesn’t need to pre-created.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "configurationType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "configurationType",
+    defaultImpl = CreateAndMountFileShareConfiguration.class,
+    visible = true)
 @JsonTypeName("CreateAndMount")
 @Fluent
 public final class CreateAndMountFileShareConfiguration extends FileShareConfiguration {
     /*
-     * The name of transport file share resource group. This should be pre created by the customer. The app rg is used
-     * in case of missing input.
+     * The type of file share config.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "configurationType", required = true)
+    private ConfigurationType configurationType = ConfigurationType.CREATE_AND_MOUNT;
+
+    /*
+     * The name of transport file share resource group. This should be pre created by the customer. The app rg is used in case of missing input.
      */
     @JsonProperty(value = "resourceGroup")
     private String resourceGroup;
@@ -31,14 +42,26 @@ public final class CreateAndMountFileShareConfiguration extends FileShareConfigu
     @JsonProperty(value = "storageAccountName")
     private String storageAccountName;
 
-    /** Creates an instance of CreateAndMountFileShareConfiguration class. */
+    /**
+     * Creates an instance of CreateAndMountFileShareConfiguration class.
+     */
     public CreateAndMountFileShareConfiguration() {
+    }
+
+    /**
+     * Get the configurationType property: The type of file share config.
+     * 
+     * @return the configurationType value.
+     */
+    @Override
+    public ConfigurationType configurationType() {
+        return this.configurationType;
     }
 
     /**
      * Get the resourceGroup property: The name of transport file share resource group. This should be pre created by
      * the customer. The app rg is used in case of missing input.
-     *
+     * 
      * @return the resourceGroup value.
      */
     public String resourceGroup() {
@@ -48,7 +71,7 @@ public final class CreateAndMountFileShareConfiguration extends FileShareConfigu
     /**
      * Set the resourceGroup property: The name of transport file share resource group. This should be pre created by
      * the customer. The app rg is used in case of missing input.
-     *
+     * 
      * @param resourceGroup the resourceGroup value to set.
      * @return the CreateAndMountFileShareConfiguration object itself.
      */
@@ -60,7 +83,7 @@ public final class CreateAndMountFileShareConfiguration extends FileShareConfigu
     /**
      * Get the storageAccountName property: The name of file share storage account name . A custom name is used in case
      * of missing input.
-     *
+     * 
      * @return the storageAccountName value.
      */
     public String storageAccountName() {
@@ -70,7 +93,7 @@ public final class CreateAndMountFileShareConfiguration extends FileShareConfigu
     /**
      * Set the storageAccountName property: The name of file share storage account name . A custom name is used in case
      * of missing input.
-     *
+     * 
      * @param storageAccountName the storageAccountName value to set.
      * @return the CreateAndMountFileShareConfiguration object itself.
      */
@@ -81,7 +104,7 @@ public final class CreateAndMountFileShareConfiguration extends FileShareConfigu
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
