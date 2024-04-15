@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The commitment plan association. */
+/**
+ * The commitment plan association.
+ */
 @Fluent
 public final class CommitmentPlanAssociation {
     /*
@@ -22,13 +24,15 @@ public final class CommitmentPlanAssociation {
     @JsonProperty(value = "commitmentPlanLocation")
     private String commitmentPlanLocation;
 
-    /** Creates an instance of CommitmentPlanAssociation class. */
+    /**
+     * Creates an instance of CommitmentPlanAssociation class.
+     */
     public CommitmentPlanAssociation() {
     }
 
     /**
      * Get the commitmentPlanId property: The Azure resource id of the commitment plan.
-     *
+     * 
      * @return the commitmentPlanId value.
      */
     public String commitmentPlanId() {
@@ -37,7 +41,7 @@ public final class CommitmentPlanAssociation {
 
     /**
      * Set the commitmentPlanId property: The Azure resource id of the commitment plan.
-     *
+     * 
      * @param commitmentPlanId the commitmentPlanId value to set.
      * @return the CommitmentPlanAssociation object itself.
      */
@@ -48,7 +52,7 @@ public final class CommitmentPlanAssociation {
 
     /**
      * Get the commitmentPlanLocation property: The location of of the commitment plan.
-     *
+     * 
      * @return the commitmentPlanLocation value.
      */
     public String commitmentPlanLocation() {
@@ -57,7 +61,7 @@ public final class CommitmentPlanAssociation {
 
     /**
      * Set the commitmentPlanLocation property: The location of of the commitment plan.
-     *
+     * 
      * @param commitmentPlanLocation the commitmentPlanLocation value to set.
      * @return the CommitmentPlanAssociation object itself.
      */
@@ -68,7 +72,7 @@ public final class CommitmentPlanAssociation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

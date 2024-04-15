@@ -9,7 +9,9 @@ import com.azure.resourcemanager.cognitiveservices.models.SkuAvailability;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Check SKU availability result list. */
+/**
+ * Check SKU availability result list.
+ */
 @Fluent
 public final class SkuAvailabilityListResultInner {
     /*
@@ -18,13 +20,15 @@ public final class SkuAvailabilityListResultInner {
     @JsonProperty(value = "value")
     private List<SkuAvailability> value;
 
-    /** Creates an instance of SkuAvailabilityListResultInner class. */
+    /**
+     * Creates an instance of SkuAvailabilityListResultInner class.
+     */
     public SkuAvailabilityListResultInner() {
     }
 
     /**
      * Get the value property: Check SKU availability result list.
-     *
+     * 
      * @return the value value.
      */
     public List<SkuAvailability> value() {
@@ -33,7 +37,7 @@ public final class SkuAvailabilityListResultInner {
 
     /**
      * Set the value property: Check SKU availability result list.
-     *
+     * 
      * @param value the value value to set.
      * @return the SkuAvailabilityListResultInner object itself.
      */
@@ -44,7 +48,7 @@ public final class SkuAvailabilityListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

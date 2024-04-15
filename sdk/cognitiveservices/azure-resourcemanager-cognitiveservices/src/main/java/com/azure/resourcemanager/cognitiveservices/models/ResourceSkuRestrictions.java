@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes restrictions of a SKU. */
+/**
+ * Describes restrictions of a SKU.
+ */
 @Fluent
 public final class ResourceSkuRestrictions {
     /*
@@ -18,8 +20,7 @@ public final class ResourceSkuRestrictions {
     private ResourceSkuRestrictionsType type;
 
     /*
-     * The value of restrictions. If the restriction type is set to location. This would be different locations where
-     * the SKU is restricted.
+     * The value of restrictions. If the restriction type is set to location. This would be different locations where the SKU is restricted.
      */
     @JsonProperty(value = "values")
     private List<String> values;
@@ -36,13 +37,15 @@ public final class ResourceSkuRestrictions {
     @JsonProperty(value = "reasonCode")
     private ResourceSkuRestrictionsReasonCode reasonCode;
 
-    /** Creates an instance of ResourceSkuRestrictions class. */
+    /**
+     * Creates an instance of ResourceSkuRestrictions class.
+     */
     public ResourceSkuRestrictions() {
     }
 
     /**
      * Get the type property: The type of restrictions.
-     *
+     * 
      * @return the type value.
      */
     public ResourceSkuRestrictionsType type() {
@@ -51,7 +54,7 @@ public final class ResourceSkuRestrictions {
 
     /**
      * Set the type property: The type of restrictions.
-     *
+     * 
      * @param type the type value to set.
      * @return the ResourceSkuRestrictions object itself.
      */
@@ -63,7 +66,7 @@ public final class ResourceSkuRestrictions {
     /**
      * Get the values property: The value of restrictions. If the restriction type is set to location. This would be
      * different locations where the SKU is restricted.
-     *
+     * 
      * @return the values value.
      */
     public List<String> values() {
@@ -73,7 +76,7 @@ public final class ResourceSkuRestrictions {
     /**
      * Set the values property: The value of restrictions. If the restriction type is set to location. This would be
      * different locations where the SKU is restricted.
-     *
+     * 
      * @param values the values value to set.
      * @return the ResourceSkuRestrictions object itself.
      */
@@ -84,7 +87,7 @@ public final class ResourceSkuRestrictions {
 
     /**
      * Get the restrictionInfo property: The information about the restriction where the SKU cannot be used.
-     *
+     * 
      * @return the restrictionInfo value.
      */
     public ResourceSkuRestrictionInfo restrictionInfo() {
@@ -93,7 +96,7 @@ public final class ResourceSkuRestrictions {
 
     /**
      * Set the restrictionInfo property: The information about the restriction where the SKU cannot be used.
-     *
+     * 
      * @param restrictionInfo the restrictionInfo value to set.
      * @return the ResourceSkuRestrictions object itself.
      */
@@ -104,7 +107,7 @@ public final class ResourceSkuRestrictions {
 
     /**
      * Get the reasonCode property: The reason for restriction.
-     *
+     * 
      * @return the reasonCode value.
      */
     public ResourceSkuRestrictionsReasonCode reasonCode() {
@@ -113,7 +116,7 @@ public final class ResourceSkuRestrictions {
 
     /**
      * Set the reasonCode property: The reason for restriction.
-     *
+     * 
      * @param reasonCode the reasonCode value to set.
      * @return the ResourceSkuRestrictions object itself.
      */
@@ -124,7 +127,7 @@ public final class ResourceSkuRestrictions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The QuotaLimit model. */
+/**
+ * The QuotaLimit model.
+ */
 @Fluent
 public final class QuotaLimit {
     /*
@@ -29,13 +31,15 @@ public final class QuotaLimit {
     @JsonProperty(value = "rules")
     private List<ThrottlingRule> rules;
 
-    /** Creates an instance of QuotaLimit class. */
+    /**
+     * Creates an instance of QuotaLimit class.
+     */
     public QuotaLimit() {
     }
 
     /**
      * Get the count property: The count property.
-     *
+     * 
      * @return the count value.
      */
     public Float count() {
@@ -44,7 +48,7 @@ public final class QuotaLimit {
 
     /**
      * Set the count property: The count property.
-     *
+     * 
      * @param count the count value to set.
      * @return the QuotaLimit object itself.
      */
@@ -55,7 +59,7 @@ public final class QuotaLimit {
 
     /**
      * Get the renewalPeriod property: The renewalPeriod property.
-     *
+     * 
      * @return the renewalPeriod value.
      */
     public Float renewalPeriod() {
@@ -64,7 +68,7 @@ public final class QuotaLimit {
 
     /**
      * Set the renewalPeriod property: The renewalPeriod property.
-     *
+     * 
      * @param renewalPeriod the renewalPeriod value to set.
      * @return the QuotaLimit object itself.
      */
@@ -75,7 +79,7 @@ public final class QuotaLimit {
 
     /**
      * Get the rules property: The rules property.
-     *
+     * 
      * @return the rules value.
      */
     public List<ThrottlingRule> rules() {
@@ -84,7 +88,7 @@ public final class QuotaLimit {
 
     /**
      * Set the rules property: The rules property.
-     *
+     * 
      * @param rules the rules value to set.
      * @return the QuotaLimit object itself.
      */
@@ -95,7 +99,7 @@ public final class QuotaLimit {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

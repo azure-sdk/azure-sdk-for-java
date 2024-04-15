@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Account hosting model. */
+/**
+ * Account hosting model.
+ */
 public final class HostingModel extends ExpandableStringEnum<HostingModel> {
-    /** Static value Web for HostingModel. */
+    /**
+     * Static value Web for HostingModel.
+     */
     public static final HostingModel WEB = fromString("Web");
 
-    /** Static value ConnectedContainer for HostingModel. */
+    /**
+     * Static value ConnectedContainer for HostingModel.
+     */
     public static final HostingModel CONNECTED_CONTAINER = fromString("ConnectedContainer");
 
-    /** Static value DisconnectedContainer for HostingModel. */
+    /**
+     * Static value DisconnectedContainer for HostingModel.
+     */
     public static final HostingModel DISCONNECTED_CONTAINER = fromString("DisconnectedContainer");
 
-    /** Static value ProvisionedWeb for HostingModel. */
+    /**
+     * Static value ProvisionedWeb for HostingModel.
+     */
     public static final HostingModel PROVISIONED_WEB = fromString("ProvisionedWeb");
 
     /**
      * Creates a new instance of HostingModel value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class HostingModel extends ExpandableStringEnum<HostingModel> {
 
     /**
      * Creates or finds a HostingModel from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding HostingModel.
      */
@@ -44,7 +54,7 @@ public final class HostingModel extends ExpandableStringEnum<HostingModel> {
 
     /**
      * Gets known HostingModel values.
-     *
+     * 
      * @return known HostingModel values.
      */
     public static Collection<HostingModel> values() {

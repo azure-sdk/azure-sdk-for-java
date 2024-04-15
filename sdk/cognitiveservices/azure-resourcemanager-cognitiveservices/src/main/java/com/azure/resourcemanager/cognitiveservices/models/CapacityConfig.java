@@ -6,8 +6,11 @@ package com.azure.resourcemanager.cognitiveservices.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
-/** The capacity configuration. */
+/**
+ * The capacity configuration.
+ */
 @Fluent
 public final class CapacityConfig {
     /*
@@ -34,13 +37,21 @@ public final class CapacityConfig {
     @JsonProperty(value = "default")
     private Integer defaultProperty;
 
-    /** Creates an instance of CapacityConfig class. */
+    /*
+     * The array of allowed values for capacity.
+     */
+    @JsonProperty(value = "allowedValues")
+    private List<Integer> allowedValues;
+
+    /**
+     * Creates an instance of CapacityConfig class.
+     */
     public CapacityConfig() {
     }
 
     /**
      * Get the minimum property: The minimum capacity.
-     *
+     * 
      * @return the minimum value.
      */
     public Integer minimum() {
@@ -49,7 +60,7 @@ public final class CapacityConfig {
 
     /**
      * Set the minimum property: The minimum capacity.
-     *
+     * 
      * @param minimum the minimum value to set.
      * @return the CapacityConfig object itself.
      */
@@ -60,7 +71,7 @@ public final class CapacityConfig {
 
     /**
      * Get the maximum property: The maximum capacity.
-     *
+     * 
      * @return the maximum value.
      */
     public Integer maximum() {
@@ -69,7 +80,7 @@ public final class CapacityConfig {
 
     /**
      * Set the maximum property: The maximum capacity.
-     *
+     * 
      * @param maximum the maximum value to set.
      * @return the CapacityConfig object itself.
      */
@@ -80,7 +91,7 @@ public final class CapacityConfig {
 
     /**
      * Get the step property: The minimal incremental between allowed values for capacity.
-     *
+     * 
      * @return the step value.
      */
     public Integer step() {
@@ -89,7 +100,7 @@ public final class CapacityConfig {
 
     /**
      * Set the step property: The minimal incremental between allowed values for capacity.
-     *
+     * 
      * @param step the step value to set.
      * @return the CapacityConfig object itself.
      */
@@ -100,7 +111,7 @@ public final class CapacityConfig {
 
     /**
      * Get the defaultProperty property: The default capacity.
-     *
+     * 
      * @return the defaultProperty value.
      */
     public Integer defaultProperty() {
@@ -109,7 +120,7 @@ public final class CapacityConfig {
 
     /**
      * Set the defaultProperty property: The default capacity.
-     *
+     * 
      * @param defaultProperty the defaultProperty value to set.
      * @return the CapacityConfig object itself.
      */
@@ -119,8 +130,28 @@ public final class CapacityConfig {
     }
 
     /**
+     * Get the allowedValues property: The array of allowed values for capacity.
+     * 
+     * @return the allowedValues value.
+     */
+    public List<Integer> allowedValues() {
+        return this.allowedValues;
+    }
+
+    /**
+     * Set the allowedValues property: The array of allowed values for capacity.
+     * 
+     * @param allowedValues the allowedValues value to set.
+     * @return the CapacityConfig object itself.
+     */
+    public CapacityConfig withAllowedValues(List<Integer> allowedValues) {
+        this.allowedValues = allowedValues;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

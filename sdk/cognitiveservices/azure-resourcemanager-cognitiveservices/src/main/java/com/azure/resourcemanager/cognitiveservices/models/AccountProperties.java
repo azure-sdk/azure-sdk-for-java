@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Properties of Cognitive Services account. */
+/**
+ * Properties of Cognitive Services account.
+ */
 @Fluent
 public final class AccountProperties {
     /*
@@ -33,8 +35,7 @@ public final class AccountProperties {
     private String internalId;
 
     /*
-     * Gets the capabilities of the cognitive services account. Each item indicates the capability of a specific
-     * feature. The values are read-only and for reference only.
+     * Gets the capabilities of the cognitive services account. Each item indicates the capability of a specific feature. The values are read-only and for reference only.
      */
     @JsonProperty(value = "capabilities", access = JsonProperty.Access.WRITE_ONLY)
     private List<SkuCapability> capabilities;
@@ -80,6 +81,12 @@ public final class AccountProperties {
      */
     @JsonProperty(value = "userOwnedStorage")
     private List<UserOwnedStorage> userOwnedStorage;
+
+    /*
+     * The user owned AML workspace properties.
+     */
+    @JsonProperty(value = "amlWorkspace")
+    private UserOwnedAmlWorkspace amlWorkspace;
 
     /*
      * The private endpoint connection associated with the Cognitive Services account.
@@ -184,14 +191,16 @@ public final class AccountProperties {
     @JsonProperty(value = "abusePenalty", access = JsonProperty.Access.WRITE_ONLY)
     private AbusePenalty abusePenalty;
 
-    /** Creates an instance of AccountProperties class. */
+    /**
+     * Creates an instance of AccountProperties class.
+     */
     public AccountProperties() {
     }
 
     /**
      * Get the provisioningState property: Gets the status of the cognitive services account at the time the operation
      * was called.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -200,7 +209,7 @@ public final class AccountProperties {
 
     /**
      * Get the endpoint property: Endpoint of the created account.
-     *
+     * 
      * @return the endpoint value.
      */
     public String endpoint() {
@@ -209,7 +218,7 @@ public final class AccountProperties {
 
     /**
      * Get the internalId property: The internal identifier (deprecated, do not use this property).
-     *
+     * 
      * @return the internalId value.
      */
     public String internalId() {
@@ -219,7 +228,7 @@ public final class AccountProperties {
     /**
      * Get the capabilities property: Gets the capabilities of the cognitive services account. Each item indicates the
      * capability of a specific feature. The values are read-only and for reference only.
-     *
+     * 
      * @return the capabilities value.
      */
     public List<SkuCapability> capabilities() {
@@ -228,7 +237,7 @@ public final class AccountProperties {
 
     /**
      * Get the isMigrated property: If the resource is migrated from an existing key.
-     *
+     * 
      * @return the isMigrated value.
      */
     public Boolean isMigrated() {
@@ -237,7 +246,7 @@ public final class AccountProperties {
 
     /**
      * Get the migrationToken property: Resource migration token.
-     *
+     * 
      * @return the migrationToken value.
      */
     public String migrationToken() {
@@ -246,7 +255,7 @@ public final class AccountProperties {
 
     /**
      * Set the migrationToken property: Resource migration token.
-     *
+     * 
      * @param migrationToken the migrationToken value to set.
      * @return the AccountProperties object itself.
      */
@@ -257,7 +266,7 @@ public final class AccountProperties {
 
     /**
      * Get the skuChangeInfo property: Sku change info of account.
-     *
+     * 
      * @return the skuChangeInfo value.
      */
     public SkuChangeInfo skuChangeInfo() {
@@ -266,7 +275,7 @@ public final class AccountProperties {
 
     /**
      * Get the customSubDomainName property: Optional subdomain name used for token-based authentication.
-     *
+     * 
      * @return the customSubDomainName value.
      */
     public String customSubDomainName() {
@@ -275,7 +284,7 @@ public final class AccountProperties {
 
     /**
      * Set the customSubDomainName property: Optional subdomain name used for token-based authentication.
-     *
+     * 
      * @param customSubDomainName the customSubDomainName value to set.
      * @return the AccountProperties object itself.
      */
@@ -286,7 +295,7 @@ public final class AccountProperties {
 
     /**
      * Get the networkAcls property: A collection of rules governing the accessibility from specific network locations.
-     *
+     * 
      * @return the networkAcls value.
      */
     public NetworkRuleSet networkAcls() {
@@ -295,7 +304,7 @@ public final class AccountProperties {
 
     /**
      * Set the networkAcls property: A collection of rules governing the accessibility from specific network locations.
-     *
+     * 
      * @param networkAcls the networkAcls value to set.
      * @return the AccountProperties object itself.
      */
@@ -306,7 +315,7 @@ public final class AccountProperties {
 
     /**
      * Get the encryption property: The encryption properties for this resource.
-     *
+     * 
      * @return the encryption value.
      */
     public Encryption encryption() {
@@ -315,7 +324,7 @@ public final class AccountProperties {
 
     /**
      * Set the encryption property: The encryption properties for this resource.
-     *
+     * 
      * @param encryption the encryption value to set.
      * @return the AccountProperties object itself.
      */
@@ -326,7 +335,7 @@ public final class AccountProperties {
 
     /**
      * Get the userOwnedStorage property: The storage accounts for this resource.
-     *
+     * 
      * @return the userOwnedStorage value.
      */
     public List<UserOwnedStorage> userOwnedStorage() {
@@ -335,7 +344,7 @@ public final class AccountProperties {
 
     /**
      * Set the userOwnedStorage property: The storage accounts for this resource.
-     *
+     * 
      * @param userOwnedStorage the userOwnedStorage value to set.
      * @return the AccountProperties object itself.
      */
@@ -345,9 +354,29 @@ public final class AccountProperties {
     }
 
     /**
+     * Get the amlWorkspace property: The user owned AML workspace properties.
+     * 
+     * @return the amlWorkspace value.
+     */
+    public UserOwnedAmlWorkspace amlWorkspace() {
+        return this.amlWorkspace;
+    }
+
+    /**
+     * Set the amlWorkspace property: The user owned AML workspace properties.
+     * 
+     * @param amlWorkspace the amlWorkspace value to set.
+     * @return the AccountProperties object itself.
+     */
+    public AccountProperties withAmlWorkspace(UserOwnedAmlWorkspace amlWorkspace) {
+        this.amlWorkspace = amlWorkspace;
+        return this;
+    }
+
+    /**
      * Get the privateEndpointConnections property: The private endpoint connection associated with the Cognitive
      * Services account.
-     *
+     * 
      * @return the privateEndpointConnections value.
      */
     public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
@@ -356,7 +385,7 @@ public final class AccountProperties {
 
     /**
      * Get the publicNetworkAccess property: Whether or not public endpoint access is allowed for this account.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -365,7 +394,7 @@ public final class AccountProperties {
 
     /**
      * Set the publicNetworkAccess property: Whether or not public endpoint access is allowed for this account.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the AccountProperties object itself.
      */
@@ -376,7 +405,7 @@ public final class AccountProperties {
 
     /**
      * Get the apiProperties property: The api properties for special APIs.
-     *
+     * 
      * @return the apiProperties value.
      */
     public ApiProperties apiProperties() {
@@ -385,7 +414,7 @@ public final class AccountProperties {
 
     /**
      * Set the apiProperties property: The api properties for special APIs.
-     *
+     * 
      * @param apiProperties the apiProperties value to set.
      * @return the AccountProperties object itself.
      */
@@ -396,7 +425,7 @@ public final class AccountProperties {
 
     /**
      * Get the dateCreated property: Gets the date of cognitive services account creation.
-     *
+     * 
      * @return the dateCreated value.
      */
     public String dateCreated() {
@@ -405,7 +434,7 @@ public final class AccountProperties {
 
     /**
      * Get the callRateLimit property: The call rate limit Cognitive Services account.
-     *
+     * 
      * @return the callRateLimit value.
      */
     public CallRateLimit callRateLimit() {
@@ -414,7 +443,7 @@ public final class AccountProperties {
 
     /**
      * Get the dynamicThrottlingEnabled property: The flag to enable dynamic throttling.
-     *
+     * 
      * @return the dynamicThrottlingEnabled value.
      */
     public Boolean dynamicThrottlingEnabled() {
@@ -423,7 +452,7 @@ public final class AccountProperties {
 
     /**
      * Set the dynamicThrottlingEnabled property: The flag to enable dynamic throttling.
-     *
+     * 
      * @param dynamicThrottlingEnabled the dynamicThrottlingEnabled value to set.
      * @return the AccountProperties object itself.
      */
@@ -434,7 +463,7 @@ public final class AccountProperties {
 
     /**
      * Get the quotaLimit property: The quotaLimit property.
-     *
+     * 
      * @return the quotaLimit value.
      */
     public QuotaLimit quotaLimit() {
@@ -443,7 +472,7 @@ public final class AccountProperties {
 
     /**
      * Get the restrictOutboundNetworkAccess property: The restrictOutboundNetworkAccess property.
-     *
+     * 
      * @return the restrictOutboundNetworkAccess value.
      */
     public Boolean restrictOutboundNetworkAccess() {
@@ -452,7 +481,7 @@ public final class AccountProperties {
 
     /**
      * Set the restrictOutboundNetworkAccess property: The restrictOutboundNetworkAccess property.
-     *
+     * 
      * @param restrictOutboundNetworkAccess the restrictOutboundNetworkAccess value to set.
      * @return the AccountProperties object itself.
      */
@@ -463,7 +492,7 @@ public final class AccountProperties {
 
     /**
      * Get the allowedFqdnList property: The allowedFqdnList property.
-     *
+     * 
      * @return the allowedFqdnList value.
      */
     public List<String> allowedFqdnList() {
@@ -472,7 +501,7 @@ public final class AccountProperties {
 
     /**
      * Set the allowedFqdnList property: The allowedFqdnList property.
-     *
+     * 
      * @param allowedFqdnList the allowedFqdnList value to set.
      * @return the AccountProperties object itself.
      */
@@ -483,7 +512,7 @@ public final class AccountProperties {
 
     /**
      * Get the disableLocalAuth property: The disableLocalAuth property.
-     *
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -492,7 +521,7 @@ public final class AccountProperties {
 
     /**
      * Set the disableLocalAuth property: The disableLocalAuth property.
-     *
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the AccountProperties object itself.
      */
@@ -503,7 +532,7 @@ public final class AccountProperties {
 
     /**
      * Get the endpoints property: Dictionary of &lt;string&gt;.
-     *
+     * 
      * @return the endpoints value.
      */
     public Map<String, String> endpoints() {
@@ -512,7 +541,7 @@ public final class AccountProperties {
 
     /**
      * Get the restore property: The restore property.
-     *
+     * 
      * @return the restore value.
      */
     public Boolean restore() {
@@ -521,7 +550,7 @@ public final class AccountProperties {
 
     /**
      * Set the restore property: The restore property.
-     *
+     * 
      * @param restore the restore value to set.
      * @return the AccountProperties object itself.
      */
@@ -532,7 +561,7 @@ public final class AccountProperties {
 
     /**
      * Get the deletionDate property: The deletion date, only available for deleted account.
-     *
+     * 
      * @return the deletionDate value.
      */
     public String deletionDate() {
@@ -541,7 +570,7 @@ public final class AccountProperties {
 
     /**
      * Get the scheduledPurgeDate property: The scheduled purge date, only available for deleted account.
-     *
+     * 
      * @return the scheduledPurgeDate value.
      */
     public String scheduledPurgeDate() {
@@ -550,7 +579,7 @@ public final class AccountProperties {
 
     /**
      * Get the locations property: The multiregion settings of Cognitive Services account.
-     *
+     * 
      * @return the locations value.
      */
     public MultiRegionSettings locations() {
@@ -559,7 +588,7 @@ public final class AccountProperties {
 
     /**
      * Set the locations property: The multiregion settings of Cognitive Services account.
-     *
+     * 
      * @param locations the locations value to set.
      * @return the AccountProperties object itself.
      */
@@ -570,7 +599,7 @@ public final class AccountProperties {
 
     /**
      * Get the commitmentPlanAssociations property: The commitment plan associations of Cognitive Services account.
-     *
+     * 
      * @return the commitmentPlanAssociations value.
      */
     public List<CommitmentPlanAssociation> commitmentPlanAssociations() {
@@ -579,7 +608,7 @@ public final class AccountProperties {
 
     /**
      * Get the abusePenalty property: The abuse penalty.
-     *
+     * 
      * @return the abusePenalty value.
      */
     public AbusePenalty abusePenalty() {
@@ -588,7 +617,7 @@ public final class AccountProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -606,6 +635,9 @@ public final class AccountProperties {
         }
         if (userOwnedStorage() != null) {
             userOwnedStorage().forEach(e -> e.validate());
+        }
+        if (amlWorkspace() != null) {
+            amlWorkspace().validate();
         }
         if (privateEndpointConnections() != null) {
             privateEndpointConnections().forEach(e -> e.validate());

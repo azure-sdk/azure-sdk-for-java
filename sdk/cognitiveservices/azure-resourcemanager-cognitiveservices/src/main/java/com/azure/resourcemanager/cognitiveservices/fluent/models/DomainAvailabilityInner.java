@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Domain availability. */
+/**
+ * Domain availability.
+ */
 @Fluent
 public final class DomainAvailabilityInner {
     /*
@@ -40,13 +42,15 @@ public final class DomainAvailabilityInner {
     @JsonProperty(value = "kind")
     private String kind;
 
-    /** Creates an instance of DomainAvailabilityInner class. */
+    /**
+     * Creates an instance of DomainAvailabilityInner class.
+     */
     public DomainAvailabilityInner() {
     }
 
     /**
      * Get the isSubdomainAvailable property: Indicates the given SKU is available or not.
-     *
+     * 
      * @return the isSubdomainAvailable value.
      */
     public Boolean isSubdomainAvailable() {
@@ -55,7 +59,7 @@ public final class DomainAvailabilityInner {
 
     /**
      * Set the isSubdomainAvailable property: Indicates the given SKU is available or not.
-     *
+     * 
      * @param isSubdomainAvailable the isSubdomainAvailable value to set.
      * @return the DomainAvailabilityInner object itself.
      */
@@ -66,7 +70,7 @@ public final class DomainAvailabilityInner {
 
     /**
      * Get the reason property: Reason why the SKU is not available.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -75,7 +79,7 @@ public final class DomainAvailabilityInner {
 
     /**
      * Set the reason property: Reason why the SKU is not available.
-     *
+     * 
      * @param reason the reason value to set.
      * @return the DomainAvailabilityInner object itself.
      */
@@ -86,7 +90,7 @@ public final class DomainAvailabilityInner {
 
     /**
      * Get the subdomainName property: The subdomain name to use.
-     *
+     * 
      * @return the subdomainName value.
      */
     public String subdomainName() {
@@ -95,7 +99,7 @@ public final class DomainAvailabilityInner {
 
     /**
      * Set the subdomainName property: The subdomain name to use.
-     *
+     * 
      * @param subdomainName the subdomainName value to set.
      * @return the DomainAvailabilityInner object itself.
      */
@@ -106,7 +110,7 @@ public final class DomainAvailabilityInner {
 
     /**
      * Get the type property: The Type of the resource.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -115,7 +119,7 @@ public final class DomainAvailabilityInner {
 
     /**
      * Set the type property: The Type of the resource.
-     *
+     * 
      * @param type the type value to set.
      * @return the DomainAvailabilityInner object itself.
      */
@@ -126,7 +130,7 @@ public final class DomainAvailabilityInner {
 
     /**
      * Get the kind property: The Kind of the resource.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -135,7 +139,7 @@ public final class DomainAvailabilityInner {
 
     /**
      * Set the kind property: The Kind of the resource.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the DomainAvailabilityInner object itself.
      */
@@ -146,7 +150,7 @@ public final class DomainAvailabilityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
