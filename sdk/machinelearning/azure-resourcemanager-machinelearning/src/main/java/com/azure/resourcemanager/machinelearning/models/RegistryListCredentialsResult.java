@@ -8,20 +8,16 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The RegistryListCredentialsResult model. */
+/**
+ * The RegistryListCredentialsResult model.
+ */
 @Fluent
 public final class RegistryListCredentialsResult {
     /*
-     * The location property.
+     * The location of the workspace ACR
      */
     @JsonProperty(value = "location", access = JsonProperty.Access.WRITE_ONLY)
     private String location;
-
-    /*
-     * The username property.
-     */
-    @JsonProperty(value = "username", access = JsonProperty.Access.WRITE_ONLY)
-    private String username;
 
     /*
      * The passwords property.
@@ -29,13 +25,21 @@ public final class RegistryListCredentialsResult {
     @JsonProperty(value = "passwords")
     private List<Password> passwords;
 
-    /** Creates an instance of RegistryListCredentialsResult class. */
+    /*
+     * The username of the workspace ACR
+     */
+    @JsonProperty(value = "username", access = JsonProperty.Access.WRITE_ONLY)
+    private String username;
+
+    /**
+     * Creates an instance of RegistryListCredentialsResult class.
+     */
     public RegistryListCredentialsResult() {
     }
 
     /**
-     * Get the location property: The location property.
-     *
+     * Get the location property: The location of the workspace ACR.
+     * 
      * @return the location value.
      */
     public String location() {
@@ -43,17 +47,8 @@ public final class RegistryListCredentialsResult {
     }
 
     /**
-     * Get the username property: The username property.
-     *
-     * @return the username value.
-     */
-    public String username() {
-        return this.username;
-    }
-
-    /**
      * Get the passwords property: The passwords property.
-     *
+     * 
      * @return the passwords value.
      */
     public List<Password> passwords() {
@@ -62,7 +57,7 @@ public final class RegistryListCredentialsResult {
 
     /**
      * Set the passwords property: The passwords property.
-     *
+     * 
      * @param passwords the passwords value to set.
      * @return the RegistryListCredentialsResult object itself.
      */
@@ -72,8 +67,17 @@ public final class RegistryListCredentialsResult {
     }
 
     /**
+     * Get the username property: The username of the workspace ACR.
+     * 
+     * @return the username value.
+     */
+    public String username() {
+        return this.username;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

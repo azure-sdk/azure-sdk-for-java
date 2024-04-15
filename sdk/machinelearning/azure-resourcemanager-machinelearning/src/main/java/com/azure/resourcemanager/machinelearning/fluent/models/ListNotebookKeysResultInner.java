@@ -7,28 +7,32 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ListNotebookKeysResult model. */
+/**
+ * The ListNotebookKeysResult model.
+ */
 @Immutable
 public final class ListNotebookKeysResultInner {
     /*
-     * The primaryAccessKey property.
+     * The primary access key of the Notebook
      */
     @JsonProperty(value = "primaryAccessKey", access = JsonProperty.Access.WRITE_ONLY)
     private String primaryAccessKey;
 
     /*
-     * The secondaryAccessKey property.
+     * The secondary access key of the Notebook
      */
     @JsonProperty(value = "secondaryAccessKey", access = JsonProperty.Access.WRITE_ONLY)
     private String secondaryAccessKey;
 
-    /** Creates an instance of ListNotebookKeysResultInner class. */
+    /**
+     * Creates an instance of ListNotebookKeysResultInner class.
+     */
     public ListNotebookKeysResultInner() {
     }
 
     /**
-     * Get the primaryAccessKey property: The primaryAccessKey property.
-     *
+     * Get the primaryAccessKey property: The primary access key of the Notebook.
+     * 
      * @return the primaryAccessKey value.
      */
     public String primaryAccessKey() {
@@ -36,8 +40,8 @@ public final class ListNotebookKeysResultInner {
     }
 
     /**
-     * Get the secondaryAccessKey property: The secondaryAccessKey property.
-     *
+     * Get the secondaryAccessKey property: The secondary access key of the Notebook.
+     * 
      * @return the secondaryAccessKey value.
      */
     public String secondaryAccessKey() {
@@ -46,7 +50,7 @@ public final class ListNotebookKeysResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

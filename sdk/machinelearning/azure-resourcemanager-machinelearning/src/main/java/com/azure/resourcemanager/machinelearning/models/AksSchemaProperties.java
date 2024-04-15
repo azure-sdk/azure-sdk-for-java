@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** AKS properties. */
+/**
+ * AKS properties.
+ */
 @Fluent
 public final class AksSchemaProperties {
     /*
@@ -65,13 +67,15 @@ public final class AksSchemaProperties {
     @JsonProperty(value = "loadBalancerSubnet")
     private String loadBalancerSubnet;
 
-    /** Creates an instance of AksSchemaProperties class. */
+    /**
+     * Creates an instance of AksSchemaProperties class.
+     */
     public AksSchemaProperties() {
     }
 
     /**
      * Get the clusterFqdn property: Cluster full qualified domain name.
-     *
+     * 
      * @return the clusterFqdn value.
      */
     public String clusterFqdn() {
@@ -80,7 +84,7 @@ public final class AksSchemaProperties {
 
     /**
      * Set the clusterFqdn property: Cluster full qualified domain name.
-     *
+     * 
      * @param clusterFqdn the clusterFqdn value to set.
      * @return the AksSchemaProperties object itself.
      */
@@ -91,7 +95,7 @@ public final class AksSchemaProperties {
 
     /**
      * Get the systemServices property: System services.
-     *
+     * 
      * @return the systemServices value.
      */
     public List<SystemService> systemServices() {
@@ -100,7 +104,7 @@ public final class AksSchemaProperties {
 
     /**
      * Get the agentCount property: Number of agents.
-     *
+     * 
      * @return the agentCount value.
      */
     public Integer agentCount() {
@@ -109,7 +113,7 @@ public final class AksSchemaProperties {
 
     /**
      * Set the agentCount property: Number of agents.
-     *
+     * 
      * @param agentCount the agentCount value to set.
      * @return the AksSchemaProperties object itself.
      */
@@ -120,7 +124,7 @@ public final class AksSchemaProperties {
 
     /**
      * Get the agentVmSize property: Agent virtual machine size.
-     *
+     * 
      * @return the agentVmSize value.
      */
     public String agentVmSize() {
@@ -129,7 +133,7 @@ public final class AksSchemaProperties {
 
     /**
      * Set the agentVmSize property: Agent virtual machine size.
-     *
+     * 
      * @param agentVmSize the agentVmSize value to set.
      * @return the AksSchemaProperties object itself.
      */
@@ -140,7 +144,7 @@ public final class AksSchemaProperties {
 
     /**
      * Get the clusterPurpose property: Intended usage of the cluster.
-     *
+     * 
      * @return the clusterPurpose value.
      */
     public ClusterPurpose clusterPurpose() {
@@ -149,7 +153,7 @@ public final class AksSchemaProperties {
 
     /**
      * Set the clusterPurpose property: Intended usage of the cluster.
-     *
+     * 
      * @param clusterPurpose the clusterPurpose value to set.
      * @return the AksSchemaProperties object itself.
      */
@@ -160,7 +164,7 @@ public final class AksSchemaProperties {
 
     /**
      * Get the sslConfiguration property: SSL configuration.
-     *
+     * 
      * @return the sslConfiguration value.
      */
     public SslConfiguration sslConfiguration() {
@@ -169,7 +173,7 @@ public final class AksSchemaProperties {
 
     /**
      * Set the sslConfiguration property: SSL configuration.
-     *
+     * 
      * @param sslConfiguration the sslConfiguration value to set.
      * @return the AksSchemaProperties object itself.
      */
@@ -180,7 +184,7 @@ public final class AksSchemaProperties {
 
     /**
      * Get the aksNetworkingConfiguration property: AKS networking configuration for vnet.
-     *
+     * 
      * @return the aksNetworkingConfiguration value.
      */
     public AksNetworkingConfiguration aksNetworkingConfiguration() {
@@ -189,7 +193,7 @@ public final class AksSchemaProperties {
 
     /**
      * Set the aksNetworkingConfiguration property: AKS networking configuration for vnet.
-     *
+     * 
      * @param aksNetworkingConfiguration the aksNetworkingConfiguration value to set.
      * @return the AksSchemaProperties object itself.
      */
@@ -200,7 +204,7 @@ public final class AksSchemaProperties {
 
     /**
      * Get the loadBalancerType property: Load Balancer Type.
-     *
+     * 
      * @return the loadBalancerType value.
      */
     public LoadBalancerType loadBalancerType() {
@@ -209,7 +213,7 @@ public final class AksSchemaProperties {
 
     /**
      * Set the loadBalancerType property: Load Balancer Type.
-     *
+     * 
      * @param loadBalancerType the loadBalancerType value to set.
      * @return the AksSchemaProperties object itself.
      */
@@ -220,7 +224,7 @@ public final class AksSchemaProperties {
 
     /**
      * Get the loadBalancerSubnet property: Load Balancer Subnet.
-     *
+     * 
      * @return the loadBalancerSubnet value.
      */
     public String loadBalancerSubnet() {
@@ -229,7 +233,7 @@ public final class AksSchemaProperties {
 
     /**
      * Set the loadBalancerSubnet property: Load Balancer Subnet.
-     *
+     * 
      * @param loadBalancerSubnet the loadBalancerSubnet value to set.
      * @return the AksSchemaProperties object itself.
      */
@@ -240,7 +244,7 @@ public final class AksSchemaProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

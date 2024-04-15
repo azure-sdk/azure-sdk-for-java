@@ -12,13 +12,17 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.machinelearning.fluent.models.ScheduleInner;
+import com.azure.resourcemanager.machinelearning.fluent.models.TriggerRunSubmissionDtoInner;
 import com.azure.resourcemanager.machinelearning.models.ScheduleListViewType;
+import com.azure.resourcemanager.machinelearning.models.TriggerOnceRequest;
 
-/** An instance of this class provides access to all the operations defined in SchedulesClient. */
+/**
+ * An instance of this class provides access to all the operations defined in SchedulesClient.
+ */
 public interface SchedulesClient {
     /**
      * List schedules in specified workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -31,7 +35,7 @@ public interface SchedulesClient {
 
     /**
      * List schedules in specified workspace.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param skip Continuation token for pagination.
@@ -43,16 +47,12 @@ public interface SchedulesClient {
      * @return a paginated list of Schedule entities as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ScheduleInner> list(
-        String resourceGroupName,
-        String workspaceName,
-        String skip,
-        ScheduleListViewType listViewType,
-        Context context);
+    PagedIterable<ScheduleInner> list(String resourceGroupName, String workspaceName, String skip,
+        ScheduleListViewType listViewType, Context context);
 
     /**
      * Delete schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Schedule name.
@@ -66,7 +66,7 @@ public interface SchedulesClient {
 
     /**
      * Delete schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Schedule name.
@@ -77,12 +77,12 @@ public interface SchedulesClient {
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<Void>, Void> beginDelete(
-        String resourceGroupName, String workspaceName, String name, Context context);
+    SyncPoller<PollResult<Void>, Void> beginDelete(String resourceGroupName, String workspaceName, String name,
+        Context context);
 
     /**
      * Delete schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Schedule name.
@@ -95,7 +95,7 @@ public interface SchedulesClient {
 
     /**
      * Delete schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Schedule name.
@@ -109,7 +109,7 @@ public interface SchedulesClient {
 
     /**
      * Get schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Schedule name.
@@ -120,12 +120,12 @@ public interface SchedulesClient {
      * @return schedule along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ScheduleInner> getWithResponse(
-        String resourceGroupName, String workspaceName, String name, Context context);
+    Response<ScheduleInner> getWithResponse(String resourceGroupName, String workspaceName, String name,
+        Context context);
 
     /**
      * Get schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Schedule name.
@@ -139,7 +139,7 @@ public interface SchedulesClient {
 
     /**
      * Create or update schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Schedule name.
@@ -150,12 +150,12 @@ public interface SchedulesClient {
      * @return the {@link SyncPoller} for polling of azure Resource Manager resource envelope.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ScheduleInner>, ScheduleInner> beginCreateOrUpdate(
-        String resourceGroupName, String workspaceName, String name, ScheduleInner body);
+    SyncPoller<PollResult<ScheduleInner>, ScheduleInner> beginCreateOrUpdate(String resourceGroupName,
+        String workspaceName, String name, ScheduleInner body);
 
     /**
      * Create or update schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Schedule name.
@@ -167,12 +167,12 @@ public interface SchedulesClient {
      * @return the {@link SyncPoller} for polling of azure Resource Manager resource envelope.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ScheduleInner>, ScheduleInner> beginCreateOrUpdate(
-        String resourceGroupName, String workspaceName, String name, ScheduleInner body, Context context);
+    SyncPoller<PollResult<ScheduleInner>, ScheduleInner> beginCreateOrUpdate(String resourceGroupName,
+        String workspaceName, String name, ScheduleInner body, Context context);
 
     /**
      * Create or update schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Schedule name.
@@ -187,7 +187,7 @@ public interface SchedulesClient {
 
     /**
      * Create or update schedule.
-     *
+     * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param workspaceName Name of Azure Machine Learning workspace.
      * @param name Schedule name.
@@ -199,6 +199,39 @@ public interface SchedulesClient {
      * @return azure Resource Manager resource envelope.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ScheduleInner createOrUpdate(
-        String resourceGroupName, String workspaceName, String name, ScheduleInner body, Context context);
+    ScheduleInner createOrUpdate(String resourceGroupName, String workspaceName, String name, ScheduleInner body,
+        Context context);
+
+    /**
+     * Trigger run.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Schedule name.
+     * @param body Request body for trigger once.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response body along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<TriggerRunSubmissionDtoInner> triggerWithResponse(String resourceGroupName, String workspaceName,
+        String name, TriggerOnceRequest body, Context context);
+
+    /**
+     * Trigger run.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param workspaceName Name of Azure Machine Learning workspace.
+     * @param name Schedule name.
+     * @param body Request body for trigger once.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    TriggerRunSubmissionDtoInner trigger(String resourceGroupName, String workspaceName, String name,
+        TriggerOnceRequest body);
 }

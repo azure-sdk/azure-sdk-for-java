@@ -8,12 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the properties of a VM size. */
+/**
+ * Describes the properties of a VM size.
+ */
 @Fluent
 public final class VirtualMachineSize {
     /*
      * Virtual Machine size name
-     *
+     * 
      * The name of the virtual machine size.
      */
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
@@ -21,7 +23,7 @@ public final class VirtualMachineSize {
 
     /*
      * Virtual Machine family name
-     *
+     * 
      * The family name of the virtual machine size.
      */
     @JsonProperty(value = "family", access = JsonProperty.Access.WRITE_ONLY)
@@ -29,7 +31,7 @@ public final class VirtualMachineSize {
 
     /*
      * Number of vPUs
-     *
+     * 
      * The number of vCPUs supported by the virtual machine size.
      */
     @JsonProperty(value = "vCPUs", access = JsonProperty.Access.WRITE_ONLY)
@@ -37,7 +39,7 @@ public final class VirtualMachineSize {
 
     /*
      * Number of gPUs
-     *
+     * 
      * The number of gPUs supported by the virtual machine size.
      */
     @JsonProperty(value = "gpus", access = JsonProperty.Access.WRITE_ONLY)
@@ -45,7 +47,7 @@ public final class VirtualMachineSize {
 
     /*
      * OS VHD Disk size
-     *
+     * 
      * The OS VHD disk size, in MB, allowed by the virtual machine size.
      */
     @JsonProperty(value = "osVhdSizeMB", access = JsonProperty.Access.WRITE_ONLY)
@@ -53,7 +55,7 @@ public final class VirtualMachineSize {
 
     /*
      * Resource volume size
-     *
+     * 
      * The resource volume size, in MB, allowed by the virtual machine size.
      */
     @JsonProperty(value = "maxResourceVolumeMB", access = JsonProperty.Access.WRITE_ONLY)
@@ -61,7 +63,7 @@ public final class VirtualMachineSize {
 
     /*
      * Memory size
-     *
+     * 
      * The amount of memory, in GB, supported by the virtual machine size.
      */
     @JsonProperty(value = "memoryGB", access = JsonProperty.Access.WRITE_ONLY)
@@ -69,7 +71,7 @@ public final class VirtualMachineSize {
 
     /*
      * Low priority capable
-     *
+     * 
      * Specifies if the virtual machine size supports low priority VMs.
      */
     @JsonProperty(value = "lowPriorityCapable", access = JsonProperty.Access.WRITE_ONLY)
@@ -77,7 +79,7 @@ public final class VirtualMachineSize {
 
     /*
      * Premium IO supported
-     *
+     * 
      * Specifies if the virtual machine size supports premium IO.
      */
     @JsonProperty(value = "premiumIO", access = JsonProperty.Access.WRITE_ONLY)
@@ -91,21 +93,23 @@ public final class VirtualMachineSize {
 
     /*
      * Supported Compute Types
-     *
+     * 
      * Specifies the compute types supported by the virtual machine size.
      */
     @JsonProperty(value = "supportedComputeTypes")
     private List<String> supportedComputeTypes;
 
-    /** Creates an instance of VirtualMachineSize class. */
+    /**
+     * Creates an instance of VirtualMachineSize class.
+     */
     public VirtualMachineSize() {
     }
 
     /**
      * Get the name property: Virtual Machine size name
-     *
-     * <p>The name of the virtual machine size.
-     *
+     * 
+     * The name of the virtual machine size.
+     * 
      * @return the name value.
      */
     public String name() {
@@ -114,9 +118,9 @@ public final class VirtualMachineSize {
 
     /**
      * Get the family property: Virtual Machine family name
-     *
-     * <p>The family name of the virtual machine size.
-     *
+     * 
+     * The family name of the virtual machine size.
+     * 
      * @return the family value.
      */
     public String family() {
@@ -125,9 +129,9 @@ public final class VirtualMachineSize {
 
     /**
      * Get the vCPUs property: Number of vPUs
-     *
-     * <p>The number of vCPUs supported by the virtual machine size.
-     *
+     * 
+     * The number of vCPUs supported by the virtual machine size.
+     * 
      * @return the vCPUs value.
      */
     public Integer vCPUs() {
@@ -136,9 +140,9 @@ public final class VirtualMachineSize {
 
     /**
      * Get the gpus property: Number of gPUs
-     *
-     * <p>The number of gPUs supported by the virtual machine size.
-     *
+     * 
+     * The number of gPUs supported by the virtual machine size.
+     * 
      * @return the gpus value.
      */
     public Integer gpus() {
@@ -147,9 +151,9 @@ public final class VirtualMachineSize {
 
     /**
      * Get the osVhdSizeMB property: OS VHD Disk size
-     *
-     * <p>The OS VHD disk size, in MB, allowed by the virtual machine size.
-     *
+     * 
+     * The OS VHD disk size, in MB, allowed by the virtual machine size.
+     * 
      * @return the osVhdSizeMB value.
      */
     public Integer osVhdSizeMB() {
@@ -158,9 +162,9 @@ public final class VirtualMachineSize {
 
     /**
      * Get the maxResourceVolumeMB property: Resource volume size
-     *
-     * <p>The resource volume size, in MB, allowed by the virtual machine size.
-     *
+     * 
+     * The resource volume size, in MB, allowed by the virtual machine size.
+     * 
      * @return the maxResourceVolumeMB value.
      */
     public Integer maxResourceVolumeMB() {
@@ -169,9 +173,9 @@ public final class VirtualMachineSize {
 
     /**
      * Get the memoryGB property: Memory size
-     *
-     * <p>The amount of memory, in GB, supported by the virtual machine size.
-     *
+     * 
+     * The amount of memory, in GB, supported by the virtual machine size.
+     * 
      * @return the memoryGB value.
      */
     public Double memoryGB() {
@@ -180,9 +184,9 @@ public final class VirtualMachineSize {
 
     /**
      * Get the lowPriorityCapable property: Low priority capable
-     *
-     * <p>Specifies if the virtual machine size supports low priority VMs.
-     *
+     * 
+     * Specifies if the virtual machine size supports low priority VMs.
+     * 
      * @return the lowPriorityCapable value.
      */
     public Boolean lowPriorityCapable() {
@@ -191,9 +195,9 @@ public final class VirtualMachineSize {
 
     /**
      * Get the premiumIO property: Premium IO supported
-     *
-     * <p>Specifies if the virtual machine size supports premium IO.
-     *
+     * 
+     * Specifies if the virtual machine size supports premium IO.
+     * 
      * @return the premiumIO value.
      */
     public Boolean premiumIO() {
@@ -202,7 +206,7 @@ public final class VirtualMachineSize {
 
     /**
      * Get the estimatedVMPrices property: The estimated price information for using a VM.
-     *
+     * 
      * @return the estimatedVMPrices value.
      */
     public EstimatedVMPrices estimatedVMPrices() {
@@ -211,7 +215,7 @@ public final class VirtualMachineSize {
 
     /**
      * Set the estimatedVMPrices property: The estimated price information for using a VM.
-     *
+     * 
      * @param estimatedVMPrices the estimatedVMPrices value to set.
      * @return the VirtualMachineSize object itself.
      */
@@ -222,9 +226,9 @@ public final class VirtualMachineSize {
 
     /**
      * Get the supportedComputeTypes property: Supported Compute Types
-     *
-     * <p>Specifies the compute types supported by the virtual machine size.
-     *
+     * 
+     * Specifies the compute types supported by the virtual machine size.
+     * 
      * @return the supportedComputeTypes value.
      */
     public List<String> supportedComputeTypes() {
@@ -233,9 +237,9 @@ public final class VirtualMachineSize {
 
     /**
      * Set the supportedComputeTypes property: Supported Compute Types
-     *
-     * <p>Specifies the compute types supported by the virtual machine size.
-     *
+     * 
+     * Specifies the compute types supported by the virtual machine size.
+     * 
      * @param supportedComputeTypes the supportedComputeTypes value to set.
      * @return the VirtualMachineSize object itself.
      */
@@ -246,7 +250,7 @@ public final class VirtualMachineSize {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

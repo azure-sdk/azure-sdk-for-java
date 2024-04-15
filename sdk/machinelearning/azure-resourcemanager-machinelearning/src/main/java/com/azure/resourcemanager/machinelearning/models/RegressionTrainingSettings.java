@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.util.List;
 
-/** Regression Training related configuration. */
+/**
+ * Regression Training related configuration.
+ */
 @Fluent
 public final class RegressionTrainingSettings extends TrainingSettings {
     /*
@@ -24,13 +26,15 @@ public final class RegressionTrainingSettings extends TrainingSettings {
     @JsonProperty(value = "blockedTrainingAlgorithms")
     private List<RegressionModels> blockedTrainingAlgorithms;
 
-    /** Creates an instance of RegressionTrainingSettings class. */
+    /**
+     * Creates an instance of RegressionTrainingSettings class.
+     */
     public RegressionTrainingSettings() {
     }
 
     /**
      * Get the allowedTrainingAlgorithms property: Allowed models for regression task.
-     *
+     * 
      * @return the allowedTrainingAlgorithms value.
      */
     public List<RegressionModels> allowedTrainingAlgorithms() {
@@ -39,7 +43,7 @@ public final class RegressionTrainingSettings extends TrainingSettings {
 
     /**
      * Set the allowedTrainingAlgorithms property: Allowed models for regression task.
-     *
+     * 
      * @param allowedTrainingAlgorithms the allowedTrainingAlgorithms value to set.
      * @return the RegressionTrainingSettings object itself.
      */
@@ -50,7 +54,7 @@ public final class RegressionTrainingSettings extends TrainingSettings {
 
     /**
      * Get the blockedTrainingAlgorithms property: Blocked models for regression task.
-     *
+     * 
      * @return the blockedTrainingAlgorithms value.
      */
     public List<RegressionModels> blockedTrainingAlgorithms() {
@@ -59,7 +63,7 @@ public final class RegressionTrainingSettings extends TrainingSettings {
 
     /**
      * Set the blockedTrainingAlgorithms property: Blocked models for regression task.
-     *
+     * 
      * @param blockedTrainingAlgorithms the blockedTrainingAlgorithms value to set.
      * @return the RegressionTrainingSettings object itself.
      */
@@ -68,49 +72,63 @@ public final class RegressionTrainingSettings extends TrainingSettings {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RegressionTrainingSettings withEnableDnnTraining(Boolean enableDnnTraining) {
         super.withEnableDnnTraining(enableDnnTraining);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RegressionTrainingSettings withEnableModelExplainability(Boolean enableModelExplainability) {
         super.withEnableModelExplainability(enableModelExplainability);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RegressionTrainingSettings withEnableOnnxCompatibleModels(Boolean enableOnnxCompatibleModels) {
         super.withEnableOnnxCompatibleModels(enableOnnxCompatibleModels);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RegressionTrainingSettings withEnableStackEnsemble(Boolean enableStackEnsemble) {
         super.withEnableStackEnsemble(enableStackEnsemble);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RegressionTrainingSettings withEnableVoteEnsemble(Boolean enableVoteEnsemble) {
         super.withEnableVoteEnsemble(enableVoteEnsemble);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RegressionTrainingSettings withEnsembleModelDownloadTimeout(Duration ensembleModelDownloadTimeout) {
         super.withEnsembleModelDownloadTimeout(ensembleModelDownloadTimeout);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public RegressionTrainingSettings withStackEnsembleSettings(StackEnsembleSettings stackEnsembleSettings) {
         super.withStackEnsembleSettings(stackEnsembleSettings);
@@ -118,8 +136,17 @@ public final class RegressionTrainingSettings extends TrainingSettings {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public RegressionTrainingSettings withTrainingMode(TrainingMode trainingMode) {
+        super.withTrainingMode(trainingMode);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
