@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Inner error. */
+/**
+ * Inner error.
+ */
 @Fluent
 public final class InnerError {
     /*
@@ -23,13 +25,15 @@ public final class InnerError {
     @JsonProperty(value = "time")
     private OffsetDateTime time;
 
-    /** Creates an instance of InnerError class. */
+    /**
+     * Creates an instance of InnerError class.
+     */
     public InnerError() {
     }
 
     /**
      * Get the diagnosticcontext property: Provides correlation for request.
-     *
+     * 
      * @return the diagnosticcontext value.
      */
     public String diagnosticcontext() {
@@ -38,7 +42,7 @@ public final class InnerError {
 
     /**
      * Set the diagnosticcontext property: Provides correlation for request.
-     *
+     * 
      * @param diagnosticcontext the diagnosticcontext value to set.
      * @return the InnerError object itself.
      */
@@ -49,7 +53,7 @@ public final class InnerError {
 
     /**
      * Get the time property: Request time.
-     *
+     * 
      * @return the time value.
      */
     public OffsetDateTime time() {
@@ -58,7 +62,7 @@ public final class InnerError {
 
     /**
      * Set the time property: Request time.
-     *
+     * 
      * @param time the time value to set.
      * @return the InnerError object itself.
      */
@@ -69,7 +73,7 @@ public final class InnerError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
