@@ -14,8 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class DiskStorageProfile {
     /*
-     * Managed Disk size in GB. The maximum supported disk size for Standard and Premium HDD/SSD is 32TB, except for
-     * Premium SSD v2, which supports up to 64TB.
+     * Managed Disk size in GB. The maximum supported disk size for Standard and Premium HDD/SSD is 32TB, except for Premium SSD v2, which supports up to 64TB.
      */
     @JsonProperty(value = "dataDiskSize", required = true)
     private int dataDiskSize;
@@ -81,8 +80,9 @@ public final class DiskStorageProfile {
      */
     public void validate() {
         if (dataDiskType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dataDiskType in model DiskStorageProfile"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property dataDiskType in model DiskStorageProfile"));
         }
     }
 

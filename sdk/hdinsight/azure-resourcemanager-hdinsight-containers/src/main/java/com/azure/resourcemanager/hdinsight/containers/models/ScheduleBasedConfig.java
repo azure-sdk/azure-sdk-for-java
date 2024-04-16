@@ -21,15 +21,13 @@ public final class ScheduleBasedConfig {
     private String timeZone;
 
     /*
-     * Setting default node count of current schedule configuration. Default node count specifies the number of nodes
-     * which are default when an specified scaling operation is executed (scale up/scale down)
+     * Setting default node count of current schedule configuration. Default node count specifies the number of nodes which are default when an specified scaling operation is executed (scale up/scale down)
      */
     @JsonProperty(value = "defaultCount", required = true)
     private int defaultCount;
 
     /*
-     * This specifies the schedules where scheduled based Autoscale to be enabled, the user has a choice to set
-     * multiple rules within the schedule across days and times (start/end).
+     * This specifies the schedules where scheduled based Autoscale to be enabled, the user has a choice to set multiple rules within the schedule across days and times (start/end).
      */
     @JsonProperty(value = "schedules", required = true)
     private List<Schedule> schedules;
@@ -115,12 +113,12 @@ public final class ScheduleBasedConfig {
      */
     public void validate() {
         if (timeZone() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property timeZone in model ScheduleBasedConfig"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property timeZone in model ScheduleBasedConfig"));
         }
         if (schedules() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property schedules in model ScheduleBasedConfig"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property schedules in model ScheduleBasedConfig"));
         } else {
             schedules().forEach(e -> e.validate());
         }

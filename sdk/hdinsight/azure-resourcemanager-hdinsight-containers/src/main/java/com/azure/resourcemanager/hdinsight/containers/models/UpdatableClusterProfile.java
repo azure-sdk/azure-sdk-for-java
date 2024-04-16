@@ -26,8 +26,7 @@ public final class UpdatableClusterProfile {
     private SshProfile sshProfile;
 
     /*
-     * This is the Autoscale profile for the cluster. This will allow customer to create cluster enabled with
-     * Autoscale.
+     * This is the Autoscale profile for the cluster. This will allow customer to create cluster enabled with Autoscale.
      */
     @JsonProperty(value = "autoscaleProfile")
     private AutoscaleProfile autoscaleProfile;
@@ -67,6 +66,18 @@ public final class UpdatableClusterProfile {
      */
     @JsonProperty(value = "scriptActionProfiles")
     private List<ScriptActionProfile> scriptActionProfiles;
+
+    /*
+     * The cluster secret profile.
+     */
+    @JsonProperty(value = "secretsProfile")
+    private SecretsProfile secretsProfile;
+
+    /*
+     * Trino Cluster profile.
+     */
+    @JsonProperty(value = "trinoProfile")
+    private TrinoProfile trinoProfile;
 
     /**
      * Creates an instance of UpdatableClusterProfile class.
@@ -260,6 +271,46 @@ public final class UpdatableClusterProfile {
     }
 
     /**
+     * Get the secretsProfile property: The cluster secret profile.
+     * 
+     * @return the secretsProfile value.
+     */
+    public SecretsProfile secretsProfile() {
+        return this.secretsProfile;
+    }
+
+    /**
+     * Set the secretsProfile property: The cluster secret profile.
+     * 
+     * @param secretsProfile the secretsProfile value to set.
+     * @return the UpdatableClusterProfile object itself.
+     */
+    public UpdatableClusterProfile withSecretsProfile(SecretsProfile secretsProfile) {
+        this.secretsProfile = secretsProfile;
+        return this;
+    }
+
+    /**
+     * Get the trinoProfile property: Trino Cluster profile.
+     * 
+     * @return the trinoProfile value.
+     */
+    public TrinoProfile trinoProfile() {
+        return this.trinoProfile;
+    }
+
+    /**
+     * Set the trinoProfile property: Trino Cluster profile.
+     * 
+     * @param trinoProfile the trinoProfile value to set.
+     * @return the UpdatableClusterProfile object itself.
+     */
+    public UpdatableClusterProfile withTrinoProfile(TrinoProfile trinoProfile) {
+        this.trinoProfile = trinoProfile;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -291,6 +342,12 @@ public final class UpdatableClusterProfile {
         }
         if (scriptActionProfiles() != null) {
             scriptActionProfiles().forEach(e -> e.validate());
+        }
+        if (secretsProfile() != null) {
+            secretsProfile().validate();
+        }
+        if (trinoProfile() != null) {
+            trinoProfile().validate();
         }
     }
 }

@@ -14,9 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class FlinkHiveCatalogOption {
     /*
-     * The authentication mode to connect to your Hive metastore database. More details:
-     * https://learn.microsoft.com/en-us/azure/azure-sql/database/logins-create-manage?view=azuresql#authentication-and-
-     * authorization
+     * The authentication mode to connect to your Hive metastore database. More details: https://learn.microsoft.com/en-us/azure/azure-sql/database/logins-create-manage?view=azuresql#authentication-and-authorization
      */
     @JsonProperty(value = "metastoreDbConnectionAuthenticationMode")
     private MetastoreDbConnectionAuthenticationMode metastoreDbConnectionAuthenticationMode;
@@ -139,8 +137,9 @@ public final class FlinkHiveCatalogOption {
      */
     public void validate() {
         if (metastoreDbConnectionUrl() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property metastoreDbConnectionUrl in model FlinkHiveCatalogOption"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property metastoreDbConnectionUrl in model FlinkHiveCatalogOption"));
         }
     }
 

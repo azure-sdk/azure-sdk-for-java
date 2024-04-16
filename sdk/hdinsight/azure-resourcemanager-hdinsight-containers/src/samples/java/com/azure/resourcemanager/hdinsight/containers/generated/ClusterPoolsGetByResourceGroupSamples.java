@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hdinsight.containers.generated;
  */
 public final class ClusterPoolsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/preview/2023-11-01-preview/examples/
-     * GetClusterPool.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/stable/2024-05-01/examples/GetClusterPool.json
      */
     /**
      * Sample code: ClusterPoolGet.
@@ -20,7 +18,7 @@ public final class ClusterPoolsGetByResourceGroupSamples {
      */
     public static void
         clusterPoolGet(com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
-        manager.clusterPools().getByResourceGroupWithResponse("hiloResourcegroup", "clusterpool1",
-            com.azure.core.util.Context.NONE);
+        manager.clusterPools()
+            .getByResourceGroupWithResponse("hiloResourcegroup", "clusterpool1", com.azure.core.util.Context.NONE);
     }
 }

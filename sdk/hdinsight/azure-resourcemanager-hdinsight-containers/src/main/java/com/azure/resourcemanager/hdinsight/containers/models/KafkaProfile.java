@@ -38,12 +38,6 @@ public final class KafkaProfile {
     private DiskStorageProfile diskStorage;
 
     /*
-     * Identity of the internal service components inside the Kafka cluster.
-     */
-    @JsonProperty(value = "clusterIdentity", access = JsonProperty.Access.WRITE_ONLY)
-    private IdentityProfile clusterIdentity;
-
-    /*
      * Kafka bootstrap server and brokers related connectivity endpoints.
      */
     @JsonProperty(value = "connectivityEndpoints", access = JsonProperty.Access.WRITE_ONLY)
@@ -136,15 +130,6 @@ public final class KafkaProfile {
     }
 
     /**
-     * Get the clusterIdentity property: Identity of the internal service components inside the Kafka cluster.
-     * 
-     * @return the clusterIdentity value.
-     */
-    public IdentityProfile clusterIdentity() {
-        return this.clusterIdentity;
-    }
-
-    /**
      * Get the connectivityEndpoints property: Kafka bootstrap server and brokers related connectivity endpoints.
      * 
      * @return the connectivityEndpoints value.
@@ -160,13 +145,10 @@ public final class KafkaProfile {
      */
     public void validate() {
         if (diskStorage() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property diskStorage in model KafkaProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property diskStorage in model KafkaProfile"));
         } else {
             diskStorage().validate();
-        }
-        if (clusterIdentity() != null) {
-            clusterIdentity().validate();
         }
         if (connectivityEndpoints() != null) {
             connectivityEndpoints().validate();

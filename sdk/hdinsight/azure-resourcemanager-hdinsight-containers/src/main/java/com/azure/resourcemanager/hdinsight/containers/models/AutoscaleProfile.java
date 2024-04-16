@@ -19,10 +19,7 @@ public final class AutoscaleProfile {
     private boolean enabled;
 
     /*
-     * This property is for graceful decommission timeout; It has a default setting of 3600 seconds before forced
-     * shutdown takes place. This is the maximal time to wait for running containers and applications to complete
-     * before transition a DECOMMISSIONING node into DECOMMISSIONED. The default value is 3600 seconds. Negative value
-     * (like -1) is handled as infinite timeout.
+     * This property is for graceful decommission timeout; It has a default setting of 3600 seconds before forced shutdown takes place. This is the maximal time to wait for running containers and applications to complete before transition a DECOMMISSIONING node into DECOMMISSIONED. The default value is 3600 seconds. Negative value (like -1) is handled as infinite timeout.
      */
     @JsonProperty(value = "gracefulDecommissionTimeout")
     private Integer gracefulDecommissionTimeout;
@@ -74,8 +71,8 @@ public final class AutoscaleProfile {
     /**
      * Get the gracefulDecommissionTimeout property: This property is for graceful decommission timeout; It has a
      * default setting of 3600 seconds before forced shutdown takes place. This is the maximal time to wait for running
-     * containers and applications to complete before transition a DECOMMISSIONING node into DECOMMISSIONED. The
-     * default value is 3600 seconds. Negative value (like -1) is handled as infinite timeout.
+     * containers and applications to complete before transition a DECOMMISSIONING node into DECOMMISSIONED. The default
+     * value is 3600 seconds. Negative value (like -1) is handled as infinite timeout.
      * 
      * @return the gracefulDecommissionTimeout value.
      */
@@ -86,8 +83,8 @@ public final class AutoscaleProfile {
     /**
      * Set the gracefulDecommissionTimeout property: This property is for graceful decommission timeout; It has a
      * default setting of 3600 seconds before forced shutdown takes place. This is the maximal time to wait for running
-     * containers and applications to complete before transition a DECOMMISSIONING node into DECOMMISSIONED. The
-     * default value is 3600 seconds. Negative value (like -1) is handled as infinite timeout.
+     * containers and applications to complete before transition a DECOMMISSIONING node into DECOMMISSIONED. The default
+     * value is 3600 seconds. Negative value (like -1) is handled as infinite timeout.
      * 
      * @param gracefulDecommissionTimeout the gracefulDecommissionTimeout value to set.
      * @return the AutoscaleProfile object itself.

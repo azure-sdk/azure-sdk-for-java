@@ -81,8 +81,9 @@ public final class SecretsProfile {
      */
     public void validate() {
         if (keyVaultResourceId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property keyVaultResourceId in model SecretsProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property keyVaultResourceId in model SecretsProfile"));
         }
         if (secrets() != null) {
             secrets().forEach(e -> e.validate());

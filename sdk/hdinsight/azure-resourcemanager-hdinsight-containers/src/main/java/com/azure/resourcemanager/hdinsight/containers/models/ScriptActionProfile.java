@@ -33,8 +33,7 @@ public final class ScriptActionProfile {
     private String url;
 
     /*
-     * Additional parameters for the script action. It should be space-separated list of arguments required for script
-     * execution.
+     * Additional parameters for the script action. It should be space-separated list of arguments required for script execution.
      */
     @JsonProperty(value = "parameters")
     private String parameters;
@@ -212,20 +211,20 @@ public final class ScriptActionProfile {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property type in model ScriptActionProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property type in model ScriptActionProfile"));
         }
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model ScriptActionProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property name in model ScriptActionProfile"));
         }
         if (url() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property url in model ScriptActionProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property url in model ScriptActionProfile"));
         }
         if (services() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property services in model ScriptActionProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property services in model ScriptActionProfile"));
         }
     }
 

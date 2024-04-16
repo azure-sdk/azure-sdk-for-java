@@ -106,12 +106,12 @@ public final class ServiceStatus {
      */
     public void validate() {
         if (kind() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property kind in model ServiceStatus"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property kind in model ServiceStatus"));
         }
         if (ready() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property ready in model ServiceStatus"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property ready in model ServiceStatus"));
         }
     }
 

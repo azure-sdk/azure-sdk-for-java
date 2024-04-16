@@ -20,8 +20,7 @@ public final class ScalingRule {
     private ScaleActionType actionType;
 
     /*
-     * This is an evaluation count for a scaling condition, the number of times a trigger condition should be
-     * successful, before scaling activity is triggered.
+     * This is an evaluation count for a scaling condition, the number of times a trigger condition should be successful, before scaling activity is triggered.
      */
     @JsonProperty(value = "evaluationCount", required = true)
     private int evaluationCount;
@@ -133,16 +132,16 @@ public final class ScalingRule {
      */
     public void validate() {
         if (actionType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property actionType in model ScalingRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property actionType in model ScalingRule"));
         }
         if (scalingMetric() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property scalingMetric in model ScalingRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property scalingMetric in model ScalingRule"));
         }
         if (comparisonRule() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property comparisonRule in model ScalingRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property comparisonRule in model ScalingRule"));
         } else {
             comparisonRule().validate();
         }

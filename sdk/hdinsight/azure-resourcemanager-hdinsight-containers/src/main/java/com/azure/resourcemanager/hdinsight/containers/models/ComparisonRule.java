@@ -78,8 +78,8 @@ public final class ComparisonRule {
      */
     public void validate() {
         if (operator() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property operator in model ComparisonRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property operator in model ComparisonRule"));
         }
     }
 
