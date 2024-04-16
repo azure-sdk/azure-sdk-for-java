@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurearcdata.fluent.models.SqlManagedInstanceIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of SqlManagedInstance. */
+/**
+ * A list of SqlManagedInstance.
+ */
 @Immutable
 public final class SqlManagedInstanceListResult {
     /*
@@ -24,13 +26,15 @@ public final class SqlManagedInstanceListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SqlManagedInstanceListResult class. */
+    /**
+     * Creates an instance of SqlManagedInstanceListResult class.
+     */
     public SqlManagedInstanceListResult() {
     }
 
     /**
      * Get the value property: Array of results.
-     *
+     * 
      * @return the value value.
      */
     public List<SqlManagedInstanceInner> value() {
@@ -39,7 +43,7 @@ public final class SqlManagedInstanceListResult {
 
     /**
      * Get the nextLink property: Link to retrieve next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class SqlManagedInstanceListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

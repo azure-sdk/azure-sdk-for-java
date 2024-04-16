@@ -8,20 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The cloud connectivity status. */
+/**
+ * The cloud connectivity status.
+ */
 public final class ConnectionStatus extends ExpandableStringEnum<ConnectionStatus> {
-    /** Static value Connected for ConnectionStatus. */
+    /**
+     * Static value Connected for ConnectionStatus.
+     */
     public static final ConnectionStatus CONNECTED = fromString("Connected");
 
-    /** Static value Disconnected for ConnectionStatus. */
+    /**
+     * Static value Disconnected for ConnectionStatus.
+     */
     public static final ConnectionStatus DISCONNECTED = fromString("Disconnected");
 
-    /** Static value Unknown for ConnectionStatus. */
+    /**
+     * Static value Registered for ConnectionStatus.
+     */
+    public static final ConnectionStatus REGISTERED = fromString("Registered");
+
+    /**
+     * Static value Unknown for ConnectionStatus.
+     */
     public static final ConnectionStatus UNKNOWN = fromString("Unknown");
 
     /**
      * Creates a new instance of ConnectionStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +43,7 @@ public final class ConnectionStatus extends ExpandableStringEnum<ConnectionStatu
 
     /**
      * Creates or finds a ConnectionStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ConnectionStatus.
      */
@@ -41,7 +54,7 @@ public final class ConnectionStatus extends ExpandableStringEnum<ConnectionStatu
 
     /**
      * Gets known ConnectionStatus values.
-     *
+     * 
      * @return known ConnectionStatus values.
      */
     public static Collection<ConnectionStatus> values() {

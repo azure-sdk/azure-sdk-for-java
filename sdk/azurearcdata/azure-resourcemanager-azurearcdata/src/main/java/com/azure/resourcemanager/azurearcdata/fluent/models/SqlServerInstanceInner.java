@@ -11,7 +11,9 @@ import com.azure.resourcemanager.azurearcdata.models.SqlServerInstanceProperties
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** A SqlServerInstance. */
+/**
+ * A SqlServerInstance.
+ */
 @Fluent
 public final class SqlServerInstanceInner extends Resource {
     /*
@@ -21,18 +23,20 @@ public final class SqlServerInstanceInner extends Resource {
     private SqlServerInstanceProperties properties;
 
     /*
-     * Read only system data
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of SqlServerInstanceInner class. */
+    /**
+     * Creates an instance of SqlServerInstanceInner class.
+     */
     public SqlServerInstanceInner() {
     }
 
     /**
      * Get the properties property: null.
-     *
+     * 
      * @return the properties value.
      */
     public SqlServerInstanceProperties properties() {
@@ -41,7 +45,7 @@ public final class SqlServerInstanceInner extends Resource {
 
     /**
      * Set the properties property: null.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the SqlServerInstanceInner object itself.
      */
@@ -51,22 +55,26 @@ public final class SqlServerInstanceInner extends Resource {
     }
 
     /**
-     * Get the systemData property: Read only system data.
-     *
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlServerInstanceInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SqlServerInstanceInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -75,7 +83,7 @@ public final class SqlServerInstanceInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

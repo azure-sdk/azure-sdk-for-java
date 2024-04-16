@@ -25,19 +25,21 @@ public final class K8SSchedulingOptions {
     private K8SResourceRequirements resources;
 
     /*
-     * The kubernetes scheduling options. It describes restrictions used to help Kubernetes select appropriate nodes to
-     * host the database service
+     * The kubernetes scheduling options. It describes restrictions used to help Kubernetes select appropriate nodes to host the database service
      */
-    @JsonIgnore private Map<String, Object> additionalProperties;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
 
-    /** Creates an instance of K8SSchedulingOptions class. */
+    /**
+     * Creates an instance of K8SSchedulingOptions class.
+     */
     public K8SSchedulingOptions() {
     }
 
     /**
      * Get the resources property: The kubernetes resource limits and requests used to restrict or reserve resource
      * usage.
-     *
+     * 
      * @return the resources value.
      */
     public K8SResourceRequirements resources() {
@@ -47,7 +49,7 @@ public final class K8SSchedulingOptions {
     /**
      * Set the resources property: The kubernetes resource limits and requests used to restrict or reserve resource
      * usage.
-     *
+     * 
      * @param resources the resources value to set.
      * @return the K8SSchedulingOptions object itself.
      */
@@ -59,7 +61,7 @@ public final class K8SSchedulingOptions {
     /**
      * Get the additionalProperties property: The kubernetes scheduling options. It describes restrictions used to help
      * Kubernetes select appropriate nodes to host the database service.
-     *
+     * 
      * @return the additionalProperties value.
      */
     @JsonAnyGetter
@@ -70,7 +72,7 @@ public final class K8SSchedulingOptions {
     /**
      * Set the additionalProperties property: The kubernetes scheduling options. It describes restrictions used to help
      * Kubernetes select appropriate nodes to host the database service.
-     *
+     * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the K8SSchedulingOptions object itself.
      */
@@ -89,7 +91,7 @@ public final class K8SSchedulingOptions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

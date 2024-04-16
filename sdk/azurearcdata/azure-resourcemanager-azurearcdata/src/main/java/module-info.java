@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.azurearcdata {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.azurearcdata;
     exports com.azure.resourcemanager.azurearcdata.fluent;
     exports com.azure.resourcemanager.azurearcdata.fluent.models;
     exports com.azure.resourcemanager.azurearcdata.models;
-
-    opens com.azure.resourcemanager.azurearcdata.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.azurearcdata.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.azurearcdata.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.azurearcdata.models to com.azure.core, com.fasterxml.jackson.databind;
 }

@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.HashMap;
 import java.util.Map;
 
-/** The raw kubernetes information. */
+/**
+ * The raw kubernetes information.
+ */
 @Fluent
 public final class SqlManagedInstanceK8SRaw {
     /*
@@ -24,15 +26,18 @@ public final class SqlManagedInstanceK8SRaw {
     /*
      * The raw kubernetes information.
      */
-    @JsonIgnore private Map<String, Object> additionalProperties;
+    @JsonIgnore
+    private Map<String, Object> additionalProperties;
 
-    /** Creates an instance of SqlManagedInstanceK8SRaw class. */
+    /**
+     * Creates an instance of SqlManagedInstanceK8SRaw class.
+     */
     public SqlManagedInstanceK8SRaw() {
     }
 
     /**
      * Get the spec property: The kubernetes spec information.
-     *
+     * 
      * @return the spec value.
      */
     public SqlManagedInstanceK8SSpec spec() {
@@ -41,7 +46,7 @@ public final class SqlManagedInstanceK8SRaw {
 
     /**
      * Set the spec property: The kubernetes spec information.
-     *
+     * 
      * @param spec the spec value to set.
      * @return the SqlManagedInstanceK8SRaw object itself.
      */
@@ -52,7 +57,7 @@ public final class SqlManagedInstanceK8SRaw {
 
     /**
      * Get the additionalProperties property: The raw kubernetes information.
-     *
+     * 
      * @return the additionalProperties value.
      */
     @JsonAnyGetter
@@ -62,7 +67,7 @@ public final class SqlManagedInstanceK8SRaw {
 
     /**
      * Set the additionalProperties property: The raw kubernetes information.
-     *
+     * 
      * @param additionalProperties the additionalProperties value to set.
      * @return the SqlManagedInstanceK8SRaw object itself.
      */
@@ -81,7 +86,7 @@ public final class SqlManagedInstanceK8SRaw {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
