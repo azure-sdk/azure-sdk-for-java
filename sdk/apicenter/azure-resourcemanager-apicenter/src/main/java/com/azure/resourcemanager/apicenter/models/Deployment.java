@@ -99,7 +99,7 @@ public interface Deployment {
          * The stage of the Deployment definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithProperties, DefinitionStages.WithIfMatch {
             /**
              * Executes the create request.
              * 
@@ -128,6 +128,19 @@ public interface Deployment {
              */
             WithCreate withProperties(DeploymentProperties properties);
         }
+
+        /**
+         * The stage of the Deployment definition allowing to specify ifMatch.
+         */
+        interface WithIfMatch {
+            /**
+             * Specifies the ifMatch property: The request should only proceed if an entity matches this string..
+             * 
+             * @param ifMatch The request should only proceed if an entity matches this string.
+             * @return the next definition stage.
+             */
+            WithCreate withIfMatch(String ifMatch);
+        }
     }
 
     /**
@@ -140,7 +153,7 @@ public interface Deployment {
     /**
      * The template for Deployment update.
      */
-    interface Update {
+    interface Update extends UpdateStages.WithIfMatch {
         /**
          * Executes the update request.
          * 
@@ -161,6 +174,18 @@ public interface Deployment {
      * The Deployment update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the Deployment update allowing to specify ifMatch.
+         */
+        interface WithIfMatch {
+            /**
+             * Specifies the ifMatch property: The request should only proceed if an entity matches this string..
+             * 
+             * @param ifMatch The request should only proceed if an entity matches this string.
+             * @return the next definition stage.
+             */
+            Update withIfMatch(String ifMatch);
+        }
     }
 
     /**

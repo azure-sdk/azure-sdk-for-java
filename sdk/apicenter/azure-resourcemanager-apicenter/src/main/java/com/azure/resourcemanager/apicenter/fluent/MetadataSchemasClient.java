@@ -83,6 +83,7 @@ public interface MetadataSchemasClient {
      * @param serviceName The name of Azure API Center service.
      * @param metadataSchemaName The name of the metadata schema.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -91,7 +92,7 @@ public interface MetadataSchemasClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     MetadataSchemasCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String metadataSchemaName, MetadataSchemaInner resource, Context context);
+        String metadataSchemaName, MetadataSchemaInner resource, String ifMatch, Context context);
 
     /**
      * Creates new or updates existing metadata schema.

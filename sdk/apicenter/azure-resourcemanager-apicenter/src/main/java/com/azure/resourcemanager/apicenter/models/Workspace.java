@@ -96,7 +96,7 @@ public interface Workspace {
          * The stage of the Workspace definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithProperties, DefinitionStages.WithIfMatch {
             /**
              * Executes the create request.
              * 
@@ -125,6 +125,19 @@ public interface Workspace {
              */
             WithCreate withProperties(WorkspaceProperties properties);
         }
+
+        /**
+         * The stage of the Workspace definition allowing to specify ifMatch.
+         */
+        interface WithIfMatch {
+            /**
+             * Specifies the ifMatch property: The request should only proceed if an entity matches this string..
+             * 
+             * @param ifMatch The request should only proceed if an entity matches this string.
+             * @return the next definition stage.
+             */
+            WithCreate withIfMatch(String ifMatch);
+        }
     }
 
     /**
@@ -137,7 +150,7 @@ public interface Workspace {
     /**
      * The template for Workspace update.
      */
-    interface Update {
+    interface Update extends UpdateStages.WithIfMatch {
         /**
          * Executes the update request.
          * 
@@ -158,6 +171,18 @@ public interface Workspace {
      * The Workspace update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the Workspace update allowing to specify ifMatch.
+         */
+        interface WithIfMatch {
+            /**
+             * Specifies the ifMatch property: The request should only proceed if an entity matches this string..
+             * 
+             * @param ifMatch The request should only proceed if an entity matches this string.
+             * @return the next definition stage.
+             */
+            Update withIfMatch(String ifMatch);
+        }
     }
 
     /**

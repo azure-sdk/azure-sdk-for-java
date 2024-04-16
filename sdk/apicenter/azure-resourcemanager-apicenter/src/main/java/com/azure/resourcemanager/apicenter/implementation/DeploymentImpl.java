@@ -57,6 +57,10 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
 
     private String deploymentName;
 
+    private String createIfMatch;
+
+    private String updateIfMatch;
+
     public DeploymentImpl withExistingApi(String resourceGroupName, String serviceName, String workspaceName,
         String apiName) {
         this.resourceGroupName = resourceGroupName;
@@ -67,14 +71,20 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
     }
 
     public Deployment create() {
-        this.innerObject = serviceManager.serviceClient().getDeployments().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, deploymentName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getDeployments()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
+                this.innerModel(), createIfMatch, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Deployment create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getDeployments().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, deploymentName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getDeployments()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
+                this.innerModel(), createIfMatch, context)
+            .getValue();
         return this;
     }
 
@@ -82,21 +92,29 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
         this.innerObject = new DeploymentInner();
         this.serviceManager = serviceManager;
         this.deploymentName = name;
+        this.createIfMatch = null;
     }
 
     public DeploymentImpl update() {
+        this.updateIfMatch = null;
         return this;
     }
 
     public Deployment apply() {
-        this.innerObject = serviceManager.serviceClient().getDeployments().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, deploymentName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getDeployments()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
+                this.innerModel(), updateIfMatch, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Deployment apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getDeployments().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, deploymentName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getDeployments()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, deploymentName,
+                this.innerModel(), updateIfMatch, context)
+            .getValue();
         return this;
     }
 
@@ -111,14 +129,16 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
     }
 
     public Deployment refresh() {
-        this.innerObject = serviceManager.serviceClient().getDeployments()
+        this.innerObject = serviceManager.serviceClient()
+            .getDeployments()
             .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, deploymentName, Context.NONE)
             .getValue();
         return this;
     }
 
     public Deployment refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getDeployments()
+        this.innerObject = serviceManager.serviceClient()
+            .getDeployments()
             .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, deploymentName, context)
             .getValue();
         return this;
@@ -127,5 +147,19 @@ public final class DeploymentImpl implements Deployment, Deployment.Definition, 
     public DeploymentImpl withProperties(DeploymentProperties properties) {
         this.innerModel().withProperties(properties);
         return this;
+    }
+
+    public DeploymentImpl withIfMatch(String ifMatch) {
+        if (isInCreateMode()) {
+            this.createIfMatch = ifMatch;
+            return this;
+        } else {
+            this.updateIfMatch = ifMatch;
+            return this;
+        }
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

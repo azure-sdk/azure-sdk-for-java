@@ -96,7 +96,7 @@ public interface MetadataSchema {
          * The stage of the MetadataSchema definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithProperties, DefinitionStages.WithIfMatch {
             /**
              * Executes the create request.
              * 
@@ -125,6 +125,19 @@ public interface MetadataSchema {
              */
             WithCreate withProperties(MetadataSchemaProperties properties);
         }
+
+        /**
+         * The stage of the MetadataSchema definition allowing to specify ifMatch.
+         */
+        interface WithIfMatch {
+            /**
+             * Specifies the ifMatch property: The request should only proceed if an entity matches this string..
+             * 
+             * @param ifMatch The request should only proceed if an entity matches this string.
+             * @return the next definition stage.
+             */
+            WithCreate withIfMatch(String ifMatch);
+        }
     }
 
     /**
@@ -137,7 +150,7 @@ public interface MetadataSchema {
     /**
      * The template for MetadataSchema update.
      */
-    interface Update {
+    interface Update extends UpdateStages.WithIfMatch {
         /**
          * Executes the update request.
          * 
@@ -158,6 +171,18 @@ public interface MetadataSchema {
      * The MetadataSchema update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the MetadataSchema update allowing to specify ifMatch.
+         */
+        interface WithIfMatch {
+            /**
+             * Specifies the ifMatch property: The request should only proceed if an entity matches this string..
+             * 
+             * @param ifMatch The request should only proceed if an entity matches this string.
+             * @return the next definition stage.
+             */
+            Update withIfMatch(String ifMatch);
+        }
     }
 
     /**

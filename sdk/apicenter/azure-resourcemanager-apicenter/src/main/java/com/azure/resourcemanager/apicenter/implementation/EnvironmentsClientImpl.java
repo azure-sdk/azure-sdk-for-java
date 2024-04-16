@@ -62,8 +62,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     }
 
     /**
-     * The interface defining all the services for AzureApiCenterEnvironments to be used by the proxy service to
-     * perform REST calls.
+     * The interface defining all the services for AzureApiCenterEnvironments to be used by the proxy service to perform
+     * REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "AzureApiCenterEnviro")
@@ -94,8 +94,9 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<EnvironmentsCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @PathParam("environmentName") String environmentName,
+            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("If-Match") String ifMatch,
+            @PathParam("serviceName") String serviceName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("environmentName") String environmentName,
             @BodyParam("application/json") EnvironmentInner resource, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -460,6 +461,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @param workspaceName The name of the workspace.
      * @param environmentName The name of the environment.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -467,7 +469,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EnvironmentsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String environmentName, EnvironmentInner resource) {
+        String serviceName, String workspaceName, String environmentName, EnvironmentInner resource, String ifMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -498,8 +500,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, environmentName,
-                resource, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, workspaceName,
+                environmentName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -511,6 +513,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @param workspaceName The name of the workspace.
      * @param environmentName The name of the environment.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -519,7 +522,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EnvironmentsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String environmentName, EnvironmentInner resource, Context context) {
+        String serviceName, String workspaceName, String environmentName, EnvironmentInner resource, String ifMatch,
+        Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -550,8 +554,8 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, environmentName, resource,
-            accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, workspaceName, environmentName,
+            resource, accept, context);
     }
 
     /**
@@ -570,8 +574,9 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<EnvironmentInner> createOrUpdateAsync(String resourceGroupName, String serviceName,
         String workspaceName, String environmentName, EnvironmentInner resource) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, environmentName, resource)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        final String ifMatch = null;
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, environmentName, resource,
+            ifMatch).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -582,6 +587,7 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      * @param workspaceName The name of the workspace.
      * @param environmentName The name of the environment.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -590,9 +596,9 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public EnvironmentsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String environmentName, EnvironmentInner resource, Context context) {
+        String workspaceName, String environmentName, EnvironmentInner resource, String ifMatch, Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, environmentName, resource,
-            context).block();
+            ifMatch, context).block();
     }
 
     /**
@@ -611,8 +617,9 @@ public final class EnvironmentsClientImpl implements EnvironmentsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public EnvironmentInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName,
         String environmentName, EnvironmentInner resource) {
+        final String ifMatch = null;
         return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, environmentName, resource,
-            Context.NONE).getValue();
+            ifMatch, Context.NONE).getValue();
     }
 
     /**

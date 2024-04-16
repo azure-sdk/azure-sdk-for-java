@@ -104,6 +104,7 @@ public interface ApiDefinitionsClient {
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -113,7 +114,7 @@ public interface ApiDefinitionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApiDefinitionsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String versionName, String definitionName, ApiDefinitionInner resource,
-        Context context);
+        String ifMatch, Context context);
 
     /**
      * Creates new or updates existing API definition.

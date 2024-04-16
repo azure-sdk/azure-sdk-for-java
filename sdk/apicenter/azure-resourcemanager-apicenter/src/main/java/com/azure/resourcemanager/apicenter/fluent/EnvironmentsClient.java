@@ -88,6 +88,7 @@ public interface EnvironmentsClient {
      * @param workspaceName The name of the workspace.
      * @param environmentName The name of the environment.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -96,7 +97,7 @@ public interface EnvironmentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     EnvironmentsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String environmentName, EnvironmentInner resource, Context context);
+        String workspaceName, String environmentName, EnvironmentInner resource, String ifMatch, Context context);
 
     /**
      * Creates new or updates existing environment.

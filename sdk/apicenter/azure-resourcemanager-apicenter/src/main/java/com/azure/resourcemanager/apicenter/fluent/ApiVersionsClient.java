@@ -95,6 +95,7 @@ public interface ApiVersionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -103,7 +104,8 @@ public interface ApiVersionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApiVersionsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, ApiVersionInner resource, Context context);
+        String workspaceName, String apiName, String versionName, ApiVersionInner resource, String ifMatch,
+        Context context);
 
     /**
      * Creates new or updates existing API version.

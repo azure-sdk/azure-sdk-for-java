@@ -92,9 +92,10 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<WorkspacesCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @BodyParam("application/json") WorkspaceInner resource,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("If-Match") String ifMatch,
+            @PathParam("serviceName") String serviceName, @PathParam("workspaceName") String workspaceName,
+            @BodyParam("application/json") WorkspaceInner resource, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}")
@@ -424,6 +425,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -431,7 +433,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspacesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, WorkspaceInner resource) {
+        String serviceName, String workspaceName, WorkspaceInner resource, String ifMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -458,8 +460,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, resource, accept,
-                context))
+                this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, workspaceName, resource,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -470,6 +472,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -478,7 +481,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspacesCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, WorkspaceInner resource, Context context) {
+        String serviceName, String workspaceName, WorkspaceInner resource, String ifMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -505,7 +508,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, resource, accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, workspaceName, resource, accept,
+            context);
     }
 
     /**
@@ -523,7 +527,8 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<WorkspaceInner> createOrUpdateAsync(String resourceGroupName, String serviceName, String workspaceName,
         WorkspaceInner resource) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, resource)
+        final String ifMatch = null;
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, resource, ifMatch)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -534,6 +539,7 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -542,9 +548,9 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WorkspacesCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, WorkspaceInner resource, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, resource, context)
-            .block();
+        String workspaceName, WorkspaceInner resource, String ifMatch, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, resource, ifMatch,
+            context).block();
     }
 
     /**
@@ -562,8 +568,9 @@ public final class WorkspacesClientImpl implements WorkspacesClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public WorkspaceInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName,
         WorkspaceInner resource) {
-        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, resource, Context.NONE)
-            .getValue();
+        final String ifMatch = null;
+        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, resource, ifMatch,
+            Context.NONE).getValue();
     }
 
     /**

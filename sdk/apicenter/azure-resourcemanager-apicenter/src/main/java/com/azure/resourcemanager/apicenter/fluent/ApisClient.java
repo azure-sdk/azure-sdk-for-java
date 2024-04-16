@@ -88,6 +88,7 @@ public interface ApisClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -96,7 +97,7 @@ public interface ApisClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApisCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, ApiInner resource, Context context);
+        String workspaceName, String apiName, ApiInner resource, String ifMatch, Context context);
 
     /**
      * Creates new or updates existing API.

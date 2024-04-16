@@ -55,6 +55,10 @@ public final class EnvironmentImpl implements Environment, Environment.Definitio
 
     private String environmentName;
 
+    private String createIfMatch;
+
+    private String updateIfMatch;
+
     public EnvironmentImpl withExistingWorkspace(String resourceGroupName, String serviceName, String workspaceName) {
         this.resourceGroupName = resourceGroupName;
         this.serviceName = serviceName;
@@ -63,16 +67,20 @@ public final class EnvironmentImpl implements Environment, Environment.Definitio
     }
 
     public Environment create() {
-        this.innerObject
-            = serviceManager.serviceClient().getEnvironments().createOrUpdateWithResponse(resourceGroupName,
-                serviceName, workspaceName, environmentName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getEnvironments()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, environmentName,
+                this.innerModel(), createIfMatch, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Environment create(Context context) {
-        this.innerObject
-            = serviceManager.serviceClient().getEnvironments().createOrUpdateWithResponse(resourceGroupName,
-                serviceName, workspaceName, environmentName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getEnvironments()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, environmentName,
+                this.innerModel(), createIfMatch, context)
+            .getValue();
         return this;
     }
 
@@ -80,23 +88,29 @@ public final class EnvironmentImpl implements Environment, Environment.Definitio
         this.innerObject = new EnvironmentInner();
         this.serviceManager = serviceManager;
         this.environmentName = name;
+        this.createIfMatch = null;
     }
 
     public EnvironmentImpl update() {
+        this.updateIfMatch = null;
         return this;
     }
 
     public Environment apply() {
-        this.innerObject
-            = serviceManager.serviceClient().getEnvironments().createOrUpdateWithResponse(resourceGroupName,
-                serviceName, workspaceName, environmentName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getEnvironments()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, environmentName,
+                this.innerModel(), updateIfMatch, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Environment apply(Context context) {
-        this.innerObject
-            = serviceManager.serviceClient().getEnvironments().createOrUpdateWithResponse(resourceGroupName,
-                serviceName, workspaceName, environmentName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getEnvironments()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, environmentName,
+                this.innerModel(), updateIfMatch, context)
+            .getValue();
         return this;
     }
 
@@ -110,19 +124,37 @@ public final class EnvironmentImpl implements Environment, Environment.Definitio
     }
 
     public Environment refresh() {
-        this.innerObject = serviceManager.serviceClient().getEnvironments()
-            .getWithResponse(resourceGroupName, serviceName, workspaceName, environmentName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getEnvironments()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, environmentName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Environment refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getEnvironments()
-            .getWithResponse(resourceGroupName, serviceName, workspaceName, environmentName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getEnvironments()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, environmentName, context)
+            .getValue();
         return this;
     }
 
     public EnvironmentImpl withProperties(EnvironmentProperties properties) {
         this.innerModel().withProperties(properties);
         return this;
+    }
+
+    public EnvironmentImpl withIfMatch(String ifMatch) {
+        if (isInCreateMode()) {
+            this.createIfMatch = ifMatch;
+            return this;
+        } else {
+            this.updateIfMatch = ifMatch;
+            return this;
+        }
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

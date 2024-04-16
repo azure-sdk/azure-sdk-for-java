@@ -93,8 +93,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<MetadataSchemasCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("metadataSchemaName") String metadataSchemaName,
+            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("If-Match") String ifMatch,
+            @PathParam("serviceName") String serviceName, @PathParam("metadataSchemaName") String metadataSchemaName,
             @BodyParam("application/json") MetadataSchemaInner resource, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -432,6 +432,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @param serviceName The name of Azure API Center service.
      * @param metadataSchemaName The name of the metadata schema.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -439,7 +440,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSchemasCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String metadataSchemaName, MetadataSchemaInner resource) {
+        String serviceName, String metadataSchemaName, MetadataSchemaInner resource, String ifMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -467,8 +468,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, metadataSchemaName, resource, accept,
-                context))
+                this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, metadataSchemaName, resource,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -479,6 +480,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @param serviceName The name of Azure API Center service.
      * @param metadataSchemaName The name of the metadata schema.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -487,7 +489,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSchemasCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String metadataSchemaName, MetadataSchemaInner resource, Context context) {
+        String serviceName, String metadataSchemaName, MetadataSchemaInner resource, String ifMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -515,8 +517,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, metadataSchemaName, resource, accept,
-            context);
+            this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, metadataSchemaName, resource,
+            accept, context);
     }
 
     /**
@@ -534,7 +536,8 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<MetadataSchemaInner> createOrUpdateAsync(String resourceGroupName, String serviceName,
         String metadataSchemaName, MetadataSchemaInner resource) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, metadataSchemaName, resource)
+        final String ifMatch = null;
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, metadataSchemaName, resource, ifMatch)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
@@ -545,6 +548,7 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      * @param serviceName The name of Azure API Center service.
      * @param metadataSchemaName The name of the metadata schema.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -553,9 +557,9 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MetadataSchemasCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName,
-        String serviceName, String metadataSchemaName, MetadataSchemaInner resource, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, metadataSchemaName, resource, context)
-            .block();
+        String serviceName, String metadataSchemaName, MetadataSchemaInner resource, String ifMatch, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, metadataSchemaName, resource, ifMatch,
+            context).block();
     }
 
     /**
@@ -573,8 +577,9 @@ public final class MetadataSchemasClientImpl implements MetadataSchemasClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public MetadataSchemaInner createOrUpdate(String resourceGroupName, String serviceName, String metadataSchemaName,
         MetadataSchemaInner resource) {
-        return createOrUpdateWithResponse(resourceGroupName, serviceName, metadataSchemaName, resource, Context.NONE)
-            .getValue();
+        final String ifMatch = null;
+        return createOrUpdateWithResponse(resourceGroupName, serviceName, metadataSchemaName, resource, ifMatch,
+            Context.NONE).getValue();
     }
 
     /**

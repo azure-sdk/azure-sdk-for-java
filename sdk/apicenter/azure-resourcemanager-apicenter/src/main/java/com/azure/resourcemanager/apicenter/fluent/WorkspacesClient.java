@@ -82,6 +82,7 @@ public interface WorkspacesClient {
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -90,7 +91,7 @@ public interface WorkspacesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     WorkspacesCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, WorkspaceInner resource, Context context);
+        String workspaceName, WorkspaceInner resource, String ifMatch, Context context);
 
     /**
      * Creates new or updates existing workspace.

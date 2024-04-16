@@ -55,6 +55,10 @@ public final class ApiImpl implements Api, Api.Definition, Api.Update {
 
     private String apiName;
 
+    private String createIfMatch;
+
+    private String updateIfMatch;
+
     public ApiImpl withExistingWorkspace(String resourceGroupName, String serviceName, String workspaceName) {
         this.resourceGroupName = resourceGroupName;
         this.serviceName = serviceName;
@@ -63,14 +67,20 @@ public final class ApiImpl implements Api, Api.Definition, Api.Update {
     }
 
     public Api create() {
-        this.innerObject = serviceManager.serviceClient().getApis().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApis()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, this.innerModel(),
+                createIfMatch, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Api create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApis().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApis()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, this.innerModel(),
+                createIfMatch, context)
+            .getValue();
         return this;
     }
 
@@ -78,21 +88,29 @@ public final class ApiImpl implements Api, Api.Definition, Api.Update {
         this.innerObject = new ApiInner();
         this.serviceManager = serviceManager;
         this.apiName = name;
+        this.createIfMatch = null;
     }
 
     public ApiImpl update() {
+        this.updateIfMatch = null;
         return this;
     }
 
     public Api apply() {
-        this.innerObject = serviceManager.serviceClient().getApis().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApis()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, this.innerModel(),
+                updateIfMatch, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Api apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApis().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApis()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, this.innerModel(),
+                updateIfMatch, context)
+            .getValue();
         return this;
     }
 
@@ -106,19 +124,37 @@ public final class ApiImpl implements Api, Api.Definition, Api.Update {
     }
 
     public Api refresh() {
-        this.innerObject = serviceManager.serviceClient().getApis()
-            .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApis()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Api refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApis()
-            .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApis()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, context)
+            .getValue();
         return this;
     }
 
     public ApiImpl withProperties(ApiProperties properties) {
         this.innerModel().withProperties(properties);
         return this;
+    }
+
+    public ApiImpl withIfMatch(String ifMatch) {
+        if (isInCreateMode()) {
+            this.createIfMatch = ifMatch;
+            return this;
+        } else {
+            this.updateIfMatch = ifMatch;
+            return this;
+        }
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

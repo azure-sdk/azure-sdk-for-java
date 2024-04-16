@@ -57,6 +57,10 @@ public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, 
 
     private String versionName;
 
+    private String createIfMatch;
+
+    private String updateIfMatch;
+
     public ApiVersionImpl withExistingApi(String resourceGroupName, String serviceName, String workspaceName,
         String apiName) {
         this.resourceGroupName = resourceGroupName;
@@ -67,14 +71,20 @@ public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, 
     }
 
     public ApiVersion create() {
-        this.innerObject = serviceManager.serviceClient().getApiVersions().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, versionName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                this.innerModel(), createIfMatch, Context.NONE)
+            .getValue();
         return this;
     }
 
     public ApiVersion create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApiVersions().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, versionName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                this.innerModel(), createIfMatch, context)
+            .getValue();
         return this;
     }
 
@@ -82,21 +92,29 @@ public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, 
         this.innerObject = new ApiVersionInner();
         this.serviceManager = serviceManager;
         this.versionName = name;
+        this.createIfMatch = null;
     }
 
     public ApiVersionImpl update() {
+        this.updateIfMatch = null;
         return this;
     }
 
     public ApiVersion apply() {
-        this.innerObject = serviceManager.serviceClient().getApiVersions().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, versionName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                this.innerModel(), updateIfMatch, Context.NONE)
+            .getValue();
         return this;
     }
 
     public ApiVersion apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApiVersions().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, versionName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                this.innerModel(), updateIfMatch, context)
+            .getValue();
         return this;
     }
 
@@ -111,20 +129,37 @@ public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, 
     }
 
     public ApiVersion refresh() {
-        this.innerObject = serviceManager.serviceClient().getApiVersions()
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
             .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, Context.NONE)
             .getValue();
         return this;
     }
 
     public ApiVersion refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApiVersions()
-            .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, context)
+            .getValue();
         return this;
     }
 
     public ApiVersionImpl withProperties(ApiVersionProperties properties) {
         this.innerModel().withProperties(properties);
         return this;
+    }
+
+    public ApiVersionImpl withIfMatch(String ifMatch) {
+        if (isInCreateMode()) {
+            this.createIfMatch = ifMatch;
+            return this;
+        } else {
+            this.updateIfMatch = ifMatch;
+            return this;
+        }
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

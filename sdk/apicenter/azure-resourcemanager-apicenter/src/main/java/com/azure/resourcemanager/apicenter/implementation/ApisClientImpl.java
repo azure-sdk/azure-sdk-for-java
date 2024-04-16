@@ -93,9 +93,10 @@ public final class ApisClientImpl implements ApisClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<ApisCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @BodyParam("application/json") ApiInner resource, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("If-Match") String ifMatch,
+            @PathParam("serviceName") String serviceName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("apiName") String apiName, @BodyParam("application/json") ApiInner resource,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}")
@@ -453,6 +454,7 @@ public final class ApisClientImpl implements ApisClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -460,7 +462,7 @@ public final class ApisClientImpl implements ApisClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, ApiInner resource) {
+        String serviceName, String workspaceName, String apiName, ApiInner resource, String ifMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -490,8 +492,8 @@ public final class ApisClientImpl implements ApisClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, resource,
-                accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, workspaceName, apiName,
+                resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -503,6 +505,7 @@ public final class ApisClientImpl implements ApisClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -511,7 +514,7 @@ public final class ApisClientImpl implements ApisClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, ApiInner resource, Context context) {
+        String serviceName, String workspaceName, String apiName, ApiInner resource, String ifMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -541,8 +544,8 @@ public final class ApisClientImpl implements ApisClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, resource, accept,
-            context);
+            this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, workspaceName, apiName, resource,
+            accept, context);
     }
 
     /**
@@ -561,8 +564,9 @@ public final class ApisClientImpl implements ApisClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiInner> createOrUpdateAsync(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, ApiInner resource) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, resource)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+        final String ifMatch = null;
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, resource,
+            ifMatch).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -573,6 +577,7 @@ public final class ApisClientImpl implements ApisClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -581,9 +586,9 @@ public final class ApisClientImpl implements ApisClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApisCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, ApiInner resource, Context context) {
+        String workspaceName, String apiName, ApiInner resource, String ifMatch, Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, resource,
-            context).block();
+            ifMatch, context).block();
     }
 
     /**
@@ -602,7 +607,8 @@ public final class ApisClientImpl implements ApisClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName, String apiName,
         ApiInner resource) {
-        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, resource,
+        final String ifMatch = null;
+        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, resource, ifMatch,
             Context.NONE).getValue();
     }
 

@@ -53,6 +53,10 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
 
     private String workspaceName;
 
+    private String createIfMatch;
+
+    private String updateIfMatch;
+
     public WorkspaceImpl withExistingService(String resourceGroupName, String serviceName) {
         this.resourceGroupName = resourceGroupName;
         this.serviceName = serviceName;
@@ -60,15 +64,19 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     }
 
     public Workspace create() {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
-            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), Context.NONE)
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), createIfMatch,
+                Context.NONE)
             .getValue();
         return this;
     }
 
     public Workspace create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
-            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), context)
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), createIfMatch,
+                context)
             .getValue();
         return this;
     }
@@ -77,22 +85,28 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         this.innerObject = new WorkspaceInner();
         this.serviceManager = serviceManager;
         this.workspaceName = name;
+        this.createIfMatch = null;
     }
 
     public WorkspaceImpl update() {
+        this.updateIfMatch = null;
         return this;
     }
 
     public Workspace apply() {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
-            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), Context.NONE)
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), updateIfMatch,
+                Context.NONE)
             .getValue();
         return this;
     }
 
     public Workspace apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
-            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), context)
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), updateIfMatch,
+                context)
             .getValue();
         return this;
     }
@@ -106,19 +120,37 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     }
 
     public Workspace refresh() {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
-            .getWithResponse(resourceGroupName, serviceName, workspaceName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Workspace refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
-            .getWithResponse(resourceGroupName, serviceName, workspaceName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, context)
+            .getValue();
         return this;
     }
 
     public WorkspaceImpl withProperties(WorkspaceProperties properties) {
         this.innerModel().withProperties(properties);
         return this;
+    }
+
+    public WorkspaceImpl withIfMatch(String ifMatch) {
+        if (isInCreateMode()) {
+            this.createIfMatch = ifMatch;
+            return this;
+        } else {
+            this.updateIfMatch = ifMatch;
+            return this;
+        }
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

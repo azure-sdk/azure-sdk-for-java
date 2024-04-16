@@ -97,7 +97,7 @@ public interface Environment {
          * The stage of the Environment definition which contains all the minimum required properties for the resource
          * to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithProperties, DefinitionStages.WithIfMatch {
             /**
              * Executes the create request.
              * 
@@ -126,6 +126,19 @@ public interface Environment {
              */
             WithCreate withProperties(EnvironmentProperties properties);
         }
+
+        /**
+         * The stage of the Environment definition allowing to specify ifMatch.
+         */
+        interface WithIfMatch {
+            /**
+             * Specifies the ifMatch property: The request should only proceed if an entity matches this string..
+             * 
+             * @param ifMatch The request should only proceed if an entity matches this string.
+             * @return the next definition stage.
+             */
+            WithCreate withIfMatch(String ifMatch);
+        }
     }
 
     /**
@@ -138,7 +151,7 @@ public interface Environment {
     /**
      * The template for Environment update.
      */
-    interface Update {
+    interface Update extends UpdateStages.WithIfMatch {
         /**
          * Executes the update request.
          * 
@@ -159,6 +172,18 @@ public interface Environment {
      * The Environment update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the Environment update allowing to specify ifMatch.
+         */
+        interface WithIfMatch {
+            /**
+             * Specifies the ifMatch property: The request should only proceed if an entity matches this string..
+             * 
+             * @param ifMatch The request should only proceed if an entity matches this string.
+             * @return the next definition stage.
+             */
+            Update withIfMatch(String ifMatch);
+        }
     }
 
     /**

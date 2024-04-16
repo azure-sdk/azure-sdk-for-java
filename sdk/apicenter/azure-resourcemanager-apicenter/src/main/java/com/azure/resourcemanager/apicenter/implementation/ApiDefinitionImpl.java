@@ -61,6 +61,10 @@ public final class ApiDefinitionImpl implements ApiDefinition, ApiDefinition.Def
 
     private String definitionName;
 
+    private String createIfMatch;
+
+    private String updateIfMatch;
+
     public ApiDefinitionImpl withExistingVersion(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String versionName) {
         this.resourceGroupName = resourceGroupName;
@@ -72,17 +76,19 @@ public final class ApiDefinitionImpl implements ApiDefinition, ApiDefinition.Def
     }
 
     public ApiDefinition create() {
-        this.innerObject = serviceManager.serviceClient().getApiDefinitions()
+        this.innerObject = serviceManager.serviceClient()
+            .getApiDefinitions()
             .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, this.innerModel(), Context.NONE)
+                definitionName, this.innerModel(), createIfMatch, Context.NONE)
             .getValue();
         return this;
     }
 
     public ApiDefinition create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApiDefinitions()
+        this.innerObject = serviceManager.serviceClient()
+            .getApiDefinitions()
             .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, this.innerModel(), context)
+                definitionName, this.innerModel(), createIfMatch, context)
             .getValue();
         return this;
     }
@@ -91,24 +97,28 @@ public final class ApiDefinitionImpl implements ApiDefinition, ApiDefinition.Def
         this.innerObject = new ApiDefinitionInner();
         this.serviceManager = serviceManager;
         this.definitionName = name;
+        this.createIfMatch = null;
     }
 
     public ApiDefinitionImpl update() {
+        this.updateIfMatch = null;
         return this;
     }
 
     public ApiDefinition apply() {
-        this.innerObject = serviceManager.serviceClient().getApiDefinitions()
+        this.innerObject = serviceManager.serviceClient()
+            .getApiDefinitions()
             .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, this.innerModel(), Context.NONE)
+                definitionName, this.innerModel(), updateIfMatch, Context.NONE)
             .getValue();
         return this;
     }
 
     public ApiDefinition apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApiDefinitions()
+        this.innerObject = serviceManager.serviceClient()
+            .getApiDefinitions()
             .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, this.innerModel(), context)
+                definitionName, this.innerModel(), updateIfMatch, context)
             .getValue();
         return this;
     }
@@ -126,39 +136,62 @@ public final class ApiDefinitionImpl implements ApiDefinition, ApiDefinition.Def
     }
 
     public ApiDefinition refresh() {
-        this.innerObject = serviceManager.serviceClient().getApiDefinitions().getWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, versionName, definitionName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiDefinitions()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+                Context.NONE)
+            .getValue();
         return this;
     }
 
     public ApiDefinition refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApiDefinitions().getWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, versionName, definitionName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiDefinitions()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+                context)
+            .getValue();
         return this;
     }
 
     public ApiSpecExportResult exportSpecification() {
-        return serviceManager.apiDefinitions().exportSpecification(resourceGroupName, serviceName, workspaceName,
-            apiName, versionName, definitionName);
+        return serviceManager.apiDefinitions()
+            .exportSpecification(resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName);
     }
 
     public ApiSpecExportResult exportSpecification(Context context) {
-        return serviceManager.apiDefinitions().exportSpecification(resourceGroupName, serviceName, workspaceName,
-            apiName, versionName, definitionName, context);
+        return serviceManager.apiDefinitions()
+            .exportSpecification(resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+                context);
     }
 
     public void importSpecification(ApiSpecImportRequest body) {
-        serviceManager.apiDefinitions().importSpecification(resourceGroupName, serviceName, workspaceName, apiName,
-            versionName, definitionName, body);
+        serviceManager.apiDefinitions()
+            .importSpecification(resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+                body);
     }
 
     public void importSpecification(ApiSpecImportRequest body, Context context) {
-        serviceManager.apiDefinitions().importSpecification(resourceGroupName, serviceName, workspaceName, apiName,
-            versionName, definitionName, body, context);
+        serviceManager.apiDefinitions()
+            .importSpecification(resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+                body, context);
     }
 
     public ApiDefinitionImpl withProperties(ApiDefinitionProperties properties) {
         this.innerModel().withProperties(properties);
         return this;
+    }
+
+    public ApiDefinitionImpl withIfMatch(String ifMatch) {
+        if (isInCreateMode()) {
+            this.createIfMatch = ifMatch;
+            return this;
+        } else {
+            this.updateIfMatch = ifMatch;
+            return this;
+        }
+    }
+
+    private boolean isInCreateMode() {
+        return this.innerModel().id() == null;
     }
 }

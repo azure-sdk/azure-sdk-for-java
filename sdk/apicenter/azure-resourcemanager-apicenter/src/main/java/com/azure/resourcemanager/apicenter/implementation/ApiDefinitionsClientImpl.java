@@ -104,9 +104,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<ApiDefinitionsCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("versionName") String versionName, @PathParam("definitionName") String definitionName,
+            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("If-Match") String ifMatch,
+            @PathParam("serviceName") String serviceName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("apiName") String apiName, @PathParam("versionName") String versionName,
+            @PathParam("definitionName") String definitionName,
             @BodyParam("application/json") ApiDefinitionInner resource, @HeaderParam("Accept") String accept,
             Context context);
 
@@ -553,6 +554,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -561,7 +563,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
         String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
-        ApiDefinitionInner resource) {
+        ApiDefinitionInner resource, String ifMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -597,8 +599,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, resource, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, workspaceName, apiName,
+                versionName, definitionName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -612,6 +614,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -621,7 +624,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
         String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
-        ApiDefinitionInner resource, Context context) {
+        ApiDefinitionInner resource, String ifMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -657,8 +660,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource, accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, workspaceName, apiName,
+            versionName, definitionName, resource, accept, context);
     }
 
     /**
@@ -679,8 +682,9 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionInner> createOrUpdateAsync(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String versionName, String definitionName, ApiDefinitionInner resource) {
+        final String ifMatch = null;
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+            definitionName, resource, ifMatch).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -693,6 +697,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -702,9 +707,9 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiDefinitionsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String versionName, String definitionName, ApiDefinitionInner resource,
-        Context context) {
+        String ifMatch, Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource, context).block();
+            definitionName, resource, ifMatch, context).block();
     }
 
     /**
@@ -725,8 +730,9 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiDefinitionInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String versionName, String definitionName, ApiDefinitionInner resource) {
+        final String ifMatch = null;
         return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource, Context.NONE).getValue();
+            definitionName, resource, ifMatch, Context.NONE).getValue();
     }
 
     /**
@@ -1235,8 +1241,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     public SyncPoller<PollResult<ApiSpecExportResultInner>, ApiSpecExportResultInner> beginExportSpecification(
         String resourceGroupName, String serviceName, String workspaceName, String apiName, String versionName,
         String definitionName) {
-        return this.beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName).getSyncPoller();
+        return this
+            .beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                definitionName)
+            .getSyncPoller();
     }
 
     /**
@@ -1258,8 +1266,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     public SyncPoller<PollResult<ApiSpecExportResultInner>, ApiSpecExportResultInner> beginExportSpecification(
         String resourceGroupName, String serviceName, String workspaceName, String apiName, String versionName,
         String definitionName, Context context) {
-        return this.beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, context).getSyncPoller();
+        return this
+            .beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                definitionName, context)
+            .getSyncPoller();
     }
 
     /**
@@ -1536,8 +1546,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginImportSpecification(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String versionName, String definitionName, ApiSpecImportRequest body) {
-        return this.beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, body).getSyncPoller();
+        return this
+            .beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                definitionName, body)
+            .getSyncPoller();
     }
 
     /**
@@ -1560,8 +1572,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     public SyncPoller<PollResult<Void>, Void> beginImportSpecification(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String versionName, String definitionName, ApiSpecImportRequest body,
         Context context) {
-        return this.beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, body, context).getSyncPoller();
+        return this
+            .beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                definitionName, body, context)
+            .getSyncPoller();
     }
 
     /**

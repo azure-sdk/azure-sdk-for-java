@@ -94,10 +94,11 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<ApiVersionsCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("versionName") String versionName, @BodyParam("application/json") ApiVersionInner resource,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("If-Match") String ifMatch,
+            @PathParam("serviceName") String serviceName, @PathParam("workspaceName") String workspaceName,
+            @PathParam("apiName") String apiName, @PathParam("versionName") String versionName,
+            @BodyParam("application/json") ApiVersionInner resource, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}")
@@ -491,6 +492,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -498,7 +500,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, String versionName, ApiVersionInner resource) {
+        String serviceName, String workspaceName, String apiName, String versionName, ApiVersionInner resource,
+        String ifMatch) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -531,8 +534,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                resource, accept, context))
+                this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, workspaceName, apiName,
+                versionName, resource, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -545,6 +548,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -554,7 +558,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
         String serviceName, String workspaceName, String apiName, String versionName, ApiVersionInner resource,
-        Context context) {
+        String ifMatch, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -587,8 +591,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            resource, accept, context);
+            this.client.getSubscriptionId(), resourceGroupName, ifMatch, serviceName, workspaceName, apiName,
+            versionName, resource, accept, context);
     }
 
     /**
@@ -608,8 +612,9 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionInner> createOrUpdateAsync(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String versionName, ApiVersionInner resource) {
+        final String ifMatch = null;
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            resource).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+            resource, ifMatch).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -621,6 +626,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param resource Resource create parameters.
+     * @param ifMatch The request should only proceed if an entity matches this string.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -629,9 +635,10 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiVersionsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, ApiVersionInner resource, Context context) {
+        String workspaceName, String apiName, String versionName, ApiVersionInner resource, String ifMatch,
+        Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            resource, context).block();
+            resource, ifMatch, context).block();
     }
 
     /**
@@ -651,8 +658,9 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiVersionInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String versionName, ApiVersionInner resource) {
+        final String ifMatch = null;
         return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, resource,
-            Context.NONE).getValue();
+            ifMatch, Context.NONE).getValue();
     }
 
     /**
