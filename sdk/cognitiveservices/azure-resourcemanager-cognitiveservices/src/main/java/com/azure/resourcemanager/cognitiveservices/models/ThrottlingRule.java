@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ThrottlingRule model. */
+/**
+ * The ThrottlingRule model.
+ */
 @Fluent
 public final class ThrottlingRule {
     /*
@@ -47,13 +49,15 @@ public final class ThrottlingRule {
     @JsonProperty(value = "matchPatterns")
     private List<RequestMatchPattern> matchPatterns;
 
-    /** Creates an instance of ThrottlingRule class. */
+    /**
+     * Creates an instance of ThrottlingRule class.
+     */
     public ThrottlingRule() {
     }
 
     /**
      * Get the key property: The key property.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -62,7 +66,7 @@ public final class ThrottlingRule {
 
     /**
      * Set the key property: The key property.
-     *
+     * 
      * @param key the key value to set.
      * @return the ThrottlingRule object itself.
      */
@@ -73,7 +77,7 @@ public final class ThrottlingRule {
 
     /**
      * Get the renewalPeriod property: The renewalPeriod property.
-     *
+     * 
      * @return the renewalPeriod value.
      */
     public Float renewalPeriod() {
@@ -82,7 +86,7 @@ public final class ThrottlingRule {
 
     /**
      * Set the renewalPeriod property: The renewalPeriod property.
-     *
+     * 
      * @param renewalPeriod the renewalPeriod value to set.
      * @return the ThrottlingRule object itself.
      */
@@ -93,7 +97,7 @@ public final class ThrottlingRule {
 
     /**
      * Get the count property: The count property.
-     *
+     * 
      * @return the count value.
      */
     public Float count() {
@@ -102,7 +106,7 @@ public final class ThrottlingRule {
 
     /**
      * Set the count property: The count property.
-     *
+     * 
      * @param count the count value to set.
      * @return the ThrottlingRule object itself.
      */
@@ -113,7 +117,7 @@ public final class ThrottlingRule {
 
     /**
      * Get the minCount property: The minCount property.
-     *
+     * 
      * @return the minCount value.
      */
     public Float minCount() {
@@ -122,7 +126,7 @@ public final class ThrottlingRule {
 
     /**
      * Set the minCount property: The minCount property.
-     *
+     * 
      * @param minCount the minCount value to set.
      * @return the ThrottlingRule object itself.
      */
@@ -133,7 +137,7 @@ public final class ThrottlingRule {
 
     /**
      * Get the dynamicThrottlingEnabled property: The dynamicThrottlingEnabled property.
-     *
+     * 
      * @return the dynamicThrottlingEnabled value.
      */
     public Boolean dynamicThrottlingEnabled() {
@@ -142,7 +146,7 @@ public final class ThrottlingRule {
 
     /**
      * Set the dynamicThrottlingEnabled property: The dynamicThrottlingEnabled property.
-     *
+     * 
      * @param dynamicThrottlingEnabled the dynamicThrottlingEnabled value to set.
      * @return the ThrottlingRule object itself.
      */
@@ -153,7 +157,7 @@ public final class ThrottlingRule {
 
     /**
      * Get the matchPatterns property: The matchPatterns property.
-     *
+     * 
      * @return the matchPatterns value.
      */
     public List<RequestMatchPattern> matchPatterns() {
@@ -162,7 +166,7 @@ public final class ThrottlingRule {
 
     /**
      * Set the matchPatterns property: The matchPatterns property.
-     *
+     * 
      * @param matchPatterns the matchPatterns value to set.
      * @return the ThrottlingRule object itself.
      */
@@ -173,7 +177,7 @@ public final class ThrottlingRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

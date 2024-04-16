@@ -9,7 +9,9 @@ import com.azure.resourcemanager.cognitiveservices.fluent.models.DeploymentInner
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of cognitive services accounts operation response. */
+/**
+ * The list of cognitive services accounts operation response.
+ */
 @Fluent
 public final class DeploymentListResult {
     /*
@@ -24,13 +26,15 @@ public final class DeploymentListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<DeploymentInner> value;
 
-    /** Creates an instance of DeploymentListResult class. */
+    /**
+     * Creates an instance of DeploymentListResult class.
+     */
     public DeploymentListResult() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of Deployment.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class DeploymentListResult {
 
     /**
      * Set the nextLink property: The link used to get the next page of Deployment.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the DeploymentListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class DeploymentListResult {
 
     /**
      * Get the value property: Gets the list of Cognitive Services accounts Deployment and their properties.
-     *
+     * 
      * @return the value value.
      */
     public List<DeploymentInner> value() {
@@ -59,7 +63,7 @@ public final class DeploymentListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

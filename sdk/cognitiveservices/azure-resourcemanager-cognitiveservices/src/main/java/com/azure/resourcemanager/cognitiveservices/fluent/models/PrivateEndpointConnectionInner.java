@@ -10,7 +10,9 @@ import com.azure.resourcemanager.cognitiveservices.models.AzureEntityResource;
 import com.azure.resourcemanager.cognitiveservices.models.PrivateEndpointConnectionProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Private Endpoint Connection resource. */
+/**
+ * The Private Endpoint Connection resource.
+ */
 @Fluent
 public final class PrivateEndpointConnectionInner extends AzureEntityResource {
     /*
@@ -31,13 +33,15 @@ public final class PrivateEndpointConnectionInner extends AzureEntityResource {
     @JsonProperty(value = "location")
     private String location;
 
-    /** Creates an instance of PrivateEndpointConnectionInner class. */
+    /**
+     * Creates an instance of PrivateEndpointConnectionInner class.
+     */
     public PrivateEndpointConnectionInner() {
     }
 
     /**
      * Get the properties property: Resource properties.
-     *
+     * 
      * @return the properties value.
      */
     public PrivateEndpointConnectionProperties properties() {
@@ -46,7 +50,7 @@ public final class PrivateEndpointConnectionInner extends AzureEntityResource {
 
     /**
      * Set the properties property: Resource properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the PrivateEndpointConnectionInner object itself.
      */
@@ -57,7 +61,7 @@ public final class PrivateEndpointConnectionInner extends AzureEntityResource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -66,7 +70,7 @@ public final class PrivateEndpointConnectionInner extends AzureEntityResource {
 
     /**
      * Get the location property: The location of the private endpoint connection.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -75,7 +79,7 @@ public final class PrivateEndpointConnectionInner extends AzureEntityResource {
 
     /**
      * Set the location property: The location of the private endpoint connection.
-     *
+     * 
      * @param location the location value to set.
      * @return the PrivateEndpointConnectionInner object itself.
      */
@@ -86,7 +90,7 @@ public final class PrivateEndpointConnectionInner extends AzureEntityResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
