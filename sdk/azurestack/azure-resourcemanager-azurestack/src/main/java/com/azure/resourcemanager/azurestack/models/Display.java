@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Contains the localized display information for this particular operation or action. */
+/**
+ * Contains the localized display information for this particular operation or action.
+ */
 @Fluent
 public final class Display {
     /*
@@ -17,8 +19,7 @@ public final class Display {
     private String provider;
 
     /*
-     * The localized, friendly version of the resource type related to this action or operation; the resource type
-     * should match the public documentation for the resource provider.
+     * The localized, friendly version of the resource type related to this action or operation; the resource type should match the public documentation for the resource provider.
      */
     @JsonProperty(value = "resource")
     private String resource;
@@ -30,19 +31,20 @@ public final class Display {
     private String operation;
 
     /*
-     * The localized, friendly description for the operation. The description will be displayed to the user. It should
-     * be thorough and concise for used in both tooltips and detailed views.
+     * The localized, friendly description for the operation. The description will be displayed to the user. It should be thorough and concise for used in both tooltips and detailed views.
      */
     @JsonProperty(value = "description")
     private String description;
 
-    /** Creates an instance of Display class. */
+    /**
+     * Creates an instance of Display class.
+     */
     public Display() {
     }
 
     /**
      * Get the provider property: The localized, friendly version of the resource provider name.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -51,7 +53,7 @@ public final class Display {
 
     /**
      * Set the provider property: The localized, friendly version of the resource provider name.
-     *
+     * 
      * @param provider the provider value to set.
      * @return the Display object itself.
      */
@@ -63,7 +65,7 @@ public final class Display {
     /**
      * Get the resource property: The localized, friendly version of the resource type related to this action or
      * operation; the resource type should match the public documentation for the resource provider.
-     *
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -73,7 +75,7 @@ public final class Display {
     /**
      * Set the resource property: The localized, friendly version of the resource type related to this action or
      * operation; the resource type should match the public documentation for the resource provider.
-     *
+     * 
      * @param resource the resource value to set.
      * @return the Display object itself.
      */
@@ -85,7 +87,7 @@ public final class Display {
     /**
      * Get the operation property: The localized, friendly name for the operation. Use the name as it will displayed to
      * the user.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -95,7 +97,7 @@ public final class Display {
     /**
      * Set the operation property: The localized, friendly name for the operation. Use the name as it will displayed to
      * the user.
-     *
+     * 
      * @param operation the operation value to set.
      * @return the Display object itself.
      */
@@ -107,7 +109,7 @@ public final class Display {
     /**
      * Get the description property: The localized, friendly description for the operation. The description will be
      * displayed to the user. It should be thorough and concise for used in both tooltips and detailed views.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -117,7 +119,7 @@ public final class Display {
     /**
      * Set the description property: The localized, friendly description for the operation. The description will be
      * displayed to the user. It should be thorough and concise for used in both tooltips and detailed views.
-     *
+     * 
      * @param description the description value to set.
      * @return the Display object itself.
      */
@@ -128,7 +130,7 @@ public final class Display {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

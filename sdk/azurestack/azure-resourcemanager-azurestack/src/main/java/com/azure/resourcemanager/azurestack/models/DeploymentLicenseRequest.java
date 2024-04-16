@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Request details for generating a deployment license. */
+/**
+ * Request details for generating a deployment license.
+ */
 @Fluent
 public final class DeploymentLicenseRequest {
     /*
@@ -16,13 +18,15 @@ public final class DeploymentLicenseRequest {
     @JsonProperty(value = "verificationVersion")
     private String verificationVersion;
 
-    /** Creates an instance of DeploymentLicenseRequest class. */
+    /**
+     * Creates an instance of DeploymentLicenseRequest class.
+     */
     public DeploymentLicenseRequest() {
     }
 
     /**
      * Get the verificationVersion property: Signing verification public key version.
-     *
+     * 
      * @return the verificationVersion value.
      */
     public String verificationVersion() {
@@ -31,7 +35,7 @@ public final class DeploymentLicenseRequest {
 
     /**
      * Set the verificationVersion property: Signing verification public key version.
-     *
+     * 
      * @param verificationVersion the verificationVersion value to set.
      * @return the DeploymentLicenseRequest object itself.
      */
@@ -42,7 +46,7 @@ public final class DeploymentLicenseRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The URI. */
+/**
+ * The URI.
+ */
 @Immutable
 public final class Uri {
     /*
@@ -16,13 +18,15 @@ public final class Uri {
     @JsonProperty(value = "uri", access = JsonProperty.Access.WRITE_ONLY)
     private String uri;
 
-    /** Creates an instance of Uri class. */
+    /**
+     * Creates an instance of Uri class.
+     */
     public Uri() {
     }
 
     /**
      * Get the uri property: The URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -31,7 +35,7 @@ public final class Uri {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

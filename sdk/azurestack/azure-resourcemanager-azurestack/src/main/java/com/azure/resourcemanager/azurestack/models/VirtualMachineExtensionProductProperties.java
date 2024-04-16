@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.azurestack.fluent.models.Uri;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Product information. */
+/**
+ * Product information.
+ */
 @Immutable
 public class VirtualMachineExtensionProductProperties {
     /*
@@ -53,13 +55,15 @@ public class VirtualMachineExtensionProductProperties {
     @JsonProperty(value = "vmScaleSetEnabled", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean vmScaleSetEnabled;
 
-    /** Creates an instance of VirtualMachineExtensionProductProperties class. */
+    /**
+     * Creates an instance of VirtualMachineExtensionProductProperties class.
+     */
     public VirtualMachineExtensionProductProperties() {
     }
 
     /**
      * Get the computeRole property: Specifies kind of compute role included in the package.
-     *
+     * 
      * @return the computeRole value.
      */
     public ComputeRole computeRole() {
@@ -68,7 +72,7 @@ public class VirtualMachineExtensionProductProperties {
 
     /**
      * Get the isSystemExtension property: Specifies if product is a Virtual Machine Extension.
-     *
+     * 
      * @return the isSystemExtension value.
      */
     public Boolean isSystemExtension() {
@@ -77,7 +81,7 @@ public class VirtualMachineExtensionProductProperties {
 
     /**
      * Get the innerSourceBlob property: Specifies a download location where content can be downloaded from.
-     *
+     * 
      * @return the innerSourceBlob value.
      */
     private Uri innerSourceBlob() {
@@ -86,7 +90,7 @@ public class VirtualMachineExtensionProductProperties {
 
     /**
      * Get the supportMultipleExtensions property: Indicates if specified product supports multiple extensions.
-     *
+     * 
      * @return the supportMultipleExtensions value.
      */
     public Boolean supportMultipleExtensions() {
@@ -95,7 +99,7 @@ public class VirtualMachineExtensionProductProperties {
 
     /**
      * Get the version property: Specifies product version.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -104,7 +108,7 @@ public class VirtualMachineExtensionProductProperties {
 
     /**
      * Get the vmOsType property: Specifies operating system used by the product.
-     *
+     * 
      * @return the vmOsType value.
      */
     public OperatingSystem vmOsType() {
@@ -113,7 +117,7 @@ public class VirtualMachineExtensionProductProperties {
 
     /**
      * Get the vmScaleSetEnabled property: Indicates if virtual machine Scale Set is enabled in the specified product.
-     *
+     * 
      * @return the vmScaleSetEnabled value.
      */
     public Boolean vmScaleSetEnabled() {
@@ -122,7 +126,7 @@ public class VirtualMachineExtensionProductProperties {
 
     /**
      * Get the uri property: The URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -131,7 +135,7 @@ public class VirtualMachineExtensionProductProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

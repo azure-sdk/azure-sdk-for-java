@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties portion of the registration resource. */
+/**
+ * Properties portion of the registration resource.
+ */
 @Fluent
 public final class RegistrationProperties {
     /*
@@ -28,13 +30,15 @@ public final class RegistrationProperties {
     @JsonProperty(value = "billingModel")
     private String billingModel;
 
-    /** Creates an instance of RegistrationProperties class. */
+    /**
+     * Creates an instance of RegistrationProperties class.
+     */
     public RegistrationProperties() {
     }
 
     /**
      * Get the objectId property: The object identifier associated with the Azure Stack connecting to Azure.
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -43,7 +47,7 @@ public final class RegistrationProperties {
 
     /**
      * Set the objectId property: The object identifier associated with the Azure Stack connecting to Azure.
-     *
+     * 
      * @param objectId the objectId value to set.
      * @return the RegistrationProperties object itself.
      */
@@ -54,7 +58,7 @@ public final class RegistrationProperties {
 
     /**
      * Get the cloudId property: The identifier of the registered Azure Stack.
-     *
+     * 
      * @return the cloudId value.
      */
     public String cloudId() {
@@ -63,7 +67,7 @@ public final class RegistrationProperties {
 
     /**
      * Set the cloudId property: The identifier of the registered Azure Stack.
-     *
+     * 
      * @param cloudId the cloudId value to set.
      * @return the RegistrationProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class RegistrationProperties {
 
     /**
      * Get the billingModel property: Specifies the billing mode for the Azure Stack registration.
-     *
+     * 
      * @return the billingModel value.
      */
     public String billingModel() {
@@ -83,7 +87,7 @@ public final class RegistrationProperties {
 
     /**
      * Set the billingModel property: Specifies the billing mode for the Azure Stack registration.
-     *
+     * 
      * @param billingModel the billingModel value to set.
      * @return the RegistrationProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class RegistrationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Compute role type (IaaS or PaaS). */
+/**
+ * Compute role type (IaaS or PaaS).
+ */
 public final class ComputeRole extends ExpandableStringEnum<ComputeRole> {
-    /** Static value None for ComputeRole. */
+    /**
+     * Static value None for ComputeRole.
+     */
     public static final ComputeRole NONE = fromString("None");
 
-    /** Static value IaaS for ComputeRole. */
+    /**
+     * Static value IaaS for ComputeRole.
+     */
     public static final ComputeRole IAAS = fromString("IaaS");
 
-    /** Static value PaaS for ComputeRole. */
+    /**
+     * Static value PaaS for ComputeRole.
+     */
     public static final ComputeRole PAAS = fromString("PaaS");
 
     /**
      * Creates a new instance of ComputeRole value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class ComputeRole extends ExpandableStringEnum<ComputeRole> {
 
     /**
      * Creates or finds a ComputeRole from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ComputeRole.
      */
@@ -41,7 +49,7 @@ public final class ComputeRole extends ExpandableStringEnum<ComputeRole> {
 
     /**
      * Gets known ComputeRole values.
-     *
+     * 
      * @return known ComputeRole values.
      */
     public static Collection<ComputeRole> values() {

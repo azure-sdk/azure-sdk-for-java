@@ -7,7 +7,9 @@ package com.azure.resourcemanager.azurestack.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Additional properties of the product. */
+/**
+ * Additional properties of the product.
+ */
 @Fluent
 public final class ProductProperties {
     /*
@@ -16,13 +18,15 @@ public final class ProductProperties {
     @JsonProperty(value = "version")
     private String version;
 
-    /** Creates an instance of ProductProperties class. */
+    /**
+     * Creates an instance of ProductProperties class.
+     */
     public ProductProperties() {
     }
 
     /**
      * Get the version property: The version.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -31,7 +35,7 @@ public final class ProductProperties {
 
     /**
      * Set the version property: The version.
-     *
+     * 
      * @param version the version value to set.
      * @return the ProductProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class ProductProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

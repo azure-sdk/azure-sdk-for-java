@@ -9,7 +9,9 @@ import com.azure.resourcemanager.azurestack.fluent.models.CustomerSubscriptionIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Pageable list of customer subscriptions. */
+/**
+ * Pageable list of customer subscriptions.
+ */
 @Fluent
 public final class CustomerSubscriptionList {
     /*
@@ -24,13 +26,15 @@ public final class CustomerSubscriptionList {
     @JsonProperty(value = "value")
     private List<CustomerSubscriptionInner> value;
 
-    /** Creates an instance of CustomerSubscriptionList class. */
+    /**
+     * Creates an instance of CustomerSubscriptionList class.
+     */
     public CustomerSubscriptionList() {
     }
 
     /**
      * Get the nextLink property: URI to the next page.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class CustomerSubscriptionList {
 
     /**
      * Set the nextLink property: URI to the next page.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the CustomerSubscriptionList object itself.
      */
@@ -50,7 +54,7 @@ public final class CustomerSubscriptionList {
 
     /**
      * Get the value property: List of customer subscriptions.
-     *
+     * 
      * @return the value value.
      */
     public List<CustomerSubscriptionInner> value() {
@@ -59,7 +63,7 @@ public final class CustomerSubscriptionList {
 
     /**
      * Set the value property: List of customer subscriptions.
-     *
+     * 
      * @param value the value value to set.
      * @return the CustomerSubscriptionList object itself.
      */
@@ -70,7 +74,7 @@ public final class CustomerSubscriptionList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

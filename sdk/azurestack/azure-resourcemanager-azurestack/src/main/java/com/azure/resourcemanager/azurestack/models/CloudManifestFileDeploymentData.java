@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.azurestack.fluent.models.CloudManifestFileEnvironmentEndpoints;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cloud specific manifest data for AzureStack deployment. */
+/**
+ * Cloud specific manifest data for AzureStack deployment.
+ */
 @Fluent
 public final class CloudManifestFileDeploymentData {
     /*
@@ -29,13 +31,15 @@ public final class CloudManifestFileDeploymentData {
     @JsonProperty(value = "customEnvironmentEndpoints")
     private CloudManifestFileEnvironmentEndpoints innerCustomEnvironmentEndpoints;
 
-    /** Creates an instance of CloudManifestFileDeploymentData class. */
+    /**
+     * Creates an instance of CloudManifestFileDeploymentData class.
+     */
     public CloudManifestFileDeploymentData() {
     }
 
     /**
      * Get the externalDsmsCertificates property: Dsms external certificates.
-     *
+     * 
      * @return the externalDsmsCertificates value.
      */
     public String externalDsmsCertificates() {
@@ -44,7 +48,7 @@ public final class CloudManifestFileDeploymentData {
 
     /**
      * Set the externalDsmsCertificates property: Dsms external certificates.
-     *
+     * 
      * @param externalDsmsCertificates the externalDsmsCertificates value to set.
      * @return the CloudManifestFileDeploymentData object itself.
      */
@@ -55,7 +59,7 @@ public final class CloudManifestFileDeploymentData {
 
     /**
      * Get the customCloudVerificationKey property: Signing verification public key.
-     *
+     * 
      * @return the customCloudVerificationKey value.
      */
     public String customCloudVerificationKey() {
@@ -64,7 +68,7 @@ public final class CloudManifestFileDeploymentData {
 
     /**
      * Set the customCloudVerificationKey property: Signing verification public key.
-     *
+     * 
      * @param customCloudVerificationKey the customCloudVerificationKey value to set.
      * @return the CloudManifestFileDeploymentData object itself.
      */
@@ -75,7 +79,7 @@ public final class CloudManifestFileDeploymentData {
 
     /**
      * Get the innerCustomEnvironmentEndpoints property: Environment endpoints.
-     *
+     * 
      * @return the innerCustomEnvironmentEndpoints value.
      */
     private CloudManifestFileEnvironmentEndpoints innerCustomEnvironmentEndpoints() {
@@ -84,7 +88,7 @@ public final class CloudManifestFileDeploymentData {
 
     /**
      * Get the customCloudArmEndpoint property: ARM endpoint.
-     *
+     * 
      * @return the customCloudArmEndpoint value.
      */
     public String customCloudArmEndpoint() {
@@ -95,7 +99,7 @@ public final class CloudManifestFileDeploymentData {
 
     /**
      * Set the customCloudArmEndpoint property: ARM endpoint.
-     *
+     * 
      * @param customCloudArmEndpoint the customCloudArmEndpoint value to set.
      * @return the CloudManifestFileDeploymentData object itself.
      */
@@ -109,7 +113,7 @@ public final class CloudManifestFileDeploymentData {
 
     /**
      * Get the externalDsmsEndpoint property: Dsms endpoint.
-     *
+     * 
      * @return the externalDsmsEndpoint value.
      */
     public String externalDsmsEndpoint() {
@@ -120,7 +124,7 @@ public final class CloudManifestFileDeploymentData {
 
     /**
      * Set the externalDsmsEndpoint property: Dsms endpoint.
-     *
+     * 
      * @param externalDsmsEndpoint the externalDsmsEndpoint value to set.
      * @return the CloudManifestFileDeploymentData object itself.
      */
@@ -134,7 +138,7 @@ public final class CloudManifestFileDeploymentData {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
