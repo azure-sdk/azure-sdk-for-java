@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Status of last troubleshooting operation on this SQL VM. */
+/**
+ * Status of last troubleshooting operation on this SQL VM.
+ */
 @Immutable
 public final class TroubleshootingStatus {
     /*
@@ -47,13 +49,15 @@ public final class TroubleshootingStatus {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private TroubleshootingAdditionalProperties properties;
 
-    /** Creates an instance of TroubleshootingStatus class. */
+    /**
+     * Creates an instance of TroubleshootingStatus class.
+     */
     public TroubleshootingStatus() {
     }
 
     /**
      * Get the rootCause property: Root cause of the issue.
-     *
+     * 
      * @return the rootCause value.
      */
     public String rootCause() {
@@ -62,7 +66,7 @@ public final class TroubleshootingStatus {
 
     /**
      * Get the lastTriggerTimeUtc property: Last troubleshooting trigger time in UTC timezone.
-     *
+     * 
      * @return the lastTriggerTimeUtc value.
      */
     public OffsetDateTime lastTriggerTimeUtc() {
@@ -71,7 +75,7 @@ public final class TroubleshootingStatus {
 
     /**
      * Get the startTimeUtc property: Start time in UTC timezone.
-     *
+     * 
      * @return the startTimeUtc value.
      */
     public OffsetDateTime startTimeUtc() {
@@ -80,7 +84,7 @@ public final class TroubleshootingStatus {
 
     /**
      * Get the endTimeUtc property: End time in UTC timezone.
-     *
+     * 
      * @return the endTimeUtc value.
      */
     public OffsetDateTime endTimeUtc() {
@@ -89,7 +93,7 @@ public final class TroubleshootingStatus {
 
     /**
      * Get the troubleshootingScenario property: SQL VM troubleshooting scenario.
-     *
+     * 
      * @return the troubleshootingScenario value.
      */
     public TroubleshootingScenario troubleshootingScenario() {
@@ -98,7 +102,7 @@ public final class TroubleshootingStatus {
 
     /**
      * Get the properties property: Troubleshooting properties.
-     *
+     * 
      * @return the properties value.
      */
     public TroubleshootingAdditionalProperties properties() {
@@ -107,7 +111,7 @@ public final class TroubleshootingStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

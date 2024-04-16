@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Replica readable secondary mode in availability group. */
+/**
+ * Replica readable secondary mode in availability group.
+ */
 public final class ReadableSecondary extends ExpandableStringEnum<ReadableSecondary> {
-    /** Static value NO for ReadableSecondary. */
-    public static final ReadableSecondary NO = fromString("NO");
+    /**
+     * Static value No for ReadableSecondary.
+     */
+    public static final ReadableSecondary NO = fromString("No");
 
-    /** Static value ALL for ReadableSecondary. */
-    public static final ReadableSecondary ALL = fromString("ALL");
+    /**
+     * Static value All for ReadableSecondary.
+     */
+    public static final ReadableSecondary ALL = fromString("All");
 
-    /** Static value READ_ONLY for ReadableSecondary. */
-    public static final ReadableSecondary READ_ONLY = fromString("READ_ONLY");
+    /**
+     * Static value Read_Only for ReadableSecondary.
+     */
+    public static final ReadableSecondary READ_ONLY = fromString("Read_Only");
 
     /**
      * Creates a new instance of ReadableSecondary value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class ReadableSecondary extends ExpandableStringEnum<ReadableSecond
 
     /**
      * Creates or finds a ReadableSecondary from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ReadableSecondary.
      */
@@ -41,7 +49,7 @@ public final class ReadableSecondary extends ExpandableStringEnum<ReadableSecond
 
     /**
      * Gets known ReadableSecondary values.
-     *
+     * 
      * @return known ReadableSecondary values.
      */
     public static Collection<ReadableSecondary> values() {

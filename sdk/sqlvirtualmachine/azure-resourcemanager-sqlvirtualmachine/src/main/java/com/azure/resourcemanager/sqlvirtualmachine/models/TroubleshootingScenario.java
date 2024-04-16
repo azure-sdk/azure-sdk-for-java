@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** SQL VM troubleshooting scenario. */
+/**
+ * SQL VM troubleshooting scenario.
+ */
 public final class TroubleshootingScenario extends ExpandableStringEnum<TroubleshootingScenario> {
-    /** Static value UnhealthyReplica for TroubleshootingScenario. */
+    /**
+     * Static value UnhealthyReplica for TroubleshootingScenario.
+     */
     public static final TroubleshootingScenario UNHEALTHY_REPLICA = fromString("UnhealthyReplica");
 
     /**
      * Creates a new instance of TroubleshootingScenario value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class TroubleshootingScenario extends ExpandableStringEnum<Troubles
 
     /**
      * Creates or finds a TroubleshootingScenario from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding TroubleshootingScenario.
      */
@@ -35,7 +39,7 @@ public final class TroubleshootingScenario extends ExpandableStringEnum<Troubles
 
     /**
      * Gets known TroubleshootingScenario values.
-     *
+     * 
      * @return known TroubleshootingScenario values.
      */
     public static Collection<TroubleshootingScenario> values() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Domain credentials for setting up Windows Server Failover Cluster for SQL availability group. */
+/**
+ * Domain credentials for setting up Windows Server Failover Cluster for SQL availability group.
+ */
 @Fluent
 public final class WsfcDomainCredentials {
     /*
@@ -28,13 +30,15 @@ public final class WsfcDomainCredentials {
     @JsonProperty(value = "sqlServiceAccountPassword")
     private String sqlServiceAccountPassword;
 
-    /** Creates an instance of WsfcDomainCredentials class. */
+    /**
+     * Creates an instance of WsfcDomainCredentials class.
+     */
     public WsfcDomainCredentials() {
     }
 
     /**
      * Get the clusterBootstrapAccountPassword property: Cluster bootstrap account password.
-     *
+     * 
      * @return the clusterBootstrapAccountPassword value.
      */
     public String clusterBootstrapAccountPassword() {
@@ -43,7 +47,7 @@ public final class WsfcDomainCredentials {
 
     /**
      * Set the clusterBootstrapAccountPassword property: Cluster bootstrap account password.
-     *
+     * 
      * @param clusterBootstrapAccountPassword the clusterBootstrapAccountPassword value to set.
      * @return the WsfcDomainCredentials object itself.
      */
@@ -54,7 +58,7 @@ public final class WsfcDomainCredentials {
 
     /**
      * Get the clusterOperatorAccountPassword property: Cluster operator account password.
-     *
+     * 
      * @return the clusterOperatorAccountPassword value.
      */
     public String clusterOperatorAccountPassword() {
@@ -63,7 +67,7 @@ public final class WsfcDomainCredentials {
 
     /**
      * Set the clusterOperatorAccountPassword property: Cluster operator account password.
-     *
+     * 
      * @param clusterOperatorAccountPassword the clusterOperatorAccountPassword value to set.
      * @return the WsfcDomainCredentials object itself.
      */
@@ -74,7 +78,7 @@ public final class WsfcDomainCredentials {
 
     /**
      * Get the sqlServiceAccountPassword property: SQL service account password.
-     *
+     * 
      * @return the sqlServiceAccountPassword value.
      */
     public String sqlServiceAccountPassword() {
@@ -83,7 +87,7 @@ public final class WsfcDomainCredentials {
 
     /**
      * Set the sqlServiceAccountPassword property: SQL service account password.
-     *
+     * 
      * @param sqlServiceAccountPassword the sqlServiceAccountPassword value to set.
      * @return the WsfcDomainCredentials object itself.
      */
@@ -94,7 +98,7 @@ public final class WsfcDomainCredentials {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Set the access level and network port settings for SQL Server. */
+/**
+ * Set the access level and network port settings for SQL Server.
+ */
 @Fluent
 public final class SqlConnectivityUpdateSettings {
     /*
@@ -34,13 +36,15 @@ public final class SqlConnectivityUpdateSettings {
     @JsonProperty(value = "sqlAuthUpdatePassword")
     private String sqlAuthUpdatePassword;
 
-    /** Creates an instance of SqlConnectivityUpdateSettings class. */
+    /**
+     * Creates an instance of SqlConnectivityUpdateSettings class.
+     */
     public SqlConnectivityUpdateSettings() {
     }
 
     /**
      * Get the connectivityType property: SQL Server connectivity option.
-     *
+     * 
      * @return the connectivityType value.
      */
     public ConnectivityType connectivityType() {
@@ -49,7 +53,7 @@ public final class SqlConnectivityUpdateSettings {
 
     /**
      * Set the connectivityType property: SQL Server connectivity option.
-     *
+     * 
      * @param connectivityType the connectivityType value to set.
      * @return the SqlConnectivityUpdateSettings object itself.
      */
@@ -60,7 +64,7 @@ public final class SqlConnectivityUpdateSettings {
 
     /**
      * Get the port property: SQL Server port.
-     *
+     * 
      * @return the port value.
      */
     public Integer port() {
@@ -69,7 +73,7 @@ public final class SqlConnectivityUpdateSettings {
 
     /**
      * Set the port property: SQL Server port.
-     *
+     * 
      * @param port the port value to set.
      * @return the SqlConnectivityUpdateSettings object itself.
      */
@@ -80,7 +84,7 @@ public final class SqlConnectivityUpdateSettings {
 
     /**
      * Get the sqlAuthUpdateUsername property: SQL Server sysadmin login to create.
-     *
+     * 
      * @return the sqlAuthUpdateUsername value.
      */
     public String sqlAuthUpdateUsername() {
@@ -89,7 +93,7 @@ public final class SqlConnectivityUpdateSettings {
 
     /**
      * Set the sqlAuthUpdateUsername property: SQL Server sysadmin login to create.
-     *
+     * 
      * @param sqlAuthUpdateUsername the sqlAuthUpdateUsername value to set.
      * @return the SqlConnectivityUpdateSettings object itself.
      */
@@ -100,7 +104,7 @@ public final class SqlConnectivityUpdateSettings {
 
     /**
      * Get the sqlAuthUpdatePassword property: SQL Server sysadmin login password.
-     *
+     * 
      * @return the sqlAuthUpdatePassword value.
      */
     public String sqlAuthUpdatePassword() {
@@ -109,7 +113,7 @@ public final class SqlConnectivityUpdateSettings {
 
     /**
      * Set the sqlAuthUpdatePassword property: SQL Server sysadmin login password.
-     *
+     * 
      * @param sqlAuthUpdatePassword the sqlAuthUpdatePassword value to set.
      * @return the SqlConnectivityUpdateSettings object itself.
      */
@@ -120,7 +124,7 @@ public final class SqlConnectivityUpdateSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

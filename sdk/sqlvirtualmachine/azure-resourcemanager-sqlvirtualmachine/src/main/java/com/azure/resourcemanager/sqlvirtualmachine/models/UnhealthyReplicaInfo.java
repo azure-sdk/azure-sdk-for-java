@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** SQL VM Troubleshoot UnhealthyReplica scenario information. */
+/**
+ * SQL VM Troubleshoot UnhealthyReplica scenario information.
+ */
 @Fluent
 public final class UnhealthyReplicaInfo {
     /*
@@ -16,13 +18,15 @@ public final class UnhealthyReplicaInfo {
     @JsonProperty(value = "availabilityGroupName")
     private String availabilityGroupName;
 
-    /** Creates an instance of UnhealthyReplicaInfo class. */
+    /**
+     * Creates an instance of UnhealthyReplicaInfo class.
+     */
     public UnhealthyReplicaInfo() {
     }
 
     /**
      * Get the availabilityGroupName property: The name of the availability group.
-     *
+     * 
      * @return the availabilityGroupName value.
      */
     public String availabilityGroupName() {
@@ -31,7 +35,7 @@ public final class UnhealthyReplicaInfo {
 
     /**
      * Set the availabilityGroupName property: The name of the availability group.
-     *
+     * 
      * @param availabilityGroupName the availabilityGroupName value to set.
      * @return the UnhealthyReplicaInfo object itself.
      */
@@ -42,7 +46,7 @@ public final class UnhealthyReplicaInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
