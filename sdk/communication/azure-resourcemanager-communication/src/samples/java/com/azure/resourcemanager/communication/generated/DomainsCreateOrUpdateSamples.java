@@ -11,9 +11,7 @@ import com.azure.resourcemanager.communication.models.DomainManagement;
  */
 public final class DomainsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/communication/resource-manager/Microsoft.Communication/stable/2023-04-01/examples/domains/
-     * createOrUpdate.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/domains/createOrUpdate.json
      */
     /**
      * Sample code: Create or update Domains resource.
@@ -22,8 +20,11 @@ public final class DomainsCreateOrUpdateSamples {
      */
     public static void
         createOrUpdateDomainsResource(com.azure.resourcemanager.communication.CommunicationManager manager) {
-        manager.domains().define("mydomain.com").withRegion("Global")
+        manager.domains()
+            .define("mydomain.com")
+            .withRegion("Global")
             .withExistingEmailService("MyResourceGroup", "MyEmailServiceResource")
-            .withDomainManagement(DomainManagement.CUSTOMER_MANAGED).create();
+            .withDomainManagement(DomainManagement.CUSTOMER_MANAGED)
+            .create();
     }
 }

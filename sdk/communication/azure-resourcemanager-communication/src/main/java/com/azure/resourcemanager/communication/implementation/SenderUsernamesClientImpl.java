@@ -59,8 +59,8 @@ public final class SenderUsernamesClientImpl implements SenderUsernamesClient {
     }
 
     /**
-     * The interface defining all the services for CommunicationServiceManagementClientSenderUsernames to be used by
-     * the proxy service to perform REST calls.
+     * The interface defining all the services for CommunicationServiceManagementClientSenderUsernames to be used by the
+     * proxy service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "CommunicationService")
