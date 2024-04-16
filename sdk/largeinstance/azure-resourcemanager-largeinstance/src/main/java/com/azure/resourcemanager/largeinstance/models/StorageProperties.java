@@ -15,7 +15,7 @@ public final class StorageProperties {
     /*
      * State of provisioning of the AzureLargeStorageInstance
      */
-    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "provisioningState")
     private ProvisioningState provisioningState;
 
     /*
@@ -40,7 +40,7 @@ public final class StorageProperties {
      * the hardware type of the storage instance
      */
     @JsonProperty(value = "hardwareType")
-    private AzureLargeInstanceHardwareTypeNamesEnum hardwareType;
+    private String hardwareType;
 
     /*
      * the workload for which the resource is getting provisioned
@@ -67,6 +67,17 @@ public final class StorageProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Set the provisioningState property: State of provisioning of the AzureLargeStorageInstance.
+     * 
+     * @param provisioningState the provisioningState value to set.
+     * @return the StorageProperties object itself.
+     */
+    public StorageProperties withProvisioningState(ProvisioningState provisioningState) {
+        this.provisioningState = provisioningState;
+        return this;
     }
 
     /**
@@ -134,7 +145,7 @@ public final class StorageProperties {
      * 
      * @return the hardwareType value.
      */
-    public AzureLargeInstanceHardwareTypeNamesEnum hardwareType() {
+    public String hardwareType() {
         return this.hardwareType;
     }
 
@@ -144,7 +155,7 @@ public final class StorageProperties {
      * @param hardwareType the hardwareType value to set.
      * @return the StorageProperties object itself.
      */
-    public StorageProperties withHardwareType(AzureLargeInstanceHardwareTypeNamesEnum hardwareType) {
+    public StorageProperties withHardwareType(String hardwareType) {
         this.hardwareType = hardwareType;
         return this;
     }

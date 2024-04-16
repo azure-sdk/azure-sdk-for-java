@@ -8,8 +8,8 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The active state empowers the server with the ability to forcefully terminate
- * and halt any existing processes that may be running on the server.
+ * The active state empowers the server with the ability to forcefully terminate and halt any existing processes that
+ * may be running on the server.
  */
 @Fluent
 public final class ForceState {

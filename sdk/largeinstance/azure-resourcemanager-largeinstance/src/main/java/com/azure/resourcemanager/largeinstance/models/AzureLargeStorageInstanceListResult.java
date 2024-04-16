@@ -5,24 +5,23 @@
 package com.azure.resourcemanager.largeinstance.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.largeinstance.fluent.models.AzureLargeStorageInstanceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * The response of a AzureLargeStorageInstance list operation.
+ * The response from the Get AzureLargeStorageInstances operation.
  */
 @Fluent
 public final class AzureLargeStorageInstanceListResult {
     /*
-     * The AzureLargeStorageInstance items on this page
+     * The list of AzureLargeStorage instances.
      */
-    @JsonProperty(value = "value", required = true)
+    @JsonProperty(value = "value")
     private List<AzureLargeStorageInstanceInner> value;
 
     /*
-     * The link to the next page of items
+     * The URL to get the next set of AzureLargeStorage instances.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
@@ -34,7 +33,7 @@ public final class AzureLargeStorageInstanceListResult {
     }
 
     /**
-     * Get the value property: The AzureLargeStorageInstance items on this page.
+     * Get the value property: The list of AzureLargeStorage instances.
      * 
      * @return the value value.
      */
@@ -43,7 +42,7 @@ public final class AzureLargeStorageInstanceListResult {
     }
 
     /**
-     * Set the value property: The AzureLargeStorageInstance items on this page.
+     * Set the value property: The list of AzureLargeStorage instances.
      * 
      * @param value the value value to set.
      * @return the AzureLargeStorageInstanceListResult object itself.
@@ -54,7 +53,7 @@ public final class AzureLargeStorageInstanceListResult {
     }
 
     /**
-     * Get the nextLink property: The link to the next page of items.
+     * Get the nextLink property: The URL to get the next set of AzureLargeStorage instances.
      * 
      * @return the nextLink value.
      */
@@ -63,7 +62,7 @@ public final class AzureLargeStorageInstanceListResult {
     }
 
     /**
-     * Set the nextLink property: The link to the next page of items.
+     * Set the nextLink property: The URL to get the next set of AzureLargeStorage instances.
      * 
      * @param nextLink the nextLink value to set.
      * @return the AzureLargeStorageInstanceListResult object itself.
@@ -79,13 +78,8 @@ public final class AzureLargeStorageInstanceListResult {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property value in model AzureLargeStorageInstanceListResult"));
-        } else {
+        if (value() != null) {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AzureLargeStorageInstanceListResult.class);
 }

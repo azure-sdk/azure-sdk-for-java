@@ -5,24 +5,23 @@
 package com.azure.resourcemanager.largeinstance.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.largeinstance.fluent.models.AzureLargeInstanceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * The response of a AzureLargeInstance list operation.
+ * The response from the List Azure Large Instances operation.
  */
 @Fluent
 public final class AzureLargeInstanceListResult {
     /*
-     * The AzureLargeInstance items on this page
+     * The list of Azure Large Instances.
      */
-    @JsonProperty(value = "value", required = true)
+    @JsonProperty(value = "value")
     private List<AzureLargeInstanceInner> value;
 
     /*
-     * The link to the next page of items
+     * The URL to get the next set of Azure Large Instances.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
@@ -34,7 +33,7 @@ public final class AzureLargeInstanceListResult {
     }
 
     /**
-     * Get the value property: The AzureLargeInstance items on this page.
+     * Get the value property: The list of Azure Large Instances.
      * 
      * @return the value value.
      */
@@ -43,7 +42,7 @@ public final class AzureLargeInstanceListResult {
     }
 
     /**
-     * Set the value property: The AzureLargeInstance items on this page.
+     * Set the value property: The list of Azure Large Instances.
      * 
      * @param value the value value to set.
      * @return the AzureLargeInstanceListResult object itself.
@@ -54,7 +53,7 @@ public final class AzureLargeInstanceListResult {
     }
 
     /**
-     * Get the nextLink property: The link to the next page of items.
+     * Get the nextLink property: The URL to get the next set of Azure Large Instances.
      * 
      * @return the nextLink value.
      */
@@ -63,7 +62,7 @@ public final class AzureLargeInstanceListResult {
     }
 
     /**
-     * Set the nextLink property: The link to the next page of items.
+     * Set the nextLink property: The URL to get the next set of Azure Large Instances.
      * 
      * @param nextLink the nextLink value to set.
      * @return the AzureLargeInstanceListResult object itself.
@@ -79,13 +78,8 @@ public final class AzureLargeInstanceListResult {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property value in model AzureLargeInstanceListResult"));
-        } else {
+        if (value() != null) {
             value().forEach(e -> e.validate());
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AzureLargeInstanceListResult.class);
 }

@@ -35,8 +35,8 @@ import com.azure.resourcemanager.largeinstance.fluent.AzureLargeInstancesClient;
 import com.azure.resourcemanager.largeinstance.fluent.models.AzureLargeInstanceInner;
 import com.azure.resourcemanager.largeinstance.fluent.models.OperationStatusResultInner;
 import com.azure.resourcemanager.largeinstance.models.AzureLargeInstanceListResult;
-import com.azure.resourcemanager.largeinstance.models.AzureLargeInstanceTagsUpdate;
 import com.azure.resourcemanager.largeinstance.models.ForceState;
+import com.azure.resourcemanager.largeinstance.models.Tags;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -53,25 +53,25 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     /**
      * The service client containing this operation class.
      */
-    private final LargeInstanceMgmtClientImpl client;
+    private final AzureLargeInstanceManagementClientImpl client;
 
     /**
      * Initializes an instance of AzureLargeInstancesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    AzureLargeInstancesClientImpl(LargeInstanceMgmtClientImpl client) {
+    AzureLargeInstancesClientImpl(AzureLargeInstanceManagementClientImpl client) {
         this.service = RestProxy.create(AzureLargeInstancesService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for LargeInstanceMgmtClientAzureLargeInstances to be used by the proxy
-     * service to perform REST calls.
+     * The interface defining all the services for AzureLargeInstanceManagementClientAzureLargeInstances to be used by
+     * the proxy service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "LargeInstanceMgmtCli")
+    @ServiceInterface(name = "AzureLargeInstanceMa")
     public interface AzureLargeInstancesService {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.AzureLargeInstance/azureLargeInstances")
@@ -91,25 +91,14 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
             Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}")
-        @ExpectedResponses({ 200 })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/start")
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AzureLargeInstanceInner>> getByResourceGroup(@HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> start(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("azureLargeInstanceName") String azureLargeInstanceName, @HeaderParam("Accept") String accept,
             Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<AzureLargeInstanceInner>> update(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("azureLargeInstanceName") String azureLargeInstanceName,
-            @BodyParam("application/json") AzureLargeInstanceTagsUpdate properties,
-            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/restart")
@@ -133,14 +122,24 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
             Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}/start")
-        @ExpectedResponses({ 200, 202 })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> start(@HostParam("$host") String endpoint,
+        Mono<Response<AzureLargeInstanceInner>> getByResourceGroup(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("azureLargeInstanceName") String azureLargeInstanceName, @HeaderParam("Accept") String accept,
             Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureLargeInstance/azureLargeInstances/{azureLargeInstanceName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<AzureLargeInstanceInner>> update(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("azureLargeInstanceName") String azureLargeInstanceName,
+            @BodyParam("application/json") Tags tagsParameter, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -160,8 +159,10 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription. The
-     * operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription. The operations returns various properties of
+     * each Azure Large Instance.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -188,8 +189,10 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription. The
-     * operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription. The operations returns various properties of
+     * each Azure Large Instance.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -218,8 +221,10 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription. The
-     * operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription. The operations returns various properties of
+     * each Azure Large Instance.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -233,8 +238,10 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription. The
-     * operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription. The operations returns various properties of
+     * each Azure Large Instance.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -250,8 +257,10 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription. The
-     * operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription. The operations returns various properties of
+     * each Azure Large Instance.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -264,8 +273,10 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription. The
-     * operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription. The operations returns various properties of
+     * each Azure Large Instance.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -280,15 +291,17 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription and resource
-     * group. The operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription and resource group. The operations returns
+     * various properties of each Azure Large Instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Azure Large Instances in the specified subscription and resource
-     * group along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of Azure Large Instances in the specified subscription and resource group along with
+     * {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AzureLargeInstanceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName) {
@@ -314,16 +327,18 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription and resource
-     * group. The operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription and resource group. The operations returns
+     * various properties of each Azure Large Instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Azure Large Instances in the specified subscription and resource
-     * group along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of Azure Large Instances in the specified subscription and resource group along with
+     * {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AzureLargeInstanceInner>> listByResourceGroupSinglePageAsync(String resourceGroupName,
@@ -350,15 +365,17 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription and resource
-     * group. The operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription and resource group. The operations returns
+     * various properties of each Azure Large Instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Azure Large Instances in the specified subscription and resource
-     * group as paginated response with {@link PagedFlux}.
+     * @return a list of Azure Large Instances in the specified subscription and resource group as paginated response
+     * with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AzureLargeInstanceInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -367,16 +384,18 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription and resource
-     * group. The operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription and resource group. The operations returns
+     * various properties of each Azure Large Instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Azure Large Instances in the specified subscription and resource
-     * group as paginated response with {@link PagedFlux}.
+     * @return a list of Azure Large Instances in the specified subscription and resource group as paginated response
+     * with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AzureLargeInstanceInner> listByResourceGroupAsync(String resourceGroupName, Context context) {
@@ -385,15 +404,17 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription and resource
-     * group. The operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription and resource group. The operations returns
+     * various properties of each Azure Large Instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Azure Large Instances in the specified subscription and resource
-     * group as paginated response with {@link PagedIterable}.
+     * @return a list of Azure Large Instances in the specified subscription and resource group as paginated response
+     * with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AzureLargeInstanceInner> listByResourceGroup(String resourceGroupName) {
@@ -401,16 +422,18 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription and resource
-     * group. The operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription and resource group. The operations returns
+     * various properties of each Azure Large Instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Azure Large Instances in the specified subscription and resource
-     * group as paginated response with {@link PagedIterable}.
+     * @return a list of Azure Large Instances in the specified subscription and resource group as paginated response
+     * with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AzureLargeInstanceInner> listByResourceGroup(String resourceGroupName, Context context) {
@@ -418,19 +441,20 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * Gets an Azure Large Instance for the specified subscription, resource group,
-     * and instance name.
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Instance for the specified subscription, resource group,
-     * and instance name along with {@link Response} on successful completion of {@link Mono}.
+     * @return the current status of an async operation along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AzureLargeInstanceInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+    private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String resourceGroupName,
         String azureLargeInstanceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -450,14 +474,15 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.start(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, azureLargeInstanceName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Gets an Azure Large Instance for the specified subscription, resource group,
-     * and instance name.
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
@@ -465,11 +490,11 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Instance for the specified subscription, resource group,
-     * and instance name along with {@link Response} on successful completion of {@link Mono}.
+     * @return the current status of an async operation along with {@link Response} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AzureLargeInstanceInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
+    private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String resourceGroupName,
         String azureLargeInstanceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -489,32 +514,35 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, azureLargeInstanceName, accept, context);
+        return service.start(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, azureLargeInstanceName, accept, context);
     }
 
     /**
-     * Gets an Azure Large Instance for the specified subscription, resource group,
-     * and instance name.
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Instance for the specified subscription, resource group,
-     * and instance name on successful completion of {@link Mono}.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AzureLargeInstanceInner> getByResourceGroupAsync(String resourceGroupName,
-        String azureLargeInstanceName) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, azureLargeInstanceName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginStartAsync(String resourceGroupName, String azureLargeInstanceName) {
+        Mono<Response<Flux<ByteBuffer>>> mono = startWithResponseAsync(resourceGroupName, azureLargeInstanceName);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
+            this.client.getContext());
     }
 
     /**
-     * Gets an Azure Large Instance for the specified subscription, resource group,
-     * and instance name.
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
@@ -522,179 +550,131 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Instance for the specified subscription, resource group,
-     * and instance name along with {@link Response}.
+     * @return the {@link PollerFlux} for polling of the current status of an async operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AzureLargeInstanceInner> getByResourceGroupWithResponse(String resourceGroupName,
-        String azureLargeInstanceName, Context context) {
-        return getByResourceGroupWithResponseAsync(resourceGroupName, azureLargeInstanceName, context).block();
-    }
-
-    /**
-     * Gets an Azure Large Instance for the specified subscription, resource group,
-     * and instance name.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Instance for the specified subscription, resource group,
-     * and instance name.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public AzureLargeInstanceInner getByResourceGroup(String resourceGroupName, String azureLargeInstanceName) {
-        return getByResourceGroupWithResponse(resourceGroupName, azureLargeInstanceName, Context.NONE).getValue();
-    }
-
-    /**
-     * Patches the Tags field of an Azure Large Instance for the specified
-     * subscription, resource group, and instance name.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @param properties The resource properties to be updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance
-     * properties) along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AzureLargeInstanceInner>> updateWithResponseAsync(String resourceGroupName,
-        String azureLargeInstanceName, AzureLargeInstanceTagsUpdate properties) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (azureLargeInstanceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter azureLargeInstanceName is required and cannot be null."));
-        }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
-        } else {
-            properties.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, azureLargeInstanceName, properties, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Patches the Tags field of an Azure Large Instance for the specified
-     * subscription, resource group, and instance name.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @param properties The resource properties to be updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance
-     * properties) along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<AzureLargeInstanceInner>> updateWithResponseAsync(String resourceGroupName,
-        String azureLargeInstanceName, AzureLargeInstanceTagsUpdate properties, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (azureLargeInstanceName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter azureLargeInstanceName is required and cannot be null."));
-        }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
-        } else {
-            properties.validate();
-        }
-        final String accept = "application/json";
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginStartAsync(String resourceGroupName, String azureLargeInstanceName, Context context) {
         context = this.client.mergeContext(context);
-        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, azureLargeInstanceName, properties, accept, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = startWithResponseAsync(resourceGroupName, azureLargeInstanceName, context);
+        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
+            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
     }
 
     /**
-     * Patches the Tags field of an Azure Large Instance for the specified
-     * subscription, resource group, and instance name.
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance
-     * properties) on successful completion of {@link Mono}.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<AzureLargeInstanceInner> updateAsync(String resourceGroupName, String azureLargeInstanceName,
-        AzureLargeInstanceTagsUpdate properties) {
-        return updateWithResponseAsync(resourceGroupName, azureLargeInstanceName, properties)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginStart(String resourceGroupName, String azureLargeInstanceName) {
+        return this.beginStartAsync(resourceGroupName, azureLargeInstanceName).getSyncPoller();
     }
 
     /**
-     * Patches the Tags field of an Azure Large Instance for the specified
-     * subscription, resource group, and instance name.
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @param properties The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance
-     * properties) along with {@link Response}.
+     * @return the {@link SyncPoller} for polling of the current status of an async operation.
      */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<AzureLargeInstanceInner> updateWithResponse(String resourceGroupName, String azureLargeInstanceName,
-        AzureLargeInstanceTagsUpdate properties, Context context) {
-        return updateWithResponseAsync(resourceGroupName, azureLargeInstanceName, properties, context).block();
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
+        beginStart(String resourceGroupName, String azureLargeInstanceName, Context context) {
+        return this.beginStartAsync(resourceGroupName, azureLargeInstanceName, context).getSyncPoller();
     }
 
     /**
-     * Patches the Tags field of an Azure Large Instance for the specified
-     * subscription, resource group, and instance name.
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @param properties The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance
-     * properties).
+     * @return the current status of an async operation on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public AzureLargeInstanceInner update(String resourceGroupName, String azureLargeInstanceName,
-        AzureLargeInstanceTagsUpdate properties) {
-        return updateWithResponse(resourceGroupName, azureLargeInstanceName, properties, Context.NONE).getValue();
+    private Mono<OperationStatusResultInner> startAsync(String resourceGroupName, String azureLargeInstanceName) {
+        return beginStartAsync(resourceGroupName, azureLargeInstanceName).last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<OperationStatusResultInner> startAsync(String resourceGroupName, String azureLargeInstanceName,
+        Context context) {
+        return beginStartAsync(resourceGroupName, azureLargeInstanceName, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationStatusResultInner start(String resourceGroupName, String azureLargeInstanceName) {
+        return startAsync(resourceGroupName, azureLargeInstanceName).block();
+    }
+
+    /**
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public OperationStatusResultInner start(String resourceGroupName, String azureLargeInstanceName, Context context) {
+        return startAsync(resourceGroupName, azureLargeInstanceName, context).block();
+    }
+
+    /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -738,6 +718,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -780,6 +762,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -802,6 +786,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -823,6 +809,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -846,6 +834,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -863,6 +853,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -883,6 +875,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -902,6 +896,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -919,6 +915,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -939,6 +937,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -955,6 +955,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -974,6 +976,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1011,6 +1015,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1048,6 +1054,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1067,6 +1075,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1088,6 +1098,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1104,6 +1116,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1121,6 +1135,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1137,6 +1153,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1155,6 +1173,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1170,6 +1190,8 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1187,18 +1209,20 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
     }
 
     /**
-     * The operation to start an Azure Large Instance (only for compute instances).
+     * Gets an Azure Large Instance.
+     * 
+     * Gets an Azure Large Instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return an Azure Large Instance for the specified subscription, resource group, and instance name along with
+     * {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String resourceGroupName,
+    private Mono<Response<AzureLargeInstanceInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
         String azureLargeInstanceName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -1218,13 +1242,15 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.start(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
                 this.client.getSubscriptionId(), resourceGroupName, azureLargeInstanceName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * The operation to start an Azure Large Instance (only for compute instances).
+     * Gets an Azure Large Instance.
+     * 
+     * Gets an Azure Large Instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
@@ -1232,11 +1258,11 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation along with {@link Response} on successful completion of
-     * {@link Mono}.
+     * @return an Azure Large Instance for the specified subscription, resource group, and instance name along with
+     * {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> startWithResponseAsync(String resourceGroupName,
+    private Mono<Response<AzureLargeInstanceInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
         String azureLargeInstanceName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -1256,31 +1282,34 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.start(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, azureLargeInstanceName, accept, context);
+        return service.getByResourceGroup(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, azureLargeInstanceName, accept, context);
     }
 
     /**
-     * The operation to start an Azure Large Instance (only for compute instances).
+     * Gets an Azure Large Instance.
+     * 
+     * Gets an Azure Large Instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     * @return an Azure Large Instance for the specified subscription, resource group, and instance name on successful
+     * completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginStartAsync(String resourceGroupName, String azureLargeInstanceName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = startWithResponseAsync(resourceGroupName, azureLargeInstanceName);
-        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
-            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class,
-            this.client.getContext());
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<AzureLargeInstanceInner> getByResourceGroupAsync(String resourceGroupName,
+        String azureLargeInstanceName) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, azureLargeInstanceName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * The operation to start an Azure Large Instance (only for compute instances).
+     * Gets an Azure Large Instance.
+     * 
+     * Gets an Azure Large Instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
@@ -1288,114 +1317,184 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the current status of an async operation.
+     * @return an Azure Large Instance for the specified subscription, resource group, and instance name along with
+     * {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginStartAsync(String resourceGroupName, String azureLargeInstanceName, Context context) {
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<AzureLargeInstanceInner> getByResourceGroupWithResponse(String resourceGroupName,
+        String azureLargeInstanceName, Context context) {
+        return getByResourceGroupWithResponseAsync(resourceGroupName, azureLargeInstanceName, context).block();
+    }
+
+    /**
+     * Gets an Azure Large Instance.
+     * 
+     * Gets an Azure Large Instance for the specified subscription, resource group, and instance name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an Azure Large Instance for the specified subscription, resource group, and instance name.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public AzureLargeInstanceInner getByResourceGroup(String resourceGroupName, String azureLargeInstanceName) {
+        return getByResourceGroupWithResponse(resourceGroupName, azureLargeInstanceName, Context.NONE).getValue();
+    }
+
+    /**
+     * Patches the Tags field of an Azure Large Instance.
+     * 
+     * Patches the Tags field of an Azure Large Instance for the specified subscription, resource group, and instance
+     * name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @param tagsParameter Request body that only contains the new Tags field.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance properties) along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<AzureLargeInstanceInner>> updateWithResponseAsync(String resourceGroupName,
+        String azureLargeInstanceName, Tags tagsParameter) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (azureLargeInstanceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter azureLargeInstanceName is required and cannot be null."));
+        }
+        if (tagsParameter == null) {
+            return Mono.error(new IllegalArgumentException("Parameter tagsParameter is required and cannot be null."));
+        } else {
+            tagsParameter.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, azureLargeInstanceName, tagsParameter, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Patches the Tags field of an Azure Large Instance.
+     * 
+     * Patches the Tags field of an Azure Large Instance for the specified subscription, resource group, and instance
+     * name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @param tagsParameter Request body that only contains the new Tags field.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance properties) along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<AzureLargeInstanceInner>> updateWithResponseAsync(String resourceGroupName,
+        String azureLargeInstanceName, Tags tagsParameter, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (azureLargeInstanceName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter azureLargeInstanceName is required and cannot be null."));
+        }
+        if (tagsParameter == null) {
+            return Mono.error(new IllegalArgumentException("Parameter tagsParameter is required and cannot be null."));
+        } else {
+            tagsParameter.validate();
+        }
+        final String accept = "application/json";
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = startWithResponseAsync(resourceGroupName, azureLargeInstanceName, context);
-        return this.client.<OperationStatusResultInner, OperationStatusResultInner>getLroResult(mono,
-            this.client.getHttpPipeline(), OperationStatusResultInner.class, OperationStatusResultInner.class, context);
+        return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, azureLargeInstanceName, tagsParameter, accept, context);
     }
 
     /**
-     * The operation to start an Azure Large Instance (only for compute instances).
+     * Patches the Tags field of an Azure Large Instance.
+     * 
+     * Patches the Tags field of an Azure Large Instance for the specified subscription, resource group, and instance
+     * name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @param tagsParameter Request body that only contains the new Tags field.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance properties) on successful
+     * completion of {@link Mono}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginStart(String resourceGroupName, String azureLargeInstanceName) {
-        return this.beginStartAsync(resourceGroupName, azureLargeInstanceName).getSyncPoller();
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<AzureLargeInstanceInner> updateAsync(String resourceGroupName, String azureLargeInstanceName,
+        Tags tagsParameter) {
+        return updateWithResponseAsync(resourceGroupName, azureLargeInstanceName, tagsParameter)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * The operation to start an Azure Large Instance (only for compute instances).
+     * Patches the Tags field of an Azure Large Instance.
+     * 
+     * Patches the Tags field of an Azure Large Instance for the specified subscription, resource group, and instance
+     * name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @param tagsParameter Request body that only contains the new Tags field.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the current status of an async operation.
+     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance properties) along with
+     * {@link Response}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<OperationStatusResultInner>, OperationStatusResultInner>
-        beginStart(String resourceGroupName, String azureLargeInstanceName, Context context) {
-        return this.beginStartAsync(resourceGroupName, azureLargeInstanceName, context).getSyncPoller();
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<AzureLargeInstanceInner> updateWithResponse(String resourceGroupName, String azureLargeInstanceName,
+        Tags tagsParameter, Context context) {
+        return updateWithResponseAsync(resourceGroupName, azureLargeInstanceName, tagsParameter, context).block();
     }
 
     /**
-     * The operation to start an Azure Large Instance (only for compute instances).
+     * Patches the Tags field of an Azure Large Instance.
+     * 
+     * Patches the Tags field of an Azure Large Instance for the specified subscription, resource group, and instance
+     * name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @param tagsParameter Request body that only contains the new Tags field.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation on successful completion of {@link Mono}.
+     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance properties).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationStatusResultInner> startAsync(String resourceGroupName, String azureLargeInstanceName) {
-        return beginStartAsync(resourceGroupName, azureLargeInstanceName).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * The operation to start an Azure Large Instance (only for compute instances).
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<OperationStatusResultInner> startAsync(String resourceGroupName, String azureLargeInstanceName,
-        Context context) {
-        return beginStartAsync(resourceGroupName, azureLargeInstanceName, context).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * The operation to start an Azure Large Instance (only for compute instances).
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner start(String resourceGroupName, String azureLargeInstanceName) {
-        return startAsync(resourceGroupName, azureLargeInstanceName).block();
-    }
-
-    /**
-     * The operation to start an Azure Large Instance (only for compute instances).
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public OperationStatusResultInner start(String resourceGroupName, String azureLargeInstanceName, Context context) {
-        return startAsync(resourceGroupName, azureLargeInstanceName, context).block();
+    public AzureLargeInstanceInner update(String resourceGroupName, String azureLargeInstanceName, Tags tagsParameter) {
+        return updateWithResponse(resourceGroupName, azureLargeInstanceName, tagsParameter, Context.NONE).getValue();
     }
 
     /**
@@ -1407,7 +1506,7 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a AzureLargeInstance list operation along with {@link PagedResponse} on successful
+     * @return the response from the List Azure Large Instances operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1438,7 +1537,7 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a AzureLargeInstance list operation along with {@link PagedResponse} on successful
+     * @return the response from the List Azure Large Instances operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1467,7 +1566,7 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a AzureLargeInstance list operation along with {@link PagedResponse} on successful
+     * @return the response from the List Azure Large Instances operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1498,7 +1597,7 @@ public final class AzureLargeInstancesClientImpl implements AzureLargeInstancesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a AzureLargeInstance list operation along with {@link PagedResponse} on successful
+     * @return the response from the List Azure Large Instances operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)

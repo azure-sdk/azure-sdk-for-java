@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Enum of the hardware options (vendor and/or their product name) for an Azure Large Instance.
+ * Name of the hardware type (vendor and/or their product name).
  */
 public final class AzureLargeInstanceHardwareTypeNamesEnum
     extends ExpandableStringEnum<AzureLargeInstanceHardwareTypeNamesEnum> {

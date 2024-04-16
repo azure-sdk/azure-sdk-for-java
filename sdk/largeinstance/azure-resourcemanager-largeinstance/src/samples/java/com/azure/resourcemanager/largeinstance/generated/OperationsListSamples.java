@@ -9,16 +9,15 @@ package com.azure.resourcemanager.largeinstance.generated;
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstanceOperations_List.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstanceOperations_List.json
      */
     /**
-     * Sample code: Operations_List.
+     * Sample code: List all management operations supported by the AzureLargeInstance RP.
      * 
-     * @param manager Entry point to LargeInstanceManager.
+     * @param manager Entry point to AzureLargeInstanceManager.
      */
-    public static void operationsList(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
+    public static void listAllManagementOperationsSupportedByTheAzureLargeInstanceRP(
+        com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

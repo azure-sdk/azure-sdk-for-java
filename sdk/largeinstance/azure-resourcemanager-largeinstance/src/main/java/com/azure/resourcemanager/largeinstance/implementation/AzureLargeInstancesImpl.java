@@ -13,20 +13,20 @@ import com.azure.resourcemanager.largeinstance.fluent.AzureLargeInstancesClient;
 import com.azure.resourcemanager.largeinstance.fluent.models.AzureLargeInstanceInner;
 import com.azure.resourcemanager.largeinstance.fluent.models.OperationStatusResultInner;
 import com.azure.resourcemanager.largeinstance.models.AzureLargeInstance;
-import com.azure.resourcemanager.largeinstance.models.AzureLargeInstanceTagsUpdate;
 import com.azure.resourcemanager.largeinstance.models.AzureLargeInstances;
 import com.azure.resourcemanager.largeinstance.models.ForceState;
 import com.azure.resourcemanager.largeinstance.models.OperationStatusResult;
+import com.azure.resourcemanager.largeinstance.models.Tags;
 
 public final class AzureLargeInstancesImpl implements AzureLargeInstances {
     private static final ClientLogger LOGGER = new ClientLogger(AzureLargeInstancesImpl.class);
 
     private final AzureLargeInstancesClient innerClient;
 
-    private final com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager;
+    private final com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager;
 
     public AzureLargeInstancesImpl(AzureLargeInstancesClient innerClient,
-        com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager) {
+        com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -52,46 +52,20 @@ public final class AzureLargeInstancesImpl implements AzureLargeInstances {
         return ResourceManagerUtils.mapPage(inner, inner1 -> new AzureLargeInstanceImpl(inner1, this.manager()));
     }
 
-    public Response<AzureLargeInstance> getByResourceGroupWithResponse(String resourceGroupName,
-        String azureLargeInstanceName, Context context) {
-        Response<AzureLargeInstanceInner> inner
-            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, azureLargeInstanceName, context);
+    public OperationStatusResult start(String resourceGroupName, String azureLargeInstanceName) {
+        OperationStatusResultInner inner = this.serviceClient().start(resourceGroupName, azureLargeInstanceName);
         if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new AzureLargeInstanceImpl(inner.getValue(), this.manager()));
+            return new OperationStatusResultImpl(inner, this.manager());
         } else {
             return null;
         }
     }
 
-    public AzureLargeInstance getByResourceGroup(String resourceGroupName, String azureLargeInstanceName) {
-        AzureLargeInstanceInner inner
-            = this.serviceClient().getByResourceGroup(resourceGroupName, azureLargeInstanceName);
+    public OperationStatusResult start(String resourceGroupName, String azureLargeInstanceName, Context context) {
+        OperationStatusResultInner inner
+            = this.serviceClient().start(resourceGroupName, azureLargeInstanceName, context);
         if (inner != null) {
-            return new AzureLargeInstanceImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public Response<AzureLargeInstance> updateWithResponse(String resourceGroupName, String azureLargeInstanceName,
-        AzureLargeInstanceTagsUpdate properties, Context context) {
-        Response<AzureLargeInstanceInner> inner
-            = this.serviceClient().updateWithResponse(resourceGroupName, azureLargeInstanceName, properties, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new AzureLargeInstanceImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public AzureLargeInstance update(String resourceGroupName, String azureLargeInstanceName,
-        AzureLargeInstanceTagsUpdate properties) {
-        AzureLargeInstanceInner inner
-            = this.serviceClient().update(resourceGroupName, azureLargeInstanceName, properties);
-        if (inner != null) {
-            return new AzureLargeInstanceImpl(inner, this.manager());
+            return new OperationStatusResultImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -136,20 +110,45 @@ public final class AzureLargeInstancesImpl implements AzureLargeInstances {
         }
     }
 
-    public OperationStatusResult start(String resourceGroupName, String azureLargeInstanceName) {
-        OperationStatusResultInner inner = this.serviceClient().start(resourceGroupName, azureLargeInstanceName);
+    public Response<AzureLargeInstance> getByResourceGroupWithResponse(String resourceGroupName,
+        String azureLargeInstanceName, Context context) {
+        Response<AzureLargeInstanceInner> inner
+            = this.serviceClient().getByResourceGroupWithResponse(resourceGroupName, azureLargeInstanceName, context);
         if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new AzureLargeInstanceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public OperationStatusResult start(String resourceGroupName, String azureLargeInstanceName, Context context) {
-        OperationStatusResultInner inner
-            = this.serviceClient().start(resourceGroupName, azureLargeInstanceName, context);
+    public AzureLargeInstance getByResourceGroup(String resourceGroupName, String azureLargeInstanceName) {
+        AzureLargeInstanceInner inner
+            = this.serviceClient().getByResourceGroup(resourceGroupName, azureLargeInstanceName);
         if (inner != null) {
-            return new OperationStatusResultImpl(inner, this.manager());
+            return new AzureLargeInstanceImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public Response<AzureLargeInstance> updateWithResponse(String resourceGroupName, String azureLargeInstanceName,
+        Tags tagsParameter, Context context) {
+        Response<AzureLargeInstanceInner> inner = this.serviceClient()
+            .updateWithResponse(resourceGroupName, azureLargeInstanceName, tagsParameter, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new AzureLargeInstanceImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AzureLargeInstance update(String resourceGroupName, String azureLargeInstanceName, Tags tagsParameter) {
+        AzureLargeInstanceInner inner
+            = this.serviceClient().update(resourceGroupName, azureLargeInstanceName, tagsParameter);
+        if (inner != null) {
+            return new AzureLargeInstanceImpl(inner, this.manager());
         } else {
             return null;
         }
@@ -159,7 +158,7 @@ public final class AzureLargeInstancesImpl implements AzureLargeInstances {
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.largeinstance.LargeInstanceManager manager() {
+    private com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager() {
         return this.serviceManager;
     }
 }

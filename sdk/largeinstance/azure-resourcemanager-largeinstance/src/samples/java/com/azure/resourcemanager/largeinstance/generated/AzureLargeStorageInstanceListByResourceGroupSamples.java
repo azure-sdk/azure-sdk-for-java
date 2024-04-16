@@ -9,17 +9,15 @@ package com.azure.resourcemanager.largeinstance.generated;
  */
 public final class AzureLargeStorageInstanceListByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeStorageInstance_ListByResourceGroup.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeStorageInstance_ListByResourceGroup.json
      */
     /**
-     * Sample code: AzureLargeStorageInstance_ListByResourceGroup.
+     * Sample code: List all AzureLargeStorageInstances in a resource group.
      * 
-     * @param manager Entry point to LargeInstanceManager.
+     * @param manager Entry point to AzureLargeInstanceManager.
      */
-    public static void azureLargeStorageInstanceListByResourceGroup(
-        com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
+    public static void listAllAzureLargeStorageInstancesInAResourceGroup(
+        com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager) {
         manager.azureLargeStorageInstances().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }

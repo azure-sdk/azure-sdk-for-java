@@ -48,18 +48,25 @@ public interface AzureLargeStorageInstance {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    AzureLargeStorageInstanceProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the azureLargeStorageInstanceUniqueIdentifier property: Specifies the AzureLargeStorageInstance unique ID.
+     * 
+     * @return the azureLargeStorageInstanceUniqueIdentifier value.
+     */
+    String azureLargeStorageInstanceUniqueIdentifier();
+
+    /**
+     * Gets the storageProperties property: Specifies the storage properties for the AzureLargeStorage instance.
+     * 
+     * @return the storageProperties value.
+     */
+    StorageProperties storageProperties();
 
     /**
      * Gets the inner com.azure.resourcemanager.largeinstance.fluent.models.AzureLargeStorageInstanceInner object.

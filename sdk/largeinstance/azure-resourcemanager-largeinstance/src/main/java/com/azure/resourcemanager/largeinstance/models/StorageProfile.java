@@ -20,8 +20,7 @@ public final class StorageProfile {
     private String nfsIpAddress;
 
     /*
-     * Specifies information about the operating system disk used by Azure Large
-     * Instance.
+     * Specifies information about the operating system disk used by Azure Large Instance.
      */
     @JsonProperty(value = "osDisks")
     private List<Disk> osDisks;
@@ -42,8 +41,7 @@ public final class StorageProfile {
     }
 
     /**
-     * Get the osDisks property: Specifies information about the operating system disk used by Azure Large
-     * Instance.
+     * Get the osDisks property: Specifies information about the operating system disk used by Azure Large Instance.
      * 
      * @return the osDisks value.
      */
@@ -52,8 +50,7 @@ public final class StorageProfile {
     }
 
     /**
-     * Set the osDisks property: Specifies information about the operating system disk used by Azure Large
-     * Instance.
+     * Set the osDisks property: Specifies information about the operating system disk used by Azure Large Instance.
      * 
      * @param osDisks the osDisks value to set.
      * @return the StorageProfile object itself.

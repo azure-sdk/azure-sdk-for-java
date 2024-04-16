@@ -15,10 +15,10 @@ import com.azure.core.util.serializer.SerializerAdapter;
 import java.time.Duration;
 
 /**
- * A builder for creating a new instance of the LargeInstanceMgmtClientImpl type.
+ * A builder for creating a new instance of the AzureLargeInstanceManagementClientImpl type.
  */
-@ServiceClientBuilder(serviceClients = { LargeInstanceMgmtClientImpl.class })
-public final class LargeInstanceMgmtClientBuilder {
+@ServiceClientBuilder(serviceClients = { AzureLargeInstanceManagementClientImpl.class })
+public final class AzureLargeInstanceManagementClientBuilder {
     /*
      * The ID of the target subscription. The value must be an UUID.
      */
@@ -28,9 +28,9 @@ public final class LargeInstanceMgmtClientBuilder {
      * Sets The ID of the target subscription. The value must be an UUID.
      * 
      * @param subscriptionId the subscriptionId value.
-     * @return the LargeInstanceMgmtClientBuilder.
+     * @return the AzureLargeInstanceManagementClientBuilder.
      */
-    public LargeInstanceMgmtClientBuilder subscriptionId(String subscriptionId) {
+    public AzureLargeInstanceManagementClientBuilder subscriptionId(String subscriptionId) {
         this.subscriptionId = subscriptionId;
         return this;
     }
@@ -44,9 +44,9 @@ public final class LargeInstanceMgmtClientBuilder {
      * Sets server parameter.
      * 
      * @param endpoint the endpoint value.
-     * @return the LargeInstanceMgmtClientBuilder.
+     * @return the AzureLargeInstanceManagementClientBuilder.
      */
-    public LargeInstanceMgmtClientBuilder endpoint(String endpoint) {
+    public AzureLargeInstanceManagementClientBuilder endpoint(String endpoint) {
         this.endpoint = endpoint;
         return this;
     }
@@ -60,9 +60,9 @@ public final class LargeInstanceMgmtClientBuilder {
      * Sets The environment to connect to.
      * 
      * @param environment the environment value.
-     * @return the LargeInstanceMgmtClientBuilder.
+     * @return the AzureLargeInstanceManagementClientBuilder.
      */
-    public LargeInstanceMgmtClientBuilder environment(AzureEnvironment environment) {
+    public AzureLargeInstanceManagementClientBuilder environment(AzureEnvironment environment) {
         this.environment = environment;
         return this;
     }
@@ -76,9 +76,9 @@ public final class LargeInstanceMgmtClientBuilder {
      * Sets The HTTP pipeline to send requests through.
      * 
      * @param pipeline the pipeline value.
-     * @return the LargeInstanceMgmtClientBuilder.
+     * @return the AzureLargeInstanceManagementClientBuilder.
      */
-    public LargeInstanceMgmtClientBuilder pipeline(HttpPipeline pipeline) {
+    public AzureLargeInstanceManagementClientBuilder pipeline(HttpPipeline pipeline) {
         this.pipeline = pipeline;
         return this;
     }
@@ -92,9 +92,9 @@ public final class LargeInstanceMgmtClientBuilder {
      * Sets The default poll interval for long-running operation.
      * 
      * @param defaultPollInterval the defaultPollInterval value.
-     * @return the LargeInstanceMgmtClientBuilder.
+     * @return the AzureLargeInstanceManagementClientBuilder.
      */
-    public LargeInstanceMgmtClientBuilder defaultPollInterval(Duration defaultPollInterval) {
+    public AzureLargeInstanceManagementClientBuilder defaultPollInterval(Duration defaultPollInterval) {
         this.defaultPollInterval = defaultPollInterval;
         return this;
     }
@@ -108,29 +108,31 @@ public final class LargeInstanceMgmtClientBuilder {
      * Sets The serializer to serialize an object into a string.
      * 
      * @param serializerAdapter the serializerAdapter value.
-     * @return the LargeInstanceMgmtClientBuilder.
+     * @return the AzureLargeInstanceManagementClientBuilder.
      */
-    public LargeInstanceMgmtClientBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
+    public AzureLargeInstanceManagementClientBuilder serializerAdapter(SerializerAdapter serializerAdapter) {
         this.serializerAdapter = serializerAdapter;
         return this;
     }
 
     /**
-     * Builds an instance of LargeInstanceMgmtClientImpl with the provided parameters.
+     * Builds an instance of AzureLargeInstanceManagementClientImpl with the provided parameters.
      * 
-     * @return an instance of LargeInstanceMgmtClientImpl.
+     * @return an instance of AzureLargeInstanceManagementClientImpl.
      */
-    public LargeInstanceMgmtClientImpl buildClient() {
+    public AzureLargeInstanceManagementClientImpl buildClient() {
         String localEndpoint = (endpoint != null) ? endpoint : "https://management.azure.com";
         AzureEnvironment localEnvironment = (environment != null) ? environment : AzureEnvironment.AZURE;
-        HttpPipeline localPipeline = (pipeline != null) ? pipeline
+        HttpPipeline localPipeline = (pipeline != null)
+            ? pipeline
             : new HttpPipelineBuilder().policies(new UserAgentPolicy(), new RetryPolicy()).build();
         Duration localDefaultPollInterval
             = (defaultPollInterval != null) ? defaultPollInterval : Duration.ofSeconds(30);
-        SerializerAdapter localSerializerAdapter = (serializerAdapter != null) ? serializerAdapter
+        SerializerAdapter localSerializerAdapter = (serializerAdapter != null)
+            ? serializerAdapter
             : SerializerFactory.createDefaultManagementSerializerAdapter();
-        LargeInstanceMgmtClientImpl client = new LargeInstanceMgmtClientImpl(localPipeline, localSerializerAdapter,
-            localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
+        AzureLargeInstanceManagementClientImpl client = new AzureLargeInstanceManagementClientImpl(localPipeline,
+            localSerializerAdapter, localDefaultPollInterval, localEnvironment, this.subscriptionId, localEndpoint);
         return client;
     }
 }

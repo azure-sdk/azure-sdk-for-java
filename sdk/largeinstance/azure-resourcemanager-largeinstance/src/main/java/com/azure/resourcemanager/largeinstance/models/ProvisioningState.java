@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * An enum of possible operation states for an AzureLargeStorageInstances.
+ * State of provisioning of the AzureLargeStorageInstance.
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /**

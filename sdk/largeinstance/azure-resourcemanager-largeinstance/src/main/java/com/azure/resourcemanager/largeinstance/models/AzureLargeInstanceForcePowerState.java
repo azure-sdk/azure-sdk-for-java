@@ -9,8 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Enum of two possible values to determine if the ALI instance restart operation should forcefully terminate and halt
- * any existing processes that may be running on the server or not.
+ * Whether to force restart by shutting all processes.
  */
 public final class AzureLargeInstanceForcePowerState extends ExpandableStringEnum<AzureLargeInstanceForcePowerState> {
     /**

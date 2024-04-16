@@ -7,17 +7,17 @@ package com.azure.resourcemanager.largeinstance.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.largeinstance.fluent.models.AzureLargeStorageInstanceInner;
 import com.azure.resourcemanager.largeinstance.models.AzureLargeStorageInstance;
-import com.azure.resourcemanager.largeinstance.models.AzureLargeStorageInstanceProperties;
+import com.azure.resourcemanager.largeinstance.models.StorageProperties;
 import java.util.Collections;
 import java.util.Map;
 
 public final class AzureLargeStorageInstanceImpl implements AzureLargeStorageInstance {
     private AzureLargeStorageInstanceInner innerObject;
 
-    private final com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager;
+    private final com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager;
 
     AzureLargeStorageInstanceImpl(AzureLargeStorageInstanceInner innerObject,
-        com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager) {
+        com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -47,19 +47,23 @@ public final class AzureLargeStorageInstanceImpl implements AzureLargeStorageIns
         }
     }
 
-    public AzureLargeStorageInstanceProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String azureLargeStorageInstanceUniqueIdentifier() {
+        return this.innerModel().azureLargeStorageInstanceUniqueIdentifier();
+    }
+
+    public StorageProperties storageProperties() {
+        return this.innerModel().storageProperties();
     }
 
     public AzureLargeStorageInstanceInner innerModel() {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.largeinstance.LargeInstanceManager manager() {
+    private com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager() {
         return this.serviceManager;
     }
 }

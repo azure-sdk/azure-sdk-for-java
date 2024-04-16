@@ -13,8 +13,10 @@ import com.azure.core.util.Context;
  */
 public interface AzureLargeInstances {
     /**
-     * Gets a list of Azure Large Instances in the specified subscription. The
-     * operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription. The operations returns various properties of
+     * each Azure Large Instance.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -24,8 +26,10 @@ public interface AzureLargeInstances {
     PagedIterable<AzureLargeInstance> list();
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription. The
-     * operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription. The operations returns various properties of
+     * each Azure Large Instance.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -37,35 +41,54 @@ public interface AzureLargeInstances {
     PagedIterable<AzureLargeInstance> list(Context context);
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription and resource
-     * group. The operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription and resource group. The operations returns
+     * various properties of each Azure Large Instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Azure Large Instances in the specified subscription and resource
-     * group as paginated response with {@link PagedIterable}.
+     * @return a list of Azure Large Instances in the specified subscription and resource group as paginated response
+     * with {@link PagedIterable}.
      */
     PagedIterable<AzureLargeInstance> listByResourceGroup(String resourceGroupName);
 
     /**
-     * Gets a list of Azure Large Instances in the specified subscription and resource
-     * group. The operations returns various properties of each Azure Large Instance.
+     * Gets a list of Azure Large Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of Azure Large Instances in the specified subscription and resource group. The operations returns
+     * various properties of each Azure Large Instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of Azure Large Instances in the specified subscription and resource
-     * group as paginated response with {@link PagedIterable}.
+     * @return a list of Azure Large Instances in the specified subscription and resource group as paginated response
+     * with {@link PagedIterable}.
      */
     PagedIterable<AzureLargeInstance> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * Gets an Azure Large Instance for the specified subscription, resource group,
-     * and instance name.
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    OperationStatusResult start(String resourceGroupName, String azureLargeInstanceName);
+
+    /**
+     * Start an Azure Large Instance.
+     * 
+     * The operation to start an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
@@ -73,60 +96,13 @@ public interface AzureLargeInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Instance for the specified subscription, resource group,
-     * and instance name along with {@link Response}.
+     * @return the current status of an async operation.
      */
-    Response<AzureLargeInstance> getByResourceGroupWithResponse(String resourceGroupName, String azureLargeInstanceName,
-        Context context);
+    OperationStatusResult start(String resourceGroupName, String azureLargeInstanceName, Context context);
 
     /**
-     * Gets an Azure Large Instance for the specified subscription, resource group,
-     * and instance name.
+     * Restart an Azure Large Instance.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Instance for the specified subscription, resource group,
-     * and instance name.
-     */
-    AzureLargeInstance getByResourceGroup(String resourceGroupName, String azureLargeInstanceName);
-
-    /**
-     * Patches the Tags field of an Azure Large Instance for the specified
-     * subscription, resource group, and instance name.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @param properties The resource properties to be updated.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance
-     * properties) along with {@link Response}.
-     */
-    Response<AzureLargeInstance> updateWithResponse(String resourceGroupName, String azureLargeInstanceName,
-        AzureLargeInstanceTagsUpdate properties, Context context);
-
-    /**
-     * Patches the Tags field of an Azure Large Instance for the specified
-     * subscription, resource group, and instance name.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @param properties The resource properties to be updated.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance
-     * properties).
-     */
-    AzureLargeInstance update(String resourceGroupName, String azureLargeInstanceName,
-        AzureLargeInstanceTagsUpdate properties);
-
-    /**
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -139,6 +115,8 @@ public interface AzureLargeInstances {
     OperationStatusResult restart(String resourceGroupName, String azureLargeInstanceName);
 
     /**
+     * Restart an Azure Large Instance.
+     * 
      * The operation to restart an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -155,6 +133,8 @@ public interface AzureLargeInstances {
         Context context);
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -167,6 +147,8 @@ public interface AzureLargeInstances {
     OperationStatusResult shutdown(String resourceGroupName, String azureLargeInstanceName);
 
     /**
+     * Shutdown an Azure Large Instance.
+     * 
      * The operation to shutdown an Azure Large Instance (only for compute instances).
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -180,19 +162,9 @@ public interface AzureLargeInstances {
     OperationStatusResult shutdown(String resourceGroupName, String azureLargeInstanceName, Context context);
 
     /**
-     * The operation to start an Azure Large Instance (only for compute instances).
+     * Gets an Azure Large Instance.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param azureLargeInstanceName Name of the AzureLargeInstance.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    OperationStatusResult start(String resourceGroupName, String azureLargeInstanceName);
-
-    /**
-     * The operation to start an Azure Large Instance (only for compute instances).
+     * Gets an Azure Large Instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeInstanceName Name of the AzureLargeInstance.
@@ -200,7 +172,58 @@ public interface AzureLargeInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
+     * @return an Azure Large Instance for the specified subscription, resource group, and instance name along with
+     * {@link Response}.
      */
-    OperationStatusResult start(String resourceGroupName, String azureLargeInstanceName, Context context);
+    Response<AzureLargeInstance> getByResourceGroupWithResponse(String resourceGroupName, String azureLargeInstanceName,
+        Context context);
+
+    /**
+     * Gets an Azure Large Instance.
+     * 
+     * Gets an Azure Large Instance for the specified subscription, resource group, and instance name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return an Azure Large Instance for the specified subscription, resource group, and instance name.
+     */
+    AzureLargeInstance getByResourceGroup(String resourceGroupName, String azureLargeInstanceName);
+
+    /**
+     * Patches the Tags field of an Azure Large Instance.
+     * 
+     * Patches the Tags field of an Azure Large Instance for the specified subscription, resource group, and instance
+     * name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @param tagsParameter Request body that only contains the new Tags field.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance properties) along with
+     * {@link Response}.
+     */
+    Response<AzureLargeInstance> updateWithResponse(String resourceGroupName, String azureLargeInstanceName,
+        Tags tagsParameter, Context context);
+
+    /**
+     * Patches the Tags field of an Azure Large Instance.
+     * 
+     * Patches the Tags field of an Azure Large Instance for the specified subscription, resource group, and instance
+     * name.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param azureLargeInstanceName Name of the AzureLargeInstance.
+     * @param tagsParameter Request body that only contains the new Tags field.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return azure Large Instance info on Azure (ARM properties and AzureLargeInstance properties).
+     */
+    AzureLargeInstance update(String resourceGroupName, String azureLargeInstanceName, Tags tagsParameter);
 }

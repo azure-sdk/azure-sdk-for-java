@@ -7,21 +7,25 @@ package com.azure.resourcemanager.largeinstance.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.largeinstance.models.AzureLargeInstanceProperties;
+import com.azure.resourcemanager.largeinstance.models.AzureLargeInstancePowerStateEnum;
+import com.azure.resourcemanager.largeinstance.models.AzureLargeInstanceProvisioningStatesEnum;
+import com.azure.resourcemanager.largeinstance.models.HardwareProfile;
+import com.azure.resourcemanager.largeinstance.models.NetworkProfile;
+import com.azure.resourcemanager.largeinstance.models.OSProfile;
+import com.azure.resourcemanager.largeinstance.models.StorageProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /**
- * Azure Large Instance info on Azure (ARM properties and AzureLargeInstance
- * properties).
+ * Azure Large Instance info on Azure (ARM properties and AzureLargeInstance properties).
  */
 @Fluent
 public final class AzureLargeInstanceInner extends Resource {
     /*
-     * The resource-specific properties for this resource.
+     * Azure Large Instance properties
      */
     @JsonProperty(value = "properties")
-    private AzureLargeInstanceProperties properties;
+    private AzureLargeInstanceProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -36,23 +40,12 @@ public final class AzureLargeInstanceInner extends Resource {
     }
 
     /**
-     * Get the properties property: The resource-specific properties for this resource.
+     * Get the innerProperties property: Azure Large Instance properties.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public AzureLargeInstanceProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The resource-specific properties for this resource.
-     * 
-     * @param properties the properties value to set.
-     * @return the AzureLargeInstanceInner object itself.
-     */
-    public AzureLargeInstanceInner withProperties(AzureLargeInstanceProperties properties) {
-        this.properties = properties;
-        return this;
+    private AzureLargeInstanceProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -83,13 +76,175 @@ public final class AzureLargeInstanceInner extends Resource {
     }
 
     /**
+     * Get the hardwareProfile property: Specifies the hardware settings for the Azure Large Instance.
+     * 
+     * @return the hardwareProfile value.
+     */
+    public HardwareProfile hardwareProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().hardwareProfile();
+    }
+
+    /**
+     * Set the hardwareProfile property: Specifies the hardware settings for the Azure Large Instance.
+     * 
+     * @param hardwareProfile the hardwareProfile value to set.
+     * @return the AzureLargeInstanceInner object itself.
+     */
+    public AzureLargeInstanceInner withHardwareProfile(HardwareProfile hardwareProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureLargeInstanceProperties();
+        }
+        this.innerProperties().withHardwareProfile(hardwareProfile);
+        return this;
+    }
+
+    /**
+     * Get the storageProfile property: Specifies the storage settings for the Azure Large Instance disks.
+     * 
+     * @return the storageProfile value.
+     */
+    public StorageProfile storageProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().storageProfile();
+    }
+
+    /**
+     * Set the storageProfile property: Specifies the storage settings for the Azure Large Instance disks.
+     * 
+     * @param storageProfile the storageProfile value to set.
+     * @return the AzureLargeInstanceInner object itself.
+     */
+    public AzureLargeInstanceInner withStorageProfile(StorageProfile storageProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureLargeInstanceProperties();
+        }
+        this.innerProperties().withStorageProfile(storageProfile);
+        return this;
+    }
+
+    /**
+     * Get the osProfile property: Specifies the operating system settings for the Azure Large Instance.
+     * 
+     * @return the osProfile value.
+     */
+    public OSProfile osProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().osProfile();
+    }
+
+    /**
+     * Set the osProfile property: Specifies the operating system settings for the Azure Large Instance.
+     * 
+     * @param osProfile the osProfile value to set.
+     * @return the AzureLargeInstanceInner object itself.
+     */
+    public AzureLargeInstanceInner withOsProfile(OSProfile osProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureLargeInstanceProperties();
+        }
+        this.innerProperties().withOsProfile(osProfile);
+        return this;
+    }
+
+    /**
+     * Get the networkProfile property: Specifies the network settings for the Azure Large Instance.
+     * 
+     * @return the networkProfile value.
+     */
+    public NetworkProfile networkProfile() {
+        return this.innerProperties() == null ? null : this.innerProperties().networkProfile();
+    }
+
+    /**
+     * Set the networkProfile property: Specifies the network settings for the Azure Large Instance.
+     * 
+     * @param networkProfile the networkProfile value to set.
+     * @return the AzureLargeInstanceInner object itself.
+     */
+    public AzureLargeInstanceInner withNetworkProfile(NetworkProfile networkProfile) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureLargeInstanceProperties();
+        }
+        this.innerProperties().withNetworkProfile(networkProfile);
+        return this;
+    }
+
+    /**
+     * Get the azureLargeInstanceId property: Specifies the Azure Large Instance unique ID.
+     * 
+     * @return the azureLargeInstanceId value.
+     */
+    public String azureLargeInstanceId() {
+        return this.innerProperties() == null ? null : this.innerProperties().azureLargeInstanceId();
+    }
+
+    /**
+     * Get the powerState property: Resource power state.
+     * 
+     * @return the powerState value.
+     */
+    public AzureLargeInstancePowerStateEnum powerState() {
+        return this.innerProperties() == null ? null : this.innerProperties().powerState();
+    }
+
+    /**
+     * Get the proximityPlacementGroup property: Resource proximity placement group.
+     * 
+     * @return the proximityPlacementGroup value.
+     */
+    public String proximityPlacementGroup() {
+        return this.innerProperties() == null ? null : this.innerProperties().proximityPlacementGroup();
+    }
+
+    /**
+     * Get the hwRevision property: Hardware revision of an Azure Large Instance.
+     * 
+     * @return the hwRevision value.
+     */
+    public String hwRevision() {
+        return this.innerProperties() == null ? null : this.innerProperties().hwRevision();
+    }
+
+    /**
+     * Get the partnerNodeId property: ARM ID of another AzureLargeInstance that will share a network with this
+     * AzureLargeInstance.
+     * 
+     * @return the partnerNodeId value.
+     */
+    public String partnerNodeId() {
+        return this.innerProperties() == null ? null : this.innerProperties().partnerNodeId();
+    }
+
+    /**
+     * Set the partnerNodeId property: ARM ID of another AzureLargeInstance that will share a network with this
+     * AzureLargeInstance.
+     * 
+     * @param partnerNodeId the partnerNodeId value to set.
+     * @return the AzureLargeInstanceInner object itself.
+     */
+    public AzureLargeInstanceInner withPartnerNodeId(String partnerNodeId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureLargeInstanceProperties();
+        }
+        this.innerProperties().withPartnerNodeId(partnerNodeId);
+        return this;
+    }
+
+    /**
+     * Get the provisioningState property: State of provisioning of the AzureLargeInstance.
+     * 
+     * @return the provisioningState value.
+     */
+    public AzureLargeInstanceProvisioningStatesEnum provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

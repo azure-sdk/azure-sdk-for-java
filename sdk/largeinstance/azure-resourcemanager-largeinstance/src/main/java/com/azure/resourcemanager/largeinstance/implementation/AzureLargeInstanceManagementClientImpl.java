@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.largeinstance.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -12,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -22,9 +23,9 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.largeinstance.fluent.AzureLargeInstanceManagementClient;
 import com.azure.resourcemanager.largeinstance.fluent.AzureLargeInstancesClient;
 import com.azure.resourcemanager.largeinstance.fluent.AzureLargeStorageInstancesClient;
-import com.azure.resourcemanager.largeinstance.fluent.LargeInstanceMgmtClient;
 import com.azure.resourcemanager.largeinstance.fluent.OperationsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -36,10 +37,10 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
- * Initializes a new instance of the LargeInstanceMgmtClientImpl type.
+ * Initializes a new instance of the AzureLargeInstanceManagementClientImpl type.
  */
-@ServiceClient(builder = LargeInstanceMgmtClientBuilder.class)
-public final class LargeInstanceMgmtClientImpl implements LargeInstanceMgmtClient {
+@ServiceClient(builder = AzureLargeInstanceManagementClientBuilder.class)
+public final class AzureLargeInstanceManagementClientImpl implements AzureLargeInstanceManagementClient {
     /**
      * The ID of the target subscription. The value must be an UUID.
      */
@@ -125,20 +126,6 @@ public final class LargeInstanceMgmtClientImpl implements LargeInstanceMgmtClien
     }
 
     /**
-     * The OperationsClient object to access its operations.
-     */
-    private final OperationsClient operations;
-
-    /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    public OperationsClient getOperations() {
-        return this.operations;
-    }
-
-    /**
      * The AzureLargeInstancesClient object to access its operations.
      */
     private final AzureLargeInstancesClient azureLargeInstances;
@@ -150,6 +137,20 @@ public final class LargeInstanceMgmtClientImpl implements LargeInstanceMgmtClien
      */
     public AzureLargeInstancesClient getAzureLargeInstances() {
         return this.azureLargeInstances;
+    }
+
+    /**
+     * The OperationsClient object to access its operations.
+     */
+    private final OperationsClient operations;
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    public OperationsClient getOperations() {
+        return this.operations;
     }
 
     /**
@@ -167,7 +168,7 @@ public final class LargeInstanceMgmtClientImpl implements LargeInstanceMgmtClien
     }
 
     /**
-     * Initializes an instance of LargeInstanceMgmtClient client.
+     * Initializes an instance of AzureLargeInstanceManagementClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
      * @param serializerAdapter The serializer to serialize an object into a string.
@@ -176,7 +177,7 @@ public final class LargeInstanceMgmtClientImpl implements LargeInstanceMgmtClien
      * @param subscriptionId The ID of the target subscription. The value must be an UUID.
      * @param endpoint server parameter.
      */
-    LargeInstanceMgmtClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
+    AzureLargeInstanceManagementClientImpl(HttpPipeline httpPipeline, SerializerAdapter serializerAdapter,
         Duration defaultPollInterval, AzureEnvironment environment, String subscriptionId, String endpoint) {
         this.httpPipeline = httpPipeline;
         this.serializerAdapter = serializerAdapter;
@@ -184,8 +185,8 @@ public final class LargeInstanceMgmtClientImpl implements LargeInstanceMgmtClien
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
         this.apiVersion = "2023-07-20-preview";
-        this.operations = new OperationsClientImpl(this);
         this.azureLargeInstances = new AzureLargeInstancesClientImpl(this);
+        this.operations = new OperationsClientImpl(this);
         this.azureLargeStorageInstances = new AzureLargeStorageInstancesClientImpl(this);
     }
 
@@ -249,8 +250,8 @@ public final class LargeInstanceMgmtClientImpl implements LargeInstanceMgmtClien
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
-                            SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter()
+                            .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }
@@ -291,7 +292,7 @@ public final class LargeInstanceMgmtClientImpl implements LargeInstanceMgmtClien
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {
@@ -315,5 +316,5 @@ public final class LargeInstanceMgmtClientImpl implements LargeInstanceMgmtClien
         }
     }
 
-    private static final ClientLogger LOGGER = new ClientLogger(LargeInstanceMgmtClientImpl.class);
+    private static final ClientLogger LOGGER = new ClientLogger(AzureLargeInstanceManagementClientImpl.class);
 }

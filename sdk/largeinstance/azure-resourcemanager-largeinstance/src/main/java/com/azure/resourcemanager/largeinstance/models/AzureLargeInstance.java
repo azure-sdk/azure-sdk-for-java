@@ -48,18 +48,82 @@ public interface AzureLargeInstance {
     Map<String, String> tags();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    AzureLargeInstanceProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the hardwareProfile property: Specifies the hardware settings for the Azure Large Instance.
+     * 
+     * @return the hardwareProfile value.
+     */
+    HardwareProfile hardwareProfile();
+
+    /**
+     * Gets the storageProfile property: Specifies the storage settings for the Azure Large Instance disks.
+     * 
+     * @return the storageProfile value.
+     */
+    StorageProfile storageProfile();
+
+    /**
+     * Gets the osProfile property: Specifies the operating system settings for the Azure Large Instance.
+     * 
+     * @return the osProfile value.
+     */
+    OSProfile osProfile();
+
+    /**
+     * Gets the networkProfile property: Specifies the network settings for the Azure Large Instance.
+     * 
+     * @return the networkProfile value.
+     */
+    NetworkProfile networkProfile();
+
+    /**
+     * Gets the azureLargeInstanceId property: Specifies the Azure Large Instance unique ID.
+     * 
+     * @return the azureLargeInstanceId value.
+     */
+    String azureLargeInstanceId();
+
+    /**
+     * Gets the powerState property: Resource power state.
+     * 
+     * @return the powerState value.
+     */
+    AzureLargeInstancePowerStateEnum powerState();
+
+    /**
+     * Gets the proximityPlacementGroup property: Resource proximity placement group.
+     * 
+     * @return the proximityPlacementGroup value.
+     */
+    String proximityPlacementGroup();
+
+    /**
+     * Gets the hwRevision property: Hardware revision of an Azure Large Instance.
+     * 
+     * @return the hwRevision value.
+     */
+    String hwRevision();
+
+    /**
+     * Gets the partnerNodeId property: ARM ID of another AzureLargeInstance that will share a network with this
+     * AzureLargeInstance.
+     * 
+     * @return the partnerNodeId value.
+     */
+    String partnerNodeId();
+
+    /**
+     * Gets the provisioningState property: State of provisioning of the AzureLargeInstance.
+     * 
+     * @return the provisioningState value.
+     */
+    AzureLargeInstanceProvisioningStatesEnum provisioningState();
 
     /**
      * Gets the inner com.azure.resourcemanager.largeinstance.fluent.models.AzureLargeInstanceInner object.

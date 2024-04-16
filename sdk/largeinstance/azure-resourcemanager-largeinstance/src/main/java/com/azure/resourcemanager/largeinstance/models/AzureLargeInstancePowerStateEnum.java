@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Power states that an Azure Large Instance can be in.
+ * Resource power state.
  */
 public final class AzureLargeInstancePowerStateEnum extends ExpandableStringEnum<AzureLargeInstancePowerStateEnum> {
     /**

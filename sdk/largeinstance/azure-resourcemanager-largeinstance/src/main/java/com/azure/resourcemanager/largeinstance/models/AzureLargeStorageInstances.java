@@ -13,8 +13,10 @@ import com.azure.core.util.Context;
  */
 public interface AzureLargeStorageInstances {
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription. The
-     * operations returns various properties of each Azure LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription. The operations returns various
+     * properties of each Azure LargeStorage instance.
      * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -24,8 +26,10 @@ public interface AzureLargeStorageInstances {
     PagedIterable<AzureLargeStorageInstance> list();
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription. The
-     * operations returns various properties of each Azure LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription. The operations returns various
+     * properties of each Azure LargeStorage instance.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -37,37 +41,40 @@ public interface AzureLargeStorageInstances {
     PagedIterable<AzureLargeStorageInstance> list(Context context);
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group. The operations returns various properties of each Azure
-     * LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription and resource group. The operations
+     * returns various properties of each Azure LargeStorage instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group as paginated response with {@link PagedIterable}.
+     * @return a list of AzureLargeStorageInstances in the specified subscription and resource group as paginated
+     * response with {@link PagedIterable}.
      */
     PagedIterable<AzureLargeStorageInstance> listByResourceGroup(String resourceGroupName);
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group. The operations returns various properties of each Azure
-     * LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription and resource group. The operations
+     * returns various properties of each Azure LargeStorage instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group as paginated response with {@link PagedIterable}.
+     * @return a list of AzureLargeStorageInstances in the specified subscription and resource group as paginated
+     * response with {@link PagedIterable}.
      */
     PagedIterable<AzureLargeStorageInstance> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
-     * Gets an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name.
+     * Gets an Azure Large Storage Instance.
+     * 
+     * Gets an Azure Large Storage instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
@@ -75,56 +82,59 @@ public interface AzureLargeStorageInstances {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name along with {@link Response}.
+     * @return an Azure Large Storage instance for the specified subscription, resource group, and instance name along
+     * with {@link Response}.
      */
     Response<AzureLargeStorageInstance> getByResourceGroupWithResponse(String resourceGroupName,
         String azureLargeStorageInstanceName, Context context);
 
     /**
-     * Gets an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name.
+     * Gets an Azure Large Storage Instance.
+     * 
+     * Gets an Azure Large Storage instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name.
+     * @return an Azure Large Storage instance for the specified subscription, resource group, and instance name.
      */
     AzureLargeStorageInstance getByResourceGroup(String resourceGroupName, String azureLargeStorageInstanceName);
 
     /**
-     * Patches the Tags field of a Azure Large Storage Instance for the specified
-     * subscription, resource group, and instance name.
+     * Patches the Tags field of an Azure Large Storage instance.
+     * 
+     * Patches the Tags field of a Azure Large Storage Instance for the specified subscription, resource group, and
+     * instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
-     * @param properties The resource properties to be updated.
+     * @param tagsParameter Request body that only contains the new Tags field.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureLargeStorageInstance info on Azure (ARM properties and
-     * AzureLargeStorageInstance properties) along with {@link Response}.
+     * @return azureLargeStorageInstance info on Azure (ARM properties and AzureLargeStorageInstance properties) along
+     * with {@link Response}.
      */
     Response<AzureLargeStorageInstance> updateWithResponse(String resourceGroupName,
-        String azureLargeStorageInstanceName, AzureLargeStorageInstanceTagsUpdate properties, Context context);
+        String azureLargeStorageInstanceName, Tags tagsParameter, Context context);
 
     /**
-     * Patches the Tags field of a Azure Large Storage Instance for the specified
-     * subscription, resource group, and instance name.
+     * Patches the Tags field of an Azure Large Storage instance.
+     * 
+     * Patches the Tags field of a Azure Large Storage Instance for the specified subscription, resource group, and
+     * instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
-     * @param properties The resource properties to be updated.
+     * @param tagsParameter Request body that only contains the new Tags field.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureLargeStorageInstance info on Azure (ARM properties and
-     * AzureLargeStorageInstance properties).
+     * @return azureLargeStorageInstance info on Azure (ARM properties and AzureLargeStorageInstance properties).
      */
     AzureLargeStorageInstance update(String resourceGroupName, String azureLargeStorageInstanceName,
-        AzureLargeStorageInstanceTagsUpdate properties);
+        Tags tagsParameter);
 }

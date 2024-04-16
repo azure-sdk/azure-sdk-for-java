@@ -13,10 +13,10 @@ import com.azure.resourcemanager.largeinstance.models.Origin;
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
 
-    private final com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager;
+    private final com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager;
 
     OperationImpl(OperationInner innerObject,
-        com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager) {
+        com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -45,7 +45,7 @@ public final class OperationImpl implements Operation {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.largeinstance.LargeInstanceManager manager() {
+    private com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager() {
         return this.serviceManager;
     }
 }

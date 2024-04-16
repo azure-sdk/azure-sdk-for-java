@@ -10,25 +10,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /**
- * The type used for updating tags in AzureLargeInstance resources.
+ * Tags field of the AzureLargeInstance instance.
  */
 @Fluent
-public final class AzureLargeInstanceTagsUpdate {
+public final class Tags {
     /*
-     * Resource tags.
+     * Tags field of the AzureLargeInstance instance.
      */
     @JsonProperty(value = "tags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
     /**
-     * Creates an instance of AzureLargeInstanceTagsUpdate class.
+     * Creates an instance of Tags class.
      */
-    public AzureLargeInstanceTagsUpdate() {
+    public Tags() {
     }
 
     /**
-     * Get the tags property: Resource tags.
+     * Get the tags property: Tags field of the AzureLargeInstance instance.
      * 
      * @return the tags value.
      */
@@ -37,12 +37,12 @@ public final class AzureLargeInstanceTagsUpdate {
     }
 
     /**
-     * Set the tags property: Resource tags.
+     * Set the tags property: Tags field of the AzureLargeInstance instance.
      * 
      * @param tags the tags value to set.
-     * @return the AzureLargeInstanceTagsUpdate object itself.
+     * @return the Tags object itself.
      */
-    public AzureLargeInstanceTagsUpdate withTags(Map<String, String> tags) {
+    public Tags withTags(Map<String, String> tags) {
         this.tags = tags;
         return this;
     }

@@ -9,8 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Enum of available model types (each of which have their own storage / memory sizes) for an Azure Large Instance type.
- * See https://docs.microsoft.com/azure/sap/large-instances/hana-available-skus.
+ * Specifies the Azure Large Instance SKU.
  */
 public final class AzureLargeInstanceSizeNamesEnum extends ExpandableStringEnum<AzureLargeInstanceSizeNamesEnum> {
     /**

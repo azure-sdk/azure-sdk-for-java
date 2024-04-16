@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -23,10 +23,10 @@ import com.azure.core.management.http.policy.ArmChallengeAuthenticationPolicy;
 import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.largeinstance.fluent.LargeInstanceMgmtClient;
+import com.azure.resourcemanager.largeinstance.fluent.AzureLargeInstanceManagementClient;
+import com.azure.resourcemanager.largeinstance.implementation.AzureLargeInstanceManagementClientBuilder;
 import com.azure.resourcemanager.largeinstance.implementation.AzureLargeInstancesImpl;
 import com.azure.resourcemanager.largeinstance.implementation.AzureLargeStorageInstancesImpl;
-import com.azure.resourcemanager.largeinstance.implementation.LargeInstanceMgmtClientBuilder;
 import com.azure.resourcemanager.largeinstance.implementation.OperationsImpl;
 import com.azure.resourcemanager.largeinstance.models.AzureLargeInstances;
 import com.azure.resourcemanager.largeinstance.models.AzureLargeStorageInstances;
@@ -39,59 +39,61 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- * Entry point to LargeInstanceManager.
+ * Entry point to AzureLargeInstanceManager.
  * The AzureLargeInstance Management client.
  */
-public final class LargeInstanceManager {
-    private Operations operations;
-
+public final class AzureLargeInstanceManager {
     private AzureLargeInstances azureLargeInstances;
+
+    private Operations operations;
 
     private AzureLargeStorageInstances azureLargeStorageInstances;
 
-    private final LargeInstanceMgmtClient clientObject;
+    private final AzureLargeInstanceManagementClient clientObject;
 
-    private LargeInstanceManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
+    private AzureLargeInstanceManager(HttpPipeline httpPipeline, AzureProfile profile, Duration defaultPollInterval) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        this.clientObject = new LargeInstanceMgmtClientBuilder().pipeline(httpPipeline)
-            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
-            .defaultPollInterval(defaultPollInterval).buildClient();
+        this.clientObject = new AzureLargeInstanceManagementClientBuilder().pipeline(httpPipeline)
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
+            .subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval)
+            .buildClient();
     }
 
     /**
-     * Creates an instance of Large Instance service API entry point.
+     * Creates an instance of AzureLargeInstance service API entry point.
      * 
      * @param credential the credential to use.
      * @param profile the Azure profile for client.
-     * @return the Large Instance service API instance.
+     * @return the AzureLargeInstance service API instance.
      */
-    public static LargeInstanceManager authenticate(TokenCredential credential, AzureProfile profile) {
+    public static AzureLargeInstanceManager authenticate(TokenCredential credential, AzureProfile profile) {
         Objects.requireNonNull(credential, "'credential' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         return configure().authenticate(credential, profile);
     }
 
     /**
-     * Creates an instance of Large Instance service API entry point.
+     * Creates an instance of AzureLargeInstance service API entry point.
      * 
      * @param httpPipeline the {@link HttpPipeline} configured with Azure authentication credential.
      * @param profile the Azure profile for client.
-     * @return the Large Instance service API instance.
+     * @return the AzureLargeInstance service API instance.
      */
-    public static LargeInstanceManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
+    public static AzureLargeInstanceManager authenticate(HttpPipeline httpPipeline, AzureProfile profile) {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
-        return new LargeInstanceManager(httpPipeline, profile, null);
+        return new AzureLargeInstanceManager(httpPipeline, profile, null);
     }
 
     /**
-     * Gets a Configurable instance that can be used to create LargeInstanceManager with optional configuration.
+     * Gets a Configurable instance that can be used to create AzureLargeInstanceManager with optional configuration.
      * 
      * @return the Configurable instance allowing configurations.
      */
     public static Configurable configure() {
-        return new LargeInstanceManager.Configurable();
+        return new AzureLargeInstanceManager.Configurable();
     }
 
     /**
@@ -196,23 +198,30 @@ public final class LargeInstanceManager {
         }
 
         /**
-         * Creates an instance of Large Instance service API entry point.
+         * Creates an instance of AzureLargeInstance service API entry point.
          *
          * @param credential the credential to use.
          * @param profile the Azure profile for client.
-         * @return the Large Instance service API instance.
+         * @return the AzureLargeInstance service API instance.
          */
-        public LargeInstanceManager authenticate(TokenCredential credential, AzureProfile profile) {
+        public AzureLargeInstanceManager authenticate(TokenCredential credential, AzureProfile profile) {
             Objects.requireNonNull(credential, "'credential' cannot be null.");
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.largeinstance")
-                .append("/").append("1.0.0-beta.1");
+            userAgentBuilder.append("azsdk-java")
+                .append("-")
+                .append("com.azure.resourcemanager.largeinstance")
+                .append("/")
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
+                userAgentBuilder.append(" (")
+                    .append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.name"))
+                    .append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version"))
+                    .append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -231,32 +240,23 @@ public final class LargeInstanceManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
                 .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
-                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
             HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
-                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
-            return new LargeInstanceManager(httpPipeline, profile, defaultPollInterval);
+                .policies(policies.toArray(new HttpPipelinePolicy[0]))
+                .build();
+            return new AzureLargeInstanceManager(httpPipeline, profile, defaultPollInterval);
         }
-    }
-
-    /**
-     * Gets the resource collection API of Operations.
-     * 
-     * @return Resource collection API of Operations.
-     */
-    public Operations operations() {
-        if (this.operations == null) {
-            this.operations = new OperationsImpl(clientObject.getOperations(), this);
-        }
-        return operations;
     }
 
     /**
@@ -269,6 +269,18 @@ public final class LargeInstanceManager {
             this.azureLargeInstances = new AzureLargeInstancesImpl(clientObject.getAzureLargeInstances(), this);
         }
         return azureLargeInstances;
+    }
+
+    /**
+     * Gets the resource collection API of Operations.
+     * 
+     * @return Resource collection API of Operations.
+     */
+    public Operations operations() {
+        if (this.operations == null) {
+            this.operations = new OperationsImpl(clientObject.getOperations(), this);
+        }
+        return operations;
     }
 
     /**
@@ -285,12 +297,12 @@ public final class LargeInstanceManager {
     }
 
     /**
-     * Gets wrapped service client LargeInstanceMgmtClient providing direct access to the underlying auto-generated API
-     * implementation, based on Azure REST API.
+     * Gets wrapped service client AzureLargeInstanceManagementClient providing direct access to the underlying
+     * auto-generated API implementation, based on Azure REST API.
      * 
-     * @return Wrapped service client LargeInstanceMgmtClient.
+     * @return Wrapped service client AzureLargeInstanceManagementClient.
      */
-    public LargeInstanceMgmtClient serviceClient() {
+    public AzureLargeInstanceManagementClient serviceClient() {
         return this.clientObject;
     }
 }

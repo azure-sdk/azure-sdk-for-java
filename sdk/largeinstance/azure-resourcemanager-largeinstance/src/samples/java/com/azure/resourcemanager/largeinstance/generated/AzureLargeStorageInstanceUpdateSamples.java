@@ -4,39 +4,53 @@
 
 package com.azure.resourcemanager.largeinstance.generated;
 
+import com.azure.resourcemanager.largeinstance.models.Tags;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Samples for AzureLargeStorageInstance Update.
  */
 public final class AzureLargeStorageInstanceUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeStorageInstance_PatchTags_Delete.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeStorageInstance_PatchTags.json
      */
     /**
-     * Sample code: AzureLargeStorageInstance_Delete_Tag.
+     * Sample code: Update Tags field of an AzureLargeStorageStorage instance.
      * 
-     * @param manager Entry point to LargeInstanceManager.
+     * @param manager Entry point to AzureLargeInstanceManager.
      */
-    public static void
-        azureLargeStorageInstanceDeleteTag(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeStorageInstances().updateWithResponse("myResourceGroup", "myALSInstance", null,
-            com.azure.core.util.Context.NONE);
+    public static void updateTagsFieldOfAnAzureLargeStorageStorageInstance(
+        com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager) {
+        manager.azureLargeStorageInstances()
+            .updateWithResponse("myResourceGroup", "myALSInstance",
+                new Tags().withTags(mapOf("testkey", "fakeTokenPlaceholder")), com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeStorageInstance_PatchTags.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeStorageInstance_PatchTags_Delete.json
      */
     /**
-     * Sample code: AzureLargeStorageInstance_Update_Tag.
+     * Sample code: Delete Tags field of an AzureLargeStorageStorage instance.
      * 
-     * @param manager Entry point to LargeInstanceManager.
+     * @param manager Entry point to AzureLargeInstanceManager.
      */
-    public static void
-        azureLargeStorageInstanceUpdateTag(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeStorageInstances().updateWithResponse("myResourceGroup", "myALSInstance", null,
-            com.azure.core.util.Context.NONE);
+    public static void deleteTagsFieldOfAnAzureLargeStorageStorageInstance(
+        com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager) {
+        manager.azureLargeStorageInstances()
+            .updateWithResponse("myResourceGroup", "myALSInstance", new Tags().withTags(mapOf()),
+                com.azure.core.util.Context.NONE);
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
     }
 }

@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 public final class OperationStatusResultImpl implements OperationStatusResult {
     private OperationStatusResultInner innerObject;
 
-    private final com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager;
+    private final com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager;
 
     OperationStatusResultImpl(OperationStatusResultInner innerObject,
-        com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager) {
+        com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -55,7 +55,8 @@ public final class OperationStatusResultImpl implements OperationStatusResult {
         List<OperationStatusResultInner> inner = this.innerModel().operations();
         if (inner != null) {
             return Collections.unmodifiableList(inner.stream()
-                .map(inner1 -> new OperationStatusResultImpl(inner1, this.manager())).collect(Collectors.toList()));
+                .map(inner1 -> new OperationStatusResultImpl(inner1, this.manager()))
+                .collect(Collectors.toList()));
         } else {
             return Collections.emptyList();
         }
@@ -69,7 +70,7 @@ public final class OperationStatusResultImpl implements OperationStatusResult {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.largeinstance.LargeInstanceManager manager() {
+    private com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager() {
         return this.serviceManager;
     }
 }

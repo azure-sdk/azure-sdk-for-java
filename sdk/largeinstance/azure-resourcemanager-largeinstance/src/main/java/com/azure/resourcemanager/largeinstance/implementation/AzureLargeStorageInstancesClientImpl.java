@@ -30,7 +30,7 @@ import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.largeinstance.fluent.AzureLargeStorageInstancesClient;
 import com.azure.resourcemanager.largeinstance.fluent.models.AzureLargeStorageInstanceInner;
 import com.azure.resourcemanager.largeinstance.models.AzureLargeStorageInstanceListResult;
-import com.azure.resourcemanager.largeinstance.models.AzureLargeStorageInstanceTagsUpdate;
+import com.azure.resourcemanager.largeinstance.models.Tags;
 import reactor.core.publisher.Mono;
 
 /**
@@ -45,25 +45,25 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     /**
      * The service client containing this operation class.
      */
-    private final LargeInstanceMgmtClientImpl client;
+    private final AzureLargeInstanceManagementClientImpl client;
 
     /**
      * Initializes an instance of AzureLargeStorageInstancesClientImpl.
      * 
      * @param client the instance of the service client containing this operation class.
      */
-    AzureLargeStorageInstancesClientImpl(LargeInstanceMgmtClientImpl client) {
+    AzureLargeStorageInstancesClientImpl(AzureLargeInstanceManagementClientImpl client) {
         this.service = RestProxy.create(AzureLargeStorageInstancesService.class, client.getHttpPipeline(),
             client.getSerializerAdapter());
         this.client = client;
     }
 
     /**
-     * The interface defining all the services for LargeInstanceMgmtClientAzureLargeStorageInstances to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for AzureLargeInstanceManagementClientAzureLargeStorageInstances to be
+     * used by the proxy service to perform REST calls.
      */
     @Host("{$host}")
-    @ServiceInterface(name = "LargeInstanceMgmtCli")
+    @ServiceInterface(name = "AzureLargeInstanceMa")
     public interface AzureLargeStorageInstancesService {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.AzureLargeInstance/azureLargeStorageInstances")
@@ -100,8 +100,7 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("azureLargeStorageInstanceName") String azureLargeStorageInstanceName,
-            @BodyParam("application/json") AzureLargeStorageInstanceTagsUpdate properties,
-            @HeaderParam("Accept") String accept, Context context);
+            @BodyParam("application/json") Tags tagsParameter, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -121,8 +120,10 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription. The
-     * operations returns various properties of each Azure LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription. The operations returns various
+     * properties of each Azure LargeStorage instance.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -149,8 +150,10 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription. The
-     * operations returns various properties of each Azure LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription. The operations returns various
+     * properties of each Azure LargeStorage instance.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -179,8 +182,10 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription. The
-     * operations returns various properties of each Azure LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription. The operations returns various
+     * properties of each Azure LargeStorage instance.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -194,8 +199,10 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription. The
-     * operations returns various properties of each Azure LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription. The operations returns various
+     * properties of each Azure LargeStorage instance.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -211,8 +218,10 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription. The
-     * operations returns various properties of each Azure LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription. The operations returns various
+     * properties of each Azure LargeStorage instance.
      * 
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
@@ -225,8 +234,10 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription. The
-     * operations returns various properties of each Azure LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription. The operations returns various
+     * properties of each Azure LargeStorage instance.
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -241,16 +252,17 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group. The operations returns various properties of each Azure
-     * LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription and resource group. The operations
+     * returns various properties of each Azure LargeStorage instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of AzureLargeStorageInstances in the specified subscription and resource group along with
+     * {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AzureLargeStorageInstanceInner>>
@@ -277,17 +289,18 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group. The operations returns various properties of each Azure
-     * LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription and resource group. The operations
+     * returns various properties of each Azure LargeStorage instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return a list of AzureLargeStorageInstances in the specified subscription and resource group along with
+     * {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AzureLargeStorageInstanceInner>>
@@ -314,16 +327,17 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group. The operations returns various properties of each Azure
-     * LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription and resource group. The operations
+     * returns various properties of each Azure LargeStorage instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group as paginated response with {@link PagedFlux}.
+     * @return a list of AzureLargeStorageInstances in the specified subscription and resource group as paginated
+     * response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AzureLargeStorageInstanceInner> listByResourceGroupAsync(String resourceGroupName) {
@@ -332,17 +346,18 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group. The operations returns various properties of each Azure
-     * LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription and resource group. The operations
+     * returns various properties of each Azure LargeStorage instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group as paginated response with {@link PagedFlux}.
+     * @return a list of AzureLargeStorageInstances in the specified subscription and resource group as paginated
+     * response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<AzureLargeStorageInstanceInner> listByResourceGroupAsync(String resourceGroupName,
@@ -352,16 +367,17 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group. The operations returns various properties of each Azure
-     * LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription and resource group. The operations
+     * returns various properties of each Azure LargeStorage instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group as paginated response with {@link PagedIterable}.
+     * @return a list of AzureLargeStorageInstances in the specified subscription and resource group as paginated
+     * response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AzureLargeStorageInstanceInner> listByResourceGroup(String resourceGroupName) {
@@ -369,17 +385,18 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group. The operations returns various properties of each Azure
-     * LargeStorage instance.
+     * Gets a list of Azure Large Storage Instances in the specified subscription and resource group.
+     * 
+     * Gets a list of AzureLargeStorageInstances in the specified subscription and resource group. The operations
+     * returns various properties of each Azure LargeStorage instance.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return a list of AzureLargeStorageInstances in the specified subscription and
-     * resource group as paginated response with {@link PagedIterable}.
+     * @return a list of AzureLargeStorageInstances in the specified subscription and resource group as paginated
+     * response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<AzureLargeStorageInstanceInner> listByResourceGroup(String resourceGroupName,
@@ -388,16 +405,17 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name.
+     * Gets an Azure Large Storage Instance.
+     * 
+     * Gets an Azure Large Storage instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name along with {@link Response} on successful completion of {@link Mono}.
+     * @return an Azure Large Storage instance for the specified subscription, resource group, and instance name along
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AzureLargeStorageInstanceInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
@@ -426,8 +444,9 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name.
+     * Gets an Azure Large Storage Instance.
+     * 
+     * Gets an Azure Large Storage instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
@@ -435,8 +454,8 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name along with {@link Response} on successful completion of {@link Mono}.
+     * @return an Azure Large Storage instance for the specified subscription, resource group, and instance name along
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AzureLargeStorageInstanceInner>> getByResourceGroupWithResponseAsync(String resourceGroupName,
@@ -464,16 +483,17 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name.
+     * Gets an Azure Large Storage Instance.
+     * 
+     * Gets an Azure Large Storage instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name on successful completion of {@link Mono}.
+     * @return an Azure Large Storage instance for the specified subscription, resource group, and instance name on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AzureLargeStorageInstanceInner> getByResourceGroupAsync(String resourceGroupName,
@@ -483,8 +503,9 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name.
+     * Gets an Azure Large Storage Instance.
+     * 
+     * Gets an Azure Large Storage instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
@@ -492,8 +513,8 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name along with {@link Response}.
+     * @return an Azure Large Storage instance for the specified subscription, resource group, and instance name along
+     * with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AzureLargeStorageInstanceInner> getByResourceGroupWithResponse(String resourceGroupName,
@@ -502,16 +523,16 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Gets an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name.
+     * Gets an Azure Large Storage Instance.
+     * 
+     * Gets an Azure Large Storage instance for the specified subscription, resource group, and instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return an Azure Large Storage instance for the specified subscription, resource
-     * group, and instance name.
+     * @return an Azure Large Storage instance for the specified subscription, resource group, and instance name.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AzureLargeStorageInstanceInner getByResourceGroup(String resourceGroupName,
@@ -521,21 +542,23 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
     }
 
     /**
-     * Patches the Tags field of a Azure Large Storage Instance for the specified
-     * subscription, resource group, and instance name.
+     * Patches the Tags field of an Azure Large Storage instance.
+     * 
+     * Patches the Tags field of a Azure Large Storage Instance for the specified subscription, resource group, and
+     * instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
-     * @param properties The resource properties to be updated.
+     * @param tagsParameter Request body that only contains the new Tags field.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureLargeStorageInstance info on Azure (ARM properties and
-     * AzureLargeStorageInstance properties) along with {@link Response} on successful completion of {@link Mono}.
+     * @return azureLargeStorageInstance info on Azure (ARM properties and AzureLargeStorageInstance properties) along
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AzureLargeStorageInstanceInner>> updateWithResponseAsync(String resourceGroupName,
-        String azureLargeStorageInstanceName, AzureLargeStorageInstanceTagsUpdate properties) {
+        String azureLargeStorageInstanceName, Tags tagsParameter) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -552,36 +575,38 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
             return Mono.error(new IllegalArgumentException(
                 "Parameter azureLargeStorageInstanceName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (tagsParameter == null) {
+            return Mono.error(new IllegalArgumentException("Parameter tagsParameter is required and cannot be null."));
         } else {
-            properties.validate();
+            tagsParameter.validate();
         }
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.update(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, azureLargeStorageInstanceName, properties, accept,
-                context))
+                this.client.getSubscriptionId(), resourceGroupName, azureLargeStorageInstanceName, tagsParameter,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Patches the Tags field of a Azure Large Storage Instance for the specified
-     * subscription, resource group, and instance name.
+     * Patches the Tags field of an Azure Large Storage instance.
+     * 
+     * Patches the Tags field of a Azure Large Storage Instance for the specified subscription, resource group, and
+     * instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
-     * @param properties The resource properties to be updated.
+     * @param tagsParameter Request body that only contains the new Tags field.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureLargeStorageInstance info on Azure (ARM properties and
-     * AzureLargeStorageInstance properties) along with {@link Response} on successful completion of {@link Mono}.
+     * @return azureLargeStorageInstance info on Azure (ARM properties and AzureLargeStorageInstance properties) along
+     * with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<AzureLargeStorageInstanceInner>> updateWithResponseAsync(String resourceGroupName,
-        String azureLargeStorageInstanceName, AzureLargeStorageInstanceTagsUpdate properties, Context context) {
+        String azureLargeStorageInstanceName, Tags tagsParameter, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -598,74 +623,80 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
             return Mono.error(new IllegalArgumentException(
                 "Parameter azureLargeStorageInstanceName is required and cannot be null."));
         }
-        if (properties == null) {
-            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        if (tagsParameter == null) {
+            return Mono.error(new IllegalArgumentException("Parameter tagsParameter is required and cannot be null."));
         } else {
-            properties.validate();
+            tagsParameter.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, azureLargeStorageInstanceName, properties, accept, context);
+            resourceGroupName, azureLargeStorageInstanceName, tagsParameter, accept, context);
     }
 
     /**
-     * Patches the Tags field of a Azure Large Storage Instance for the specified
-     * subscription, resource group, and instance name.
+     * Patches the Tags field of an Azure Large Storage instance.
+     * 
+     * Patches the Tags field of a Azure Large Storage Instance for the specified subscription, resource group, and
+     * instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
-     * @param properties The resource properties to be updated.
+     * @param tagsParameter Request body that only contains the new Tags field.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureLargeStorageInstance info on Azure (ARM properties and
-     * AzureLargeStorageInstance properties) on successful completion of {@link Mono}.
+     * @return azureLargeStorageInstance info on Azure (ARM properties and AzureLargeStorageInstance properties) on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<AzureLargeStorageInstanceInner> updateAsync(String resourceGroupName,
-        String azureLargeStorageInstanceName, AzureLargeStorageInstanceTagsUpdate properties) {
-        return updateWithResponseAsync(resourceGroupName, azureLargeStorageInstanceName, properties)
+        String azureLargeStorageInstanceName, Tags tagsParameter) {
+        return updateWithResponseAsync(resourceGroupName, azureLargeStorageInstanceName, tagsParameter)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
-     * Patches the Tags field of a Azure Large Storage Instance for the specified
-     * subscription, resource group, and instance name.
+     * Patches the Tags field of an Azure Large Storage instance.
+     * 
+     * Patches the Tags field of a Azure Large Storage Instance for the specified subscription, resource group, and
+     * instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
-     * @param properties The resource properties to be updated.
+     * @param tagsParameter Request body that only contains the new Tags field.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureLargeStorageInstance info on Azure (ARM properties and
-     * AzureLargeStorageInstance properties) along with {@link Response}.
+     * @return azureLargeStorageInstance info on Azure (ARM properties and AzureLargeStorageInstance properties) along
+     * with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public Response<AzureLargeStorageInstanceInner> updateWithResponse(String resourceGroupName,
-        String azureLargeStorageInstanceName, AzureLargeStorageInstanceTagsUpdate properties, Context context) {
-        return updateWithResponseAsync(resourceGroupName, azureLargeStorageInstanceName, properties, context).block();
+        String azureLargeStorageInstanceName, Tags tagsParameter, Context context) {
+        return updateWithResponseAsync(resourceGroupName, azureLargeStorageInstanceName, tagsParameter, context)
+            .block();
     }
 
     /**
-     * Patches the Tags field of a Azure Large Storage Instance for the specified
-     * subscription, resource group, and instance name.
+     * Patches the Tags field of an Azure Large Storage instance.
+     * 
+     * Patches the Tags field of a Azure Large Storage Instance for the specified subscription, resource group, and
+     * instance name.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param azureLargeStorageInstanceName Name of the AzureLargeStorageInstance.
-     * @param properties The resource properties to be updated.
+     * @param tagsParameter Request body that only contains the new Tags field.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return azureLargeStorageInstance info on Azure (ARM properties and
-     * AzureLargeStorageInstance properties).
+     * @return azureLargeStorageInstance info on Azure (ARM properties and AzureLargeStorageInstance properties).
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public AzureLargeStorageInstanceInner update(String resourceGroupName, String azureLargeStorageInstanceName,
-        AzureLargeStorageInstanceTagsUpdate properties) {
-        return updateWithResponse(resourceGroupName, azureLargeStorageInstanceName, properties, Context.NONE)
+        Tags tagsParameter) {
+        return updateWithResponse(resourceGroupName, azureLargeStorageInstanceName, tagsParameter, Context.NONE)
             .getValue();
     }
 
@@ -678,8 +709,8 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a AzureLargeStorageInstance list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response from the Get AzureLargeStorageInstances operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AzureLargeStorageInstanceInner>> listBySubscriptionNextSinglePageAsync(String nextLink) {
@@ -709,8 +740,8 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a AzureLargeStorageInstance list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response from the Get AzureLargeStorageInstances operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AzureLargeStorageInstanceInner>> listBySubscriptionNextSinglePageAsync(String nextLink,
@@ -738,8 +769,8 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a AzureLargeStorageInstance list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response from the Get AzureLargeStorageInstances operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AzureLargeStorageInstanceInner>>
@@ -770,8 +801,8 @@ public final class AzureLargeStorageInstancesClientImpl implements AzureLargeSto
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a AzureLargeStorageInstance list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return the response from the Get AzureLargeStorageInstances operation along with {@link PagedResponse} on
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<AzureLargeStorageInstanceInner>> listByResourceGroupNextSinglePageAsync(String nextLink,

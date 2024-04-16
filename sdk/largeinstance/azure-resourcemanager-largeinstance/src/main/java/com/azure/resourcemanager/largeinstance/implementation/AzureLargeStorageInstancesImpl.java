@@ -12,18 +12,18 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.largeinstance.fluent.AzureLargeStorageInstancesClient;
 import com.azure.resourcemanager.largeinstance.fluent.models.AzureLargeStorageInstanceInner;
 import com.azure.resourcemanager.largeinstance.models.AzureLargeStorageInstance;
-import com.azure.resourcemanager.largeinstance.models.AzureLargeStorageInstanceTagsUpdate;
 import com.azure.resourcemanager.largeinstance.models.AzureLargeStorageInstances;
+import com.azure.resourcemanager.largeinstance.models.Tags;
 
 public final class AzureLargeStorageInstancesImpl implements AzureLargeStorageInstances {
     private static final ClientLogger LOGGER = new ClientLogger(AzureLargeStorageInstancesImpl.class);
 
     private final AzureLargeStorageInstancesClient innerClient;
 
-    private final com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager;
+    private final com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager;
 
     public AzureLargeStorageInstancesImpl(AzureLargeStorageInstancesClient innerClient,
-        com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager) {
+        com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
@@ -74,9 +74,9 @@ public final class AzureLargeStorageInstancesImpl implements AzureLargeStorageIn
     }
 
     public Response<AzureLargeStorageInstance> updateWithResponse(String resourceGroupName,
-        String azureLargeStorageInstanceName, AzureLargeStorageInstanceTagsUpdate properties, Context context) {
-        Response<AzureLargeStorageInstanceInner> inner = this.serviceClient().updateWithResponse(resourceGroupName,
-            azureLargeStorageInstanceName, properties, context);
+        String azureLargeStorageInstanceName, Tags tagsParameter, Context context) {
+        Response<AzureLargeStorageInstanceInner> inner = this.serviceClient()
+            .updateWithResponse(resourceGroupName, azureLargeStorageInstanceName, tagsParameter, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AzureLargeStorageInstanceImpl(inner.getValue(), this.manager()));
@@ -86,9 +86,9 @@ public final class AzureLargeStorageInstancesImpl implements AzureLargeStorageIn
     }
 
     public AzureLargeStorageInstance update(String resourceGroupName, String azureLargeStorageInstanceName,
-        AzureLargeStorageInstanceTagsUpdate properties) {
+        Tags tagsParameter) {
         AzureLargeStorageInstanceInner inner
-            = this.serviceClient().update(resourceGroupName, azureLargeStorageInstanceName, properties);
+            = this.serviceClient().update(resourceGroupName, azureLargeStorageInstanceName, tagsParameter);
         if (inner != null) {
             return new AzureLargeStorageInstanceImpl(inner, this.manager());
         } else {
@@ -100,7 +100,7 @@ public final class AzureLargeStorageInstancesImpl implements AzureLargeStorageIn
         return this.innerClient;
     }
 
-    private com.azure.resourcemanager.largeinstance.LargeInstanceManager manager() {
+    private com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager() {
         return this.serviceManager;
     }
 }

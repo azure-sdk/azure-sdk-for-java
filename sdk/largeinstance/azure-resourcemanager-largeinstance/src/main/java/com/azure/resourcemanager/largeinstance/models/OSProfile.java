@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Specifies the operating system settings for the Azure Large Instance.
  */
 @Fluent
-public final class OsProfile {
+public final class OSProfile {
     /*
      * Specifies the host OS name of the Azure Large Instance.
      */
@@ -37,9 +37,9 @@ public final class OsProfile {
     private String sshPublicKey;
 
     /**
-     * Creates an instance of OsProfile class.
+     * Creates an instance of OSProfile class.
      */
-    public OsProfile() {
+    public OSProfile() {
     }
 
     /**
@@ -55,9 +55,9 @@ public final class OsProfile {
      * Set the computerName property: Specifies the host OS name of the Azure Large Instance.
      * 
      * @param computerName the computerName value to set.
-     * @return the OsProfile object itself.
+     * @return the OSProfile object itself.
      */
-    public OsProfile withComputerName(String computerName) {
+    public OSProfile withComputerName(String computerName) {
         this.computerName = computerName;
         return this;
     }
@@ -93,9 +93,9 @@ public final class OsProfile {
      * Set the sshPublicKey property: Specifies the SSH public key used to access the operating system.
      * 
      * @param sshPublicKey the sshPublicKey value to set.
-     * @return the OsProfile object itself.
+     * @return the OSProfile object itself.
      */
-    public OsProfile withSshPublicKey(String sshPublicKey) {
+    public OSProfile withSshPublicKey(String sshPublicKey) {
         this.sshPublicKey = sshPublicKey;
         return this;
     }

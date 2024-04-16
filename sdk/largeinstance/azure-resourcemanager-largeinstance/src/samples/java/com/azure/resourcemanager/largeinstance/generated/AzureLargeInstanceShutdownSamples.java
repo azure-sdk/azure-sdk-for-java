@@ -9,17 +9,15 @@ package com.azure.resourcemanager.largeinstance.generated;
  */
 public final class AzureLargeInstanceShutdownSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_Shutdown.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_Shutdown.json
      */
     /**
-     * Sample code: AzureLargeInstance_Shutdown.
+     * Sample code: Shutdown an AzureLarge instance.
      * 
-     * @param manager Entry point to LargeInstanceManager.
+     * @param manager Entry point to AzureLargeInstanceManager.
      */
     public static void
-        azureLargeInstanceShutdown(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
+        shutdownAnAzureLargeInstance(com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager) {
         manager.azureLargeInstances().shutdown("myResourceGroup", "myALInstance", com.azure.core.util.Context.NONE);
     }
 }

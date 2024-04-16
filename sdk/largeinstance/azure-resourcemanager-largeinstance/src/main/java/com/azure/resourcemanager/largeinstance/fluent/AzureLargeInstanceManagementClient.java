@@ -8,9 +8,9 @@ import com.azure.core.http.HttpPipeline;
 import java.time.Duration;
 
 /**
- * The interface for LargeInstanceMgmtClient class.
+ * The interface for AzureLargeInstanceManagementClient class.
  */
-public interface LargeInstanceMgmtClient {
+public interface AzureLargeInstanceManagementClient {
     /**
      * Gets The ID of the target subscription. The value must be an UUID.
      * 
@@ -47,18 +47,18 @@ public interface LargeInstanceMgmtClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the OperationsClient object to access its operations.
-     * 
-     * @return the OperationsClient object.
-     */
-    OperationsClient getOperations();
-
-    /**
      * Gets the AzureLargeInstancesClient object to access its operations.
      * 
      * @return the AzureLargeInstancesClient object.
      */
     AzureLargeInstancesClient getAzureLargeInstances();
+
+    /**
+     * Gets the OperationsClient object to access its operations.
+     * 
+     * @return the OperationsClient object.
+     */
+    OperationsClient getOperations();
 
     /**
      * Gets the AzureLargeStorageInstancesClient object to access its operations.

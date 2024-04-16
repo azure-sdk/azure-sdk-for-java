@@ -7,17 +7,22 @@ package com.azure.resourcemanager.largeinstance.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.largeinstance.fluent.models.AzureLargeInstanceInner;
 import com.azure.resourcemanager.largeinstance.models.AzureLargeInstance;
-import com.azure.resourcemanager.largeinstance.models.AzureLargeInstanceProperties;
+import com.azure.resourcemanager.largeinstance.models.AzureLargeInstancePowerStateEnum;
+import com.azure.resourcemanager.largeinstance.models.AzureLargeInstanceProvisioningStatesEnum;
+import com.azure.resourcemanager.largeinstance.models.HardwareProfile;
+import com.azure.resourcemanager.largeinstance.models.NetworkProfile;
+import com.azure.resourcemanager.largeinstance.models.OSProfile;
+import com.azure.resourcemanager.largeinstance.models.StorageProfile;
 import java.util.Collections;
 import java.util.Map;
 
 public final class AzureLargeInstanceImpl implements AzureLargeInstance {
     private AzureLargeInstanceInner innerObject;
 
-    private final com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager;
+    private final com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager;
 
     AzureLargeInstanceImpl(AzureLargeInstanceInner innerObject,
-        com.azure.resourcemanager.largeinstance.LargeInstanceManager serviceManager) {
+        com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -47,19 +52,55 @@ public final class AzureLargeInstanceImpl implements AzureLargeInstance {
         }
     }
 
-    public AzureLargeInstanceProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public HardwareProfile hardwareProfile() {
+        return this.innerModel().hardwareProfile();
+    }
+
+    public StorageProfile storageProfile() {
+        return this.innerModel().storageProfile();
+    }
+
+    public OSProfile osProfile() {
+        return this.innerModel().osProfile();
+    }
+
+    public NetworkProfile networkProfile() {
+        return this.innerModel().networkProfile();
+    }
+
+    public String azureLargeInstanceId() {
+        return this.innerModel().azureLargeInstanceId();
+    }
+
+    public AzureLargeInstancePowerStateEnum powerState() {
+        return this.innerModel().powerState();
+    }
+
+    public String proximityPlacementGroup() {
+        return this.innerModel().proximityPlacementGroup();
+    }
+
+    public String hwRevision() {
+        return this.innerModel().hwRevision();
+    }
+
+    public String partnerNodeId() {
+        return this.innerModel().partnerNodeId();
+    }
+
+    public AzureLargeInstanceProvisioningStatesEnum provisioningState() {
+        return this.innerModel().provisioningState();
     }
 
     public AzureLargeInstanceInner innerModel() {
         return this.innerObject;
     }
 
-    private com.azure.resourcemanager.largeinstance.LargeInstanceManager manager() {
+    private com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager() {
         return this.serviceManager;
     }
 }

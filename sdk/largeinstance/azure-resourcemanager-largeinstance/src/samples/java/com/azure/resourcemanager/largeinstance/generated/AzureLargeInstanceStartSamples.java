@@ -9,16 +9,15 @@ package com.azure.resourcemanager.largeinstance.generated;
  */
 public final class AzureLargeInstanceStartSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_Start.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_Start.json
      */
     /**
-     * Sample code: AzureLargeInstance_Start.
+     * Sample code: Start an Azure Large Instance.
      * 
-     * @param manager Entry point to LargeInstanceManager.
+     * @param manager Entry point to AzureLargeInstanceManager.
      */
-    public static void azureLargeInstanceStart(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
+    public static void
+        startAnAzureLargeInstance(com.azure.resourcemanager.largeinstance.AzureLargeInstanceManager manager) {
         manager.azureLargeInstances().start("myResourceGroup", "myALInstance", com.azure.core.util.Context.NONE);
     }
 }

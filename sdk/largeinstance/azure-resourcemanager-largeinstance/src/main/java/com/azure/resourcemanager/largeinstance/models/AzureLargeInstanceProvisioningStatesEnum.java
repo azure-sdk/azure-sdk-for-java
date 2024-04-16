@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Provisioning states that an Azure Large Instance can be in.
+ * State of provisioning of the AzureLargeInstance.
  */
 public final class AzureLargeInstanceProvisioningStatesEnum
     extends ExpandableStringEnum<AzureLargeInstanceProvisioningStatesEnum> {

@@ -7,21 +7,20 @@ package com.azure.resourcemanager.largeinstance.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.largeinstance.models.AzureLargeStorageInstanceProperties;
+import com.azure.resourcemanager.largeinstance.models.StorageProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
 /**
- * AzureLargeStorageInstance info on Azure (ARM properties and
- * AzureLargeStorageInstance properties).
+ * AzureLargeStorageInstance info on Azure (ARM properties and AzureLargeStorageInstance properties).
  */
 @Fluent
 public final class AzureLargeStorageInstanceInner extends Resource {
     /*
-     * The resource-specific properties for this resource.
+     * AzureLargeStorageInstance properties
      */
     @JsonProperty(value = "properties")
-    private AzureLargeStorageInstanceProperties properties;
+    private AzureLargeStorageInstanceProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -36,23 +35,12 @@ public final class AzureLargeStorageInstanceInner extends Resource {
     }
 
     /**
-     * Get the properties property: The resource-specific properties for this resource.
+     * Get the innerProperties property: AzureLargeStorageInstance properties.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public AzureLargeStorageInstanceProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The resource-specific properties for this resource.
-     * 
-     * @param properties the properties value to set.
-     * @return the AzureLargeStorageInstanceInner object itself.
-     */
-    public AzureLargeStorageInstanceInner withProperties(AzureLargeStorageInstanceProperties properties) {
-        this.properties = properties;
-        return this;
+    private AzureLargeStorageInstanceProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -83,13 +71,62 @@ public final class AzureLargeStorageInstanceInner extends Resource {
     }
 
     /**
+     * Get the azureLargeStorageInstanceUniqueIdentifier property: Specifies the AzureLargeStorageInstance unique ID.
+     * 
+     * @return the azureLargeStorageInstanceUniqueIdentifier value.
+     */
+    public String azureLargeStorageInstanceUniqueIdentifier() {
+        return this.innerProperties() == null
+            ? null
+            : this.innerProperties().azureLargeStorageInstanceUniqueIdentifier();
+    }
+
+    /**
+     * Set the azureLargeStorageInstanceUniqueIdentifier property: Specifies the AzureLargeStorageInstance unique ID.
+     * 
+     * @param azureLargeStorageInstanceUniqueIdentifier the azureLargeStorageInstanceUniqueIdentifier value to set.
+     * @return the AzureLargeStorageInstanceInner object itself.
+     */
+    public AzureLargeStorageInstanceInner
+        withAzureLargeStorageInstanceUniqueIdentifier(String azureLargeStorageInstanceUniqueIdentifier) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureLargeStorageInstanceProperties();
+        }
+        this.innerProperties().withAzureLargeStorageInstanceUniqueIdentifier(azureLargeStorageInstanceUniqueIdentifier);
+        return this;
+    }
+
+    /**
+     * Get the storageProperties property: Specifies the storage properties for the AzureLargeStorage instance.
+     * 
+     * @return the storageProperties value.
+     */
+    public StorageProperties storageProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().storageProperties();
+    }
+
+    /**
+     * Set the storageProperties property: Specifies the storage properties for the AzureLargeStorage instance.
+     * 
+     * @param storageProperties the storageProperties value to set.
+     * @return the AzureLargeStorageInstanceInner object itself.
+     */
+    public AzureLargeStorageInstanceInner withStorageProperties(StorageProperties storageProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new AzureLargeStorageInstanceProperties();
+        }
+        this.innerProperties().withStorageProperties(storageProperties);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }
