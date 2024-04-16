@@ -13,8 +13,7 @@ public final class ValidateProductTransferEligibilityResultImpl implements Valid
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    ValidateProductTransferEligibilityResultImpl(
-        ValidateProductTransferEligibilityResultInner innerObject,
+    ValidateProductTransferEligibilityResultImpl(ValidateProductTransferEligibilityResultInner innerObject,
         com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

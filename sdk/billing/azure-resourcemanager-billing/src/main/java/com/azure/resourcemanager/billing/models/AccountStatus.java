@@ -8,32 +8,48 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The current status of the billing account. */
+/**
+ * The current status of the billing account.
+ */
 public final class AccountStatus extends ExpandableStringEnum<AccountStatus> {
-    /** Static value Active for AccountStatus. */
+    /**
+     * Static value Active for AccountStatus.
+     */
     public static final AccountStatus ACTIVE = fromString("Active");
 
-    /** Static value Deleted for AccountStatus. */
+    /**
+     * Static value Deleted for AccountStatus.
+     */
     public static final AccountStatus DELETED = fromString("Deleted");
 
-    /** Static value Disabled for AccountStatus. */
+    /**
+     * Static value Disabled for AccountStatus.
+     */
     public static final AccountStatus DISABLED = fromString("Disabled");
 
-    /** Static value Expired for AccountStatus. */
+    /**
+     * Static value Expired for AccountStatus.
+     */
     public static final AccountStatus EXPIRED = fromString("Expired");
 
-    /** Static value Transferred for AccountStatus. */
+    /**
+     * Static value Transferred for AccountStatus.
+     */
     public static final AccountStatus TRANSFERRED = fromString("Transferred");
 
-    /** Static value Extended for AccountStatus. */
+    /**
+     * Static value Extended for AccountStatus.
+     */
     public static final AccountStatus EXTENDED = fromString("Extended");
 
-    /** Static value Terminated for AccountStatus. */
+    /**
+     * Static value Terminated for AccountStatus.
+     */
     public static final AccountStatus TERMINATED = fromString("Terminated");
 
     /**
      * Creates a new instance of AccountStatus value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -42,7 +58,7 @@ public final class AccountStatus extends ExpandableStringEnum<AccountStatus> {
 
     /**
      * Creates or finds a AccountStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AccountStatus.
      */
@@ -53,7 +69,7 @@ public final class AccountStatus extends ExpandableStringEnum<AccountStatus> {
 
     /**
      * Gets known AccountStatus values.
-     *
+     * 
      * @return known AccountStatus values.
      */
     public static Collection<AccountStatus> values() {

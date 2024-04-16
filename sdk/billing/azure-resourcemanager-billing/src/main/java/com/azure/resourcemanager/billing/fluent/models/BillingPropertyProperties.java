@@ -10,7 +10,9 @@ import com.azure.resourcemanager.billing.models.BillingProfileStatus;
 import com.azure.resourcemanager.billing.models.BillingProfileStatusReasonCode;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The billing property. */
+/**
+ * The billing property.
+ */
 @Fluent
 public final class BillingPropertyProperties {
     /*
@@ -115,14 +117,16 @@ public final class BillingPropertyProperties {
     @JsonProperty(value = "skuDescription", access = JsonProperty.Access.WRITE_ONLY)
     private String skuDescription;
 
-    /** Creates an instance of BillingPropertyProperties class. */
+    /**
+     * Creates an instance of BillingPropertyProperties class.
+     */
     public BillingPropertyProperties() {
     }
 
     /**
      * Get the accountAdminNotificationEmailAddress property: The email address on which the account admin gets all
      * Azure notifications.
-     *
+     * 
      * @return the accountAdminNotificationEmailAddress value.
      */
     public String accountAdminNotificationEmailAddress() {
@@ -131,7 +135,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the billingTenantId property: The Azure AD tenant ID of the billing account for the subscription.
-     *
+     * 
      * @return the billingTenantId value.
      */
     public String billingTenantId() {
@@ -140,7 +144,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the billingAccountId property: The ID of the billing account to which the subscription is billed.
-     *
+     * 
      * @return the billingAccountId value.
      */
     public String billingAccountId() {
@@ -149,7 +153,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the billingAccountDisplayName property: The name of the billing account to which the subscription is billed.
-     *
+     * 
      * @return the billingAccountDisplayName value.
      */
     public String billingAccountDisplayName() {
@@ -158,7 +162,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the billingProfileId property: The ID of the billing profile to which the subscription is billed.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -167,7 +171,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the billingProfileDisplayName property: The name of the billing profile to which the subscription is billed.
-     *
+     * 
      * @return the billingProfileDisplayName value.
      */
     public String billingProfileDisplayName() {
@@ -176,7 +180,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the billingProfileStatus property: The status of the billing profile.
-     *
+     * 
      * @return the billingProfileStatus value.
      */
     public BillingProfileStatus billingProfileStatus() {
@@ -185,7 +189,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the billingProfileStatusReasonCode property: Reason for the specified billing profile status.
-     *
+     * 
      * @return the billingProfileStatusReasonCode value.
      */
     public BillingProfileStatusReasonCode billingProfileStatusReasonCode() {
@@ -194,7 +198,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the billingProfileSpendingLimit property: The billing profile spending limit.
-     *
+     * 
      * @return the billingProfileSpendingLimit value.
      */
     public BillingProfileSpendingLimit billingProfileSpendingLimit() {
@@ -203,7 +207,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the costCenter property: The cost center applied to the subscription.
-     *
+     * 
      * @return the costCenter value.
      */
     public String costCenter() {
@@ -212,7 +216,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Set the costCenter property: The cost center applied to the subscription.
-     *
+     * 
      * @param costCenter the costCenter value to set.
      * @return the BillingPropertyProperties object itself.
      */
@@ -223,7 +227,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the invoiceSectionId property: The ID of the invoice section to which the subscription is billed.
-     *
+     * 
      * @return the invoiceSectionId value.
      */
     public String invoiceSectionId() {
@@ -232,7 +236,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the invoiceSectionDisplayName property: The name of the invoice section to which the subscription is billed.
-     *
+     * 
      * @return the invoiceSectionDisplayName value.
      */
     public String invoiceSectionDisplayName() {
@@ -241,7 +245,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the isAccountAdmin property: Indicates whether user is the account admin.
-     *
+     * 
      * @return the isAccountAdmin value.
      */
     public Boolean isAccountAdmin() {
@@ -250,7 +254,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the productId property: The product ID of the Azure plan.
-     *
+     * 
      * @return the productId value.
      */
     public String productId() {
@@ -259,7 +263,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the productName property: The product name of the Azure plan.
-     *
+     * 
      * @return the productName value.
      */
     public String productName() {
@@ -268,7 +272,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the skuId property: The sku ID of the Azure plan for the subscription.
-     *
+     * 
      * @return the skuId value.
      */
     public String skuId() {
@@ -277,7 +281,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Get the skuDescription property: The sku description of the Azure plan for the subscription.
-     *
+     * 
      * @return the skuDescription value.
      */
     public String skuDescription() {
@@ -286,7 +290,7 @@ public final class BillingPropertyProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

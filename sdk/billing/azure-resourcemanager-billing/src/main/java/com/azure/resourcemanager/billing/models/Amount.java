@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The amount. */
+/**
+ * The amount.
+ */
 @Fluent
 public final class Amount {
     /*
@@ -22,13 +24,15 @@ public final class Amount {
     @JsonProperty(value = "value")
     private Float value;
 
-    /** Creates an instance of Amount class. */
+    /**
+     * Creates an instance of Amount class.
+     */
     public Amount() {
     }
 
     /**
      * Get the currency property: The currency for the amount value.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -37,7 +41,7 @@ public final class Amount {
 
     /**
      * Get the value property: Amount value.
-     *
+     * 
      * @return the value value.
      */
     public Float value() {
@@ -46,7 +50,7 @@ public final class Amount {
 
     /**
      * Set the value property: Amount value.
-     *
+     * 
      * @param value the value value to set.
      * @return the Amount object itself.
      */
@@ -57,7 +61,7 @@ public final class Amount {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

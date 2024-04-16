@@ -15,12 +15,14 @@ import com.azure.resourcemanager.billing.fluent.models.BillingSubscriptionInner;
 import com.azure.resourcemanager.billing.fluent.models.ValidateSubscriptionTransferEligibilityResultInner;
 import com.azure.resourcemanager.billing.models.TransferBillingSubscriptionRequestProperties;
 
-/** An instance of this class provides access to all the operations defined in BillingSubscriptionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in BillingSubscriptionsClient.
+ */
 public interface BillingSubscriptionsClient {
     /**
      * Lists the subscriptions for a customer. The operation is supported only for billing accounts with agreement type
      * Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -34,7 +36,7 @@ public interface BillingSubscriptionsClient {
     /**
      * Lists the subscriptions for a customer. The operation is supported only for billing accounts with agreement type
      * Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @param context The context to associate with this operation.
@@ -44,13 +46,13 @@ public interface BillingSubscriptionsClient {
      * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingSubscriptionInner> listByCustomer(
-        String billingAccountName, String customerName, Context context);
+    PagedIterable<BillingSubscriptionInner> listByCustomer(String billingAccountName, String customerName,
+        Context context);
 
     /**
      * Lists the subscriptions for a billing account. The operation is supported for billing accounts with agreement
      * type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -63,7 +65,7 @@ public interface BillingSubscriptionsClient {
     /**
      * Lists the subscriptions for a billing account. The operation is supported for billing accounts with agreement
      * type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -77,7 +79,7 @@ public interface BillingSubscriptionsClient {
     /**
      * Lists the subscriptions that are billed to a billing profile. The operation is supported for billing accounts
      * with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -91,7 +93,7 @@ public interface BillingSubscriptionsClient {
     /**
      * Lists the subscriptions that are billed to a billing profile. The operation is supported for billing accounts
      * with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -101,13 +103,13 @@ public interface BillingSubscriptionsClient {
      * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingSubscriptionInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context);
+    PagedIterable<BillingSubscriptionInner> listByBillingProfile(String billingAccountName, String billingProfileName,
+        Context context);
 
     /**
      * Lists the subscriptions that are billed to an invoice section. The operation is supported only for billing
      * accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -117,13 +119,13 @@ public interface BillingSubscriptionsClient {
      * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingSubscriptionInner> listByInvoiceSection(
-        String billingAccountName, String billingProfileName, String invoiceSectionName);
+    PagedIterable<BillingSubscriptionInner> listByInvoiceSection(String billingAccountName, String billingProfileName,
+        String invoiceSectionName);
 
     /**
      * Lists the subscriptions that are billed to an invoice section. The operation is supported only for billing
      * accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -134,13 +136,13 @@ public interface BillingSubscriptionsClient {
      * @return the list of billing subscriptions as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<BillingSubscriptionInner> listByInvoiceSection(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context);
+    PagedIterable<BillingSubscriptionInner> listByInvoiceSection(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, Context context);
 
     /**
      * Gets a subscription by its ID. The operation is supported for billing accounts with agreement type Microsoft
      * Customer Agreement and Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -154,7 +156,7 @@ public interface BillingSubscriptionsClient {
     /**
      * Gets a subscription by its ID. The operation is supported for billing accounts with agreement type Microsoft
      * Customer Agreement and Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -167,7 +169,7 @@ public interface BillingSubscriptionsClient {
     /**
      * Updates the properties of a billing subscription. Currently, cost center can be updated. The operation is
      * supported only for billing accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters Request parameters that are provided to the update billing subscription operation.
      * @param context The context to associate with this operation.
@@ -177,13 +179,13 @@ public interface BillingSubscriptionsClient {
      * @return a billing subscription along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<BillingSubscriptionInner> updateWithResponse(
-        String billingAccountName, BillingSubscriptionInner parameters, Context context);
+    Response<BillingSubscriptionInner> updateWithResponse(String billingAccountName,
+        BillingSubscriptionInner parameters, Context context);
 
     /**
      * Updates the properties of a billing subscription. Currently, cost center can be updated. The operation is
      * supported only for billing accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters Request parameters that are provided to the update billing subscription operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -198,7 +200,7 @@ public interface BillingSubscriptionsClient {
      * Moves a subscription's charges to a new invoice section. The new invoice section must belong to the same billing
      * profile as the existing invoice section. This operation is supported for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters Request parameters that are provided to the move subscription operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -207,14 +209,14 @@ public interface BillingSubscriptionsClient {
      * @return the {@link SyncPoller} for polling of a billing subscription.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BillingSubscriptionInner>, BillingSubscriptionInner> beginMove(
-        String billingAccountName, TransferBillingSubscriptionRequestProperties parameters);
+    SyncPoller<PollResult<BillingSubscriptionInner>, BillingSubscriptionInner> beginMove(String billingAccountName,
+        TransferBillingSubscriptionRequestProperties parameters);
 
     /**
      * Moves a subscription's charges to a new invoice section. The new invoice section must belong to the same billing
      * profile as the existing invoice section. This operation is supported for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters Request parameters that are provided to the move subscription operation.
      * @param context The context to associate with this operation.
@@ -224,14 +226,14 @@ public interface BillingSubscriptionsClient {
      * @return the {@link SyncPoller} for polling of a billing subscription.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<BillingSubscriptionInner>, BillingSubscriptionInner> beginMove(
-        String billingAccountName, TransferBillingSubscriptionRequestProperties parameters, Context context);
+    SyncPoller<PollResult<BillingSubscriptionInner>, BillingSubscriptionInner> beginMove(String billingAccountName,
+        TransferBillingSubscriptionRequestProperties parameters, Context context);
 
     /**
      * Moves a subscription's charges to a new invoice section. The new invoice section must belong to the same billing
      * profile as the existing invoice section. This operation is supported for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters Request parameters that are provided to the move subscription operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -246,7 +248,7 @@ public interface BillingSubscriptionsClient {
      * Moves a subscription's charges to a new invoice section. The new invoice section must belong to the same billing
      * profile as the existing invoice section. This operation is supported for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters Request parameters that are provided to the move subscription operation.
      * @param context The context to associate with this operation.
@@ -256,13 +258,13 @@ public interface BillingSubscriptionsClient {
      * @return a billing subscription.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    BillingSubscriptionInner move(
-        String billingAccountName, TransferBillingSubscriptionRequestProperties parameters, Context context);
+    BillingSubscriptionInner move(String billingAccountName, TransferBillingSubscriptionRequestProperties parameters,
+        Context context);
 
     /**
      * Validates if a subscription's charges can be moved to a new invoice section. This operation is supported for
      * billing accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters Request parameters that are provided to the validate move eligibility operation.
      * @param context The context to associate with this operation.
@@ -272,13 +274,13 @@ public interface BillingSubscriptionsClient {
      * @return result of the transfer eligibility validation along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ValidateSubscriptionTransferEligibilityResultInner> validateMoveWithResponse(
-        String billingAccountName, TransferBillingSubscriptionRequestProperties parameters, Context context);
+    Response<ValidateSubscriptionTransferEligibilityResultInner> validateMoveWithResponse(String billingAccountName,
+        TransferBillingSubscriptionRequestProperties parameters, Context context);
 
     /**
      * Validates if a subscription's charges can be moved to a new invoice section. This operation is supported for
      * billing accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param parameters Request parameters that are provided to the validate move eligibility operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -287,6 +289,6 @@ public interface BillingSubscriptionsClient {
      * @return result of the transfer eligibility validation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ValidateSubscriptionTransferEligibilityResultInner validateMove(
-        String billingAccountName, TransferBillingSubscriptionRequestProperties parameters);
+    ValidateSubscriptionTransferEligibilityResultInner validateMove(String billingAccountName,
+        TransferBillingSubscriptionRequestProperties parameters);
 }

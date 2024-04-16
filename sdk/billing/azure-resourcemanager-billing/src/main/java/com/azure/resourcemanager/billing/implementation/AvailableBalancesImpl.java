@@ -20,21 +20,18 @@ public final class AvailableBalancesImpl implements AvailableBalances {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    public AvailableBalancesImpl(
-        AvailableBalancesClient innerClient, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    public AvailableBalancesImpl(AvailableBalancesClient innerClient,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public Response<AvailableBalance> getWithResponse(
-        String billingAccountName, String billingProfileName, Context context) {
-        Response<AvailableBalanceInner> inner =
-            this.serviceClient().getWithResponse(billingAccountName, billingProfileName, context);
+    public Response<AvailableBalance> getWithResponse(String billingAccountName, String billingProfileName,
+        Context context) {
+        Response<AvailableBalanceInner> inner
+            = this.serviceClient().getWithResponse(billingAccountName, billingProfileName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new AvailableBalanceImpl(inner.getValue(), this.manager()));
         } else {
             return null;

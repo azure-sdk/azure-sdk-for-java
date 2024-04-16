@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The type of transaction. */
+/**
+ * The type of transaction.
+ */
 public final class ReservationType extends ExpandableStringEnum<ReservationType> {
-    /** Static value Purchase for ReservationType. */
+    /**
+     * Static value Purchase for ReservationType.
+     */
     public static final ReservationType PURCHASE = fromString("Purchase");
 
-    /** Static value Usage Charge for ReservationType. */
+    /**
+     * Static value Usage Charge for ReservationType.
+     */
     public static final ReservationType USAGE_CHARGE = fromString("Usage Charge");
 
     /**
      * Creates a new instance of ReservationType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ReservationType extends ExpandableStringEnum<ReservationType>
 
     /**
      * Creates or finds a ReservationType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ReservationType.
      */
@@ -38,7 +44,7 @@ public final class ReservationType extends ExpandableStringEnum<ReservationType>
 
     /**
      * Gets known ReservationType values.
-     *
+     * 
      * @return known ReservationType values.
      */
     public static Collection<ReservationType> values() {

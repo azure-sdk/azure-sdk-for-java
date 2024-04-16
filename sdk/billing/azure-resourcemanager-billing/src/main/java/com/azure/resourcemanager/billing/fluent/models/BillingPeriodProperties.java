@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 import java.util.List;
 
-/** The properties of the billing period. */
+/**
+ * The properties of the billing period.
+ */
 @Immutable
 public final class BillingPeriodProperties {
     /*
@@ -30,13 +32,15 @@ public final class BillingPeriodProperties {
     @JsonProperty(value = "invoiceIds", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> invoiceIds;
 
-    /** Creates an instance of BillingPeriodProperties class. */
+    /**
+     * Creates an instance of BillingPeriodProperties class.
+     */
     public BillingPeriodProperties() {
     }
 
     /**
      * Get the billingPeriodStartDate property: The start of the date range covered by the billing period.
-     *
+     * 
      * @return the billingPeriodStartDate value.
      */
     public LocalDate billingPeriodStartDate() {
@@ -45,7 +49,7 @@ public final class BillingPeriodProperties {
 
     /**
      * Get the billingPeriodEndDate property: The end of the date range covered by the billing period.
-     *
+     * 
      * @return the billingPeriodEndDate value.
      */
     public LocalDate billingPeriodEndDate() {
@@ -54,7 +58,7 @@ public final class BillingPeriodProperties {
 
     /**
      * Get the invoiceIds property: Array of invoice ids that associated with.
-     *
+     * 
      * @return the invoiceIds value.
      */
     public List<String> invoiceIds() {
@@ -63,7 +67,7 @@ public final class BillingPeriodProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

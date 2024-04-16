@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Possible cloud environments. */
+/**
+ * Possible cloud environments.
+ */
 public final class TargetCloud extends ExpandableStringEnum<TargetCloud> {
-    /** Static value USGov for TargetCloud. */
+    /**
+     * Static value USGov for TargetCloud.
+     */
     public static final TargetCloud USGOV = fromString("USGov");
 
-    /** Static value USNat for TargetCloud. */
+    /**
+     * Static value USNat for TargetCloud.
+     */
     public static final TargetCloud USNAT = fromString("USNat");
 
-    /** Static value USSec for TargetCloud. */
+    /**
+     * Static value USSec for TargetCloud.
+     */
     public static final TargetCloud USSEC = fromString("USSec");
 
     /**
      * Creates a new instance of TargetCloud value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class TargetCloud extends ExpandableStringEnum<TargetCloud> {
 
     /**
      * Creates or finds a TargetCloud from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding TargetCloud.
      */
@@ -41,7 +49,7 @@ public final class TargetCloud extends ExpandableStringEnum<TargetCloud> {
 
     /**
      * Gets known TargetCloud values.
-     *
+     * 
      * @return known TargetCloud values.
      */
     public static Collection<TargetCloud> values() {

@@ -11,13 +11,15 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.billing.fluent.models.BillingPeriodInner;
 
-/** An instance of this class provides access to all the operations defined in BillingPeriodsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in BillingPeriodsClient.
+ */
 public interface BillingPeriodsClient {
     /**
      * Lists the available billing periods for a subscription in reverse chronological order. This is only supported for
      * Azure Web-Direct subscriptions. Other subscription types which were not purchased directly through the Azure web
      * portal are not supported through this preview API.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return result of listing billing periods as paginated response with {@link PagedIterable}.
@@ -29,12 +31,12 @@ public interface BillingPeriodsClient {
      * Lists the available billing periods for a subscription in reverse chronological order. This is only supported for
      * Azure Web-Direct subscriptions. Other subscription types which were not purchased directly through the Azure web
      * portal are not supported through this preview API.
-     *
+     * 
      * @param filter May be used to filter billing periods by billingPeriodEndDate. The filter supports 'eq', 'lt',
-     *     'gt', 'le', 'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'.
+     * 'gt', 'le', 'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'.
      * @param skiptoken Skiptoken is only used if a previous operation returned a partial result. If a previous response
-     *     contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that
-     *     specifies a starting point to use for subsequent calls.
+     * contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies
+     * a starting point to use for subsequent calls.
      * @param top May be used to limit the number of results to the most recent N billing periods.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -48,7 +50,7 @@ public interface BillingPeriodsClient {
     /**
      * Gets a named billing period. This is only supported for Azure Web-Direct subscriptions. Other subscription types
      * which were not purchased directly through the Azure web portal are not supported through this preview API.
-     *
+     * 
      * @param billingPeriodName The name of a BillingPeriod resource.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -62,7 +64,7 @@ public interface BillingPeriodsClient {
     /**
      * Gets a named billing period. This is only supported for Azure Web-Direct subscriptions. Other subscription types
      * which were not purchased directly through the Azure web portal are not supported through this preview API.
-     *
+     * 
      * @param billingPeriodName The name of a BillingPeriod resource.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

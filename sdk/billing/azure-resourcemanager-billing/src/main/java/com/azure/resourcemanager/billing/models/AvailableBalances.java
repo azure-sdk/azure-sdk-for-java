@@ -7,13 +7,15 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of AvailableBalances. */
+/**
+ * Resource collection API of AvailableBalances.
+ */
 public interface AvailableBalances {
     /**
      * The available credit balance for a billing profile. This is the balance that can be used for pay now to settle
      * due or past due invoices. The operation is supported only for billing accounts with agreement type Microsoft
      * Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -28,7 +30,7 @@ public interface AvailableBalances {
      * The available credit balance for a billing profile. This is the balance that can be used for pay now to settle
      * due or past due invoices. The operation is supported only for billing accounts with agreement type Microsoft
      * Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

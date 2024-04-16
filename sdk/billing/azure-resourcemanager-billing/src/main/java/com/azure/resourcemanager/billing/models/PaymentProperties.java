@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The properties of a payment. */
+/**
+ * The properties of a payment.
+ */
 @Fluent
 public final class PaymentProperties {
     /*
@@ -41,13 +43,15 @@ public final class PaymentProperties {
     @JsonProperty(value = "paymentMethodType", access = JsonProperty.Access.WRITE_ONLY)
     private String paymentMethodType;
 
-    /** Creates an instance of PaymentProperties class. */
+    /**
+     * Creates an instance of PaymentProperties class.
+     */
     public PaymentProperties() {
     }
 
     /**
      * Get the paymentType property: The type of payment.
-     *
+     * 
      * @return the paymentType value.
      */
     public String paymentType() {
@@ -56,7 +60,7 @@ public final class PaymentProperties {
 
     /**
      * Get the amount property: The paid amount.
-     *
+     * 
      * @return the amount value.
      */
     public Amount amount() {
@@ -65,7 +69,7 @@ public final class PaymentProperties {
 
     /**
      * Get the date property: The date when the payment was made.
-     *
+     * 
      * @return the date value.
      */
     public OffsetDateTime date() {
@@ -74,7 +78,7 @@ public final class PaymentProperties {
 
     /**
      * Get the paymentMethodFamily property: The family of payment method.
-     *
+     * 
      * @return the paymentMethodFamily value.
      */
     public PaymentMethodFamily paymentMethodFamily() {
@@ -83,7 +87,7 @@ public final class PaymentProperties {
 
     /**
      * Set the paymentMethodFamily property: The family of payment method.
-     *
+     * 
      * @param paymentMethodFamily the paymentMethodFamily value to set.
      * @return the PaymentProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class PaymentProperties {
 
     /**
      * Get the paymentMethodType property: The type of payment method.
-     *
+     * 
      * @return the paymentMethodType value.
      */
     public String paymentMethodType() {
@@ -103,7 +107,7 @@ public final class PaymentProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The billing profile spending limit. */
+/**
+ * The billing profile spending limit.
+ */
 public final class SpendingLimitForBillingProfile extends ExpandableStringEnum<SpendingLimitForBillingProfile> {
-    /** Static value Off for SpendingLimitForBillingProfile. */
+    /**
+     * Static value Off for SpendingLimitForBillingProfile.
+     */
     public static final SpendingLimitForBillingProfile OFF = fromString("Off");
 
-    /** Static value On for SpendingLimitForBillingProfile. */
+    /**
+     * Static value On for SpendingLimitForBillingProfile.
+     */
     public static final SpendingLimitForBillingProfile ON = fromString("On");
 
     /**
      * Creates a new instance of SpendingLimitForBillingProfile value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class SpendingLimitForBillingProfile extends ExpandableStringEnum<S
 
     /**
      * Creates or finds a SpendingLimitForBillingProfile from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SpendingLimitForBillingProfile.
      */
@@ -38,7 +44,7 @@ public final class SpendingLimitForBillingProfile extends ExpandableStringEnum<S
 
     /**
      * Gets known SpendingLimitForBillingProfile values.
-     *
+     * 
      * @return known SpendingLimitForBillingProfile values.
      */
     public static Collection<SpendingLimitForBillingProfile> values() {

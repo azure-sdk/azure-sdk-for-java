@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The policies for Enterprise Agreement enrollments. */
+/**
+ * The policies for Enterprise Agreement enrollments.
+ */
 @Immutable
 public final class EnrollmentPolicies {
     /*
@@ -34,13 +36,15 @@ public final class EnrollmentPolicies {
     @JsonProperty(value = "reservedInstancesEnabled", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean reservedInstancesEnabled;
 
-    /** Creates an instance of EnrollmentPolicies class. */
+    /**
+     * Creates an instance of EnrollmentPolicies class.
+     */
     public EnrollmentPolicies() {
     }
 
     /**
      * Get the accountOwnerViewCharges property: The policy that controls whether Account Owners can view charges.
-     *
+     * 
      * @return the accountOwnerViewCharges value.
      */
     public Boolean accountOwnerViewCharges() {
@@ -50,7 +54,7 @@ public final class EnrollmentPolicies {
     /**
      * Get the departmentAdminViewCharges property: The policy that controls whether Department Administrators can view
      * charges.
-     *
+     * 
      * @return the departmentAdminViewCharges value.
      */
     public Boolean departmentAdminViewCharges() {
@@ -60,7 +64,7 @@ public final class EnrollmentPolicies {
     /**
      * Get the marketplaceEnabled property: The policy that controls whether Azure marketplace purchases are allowed in
      * the enrollment.
-     *
+     * 
      * @return the marketplaceEnabled value.
      */
     public Boolean marketplaceEnabled() {
@@ -70,7 +74,7 @@ public final class EnrollmentPolicies {
     /**
      * Get the reservedInstancesEnabled property: The policy that controls whether Azure reservation purchases are
      * allowed in the enrollment.
-     *
+     * 
      * @return the reservedInstancesEnabled value.
      */
     public Boolean reservedInstancesEnabled() {
@@ -79,7 +83,7 @@ public final class EnrollmentPolicies {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billing.models.EnrollmentAccount;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The properties of a department. */
+/**
+ * The properties of a department.
+ */
 @Fluent
 public final class DepartmentProperties {
     /*
@@ -36,13 +38,15 @@ public final class DepartmentProperties {
     @JsonProperty(value = "enrollmentAccounts")
     private List<EnrollmentAccount> enrollmentAccounts;
 
-    /** Creates an instance of DepartmentProperties class. */
+    /**
+     * Creates an instance of DepartmentProperties class.
+     */
     public DepartmentProperties() {
     }
 
     /**
      * Get the departmentName property: The name of the department.
-     *
+     * 
      * @return the departmentName value.
      */
     public String departmentName() {
@@ -51,7 +55,7 @@ public final class DepartmentProperties {
 
     /**
      * Set the departmentName property: The name of the department.
-     *
+     * 
      * @param departmentName the departmentName value to set.
      * @return the DepartmentProperties object itself.
      */
@@ -62,7 +66,7 @@ public final class DepartmentProperties {
 
     /**
      * Get the costCenter property: The cost center associated with the department.
-     *
+     * 
      * @return the costCenter value.
      */
     public String costCenter() {
@@ -71,7 +75,7 @@ public final class DepartmentProperties {
 
     /**
      * Set the costCenter property: The cost center associated with the department.
-     *
+     * 
      * @param costCenter the costCenter value to set.
      * @return the DepartmentProperties object itself.
      */
@@ -82,7 +86,7 @@ public final class DepartmentProperties {
 
     /**
      * Get the status property: The status of the department.
-     *
+     * 
      * @return the status value.
      */
     public String status() {
@@ -91,7 +95,7 @@ public final class DepartmentProperties {
 
     /**
      * Set the status property: The status of the department.
-     *
+     * 
      * @param status the status value to set.
      * @return the DepartmentProperties object itself.
      */
@@ -103,7 +107,7 @@ public final class DepartmentProperties {
     /**
      * Get the enrollmentAccounts property: Associated enrollment accounts. By default this is not populated, unless
      * it's specified in $expand.
-     *
+     * 
      * @return the enrollmentAccounts value.
      */
     public List<EnrollmentAccount> enrollmentAccounts() {
@@ -113,7 +117,7 @@ public final class DepartmentProperties {
     /**
      * Set the enrollmentAccounts property: Associated enrollment accounts. By default this is not populated, unless
      * it's specified in $expand.
-     *
+     * 
      * @param enrollmentAccounts the enrollmentAccounts value to set.
      * @return the DepartmentProperties object itself.
      */
@@ -124,7 +128,7 @@ public final class DepartmentProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

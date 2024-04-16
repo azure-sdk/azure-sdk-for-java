@@ -14,8 +14,7 @@ public final class ValidateSubscriptionTransferEligibilityResultImpl
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    ValidateSubscriptionTransferEligibilityResultImpl(
-        ValidateSubscriptionTransferEligibilityResultInner innerObject,
+    ValidateSubscriptionTransferEligibilityResultImpl(ValidateSubscriptionTransferEligibilityResultInner innerObject,
         com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

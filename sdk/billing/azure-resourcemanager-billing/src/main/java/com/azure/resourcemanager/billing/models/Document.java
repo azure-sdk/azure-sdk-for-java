@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of a document. */
+/**
+ * The properties of a document.
+ */
 @Immutable
 public final class Document {
     /*
@@ -28,13 +30,15 @@ public final class Document {
     @JsonProperty(value = "source", access = JsonProperty.Access.WRITE_ONLY)
     private DocumentSource source;
 
-    /** Creates an instance of Document class. */
+    /**
+     * Creates an instance of Document class.
+     */
     public Document() {
     }
 
     /**
      * Get the kind property: The type of the document.
-     *
+     * 
      * @return the kind value.
      */
     public DocumentType kind() {
@@ -43,7 +47,7 @@ public final class Document {
 
     /**
      * Get the url property: Document URL.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -52,7 +56,7 @@ public final class Document {
 
     /**
      * Get the source property: The source of the document. ENF for Brazil and DRS for rest of the world.
-     *
+     * 
      * @return the source value.
      */
     public DocumentSource source() {
@@ -61,7 +65,7 @@ public final class Document {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Indicates whether auto renewal is turned on or off for a product. */
+/**
+ * Indicates whether auto renewal is turned on or off for a product.
+ */
 public final class AutoRenew extends ExpandableStringEnum<AutoRenew> {
-    /** Static value Off for AutoRenew. */
+    /**
+     * Static value Off for AutoRenew.
+     */
     public static final AutoRenew OFF = fromString("Off");
 
-    /** Static value On for AutoRenew. */
+    /**
+     * Static value On for AutoRenew.
+     */
     public static final AutoRenew ON = fromString("On");
 
     /**
      * Creates a new instance of AutoRenew value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class AutoRenew extends ExpandableStringEnum<AutoRenew> {
 
     /**
      * Creates or finds a AutoRenew from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AutoRenew.
      */
@@ -38,7 +44,7 @@ public final class AutoRenew extends ExpandableStringEnum<AutoRenew> {
 
     /**
      * Gets known AutoRenew values.
-     *
+     * 
      * @return known AutoRenew values.
      */
     public static Collection<AutoRenew> values() {

@@ -4,19 +4,20 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for Instructions ListByBillingProfile. */
+/**
+ * Samples for Instructions ListByBillingProfile.
+ */
 public final class InstructionsListByBillingProfileSamples {
     /*
      * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/InstructionsListByBillingProfile.json
      */
     /**
      * Sample code: InstructionsListByBillingProfile.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void instructionsListByBillingProfile(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .instructions()
+        manager.instructions()
             .listByBillingProfile("{billingAccountName}", "{billingProfileName}", com.azure.core.util.Context.NONE);
     }
 }

@@ -9,12 +9,14 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 import java.util.List;
 
-/** Resource collection API of Invoices. */
+/**
+ * Resource collection API of Invoices.
+ */
 public interface Invoices {
     /**
      * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
      * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
      * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
@@ -23,13 +25,13 @@ public interface Invoices {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of invoices as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Invoice> listByBillingAccount(
-        String billingAccountName, String periodStartDate, String periodEndDate);
+    PagedIterable<Invoice> listByBillingAccount(String billingAccountName, String periodStartDate,
+        String periodEndDate);
 
     /**
      * Lists the invoices for a billing account for a given start date and end date. The operation is supported for
      * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
      * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
@@ -39,50 +41,46 @@ public interface Invoices {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the list of invoices as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Invoice> listByBillingAccount(
-        String billingAccountName, String periodStartDate, String periodEndDate, Context context);
-
-    /**
-     * Lists the invoices for a billing profile for a given start date and end date. The operation is supported for
-     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<Invoice> listByBillingProfile(
-        String billingAccountName, String billingProfileName, String periodStartDate, String periodEndDate);
-
-    /**
-     * Lists the invoices for a billing profile for a given start date and end date. The operation is supported for
-     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
-     * @param billingAccountName The ID that uniquely identifies a billing account.
-     * @param billingProfileName The ID that uniquely identifies a billing profile.
-     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the list of invoices as paginated response with {@link PagedIterable}.
-     */
-    PagedIterable<Invoice> listByBillingProfile(
-        String billingAccountName,
-        String billingProfileName,
-        String periodStartDate,
-        String periodEndDate,
+    PagedIterable<Invoice> listByBillingAccount(String billingAccountName, String periodStartDate, String periodEndDate,
         Context context);
+
+    /**
+     * Lists the invoices for a billing profile for a given start date and end date. The operation is supported for
+     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
+     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of invoices as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<Invoice> listByBillingProfile(String billingAccountName, String billingProfileName,
+        String periodStartDate, String periodEndDate);
+
+    /**
+     * Lists the invoices for a billing profile for a given start date and end date. The operation is supported for
+     * billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer Agreement.
+     * 
+     * @param billingAccountName The ID that uniquely identifies a billing account.
+     * @param billingProfileName The ID that uniquely identifies a billing profile.
+     * @param periodStartDate The start date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
+     * @param periodEndDate The end date to fetch the invoices. The date should be specified in MM-DD-YYYY format.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the list of invoices as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<Invoice> listByBillingProfile(String billingAccountName, String billingProfileName,
+        String periodStartDate, String periodEndDate, Context context);
 
     /**
      * Gets an invoice by billing account name and ID. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @param context The context to associate with this operation.
@@ -96,7 +94,7 @@ public interface Invoices {
     /**
      * Gets an invoice by billing account name and ID. The operation is supported for billing accounts with agreement
      * type Microsoft Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -109,7 +107,7 @@ public interface Invoices {
     /**
      * Gets an invoice by ID. The operation is supported for billing accounts with agreement type Microsoft Partner
      * Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -122,7 +120,7 @@ public interface Invoices {
     /**
      * Gets an invoice by ID. The operation is supported for billing accounts with agreement type Microsoft Partner
      * Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -134,7 +132,7 @@ public interface Invoices {
     /**
      * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
      * Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @param downloadToken Download token with document source and document ID.
@@ -148,7 +146,7 @@ public interface Invoices {
     /**
      * Gets a URL to download an invoice. The operation is supported for billing accounts with agreement type Microsoft
      * Partner Agreement or Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @param downloadToken Download token with document source and document ID.
@@ -164,7 +162,7 @@ public interface Invoices {
      * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
      * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
      * Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param downloadUrls An array of download urls for individual documents.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -178,7 +176,7 @@ public interface Invoices {
      * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file. The
      * operation is supported for billing accounts with agreement type Microsoft Partner Agreement or Microsoft Customer
      * Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param downloadUrls An array of download urls for individual documents.
      * @param context The context to associate with this operation.
@@ -187,12 +185,12 @@ public interface Invoices {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
      */
-    DownloadUrl downloadMultipleBillingProfileInvoices(
-        String billingAccountName, List<String> downloadUrls, Context context);
+    DownloadUrl downloadMultipleBillingProfileInvoices(String billingAccountName, List<String> downloadUrls,
+        Context context);
 
     /**
      * Lists the invoices for a subscription.
-     *
+     * 
      * @param periodStartDate Invoice period start date.
      * @param periodEndDate Invoice period end date.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -204,7 +202,7 @@ public interface Invoices {
 
     /**
      * Lists the invoices for a subscription.
-     *
+     * 
      * @param periodStartDate Invoice period start date.
      * @param periodEndDate Invoice period end date.
      * @param context The context to associate with this operation.
@@ -217,7 +215,7 @@ public interface Invoices {
 
     /**
      * Gets an invoice by subscription ID and invoice ID.
-     *
+     * 
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -229,7 +227,7 @@ public interface Invoices {
 
     /**
      * Gets an invoice by subscription ID and invoice ID.
-     *
+     * 
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -240,7 +238,7 @@ public interface Invoices {
 
     /**
      * Gets a URL to download an invoice.
-     *
+     * 
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @param downloadToken Download token with document source and document ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -252,7 +250,7 @@ public interface Invoices {
 
     /**
      * Gets a URL to download an invoice.
-     *
+     * 
      * @param invoiceName The ID that uniquely identifies an invoice.
      * @param downloadToken Download token with document source and document ID.
      * @param context The context to associate with this operation.
@@ -265,7 +263,7 @@ public interface Invoices {
 
     /**
      * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
+     * 
      * @param downloadUrls An array of download urls for individual documents.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -276,7 +274,7 @@ public interface Invoices {
 
     /**
      * Gets a URL to download multiple invoice documents (invoice pdf, tax receipts, credit notes) as a zip file.
-     *
+     * 
      * @param downloadUrls An array of download urls for individual documents.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

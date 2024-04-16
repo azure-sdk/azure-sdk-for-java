@@ -6,25 +6,27 @@ package com.azure.resourcemanager.billing.models;
 
 import com.azure.resourcemanager.billing.fluent.models.PolicyInner;
 
-/** An immutable client-side representation of Policy. */
+/**
+ * An immutable client-side representation of Policy.
+ */
 public interface Policy {
     /**
      * Gets the id property: Fully qualified resource Id for the resource.
-     *
+     * 
      * @return the id value.
      */
     String id();
 
     /**
      * Gets the name property: The name of the resource.
-     *
+     * 
      * @return the name value.
      */
     String name();
 
     /**
      * Gets the type property: The type of the resource.
-     *
+     * 
      * @return the type value.
      */
     String type();
@@ -32,7 +34,7 @@ public interface Policy {
     /**
      * Gets the marketplacePurchases property: The policy that controls whether Azure marketplace purchases are allowed
      * for a billing profile.
-     *
+     * 
      * @return the marketplacePurchases value.
      */
     MarketplacePurchasesPolicy marketplacePurchases();
@@ -40,7 +42,7 @@ public interface Policy {
     /**
      * Gets the reservationPurchases property: The policy that controls whether Azure reservation purchases are allowed
      * for a billing profile.
-     *
+     * 
      * @return the reservationPurchases value.
      */
     ReservationPurchasesPolicy reservationPurchases();
@@ -48,14 +50,14 @@ public interface Policy {
     /**
      * Gets the viewCharges property: The policy that controls whether users with Azure RBAC access to a subscription
      * can view its charges.
-     *
+     * 
      * @return the viewCharges value.
      */
     ViewChargesPolicy viewCharges();
 
     /**
      * Gets the inner com.azure.resourcemanager.billing.fluent.models.PolicyInner object.
-     *
+     * 
      * @return the inner object.
      */
     PolicyInner innerModel();

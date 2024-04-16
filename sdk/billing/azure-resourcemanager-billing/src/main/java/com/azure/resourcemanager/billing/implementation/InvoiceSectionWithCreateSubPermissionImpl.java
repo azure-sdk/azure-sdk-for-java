@@ -18,8 +18,7 @@ public final class InvoiceSectionWithCreateSubPermissionImpl implements InvoiceS
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    InvoiceSectionWithCreateSubPermissionImpl(
-        InvoiceSectionWithCreateSubPermissionInner innerObject,
+    InvoiceSectionWithCreateSubPermissionImpl(InvoiceSectionWithCreateSubPermissionInner innerObject,
         com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Reason for the specified billing profile status. */
+/**
+ * Reason for the specified billing profile status.
+ */
 public final class StatusReasonCodeForBillingProfile extends ExpandableStringEnum<StatusReasonCodeForBillingProfile> {
-    /** Static value PastDue for StatusReasonCodeForBillingProfile. */
+    /**
+     * Static value PastDue for StatusReasonCodeForBillingProfile.
+     */
     public static final StatusReasonCodeForBillingProfile PAST_DUE = fromString("PastDue");
 
-    /** Static value SpendingLimitReached for StatusReasonCodeForBillingProfile. */
+    /**
+     * Static value SpendingLimitReached for StatusReasonCodeForBillingProfile.
+     */
     public static final StatusReasonCodeForBillingProfile SPENDING_LIMIT_REACHED = fromString("SpendingLimitReached");
 
-    /** Static value SpendingLimitExpired for StatusReasonCodeForBillingProfile. */
+    /**
+     * Static value SpendingLimitExpired for StatusReasonCodeForBillingProfile.
+     */
     public static final StatusReasonCodeForBillingProfile SPENDING_LIMIT_EXPIRED = fromString("SpendingLimitExpired");
 
     /**
      * Creates a new instance of StatusReasonCodeForBillingProfile value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class StatusReasonCodeForBillingProfile extends ExpandableStringEnu
 
     /**
      * Creates or finds a StatusReasonCodeForBillingProfile from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding StatusReasonCodeForBillingProfile.
      */
@@ -41,7 +49,7 @@ public final class StatusReasonCodeForBillingProfile extends ExpandableStringEnu
 
     /**
      * Gets known StatusReasonCodeForBillingProfile values.
-     *
+     * 
      * @return known StatusReasonCodeForBillingProfile values.
      */
     public static Collection<StatusReasonCodeForBillingProfile> values() {

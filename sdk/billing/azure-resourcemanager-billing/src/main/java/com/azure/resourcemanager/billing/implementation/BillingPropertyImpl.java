@@ -15,8 +15,8 @@ public final class BillingPropertyImpl implements BillingProperty {
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    BillingPropertyImpl(
-        BillingPropertyInner innerObject, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    BillingPropertyImpl(BillingPropertyInner innerObject,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }

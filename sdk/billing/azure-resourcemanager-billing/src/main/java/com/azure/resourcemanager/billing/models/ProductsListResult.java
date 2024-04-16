@@ -33,13 +33,15 @@ public final class ProductsListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ProductsListResult class. */
+    /**
+     * Creates an instance of ProductsListResult class.
+     */
     public ProductsListResult() {
     }
 
     /**
      * Get the value property: The list of products.
-     *
+     * 
      * @return the value value.
      */
     public List<ProductInner> value() {
@@ -48,7 +50,7 @@ public final class ProductsListResult {
 
     /**
      * Get the totalCount property: Total number of records.
-     *
+     * 
      * @return the totalCount value.
      */
     public Integer totalCount() {
@@ -57,7 +59,7 @@ public final class ProductsListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -66,7 +68,7 @@ public final class ProductsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

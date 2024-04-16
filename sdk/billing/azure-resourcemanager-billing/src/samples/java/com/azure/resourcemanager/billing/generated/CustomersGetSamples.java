@@ -4,23 +4,21 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for Customers Get. */
+/**
+ * Samples for Customers Get.
+ */
 public final class CustomersGetSamples {
     /*
      * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/CustomerWithExpand.json
      */
     /**
      * Sample code: CustomerWithExpand.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void customerWithExpand(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .customers()
-            .getWithResponse(
-                "{billingAccountName}",
-                "{customerName}",
-                "enabledAzurePlans,resellers",
+        manager.customers()
+            .getWithResponse("{billingAccountName}", "{customerName}", "enabledAzurePlans,resellers",
                 com.azure.core.util.Context.NONE);
     }
 
@@ -29,12 +27,11 @@ public final class CustomersGetSamples {
      */
     /**
      * Sample code: Customer.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void customer(com.azure.resourcemanager.billing.BillingManager manager) {
-        manager
-            .customers()
+        manager.customers()
             .getWithResponse("{billingAccountName}", "{customerName}", null, com.azure.core.util.Context.NONE);
     }
 }

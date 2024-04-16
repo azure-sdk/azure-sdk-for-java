@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The properties of the a role definition. */
+/**
+ * The properties of the a role definition.
+ */
 @Fluent
 public final class BillingRoleDefinitionProperties {
     /*
@@ -29,13 +31,15 @@ public final class BillingRoleDefinitionProperties {
     @JsonProperty(value = "roleName", access = JsonProperty.Access.WRITE_ONLY)
     private String roleName;
 
-    /** Creates an instance of BillingRoleDefinitionProperties class. */
+    /**
+     * Creates an instance of BillingRoleDefinitionProperties class.
+     */
     public BillingRoleDefinitionProperties() {
     }
 
     /**
      * Get the description property: The role description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -44,7 +48,7 @@ public final class BillingRoleDefinitionProperties {
 
     /**
      * Get the permissions property: The billingPermissions the role has.
-     *
+     * 
      * @return the permissions value.
      */
     public List<BillingPermissionsPropertiesInner> permissions() {
@@ -53,7 +57,7 @@ public final class BillingRoleDefinitionProperties {
 
     /**
      * Set the permissions property: The billingPermissions the role has.
-     *
+     * 
      * @param permissions the permissions value to set.
      * @return the BillingRoleDefinitionProperties object itself.
      */
@@ -64,7 +68,7 @@ public final class BillingRoleDefinitionProperties {
 
     /**
      * Get the roleName property: The name of the role.
-     *
+     * 
      * @return the roleName value.
      */
     public String roleName() {
@@ -73,7 +77,7 @@ public final class BillingRoleDefinitionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

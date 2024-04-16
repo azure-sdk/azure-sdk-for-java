@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.billing.models.ViewCharges;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The customer's Policy. */
+/**
+ * The customer's Policy.
+ */
 @Fluent
 public final class CustomerPolicyInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class CustomerPolicyInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private CustomerPolicyProperties innerProperties;
 
-    /** Creates an instance of CustomerPolicyInner class. */
+    /**
+     * Creates an instance of CustomerPolicyInner class.
+     */
     public CustomerPolicyInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of a customer's policy.
-     *
+     * 
      * @return the innerProperties value.
      */
     private CustomerPolicyProperties innerProperties() {
@@ -34,7 +38,7 @@ public final class CustomerPolicyInner extends ProxyResource {
     /**
      * Get the viewCharges property: The policy that controls whether the users in customer's organization can view
      * charges at pay-as-you-go prices.
-     *
+     * 
      * @return the viewCharges value.
      */
     public ViewCharges viewCharges() {
@@ -44,7 +48,7 @@ public final class CustomerPolicyInner extends ProxyResource {
     /**
      * Set the viewCharges property: The policy that controls whether the users in customer's organization can view
      * charges at pay-as-you-go prices.
-     *
+     * 
      * @param viewCharges the viewCharges value to set.
      * @return the CustomerPolicyInner object itself.
      */
@@ -58,7 +62,7 @@ public final class CustomerPolicyInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

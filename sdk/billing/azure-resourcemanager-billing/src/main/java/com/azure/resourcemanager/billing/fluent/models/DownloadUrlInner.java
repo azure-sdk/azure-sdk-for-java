@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** A secure URL that can be used to download a an entity until the URL expires. */
+/**
+ * A secure URL that can be used to download a an entity until the URL expires.
+ */
 @Immutable
 public final class DownloadUrlInner {
     /*
@@ -23,13 +25,15 @@ public final class DownloadUrlInner {
     @JsonProperty(value = "url", access = JsonProperty.Access.WRITE_ONLY)
     private String url;
 
-    /** Creates an instance of DownloadUrlInner class. */
+    /**
+     * Creates an instance of DownloadUrlInner class.
+     */
     public DownloadUrlInner() {
     }
 
     /**
      * Get the expiryTime property: The time in UTC when the download URL will expire.
-     *
+     * 
      * @return the expiryTime value.
      */
     public OffsetDateTime expiryTime() {
@@ -38,7 +42,7 @@ public final class DownloadUrlInner {
 
     /**
      * Get the url property: The URL to the PDF file.
-     *
+     * 
      * @return the url value.
      */
     public String url() {
@@ -47,7 +51,7 @@ public final class DownloadUrlInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

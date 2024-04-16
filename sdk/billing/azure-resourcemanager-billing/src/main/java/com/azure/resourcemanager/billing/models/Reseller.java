@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details of the reseller. */
+/**
+ * Details of the reseller.
+ */
 @Immutable
 public final class Reseller {
     /*
@@ -22,13 +24,15 @@ public final class Reseller {
     @JsonProperty(value = "description", access = JsonProperty.Access.WRITE_ONLY)
     private String description;
 
-    /** Creates an instance of Reseller class. */
+    /**
+     * Creates an instance of Reseller class.
+     */
     public Reseller() {
     }
 
     /**
      * Get the resellerId property: The MPN ID of the reseller.
-     *
+     * 
      * @return the resellerId value.
      */
     public String resellerId() {
@@ -37,7 +41,7 @@ public final class Reseller {
 
     /**
      * Get the description property: The name of the reseller.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -46,7 +50,7 @@ public final class Reseller {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

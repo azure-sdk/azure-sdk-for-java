@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Identifies the state of an invoice section. */
+/**
+ * Identifies the state of an invoice section.
+ */
 public final class InvoiceSectionState extends ExpandableStringEnum<InvoiceSectionState> {
-    /** Static value Active for InvoiceSectionState. */
+    /**
+     * Static value Active for InvoiceSectionState.
+     */
     public static final InvoiceSectionState ACTIVE = fromString("Active");
 
-    /** Static value Restricted for InvoiceSectionState. */
+    /**
+     * Static value Restricted for InvoiceSectionState.
+     */
     public static final InvoiceSectionState RESTRICTED = fromString("Restricted");
 
     /**
      * Creates a new instance of InvoiceSectionState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class InvoiceSectionState extends ExpandableStringEnum<InvoiceSecti
 
     /**
      * Creates or finds a InvoiceSectionState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding InvoiceSectionState.
      */
@@ -38,7 +44,7 @@ public final class InvoiceSectionState extends ExpandableStringEnum<InvoiceSecti
 
     /**
      * Gets known InvoiceSectionState values.
-     *
+     * 
      * @return known InvoiceSectionState values.
      */
     public static Collection<InvoiceSectionState> values() {

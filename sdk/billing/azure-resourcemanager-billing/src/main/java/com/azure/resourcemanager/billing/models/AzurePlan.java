@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details of the Azure plan. */
+/**
+ * Details of the Azure plan.
+ */
 @Fluent
 public final class AzurePlan {
     /*
@@ -22,13 +24,15 @@ public final class AzurePlan {
     @JsonProperty(value = "skuDescription", access = JsonProperty.Access.WRITE_ONLY)
     private String skuDescription;
 
-    /** Creates an instance of AzurePlan class. */
+    /**
+     * Creates an instance of AzurePlan class.
+     */
     public AzurePlan() {
     }
 
     /**
      * Get the skuId property: The sku id.
-     *
+     * 
      * @return the skuId value.
      */
     public String skuId() {
@@ -37,7 +41,7 @@ public final class AzurePlan {
 
     /**
      * Set the skuId property: The sku id.
-     *
+     * 
      * @param skuId the skuId value to set.
      * @return the AzurePlan object itself.
      */
@@ -48,7 +52,7 @@ public final class AzurePlan {
 
     /**
      * Get the skuDescription property: The sku description.
-     *
+     * 
      * @return the skuDescription value.
      */
     public String skuDescription() {
@@ -57,7 +61,7 @@ public final class AzurePlan {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,11 +8,13 @@ import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of EnrollmentAccounts. */
+/**
+ * Resource collection API of EnrollmentAccounts.
+ */
 public interface EnrollmentAccounts {
     /**
      * Lists the enrollment accounts the caller has access to.
-     *
+     * 
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return result of listing enrollment accounts as paginated response with {@link PagedIterable}.
@@ -21,7 +23,7 @@ public interface EnrollmentAccounts {
 
     /**
      * Lists the enrollment accounts the caller has access to.
-     *
+     * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -32,7 +34,7 @@ public interface EnrollmentAccounts {
 
     /**
      * Gets a enrollment account by name.
-     *
+     * 
      * @param name Enrollment Account name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -44,7 +46,7 @@ public interface EnrollmentAccounts {
 
     /**
      * Gets a enrollment account by name.
-     *
+     * 
      * @param name Enrollment Account name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.

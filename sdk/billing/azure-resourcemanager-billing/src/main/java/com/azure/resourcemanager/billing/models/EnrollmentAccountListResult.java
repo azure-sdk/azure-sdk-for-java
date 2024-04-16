@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billing.fluent.models.EnrollmentAccountSummaryI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of listing enrollment accounts. */
+/**
+ * Result of listing enrollment accounts.
+ */
 @Immutable
 public final class EnrollmentAccountListResult {
     /*
@@ -24,13 +26,15 @@ public final class EnrollmentAccountListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of EnrollmentAccountListResult class. */
+    /**
+     * Creates an instance of EnrollmentAccountListResult class.
+     */
     public EnrollmentAccountListResult() {
     }
 
     /**
      * Get the value property: The list of enrollment accounts.
-     *
+     * 
      * @return the value value.
      */
     public List<EnrollmentAccountSummaryInner> value() {
@@ -39,7 +43,7 @@ public final class EnrollmentAccountListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class EnrollmentAccountListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

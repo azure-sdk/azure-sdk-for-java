@@ -27,15 +27,12 @@ public final class PoliciesImpl implements Policies {
         this.serviceManager = serviceManager;
     }
 
-    public Response<Policy> getByBillingProfileWithResponse(
-        String billingAccountName, String billingProfileName, Context context) {
-        Response<PolicyInner> inner =
-            this.serviceClient().getByBillingProfileWithResponse(billingAccountName, billingProfileName, context);
+    public Response<Policy> getByBillingProfileWithResponse(String billingAccountName, String billingProfileName,
+        Context context) {
+        Response<PolicyInner> inner
+            = this.serviceClient().getByBillingProfileWithResponse(billingAccountName, billingProfileName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new PolicyImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -51,15 +48,12 @@ public final class PoliciesImpl implements Policies {
         }
     }
 
-    public Response<Policy> updateWithResponse(
-        String billingAccountName, String billingProfileName, PolicyInner parameters, Context context) {
-        Response<PolicyInner> inner =
-            this.serviceClient().updateWithResponse(billingAccountName, billingProfileName, parameters, context);
+    public Response<Policy> updateWithResponse(String billingAccountName, String billingProfileName,
+        PolicyInner parameters, Context context) {
+        Response<PolicyInner> inner
+            = this.serviceClient().updateWithResponse(billingAccountName, billingProfileName, parameters, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new PolicyImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -75,15 +69,12 @@ public final class PoliciesImpl implements Policies {
         }
     }
 
-    public Response<CustomerPolicy> getByCustomerWithResponse(
-        String billingAccountName, String customerName, Context context) {
-        Response<CustomerPolicyInner> inner =
-            this.serviceClient().getByCustomerWithResponse(billingAccountName, customerName, context);
+    public Response<CustomerPolicy> getByCustomerWithResponse(String billingAccountName, String customerName,
+        Context context) {
+        Response<CustomerPolicyInner> inner
+            = this.serviceClient().getByCustomerWithResponse(billingAccountName, customerName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CustomerPolicyImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -99,23 +90,20 @@ public final class PoliciesImpl implements Policies {
         }
     }
 
-    public Response<CustomerPolicy> updateCustomerWithResponse(
-        String billingAccountName, String customerName, CustomerPolicyInner parameters, Context context) {
-        Response<CustomerPolicyInner> inner =
-            this.serviceClient().updateCustomerWithResponse(billingAccountName, customerName, parameters, context);
+    public Response<CustomerPolicy> updateCustomerWithResponse(String billingAccountName, String customerName,
+        CustomerPolicyInner parameters, Context context) {
+        Response<CustomerPolicyInner> inner
+            = this.serviceClient().updateCustomerWithResponse(billingAccountName, customerName, parameters, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new CustomerPolicyImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public CustomerPolicy updateCustomer(
-        String billingAccountName, String customerName, CustomerPolicyInner parameters) {
+    public CustomerPolicy updateCustomer(String billingAccountName, String customerName,
+        CustomerPolicyInner parameters) {
         CustomerPolicyInner inner = this.serviceClient().updateCustomer(billingAccountName, customerName, parameters);
         if (inner != null) {
             return new CustomerPolicyImpl(inner, this.manager());

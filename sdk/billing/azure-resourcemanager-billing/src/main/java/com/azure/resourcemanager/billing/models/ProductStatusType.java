@@ -8,35 +8,53 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The current status of the product. */
+/**
+ * The current status of the product.
+ */
 public final class ProductStatusType extends ExpandableStringEnum<ProductStatusType> {
-    /** Static value Active for ProductStatusType. */
+    /**
+     * Static value Active for ProductStatusType.
+     */
     public static final ProductStatusType ACTIVE = fromString("Active");
 
-    /** Static value Inactive for ProductStatusType. */
+    /**
+     * Static value Inactive for ProductStatusType.
+     */
     public static final ProductStatusType INACTIVE = fromString("Inactive");
 
-    /** Static value PastDue for ProductStatusType. */
+    /**
+     * Static value PastDue for ProductStatusType.
+     */
     public static final ProductStatusType PAST_DUE = fromString("PastDue");
 
-    /** Static value Expiring for ProductStatusType. */
+    /**
+     * Static value Expiring for ProductStatusType.
+     */
     public static final ProductStatusType EXPIRING = fromString("Expiring");
 
-    /** Static value Expired for ProductStatusType. */
+    /**
+     * Static value Expired for ProductStatusType.
+     */
     public static final ProductStatusType EXPIRED = fromString("Expired");
 
-    /** Static value Disabled for ProductStatusType. */
+    /**
+     * Static value Disabled for ProductStatusType.
+     */
     public static final ProductStatusType DISABLED = fromString("Disabled");
 
-    /** Static value Cancelled for ProductStatusType. */
+    /**
+     * Static value Cancelled for ProductStatusType.
+     */
     public static final ProductStatusType CANCELLED = fromString("Cancelled");
 
-    /** Static value AutoRenew for ProductStatusType. */
+    /**
+     * Static value AutoRenew for ProductStatusType.
+     */
     public static final ProductStatusType AUTO_RENEW = fromString("AutoRenew");
 
     /**
      * Creates a new instance of ProductStatusType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -45,7 +63,7 @@ public final class ProductStatusType extends ExpandableStringEnum<ProductStatusT
 
     /**
      * Creates or finds a ProductStatusType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ProductStatusType.
      */
@@ -56,7 +74,7 @@ public final class ProductStatusType extends ExpandableStringEnum<ProductStatusT
 
     /**
      * Gets known ProductStatusType values.
-     *
+     * 
      * @return known ProductStatusType values.
      */
     public static Collection<ProductStatusType> values() {

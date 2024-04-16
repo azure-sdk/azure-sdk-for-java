@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The roll up count summary of reservations in each state. */
+/**
+ * The roll up count summary of reservations in each state.
+ */
 @Immutable
 public final class ReservationSummary {
     /*
@@ -46,13 +48,15 @@ public final class ReservationSummary {
     @JsonProperty(value = "cancelledCount", access = JsonProperty.Access.WRITE_ONLY)
     private Float cancelledCount;
 
-    /** Creates an instance of ReservationSummary class. */
+    /**
+     * Creates an instance of ReservationSummary class.
+     */
     public ReservationSummary() {
     }
 
     /**
      * Get the succeededCount property: The number of reservation in Succeeded state.
-     *
+     * 
      * @return the succeededCount value.
      */
     public Float succeededCount() {
@@ -61,7 +65,7 @@ public final class ReservationSummary {
 
     /**
      * Get the failedCount property: The number of reservation in Failed state.
-     *
+     * 
      * @return the failedCount value.
      */
     public Float failedCount() {
@@ -70,7 +74,7 @@ public final class ReservationSummary {
 
     /**
      * Get the expiringCount property: The number of reservation in Expiring state.
-     *
+     * 
      * @return the expiringCount value.
      */
     public Float expiringCount() {
@@ -79,7 +83,7 @@ public final class ReservationSummary {
 
     /**
      * Get the expiredCount property: The number of reservation in Expired state.
-     *
+     * 
      * @return the expiredCount value.
      */
     public Float expiredCount() {
@@ -88,7 +92,7 @@ public final class ReservationSummary {
 
     /**
      * Get the pendingCount property: The number of reservation in Pending state.
-     *
+     * 
      * @return the pendingCount value.
      */
     public Float pendingCount() {
@@ -97,7 +101,7 @@ public final class ReservationSummary {
 
     /**
      * Get the cancelledCount property: The number of reservation in Cancelled state.
-     *
+     * 
      * @return the cancelledCount value.
      */
     public Float cancelledCount() {
@@ -106,7 +110,7 @@ public final class ReservationSummary {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Reservation utilization. */
+/**
+ * Reservation utilization.
+ */
 @Fluent
 public final class ReservationPropertyUtilization {
     /*
@@ -23,13 +25,15 @@ public final class ReservationPropertyUtilization {
     @JsonProperty(value = "aggregates")
     private List<ReservationUtilizationAggregates> aggregates;
 
-    /** Creates an instance of ReservationPropertyUtilization class. */
+    /**
+     * Creates an instance of ReservationPropertyUtilization class.
+     */
     public ReservationPropertyUtilization() {
     }
 
     /**
      * Get the trend property: The number of days trend for a reservation.
-     *
+     * 
      * @return the trend value.
      */
     public String trend() {
@@ -38,7 +42,7 @@ public final class ReservationPropertyUtilization {
 
     /**
      * Get the aggregates property: The array of aggregates of a reservation's utilization.
-     *
+     * 
      * @return the aggregates value.
      */
     public List<ReservationUtilizationAggregates> aggregates() {
@@ -47,7 +51,7 @@ public final class ReservationPropertyUtilization {
 
     /**
      * Set the aggregates property: The array of aggregates of a reservation's utilization.
-     *
+     * 
      * @param aggregates the aggregates value to set.
      * @return the ReservationPropertyUtilization object itself.
      */
@@ -58,7 +62,7 @@ public final class ReservationPropertyUtilization {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

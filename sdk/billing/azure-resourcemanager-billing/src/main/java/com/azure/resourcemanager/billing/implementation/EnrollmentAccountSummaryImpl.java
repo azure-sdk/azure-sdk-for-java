@@ -12,8 +12,8 @@ public final class EnrollmentAccountSummaryImpl implements EnrollmentAccountSumm
 
     private final com.azure.resourcemanager.billing.BillingManager serviceManager;
 
-    EnrollmentAccountSummaryImpl(
-        EnrollmentAccountSummaryInner innerObject, com.azure.resourcemanager.billing.BillingManager serviceManager) {
+    EnrollmentAccountSummaryImpl(EnrollmentAccountSummaryInner innerObject,
+        com.azure.resourcemanager.billing.BillingManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }

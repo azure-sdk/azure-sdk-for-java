@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.billing.models.ViewCharges;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of a customer's policy. */
+/**
+ * The properties of a customer's policy.
+ */
 @Fluent
 public final class CustomerPolicyProperties {
     /*
@@ -17,14 +19,16 @@ public final class CustomerPolicyProperties {
     @JsonProperty(value = "viewCharges")
     private ViewCharges viewCharges;
 
-    /** Creates an instance of CustomerPolicyProperties class. */
+    /**
+     * Creates an instance of CustomerPolicyProperties class.
+     */
     public CustomerPolicyProperties() {
     }
 
     /**
      * Get the viewCharges property: The policy that controls whether the users in customer's organization can view
      * charges at pay-as-you-go prices.
-     *
+     * 
      * @return the viewCharges value.
      */
     public ViewCharges viewCharges() {
@@ -34,7 +38,7 @@ public final class CustomerPolicyProperties {
     /**
      * Set the viewCharges property: The policy that controls whether the users in customer's organization can view
      * charges at pay-as-you-go prices.
-     *
+     * 
      * @param viewCharges the viewCharges value to set.
      * @return the CustomerPolicyProperties object itself.
      */
@@ -45,7 +49,7 @@ public final class CustomerPolicyProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

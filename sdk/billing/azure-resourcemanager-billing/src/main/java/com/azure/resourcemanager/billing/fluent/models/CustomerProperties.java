@@ -10,7 +10,9 @@ import com.azure.resourcemanager.billing.models.Reseller;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The properties of a customer. */
+/**
+ * The properties of a customer.
+ */
 @Fluent
 public final class CustomerProperties {
     /*
@@ -43,13 +45,15 @@ public final class CustomerProperties {
     @JsonProperty(value = "resellers")
     private List<Reseller> resellers;
 
-    /** Creates an instance of CustomerProperties class. */
+    /**
+     * Creates an instance of CustomerProperties class.
+     */
     public CustomerProperties() {
     }
 
     /**
      * Get the billingProfileId property: The ID of the billing profile for the invoice section.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -58,7 +62,7 @@ public final class CustomerProperties {
 
     /**
      * Get the billingProfileDisplayName property: The name of the billing profile for the invoice section.
-     *
+     * 
      * @return the billingProfileDisplayName value.
      */
     public String billingProfileDisplayName() {
@@ -67,7 +71,7 @@ public final class CustomerProperties {
 
     /**
      * Get the displayName property: The name of the customer.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -76,7 +80,7 @@ public final class CustomerProperties {
 
     /**
      * Set the displayName property: The name of the customer.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the CustomerProperties object itself.
      */
@@ -87,7 +91,7 @@ public final class CustomerProperties {
 
     /**
      * Get the enabledAzurePlans property: Azure plans enabled for the customer.
-     *
+     * 
      * @return the enabledAzurePlans value.
      */
     public List<AzurePlan> enabledAzurePlans() {
@@ -96,7 +100,7 @@ public final class CustomerProperties {
 
     /**
      * Set the enabledAzurePlans property: Azure plans enabled for the customer.
-     *
+     * 
      * @param enabledAzurePlans the enabledAzurePlans value to set.
      * @return the CustomerProperties object itself.
      */
@@ -107,7 +111,7 @@ public final class CustomerProperties {
 
     /**
      * Get the resellers property: The list of resellers for which an Azure plan is enabled for the customer.
-     *
+     * 
      * @return the resellers value.
      */
     public List<Reseller> resellers() {
@@ -116,7 +120,7 @@ public final class CustomerProperties {
 
     /**
      * Set the resellers property: The list of resellers for which an Azure plan is enabled for the customer.
-     *
+     * 
      * @param resellers the resellers value to set.
      * @return the CustomerProperties object itself.
      */
@@ -127,7 +131,7 @@ public final class CustomerProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

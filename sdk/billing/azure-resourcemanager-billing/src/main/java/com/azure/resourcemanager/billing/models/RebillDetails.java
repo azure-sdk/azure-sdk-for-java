@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The rebill details of an invoice. */
+/**
+ * The rebill details of an invoice.
+ */
 @Immutable
 public final class RebillDetails {
     /*
@@ -31,13 +33,15 @@ public final class RebillDetails {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, RebillDetails> rebillDetails;
 
-    /** Creates an instance of RebillDetails class. */
+    /**
+     * Creates an instance of RebillDetails class.
+     */
     public RebillDetails() {
     }
 
     /**
      * Get the creditNoteDocumentId property: The ID of credit note.
-     *
+     * 
      * @return the creditNoteDocumentId value.
      */
     public String creditNoteDocumentId() {
@@ -46,7 +50,7 @@ public final class RebillDetails {
 
     /**
      * Get the invoiceDocumentId property: The ID of invoice.
-     *
+     * 
      * @return the invoiceDocumentId value.
      */
     public String invoiceDocumentId() {
@@ -55,7 +59,7 @@ public final class RebillDetails {
 
     /**
      * Get the rebillDetails property: Rebill details for an invoice.
-     *
+     * 
      * @return the rebillDetails value.
      */
     public Map<String, RebillDetails> rebillDetails() {
@@ -64,19 +68,16 @@ public final class RebillDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (rebillDetails() != null) {
-            rebillDetails()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            rebillDetails().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
     }
 }

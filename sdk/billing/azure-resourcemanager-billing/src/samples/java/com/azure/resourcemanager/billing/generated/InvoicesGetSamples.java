@@ -4,14 +4,16 @@
 
 package com.azure.resourcemanager.billing.generated;
 
-/** Samples for Invoices Get. */
+/**
+ * Samples for Invoices Get.
+ */
 public final class InvoicesGetSamples {
     /*
      * x-ms-original-file: specification/billing/resource-manager/Microsoft.Billing/stable/2020-05-01/examples/Invoice.json
      */
     /**
      * Sample code: Invoice.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void invoice(com.azure.resourcemanager.billing.BillingManager manager) {
@@ -23,7 +25,7 @@ public final class InvoicesGetSamples {
      */
     /**
      * Sample code: CreditNote.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void creditNote(com.azure.resourcemanager.billing.BillingManager manager) {
@@ -35,7 +37,7 @@ public final class InvoicesGetSamples {
      */
     /**
      * Sample code: VoidInvoice.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void voidInvoice(com.azure.resourcemanager.billing.BillingManager manager) {
@@ -47,7 +49,7 @@ public final class InvoicesGetSamples {
      */
     /**
      * Sample code: InvoiceWithRebillDetails.
-     *
+     * 
      * @param manager Entry point to BillingManager.
      */
     public static void invoiceWithRebillDetails(com.azure.resourcemanager.billing.BillingManager manager) {

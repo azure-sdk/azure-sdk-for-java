@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billing.fluent.models.BillingPermissionsPropert
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of list billingPermissions a caller has on a billing account. */
+/**
+ * Result of list billingPermissions a caller has on a billing account.
+ */
 @Immutable
 public final class BillingPermissionsListResult {
     /*
@@ -24,13 +26,15 @@ public final class BillingPermissionsListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of BillingPermissionsListResult class. */
+    /**
+     * Creates an instance of BillingPermissionsListResult class.
+     */
     public BillingPermissionsListResult() {
     }
 
     /**
      * Get the value property: The list of billingPermissions a caller has on a billing account.
-     *
+     * 
      * @return the value value.
      */
     public List<BillingPermissionsPropertiesInner> value() {
@@ -39,7 +43,7 @@ public final class BillingPermissionsListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class BillingPermissionsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details about billing profile associated with agreement and available only for specific agreements. */
+/**
+ * Details about billing profile associated with agreement and available only for specific agreements.
+ */
 @Fluent
 public final class BillingProfileInfo {
     /*
@@ -28,13 +30,15 @@ public final class BillingProfileInfo {
     @JsonProperty(value = "indirectRelationshipOrganizationName")
     private String indirectRelationshipOrganizationName;
 
-    /** Creates an instance of BillingProfileInfo class. */
+    /**
+     * Creates an instance of BillingProfileInfo class.
+     */
     public BillingProfileInfo() {
     }
 
     /**
      * Get the billingProfileId property: The unique identifier for the billing profile.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -43,7 +47,7 @@ public final class BillingProfileInfo {
 
     /**
      * Set the billingProfileId property: The unique identifier for the billing profile.
-     *
+     * 
      * @param billingProfileId the billingProfileId value to set.
      * @return the BillingProfileInfo object itself.
      */
@@ -54,7 +58,7 @@ public final class BillingProfileInfo {
 
     /**
      * Get the billingProfileDisplayName property: The name of the billing profile.
-     *
+     * 
      * @return the billingProfileDisplayName value.
      */
     public String billingProfileDisplayName() {
@@ -63,7 +67,7 @@ public final class BillingProfileInfo {
 
     /**
      * Set the billingProfileDisplayName property: The name of the billing profile.
-     *
+     * 
      * @param billingProfileDisplayName the billingProfileDisplayName value to set.
      * @return the BillingProfileInfo object itself.
      */
@@ -75,7 +79,7 @@ public final class BillingProfileInfo {
     /**
      * Get the indirectRelationshipOrganizationName property: Billing account name. This property is available for a
      * specific type of agreement.
-     *
+     * 
      * @return the indirectRelationshipOrganizationName value.
      */
     public String indirectRelationshipOrganizationName() {
@@ -85,7 +89,7 @@ public final class BillingProfileInfo {
     /**
      * Set the indirectRelationshipOrganizationName property: Billing account name. This property is available for a
      * specific type of agreement.
-     *
+     * 
      * @param indirectRelationshipOrganizationName the indirectRelationshipOrganizationName value to set.
      * @return the BillingProfileInfo object itself.
      */
@@ -96,7 +100,7 @@ public final class BillingProfileInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

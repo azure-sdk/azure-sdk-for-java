@@ -14,7 +14,9 @@ import com.azure.resourcemanager.billing.models.Reseller;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** A product. */
+/**
+ * A product.
+ */
 @Fluent
 public final class ProductInner extends ProxyResource {
     /*
@@ -23,13 +25,15 @@ public final class ProductInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ProductProperties innerProperties;
 
-    /** Creates an instance of ProductInner class. */
+    /**
+     * Creates an instance of ProductInner class.
+     */
     public ProductInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of a product.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ProductProperties innerProperties() {
@@ -38,7 +42,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the autoRenew property: Indicates whether auto renewal is turned on or off for a product.
-     *
+     * 
      * @return the autoRenew value.
      */
     public AutoRenew autoRenew() {
@@ -47,7 +51,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Set the autoRenew property: Indicates whether auto renewal is turned on or off for a product.
-     *
+     * 
      * @param autoRenew the autoRenew value to set.
      * @return the ProductInner object itself.
      */
@@ -61,7 +65,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the displayName property: The display name of the product.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -70,7 +74,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the purchaseDate property: The date when the product was purchased.
-     *
+     * 
      * @return the purchaseDate value.
      */
     public OffsetDateTime purchaseDate() {
@@ -79,7 +83,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the productTypeId property: The ID of the type of product.
-     *
+     * 
      * @return the productTypeId value.
      */
     public String productTypeId() {
@@ -88,7 +92,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the productType property: The description of the type of product.
-     *
+     * 
      * @return the productType value.
      */
     public String productType() {
@@ -97,7 +101,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the status property: The current status of the product.
-     *
+     * 
      * @return the status value.
      */
     public ProductStatusType status() {
@@ -106,7 +110,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Set the status property: The current status of the product.
-     *
+     * 
      * @param status the status value to set.
      * @return the ProductInner object itself.
      */
@@ -120,7 +124,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the endDate property: The date when the product will be renewed or canceled.
-     *
+     * 
      * @return the endDate value.
      */
     public OffsetDateTime endDate() {
@@ -129,7 +133,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the billingFrequency property: The frequency at which the product will be billed.
-     *
+     * 
      * @return the billingFrequency value.
      */
     public BillingFrequency billingFrequency() {
@@ -138,7 +142,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Set the billingFrequency property: The frequency at which the product will be billed.
-     *
+     * 
      * @param billingFrequency the billingFrequency value to set.
      * @return the ProductInner object itself.
      */
@@ -152,7 +156,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the lastCharge property: The last month charges.
-     *
+     * 
      * @return the lastCharge value.
      */
     public Amount lastCharge() {
@@ -161,7 +165,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the lastChargeDate property: The date of the last charge.
-     *
+     * 
      * @return the lastChargeDate value.
      */
     public OffsetDateTime lastChargeDate() {
@@ -170,7 +174,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the quantity property: The quantity purchased for the product.
-     *
+     * 
      * @return the quantity value.
      */
     public Float quantity() {
@@ -179,7 +183,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the skuId property: The sku ID of the product.
-     *
+     * 
      * @return the skuId value.
      */
     public String skuId() {
@@ -188,7 +192,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the skuDescription property: The sku description of the product.
-     *
+     * 
      * @return the skuDescription value.
      */
     public String skuDescription() {
@@ -197,7 +201,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the tenantId property: The id of the tenant in which the product is used.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -206,7 +210,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the availabilityId property: The availability of the product.
-     *
+     * 
      * @return the availabilityId value.
      */
     public String availabilityId() {
@@ -215,7 +219,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the invoiceSectionId property: The ID of the invoice section to which the product is billed.
-     *
+     * 
      * @return the invoiceSectionId value.
      */
     public String invoiceSectionId() {
@@ -224,7 +228,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the invoiceSectionDisplayName property: The name of the invoice section to which the product is billed.
-     *
+     * 
      * @return the invoiceSectionDisplayName value.
      */
     public String invoiceSectionDisplayName() {
@@ -233,7 +237,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the billingProfileId property: The ID of the billing profile to which the product is billed.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -242,7 +246,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the billingProfileDisplayName property: The name of the billing profile to which the product is billed.
-     *
+     * 
      * @return the billingProfileDisplayName value.
      */
     public String billingProfileDisplayName() {
@@ -252,7 +256,7 @@ public final class ProductInner extends ProxyResource {
     /**
      * Get the customerId property: The ID of the customer for whom the product was purchased. The field is applicable
      * only for Microsoft Partner Agreement billing account.
-     *
+     * 
      * @return the customerId value.
      */
     public String customerId() {
@@ -262,7 +266,7 @@ public final class ProductInner extends ProxyResource {
     /**
      * Get the customerDisplayName property: The name of the customer for whom the product was purchased. The field is
      * applicable only for Microsoft Partner Agreement billing account.
-     *
+     * 
      * @return the customerDisplayName value.
      */
     public String customerDisplayName() {
@@ -271,7 +275,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Get the reseller property: Reseller for this product.
-     *
+     * 
      * @return the reseller value.
      */
     public Reseller reseller() {
@@ -280,7 +284,7 @@ public final class ProductInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

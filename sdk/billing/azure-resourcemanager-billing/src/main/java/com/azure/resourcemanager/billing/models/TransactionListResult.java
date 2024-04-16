@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billing.fluent.models.TransactionInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of transactions. */
+/**
+ * The list of transactions.
+ */
 @Immutable
 public final class TransactionListResult {
     /*
@@ -30,13 +32,15 @@ public final class TransactionListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of TransactionListResult class. */
+    /**
+     * Creates an instance of TransactionListResult class.
+     */
     public TransactionListResult() {
     }
 
     /**
      * Get the value property: The list of transactions.
-     *
+     * 
      * @return the value value.
      */
     public List<TransactionInner> value() {
@@ -45,7 +49,7 @@ public final class TransactionListResult {
 
     /**
      * Get the totalCount property: Total number of records.
-     *
+     * 
      * @return the totalCount value.
      */
     public Integer totalCount() {
@@ -54,7 +58,7 @@ public final class TransactionListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +67,7 @@ public final class TransactionListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

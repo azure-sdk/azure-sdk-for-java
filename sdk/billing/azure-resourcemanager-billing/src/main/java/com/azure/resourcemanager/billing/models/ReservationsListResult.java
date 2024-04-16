@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billing.fluent.models.ReservationInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of reservations and summary of roll out count of reservations in each state. */
+/**
+ * The list of reservations and summary of roll out count of reservations in each state.
+ */
 @Fluent
 public final class ReservationsListResult {
     /*
@@ -30,13 +32,15 @@ public final class ReservationsListResult {
     @JsonProperty(value = "summary")
     private ReservationSummary summary;
 
-    /** Creates an instance of ReservationsListResult class. */
+    /**
+     * Creates an instance of ReservationsListResult class.
+     */
     public ReservationsListResult() {
     }
 
     /**
      * Get the value property: The list of reservations.
-     *
+     * 
      * @return the value value.
      */
     public List<ReservationInner> value() {
@@ -45,7 +49,7 @@ public final class ReservationsListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -54,7 +58,7 @@ public final class ReservationsListResult {
 
     /**
      * Get the summary property: The roll out count summary of the reservations.
-     *
+     * 
      * @return the summary value.
      */
     public ReservationSummary summary() {
@@ -63,7 +67,7 @@ public final class ReservationsListResult {
 
     /**
      * Set the summary property: The roll out count summary of the reservations.
-     *
+     * 
      * @param summary the summary value to set.
      * @return the ReservationsListResult object itself.
      */
@@ -74,7 +78,7 @@ public final class ReservationsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

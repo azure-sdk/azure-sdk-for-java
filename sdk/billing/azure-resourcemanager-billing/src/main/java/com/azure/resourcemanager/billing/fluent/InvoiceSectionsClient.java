@@ -13,12 +13,14 @@ import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.billing.fluent.models.InvoiceSectionInner;
 
-/** An instance of this class provides access to all the operations defined in InvoiceSectionsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in InvoiceSectionsClient.
+ */
 public interface InvoiceSectionsClient {
     /**
      * Lists the invoice sections that a user has access to. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -32,7 +34,7 @@ public interface InvoiceSectionsClient {
     /**
      * Lists the invoice sections that a user has access to. The operation is supported only for billing accounts with
      * agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param context The context to associate with this operation.
@@ -42,13 +44,13 @@ public interface InvoiceSectionsClient {
      * @return the list of invoice sections as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<InvoiceSectionInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName, Context context);
+    PagedIterable<InvoiceSectionInner> listByBillingProfile(String billingAccountName, String billingProfileName,
+        Context context);
 
     /**
      * Gets an invoice section by its ID. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -59,13 +61,13 @@ public interface InvoiceSectionsClient {
      * @return an invoice section by its ID along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<InvoiceSectionInner> getWithResponse(
-        String billingAccountName, String billingProfileName, String invoiceSectionName, Context context);
+    Response<InvoiceSectionInner> getWithResponse(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, Context context);
 
     /**
      * Gets an invoice section by its ID. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -80,7 +82,7 @@ public interface InvoiceSectionsClient {
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -91,16 +93,13 @@ public interface InvoiceSectionsClient {
      * @return the {@link SyncPoller} for polling of an invoice section.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<InvoiceSectionInner>, InvoiceSectionInner> beginCreateOrUpdate(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters);
+    SyncPoller<PollResult<InvoiceSectionInner>, InvoiceSectionInner> beginCreateOrUpdate(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, InvoiceSectionInner parameters);
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -112,17 +111,13 @@ public interface InvoiceSectionsClient {
      * @return the {@link SyncPoller} for polling of an invoice section.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<InvoiceSectionInner>, InvoiceSectionInner> beginCreateOrUpdate(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters,
-        Context context);
+    SyncPoller<PollResult<InvoiceSectionInner>, InvoiceSectionInner> beginCreateOrUpdate(String billingAccountName,
+        String billingProfileName, String invoiceSectionName, InvoiceSectionInner parameters, Context context);
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -133,16 +128,13 @@ public interface InvoiceSectionsClient {
      * @return an invoice section.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    InvoiceSectionInner createOrUpdate(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
+    InvoiceSectionInner createOrUpdate(String billingAccountName, String billingProfileName, String invoiceSectionName,
         InvoiceSectionInner parameters);
 
     /**
      * Creates or updates an invoice section. The operation is supported only for billing accounts with agreement type
      * Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -154,10 +146,6 @@ public interface InvoiceSectionsClient {
      * @return an invoice section.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    InvoiceSectionInner createOrUpdate(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        InvoiceSectionInner parameters,
-        Context context);
+    InvoiceSectionInner createOrUpdate(String billingAccountName, String billingProfileName, String invoiceSectionName,
+        InvoiceSectionInner parameters, Context context);
 }

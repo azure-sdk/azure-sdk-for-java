@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billing.fluent.models.BillingRoleDefinitionInne
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of role definitions. */
+/**
+ * The list of role definitions.
+ */
 @Immutable
 public final class BillingRoleDefinitionListResult {
     /*
@@ -24,13 +26,15 @@ public final class BillingRoleDefinitionListResult {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of BillingRoleDefinitionListResult class. */
+    /**
+     * Creates an instance of BillingRoleDefinitionListResult class.
+     */
     public BillingRoleDefinitionListResult() {
     }
 
     /**
      * Get the value property: The role definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<BillingRoleDefinitionInner> value() {
@@ -39,7 +43,7 @@ public final class BillingRoleDefinitionListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class BillingRoleDefinitionListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

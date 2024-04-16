@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.billing.models.Amount;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The latest Azure credit balance. This is the balance available for pay now. */
+/**
+ * The latest Azure credit balance. This is the balance available for pay now.
+ */
 @Immutable
 public final class AvailableBalanceInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public final class AvailableBalanceInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private AvailableBalanceProperties innerProperties;
 
-    /** Creates an instance of AvailableBalanceInner class. */
+    /**
+     * Creates an instance of AvailableBalanceInner class.
+     */
     public AvailableBalanceInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of available balance.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AvailableBalanceProperties innerProperties() {
@@ -33,7 +37,7 @@ public final class AvailableBalanceInner extends ProxyResource {
 
     /**
      * Get the amount property: Balance amount.
-     *
+     * 
      * @return the amount value.
      */
     public Amount amount() {
@@ -42,7 +46,7 @@ public final class AvailableBalanceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

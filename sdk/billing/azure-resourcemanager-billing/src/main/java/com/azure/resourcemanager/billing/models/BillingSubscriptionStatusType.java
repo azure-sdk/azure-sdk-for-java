@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The current billing status of the subscription. */
+/**
+ * The current billing status of the subscription.
+ */
 public final class BillingSubscriptionStatusType extends ExpandableStringEnum<BillingSubscriptionStatusType> {
-    /** Static value Active for BillingSubscriptionStatusType. */
+    /**
+     * Static value Active for BillingSubscriptionStatusType.
+     */
     public static final BillingSubscriptionStatusType ACTIVE = fromString("Active");
 
-    /** Static value Inactive for BillingSubscriptionStatusType. */
+    /**
+     * Static value Inactive for BillingSubscriptionStatusType.
+     */
     public static final BillingSubscriptionStatusType INACTIVE = fromString("Inactive");
 
-    /** Static value Abandoned for BillingSubscriptionStatusType. */
+    /**
+     * Static value Abandoned for BillingSubscriptionStatusType.
+     */
     public static final BillingSubscriptionStatusType ABANDONED = fromString("Abandoned");
 
-    /** Static value Deleted for BillingSubscriptionStatusType. */
+    /**
+     * Static value Deleted for BillingSubscriptionStatusType.
+     */
     public static final BillingSubscriptionStatusType DELETED = fromString("Deleted");
 
-    /** Static value Warning for BillingSubscriptionStatusType. */
+    /**
+     * Static value Warning for BillingSubscriptionStatusType.
+     */
     public static final BillingSubscriptionStatusType WARNING = fromString("Warning");
 
     /**
      * Creates a new instance of BillingSubscriptionStatusType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class BillingSubscriptionStatusType extends ExpandableStringEnum<Bi
 
     /**
      * Creates or finds a BillingSubscriptionStatusType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BillingSubscriptionStatusType.
      */
@@ -47,7 +59,7 @@ public final class BillingSubscriptionStatusType extends ExpandableStringEnum<Bi
 
     /**
      * Gets known BillingSubscriptionStatusType values.
-     *
+     * 
      * @return known BillingSubscriptionStatusType values.
      */
     public static Collection<BillingSubscriptionStatusType> values() {

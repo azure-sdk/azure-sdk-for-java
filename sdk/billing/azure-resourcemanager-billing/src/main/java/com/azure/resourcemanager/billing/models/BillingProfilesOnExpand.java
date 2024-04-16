@@ -16,8 +16,7 @@ import java.util.List;
 @Fluent
 public final class BillingProfilesOnExpand {
     /*
-     * Indicates whether there are more billing profiles than the ones listed in this collection. The collection lists
-     * a maximum of 50 billing profiles. To get all billing profiles, use the list billing profiles API.
+     * Indicates whether there are more billing profiles than the ones listed in this collection. The collection lists a maximum of 50 billing profiles. To get all billing profiles, use the list billing profiles API.
      */
     @JsonProperty(value = "hasMoreResults", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean hasMoreResults;
@@ -28,7 +27,9 @@ public final class BillingProfilesOnExpand {
     @JsonProperty(value = "value")
     private List<BillingProfileInner> value;
 
-    /** Creates an instance of BillingProfilesOnExpand class. */
+    /**
+     * Creates an instance of BillingProfilesOnExpand class.
+     */
     public BillingProfilesOnExpand() {
     }
 
@@ -36,7 +37,7 @@ public final class BillingProfilesOnExpand {
      * Get the hasMoreResults property: Indicates whether there are more billing profiles than the ones listed in this
      * collection. The collection lists a maximum of 50 billing profiles. To get all billing profiles, use the list
      * billing profiles API.
-     *
+     * 
      * @return the hasMoreResults value.
      */
     public Boolean hasMoreResults() {
@@ -45,7 +46,7 @@ public final class BillingProfilesOnExpand {
 
     /**
      * Get the value property: The billing profiles associated with the billing account.
-     *
+     * 
      * @return the value value.
      */
     public List<BillingProfileInner> value() {
@@ -54,7 +55,7 @@ public final class BillingProfilesOnExpand {
 
     /**
      * Set the value property: The billing profiles associated with the billing account.
-     *
+     * 
      * @param value the value value to set.
      * @return the BillingProfilesOnExpand object itself.
      */
@@ -65,7 +66,7 @@ public final class BillingProfilesOnExpand {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

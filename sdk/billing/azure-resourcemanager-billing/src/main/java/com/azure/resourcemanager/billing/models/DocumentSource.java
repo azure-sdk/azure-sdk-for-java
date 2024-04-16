@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The source of the document. ENF for Brazil and DRS for rest of the world. */
+/**
+ * The source of the document. ENF for Brazil and DRS for rest of the world.
+ */
 public final class DocumentSource extends ExpandableStringEnum<DocumentSource> {
-    /** Static value DRS for DocumentSource. */
+    /**
+     * Static value DRS for DocumentSource.
+     */
     public static final DocumentSource DRS = fromString("DRS");
 
-    /** Static value ENF for DocumentSource. */
+    /**
+     * Static value ENF for DocumentSource.
+     */
     public static final DocumentSource ENF = fromString("ENF");
 
     /**
      * Creates a new instance of DocumentSource value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class DocumentSource extends ExpandableStringEnum<DocumentSource> {
 
     /**
      * Creates or finds a DocumentSource from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DocumentSource.
      */
@@ -38,7 +44,7 @@ public final class DocumentSource extends ExpandableStringEnum<DocumentSource> {
 
     /**
      * Gets known DocumentSource values.
-     *
+     * 
      * @return known DocumentSource values.
      */
     public static Collection<DocumentSource> values() {

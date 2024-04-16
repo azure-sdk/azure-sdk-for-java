@@ -12,7 +12,9 @@ import com.azure.resourcemanager.billing.models.StatusReasonCodeForBillingProfil
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Invoice section properties with create subscription permission. */
+/**
+ * Invoice section properties with create subscription permission.
+ */
 @Fluent
 public final class InvoiceSectionWithCreateSubPermissionInner {
     /*
@@ -75,13 +77,15 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
     @JsonProperty(value = "enabledAzurePlans")
     private List<AzurePlan> enabledAzurePlans;
 
-    /** Creates an instance of InvoiceSectionWithCreateSubPermissionInner class. */
+    /**
+     * Creates an instance of InvoiceSectionWithCreateSubPermissionInner class.
+     */
     public InvoiceSectionWithCreateSubPermissionInner() {
     }
 
     /**
      * Get the invoiceSectionId property: The ID of the invoice section.
-     *
+     * 
      * @return the invoiceSectionId value.
      */
     public String invoiceSectionId() {
@@ -90,7 +94,7 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
 
     /**
      * Get the invoiceSectionDisplayName property: The name of the invoice section.
-     *
+     * 
      * @return the invoiceSectionDisplayName value.
      */
     public String invoiceSectionDisplayName() {
@@ -99,7 +103,7 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
 
     /**
      * Get the invoiceSectionSystemId property: The system generated unique identifier for an invoice section.
-     *
+     * 
      * @return the invoiceSectionSystemId value.
      */
     public String invoiceSectionSystemId() {
@@ -108,7 +112,7 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
 
     /**
      * Get the billingProfileId property: The ID of the billing profile for the invoice section.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -117,7 +121,7 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
 
     /**
      * Get the billingProfileDisplayName property: The name of the billing profile for the invoice section.
-     *
+     * 
      * @return the billingProfileDisplayName value.
      */
     public String billingProfileDisplayName() {
@@ -126,7 +130,7 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
 
     /**
      * Get the billingProfileStatus property: The status of the billing profile.
-     *
+     * 
      * @return the billingProfileStatus value.
      */
     public BillingProfileStatus billingProfileStatus() {
@@ -135,7 +139,7 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
 
     /**
      * Get the billingProfileStatusReasonCode property: Reason for the specified billing profile status.
-     *
+     * 
      * @return the billingProfileStatusReasonCode value.
      */
     public StatusReasonCodeForBillingProfile billingProfileStatusReasonCode() {
@@ -144,7 +148,7 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
 
     /**
      * Get the billingProfileSpendingLimit property: The billing profile spending limit.
-     *
+     * 
      * @return the billingProfileSpendingLimit value.
      */
     public SpendingLimitForBillingProfile billingProfileSpendingLimit() {
@@ -153,7 +157,7 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
 
     /**
      * Get the billingProfileSystemId property: The system generated unique identifier for a billing profile.
-     *
+     * 
      * @return the billingProfileSystemId value.
      */
     public String billingProfileSystemId() {
@@ -162,7 +166,7 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
 
     /**
      * Get the enabledAzurePlans property: Enabled azure plans for the associated billing profile.
-     *
+     * 
      * @return the enabledAzurePlans value.
      */
     public List<AzurePlan> enabledAzurePlans() {
@@ -171,7 +175,7 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
 
     /**
      * Set the enabledAzurePlans property: Enabled azure plans for the associated billing profile.
-     *
+     * 
      * @param enabledAzurePlans the enabledAzurePlans value to set.
      * @return the InvoiceSectionWithCreateSubPermissionInner object itself.
      */
@@ -182,7 +186,7 @@ public final class InvoiceSectionWithCreateSubPermissionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

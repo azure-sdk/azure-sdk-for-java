@@ -11,7 +11,9 @@ import com.azure.resourcemanager.billing.models.TransactionTypeKind;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The properties of a transaction. */
+/**
+ * The properties of a transaction.
+ */
 @Fluent
 public final class TransactionProperties {
     /*
@@ -33,8 +35,7 @@ public final class TransactionProperties {
     private String invoice;
 
     /*
-     * The ID of the invoice on which the transaction was billed. This field is only applicable for transactions which
-     * are billed.
+     * The ID of the invoice on which the transaction was billed. This field is only applicable for transactions which are billed.
      */
     @JsonProperty(value = "invoiceId", access = JsonProperty.Access.WRITE_ONLY)
     private String invoiceId;
@@ -118,29 +119,25 @@ public final class TransactionProperties {
     private String billingProfileDisplayName;
 
     /*
-     * The ID of the customer for which the transaction took place. The field is applicable only for Microsoft Partner
-     * Agreement billing account.
+     * The ID of the customer for which the transaction took place. The field is applicable only for Microsoft Partner Agreement billing account.
      */
     @JsonProperty(value = "customerId", access = JsonProperty.Access.WRITE_ONLY)
     private String customerId;
 
     /*
-     * The name of the customer for which the transaction took place. The field is applicable only for Microsoft
-     * Partner Agreement billing account.
+     * The name of the customer for which the transaction took place. The field is applicable only for Microsoft Partner Agreement billing account.
      */
     @JsonProperty(value = "customerDisplayName", access = JsonProperty.Access.WRITE_ONLY)
     private String customerDisplayName;
 
     /*
-     * The ID of the subscription that was used for the transaction. The field is only applicable for transaction of
-     * kind reservation.
+     * The ID of the subscription that was used for the transaction. The field is only applicable for transaction of kind reservation.
      */
     @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
     private String subscriptionId;
 
     /*
-     * The name of the subscription that was used for the transaction. The field is only applicable for transaction of
-     * kind reservation.
+     * The name of the subscription that was used for the transaction. The field is only applicable for transaction of kind reservation.
      */
     @JsonProperty(value = "subscriptionName", access = JsonProperty.Access.WRITE_ONLY)
     private String subscriptionName;
@@ -235,13 +232,15 @@ public final class TransactionProperties {
     @JsonProperty(value = "unitType", access = JsonProperty.Access.WRITE_ONLY)
     private String unitType;
 
-    /** Creates an instance of TransactionProperties class. */
+    /**
+     * Creates an instance of TransactionProperties class.
+     */
     public TransactionProperties() {
     }
 
     /**
      * Get the kind property: The kind of transaction. Options are all or reservation.
-     *
+     * 
      * @return the kind value.
      */
     public TransactionTypeKind kind() {
@@ -250,7 +249,7 @@ public final class TransactionProperties {
 
     /**
      * Set the kind property: The kind of transaction. Options are all or reservation.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the TransactionProperties object itself.
      */
@@ -261,7 +260,7 @@ public final class TransactionProperties {
 
     /**
      * Get the date property: The date of transaction.
-     *
+     * 
      * @return the date value.
      */
     public OffsetDateTime date() {
@@ -271,7 +270,7 @@ public final class TransactionProperties {
     /**
      * Get the invoice property: Invoice on which the transaction was billed or 'pending' if the transaction is not
      * billed.
-     *
+     * 
      * @return the invoice value.
      */
     public String invoice() {
@@ -281,7 +280,7 @@ public final class TransactionProperties {
     /**
      * Get the invoiceId property: The ID of the invoice on which the transaction was billed. This field is only
      * applicable for transactions which are billed.
-     *
+     * 
      * @return the invoiceId value.
      */
     public String invoiceId() {
@@ -291,7 +290,7 @@ public final class TransactionProperties {
     /**
      * Get the orderId property: The order ID of the reservation. The field is only applicable for transaction of kind
      * reservation.
-     *
+     * 
      * @return the orderId value.
      */
     public String orderId() {
@@ -301,7 +300,7 @@ public final class TransactionProperties {
     /**
      * Get the orderName property: The name of the reservation order. The field is only applicable for transactions of
      * kind reservation.
-     *
+     * 
      * @return the orderName value.
      */
     public String orderName() {
@@ -310,7 +309,7 @@ public final class TransactionProperties {
 
     /**
      * Get the productFamily property: The family of the product for which the transaction took place.
-     *
+     * 
      * @return the productFamily value.
      */
     public String productFamily() {
@@ -319,7 +318,7 @@ public final class TransactionProperties {
 
     /**
      * Get the productTypeId property: The ID of the product type for which the transaction took place.
-     *
+     * 
      * @return the productTypeId value.
      */
     public String productTypeId() {
@@ -328,7 +327,7 @@ public final class TransactionProperties {
 
     /**
      * Get the productType property: The type of the product for which the transaction took place.
-     *
+     * 
      * @return the productType value.
      */
     public String productType() {
@@ -337,7 +336,7 @@ public final class TransactionProperties {
 
     /**
      * Get the productDescription property: The description of the product for which the transaction took place.
-     *
+     * 
      * @return the productDescription value.
      */
     public String productDescription() {
@@ -346,7 +345,7 @@ public final class TransactionProperties {
 
     /**
      * Get the transactionType property: The type of transaction.
-     *
+     * 
      * @return the transactionType value.
      */
     public ReservationType transactionType() {
@@ -355,7 +354,7 @@ public final class TransactionProperties {
 
     /**
      * Set the transactionType property: The type of transaction.
-     *
+     * 
      * @param transactionType the transactionType value to set.
      * @return the TransactionProperties object itself.
      */
@@ -366,7 +365,7 @@ public final class TransactionProperties {
 
     /**
      * Get the transactionAmount property: The charge associated with the transaction.
-     *
+     * 
      * @return the transactionAmount value.
      */
     public Amount transactionAmount() {
@@ -375,7 +374,7 @@ public final class TransactionProperties {
 
     /**
      * Get the quantity property: The quantity purchased in the transaction.
-     *
+     * 
      * @return the quantity value.
      */
     public Integer quantity() {
@@ -384,7 +383,7 @@ public final class TransactionProperties {
 
     /**
      * Get the invoiceSectionId property: The ID of the invoice section which will be billed for the transaction.
-     *
+     * 
      * @return the invoiceSectionId value.
      */
     public String invoiceSectionId() {
@@ -394,7 +393,7 @@ public final class TransactionProperties {
     /**
      * Get the invoiceSectionDisplayName property: The name of the invoice section which will be billed for the
      * transaction.
-     *
+     * 
      * @return the invoiceSectionDisplayName value.
      */
     public String invoiceSectionDisplayName() {
@@ -403,7 +402,7 @@ public final class TransactionProperties {
 
     /**
      * Get the billingProfileId property: The ID of the billing profile which will be billed for the transaction.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -413,7 +412,7 @@ public final class TransactionProperties {
     /**
      * Get the billingProfileDisplayName property: The name of the billing profile which will be billed for the
      * transaction.
-     *
+     * 
      * @return the billingProfileDisplayName value.
      */
     public String billingProfileDisplayName() {
@@ -423,7 +422,7 @@ public final class TransactionProperties {
     /**
      * Get the customerId property: The ID of the customer for which the transaction took place. The field is applicable
      * only for Microsoft Partner Agreement billing account.
-     *
+     * 
      * @return the customerId value.
      */
     public String customerId() {
@@ -433,7 +432,7 @@ public final class TransactionProperties {
     /**
      * Get the customerDisplayName property: The name of the customer for which the transaction took place. The field is
      * applicable only for Microsoft Partner Agreement billing account.
-     *
+     * 
      * @return the customerDisplayName value.
      */
     public String customerDisplayName() {
@@ -443,7 +442,7 @@ public final class TransactionProperties {
     /**
      * Get the subscriptionId property: The ID of the subscription that was used for the transaction. The field is only
      * applicable for transaction of kind reservation.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -453,7 +452,7 @@ public final class TransactionProperties {
     /**
      * Get the subscriptionName property: The name of the subscription that was used for the transaction. The field is
      * only applicable for transaction of kind reservation.
-     *
+     * 
      * @return the subscriptionName value.
      */
     public String subscriptionName() {
@@ -462,7 +461,7 @@ public final class TransactionProperties {
 
     /**
      * Get the azurePlan property: The type of azure plan of the subscription that was used for the transaction.
-     *
+     * 
      * @return the azurePlan value.
      */
     public String azurePlan() {
@@ -471,7 +470,7 @@ public final class TransactionProperties {
 
     /**
      * Get the azureCreditApplied property: The amount of any Azure credits automatically applied to this transaction.
-     *
+     * 
      * @return the azureCreditApplied value.
      */
     public Amount azureCreditApplied() {
@@ -480,7 +479,7 @@ public final class TransactionProperties {
 
     /**
      * Get the billingCurrency property: The ISO 4217 code for the currency in which this transaction is billed.
-     *
+     * 
      * @return the billingCurrency value.
      */
     public String billingCurrency() {
@@ -489,7 +488,7 @@ public final class TransactionProperties {
 
     /**
      * Get the discount property: The percentage discount, if any, applied to this transaction.
-     *
+     * 
      * @return the discount value.
      */
     public Float discount() {
@@ -498,7 +497,7 @@ public final class TransactionProperties {
 
     /**
      * Get the effectivePrice property: The price of the product after applying any discounts.
-     *
+     * 
      * @return the effectivePrice value.
      */
     public Amount effectivePrice() {
@@ -508,7 +507,7 @@ public final class TransactionProperties {
     /**
      * Get the exchangeRate property: The exchange rate used to convert charged amount to billing currency, if
      * applicable.
-     *
+     * 
      * @return the exchangeRate value.
      */
     public Float exchangeRate() {
@@ -517,7 +516,7 @@ public final class TransactionProperties {
 
     /**
      * Get the marketPrice property: The retail price of the product.
-     *
+     * 
      * @return the marketPrice value.
      */
     public Amount marketPrice() {
@@ -526,7 +525,7 @@ public final class TransactionProperties {
 
     /**
      * Get the pricingCurrency property: The ISO 4217 code for the currency in which the product is priced.
-     *
+     * 
      * @return the pricingCurrency value.
      */
     public String pricingCurrency() {
@@ -536,7 +535,7 @@ public final class TransactionProperties {
     /**
      * Get the servicePeriodStartDate property: The date of the purchase of the product, or the start date of the month
      * in which usage started.
-     *
+     * 
      * @return the servicePeriodStartDate value.
      */
     public OffsetDateTime servicePeriodStartDate() {
@@ -546,7 +545,7 @@ public final class TransactionProperties {
     /**
      * Get the servicePeriodEndDate property: The end date of the product term, or the end date of the month in which
      * usage ended.
-     *
+     * 
      * @return the servicePeriodEndDate value.
      */
     public OffsetDateTime servicePeriodEndDate() {
@@ -555,7 +554,7 @@ public final class TransactionProperties {
 
     /**
      * Get the subTotal property: The pre-tax charged amount for the transaction.
-     *
+     * 
      * @return the subTotal value.
      */
     public Amount subTotal() {
@@ -564,7 +563,7 @@ public final class TransactionProperties {
 
     /**
      * Get the tax property: The tax amount applied to the transaction.
-     *
+     * 
      * @return the tax value.
      */
     public Amount tax() {
@@ -574,7 +573,7 @@ public final class TransactionProperties {
     /**
      * Get the unitOfMeasure property: The unit of measure used to bill for the product. For example, compute services
      * are billed per hour.
-     *
+     * 
      * @return the unitOfMeasure value.
      */
     public String unitOfMeasure() {
@@ -583,7 +582,7 @@ public final class TransactionProperties {
 
     /**
      * Get the units property: The number of units used for a given product.
-     *
+     * 
      * @return the units value.
      */
     public Float units() {
@@ -592,7 +591,7 @@ public final class TransactionProperties {
 
     /**
      * Get the unitType property: The description for the unit of measure for a given product.
-     *
+     * 
      * @return the unitType value.
      */
     public String unitType() {
@@ -601,7 +600,7 @@ public final class TransactionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billing.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of the product to initiate a transfer. */
+/**
+ * The properties of the product to initiate a transfer.
+ */
 @Fluent
 public final class TransferProductRequestProperties {
     /*
@@ -16,13 +18,15 @@ public final class TransferProductRequestProperties {
     @JsonProperty(value = "destinationInvoiceSectionId")
     private String destinationInvoiceSectionId;
 
-    /** Creates an instance of TransferProductRequestProperties class. */
+    /**
+     * Creates an instance of TransferProductRequestProperties class.
+     */
     public TransferProductRequestProperties() {
     }
 
     /**
      * Get the destinationInvoiceSectionId property: The destination invoice section id.
-     *
+     * 
      * @return the destinationInvoiceSectionId value.
      */
     public String destinationInvoiceSectionId() {
@@ -31,7 +35,7 @@ public final class TransferProductRequestProperties {
 
     /**
      * Set the destinationInvoiceSectionId property: The destination invoice section id.
-     *
+     * 
      * @param destinationInvoiceSectionId the destinationInvoiceSectionId value to set.
      * @return the TransferProductRequestProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class TransferProductRequestProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

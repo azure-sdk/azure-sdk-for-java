@@ -14,12 +14,14 @@ import com.azure.resourcemanager.billing.fluent.models.ValidateProductTransferEl
 import com.azure.resourcemanager.billing.models.ProductsMoveResponse;
 import com.azure.resourcemanager.billing.models.TransferProductRequestProperties;
 
-/** An instance of this class provides access to all the operations defined in ProductsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ProductsClient.
+ */
 public interface ProductsClient {
     /**
      * Lists the products for a customer. These don't include products billed based on usage.The operation is supported
      * only for billing accounts with agreement type Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -33,7 +35,7 @@ public interface ProductsClient {
     /**
      * Lists the products for a customer. These don't include products billed based on usage.The operation is supported
      * only for billing accounts with agreement type Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param customerName The ID that uniquely identifies a customer.
      * @param context The context to associate with this operation.
@@ -48,7 +50,7 @@ public interface ProductsClient {
     /**
      * Lists the products for a billing account. These don't include products billed based on usage. The operation is
      * supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -61,11 +63,11 @@ public interface ProductsClient {
     /**
      * Lists the products for a billing account. These don't include products billed based on usage. The operation is
      * supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param filter May be used to filter by product type. The filter supports 'eq', 'lt', 'gt', 'le', 'ge', and 'and'.
-     *     It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string where key and value
-     *     are separated by a colon (:).
+     * It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string where key and value are
+     * separated by a colon (:).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -78,7 +80,7 @@ public interface ProductsClient {
     /**
      * Lists the products for a billing profile. These don't include products billed based on usage. The operation is
      * supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -92,12 +94,12 @@ public interface ProductsClient {
     /**
      * Lists the products for a billing profile. These don't include products billed based on usage. The operation is
      * supported for billing accounts with agreement type Microsoft Customer Agreement or Microsoft Partner Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param filter May be used to filter by product type. The filter supports 'eq', 'lt', 'gt', 'le', 'ge', and 'and'.
-     *     It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string where key and value
-     *     are separated by a colon (:).
+     * It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string where key and value are
+     * separated by a colon (:).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -105,13 +107,13 @@ public interface ProductsClient {
      * @return the list of products as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ProductInner> listByBillingProfile(
-        String billingAccountName, String billingProfileName, String filter, Context context);
+    PagedIterable<ProductInner> listByBillingProfile(String billingAccountName, String billingProfileName,
+        String filter, Context context);
 
     /**
      * Lists the products for an invoice section. These don't include products billed based on usage. The operation is
      * supported only for billing accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
@@ -121,19 +123,19 @@ public interface ProductsClient {
      * @return the list of products as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ProductInner> listByInvoiceSection(
-        String billingAccountName, String billingProfileName, String invoiceSectionName);
+    PagedIterable<ProductInner> listByInvoiceSection(String billingAccountName, String billingProfileName,
+        String invoiceSectionName);
 
     /**
      * Lists the products for an invoice section. These don't include products billed based on usage. The operation is
      * supported only for billing accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param billingProfileName The ID that uniquely identifies a billing profile.
      * @param invoiceSectionName The ID that uniquely identifies an invoice section.
      * @param filter May be used to filter by product type. The filter supports 'eq', 'lt', 'gt', 'le', 'ge', and 'and'.
-     *     It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string where key and value
-     *     are separated by a colon (:).
+     * It does not currently support 'ne', 'or', or 'not'. Tag filter is a key value pair string where key and value are
+     * separated by a colon (:).
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -141,17 +143,13 @@ public interface ProductsClient {
      * @return the list of products as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ProductInner> listByInvoiceSection(
-        String billingAccountName,
-        String billingProfileName,
-        String invoiceSectionName,
-        String filter,
-        Context context);
+    PagedIterable<ProductInner> listByInvoiceSection(String billingAccountName, String billingProfileName,
+        String invoiceSectionName, String filter, Context context);
 
     /**
      * Gets a product by ID. The operation is supported only for billing accounts with agreement type Microsoft Customer
      * Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param context The context to associate with this operation.
@@ -166,7 +164,7 @@ public interface ProductsClient {
     /**
      * Gets a product by ID. The operation is supported only for billing accounts with agreement type Microsoft Customer
      * Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -180,7 +178,7 @@ public interface ProductsClient {
     /**
      * Updates the properties of a Product. Currently, auto renew can be updated. The operation is supported only for
      * billing accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param parameters Request parameters that are provided to the update product operation.
@@ -191,13 +189,13 @@ public interface ProductsClient {
      * @return a product along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ProductInner> updateWithResponse(
-        String billingAccountName, String productName, ProductInner parameters, Context context);
+    Response<ProductInner> updateWithResponse(String billingAccountName, String productName, ProductInner parameters,
+        Context context);
 
     /**
      * Updates the properties of a Product. Currently, auto renew can be updated. The operation is supported only for
      * billing accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param parameters Request parameters that are provided to the update product operation.
@@ -213,7 +211,7 @@ public interface ProductsClient {
      * Moves a product's charges to a new invoice section. The new invoice section must belong to the same billing
      * profile as the existing invoice section. This operation is supported only for products that are purchased with a
      * recurring charge and for billing accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param parameters Request parameters that are provided to the move product operation.
@@ -224,14 +222,14 @@ public interface ProductsClient {
      * @return a product.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ProductsMoveResponse moveWithResponse(
-        String billingAccountName, String productName, TransferProductRequestProperties parameters, Context context);
+    ProductsMoveResponse moveWithResponse(String billingAccountName, String productName,
+        TransferProductRequestProperties parameters, Context context);
 
     /**
      * Moves a product's charges to a new invoice section. The new invoice section must belong to the same billing
      * profile as the existing invoice section. This operation is supported only for products that are purchased with a
      * recurring charge and for billing accounts with agreement type Microsoft Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param parameters Request parameters that are provided to the move product operation.
@@ -247,7 +245,7 @@ public interface ProductsClient {
      * Validates if a product's charges can be moved to a new invoice section. This operation is supported only for
      * products that are purchased with a recurring charge and for billing accounts with agreement type Microsoft
      * Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param parameters Request parameters that are provided to the validate move eligibility operation.
@@ -258,14 +256,14 @@ public interface ProductsClient {
      * @return result of the product transfer eligibility validation along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ValidateProductTransferEligibilityResultInner> validateMoveWithResponse(
-        String billingAccountName, String productName, TransferProductRequestProperties parameters, Context context);
+    Response<ValidateProductTransferEligibilityResultInner> validateMoveWithResponse(String billingAccountName,
+        String productName, TransferProductRequestProperties parameters, Context context);
 
     /**
      * Validates if a product's charges can be moved to a new invoice section. This operation is supported only for
      * products that are purchased with a recurring charge and for billing accounts with agreement type Microsoft
      * Customer Agreement.
-     *
+     * 
      * @param billingAccountName The ID that uniquely identifies a billing account.
      * @param productName The ID that uniquely identifies a product.
      * @param parameters Request parameters that are provided to the validate move eligibility operation.
@@ -275,6 +273,6 @@ public interface ProductsClient {
      * @return result of the product transfer eligibility validation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    ValidateProductTransferEligibilityResultInner validateMove(
-        String billingAccountName, String productName, TransferProductRequestProperties parameters);
+    ValidateProductTransferEligibilityResultInner validateMove(String billingAccountName, String productName,
+        TransferProductRequestProperties parameters);
 }

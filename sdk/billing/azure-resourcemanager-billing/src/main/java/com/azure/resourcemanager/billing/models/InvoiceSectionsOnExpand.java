@@ -16,8 +16,7 @@ import java.util.List;
 @Fluent
 public final class InvoiceSectionsOnExpand {
     /*
-     * Indicates whether there are more invoice sections than the ones listed in this collection. The collection lists
-     * a maximum of 50 invoice sections. To get all invoice sections, use the list invoice sections API.
+     * Indicates whether there are more invoice sections than the ones listed in this collection. The collection lists a maximum of 50 invoice sections. To get all invoice sections, use the list invoice sections API.
      */
     @JsonProperty(value = "hasMoreResults", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean hasMoreResults;
@@ -28,7 +27,9 @@ public final class InvoiceSectionsOnExpand {
     @JsonProperty(value = "value")
     private List<InvoiceSectionInner> value;
 
-    /** Creates an instance of InvoiceSectionsOnExpand class. */
+    /**
+     * Creates an instance of InvoiceSectionsOnExpand class.
+     */
     public InvoiceSectionsOnExpand() {
     }
 
@@ -36,7 +37,7 @@ public final class InvoiceSectionsOnExpand {
      * Get the hasMoreResults property: Indicates whether there are more invoice sections than the ones listed in this
      * collection. The collection lists a maximum of 50 invoice sections. To get all invoice sections, use the list
      * invoice sections API.
-     *
+     * 
      * @return the hasMoreResults value.
      */
     public Boolean hasMoreResults() {
@@ -45,7 +46,7 @@ public final class InvoiceSectionsOnExpand {
 
     /**
      * Get the value property: The invoice sections associated to the billing profile.
-     *
+     * 
      * @return the value value.
      */
     public List<InvoiceSectionInner> value() {
@@ -54,7 +55,7 @@ public final class InvoiceSectionsOnExpand {
 
     /**
      * Set the value property: The invoice sections associated to the billing profile.
-     *
+     * 
      * @param value the value value to set.
      * @return the InvoiceSectionsOnExpand object itself.
      */
@@ -65,7 +66,7 @@ public final class InvoiceSectionsOnExpand {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

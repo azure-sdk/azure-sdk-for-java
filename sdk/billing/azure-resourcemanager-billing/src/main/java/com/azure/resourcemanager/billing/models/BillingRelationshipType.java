@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Identifies which services and purchases are paid by a billing profile. */
+/**
+ * Identifies which services and purchases are paid by a billing profile.
+ */
 public final class BillingRelationshipType extends ExpandableStringEnum<BillingRelationshipType> {
-    /** Static value Direct for BillingRelationshipType. */
+    /**
+     * Static value Direct for BillingRelationshipType.
+     */
     public static final BillingRelationshipType DIRECT = fromString("Direct");
 
-    /** Static value IndirectCustomer for BillingRelationshipType. */
+    /**
+     * Static value IndirectCustomer for BillingRelationshipType.
+     */
     public static final BillingRelationshipType INDIRECT_CUSTOMER = fromString("IndirectCustomer");
 
-    /** Static value IndirectPartner for BillingRelationshipType. */
+    /**
+     * Static value IndirectPartner for BillingRelationshipType.
+     */
     public static final BillingRelationshipType INDIRECT_PARTNER = fromString("IndirectPartner");
 
-    /** Static value CSPPartner for BillingRelationshipType. */
+    /**
+     * Static value CSPPartner for BillingRelationshipType.
+     */
     public static final BillingRelationshipType CSPPARTNER = fromString("CSPPartner");
 
     /**
      * Creates a new instance of BillingRelationshipType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class BillingRelationshipType extends ExpandableStringEnum<BillingR
 
     /**
      * Creates or finds a BillingRelationshipType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BillingRelationshipType.
      */
@@ -44,7 +54,7 @@ public final class BillingRelationshipType extends ExpandableStringEnum<BillingR
 
     /**
      * Gets known BillingRelationshipType values.
-     *
+     * 
      * @return known BillingRelationshipType values.
      */
     public static Collection<BillingRelationshipType> values() {

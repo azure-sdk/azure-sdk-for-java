@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Reason for the specified billing profile status. */
+/**
+ * Reason for the specified billing profile status.
+ */
 public final class BillingProfileStatusReasonCode extends ExpandableStringEnum<BillingProfileStatusReasonCode> {
-    /** Static value PastDue for BillingProfileStatusReasonCode. */
+    /**
+     * Static value PastDue for BillingProfileStatusReasonCode.
+     */
     public static final BillingProfileStatusReasonCode PAST_DUE = fromString("PastDue");
 
-    /** Static value SpendingLimitReached for BillingProfileStatusReasonCode. */
+    /**
+     * Static value SpendingLimitReached for BillingProfileStatusReasonCode.
+     */
     public static final BillingProfileStatusReasonCode SPENDING_LIMIT_REACHED = fromString("SpendingLimitReached");
 
-    /** Static value SpendingLimitExpired for BillingProfileStatusReasonCode. */
+    /**
+     * Static value SpendingLimitExpired for BillingProfileStatusReasonCode.
+     */
     public static final BillingProfileStatusReasonCode SPENDING_LIMIT_EXPIRED = fromString("SpendingLimitExpired");
 
     /**
      * Creates a new instance of BillingProfileStatusReasonCode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class BillingProfileStatusReasonCode extends ExpandableStringEnum<B
 
     /**
      * Creates or finds a BillingProfileStatusReasonCode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BillingProfileStatusReasonCode.
      */
@@ -41,7 +49,7 @@ public final class BillingProfileStatusReasonCode extends ExpandableStringEnum<B
 
     /**
      * Gets known BillingProfileStatusReasonCode values.
-     *
+     * 
      * @return known BillingProfileStatusReasonCode values.
      */
     public static Collection<BillingProfileStatusReasonCode> values() {
