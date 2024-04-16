@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.kusto.models.Reason;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The result returned from a check name availability request. */
+/**
+ * The result returned from a check name availability request.
+ */
 @Fluent
 public final class CheckNameResultInner {
     /*
@@ -24,8 +26,7 @@ public final class CheckNameResultInner {
     private String name;
 
     /*
-     * Message indicating an unavailable name due to a conflict, or a description of the naming rules that are
-     * violated.
+     * Message indicating an unavailable name due to a conflict, or a description of the naming rules that are violated.
      */
     @JsonProperty(value = "message")
     private String message;
@@ -36,13 +37,15 @@ public final class CheckNameResultInner {
     @JsonProperty(value = "reason")
     private Reason reason;
 
-    /** Creates an instance of CheckNameResultInner class. */
+    /**
+     * Creates an instance of CheckNameResultInner class.
+     */
     public CheckNameResultInner() {
     }
 
     /**
      * Get the nameAvailable property: Specifies a Boolean value that indicates if the name is available.
-     *
+     * 
      * @return the nameAvailable value.
      */
     public Boolean nameAvailable() {
@@ -51,7 +54,7 @@ public final class CheckNameResultInner {
 
     /**
      * Set the nameAvailable property: Specifies a Boolean value that indicates if the name is available.
-     *
+     * 
      * @param nameAvailable the nameAvailable value to set.
      * @return the CheckNameResultInner object itself.
      */
@@ -62,7 +65,7 @@ public final class CheckNameResultInner {
 
     /**
      * Get the name property: The name that was checked.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -71,7 +74,7 @@ public final class CheckNameResultInner {
 
     /**
      * Set the name property: The name that was checked.
-     *
+     * 
      * @param name the name value to set.
      * @return the CheckNameResultInner object itself.
      */
@@ -83,7 +86,7 @@ public final class CheckNameResultInner {
     /**
      * Get the message property: Message indicating an unavailable name due to a conflict, or a description of the
      * naming rules that are violated.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -93,7 +96,7 @@ public final class CheckNameResultInner {
     /**
      * Set the message property: Message indicating an unavailable name due to a conflict, or a description of the
      * naming rules that are violated.
-     *
+     * 
      * @param message the message value to set.
      * @return the CheckNameResultInner object itself.
      */
@@ -104,7 +107,7 @@ public final class CheckNameResultInner {
 
     /**
      * Get the reason property: Message providing the reason why the given name is invalid.
-     *
+     * 
      * @return the reason value.
      */
     public Reason reason() {
@@ -113,7 +116,7 @@ public final class CheckNameResultInner {
 
     /**
      * Set the reason property: Message providing the reason why the given name is invalid.
-     *
+     * 
      * @param reason the reason value to set.
      * @return the CheckNameResultInner object itself.
      */
@@ -124,7 +127,7 @@ public final class CheckNameResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

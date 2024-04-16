@@ -4,14 +4,16 @@
 
 package com.azure.resourcemanager.kusto.generated;
 
-/** Samples for Clusters Delete. */
+/**
+ * Samples for Clusters Delete.
+ */
 public final class ClustersDeleteSamples {
     /*
      * x-ms-original-file: specification/azure-kusto/resource-manager/Microsoft.Kusto/stable/2023-08-15/examples/KustoClustersDelete.json
      */
     /**
      * Sample code: KustoClustersDelete.
-     *
+     * 
      * @param manager Entry point to KustoManager.
      */
     public static void kustoClustersDelete(com.azure.resourcemanager.kusto.KustoManager manager) {

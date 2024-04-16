@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kusto.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of the key vault. */
+/**
+ * Properties of the key vault.
+ */
 @Fluent
 public final class KeyVaultProperties {
     /*
@@ -34,13 +36,15 @@ public final class KeyVaultProperties {
     @JsonProperty(value = "userIdentity")
     private String userIdentity;
 
-    /** Creates an instance of KeyVaultProperties class. */
+    /**
+     * Creates an instance of KeyVaultProperties class.
+     */
     public KeyVaultProperties() {
     }
 
     /**
      * Get the keyName property: The name of the key vault key.
-     *
+     * 
      * @return the keyName value.
      */
     public String keyName() {
@@ -49,7 +53,7 @@ public final class KeyVaultProperties {
 
     /**
      * Set the keyName property: The name of the key vault key.
-     *
+     * 
      * @param keyName the keyName value to set.
      * @return the KeyVaultProperties object itself.
      */
@@ -60,7 +64,7 @@ public final class KeyVaultProperties {
 
     /**
      * Get the keyVersion property: The version of the key vault key.
-     *
+     * 
      * @return the keyVersion value.
      */
     public String keyVersion() {
@@ -69,7 +73,7 @@ public final class KeyVaultProperties {
 
     /**
      * Set the keyVersion property: The version of the key vault key.
-     *
+     * 
      * @param keyVersion the keyVersion value to set.
      * @return the KeyVaultProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class KeyVaultProperties {
 
     /**
      * Get the keyVaultUri property: The Uri of the key vault.
-     *
+     * 
      * @return the keyVaultUri value.
      */
     public String keyVaultUri() {
@@ -89,7 +93,7 @@ public final class KeyVaultProperties {
 
     /**
      * Set the keyVaultUri property: The Uri of the key vault.
-     *
+     * 
      * @param keyVaultUri the keyVaultUri value to set.
      * @return the KeyVaultProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class KeyVaultProperties {
 
     /**
      * Get the userIdentity property: The user assigned identity (ARM resource id) that has access to the key.
-     *
+     * 
      * @return the userIdentity value.
      */
     public String userIdentity() {
@@ -109,7 +113,7 @@ public final class KeyVaultProperties {
 
     /**
      * Set the userIdentity property: The user assigned identity (ARM resource id) that has access to the key.
-     *
+     * 
      * @param userIdentity the userIdentity value to set.
      * @return the KeyVaultProperties object itself.
      */
@@ -120,7 +124,7 @@ public final class KeyVaultProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

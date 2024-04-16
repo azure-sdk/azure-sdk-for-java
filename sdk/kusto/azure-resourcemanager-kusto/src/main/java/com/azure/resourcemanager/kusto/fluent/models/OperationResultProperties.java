@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.kusto.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Operation result properties. */
+/**
+ * Operation result properties.
+ */
 @Fluent
 public final class OperationResultProperties {
     /*
@@ -29,13 +31,15 @@ public final class OperationResultProperties {
     @JsonProperty(value = "operationState")
     private String operationState;
 
-    /** Creates an instance of OperationResultProperties class. */
+    /**
+     * Creates an instance of OperationResultProperties class.
+     */
     public OperationResultProperties() {
     }
 
     /**
      * Get the operationKind property: The kind of the operation.
-     *
+     * 
      * @return the operationKind value.
      */
     public String operationKind() {
@@ -44,7 +48,7 @@ public final class OperationResultProperties {
 
     /**
      * Set the operationKind property: The kind of the operation.
-     *
+     * 
      * @param operationKind the operationKind value to set.
      * @return the OperationResultProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class OperationResultProperties {
 
     /**
      * Get the provisioningState property: The provisioned state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -64,7 +68,7 @@ public final class OperationResultProperties {
 
     /**
      * Get the operationState property: The state of the operation.
-     *
+     * 
      * @return the operationState value.
      */
     public String operationState() {
@@ -73,7 +77,7 @@ public final class OperationResultProperties {
 
     /**
      * Set the operationState property: The state of the operation.
-     *
+     * 
      * @param operationState the operationState value to set.
      * @return the OperationResultProperties object itself.
      */
@@ -84,7 +88,7 @@ public final class OperationResultProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The role of the cluster in the migration process. */
+/**
+ * The role of the cluster in the migration process.
+ */
 public final class MigrationClusterRole extends ExpandableStringEnum<MigrationClusterRole> {
-    /** Static value Source for MigrationClusterRole. */
+    /**
+     * Static value Source for MigrationClusterRole.
+     */
     public static final MigrationClusterRole SOURCE = fromString("Source");
 
-    /** Static value Destination for MigrationClusterRole. */
+    /**
+     * Static value Destination for MigrationClusterRole.
+     */
     public static final MigrationClusterRole DESTINATION = fromString("Destination");
 
     /**
      * Creates a new instance of MigrationClusterRole value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class MigrationClusterRole extends ExpandableStringEnum<MigrationCl
 
     /**
      * Creates or finds a MigrationClusterRole from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding MigrationClusterRole.
      */
@@ -38,7 +44,7 @@ public final class MigrationClusterRole extends ExpandableStringEnum<MigrationCl
 
     /**
      * Gets known MigrationClusterRole values.
-     *
+     * 
      * @return known MigrationClusterRole values.
      */
     public static Collection<MigrationClusterRole> values() {

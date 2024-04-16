@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.fluent.models.DatabasePrincipalAssignment
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list Kusto database principal assignments operation response. */
+/**
+ * The list Kusto database principal assignments operation response.
+ */
 @Fluent
 public final class DatabasePrincipalAssignmentListResult {
     /*
@@ -18,13 +20,15 @@ public final class DatabasePrincipalAssignmentListResult {
     @JsonProperty(value = "value")
     private List<DatabasePrincipalAssignmentInner> value;
 
-    /** Creates an instance of DatabasePrincipalAssignmentListResult class. */
+    /**
+     * Creates an instance of DatabasePrincipalAssignmentListResult class.
+     */
     public DatabasePrincipalAssignmentListResult() {
     }
 
     /**
      * Get the value property: The list of Kusto database principal assignments.
-     *
+     * 
      * @return the value value.
      */
     public List<DatabasePrincipalAssignmentInner> value() {
@@ -33,7 +37,7 @@ public final class DatabasePrincipalAssignmentListResult {
 
     /**
      * Set the value property: The list of Kusto database principal assignments.
-     *
+     * 
      * @param value the value value to set.
      * @return the DatabasePrincipalAssignmentListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class DatabasePrincipalAssignmentListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

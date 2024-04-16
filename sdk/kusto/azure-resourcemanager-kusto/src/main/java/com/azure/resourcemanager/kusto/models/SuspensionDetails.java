@@ -20,13 +20,15 @@ public final class SuspensionDetails {
     @JsonProperty(value = "suspensionStartDate")
     private OffsetDateTime suspensionStartDate;
 
-    /** Creates an instance of SuspensionDetails class. */
+    /**
+     * Creates an instance of SuspensionDetails class.
+     */
     public SuspensionDetails() {
     }
 
     /**
      * Get the suspensionStartDate property: The starting date and time of the suspension state.
-     *
+     * 
      * @return the suspensionStartDate value.
      */
     public OffsetDateTime suspensionStartDate() {
@@ -35,7 +37,7 @@ public final class SuspensionDetails {
 
     /**
      * Set the suspensionStartDate property: The starting date and time of the suspension state.
-     *
+     * 
      * @param suspensionStartDate the suspensionStartDate value to set.
      * @return the SuspensionDetails object itself.
      */
@@ -46,7 +48,7 @@ public final class SuspensionDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

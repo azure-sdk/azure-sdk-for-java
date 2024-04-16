@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.models.DataConnectionValidationResult;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list Kusto data connection validation result. */
+/**
+ * The list Kusto data connection validation result.
+ */
 @Fluent
 public final class DataConnectionValidationListResultInner {
     /*
@@ -18,13 +20,15 @@ public final class DataConnectionValidationListResultInner {
     @JsonProperty(value = "value")
     private List<DataConnectionValidationResult> value;
 
-    /** Creates an instance of DataConnectionValidationListResultInner class. */
+    /**
+     * Creates an instance of DataConnectionValidationListResultInner class.
+     */
     public DataConnectionValidationListResultInner() {
     }
 
     /**
      * Get the value property: The list of Kusto data connection validation errors.
-     *
+     * 
      * @return the value value.
      */
     public List<DataConnectionValidationResult> value() {
@@ -33,7 +37,7 @@ public final class DataConnectionValidationListResultInner {
 
     /**
      * Set the value property: The list of Kusto data connection validation errors.
-     *
+     * 
      * @param value the value value to set.
      * @return the DataConnectionValidationListResultInner object itself.
      */
@@ -44,7 +48,7 @@ public final class DataConnectionValidationListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

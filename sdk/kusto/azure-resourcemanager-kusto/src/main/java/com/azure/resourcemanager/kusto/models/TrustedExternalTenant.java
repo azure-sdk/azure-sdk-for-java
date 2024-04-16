@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kusto.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Represents a tenant ID that is trusted by the cluster. */
+/**
+ * Represents a tenant ID that is trusted by the cluster.
+ */
 @Fluent
 public final class TrustedExternalTenant {
     /*
@@ -16,13 +18,15 @@ public final class TrustedExternalTenant {
     @JsonProperty(value = "value")
     private String value;
 
-    /** Creates an instance of TrustedExternalTenant class. */
+    /**
+     * Creates an instance of TrustedExternalTenant class.
+     */
     public TrustedExternalTenant() {
     }
 
     /**
      * Get the value property: GUID representing an external tenant.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -31,7 +35,7 @@ public final class TrustedExternalTenant {
 
     /**
      * Set the value property: GUID representing an external tenant.
-     *
+     * 
      * @param value the value value to set.
      * @return the TrustedExternalTenant object itself.
      */
@@ -42,7 +46,7 @@ public final class TrustedExternalTenant {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

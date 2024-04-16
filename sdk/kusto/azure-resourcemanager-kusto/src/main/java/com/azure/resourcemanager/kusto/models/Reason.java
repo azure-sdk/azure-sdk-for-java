@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Message providing the reason why the given name is invalid. */
+/**
+ * Message providing the reason why the given name is invalid.
+ */
 public final class Reason extends ExpandableStringEnum<Reason> {
-    /** Static value Invalid for Reason. */
+    /**
+     * Static value Invalid for Reason.
+     */
     public static final Reason INVALID = fromString("Invalid");
 
-    /** Static value AlreadyExists for Reason. */
+    /**
+     * Static value AlreadyExists for Reason.
+     */
     public static final Reason ALREADY_EXISTS = fromString("AlreadyExists");
 
     /**
      * Creates a new instance of Reason value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class Reason extends ExpandableStringEnum<Reason> {
 
     /**
      * Creates or finds a Reason from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Reason.
      */
@@ -38,7 +44,7 @@ public final class Reason extends ExpandableStringEnum<Reason> {
 
     /**
      * Gets known Reason values.
-     *
+     * 
      * @return known Reason values.
      */
     public static Collection<Reason> values() {

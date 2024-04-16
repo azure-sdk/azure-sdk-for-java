@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kusto.fluent.models.ScriptInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list Kusto database script operation response. */
+/**
+ * The list Kusto database script operation response.
+ */
 @Fluent
 public final class ScriptListResult {
     /*
@@ -18,13 +20,15 @@ public final class ScriptListResult {
     @JsonProperty(value = "value")
     private List<ScriptInner> value;
 
-    /** Creates an instance of ScriptListResult class. */
+    /**
+     * Creates an instance of ScriptListResult class.
+     */
     public ScriptListResult() {
     }
 
     /**
      * Get the value property: The list of Kusto scripts.
-     *
+     * 
      * @return the value value.
      */
     public List<ScriptInner> value() {
@@ -33,7 +37,7 @@ public final class ScriptListResult {
 
     /**
      * Set the value property: The list of Kusto scripts.
-     *
+     * 
      * @param value the value value to set.
      * @return the ScriptListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class ScriptListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

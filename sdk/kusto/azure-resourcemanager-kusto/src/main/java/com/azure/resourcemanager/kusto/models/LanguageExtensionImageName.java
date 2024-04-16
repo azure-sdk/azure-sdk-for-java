@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Language extension image name. */
+/**
+ * Language extension image name.
+ */
 public final class LanguageExtensionImageName extends ExpandableStringEnum<LanguageExtensionImageName> {
-    /** Static value R for LanguageExtensionImageName. */
+    /**
+     * Static value R for LanguageExtensionImageName.
+     */
     public static final LanguageExtensionImageName R = fromString("R");
 
-    /** Static value Python3_6_5 for LanguageExtensionImageName. */
+    /**
+     * Static value Python3_6_5 for LanguageExtensionImageName.
+     */
     public static final LanguageExtensionImageName PYTHON3_6_5 = fromString("Python3_6_5");
 
-    /** Static value Python3_10_8 for LanguageExtensionImageName. */
+    /**
+     * Static value Python3_10_8 for LanguageExtensionImageName.
+     */
     public static final LanguageExtensionImageName PYTHON3_10_8 = fromString("Python3_10_8");
 
-    /** Static value Python3_10_8_DL for LanguageExtensionImageName. */
+    /**
+     * Static value Python3_10_8_DL for LanguageExtensionImageName.
+     */
     public static final LanguageExtensionImageName PYTHON3_10_8_DL = fromString("Python3_10_8_DL");
 
-    /** Static value PythonCustomImage for LanguageExtensionImageName. */
+    /**
+     * Static value PythonCustomImage for LanguageExtensionImageName.
+     */
     public static final LanguageExtensionImageName PYTHON_CUSTOM_IMAGE = fromString("PythonCustomImage");
 
     /**
      * Creates a new instance of LanguageExtensionImageName value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class LanguageExtensionImageName extends ExpandableStringEnum<Langu
 
     /**
      * Creates or finds a LanguageExtensionImageName from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding LanguageExtensionImageName.
      */
@@ -47,7 +59,7 @@ public final class LanguageExtensionImageName extends ExpandableStringEnum<Langu
 
     /**
      * Gets known LanguageExtensionImageName values.
-     *
+     * 
      * @return known LanguageExtensionImageName values.
      */
     public static Collection<LanguageExtensionImageName> values() {
