@@ -387,6 +387,7 @@ public final class BlocklistClientImpl {
      *             blocklistItemId: String (Required)
      *             description: String (Optional)
      *             text: String (Required)
+     *             isRegex: Boolean (Optional)
      *         }
      *     ]
      * }
@@ -401,6 +402,7 @@ public final class BlocklistClientImpl {
      *             blocklistItemId: String (Required)
      *             description: String (Optional)
      *             text: String (Required)
+     *             isRegex: Boolean (Optional)
      *         }
      *     ]
      * }
@@ -438,6 +440,7 @@ public final class BlocklistClientImpl {
      *             blocklistItemId: String (Required)
      *             description: String (Optional)
      *             text: String (Required)
+     *             isRegex: Boolean (Optional)
      *         }
      *     ]
      * }
@@ -452,6 +455,7 @@ public final class BlocklistClientImpl {
      *             blocklistItemId: String (Required)
      *             description: String (Optional)
      *             text: String (Required)
+     *             isRegex: Boolean (Optional)
      *         }
      *     ]
      * }
@@ -661,6 +665,7 @@ public final class BlocklistClientImpl {
      *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
+     *     isRegex: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -693,6 +698,7 @@ public final class BlocklistClientImpl {
      *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
+     *     isRegex: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -733,6 +739,7 @@ public final class BlocklistClientImpl {
      *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
+     *     isRegex: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -776,6 +783,7 @@ public final class BlocklistClientImpl {
      *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
+     *     isRegex: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -836,6 +844,7 @@ public final class BlocklistClientImpl {
      *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
+     *     isRegex: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -876,6 +885,7 @@ public final class BlocklistClientImpl {
      *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
+     *     isRegex: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -1106,6 +1116,7 @@ public final class BlocklistClientImpl {
      *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
+     *     isRegex: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -1142,6 +1153,7 @@ public final class BlocklistClientImpl {
      *     blocklistItemId: String (Required)
      *     description: String (Optional)
      *     text: String (Required)
+     *     isRegex: Boolean (Optional)
      * }
      * }</pre>
      * 

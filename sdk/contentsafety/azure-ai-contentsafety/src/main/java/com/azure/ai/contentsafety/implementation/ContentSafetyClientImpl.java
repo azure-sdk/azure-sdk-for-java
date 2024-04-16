@@ -191,6 +191,46 @@ public final class ContentSafetyClientImpl {
         Response<BinaryData> analyzeImageSync(@HostParam("endpoint") String endpoint,
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData options, RequestOptions requestOptions, Context context);
+
+        @Post("/text:detectJailbreak")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> detectTextJailbreak(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData options, RequestOptions requestOptions, Context context);
+
+        @Post("/text:detectJailbreak")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> detectTextJailbreakSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData options, RequestOptions requestOptions, Context context);
+
+        @Post("/text:detectProtectedMaterial")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> detectTextProtectedMaterial(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData options, RequestOptions requestOptions, Context context);
+
+        @Post("/text:detectProtectedMaterial")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> detectTextProtectedMaterialSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData options, RequestOptions requestOptions, Context context);
     }
 
     /**
@@ -399,5 +439,157 @@ public final class ContentSafetyClientImpl {
         final String accept = "application/json";
         return service.analyzeImageSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept, options,
             requestOptions, Context.NONE);
+    }
+
+    /**
+     * Analyze Text Jailbreak
+     * 
+     * A synchronous API for the analysis of text jailbreak.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     jailbreakAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param options The text jailbreak analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the text jailbreak analysis request along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> detectTextJailbreakWithResponseAsync(BinaryData options,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.detectTextJailbreak(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, options, requestOptions, context));
+    }
+
+    /**
+     * Analyze Text Jailbreak
+     * 
+     * A synchronous API for the analysis of text jailbreak.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     jailbreakAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param options The text jailbreak analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the text jailbreak analysis request along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> detectTextJailbreakWithResponse(BinaryData options, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.detectTextJailbreakSync(this.getEndpoint(), this.getServiceVersion().getVersion(), accept,
+            options, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Analyze Protected Material
+     * 
+     * A synchronous API for the analysis of protected material.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     protectedMaterialAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param options The text protected material analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the protected material analysis response along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> detectTextProtectedMaterialWithResponseAsync(BinaryData options,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.detectTextProtectedMaterial(this.getEndpoint(),
+            this.getServiceVersion().getVersion(), accept, options, requestOptions, context));
+    }
+
+    /**
+     * Analyze Protected Material
+     * 
+     * A synchronous API for the analysis of protected material.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     text: String (Required)
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     protectedMaterialAnalysis (Required): {
+     *         detected: boolean (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * @param options The text protected material analysis request.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the protected material analysis response along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> detectTextProtectedMaterialWithResponse(BinaryData options,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.detectTextProtectedMaterialSync(this.getEndpoint(), this.getServiceVersion().getVersion(),
+            accept, options, requestOptions, Context.NONE);
     }
 }
