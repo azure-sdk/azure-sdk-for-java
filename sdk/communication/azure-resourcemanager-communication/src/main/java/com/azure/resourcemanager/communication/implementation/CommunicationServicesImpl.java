@@ -18,8 +18,8 @@ import com.azure.resourcemanager.communication.models.CheckNameAvailabilityRespo
 import com.azure.resourcemanager.communication.models.CommunicationServiceKeys;
 import com.azure.resourcemanager.communication.models.CommunicationServiceResource;
 import com.azure.resourcemanager.communication.models.CommunicationServices;
-import com.azure.resourcemanager.communication.models.LinkNotificationHubParameters;
 import com.azure.resourcemanager.communication.models.LinkedNotificationHub;
+import com.azure.resourcemanager.communication.models.LinkNotificationHubParameters;
 import com.azure.resourcemanager.communication.models.NameAvailabilityParameters;
 import com.azure.resourcemanager.communication.models.RegenerateKeyParameters;
 
@@ -60,8 +60,9 @@ public final class CommunicationServicesImpl implements CommunicationServices {
 
     public Response<LinkedNotificationHub> linkNotificationHubWithResponse(String resourceGroupName,
         String communicationServiceName, LinkNotificationHubParameters linkNotificationHubParameters, Context context) {
-        Response<LinkedNotificationHubInner> inner = this.serviceClient().linkNotificationHubWithResponse(
-            resourceGroupName, communicationServiceName, linkNotificationHubParameters, context);
+        Response<LinkedNotificationHubInner> inner = this.serviceClient()
+            .linkNotificationHubWithResponse(resourceGroupName, communicationServiceName, linkNotificationHubParameters,
+                context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new LinkedNotificationHubImpl(inner.getValue(), this.manager()));

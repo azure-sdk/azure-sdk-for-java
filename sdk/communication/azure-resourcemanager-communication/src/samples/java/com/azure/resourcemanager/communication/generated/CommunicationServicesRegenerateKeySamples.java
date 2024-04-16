@@ -12,9 +12,7 @@ import com.azure.resourcemanager.communication.models.RegenerateKeyParameters;
  */
 public final class CommunicationServicesRegenerateKeySamples {
     /*
-     * x-ms-original-file:
-     * specification/communication/resource-manager/Microsoft.Communication/stable/2023-04-01/examples/
-     * communicationServices/regenerateKey.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/communicationServices/regenerateKey.json
      */
     /**
      * Sample code: Regenerate key.
@@ -22,7 +20,8 @@ public final class CommunicationServicesRegenerateKeySamples {
      * @param manager Entry point to CommunicationManager.
      */
     public static void regenerateKey(com.azure.resourcemanager.communication.CommunicationManager manager) {
-        manager.communicationServices().regenerateKeyWithResponse("MyResourceGroup", "MyCommunicationResource",
-            new RegenerateKeyParameters().withKeyType(KeyType.PRIMARY), com.azure.core.util.Context.NONE);
+        manager.communicationServices()
+            .regenerateKeyWithResponse("MyResourceGroup", "MyCommunicationResource",
+                new RegenerateKeyParameters().withKeyType(KeyType.PRIMARY), com.azure.core.util.Context.NONE);
     }
 }

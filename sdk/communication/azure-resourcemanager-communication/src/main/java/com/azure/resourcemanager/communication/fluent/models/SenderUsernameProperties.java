@@ -110,8 +110,9 @@ public final class SenderUsernameProperties {
      */
     public void validate() {
         if (username() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property username in model SenderUsernameProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property username in model SenderUsernameProperties"));
         }
     }
 
