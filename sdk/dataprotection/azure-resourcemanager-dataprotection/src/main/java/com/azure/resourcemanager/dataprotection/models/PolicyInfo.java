@@ -95,8 +95,8 @@ public final class PolicyInfo {
      */
     public void validate() {
         if (policyId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property policyId in model PolicyInfo"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property policyId in model PolicyInfo"));
         }
         if (policyParameters() != null) {
             policyParameters().validate();

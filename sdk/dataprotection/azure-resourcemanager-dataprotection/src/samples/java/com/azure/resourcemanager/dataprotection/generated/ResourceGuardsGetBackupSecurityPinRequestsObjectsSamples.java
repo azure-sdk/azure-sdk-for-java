@@ -9,9 +9,7 @@ package com.azure.resourcemanager.dataprotection.generated;
  */
 public final class ResourceGuardsGetBackupSecurityPinRequestsObjectsSamples {
     /*
-     * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/
-     * ResourceGuardCRUD/ListBackupSecurityPINRequests.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/ResourceGuardCRUD/ListBackupSecurityPINRequests.json
      */
     /**
      * Sample code: List OperationsRequestObject.
@@ -20,7 +18,8 @@ public final class ResourceGuardsGetBackupSecurityPinRequestsObjectsSamples {
      */
     public static void
         listOperationsRequestObject(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
-        manager.resourceGuards().getBackupSecurityPinRequestsObjects("SampleResourceGroup", "swaggerExample",
-            com.azure.core.util.Context.NONE);
+        manager.resourceGuards()
+            .getBackupSecurityPinRequestsObjects("SampleResourceGroup", "swaggerExample",
+                com.azure.core.util.Context.NONE);
     }
 }

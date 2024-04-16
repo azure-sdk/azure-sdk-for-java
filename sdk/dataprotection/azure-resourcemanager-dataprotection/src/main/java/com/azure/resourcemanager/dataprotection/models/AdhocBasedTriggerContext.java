@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,10 +16,21 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * 
  * Adhoc trigger context.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = AdhocBasedTriggerContext.class,
+    visible = true)
 @JsonTypeName("AdhocBasedTriggerContext")
 @Fluent
 public final class AdhocBasedTriggerContext extends TriggerContext {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "AdhocBasedTriggerContext";
+
     /*
      * AdhocBasedTaggingCriteria
      * 
@@ -31,6 +43,16 @@ public final class AdhocBasedTriggerContext extends TriggerContext {
      * Creates an instance of AdhocBasedTriggerContext class.
      */
     public AdhocBasedTriggerContext() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -66,8 +88,9 @@ public final class AdhocBasedTriggerContext extends TriggerContext {
     public void validate() {
         super.validate();
         if (taggingCriteria() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property taggingCriteria in model AdhocBasedTriggerContext"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property taggingCriteria in model AdhocBasedTriggerContext"));
         } else {
             taggingCriteria().validate();
         }

@@ -17,8 +17,7 @@ import java.util.Map;
 @Fluent
 public final class DppIdentityDetails {
     /*
-     * The object ID of the service principal object for the managed identity that is used to grant role-based access
-     * to an Azure resource.
+     * The object ID of the service principal object for the managed identity that is used to grant role-based access to an Azure resource.
      */
     @JsonProperty(value = "principalId", access = JsonProperty.Access.WRITE_ONLY)
     private String principalId;
@@ -49,8 +48,8 @@ public final class DppIdentityDetails {
     }
 
     /**
-     * Get the principalId property: The object ID of the service principal object for the managed identity that is
-     * used to grant role-based access to an Azure resource.
+     * Get the principalId property: The object ID of the service principal object for the managed identity that is used
+     * to grant role-based access to an Azure resource.
      * 
      * @return the principalId value.
      */

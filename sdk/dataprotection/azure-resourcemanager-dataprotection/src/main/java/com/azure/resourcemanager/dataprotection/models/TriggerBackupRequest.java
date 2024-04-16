@@ -60,8 +60,9 @@ public final class TriggerBackupRequest {
      */
     public void validate() {
         if (backupRuleOptions() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property backupRuleOptions in model TriggerBackupRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property backupRuleOptions in model TriggerBackupRequest"));
         } else {
             backupRuleOptions().validate();
         }

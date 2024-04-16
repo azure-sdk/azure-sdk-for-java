@@ -104,8 +104,9 @@ public final class SecretStoreResource {
      */
     public void validate() {
         if (secretStoreType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property secretStoreType in model SecretStoreResource"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property secretStoreType in model SecretStoreResource"));
         }
     }
 

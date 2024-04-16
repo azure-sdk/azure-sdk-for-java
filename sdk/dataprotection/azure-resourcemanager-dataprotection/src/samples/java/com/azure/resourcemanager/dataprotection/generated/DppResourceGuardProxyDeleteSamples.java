@@ -9,9 +9,7 @@ package com.azure.resourcemanager.dataprotection.generated;
  */
 public final class DppResourceGuardProxyDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/
-     * ResourceGuardProxyCRUD/DeleteResourceGuardProxy.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/ResourceGuardProxyCRUD/DeleteResourceGuardProxy.json
      */
     /**
      * Sample code: Delete ResourceGuardProxy.
@@ -20,7 +18,8 @@ public final class DppResourceGuardProxyDeleteSamples {
      */
     public static void
         deleteResourceGuardProxy(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
-        manager.dppResourceGuardProxies().deleteWithResponse("SampleResourceGroup", "sampleVault", "swaggerExample",
-            com.azure.core.util.Context.NONE);
+        manager.dppResourceGuardProxies()
+            .deleteWithResponse("SampleResourceGroup", "sampleVault", "swaggerExample",
+                com.azure.core.util.Context.NONE);
     }
 }

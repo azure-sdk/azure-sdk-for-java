@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -16,18 +18,35 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "objectType",
-    defaultImpl = AzureBackupRecoveryPoint.class)
+    defaultImpl = AzureBackupRecoveryPoint.class,
+    visible = true)
 @JsonTypeName("AzureBackupRecoveryPoint")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureBackupDiscreteRecoveryPoint", value = AzureBackupDiscreteRecoveryPoint.class) })
 @Immutable
 public class AzureBackupRecoveryPoint {
+    /*
+     * The objectType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType;
+
     /**
      * Creates an instance of AzureBackupRecoveryPoint class.
      */
     public AzureBackupRecoveryPoint() {
+        this.objectType = "AzureBackupRecoveryPoint";
+    }
+
+    /**
+     * Get the objectType property: The objectType property.
+     * 
+     * @return the objectType value.
+     */
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

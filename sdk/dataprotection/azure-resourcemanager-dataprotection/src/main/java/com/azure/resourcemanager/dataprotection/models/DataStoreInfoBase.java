@@ -80,12 +80,13 @@ public final class DataStoreInfoBase {
      */
     public void validate() {
         if (dataStoreType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dataStoreType in model DataStoreInfoBase"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property dataStoreType in model DataStoreInfoBase"));
         }
         if (objectType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property objectType in model DataStoreInfoBase"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property objectType in model DataStoreInfoBase"));
         }
     }
 

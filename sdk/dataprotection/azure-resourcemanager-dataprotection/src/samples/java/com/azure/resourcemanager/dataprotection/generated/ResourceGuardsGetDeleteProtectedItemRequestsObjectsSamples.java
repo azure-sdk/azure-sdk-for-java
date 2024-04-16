@@ -9,9 +9,7 @@ package com.azure.resourcemanager.dataprotection.generated;
  */
 public final class ResourceGuardsGetDeleteProtectedItemRequestsObjectsSamples {
     /*
-     * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/
-     * ResourceGuardCRUD/ListDeleteProtectedItemRequests.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/ResourceGuardCRUD/ListDeleteProtectedItemRequests.json
      */
     /**
      * Sample code: List OperationsRequestObject.
@@ -20,7 +18,8 @@ public final class ResourceGuardsGetDeleteProtectedItemRequestsObjectsSamples {
      */
     public static void
         listOperationsRequestObject(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
-        manager.resourceGuards().getDeleteProtectedItemRequestsObjects("SampleResourceGroup", "swaggerExample",
-            com.azure.core.util.Context.NONE);
+        manager.resourceGuards()
+            .getDeleteProtectedItemRequestsObjects("SampleResourceGroup", "swaggerExample",
+                com.azure.core.util.Context.NONE);
     }
 }

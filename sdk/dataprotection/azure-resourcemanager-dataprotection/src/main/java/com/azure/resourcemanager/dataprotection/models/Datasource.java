@@ -28,8 +28,7 @@ public final class Datasource {
     private String objectType;
 
     /*
-     * Full ARM ID of the resource. For azure resources, this is ARM ID. For non azure resources, this will be the ID
-     * created by backup service via Fabric/Vault.
+     * Full ARM ID of the resource. For azure resources, this is ARM ID. For non azure resources, this will be the ID created by backup service via Fabric/Vault.
      */
     @JsonProperty(value = "resourceID", required = true)
     private String resourceId;
@@ -239,8 +238,8 @@ public final class Datasource {
      */
     public void validate() {
         if (resourceId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property resourceId in model Datasource"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property resourceId in model Datasource"));
         }
         if (resourceProperties() != null) {
             resourceProperties().validate();

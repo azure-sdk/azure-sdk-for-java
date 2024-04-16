@@ -92,14 +92,14 @@ public final class TargetCopySetting {
      */
     public void validate() {
         if (copyAfter() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property copyAfter in model TargetCopySetting"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property copyAfter in model TargetCopySetting"));
         } else {
             copyAfter().validate();
         }
         if (dataStore() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dataStore in model TargetCopySetting"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property dataStore in model TargetCopySetting"));
         } else {
             dataStore().validate();
         }

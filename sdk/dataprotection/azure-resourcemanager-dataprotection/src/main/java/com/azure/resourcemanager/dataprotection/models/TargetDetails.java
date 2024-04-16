@@ -22,8 +22,7 @@ public final class TargetDetails {
 
     /*
      * Denotes the target location where the data will be restored,
-     * string value for the enum
-     * {Microsoft.Internal.AzureBackup.DataProtection.Common.Interface.RestoreTargetLocationType}
+     * string value for the enum {Microsoft.Internal.AzureBackup.DataProtection.Common.Interface.RestoreTargetLocationType}
      */
     @JsonProperty(value = "restoreTargetLocationType", required = true)
     private RestoreTargetLocationType restoreTargetLocationType;
@@ -147,16 +146,17 @@ public final class TargetDetails {
      */
     public void validate() {
         if (filePrefix() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property filePrefix in model TargetDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property filePrefix in model TargetDetails"));
         }
         if (restoreTargetLocationType() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property restoreTargetLocationType in model TargetDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property restoreTargetLocationType in model TargetDetails"));
         }
         if (url() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property url in model TargetDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property url in model TargetDetails"));
         }
     }
 

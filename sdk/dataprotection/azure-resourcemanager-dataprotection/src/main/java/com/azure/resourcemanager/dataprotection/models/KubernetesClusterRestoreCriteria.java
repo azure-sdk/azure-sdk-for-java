@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -15,13 +16,23 @@ import java.util.Map;
 /**
  * kubernetes Cluster Backup target info for restore operation.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = KubernetesClusterRestoreCriteria.class,
+    visible = true)
 @JsonTypeName("KubernetesClusterRestoreCriteria")
 @Fluent
 public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCriteria {
     /*
-     * Gets or sets the include cluster resources property. This property if enabled will include cluster scope
-     * resources during restore.
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "KubernetesClusterRestoreCriteria";
+
+    /*
+     * Gets or sets the include cluster resources property. This property if enabled will include cluster scope resources during restore.
      */
     @JsonProperty(value = "includeClusterScopeResources", required = true)
     private boolean includeClusterScopeResources;
@@ -39,36 +50,31 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     private List<String> excludedNamespaces;
 
     /*
-     * Gets or sets the include resource types property. This property sets the resource types to be included during
-     * restore.
+     * Gets or sets the include resource types property. This property sets the resource types to be included during restore.
      */
     @JsonProperty(value = "includedResourceTypes")
     private List<String> includedResourceTypes;
 
     /*
-     * Gets or sets the exclude resource types property. This property sets the resource types to be excluded during
-     * restore.
+     * Gets or sets the exclude resource types property. This property sets the resource types to be excluded during restore.
      */
     @JsonProperty(value = "excludedResourceTypes")
     private List<String> excludedResourceTypes;
 
     /*
-     * Gets or sets the LabelSelectors property. This property sets the resource with such label selectors to be
-     * included during restore.
+     * Gets or sets the LabelSelectors property. This property sets the resource with such label selectors to be included during restore.
      */
     @JsonProperty(value = "labelSelectors")
     private List<String> labelSelectors;
 
     /*
-     * Gets or sets the PV (Persistent Volume) Restore Mode property. This property sets whether volumes needs to be
-     * restored.
+     * Gets or sets the PV (Persistent Volume) Restore Mode property. This property sets whether volumes needs to be restored.
      */
     @JsonProperty(value = "persistentVolumeRestoreMode")
     private PersistentVolumeRestoreMode persistentVolumeRestoreMode;
 
     /*
-     * Gets or sets the Conflict Policy property. This property sets policy during conflict of resources during
-     * restore.
+     * Gets or sets the Conflict Policy property. This property sets policy during conflict of resources during restore.
      */
     @JsonProperty(value = "conflictPolicy")
     private ExistingResourcePolicy conflictPolicy;
@@ -86,6 +92,14 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     @JsonProperty(value = "restoreHookReferences")
     private List<NamespacedNameResource> restoreHookReferences;
 
+    /*
+     * NamespacedNameResource
+     * 
+     * Gets or sets the resource modifier reference. This property sets the reference for resource modifier during restore.
+     */
+    @JsonProperty(value = "resourceModifierReference")
+    private NamespacedNameResource resourceModifierReference;
+
     /**
      * Creates an instance of KubernetesClusterRestoreCriteria class.
      */
@@ -93,8 +107,18 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     }
 
     /**
-     * Get the includeClusterScopeResources property: Gets or sets the include cluster resources property. This
-     * property if enabled will include cluster scope resources during restore.
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
+    }
+
+    /**
+     * Get the includeClusterScopeResources property: Gets or sets the include cluster resources property. This property
+     * if enabled will include cluster scope resources during restore.
      * 
      * @return the includeClusterScopeResources value.
      */
@@ -103,8 +127,8 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     }
 
     /**
-     * Set the includeClusterScopeResources property: Gets or sets the include cluster resources property. This
-     * property if enabled will include cluster scope resources during restore.
+     * Set the includeClusterScopeResources property: Gets or sets the include cluster resources property. This property
+     * if enabled will include cluster scope resources during restore.
      * 
      * @param includeClusterScopeResources the includeClusterScopeResources value to set.
      * @return the KubernetesClusterRestoreCriteria object itself.
@@ -225,8 +249,8 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     }
 
     /**
-     * Get the persistentVolumeRestoreMode property: Gets or sets the PV (Persistent Volume) Restore Mode property.
-     * This property sets whether volumes needs to be restored.
+     * Get the persistentVolumeRestoreMode property: Gets or sets the PV (Persistent Volume) Restore Mode property. This
+     * property sets whether volumes needs to be restored.
      * 
      * @return the persistentVolumeRestoreMode value.
      */
@@ -235,8 +259,8 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     }
 
     /**
-     * Set the persistentVolumeRestoreMode property: Gets or sets the PV (Persistent Volume) Restore Mode property.
-     * This property sets whether volumes needs to be restored.
+     * Set the persistentVolumeRestoreMode property: Gets or sets the PV (Persistent Volume) Restore Mode property. This
+     * property sets whether volumes needs to be restored.
      * 
      * @param persistentVolumeRestoreMode the persistentVolumeRestoreMode value to set.
      * @return the KubernetesClusterRestoreCriteria object itself.
@@ -270,8 +294,8 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     }
 
     /**
-     * Get the namespaceMappings property: Gets or sets the Namespace Mappings property. This property sets if
-     * namespace needs to be change during restore.
+     * Get the namespaceMappings property: Gets or sets the Namespace Mappings property. This property sets if namespace
+     * needs to be change during restore.
      * 
      * @return the namespaceMappings value.
      */
@@ -280,8 +304,8 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     }
 
     /**
-     * Set the namespaceMappings property: Gets or sets the Namespace Mappings property. This property sets if
-     * namespace needs to be change during restore.
+     * Set the namespaceMappings property: Gets or sets the Namespace Mappings property. This property sets if namespace
+     * needs to be change during restore.
      * 
      * @param namespaceMappings the namespaceMappings value to set.
      * @return the KubernetesClusterRestoreCriteria object itself.
@@ -315,6 +339,33 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
     }
 
     /**
+     * Get the resourceModifierReference property: NamespacedNameResource
+     * 
+     * Gets or sets the resource modifier reference. This property sets the reference for resource modifier during
+     * restore.
+     * 
+     * @return the resourceModifierReference value.
+     */
+    public NamespacedNameResource resourceModifierReference() {
+        return this.resourceModifierReference;
+    }
+
+    /**
+     * Set the resourceModifierReference property: NamespacedNameResource
+     * 
+     * Gets or sets the resource modifier reference. This property sets the reference for resource modifier during
+     * restore.
+     * 
+     * @param resourceModifierReference the resourceModifierReference value to set.
+     * @return the KubernetesClusterRestoreCriteria object itself.
+     */
+    public KubernetesClusterRestoreCriteria
+        withResourceModifierReference(NamespacedNameResource resourceModifierReference) {
+        this.resourceModifierReference = resourceModifierReference;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -324,6 +375,9 @@ public final class KubernetesClusterRestoreCriteria extends ItemLevelRestoreCrit
         super.validate();
         if (restoreHookReferences() != null) {
             restoreHookReferences().forEach(e -> e.validate());
+        }
+        if (resourceModifierReference() != null) {
+            resourceModifierReference().validate();
         }
     }
 }

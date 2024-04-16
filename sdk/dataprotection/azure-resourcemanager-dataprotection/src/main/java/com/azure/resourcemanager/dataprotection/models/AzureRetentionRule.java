@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -16,10 +17,21 @@ import java.util.List;
  * 
  * Azure retention rule.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = AzureRetentionRule.class,
+    visible = true)
 @JsonTypeName("AzureRetentionRule")
 @Fluent
 public final class AzureRetentionRule extends BasePolicyRule {
+    /*
+     * The objectType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "AzureRetentionRule";
+
     /*
      * The isDefault property.
      */
@@ -36,6 +48,16 @@ public final class AzureRetentionRule extends BasePolicyRule {
      * Creates an instance of AzureRetentionRule class.
      */
     public AzureRetentionRule() {
+    }
+
+    /**
+     * Get the objectType property: The objectType property.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -96,8 +118,8 @@ public final class AzureRetentionRule extends BasePolicyRule {
     public void validate() {
         super.validate();
         if (lifecycles() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property lifecycles in model AzureRetentionRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property lifecycles in model AzureRetentionRule"));
         } else {
             lifecycles().forEach(e -> e.validate());
         }

@@ -12,9 +12,7 @@ import com.azure.resourcemanager.dataprotection.models.RehydrationPriority;
  */
 public final class BackupInstancesTriggerRehydrateSamples {
     /*
-     * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/
-     * BackupInstanceOperations/TriggerRehydrate.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/BackupInstanceOperations/TriggerRehydrate.json
      */
     /**
      * Sample code: Trigger Rehydrate.
@@ -22,9 +20,11 @@ public final class BackupInstancesTriggerRehydrateSamples {
      * @param manager Entry point to DataProtectionManager.
      */
     public static void triggerRehydrate(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
-        manager.backupInstances().triggerRehydrate("000pikumar", "PratikPrivatePreviewVault1", "testInstance1",
-            new AzureBackupRehydrationRequest().withRecoveryPointId("hardcodedRP")
-                .withRehydrationPriority(RehydrationPriority.HIGH).withRehydrationRetentionDuration("7D"),
-            com.azure.core.util.Context.NONE);
+        manager.backupInstances()
+            .triggerRehydrate("000pikumar", "PratikPrivatePreviewVault1", "testInstance1",
+                new AzureBackupRehydrationRequest().withRecoveryPointId("hardcodedRP")
+                    .withRehydrationPriority(RehydrationPriority.HIGH)
+                    .withRehydrationRetentionDuration("7D"),
+                com.azure.core.util.Context.NONE);
     }
 }

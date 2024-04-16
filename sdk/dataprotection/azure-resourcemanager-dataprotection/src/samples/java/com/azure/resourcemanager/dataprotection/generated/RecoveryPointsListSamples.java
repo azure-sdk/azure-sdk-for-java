@@ -9,9 +9,7 @@ package com.azure.resourcemanager.dataprotection.generated;
  */
 public final class RecoveryPointsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/
-     * BackupInstanceOperations/ListRecoveryPoints.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/BackupInstanceOperations/ListRecoveryPoints.json
      */
     /**
      * Sample code: List Recovery Points in a Vault.
@@ -20,7 +18,8 @@ public final class RecoveryPointsListSamples {
      */
     public static void
         listRecoveryPointsInAVault(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
-        manager.recoveryPoints().list("000pikumar", "PratikPrivatePreviewVault1", "testInstance1", null, null,
-            com.azure.core.util.Context.NONE);
+        manager.recoveryPoints()
+            .list("000pikumar", "PratikPrivatePreviewVault1", "testInstance1", null, null,
+                com.azure.core.util.Context.NONE);
     }
 }

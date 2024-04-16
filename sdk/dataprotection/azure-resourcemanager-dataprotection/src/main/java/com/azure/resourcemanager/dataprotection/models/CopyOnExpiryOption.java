@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -13,14 +15,35 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * 
  * Copy on Expiry Option.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = CopyOnExpiryOption.class,
+    visible = true)
 @JsonTypeName("CopyOnExpiryOption")
 @Immutable
 public final class CopyOnExpiryOption extends CopyOption {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "CopyOnExpiryOption";
+
     /**
      * Creates an instance of CopyOnExpiryOption class.
      */
     public CopyOnExpiryOption() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

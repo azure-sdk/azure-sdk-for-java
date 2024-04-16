@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -16,17 +17,20 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * 
  * BasePolicy Rule.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "objectType",
-    defaultImpl = BasePolicyRule.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "objectType", defaultImpl = BasePolicyRule.class, visible = true)
 @JsonTypeName("BasePolicyRule")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureBackupRule", value = AzureBackupRule.class),
     @JsonSubTypes.Type(name = "AzureRetentionRule", value = AzureRetentionRule.class) })
 @Fluent
 public class BasePolicyRule {
+    /*
+     * The objectType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType;
+
     /*
      * The name property.
      */
@@ -37,6 +41,16 @@ public class BasePolicyRule {
      * Creates an instance of BasePolicyRule class.
      */
     public BasePolicyRule() {
+        this.objectType = "BasePolicyRule";
+    }
+
+    /**
+     * Get the objectType property: The objectType property.
+     * 
+     * @return the objectType value.
+     */
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -66,8 +80,8 @@ public class BasePolicyRule {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model BasePolicyRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property name in model BasePolicyRule"));
         }
     }
 

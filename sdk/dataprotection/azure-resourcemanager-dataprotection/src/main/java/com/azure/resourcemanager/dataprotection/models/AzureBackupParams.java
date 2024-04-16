@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,10 +16,21 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * 
  * Azure backup parameters.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = AzureBackupParams.class,
+    visible = true)
 @JsonTypeName("AzureBackupParams")
 @Fluent
 public final class AzureBackupParams extends BackupParameters {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "AzureBackupParams";
+
     /*
      * BackupType ; Full/Incremental etc
      */
@@ -29,6 +41,16 @@ public final class AzureBackupParams extends BackupParameters {
      * Creates an instance of AzureBackupParams class.
      */
     public AzureBackupParams() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -60,8 +82,8 @@ public final class AzureBackupParams extends BackupParameters {
     public void validate() {
         super.validate();
         if (backupType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property backupType in model AzureBackupParams"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property backupType in model AzureBackupParams"));
         }
     }
 

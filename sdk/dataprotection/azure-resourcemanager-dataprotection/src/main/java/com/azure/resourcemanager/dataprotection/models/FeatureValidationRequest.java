@@ -6,16 +6,28 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Base class for feature object.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = FeatureValidationRequest.class,
+    visible = true)
 @JsonTypeName("FeatureValidationRequest")
 @Fluent
 public final class FeatureValidationRequest extends FeatureValidationRequestBase {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "FeatureValidationRequest";
+
     /*
      * backup support feature type.
      */
@@ -32,6 +44,16 @@ public final class FeatureValidationRequest extends FeatureValidationRequestBase
      * Creates an instance of FeatureValidationRequest class.
      */
     public FeatureValidationRequest() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
@@ -17,10 +18,21 @@ import java.util.List;
  * 
  * Azure backup discrete RecoveryPoint.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = AzureBackupDiscreteRecoveryPoint.class,
+    visible = true)
 @JsonTypeName("AzureBackupDiscreteRecoveryPoint")
 @Fluent
 public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryPoint {
+    /*
+     * The objectType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "AzureBackupDiscreteRecoveryPoint";
+
     /*
      * The friendlyName property.
      */
@@ -82,8 +94,7 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
     private OffsetDateTime expiryTime;
 
     /*
-     * Specifies recovery point completeness. Partial (i.e., only some of the intended items were backed up), or
-     * Completed (i.e., ALL intended items were backed up).
+     * Specifies recovery point completeness. Partial (i.e., only some of the intended items were backed up), or Completed (i.e., ALL intended items were backed up).
      */
     @JsonProperty(value = "recoveryPointState")
     private RecoveryPointCompletionState recoveryPointState;
@@ -92,6 +103,16 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
      * Creates an instance of AzureBackupDiscreteRecoveryPoint class.
      */
     public AzureBackupDiscreteRecoveryPoint() {
+    }
+
+    /**
+     * Get the objectType property: The objectType property.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -318,8 +339,9 @@ public final class AzureBackupDiscreteRecoveryPoint extends AzureBackupRecoveryP
             recoveryPointDataStoresDetails().forEach(e -> e.validate());
         }
         if (recoveryPointTime() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryPointTime in model AzureBackupDiscreteRecoveryPoint"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryPointTime in model AzureBackupDiscreteRecoveryPoint"));
         }
     }
 

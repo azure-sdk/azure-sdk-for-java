@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -16,9 +17,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "objectType",
-    defaultImpl = RestoreTargetInfoBase.class)
+    defaultImpl = RestoreTargetInfoBase.class,
+    visible = true)
 @JsonTypeName("RestoreTargetInfoBase")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "ItemLevelRestoreTargetInfo", value = ItemLevelRestoreTargetInfo.class),
@@ -26,6 +27,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "RestoreTargetInfo", value = RestoreTargetInfo.class) })
 @Fluent
 public class RestoreTargetInfoBase {
+    /*
+     * Type of Datasource object, used to initialize the right inherited type
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType;
+
     /*
      * Recovery Option
      */
@@ -42,6 +50,16 @@ public class RestoreTargetInfoBase {
      * Creates an instance of RestoreTargetInfoBase class.
      */
     public RestoreTargetInfoBase() {
+        this.objectType = "RestoreTargetInfoBase";
+    }
+
+    /**
+     * Get the objectType property: Type of Datasource object, used to initialize the right inherited type.
+     * 
+     * @return the objectType value.
+     */
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -91,8 +109,9 @@ public class RestoreTargetInfoBase {
      */
     public void validate() {
         if (recoveryOption() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryOption in model RestoreTargetInfoBase"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryOption in model RestoreTargetInfoBase"));
         }
     }
 

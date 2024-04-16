@@ -85,14 +85,16 @@ public final class CrossRegionRestoreRequestObject {
      */
     public void validate() {
         if (restoreRequestObject() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property restoreRequestObject in model CrossRegionRestoreRequestObject"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property restoreRequestObject in model CrossRegionRestoreRequestObject"));
         } else {
             restoreRequestObject().validate();
         }
         if (crossRegionRestoreDetails() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property crossRegionRestoreDetails in model CrossRegionRestoreRequestObject"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property crossRegionRestoreDetails in model CrossRegionRestoreRequestObject"));
         } else {
             crossRegionRestoreDetails().validate();
         }

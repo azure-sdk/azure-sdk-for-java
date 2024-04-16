@@ -7,16 +7,28 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Class encapsulating restore target parameters.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = RestoreTargetInfo.class,
+    visible = true)
 @JsonTypeName("RestoreTargetInfo")
 @Fluent
 public final class RestoreTargetInfo extends RestoreTargetInfoBase {
+    /*
+     * Type of Datasource object, used to initialize the right inherited type
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "RestoreTargetInfo";
+
     /*
      * Datasource
      * 
@@ -43,6 +55,16 @@ public final class RestoreTargetInfo extends RestoreTargetInfoBase {
      * Creates an instance of RestoreTargetInfo class.
      */
     public RestoreTargetInfo() {
+    }
+
+    /**
+     * Get the objectType property: Type of Datasource object, used to initialize the right inherited type.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -140,8 +162,9 @@ public final class RestoreTargetInfo extends RestoreTargetInfoBase {
     public void validate() {
         super.validate();
         if (datasourceInfo() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property datasourceInfo in model RestoreTargetInfo"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property datasourceInfo in model RestoreTargetInfo"));
         } else {
             datasourceInfo().validate();
         }

@@ -6,16 +6,28 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Item Level target info for restore operation.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = RangeBasedItemLevelRestoreCriteria.class,
+    visible = true)
 @JsonTypeName("RangeBasedItemLevelRestoreCriteria")
 @Fluent
 public final class RangeBasedItemLevelRestoreCriteria extends ItemLevelRestoreCriteria {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "RangeBasedItemLevelRestoreCriteria";
+
     /*
      * minimum value for range prefix match
      */
@@ -32,6 +44,16 @@ public final class RangeBasedItemLevelRestoreCriteria extends ItemLevelRestoreCr
      * Creates an instance of RangeBasedItemLevelRestoreCriteria class.
      */
     public RangeBasedItemLevelRestoreCriteria() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

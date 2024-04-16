@@ -71,6 +71,18 @@ public final class BackupVault {
     private SecureScoreLevel secureScore;
 
     /*
+     * Security Level of Backup Vault
+     */
+    @JsonProperty(value = "bcdrSecurityLevel", access = JsonProperty.Access.WRITE_ONLY)
+    private BcdrSecurityLevel bcdrSecurityLevel;
+
+    /*
+     * ResourceGuardOperationRequests on which LAC check will be performed
+     */
+    @JsonProperty(value = "resourceGuardOperationRequests")
+    private List<String> resourceGuardOperationRequests;
+
+    /*
      * List of replicated regions for Backup Vault
      */
     @JsonProperty(value = "replicatedRegions")
@@ -208,6 +220,37 @@ public final class BackupVault {
     }
 
     /**
+     * Get the bcdrSecurityLevel property: Security Level of Backup Vault.
+     * 
+     * @return the bcdrSecurityLevel value.
+     */
+    public BcdrSecurityLevel bcdrSecurityLevel() {
+        return this.bcdrSecurityLevel;
+    }
+
+    /**
+     * Get the resourceGuardOperationRequests property: ResourceGuardOperationRequests on which LAC check will be
+     * performed.
+     * 
+     * @return the resourceGuardOperationRequests value.
+     */
+    public List<String> resourceGuardOperationRequests() {
+        return this.resourceGuardOperationRequests;
+    }
+
+    /**
+     * Set the resourceGuardOperationRequests property: ResourceGuardOperationRequests on which LAC check will be
+     * performed.
+     * 
+     * @param resourceGuardOperationRequests the resourceGuardOperationRequests value to set.
+     * @return the BackupVault object itself.
+     */
+    public BackupVault withResourceGuardOperationRequests(List<String> resourceGuardOperationRequests) {
+        this.resourceGuardOperationRequests = resourceGuardOperationRequests;
+        return this;
+    }
+
+    /**
      * Get the replicatedRegions property: List of replicated regions for Backup Vault.
      * 
      * @return the replicatedRegions value.
@@ -243,8 +286,8 @@ public final class BackupVault {
             securitySettings().validate();
         }
         if (storageSettings() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property storageSettings in model BackupVault"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property storageSettings in model BackupVault"));
         } else {
             storageSettings().forEach(e -> e.validate());
         }

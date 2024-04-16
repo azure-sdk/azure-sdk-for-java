@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -16,10 +17,17 @@ import java.util.List;
  * 
  * Rule based backup policy.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "objectType", defaultImpl = BackupPolicy.class, visible = true)
 @JsonTypeName("BackupPolicy")
 @Fluent
 public final class BackupPolicy extends BaseBackupPolicy {
+    /*
+     * The objectType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "BackupPolicy";
+
     /*
      * Policy rule dictionary that contains rules for each backuptype i.e Full/Incremental/Logs etc
      */
@@ -30,6 +38,16 @@ public final class BackupPolicy extends BaseBackupPolicy {
      * Creates an instance of BackupPolicy class.
      */
     public BackupPolicy() {
+    }
+
+    /**
+     * Get the objectType property: The objectType property.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -72,8 +90,8 @@ public final class BackupPolicy extends BaseBackupPolicy {
     public void validate() {
         super.validate();
         if (policyRules() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property policyRules in model BackupPolicy"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property policyRules in model BackupPolicy"));
         } else {
             policyRules().forEach(e -> e.validate());
         }

@@ -104,16 +104,19 @@ public final class CrossRegionRestoreJobRequest {
      */
     public void validate() {
         if (sourceRegion() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property sourceRegion in model CrossRegionRestoreJobRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sourceRegion in model CrossRegionRestoreJobRequest"));
         }
         if (sourceBackupVaultId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property sourceBackupVaultId in model CrossRegionRestoreJobRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sourceBackupVaultId in model CrossRegionRestoreJobRequest"));
         }
         if (jobId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property jobId in model CrossRegionRestoreJobRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property jobId in model CrossRegionRestoreJobRequest"));
         }
     }
 

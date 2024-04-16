@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -15,77 +16,78 @@ import java.util.Map;
 /**
  * kubernetes Cluster Backup target info for restore operation from vault.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = KubernetesClusterVaultTierRestoreCriteria.class,
+    visible = true)
 @JsonTypeName("KubernetesClusterVaultTierRestoreCriteria")
 @Fluent
 public final class KubernetesClusterVaultTierRestoreCriteria extends ItemLevelRestoreCriteria {
     /*
-     * Gets or sets the include cluster resources property. This property if enabled will include cluster scope
-     * resources during restore from vault.
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "KubernetesClusterVaultTierRestoreCriteria";
+
+    /*
+     * Gets or sets the include cluster resources property. This property if enabled will include cluster scope resources during restore from vault.
      */
     @JsonProperty(value = "includeClusterScopeResources", required = true)
     private boolean includeClusterScopeResources;
 
     /*
-     * Gets or sets the include namespaces property. This property sets the namespaces to be included during restore
-     * from vault.
+     * Gets or sets the include namespaces property. This property sets the namespaces to be included during restore from vault.
      */
     @JsonProperty(value = "includedNamespaces")
     private List<String> includedNamespaces;
 
     /*
-     * Gets or sets the exclude namespaces property. This property sets the namespaces to be excluded during restore
-     * from vault.
+     * Gets or sets the exclude namespaces property. This property sets the namespaces to be excluded during restore from vault.
      */
     @JsonProperty(value = "excludedNamespaces")
     private List<String> excludedNamespaces;
 
     /*
-     * Gets or sets the include resource types property. This property sets the resource types to be included during
-     * restore from vault.
+     * Gets or sets the include resource types property. This property sets the resource types to be included during restore from vault.
      */
     @JsonProperty(value = "includedResourceTypes")
     private List<String> includedResourceTypes;
 
     /*
-     * Gets or sets the exclude resource types property. This property sets the resource types to be excluded during
-     * restore from vault.
+     * Gets or sets the exclude resource types property. This property sets the resource types to be excluded during restore from vault.
      */
     @JsonProperty(value = "excludedResourceTypes")
     private List<String> excludedResourceTypes;
 
     /*
-     * Gets or sets the LabelSelectors property. This property sets the resource with such label selectors to be
-     * included during restore from vault.
+     * Gets or sets the LabelSelectors property. This property sets the resource with such label selectors to be included during restore from vault.
      */
     @JsonProperty(value = "labelSelectors")
     private List<String> labelSelectors;
 
     /*
-     * Gets or sets the PV (Persistent Volume) Restore Mode property. This property sets whether volumes needs to be
-     * restored from vault.
+     * Gets or sets the PV (Persistent Volume) Restore Mode property. This property sets whether volumes needs to be restored from vault.
      */
     @JsonProperty(value = "persistentVolumeRestoreMode")
     private PersistentVolumeRestoreMode persistentVolumeRestoreMode;
 
     /*
-     * Gets or sets the Conflict Policy property. This property sets policy during conflict of resources during restore
-     * from vault.
+     * Gets or sets the Conflict Policy property. This property sets policy during conflict of resources during restore from vault.
      */
     @JsonProperty(value = "conflictPolicy")
     private ExistingResourcePolicy conflictPolicy;
 
     /*
-     * Gets or sets the Namespace Mappings property. This property sets if namespace needs to be change during restore
-     * from vault.
+     * Gets or sets the Namespace Mappings property. This property sets if namespace needs to be change during restore from vault.
      */
     @JsonProperty(value = "namespaceMappings")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> namespaceMappings;
 
     /*
-     * Gets or sets the restore hook references. This property sets the hook reference to be executed during restore
-     * from vault.
+     * Gets or sets the restore hook references. This property sets the hook reference to be executed during restore from vault.
      */
     @JsonProperty(value = "restoreHookReferences")
     private List<NamespacedNameResource> restoreHookReferences;
@@ -97,11 +99,18 @@ public final class KubernetesClusterVaultTierRestoreCriteria extends ItemLevelRe
     private String stagingResourceGroupId;
 
     /*
-     * Gets or sets the staging Storage Account Id for creating backup extension object store data during restore from
-     * vault.
+     * Gets or sets the staging Storage Account Id for creating backup extension object store data during restore from vault.
      */
     @JsonProperty(value = "stagingStorageAccountId")
     private String stagingStorageAccountId;
+
+    /*
+     * NamespacedNameResource
+     * 
+     * Gets or sets the resource modifier reference. This property sets the reference for resource modifier during restore.
+     */
+    @JsonProperty(value = "resourceModifierReference")
+    private NamespacedNameResource resourceModifierReference;
 
     /**
      * Creates an instance of KubernetesClusterVaultTierRestoreCriteria class.
@@ -110,8 +119,18 @@ public final class KubernetesClusterVaultTierRestoreCriteria extends ItemLevelRe
     }
 
     /**
-     * Get the includeClusterScopeResources property: Gets or sets the include cluster resources property. This
-     * property if enabled will include cluster scope resources during restore from vault.
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
+    }
+
+    /**
+     * Get the includeClusterScopeResources property: Gets or sets the include cluster resources property. This property
+     * if enabled will include cluster scope resources during restore from vault.
      * 
      * @return the includeClusterScopeResources value.
      */
@@ -120,8 +139,8 @@ public final class KubernetesClusterVaultTierRestoreCriteria extends ItemLevelRe
     }
 
     /**
-     * Set the includeClusterScopeResources property: Gets or sets the include cluster resources property. This
-     * property if enabled will include cluster scope resources during restore from vault.
+     * Set the includeClusterScopeResources property: Gets or sets the include cluster resources property. This property
+     * if enabled will include cluster scope resources during restore from vault.
      * 
      * @param includeClusterScopeResources the includeClusterScopeResources value to set.
      * @return the KubernetesClusterVaultTierRestoreCriteria object itself.
@@ -243,8 +262,8 @@ public final class KubernetesClusterVaultTierRestoreCriteria extends ItemLevelRe
     }
 
     /**
-     * Get the persistentVolumeRestoreMode property: Gets or sets the PV (Persistent Volume) Restore Mode property.
-     * This property sets whether volumes needs to be restored from vault.
+     * Get the persistentVolumeRestoreMode property: Gets or sets the PV (Persistent Volume) Restore Mode property. This
+     * property sets whether volumes needs to be restored from vault.
      * 
      * @return the persistentVolumeRestoreMode value.
      */
@@ -253,8 +272,8 @@ public final class KubernetesClusterVaultTierRestoreCriteria extends ItemLevelRe
     }
 
     /**
-     * Set the persistentVolumeRestoreMode property: Gets or sets the PV (Persistent Volume) Restore Mode property.
-     * This property sets whether volumes needs to be restored from vault.
+     * Set the persistentVolumeRestoreMode property: Gets or sets the PV (Persistent Volume) Restore Mode property. This
+     * property sets whether volumes needs to be restored from vault.
      * 
      * @param persistentVolumeRestoreMode the persistentVolumeRestoreMode value to set.
      * @return the KubernetesClusterVaultTierRestoreCriteria object itself.
@@ -288,8 +307,8 @@ public final class KubernetesClusterVaultTierRestoreCriteria extends ItemLevelRe
     }
 
     /**
-     * Get the namespaceMappings property: Gets or sets the Namespace Mappings property. This property sets if
-     * namespace needs to be change during restore from vault.
+     * Get the namespaceMappings property: Gets or sets the Namespace Mappings property. This property sets if namespace
+     * needs to be change during restore from vault.
      * 
      * @return the namespaceMappings value.
      */
@@ -298,8 +317,8 @@ public final class KubernetesClusterVaultTierRestoreCriteria extends ItemLevelRe
     }
 
     /**
-     * Set the namespaceMappings property: Gets or sets the Namespace Mappings property. This property sets if
-     * namespace needs to be change during restore from vault.
+     * Set the namespaceMappings property: Gets or sets the Namespace Mappings property. This property sets if namespace
+     * needs to be change during restore from vault.
      * 
      * @param namespaceMappings the namespaceMappings value to set.
      * @return the KubernetesClusterVaultTierRestoreCriteria object itself.
@@ -377,6 +396,33 @@ public final class KubernetesClusterVaultTierRestoreCriteria extends ItemLevelRe
     }
 
     /**
+     * Get the resourceModifierReference property: NamespacedNameResource
+     * 
+     * Gets or sets the resource modifier reference. This property sets the reference for resource modifier during
+     * restore.
+     * 
+     * @return the resourceModifierReference value.
+     */
+    public NamespacedNameResource resourceModifierReference() {
+        return this.resourceModifierReference;
+    }
+
+    /**
+     * Set the resourceModifierReference property: NamespacedNameResource
+     * 
+     * Gets or sets the resource modifier reference. This property sets the reference for resource modifier during
+     * restore.
+     * 
+     * @param resourceModifierReference the resourceModifierReference value to set.
+     * @return the KubernetesClusterVaultTierRestoreCriteria object itself.
+     */
+    public KubernetesClusterVaultTierRestoreCriteria
+        withResourceModifierReference(NamespacedNameResource resourceModifierReference) {
+        this.resourceModifierReference = resourceModifierReference;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -386,6 +432,9 @@ public final class KubernetesClusterVaultTierRestoreCriteria extends ItemLevelRe
         super.validate();
         if (restoreHookReferences() != null) {
             restoreHookReferences().forEach(e -> e.validate());
+        }
+        if (resourceModifierReference() != null) {
+            resourceModifierReference().validate();
         }
     }
 }

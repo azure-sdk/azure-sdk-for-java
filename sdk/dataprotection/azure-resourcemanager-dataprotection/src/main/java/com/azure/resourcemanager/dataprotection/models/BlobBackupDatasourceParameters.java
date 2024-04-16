@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.List;
 /**
  * Parameters to be used during configuration of backup of blobs.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = BlobBackupDatasourceParameters.class,
+    visible = true)
 @JsonTypeName("BlobBackupDatasourceParameters")
 @Fluent
 public final class BlobBackupDatasourceParameters extends BackupDatasourceParameters {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "BlobBackupDatasourceParameters";
+
     /*
      * List of containers to be backed up during configuration of backup of blobs
      */
@@ -28,6 +40,16 @@ public final class BlobBackupDatasourceParameters extends BackupDatasourceParame
      * Creates an instance of BlobBackupDatasourceParameters class.
      */
     public BlobBackupDatasourceParameters() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -59,8 +81,9 @@ public final class BlobBackupDatasourceParameters extends BackupDatasourceParame
     public void validate() {
         super.validate();
         if (containersList() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property containersList in model BlobBackupDatasourceParameters"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property containersList in model BlobBackupDatasourceParameters"));
         }
     }
 

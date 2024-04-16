@@ -119,14 +119,15 @@ public final class SourceLifeCycle {
      */
     public void validate() {
         if (deleteAfter() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property deleteAfter in model SourceLifeCycle"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property deleteAfter in model SourceLifeCycle"));
         } else {
             deleteAfter().validate();
         }
         if (sourceDataStore() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property sourceDataStore in model SourceLifeCycle"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property sourceDataStore in model SourceLifeCycle"));
         } else {
             sourceDataStore().validate();
         }

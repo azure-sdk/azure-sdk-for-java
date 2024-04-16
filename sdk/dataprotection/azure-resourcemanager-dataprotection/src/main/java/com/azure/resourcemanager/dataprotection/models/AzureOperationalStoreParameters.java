@@ -6,16 +6,28 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Parameters for Operational-Tier DataStore.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = AzureOperationalStoreParameters.class,
+    visible = true)
 @JsonTypeName("AzureOperationalStoreParameters")
 @Fluent
 public final class AzureOperationalStoreParameters extends DataStoreParameters {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "AzureOperationalStoreParameters";
+
     /*
      * Gets or sets the Snapshot Resource Group Uri.
      */
@@ -26,6 +38,16 @@ public final class AzureOperationalStoreParameters extends DataStoreParameters {
      * Creates an instance of AzureOperationalStoreParameters class.
      */
     public AzureOperationalStoreParameters() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -17,15 +18,18 @@ import java.util.List;
  * 
  * BackupPolicy base.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "objectType",
-    defaultImpl = BaseBackupPolicy.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "objectType", defaultImpl = BaseBackupPolicy.class, visible = true)
 @JsonTypeName("BaseBackupPolicy")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "BackupPolicy", value = BackupPolicy.class) })
 @Fluent
 public class BaseBackupPolicy {
+    /*
+     * The objectType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType;
+
     /*
      * Type of datasource for the backup management
      */
@@ -36,6 +40,16 @@ public class BaseBackupPolicy {
      * Creates an instance of BaseBackupPolicy class.
      */
     public BaseBackupPolicy() {
+        this.objectType = "BaseBackupPolicy";
+    }
+
+    /**
+     * Get the objectType property: The objectType property.
+     * 
+     * @return the objectType value.
+     */
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -65,8 +79,9 @@ public class BaseBackupPolicy {
      */
     public void validate() {
         if (datasourceTypes() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property datasourceTypes in model BaseBackupPolicy"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property datasourceTypes in model BaseBackupPolicy"));
         }
     }
 

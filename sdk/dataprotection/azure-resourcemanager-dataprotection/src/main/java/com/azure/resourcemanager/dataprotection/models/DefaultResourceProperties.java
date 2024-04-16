@@ -5,20 +5,43 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Default source properties.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = DefaultResourceProperties.class,
+    visible = true)
 @JsonTypeName("DefaultResourceProperties")
 @Immutable
 public final class DefaultResourceProperties extends BaseResourceProperties {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private ResourcePropertiesObjectType objectType = ResourcePropertiesObjectType.DEFAULT_RESOURCE_PROPERTIES;
+
     /**
      * Creates an instance of DefaultResourceProperties class.
      */
     public DefaultResourceProperties() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public ResourcePropertiesObjectType objectType() {
+        return this.objectType;
     }
 
     /**

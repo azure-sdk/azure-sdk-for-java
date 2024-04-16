@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,10 +16,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * 
  * Azure backup rule.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "objectType", defaultImpl = AzureBackupRule.class, visible = true)
 @JsonTypeName("AzureBackupRule")
 @Fluent
 public final class AzureBackupRule extends BasePolicyRule {
+    /*
+     * The objectType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "AzureBackupRule";
+
     /*
      * BackupParameters
      * 
@@ -47,6 +55,16 @@ public final class AzureBackupRule extends BasePolicyRule {
      * Creates an instance of AzureBackupRule class.
      */
     public AzureBackupRule() {
+    }
+
+    /**
+     * Get the objectType property: The objectType property.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -142,14 +160,14 @@ public final class AzureBackupRule extends BasePolicyRule {
             backupParameters().validate();
         }
         if (dataStore() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dataStore in model AzureBackupRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property dataStore in model AzureBackupRule"));
         } else {
             dataStore().validate();
         }
         if (trigger() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property trigger in model AzureBackupRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property trigger in model AzureBackupRule"));
         } else {
             trigger().validate();
         }

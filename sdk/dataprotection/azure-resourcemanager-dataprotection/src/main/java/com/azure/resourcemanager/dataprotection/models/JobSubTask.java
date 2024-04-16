@@ -148,12 +148,12 @@ public final class JobSubTask {
      */
     public void validate() {
         if (taskName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property taskName in model JobSubTask"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property taskName in model JobSubTask"));
         }
         if (taskStatus() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property taskStatus in model JobSubTask"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property taskStatus in model JobSubTask"));
         }
     }
 

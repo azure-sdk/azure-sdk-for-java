@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,21 +16,34 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * 
  * Trigger context.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "objectType",
-    defaultImpl = TriggerContext.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "objectType", defaultImpl = TriggerContext.class, visible = true)
 @JsonTypeName("TriggerContext")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AdhocBasedTriggerContext", value = AdhocBasedTriggerContext.class),
     @JsonSubTypes.Type(name = "ScheduleBasedTriggerContext", value = ScheduleBasedTriggerContext.class) })
 @Immutable
 public class TriggerContext {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType;
+
     /**
      * Creates an instance of TriggerContext class.
      */
     public TriggerContext() {
+        this.objectType = "TriggerContext";
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

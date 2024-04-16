@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,13 +15,23 @@ import java.util.List;
 /**
  * Prefix criteria to be used to during restore.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = ItemPathBasedRestoreCriteria.class,
+    visible = true)
 @JsonTypeName("ItemPathBasedRestoreCriteria")
 @Fluent
 public final class ItemPathBasedRestoreCriteria extends ItemLevelRestoreCriteria {
     /*
-     * The path of the item to be restored. It could be the full path of the item or the path relative to the backup
-     * item
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "ItemPathBasedRestoreCriteria";
+
+    /*
+     * The path of the item to be restored. It could be the full path of the item or the path relative to the backup item
      */
     @JsonProperty(value = "itemPath", required = true)
     private String itemPath;
@@ -32,8 +43,7 @@ public final class ItemPathBasedRestoreCriteria extends ItemLevelRestoreCriteria
     private boolean isPathRelativeToBackupItem;
 
     /*
-     * The list of prefix strings to be used as filter criteria during restore. These are relative to the item path
-     * specified.
+     * The list of prefix strings to be used as filter criteria during restore. These are relative to the item path specified.
      */
     @JsonProperty(value = "subItemPathPrefix")
     private List<String> subItemPathPrefix;
@@ -45,8 +55,18 @@ public final class ItemPathBasedRestoreCriteria extends ItemLevelRestoreCriteria
     }
 
     /**
-     * Get the itemPath property: The path of the item to be restored. It could be the full path of the item or the
-     * path relative to the backup item.
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
+    }
+
+    /**
+     * Get the itemPath property: The path of the item to be restored. It could be the full path of the item or the path
+     * relative to the backup item.
      * 
      * @return the itemPath value.
      */
@@ -55,8 +75,8 @@ public final class ItemPathBasedRestoreCriteria extends ItemLevelRestoreCriteria
     }
 
     /**
-     * Set the itemPath property: The path of the item to be restored. It could be the full path of the item or the
-     * path relative to the backup item.
+     * Set the itemPath property: The path of the item to be restored. It could be the full path of the item or the path
+     * relative to the backup item.
      * 
      * @param itemPath the itemPath value to set.
      * @return the ItemPathBasedRestoreCriteria object itself.
@@ -67,8 +87,7 @@ public final class ItemPathBasedRestoreCriteria extends ItemLevelRestoreCriteria
     }
 
     /**
-     * Get the isPathRelativeToBackupItem property: Flag to specify if the path is relative to backup item or full
-     * path.
+     * Get the isPathRelativeToBackupItem property: Flag to specify if the path is relative to backup item or full path.
      * 
      * @return the isPathRelativeToBackupItem value.
      */
@@ -77,8 +96,7 @@ public final class ItemPathBasedRestoreCriteria extends ItemLevelRestoreCriteria
     }
 
     /**
-     * Set the isPathRelativeToBackupItem property: Flag to specify if the path is relative to backup item or full
-     * path.
+     * Set the isPathRelativeToBackupItem property: Flag to specify if the path is relative to backup item or full path.
      * 
      * @param isPathRelativeToBackupItem the isPathRelativeToBackupItem value to set.
      * @return the ItemPathBasedRestoreCriteria object itself.
@@ -119,8 +137,9 @@ public final class ItemPathBasedRestoreCriteria extends ItemLevelRestoreCriteria
     public void validate() {
         super.validate();
         if (itemPath() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property itemPath in model ItemPathBasedRestoreCriteria"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property itemPath in model ItemPathBasedRestoreCriteria"));
         }
     }
 

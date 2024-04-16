@@ -7,16 +7,28 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Class encapsulating restore as files target parameters.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = RestoreFilesTargetInfo.class,
+    visible = true)
 @JsonTypeName("RestoreFilesTargetInfo")
 @Fluent
 public final class RestoreFilesTargetInfo extends RestoreTargetInfoBase {
+    /*
+     * Type of Datasource object, used to initialize the right inherited type
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "RestoreFilesTargetInfo";
+
     /*
      * Destination of RestoreAsFiles operation, when destination is not a datasource
      */
@@ -27,6 +39,16 @@ public final class RestoreFilesTargetInfo extends RestoreTargetInfoBase {
      * Creates an instance of RestoreFilesTargetInfo class.
      */
     public RestoreFilesTargetInfo() {
+    }
+
+    /**
+     * Get the objectType property: Type of Datasource object, used to initialize the right inherited type.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -76,8 +98,9 @@ public final class RestoreFilesTargetInfo extends RestoreTargetInfoBase {
     public void validate() {
         super.validate();
         if (targetDetails() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property targetDetails in model RestoreFilesTargetInfo"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property targetDetails in model RestoreFilesTargetInfo"));
         } else {
             targetDetails().validate();
         }

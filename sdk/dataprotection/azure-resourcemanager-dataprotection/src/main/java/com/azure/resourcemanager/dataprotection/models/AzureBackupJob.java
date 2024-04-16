@@ -94,8 +94,7 @@ public final class AzureBackupJob {
     private boolean isUserTriggered;
 
     /*
-     * It indicates the type of Job i.e. Backup:full/log/diff ;Restore:ALR/OLR; Tiering:Backup/Archive ;
-     * Management:ConfigureProtection/UnConfigure
+     * It indicates the type of Job i.e. Backup:full/log/diff ;Restore:ALR/OLR; Tiering:Backup/Archive ; Management:ConfigureProtection/UnConfigure
      */
     @JsonProperty(value = "operation", required = true)
     private String operation;
@@ -738,28 +737,30 @@ public final class AzureBackupJob {
      */
     public void validate() {
         if (activityId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property activityId in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property activityId in model AzureBackupJob"));
         }
         if (backupInstanceFriendlyName() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property backupInstanceFriendlyName in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property backupInstanceFriendlyName in model AzureBackupJob"));
         }
         if (dataSourceId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dataSourceId in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property dataSourceId in model AzureBackupJob"));
         }
         if (dataSourceLocation() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dataSourceLocation in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property dataSourceLocation in model AzureBackupJob"));
         }
         if (dataSourceName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dataSourceName in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property dataSourceName in model AzureBackupJob"));
         }
         if (dataSourceType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dataSourceType in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property dataSourceType in model AzureBackupJob"));
         }
         if (errorDetails() != null) {
             errorDetails().forEach(e -> e.validate());
@@ -768,40 +769,44 @@ public final class AzureBackupJob {
             extendedInfo().validate();
         }
         if (operation() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property operation in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property operation in model AzureBackupJob"));
         }
         if (operationCategory() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property operationCategory in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property operationCategory in model AzureBackupJob"));
         }
         if (sourceResourceGroup() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property sourceResourceGroup in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sourceResourceGroup in model AzureBackupJob"));
         }
         if (sourceSubscriptionId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property sourceSubscriptionId in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sourceSubscriptionId in model AzureBackupJob"));
         }
         if (startTime() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property startTime in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property startTime in model AzureBackupJob"));
         }
         if (status() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property status in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property status in model AzureBackupJob"));
         }
         if (subscriptionId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property subscriptionId in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property subscriptionId in model AzureBackupJob"));
         }
         if (supportedActions() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property supportedActions in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property supportedActions in model AzureBackupJob"));
         }
         if (vaultName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property vaultName in model AzureBackupJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property vaultName in model AzureBackupJob"));
         }
     }
 

@@ -78,8 +78,8 @@ public final class ResourceGuard {
     }
 
     /**
-     * Get the vaultCriticalOperationExclusionList property: List of critical operations which are not protected by
-     * this resourceGuard.
+     * Get the vaultCriticalOperationExclusionList property: List of critical operations which are not protected by this
+     * resourceGuard.
      * 
      * @return the vaultCriticalOperationExclusionList value.
      */
@@ -88,8 +88,8 @@ public final class ResourceGuard {
     }
 
     /**
-     * Set the vaultCriticalOperationExclusionList property: List of critical operations which are not protected by
-     * this resourceGuard.
+     * Set the vaultCriticalOperationExclusionList property: List of critical operations which are not protected by this
+     * resourceGuard.
      * 
      * @param vaultCriticalOperationExclusionList the vaultCriticalOperationExclusionList value to set.
      * @return the ResourceGuard object itself.

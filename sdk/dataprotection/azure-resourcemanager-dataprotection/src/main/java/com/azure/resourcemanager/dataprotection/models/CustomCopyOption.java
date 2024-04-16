@@ -6,6 +6,7 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,10 +15,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * 
  * Duration based custom options to copy.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "objectType", defaultImpl = CustomCopyOption.class, visible = true)
 @JsonTypeName("CustomCopyOption")
 @Fluent
 public final class CustomCopyOption extends CopyOption {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "CustomCopyOption";
+
     /*
      * Data copied after given timespan
      */
@@ -28,6 +36,16 @@ public final class CustomCopyOption extends CopyOption {
      * Creates an instance of CustomCopyOption class.
      */
     public CustomCopyOption() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

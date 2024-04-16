@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -16,10 +17,21 @@ import java.util.List;
  * 
  * Schedule based trigger context.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = ScheduleBasedTriggerContext.class,
+    visible = true)
 @JsonTypeName("ScheduleBasedTriggerContext")
 @Fluent
 public final class ScheduleBasedTriggerContext extends TriggerContext {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "ScheduleBasedTriggerContext";
+
     /*
      * BackupSchedule
      * 
@@ -38,6 +50,16 @@ public final class ScheduleBasedTriggerContext extends TriggerContext {
      * Creates an instance of ScheduleBasedTriggerContext class.
      */
     public ScheduleBasedTriggerContext() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -93,14 +115,16 @@ public final class ScheduleBasedTriggerContext extends TriggerContext {
     public void validate() {
         super.validate();
         if (schedule() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property schedule in model ScheduleBasedTriggerContext"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property schedule in model ScheduleBasedTriggerContext"));
         } else {
             schedule().validate();
         }
         if (taggingCriteria() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property taggingCriteria in model ScheduleBasedTriggerContext"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property taggingCriteria in model ScheduleBasedTriggerContext"));
         } else {
             taggingCriteria().forEach(e -> e.validate());
         }

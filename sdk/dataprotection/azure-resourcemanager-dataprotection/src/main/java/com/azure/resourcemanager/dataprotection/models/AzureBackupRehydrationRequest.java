@@ -106,12 +106,14 @@ public final class AzureBackupRehydrationRequest {
      */
     public void validate() {
         if (recoveryPointId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryPointId in model AzureBackupRehydrationRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryPointId in model AzureBackupRehydrationRequest"));
         }
         if (rehydrationRetentionDuration() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property rehydrationRetentionDuration in model AzureBackupRehydrationRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property rehydrationRetentionDuration in model AzureBackupRehydrationRequest"));
         }
     }
 

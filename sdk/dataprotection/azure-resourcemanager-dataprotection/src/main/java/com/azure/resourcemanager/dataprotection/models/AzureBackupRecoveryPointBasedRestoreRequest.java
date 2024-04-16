@@ -8,8 +8,10 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
 /**
  * AzureBackupRecoveryPointBasedRestoreRequest
@@ -18,9 +20,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "objectType",
-    defaultImpl = AzureBackupRecoveryPointBasedRestoreRequest.class)
+    defaultImpl = AzureBackupRecoveryPointBasedRestoreRequest.class,
+    visible = true)
 @JsonTypeName("AzureBackupRecoveryPointBasedRestoreRequest")
 @JsonSubTypes({
     @JsonSubTypes.Type(
@@ -28,6 +30,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         value = AzureBackupRestoreWithRehydrationRequest.class) })
 @Fluent
 public class AzureBackupRecoveryPointBasedRestoreRequest extends AzureBackupRestoreRequest {
+    /*
+     * The objectType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "AzureBackupRecoveryPointBasedRestoreRequest";
+
     /*
      * The recoveryPointId property.
      */
@@ -38,6 +47,16 @@ public class AzureBackupRecoveryPointBasedRestoreRequest extends AzureBackupRest
      * Creates an instance of AzureBackupRecoveryPointBasedRestoreRequest class.
      */
     public AzureBackupRecoveryPointBasedRestoreRequest() {
+    }
+
+    /**
+     * Get the objectType property: The objectType property.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -92,6 +111,16 @@ public class AzureBackupRecoveryPointBasedRestoreRequest extends AzureBackupRest
      * {@inheritDoc}
      */
     @Override
+    public AzureBackupRecoveryPointBasedRestoreRequest
+        withResourceGuardOperationRequests(List<String> resourceGuardOperationRequests) {
+        super.withResourceGuardOperationRequests(resourceGuardOperationRequests);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public AzureBackupRecoveryPointBasedRestoreRequest withIdentityDetails(IdentityDetails identityDetails) {
         super.withIdentityDetails(identityDetails);
         return this;
@@ -106,8 +135,9 @@ public class AzureBackupRecoveryPointBasedRestoreRequest extends AzureBackupRest
     public void validate() {
         super.validate();
         if (recoveryPointId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryPointId in model AzureBackupRecoveryPointBasedRestoreRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryPointId in model AzureBackupRecoveryPointBasedRestoreRequest"));
         }
     }
 

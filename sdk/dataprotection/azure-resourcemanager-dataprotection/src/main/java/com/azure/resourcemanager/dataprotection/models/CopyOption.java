@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,11 +16,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * 
  * Options to copy.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "objectType",
-    defaultImpl = CopyOption.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "objectType", defaultImpl = CopyOption.class, visible = true)
 @JsonTypeName("CopyOption")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "CopyOnExpiryOption", value = CopyOnExpiryOption.class),
@@ -26,10 +24,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "ImmediateCopyOption", value = ImmediateCopyOption.class) })
 @Immutable
 public class CopyOption {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType;
+
     /**
      * Creates an instance of CopyOption class.
      */
     public CopyOption() {
+        this.objectType = "CopyOption";
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

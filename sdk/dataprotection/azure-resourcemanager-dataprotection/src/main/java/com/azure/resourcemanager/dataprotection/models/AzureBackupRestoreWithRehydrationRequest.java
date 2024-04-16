@@ -7,18 +7,31 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
 /**
  * AzureBackupRestoreWithRehydrationRequest
  * 
  * AzureBackup Restore with Rehydration Request.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = AzureBackupRestoreWithRehydrationRequest.class,
+    visible = true)
 @JsonTypeName("AzureBackupRestoreWithRehydrationRequest")
 @Fluent
 public final class AzureBackupRestoreWithRehydrationRequest extends AzureBackupRecoveryPointBasedRestoreRequest {
+    /*
+     * The objectType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "AzureBackupRestoreWithRehydrationRequest";
+
     /*
      * Priority to be used for rehydration. Values High or Standard
      */
@@ -35,6 +48,16 @@ public final class AzureBackupRestoreWithRehydrationRequest extends AzureBackupR
      * Creates an instance of AzureBackupRestoreWithRehydrationRequest class.
      */
     public AzureBackupRestoreWithRehydrationRequest() {
+    }
+
+    /**
+     * Get the objectType property: The objectType property.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -118,6 +141,16 @@ public final class AzureBackupRestoreWithRehydrationRequest extends AzureBackupR
      * {@inheritDoc}
      */
     @Override
+    public AzureBackupRestoreWithRehydrationRequest
+        withResourceGuardOperationRequests(List<String> resourceGuardOperationRequests) {
+        super.withResourceGuardOperationRequests(resourceGuardOperationRequests);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public AzureBackupRestoreWithRehydrationRequest withIdentityDetails(IdentityDetails identityDetails) {
         super.withIdentityDetails(identityDetails);
         return this;
@@ -132,12 +165,14 @@ public final class AzureBackupRestoreWithRehydrationRequest extends AzureBackupR
     public void validate() {
         super.validate();
         if (rehydrationPriority() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property rehydrationPriority in model AzureBackupRestoreWithRehydrationRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property rehydrationPriority in model AzureBackupRestoreWithRehydrationRequest"));
         }
         if (rehydrationRetentionDuration() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property rehydrationRetentionDuration in model AzureBackupRestoreWithRehydrationRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property rehydrationRetentionDuration in model AzureBackupRestoreWithRehydrationRequest"));
         }
     }
 

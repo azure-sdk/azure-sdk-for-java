@@ -6,7 +6,9 @@ package com.azure.resourcemanager.dataprotection.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.dataprotection.models.FeatureValidationResponse;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,17 +17,34 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "objectType",
-    defaultImpl = FeatureValidationResponseBaseInner.class)
+    defaultImpl = FeatureValidationResponseBaseInner.class,
+    visible = true)
 @JsonTypeName("FeatureValidationResponseBase")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "FeatureValidationResponse", value = FeatureValidationResponse.class) })
 @Immutable
 public class FeatureValidationResponseBaseInner {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType;
+
     /**
      * Creates an instance of FeatureValidationResponseBaseInner class.
      */
     public FeatureValidationResponseBaseInner() {
+        this.objectType = "FeatureValidationResponseBase";
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

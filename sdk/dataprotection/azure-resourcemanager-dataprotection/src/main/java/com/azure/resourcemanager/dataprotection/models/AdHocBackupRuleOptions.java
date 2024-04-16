@@ -86,12 +86,14 @@ public final class AdHocBackupRuleOptions {
      */
     public void validate() {
         if (ruleName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property ruleName in model AdHocBackupRuleOptions"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property ruleName in model AdHocBackupRuleOptions"));
         }
         if (triggerOption() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property triggerOption in model AdHocBackupRuleOptions"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property triggerOption in model AdHocBackupRuleOptions"));
         } else {
             triggerOption().validate();
         }

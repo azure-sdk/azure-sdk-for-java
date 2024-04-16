@@ -56,8 +56,8 @@ public final class RecoveryPointsClientImpl implements RecoveryPointsClient {
     }
 
     /**
-     * The interface defining all the services for DataProtectionClientRecoveryPoints to be used by the proxy service
-     * to perform REST calls.
+     * The interface defining all the services for DataProtectionClientRecoveryPoints to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "DataProtectionClient")

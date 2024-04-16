@@ -6,6 +6,7 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * Deleted Backup Instance.
@@ -66,6 +67,15 @@ public final class DeletedBackupInstance extends BackupInstance {
     @Override
     public DeletedBackupInstance withPolicyInfo(PolicyInfo policyInfo) {
         super.withPolicyInfo(policyInfo);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DeletedBackupInstance withResourceGuardOperationRequests(List<String> resourceGuardOperationRequests) {
+        super.withResourceGuardOperationRequests(resourceGuardOperationRequests);
         return this;
     }
 

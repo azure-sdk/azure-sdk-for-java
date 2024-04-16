@@ -6,6 +6,7 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * Backup Vault Contract for Patch Backup Vault API.
@@ -29,6 +30,12 @@ public final class PatchBackupVaultInput {
      */
     @JsonProperty(value = "featureSettings")
     private FeatureSettings featureSettings;
+
+    /*
+     * ResourceGuardOperationRequests on which LAC check will be performed
+     */
+    @JsonProperty(value = "resourceGuardOperationRequests")
+    private List<String> resourceGuardOperationRequests;
 
     /**
      * Creates an instance of PatchBackupVaultInput class.
@@ -93,6 +100,28 @@ public final class PatchBackupVaultInput {
      */
     public PatchBackupVaultInput withFeatureSettings(FeatureSettings featureSettings) {
         this.featureSettings = featureSettings;
+        return this;
+    }
+
+    /**
+     * Get the resourceGuardOperationRequests property: ResourceGuardOperationRequests on which LAC check will be
+     * performed.
+     * 
+     * @return the resourceGuardOperationRequests value.
+     */
+    public List<String> resourceGuardOperationRequests() {
+        return this.resourceGuardOperationRequests;
+    }
+
+    /**
+     * Set the resourceGuardOperationRequests property: ResourceGuardOperationRequests on which LAC check will be
+     * performed.
+     * 
+     * @param resourceGuardOperationRequests the resourceGuardOperationRequests value to set.
+     * @return the PatchBackupVaultInput object itself.
+     */
+    public PatchBackupVaultInput withResourceGuardOperationRequests(List<String> resourceGuardOperationRequests) {
+        this.resourceGuardOperationRequests = resourceGuardOperationRequests;
         return this;
     }
 

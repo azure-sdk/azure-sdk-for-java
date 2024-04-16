@@ -59,8 +59,8 @@ public final class BackupPoliciesClientImpl implements BackupPoliciesClient {
     }
 
     /**
-     * The interface defining all the services for DataProtectionClientBackupPolicies to be used by the proxy service
-     * to perform REST calls.
+     * The interface defining all the services for DataProtectionClientBackupPolicies to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "DataProtectionClient")

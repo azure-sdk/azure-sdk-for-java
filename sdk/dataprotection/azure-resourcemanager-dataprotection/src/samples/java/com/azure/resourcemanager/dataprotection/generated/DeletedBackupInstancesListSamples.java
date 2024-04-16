@@ -9,9 +9,7 @@ package com.azure.resourcemanager.dataprotection.generated;
  */
 public final class DeletedBackupInstancesListSamples {
     /*
-     * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/
-     * DeletedBackupInstanceOperations/ListDeletedBackupInstances.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/DeletedBackupInstanceOperations/ListDeletedBackupInstances.json
      */
     /**
      * Sample code: List DeletedBackupInstances in a Vault.
@@ -20,7 +18,7 @@ public final class DeletedBackupInstancesListSamples {
      */
     public static void
         listDeletedBackupInstancesInAVault(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
-        manager.deletedBackupInstances().list("000pikumar", "PratikPrivatePreviewVault1",
-            com.azure.core.util.Context.NONE);
+        manager.deletedBackupInstances()
+            .list("000pikumar", "PratikPrivatePreviewVault1", com.azure.core.util.Context.NONE);
     }
 }

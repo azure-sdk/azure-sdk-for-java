@@ -17,7 +17,7 @@ import java.util.Map;
 @Fluent
 public final class InnerError {
     /*
-     * Any Key value pairs that can be provided to the client for additional verbose information.
+     * Any Key value pairs that can be provided to the client for additional  verbose information.
      */
     @JsonProperty(value = "additionalInfo")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)

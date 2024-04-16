@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "objectType",
-    defaultImpl = BackupDatasourceParameters.class)
+    defaultImpl = BackupDatasourceParameters.class,
+    visible = true)
 @JsonTypeName("BackupDatasourceParameters")
 @JsonSubTypes({
     @JsonSubTypes.Type(
@@ -25,10 +27,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "BlobBackupDatasourceParameters", value = BlobBackupDatasourceParameters.class) })
 @Immutable
 public class BackupDatasourceParameters {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType;
+
     /**
      * Creates an instance of BackupDatasourceParameters class.
      */
     public BackupDatasourceParameters() {
+        this.objectType = "BackupDatasourceParameters";
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

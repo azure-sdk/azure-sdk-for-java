@@ -24,8 +24,7 @@ public final class OperationResourceInner {
     private OffsetDateTime endTime;
 
     /*
-     * Required if status == failed or status == canceled. This is the OData v4 error format, used by the RPC and will
-     * go into the v2.2 Azure REST API guidelines.
+     * Required if status == failed or status == canceled. This is the OData v4 error format, used by the RPC and will go into the v2.2 Azure REST API guidelines.
      * The full set of optional properties (e.g. inner errors / details) can be found in the "Error Response" section.
      */
     @JsonProperty(value = "error")

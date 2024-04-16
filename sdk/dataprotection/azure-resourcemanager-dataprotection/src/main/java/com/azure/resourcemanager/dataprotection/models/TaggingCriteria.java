@@ -142,8 +142,8 @@ public final class TaggingCriteria {
             criteria().forEach(e -> e.validate());
         }
         if (tagInfo() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property tagInfo in model TaggingCriteria"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property tagInfo in model TaggingCriteria"));
         } else {
             tagInfo().validate();
         }

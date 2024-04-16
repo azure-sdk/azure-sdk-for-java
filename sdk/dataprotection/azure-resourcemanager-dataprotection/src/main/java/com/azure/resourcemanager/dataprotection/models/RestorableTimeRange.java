@@ -104,12 +104,12 @@ public final class RestorableTimeRange {
      */
     public void validate() {
         if (startTime() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property startTime in model RestorableTimeRange"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property startTime in model RestorableTimeRange"));
         }
         if (endTime() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property endTime in model RestorableTimeRange"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property endTime in model RestorableTimeRange"));
         }
     }
 

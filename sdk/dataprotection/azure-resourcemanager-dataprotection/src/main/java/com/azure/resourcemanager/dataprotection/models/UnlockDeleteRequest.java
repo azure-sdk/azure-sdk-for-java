@@ -14,7 +14,7 @@ import java.util.List;
 @Fluent
 public final class UnlockDeleteRequest {
     /*
-     * The resourceGuardOperationRequests property.
+     * ResourceGuardOperationRequests on which LAC check will be performed
      */
     @JsonProperty(value = "resourceGuardOperationRequests")
     private List<String> resourceGuardOperationRequests;
@@ -32,7 +32,8 @@ public final class UnlockDeleteRequest {
     }
 
     /**
-     * Get the resourceGuardOperationRequests property: The resourceGuardOperationRequests property.
+     * Get the resourceGuardOperationRequests property: ResourceGuardOperationRequests on which LAC check will be
+     * performed.
      * 
      * @return the resourceGuardOperationRequests value.
      */
@@ -41,7 +42,8 @@ public final class UnlockDeleteRequest {
     }
 
     /**
-     * Set the resourceGuardOperationRequests property: The resourceGuardOperationRequests property.
+     * Set the resourceGuardOperationRequests property: ResourceGuardOperationRequests on which LAC check will be
+     * performed.
      * 
      * @param resourceGuardOperationRequests the resourceGuardOperationRequests value to set.
      * @return the UnlockDeleteRequest object itself.

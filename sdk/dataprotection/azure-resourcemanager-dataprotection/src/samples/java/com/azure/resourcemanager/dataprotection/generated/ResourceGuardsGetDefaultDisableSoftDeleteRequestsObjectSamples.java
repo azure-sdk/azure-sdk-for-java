@@ -9,9 +9,7 @@ package com.azure.resourcemanager.dataprotection.generated;
  */
 public final class ResourceGuardsGetDefaultDisableSoftDeleteRequestsObjectSamples {
     /*
-     * x-ms-original-file:
-     * specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2023-11-01/examples/
-     * ResourceGuardCRUD/GetDefaultDisableSoftDeleteRequests.json
+     * x-ms-original-file: specification/dataprotection/resource-manager/Microsoft.DataProtection/stable/2024-04-01/examples/ResourceGuardCRUD/GetDefaultDisableSoftDeleteRequests.json
      */
     /**
      * Sample code: Get DefaultOperationsRequestObject.
@@ -20,7 +18,8 @@ public final class ResourceGuardsGetDefaultDisableSoftDeleteRequestsObjectSample
      */
     public static void
         getDefaultOperationsRequestObject(com.azure.resourcemanager.dataprotection.DataProtectionManager manager) {
-        manager.resourceGuards().getDefaultDisableSoftDeleteRequestsObjectWithResponse("SampleResourceGroup",
-            "swaggerExample", "default", com.azure.core.util.Context.NONE);
+        manager.resourceGuards()
+            .getDefaultDisableSoftDeleteRequestsObjectWithResponse("SampleResourceGroup", "swaggerExample", "default",
+                com.azure.core.util.Context.NONE);
     }
 }

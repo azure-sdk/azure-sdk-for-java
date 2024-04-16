@@ -8,8 +8,10 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
 /**
  * AzureBackupRestoreRequest
@@ -18,9 +20,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "objectType",
-    defaultImpl = AzureBackupRestoreRequest.class)
+    defaultImpl = AzureBackupRestoreRequest.class,
+    visible = true)
 @JsonTypeName("AzureBackupRestoreRequest")
 @JsonSubTypes({
     @JsonSubTypes.Type(
@@ -31,6 +33,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         value = AzureBackupRecoveryTimeBasedRestoreRequest.class) })
 @Fluent
 public class AzureBackupRestoreRequest {
+    /*
+     * The objectType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType;
+
     /*
      * Gets or sets the restore target information.
      */
@@ -50,6 +59,12 @@ public class AzureBackupRestoreRequest {
     private String sourceResourceId;
 
     /*
+     * ResourceGuardOperationRequests on which LAC check will be performed
+     */
+    @JsonProperty(value = "resourceGuardOperationRequests")
+    private List<String> resourceGuardOperationRequests;
+
+    /*
      * Contains information of the Identity Details for the BI.
      * If it is null, default will be considered as System Assigned.
      */
@@ -60,6 +75,16 @@ public class AzureBackupRestoreRequest {
      * Creates an instance of AzureBackupRestoreRequest class.
      */
     public AzureBackupRestoreRequest() {
+        this.objectType = "AzureBackupRestoreRequest";
+    }
+
+    /**
+     * Get the objectType property: The objectType property.
+     * 
+     * @return the objectType value.
+     */
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -125,6 +150,28 @@ public class AzureBackupRestoreRequest {
     }
 
     /**
+     * Get the resourceGuardOperationRequests property: ResourceGuardOperationRequests on which LAC check will be
+     * performed.
+     * 
+     * @return the resourceGuardOperationRequests value.
+     */
+    public List<String> resourceGuardOperationRequests() {
+        return this.resourceGuardOperationRequests;
+    }
+
+    /**
+     * Set the resourceGuardOperationRequests property: ResourceGuardOperationRequests on which LAC check will be
+     * performed.
+     * 
+     * @param resourceGuardOperationRequests the resourceGuardOperationRequests value to set.
+     * @return the AzureBackupRestoreRequest object itself.
+     */
+    public AzureBackupRestoreRequest withResourceGuardOperationRequests(List<String> resourceGuardOperationRequests) {
+        this.resourceGuardOperationRequests = resourceGuardOperationRequests;
+        return this;
+    }
+
+    /**
      * Get the identityDetails property: Contains information of the Identity Details for the BI.
      * If it is null, default will be considered as System Assigned.
      * 
@@ -153,14 +200,16 @@ public class AzureBackupRestoreRequest {
      */
     public void validate() {
         if (restoreTargetInfo() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property restoreTargetInfo in model AzureBackupRestoreRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property restoreTargetInfo in model AzureBackupRestoreRequest"));
         } else {
             restoreTargetInfo().validate();
         }
         if (sourceDataStoreType() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property sourceDataStoreType in model AzureBackupRestoreRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sourceDataStoreType in model AzureBackupRestoreRequest"));
         }
         if (identityDetails() != null) {
             identityDetails().validate();

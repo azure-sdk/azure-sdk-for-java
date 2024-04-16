@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -16,15 +17,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * 
  * Delete Option.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "objectType",
-    defaultImpl = DeleteOption.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "objectType", defaultImpl = DeleteOption.class, visible = true)
 @JsonTypeName("DeleteOption")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "AbsoluteDeleteOption", value = AbsoluteDeleteOption.class) })
 @Fluent
 public class DeleteOption {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType;
+
     /*
      * Duration of deletion after given timespan
      */
@@ -35,6 +39,16 @@ public class DeleteOption {
      * Creates an instance of DeleteOption class.
      */
     public DeleteOption() {
+        this.objectType = "DeleteOption";
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -64,8 +78,8 @@ public class DeleteOption {
      */
     public void validate() {
         if (duration() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property duration in model DeleteOption"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property duration in model DeleteOption"));
         }
     }
 

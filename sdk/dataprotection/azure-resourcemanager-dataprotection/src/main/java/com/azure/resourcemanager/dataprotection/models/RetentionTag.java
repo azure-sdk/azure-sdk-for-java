@@ -84,8 +84,8 @@ public final class RetentionTag {
      */
     public void validate() {
         if (tagName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property tagName in model RetentionTag"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property tagName in model RetentionTag"));
         }
     }
 

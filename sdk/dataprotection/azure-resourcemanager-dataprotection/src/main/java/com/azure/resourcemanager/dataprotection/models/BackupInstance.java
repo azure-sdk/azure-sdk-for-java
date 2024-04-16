@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * Backup Instance.
@@ -44,6 +45,12 @@ public class BackupInstance {
     private PolicyInfo policyInfo;
 
     /*
+     * ResourceGuardOperationRequests on which LAC check will be performed
+     */
+    @JsonProperty(value = "resourceGuardOperationRequests")
+    private List<String> resourceGuardOperationRequests;
+
+    /*
      * ProtectionStatusDetails
      * 
      * Specifies the protection status of the resource
@@ -76,8 +83,7 @@ public class BackupInstance {
     private AuthCredentials datasourceAuthCredentials;
 
     /*
-     * Specifies the type of validation. In case of DeepValidation, all validations from /validateForBackup API will
-     * run again.
+     * Specifies the type of validation. In case of DeepValidation, all validations from /validateForBackup API will run again.
      */
     @JsonProperty(value = "validationType")
     private ValidationType validationType;
@@ -190,6 +196,28 @@ public class BackupInstance {
      */
     public BackupInstance withPolicyInfo(PolicyInfo policyInfo) {
         this.policyInfo = policyInfo;
+        return this;
+    }
+
+    /**
+     * Get the resourceGuardOperationRequests property: ResourceGuardOperationRequests on which LAC check will be
+     * performed.
+     * 
+     * @return the resourceGuardOperationRequests value.
+     */
+    public List<String> resourceGuardOperationRequests() {
+        return this.resourceGuardOperationRequests;
+    }
+
+    /**
+     * Set the resourceGuardOperationRequests property: ResourceGuardOperationRequests on which LAC check will be
+     * performed.
+     * 
+     * @param resourceGuardOperationRequests the resourceGuardOperationRequests value to set.
+     * @return the BackupInstance object itself.
+     */
+    public BackupInstance withResourceGuardOperationRequests(List<String> resourceGuardOperationRequests) {
+        this.resourceGuardOperationRequests = resourceGuardOperationRequests;
         return this;
     }
 
@@ -323,8 +351,8 @@ public class BackupInstance {
      */
     public void validate() {
         if (dataSourceInfo() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dataSourceInfo in model BackupInstance"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property dataSourceInfo in model BackupInstance"));
         } else {
             dataSourceInfo().validate();
         }
@@ -332,8 +360,8 @@ public class BackupInstance {
             dataSourceSetInfo().validate();
         }
         if (policyInfo() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property policyInfo in model BackupInstance"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property policyInfo in model BackupInstance"));
         } else {
             policyInfo().validate();
         }
@@ -350,8 +378,8 @@ public class BackupInstance {
             identityDetails().validate();
         }
         if (objectType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property objectType in model BackupInstance"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property objectType in model BackupInstance"));
         }
     }
 

@@ -8,6 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -16,14 +17,21 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "objectType",
-    defaultImpl = DataStoreParameters.class)
+    defaultImpl = DataStoreParameters.class,
+    visible = true)
 @JsonTypeName("DataStoreParameters")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureOperationalStoreParameters", value = AzureOperationalStoreParameters.class) })
 @Fluent
 public class DataStoreParameters {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType;
+
     /*
      * type of datastore; Operational/Vault/Archive
      */
@@ -34,6 +42,16 @@ public class DataStoreParameters {
      * Creates an instance of DataStoreParameters class.
      */
     public DataStoreParameters() {
+        this.objectType = "DataStoreParameters";
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -63,8 +81,9 @@ public class DataStoreParameters {
      */
     public void validate() {
         if (dataStoreType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dataStoreType in model DataStoreParameters"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property dataStoreType in model DataStoreParameters"));
         }
     }
 

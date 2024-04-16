@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.List;
 /**
  * Restore target info for Item level restore operation.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = ItemLevelRestoreTargetInfo.class,
+    visible = true)
 @JsonTypeName("ItemLevelRestoreTargetInfo")
 @Fluent
 public final class ItemLevelRestoreTargetInfo extends RestoreTargetInfoBase {
+    /*
+     * Type of Datasource object, used to initialize the right inherited type
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "ItemLevelRestoreTargetInfo";
+
     /*
      * Restore Criteria
      */
@@ -50,6 +62,16 @@ public final class ItemLevelRestoreTargetInfo extends RestoreTargetInfoBase {
      * Creates an instance of ItemLevelRestoreTargetInfo class.
      */
     public ItemLevelRestoreTargetInfo() {
+    }
+
+    /**
+     * Get the objectType property: Type of Datasource object, used to initialize the right inherited type.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -167,14 +189,16 @@ public final class ItemLevelRestoreTargetInfo extends RestoreTargetInfoBase {
     public void validate() {
         super.validate();
         if (restoreCriteria() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property restoreCriteria in model ItemLevelRestoreTargetInfo"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property restoreCriteria in model ItemLevelRestoreTargetInfo"));
         } else {
             restoreCriteria().forEach(e -> e.validate());
         }
         if (datasourceInfo() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property datasourceInfo in model ItemLevelRestoreTargetInfo"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property datasourceInfo in model ItemLevelRestoreTargetInfo"));
         } else {
             datasourceInfo().validate();
         }

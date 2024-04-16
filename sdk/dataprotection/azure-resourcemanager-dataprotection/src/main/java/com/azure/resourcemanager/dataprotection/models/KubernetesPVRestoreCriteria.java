@@ -6,16 +6,28 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Item Level kubernetes persistent volume target info for restore operation.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = KubernetesPVRestoreCriteria.class,
+    visible = true)
 @JsonTypeName("KubernetesPVRestoreCriteria")
 @Fluent
 public final class KubernetesPVRestoreCriteria extends ItemLevelRestoreCriteria {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "KubernetesPVRestoreCriteria";
+
     /*
      * Selected persistent volume claim name
      */
@@ -32,6 +44,16 @@ public final class KubernetesPVRestoreCriteria extends ItemLevelRestoreCriteria 
      * Creates an instance of KubernetesPVRestoreCriteria class.
      */
     public KubernetesPVRestoreCriteria() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

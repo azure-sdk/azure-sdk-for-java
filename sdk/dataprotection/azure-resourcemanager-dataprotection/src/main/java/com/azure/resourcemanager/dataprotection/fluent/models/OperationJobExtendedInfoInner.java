@@ -7,6 +7,7 @@ package com.azure.resourcemanager.dataprotection.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.dataprotection.models.OperationExtendedInfo;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,10 +16,21 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * 
  * Operation Job Extended Info.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = OperationJobExtendedInfoInner.class,
+    visible = true)
 @JsonTypeName("OperationJobExtendedInfo")
 @Fluent
 public final class OperationJobExtendedInfoInner extends OperationExtendedInfo {
+    /*
+     * This property will be used as the discriminator for deciding the specific types in the polymorphic chain of types.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "OperationJobExtendedInfo";
+
     /*
      * Name or Arm Id of the job created for this operation.
      */
@@ -29,6 +41,17 @@ public final class OperationJobExtendedInfoInner extends OperationExtendedInfo {
      * Creates an instance of OperationJobExtendedInfoInner class.
      */
     public OperationJobExtendedInfoInner() {
+    }
+
+    /**
+     * Get the objectType property: This property will be used as the discriminator for deciding the specific types in
+     * the polymorphic chain of types.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**

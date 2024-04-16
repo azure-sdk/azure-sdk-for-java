@@ -60,8 +60,9 @@ public final class ValidateRestoreRequestObject {
      */
     public void validate() {
         if (restoreRequestObject() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property restoreRequestObject in model ValidateRestoreRequestObject"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property restoreRequestObject in model ValidateRestoreRequestObject"));
         } else {
             restoreRequestObject().validate();
         }

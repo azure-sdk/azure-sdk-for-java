@@ -6,6 +6,7 @@ package com.azure.resourcemanager.dataprotection.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * Parameters for Kubernetes Cluster Backup Datasource.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "objectType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "objectType",
+    defaultImpl = KubernetesClusterBackupDatasourceParameters.class,
+    visible = true)
 @JsonTypeName("KubernetesClusterBackupDatasourceParameters")
 @Fluent
 public final class KubernetesClusterBackupDatasourceParameters extends BackupDatasourceParameters {
+    /*
+     * Type of the specific object - used for deserializing
+     */
+    @JsonTypeId
+    @JsonProperty(value = "objectType", required = true)
+    private String objectType = "KubernetesClusterBackupDatasourceParameters";
+
     /*
      * Gets or sets the volume snapshot property. This property if enabled will take volume snapshots during backup.
      */
@@ -24,8 +36,7 @@ public final class KubernetesClusterBackupDatasourceParameters extends BackupDat
     private boolean snapshotVolumes;
 
     /*
-     * Gets or sets the include cluster resources property. This property if enabled will include cluster scope
-     * resources during backup.
+     * Gets or sets the include cluster resources property. This property if enabled will include cluster scope resources during backup.
      */
     @JsonProperty(value = "includeClusterScopeResources", required = true)
     private boolean includeClusterScopeResources;
@@ -43,22 +54,19 @@ public final class KubernetesClusterBackupDatasourceParameters extends BackupDat
     private List<String> excludedNamespaces;
 
     /*
-     * Gets or sets the include resource types property. This property sets the resource types to be included during
-     * backup.
+     * Gets or sets the include resource types property. This property sets the resource types to be included during backup.
      */
     @JsonProperty(value = "includedResourceTypes")
     private List<String> includedResourceTypes;
 
     /*
-     * Gets or sets the exclude resource types property. This property sets the resource types to be excluded during
-     * backup.
+     * Gets or sets the exclude resource types property. This property sets the resource types to be excluded during backup.
      */
     @JsonProperty(value = "excludedResourceTypes")
     private List<String> excludedResourceTypes;
 
     /*
-     * Gets or sets the LabelSelectors property. This property sets the resource with such label selectors to be
-     * included during backup.
+     * Gets or sets the LabelSelectors property. This property sets the resource with such label selectors to be included during backup.
      */
     @JsonProperty(value = "labelSelectors")
     private List<String> labelSelectors;
@@ -73,6 +81,16 @@ public final class KubernetesClusterBackupDatasourceParameters extends BackupDat
      * Creates an instance of KubernetesClusterBackupDatasourceParameters class.
      */
     public KubernetesClusterBackupDatasourceParameters() {
+    }
+
+    /**
+     * Get the objectType property: Type of the specific object - used for deserializing.
+     * 
+     * @return the objectType value.
+     */
+    @Override
+    public String objectType() {
+        return this.objectType;
     }
 
     /**
@@ -98,8 +116,8 @@ public final class KubernetesClusterBackupDatasourceParameters extends BackupDat
     }
 
     /**
-     * Get the includeClusterScopeResources property: Gets or sets the include cluster resources property. This
-     * property if enabled will include cluster scope resources during backup.
+     * Get the includeClusterScopeResources property: Gets or sets the include cluster resources property. This property
+     * if enabled will include cluster scope resources during backup.
      * 
      * @return the includeClusterScopeResources value.
      */
@@ -108,8 +126,8 @@ public final class KubernetesClusterBackupDatasourceParameters extends BackupDat
     }
 
     /**
-     * Set the includeClusterScopeResources property: Gets or sets the include cluster resources property. This
-     * property if enabled will include cluster scope resources during backup.
+     * Set the includeClusterScopeResources property: Gets or sets the include cluster resources property. This property
+     * if enabled will include cluster scope resources during backup.
      * 
      * @param includeClusterScopeResources the includeClusterScopeResources value to set.
      * @return the KubernetesClusterBackupDatasourceParameters object itself.
