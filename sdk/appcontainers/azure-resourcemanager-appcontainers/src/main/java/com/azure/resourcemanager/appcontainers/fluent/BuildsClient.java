@@ -6,16 +6,48 @@ package com.azure.resourcemanager.appcontainers.fluent;
 
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceMethod;
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appcontainers.fluent.models.BuildResourceInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.BuildTokenInner;
 
 /**
  * An instance of this class provides access to all the operations defined in BuildsClient.
  */
 public interface BuildsClient {
+    /**
+     * List BuildResource resources by BuilderResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a BuildResource list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<BuildResourceInner> listByBuilderResource(String resourceGroupName, String builderName);
+
+    /**
+     * List BuildResource resources by BuilderResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a BuildResource list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<BuildResourceInner> listByBuilderResource(String resourceGroupName, String builderName,
+        Context context);
+
     /**
      * Get a BuildResource.
      * 
@@ -24,7 +56,8 @@ public interface BuildsClient {
      * @param buildName The name of a build.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuildResource along with {@link Response}.
      */
@@ -39,7 +72,8 @@ public interface BuildsClient {
      * @param builderName The name of the builder.
      * @param buildName The name of a build.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuildResource.
      */
@@ -54,7 +88,8 @@ public interface BuildsClient {
      * @param buildName The name of a build.
      * @param buildEnvelope Resource create or update parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of information pertaining to an individual build.
      */
@@ -71,7 +106,8 @@ public interface BuildsClient {
      * @param buildEnvelope Resource create or update parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of information pertaining to an individual build.
      */
@@ -87,7 +123,8 @@ public interface BuildsClient {
      * @param buildName The name of a build.
      * @param buildEnvelope Resource create or update parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information pertaining to an individual build.
      */
@@ -104,7 +141,8 @@ public interface BuildsClient {
      * @param buildEnvelope Resource create or update parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information pertaining to an individual build.
      */
@@ -119,7 +157,8 @@ public interface BuildsClient {
      * @param builderName The name of the builder.
      * @param buildName The name of a build.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
@@ -134,7 +173,8 @@ public interface BuildsClient {
      * @param buildName The name of a build.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
@@ -149,7 +189,8 @@ public interface BuildsClient {
      * @param builderName The name of the builder.
      * @param buildName The name of a build.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -163,9 +204,43 @@ public interface BuildsClient {
      * @param buildName The name of a build.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String builderName, String buildName, Context context);
+
+    /**
+     * Gets the token used to connect to the endpoint where source code can be uploaded for a build.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @param buildName The name of a build.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the token used to connect to the endpoint where source code can be uploaded for a build along with
+     * {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<BuildTokenInner> listAuthTokenWithResponse(String resourceGroupName, String builderName, String buildName,
+        Context context);
+
+    /**
+     * Gets the token used to connect to the endpoint where source code can be uploaded for a build.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @param buildName The name of a build.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the token used to connect to the endpoint where source code can be uploaded for a build.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    BuildTokenInner listAuthToken(String resourceGroupName, String builderName, String buildName);
 }

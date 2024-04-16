@@ -5,12 +5,11 @@
 package com.azure.resourcemanager.appcontainers.generated;
 
 /**
- * Samples for BuildAuthToken List.
+ * Samples for Builds ListAuthToken.
  */
-public final class BuildAuthTokenListSamples {
+public final class BuildsListAuthTokenSamples {
     /*
-     * x-ms-original-file:
-     * specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/Builds_ListAuthToken.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/Builds_ListAuthToken.json
      */
     /**
      * Sample code: Get Build Auth Token.
@@ -18,6 +17,6 @@ public final class BuildAuthTokenListSamples {
      * @param manager Entry point to ContainerAppsApiManager.
      */
     public static void getBuildAuthToken(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.buildAuthTokens().listWithResponse("rg", "testBuilder", "testBuild", com.azure.core.util.Context.NONE);
+        manager.builds().listAuthTokenWithResponse("rg", "testBuilder", "testBuild", com.azure.core.util.Context.NONE);
     }
 }

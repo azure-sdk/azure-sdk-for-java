@@ -122,9 +122,7 @@ public final class ManagedEnvironmentProperties {
     private DaprConfiguration daprConfiguration;
 
     /*
-     * Name of the platform-managed resource group created for the Managed Environment to host infrastructure
-     * resources. If a subnet ID is provided, this resource group will be created in the same subscription as the
-     * subnet.
+     * Name of the platform-managed resource group created for the Managed Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be created in the same subscription as the subnet.
      */
     @JsonProperty(value = "infrastructureResourceGroup")
     private String infrastructureResourceGroup;
@@ -173,8 +171,8 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
-     * Get the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service
-     * to Service communication telemetry.
+     * Get the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service to
+     * Service communication telemetry.
      * 
      * @return the daprAIConnectionString value.
      */
@@ -183,8 +181,8 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
-     * Set the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service
-     * to Service communication telemetry.
+     * Set the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service to
+     * Service communication telemetry.
      * 
      * @param daprAIConnectionString the daprAIConnectionString value to set.
      * @return the ManagedEnvironmentProperties object itself.
@@ -418,9 +416,9 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
-     * Get the infrastructureResourceGroup property: Name of the platform-managed resource group created for the
-     * Managed Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be
-     * created in the same subscription as the subnet.
+     * Get the infrastructureResourceGroup property: Name of the platform-managed resource group created for the Managed
+     * Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be created in
+     * the same subscription as the subnet.
      * 
      * @return the infrastructureResourceGroup value.
      */
@@ -429,9 +427,9 @@ public final class ManagedEnvironmentProperties {
     }
 
     /**
-     * Set the infrastructureResourceGroup property: Name of the platform-managed resource group created for the
-     * Managed Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be
-     * created in the same subscription as the subnet.
+     * Set the infrastructureResourceGroup property: Name of the platform-managed resource group created for the Managed
+     * Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be created in
+     * the same subscription as the subnet.
      * 
      * @param infrastructureResourceGroup the infrastructureResourceGroup value to set.
      * @return the ManagedEnvironmentProperties object itself.

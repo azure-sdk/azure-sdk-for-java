@@ -18,7 +18,6 @@ import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningSta
 import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironment;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerAuthentication;
-import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.appcontainers.models.OpenTelemetryConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
@@ -59,10 +58,6 @@ public final class ManagedEnvironmentImpl
 
     public String kind() {
         return this.innerModel().kind();
-    }
-
-    public ManagedServiceIdentity identity() {
-        return this.innerModel().identity();
     }
 
     public SystemData systemData() {
@@ -176,14 +171,16 @@ public final class ManagedEnvironmentImpl
     }
 
     public ManagedEnvironment create() {
-        this.innerObject = serviceManager.serviceClient().getManagedEnvironments().createOrUpdate(resourceGroupName,
-            environmentName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getManagedEnvironments()
+            .createOrUpdate(resourceGroupName, environmentName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public ManagedEnvironment create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getManagedEnvironments().createOrUpdate(resourceGroupName,
-            environmentName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getManagedEnvironments()
+            .createOrUpdate(resourceGroupName, environmentName, this.innerModel(), context);
         return this;
     }
 
@@ -199,14 +196,16 @@ public final class ManagedEnvironmentImpl
     }
 
     public ManagedEnvironment apply() {
-        this.innerObject = serviceManager.serviceClient().getManagedEnvironments().update(resourceGroupName,
-            environmentName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getManagedEnvironments()
+            .update(resourceGroupName, environmentName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public ManagedEnvironment apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getManagedEnvironments().update(resourceGroupName,
-            environmentName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getManagedEnvironments()
+            .update(resourceGroupName, environmentName, this.innerModel(), context);
         return this;
     }
 
@@ -219,20 +218,24 @@ public final class ManagedEnvironmentImpl
     }
 
     public ManagedEnvironment refresh() {
-        this.innerObject = serviceManager.serviceClient().getManagedEnvironments()
-            .getByResourceGroupWithResponse(resourceGroupName, environmentName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getManagedEnvironments()
+            .getByResourceGroupWithResponse(resourceGroupName, environmentName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public ManagedEnvironment refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getManagedEnvironments()
-            .getByResourceGroupWithResponse(resourceGroupName, environmentName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getManagedEnvironments()
+            .getByResourceGroupWithResponse(resourceGroupName, environmentName, context)
+            .getValue();
         return this;
     }
 
     public Response<EnvironmentAuthToken> getAuthTokenWithResponse(Context context) {
-        return serviceManager.managedEnvironments().getAuthTokenWithResponse(resourceGroupName, environmentName,
-            context);
+        return serviceManager.managedEnvironments()
+            .getAuthTokenWithResponse(resourceGroupName, environmentName, context);
     }
 
     public EnvironmentAuthToken getAuthToken() {
@@ -256,11 +259,6 @@ public final class ManagedEnvironmentImpl
 
     public ManagedEnvironmentImpl withKind(String kind) {
         this.innerModel().withKind(kind);
-        return this;
-    }
-
-    public ManagedEnvironmentImpl withIdentity(ManagedServiceIdentity identity) {
-        this.innerModel().withIdentity(identity);
         return this;
     }
 

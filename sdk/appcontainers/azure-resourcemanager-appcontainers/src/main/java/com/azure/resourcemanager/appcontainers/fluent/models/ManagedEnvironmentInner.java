@@ -14,7 +14,6 @@ import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerAuthentication;
-import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.appcontainers.models.OpenTelemetryConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
 import com.azure.resourcemanager.appcontainers.models.WorkloadProfile;
@@ -32,13 +31,6 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     @JsonProperty(value = "kind")
     private String kind;
-
-    /*
-     * Managed identities for the Managed Environment to interact with other Azure services without maintaining any
-     * secrets or credentials in code.
-     */
-    @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
 
     /*
      * Managed environment resource specific properties
@@ -75,28 +67,6 @@ public final class ManagedEnvironmentInner extends Resource {
      */
     public ManagedEnvironmentInner withKind(String kind) {
         this.kind = kind;
-        return this;
-    }
-
-    /**
-     * Get the identity property: Managed identities for the Managed Environment to interact with other Azure services
-     * without maintaining any secrets or credentials in code.
-     * 
-     * @return the identity value.
-     */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
-    }
-
-    /**
-     * Set the identity property: Managed identities for the Managed Environment to interact with other Azure services
-     * without maintaining any secrets or credentials in code.
-     * 
-     * @param identity the identity value to set.
-     * @return the ManagedEnvironmentInner object itself.
-     */
-    public ManagedEnvironmentInner withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
         return this;
     }
 
@@ -171,8 +141,8 @@ public final class ManagedEnvironmentInner extends Resource {
     }
 
     /**
-     * Get the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service
-     * to Service communication telemetry.
+     * Get the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service to
+     * Service communication telemetry.
      * 
      * @return the daprAIConnectionString value.
      */
@@ -181,8 +151,8 @@ public final class ManagedEnvironmentInner extends Resource {
     }
 
     /**
-     * Set the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service
-     * to Service communication telemetry.
+     * Set the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service to
+     * Service communication telemetry.
      * 
      * @param daprAIConnectionString the daprAIConnectionString value to set.
      * @return the ManagedEnvironmentInner object itself.
@@ -444,9 +414,9 @@ public final class ManagedEnvironmentInner extends Resource {
     }
 
     /**
-     * Get the infrastructureResourceGroup property: Name of the platform-managed resource group created for the
-     * Managed Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be
-     * created in the same subscription as the subnet.
+     * Get the infrastructureResourceGroup property: Name of the platform-managed resource group created for the Managed
+     * Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be created in
+     * the same subscription as the subnet.
      * 
      * @return the infrastructureResourceGroup value.
      */
@@ -455,9 +425,9 @@ public final class ManagedEnvironmentInner extends Resource {
     }
 
     /**
-     * Set the infrastructureResourceGroup property: Name of the platform-managed resource group created for the
-     * Managed Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be
-     * created in the same subscription as the subnet.
+     * Set the infrastructureResourceGroup property: Name of the platform-managed resource group created for the Managed
+     * Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be created in
+     * the same subscription as the subnet.
      * 
      * @param infrastructureResourceGroup the infrastructureResourceGroup value to set.
      * @return the ManagedEnvironmentInner object itself.
@@ -500,9 +470,6 @@ public final class ManagedEnvironmentInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (identity() != null) {
-            identity().validate();
-        }
         if (innerProperties() != null) {
             innerProperties().validate();
         }

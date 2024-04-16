@@ -26,7 +26,6 @@ import com.azure.core.http.rest.PagedResponse;
 import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
-import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
@@ -36,6 +35,7 @@ import com.azure.resourcemanager.appcontainers.fluent.BuildersClient;
 import com.azure.resourcemanager.appcontainers.fluent.models.BuilderResourceInner;
 import com.azure.resourcemanager.appcontainers.models.BuilderCollection;
 import com.azure.resourcemanager.appcontainers.models.BuilderResourceUpdate;
+import com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -74,7 +74,7 @@ public final class BuildersClientImpl implements BuildersClient {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/providers/Microsoft.App/builders")
         @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<BuilderCollection>> list(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept, Context context);
@@ -82,7 +82,7 @@ public final class BuildersClientImpl implements BuildersClient {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/builders")
         @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<BuilderCollection>> listByResourceGroup(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @HeaderParam("Accept") String accept,
@@ -91,7 +91,7 @@ public final class BuildersClientImpl implements BuildersClient {
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/builders/{builderName}")
         @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<BuilderResourceInner>> getByResourceGroup(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("builderName") String builderName,
@@ -100,7 +100,7 @@ public final class BuildersClientImpl implements BuildersClient {
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/builders/{builderName}")
         @ExpectedResponses({ 200, 201 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("builderName") String builderName,
@@ -110,7 +110,7 @@ public final class BuildersClientImpl implements BuildersClient {
         @Headers({ "Content-Type: application/json" })
         @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/builders/{builderName}")
         @ExpectedResponses({ 200, 202 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<Flux<ByteBuffer>>> update(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("builderName") String builderName,
@@ -120,7 +120,7 @@ public final class BuildersClientImpl implements BuildersClient {
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/builders/{builderName}")
         @ExpectedResponses({ 202, 204 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("builderName") String builderName,
@@ -129,7 +129,7 @@ public final class BuildersClientImpl implements BuildersClient {
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<BuilderCollection>> listBySubscriptionNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
@@ -137,7 +137,7 @@ public final class BuildersClientImpl implements BuildersClient {
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<BuilderCollection>> listByResourceGroupNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
@@ -146,7 +146,7 @@ public final class BuildersClientImpl implements BuildersClient {
     /**
      * List BuilderResource resources by subscription ID.
      * 
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
@@ -175,7 +175,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
@@ -202,7 +202,7 @@ public final class BuildersClientImpl implements BuildersClient {
     /**
      * List BuilderResource resources by subscription ID.
      * 
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation as paginated response with {@link PagedFlux}.
      */
@@ -217,7 +217,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation as paginated response with {@link PagedFlux}.
      */
@@ -230,7 +230,7 @@ public final class BuildersClientImpl implements BuildersClient {
     /**
      * List BuilderResource resources by subscription ID.
      * 
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation as paginated response with {@link PagedIterable}.
      */
@@ -244,7 +244,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * 
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation as paginated response with {@link PagedIterable}.
      */
@@ -258,7 +258,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
@@ -292,7 +292,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
@@ -326,7 +326,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation as paginated response with {@link PagedFlux}.
      */
@@ -342,7 +342,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation as paginated response with {@link PagedFlux}.
      */
@@ -357,7 +357,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation as paginated response with {@link PagedIterable}.
      */
@@ -372,7 +372,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation as paginated response with {@link PagedIterable}.
      */
@@ -387,7 +387,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param builderName The name of the builder.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuilderResource along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -423,7 +423,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuilderResource along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -457,7 +457,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param builderName The name of the builder.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuilderResource on successful completion of {@link Mono}.
      */
@@ -474,7 +474,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuilderResource along with {@link Response}.
      */
@@ -490,7 +490,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param builderName The name of the builder.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuilderResource.
      */
@@ -506,7 +506,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param builderEnvelope Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource along with {@link Response} on successful completion
      * of {@link Mono}.
@@ -550,7 +550,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderEnvelope Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource along with {@link Response} on successful completion
      * of {@link Mono}.
@@ -592,7 +592,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param builderEnvelope Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of information about the SourceToCloud builder resource.
      */
@@ -613,7 +613,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderEnvelope Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of information about the SourceToCloud builder resource.
      */
@@ -634,7 +634,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param builderEnvelope Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of information about the SourceToCloud builder resource.
      */
@@ -652,7 +652,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderEnvelope Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of information about the SourceToCloud builder resource.
      */
@@ -669,7 +669,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param builderEnvelope Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource on successful completion of {@link Mono}.
      */
@@ -688,7 +688,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderEnvelope Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource on successful completion of {@link Mono}.
      */
@@ -706,7 +706,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param builderEnvelope Resource create parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource.
      */
@@ -724,7 +724,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderEnvelope Resource create parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource.
      */
@@ -741,7 +741,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param builderEnvelope The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource along with {@link Response} on successful completion
      * of {@link Mono}.
@@ -785,7 +785,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderEnvelope The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource along with {@link Response} on successful completion
      * of {@link Mono}.
@@ -827,7 +827,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param builderEnvelope The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of information about the SourceToCloud builder resource.
      */
@@ -848,7 +848,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderEnvelope The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of information about the SourceToCloud builder resource.
      */
@@ -869,7 +869,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param builderEnvelope The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of information about the SourceToCloud builder resource.
      */
@@ -887,7 +887,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderEnvelope The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of information about the SourceToCloud builder resource.
      */
@@ -904,7 +904,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param builderEnvelope The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource on successful completion of {@link Mono}.
      */
@@ -923,7 +923,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderEnvelope The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource on successful completion of {@link Mono}.
      */
@@ -941,7 +941,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param builderEnvelope The resource properties to be updated.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource.
      */
@@ -959,7 +959,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderEnvelope The resource properties to be updated.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information about the SourceToCloud builder resource.
      */
@@ -975,7 +975,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param builderName The name of the builder.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
@@ -1010,7 +1010,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
@@ -1044,7 +1044,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param builderName The name of the builder.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
@@ -1062,7 +1062,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
@@ -1081,7 +1081,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param builderName The name of the builder.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
@@ -1097,7 +1097,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
@@ -1113,7 +1113,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param builderName The name of the builder.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
@@ -1129,7 +1129,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
@@ -1145,7 +1145,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param builderName The name of the builder.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1160,7 +1160,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * @param builderName The name of the builder.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1175,7 +1175,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * 
      * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
@@ -1206,7 +1206,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
@@ -1235,7 +1235,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * 
      * The nextLink parameter.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
@@ -1266,7 +1266,7 @@ public final class BuildersClientImpl implements BuildersClient {
      * The nextLink parameter.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the response of a BuilderResource list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.

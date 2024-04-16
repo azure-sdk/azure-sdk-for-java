@@ -6,7 +6,6 @@ package com.azure.resourcemanager.appcontainers.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
 /**
  * Configuration of Open Telemetry destinations.
@@ -18,12 +17,6 @@ public final class DestinationsConfiguration {
      */
     @JsonProperty(value = "dataDogConfiguration")
     private DataDogConfiguration dataDogConfiguration;
-
-    /*
-     * Open telemetry otlp configurations
-     */
-    @JsonProperty(value = "otlpConfigurations")
-    private List<OtlpConfiguration> otlpConfigurations;
 
     /**
      * Creates an instance of DestinationsConfiguration class.
@@ -52,26 +45,6 @@ public final class DestinationsConfiguration {
     }
 
     /**
-     * Get the otlpConfigurations property: Open telemetry otlp configurations.
-     * 
-     * @return the otlpConfigurations value.
-     */
-    public List<OtlpConfiguration> otlpConfigurations() {
-        return this.otlpConfigurations;
-    }
-
-    /**
-     * Set the otlpConfigurations property: Open telemetry otlp configurations.
-     * 
-     * @param otlpConfigurations the otlpConfigurations value to set.
-     * @return the DestinationsConfiguration object itself.
-     */
-    public DestinationsConfiguration withOtlpConfigurations(List<OtlpConfiguration> otlpConfigurations) {
-        this.otlpConfigurations = otlpConfigurations;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -79,9 +52,6 @@ public final class DestinationsConfiguration {
     public void validate() {
         if (dataDogConfiguration() != null) {
             dataDogConfiguration().validate();
-        }
-        if (otlpConfigurations() != null) {
-            otlpConfigurations().forEach(e -> e.validate());
         }
     }
 }

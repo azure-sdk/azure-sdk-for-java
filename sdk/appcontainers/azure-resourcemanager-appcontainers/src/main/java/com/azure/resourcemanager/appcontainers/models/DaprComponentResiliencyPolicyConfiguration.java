@@ -24,12 +24,6 @@ public final class DaprComponentResiliencyPolicyConfiguration {
     @JsonProperty(value = "timeoutPolicy")
     private DaprComponentResiliencyPolicyTimeoutPolicyConfiguration timeoutPolicy;
 
-    /*
-     * The optional circuit breaker policy configuration
-     */
-    @JsonProperty(value = "circuitBreakerPolicy")
-    private DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration circuitBreakerPolicy;
-
     /**
      * Creates an instance of DaprComponentResiliencyPolicyConfiguration class.
      */
@@ -79,27 +73,6 @@ public final class DaprComponentResiliencyPolicyConfiguration {
     }
 
     /**
-     * Get the circuitBreakerPolicy property: The optional circuit breaker policy configuration.
-     * 
-     * @return the circuitBreakerPolicy value.
-     */
-    public DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration circuitBreakerPolicy() {
-        return this.circuitBreakerPolicy;
-    }
-
-    /**
-     * Set the circuitBreakerPolicy property: The optional circuit breaker policy configuration.
-     * 
-     * @param circuitBreakerPolicy the circuitBreakerPolicy value to set.
-     * @return the DaprComponentResiliencyPolicyConfiguration object itself.
-     */
-    public DaprComponentResiliencyPolicyConfiguration
-        withCircuitBreakerPolicy(DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration circuitBreakerPolicy) {
-        this.circuitBreakerPolicy = circuitBreakerPolicy;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -110,9 +83,6 @@ public final class DaprComponentResiliencyPolicyConfiguration {
         }
         if (timeoutPolicy() != null) {
             timeoutPolicy().validate();
-        }
-        if (circuitBreakerPolicy() != null) {
-            circuitBreakerPolicy().validate();
         }
     }
 }

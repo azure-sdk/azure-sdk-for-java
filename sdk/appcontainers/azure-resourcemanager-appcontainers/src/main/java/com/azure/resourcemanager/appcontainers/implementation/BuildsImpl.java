@@ -4,14 +4,17 @@
 
 package com.azure.resourcemanager.appcontainers.implementation;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.appcontainers.fluent.BuildsClient;
 import com.azure.resourcemanager.appcontainers.fluent.models.BuildResourceInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.BuildTokenInner;
 import com.azure.resourcemanager.appcontainers.models.BuildResource;
 import com.azure.resourcemanager.appcontainers.models.Builds;
+import com.azure.resourcemanager.appcontainers.models.BuildToken;
 
 public final class BuildsImpl implements Builds {
     private static final ClientLogger LOGGER = new ClientLogger(BuildsImpl.class);
@@ -24,6 +27,19 @@ public final class BuildsImpl implements Builds {
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
+    }
+
+    public PagedIterable<BuildResource> listByBuilderResource(String resourceGroupName, String builderName) {
+        PagedIterable<BuildResourceInner> inner
+            = this.serviceClient().listByBuilderResource(resourceGroupName, builderName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BuildResourceImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<BuildResource> listByBuilderResource(String resourceGroupName, String builderName,
+        Context context) {
+        PagedIterable<BuildResourceInner> inner
+            = this.serviceClient().listByBuilderResource(resourceGroupName, builderName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new BuildResourceImpl(inner1, this.manager()));
     }
 
     public Response<BuildResource> getWithResponse(String resourceGroupName, String builderName, String buildName,
@@ -53,6 +69,27 @@ public final class BuildsImpl implements Builds {
 
     public void delete(String resourceGroupName, String builderName, String buildName, Context context) {
         this.serviceClient().delete(resourceGroupName, builderName, buildName, context);
+    }
+
+    public Response<BuildToken> listAuthTokenWithResponse(String resourceGroupName, String builderName,
+        String buildName, Context context) {
+        Response<BuildTokenInner> inner
+            = this.serviceClient().listAuthTokenWithResponse(resourceGroupName, builderName, buildName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new BuildTokenImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public BuildToken listAuthToken(String resourceGroupName, String builderName, String buildName) {
+        BuildTokenInner inner = this.serviceClient().listAuthToken(resourceGroupName, builderName, buildName);
+        if (inner != null) {
+            return new BuildTokenImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public BuildResource getById(String id) {

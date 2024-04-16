@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.appcontainers.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -12,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -25,9 +26,7 @@ import com.azure.core.util.serializer.SerializerEncoding;
 import com.azure.resourcemanager.appcontainers.fluent.AppResilienciesClient;
 import com.azure.resourcemanager.appcontainers.fluent.AvailableWorkloadProfilesClient;
 import com.azure.resourcemanager.appcontainers.fluent.BillingMetersClient;
-import com.azure.resourcemanager.appcontainers.fluent.BuildAuthTokensClient;
 import com.azure.resourcemanager.appcontainers.fluent.BuildersClient;
-import com.azure.resourcemanager.appcontainers.fluent.BuildsByBuilderResourcesClient;
 import com.azure.resourcemanager.appcontainers.fluent.BuildsClient;
 import com.azure.resourcemanager.appcontainers.fluent.CertificatesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ConnectedEnvironmentsCertificatesClient;
@@ -44,16 +43,14 @@ import com.azure.resourcemanager.appcontainers.fluent.ContainerAppsSourceControl
 import com.azure.resourcemanager.appcontainers.fluent.DaprComponentResiliencyPoliciesClient;
 import com.azure.resourcemanager.appcontainers.fluent.DaprComponentsClient;
 import com.azure.resourcemanager.appcontainers.fluent.DaprSubscriptionsClient;
-import com.azure.resourcemanager.appcontainers.fluent.DotNetComponentsClient;
-import com.azure.resourcemanager.appcontainers.fluent.JavaComponentsClient;
 import com.azure.resourcemanager.appcontainers.fluent.JobsClient;
 import com.azure.resourcemanager.appcontainers.fluent.JobsExecutionsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedCertificatesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentDiagnosticsClient;
-import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentUsagesClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsDiagnosticsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentsStoragesClient;
+import com.azure.resourcemanager.appcontainers.fluent.ManagedEnvironmentUsagesClient;
 import com.azure.resourcemanager.appcontainers.fluent.NamespacesClient;
 import com.azure.resourcemanager.appcontainers.fluent.OperationsClient;
 import com.azure.resourcemanager.appcontainers.fluent.ResourceProvidersClient;
@@ -227,20 +224,6 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
     }
 
     /**
-     * The BuildsByBuilderResourcesClient object to access its operations.
-     */
-    private final BuildsByBuilderResourcesClient buildsByBuilderResources;
-
-    /**
-     * Gets the BuildsByBuilderResourcesClient object to access its operations.
-     * 
-     * @return the BuildsByBuilderResourcesClient object.
-     */
-    public BuildsByBuilderResourcesClient getBuildsByBuilderResources() {
-        return this.buildsByBuilderResources;
-    }
-
-    /**
      * The BuildsClient object to access its operations.
      */
     private final BuildsClient builds;
@@ -252,20 +235,6 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
      */
     public BuildsClient getBuilds() {
         return this.builds;
-    }
-
-    /**
-     * The BuildAuthTokensClient object to access its operations.
-     */
-    private final BuildAuthTokensClient buildAuthTokens;
-
-    /**
-     * Gets the BuildAuthTokensClient object to access its operations.
-     * 
-     * @return the BuildAuthTokensClient object.
-     */
-    public BuildAuthTokensClient getBuildAuthTokens() {
-        return this.buildAuthTokens;
     }
 
     /**
@@ -521,20 +490,6 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
     }
 
     /**
-     * The DaprComponentResiliencyPoliciesClient object to access its operations.
-     */
-    private final DaprComponentResiliencyPoliciesClient daprComponentResiliencyPolicies;
-
-    /**
-     * Gets the DaprComponentResiliencyPoliciesClient object to access its operations.
-     * 
-     * @return the DaprComponentResiliencyPoliciesClient object.
-     */
-    public DaprComponentResiliencyPoliciesClient getDaprComponentResiliencyPolicies() {
-        return this.daprComponentResiliencyPolicies;
-    }
-
-    /**
      * The DaprComponentsClient object to access its operations.
      */
     private final DaprComponentsClient daprComponents;
@@ -546,6 +501,20 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
      */
     public DaprComponentsClient getDaprComponents() {
         return this.daprComponents;
+    }
+
+    /**
+     * The DaprComponentResiliencyPoliciesClient object to access its operations.
+     */
+    private final DaprComponentResiliencyPoliciesClient daprComponentResiliencyPolicies;
+
+    /**
+     * Gets the DaprComponentResiliencyPoliciesClient object to access its operations.
+     * 
+     * @return the DaprComponentResiliencyPoliciesClient object.
+     */
+    public DaprComponentResiliencyPoliciesClient getDaprComponentResiliencyPolicies() {
+        return this.daprComponentResiliencyPolicies;
     }
 
     /**
@@ -619,34 +588,6 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
     }
 
     /**
-     * The JavaComponentsClient object to access its operations.
-     */
-    private final JavaComponentsClient javaComponents;
-
-    /**
-     * Gets the JavaComponentsClient object to access its operations.
-     * 
-     * @return the JavaComponentsClient object.
-     */
-    public JavaComponentsClient getJavaComponents() {
-        return this.javaComponents;
-    }
-
-    /**
-     * The DotNetComponentsClient object to access its operations.
-     */
-    private final DotNetComponentsClient dotNetComponents;
-
-    /**
-     * Gets the DotNetComponentsClient object to access its operations.
-     * 
-     * @return the DotNetComponentsClient object.
-     */
-    public DotNetComponentsClient getDotNetComponents() {
-        return this.dotNetComponents;
-    }
-
-    /**
      * Initializes an instance of ContainerAppsApiClient client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -663,15 +604,13 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-11-02-preview";
+        this.apiVersion = "2023-08-01-preview";
         this.appResiliencies = new AppResilienciesClientImpl(this);
         this.containerAppsAuthConfigs = new ContainerAppsAuthConfigsClientImpl(this);
         this.availableWorkloadProfiles = new AvailableWorkloadProfilesClientImpl(this);
         this.billingMeters = new BillingMetersClientImpl(this);
         this.builders = new BuildersClientImpl(this);
-        this.buildsByBuilderResources = new BuildsByBuilderResourcesClientImpl(this);
         this.builds = new BuildsClientImpl(this);
-        this.buildAuthTokens = new BuildAuthTokensClientImpl(this);
         this.connectedEnvironments = new ConnectedEnvironmentsClientImpl(this);
         this.connectedEnvironmentsCertificates = new ConnectedEnvironmentsCertificatesClientImpl(this);
         this.connectedEnvironmentsDaprComponents = new ConnectedEnvironmentsDaprComponentsClientImpl(this);
@@ -690,15 +629,13 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         this.certificates = new CertificatesClientImpl(this);
         this.managedCertificates = new ManagedCertificatesClientImpl(this);
         this.namespaces = new NamespacesClientImpl(this);
-        this.daprComponentResiliencyPolicies = new DaprComponentResiliencyPoliciesClientImpl(this);
         this.daprComponents = new DaprComponentsClientImpl(this);
+        this.daprComponentResiliencyPolicies = new DaprComponentResiliencyPoliciesClientImpl(this);
         this.daprSubscriptions = new DaprSubscriptionsClientImpl(this);
         this.managedEnvironmentsStorages = new ManagedEnvironmentsStoragesClientImpl(this);
         this.containerAppsSourceControls = new ContainerAppsSourceControlsClientImpl(this);
         this.usages = new UsagesClientImpl(this);
         this.managedEnvironmentUsages = new ManagedEnvironmentUsagesClientImpl(this);
-        this.javaComponents = new JavaComponentsClientImpl(this);
-        this.dotNetComponents = new DotNetComponentsClientImpl(this);
     }
 
     /**
@@ -761,8 +698,8 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
-                            SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter()
+                            .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }
@@ -803,7 +740,7 @@ public final class ContainerAppsApiClientImpl implements ContainerAppsApiClient 
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {

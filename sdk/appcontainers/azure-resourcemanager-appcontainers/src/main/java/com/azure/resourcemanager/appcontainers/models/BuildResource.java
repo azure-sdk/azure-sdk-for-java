@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.appcontainers.models;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.BuildResourceInner;
@@ -258,4 +259,27 @@ public interface BuildResource {
      * @return the refreshed resource.
      */
     BuildResource refresh(Context context);
+
+    /**
+     * Gets the token used to connect to the endpoint where source code can be uploaded for a build.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the token used to connect to the endpoint where source code can be uploaded for a build along with
+     * {@link Response}.
+     */
+    Response<BuildToken> listAuthTokenWithResponse(Context context);
+
+    /**
+     * Gets the token used to connect to the endpoint where source code can be uploaded for a build.
+     * 
+     * @throws com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException thrown if the request
+     * is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the token used to connect to the endpoint where source code can be uploaded for a build.
+     */
+    BuildToken listAuthToken();
 }

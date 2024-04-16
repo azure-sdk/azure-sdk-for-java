@@ -419,11 +419,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.CertificateKeyVaultProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.appcontainers.models.CheckNameAvailabilityRequest",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -869,16 +864,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.OtlpConfiguration",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.Header",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.appcontainers.models.TracesConfiguration",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -1114,11 +1099,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.appcontainers.models.DaprSubscriptionsCollection",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -1164,11 +1144,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.NfsAzureFileProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.appcontainers.models.SourceControlCollection",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -1210,56 +1185,6 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.appcontainers.models.UsageName",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.JavaComponentsCollection",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.fluent.models.JavaComponentInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.fluent.models.JavaComponentProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.JavaComponentConfigurationProperty",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.JavaComponentServiceBind",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.DotNetComponentsCollection",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.fluent.models.DotNetComponentInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.fluent.models.DotNetComponentProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.DotNetComponentConfigurationProperty",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.DotNetComponentServiceBind",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -1354,11 +1279,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.IngressTargetPortHttpScheme",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.appcontainers.models.AppProtocol",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -1435,26 +1355,6 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.appcontainers.models.SourceControlOperationState",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.JavaComponentType",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.JavaComponentProvisioningState",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.DotNetComponentType",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.appcontainers.models.DotNetComponentProvisioningState",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

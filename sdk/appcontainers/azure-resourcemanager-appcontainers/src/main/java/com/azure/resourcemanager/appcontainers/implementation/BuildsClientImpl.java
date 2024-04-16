@@ -13,15 +13,19 @@ import com.azure.core.annotation.Headers;
 import com.azure.core.annotation.Host;
 import com.azure.core.annotation.HostParam;
 import com.azure.core.annotation.PathParam;
+import com.azure.core.annotation.Post;
 import com.azure.core.annotation.Put;
 import com.azure.core.annotation.QueryParam;
 import com.azure.core.annotation.ReturnType;
 import com.azure.core.annotation.ServiceInterface;
 import com.azure.core.annotation.ServiceMethod;
 import com.azure.core.annotation.UnexpectedResponseExceptionType;
+import com.azure.core.http.rest.PagedFlux;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.PagedResponse;
+import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
-import com.azure.core.management.exception.ManagementException;
 import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
@@ -29,6 +33,9 @@ import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appcontainers.fluent.BuildsClient;
 import com.azure.resourcemanager.appcontainers.fluent.models.BuildResourceInner;
+import com.azure.resourcemanager.appcontainers.fluent.models.BuildTokenInner;
+import com.azure.resourcemanager.appcontainers.models.BuildCollection;
+import com.azure.resourcemanager.appcontainers.models.DefaultErrorResponseErrorException;
 import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -65,9 +72,18 @@ public final class BuildsClientImpl implements BuildsClient {
     @ServiceInterface(name = "ContainerAppsApiClie")
     public interface BuildsService {
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/builders/{builderName}/builds")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
+        Mono<Response<BuildCollection>> listByBuilderResource(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("builderName") String builderName,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/builders/{builderName}/builds/{buildName}")
         @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<BuildResourceInner>> get(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("builderName") String builderName,
@@ -76,7 +92,7 @@ public final class BuildsClientImpl implements BuildsClient {
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/builders/{builderName}/builds/{buildName}")
         @ExpectedResponses({ 200, 201 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("builderName") String builderName,
@@ -86,11 +102,172 @@ public final class BuildsClientImpl implements BuildsClient {
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/builders/{builderName}/builds/{buildName}")
         @ExpectedResponses({ 202, 204 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
             @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("builderName") String builderName,
             @PathParam("buildName") String buildName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.App/builders/{builderName}/builds/{buildName}/listAuthToken")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
+        Mono<Response<BuildTokenInner>> listAuthToken(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("builderName") String builderName,
+            @PathParam("buildName") String buildName, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Get("{nextLink}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(DefaultErrorResponseErrorException.class)
+        Mono<Response<BuildCollection>> listByBuilderResourceNext(
+            @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
+            @HeaderParam("Accept") String accept, Context context);
+    }
+
+    /**
+     * List BuildResource resources by BuilderResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a BuildResource list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BuildResourceInner>> listByBuilderResourceSinglePageAsync(String resourceGroupName,
+        String builderName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (builderName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter builderName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByBuilderResource(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, builderName, accept, context))
+            .<PagedResponse<BuildResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * List BuildResource resources by BuilderResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a BuildResource list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BuildResourceInner>> listByBuilderResourceSinglePageAsync(String resourceGroupName,
+        String builderName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (builderName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter builderName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByBuilderResource(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, builderName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * List BuildResource resources by BuilderResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a BuildResource list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BuildResourceInner> listByBuilderResourceAsync(String resourceGroupName, String builderName) {
+        return new PagedFlux<>(() -> listByBuilderResourceSinglePageAsync(resourceGroupName, builderName),
+            nextLink -> listByBuilderResourceNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * List BuildResource resources by BuilderResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a BuildResource list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<BuildResourceInner> listByBuilderResourceAsync(String resourceGroupName, String builderName,
+        Context context) {
+        return new PagedFlux<>(() -> listByBuilderResourceSinglePageAsync(resourceGroupName, builderName, context),
+            nextLink -> listByBuilderResourceNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * List BuildResource resources by BuilderResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a BuildResource list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BuildResourceInner> listByBuilderResource(String resourceGroupName, String builderName) {
+        return new PagedIterable<>(listByBuilderResourceAsync(resourceGroupName, builderName));
+    }
+
+    /**
+     * List BuildResource resources by BuilderResource.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a BuildResource list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<BuildResourceInner> listByBuilderResource(String resourceGroupName, String builderName,
+        Context context) {
+        return new PagedIterable<>(listByBuilderResourceAsync(resourceGroupName, builderName, context));
     }
 
     /**
@@ -100,7 +277,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param builderName The name of the builder.
      * @param buildName The name of a build.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuildResource along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -140,7 +317,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuildResource along with {@link Response} on successful completion of {@link Mono}.
      */
@@ -178,7 +355,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param builderName The name of the builder.
      * @param buildName The name of a build.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuildResource on successful completion of {@link Mono}.
      */
@@ -196,7 +373,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuildResource along with {@link Response}.
      */
@@ -213,7 +390,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param builderName The name of the builder.
      * @param buildName The name of a build.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return a BuildResource.
      */
@@ -230,7 +407,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param buildEnvelope Resource create or update parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information pertaining to an individual build along with {@link Response} on successful completion of
      * {@link Mono}.
@@ -278,7 +455,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildEnvelope Resource create or update parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information pertaining to an individual build along with {@link Response} on successful completion of
      * {@link Mono}.
@@ -323,7 +500,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param buildEnvelope Resource create or update parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of information pertaining to an individual build.
      */
@@ -345,7 +522,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildEnvelope Resource create or update parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of information pertaining to an individual build.
      */
@@ -368,7 +545,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param buildEnvelope Resource create or update parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of information pertaining to an individual build.
      */
@@ -387,7 +564,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildEnvelope Resource create or update parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of information pertaining to an individual build.
      */
@@ -406,7 +583,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param buildEnvelope Resource create or update parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information pertaining to an individual build on successful completion of {@link Mono}.
      */
@@ -426,7 +603,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildEnvelope Resource create or update parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information pertaining to an individual build on successful completion of {@link Mono}.
      */
@@ -445,7 +622,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param buildEnvelope Resource create or update parameters.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information pertaining to an individual build.
      */
@@ -464,7 +641,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildEnvelope Resource create or update parameters.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return information pertaining to an individual build.
      */
@@ -481,7 +658,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param builderName The name of the builder.
      * @param buildName The name of a build.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
@@ -521,7 +698,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link Response} on successful completion of {@link Mono}.
      */
@@ -559,7 +736,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param builderName The name of the builder.
      * @param buildName The name of a build.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
@@ -579,7 +756,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of long-running operation.
      */
@@ -600,7 +777,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param builderName The name of the builder.
      * @param buildName The name of a build.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
@@ -618,7 +795,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of long-running operation.
      */
@@ -635,7 +812,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param builderName The name of the builder.
      * @param buildName The name of a build.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
@@ -653,7 +830,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return A {@link Mono} that completes when a successful response is received.
      */
@@ -670,7 +847,7 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param builderName The name of the builder.
      * @param buildName The name of a build.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -686,11 +863,204 @@ public final class BuildsClientImpl implements BuildsClient {
      * @param buildName The name of a build.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public void delete(String resourceGroupName, String builderName, String buildName, Context context) {
         deleteAsync(resourceGroupName, builderName, buildName, context).block();
+    }
+
+    /**
+     * Gets the token used to connect to the endpoint where source code can be uploaded for a build.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @param buildName The name of a build.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the token used to connect to the endpoint where source code can be uploaded for a build along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<BuildTokenInner>> listAuthTokenWithResponseAsync(String resourceGroupName, String builderName,
+        String buildName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (builderName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter builderName is required and cannot be null."));
+        }
+        if (buildName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter buildName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listAuthToken(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, builderName, buildName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets the token used to connect to the endpoint where source code can be uploaded for a build.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @param buildName The name of a build.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the token used to connect to the endpoint where source code can be uploaded for a build along with
+     * {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<BuildTokenInner>> listAuthTokenWithResponseAsync(String resourceGroupName, String builderName,
+        String buildName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (builderName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter builderName is required and cannot be null."));
+        }
+        if (buildName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter buildName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listAuthToken(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, builderName, buildName, accept, context);
+    }
+
+    /**
+     * Gets the token used to connect to the endpoint where source code can be uploaded for a build.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @param buildName The name of a build.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the token used to connect to the endpoint where source code can be uploaded for a build on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<BuildTokenInner> listAuthTokenAsync(String resourceGroupName, String builderName, String buildName) {
+        return listAuthTokenWithResponseAsync(resourceGroupName, builderName, buildName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets the token used to connect to the endpoint where source code can be uploaded for a build.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @param buildName The name of a build.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the token used to connect to the endpoint where source code can be uploaded for a build along with
+     * {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BuildTokenInner> listAuthTokenWithResponse(String resourceGroupName, String builderName,
+        String buildName, Context context) {
+        return listAuthTokenWithResponseAsync(resourceGroupName, builderName, buildName, context).block();
+    }
+
+    /**
+     * Gets the token used to connect to the endpoint where source code can be uploaded for a build.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param builderName The name of the builder.
+     * @param buildName The name of a build.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the token used to connect to the endpoint where source code can be uploaded for a build.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public BuildTokenInner listAuthToken(String resourceGroupName, String builderName, String buildName) {
+        return listAuthTokenWithResponse(resourceGroupName, builderName, buildName, Context.NONE).getValue();
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a BuildResource list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BuildResourceInner>> listByBuilderResourceNextSinglePageAsync(String nextLink) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByBuilderResourceNext(nextLink, this.client.getEndpoint(), accept, context))
+            .<PagedResponse<BuildResourceInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Get the next page of items.
+     * 
+     * @param nextLink The URL to get the next list of items
+     * 
+     * The nextLink parameter.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws DefaultErrorResponseErrorException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a BuildResource list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<BuildResourceInner>> listByBuilderResourceNextSinglePageAsync(String nextLink,
+        Context context) {
+        if (nextLink == null) {
+            return Mono.error(new IllegalArgumentException("Parameter nextLink is required and cannot be null."));
+        }
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.listByBuilderResourceNext(nextLink, this.client.getEndpoint(), accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 }

@@ -32,7 +32,7 @@ public final class BuildConfiguration {
     private String platformVersion;
 
     /*
-     * List of environment variables to be passed to the build, secrets should not be used in environment variable.
+     * List of environment variables to be passed to the build.
      */
     @JsonProperty(value = "environmentVariables")
     private List<EnvironmentVariable> environmentVariables;
@@ -110,8 +110,7 @@ public final class BuildConfiguration {
     }
 
     /**
-     * Get the environmentVariables property: List of environment variables to be passed to the build, secrets should
-     * not be used in environment variable.
+     * Get the environmentVariables property: List of environment variables to be passed to the build.
      * 
      * @return the environmentVariables value.
      */
@@ -120,8 +119,7 @@ public final class BuildConfiguration {
     }
 
     /**
-     * Set the environmentVariables property: List of environment variables to be passed to the build, secrets should
-     * not be used in environment variable.
+     * Set the environmentVariables property: List of environment variables to be passed to the build.
      * 
      * @param environmentVariables the environmentVariables value to set.
      * @return the BuildConfiguration object itself.

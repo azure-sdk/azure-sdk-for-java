@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.appcontainers.implementation;
 
+import com.azure.core.http.rest.Response;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.appcontainers.fluent.models.BuildResourceInner;
@@ -11,6 +12,7 @@ import com.azure.resourcemanager.appcontainers.models.BuildConfiguration;
 import com.azure.resourcemanager.appcontainers.models.BuildProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.BuildResource;
 import com.azure.resourcemanager.appcontainers.models.BuildStatus;
+import com.azure.resourcemanager.appcontainers.models.BuildToken;
 import com.azure.resourcemanager.appcontainers.models.ContainerRegistryWithCustomImage;
 
 public final class BuildResourceImpl implements BuildResource, BuildResource.Definition, BuildResource.Update {
@@ -87,14 +89,16 @@ public final class BuildResourceImpl implements BuildResource, BuildResource.Def
     }
 
     public BuildResource create() {
-        this.innerObject = serviceManager.serviceClient().getBuilds().createOrUpdate(resourceGroupName, builderName,
-            buildName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getBuilds()
+            .createOrUpdate(resourceGroupName, builderName, buildName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public BuildResource create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getBuilds().createOrUpdate(resourceGroupName, builderName,
-            buildName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getBuilds()
+            .createOrUpdate(resourceGroupName, builderName, buildName, this.innerModel(), context);
         return this;
     }
 
@@ -109,14 +113,16 @@ public final class BuildResourceImpl implements BuildResource, BuildResource.Def
     }
 
     public BuildResource apply() {
-        this.innerObject = serviceManager.serviceClient().getBuilds().createOrUpdate(resourceGroupName, builderName,
-            buildName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getBuilds()
+            .createOrUpdate(resourceGroupName, builderName, buildName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public BuildResource apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getBuilds().createOrUpdate(resourceGroupName, builderName,
-            buildName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getBuilds()
+            .createOrUpdate(resourceGroupName, builderName, buildName, this.innerModel(), context);
         return this;
     }
 
@@ -130,15 +136,27 @@ public final class BuildResourceImpl implements BuildResource, BuildResource.Def
     }
 
     public BuildResource refresh() {
-        this.innerObject = serviceManager.serviceClient().getBuilds()
-            .getWithResponse(resourceGroupName, builderName, buildName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getBuilds()
+            .getWithResponse(resourceGroupName, builderName, buildName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public BuildResource refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getBuilds()
-            .getWithResponse(resourceGroupName, builderName, buildName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getBuilds()
+            .getWithResponse(resourceGroupName, builderName, buildName, context)
+            .getValue();
         return this;
+    }
+
+    public Response<BuildToken> listAuthTokenWithResponse(Context context) {
+        return serviceManager.builds().listAuthTokenWithResponse(resourceGroupName, builderName, buildName, context);
+    }
+
+    public BuildToken listAuthToken() {
+        return serviceManager.builds().listAuthToken(resourceGroupName, builderName, buildName);
     }
 
     public BuildResourceImpl

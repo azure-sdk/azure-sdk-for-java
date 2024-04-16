@@ -22,12 +22,6 @@ public final class CertificateProperties {
     private CertificateProvisioningState provisioningState;
 
     /*
-     * Properties for a certificate stored in a Key Vault.
-     */
-    @JsonProperty(value = "certificateKeyVaultProperties")
-    private CertificateKeyVaultProperties certificateKeyVaultProperties;
-
-    /*
      * Certificate password.
      */
     @JsonProperty(value = "password")
@@ -106,27 +100,6 @@ public final class CertificateProperties {
      */
     public CertificateProvisioningState provisioningState() {
         return this.provisioningState;
-    }
-
-    /**
-     * Get the certificateKeyVaultProperties property: Properties for a certificate stored in a Key Vault.
-     * 
-     * @return the certificateKeyVaultProperties value.
-     */
-    public CertificateKeyVaultProperties certificateKeyVaultProperties() {
-        return this.certificateKeyVaultProperties;
-    }
-
-    /**
-     * Set the certificateKeyVaultProperties property: Properties for a certificate stored in a Key Vault.
-     * 
-     * @param certificateKeyVaultProperties the certificateKeyVaultProperties value to set.
-     * @return the CertificateProperties object itself.
-     */
-    public CertificateProperties
-        withCertificateKeyVaultProperties(CertificateKeyVaultProperties certificateKeyVaultProperties) {
-        this.certificateKeyVaultProperties = certificateKeyVaultProperties;
-        return this;
     }
 
     /**
@@ -269,8 +242,5 @@ public final class CertificateProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (certificateKeyVaultProperties() != null) {
-            certificateKeyVaultProperties().validate();
-        }
     }
 }

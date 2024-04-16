@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.appcontainers.generated;
 
-import com.azure.resourcemanager.appcontainers.models.DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration;
 import com.azure.resourcemanager.appcontainers.models.DaprComponentResiliencyPolicyConfiguration;
 import com.azure.resourcemanager.appcontainers.models.DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration;
 import com.azure.resourcemanager.appcontainers.models.DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration;
@@ -15,8 +14,7 @@ import com.azure.resourcemanager.appcontainers.models.DaprComponentResiliencyPol
  */
 public final class DaprComponentResiliencyPoliciesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * DaprComponentResiliencyPolicy_CreateOrUpdate_OutboundOnly.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/DaprComponentResiliencyPolicy_CreateOrUpdate_OutboundOnly.json
      */
     /**
      * Sample code: Create or update dapr component resiliency policy with outbound policy only.
@@ -25,22 +23,21 @@ public final class DaprComponentResiliencyPoliciesCreateOrUpdateSamples {
      */
     public static void createOrUpdateDaprComponentResiliencyPolicyWithOutboundPolicyOnly(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.daprComponentResiliencyPolicies().define("myresiliencypolicy")
+        manager.daprComponentResiliencyPolicies()
+            .define("myresiliencypolicy")
             .withExistingDaprComponent("examplerg", "myenvironment", "mydaprcomponent")
             .withOutboundPolicy(new DaprComponentResiliencyPolicyConfiguration()
                 .withHttpRetryPolicy(new DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration().withMaxRetries(5)
                     .withRetryBackOff(new DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration()
-                        .withInitialDelayInMilliseconds(100).withMaxIntervalInMilliseconds(30000)))
+                        .withInitialDelayInMilliseconds(100)
+                        .withMaxIntervalInMilliseconds(30000)))
                 .withTimeoutPolicy(
-                    new DaprComponentResiliencyPolicyTimeoutPolicyConfiguration().withResponseTimeoutInSeconds(12))
-                .withCircuitBreakerPolicy(new DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration()
-                    .withConsecutiveErrors(3).withTimeoutInSeconds(20).withIntervalInSeconds(60)))
+                    new DaprComponentResiliencyPolicyTimeoutPolicyConfiguration().withResponseTimeoutInSeconds(12)))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * DaprComponentResiliencyPolicy_CreateOrUpdate_AllOptions.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/DaprComponentResiliencyPolicy_CreateOrUpdate_AllOptions.json
      */
     /**
      * Sample code: Create or update dapr component resiliency policy with all options.
@@ -49,30 +46,28 @@ public final class DaprComponentResiliencyPoliciesCreateOrUpdateSamples {
      */
     public static void createOrUpdateDaprComponentResiliencyPolicyWithAllOptions(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.daprComponentResiliencyPolicies().define("myresiliencypolicy")
+        manager.daprComponentResiliencyPolicies()
+            .define("myresiliencypolicy")
             .withExistingDaprComponent("examplerg", "myenvironment", "mydaprcomponent")
             .withInboundPolicy(new DaprComponentResiliencyPolicyConfiguration()
                 .withHttpRetryPolicy(new DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration().withMaxRetries(15)
                     .withRetryBackOff(new DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration()
-                        .withInitialDelayInMilliseconds(2000).withMaxIntervalInMilliseconds(5500)))
+                        .withInitialDelayInMilliseconds(2000)
+                        .withMaxIntervalInMilliseconds(5500)))
                 .withTimeoutPolicy(
-                    new DaprComponentResiliencyPolicyTimeoutPolicyConfiguration().withResponseTimeoutInSeconds(30))
-                .withCircuitBreakerPolicy(new DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration()
-                    .withConsecutiveErrors(5).withTimeoutInSeconds(10).withIntervalInSeconds(4)))
+                    new DaprComponentResiliencyPolicyTimeoutPolicyConfiguration().withResponseTimeoutInSeconds(30)))
             .withOutboundPolicy(new DaprComponentResiliencyPolicyConfiguration()
                 .withHttpRetryPolicy(new DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration().withMaxRetries(5)
                     .withRetryBackOff(new DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration()
-                        .withInitialDelayInMilliseconds(100).withMaxIntervalInMilliseconds(30000)))
+                        .withInitialDelayInMilliseconds(100)
+                        .withMaxIntervalInMilliseconds(30000)))
                 .withTimeoutPolicy(
-                    new DaprComponentResiliencyPolicyTimeoutPolicyConfiguration().withResponseTimeoutInSeconds(12))
-                .withCircuitBreakerPolicy(new DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration()
-                    .withConsecutiveErrors(3).withTimeoutInSeconds(20).withIntervalInSeconds(60)))
+                    new DaprComponentResiliencyPolicyTimeoutPolicyConfiguration().withResponseTimeoutInSeconds(12)))
             .create();
     }
 
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * DaprComponentResiliencyPolicy_CreateOrUpdate_SparseOptions.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-08-01-preview/examples/DaprComponentResiliencyPolicy_CreateOrUpdate_SparseOptions.json
      */
     /**
      * Sample code: Create or update dapr component resiliency policy with sparse options.
@@ -81,14 +76,14 @@ public final class DaprComponentResiliencyPoliciesCreateOrUpdateSamples {
      */
     public static void createOrUpdateDaprComponentResiliencyPolicyWithSparseOptions(
         com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.daprComponentResiliencyPolicies().define("myresiliencypolicy")
+        manager.daprComponentResiliencyPolicies()
+            .define("myresiliencypolicy")
             .withExistingDaprComponent("examplerg", "myenvironment", "mydaprcomponent")
             .withInboundPolicy(new DaprComponentResiliencyPolicyConfiguration()
                 .withHttpRetryPolicy(new DaprComponentResiliencyPolicyHttpRetryPolicyConfiguration().withMaxRetries(5)
                     .withRetryBackOff(new DaprComponentResiliencyPolicyHttpRetryBackOffConfiguration()
-                        .withInitialDelayInMilliseconds(2000).withMaxIntervalInMilliseconds(5500)))
-                .withCircuitBreakerPolicy(new DaprComponentResiliencyPolicyCircuitBreakerPolicyConfiguration()
-                    .withConsecutiveErrors(3).withTimeoutInSeconds(20)))
+                        .withInitialDelayInMilliseconds(2000)
+                        .withMaxIntervalInMilliseconds(5500))))
             .withOutboundPolicy(new DaprComponentResiliencyPolicyConfiguration().withTimeoutPolicy(
                 new DaprComponentResiliencyPolicyTimeoutPolicyConfiguration().withResponseTimeoutInSeconds(12)))
             .create();
