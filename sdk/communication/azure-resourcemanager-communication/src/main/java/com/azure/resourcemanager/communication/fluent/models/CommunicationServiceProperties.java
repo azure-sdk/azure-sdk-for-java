@@ -156,8 +156,9 @@ public final class CommunicationServiceProperties {
      */
     public void validate() {
         if (dataLocation() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property dataLocation in model CommunicationServiceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property dataLocation in model CommunicationServiceProperties"));
         }
     }
 

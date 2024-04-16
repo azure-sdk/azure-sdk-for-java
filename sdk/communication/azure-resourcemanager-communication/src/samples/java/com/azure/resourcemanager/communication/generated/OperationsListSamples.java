@@ -9,9 +9,7 @@ package com.azure.resourcemanager.communication.generated;
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/communication/resource-manager/Microsoft.Communication/stable/2023-04-01/examples/
-     * communicationServices/operationsList.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/communicationServices/operationsList.json
      */
     /**
      * Sample code: Operations_List.
