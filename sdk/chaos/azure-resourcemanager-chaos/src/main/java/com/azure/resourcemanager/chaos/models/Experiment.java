@@ -249,7 +249,7 @@ public interface Experiment {
     /**
      * The template for Experiment update.
      */
-    interface Update extends UpdateStages.WithTags, UpdateStages.WithIdentity {
+    interface Update extends UpdateStages.WithIdentity {
         /**
          * Executes the update request.
          * 
@@ -270,19 +270,6 @@ public interface Experiment {
      * The Experiment update stages.
      */
     interface UpdateStages {
-        /**
-         * The stage of the Experiment update allowing to specify tags.
-         */
-        interface WithTags {
-            /**
-             * Specifies the tags property: The tags of the experiment resource..
-             * 
-             * @param tags The tags of the experiment resource.
-             * @return the next definition stage.
-             */
-            Update withTags(Map<String, String> tags);
-        }
-
         /**
          * The stage of the Experiment update allowing to specify identity.
          */

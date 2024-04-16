@@ -7,6 +7,7 @@ package com.azure.resourcemanager.chaos.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,17 @@ import java.util.List;
 /**
  * Model that represents a discrete action.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = DiscreteAction.class, visible = true)
 @JsonTypeName("discrete")
 @Fluent
 public final class DiscreteAction extends ChaosExperimentAction {
+    /*
+     * Enum that discriminates between action models.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "discrete";
+
     /*
      * List of key value pairs.
      */
@@ -34,6 +42,16 @@ public final class DiscreteAction extends ChaosExperimentAction {
      * Creates an instance of DiscreteAction class.
      */
     public DiscreteAction() {
+    }
+
+    /**
+     * Get the type property: Enum that discriminates between action models.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -94,14 +112,14 @@ public final class DiscreteAction extends ChaosExperimentAction {
     public void validate() {
         super.validate();
         if (parameters() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property parameters in model DiscreteAction"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property parameters in model DiscreteAction"));
         } else {
             parameters().forEach(e -> e.validate());
         }
         if (selectorId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property selectorId in model DiscreteAction"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property selectorId in model DiscreteAction"));
         }
     }
 

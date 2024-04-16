@@ -58,7 +58,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     @ServiceInterface(name = "ChaosManagementClien")
     public interface OperationStatusesService {
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/operationStatuses/{asyncOperationId}")
+        @Get("/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/operationsStatuses/{asyncOperationId}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<OperationStatusInner>> get(@HostParam("$host") String endpoint,
@@ -70,7 +70,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     /**
      * Get the status of a long running azure asynchronous operation.
      * 
-     * @param location The name of the Azure region.
+     * @param location The region name of operation.
      * @param asyncOperationId The operation Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -105,7 +105,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     /**
      * Get the status of a long running azure asynchronous operation.
      * 
-     * @param location The name of the Azure region.
+     * @param location The region name of operation.
      * @param asyncOperationId The operation Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -141,7 +141,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     /**
      * Get the status of a long running azure asynchronous operation.
      * 
-     * @param location The name of the Azure region.
+     * @param location The region name of operation.
      * @param asyncOperationId The operation Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
@@ -156,7 +156,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     /**
      * Get the status of a long running azure asynchronous operation.
      * 
-     * @param location The name of the Azure region.
+     * @param location The region name of operation.
      * @param asyncOperationId The operation Id.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -172,7 +172,7 @@ public final class OperationStatusesClientImpl implements OperationStatusesClien
     /**
      * Get the status of a long running azure asynchronous operation.
      * 
-     * @param location The name of the Azure region.
+     * @param location The region name of operation.
      * @param asyncOperationId The operation Id.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.

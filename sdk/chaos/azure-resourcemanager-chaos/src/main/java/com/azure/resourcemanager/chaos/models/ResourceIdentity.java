@@ -22,10 +22,7 @@ public final class ResourceIdentity {
     private ResourceIdentityType type;
 
     /*
-     * The list of user identities associated with the Experiment. The user identity dictionary key references will be
-     * ARM resource ids in the form:
-     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/
-     * userAssignedIdentities/{identityName}'.
+     * The list of user identities associated with the Experiment. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'.
      */
     @JsonProperty(value = "userAssignedIdentities")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
@@ -118,8 +115,8 @@ public final class ResourceIdentity {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property type in model ResourceIdentity"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property type in model ResourceIdentity"));
         }
         if (userAssignedIdentities() != null) {
             userAssignedIdentities().values().forEach(e -> {

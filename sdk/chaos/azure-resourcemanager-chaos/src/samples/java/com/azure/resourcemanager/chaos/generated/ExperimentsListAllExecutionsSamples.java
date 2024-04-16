@@ -9,8 +9,7 @@ package com.azure.resourcemanager.chaos.generated;
  */
 public final class ExperimentsListAllExecutionsSamples {
     /*
-     * x-ms-original-file:
-     * specification/chaos/resource-manager/Microsoft.Chaos/stable/2024-01-01/examples/ListExperimentExecutions.json
+     * x-ms-original-file: specification/chaos/resource-manager/Microsoft.Chaos/stable/2023-11-01/examples/ListExperimentExecutions.json
      */
     /**
      * Sample code: List all executions of an Experiment.

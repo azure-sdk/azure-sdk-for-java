@@ -97,14 +97,14 @@ public final class ExperimentProperties {
      */
     public void validate() {
         if (steps() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property steps in model ExperimentProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property steps in model ExperimentProperties"));
         } else {
             steps().forEach(e -> e.validate());
         }
         if (selectors() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property selectors in model ExperimentProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property selectors in model ExperimentProperties"));
         } else {
             selectors().forEach(e -> e.validate());
         }

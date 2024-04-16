@@ -5,9 +5,7 @@
 package com.azure.resourcemanager.chaos.models;
 
 import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /**
  * Describes an experiment update.
@@ -19,13 +17,6 @@ public final class ExperimentUpdate {
      */
     @JsonProperty(value = "identity")
     private ResourceIdentity identity;
-
-    /*
-     * The tags of the experiment resource.
-     */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
 
     /**
      * Creates an instance of ExperimentUpdate class.
@@ -50,26 +41,6 @@ public final class ExperimentUpdate {
      */
     public ExperimentUpdate withIdentity(ResourceIdentity identity) {
         this.identity = identity;
-        return this;
-    }
-
-    /**
-     * Get the tags property: The tags of the experiment resource.
-     * 
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: The tags of the experiment resource.
-     * 
-     * @param tags the tags value to set.
-     * @return the ExperimentUpdate object itself.
-     */
-    public ExperimentUpdate withTags(Map<String, String> tags) {
-        this.tags = tags;
         return this;
     }
 
