@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appcomplianceautomation.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The overview of the compliance result for one report. */
+/**
+ * The overview of the compliance result for one report.
+ */
 @Fluent
 public final class OverviewStatus {
     /*
@@ -28,13 +30,15 @@ public final class OverviewStatus {
     @JsonProperty(value = "manualCount")
     private Integer manualCount;
 
-    /** Creates an instance of OverviewStatus class. */
+    /**
+     * Creates an instance of OverviewStatus class.
+     */
     public OverviewStatus() {
     }
 
     /**
      * Get the passedCount property: The count of all passed full automation control.
-     *
+     * 
      * @return the passedCount value.
      */
     public Integer passedCount() {
@@ -43,7 +47,7 @@ public final class OverviewStatus {
 
     /**
      * Set the passedCount property: The count of all passed full automation control.
-     *
+     * 
      * @param passedCount the passedCount value to set.
      * @return the OverviewStatus object itself.
      */
@@ -54,7 +58,7 @@ public final class OverviewStatus {
 
     /**
      * Get the failedCount property: The count of all failed full automation control.
-     *
+     * 
      * @return the failedCount value.
      */
     public Integer failedCount() {
@@ -63,7 +67,7 @@ public final class OverviewStatus {
 
     /**
      * Set the failedCount property: The count of all failed full automation control.
-     *
+     * 
      * @param failedCount the failedCount value to set.
      * @return the OverviewStatus object itself.
      */
@@ -74,7 +78,7 @@ public final class OverviewStatus {
 
     /**
      * Get the manualCount property: The count of all manual control.
-     *
+     * 
      * @return the manualCount value.
      */
     public Integer manualCount() {
@@ -83,7 +87,7 @@ public final class OverviewStatus {
 
     /**
      * Set the manualCount property: The count of all manual control.
-     *
+     * 
      * @param manualCount the manualCount value to set.
      * @return the OverviewStatus object itself.
      */
@@ -94,7 +98,7 @@ public final class OverviewStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

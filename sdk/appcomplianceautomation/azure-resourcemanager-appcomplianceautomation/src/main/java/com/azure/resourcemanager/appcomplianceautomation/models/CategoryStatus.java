@@ -8,17 +8,32 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Indicates the category status. */
+/**
+ * Indicates the category status.
+ */
 public final class CategoryStatus extends ExpandableStringEnum<CategoryStatus> {
-    /** Static value Healthy for CategoryStatus. */
+    /**
+     * Static value Healthy for CategoryStatus.
+     */
     public static final CategoryStatus HEALTHY = fromString("Healthy");
 
-    /** Static value Unhealthy for CategoryStatus. */
+    /**
+     * Static value Unhealthy for CategoryStatus.
+     */
     public static final CategoryStatus UNHEALTHY = fromString("Unhealthy");
 
     /**
+     * Creates a new instance of CategoryStatus value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public CategoryStatus() {
+    }
+
+    /**
      * Creates or finds a CategoryStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding CategoryStatus.
      */
@@ -29,7 +44,7 @@ public final class CategoryStatus extends ExpandableStringEnum<CategoryStatus> {
 
     /**
      * Gets known CategoryStatus values.
-     *
+     * 
      * @return known CategoryStatus values.
      */
     public static Collection<CategoryStatus> values() {

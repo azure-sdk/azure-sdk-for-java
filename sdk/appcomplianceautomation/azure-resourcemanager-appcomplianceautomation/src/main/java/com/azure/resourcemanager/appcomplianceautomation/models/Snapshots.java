@@ -7,11 +7,13 @@ package com.azure.resourcemanager.appcomplianceautomation.models;
 import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.util.Context;
 
-/** Resource collection API of Snapshots. */
+/**
+ * Resource collection API of Snapshots.
+ */
 public interface Snapshots {
     /**
      * Get the AppComplianceAutomation snapshot list.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -22,12 +24,12 @@ public interface Snapshots {
 
     /**
      * Get the AppComplianceAutomation snapshot list.
-     *
+     * 
      * @param reportName Report Name.
      * @param skipToken Skip over when retrieving results.
      * @param top Number of elements to return when retrieving results.
      * @param select OData Select statement. Limits the properties on each entry to just those requested, e.g.
-     *     ?$select=reportName,id.
+     * ?$select=reportName,id.
      * @param reportCreatorTenantId The tenant id of the report creator.
      * @param offerGuid The offerGuid which mapping to the reports.
      * @param context The context to associate with this operation.
@@ -36,12 +38,6 @@ public interface Snapshots {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the AppComplianceAutomation snapshot list as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SnapshotResource> list(
-        String reportName,
-        String skipToken,
-        Integer top,
-        String select,
-        String reportCreatorTenantId,
-        String offerGuid,
-        Context context);
+    PagedIterable<SnapshotResource> list(String reportName, String skipToken, Integer top, String select,
+        String reportCreatorTenantId, String offerGuid, Context context);
 }

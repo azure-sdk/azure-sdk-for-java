@@ -12,7 +12,9 @@ import com.azure.resourcemanager.appcomplianceautomation.models.ResourceItem;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Object that includes all the possible response for the download operation. */
+/**
+ * Object that includes all the possible response for the download operation.
+ */
 @Immutable
 public final class DownloadResponseInner {
     /*
@@ -39,13 +41,15 @@ public final class DownloadResponseInner {
     @JsonProperty(value = "complianceDetailedPdfReport", access = JsonProperty.Access.WRITE_ONLY)
     private DownloadResponseComplianceDetailedPdfReport complianceDetailedPdfReport;
 
-    /** Creates an instance of DownloadResponseInner class. */
+    /**
+     * Creates an instance of DownloadResponseInner class.
+     */
     public DownloadResponseInner() {
     }
 
     /**
      * Get the resourceList property: List of the reports.
-     *
+     * 
      * @return the resourceList value.
      */
     public List<ResourceItem> resourceList() {
@@ -54,7 +58,7 @@ public final class DownloadResponseInner {
 
     /**
      * Get the complianceReport property: List of the compliance result.
-     *
+     * 
      * @return the complianceReport value.
      */
     public List<ComplianceReportItem> complianceReport() {
@@ -63,7 +67,7 @@ public final class DownloadResponseInner {
 
     /**
      * Get the compliancePdfReport property: compliance pdf report.
-     *
+     * 
      * @return the compliancePdfReport value.
      */
     public DownloadResponseCompliancePdfReport compliancePdfReport() {
@@ -72,7 +76,7 @@ public final class DownloadResponseInner {
 
     /**
      * Get the complianceDetailedPdfReport property: compliance detailed pdf report.
-     *
+     * 
      * @return the complianceDetailedPdfReport value.
      */
     public DownloadResponseComplianceDetailedPdfReport complianceDetailedPdfReport() {
@@ -81,7 +85,7 @@ public final class DownloadResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

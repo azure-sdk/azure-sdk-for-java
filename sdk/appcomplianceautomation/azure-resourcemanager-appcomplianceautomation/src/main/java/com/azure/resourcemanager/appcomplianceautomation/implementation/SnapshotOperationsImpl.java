@@ -23,8 +23,7 @@ public final class SnapshotOperationsImpl implements SnapshotOperations {
 
     private final com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager;
 
-    public SnapshotOperationsImpl(
-        SnapshotOperationsClient innerClient,
+    public SnapshotOperationsImpl(SnapshotOperationsClient innerClient,
         com.azure.resourcemanager.appcomplianceautomation.AppComplianceAutomationManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
@@ -33,10 +32,7 @@ public final class SnapshotOperationsImpl implements SnapshotOperations {
     public Response<SnapshotResource> getWithResponse(String reportName, String snapshotName, Context context) {
         Response<SnapshotResourceInner> inner = this.serviceClient().getWithResponse(reportName, snapshotName, context);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new SnapshotResourceImpl(inner.getValue(), this.manager()));
         } else {
             return null;
@@ -61,8 +57,8 @@ public final class SnapshotOperationsImpl implements SnapshotOperations {
         }
     }
 
-    public DownloadResponse download(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters, Context context) {
+    public DownloadResponse download(String reportName, String snapshotName, SnapshotDownloadRequest parameters,
+        Context context) {
         DownloadResponseInner inner = this.serviceClient().download(reportName, snapshotName, parameters, context);
         if (inner != null) {
             return new DownloadResponseImpl(inner, this.manager());

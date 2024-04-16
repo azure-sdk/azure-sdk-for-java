@@ -13,11 +13,13 @@ import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.appcomplianceautomation.fluent.models.ReportResourceInner;
 import com.azure.resourcemanager.appcomplianceautomation.models.ReportResourcePatch;
 
-/** An instance of this class provides access to all the operations defined in ReportOperationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in ReportOperationsClient.
+ */
 public interface ReportOperationsClient {
     /**
      * Get the AppComplianceAutomation report and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -30,7 +32,7 @@ public interface ReportOperationsClient {
 
     /**
      * Get the AppComplianceAutomation report and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -42,7 +44,7 @@ public interface ReportOperationsClient {
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -51,12 +53,12 @@ public interface ReportOperationsClient {
      * @return the {@link SyncPoller} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(
-        String reportName, ReportResourceInner parameters);
+    SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(String reportName,
+        ReportResourceInner parameters);
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -66,12 +68,12 @@ public interface ReportOperationsClient {
      * @return the {@link SyncPoller} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(
-        String reportName, ReportResourceInner parameters, Context context);
+    SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginCreateOrUpdate(String reportName,
+        ReportResourceInner parameters, Context context);
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -84,7 +86,7 @@ public interface ReportOperationsClient {
 
     /**
      * Create a new AppComplianceAutomation report or update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -98,7 +100,7 @@ public interface ReportOperationsClient {
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -107,12 +109,12 @@ public interface ReportOperationsClient {
      * @return the {@link SyncPoller} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdate(
-        String reportName, ReportResourcePatch parameters);
+    SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdate(String reportName,
+        ReportResourcePatch parameters);
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -122,12 +124,12 @@ public interface ReportOperationsClient {
      * @return the {@link SyncPoller} for polling of a class represent an AppComplianceAutomation report resource.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdate(
-        String reportName, ReportResourcePatch parameters, Context context);
+    SyncPoller<PollResult<ReportResourceInner>, ReportResourceInner> beginUpdate(String reportName,
+        ReportResourcePatch parameters, Context context);
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -140,7 +142,7 @@ public interface ReportOperationsClient {
 
     /**
      * Update an exiting AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param parameters Parameters for the create or update operation.
      * @param context The context to associate with this operation.
@@ -154,7 +156,7 @@ public interface ReportOperationsClient {
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -166,7 +168,7 @@ public interface ReportOperationsClient {
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -179,7 +181,7 @@ public interface ReportOperationsClient {
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
@@ -190,7 +192,7 @@ public interface ReportOperationsClient {
 
     /**
      * Delete an AppComplianceAutomation report.
-     *
+     * 
      * @param reportName Report Name.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.

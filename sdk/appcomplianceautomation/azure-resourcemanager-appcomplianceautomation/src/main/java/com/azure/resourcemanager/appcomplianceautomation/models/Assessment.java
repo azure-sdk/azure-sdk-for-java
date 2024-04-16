@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A class represent the assessment. */
+/**
+ * A class represent the assessment.
+ */
 @Immutable
 public final class Assessment {
     /*
@@ -53,13 +55,15 @@ public final class Assessment {
     @JsonProperty(value = "resourceList", access = JsonProperty.Access.WRITE_ONLY)
     private List<AssessmentResource> resourceList;
 
-    /** Creates an instance of Assessment class. */
+    /**
+     * Creates an instance of Assessment class.
+     */
     public Assessment() {
     }
 
     /**
      * Get the name property: The name of the assessment.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -68,7 +72,7 @@ public final class Assessment {
 
     /**
      * Get the severity property: The severity level of this assessment.
-     *
+     * 
      * @return the severity value.
      */
     public AssessmentSeverity severity() {
@@ -77,7 +81,7 @@ public final class Assessment {
 
     /**
      * Get the description property: The description of the assessment.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -86,7 +90,7 @@ public final class Assessment {
 
     /**
      * Get the remediation property: The remediation of the assessment.
-     *
+     * 
      * @return the remediation value.
      */
     public String remediation() {
@@ -95,7 +99,7 @@ public final class Assessment {
 
     /**
      * Get the isPass property: Indicates whether all the resource(s) are compliant.
-     *
+     * 
      * @return the isPass value.
      */
     public IsPass isPass() {
@@ -104,7 +108,7 @@ public final class Assessment {
 
     /**
      * Get the policyId property: The policy id mapping to this assessment.
-     *
+     * 
      * @return the policyId value.
      */
     public String policyId() {
@@ -113,7 +117,7 @@ public final class Assessment {
 
     /**
      * Get the resourceList property: List of resource assessments.
-     *
+     * 
      * @return the resourceList value.
      */
     public List<AssessmentResource> resourceList() {
@@ -122,7 +126,7 @@ public final class Assessment {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Indicates the compliance category type. */
+/**
+ * Indicates the compliance category type.
+ */
 public final class CategoryType extends ExpandableStringEnum<CategoryType> {
-    /** Static value FullyAutomated for CategoryType. */
+    /**
+     * Static value FullyAutomated for CategoryType.
+     */
     public static final CategoryType FULLY_AUTOMATED = fromString("FullyAutomated");
 
-    /** Static value PartiallyAutomated for CategoryType. */
+    /**
+     * Static value PartiallyAutomated for CategoryType.
+     */
     public static final CategoryType PARTIALLY_AUTOMATED = fromString("PartiallyAutomated");
 
-    /** Static value Manual for CategoryType. */
+    /**
+     * Static value Manual for CategoryType.
+     */
     public static final CategoryType MANUAL = fromString("Manual");
 
     /**
+     * Creates a new instance of CategoryType value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public CategoryType() {
+    }
+
+    /**
      * Creates or finds a CategoryType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding CategoryType.
      */
@@ -32,7 +49,7 @@ public final class CategoryType extends ExpandableStringEnum<CategoryType> {
 
     /**
      * Gets known CategoryType values.
-     *
+     * 
      * @return known CategoryType values.
      */
     public static Collection<CategoryType> values() {

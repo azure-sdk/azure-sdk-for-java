@@ -8,17 +8,32 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Indicates the control family status. */
+/**
+ * Indicates the control family status.
+ */
 public final class ControlFamilyStatus extends ExpandableStringEnum<ControlFamilyStatus> {
-    /** Static value Healthy for ControlFamilyStatus. */
+    /**
+     * Static value Healthy for ControlFamilyStatus.
+     */
     public static final ControlFamilyStatus HEALTHY = fromString("Healthy");
 
-    /** Static value Unhealthy for ControlFamilyStatus. */
+    /**
+     * Static value Unhealthy for ControlFamilyStatus.
+     */
     public static final ControlFamilyStatus UNHEALTHY = fromString("Unhealthy");
 
     /**
+     * Creates a new instance of ControlFamilyStatus value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ControlFamilyStatus() {
+    }
+
+    /**
      * Creates or finds a ControlFamilyStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ControlFamilyStatus.
      */
@@ -29,7 +44,7 @@ public final class ControlFamilyStatus extends ExpandableStringEnum<ControlFamil
 
     /**
      * Gets known ControlFamilyStatus values.
-     *
+     * 
      * @return known ControlFamilyStatus values.
      */
     public static Collection<ControlFamilyStatus> values() {

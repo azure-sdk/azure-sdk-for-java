@@ -7,11 +7,13 @@ package com.azure.resourcemanager.appcomplianceautomation.models;
 import com.azure.core.http.rest.Response;
 import com.azure.core.util.Context;
 
-/** Resource collection API of SnapshotOperations. */
+/**
+ * Resource collection API of SnapshotOperations.
+ */
 public interface SnapshotOperations {
     /**
      * Get the AppComplianceAutomation snapshot and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param context The context to associate with this operation.
@@ -24,7 +26,7 @@ public interface SnapshotOperations {
 
     /**
      * Get the AppComplianceAutomation snapshot and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -36,7 +38,7 @@ public interface SnapshotOperations {
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -49,7 +51,7 @@ public interface SnapshotOperations {
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -59,6 +61,6 @@ public interface SnapshotOperations {
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return object that includes all the possible response for the download operation.
      */
-    DownloadResponse download(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters, Context context);
+    DownloadResponse download(String reportName, String snapshotName, SnapshotDownloadRequest parameters,
+        Context context);
 }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appcomplianceautomation.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** compliance detailed pdf report. */
+/**
+ * compliance detailed pdf report.
+ */
 @Immutable
 public final class DownloadResponseComplianceDetailedPdfReport {
     /*
@@ -16,13 +18,15 @@ public final class DownloadResponseComplianceDetailedPdfReport {
     @JsonProperty(value = "sasUri", access = JsonProperty.Access.WRITE_ONLY)
     private String sasUri;
 
-    /** Creates an instance of DownloadResponseComplianceDetailedPdfReport class. */
+    /**
+     * Creates an instance of DownloadResponseComplianceDetailedPdfReport class.
+     */
     public DownloadResponseComplianceDetailedPdfReport() {
     }
 
     /**
      * Get the sasUri property: uri of compliance detailed pdf report.
-     *
+     * 
      * @return the sasUri value.
      */
     public String sasUri() {
@@ -31,7 +35,7 @@ public final class DownloadResponseComplianceDetailedPdfReport {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

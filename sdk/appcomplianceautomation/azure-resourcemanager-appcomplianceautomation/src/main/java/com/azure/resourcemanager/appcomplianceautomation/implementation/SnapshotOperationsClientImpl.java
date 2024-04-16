@@ -34,22 +34,28 @@ import java.nio.ByteBuffer;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-/** An instance of this class provides access to all the operations defined in SnapshotOperationsClient. */
+/**
+ * An instance of this class provides access to all the operations defined in SnapshotOperationsClient.
+ */
 public final class SnapshotOperationsClientImpl implements SnapshotOperationsClient {
-    /** The proxy service used to perform REST calls. */
+    /**
+     * The proxy service used to perform REST calls.
+     */
     private final SnapshotOperationsService service;
 
-    /** The service client containing this operation class. */
+    /**
+     * The service client containing this operation class.
+     */
     private final AppComplianceAutomationToolForMicrosoft365Impl client;
 
     /**
      * Initializes an instance of SnapshotOperationsClientImpl.
-     *
+     * 
      * @param client the instance of the service client containing this operation class.
      */
     SnapshotOperationsClientImpl(AppComplianceAutomationToolForMicrosoft365Impl client) {
-        this.service =
-            RestProxy.create(SnapshotOperationsService.class, client.getHttpPipeline(), client.getSerializerAdapter());
+        this.service = RestProxy.create(SnapshotOperationsService.class, client.getHttpPipeline(),
+            client.getSerializerAdapter());
         this.client = client;
     }
 
@@ -60,50 +66,41 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
     @Host("{$host}")
     @ServiceInterface(name = "AppComplianceAutomat")
     public interface SnapshotOperationsService {
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Get("/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/snapshots/{snapshotName}")
-        @ExpectedResponses({200})
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<SnapshotResourceInner>> get(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("reportName") String reportName,
-            @PathParam("snapshotName") String snapshotName,
-            @HeaderParam("Accept") String accept,
-            Context context);
+        Mono<Response<SnapshotResourceInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("reportName") String reportName,
+            @PathParam("snapshotName") String snapshotName, @HeaderParam("Accept") String accept, Context context);
 
-        @Headers({"Content-Type: application/json"})
+        @Headers({ "Content-Type: application/json" })
         @Post("/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/snapshots/{snapshotName}/download")
-        @ExpectedResponses({200, 202})
+        @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> download(
-            @HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion,
-            @PathParam("reportName") String reportName,
+        Mono<Response<Flux<ByteBuffer>>> download(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("reportName") String reportName,
             @PathParam("snapshotName") String snapshotName,
-            @BodyParam("application/json") SnapshotDownloadRequest parameters,
-            @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") SnapshotDownloadRequest parameters, @HeaderParam("Accept") String accept,
             Context context);
     }
 
     /**
      * Get the AppComplianceAutomation snapshot and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the AppComplianceAutomation snapshot and its properties along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<Response<SnapshotResourceInner>> getWithResponseAsync(String reportName, String snapshotName) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
@@ -113,22 +110,14 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .get(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            reportName,
-                            snapshotName,
-                            accept,
-                            context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(), reportName,
+                snapshotName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Get the AppComplianceAutomation snapshot and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param context The context to associate with this operation.
@@ -136,16 +125,14 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the AppComplianceAutomation snapshot and its properties along with {@link Response} on successful
-     *     completion of {@link Mono}.
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<SnapshotResourceInner>> getWithResponseAsync(
-        String reportName, String snapshotName, Context context) {
+    private Mono<Response<SnapshotResourceInner>> getWithResponseAsync(String reportName, String snapshotName,
+        Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
@@ -155,13 +142,13 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .get(this.client.getEndpoint(), this.client.getApiVersion(), reportName, snapshotName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), reportName, snapshotName, accept,
+            context);
     }
 
     /**
      * Get the AppComplianceAutomation snapshot and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -176,7 +163,7 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
 
     /**
      * Get the AppComplianceAutomation snapshot and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param context The context to associate with this operation.
@@ -192,7 +179,7 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
 
     /**
      * Get the AppComplianceAutomation snapshot and its properties.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -207,7 +194,7 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -215,16 +202,14 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return object that includes all the possible response for the download operation along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> downloadWithResponseAsync(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters) {
+    private Mono<Response<Flux<ByteBuffer>>> downloadWithResponseAsync(String reportName, String snapshotName,
+        SnapshotDownloadRequest parameters) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
@@ -239,23 +224,14 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context ->
-                    service
-                        .download(
-                            this.client.getEndpoint(),
-                            this.client.getApiVersion(),
-                            reportName,
-                            snapshotName,
-                            parameters,
-                            accept,
-                            context))
+            .withContext(context -> service.download(this.client.getEndpoint(), this.client.getApiVersion(), reportName,
+                snapshotName, parameters, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -264,16 +240,14 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return object that includes all the possible response for the download operation along with {@link Response} on
-     *     successful completion of {@link Mono}.
+     * successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> downloadWithResponseAsync(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters, Context context) {
+    private Mono<Response<Flux<ByteBuffer>>> downloadWithResponseAsync(String reportName, String snapshotName,
+        SnapshotDownloadRequest parameters, Context context) {
         if (this.client.getEndpoint() == null) {
-            return Mono
-                .error(
-                    new IllegalArgumentException(
-                        "Parameter this.client.getEndpoint() is required and cannot be null."));
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
         if (reportName == null) {
             return Mono.error(new IllegalArgumentException("Parameter reportName is required and cannot be null."));
@@ -288,20 +262,13 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service
-            .download(
-                this.client.getEndpoint(),
-                this.client.getApiVersion(),
-                reportName,
-                snapshotName,
-                parameters,
-                accept,
-                context);
+        return service.download(this.client.getEndpoint(), this.client.getApiVersion(), reportName, snapshotName,
+            parameters, accept, context);
     }
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -309,25 +276,20 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of object that includes all the possible response for the download
-     *     operation.
+     * operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownloadAsync(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters) {
+    private PollerFlux<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownloadAsync(String reportName,
+        String snapshotName, SnapshotDownloadRequest parameters) {
         Mono<Response<Flux<ByteBuffer>>> mono = downloadWithResponseAsync(reportName, snapshotName, parameters);
-        return this
-            .client
-            .<DownloadResponseInner, DownloadResponseInner>getLroResult(
-                mono,
-                this.client.getHttpPipeline(),
-                DownloadResponseInner.class,
-                DownloadResponseInner.class,
-                this.client.getContext());
+        return this.client.<DownloadResponseInner, DownloadResponseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), DownloadResponseInner.class, DownloadResponseInner.class,
+            this.client.getContext());
     }
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -336,23 +298,21 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link PollerFlux} for polling of object that includes all the possible response for the download
-     *     operation.
+     * operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownloadAsync(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters, Context context) {
+    private PollerFlux<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownloadAsync(String reportName,
+        String snapshotName, SnapshotDownloadRequest parameters, Context context) {
         context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono =
-            downloadWithResponseAsync(reportName, snapshotName, parameters, context);
-        return this
-            .client
-            .<DownloadResponseInner, DownloadResponseInner>getLroResult(
-                mono, this.client.getHttpPipeline(), DownloadResponseInner.class, DownloadResponseInner.class, context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = downloadWithResponseAsync(reportName, snapshotName, parameters, context);
+        return this.client.<DownloadResponseInner, DownloadResponseInner>getLroResult(mono,
+            this.client.getHttpPipeline(), DownloadResponseInner.class, DownloadResponseInner.class, context);
     }
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -360,17 +320,17 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of object that includes all the possible response for the download
-     *     operation.
+     * operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownload(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters) {
-        return beginDownloadAsync(reportName, snapshotName, parameters).getSyncPoller();
+    public SyncPoller<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownload(String reportName,
+        String snapshotName, SnapshotDownloadRequest parameters) {
+        return this.beginDownloadAsync(reportName, snapshotName, parameters).getSyncPoller();
     }
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -379,17 +339,17 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the {@link SyncPoller} for polling of object that includes all the possible response for the download
-     *     operation.
+     * operation.
      */
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownload(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters, Context context) {
-        return beginDownloadAsync(reportName, snapshotName, parameters, context).getSyncPoller();
+    public SyncPoller<PollResult<DownloadResponseInner>, DownloadResponseInner> beginDownload(String reportName,
+        String snapshotName, SnapshotDownloadRequest parameters, Context context) {
+        return this.beginDownloadAsync(reportName, snapshotName, parameters, context).getSyncPoller();
     }
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -397,19 +357,18 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return object that includes all the possible response for the download operation on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DownloadResponseInner> downloadAsync(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters) {
-        return beginDownloadAsync(reportName, snapshotName, parameters)
-            .last()
+    private Mono<DownloadResponseInner> downloadAsync(String reportName, String snapshotName,
+        SnapshotDownloadRequest parameters) {
+        return beginDownloadAsync(reportName, snapshotName, parameters).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -418,19 +377,18 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return object that includes all the possible response for the download operation on successful completion of
-     *     {@link Mono}.
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DownloadResponseInner> downloadAsync(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters, Context context) {
-        return beginDownloadAsync(reportName, snapshotName, parameters, context)
-            .last()
+    private Mono<DownloadResponseInner> downloadAsync(String reportName, String snapshotName,
+        SnapshotDownloadRequest parameters, Context context) {
+        return beginDownloadAsync(reportName, snapshotName, parameters, context).last()
             .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -446,7 +404,7 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
 
     /**
      * Download compliance needs from snapshot, like: Compliance Report, Resource List.
-     *
+     * 
      * @param reportName Report Name.
      * @param snapshotName Snapshot Name.
      * @param parameters Parameters for the query operation.
@@ -457,8 +415,8 @@ public final class SnapshotOperationsClientImpl implements SnapshotOperationsCli
      * @return object that includes all the possible response for the download operation.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public DownloadResponseInner download(
-        String reportName, String snapshotName, SnapshotDownloadRequest parameters, Context context) {
+    public DownloadResponseInner download(String reportName, String snapshotName, SnapshotDownloadRequest parameters,
+        Context context) {
         return downloadAsync(reportName, snapshotName, parameters, context).block();
     }
 }
