@@ -7,7 +7,9 @@ package com.azure.resourcemanager.baremetalinfrastructure.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies the hardware settings for the Azure Bare Metal Instance. */
+/**
+ * Specifies the hardware settings for the Azure Bare Metal Instance.
+ */
 @Immutable
 public final class HardwareProfile {
     /*
@@ -22,13 +24,15 @@ public final class HardwareProfile {
     @JsonProperty(value = "azureBareMetalInstanceSize", access = JsonProperty.Access.WRITE_ONLY)
     private AzureBareMetalInstanceSizeNamesEnum azureBareMetalInstanceSize;
 
-    /** Creates an instance of HardwareProfile class. */
+    /**
+     * Creates an instance of HardwareProfile class.
+     */
     public HardwareProfile() {
     }
 
     /**
      * Get the hardwareType property: Name of the hardware type (vendor and/or their product name).
-     *
+     * 
      * @return the hardwareType value.
      */
     public AzureBareMetalHardwareTypeNamesEnum hardwareType() {
@@ -37,7 +41,7 @@ public final class HardwareProfile {
 
     /**
      * Get the azureBareMetalInstanceSize property: Specifies the Azure Bare Metal Instance SKU.
-     *
+     * 
      * @return the azureBareMetalInstanceSize value.
      */
     public AzureBareMetalInstanceSizeNamesEnum azureBareMetalInstanceSize() {
@@ -46,7 +50,7 @@ public final class HardwareProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

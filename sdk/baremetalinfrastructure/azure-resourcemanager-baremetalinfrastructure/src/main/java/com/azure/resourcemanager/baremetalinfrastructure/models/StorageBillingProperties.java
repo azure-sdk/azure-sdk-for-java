@@ -7,7 +7,9 @@ package com.azure.resourcemanager.baremetalinfrastructure.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes the billing related details of the AzureBareMetalStorageInstance. */
+/**
+ * Describes the billing related details of the AzureBareMetalStorageInstance.
+ */
 @Fluent
 public final class StorageBillingProperties {
     /*
@@ -22,13 +24,15 @@ public final class StorageBillingProperties {
     @JsonProperty(value = "azureBareMetalStorageInstanceSize")
     private String azureBareMetalStorageInstanceSize;
 
-    /** Creates an instance of StorageBillingProperties class. */
+    /**
+     * Creates an instance of StorageBillingProperties class.
+     */
     public StorageBillingProperties() {
     }
 
     /**
      * Get the billingMode property: the billing mode for the storage instance.
-     *
+     * 
      * @return the billingMode value.
      */
     public String billingMode() {
@@ -37,7 +41,7 @@ public final class StorageBillingProperties {
 
     /**
      * Set the billingMode property: the billing mode for the storage instance.
-     *
+     * 
      * @param billingMode the billingMode value to set.
      * @return the StorageBillingProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class StorageBillingProperties {
 
     /**
      * Get the azureBareMetalStorageInstanceSize property: the SKU type that is provisioned.
-     *
+     * 
      * @return the azureBareMetalStorageInstanceSize value.
      */
     public String azureBareMetalStorageInstanceSize() {
@@ -57,7 +61,7 @@ public final class StorageBillingProperties {
 
     /**
      * Set the azureBareMetalStorageInstanceSize property: the SKU type that is provisioned.
-     *
+     * 
      * @param azureBareMetalStorageInstanceSize the azureBareMetalStorageInstanceSize value to set.
      * @return the StorageBillingProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class StorageBillingProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.baremetalinfrastructure.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** An error from the Azure Bare Metal Infrastructure service. */
+/**
+ * An error from the Azure Bare Metal Infrastructure service.
+ */
 @Fluent
 public final class OperationStatusError {
     /*
@@ -22,13 +24,15 @@ public final class OperationStatusError {
     @JsonProperty(value = "message")
     private String message;
 
-    /** Creates an instance of OperationStatusError class. */
+    /**
+     * Creates an instance of OperationStatusError class.
+     */
     public OperationStatusError() {
     }
 
     /**
      * Get the code property: Server-defined set of error codes.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -37,7 +41,7 @@ public final class OperationStatusError {
 
     /**
      * Set the code property: Server-defined set of error codes.
-     *
+     * 
      * @param code the code value to set.
      * @return the OperationStatusError object itself.
      */
@@ -48,7 +52,7 @@ public final class OperationStatusError {
 
     /**
      * Get the message property: Human-readable representation of the error.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -57,7 +61,7 @@ public final class OperationStatusError {
 
     /**
      * Set the message property: Human-readable representation of the error.
-     *
+     * 
      * @param message the message value to set.
      * @return the OperationStatusError object itself.
      */
@@ -68,7 +72,7 @@ public final class OperationStatusError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

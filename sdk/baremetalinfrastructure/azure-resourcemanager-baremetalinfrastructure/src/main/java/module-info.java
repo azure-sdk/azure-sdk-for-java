@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.baremetalinfrastructure {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.baremetalinfrastructure;
     exports com.azure.resourcemanager.baremetalinfrastructure.fluent;
     exports com.azure.resourcemanager.baremetalinfrastructure.fluent.models;
     exports com.azure.resourcemanager.baremetalinfrastructure.models;
-
-    opens com.azure.resourcemanager.baremetalinfrastructure.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.baremetalinfrastructure.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.baremetalinfrastructure.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.baremetalinfrastructure.models to com.azure.core, com.fasterxml.jackson.databind;
 }

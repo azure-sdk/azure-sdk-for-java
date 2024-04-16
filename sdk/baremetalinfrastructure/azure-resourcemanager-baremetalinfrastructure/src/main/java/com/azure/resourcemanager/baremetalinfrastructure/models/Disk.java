@@ -7,7 +7,9 @@ package com.azure.resourcemanager.baremetalinfrastructure.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies the disk information fo the Azure Bare Metal Instance. */
+/**
+ * Specifies the disk information fo the Azure Bare Metal Instance.
+ */
 @Fluent
 public final class Disk {
     /*
@@ -23,19 +25,20 @@ public final class Disk {
     private Integer diskSizeGB;
 
     /*
-     * Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and
-     * therefore must be unique for each data disk attached to a VM.
+     * Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM.
      */
     @JsonProperty(value = "lun", access = JsonProperty.Access.WRITE_ONLY)
     private Integer lun;
 
-    /** Creates an instance of Disk class. */
+    /**
+     * Creates an instance of Disk class.
+     */
     public Disk() {
     }
 
     /**
      * Get the name property: The disk name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -44,7 +47,7 @@ public final class Disk {
 
     /**
      * Set the name property: The disk name.
-     *
+     * 
      * @param name the name value to set.
      * @return the Disk object itself.
      */
@@ -55,7 +58,7 @@ public final class Disk {
 
     /**
      * Get the diskSizeGB property: Specifies the size of an empty data disk in gigabytes.
-     *
+     * 
      * @return the diskSizeGB value.
      */
     public Integer diskSizeGB() {
@@ -64,7 +67,7 @@ public final class Disk {
 
     /**
      * Set the diskSizeGB property: Specifies the size of an empty data disk in gigabytes.
-     *
+     * 
      * @param diskSizeGB the diskSizeGB value to set.
      * @return the Disk object itself.
      */
@@ -76,7 +79,7 @@ public final class Disk {
     /**
      * Get the lun property: Specifies the logical unit number of the data disk. This value is used to identify data
      * disks within the VM and therefore must be unique for each data disk attached to a VM.
-     *
+     * 
      * @return the lun value.
      */
     public Integer lun() {
@@ -85,7 +88,7 @@ public final class Disk {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.baremetalinfrastructure.fluent.models.AzureBare
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response from the List Azure Bare Metal Instances operation. */
+/**
+ * The response from the List Azure Bare Metal Instances operation.
+ */
 @Fluent
 public final class AzureBareMetalInstancesListResult {
     /*
@@ -24,13 +26,15 @@ public final class AzureBareMetalInstancesListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of AzureBareMetalInstancesListResult class. */
+    /**
+     * Creates an instance of AzureBareMetalInstancesListResult class.
+     */
     public AzureBareMetalInstancesListResult() {
     }
 
     /**
      * Get the value property: The list of Azure Bare Metal Instances.
-     *
+     * 
      * @return the value value.
      */
     public List<AzureBareMetalInstanceInner> value() {
@@ -39,7 +43,7 @@ public final class AzureBareMetalInstancesListResult {
 
     /**
      * Set the value property: The list of Azure Bare Metal Instances.
-     *
+     * 
      * @param value the value value to set.
      * @return the AzureBareMetalInstancesListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class AzureBareMetalInstancesListResult {
 
     /**
      * Get the nextLink property: The URL to get the next set of Azure Bare Metal Instances.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class AzureBareMetalInstancesListResult {
 
     /**
      * Set the nextLink property: The URL to get the next set of Azure Bare Metal Instances.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the AzureBareMetalInstancesListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class AzureBareMetalInstancesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

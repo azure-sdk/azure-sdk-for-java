@@ -8,18 +8,24 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Whether to force restart by shutting all processes. */
+/**
+ * Whether to force restart by shutting all processes.
+ */
 public final class AzureBareMetalInstanceForcePowerState
     extends ExpandableStringEnum<AzureBareMetalInstanceForcePowerState> {
-    /** Static value active for AzureBareMetalInstanceForcePowerState. */
+    /**
+     * Static value active for AzureBareMetalInstanceForcePowerState.
+     */
     public static final AzureBareMetalInstanceForcePowerState ACTIVE = fromString("active");
 
-    /** Static value inactive for AzureBareMetalInstanceForcePowerState. */
+    /**
+     * Static value inactive for AzureBareMetalInstanceForcePowerState.
+     */
     public static final AzureBareMetalInstanceForcePowerState INACTIVE = fromString("inactive");
 
     /**
      * Creates a new instance of AzureBareMetalInstanceForcePowerState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -28,7 +34,7 @@ public final class AzureBareMetalInstanceForcePowerState
 
     /**
      * Creates or finds a AzureBareMetalInstanceForcePowerState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AzureBareMetalInstanceForcePowerState.
      */
@@ -39,7 +45,7 @@ public final class AzureBareMetalInstanceForcePowerState
 
     /**
      * Gets known AzureBareMetalInstanceForcePowerState values.
-     *
+     * 
      * @return known AzureBareMetalInstanceForcePowerState values.
      */
     public static Collection<AzureBareMetalInstanceForcePowerState> values() {

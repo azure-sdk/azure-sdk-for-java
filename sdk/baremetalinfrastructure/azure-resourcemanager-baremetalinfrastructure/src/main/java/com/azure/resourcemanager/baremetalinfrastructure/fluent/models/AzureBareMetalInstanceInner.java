@@ -16,7 +16,9 @@ import com.azure.resourcemanager.baremetalinfrastructure.models.StorageProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** AzureBareMetal instance info on Azure (ARM properties and AzureBareMetal properties). */
+/**
+ * AzureBareMetal instance info on Azure (ARM properties and AzureBareMetal properties).
+ */
 @Fluent
 public final class AzureBareMetalInstanceInner extends Resource {
     /*
@@ -31,13 +33,15 @@ public final class AzureBareMetalInstanceInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of AzureBareMetalInstanceInner class. */
+    /**
+     * Creates an instance of AzureBareMetalInstanceInner class.
+     */
     public AzureBareMetalInstanceInner() {
     }
 
     /**
      * Get the innerProperties property: AzureBareMetal instance properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private AzureBareMetalInstanceProperties innerProperties() {
@@ -46,21 +50,25 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureBareMetalInstanceInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AzureBareMetalInstanceInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -69,7 +77,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Get the hardwareProfile property: Specifies the hardware settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @return the hardwareProfile value.
      */
     public HardwareProfile hardwareProfile() {
@@ -78,7 +86,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Set the hardwareProfile property: Specifies the hardware settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the AzureBareMetalInstanceInner object itself.
      */
@@ -92,7 +100,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Get the storageProfile property: Specifies the storage settings for the Azure Bare Metal Instance disks.
-     *
+     * 
      * @return the storageProfile value.
      */
     public StorageProfile storageProfile() {
@@ -101,7 +109,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Set the storageProfile property: Specifies the storage settings for the Azure Bare Metal Instance disks.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the AzureBareMetalInstanceInner object itself.
      */
@@ -115,7 +123,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Get the osProfile property: Specifies the operating system settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @return the osProfile value.
      */
     public OSProfile osProfile() {
@@ -124,7 +132,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Set the osProfile property: Specifies the operating system settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @param osProfile the osProfile value to set.
      * @return the AzureBareMetalInstanceInner object itself.
      */
@@ -138,7 +146,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Get the networkProfile property: Specifies the network settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @return the networkProfile value.
      */
     public NetworkProfile networkProfile() {
@@ -147,7 +155,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Set the networkProfile property: Specifies the network settings for the Azure Bare Metal Instance.
-     *
+     * 
      * @param networkProfile the networkProfile value to set.
      * @return the AzureBareMetalInstanceInner object itself.
      */
@@ -161,7 +169,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Get the azureBareMetalInstanceId property: Specifies the Azure Bare Metal Instance unique ID.
-     *
+     * 
      * @return the azureBareMetalInstanceId value.
      */
     public String azureBareMetalInstanceId() {
@@ -170,7 +178,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Get the powerState property: Resource power state.
-     *
+     * 
      * @return the powerState value.
      */
     public AzureBareMetalInstancePowerStateEnum powerState() {
@@ -179,7 +187,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Get the proximityPlacementGroup property: Resource proximity placement group.
-     *
+     * 
      * @return the proximityPlacementGroup value.
      */
     public String proximityPlacementGroup() {
@@ -188,7 +196,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Get the hwRevision property: Hardware revision of an Azure Bare Metal Instance.
-     *
+     * 
      * @return the hwRevision value.
      */
     public String hwRevision() {
@@ -198,7 +206,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     /**
      * Get the partnerNodeId property: ARM ID of another AzureBareMetalInstance that will share a network with this
      * AzureBareMetalInstance.
-     *
+     * 
      * @return the partnerNodeId value.
      */
     public String partnerNodeId() {
@@ -208,7 +216,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
     /**
      * Set the partnerNodeId property: ARM ID of another AzureBareMetalInstance that will share a network with this
      * AzureBareMetalInstance.
-     *
+     * 
      * @param partnerNodeId the partnerNodeId value to set.
      * @return the AzureBareMetalInstanceInner object itself.
      */
@@ -222,7 +230,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Get the provisioningState property: State of provisioning of the AzureBareMetalInstance.
-     *
+     * 
      * @return the provisioningState value.
      */
     public AzureBareMetalProvisioningStatesEnum provisioningState() {
@@ -231,7 +239,7 @@ public final class AzureBareMetalInstanceInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

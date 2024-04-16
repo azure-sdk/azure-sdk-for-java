@@ -7,7 +7,9 @@ package com.azure.resourcemanager.baremetalinfrastructure.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** described the storage properties of the azure bare metal storage instance. */
+/**
+ * described the storage properties of the azure bare metal storage instance.
+ */
 @Fluent
 public final class StorageProperties {
     /*
@@ -52,13 +54,15 @@ public final class StorageProperties {
     @JsonProperty(value = "storageBillingProperties")
     private StorageBillingProperties storageBillingProperties;
 
-    /** Creates an instance of StorageProperties class. */
+    /**
+     * Creates an instance of StorageProperties class.
+     */
     public StorageProperties() {
     }
 
     /**
      * Get the provisioningState property: State of provisioning of the AzureBareMetalStorageInstance.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -67,7 +71,7 @@ public final class StorageProperties {
 
     /**
      * Set the provisioningState property: State of provisioning of the AzureBareMetalStorageInstance.
-     *
+     * 
      * @param provisioningState the provisioningState value to set.
      * @return the StorageProperties object itself.
      */
@@ -78,7 +82,7 @@ public final class StorageProperties {
 
     /**
      * Get the offeringType property: the offering type for which the resource is getting provisioned.
-     *
+     * 
      * @return the offeringType value.
      */
     public String offeringType() {
@@ -87,7 +91,7 @@ public final class StorageProperties {
 
     /**
      * Set the offeringType property: the offering type for which the resource is getting provisioned.
-     *
+     * 
      * @param offeringType the offeringType value to set.
      * @return the StorageProperties object itself.
      */
@@ -98,7 +102,7 @@ public final class StorageProperties {
 
     /**
      * Get the storageType property: the storage protocol for which the resource is getting provisioned.
-     *
+     * 
      * @return the storageType value.
      */
     public String storageType() {
@@ -107,7 +111,7 @@ public final class StorageProperties {
 
     /**
      * Set the storageType property: the storage protocol for which the resource is getting provisioned.
-     *
+     * 
      * @param storageType the storageType value to set.
      * @return the StorageProperties object itself.
      */
@@ -118,7 +122,7 @@ public final class StorageProperties {
 
     /**
      * Get the generation property: the kind of storage instance.
-     *
+     * 
      * @return the generation value.
      */
     public String generation() {
@@ -127,7 +131,7 @@ public final class StorageProperties {
 
     /**
      * Set the generation property: the kind of storage instance.
-     *
+     * 
      * @param generation the generation value to set.
      * @return the StorageProperties object itself.
      */
@@ -138,7 +142,7 @@ public final class StorageProperties {
 
     /**
      * Get the hardwareType property: the hardware type of the storage instance.
-     *
+     * 
      * @return the hardwareType value.
      */
     public String hardwareType() {
@@ -147,7 +151,7 @@ public final class StorageProperties {
 
     /**
      * Set the hardwareType property: the hardware type of the storage instance.
-     *
+     * 
      * @param hardwareType the hardwareType value to set.
      * @return the StorageProperties object itself.
      */
@@ -158,7 +162,7 @@ public final class StorageProperties {
 
     /**
      * Get the workloadType property: the workload for which the resource is getting provisioned.
-     *
+     * 
      * @return the workloadType value.
      */
     public String workloadType() {
@@ -167,7 +171,7 @@ public final class StorageProperties {
 
     /**
      * Set the workloadType property: the workload for which the resource is getting provisioned.
-     *
+     * 
      * @param workloadType the workloadType value to set.
      * @return the StorageProperties object itself.
      */
@@ -178,7 +182,7 @@ public final class StorageProperties {
 
     /**
      * Get the storageBillingProperties property: the billing related information for the resource.
-     *
+     * 
      * @return the storageBillingProperties value.
      */
     public StorageBillingProperties storageBillingProperties() {
@@ -187,7 +191,7 @@ public final class StorageProperties {
 
     /**
      * Set the storageBillingProperties property: the billing related information for the resource.
-     *
+     * 
      * @param storageBillingProperties the storageBillingProperties value to set.
      * @return the StorageProperties object itself.
      */
@@ -198,7 +202,7 @@ public final class StorageProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

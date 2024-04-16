@@ -104,6 +104,16 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalStorageInstanceIdentity",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.baremetalinfrastructure.models.AzureBareMetalStorageInstanceBody",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.baremetalinfrastructure.models.AsyncOperationStatus",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -145,6 +155,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.baremetalinfrastructure.models.ProvisioningState",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.baremetalinfrastructure.models.ResourceIdentityType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
