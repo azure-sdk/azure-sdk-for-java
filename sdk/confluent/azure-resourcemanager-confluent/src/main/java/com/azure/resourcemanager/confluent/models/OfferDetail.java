@@ -267,24 +267,24 @@ public final class OfferDetail {
      */
     public void validate() {
         if (publisherId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property publisherId in model OfferDetail"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property publisherId in model OfferDetail"));
         }
         if (id() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property id in model OfferDetail"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property id in model OfferDetail"));
         }
         if (planId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property planId in model OfferDetail"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property planId in model OfferDetail"));
         }
         if (planName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property planName in model OfferDetail"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property planName in model OfferDetail"));
         }
         if (termUnit() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property termUnit in model OfferDetail"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property termUnit in model OfferDetail"));
         }
     }
 

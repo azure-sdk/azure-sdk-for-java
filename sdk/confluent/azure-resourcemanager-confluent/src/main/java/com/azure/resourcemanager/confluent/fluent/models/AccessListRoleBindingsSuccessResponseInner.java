@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Details of the role bindings returned on successful response.
+ * List cluster success response.
  */
 @Fluent
 public final class AccessListRoleBindingsSuccessResponseInner {
@@ -28,7 +28,7 @@ public final class AccessListRoleBindingsSuccessResponseInner {
     private ConfluentListMetadata metadata;
 
     /*
-     * List of role binding
+     * Data of the environments list
      */
     @JsonProperty(value = "data")
     private List<RoleBindingRecord> data;
@@ -80,7 +80,7 @@ public final class AccessListRoleBindingsSuccessResponseInner {
     }
 
     /**
-     * Get the data property: List of role binding.
+     * Get the data property: Data of the environments list.
      * 
      * @return the data value.
      */
@@ -89,7 +89,7 @@ public final class AccessListRoleBindingsSuccessResponseInner {
     }
 
     /**
-     * Set the data property: List of role binding.
+     * Set the data property: Data of the environments list.
      * 
      * @param data the data value to set.
      * @return the AccessListRoleBindingsSuccessResponseInner object itself.

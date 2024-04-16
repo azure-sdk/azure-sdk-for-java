@@ -14,12 +14,9 @@ import com.azure.resourcemanager.confluent.fluent.models.AccessListInvitationsSu
 import com.azure.resourcemanager.confluent.fluent.models.AccessListRoleBindingsSuccessResponseInner;
 import com.azure.resourcemanager.confluent.fluent.models.AccessListServiceAccountsSuccessResponseInner;
 import com.azure.resourcemanager.confluent.fluent.models.AccessListUsersSuccessResponseInner;
-import com.azure.resourcemanager.confluent.fluent.models.AccessRoleBindingNameListSuccessResponseInner;
 import com.azure.resourcemanager.confluent.fluent.models.InvitationRecordInner;
-import com.azure.resourcemanager.confluent.models.AccessCreateRoleBindingRequestModel;
 import com.azure.resourcemanager.confluent.models.AccessInviteUserAccountModel;
 import com.azure.resourcemanager.confluent.models.ListAccessRequestModel;
-import com.azure.resourcemanager.confluent.models.RoleBindingRecord;
 
 /**
  * An instance of this class provides access to all the operations defined in AccessClient.
@@ -28,7 +25,7 @@ public interface AccessClient {
     /**
      * Organization users details.
      * 
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body List Access Request Model.
      * @param context The context to associate with this operation.
@@ -44,7 +41,7 @@ public interface AccessClient {
     /**
      * Organization users details.
      * 
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body List Access Request Model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -59,7 +56,7 @@ public interface AccessClient {
     /**
      * Organization service accounts details.
      * 
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body List Access Request Model.
      * @param context The context to associate with this operation.
@@ -75,7 +72,7 @@ public interface AccessClient {
     /**
      * Organization service accounts details.
      * 
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body List Access Request Model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -90,7 +87,7 @@ public interface AccessClient {
     /**
      * Organization accounts invitation details.
      * 
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body List Access Request Model.
      * @param context The context to associate with this operation.
@@ -106,7 +103,7 @@ public interface AccessClient {
     /**
      * Organization accounts invitation details.
      * 
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body List Access Request Model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -121,7 +118,7 @@ public interface AccessClient {
     /**
      * Invite user to the organization.
      * 
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Invite user account model.
      * @param context The context to associate with this operation.
@@ -137,7 +134,7 @@ public interface AccessClient {
     /**
      * Invite user to the organization.
      * 
-     * @param resourceGroupName Resource group name.
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param organizationName Organization resource name.
      * @param body Invite user account model.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
@@ -159,7 +156,7 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the environments returned on successful response along with {@link Response}.
+     * @return list environments success response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AccessListEnvironmentsSuccessResponseInner> listEnvironmentsWithResponse(String resourceGroupName,
@@ -174,7 +171,7 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the environments returned on successful response.
+     * @return list environments success response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     AccessListEnvironmentsSuccessResponseInner listEnvironments(String resourceGroupName, String organizationName,
@@ -190,7 +187,7 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the clusters returned on successful response along with {@link Response}.
+     * @return list cluster success response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AccessListClusterSuccessResponseInner> listClustersWithResponse(String resourceGroupName,
@@ -205,7 +202,7 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the clusters returned on successful response.
+     * @return list cluster success response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     AccessListClusterSuccessResponseInner listClusters(String resourceGroupName, String organizationName,
@@ -221,7 +218,7 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the role bindings returned on successful response along with {@link Response}.
+     * @return list cluster success response along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     Response<AccessListRoleBindingsSuccessResponseInner> listRoleBindingsWithResponse(String resourceGroupName,
@@ -236,100 +233,9 @@ public interface AccessClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the role bindings returned on successful response.
+     * @return list cluster success response.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     AccessListRoleBindingsSuccessResponseInner listRoleBindings(String resourceGroupName, String organizationName,
         ListAccessRequestModel body);
-
-    /**
-     * Organization role bindings.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param organizationName Organization resource name.
-     * @param body Create role binding Request Model.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details on principal, role name and crn pattern of a role binding along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<RoleBindingRecord> createRoleBindingWithResponse(String resourceGroupName, String organizationName,
-        AccessCreateRoleBindingRequestModel body, Context context);
-
-    /**
-     * Organization role bindings.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param organizationName Organization resource name.
-     * @param body Create role binding Request Model.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details on principal, role name and crn pattern of a role binding.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    RoleBindingRecord createRoleBinding(String resourceGroupName, String organizationName,
-        AccessCreateRoleBindingRequestModel body);
-
-    /**
-     * Organization role bindings.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param organizationName Organization resource name.
-     * @param roleBindingId Confluent Role binding id.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> deleteRoleBindingWithResponse(String resourceGroupName, String organizationName,
-        String roleBindingId, Context context);
-
-    /**
-     * Organization role bindings.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param organizationName Organization resource name.
-     * @param roleBindingId Confluent Role binding id.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    void deleteRoleBinding(String resourceGroupName, String organizationName, String roleBindingId);
-
-    /**
-     * Organization role bindings.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param organizationName Organization resource name.
-     * @param body List Access Request Model.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the role binding names returned on successful response along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<AccessRoleBindingNameListSuccessResponseInner> listRoleBindingNameListWithResponse(
-        String resourceGroupName, String organizationName, ListAccessRequestModel body, Context context);
-
-    /**
-     * Organization role bindings.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param organizationName Organization resource name.
-     * @param body List Access Request Model.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return details of the role binding names returned on successful response.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    AccessRoleBindingNameListSuccessResponseInner listRoleBindingNameList(String resourceGroupName,
-        String organizationName, ListAccessRequestModel body);
 }

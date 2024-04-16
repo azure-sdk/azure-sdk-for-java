@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Details of the clusters returned on successful response.
+ * List cluster success response.
  */
 @Fluent
 public final class AccessListClusterSuccessResponseInner {
@@ -28,7 +28,7 @@ public final class AccessListClusterSuccessResponseInner {
     private ConfluentListMetadata metadata;
 
     /*
-     * List of clusters
+     * Data of the environments list
      */
     @JsonProperty(value = "data")
     private List<ClusterRecord> data;
@@ -80,7 +80,7 @@ public final class AccessListClusterSuccessResponseInner {
     }
 
     /**
-     * Get the data property: List of clusters.
+     * Get the data property: Data of the environments list.
      * 
      * @return the data value.
      */
@@ -89,7 +89,7 @@ public final class AccessListClusterSuccessResponseInner {
     }
 
     /**
-     * Set the data property: List of clusters.
+     * Set the data property: Data of the environments list.
      * 
      * @param data the data value to set.
      * @return the AccessListClusterSuccessResponseInner object itself.

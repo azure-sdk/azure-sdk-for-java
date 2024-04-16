@@ -189,8 +189,9 @@ public final class OrganizationResourceInner extends Resource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property innerProperties in model OrganizationResourceInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property innerProperties in model OrganizationResourceInner"));
         } else {
             innerProperties().validate();
         }

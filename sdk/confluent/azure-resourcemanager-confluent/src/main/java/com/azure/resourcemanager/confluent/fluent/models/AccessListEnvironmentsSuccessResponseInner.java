@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Details of the environments returned on successful response.
+ * List environments success response.
  */
 @Fluent
 public final class AccessListEnvironmentsSuccessResponseInner {
@@ -22,13 +22,13 @@ public final class AccessListEnvironmentsSuccessResponseInner {
     private String kind;
 
     /*
-     * Metadata of the environment list
+     * Metadata of the list
      */
     @JsonProperty(value = "metadata")
     private ConfluentListMetadata metadata;
 
     /*
-     * Environment list data
+     * Data of the environments list
      */
     @JsonProperty(value = "data")
     private List<EnvironmentRecord> data;
@@ -60,7 +60,7 @@ public final class AccessListEnvironmentsSuccessResponseInner {
     }
 
     /**
-     * Get the metadata property: Metadata of the environment list.
+     * Get the metadata property: Metadata of the list.
      * 
      * @return the metadata value.
      */
@@ -69,7 +69,7 @@ public final class AccessListEnvironmentsSuccessResponseInner {
     }
 
     /**
-     * Set the metadata property: Metadata of the environment list.
+     * Set the metadata property: Metadata of the list.
      * 
      * @param metadata the metadata value to set.
      * @return the AccessListEnvironmentsSuccessResponseInner object itself.
@@ -80,7 +80,7 @@ public final class AccessListEnvironmentsSuccessResponseInner {
     }
 
     /**
-     * Get the data property: Environment list data.
+     * Get the data property: Data of the environments list.
      * 
      * @return the data value.
      */
@@ -89,7 +89,7 @@ public final class AccessListEnvironmentsSuccessResponseInner {
     }
 
     /**
-     * Set the data property: Environment list data.
+     * Set the data property: Data of the environments list.
      * 
      * @param data the data value to set.
      * @return the AccessListEnvironmentsSuccessResponseInner object itself.

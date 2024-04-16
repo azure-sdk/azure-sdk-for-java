@@ -173,14 +173,16 @@ public final class OrganizationResourceProperties {
      */
     public void validate() {
         if (offerDetail() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property offerDetail in model OrganizationResourceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property offerDetail in model OrganizationResourceProperties"));
         } else {
             offerDetail().validate();
         }
         if (userDetail() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property userDetail in model OrganizationResourceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property userDetail in model OrganizationResourceProperties"));
         } else {
             userDetail().validate();
         }

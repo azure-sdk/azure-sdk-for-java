@@ -8,7 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Details about environment name, metadata and environment id of an environment.
+ * Record of the environment.
  */
 @Fluent
 public final class EnvironmentRecord {

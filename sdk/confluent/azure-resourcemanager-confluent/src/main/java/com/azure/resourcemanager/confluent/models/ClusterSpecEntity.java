@@ -25,7 +25,7 @@ public final class ClusterSpecEntity {
     private String availability;
 
     /*
-     * The cloud service provider
+     * The cloud service provider 
      */
     @JsonProperty(value = "cloud")
     private String cloud;

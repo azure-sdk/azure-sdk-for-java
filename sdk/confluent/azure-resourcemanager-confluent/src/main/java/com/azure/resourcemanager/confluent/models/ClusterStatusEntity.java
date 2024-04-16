@@ -19,7 +19,7 @@ public final class ClusterStatusEntity {
     private String phase;
 
     /*
-     * The number of Confluent Kafka Units
+     * The number of Confluent Kafka Units 
      */
     @JsonProperty(value = "cku")
     private Integer cku;

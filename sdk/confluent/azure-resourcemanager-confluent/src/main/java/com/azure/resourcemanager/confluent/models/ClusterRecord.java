@@ -8,18 +8,18 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Details of cluster record.
+ * Record of the environment.
  */
 @Fluent
 public final class ClusterRecord {
     /*
-     * Type of cluster
+     * Type of environment
      */
     @JsonProperty(value = "kind")
     private String kind;
 
     /*
-     * Id of the cluster
+     * Id of the environment
      */
     @JsonProperty(value = "id")
     private String id;
@@ -31,7 +31,7 @@ public final class ClusterRecord {
     private MetadataEntity metadata;
 
     /*
-     * Display name of the cluster
+     * Display name of the user
      */
     @JsonProperty(value = "display_name")
     private String displayName;
@@ -55,7 +55,7 @@ public final class ClusterRecord {
     }
 
     /**
-     * Get the kind property: Type of cluster.
+     * Get the kind property: Type of environment.
      * 
      * @return the kind value.
      */
@@ -64,7 +64,7 @@ public final class ClusterRecord {
     }
 
     /**
-     * Set the kind property: Type of cluster.
+     * Set the kind property: Type of environment.
      * 
      * @param kind the kind value to set.
      * @return the ClusterRecord object itself.
@@ -75,7 +75,7 @@ public final class ClusterRecord {
     }
 
     /**
-     * Get the id property: Id of the cluster.
+     * Get the id property: Id of the environment.
      * 
      * @return the id value.
      */
@@ -84,7 +84,7 @@ public final class ClusterRecord {
     }
 
     /**
-     * Set the id property: Id of the cluster.
+     * Set the id property: Id of the environment.
      * 
      * @param id the id value to set.
      * @return the ClusterRecord object itself.
@@ -115,7 +115,7 @@ public final class ClusterRecord {
     }
 
     /**
-     * Get the displayName property: Display name of the cluster.
+     * Get the displayName property: Display name of the user.
      * 
      * @return the displayName value.
      */
@@ -124,7 +124,7 @@ public final class ClusterRecord {
     }
 
     /**
-     * Set the displayName property: Display name of the cluster.
+     * Set the displayName property: Display name of the user.
      * 
      * @param displayName the displayName value to set.
      * @return the ClusterRecord object itself.

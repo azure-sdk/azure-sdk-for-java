@@ -19,14 +19,14 @@ public interface AccessListEnvironmentsSuccessResponse {
     String kind();
 
     /**
-     * Gets the metadata property: Metadata of the environment list.
+     * Gets the metadata property: Metadata of the list.
      * 
      * @return the metadata value.
      */
     ConfluentListMetadata metadata();
 
     /**
-     * Gets the data property: Environment list data.
+     * Gets the data property: Data of the environments list.
      * 
      * @return the data value.
      */

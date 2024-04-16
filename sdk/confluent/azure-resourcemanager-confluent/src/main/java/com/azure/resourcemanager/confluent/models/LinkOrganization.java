@@ -52,8 +52,8 @@ public final class LinkOrganization {
      */
     public void validate() {
         if (token() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property token in model LinkOrganization"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property token in model LinkOrganization"));
         }
     }
 

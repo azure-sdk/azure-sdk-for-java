@@ -9,8 +9,7 @@ package com.azure.resourcemanager.confluent.generated;
  */
 public final class OrganizationOperationsListSamples {
     /*
-     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2024-02-13/examples/
-     * OrganizationOperations_List.json
+     * x-ms-original-file: specification/confluent/resource-manager/Microsoft.Confluent/stable/2023-08-22/examples/OrganizationOperations_List.json
      */
     /**
      * Sample code: OrganizationOperations_List.
