@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Information about JIT request. */
+/**
+ * Information about JIT request.
+ */
 @Fluent
 public final class JitRequestPatchable {
     /*
@@ -19,13 +21,15 @@ public final class JitRequestPatchable {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of JitRequestPatchable class. */
+    /**
+     * Creates an instance of JitRequestPatchable class.
+     */
     public JitRequestPatchable() {
     }
 
     /**
      * Get the tags property: Jit request tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +38,7 @@ public final class JitRequestPatchable {
 
     /**
      * Set the tags property: Jit request tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the JitRequestPatchable object itself.
      */
@@ -45,7 +49,7 @@ public final class JitRequestPatchable {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

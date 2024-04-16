@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managedapplications.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Plan for the managed application. */
+/**
+ * Plan for the managed application.
+ */
 @Fluent
 public final class PlanPatchable {
     /*
@@ -40,13 +42,15 @@ public final class PlanPatchable {
     @JsonProperty(value = "version")
     private String version;
 
-    /** Creates an instance of PlanPatchable class. */
+    /**
+     * Creates an instance of PlanPatchable class.
+     */
     public PlanPatchable() {
     }
 
     /**
      * Get the name property: The plan name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -55,7 +59,7 @@ public final class PlanPatchable {
 
     /**
      * Set the name property: The plan name.
-     *
+     * 
      * @param name the name value to set.
      * @return the PlanPatchable object itself.
      */
@@ -66,7 +70,7 @@ public final class PlanPatchable {
 
     /**
      * Get the publisher property: The publisher ID.
-     *
+     * 
      * @return the publisher value.
      */
     public String publisher() {
@@ -75,7 +79,7 @@ public final class PlanPatchable {
 
     /**
      * Set the publisher property: The publisher ID.
-     *
+     * 
      * @param publisher the publisher value to set.
      * @return the PlanPatchable object itself.
      */
@@ -86,7 +90,7 @@ public final class PlanPatchable {
 
     /**
      * Get the product property: The product code.
-     *
+     * 
      * @return the product value.
      */
     public String product() {
@@ -95,7 +99,7 @@ public final class PlanPatchable {
 
     /**
      * Set the product property: The product code.
-     *
+     * 
      * @param product the product value to set.
      * @return the PlanPatchable object itself.
      */
@@ -106,7 +110,7 @@ public final class PlanPatchable {
 
     /**
      * Get the promotionCode property: The promotion code.
-     *
+     * 
      * @return the promotionCode value.
      */
     public String promotionCode() {
@@ -115,7 +119,7 @@ public final class PlanPatchable {
 
     /**
      * Set the promotionCode property: The promotion code.
-     *
+     * 
      * @param promotionCode the promotionCode value to set.
      * @return the PlanPatchable object itself.
      */
@@ -126,7 +130,7 @@ public final class PlanPatchable {
 
     /**
      * Get the version property: The plan's version.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -135,7 +139,7 @@ public final class PlanPatchable {
 
     /**
      * Set the version property: The plan's version.
-     *
+     * 
      * @param version the version value to set.
      * @return the PlanPatchable object itself.
      */
@@ -146,7 +150,7 @@ public final class PlanPatchable {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

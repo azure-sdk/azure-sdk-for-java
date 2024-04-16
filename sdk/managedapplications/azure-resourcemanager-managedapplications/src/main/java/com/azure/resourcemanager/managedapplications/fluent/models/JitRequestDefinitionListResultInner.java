@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of JIT requests. */
+/**
+ * List of JIT requests.
+ */
 @Fluent
 public final class JitRequestDefinitionListResultInner {
     /*
@@ -23,13 +25,15 @@ public final class JitRequestDefinitionListResultInner {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of JitRequestDefinitionListResultInner class. */
+    /**
+     * Creates an instance of JitRequestDefinitionListResultInner class.
+     */
     public JitRequestDefinitionListResultInner() {
     }
 
     /**
      * Get the value property: The array of Jit request definition.
-     *
+     * 
      * @return the value value.
      */
     public List<JitRequestDefinitionInner> value() {
@@ -38,7 +42,7 @@ public final class JitRequestDefinitionListResultInner {
 
     /**
      * Set the value property: The array of Jit request definition.
-     *
+     * 
      * @param value the value value to set.
      * @return the JitRequestDefinitionListResultInner object itself.
      */
@@ -49,7 +53,7 @@ public final class JitRequestDefinitionListResultInner {
 
     /**
      * Get the nextLink property: The URL to use for getting the next set of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -58,7 +62,7 @@ public final class JitRequestDefinitionListResultInner {
 
     /**
      * Set the nextLink property: The URL to use for getting the next set of results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the JitRequestDefinitionListResultInner object itself.
      */
@@ -69,7 +73,7 @@ public final class JitRequestDefinitionListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

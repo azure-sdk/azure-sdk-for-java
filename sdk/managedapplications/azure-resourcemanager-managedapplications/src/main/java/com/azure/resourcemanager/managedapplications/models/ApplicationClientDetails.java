@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managedapplications.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The application client details to track the entity creating/updating the managed app resource. */
+/**
+ * The application client details to track the entity creating/updating the managed app resource.
+ */
 @Fluent
 public final class ApplicationClientDetails {
     /*
@@ -28,13 +30,15 @@ public final class ApplicationClientDetails {
     @JsonProperty(value = "applicationId")
     private String applicationId;
 
-    /** Creates an instance of ApplicationClientDetails class. */
+    /**
+     * Creates an instance of ApplicationClientDetails class.
+     */
     public ApplicationClientDetails() {
     }
 
     /**
      * Get the oid property: The client Oid.
-     *
+     * 
      * @return the oid value.
      */
     public String oid() {
@@ -43,7 +47,7 @@ public final class ApplicationClientDetails {
 
     /**
      * Set the oid property: The client Oid.
-     *
+     * 
      * @param oid the oid value to set.
      * @return the ApplicationClientDetails object itself.
      */
@@ -54,7 +58,7 @@ public final class ApplicationClientDetails {
 
     /**
      * Get the puid property: The client Puid.
-     *
+     * 
      * @return the puid value.
      */
     public String puid() {
@@ -63,7 +67,7 @@ public final class ApplicationClientDetails {
 
     /**
      * Set the puid property: The client Puid.
-     *
+     * 
      * @param puid the puid value to set.
      * @return the ApplicationClientDetails object itself.
      */
@@ -74,7 +78,7 @@ public final class ApplicationClientDetails {
 
     /**
      * Get the applicationId property: The client application Id.
-     *
+     * 
      * @return the applicationId value.
      */
     public String applicationId() {
@@ -83,7 +87,7 @@ public final class ApplicationClientDetails {
 
     /**
      * Set the applicationId property: The client application Id.
-     *
+     * 
      * @param applicationId the applicationId value to set.
      * @return the ApplicationClientDetails object itself.
      */
@@ -94,7 +98,7 @@ public final class ApplicationClientDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

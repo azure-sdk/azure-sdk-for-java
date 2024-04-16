@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The JIT request scheduling type. */
+/**
+ * The JIT request scheduling type.
+ */
 public final class JitSchedulingType extends ExpandableStringEnum<JitSchedulingType> {
-    /** Static value NotSpecified for JitSchedulingType. */
+    /**
+     * Static value NotSpecified for JitSchedulingType.
+     */
     public static final JitSchedulingType NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value Once for JitSchedulingType. */
+    /**
+     * Static value Once for JitSchedulingType.
+     */
     public static final JitSchedulingType ONCE = fromString("Once");
 
-    /** Static value Recurring for JitSchedulingType. */
+    /**
+     * Static value Recurring for JitSchedulingType.
+     */
     public static final JitSchedulingType RECURRING = fromString("Recurring");
 
     /**
      * Creates a new instance of JitSchedulingType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class JitSchedulingType extends ExpandableStringEnum<JitSchedulingT
 
     /**
      * Creates or finds a JitSchedulingType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding JitSchedulingType.
      */
@@ -41,7 +49,7 @@ public final class JitSchedulingType extends ExpandableStringEnum<JitSchedulingT
 
     /**
      * Gets known JitSchedulingType values.
-     *
+     * 
      * @return known JitSchedulingType values.
      */
     public static Collection<JitSchedulingType> values() {

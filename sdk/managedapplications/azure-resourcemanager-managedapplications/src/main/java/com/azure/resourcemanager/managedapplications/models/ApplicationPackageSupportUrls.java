@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managedapplications.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The appliance package support URLs. */
+/**
+ * The appliance package support URLs.
+ */
 @Fluent
 public final class ApplicationPackageSupportUrls {
     /*
@@ -22,13 +24,15 @@ public final class ApplicationPackageSupportUrls {
     @JsonProperty(value = "governmentCloud")
     private String governmentCloud;
 
-    /** Creates an instance of ApplicationPackageSupportUrls class. */
+    /**
+     * Creates an instance of ApplicationPackageSupportUrls class.
+     */
     public ApplicationPackageSupportUrls() {
     }
 
     /**
      * Get the publicAzure property: The public azure support URL.
-     *
+     * 
      * @return the publicAzure value.
      */
     public String publicAzure() {
@@ -37,7 +41,7 @@ public final class ApplicationPackageSupportUrls {
 
     /**
      * Set the publicAzure property: The public azure support URL.
-     *
+     * 
      * @param publicAzure the publicAzure value to set.
      * @return the ApplicationPackageSupportUrls object itself.
      */
@@ -48,7 +52,7 @@ public final class ApplicationPackageSupportUrls {
 
     /**
      * Get the governmentCloud property: The government cloud support URL.
-     *
+     * 
      * @return the governmentCloud value.
      */
     public String governmentCloud() {
@@ -57,7 +61,7 @@ public final class ApplicationPackageSupportUrls {
 
     /**
      * Set the governmentCloud property: The government cloud support URL.
-     *
+     * 
      * @param governmentCloud the governmentCloud value to set.
      * @return the ApplicationPackageSupportUrls object itself.
      */
@@ -68,7 +72,7 @@ public final class ApplicationPackageSupportUrls {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

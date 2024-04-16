@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The management mode. */
+/**
+ * The management mode.
+ */
 public final class ApplicationManagementMode extends ExpandableStringEnum<ApplicationManagementMode> {
-    /** Static value NotSpecified for ApplicationManagementMode. */
+    /**
+     * Static value NotSpecified for ApplicationManagementMode.
+     */
     public static final ApplicationManagementMode NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value Unmanaged for ApplicationManagementMode. */
+    /**
+     * Static value Unmanaged for ApplicationManagementMode.
+     */
     public static final ApplicationManagementMode UNMANAGED = fromString("Unmanaged");
 
-    /** Static value Managed for ApplicationManagementMode. */
+    /**
+     * Static value Managed for ApplicationManagementMode.
+     */
     public static final ApplicationManagementMode MANAGED = fromString("Managed");
 
     /**
      * Creates a new instance of ApplicationManagementMode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class ApplicationManagementMode extends ExpandableStringEnum<Applic
 
     /**
      * Creates or finds a ApplicationManagementMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ApplicationManagementMode.
      */
@@ -41,7 +49,7 @@ public final class ApplicationManagementMode extends ExpandableStringEnum<Applic
 
     /**
      * Gets known ApplicationManagementMode values.
-     *
+     * 
      * @return known ApplicationManagementMode values.
      */
     public static Collection<ApplicationManagementMode> values() {

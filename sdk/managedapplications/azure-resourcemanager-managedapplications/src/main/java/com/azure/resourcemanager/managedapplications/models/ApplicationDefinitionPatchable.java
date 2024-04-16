@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Information about an application definition request. */
+/**
+ * Information about an application definition request.
+ */
 @Fluent
 public final class ApplicationDefinitionPatchable {
     /*
@@ -19,13 +21,15 @@ public final class ApplicationDefinitionPatchable {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of ApplicationDefinitionPatchable class. */
+    /**
+     * Creates an instance of ApplicationDefinitionPatchable class.
+     */
     public ApplicationDefinitionPatchable() {
     }
 
     /**
      * Get the tags property: Application definition tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +38,7 @@ public final class ApplicationDefinitionPatchable {
 
     /**
      * Set the tags property: Application definition tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ApplicationDefinitionPatchable object itself.
      */
@@ -45,7 +49,7 @@ public final class ApplicationDefinitionPatchable {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

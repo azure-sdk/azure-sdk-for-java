@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The deployment mode. */
+/**
+ * The deployment mode.
+ */
 public final class DeploymentMode extends ExpandableStringEnum<DeploymentMode> {
-    /** Static value NotSpecified for DeploymentMode. */
+    /**
+     * Static value NotSpecified for DeploymentMode.
+     */
     public static final DeploymentMode NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value Incremental for DeploymentMode. */
+    /**
+     * Static value Incremental for DeploymentMode.
+     */
     public static final DeploymentMode INCREMENTAL = fromString("Incremental");
 
-    /** Static value Complete for DeploymentMode. */
+    /**
+     * Static value Complete for DeploymentMode.
+     */
     public static final DeploymentMode COMPLETE = fromString("Complete");
 
     /**
      * Creates a new instance of DeploymentMode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class DeploymentMode extends ExpandableStringEnum<DeploymentMode> {
 
     /**
      * Creates or finds a DeploymentMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DeploymentMode.
      */
@@ -41,7 +49,7 @@ public final class DeploymentMode extends ExpandableStringEnum<DeploymentMode> {
 
     /**
      * Gets known DeploymentMode values.
-     *
+     * 
      * @return known DeploymentMode values.
      */
     public static Collection<DeploymentMode> values() {

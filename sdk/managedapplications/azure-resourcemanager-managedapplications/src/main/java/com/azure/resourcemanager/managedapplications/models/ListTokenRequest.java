@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List token request body. */
+/**
+ * List token request body.
+ */
 @Fluent
 public final class ListTokenRequest {
     /*
@@ -23,13 +25,15 @@ public final class ListTokenRequest {
     @JsonProperty(value = "userAssignedIdentities")
     private List<String> userAssignedIdentities;
 
-    /** Creates an instance of ListTokenRequest class. */
+    /**
+     * Creates an instance of ListTokenRequest class.
+     */
     public ListTokenRequest() {
     }
 
     /**
      * Get the authorizationAudience property: The authorization audience.
-     *
+     * 
      * @return the authorizationAudience value.
      */
     public String authorizationAudience() {
@@ -38,7 +42,7 @@ public final class ListTokenRequest {
 
     /**
      * Set the authorizationAudience property: The authorization audience.
-     *
+     * 
      * @param authorizationAudience the authorizationAudience value to set.
      * @return the ListTokenRequest object itself.
      */
@@ -49,7 +53,7 @@ public final class ListTokenRequest {
 
     /**
      * Get the userAssignedIdentities property: The user assigned identities.
-     *
+     * 
      * @return the userAssignedIdentities value.
      */
     public List<String> userAssignedIdentities() {
@@ -58,7 +62,7 @@ public final class ListTokenRequest {
 
     /**
      * Set the userAssignedIdentities property: The user assigned identities.
-     *
+     * 
      * @param userAssignedIdentities the userAssignedIdentities value to set.
      * @return the ListTokenRequest object itself.
      */
@@ -69,7 +73,7 @@ public final class ListTokenRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

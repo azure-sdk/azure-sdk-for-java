@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The JIT status. */
+/**
+ * The JIT status.
+ */
 public final class Status extends ExpandableStringEnum<Status> {
-    /** Static value NotSpecified for Status. */
+    /**
+     * Static value NotSpecified for Status.
+     */
     public static final Status NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value Elevate for Status. */
+    /**
+     * Static value Elevate for Status.
+     */
     public static final Status ELEVATE = fromString("Elevate");
 
-    /** Static value Remove for Status. */
+    /**
+     * Static value Remove for Status.
+     */
     public static final Status REMOVE = fromString("Remove");
 
     /**
      * Creates a new instance of Status value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class Status extends ExpandableStringEnum<Status> {
 
     /**
      * Creates or finds a Status from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Status.
      */
@@ -41,7 +49,7 @@ public final class Status extends ExpandableStringEnum<Status> {
 
     /**
      * Gets known Status values.
-     *
+     * 
      * @return known Status values.
      */
     public static Collection<Status> values() {

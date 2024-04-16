@@ -8,32 +8,33 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The managed application provider authorization. */
+/**
+ * The managed application provider authorization.
+ */
 @Fluent
 public final class ApplicationAuthorization {
     /*
-     * The provider's principal identifier. This is the identity that the provider will use to call ARM to manage the
-     * managed application resources.
+     * The provider's principal identifier. This is the identity that the provider will use to call ARM to manage the managed application resources.
      */
     @JsonProperty(value = "principalId", required = true)
     private String principalId;
 
     /*
-     * The provider's role definition identifier. This role will define all the permissions that the provider must have
-     * on the managed application's container resource group. This role definition cannot have permission to delete the
-     * resource group.
+     * The provider's role definition identifier. This role will define all the permissions that the provider must have on the managed application's container resource group. This role definition cannot have permission to delete the resource group.
      */
     @JsonProperty(value = "roleDefinitionId", required = true)
     private String roleDefinitionId;
 
-    /** Creates an instance of ApplicationAuthorization class. */
+    /**
+     * Creates an instance of ApplicationAuthorization class.
+     */
     public ApplicationAuthorization() {
     }
 
     /**
      * Get the principalId property: The provider's principal identifier. This is the identity that the provider will
      * use to call ARM to manage the managed application resources.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -43,7 +44,7 @@ public final class ApplicationAuthorization {
     /**
      * Set the principalId property: The provider's principal identifier. This is the identity that the provider will
      * use to call ARM to manage the managed application resources.
-     *
+     * 
      * @param principalId the principalId value to set.
      * @return the ApplicationAuthorization object itself.
      */
@@ -56,7 +57,7 @@ public final class ApplicationAuthorization {
      * Get the roleDefinitionId property: The provider's role definition identifier. This role will define all the
      * permissions that the provider must have on the managed application's container resource group. This role
      * definition cannot have permission to delete the resource group.
-     *
+     * 
      * @return the roleDefinitionId value.
      */
     public String roleDefinitionId() {
@@ -67,7 +68,7 @@ public final class ApplicationAuthorization {
      * Set the roleDefinitionId property: The provider's role definition identifier. This role will define all the
      * permissions that the provider must have on the managed application's container resource group. This role
      * definition cannot have permission to delete the resource group.
-     *
+     * 
      * @param roleDefinitionId the roleDefinitionId value to set.
      * @return the ApplicationAuthorization object itself.
      */
@@ -78,21 +79,19 @@ public final class ApplicationAuthorization {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (principalId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property principalId in model ApplicationAuthorization"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property principalId in model ApplicationAuthorization"));
         }
         if (roleDefinitionId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property roleDefinitionId in model ApplicationAuthorization"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property roleDefinitionId in model ApplicationAuthorization"));
         }
     }
 

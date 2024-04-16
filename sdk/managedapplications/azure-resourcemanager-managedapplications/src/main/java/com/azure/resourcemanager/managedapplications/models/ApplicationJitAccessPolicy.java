@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Managed application Jit access policy. */
+/**
+ * Managed application Jit access policy.
+ */
 @Fluent
 public final class ApplicationJitAccessPolicy {
     /*
@@ -35,13 +37,15 @@ public final class ApplicationJitAccessPolicy {
     @JsonProperty(value = "maximumJitAccessDuration")
     private String maximumJitAccessDuration;
 
-    /** Creates an instance of ApplicationJitAccessPolicy class. */
+    /**
+     * Creates an instance of ApplicationJitAccessPolicy class.
+     */
     public ApplicationJitAccessPolicy() {
     }
 
     /**
      * Get the jitAccessEnabled property: Whether the JIT access is enabled.
-     *
+     * 
      * @return the jitAccessEnabled value.
      */
     public boolean jitAccessEnabled() {
@@ -50,7 +54,7 @@ public final class ApplicationJitAccessPolicy {
 
     /**
      * Set the jitAccessEnabled property: Whether the JIT access is enabled.
-     *
+     * 
      * @param jitAccessEnabled the jitAccessEnabled value to set.
      * @return the ApplicationJitAccessPolicy object itself.
      */
@@ -61,7 +65,7 @@ public final class ApplicationJitAccessPolicy {
 
     /**
      * Get the jitApprovalMode property: JIT approval mode.
-     *
+     * 
      * @return the jitApprovalMode value.
      */
     public JitApprovalMode jitApprovalMode() {
@@ -70,7 +74,7 @@ public final class ApplicationJitAccessPolicy {
 
     /**
      * Set the jitApprovalMode property: JIT approval mode.
-     *
+     * 
      * @param jitApprovalMode the jitApprovalMode value to set.
      * @return the ApplicationJitAccessPolicy object itself.
      */
@@ -81,7 +85,7 @@ public final class ApplicationJitAccessPolicy {
 
     /**
      * Get the jitApprovers property: The JIT approvers.
-     *
+     * 
      * @return the jitApprovers value.
      */
     public List<JitApproverDefinition> jitApprovers() {
@@ -90,7 +94,7 @@ public final class ApplicationJitAccessPolicy {
 
     /**
      * Set the jitApprovers property: The JIT approvers.
-     *
+     * 
      * @param jitApprovers the jitApprovers value to set.
      * @return the ApplicationJitAccessPolicy object itself.
      */
@@ -102,7 +106,7 @@ public final class ApplicationJitAccessPolicy {
     /**
      * Get the maximumJitAccessDuration property: The maximum duration JIT access is granted. This is an ISO8601 time
      * period value.
-     *
+     * 
      * @return the maximumJitAccessDuration value.
      */
     public String maximumJitAccessDuration() {
@@ -112,7 +116,7 @@ public final class ApplicationJitAccessPolicy {
     /**
      * Set the maximumJitAccessDuration property: The maximum duration JIT access is granted. This is an ISO8601 time
      * period value.
-     *
+     * 
      * @param maximumJitAccessDuration the maximumJitAccessDuration value to set.
      * @return the ApplicationJitAccessPolicy object itself.
      */
@@ -123,7 +127,7 @@ public final class ApplicationJitAccessPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

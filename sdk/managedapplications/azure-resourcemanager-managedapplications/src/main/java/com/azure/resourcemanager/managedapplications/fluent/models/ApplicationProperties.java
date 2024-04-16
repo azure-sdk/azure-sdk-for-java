@@ -17,7 +17,9 @@ import com.azure.resourcemanager.managedapplications.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The managed application properties. */
+/**
+ * The managed application properties.
+ */
 @Fluent
 public final class ApplicationProperties {
     /*
@@ -33,8 +35,7 @@ public final class ApplicationProperties {
     private String applicationDefinitionId;
 
     /*
-     * Name and value pairs that define the managed application parameters. It can be a JObject or a well formed JSON
-     * string.
+     * Name and value pairs that define the managed application parameters. It can be a JObject or a well formed JSON string.
      */
     @JsonProperty(value = "parameters")
     private Object parameters;
@@ -111,13 +112,15 @@ public final class ApplicationProperties {
     @JsonProperty(value = "updatedBy", access = JsonProperty.Access.WRITE_ONLY)
     private ApplicationClientDetails updatedBy;
 
-    /** Creates an instance of ApplicationProperties class. */
+    /**
+     * Creates an instance of ApplicationProperties class.
+     */
     public ApplicationProperties() {
     }
 
     /**
      * Get the managedResourceGroupId property: The managed resource group Id.
-     *
+     * 
      * @return the managedResourceGroupId value.
      */
     public String managedResourceGroupId() {
@@ -126,7 +129,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the managedResourceGroupId property: The managed resource group Id.
-     *
+     * 
      * @param managedResourceGroupId the managedResourceGroupId value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -137,7 +140,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the applicationDefinitionId property: The fully qualified path of managed application definition Id.
-     *
+     * 
      * @return the applicationDefinitionId value.
      */
     public String applicationDefinitionId() {
@@ -146,7 +149,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the applicationDefinitionId property: The fully qualified path of managed application definition Id.
-     *
+     * 
      * @param applicationDefinitionId the applicationDefinitionId value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -158,7 +161,7 @@ public final class ApplicationProperties {
     /**
      * Get the parameters property: Name and value pairs that define the managed application parameters. It can be a
      * JObject or a well formed JSON string.
-     *
+     * 
      * @return the parameters value.
      */
     public Object parameters() {
@@ -168,7 +171,7 @@ public final class ApplicationProperties {
     /**
      * Set the parameters property: Name and value pairs that define the managed application parameters. It can be a
      * JObject or a well formed JSON string.
-     *
+     * 
      * @param parameters the parameters value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -179,7 +182,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the outputs property: Name and value pairs that define the managed application outputs.
-     *
+     * 
      * @return the outputs value.
      */
     public Object outputs() {
@@ -188,7 +191,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the provisioningState property: The managed application provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -197,7 +200,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the billingDetails property: The managed application billing details.
-     *
+     * 
      * @return the billingDetails value.
      */
     public ApplicationBillingDetailsDefinition billingDetails() {
@@ -206,7 +209,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the jitAccessPolicy property: The managed application Jit access policy.
-     *
+     * 
      * @return the jitAccessPolicy value.
      */
     public ApplicationJitAccessPolicy jitAccessPolicy() {
@@ -215,7 +218,7 @@ public final class ApplicationProperties {
 
     /**
      * Set the jitAccessPolicy property: The managed application Jit access policy.
-     *
+     * 
      * @param jitAccessPolicy the jitAccessPolicy value to set.
      * @return the ApplicationProperties object itself.
      */
@@ -226,7 +229,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the publisherTenantId property: The publisher tenant Id.
-     *
+     * 
      * @return the publisherTenantId value.
      */
     public String publisherTenantId() {
@@ -236,7 +239,7 @@ public final class ApplicationProperties {
     /**
      * Get the authorizations property: The read-only authorizations property that is retrieved from the application
      * package.
-     *
+     * 
      * @return the authorizations value.
      */
     public List<ApplicationAuthorization> authorizations() {
@@ -245,7 +248,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the managementMode property: The managed application management mode.
-     *
+     * 
      * @return the managementMode value.
      */
     public ApplicationManagementMode managementMode() {
@@ -255,7 +258,7 @@ public final class ApplicationProperties {
     /**
      * Get the customerSupport property: The read-only customer support property that is retrieved from the application
      * package.
-     *
+     * 
      * @return the customerSupport value.
      */
     public ApplicationPackageContact customerSupport() {
@@ -264,7 +267,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the supportUrls property: The read-only support URLs property that is retrieved from the application package.
-     *
+     * 
      * @return the supportUrls value.
      */
     public ApplicationPackageSupportUrls supportUrls() {
@@ -273,7 +276,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the artifacts property: The collection of managed application artifacts.
-     *
+     * 
      * @return the artifacts value.
      */
     public List<ApplicationArtifact> artifacts() {
@@ -282,7 +285,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the createdBy property: The client entity that created the JIT request.
-     *
+     * 
      * @return the createdBy value.
      */
     public ApplicationClientDetails createdBy() {
@@ -291,7 +294,7 @@ public final class ApplicationProperties {
 
     /**
      * Get the updatedBy property: The client entity that last updated the JIT request.
-     *
+     * 
      * @return the updatedBy value.
      */
     public ApplicationClientDetails updatedBy() {
@@ -300,7 +303,7 @@ public final class ApplicationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

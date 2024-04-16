@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Managed application locking policy. */
+/**
+ * Managed application locking policy.
+ */
 @Fluent
 public final class ApplicationPackageLockingPolicyDefinition {
     /*
@@ -23,13 +25,15 @@ public final class ApplicationPackageLockingPolicyDefinition {
     @JsonProperty(value = "allowedDataActions")
     private List<String> allowedDataActions;
 
-    /** Creates an instance of ApplicationPackageLockingPolicyDefinition class. */
+    /**
+     * Creates an instance of ApplicationPackageLockingPolicyDefinition class.
+     */
     public ApplicationPackageLockingPolicyDefinition() {
     }
 
     /**
      * Get the allowedActions property: The deny assignment excluded actions.
-     *
+     * 
      * @return the allowedActions value.
      */
     public List<String> allowedActions() {
@@ -38,7 +42,7 @@ public final class ApplicationPackageLockingPolicyDefinition {
 
     /**
      * Set the allowedActions property: The deny assignment excluded actions.
-     *
+     * 
      * @param allowedActions the allowedActions value to set.
      * @return the ApplicationPackageLockingPolicyDefinition object itself.
      */
@@ -49,7 +53,7 @@ public final class ApplicationPackageLockingPolicyDefinition {
 
     /**
      * Get the allowedDataActions property: The deny assignment excluded data actions.
-     *
+     * 
      * @return the allowedDataActions value.
      */
     public List<String> allowedDataActions() {
@@ -58,7 +62,7 @@ public final class ApplicationPackageLockingPolicyDefinition {
 
     /**
      * Set the allowedDataActions property: The deny assignment excluded data actions.
-     *
+     * 
      * @param allowedDataActions the allowedDataActions value to set.
      * @return the ApplicationPackageLockingPolicyDefinition object itself.
      */
@@ -69,7 +73,7 @@ public final class ApplicationPackageLockingPolicyDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

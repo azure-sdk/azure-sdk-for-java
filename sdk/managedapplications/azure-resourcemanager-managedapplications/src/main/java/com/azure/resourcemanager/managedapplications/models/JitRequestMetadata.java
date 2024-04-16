@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managedapplications.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The JIT request metadata. */
+/**
+ * The JIT request metadata.
+ */
 @Fluent
 public final class JitRequestMetadata {
     /*
@@ -34,13 +36,15 @@ public final class JitRequestMetadata {
     @JsonProperty(value = "subjectDisplayName")
     private String subjectDisplayName;
 
-    /** Creates an instance of JitRequestMetadata class. */
+    /**
+     * Creates an instance of JitRequestMetadata class.
+     */
     public JitRequestMetadata() {
     }
 
     /**
      * Get the originRequestId property: The origin request id.
-     *
+     * 
      * @return the originRequestId value.
      */
     public String originRequestId() {
@@ -49,7 +53,7 @@ public final class JitRequestMetadata {
 
     /**
      * Set the originRequestId property: The origin request id.
-     *
+     * 
      * @param originRequestId the originRequestId value to set.
      * @return the JitRequestMetadata object itself.
      */
@@ -60,7 +64,7 @@ public final class JitRequestMetadata {
 
     /**
      * Get the requestorId property: The requestor id.
-     *
+     * 
      * @return the requestorId value.
      */
     public String requestorId() {
@@ -69,7 +73,7 @@ public final class JitRequestMetadata {
 
     /**
      * Set the requestorId property: The requestor id.
-     *
+     * 
      * @param requestorId the requestorId value to set.
      * @return the JitRequestMetadata object itself.
      */
@@ -80,7 +84,7 @@ public final class JitRequestMetadata {
 
     /**
      * Get the tenantDisplayName property: The publisher's tenant name.
-     *
+     * 
      * @return the tenantDisplayName value.
      */
     public String tenantDisplayName() {
@@ -89,7 +93,7 @@ public final class JitRequestMetadata {
 
     /**
      * Set the tenantDisplayName property: The publisher's tenant name.
-     *
+     * 
      * @param tenantDisplayName the tenantDisplayName value to set.
      * @return the JitRequestMetadata object itself.
      */
@@ -100,7 +104,7 @@ public final class JitRequestMetadata {
 
     /**
      * Get the subjectDisplayName property: The subject display name.
-     *
+     * 
      * @return the subjectDisplayName value.
      */
     public String subjectDisplayName() {
@@ -109,7 +113,7 @@ public final class JitRequestMetadata {
 
     /**
      * Set the subjectDisplayName property: The subject display name.
-     *
+     * 
      * @param subjectDisplayName the subjectDisplayName value to set.
      * @return the JitRequestMetadata object itself.
      */
@@ -120,7 +124,7 @@ public final class JitRequestMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
