@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The properties of a change. */
+/**
+ * The properties of a change.
+ */
 @Fluent
 public final class ChangeProperties {
     /*
@@ -43,13 +45,15 @@ public final class ChangeProperties {
     @JsonProperty(value = "propertyChanges")
     private List<PropertyChange> propertyChanges;
 
-    /** Creates an instance of ChangeProperties class. */
+    /**
+     * Creates an instance of ChangeProperties class.
+     */
     public ChangeProperties() {
     }
 
     /**
      * Get the resourceId property: The resource id that the change is attached to.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -58,7 +62,7 @@ public final class ChangeProperties {
 
     /**
      * Set the resourceId property: The resource id that the change is attached to.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the ChangeProperties object itself.
      */
@@ -69,7 +73,7 @@ public final class ChangeProperties {
 
     /**
      * Get the timestamp property: The time when the change is detected.
-     *
+     * 
      * @return the timestamp value.
      */
     public OffsetDateTime timestamp() {
@@ -78,7 +82,7 @@ public final class ChangeProperties {
 
     /**
      * Set the timestamp property: The time when the change is detected.
-     *
+     * 
      * @param timestamp the timestamp value to set.
      * @return the ChangeProperties object itself.
      */
@@ -88,9 +92,9 @@ public final class ChangeProperties {
     }
 
     /**
-     * Get the initiatedByList property: The list of identities who might initiated the change. The identity could be
-     * user name (email address) or the object ID of the Service Principal.
-     *
+     * Get the initiatedByList property: The list of identities who might initiated the change.
+     * The identity could be user name (email address) or the object ID of the Service Principal.
+     * 
      * @return the initiatedByList value.
      */
     public List<String> initiatedByList() {
@@ -98,9 +102,9 @@ public final class ChangeProperties {
     }
 
     /**
-     * Set the initiatedByList property: The list of identities who might initiated the change. The identity could be
-     * user name (email address) or the object ID of the Service Principal.
-     *
+     * Set the initiatedByList property: The list of identities who might initiated the change.
+     * The identity could be user name (email address) or the object ID of the Service Principal.
+     * 
      * @param initiatedByList the initiatedByList value to set.
      * @return the ChangeProperties object itself.
      */
@@ -111,7 +115,7 @@ public final class ChangeProperties {
 
     /**
      * Get the changeType property: The type of the change.
-     *
+     * 
      * @return the changeType value.
      */
     public ChangeType changeType() {
@@ -120,7 +124,7 @@ public final class ChangeProperties {
 
     /**
      * Set the changeType property: The type of the change.
-     *
+     * 
      * @param changeType the changeType value to set.
      * @return the ChangeProperties object itself.
      */
@@ -131,7 +135,7 @@ public final class ChangeProperties {
 
     /**
      * Get the propertyChanges property: The list of detailed changes at json property level.
-     *
+     * 
      * @return the propertyChanges value.
      */
     public List<PropertyChange> propertyChanges() {
@@ -140,7 +144,7 @@ public final class ChangeProperties {
 
     /**
      * Set the propertyChanges property: The list of detailed changes at json property level.
-     *
+     * 
      * @param propertyChanges the propertyChanges value to set.
      * @return the ChangeProperties object itself.
      */
@@ -151,7 +155,7 @@ public final class ChangeProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
