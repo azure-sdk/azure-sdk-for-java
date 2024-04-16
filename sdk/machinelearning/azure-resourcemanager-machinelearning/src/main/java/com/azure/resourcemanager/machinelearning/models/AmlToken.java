@@ -5,21 +5,44 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** AML Token identity configuration. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "identityType")
+/**
+ * AML Token identity configuration.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "identityType", defaultImpl = AmlToken.class, visible = true)
 @JsonTypeName("AMLToken")
 @Immutable
 public final class AmlToken extends IdentityConfiguration {
-    /** Creates an instance of AmlToken class. */
+    /*
+     * [Required] Specifies the type of identity framework.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "identityType", required = true)
+    private IdentityConfigurationType identityType = IdentityConfigurationType.AMLTOKEN;
+
+    /**
+     * Creates an instance of AmlToken class.
+     */
     public AmlToken() {
     }
 
     /**
+     * Get the identityType property: [Required] Specifies the type of identity framework.
+     * 
+     * @return the identityType value.
+     */
+    @Override
+    public IdentityConfigurationType identityType() {
+        return this.identityType;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

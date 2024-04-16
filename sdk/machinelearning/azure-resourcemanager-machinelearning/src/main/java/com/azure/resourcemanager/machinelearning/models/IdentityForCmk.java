@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Identity that will be used to access key vault for encryption at rest. */
+/**
+ * Identity that will be used to access key vault for encryption at rest.
+ */
 @Fluent
 public final class IdentityForCmk {
     /*
@@ -16,14 +18,16 @@ public final class IdentityForCmk {
     @JsonProperty(value = "userAssignedIdentity")
     private String userAssignedIdentity;
 
-    /** Creates an instance of IdentityForCmk class. */
+    /**
+     * Creates an instance of IdentityForCmk class.
+     */
     public IdentityForCmk() {
     }
 
     /**
      * Get the userAssignedIdentity property: The ArmId of the user assigned identity that will be used to access the
      * customer managed key vault.
-     *
+     * 
      * @return the userAssignedIdentity value.
      */
     public String userAssignedIdentity() {
@@ -33,7 +37,7 @@ public final class IdentityForCmk {
     /**
      * Set the userAssignedIdentity property: The ArmId of the user assigned identity that will be used to access the
      * customer managed key vault.
-     *
+     * 
      * @param userAssignedIdentity the userAssignedIdentity value to set.
      * @return the IdentityForCmk object itself.
      */
@@ -44,7 +48,7 @@ public final class IdentityForCmk {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

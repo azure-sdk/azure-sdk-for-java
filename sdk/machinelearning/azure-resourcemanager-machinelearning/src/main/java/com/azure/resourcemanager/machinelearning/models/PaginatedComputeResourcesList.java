@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ComputeResourceIn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Paginated list of Machine Learning compute objects wrapped in ARM resource envelope. */
+/**
+ * Paginated list of Machine Learning compute objects wrapped in ARM resource envelope.
+ */
 @Fluent
 public final class PaginatedComputeResourcesList {
     /*
@@ -24,13 +26,15 @@ public final class PaginatedComputeResourcesList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of PaginatedComputeResourcesList class. */
+    /**
+     * Creates an instance of PaginatedComputeResourcesList class.
+     */
     public PaginatedComputeResourcesList() {
     }
 
     /**
      * Get the value property: An array of Machine Learning compute objects wrapped in ARM resource envelope.
-     *
+     * 
      * @return the value value.
      */
     public List<ComputeResourceInner> value() {
@@ -39,7 +43,7 @@ public final class PaginatedComputeResourcesList {
 
     /**
      * Set the value property: An array of Machine Learning compute objects wrapped in ARM resource envelope.
-     *
+     * 
      * @param value the value value to set.
      * @return the PaginatedComputeResourcesList object itself.
      */
@@ -50,7 +54,7 @@ public final class PaginatedComputeResourcesList {
 
     /**
      * Get the nextLink property: A continuation link (absolute URI) to the next page of results in the list.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class PaginatedComputeResourcesList {
 
     /**
      * Set the nextLink property: A continuation link (absolute URI) to the next page of results in the list.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the PaginatedComputeResourcesList object itself.
      */
@@ -70,7 +74,7 @@ public final class PaginatedComputeResourcesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

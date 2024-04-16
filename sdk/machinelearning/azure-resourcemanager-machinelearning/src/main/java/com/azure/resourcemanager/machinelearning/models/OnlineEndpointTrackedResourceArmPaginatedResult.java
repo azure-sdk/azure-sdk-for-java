@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.OnlineEndpointInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of OnlineEndpoint entities. */
+/**
+ * A paginated list of OnlineEndpoint entities.
+ */
 @Fluent
 public final class OnlineEndpointTrackedResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class OnlineEndpointTrackedResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<OnlineEndpointInner> value;
 
-    /** Creates an instance of OnlineEndpointTrackedResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of OnlineEndpointTrackedResourceArmPaginatedResult class.
+     */
     public OnlineEndpointTrackedResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of OnlineEndpoint objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class OnlineEndpointTrackedResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of OnlineEndpoint objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the OnlineEndpointTrackedResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class OnlineEndpointTrackedResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type OnlineEndpoint.
-     *
+     * 
      * @return the value value.
      */
     public List<OnlineEndpointInner> value() {
@@ -61,7 +65,7 @@ public final class OnlineEndpointTrackedResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type OnlineEndpoint.
-     *
+     * 
      * @param value the value value to set.
      * @return the OnlineEndpointTrackedResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class OnlineEndpointTrackedResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

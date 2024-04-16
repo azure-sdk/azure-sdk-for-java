@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines an Aml Instance container. */
+/**
+ * Defines an Aml Instance container.
+ */
 @Fluent
 public final class ComputeInstanceContainer {
     /*
@@ -47,13 +49,15 @@ public final class ComputeInstanceContainer {
     @JsonProperty(value = "services", access = JsonProperty.Access.WRITE_ONLY)
     private List<Object> services;
 
-    /** Creates an instance of ComputeInstanceContainer class. */
+    /**
+     * Creates an instance of ComputeInstanceContainer class.
+     */
     public ComputeInstanceContainer() {
     }
 
     /**
      * Get the name property: Name of the ComputeInstance container.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -62,7 +66,7 @@ public final class ComputeInstanceContainer {
 
     /**
      * Set the name property: Name of the ComputeInstance container.
-     *
+     * 
      * @param name the name value to set.
      * @return the ComputeInstanceContainer object itself.
      */
@@ -73,7 +77,7 @@ public final class ComputeInstanceContainer {
 
     /**
      * Get the autosave property: Auto save settings.
-     *
+     * 
      * @return the autosave value.
      */
     public Autosave autosave() {
@@ -82,7 +86,7 @@ public final class ComputeInstanceContainer {
 
     /**
      * Set the autosave property: Auto save settings.
-     *
+     * 
      * @param autosave the autosave value to set.
      * @return the ComputeInstanceContainer object itself.
      */
@@ -93,7 +97,7 @@ public final class ComputeInstanceContainer {
 
     /**
      * Get the gpu property: Information of GPU.
-     *
+     * 
      * @return the gpu value.
      */
     public String gpu() {
@@ -102,7 +106,7 @@ public final class ComputeInstanceContainer {
 
     /**
      * Set the gpu property: Information of GPU.
-     *
+     * 
      * @param gpu the gpu value to set.
      * @return the ComputeInstanceContainer object itself.
      */
@@ -113,7 +117,7 @@ public final class ComputeInstanceContainer {
 
     /**
      * Get the network property: network of this container.
-     *
+     * 
      * @return the network value.
      */
     public Network network() {
@@ -122,7 +126,7 @@ public final class ComputeInstanceContainer {
 
     /**
      * Set the network property: network of this container.
-     *
+     * 
      * @param network the network value to set.
      * @return the ComputeInstanceContainer object itself.
      */
@@ -133,7 +137,7 @@ public final class ComputeInstanceContainer {
 
     /**
      * Get the environment property: Environment information of this container.
-     *
+     * 
      * @return the environment value.
      */
     public ComputeInstanceEnvironmentInfo environment() {
@@ -142,7 +146,7 @@ public final class ComputeInstanceContainer {
 
     /**
      * Set the environment property: Environment information of this container.
-     *
+     * 
      * @param environment the environment value to set.
      * @return the ComputeInstanceContainer object itself.
      */
@@ -153,7 +157,7 @@ public final class ComputeInstanceContainer {
 
     /**
      * Get the services property: services of this containers.
-     *
+     * 
      * @return the services value.
      */
     public List<Object> services() {
@@ -162,7 +166,7 @@ public final class ComputeInstanceContainer {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

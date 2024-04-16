@@ -7,27 +7,53 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Account key datastore credentials configuration. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "credentialsType")
+/**
+ * Account key datastore credentials configuration.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "credentialsType",
+    defaultImpl = AccountKeyDatastoreCredentials.class,
+    visible = true)
 @JsonTypeName("AccountKey")
 @Fluent
 public final class AccountKeyDatastoreCredentials extends DatastoreCredentials {
     /*
+     * [Required] Credential type used to authentication with storage.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "credentialsType", required = true)
+    private CredentialsType credentialsType = CredentialsType.ACCOUNT_KEY;
+
+    /*
      * [Required] Storage account secrets.
      */
-    @JsonProperty(value = "secrets", required = true)
+    @JsonProperty(value = "secrets")
     private AccountKeyDatastoreSecrets secrets;
 
-    /** Creates an instance of AccountKeyDatastoreCredentials class. */
+    /**
+     * Creates an instance of AccountKeyDatastoreCredentials class.
+     */
     public AccountKeyDatastoreCredentials() {
     }
 
     /**
+     * Get the credentialsType property: [Required] Credential type used to authentication with storage.
+     * 
+     * @return the credentialsType value.
+     */
+    @Override
+    public CredentialsType credentialsType() {
+        return this.credentialsType;
+    }
+
+    /**
      * Get the secrets property: [Required] Storage account secrets.
-     *
+     * 
      * @return the secrets value.
      */
     public AccountKeyDatastoreSecrets secrets() {
@@ -36,7 +62,7 @@ public final class AccountKeyDatastoreCredentials extends DatastoreCredentials {
 
     /**
      * Set the secrets property: [Required] Storage account secrets.
-     *
+     * 
      * @param secrets the secrets value to set.
      * @return the AccountKeyDatastoreCredentials object itself.
      */
@@ -47,17 +73,16 @@ public final class AccountKeyDatastoreCredentials extends DatastoreCredentials {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (secrets() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property secrets in model AccountKeyDatastoreCredentials"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property secrets in model AccountKeyDatastoreCredentials"));
         } else {
             secrets().validate();
         }
