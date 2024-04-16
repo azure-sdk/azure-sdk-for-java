@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 
-/** Information about payment related to a savings plan order. */
+/**
+ * Information about payment related to a savings plan order.
+ */
 @Fluent
 public final class PaymentDetail {
     /*
@@ -53,13 +55,15 @@ public final class PaymentDetail {
     @JsonProperty(value = "billingAccount")
     private String billingAccount;
 
-    /** Creates an instance of PaymentDetail class. */
+    /**
+     * Creates an instance of PaymentDetail class.
+     */
     public PaymentDetail() {
     }
 
     /**
      * Get the dueDate property: Date when the payment needs to be done.
-     *
+     * 
      * @return the dueDate value.
      */
     public LocalDate dueDate() {
@@ -68,7 +72,7 @@ public final class PaymentDetail {
 
     /**
      * Set the dueDate property: Date when the payment needs to be done.
-     *
+     * 
      * @param dueDate the dueDate value to set.
      * @return the PaymentDetail object itself.
      */
@@ -79,7 +83,7 @@ public final class PaymentDetail {
 
     /**
      * Get the paymentDate property: Date when the transaction is completed. Is null when it is scheduled.
-     *
+     * 
      * @return the paymentDate value.
      */
     public LocalDate paymentDate() {
@@ -88,7 +92,7 @@ public final class PaymentDetail {
 
     /**
      * Set the paymentDate property: Date when the transaction is completed. Is null when it is scheduled.
-     *
+     * 
      * @param paymentDate the paymentDate value to set.
      * @return the PaymentDetail object itself.
      */
@@ -99,7 +103,7 @@ public final class PaymentDetail {
 
     /**
      * Get the pricingCurrencyTotal property: Amount in pricing currency. Tax not included.
-     *
+     * 
      * @return the pricingCurrencyTotal value.
      */
     public Price pricingCurrencyTotal() {
@@ -108,7 +112,7 @@ public final class PaymentDetail {
 
     /**
      * Set the pricingCurrencyTotal property: Amount in pricing currency. Tax not included.
-     *
+     * 
      * @param pricingCurrencyTotal the pricingCurrencyTotal value to set.
      * @return the PaymentDetail object itself.
      */
@@ -120,7 +124,7 @@ public final class PaymentDetail {
     /**
      * Get the billingCurrencyTotal property: Amount charged in Billing currency. Tax not included. Is null for future
      * payments.
-     *
+     * 
      * @return the billingCurrencyTotal value.
      */
     public Price billingCurrencyTotal() {
@@ -130,7 +134,7 @@ public final class PaymentDetail {
     /**
      * Set the billingCurrencyTotal property: Amount charged in Billing currency. Tax not included. Is null for future
      * payments.
-     *
+     * 
      * @param billingCurrencyTotal the billingCurrencyTotal value to set.
      * @return the PaymentDetail object itself.
      */
@@ -142,7 +146,7 @@ public final class PaymentDetail {
     /**
      * Get the status property: Describes whether the payment is completed, failed, cancelled or scheduled in the
      * future.
-     *
+     * 
      * @return the status value.
      */
     public PaymentStatus status() {
@@ -152,7 +156,7 @@ public final class PaymentDetail {
     /**
      * Set the status property: Describes whether the payment is completed, failed, cancelled or scheduled in the
      * future.
-     *
+     * 
      * @param status the status value to set.
      * @return the PaymentDetail object itself.
      */
@@ -163,7 +167,7 @@ public final class PaymentDetail {
 
     /**
      * Get the extendedStatusInfo property: The extendedStatusInfo property.
-     *
+     * 
      * @return the extendedStatusInfo value.
      */
     public ExtendedStatusInfo extendedStatusInfo() {
@@ -172,7 +176,7 @@ public final class PaymentDetail {
 
     /**
      * Get the billingAccount property: Billing account.
-     *
+     * 
      * @return the billingAccount value.
      */
     public String billingAccount() {
@@ -181,7 +185,7 @@ public final class PaymentDetail {
 
     /**
      * Set the billingAccount property: Billing account.
-     *
+     * 
      * @param billingAccount the billingAccount value to set.
      * @return the PaymentDetail object itself.
      */
@@ -192,7 +196,7 @@ public final class PaymentDetail {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

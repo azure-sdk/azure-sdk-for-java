@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The SavingsPlanUpdateValidateRequest model. */
+/**
+ * The SavingsPlanUpdateValidateRequest model.
+ */
 @Fluent
 public final class SavingsPlanUpdateValidateRequest {
     /*
@@ -17,13 +19,15 @@ public final class SavingsPlanUpdateValidateRequest {
     @JsonProperty(value = "benefits")
     private List<SavingsPlanUpdateRequestProperties> benefits;
 
-    /** Creates an instance of SavingsPlanUpdateValidateRequest class. */
+    /**
+     * Creates an instance of SavingsPlanUpdateValidateRequest class.
+     */
     public SavingsPlanUpdateValidateRequest() {
     }
 
     /**
      * Get the benefits property: The benefits property.
-     *
+     * 
      * @return the benefits value.
      */
     public List<SavingsPlanUpdateRequestProperties> benefits() {
@@ -32,7 +36,7 @@ public final class SavingsPlanUpdateValidateRequest {
 
     /**
      * Set the benefits property: The benefits property.
-     *
+     * 
      * @param benefits the benefits value to set.
      * @return the SavingsPlanUpdateValidateRequest object itself.
      */
@@ -43,7 +47,7 @@ public final class SavingsPlanUpdateValidateRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

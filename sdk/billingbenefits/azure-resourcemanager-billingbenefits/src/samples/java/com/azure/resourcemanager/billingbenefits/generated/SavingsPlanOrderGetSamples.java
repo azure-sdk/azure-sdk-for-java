@@ -4,19 +4,20 @@
 
 package com.azure.resourcemanager.billingbenefits.generated;
 
-/** Samples for SavingsPlanOrder Get. */
+/**
+ * Samples for SavingsPlanOrder Get.
+ */
 public final class SavingsPlanOrderGetSamples {
     /*
      * x-ms-original-file: specification/billingbenefits/resource-manager/Microsoft.BillingBenefits/stable/2022-11-01/examples/SavingsPlanOrderGet.json
      */
     /**
      * Sample code: SavingsPlanOrderGet.
-     *
+     * 
      * @param manager Entry point to BillingBenefitsManager.
      */
     public static void savingsPlanOrderGet(com.azure.resourcemanager.billingbenefits.BillingBenefitsManager manager) {
-        manager
-            .savingsPlanOrders()
+        manager.savingsPlanOrders()
             .getWithResponse("20000000-0000-0000-0000-000000000000", null, com.azure.core.util.Context.NONE);
     }
 
@@ -25,13 +26,12 @@ public final class SavingsPlanOrderGetSamples {
      */
     /**
      * Sample code: SavingsPlanOrderWithExpandedPaymentsGet.
-     *
+     * 
      * @param manager Entry point to BillingBenefitsManager.
      */
     public static void savingsPlanOrderWithExpandedPaymentsGet(
         com.azure.resourcemanager.billingbenefits.BillingBenefitsManager manager) {
-        manager
-            .savingsPlanOrders()
+        manager.savingsPlanOrders()
             .getWithResponse("20000000-0000-0000-0000-000000000000", "schedule", com.azure.core.util.Context.NONE);
     }
 }

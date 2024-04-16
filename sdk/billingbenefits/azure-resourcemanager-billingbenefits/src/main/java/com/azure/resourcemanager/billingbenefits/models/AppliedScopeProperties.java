@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties specific to applied scope type. Not required if not applicable. */
+/**
+ * Properties specific to applied scope type. Not required if not applicable.
+ */
 @Fluent
 public final class AppliedScopeProperties {
     /*
@@ -40,13 +42,15 @@ public final class AppliedScopeProperties {
     @JsonProperty(value = "displayName")
     private String displayName;
 
-    /** Creates an instance of AppliedScopeProperties class. */
+    /**
+     * Creates an instance of AppliedScopeProperties class.
+     */
     public AppliedScopeProperties() {
     }
 
     /**
      * Get the tenantId property: Tenant ID where the benefit is applied.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -55,7 +59,7 @@ public final class AppliedScopeProperties {
 
     /**
      * Set the tenantId property: Tenant ID where the benefit is applied.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the AppliedScopeProperties object itself.
      */
@@ -67,7 +71,7 @@ public final class AppliedScopeProperties {
     /**
      * Get the managementGroupId property: Fully-qualified identifier of the management group where the benefit must be
      * applied.
-     *
+     * 
      * @return the managementGroupId value.
      */
     public String managementGroupId() {
@@ -77,7 +81,7 @@ public final class AppliedScopeProperties {
     /**
      * Set the managementGroupId property: Fully-qualified identifier of the management group where the benefit must be
      * applied.
-     *
+     * 
      * @param managementGroupId the managementGroupId value to set.
      * @return the AppliedScopeProperties object itself.
      */
@@ -88,7 +92,7 @@ public final class AppliedScopeProperties {
 
     /**
      * Get the subscriptionId property: Fully-qualified identifier of the subscription.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -97,7 +101,7 @@ public final class AppliedScopeProperties {
 
     /**
      * Set the subscriptionId property: Fully-qualified identifier of the subscription.
-     *
+     * 
      * @param subscriptionId the subscriptionId value to set.
      * @return the AppliedScopeProperties object itself.
      */
@@ -108,7 +112,7 @@ public final class AppliedScopeProperties {
 
     /**
      * Get the resourceGroupId property: Fully-qualified identifier of the resource group.
-     *
+     * 
      * @return the resourceGroupId value.
      */
     public String resourceGroupId() {
@@ -117,7 +121,7 @@ public final class AppliedScopeProperties {
 
     /**
      * Set the resourceGroupId property: Fully-qualified identifier of the resource group.
-     *
+     * 
      * @param resourceGroupId the resourceGroupId value to set.
      * @return the AppliedScopeProperties object itself.
      */
@@ -128,7 +132,7 @@ public final class AppliedScopeProperties {
 
     /**
      * Get the displayName property: Display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -137,7 +141,7 @@ public final class AppliedScopeProperties {
 
     /**
      * Set the displayName property: Display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the AppliedScopeProperties object itself.
      */
@@ -148,7 +152,7 @@ public final class AppliedScopeProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

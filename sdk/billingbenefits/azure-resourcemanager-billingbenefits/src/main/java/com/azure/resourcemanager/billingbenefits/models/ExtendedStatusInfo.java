@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ExtendedStatusInfo model. */
+/**
+ * The ExtendedStatusInfo model.
+ */
 @Fluent
 public final class ExtendedStatusInfo {
     /*
@@ -22,13 +24,15 @@ public final class ExtendedStatusInfo {
     @JsonProperty(value = "message")
     private String message;
 
-    /** Creates an instance of ExtendedStatusInfo class. */
+    /**
+     * Creates an instance of ExtendedStatusInfo class.
+     */
     public ExtendedStatusInfo() {
     }
 
     /**
      * Get the statusCode property: Status code providing additional information.
-     *
+     * 
      * @return the statusCode value.
      */
     public String statusCode() {
@@ -37,7 +41,7 @@ public final class ExtendedStatusInfo {
 
     /**
      * Set the statusCode property: Status code providing additional information.
-     *
+     * 
      * @param statusCode the statusCode value to set.
      * @return the ExtendedStatusInfo object itself.
      */
@@ -48,7 +52,7 @@ public final class ExtendedStatusInfo {
 
     /**
      * Get the message property: The message giving detailed information about the status code.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -57,7 +61,7 @@ public final class ExtendedStatusInfo {
 
     /**
      * Set the message property: The message giving detailed information about the status code.
-     *
+     * 
      * @param message the message value to set.
      * @return the ExtendedStatusInfo object itself.
      */
@@ -68,7 +72,7 @@ public final class ExtendedStatusInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

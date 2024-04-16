@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The RenewProperties model. */
+/**
+ * The RenewProperties model.
+ */
 @Fluent
 public final class RenewProperties {
     /*
@@ -16,13 +18,15 @@ public final class RenewProperties {
     @JsonProperty(value = "purchaseProperties")
     private PurchaseRequest purchaseProperties;
 
-    /** Creates an instance of RenewProperties class. */
+    /**
+     * Creates an instance of RenewProperties class.
+     */
     public RenewProperties() {
     }
 
     /**
      * Get the purchaseProperties property: The purchaseProperties property.
-     *
+     * 
      * @return the purchaseProperties value.
      */
     public PurchaseRequest purchaseProperties() {
@@ -31,7 +35,7 @@ public final class RenewProperties {
 
     /**
      * Set the purchaseProperties property: The purchaseProperties property.
-     *
+     * 
      * @param purchaseProperties the purchaseProperties value to set.
      * @return the RenewProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class RenewProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Savings plan utilization. */
+/**
+ * Savings plan utilization.
+ */
 @Fluent
 public final class Utilization {
     /*
@@ -23,13 +25,15 @@ public final class Utilization {
     @JsonProperty(value = "aggregates")
     private List<UtilizationAggregates> aggregates;
 
-    /** Creates an instance of Utilization class. */
+    /**
+     * Creates an instance of Utilization class.
+     */
     public Utilization() {
     }
 
     /**
      * Get the trend property: The number of days trend for a savings plan.
-     *
+     * 
      * @return the trend value.
      */
     public String trend() {
@@ -38,7 +42,7 @@ public final class Utilization {
 
     /**
      * Get the aggregates property: The array of aggregates of a savings plan's utilization.
-     *
+     * 
      * @return the aggregates value.
      */
     public List<UtilizationAggregates> aggregates() {
@@ -47,7 +51,7 @@ public final class Utilization {
 
     /**
      * Set the aggregates property: The array of aggregates of a savings plan's utilization.
-     *
+     * 
      * @param aggregates the aggregates value to set.
      * @return the Utilization object itself.
      */
@@ -58,7 +62,7 @@ public final class Utilization {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

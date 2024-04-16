@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.billingbenefits.implementation;
 
 import com.azure.resourcemanager.billingbenefits.fluent.models.SavingsPlanValidateResponseInner;
-import com.azure.resourcemanager.billingbenefits.models.SavingsPlanValidResponseProperty;
 import com.azure.resourcemanager.billingbenefits.models.SavingsPlanValidateResponse;
+import com.azure.resourcemanager.billingbenefits.models.SavingsPlanValidResponseProperty;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,8 +15,7 @@ public final class SavingsPlanValidateResponseImpl implements SavingsPlanValidat
 
     private final com.azure.resourcemanager.billingbenefits.BillingBenefitsManager serviceManager;
 
-    SavingsPlanValidateResponseImpl(
-        SavingsPlanValidateResponseInner innerObject,
+    SavingsPlanValidateResponseImpl(SavingsPlanValidateResponseInner innerObject,
         com.azure.resourcemanager.billingbenefits.BillingBenefitsManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;

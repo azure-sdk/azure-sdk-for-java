@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Role assignment entity. */
+/**
+ * Role assignment entity.
+ */
 @Fluent
 public final class RoleAssignmentEntityInner {
     /*
@@ -28,13 +30,15 @@ public final class RoleAssignmentEntityInner {
     @JsonProperty(value = "properties")
     private RoleAssignmentEntityProperties innerProperties;
 
-    /** Creates an instance of RoleAssignmentEntityInner class. */
+    /**
+     * Creates an instance of RoleAssignmentEntityInner class.
+     */
     public RoleAssignmentEntityInner() {
     }
 
     /**
      * Get the id property: Role assignment entity id.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -43,7 +47,7 @@ public final class RoleAssignmentEntityInner {
 
     /**
      * Set the id property: Role assignment entity id.
-     *
+     * 
      * @param id the id value to set.
      * @return the RoleAssignmentEntityInner object itself.
      */
@@ -54,7 +58,7 @@ public final class RoleAssignmentEntityInner {
 
     /**
      * Get the name property: Role assignment entity name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -63,7 +67,7 @@ public final class RoleAssignmentEntityInner {
 
     /**
      * Set the name property: Role assignment entity name.
-     *
+     * 
      * @param name the name value to set.
      * @return the RoleAssignmentEntityInner object itself.
      */
@@ -74,7 +78,7 @@ public final class RoleAssignmentEntityInner {
 
     /**
      * Get the innerProperties property: Role assignment entity properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private RoleAssignmentEntityProperties innerProperties() {
@@ -83,7 +87,7 @@ public final class RoleAssignmentEntityInner {
 
     /**
      * Get the principalId property: Principal Id.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -92,7 +96,7 @@ public final class RoleAssignmentEntityInner {
 
     /**
      * Set the principalId property: Principal Id.
-     *
+     * 
      * @param principalId the principalId value to set.
      * @return the RoleAssignmentEntityInner object itself.
      */
@@ -106,7 +110,7 @@ public final class RoleAssignmentEntityInner {
 
     /**
      * Get the roleDefinitionId property: Role definition id.
-     *
+     * 
      * @return the roleDefinitionId value.
      */
     public String roleDefinitionId() {
@@ -115,7 +119,7 @@ public final class RoleAssignmentEntityInner {
 
     /**
      * Set the roleDefinitionId property: Role definition id.
-     *
+     * 
      * @param roleDefinitionId the roleDefinitionId value to set.
      * @return the RoleAssignmentEntityInner object itself.
      */
@@ -129,7 +133,7 @@ public final class RoleAssignmentEntityInner {
 
     /**
      * Get the scope property: Scope of the role assignment entity.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -138,7 +142,7 @@ public final class RoleAssignmentEntityInner {
 
     /**
      * Set the scope property: Scope of the role assignment entity.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the RoleAssignmentEntityInner object itself.
      */
@@ -152,7 +156,7 @@ public final class RoleAssignmentEntityInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

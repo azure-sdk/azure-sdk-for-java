@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Benefit scope response property. */
+/**
+ * Benefit scope response property.
+ */
 @Fluent
 public final class SavingsPlanValidResponseProperty {
     /*
@@ -28,13 +30,15 @@ public final class SavingsPlanValidResponseProperty {
     @JsonProperty(value = "reason")
     private String reason;
 
-    /** Creates an instance of SavingsPlanValidResponseProperty class. */
+    /**
+     * Creates an instance of SavingsPlanValidResponseProperty class.
+     */
     public SavingsPlanValidResponseProperty() {
     }
 
     /**
      * Get the valid property: Indicates if the provided input was valid.
-     *
+     * 
      * @return the valid value.
      */
     public Boolean valid() {
@@ -43,7 +47,7 @@ public final class SavingsPlanValidResponseProperty {
 
     /**
      * Set the valid property: Indicates if the provided input was valid.
-     *
+     * 
      * @param valid the valid value to set.
      * @return the SavingsPlanValidResponseProperty object itself.
      */
@@ -54,7 +58,7 @@ public final class SavingsPlanValidResponseProperty {
 
     /**
      * Get the reasonCode property: Failure reason code if the provided input was invalid.
-     *
+     * 
      * @return the reasonCode value.
      */
     public String reasonCode() {
@@ -63,7 +67,7 @@ public final class SavingsPlanValidResponseProperty {
 
     /**
      * Set the reasonCode property: Failure reason code if the provided input was invalid.
-     *
+     * 
      * @param reasonCode the reasonCode value to set.
      * @return the SavingsPlanValidResponseProperty object itself.
      */
@@ -74,7 +78,7 @@ public final class SavingsPlanValidResponseProperty {
 
     /**
      * Get the reason property: Failure reason if the provided input was invalid.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -83,7 +87,7 @@ public final class SavingsPlanValidResponseProperty {
 
     /**
      * Set the reason property: Failure reason if the provided input was invalid.
-     *
+     * 
      * @param reason the reason value to set.
      * @return the SavingsPlanValidResponseProperty object itself.
      */
@@ -94,7 +98,7 @@ public final class SavingsPlanValidResponseProperty {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

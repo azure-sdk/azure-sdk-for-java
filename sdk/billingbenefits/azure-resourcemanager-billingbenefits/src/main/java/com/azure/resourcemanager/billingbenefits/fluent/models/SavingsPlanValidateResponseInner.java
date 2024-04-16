@@ -9,7 +9,9 @@ import com.azure.resourcemanager.billingbenefits.models.SavingsPlanValidResponse
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The SavingsPlanValidateResponse model. */
+/**
+ * The SavingsPlanValidateResponse model.
+ */
 @Fluent
 public final class SavingsPlanValidateResponseInner {
     /*
@@ -24,13 +26,15 @@ public final class SavingsPlanValidateResponseInner {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of SavingsPlanValidateResponseInner class. */
+    /**
+     * Creates an instance of SavingsPlanValidateResponseInner class.
+     */
     public SavingsPlanValidateResponseInner() {
     }
 
     /**
      * Get the benefits property: The benefits property.
-     *
+     * 
      * @return the benefits value.
      */
     public List<SavingsPlanValidResponseProperty> benefits() {
@@ -39,7 +43,7 @@ public final class SavingsPlanValidateResponseInner {
 
     /**
      * Set the benefits property: The benefits property.
-     *
+     * 
      * @param benefits the benefits value to set.
      * @return the SavingsPlanValidateResponseInner object itself.
      */
@@ -50,7 +54,7 @@ public final class SavingsPlanValidateResponseInner {
 
     /**
      * Get the nextLink property: Url to get the next page.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class SavingsPlanValidateResponseInner {
 
     /**
      * Set the nextLink property: Url to get the next page.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SavingsPlanValidateResponseInner object itself.
      */
@@ -70,7 +74,7 @@ public final class SavingsPlanValidateResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

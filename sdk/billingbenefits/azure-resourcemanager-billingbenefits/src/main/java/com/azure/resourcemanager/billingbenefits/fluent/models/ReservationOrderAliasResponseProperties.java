@@ -15,7 +15,9 @@ import com.azure.resourcemanager.billingbenefits.models.Term;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Reservation properties. */
+/**
+ * Reservation properties.
+ */
 @Fluent
 public final class ReservationOrderAliasResponseProperties {
     /*
@@ -96,13 +98,15 @@ public final class ReservationOrderAliasResponseProperties {
     @JsonProperty(value = "reservedResourceProperties")
     private ReservationOrderAliasResponsePropertiesReservedResourceProperties reservedResourceProperties;
 
-    /** Creates an instance of ReservationOrderAliasResponseProperties class. */
+    /**
+     * Creates an instance of ReservationOrderAliasResponseProperties class.
+     */
     public ReservationOrderAliasResponseProperties() {
     }
 
     /**
      * Get the displayName property: Display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -111,7 +115,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Set the displayName property: Display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the ReservationOrderAliasResponseProperties object itself.
      */
@@ -122,7 +126,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Get the reservationOrderId property: Identifier of the reservation order created.
-     *
+     * 
      * @return the reservationOrderId value.
      */
     public String reservationOrderId() {
@@ -131,7 +135,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Get the provisioningState property: Provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -140,7 +144,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Get the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @return the billingScopeId value.
      */
     public String billingScopeId() {
@@ -149,7 +153,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Set the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @param billingScopeId the billingScopeId value to set.
      * @return the ReservationOrderAliasResponseProperties object itself.
      */
@@ -160,7 +164,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Get the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @return the term value.
      */
     public Term term() {
@@ -169,7 +173,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Set the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @param term the term value to set.
      * @return the ReservationOrderAliasResponseProperties object itself.
      */
@@ -181,7 +185,7 @@ public final class ReservationOrderAliasResponseProperties {
     /**
      * Get the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @return the billingPlan value.
      */
     public BillingPlan billingPlan() {
@@ -191,7 +195,7 @@ public final class ReservationOrderAliasResponseProperties {
     /**
      * Set the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @param billingPlan the billingPlan value to set.
      * @return the ReservationOrderAliasResponseProperties object itself.
      */
@@ -202,7 +206,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Get the appliedScopeType property: Type of the Applied Scope.
-     *
+     * 
      * @return the appliedScopeType value.
      */
     public AppliedScopeType appliedScopeType() {
@@ -211,7 +215,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Set the appliedScopeType property: Type of the Applied Scope.
-     *
+     * 
      * @param appliedScopeType the appliedScopeType value to set.
      * @return the ReservationOrderAliasResponseProperties object itself.
      */
@@ -223,7 +227,7 @@ public final class ReservationOrderAliasResponseProperties {
     /**
      * Get the appliedScopeProperties property: Properties specific to applied scope type. Not required if not
      * applicable.
-     *
+     * 
      * @return the appliedScopeProperties value.
      */
     public AppliedScopeProperties appliedScopeProperties() {
@@ -233,19 +237,19 @@ public final class ReservationOrderAliasResponseProperties {
     /**
      * Set the appliedScopeProperties property: Properties specific to applied scope type. Not required if not
      * applicable.
-     *
+     * 
      * @param appliedScopeProperties the appliedScopeProperties value to set.
      * @return the ReservationOrderAliasResponseProperties object itself.
      */
-    public ReservationOrderAliasResponseProperties withAppliedScopeProperties(
-        AppliedScopeProperties appliedScopeProperties) {
+    public ReservationOrderAliasResponseProperties
+        withAppliedScopeProperties(AppliedScopeProperties appliedScopeProperties) {
         this.appliedScopeProperties = appliedScopeProperties;
         return this;
     }
 
     /**
      * Get the quantity property: Total Quantity of the SKUs purchased in the Reservation.
-     *
+     * 
      * @return the quantity value.
      */
     public Integer quantity() {
@@ -254,7 +258,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Set the quantity property: Total Quantity of the SKUs purchased in the Reservation.
-     *
+     * 
      * @param quantity the quantity value to set.
      * @return the ReservationOrderAliasResponseProperties object itself.
      */
@@ -266,7 +270,7 @@ public final class ReservationOrderAliasResponseProperties {
     /**
      * Get the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
      * time.
-     *
+     * 
      * @return the renew value.
      */
     public Boolean renew() {
@@ -276,7 +280,7 @@ public final class ReservationOrderAliasResponseProperties {
     /**
      * Set the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
      * time.
-     *
+     * 
      * @param renew the renew value to set.
      * @return the ReservationOrderAliasResponseProperties object itself.
      */
@@ -287,7 +291,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Get the reservedResourceType property: The type of the resource that is being reserved.
-     *
+     * 
      * @return the reservedResourceType value.
      */
     public ReservedResourceType reservedResourceType() {
@@ -296,7 +300,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Set the reservedResourceType property: The type of the resource that is being reserved.
-     *
+     * 
      * @param reservedResourceType the reservedResourceType value to set.
      * @return the ReservationOrderAliasResponseProperties object itself.
      */
@@ -307,7 +311,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Get the reviewDateTime property: This is the date-time when the Reservation needs to be reviewed.
-     *
+     * 
      * @return the reviewDateTime value.
      */
     public OffsetDateTime reviewDateTime() {
@@ -316,7 +320,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Set the reviewDateTime property: This is the date-time when the Reservation needs to be reviewed.
-     *
+     * 
      * @param reviewDateTime the reviewDateTime value to set.
      * @return the ReservationOrderAliasResponseProperties object itself.
      */
@@ -328,7 +332,7 @@ public final class ReservationOrderAliasResponseProperties {
     /**
      * Get the reservedResourceProperties property: Properties specific to each reserved resource type. Not required if
      * not applicable.
-     *
+     * 
      * @return the reservedResourceProperties value.
      */
     public ReservationOrderAliasResponsePropertiesReservedResourceProperties reservedResourceProperties() {
@@ -338,7 +342,7 @@ public final class ReservationOrderAliasResponseProperties {
     /**
      * Set the reservedResourceProperties property: Properties specific to each reserved resource type. Not required if
      * not applicable.
-     *
+     * 
      * @param reservedResourceProperties the reservedResourceProperties value to set.
      * @return the ReservationOrderAliasResponseProperties object itself.
      */
@@ -350,7 +354,7 @@ public final class ReservationOrderAliasResponseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

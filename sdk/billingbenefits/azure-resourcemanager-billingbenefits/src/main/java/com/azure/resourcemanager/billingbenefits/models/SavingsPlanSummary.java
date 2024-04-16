@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Savings plans list summary. */
+/**
+ * Savings plans list summary.
+ */
 @Fluent
 public final class SavingsPlanSummary {
     /*
@@ -22,13 +24,15 @@ public final class SavingsPlanSummary {
     @JsonProperty(value = "value")
     private SavingsPlanSummaryCount value;
 
-    /** Creates an instance of SavingsPlanSummary class. */
+    /**
+     * Creates an instance of SavingsPlanSummary class.
+     */
     public SavingsPlanSummary() {
     }
 
     /**
      * Get the name property: This property has value 'summary'.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class SavingsPlanSummary {
 
     /**
      * Get the value property: The roll up count summary of savings plans in each state.
-     *
+     * 
      * @return the value value.
      */
     public SavingsPlanSummaryCount value() {
@@ -46,7 +50,7 @@ public final class SavingsPlanSummary {
 
     /**
      * Set the value property: The roll up count summary of savings plans in each state.
-     *
+     * 
      * @param value the value value to set.
      * @return the SavingsPlanSummary object itself.
      */
@@ -57,7 +61,7 @@ public final class SavingsPlanSummary {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

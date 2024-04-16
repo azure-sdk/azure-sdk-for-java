@@ -13,7 +13,9 @@ import com.azure.resourcemanager.billingbenefits.models.ProvisioningState;
 import com.azure.resourcemanager.billingbenefits.models.Term;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Savings plan properties. */
+/**
+ * Savings plan properties.
+ */
 @Fluent
 public final class SavingsPlanOrderAliasProperties {
     /*
@@ -70,13 +72,21 @@ public final class SavingsPlanOrderAliasProperties {
     @JsonProperty(value = "commitment")
     private Commitment commitment;
 
-    /** Creates an instance of SavingsPlanOrderAliasProperties class. */
+    /*
+     * Setting this to true will automatically purchase a new benefit on the expiration date time.
+     */
+    @JsonProperty(value = "renew")
+    private Boolean renew;
+
+    /**
+     * Creates an instance of SavingsPlanOrderAliasProperties class.
+     */
     public SavingsPlanOrderAliasProperties() {
     }
 
     /**
      * Get the displayName property: Display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -85,7 +95,7 @@ public final class SavingsPlanOrderAliasProperties {
 
     /**
      * Set the displayName property: Display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the SavingsPlanOrderAliasProperties object itself.
      */
@@ -96,7 +106,7 @@ public final class SavingsPlanOrderAliasProperties {
 
     /**
      * Get the savingsPlanOrderId property: Identifier of the savings plan created.
-     *
+     * 
      * @return the savingsPlanOrderId value.
      */
     public String savingsPlanOrderId() {
@@ -105,7 +115,7 @@ public final class SavingsPlanOrderAliasProperties {
 
     /**
      * Get the provisioningState property: Provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -114,7 +124,7 @@ public final class SavingsPlanOrderAliasProperties {
 
     /**
      * Get the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @return the billingScopeId value.
      */
     public String billingScopeId() {
@@ -123,7 +133,7 @@ public final class SavingsPlanOrderAliasProperties {
 
     /**
      * Set the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @param billingScopeId the billingScopeId value to set.
      * @return the SavingsPlanOrderAliasProperties object itself.
      */
@@ -134,7 +144,7 @@ public final class SavingsPlanOrderAliasProperties {
 
     /**
      * Get the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @return the term value.
      */
     public Term term() {
@@ -143,7 +153,7 @@ public final class SavingsPlanOrderAliasProperties {
 
     /**
      * Set the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @param term the term value to set.
      * @return the SavingsPlanOrderAliasProperties object itself.
      */
@@ -155,7 +165,7 @@ public final class SavingsPlanOrderAliasProperties {
     /**
      * Get the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @return the billingPlan value.
      */
     public BillingPlan billingPlan() {
@@ -165,7 +175,7 @@ public final class SavingsPlanOrderAliasProperties {
     /**
      * Set the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @param billingPlan the billingPlan value to set.
      * @return the SavingsPlanOrderAliasProperties object itself.
      */
@@ -176,7 +186,7 @@ public final class SavingsPlanOrderAliasProperties {
 
     /**
      * Get the appliedScopeType property: Type of the Applied Scope.
-     *
+     * 
      * @return the appliedScopeType value.
      */
     public AppliedScopeType appliedScopeType() {
@@ -185,7 +195,7 @@ public final class SavingsPlanOrderAliasProperties {
 
     /**
      * Set the appliedScopeType property: Type of the Applied Scope.
-     *
+     * 
      * @param appliedScopeType the appliedScopeType value to set.
      * @return the SavingsPlanOrderAliasProperties object itself.
      */
@@ -197,7 +207,7 @@ public final class SavingsPlanOrderAliasProperties {
     /**
      * Get the appliedScopeProperties property: Properties specific to applied scope type. Not required if not
      * applicable.
-     *
+     * 
      * @return the appliedScopeProperties value.
      */
     public AppliedScopeProperties appliedScopeProperties() {
@@ -207,7 +217,7 @@ public final class SavingsPlanOrderAliasProperties {
     /**
      * Set the appliedScopeProperties property: Properties specific to applied scope type. Not required if not
      * applicable.
-     *
+     * 
      * @param appliedScopeProperties the appliedScopeProperties value to set.
      * @return the SavingsPlanOrderAliasProperties object itself.
      */
@@ -218,7 +228,7 @@ public final class SavingsPlanOrderAliasProperties {
 
     /**
      * Get the commitment property: Commitment towards the benefit.
-     *
+     * 
      * @return the commitment value.
      */
     public Commitment commitment() {
@@ -227,7 +237,7 @@ public final class SavingsPlanOrderAliasProperties {
 
     /**
      * Set the commitment property: Commitment towards the benefit.
-     *
+     * 
      * @param commitment the commitment value to set.
      * @return the SavingsPlanOrderAliasProperties object itself.
      */
@@ -237,8 +247,30 @@ public final class SavingsPlanOrderAliasProperties {
     }
 
     /**
+     * Get the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
+     * time.
+     * 
+     * @return the renew value.
+     */
+    public Boolean renew() {
+        return this.renew;
+    }
+
+    /**
+     * Set the renew property: Setting this to true will automatically purchase a new benefit on the expiration date
+     * time.
+     * 
+     * @param renew the renew value to set.
+     * @return the SavingsPlanOrderAliasProperties object itself.
+     */
+    public SavingsPlanOrderAliasProperties withRenew(Boolean renew) {
+        this.renew = renew;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

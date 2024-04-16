@@ -7,7 +7,9 @@ package com.azure.resourcemanager.billingbenefits.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The roll up count summary of savings plans in each state. */
+/**
+ * The roll up count summary of savings plans in each state.
+ */
 @Immutable
 public final class SavingsPlanSummaryCount {
     /*
@@ -64,13 +66,15 @@ public final class SavingsPlanSummaryCount {
     @JsonProperty(value = "warningCount", access = JsonProperty.Access.WRITE_ONLY)
     private Float warningCount;
 
-    /** Creates an instance of SavingsPlanSummaryCount class. */
+    /**
+     * Creates an instance of SavingsPlanSummaryCount class.
+     */
     public SavingsPlanSummaryCount() {
     }
 
     /**
      * Get the succeededCount property: The number of savings plans in Succeeded state.
-     *
+     * 
      * @return the succeededCount value.
      */
     public Float succeededCount() {
@@ -79,7 +83,7 @@ public final class SavingsPlanSummaryCount {
 
     /**
      * Get the failedCount property: The number of savings plans in Failed state.
-     *
+     * 
      * @return the failedCount value.
      */
     public Float failedCount() {
@@ -88,7 +92,7 @@ public final class SavingsPlanSummaryCount {
 
     /**
      * Get the expiringCount property: The number of savings plans in Expiring state.
-     *
+     * 
      * @return the expiringCount value.
      */
     public Float expiringCount() {
@@ -97,7 +101,7 @@ public final class SavingsPlanSummaryCount {
 
     /**
      * Get the expiredCount property: The number of savings plans in Expired state.
-     *
+     * 
      * @return the expiredCount value.
      */
     public Float expiredCount() {
@@ -106,7 +110,7 @@ public final class SavingsPlanSummaryCount {
 
     /**
      * Get the pendingCount property: The number of savings plans in Pending state.
-     *
+     * 
      * @return the pendingCount value.
      */
     public Float pendingCount() {
@@ -115,7 +119,7 @@ public final class SavingsPlanSummaryCount {
 
     /**
      * Get the cancelledCount property: The number of savings plans in Cancelled state.
-     *
+     * 
      * @return the cancelledCount value.
      */
     public Float cancelledCount() {
@@ -124,7 +128,7 @@ public final class SavingsPlanSummaryCount {
 
     /**
      * Get the processingCount property: The number of savings plans in Processing state.
-     *
+     * 
      * @return the processingCount value.
      */
     public Float processingCount() {
@@ -133,7 +137,7 @@ public final class SavingsPlanSummaryCount {
 
     /**
      * Get the noBenefitCount property: The number of savings plans in No Benefit state.
-     *
+     * 
      * @return the noBenefitCount value.
      */
     public Float noBenefitCount() {
@@ -142,7 +146,7 @@ public final class SavingsPlanSummaryCount {
 
     /**
      * Get the warningCount property: The number of savings plans in Warning state.
-     *
+     * 
      * @return the warningCount value.
      */
     public Float warningCount() {
@@ -151,7 +155,7 @@ public final class SavingsPlanSummaryCount {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

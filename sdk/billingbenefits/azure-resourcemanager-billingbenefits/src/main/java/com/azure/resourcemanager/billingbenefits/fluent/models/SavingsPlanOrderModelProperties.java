@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Savings plan order properties. */
+/**
+ * Savings plan order properties.
+ */
 @Fluent
 public final class SavingsPlanOrderModelProperties {
     /*
@@ -36,22 +38,19 @@ public final class SavingsPlanOrderModelProperties {
     private String billingScopeId;
 
     /*
-     * Fully-qualified identifier of the billing profile where the savings plan is applied. Present only for Field-led
-     * or Customer-led customers.
+     * Fully-qualified identifier of the billing profile where the savings plan is applied. Present only for Field-led or Customer-led customers.
      */
     @JsonProperty(value = "billingProfileId", access = JsonProperty.Access.WRITE_ONLY)
     private String billingProfileId;
 
     /*
-     * Fully-qualified identifier of the customer where the savings plan is applied. Present only for Partner-led
-     * customers.
+     * Fully-qualified identifier of the customer where the savings plan is applied. Present only for Partner-led customers.
      */
     @JsonProperty(value = "customerId", access = JsonProperty.Access.WRITE_ONLY)
     private String customerId;
 
     /*
-     * Fully-qualified identifier of the billing account where the savings plan is applied. Present only for Enterprise
-     * Agreement customers.
+     * Fully-qualified identifier of the billing account where the savings plan is applied. Present only for Enterprise Agreement customers.
      */
     @JsonProperty(value = "billingAccountId", access = JsonProperty.Access.WRITE_ONLY)
     private String billingAccountId;
@@ -98,13 +97,15 @@ public final class SavingsPlanOrderModelProperties {
     @JsonProperty(value = "extendedStatusInfo", access = JsonProperty.Access.WRITE_ONLY)
     private ExtendedStatusInfo extendedStatusInfo;
 
-    /** Creates an instance of SavingsPlanOrderModelProperties class. */
+    /**
+     * Creates an instance of SavingsPlanOrderModelProperties class.
+     */
     public SavingsPlanOrderModelProperties() {
     }
 
     /**
      * Get the displayName property: Display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -113,7 +114,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Set the displayName property: Display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the SavingsPlanOrderModelProperties object itself.
      */
@@ -124,7 +125,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Get the provisioningState property: Provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -133,7 +134,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Get the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @return the billingScopeId value.
      */
     public String billingScopeId() {
@@ -142,7 +143,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Set the billingScopeId property: Subscription that will be charged for purchasing the benefit.
-     *
+     * 
      * @param billingScopeId the billingScopeId value to set.
      * @return the SavingsPlanOrderModelProperties object itself.
      */
@@ -154,7 +155,7 @@ public final class SavingsPlanOrderModelProperties {
     /**
      * Get the billingProfileId property: Fully-qualified identifier of the billing profile where the savings plan is
      * applied. Present only for Field-led or Customer-led customers.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -164,7 +165,7 @@ public final class SavingsPlanOrderModelProperties {
     /**
      * Get the customerId property: Fully-qualified identifier of the customer where the savings plan is applied.
      * Present only for Partner-led customers.
-     *
+     * 
      * @return the customerId value.
      */
     public String customerId() {
@@ -174,7 +175,7 @@ public final class SavingsPlanOrderModelProperties {
     /**
      * Get the billingAccountId property: Fully-qualified identifier of the billing account where the savings plan is
      * applied. Present only for Enterprise Agreement customers.
-     *
+     * 
      * @return the billingAccountId value.
      */
     public String billingAccountId() {
@@ -183,7 +184,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Get the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @return the term value.
      */
     public Term term() {
@@ -192,7 +193,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Set the term property: Represent benefit term in ISO 8601 format.
-     *
+     * 
      * @param term the term value to set.
      * @return the SavingsPlanOrderModelProperties object itself.
      */
@@ -204,7 +205,7 @@ public final class SavingsPlanOrderModelProperties {
     /**
      * Get the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @return the billingPlan value.
      */
     public BillingPlan billingPlan() {
@@ -214,7 +215,7 @@ public final class SavingsPlanOrderModelProperties {
     /**
      * Set the billingPlan property: Represents the billing plan in ISO 8601 format. Required only for monthly billing
      * plans.
-     *
+     * 
      * @param billingPlan the billingPlan value to set.
      * @return the SavingsPlanOrderModelProperties object itself.
      */
@@ -225,7 +226,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Get the expiryDateTime property: Expiry date time.
-     *
+     * 
      * @return the expiryDateTime value.
      */
     public OffsetDateTime expiryDateTime() {
@@ -234,7 +235,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Get the benefitStartTime property: This is the DateTime when the savings plan benefit started.
-     *
+     * 
      * @return the benefitStartTime value.
      */
     public OffsetDateTime benefitStartTime() {
@@ -243,7 +244,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Set the benefitStartTime property: This is the DateTime when the savings plan benefit started.
-     *
+     * 
      * @param benefitStartTime the benefitStartTime value to set.
      * @return the SavingsPlanOrderModelProperties object itself.
      */
@@ -254,7 +255,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Get the planInformation property: Information describing the type of billing plan for this savings plan.
-     *
+     * 
      * @return the planInformation value.
      */
     public BillingPlanInformation planInformation() {
@@ -263,7 +264,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Set the planInformation property: Information describing the type of billing plan for this savings plan.
-     *
+     * 
      * @param planInformation the planInformation value to set.
      * @return the SavingsPlanOrderModelProperties object itself.
      */
@@ -274,7 +275,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Get the savingsPlans property: The savingsPlans property.
-     *
+     * 
      * @return the savingsPlans value.
      */
     public List<String> savingsPlans() {
@@ -283,7 +284,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Set the savingsPlans property: The savingsPlans property.
-     *
+     * 
      * @param savingsPlans the savingsPlans value to set.
      * @return the SavingsPlanOrderModelProperties object itself.
      */
@@ -294,7 +295,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Get the extendedStatusInfo property: The extendedStatusInfo property.
-     *
+     * 
      * @return the extendedStatusInfo value.
      */
     public ExtendedStatusInfo extendedStatusInfo() {
@@ -303,7 +304,7 @@ public final class SavingsPlanOrderModelProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
