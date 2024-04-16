@@ -1,0 +1,1 @@
+[ [ "com.azure.resourcemanager.azuredata.implementation.OperationsClientImpl$OperationsService" ], [ "com.azure.resourcemanager.azuredata.implementation.SqlServerRegistrationsClientImpl$SqlServerRegistrationsService" ], [ "com.azure.resourcemanager.azuredata.implementation.SqlServersClientImpl$SqlServersService" ] ]
