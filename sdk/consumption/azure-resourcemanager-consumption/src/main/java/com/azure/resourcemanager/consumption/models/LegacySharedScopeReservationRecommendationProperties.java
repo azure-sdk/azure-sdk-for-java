@@ -5,24 +5,49 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.consumption.fluent.models.LegacyReservationRecommendationProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The properties of the legacy reservation recommendation for shared scope. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "scope")
+/**
+ * The properties of the legacy reservation recommendation for shared scope.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "scope",
+    defaultImpl = LegacySharedScopeReservationRecommendationProperties.class,
+    visible = true)
 @JsonTypeName("Shared")
 @Immutable
 public final class LegacySharedScopeReservationRecommendationProperties
     extends LegacyReservationRecommendationProperties {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(LegacySharedScopeReservationRecommendationProperties.class);
+    /*
+     * Shared or single recommendation.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "scope", required = true)
+    private String scope = "Shared";
+
+    /**
+     * Creates an instance of LegacySharedScopeReservationRecommendationProperties class.
+     */
+    public LegacySharedScopeReservationRecommendationProperties() {
+    }
+
+    /**
+     * Get the scope property: Shared or single recommendation.
+     * 
+     * @return the scope value.
+     */
+    @Override
+    public String scope() {
+        return this.scope;
+    }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

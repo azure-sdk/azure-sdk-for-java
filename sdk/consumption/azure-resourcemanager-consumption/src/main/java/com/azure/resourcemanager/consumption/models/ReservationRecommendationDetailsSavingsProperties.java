@@ -5,17 +5,14 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Details of the estimated savings. */
+/**
+ * Details of the estimated savings.
+ */
 @Fluent
 public final class ReservationRecommendationDetailsSavingsProperties {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(ReservationRecommendationDetailsSavingsProperties.class);
-
     /*
      * List of calculated savings.
      */
@@ -23,8 +20,7 @@ public final class ReservationRecommendationDetailsSavingsProperties {
     private List<ReservationRecommendationDetailsCalculatedSavingsProperties> calculatedSavings;
 
     /*
-     * Number of days of usage to look back used for computing the
-     * recommendation.
+     * Number of days of usage to look back used for computing the recommendation.
      */
     @JsonProperty(value = "lookBackPeriod", access = JsonProperty.Access.WRITE_ONLY)
     private Integer lookBackPeriod;
@@ -54,8 +50,14 @@ public final class ReservationRecommendationDetailsSavingsProperties {
     private String unitOfMeasure;
 
     /**
+     * Creates an instance of ReservationRecommendationDetailsSavingsProperties class.
+     */
+    public ReservationRecommendationDetailsSavingsProperties() {
+    }
+
+    /**
      * Get the calculatedSavings property: List of calculated savings.
-     *
+     * 
      * @return the calculatedSavings value.
      */
     public List<ReservationRecommendationDetailsCalculatedSavingsProperties> calculatedSavings() {
@@ -64,19 +66,19 @@ public final class ReservationRecommendationDetailsSavingsProperties {
 
     /**
      * Set the calculatedSavings property: List of calculated savings.
-     *
+     * 
      * @param calculatedSavings the calculatedSavings value to set.
      * @return the ReservationRecommendationDetailsSavingsProperties object itself.
      */
-    public ReservationRecommendationDetailsSavingsProperties withCalculatedSavings(
-        List<ReservationRecommendationDetailsCalculatedSavingsProperties> calculatedSavings) {
+    public ReservationRecommendationDetailsSavingsProperties
+        withCalculatedSavings(List<ReservationRecommendationDetailsCalculatedSavingsProperties> calculatedSavings) {
         this.calculatedSavings = calculatedSavings;
         return this;
     }
 
     /**
      * Get the lookBackPeriod property: Number of days of usage to look back used for computing the recommendation.
-     *
+     * 
      * @return the lookBackPeriod value.
      */
     public Integer lookBackPeriod() {
@@ -85,7 +87,7 @@ public final class ReservationRecommendationDetailsSavingsProperties {
 
     /**
      * Get the recommendedQuantity property: Number of recommended units of the resource.
-     *
+     * 
      * @return the recommendedQuantity value.
      */
     public Float recommendedQuantity() {
@@ -94,7 +96,7 @@ public final class ReservationRecommendationDetailsSavingsProperties {
 
     /**
      * Get the reservationOrderTerm property: Term period of the reservation, ex: P1Y or P3Y.
-     *
+     * 
      * @return the reservationOrderTerm value.
      */
     public String reservationOrderTerm() {
@@ -103,7 +105,7 @@ public final class ReservationRecommendationDetailsSavingsProperties {
 
     /**
      * Get the savingsType property: Type of savings, ex: instance.
-     *
+     * 
      * @return the savingsType value.
      */
     public String savingsType() {
@@ -112,7 +114,7 @@ public final class ReservationRecommendationDetailsSavingsProperties {
 
     /**
      * Get the unitOfMeasure property: Measurement unit ex: hour etc.
-     *
+     * 
      * @return the unitOfMeasure value.
      */
     public String unitOfMeasure() {
@@ -121,7 +123,7 @@ public final class ReservationRecommendationDetailsSavingsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
