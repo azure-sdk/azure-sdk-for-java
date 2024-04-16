@@ -7,7 +7,9 @@ package com.azure.resourcemanager.advisor.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The operation supported by Advisor. */
+/**
+ * The operation supported by Advisor.
+ */
 @Fluent
 public final class OperationDisplayInfo {
     /*
@@ -34,13 +36,15 @@ public final class OperationDisplayInfo {
     @JsonProperty(value = "resource")
     private String resource;
 
-    /** Creates an instance of OperationDisplayInfo class. */
+    /**
+     * Creates an instance of OperationDisplayInfo class.
+     */
     public OperationDisplayInfo() {
     }
 
     /**
      * Get the description property: The description of the operation.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -49,7 +53,7 @@ public final class OperationDisplayInfo {
 
     /**
      * Set the description property: The description of the operation.
-     *
+     * 
      * @param description the description value to set.
      * @return the OperationDisplayInfo object itself.
      */
@@ -60,7 +64,7 @@ public final class OperationDisplayInfo {
 
     /**
      * Get the operation property: The action that users can perform, based on their permission level.
-     *
+     * 
      * @return the operation value.
      */
     public String operation() {
@@ -69,7 +73,7 @@ public final class OperationDisplayInfo {
 
     /**
      * Set the operation property: The action that users can perform, based on their permission level.
-     *
+     * 
      * @param operation the operation value to set.
      * @return the OperationDisplayInfo object itself.
      */
@@ -80,7 +84,7 @@ public final class OperationDisplayInfo {
 
     /**
      * Get the provider property: Service provider: Microsoft Advisor.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -89,7 +93,7 @@ public final class OperationDisplayInfo {
 
     /**
      * Set the provider property: Service provider: Microsoft Advisor.
-     *
+     * 
      * @param provider the provider value to set.
      * @return the OperationDisplayInfo object itself.
      */
@@ -100,7 +104,7 @@ public final class OperationDisplayInfo {
 
     /**
      * Get the resource property: Resource on which the operation is performed.
-     *
+     * 
      * @return the resource value.
      */
     public String resource() {
@@ -109,7 +113,7 @@ public final class OperationDisplayInfo {
 
     /**
      * Set the resource property: Resource on which the operation is performed.
-     *
+     * 
      * @param resource the resource value to set.
      * @return the OperationDisplayInfo object itself.
      */
@@ -120,7 +124,7 @@ public final class OperationDisplayInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

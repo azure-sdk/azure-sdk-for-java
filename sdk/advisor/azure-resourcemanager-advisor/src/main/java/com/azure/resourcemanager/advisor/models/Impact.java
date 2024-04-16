@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The business impact of the recommendation. */
+/**
+ * The business impact of the recommendation.
+ */
 public final class Impact extends ExpandableStringEnum<Impact> {
-    /** Static value High for Impact. */
+    /**
+     * Static value High for Impact.
+     */
     public static final Impact HIGH = fromString("High");
 
-    /** Static value Medium for Impact. */
+    /**
+     * Static value Medium for Impact.
+     */
     public static final Impact MEDIUM = fromString("Medium");
 
-    /** Static value Low for Impact. */
+    /**
+     * Static value Low for Impact.
+     */
     public static final Impact LOW = fromString("Low");
 
     /**
      * Creates a new instance of Impact value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class Impact extends ExpandableStringEnum<Impact> {
 
     /**
      * Creates or finds a Impact from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Impact.
      */
@@ -41,7 +49,7 @@ public final class Impact extends ExpandableStringEnum<Impact> {
 
     /**
      * Gets known Impact values.
-     *
+     * 
      * @return known Impact values.
      */
     public static Collection<Impact> values() {

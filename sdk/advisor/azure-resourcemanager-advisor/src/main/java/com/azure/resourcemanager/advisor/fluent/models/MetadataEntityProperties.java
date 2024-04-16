@@ -10,7 +10,9 @@ import com.azure.resourcemanager.advisor.models.Scenario;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The metadata entity properties. */
+/**
+ * The metadata entity properties.
+ */
 @Fluent
 public final class MetadataEntityProperties {
     /*
@@ -37,13 +39,15 @@ public final class MetadataEntityProperties {
     @JsonProperty(value = "supportedValues")
     private List<MetadataSupportedValueDetail> supportedValues;
 
-    /** Creates an instance of MetadataEntityProperties class. */
+    /**
+     * Creates an instance of MetadataEntityProperties class.
+     */
     public MetadataEntityProperties() {
     }
 
     /**
      * Get the displayName property: The display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -52,7 +56,7 @@ public final class MetadataEntityProperties {
 
     /**
      * Set the displayName property: The display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MetadataEntityProperties object itself.
      */
@@ -63,7 +67,7 @@ public final class MetadataEntityProperties {
 
     /**
      * Get the dependsOn property: The list of keys on which this entity depends on.
-     *
+     * 
      * @return the dependsOn value.
      */
     public List<String> dependsOn() {
@@ -72,7 +76,7 @@ public final class MetadataEntityProperties {
 
     /**
      * Set the dependsOn property: The list of keys on which this entity depends on.
-     *
+     * 
      * @param dependsOn the dependsOn value to set.
      * @return the MetadataEntityProperties object itself.
      */
@@ -83,7 +87,7 @@ public final class MetadataEntityProperties {
 
     /**
      * Get the applicableScenarios property: The list of scenarios applicable to this metadata entity.
-     *
+     * 
      * @return the applicableScenarios value.
      */
     public List<Scenario> applicableScenarios() {
@@ -92,7 +96,7 @@ public final class MetadataEntityProperties {
 
     /**
      * Set the applicableScenarios property: The list of scenarios applicable to this metadata entity.
-     *
+     * 
      * @param applicableScenarios the applicableScenarios value to set.
      * @return the MetadataEntityProperties object itself.
      */
@@ -103,7 +107,7 @@ public final class MetadataEntityProperties {
 
     /**
      * Get the supportedValues property: The list of supported values.
-     *
+     * 
      * @return the supportedValues value.
      */
     public List<MetadataSupportedValueDetail> supportedValues() {
@@ -112,7 +116,7 @@ public final class MetadataEntityProperties {
 
     /**
      * Set the supportedValues property: The list of supported values.
-     *
+     * 
      * @param supportedValues the supportedValues value to set.
      * @return the MetadataEntityProperties object itself.
      */
@@ -123,7 +127,7 @@ public final class MetadataEntityProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

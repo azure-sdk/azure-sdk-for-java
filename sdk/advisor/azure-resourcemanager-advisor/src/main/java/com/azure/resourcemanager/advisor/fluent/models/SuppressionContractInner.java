@@ -6,10 +6,13 @@ package com.azure.resourcemanager.advisor.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with the rule. */
+/**
+ * The details of the snoozed or dismissed rule; for example, the duration, name, and GUID associated with the rule.
+ */
 @Fluent
 public final class SuppressionContractInner extends ProxyResource {
     /*
@@ -18,13 +21,21 @@ public final class SuppressionContractInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private SuppressionProperties innerProperties;
 
-    /** Creates an instance of SuppressionContractInner class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of SuppressionContractInner class.
+     */
     public SuppressionContractInner() {
     }
 
     /**
      * Get the innerProperties property: The properties of the suppression.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SuppressionProperties innerProperties() {
@@ -32,8 +43,17 @@ public final class SuppressionContractInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the suppressionId property: The GUID of the suppression.
-     *
+     * 
      * @return the suppressionId value.
      */
     public String suppressionId() {
@@ -42,7 +62,7 @@ public final class SuppressionContractInner extends ProxyResource {
 
     /**
      * Set the suppressionId property: The GUID of the suppression.
-     *
+     * 
      * @param suppressionId the suppressionId value to set.
      * @return the SuppressionContractInner object itself.
      */
@@ -56,7 +76,7 @@ public final class SuppressionContractInner extends ProxyResource {
 
     /**
      * Get the ttl property: The duration for which the suppression is valid.
-     *
+     * 
      * @return the ttl value.
      */
     public String ttl() {
@@ -65,7 +85,7 @@ public final class SuppressionContractInner extends ProxyResource {
 
     /**
      * Set the ttl property: The duration for which the suppression is valid.
-     *
+     * 
      * @param ttl the ttl value to set.
      * @return the SuppressionContractInner object itself.
      */
@@ -79,7 +99,7 @@ public final class SuppressionContractInner extends ProxyResource {
 
     /**
      * Get the expirationTimestamp property: Gets or sets the expiration time stamp.
-     *
+     * 
      * @return the expirationTimestamp value.
      */
     public OffsetDateTime expirationTimestamp() {
@@ -88,7 +108,7 @@ public final class SuppressionContractInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

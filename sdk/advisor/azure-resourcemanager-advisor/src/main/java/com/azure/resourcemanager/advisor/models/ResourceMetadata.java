@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Recommendation resource metadata. */
+/**
+ * Recommendation resource metadata.
+ */
 @Fluent
 public final class ResourceMetadata {
     /*
@@ -43,13 +45,15 @@ public final class ResourceMetadata {
     @JsonProperty(value = "plural")
     private String plural;
 
-    /** Creates an instance of ResourceMetadata class. */
+    /**
+     * Creates an instance of ResourceMetadata class.
+     */
     public ResourceMetadata() {
     }
 
     /**
      * Get the resourceId property: Azure resource Id of the assessed resource.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -58,7 +62,7 @@ public final class ResourceMetadata {
 
     /**
      * Set the resourceId property: Azure resource Id of the assessed resource.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the ResourceMetadata object itself.
      */
@@ -69,7 +73,7 @@ public final class ResourceMetadata {
 
     /**
      * Get the source property: Source from which recommendation is generated.
-     *
+     * 
      * @return the source value.
      */
     public String source() {
@@ -78,7 +82,7 @@ public final class ResourceMetadata {
 
     /**
      * Set the source property: Source from which recommendation is generated.
-     *
+     * 
      * @param source the source value to set.
      * @return the ResourceMetadata object itself.
      */
@@ -89,7 +93,7 @@ public final class ResourceMetadata {
 
     /**
      * Get the action property: The action to view resource.
-     *
+     * 
      * @return the action value.
      */
     public Map<String, Object> action() {
@@ -98,7 +102,7 @@ public final class ResourceMetadata {
 
     /**
      * Set the action property: The action to view resource.
-     *
+     * 
      * @param action the action value to set.
      * @return the ResourceMetadata object itself.
      */
@@ -109,7 +113,7 @@ public final class ResourceMetadata {
 
     /**
      * Get the singular property: The singular user friendly name of resource type. eg: virtual machine.
-     *
+     * 
      * @return the singular value.
      */
     public String singular() {
@@ -118,7 +122,7 @@ public final class ResourceMetadata {
 
     /**
      * Set the singular property: The singular user friendly name of resource type. eg: virtual machine.
-     *
+     * 
      * @param singular the singular value to set.
      * @return the ResourceMetadata object itself.
      */
@@ -129,7 +133,7 @@ public final class ResourceMetadata {
 
     /**
      * Get the plural property: The plural user friendly name of resource type. eg: virtual machines.
-     *
+     * 
      * @return the plural value.
      */
     public String plural() {
@@ -138,7 +142,7 @@ public final class ResourceMetadata {
 
     /**
      * Set the plural property: The plural user friendly name of resource type. eg: virtual machines.
-     *
+     * 
      * @param plural the plural value to set.
      * @return the ResourceMetadata object itself.
      */
@@ -149,7 +153,7 @@ public final class ResourceMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
