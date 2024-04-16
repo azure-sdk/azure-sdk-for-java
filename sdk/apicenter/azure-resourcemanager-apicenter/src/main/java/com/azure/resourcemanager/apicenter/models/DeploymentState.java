@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * State of the Deployment.
+ * State
+ * 
+ * State of API deployment.
  */
 public final class DeploymentState extends ExpandableStringEnum<DeploymentState> {
     /**

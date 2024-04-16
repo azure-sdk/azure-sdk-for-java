@@ -8,7 +8,7 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.ApiVersionInner;
 import com.azure.resourcemanager.apicenter.models.ApiVersion;
-import com.azure.resourcemanager.apicenter.models.ApiVersionProperties;
+import com.azure.resourcemanager.apicenter.models.LifecycleStage;
 
 public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, ApiVersion.Update {
     private ApiVersionInner innerObject;
@@ -27,12 +27,16 @@ public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, 
         return this.innerModel().type();
     }
 
-    public ApiVersionProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String title() {
+        return this.innerModel().title();
+    }
+
+    public LifecycleStage lifecycleStage() {
+        return this.innerModel().lifecycleStage();
     }
 
     public String resourceGroupName() {
@@ -67,14 +71,20 @@ public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, 
     }
 
     public ApiVersion create() {
-        this.innerObject = serviceManager.serviceClient().getApiVersions().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, versionName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                this.innerModel(), Context.NONE)
+            .getValue();
         return this;
     }
 
     public ApiVersion create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApiVersions().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, versionName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                this.innerModel(), context)
+            .getValue();
         return this;
     }
 
@@ -89,14 +99,20 @@ public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, 
     }
 
     public ApiVersion apply() {
-        this.innerObject = serviceManager.serviceClient().getApiVersions().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, versionName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                this.innerModel(), Context.NONE)
+            .getValue();
         return this;
     }
 
     public ApiVersion apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApiVersions().createOrUpdateWithResponse(resourceGroupName,
-            serviceName, workspaceName, apiName, versionName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                this.innerModel(), context)
+            .getValue();
         return this;
     }
 
@@ -111,20 +127,28 @@ public final class ApiVersionImpl implements ApiVersion, ApiVersion.Definition, 
     }
 
     public ApiVersion refresh() {
-        this.innerObject = serviceManager.serviceClient().getApiVersions()
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
             .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, Context.NONE)
             .getValue();
         return this;
     }
 
     public ApiVersion refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApiVersions()
-            .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApiVersions()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, context)
+            .getValue();
         return this;
     }
 
-    public ApiVersionImpl withProperties(ApiVersionProperties properties) {
-        this.innerModel().withProperties(properties);
+    public ApiVersionImpl withTitle(String title) {
+        this.innerModel().withTitle(title);
+        return this;
+    }
+
+    public ApiVersionImpl withLifecycleStage(LifecycleStage lifecycleStage) {
+        this.innerModel().withLifecycleStage(lifecycleStage);
         return this;
     }
 }

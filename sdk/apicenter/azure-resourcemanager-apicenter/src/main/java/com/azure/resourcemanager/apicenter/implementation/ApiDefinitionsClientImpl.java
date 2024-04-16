@@ -28,20 +28,15 @@ import com.azure.core.http.rest.PagedResponseBase;
 import com.azure.core.http.rest.Response;
 import com.azure.core.http.rest.RestProxy;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
-import com.azure.core.util.polling.PollerFlux;
-import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.apicenter.fluent.ApiDefinitionsClient;
 import com.azure.resourcemanager.apicenter.fluent.models.ApiDefinitionInner;
 import com.azure.resourcemanager.apicenter.fluent.models.ApiSpecExportResultInner;
-import com.azure.resourcemanager.apicenter.models.ApiDefinitionListResult;
+import com.azure.resourcemanager.apicenter.models.ApiDefinitionCollection;
 import com.azure.resourcemanager.apicenter.models.ApiDefinitionsCreateOrUpdateResponse;
 import com.azure.resourcemanager.apicenter.models.ApiDefinitionsGetResponse;
 import com.azure.resourcemanager.apicenter.models.ApiSpecImportRequest;
-import java.nio.ByteBuffer;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -80,90 +75,92 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApiDefinitionListResult>> list(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<ApiDefinitionCollection>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("versionName") String versionName, @QueryParam("$filter") String filter,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("versionName") String versionName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<ApiDefinitionsGetResponse> get(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
             @PathParam("versionName") String versionName, @PathParam("definitionName") String definitionName,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<ApiDefinitionsCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
             @PathParam("versionName") String versionName, @PathParam("definitionName") String definitionName,
-            @BodyParam("application/json") ApiDefinitionInner resource, @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") ApiDefinitionInner payload,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
             @PathParam("versionName") String versionName, @PathParam("definitionName") String definitionName,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Head("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> head(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> head(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
             @PathParam("versionName") String versionName, @PathParam("definitionName") String definitionName,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}/importSpecification")
+        @ExpectedResponses({ 200, 202 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Void>> importSpecification(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
+            @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
+            @PathParam("versionName") String versionName, @PathParam("definitionName") String definitionName,
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") ApiSpecImportRequest payload,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}/exportSpecification")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> exportSpecification(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<ApiSpecExportResultInner>> exportSpecification(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
             @PathParam("versionName") String versionName, @PathParam("definitionName") String definitionName,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}/importSpecification")
-        @ExpectedResponses({ 200, 202 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> importSpecification(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("versionName") String versionName, @PathParam("definitionName") String definitionName,
-            @BodyParam("application/json") ApiSpecImportRequest body, @HeaderParam("Accept") String accept,
-            Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApiDefinitionListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+        Mono<Response<ApiDefinitionCollection>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
+     * List API definitions
+     * 
      * Returns a collection of API definitions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -175,8 +172,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiDefinition list operation along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return aPI version collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiDefinitionInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -207,8 +203,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, apiName, versionName, this.client.getApiVersion(),
                 filter, accept, context))
             .<PagedResponse<ApiDefinitionInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
@@ -216,6 +212,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * List API definitions
+     * 
      * Returns a collection of API definitions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -228,8 +226,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiDefinition list operation along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return aPI version collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiDefinitionInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -261,13 +258,15 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, serviceName, workspaceName, apiName, versionName, filter, accept, context)
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+                workspaceName, apiName, versionName, this.client.getApiVersion(), filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
+     * List API definitions
+     * 
      * Returns a collection of API definitions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -279,7 +278,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiDefinition list operation as paginated response with {@link PagedFlux}.
+     * @return aPI version collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiDefinitionInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -290,6 +289,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * List API definitions
+     * 
      * Returns a collection of API definitions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -300,7 +301,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiDefinition list operation as paginated response with {@link PagedFlux}.
+     * @return aPI version collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiDefinitionInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -312,6 +313,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * List API definitions
+     * 
      * Returns a collection of API definitions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -324,7 +327,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiDefinition list operation as paginated response with {@link PagedFlux}.
+     * @return aPI version collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiDefinitionInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -334,6 +337,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * List API definitions
+     * 
      * Returns a collection of API definitions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -344,7 +349,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiDefinition list operation as paginated response with {@link PagedIterable}.
+     * @return aPI version collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiDefinitionInner> list(String resourceGroupName, String serviceName, String workspaceName,
@@ -355,6 +360,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * List API definitions
+     * 
      * Returns a collection of API definitions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -367,7 +374,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiDefinition list operation as paginated response with {@link PagedIterable}.
+     * @return aPI version collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiDefinitionInner> list(String resourceGroupName, String serviceName, String workspaceName,
@@ -377,6 +384,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * Get API definition
+     * 
      * Returns details of the API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -388,7 +397,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity on successful completion of {@link Mono}.
+     * @return aPI definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -422,13 +431,15 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+                this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Get API definition
+     * 
      * Returns details of the API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -441,7 +452,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity on successful completion of {@link Mono}.
+     * @return aPI definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -475,11 +486,13 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, apiName, versionName, definitionName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Get API definition
+     * 
      * Returns details of the API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -491,7 +504,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity on successful completion of {@link Mono}.
+     * @return aPI definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionInner> getAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -501,6 +514,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * Get API definition
+     * 
      * Returns details of the API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -513,7 +528,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity.
+     * @return aPI definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiDefinitionsGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
@@ -523,6 +538,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * Get API definition
+     * 
      * Returns details of the API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -534,7 +551,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity.
+     * @return aPI definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiDefinitionInner get(String resourceGroupName, String serviceName, String workspaceName, String apiName,
@@ -544,6 +561,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * Create or update API definition
+     * 
      * Creates new or updates existing API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -552,16 +571,16 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
-     * @param resource Resource create parameters.
+     * @param payload API definition entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity on successful completion of {@link Mono}.
+     * @return aPI definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
         String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
-        ApiDefinitionInner resource) {
+        ApiDefinitionInner payload) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -589,20 +608,22 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         if (definitionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter definitionName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, resource, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+                this.client.getApiVersion(), payload, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Create or update API definition
+     * 
      * Creates new or updates existing API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -611,17 +632,17 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
-     * @param resource Resource create parameters.
+     * @param payload API definition entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity on successful completion of {@link Mono}.
+     * @return aPI definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
         String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
-        ApiDefinitionInner resource, Context context) {
+        ApiDefinitionInner payload, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -649,19 +670,21 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         if (definitionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter definitionName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, apiName, versionName, definitionName, this.client.getApiVersion(), payload,
+            accept, context);
     }
 
     /**
+     * Create or update API definition
+     * 
      * Creates new or updates existing API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -670,20 +693,22 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
-     * @param resource Resource create parameters.
+     * @param payload API definition entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity on successful completion of {@link Mono}.
+     * @return aPI definition on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiDefinitionInner> createOrUpdateAsync(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, String definitionName, ApiDefinitionInner resource) {
+        String workspaceName, String apiName, String versionName, String definitionName, ApiDefinitionInner payload) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+            definitionName, payload).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * Create or update API definition
+     * 
      * Creates new or updates existing API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -692,22 +717,24 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
-     * @param resource Resource create parameters.
+     * @param payload API definition entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity.
+     * @return aPI definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiDefinitionsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, String definitionName, ApiDefinitionInner resource,
+        String workspaceName, String apiName, String versionName, String definitionName, ApiDefinitionInner payload,
         Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource, context).block();
+            definitionName, payload, context).block();
     }
 
     /**
+     * Create or update API definition
+     * 
      * Creates new or updates existing API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -716,20 +743,22 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
-     * @param resource Resource create parameters.
+     * @param payload API definition entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI definition entity.
+     * @return aPI definition.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiDefinitionInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, String versionName, String definitionName, ApiDefinitionInner resource) {
+        String apiName, String versionName, String definitionName, ApiDefinitionInner payload) {
         return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, resource, Context.NONE).getValue();
+            definitionName, payload, Context.NONE).getValue();
     }
 
     /**
+     * Delete API definition
+     * 
      * Deletes specified API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -775,13 +804,15 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+                this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Delete API definition
+     * 
      * Deletes specified API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -828,11 +859,14 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, apiName, versionName, definitionName, this.client.getApiVersion(), accept,
+            context);
     }
 
     /**
+     * Delete API definition
+     * 
      * Deletes specified API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -854,6 +888,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * Delete API definition
+     * 
      * Deletes specified API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -876,6 +912,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * Delete API definition
+     * 
      * Deletes specified API definition.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -896,6 +934,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * Check if API definition exists
+     * 
      * Checks if specified API definition exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -941,13 +981,15 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.head(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, accept, context))
+            .withContext(context -> service.head(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+                this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Check if API definition exists
+     * 
      * Checks if specified API definition exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -994,11 +1036,13 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.head(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName, accept, context);
+        return service.head(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, apiName, versionName, definitionName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Check if API definition exists
+     * 
      * Checks if specified API definition exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1020,6 +1064,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * Check if API definition exists
+     * 
      * Checks if specified API definition exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1042,6 +1088,8 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * Check if API definition exists
+     * 
      * Checks if specified API definition exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1062,6 +1110,202 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     }
 
     /**
+     * Import API specification
+     * 
+     * Imports the API specification.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param versionName The name of the API version.
+     * @param definitionName The name of the API definition.
+     * @param payload The API specification source entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> importSpecificationWithResponseAsync(String resourceGroupName, String serviceName,
+        String workspaceName, String apiName, String versionName, String definitionName, ApiSpecImportRequest payload) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (apiName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
+        }
+        if (versionName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter versionName is required and cannot be null."));
+        }
+        if (definitionName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter definitionName is required and cannot be null."));
+        }
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
+        } else {
+            payload.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.importSpecification(this.client.getEndpoint(),
+                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                definitionName, this.client.getApiVersion(), payload, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Import API specification
+     * 
+     * Imports the API specification.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param versionName The name of the API version.
+     * @param definitionName The name of the API definition.
+     * @param payload The API specification source entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Void>> importSpecificationWithResponseAsync(String resourceGroupName, String serviceName,
+        String workspaceName, String apiName, String versionName, String definitionName, ApiSpecImportRequest payload,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (serviceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
+        }
+        if (workspaceName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
+        }
+        if (apiName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
+        }
+        if (versionName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter versionName is required and cannot be null."));
+        }
+        if (definitionName == null) {
+            return Mono.error(new IllegalArgumentException("Parameter definitionName is required and cannot be null."));
+        }
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
+        } else {
+            payload.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.importSpecification(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+            this.client.getApiVersion(), payload, accept, context);
+    }
+
+    /**
+     * Import API specification
+     * 
+     * Imports the API specification.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param versionName The name of the API version.
+     * @param definitionName The name of the API definition.
+     * @param payload The API specification source entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return A {@link Mono} that completes when a successful response is received.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Void> importSpecificationAsync(String resourceGroupName, String serviceName, String workspaceName,
+        String apiName, String versionName, String definitionName, ApiSpecImportRequest payload) {
+        return importSpecificationWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+            definitionName, payload).flatMap(ignored -> Mono.empty());
+    }
+
+    /**
+     * Import API specification
+     * 
+     * Imports the API specification.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param versionName The name of the API version.
+     * @param definitionName The name of the API definition.
+     * @param payload The API specification source entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<Void> importSpecificationWithResponse(String resourceGroupName, String serviceName,
+        String workspaceName, String apiName, String versionName, String definitionName, ApiSpecImportRequest payload,
+        Context context) {
+        return importSpecificationWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+            definitionName, payload, context).block();
+    }
+
+    /**
+     * Import API specification
+     * 
+     * Imports the API specification.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param versionName The name of the API version.
+     * @param definitionName The name of the API definition.
+     * @param payload The API specification source entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public void importSpecification(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+        String versionName, String definitionName, ApiSpecImportRequest payload) {
+        importSpecificationWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+            definitionName, payload, Context.NONE);
+    }
+
+    /**
+     * Export API specification
+     * 
      * Exports the API specification.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1076,7 +1320,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @return the API specification export result along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> exportSpecificationWithResponseAsync(String resourceGroupName,
+    private Mono<Response<ApiSpecExportResultInner>> exportSpecificationWithResponseAsync(String resourceGroupName,
         String serviceName, String workspaceName, String apiName, String versionName, String definitionName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -1107,13 +1351,15 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.exportSpecification(this.client.getEndpoint(), this.client.getApiVersion(),
+            .withContext(context -> service.exportSpecification(this.client.getEndpoint(),
                 this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, accept, context))
+                definitionName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Export API specification
+     * 
      * Exports the API specification.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1129,7 +1375,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @return the API specification export result along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> exportSpecificationWithResponseAsync(String resourceGroupName,
+    private Mono<Response<ApiSpecExportResultInner>> exportSpecificationWithResponseAsync(String resourceGroupName,
         String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
         Context context) {
         if (this.client.getEndpoint() == null) {
@@ -1161,108 +1407,14 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.exportSpecification(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, accept, context);
+        return service.exportSpecification(this.client.getEndpoint(), this.client.getSubscriptionId(),
+            resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+            this.client.getApiVersion(), accept, context);
     }
 
     /**
-     * Exports the API specification.
+     * Export API specification
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the API specification export result.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ApiSpecExportResultInner>, ApiSpecExportResultInner> beginExportSpecificationAsync(
-        String resourceGroupName, String serviceName, String workspaceName, String apiName, String versionName,
-        String definitionName) {
-        Mono<Response<Flux<ByteBuffer>>> mono = exportSpecificationWithResponseAsync(resourceGroupName, serviceName,
-            workspaceName, apiName, versionName, definitionName);
-        return this.client.<ApiSpecExportResultInner, ApiSpecExportResultInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ApiSpecExportResultInner.class, ApiSpecExportResultInner.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Exports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of the API specification export result.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<ApiSpecExportResultInner>, ApiSpecExportResultInner> beginExportSpecificationAsync(
-        String resourceGroupName, String serviceName, String workspaceName, String apiName, String versionName,
-        String definitionName, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = exportSpecificationWithResponseAsync(resourceGroupName, serviceName,
-            workspaceName, apiName, versionName, definitionName, context);
-        return this.client.<ApiSpecExportResultInner, ApiSpecExportResultInner>getLroResult(mono,
-            this.client.getHttpPipeline(), ApiSpecExportResultInner.class, ApiSpecExportResultInner.class, context);
-    }
-
-    /**
-     * Exports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the API specification export result.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ApiSpecExportResultInner>, ApiSpecExportResultInner> beginExportSpecification(
-        String resourceGroupName, String serviceName, String workspaceName, String apiName, String versionName,
-        String definitionName) {
-        return this.beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName).getSyncPoller();
-    }
-
-    /**
-     * Exports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of the API specification export result.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<ApiSpecExportResultInner>, ApiSpecExportResultInner> beginExportSpecification(
-        String resourceGroupName, String serviceName, String workspaceName, String apiName, String versionName,
-        String definitionName, Context context) {
-        return this.beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, context).getSyncPoller();
-    }
-
-    /**
      * Exports the API specification.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1279,11 +1431,13 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiSpecExportResultInner> exportSpecificationAsync(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String versionName, String definitionName) {
-        return beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName).last().flatMap(this.client::getLroFinalResultOrError);
+        return exportSpecificationWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+            definitionName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * Export API specification
+     * 
      * Exports the API specification.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -1296,60 +1450,20 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the API specification export result on successful completion of {@link Mono}.
+     * @return the API specification export result along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<ApiSpecExportResultInner> exportSpecificationAsync(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, String definitionName, Context context) {
-        return beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, context).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Exports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the API specification export result.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiSpecExportResultInner exportSpecification(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, String definitionName) {
-        return exportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName).block();
-    }
-
-    /**
-     * Exports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the API specification export result.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public ApiSpecExportResultInner exportSpecification(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, String definitionName, Context context) {
-        return exportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+    public Response<ApiSpecExportResultInner> exportSpecificationWithResponse(String resourceGroupName,
+        String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
+        Context context) {
+        return exportSpecificationWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
             definitionName, context).block();
     }
 
     /**
-     * Imports the API specification.
+     * Export API specification
+     * 
+     * Exports the API specification.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
@@ -1357,299 +1471,16 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
      * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return the API specification export result.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> importSpecificationWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
-        ApiSpecImportRequest body) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (serviceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (apiName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
-        }
-        if (versionName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter versionName is required and cannot be null."));
-        }
-        if (definitionName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter definitionName is required and cannot be null."));
-        }
-        if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
-        } else {
-            body.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.importSpecification(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                definitionName, body, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> importSpecificationWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
-        ApiSpecImportRequest body, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (serviceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter serviceName is required and cannot be null."));
-        }
-        if (workspaceName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
-        }
-        if (apiName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
-        }
-        if (versionName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter versionName is required and cannot be null."));
-        }
-        if (definitionName == null) {
-            return Mono.error(new IllegalArgumentException("Parameter definitionName is required and cannot be null."));
-        }
-        if (body == null) {
-            return Mono.error(new IllegalArgumentException("Parameter body is required and cannot be null."));
-        } else {
-            body.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.importSpecification(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, body, accept, context);
-    }
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginImportSpecificationAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
-        ApiSpecImportRequest body) {
-        Mono<Response<Flux<ByteBuffer>>> mono = importSpecificationWithResponseAsync(resourceGroupName, serviceName,
-            workspaceName, apiName, versionName, definitionName, body);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<Void>, Void> beginImportSpecificationAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, String versionName, String definitionName,
-        ApiSpecImportRequest body, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = importSpecificationWithResponseAsync(resourceGroupName, serviceName,
-            workspaceName, apiName, versionName, definitionName, body, context);
-        return this.client.<Void, Void>getLroResult(mono, this.client.getHttpPipeline(), Void.class, Void.class,
-            context);
-    }
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginImportSpecification(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, String definitionName, ApiSpecImportRequest body) {
-        return this.beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, body).getSyncPoller();
-    }
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of long-running operation.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<Void>, Void> beginImportSpecification(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, String definitionName, ApiSpecImportRequest body,
-        Context context) {
-        return this.beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, body, context).getSyncPoller();
-    }
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> importSpecificationAsync(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, String versionName, String definitionName, ApiSpecImportRequest body) {
-        return beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, body).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> importSpecificationAsync(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, String versionName, String definitionName, ApiSpecImportRequest body, Context context) {
-        return beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, body, context).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void importSpecification(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String versionName, String definitionName, ApiSpecImportRequest body) {
-        importSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
-            body).block();
-    }
-
-    /**
-     * Imports the API specification.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param versionName The name of the API version.
-     * @param definitionName The name of the API definition.
-     * @param body The content of the action request.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public void importSpecification(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String versionName, String definitionName, ApiSpecImportRequest body, Context context) {
-        importSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
-            body, context).block();
+    public ApiSpecExportResultInner exportSpecification(String resourceGroupName, String serviceName,
+        String workspaceName, String apiName, String versionName, String definitionName) {
+        return exportSpecificationWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+            definitionName, Context.NONE).getValue();
     }
 
     /**
@@ -1661,8 +1492,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiDefinition list operation along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return aPI version collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiDefinitionInner>> listNextSinglePageAsync(String nextLink) {
@@ -1690,8 +1520,7 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiDefinition list operation along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return aPI version collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiDefinitionInner>> listNextSinglePageAsync(String nextLink, Context context) {

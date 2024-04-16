@@ -7,6 +7,7 @@ package com.azure.resourcemanager.apicenter.models;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.ApiInner;
+import java.util.List;
 
 /**
  * An immutable client-side representation of Api.
@@ -34,18 +35,89 @@ public interface Api {
     String type();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    ApiProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the title property: API title.
+     * 
+     * @return the title value.
+     */
+    String title();
+
+    /**
+     * Gets the kind property: API kind
+     * 
+     * Kind of API. For example, REST or GraphQL.
+     * 
+     * @return the kind value.
+     */
+    ApiKind kind();
+
+    /**
+     * Gets the description property: Description
+     * 
+     * Description of the API.
+     * 
+     * @return the description value.
+     */
+    String description();
+
+    /**
+     * Gets the summary property: Short description of the API.
+     * 
+     * @return the summary value.
+     */
+    String summary();
+
+    /**
+     * Gets the lifecycleStage property: Current lifecycle stage of the API.
+     * 
+     * @return the lifecycleStage value.
+     */
+    LifecycleStage lifecycleStage();
+
+    /**
+     * Gets the termsOfService property: Terms of service
+     * 
+     * Terms of service for the API.
+     * 
+     * @return the termsOfService value.
+     */
+    TermsOfService termsOfService();
+
+    /**
+     * Gets the externalDocumentation property: The externalDocumentation property.
+     * 
+     * @return the externalDocumentation value.
+     */
+    List<ExternalDocumentation> externalDocumentation();
+
+    /**
+     * Gets the contacts property: The contacts property.
+     * 
+     * @return the contacts value.
+     */
+    List<Contact> contacts();
+
+    /**
+     * Gets the license property: License
+     * 
+     * The license information for the API.
+     * 
+     * @return the license value.
+     */
+    License license();
+
+    /**
+     * Gets the customProperties property: The custom metadata defined for API catalog entities.
+     * 
+     * @return the customProperties value.
+     */
+    Object customProperties();
 
     /**
      * Gets the name of the resource group.
@@ -97,7 +169,10 @@ public interface Api {
          * The stage of the Api definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithTitle, DefinitionStages.WithKind,
+            DefinitionStages.WithDescription, DefinitionStages.WithSummary, DefinitionStages.WithTermsOfService,
+            DefinitionStages.WithExternalDocumentation, DefinitionStages.WithContacts, DefinitionStages.WithLicense,
+            DefinitionStages.WithCustomProperties {
             /**
              * Executes the create request.
              * 
@@ -115,16 +190,136 @@ public interface Api {
         }
 
         /**
-         * The stage of the Api definition allowing to specify properties.
+         * The stage of the Api definition allowing to specify title.
          */
-        interface WithProperties {
+        interface WithTitle {
             /**
-             * Specifies the properties property: The resource-specific properties for this resource..
+             * Specifies the title property: API title..
              * 
-             * @param properties The resource-specific properties for this resource.
+             * @param title API title.
              * @return the next definition stage.
              */
-            WithCreate withProperties(ApiProperties properties);
+            WithCreate withTitle(String title);
+        }
+
+        /**
+         * The stage of the Api definition allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: API kind
+             * 
+             * Kind of API. For example, REST or GraphQL..
+             * 
+             * @param kind API kind
+             * 
+             * Kind of API. For example, REST or GraphQL.
+             * @return the next definition stage.
+             */
+            WithCreate withKind(ApiKind kind);
+        }
+
+        /**
+         * The stage of the Api definition allowing to specify description.
+         */
+        interface WithDescription {
+            /**
+             * Specifies the description property: Description
+             * 
+             * Description of the API..
+             * 
+             * @param description Description
+             * 
+             * Description of the API.
+             * @return the next definition stage.
+             */
+            WithCreate withDescription(String description);
+        }
+
+        /**
+         * The stage of the Api definition allowing to specify summary.
+         */
+        interface WithSummary {
+            /**
+             * Specifies the summary property: Short description of the API..
+             * 
+             * @param summary Short description of the API.
+             * @return the next definition stage.
+             */
+            WithCreate withSummary(String summary);
+        }
+
+        /**
+         * The stage of the Api definition allowing to specify termsOfService.
+         */
+        interface WithTermsOfService {
+            /**
+             * Specifies the termsOfService property: Terms of service
+             * 
+             * Terms of service for the API..
+             * 
+             * @param termsOfService Terms of service
+             * 
+             * Terms of service for the API.
+             * @return the next definition stage.
+             */
+            WithCreate withTermsOfService(TermsOfService termsOfService);
+        }
+
+        /**
+         * The stage of the Api definition allowing to specify externalDocumentation.
+         */
+        interface WithExternalDocumentation {
+            /**
+             * Specifies the externalDocumentation property: The externalDocumentation property..
+             * 
+             * @param externalDocumentation The externalDocumentation property.
+             * @return the next definition stage.
+             */
+            WithCreate withExternalDocumentation(List<ExternalDocumentation> externalDocumentation);
+        }
+
+        /**
+         * The stage of the Api definition allowing to specify contacts.
+         */
+        interface WithContacts {
+            /**
+             * Specifies the contacts property: The contacts property..
+             * 
+             * @param contacts The contacts property.
+             * @return the next definition stage.
+             */
+            WithCreate withContacts(List<Contact> contacts);
+        }
+
+        /**
+         * The stage of the Api definition allowing to specify license.
+         */
+        interface WithLicense {
+            /**
+             * Specifies the license property: License
+             * 
+             * The license information for the API..
+             * 
+             * @param license License
+             * 
+             * The license information for the API.
+             * @return the next definition stage.
+             */
+            WithCreate withLicense(License license);
+        }
+
+        /**
+         * The stage of the Api definition allowing to specify customProperties.
+         */
+        interface WithCustomProperties {
+            /**
+             * Specifies the customProperties property: The custom metadata defined for API catalog entities..
+             * 
+             * @param customProperties The custom metadata defined for API catalog entities.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomProperties(Object customProperties);
         }
     }
 
@@ -138,7 +333,9 @@ public interface Api {
     /**
      * The template for Api update.
      */
-    interface Update {
+    interface Update extends UpdateStages.WithTitle, UpdateStages.WithKind, UpdateStages.WithDescription,
+        UpdateStages.WithSummary, UpdateStages.WithTermsOfService, UpdateStages.WithExternalDocumentation,
+        UpdateStages.WithContacts, UpdateStages.WithLicense, UpdateStages.WithCustomProperties {
         /**
          * Executes the update request.
          * 
@@ -159,6 +356,138 @@ public interface Api {
      * The Api update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the Api update allowing to specify title.
+         */
+        interface WithTitle {
+            /**
+             * Specifies the title property: API title..
+             * 
+             * @param title API title.
+             * @return the next definition stage.
+             */
+            Update withTitle(String title);
+        }
+
+        /**
+         * The stage of the Api update allowing to specify kind.
+         */
+        interface WithKind {
+            /**
+             * Specifies the kind property: API kind
+             * 
+             * Kind of API. For example, REST or GraphQL..
+             * 
+             * @param kind API kind
+             * 
+             * Kind of API. For example, REST or GraphQL.
+             * @return the next definition stage.
+             */
+            Update withKind(ApiKind kind);
+        }
+
+        /**
+         * The stage of the Api update allowing to specify description.
+         */
+        interface WithDescription {
+            /**
+             * Specifies the description property: Description
+             * 
+             * Description of the API..
+             * 
+             * @param description Description
+             * 
+             * Description of the API.
+             * @return the next definition stage.
+             */
+            Update withDescription(String description);
+        }
+
+        /**
+         * The stage of the Api update allowing to specify summary.
+         */
+        interface WithSummary {
+            /**
+             * Specifies the summary property: Short description of the API..
+             * 
+             * @param summary Short description of the API.
+             * @return the next definition stage.
+             */
+            Update withSummary(String summary);
+        }
+
+        /**
+         * The stage of the Api update allowing to specify termsOfService.
+         */
+        interface WithTermsOfService {
+            /**
+             * Specifies the termsOfService property: Terms of service
+             * 
+             * Terms of service for the API..
+             * 
+             * @param termsOfService Terms of service
+             * 
+             * Terms of service for the API.
+             * @return the next definition stage.
+             */
+            Update withTermsOfService(TermsOfService termsOfService);
+        }
+
+        /**
+         * The stage of the Api update allowing to specify externalDocumentation.
+         */
+        interface WithExternalDocumentation {
+            /**
+             * Specifies the externalDocumentation property: The externalDocumentation property..
+             * 
+             * @param externalDocumentation The externalDocumentation property.
+             * @return the next definition stage.
+             */
+            Update withExternalDocumentation(List<ExternalDocumentation> externalDocumentation);
+        }
+
+        /**
+         * The stage of the Api update allowing to specify contacts.
+         */
+        interface WithContacts {
+            /**
+             * Specifies the contacts property: The contacts property..
+             * 
+             * @param contacts The contacts property.
+             * @return the next definition stage.
+             */
+            Update withContacts(List<Contact> contacts);
+        }
+
+        /**
+         * The stage of the Api update allowing to specify license.
+         */
+        interface WithLicense {
+            /**
+             * Specifies the license property: License
+             * 
+             * The license information for the API..
+             * 
+             * @param license License
+             * 
+             * The license information for the API.
+             * @return the next definition stage.
+             */
+            Update withLicense(License license);
+        }
+
+        /**
+         * The stage of the Api update allowing to specify customProperties.
+         */
+        interface WithCustomProperties {
+            /**
+             * Specifies the customProperties property: The custom metadata defined for API catalog entities..
+             * 
+             * @param customProperties The custom metadata defined for API catalog entities.
+             * @return the next definition stage.
+             */
+            Update withCustomProperties(Object customProperties);
+        }
     }
 
     /**

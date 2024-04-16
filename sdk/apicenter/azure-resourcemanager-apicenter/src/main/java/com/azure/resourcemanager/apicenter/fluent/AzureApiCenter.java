@@ -82,13 +82,6 @@ public interface AzureApiCenter {
     ApisClient getApis();
 
     /**
-     * Gets the DeploymentsClient object to access its operations.
-     * 
-     * @return the DeploymentsClient object.
-     */
-    DeploymentsClient getDeployments();
-
-    /**
      * Gets the ApiVersionsClient object to access its operations.
      * 
      * @return the ApiVersionsClient object.
@@ -101,6 +94,13 @@ public interface AzureApiCenter {
      * @return the ApiDefinitionsClient object.
      */
     ApiDefinitionsClient getApiDefinitions();
+
+    /**
+     * Gets the DeploymentsClient object to access its operations.
+     * 
+     * @return the DeploymentsClient object.
+     */
+    DeploymentsClient getDeployments();
 
     /**
      * Gets the EnvironmentsClient object to access its operations.

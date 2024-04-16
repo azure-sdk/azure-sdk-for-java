@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Result format for exported Api spec.
+ * Defines values for ApiSpecExportResultFormat.
  */
 public final class ApiSpecExportResultFormat extends ExpandableStringEnum<ApiSpecExportResultFormat> {
     /**

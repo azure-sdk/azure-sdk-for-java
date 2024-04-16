@@ -4,28 +4,20 @@
 
 package com.azure.resourcemanager.apicenter.models;
 
-import com.azure.core.annotation.Fluent;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.azure.core.annotation.Immutable;
+import com.azure.resourcemanager.apicenter.fluent.models.ServiceProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.Map;
 
 /**
- * The type used for update operations of the Service.
+ * The service properties to be updated.
  */
-@Fluent
+@Immutable
 public final class ServiceUpdate {
     /*
-     * The managed service identities assigned to this resource.
+     * The properties of the service.
      */
-    @JsonProperty(value = "identity")
-    private ManagedServiceIdentity identity;
-
-    /*
-     * Resource tags.
-     */
-    @JsonProperty(value = "tags")
-    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
-    private Map<String, String> tags;
+    @JsonProperty(value = "properties")
+    private ServiceProperties innerProperties;
 
     /**
      * Creates an instance of ServiceUpdate class.
@@ -34,43 +26,21 @@ public final class ServiceUpdate {
     }
 
     /**
-     * Get the identity property: The managed service identities assigned to this resource.
+     * Get the innerProperties property: The properties of the service.
      * 
-     * @return the identity value.
+     * @return the innerProperties value.
      */
-    public ManagedServiceIdentity identity() {
-        return this.identity;
+    private ServiceProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the identity property: The managed service identities assigned to this resource.
+     * Get the provisioningState property: Provisioning state of the service.
      * 
-     * @param identity the identity value to set.
-     * @return the ServiceUpdate object itself.
+     * @return the provisioningState value.
      */
-    public ServiceUpdate withIdentity(ManagedServiceIdentity identity) {
-        this.identity = identity;
-        return this;
-    }
-
-    /**
-     * Get the tags property: Resource tags.
-     * 
-     * @return the tags value.
-     */
-    public Map<String, String> tags() {
-        return this.tags;
-    }
-
-    /**
-     * Set the tags property: Resource tags.
-     * 
-     * @param tags the tags value to set.
-     * @return the ServiceUpdate object itself.
-     */
-    public ServiceUpdate withTags(Map<String, String> tags) {
-        this.tags = tags;
-        return this;
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
     }
 
     /**
@@ -79,8 +49,8 @@ public final class ServiceUpdate {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (identity() != null) {
-            identity().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

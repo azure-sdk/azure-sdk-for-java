@@ -8,7 +8,6 @@ import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.WorkspaceInner;
 import com.azure.resourcemanager.apicenter.models.Workspace;
-import com.azure.resourcemanager.apicenter.models.WorkspaceProperties;
 
 public final class WorkspaceImpl implements Workspace, Workspace.Definition, Workspace.Update {
     private WorkspaceInner innerObject;
@@ -27,12 +26,16 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
         return this.innerModel().type();
     }
 
-    public WorkspaceProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String title() {
+        return this.innerModel().title();
+    }
+
+    public String description() {
+        return this.innerModel().description();
     }
 
     public String resourceGroupName() {
@@ -60,14 +63,16 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     }
 
     public Workspace create() {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
             .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), Context.NONE)
             .getValue();
         return this;
     }
 
     public Workspace create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
             .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), context)
             .getValue();
         return this;
@@ -84,14 +89,16 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     }
 
     public Workspace apply() {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
             .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), Context.NONE)
             .getValue();
         return this;
     }
 
     public Workspace apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
             .createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, this.innerModel(), context)
             .getValue();
         return this;
@@ -106,19 +113,28 @@ public final class WorkspaceImpl implements Workspace, Workspace.Definition, Wor
     }
 
     public Workspace refresh() {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
-            .getWithResponse(resourceGroupName, serviceName, workspaceName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Workspace refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getWorkspaces()
-            .getWithResponse(resourceGroupName, serviceName, workspaceName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getWorkspaces()
+            .getWithResponse(resourceGroupName, serviceName, workspaceName, context)
+            .getValue();
         return this;
     }
 
-    public WorkspaceImpl withProperties(WorkspaceProperties properties) {
-        this.innerModel().withProperties(properties);
+    public WorkspaceImpl withTitle(String title) {
+        this.innerModel().withTitle(title);
+        return this;
+    }
+
+    public WorkspaceImpl withDescription(String description) {
+        this.innerModel().withDescription(description);
         return this;
     }
 }

@@ -7,19 +7,22 @@ package com.azure.resourcemanager.apicenter.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.apicenter.models.WorkspaceProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * Workspace
+ * 
  * Workspace entity.
  */
 @Fluent
 public final class WorkspaceInner extends ProxyResource {
     /*
-     * The resource-specific properties for this resource.
+     * Workspace properties
+     * 
+     * Workspace properties.
      */
     @JsonProperty(value = "properties")
-    private WorkspaceProperties properties;
+    private WorkspaceProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -34,23 +37,14 @@ public final class WorkspaceInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The resource-specific properties for this resource.
+     * Get the innerProperties property: Workspace properties
      * 
-     * @return the properties value.
-     */
-    public WorkspaceProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The resource-specific properties for this resource.
+     * Workspace properties.
      * 
-     * @param properties the properties value to set.
-     * @return the WorkspaceInner object itself.
+     * @return the innerProperties value.
      */
-    public WorkspaceInner withProperties(WorkspaceProperties properties) {
-        this.properties = properties;
-        return this;
+    private WorkspaceProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -63,13 +57,59 @@ public final class WorkspaceInner extends ProxyResource {
     }
 
     /**
+     * Get the title property: Workspace title.
+     * 
+     * @return the title value.
+     */
+    public String title() {
+        return this.innerProperties() == null ? null : this.innerProperties().title();
+    }
+
+    /**
+     * Set the title property: Workspace title.
+     * 
+     * @param title the title value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withTitle(String title) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspaceProperties();
+        }
+        this.innerProperties().withTitle(title);
+        return this;
+    }
+
+    /**
+     * Get the description property: Workspace description.
+     * 
+     * @return the description value.
+     */
+    public String description() {
+        return this.innerProperties() == null ? null : this.innerProperties().description();
+    }
+
+    /**
+     * Set the description property: Workspace description.
+     * 
+     * @param description the description value to set.
+     * @return the WorkspaceInner object itself.
+     */
+    public WorkspaceInner withDescription(String description) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new WorkspaceProperties();
+        }
+        this.innerProperties().withDescription(description);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

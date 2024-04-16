@@ -31,7 +31,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.apicenter.fluent.ApisClient;
 import com.azure.resourcemanager.apicenter.fluent.models.ApiInner;
-import com.azure.resourcemanager.apicenter.models.ApiListResult;
+import com.azure.resourcemanager.apicenter.models.ApiCollection;
 import com.azure.resourcemanager.apicenter.models.ApisCreateOrUpdateResponse;
 import com.azure.resourcemanager.apicenter.models.ApisGetResponse;
 import reactor.core.publisher.Mono;
@@ -71,61 +71,64 @@ public final class ApisClientImpl implements ApisClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApiListResult>> list(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<ApiCollection>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
-            @PathParam("workspaceName") String workspaceName, @QueryParam("$filter") String filter,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("workspaceName") String workspaceName, @QueryParam("api-version") String apiVersion,
+            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<ApisGetResponse> get(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<ApisGetResponse> get(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<ApisCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @BodyParam("application/json") ApiInner resource, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @BodyParam("application/json") ApiInner payload,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Head("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> head(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> head(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApiListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+        Mono<Response<ApiCollection>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
+     * List APIs
+     * 
      * Returns a collection of APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -135,8 +138,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -160,14 +162,17 @@ public final class ApisClientImpl implements ApisClient {
             return Mono.error(new IllegalArgumentException("Parameter workspaceName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, filter, accept, context))
+        return FluxUtil
+            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, this.client.getApiVersion(), filter, accept, context))
             .<PagedResponse<ApiInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * List APIs
+     * 
      * Returns a collection of APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -178,8 +183,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -205,13 +209,15 @@ public final class ApisClientImpl implements ApisClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, serviceName, workspaceName, filter, accept, context)
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+                workspaceName, this.client.getApiVersion(), filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
+     * List APIs
+     * 
      * Returns a collection of APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -221,7 +227,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation as paginated response with {@link PagedFlux}.
+     * @return aPI collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -231,6 +237,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * List APIs
+     * 
      * Returns a collection of APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -239,7 +247,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation as paginated response with {@link PagedFlux}.
+     * @return aPI collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiInner> listAsync(String resourceGroupName, String serviceName, String workspaceName) {
@@ -249,6 +257,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * List APIs
+     * 
      * Returns a collection of APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -259,7 +269,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation as paginated response with {@link PagedFlux}.
+     * @return aPI collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -270,6 +280,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * List APIs
+     * 
      * Returns a collection of APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -278,7 +290,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation as paginated response with {@link PagedIterable}.
+     * @return aPI collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiInner> list(String resourceGroupName, String serviceName, String workspaceName) {
@@ -287,6 +299,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * List APIs
+     * 
      * Returns a collection of APIs.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -297,7 +311,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation as paginated response with {@link PagedIterable}.
+     * @return aPI collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiInner> list(String resourceGroupName, String serviceName, String workspaceName,
@@ -306,6 +320,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * Get API
+     * 
      * Returns details of the API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -315,7 +331,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity on successful completion of {@link Mono}.
+     * @return aPI on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -342,12 +358,15 @@ public final class ApisClientImpl implements ApisClient {
             return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, accept, context))
+        return FluxUtil
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, apiName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Get API
+     * 
      * Returns details of the API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -358,7 +377,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity on successful completion of {@link Mono}.
+     * @return aPI on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -386,11 +405,13 @@ public final class ApisClientImpl implements ApisClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, apiName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Get API
+     * 
      * Returns details of the API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -400,7 +421,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity on successful completion of {@link Mono}.
+     * @return aPI on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiInner> getAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -410,6 +431,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * Get API
+     * 
      * Returns details of the API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -420,7 +443,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApisGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
@@ -429,6 +452,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * Get API
+     * 
      * Returns details of the API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -438,7 +463,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiInner get(String resourceGroupName, String serviceName, String workspaceName, String apiName) {
@@ -446,21 +471,23 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * Create or update API
+     * 
      * Creates new or updates existing API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
-     * @param resource Resource create parameters.
+     * @param payload API entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity on successful completion of {@link Mono}.
+     * @return aPI on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, ApiInner resource) {
+        String serviceName, String workspaceName, String apiName, ApiInner payload) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -482,36 +509,38 @@ public final class ApisClientImpl implements ApisClient {
         if (apiName == null) {
             return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, resource,
-                accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, apiName, this.client.getApiVersion(), payload, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Create or update API
+     * 
      * Creates new or updates existing API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
-     * @param resource Resource create parameters.
+     * @param payload API entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity on successful completion of {@link Mono}.
+     * @return aPI on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApisCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, ApiInner resource, Context context) {
+        String serviceName, String workspaceName, String apiName, ApiInner payload, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -533,80 +562,87 @@ public final class ApisClientImpl implements ApisClient {
         if (apiName == null) {
             return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, resource, accept,
-            context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, apiName, this.client.getApiVersion(), payload, accept, context);
     }
 
     /**
+     * Create or update API
+     * 
      * Creates new or updates existing API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
-     * @param resource Resource create parameters.
+     * @param payload API entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity on successful completion of {@link Mono}.
+     * @return aPI on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiInner> createOrUpdateAsync(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, ApiInner resource) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, resource)
+        String apiName, ApiInner payload) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, payload)
             .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * Create or update API
+     * 
      * Creates new or updates existing API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
-     * @param resource Resource create parameters.
+     * @param payload API entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApisCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, ApiInner resource, Context context) {
-        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, resource,
-            context).block();
+        String workspaceName, String apiName, ApiInner payload, Context context) {
+        return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, payload, context)
+            .block();
     }
 
     /**
+     * Create or update API
+     * 
      * Creates new or updates existing API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
-     * @param resource Resource create parameters.
+     * @param payload API entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI entity.
+     * @return aPI.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        ApiInner resource) {
-        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, resource,
-            Context.NONE).getValue();
+        ApiInner payload) {
+        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, payload, Context.NONE)
+            .getValue();
     }
 
     /**
+     * Delete API
+     * 
      * Deletes specified API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -643,12 +679,15 @@ public final class ApisClientImpl implements ApisClient {
             return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, accept, context))
+        return FluxUtil
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, apiName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Delete API
+     * 
      * Deletes specified API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -687,11 +726,13 @@ public final class ApisClientImpl implements ApisClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, apiName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Delete API
+     * 
      * Deletes specified API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -710,6 +751,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * Delete API
+     * 
      * Deletes specified API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -729,6 +772,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * Delete API
+     * 
      * Deletes specified API.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -745,6 +790,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * Check if API exists
+     * 
      * Checks if specified API exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -781,12 +828,15 @@ public final class ApisClientImpl implements ApisClient {
             return Mono.error(new IllegalArgumentException("Parameter apiName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil.withContext(context -> service.head(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, accept, context))
+        return FluxUtil
+            .withContext(context -> service.head(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, apiName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Check if API exists
+     * 
      * Checks if specified API exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -825,11 +875,13 @@ public final class ApisClientImpl implements ApisClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.head(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, accept, context);
+        return service.head(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, apiName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Check if API exists
+     * 
      * Checks if specified API exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -848,6 +900,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * Check if API exists
+     * 
      * Checks if specified API exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -867,6 +921,8 @@ public final class ApisClientImpl implements ApisClient {
     }
 
     /**
+     * Check if API exists
+     * 
      * Checks if specified API exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -891,8 +947,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiInner>> listNextSinglePageAsync(String nextLink) {
@@ -920,8 +975,7 @@ public final class ApisClientImpl implements ApisClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Api list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiInner>> listNextSinglePageAsync(String nextLink, Context context) {

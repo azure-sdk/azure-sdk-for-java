@@ -18,6 +18,8 @@ import com.azure.resourcemanager.apicenter.models.ApiVersionsGetResponse;
  */
 public interface ApiVersionsClient {
     /**
+     * List API versions
+     * 
      * Returns a collection of API versions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -27,13 +29,15 @@ public interface ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation as paginated response with {@link PagedIterable}.
+     * @return aPI version collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiVersionInner> list(String resourceGroupName, String serviceName, String workspaceName,
         String apiName);
 
     /**
+     * List API versions
+     * 
      * Returns a collection of API versions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -45,13 +49,15 @@ public interface ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation as paginated response with {@link PagedIterable}.
+     * @return aPI version collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<ApiVersionInner> list(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String filter, Context context);
 
     /**
+     * Get API version
+     * 
      * Returns details of the API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -63,13 +69,15 @@ public interface ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApiVersionsGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String versionName, Context context);
 
     /**
+     * Get API version
+     * 
      * Returns details of the API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -80,13 +88,15 @@ public interface ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApiVersionInner get(String resourceGroupName, String serviceName, String workspaceName, String apiName,
         String versionName);
 
     /**
+     * Create or update API version
+     * 
      * Creates new or updates existing API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -94,18 +104,20 @@ public interface ApiVersionsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
-     * @param resource Resource create parameters.
+     * @param payload API version entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApiVersionsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, ApiVersionInner resource, Context context);
+        String workspaceName, String apiName, String versionName, ApiVersionInner payload, Context context);
 
     /**
+     * Create or update API version
+     * 
      * Creates new or updates existing API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -113,17 +125,19 @@ public interface ApiVersionsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
-     * @param resource Resource create parameters.
+     * @param payload API version entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     ApiVersionInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String versionName, ApiVersionInner resource);
+        String versionName, ApiVersionInner payload);
 
     /**
+     * Delete API version
+     * 
      * Deletes specified API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -142,6 +156,8 @@ public interface ApiVersionsClient {
         String apiName, String versionName, Context context);
 
     /**
+     * Delete API version
+     * 
      * Deletes specified API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -157,6 +173,8 @@ public interface ApiVersionsClient {
     void delete(String resourceGroupName, String serviceName, String workspaceName, String apiName, String versionName);
 
     /**
+     * Check if API version exists
+     * 
      * Checks if specified API version exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -175,6 +193,8 @@ public interface ApiVersionsClient {
         String versionName, Context context);
 
     /**
+     * Check if API version exists
+     * 
      * Checks if specified API version exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.

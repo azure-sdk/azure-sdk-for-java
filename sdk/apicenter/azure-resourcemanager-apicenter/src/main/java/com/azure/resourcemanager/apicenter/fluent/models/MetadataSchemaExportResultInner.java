@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class MetadataSchemaExportResultInner {
     /*
-     * The export format for the schema
+     * The format property.
      */
     @JsonProperty(value = "format")
     private MetadataSchemaExportFormat format;
@@ -32,7 +32,7 @@ public final class MetadataSchemaExportResultInner {
     }
 
     /**
-     * Get the format property: The export format for the schema.
+     * Get the format property: The format property.
      * 
      * @return the format value.
      */
@@ -41,7 +41,7 @@ public final class MetadataSchemaExportResultInner {
     }
 
     /**
-     * Set the format property: The export format for the schema.
+     * Set the format property: The format property.
      * 
      * @param format the format value to set.
      * @return the MetadataSchemaExportResultInner object itself.

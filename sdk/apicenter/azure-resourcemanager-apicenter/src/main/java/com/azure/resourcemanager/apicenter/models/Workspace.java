@@ -34,18 +34,25 @@ public interface Workspace {
     String type();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    WorkspaceProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the title property: Workspace title.
+     * 
+     * @return the title value.
+     */
+    String title();
+
+    /**
+     * Gets the description property: Workspace description.
+     * 
+     * @return the description value.
+     */
+    String description();
 
     /**
      * Gets the name of the resource group.
@@ -96,7 +103,7 @@ public interface Workspace {
          * The stage of the Workspace definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithTitle, DefinitionStages.WithDescription {
             /**
              * Executes the create request.
              * 
@@ -114,16 +121,29 @@ public interface Workspace {
         }
 
         /**
-         * The stage of the Workspace definition allowing to specify properties.
+         * The stage of the Workspace definition allowing to specify title.
          */
-        interface WithProperties {
+        interface WithTitle {
             /**
-             * Specifies the properties property: The resource-specific properties for this resource..
+             * Specifies the title property: Workspace title..
              * 
-             * @param properties The resource-specific properties for this resource.
+             * @param title Workspace title.
              * @return the next definition stage.
              */
-            WithCreate withProperties(WorkspaceProperties properties);
+            WithCreate withTitle(String title);
+        }
+
+        /**
+         * The stage of the Workspace definition allowing to specify description.
+         */
+        interface WithDescription {
+            /**
+             * Specifies the description property: Workspace description..
+             * 
+             * @param description Workspace description.
+             * @return the next definition stage.
+             */
+            WithCreate withDescription(String description);
         }
     }
 
@@ -137,7 +157,7 @@ public interface Workspace {
     /**
      * The template for Workspace update.
      */
-    interface Update {
+    interface Update extends UpdateStages.WithTitle, UpdateStages.WithDescription {
         /**
          * Executes the update request.
          * 
@@ -158,6 +178,31 @@ public interface Workspace {
      * The Workspace update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the Workspace update allowing to specify title.
+         */
+        interface WithTitle {
+            /**
+             * Specifies the title property: Workspace title..
+             * 
+             * @param title Workspace title.
+             * @return the next definition stage.
+             */
+            Update withTitle(String title);
+        }
+
+        /**
+         * The stage of the Workspace update allowing to specify description.
+         */
+        interface WithDescription {
+            /**
+             * Specifies the description property: Workspace description..
+             * 
+             * @param description Workspace description.
+             * @return the next definition stage.
+             */
+            Update withDescription(String description);
+        }
     }
 
     /**

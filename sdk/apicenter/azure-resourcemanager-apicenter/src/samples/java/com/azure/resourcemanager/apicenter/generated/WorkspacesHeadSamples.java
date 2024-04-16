@@ -9,8 +9,7 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class WorkspacesHeadSamples {
     /*
-     * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Workspaces_Head.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Workspaces_Head.json
      */
     /**
      * Sample code: Workspaces_Head.
@@ -18,7 +17,7 @@ public final class WorkspacesHeadSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void workspacesHead(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.workspaces().headWithResponse("contoso-resources", "contoso", "default",
-            com.azure.core.util.Context.NONE);
+        manager.workspaces()
+            .headWithResponse("contoso-resources", "contoso", "default", com.azure.core.util.Context.NONE);
     }
 }

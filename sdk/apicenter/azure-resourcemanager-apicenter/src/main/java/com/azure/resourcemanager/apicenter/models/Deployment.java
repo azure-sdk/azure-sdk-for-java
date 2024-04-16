@@ -34,18 +34,64 @@ public interface Deployment {
     String type();
 
     /**
-     * Gets the properties property: The resource-specific properties for this resource.
-     * 
-     * @return the properties value.
-     */
-    DeploymentProperties properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the title property: API deployment title.
+     * 
+     * @return the title value.
+     */
+    String title();
+
+    /**
+     * Gets the description property: Description
+     * 
+     * Description of the deployment.
+     * 
+     * @return the description value.
+     */
+    String description();
+
+    /**
+     * Gets the environmentId property: API center-scoped environment resource ID.
+     * 
+     * @return the environmentId value.
+     */
+    String environmentId();
+
+    /**
+     * Gets the definitionId property: API center-scoped definition resource ID.
+     * 
+     * @return the definitionId value.
+     */
+    String definitionId();
+
+    /**
+     * Gets the state property: State
+     * 
+     * State of API deployment.
+     * 
+     * @return the state value.
+     */
+    DeploymentState state();
+
+    /**
+     * Gets the server property: Server.
+     * 
+     * @return the server value.
+     */
+    DeploymentServer server();
+
+    /**
+     * Gets the customProperties property: The custom metadata defined for API catalog entities.
+     * 
+     * @return the customProperties value.
+     */
+    Object customProperties();
 
     /**
      * Gets the name of the resource group.
@@ -99,7 +145,9 @@ public interface Deployment {
          * The stage of the Deployment definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithProperties {
+        interface WithCreate extends DefinitionStages.WithTitle, DefinitionStages.WithDescription,
+            DefinitionStages.WithEnvironmentId, DefinitionStages.WithDefinitionId, DefinitionStages.WithState,
+            DefinitionStages.WithServer, DefinitionStages.WithCustomProperties {
             /**
              * Executes the create request.
              * 
@@ -117,16 +165,102 @@ public interface Deployment {
         }
 
         /**
-         * The stage of the Deployment definition allowing to specify properties.
+         * The stage of the Deployment definition allowing to specify title.
          */
-        interface WithProperties {
+        interface WithTitle {
             /**
-             * Specifies the properties property: The resource-specific properties for this resource..
+             * Specifies the title property: API deployment title.
              * 
-             * @param properties The resource-specific properties for this resource.
+             * @param title API deployment title.
              * @return the next definition stage.
              */
-            WithCreate withProperties(DeploymentProperties properties);
+            WithCreate withTitle(String title);
+        }
+
+        /**
+         * The stage of the Deployment definition allowing to specify description.
+         */
+        interface WithDescription {
+            /**
+             * Specifies the description property: Description
+             * 
+             * Description of the deployment..
+             * 
+             * @param description Description
+             * 
+             * Description of the deployment.
+             * @return the next definition stage.
+             */
+            WithCreate withDescription(String description);
+        }
+
+        /**
+         * The stage of the Deployment definition allowing to specify environmentId.
+         */
+        interface WithEnvironmentId {
+            /**
+             * Specifies the environmentId property: API center-scoped environment resource ID..
+             * 
+             * @param environmentId API center-scoped environment resource ID.
+             * @return the next definition stage.
+             */
+            WithCreate withEnvironmentId(String environmentId);
+        }
+
+        /**
+         * The stage of the Deployment definition allowing to specify definitionId.
+         */
+        interface WithDefinitionId {
+            /**
+             * Specifies the definitionId property: API center-scoped definition resource ID..
+             * 
+             * @param definitionId API center-scoped definition resource ID.
+             * @return the next definition stage.
+             */
+            WithCreate withDefinitionId(String definitionId);
+        }
+
+        /**
+         * The stage of the Deployment definition allowing to specify state.
+         */
+        interface WithState {
+            /**
+             * Specifies the state property: State
+             * 
+             * State of API deployment..
+             * 
+             * @param state State
+             * 
+             * State of API deployment.
+             * @return the next definition stage.
+             */
+            WithCreate withState(DeploymentState state);
+        }
+
+        /**
+         * The stage of the Deployment definition allowing to specify server.
+         */
+        interface WithServer {
+            /**
+             * Specifies the server property: Server.
+             * 
+             * @param server Server.
+             * @return the next definition stage.
+             */
+            WithCreate withServer(DeploymentServer server);
+        }
+
+        /**
+         * The stage of the Deployment definition allowing to specify customProperties.
+         */
+        interface WithCustomProperties {
+            /**
+             * Specifies the customProperties property: The custom metadata defined for API catalog entities..
+             * 
+             * @param customProperties The custom metadata defined for API catalog entities.
+             * @return the next definition stage.
+             */
+            WithCreate withCustomProperties(Object customProperties);
         }
     }
 
@@ -140,7 +274,9 @@ public interface Deployment {
     /**
      * The template for Deployment update.
      */
-    interface Update {
+    interface Update extends UpdateStages.WithTitle, UpdateStages.WithDescription, UpdateStages.WithEnvironmentId,
+        UpdateStages.WithDefinitionId, UpdateStages.WithState, UpdateStages.WithServer,
+        UpdateStages.WithCustomProperties {
         /**
          * Executes the update request.
          * 
@@ -161,6 +297,104 @@ public interface Deployment {
      * The Deployment update stages.
      */
     interface UpdateStages {
+        /**
+         * The stage of the Deployment update allowing to specify title.
+         */
+        interface WithTitle {
+            /**
+             * Specifies the title property: API deployment title.
+             * 
+             * @param title API deployment title.
+             * @return the next definition stage.
+             */
+            Update withTitle(String title);
+        }
+
+        /**
+         * The stage of the Deployment update allowing to specify description.
+         */
+        interface WithDescription {
+            /**
+             * Specifies the description property: Description
+             * 
+             * Description of the deployment..
+             * 
+             * @param description Description
+             * 
+             * Description of the deployment.
+             * @return the next definition stage.
+             */
+            Update withDescription(String description);
+        }
+
+        /**
+         * The stage of the Deployment update allowing to specify environmentId.
+         */
+        interface WithEnvironmentId {
+            /**
+             * Specifies the environmentId property: API center-scoped environment resource ID..
+             * 
+             * @param environmentId API center-scoped environment resource ID.
+             * @return the next definition stage.
+             */
+            Update withEnvironmentId(String environmentId);
+        }
+
+        /**
+         * The stage of the Deployment update allowing to specify definitionId.
+         */
+        interface WithDefinitionId {
+            /**
+             * Specifies the definitionId property: API center-scoped definition resource ID..
+             * 
+             * @param definitionId API center-scoped definition resource ID.
+             * @return the next definition stage.
+             */
+            Update withDefinitionId(String definitionId);
+        }
+
+        /**
+         * The stage of the Deployment update allowing to specify state.
+         */
+        interface WithState {
+            /**
+             * Specifies the state property: State
+             * 
+             * State of API deployment..
+             * 
+             * @param state State
+             * 
+             * State of API deployment.
+             * @return the next definition stage.
+             */
+            Update withState(DeploymentState state);
+        }
+
+        /**
+         * The stage of the Deployment update allowing to specify server.
+         */
+        interface WithServer {
+            /**
+             * Specifies the server property: Server.
+             * 
+             * @param server Server.
+             * @return the next definition stage.
+             */
+            Update withServer(DeploymentServer server);
+        }
+
+        /**
+         * The stage of the Deployment update allowing to specify customProperties.
+         */
+        interface WithCustomProperties {
+            /**
+             * Specifies the customProperties property: The custom metadata defined for API catalog entities..
+             * 
+             * @param customProperties The custom metadata defined for API catalog entities.
+             * @return the next definition stage.
+             */
+            Update withCustomProperties(Object customProperties);
+        }
     }
 
     /**

@@ -7,19 +7,24 @@ package com.azure.resourcemanager.apicenter.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.apicenter.models.DeploymentProperties;
+import com.azure.resourcemanager.apicenter.models.DeploymentServer;
+import com.azure.resourcemanager.apicenter.models.DeploymentState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * API deployment
+ * 
  * API deployment entity.
  */
 @Fluent
 public final class DeploymentInner extends ProxyResource {
     /*
-     * The resource-specific properties for this resource.
+     * API deployment properties
+     * 
+     * API deployment entity properties.
      */
     @JsonProperty(value = "properties")
-    private DeploymentProperties properties;
+    private DeploymentProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -34,23 +39,14 @@ public final class DeploymentInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The resource-specific properties for this resource.
+     * Get the innerProperties property: API deployment properties
      * 
-     * @return the properties value.
-     */
-    public DeploymentProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The resource-specific properties for this resource.
+     * API deployment entity properties.
      * 
-     * @param properties the properties value to set.
-     * @return the DeploymentInner object itself.
+     * @return the innerProperties value.
      */
-    public DeploymentInner withProperties(DeploymentProperties properties) {
-        this.properties = properties;
-        return this;
+    private DeploymentProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -63,13 +59,182 @@ public final class DeploymentInner extends ProxyResource {
     }
 
     /**
+     * Get the title property: API deployment title.
+     * 
+     * @return the title value.
+     */
+    public String title() {
+        return this.innerProperties() == null ? null : this.innerProperties().title();
+    }
+
+    /**
+     * Set the title property: API deployment title.
+     * 
+     * @param title the title value to set.
+     * @return the DeploymentInner object itself.
+     */
+    public DeploymentInner withTitle(String title) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DeploymentProperties();
+        }
+        this.innerProperties().withTitle(title);
+        return this;
+    }
+
+    /**
+     * Get the description property: Description
+     * 
+     * Description of the deployment.
+     * 
+     * @return the description value.
+     */
+    public String description() {
+        return this.innerProperties() == null ? null : this.innerProperties().description();
+    }
+
+    /**
+     * Set the description property: Description
+     * 
+     * Description of the deployment.
+     * 
+     * @param description the description value to set.
+     * @return the DeploymentInner object itself.
+     */
+    public DeploymentInner withDescription(String description) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DeploymentProperties();
+        }
+        this.innerProperties().withDescription(description);
+        return this;
+    }
+
+    /**
+     * Get the environmentId property: API center-scoped environment resource ID.
+     * 
+     * @return the environmentId value.
+     */
+    public String environmentId() {
+        return this.innerProperties() == null ? null : this.innerProperties().environmentId();
+    }
+
+    /**
+     * Set the environmentId property: API center-scoped environment resource ID.
+     * 
+     * @param environmentId the environmentId value to set.
+     * @return the DeploymentInner object itself.
+     */
+    public DeploymentInner withEnvironmentId(String environmentId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DeploymentProperties();
+        }
+        this.innerProperties().withEnvironmentId(environmentId);
+        return this;
+    }
+
+    /**
+     * Get the definitionId property: API center-scoped definition resource ID.
+     * 
+     * @return the definitionId value.
+     */
+    public String definitionId() {
+        return this.innerProperties() == null ? null : this.innerProperties().definitionId();
+    }
+
+    /**
+     * Set the definitionId property: API center-scoped definition resource ID.
+     * 
+     * @param definitionId the definitionId value to set.
+     * @return the DeploymentInner object itself.
+     */
+    public DeploymentInner withDefinitionId(String definitionId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DeploymentProperties();
+        }
+        this.innerProperties().withDefinitionId(definitionId);
+        return this;
+    }
+
+    /**
+     * Get the state property: State
+     * 
+     * State of API deployment.
+     * 
+     * @return the state value.
+     */
+    public DeploymentState state() {
+        return this.innerProperties() == null ? null : this.innerProperties().state();
+    }
+
+    /**
+     * Set the state property: State
+     * 
+     * State of API deployment.
+     * 
+     * @param state the state value to set.
+     * @return the DeploymentInner object itself.
+     */
+    public DeploymentInner withState(DeploymentState state) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DeploymentProperties();
+        }
+        this.innerProperties().withState(state);
+        return this;
+    }
+
+    /**
+     * Get the server property: Server.
+     * 
+     * @return the server value.
+     */
+    public DeploymentServer server() {
+        return this.innerProperties() == null ? null : this.innerProperties().server();
+    }
+
+    /**
+     * Set the server property: Server.
+     * 
+     * @param server the server value to set.
+     * @return the DeploymentInner object itself.
+     */
+    public DeploymentInner withServer(DeploymentServer server) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DeploymentProperties();
+        }
+        this.innerProperties().withServer(server);
+        return this;
+    }
+
+    /**
+     * Get the customProperties property: The custom metadata defined for API catalog entities.
+     * 
+     * @return the customProperties value.
+     */
+    public Object customProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().customProperties();
+    }
+
+    /**
+     * Set the customProperties property: The custom metadata defined for API catalog entities.
+     * 
+     * @param customProperties the customProperties value to set.
+     * @return the DeploymentInner object itself.
+     */
+    public DeploymentInner withCustomProperties(Object customProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new DeploymentProperties();
+        }
+        this.innerProperties().withCustomProperties(customProperties);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

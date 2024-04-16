@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The type of environment server.
+ * Type of the server that represents the environment.
  */
 public final class EnvironmentServerType extends ExpandableStringEnum<EnvironmentServerType> {
     /**

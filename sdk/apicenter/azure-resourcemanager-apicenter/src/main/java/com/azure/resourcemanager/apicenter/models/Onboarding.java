@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Onboarding information.
+ * The Onboarding model.
  */
 @Fluent
 public final class Onboarding {
@@ -20,7 +20,7 @@ public final class Onboarding {
     private String instructions;
 
     /*
-     * The location of the development portal
+     * The developerPortalUri property.
      */
     @JsonProperty(value = "developerPortalUri")
     private List<String> developerPortalUri;
@@ -52,7 +52,7 @@ public final class Onboarding {
     }
 
     /**
-     * Get the developerPortalUri property: The location of the development portal.
+     * Get the developerPortalUri property: The developerPortalUri property.
      * 
      * @return the developerPortalUri value.
      */
@@ -61,7 +61,7 @@ public final class Onboarding {
     }
 
     /**
-     * Set the developerPortalUri property: The location of the development portal.
+     * Set the developerPortalUri property: The developerPortalUri property.
      * 
      * @param developerPortalUri the developerPortalUri value to set.
      * @return the Onboarding object itself.

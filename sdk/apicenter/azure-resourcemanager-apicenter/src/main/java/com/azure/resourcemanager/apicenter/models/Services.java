@@ -56,6 +56,8 @@ public interface Services {
     PagedIterable<Service> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
+     * Get service
+     * 
      * Returns details of the service.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -69,6 +71,8 @@ public interface Services {
     Response<Service> getByResourceGroupWithResponse(String resourceGroupName, String serviceName, Context context);
 
     /**
+     * Get service
+     * 
      * Returns details of the service.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -81,6 +85,8 @@ public interface Services {
     Service getByResourceGroup(String resourceGroupName, String serviceName);
 
     /**
+     * Delete service
+     * 
      * Deletes specified service.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -94,6 +100,8 @@ public interface Services {
     Response<Void> deleteByResourceGroupWithResponse(String resourceGroupName, String serviceName, Context context);
 
     /**
+     * Delete service
+     * 
      * Deletes specified service.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -105,35 +113,41 @@ public interface Services {
     void deleteByResourceGroup(String resourceGroupName, String serviceName);
 
     /**
+     * Export effective metadata schema
+     * 
      * Exports the effective metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
-     * @param body The content of the action request.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the metadata schema export result.
-     */
-    MetadataSchemaExportResult exportMetadataSchema(String resourceGroupName, String serviceName,
-        MetadataSchemaExportRequest body);
-
-    /**
-     * Exports the effective metadata schema.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param body The content of the action request.
+     * @param payload The metadata schema request details.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the metadata schema export result along with {@link Response}.
+     */
+    Response<MetadataSchemaExportResult> exportMetadataSchemaWithResponse(String resourceGroupName, String serviceName,
+        MetadataSchemaExportRequest payload, Context context);
+
+    /**
+     * Export effective metadata schema
+     * 
+     * Exports the effective metadata schema.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param payload The metadata schema request details.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the metadata schema export result.
      */
     MetadataSchemaExportResult exportMetadataSchema(String resourceGroupName, String serviceName,
-        MetadataSchemaExportRequest body, Context context);
+        MetadataSchemaExportRequest payload);
 
     /**
+     * Get service
+     * 
      * Returns details of the service.
      * 
      * @param id the resource ID.
@@ -145,6 +159,8 @@ public interface Services {
     Service getById(String id);
 
     /**
+     * Get service
+     * 
      * Returns details of the service.
      * 
      * @param id the resource ID.
@@ -157,6 +173,8 @@ public interface Services {
     Response<Service> getByIdWithResponse(String id, Context context);
 
     /**
+     * Delete service
+     * 
      * Deletes specified service.
      * 
      * @param id the resource ID.
@@ -167,6 +185,8 @@ public interface Services {
     void deleteById(String id);
 
     /**
+     * Delete service
+     * 
      * Deletes specified service.
      * 
      * @param id the resource ID.

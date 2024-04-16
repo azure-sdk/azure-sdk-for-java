@@ -8,7 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.apicenter.models.ManagedServiceIdentity;
-import com.azure.resourcemanager.apicenter.models.ServiceProperties;
+import com.azure.resourcemanager.apicenter.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
@@ -18,13 +18,13 @@ import java.util.Map;
 @Fluent
 public final class ServiceInner extends Resource {
     /*
-     * The resource-specific properties for this resource.
+     * The properties of the service.
      */
     @JsonProperty(value = "properties")
-    private ServiceProperties properties;
+    private ServiceProperties innerProperties;
 
     /*
-     * The managed service identities assigned to this resource.
+     * Managed service identity (system assigned and/or user assigned identities)
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
@@ -42,27 +42,16 @@ public final class ServiceInner extends Resource {
     }
 
     /**
-     * Get the properties property: The resource-specific properties for this resource.
+     * Get the innerProperties property: The properties of the service.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public ServiceProperties properties() {
-        return this.properties;
+    private ServiceProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
-     * Set the properties property: The resource-specific properties for this resource.
-     * 
-     * @param properties the properties value to set.
-     * @return the ServiceInner object itself.
-     */
-    public ServiceInner withProperties(ServiceProperties properties) {
-        this.properties = properties;
-        return this;
-    }
-
-    /**
-     * Get the identity property: The managed service identities assigned to this resource.
+     * Get the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
      * @return the identity value.
      */
@@ -71,7 +60,7 @@ public final class ServiceInner extends Resource {
     }
 
     /**
-     * Set the identity property: The managed service identities assigned to this resource.
+     * Set the identity property: Managed service identity (system assigned and/or user assigned identities).
      * 
      * @param identity the identity value to set.
      * @return the ServiceInner object itself.
@@ -109,13 +98,22 @@ public final class ServiceInner extends Resource {
     }
 
     /**
+     * Get the provisioningState property: Provisioning state of the service.
+     * 
+     * @return the provisioningState value.
+     */
+    public ProvisioningState provisioningState() {
+        return this.innerProperties() == null ? null : this.innerProperties().provisioningState();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
         if (identity() != null) {
             identity().validate();

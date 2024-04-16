@@ -7,19 +7,25 @@ package com.azure.resourcemanager.apicenter.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.apicenter.models.EnvironmentProperties;
+import com.azure.resourcemanager.apicenter.models.EnvironmentKind;
+import com.azure.resourcemanager.apicenter.models.EnvironmentServer;
+import com.azure.resourcemanager.apicenter.models.Onboarding;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * Environment
+ * 
  * Environment entity.
  */
 @Fluent
 public final class EnvironmentInner extends ProxyResource {
     /*
-     * The resource-specific properties for this resource.
+     * Environment entity properties
+     * 
+     * Environment properties entity.
      */
     @JsonProperty(value = "properties")
-    private EnvironmentProperties properties;
+    private EnvironmentProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -34,23 +40,14 @@ public final class EnvironmentInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The resource-specific properties for this resource.
+     * Get the innerProperties property: Environment entity properties
      * 
-     * @return the properties value.
-     */
-    public EnvironmentProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The resource-specific properties for this resource.
+     * Environment properties entity.
      * 
-     * @param properties the properties value to set.
-     * @return the EnvironmentInner object itself.
+     * @return the innerProperties value.
      */
-    public EnvironmentInner withProperties(EnvironmentProperties properties) {
-        this.properties = properties;
-        return this;
+    private EnvironmentProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -63,13 +60,155 @@ public final class EnvironmentInner extends ProxyResource {
     }
 
     /**
+     * Get the title property: Environment title.
+     * 
+     * @return the title value.
+     */
+    public String title() {
+        return this.innerProperties() == null ? null : this.innerProperties().title();
+    }
+
+    /**
+     * Set the title property: Environment title.
+     * 
+     * @param title the title value to set.
+     * @return the EnvironmentInner object itself.
+     */
+    public EnvironmentInner withTitle(String title) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withTitle(title);
+        return this;
+    }
+
+    /**
+     * Get the description property: Description.
+     * 
+     * @return the description value.
+     */
+    public String description() {
+        return this.innerProperties() == null ? null : this.innerProperties().description();
+    }
+
+    /**
+     * Set the description property: Description.
+     * 
+     * @param description the description value to set.
+     * @return the EnvironmentInner object itself.
+     */
+    public EnvironmentInner withDescription(String description) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withDescription(description);
+        return this;
+    }
+
+    /**
+     * Get the kind property: Environment kind.
+     * 
+     * @return the kind value.
+     */
+    public EnvironmentKind kind() {
+        return this.innerProperties() == null ? null : this.innerProperties().kind();
+    }
+
+    /**
+     * Set the kind property: Environment kind.
+     * 
+     * @param kind the kind value to set.
+     * @return the EnvironmentInner object itself.
+     */
+    public EnvironmentInner withKind(EnvironmentKind kind) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withKind(kind);
+        return this;
+    }
+
+    /**
+     * Get the server property: Server
+     * 
+     * Server information of the environment.
+     * 
+     * @return the server value.
+     */
+    public EnvironmentServer server() {
+        return this.innerProperties() == null ? null : this.innerProperties().server();
+    }
+
+    /**
+     * Set the server property: Server
+     * 
+     * Server information of the environment.
+     * 
+     * @param server the server value to set.
+     * @return the EnvironmentInner object itself.
+     */
+    public EnvironmentInner withServer(EnvironmentServer server) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withServer(server);
+        return this;
+    }
+
+    /**
+     * Get the onboarding property: The onboarding property.
+     * 
+     * @return the onboarding value.
+     */
+    public Onboarding onboarding() {
+        return this.innerProperties() == null ? null : this.innerProperties().onboarding();
+    }
+
+    /**
+     * Set the onboarding property: The onboarding property.
+     * 
+     * @param onboarding the onboarding value to set.
+     * @return the EnvironmentInner object itself.
+     */
+    public EnvironmentInner withOnboarding(Onboarding onboarding) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withOnboarding(onboarding);
+        return this;
+    }
+
+    /**
+     * Get the customProperties property: The custom metadata defined for API catalog entities.
+     * 
+     * @return the customProperties value.
+     */
+    public Object customProperties() {
+        return this.innerProperties() == null ? null : this.innerProperties().customProperties();
+    }
+
+    /**
+     * Set the customProperties property: The custom metadata defined for API catalog entities.
+     * 
+     * @param customProperties the customProperties value to set.
+     * @return the EnvironmentInner object itself.
+     */
+    public EnvironmentInner withCustomProperties(Object customProperties) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new EnvironmentProperties();
+        }
+        this.innerProperties().withCustomProperties(customProperties);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

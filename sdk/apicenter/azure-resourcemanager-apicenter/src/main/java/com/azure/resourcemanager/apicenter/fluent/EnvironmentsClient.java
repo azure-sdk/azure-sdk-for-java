@@ -18,6 +18,8 @@ import com.azure.resourcemanager.apicenter.models.EnvironmentsGetResponse;
  */
 public interface EnvironmentsClient {
     /**
+     * List environments
+     * 
      * Returns a collection of environments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -26,12 +28,14 @@ public interface EnvironmentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Environment list operation as paginated response with {@link PagedIterable}.
+     * @return environments collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<EnvironmentInner> list(String resourceGroupName, String serviceName, String workspaceName);
 
     /**
+     * List environments
+     * 
      * Returns a collection of environments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -42,80 +46,54 @@ public interface EnvironmentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Environment list operation as paginated response with {@link PagedIterable}.
+     * @return environments collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<EnvironmentInner> list(String resourceGroupName, String serviceName, String workspaceName,
         String filter, Context context);
 
     /**
-     * Returns details of the environment.
+     * Create or update environment
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param environmentName The name of the environment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    EnvironmentsGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
-        String environmentName, Context context);
-
-    /**
-     * Returns details of the environment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param environmentName The name of the environment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    EnvironmentInner get(String resourceGroupName, String serviceName, String workspaceName, String environmentName);
-
-    /**
      * Creates new or updates existing environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param environmentName The name of the environment.
-     * @param resource Resource create parameters.
+     * @param payload Environment entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity.
+     * @return environment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     EnvironmentsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String environmentName, EnvironmentInner resource, Context context);
+        String workspaceName, String environmentName, EnvironmentInner payload, Context context);
 
     /**
+     * Create or update environment
+     * 
      * Creates new or updates existing environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param workspaceName The name of the workspace.
      * @param environmentName The name of the environment.
-     * @param resource Resource create parameters.
+     * @param payload Environment entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return environment entity.
+     * @return environment.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     EnvironmentInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName,
-        String environmentName, EnvironmentInner resource);
+        String environmentName, EnvironmentInner payload);
 
     /**
+     * Delete environment
+     * 
      * Deletes the environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -133,6 +111,8 @@ public interface EnvironmentsClient {
         String environmentName, Context context);
 
     /**
+     * Delete environment
+     * 
      * Deletes the environment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -147,6 +127,8 @@ public interface EnvironmentsClient {
     void delete(String resourceGroupName, String serviceName, String workspaceName, String environmentName);
 
     /**
+     * Check if environment exists
+     * 
      * Checks if specified environment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -164,6 +146,8 @@ public interface EnvironmentsClient {
         String environmentName, Context context);
 
     /**
+     * Check if environment exists
+     * 
      * Checks if specified environment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -176,4 +160,40 @@ public interface EnvironmentsClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void head(String resourceGroupName, String serviceName, String workspaceName, String environmentName);
+
+    /**
+     * Get environment
+     * 
+     * Returns details of the environment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param environmentName The name of the environment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return environment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    EnvironmentsGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+        String environmentName, Context context);
+
+    /**
+     * Get environment
+     * 
+     * Returns details of the environment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param environmentName The name of the environment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return environment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    EnvironmentInner get(String resourceGroupName, String serviceName, String workspaceName, String environmentName);
 }

@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -25,8 +25,8 @@ import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.apicenter.fluent.AzureApiCenter;
 import com.azure.resourcemanager.apicenter.implementation.ApiDefinitionsImpl;
-import com.azure.resourcemanager.apicenter.implementation.ApiVersionsImpl;
 import com.azure.resourcemanager.apicenter.implementation.ApisImpl;
+import com.azure.resourcemanager.apicenter.implementation.ApiVersionsImpl;
 import com.azure.resourcemanager.apicenter.implementation.AzureApiCenterBuilder;
 import com.azure.resourcemanager.apicenter.implementation.DeploymentsImpl;
 import com.azure.resourcemanager.apicenter.implementation.EnvironmentsImpl;
@@ -35,8 +35,8 @@ import com.azure.resourcemanager.apicenter.implementation.OperationsImpl;
 import com.azure.resourcemanager.apicenter.implementation.ServicesImpl;
 import com.azure.resourcemanager.apicenter.implementation.WorkspacesImpl;
 import com.azure.resourcemanager.apicenter.models.ApiDefinitions;
-import com.azure.resourcemanager.apicenter.models.ApiVersions;
 import com.azure.resourcemanager.apicenter.models.Apis;
+import com.azure.resourcemanager.apicenter.models.ApiVersions;
 import com.azure.resourcemanager.apicenter.models.Deployments;
 import com.azure.resourcemanager.apicenter.models.Environments;
 import com.azure.resourcemanager.apicenter.models.MetadataSchemas;
@@ -65,11 +65,11 @@ public final class ApiCenterManager {
 
     private Apis apis;
 
-    private Deployments deployments;
-
     private ApiVersions apiVersions;
 
     private ApiDefinitions apiDefinitions;
+
+    private Deployments deployments;
 
     private Environments environments;
 
@@ -79,8 +79,10 @@ public final class ApiCenterManager {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject = new AzureApiCenterBuilder().pipeline(httpPipeline)
-            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
-            .defaultPollInterval(defaultPollInterval).buildClient();
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
+            .subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval)
+            .buildClient();
     }
 
     /**
@@ -231,12 +233,19 @@ public final class ApiCenterManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.apicenter").append("/")
-                .append("1.0.0");
+            userAgentBuilder.append("azsdk-java")
+                .append("-")
+                .append("com.azure.resourcemanager.apicenter")
+                .append("/")
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
+                userAgentBuilder.append(" (")
+                    .append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.name"))
+                    .append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version"))
+                    .append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -255,18 +264,21 @@ public final class ApiCenterManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
                 .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
-                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
             HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
-                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
+                .policies(policies.toArray(new HttpPipelinePolicy[0]))
+                .build();
             return new ApiCenterManager(httpPipeline, profile, defaultPollInterval);
         }
     }
@@ -332,18 +344,6 @@ public final class ApiCenterManager {
     }
 
     /**
-     * Gets the resource collection API of Deployments. It manages Deployment.
-     * 
-     * @return Resource collection API of Deployments.
-     */
-    public Deployments deployments() {
-        if (this.deployments == null) {
-            this.deployments = new DeploymentsImpl(clientObject.getDeployments(), this);
-        }
-        return deployments;
-    }
-
-    /**
      * Gets the resource collection API of ApiVersions. It manages ApiVersion.
      * 
      * @return Resource collection API of ApiVersions.
@@ -365,6 +365,18 @@ public final class ApiCenterManager {
             this.apiDefinitions = new ApiDefinitionsImpl(clientObject.getApiDefinitions(), this);
         }
         return apiDefinitions;
+    }
+
+    /**
+     * Gets the resource collection API of Deployments. It manages Deployment.
+     * 
+     * @return Resource collection API of Deployments.
+     */
+    public Deployments deployments() {
+        if (this.deployments == null) {
+            this.deployments = new DeploymentsImpl(clientObject.getDeployments(), this);
+        }
+        return deployments;
     }
 
     /**

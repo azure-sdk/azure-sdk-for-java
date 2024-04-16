@@ -7,8 +7,10 @@ package com.azure.resourcemanager.apicenter.implementation;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.apicenter.fluent.models.MetadataSchemaInner;
+import com.azure.resourcemanager.apicenter.models.MetadataAssignment;
 import com.azure.resourcemanager.apicenter.models.MetadataSchema;
-import com.azure.resourcemanager.apicenter.models.MetadataSchemaProperties;
+import java.util.Collections;
+import java.util.List;
 
 public final class MetadataSchemaImpl implements MetadataSchema, MetadataSchema.Definition, MetadataSchema.Update {
     private MetadataSchemaInner innerObject;
@@ -27,12 +29,21 @@ public final class MetadataSchemaImpl implements MetadataSchema, MetadataSchema.
         return this.innerModel().type();
     }
 
-    public MetadataSchemaProperties properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public String schema() {
+        return this.innerModel().schema();
+    }
+
+    public List<MetadataAssignment> assignedTo() {
+        List<MetadataAssignment> inner = this.innerModel().assignedTo();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     public String resourceGroupName() {
@@ -60,14 +71,17 @@ public final class MetadataSchemaImpl implements MetadataSchema, MetadataSchema.
     }
 
     public MetadataSchema create() {
-        this.innerObject
-            = serviceManager.serviceClient().getMetadataSchemas().createOrUpdateWithResponse(resourceGroupName,
-                serviceName, metadataSchemaName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMetadataSchemas()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, metadataSchemaName, this.innerModel(),
+                Context.NONE)
+            .getValue();
         return this;
     }
 
     public MetadataSchema create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getMetadataSchemas()
+        this.innerObject = serviceManager.serviceClient()
+            .getMetadataSchemas()
             .createOrUpdateWithResponse(resourceGroupName, serviceName, metadataSchemaName, this.innerModel(), context)
             .getValue();
         return this;
@@ -84,14 +98,17 @@ public final class MetadataSchemaImpl implements MetadataSchema, MetadataSchema.
     }
 
     public MetadataSchema apply() {
-        this.innerObject
-            = serviceManager.serviceClient().getMetadataSchemas().createOrUpdateWithResponse(resourceGroupName,
-                serviceName, metadataSchemaName, this.innerModel(), Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMetadataSchemas()
+            .createOrUpdateWithResponse(resourceGroupName, serviceName, metadataSchemaName, this.innerModel(),
+                Context.NONE)
+            .getValue();
         return this;
     }
 
     public MetadataSchema apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getMetadataSchemas()
+        this.innerObject = serviceManager.serviceClient()
+            .getMetadataSchemas()
             .createOrUpdateWithResponse(resourceGroupName, serviceName, metadataSchemaName, this.innerModel(), context)
             .getValue();
         return this;
@@ -107,19 +124,28 @@ public final class MetadataSchemaImpl implements MetadataSchema, MetadataSchema.
     }
 
     public MetadataSchema refresh() {
-        this.innerObject = serviceManager.serviceClient().getMetadataSchemas()
-            .getWithResponse(resourceGroupName, serviceName, metadataSchemaName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMetadataSchemas()
+            .getWithResponse(resourceGroupName, serviceName, metadataSchemaName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public MetadataSchema refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getMetadataSchemas()
-            .getWithResponse(resourceGroupName, serviceName, metadataSchemaName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getMetadataSchemas()
+            .getWithResponse(resourceGroupName, serviceName, metadataSchemaName, context)
+            .getValue();
         return this;
     }
 
-    public MetadataSchemaImpl withProperties(MetadataSchemaProperties properties) {
-        this.innerModel().withProperties(properties);
+    public MetadataSchemaImpl withSchema(String schema) {
+        this.innerModel().withSchema(schema);
+        return this;
+    }
+
+    public MetadataSchemaImpl withAssignedTo(List<MetadataAssignment> assignedTo) {
+        this.innerModel().withAssignedTo(assignedTo);
         return this;
     }
 }

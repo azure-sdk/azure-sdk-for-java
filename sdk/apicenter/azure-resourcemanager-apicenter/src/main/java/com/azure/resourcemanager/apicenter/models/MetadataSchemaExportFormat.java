@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The format for schema export.
+ * Defines values for MetadataSchemaExportFormat.
  */
 public final class MetadataSchemaExportFormat extends ExpandableStringEnum<MetadataSchemaExportFormat> {
     /**

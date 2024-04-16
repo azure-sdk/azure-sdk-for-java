@@ -18,6 +18,8 @@ import com.azure.resourcemanager.apicenter.models.MetadataSchemasGetResponse;
  */
 public interface MetadataSchemasClient {
     /**
+     * List metadata schemas
+     * 
      * Returns a collection of metadata schemas.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -25,12 +27,14 @@ public interface MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation as paginated response with {@link PagedIterable}.
+     * @return metadata schema collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MetadataSchemaInner> list(String resourceGroupName, String serviceName);
 
     /**
+     * List metadata schemas
+     * 
      * Returns a collection of metadata schemas.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -40,13 +44,15 @@ public interface MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation as paginated response with {@link PagedIterable}.
+     * @return metadata schema collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<MetadataSchemaInner> list(String resourceGroupName, String serviceName, String filter,
         Context context);
 
     /**
+     * Get metadata schema
+     * 
      * Returns details of the metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -56,13 +62,15 @@ public interface MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     MetadataSchemasGetResponse getWithResponse(String resourceGroupName, String serviceName, String metadataSchemaName,
         Context context);
 
     /**
+     * Get metadata schema
+     * 
      * Returns details of the metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -71,45 +79,51 @@ public interface MetadataSchemasClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     MetadataSchemaInner get(String resourceGroupName, String serviceName, String metadataSchemaName);
 
     /**
+     * Create or update metadata schema
+     * 
      * Creates new or updates existing metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param metadataSchemaName The name of the metadata schema.
-     * @param resource Resource create parameters.
+     * @param payload Metadata schema entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     MetadataSchemasCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String metadataSchemaName, MetadataSchemaInner resource, Context context);
+        String metadataSchemaName, MetadataSchemaInner payload, Context context);
 
     /**
+     * Create or update metadata schema
+     * 
      * Creates new or updates existing metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param serviceName The name of Azure API Center service.
      * @param metadataSchemaName The name of the metadata schema.
-     * @param resource Resource create parameters.
+     * @param payload Metadata schema entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     MetadataSchemaInner createOrUpdate(String resourceGroupName, String serviceName, String metadataSchemaName,
-        MetadataSchemaInner resource);
+        MetadataSchemaInner payload);
 
     /**
+     * Delete metadata schema
+     * 
      * Deletes specified metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -126,6 +140,8 @@ public interface MetadataSchemasClient {
         Context context);
 
     /**
+     * Delete metadata schema
+     * 
      * Deletes specified metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -139,6 +155,8 @@ public interface MetadataSchemasClient {
     void delete(String resourceGroupName, String serviceName, String metadataSchemaName);
 
     /**
+     * Check if metadata schema exists
+     * 
      * Checks if specified metadata schema exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -155,6 +173,8 @@ public interface MetadataSchemasClient {
         Context context);
 
     /**
+     * Check if metadata schema exists
+     * 
      * Checks if specified metadata schema exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.

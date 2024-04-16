@@ -31,7 +31,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.FluxUtil;
 import com.azure.resourcemanager.apicenter.fluent.ApiVersionsClient;
 import com.azure.resourcemanager.apicenter.fluent.models.ApiVersionInner;
-import com.azure.resourcemanager.apicenter.models.ApiVersionListResult;
+import com.azure.resourcemanager.apicenter.models.ApiVersionCollection;
 import com.azure.resourcemanager.apicenter.models.ApiVersionsCreateOrUpdateResponse;
 import com.azure.resourcemanager.apicenter.models.ApiVersionsGetResponse;
 import reactor.core.publisher.Mono;
@@ -72,62 +72,69 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApiVersionListResult>> list(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<ApiVersionCollection>> list(@HostParam("$host") String endpoint,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @QueryParam("$filter") String filter, @HeaderParam("Accept") String accept, Context context);
+            @QueryParam("api-version") String apiVersion, @QueryParam("$filter") String filter,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<ApiVersionsGetResponse> get(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("versionName") String versionName, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("versionName") String versionName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<ApiVersionsCreateOrUpdateResponse> createOrUpdate(@HostParam("$host") String endpoint,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("versionName") String versionName, @BodyParam("application/json") ApiVersionInner resource,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("versionName") String versionName, @QueryParam("api-version") String apiVersion,
+            @BodyParam("application/json") ApiVersionInner payload, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}")
         @ExpectedResponses({ 200, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> delete(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> delete(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("versionName") String versionName, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("versionName") String versionName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Head("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> head(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Void>> head(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
-            @PathParam("versionName") String versionName, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("versionName") String versionName, @QueryParam("api-version") String apiVersion,
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<ApiVersionListResult>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
+        Mono<Response<ApiVersionCollection>> listNext(@PathParam(value = "nextLink", encoded = true) String nextLink,
             @HostParam("$host") String endpoint, @HeaderParam("Accept") String accept, Context context);
     }
 
     /**
+     * List API versions
+     * 
      * Returns a collection of API versions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -138,8 +145,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI version collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiVersionInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -167,15 +173,17 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.list(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, filter, accept,
-                context))
+            .withContext(
+                context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    serviceName, workspaceName, apiName, this.client.getApiVersion(), filter, accept, context))
             .<PagedResponse<ApiVersionInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * List API versions
+     * 
      * Returns a collection of API versions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -187,8 +195,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI version collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiVersionInner>> listSinglePageAsync(String resourceGroupName, String serviceName,
@@ -217,13 +224,15 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
-            .list(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-                resourceGroupName, serviceName, workspaceName, apiName, filter, accept, context)
+            .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+                workspaceName, apiName, this.client.getApiVersion(), filter, accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
+     * List API versions
+     * 
      * Returns a collection of API versions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -234,7 +243,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation as paginated response with {@link PagedFlux}.
+     * @return aPI version collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiVersionInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -245,6 +254,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * List API versions
+     * 
      * Returns a collection of API versions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -254,7 +265,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation as paginated response with {@link PagedFlux}.
+     * @return aPI version collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiVersionInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -266,6 +277,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * List API versions
+     * 
      * Returns a collection of API versions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -277,7 +290,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation as paginated response with {@link PagedFlux}.
+     * @return aPI version collection as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     private PagedFlux<ApiVersionInner> listAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -288,6 +301,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * List API versions
+     * 
      * Returns a collection of API versions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -297,7 +312,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation as paginated response with {@link PagedIterable}.
+     * @return aPI version collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiVersionInner> list(String resourceGroupName, String serviceName, String workspaceName,
@@ -307,6 +322,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * List API versions
+     * 
      * Returns a collection of API versions.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -318,7 +335,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation as paginated response with {@link PagedIterable}.
+     * @return aPI version collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<ApiVersionInner> list(String resourceGroupName, String serviceName, String workspaceName,
@@ -327,6 +344,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * Get API version
+     * 
      * Returns details of the API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -337,7 +356,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity on successful completion of {@link Mono}.
+     * @return aPI version on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -368,13 +387,15 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                accept, context))
+            .withContext(
+                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    serviceName, workspaceName, apiName, versionName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Get API version
+     * 
      * Returns details of the API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -386,7 +407,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity on successful completion of {@link Mono}.
+     * @return aPI version on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionsGetResponse> getWithResponseAsync(String resourceGroupName, String serviceName,
@@ -417,11 +438,13 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, versionName, accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, apiName, versionName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Get API version
+     * 
      * Returns details of the API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -432,7 +455,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity on successful completion of {@link Mono}.
+     * @return aPI version on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionInner> getAsync(String resourceGroupName, String serviceName, String workspaceName,
@@ -442,6 +465,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * Get API version
+     * 
      * Returns details of the API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -453,7 +478,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiVersionsGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
@@ -463,6 +488,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * Get API version
+     * 
      * Returns details of the API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -473,7 +500,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiVersionInner get(String resourceGroupName, String serviceName, String workspaceName, String apiName,
@@ -483,6 +510,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * Create or update API version
+     * 
      * Creates new or updates existing API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -490,15 +519,15 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
-     * @param resource Resource create parameters.
+     * @param payload API version entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity on successful completion of {@link Mono}.
+     * @return aPI version on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, String versionName, ApiVersionInner resource) {
+        String serviceName, String workspaceName, String apiName, String versionName, ApiVersionInner payload) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -523,20 +552,22 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         if (versionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter versionName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                resource, accept, context))
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
+                resourceGroupName, serviceName, workspaceName, apiName, versionName, this.client.getApiVersion(),
+                payload, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Create or update API version
+     * 
      * Creates new or updates existing API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -544,16 +575,16 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
-     * @param resource Resource create parameters.
+     * @param payload API version entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity on successful completion of {@link Mono}.
+     * @return aPI version on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionsCreateOrUpdateResponse> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String serviceName, String workspaceName, String apiName, String versionName, ApiVersionInner resource,
+        String serviceName, String workspaceName, String apiName, String versionName, ApiVersionInner payload,
         Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -579,19 +610,20 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         if (versionName == null) {
             return Mono.error(new IllegalArgumentException("Parameter versionName is required and cannot be null."));
         }
-        if (resource == null) {
-            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        if (payload == null) {
+            return Mono.error(new IllegalArgumentException("Parameter payload is required and cannot be null."));
         } else {
-            resource.validate();
+            payload.validate();
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
-            this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            resource, accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, apiName, versionName, this.client.getApiVersion(), payload, accept, context);
     }
 
     /**
+     * Create or update API version
+     * 
      * Creates new or updates existing API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -599,20 +631,22 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
-     * @param resource Resource create parameters.
+     * @param payload API version entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity on successful completion of {@link Mono}.
+     * @return aPI version on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<ApiVersionInner> createOrUpdateAsync(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, ApiVersionInner resource) {
+        String workspaceName, String apiName, String versionName, ApiVersionInner payload) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            resource).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+            payload).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
+     * Create or update API version
+     * 
      * Creates new or updates existing API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -620,21 +654,23 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
-     * @param resource Resource create parameters.
+     * @param payload API version entity.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiVersionsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String versionName, ApiVersionInner resource, Context context) {
+        String workspaceName, String apiName, String versionName, ApiVersionInner payload, Context context) {
         return createOrUpdateWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            resource, context).block();
+            payload, context).block();
     }
 
     /**
+     * Create or update API version
+     * 
      * Creates new or updates existing API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -642,20 +678,22 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @param workspaceName The name of the workspace.
      * @param apiName The name of the API.
      * @param versionName The name of the API version.
-     * @param resource Resource create parameters.
+     * @param payload API version entity.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI version entity.
+     * @return aPI version.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     public ApiVersionInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, String versionName, ApiVersionInner resource) {
-        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, resource,
+        String apiName, String versionName, ApiVersionInner payload) {
+        return createOrUpdateWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, payload,
             Context.NONE).getValue();
     }
 
     /**
+     * Delete API version
+     * 
      * Deletes specified API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -697,13 +735,15 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                accept, context))
+            .withContext(
+                context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    serviceName, workspaceName, apiName, versionName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Delete API version
+     * 
      * Deletes specified API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -746,11 +786,13 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, versionName, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+            serviceName, workspaceName, apiName, versionName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Delete API version
+     * 
      * Deletes specified API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -771,6 +813,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * Delete API version
+     * 
      * Deletes specified API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -792,6 +836,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * Delete API version
+     * 
      * Deletes specified API version.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -810,6 +856,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * Check if API version exists
+     * 
      * Checks if specified API version exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -851,13 +899,15 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.head(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, serviceName, workspaceName, apiName, versionName,
-                accept, context))
+            .withContext(
+                context -> service.head(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    serviceName, workspaceName, apiName, versionName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
+     * Check if API version exists
+     * 
      * Checks if specified API version exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -900,11 +950,13 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.head(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
-            resourceGroupName, serviceName, workspaceName, apiName, versionName, accept, context);
+        return service.head(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, serviceName,
+            workspaceName, apiName, versionName, this.client.getApiVersion(), accept, context);
     }
 
     /**
+     * Check if API version exists
+     * 
      * Checks if specified API version exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -925,6 +977,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * Check if API version exists
+     * 
      * Checks if specified API version exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -946,6 +1000,8 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
     }
 
     /**
+     * Check if API version exists
+     * 
      * Checks if specified API version exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -972,8 +1028,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI version collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiVersionInner>> listNextSinglePageAsync(String nextLink) {
@@ -1001,8 +1056,7 @@ public final class ApiVersionsClientImpl implements ApiVersionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a ApiVersion list operation along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return aPI version collection along with {@link PagedResponse} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<ApiVersionInner>> listNextSinglePageAsync(String nextLink, Context context) {

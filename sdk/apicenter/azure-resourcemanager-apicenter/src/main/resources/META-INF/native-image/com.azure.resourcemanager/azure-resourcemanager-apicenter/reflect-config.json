@@ -14,7 +14,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.ServiceListResult",
+  "name" : "com.azure.resourcemanager.apicenter.models.ServiceCollection",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -24,7 +24,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.ServiceProperties",
+  "name" : "com.azure.resourcemanager.apicenter.fluent.models.ServiceProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -54,7 +54,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.MetadataSchemaListResult",
+  "name" : "com.azure.resourcemanager.apicenter.models.MetadataSchemaCollection",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -64,7 +64,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.MetadataSchemaProperties",
+  "name" : "com.azure.resourcemanager.apicenter.fluent.models.MetadataSchemaProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -74,7 +74,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.WorkspaceListResult",
+  "name" : "com.azure.resourcemanager.apicenter.models.WorkspaceCollection",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -84,12 +84,12 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.WorkspaceProperties",
+  "name" : "com.azure.resourcemanager.apicenter.fluent.models.WorkspaceProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.ApiListResult",
+  "name" : "com.azure.resourcemanager.apicenter.models.ApiCollection",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -99,7 +99,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.ApiProperties",
+  "name" : "com.azure.resourcemanager.apicenter.fluent.models.ApiProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -124,27 +124,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.DeploymentListResult",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.apicenter.fluent.models.DeploymentInner",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.apicenter.models.DeploymentProperties",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.apicenter.models.DeploymentServer",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.apicenter.models.ApiVersionListResult",
+  "name" : "com.azure.resourcemanager.apicenter.models.ApiVersionCollection",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -154,12 +134,12 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.ApiVersionProperties",
+  "name" : "com.azure.resourcemanager.apicenter.fluent.models.ApiVersionProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.ApiDefinitionListResult",
+  "name" : "com.azure.resourcemanager.apicenter.models.ApiDefinitionCollection",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -169,17 +149,12 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.ApiDefinitionProperties",
+  "name" : "com.azure.resourcemanager.apicenter.fluent.models.ApiDefinitionProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.apicenter.models.ApiDefinitionPropertiesSpecification",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.apicenter.fluent.models.ApiSpecExportResultInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -194,7 +169,32 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.EnvironmentListResult",
+  "name" : "com.azure.resourcemanager.apicenter.fluent.models.ApiSpecExportResultInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.apicenter.models.DeploymentCollection",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.apicenter.fluent.models.DeploymentInner",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.apicenter.fluent.models.DeploymentProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.apicenter.models.DeploymentServer",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.apicenter.models.EnvironmentCollection",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -204,7 +204,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.EnvironmentProperties",
+  "name" : "com.azure.resourcemanager.apicenter.fluent.models.EnvironmentProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -249,16 +249,6 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.DeploymentsGetHeaders",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.apicenter.models.DeploymentsCreateOrUpdateHeaders",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.apicenter.models.ApiVersionsGetHeaders",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -279,12 +269,22 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.EnvironmentsGetHeaders",
+  "name" : "com.azure.resourcemanager.apicenter.models.DeploymentsGetHeaders",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.apicenter.models.DeploymentsCreateOrUpdateHeaders",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.apicenter.models.EnvironmentsCreateOrUpdateHeaders",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.apicenter.models.EnvironmentsGetHeaders",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -329,7 +329,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.DeploymentState",
+  "name" : "com.azure.resourcemanager.apicenter.models.ApiSpecImportSourceFormat",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -339,7 +339,7 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.apicenter.models.ApiSpecImportSourceFormat",
+  "name" : "com.azure.resourcemanager.apicenter.models.DeploymentState",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

@@ -7,19 +7,23 @@ package com.azure.resourcemanager.apicenter.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.resourcemanager.apicenter.models.ApiDefinitionProperties;
+import com.azure.resourcemanager.apicenter.models.ApiDefinitionPropertiesSpecification;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
+ * API definition
+ * 
  * API definition entity.
  */
 @Fluent
 public final class ApiDefinitionInner extends ProxyResource {
     /*
-     * The resource-specific properties for this resource.
+     * API definition properties
+     * 
+     * API definition properties entity.
      */
     @JsonProperty(value = "properties")
-    private ApiDefinitionProperties properties;
+    private ApiDefinitionProperties innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -34,23 +38,14 @@ public final class ApiDefinitionInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: The resource-specific properties for this resource.
+     * Get the innerProperties property: API definition properties
      * 
-     * @return the properties value.
-     */
-    public ApiDefinitionProperties properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: The resource-specific properties for this resource.
+     * API definition properties entity.
      * 
-     * @param properties the properties value to set.
-     * @return the ApiDefinitionInner object itself.
+     * @return the innerProperties value.
      */
-    public ApiDefinitionInner withProperties(ApiDefinitionProperties properties) {
-        this.properties = properties;
-        return this;
+    private ApiDefinitionProperties innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -63,13 +58,68 @@ public final class ApiDefinitionInner extends ProxyResource {
     }
 
     /**
+     * Get the title property: API definition title.
+     * 
+     * @return the title value.
+     */
+    public String title() {
+        return this.innerProperties() == null ? null : this.innerProperties().title();
+    }
+
+    /**
+     * Set the title property: API definition title.
+     * 
+     * @param title the title value to set.
+     * @return the ApiDefinitionInner object itself.
+     */
+    public ApiDefinitionInner withTitle(String title) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiDefinitionProperties();
+        }
+        this.innerProperties().withTitle(title);
+        return this;
+    }
+
+    /**
+     * Get the description property: API definition description.
+     * 
+     * @return the description value.
+     */
+    public String description() {
+        return this.innerProperties() == null ? null : this.innerProperties().description();
+    }
+
+    /**
+     * Set the description property: API definition description.
+     * 
+     * @param description the description value to set.
+     * @return the ApiDefinitionInner object itself.
+     */
+    public ApiDefinitionInner withDescription(String description) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ApiDefinitionProperties();
+        }
+        this.innerProperties().withDescription(description);
+        return this;
+    }
+
+    /**
+     * Get the specification property: API specification details.
+     * 
+     * @return the specification value.
+     */
+    public ApiDefinitionPropertiesSpecification specification() {
+        return this.innerProperties() == null ? null : this.innerProperties().specification();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() != null) {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
 }

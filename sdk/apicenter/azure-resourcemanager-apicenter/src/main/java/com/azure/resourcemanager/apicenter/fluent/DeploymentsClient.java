@@ -18,6 +18,8 @@ import com.azure.resourcemanager.apicenter.models.DeploymentsGetResponse;
  */
 public interface DeploymentsClient {
     /**
+     * List deployments
+     * 
      * Returns a collection of API deployments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -27,13 +29,15 @@ public interface DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Deployment list operation as paginated response with {@link PagedIterable}.
+     * @return aPI deployment collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DeploymentInner> list(String resourceGroupName, String serviceName, String workspaceName,
         String apiName);
 
     /**
+     * List deployments
+     * 
      * Returns a collection of API deployments.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -45,85 +49,15 @@ public interface DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a Deployment list operation as paginated response with {@link PagedIterable}.
+     * @return aPI deployment collection as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     PagedIterable<DeploymentInner> list(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String filter, Context context);
 
     /**
-     * Returns details of the API deployment.
+     * Delete API deployment
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param deploymentName The name of the API deployment.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DeploymentsGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
-        String apiName, String deploymentName, Context context);
-
-    /**
-     * Returns details of the API deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param deploymentName The name of the API deployment.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DeploymentInner get(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String deploymentName);
-
-    /**
-     * Creates new or updates existing API deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param deploymentName The name of the API deployment.
-     * @param resource Resource create parameters.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DeploymentsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
-        String workspaceName, String apiName, String deploymentName, DeploymentInner resource, Context context);
-
-    /**
-     * Creates new or updates existing API deployment.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param serviceName The name of Azure API Center service.
-     * @param workspaceName The name of the workspace.
-     * @param apiName The name of the API.
-     * @param deploymentName The name of the API deployment.
-     * @param resource Resource create parameters.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return aPI deployment entity.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    DeploymentInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName, String apiName,
-        String deploymentName, DeploymentInner resource);
-
-    /**
      * Deletes API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -142,6 +76,8 @@ public interface DeploymentsClient {
         String apiName, String deploymentName, Context context);
 
     /**
+     * Delete API deployment
+     * 
      * Deletes API deployment.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -158,6 +94,88 @@ public interface DeploymentsClient {
         String deploymentName);
 
     /**
+     * Get API deployment
+     * 
+     * Returns details of the API deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param deploymentName The name of the API deployment.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return aPI deployment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DeploymentsGetResponse getWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+        String apiName, String deploymentName, Context context);
+
+    /**
+     * Get API deployment
+     * 
+     * Returns details of the API deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param deploymentName The name of the API deployment.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return aPI deployment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DeploymentInner get(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+        String deploymentName);
+
+    /**
+     * Create or update API deployment
+     * 
+     * Creates new or updates existing API deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param deploymentName The name of the API deployment.
+     * @param payload API deployment entity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return aPI deployment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DeploymentsCreateOrUpdateResponse createOrUpdateWithResponse(String resourceGroupName, String serviceName,
+        String workspaceName, String apiName, String deploymentName, DeploymentInner payload, Context context);
+
+    /**
+     * Create or update API deployment
+     * 
+     * Creates new or updates existing API deployment.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param serviceName The name of Azure API Center service.
+     * @param workspaceName The name of the workspace.
+     * @param apiName The name of the API.
+     * @param deploymentName The name of the API deployment.
+     * @param payload API deployment entity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return aPI deployment.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    DeploymentInner createOrUpdate(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+        String deploymentName, DeploymentInner payload);
+
+    /**
+     * Check if API deployment exists
+     * 
      * Checks if specified API deployment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -176,6 +194,8 @@ public interface DeploymentsClient {
         String deploymentName, Context context);
 
     /**
+     * Check if API deployment exists
+     * 
      * Checks if specified API deployment exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.

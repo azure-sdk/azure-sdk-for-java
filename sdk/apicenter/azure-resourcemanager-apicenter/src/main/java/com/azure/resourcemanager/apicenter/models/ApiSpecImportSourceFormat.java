@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Source format for imported Api spec.
+ * Format of the API specification source.
  */
 public final class ApiSpecImportSourceFormat extends ExpandableStringEnum<ApiSpecImportSourceFormat> {
     /**

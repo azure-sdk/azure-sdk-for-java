@@ -9,15 +9,14 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Operations_List.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Operations_List.json
      */
     /**
-     * Sample code: List Provider Operations.
+     * Sample code: Operations_List.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void listProviderOperations(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+    public static void operationsList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
         manager.operations().list(com.azure.core.util.Context.NONE);
     }
 }

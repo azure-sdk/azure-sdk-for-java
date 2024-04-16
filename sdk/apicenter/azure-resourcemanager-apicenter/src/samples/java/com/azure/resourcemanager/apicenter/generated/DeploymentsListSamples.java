@@ -9,16 +9,15 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class DeploymentsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Deployments_List.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Deployments_List.json
      */
     /**
-     * Sample code: Deployments_ListByApi.
+     * Sample code: Deployments_List.
      * 
      * @param manager Entry point to ApiCenterManager.
      */
-    public static void deploymentsListByApi(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.deployments().list("contoso-resources", "contoso", "default", "echo-api", null,
-            com.azure.core.util.Context.NONE);
+    public static void deploymentsList(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
+        manager.deployments()
+            .list("contoso-resources", "contoso", "default", "echo-api", null, com.azure.core.util.Context.NONE);
     }
 }

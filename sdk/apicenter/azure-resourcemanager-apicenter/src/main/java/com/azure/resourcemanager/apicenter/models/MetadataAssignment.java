@@ -8,7 +8,7 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Assignment metadata.
+ * The MetadataAssignment model.
  */
 @Fluent
 public final class MetadataAssignment {
@@ -19,13 +19,13 @@ public final class MetadataAssignment {
     private MetadataAssignmentEntity entity;
 
     /*
-     * Required assignment
+     * The required property.
      */
     @JsonProperty(value = "required")
     private Boolean required;
 
     /*
-     * Deprecated assignment
+     * The deprecated property.
      */
     @JsonProperty(value = "deprecated")
     private Boolean deprecated;
@@ -57,7 +57,7 @@ public final class MetadataAssignment {
     }
 
     /**
-     * Get the required property: Required assignment.
+     * Get the required property: The required property.
      * 
      * @return the required value.
      */
@@ -66,7 +66,7 @@ public final class MetadataAssignment {
     }
 
     /**
-     * Set the required property: Required assignment.
+     * Set the required property: The required property.
      * 
      * @param required the required value to set.
      * @return the MetadataAssignment object itself.
@@ -77,7 +77,7 @@ public final class MetadataAssignment {
     }
 
     /**
-     * Get the deprecated property: Deprecated assignment.
+     * Get the deprecated property: The deprecated property.
      * 
      * @return the deprecated value.
      */
@@ -86,7 +86,7 @@ public final class MetadataAssignment {
     }
 
     /**
-     * Set the deprecated property: Deprecated assignment.
+     * Set the deprecated property: The deprecated property.
      * 
      * @param deprecated the deprecated value to set.
      * @return the MetadataAssignment object itself.

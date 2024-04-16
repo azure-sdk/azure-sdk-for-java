@@ -11,7 +11,7 @@ import com.azure.resourcemanager.apicenter.fluent.models.MetadataSchemaExportRes
  */
 public interface MetadataSchemaExportResult {
     /**
-     * Gets the format property: The export format for the schema.
+     * Gets the format property: The format property.
      * 
      * @return the format value.
      */

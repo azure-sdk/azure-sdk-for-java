@@ -13,6 +13,8 @@ import com.azure.core.util.Context;
  */
 public interface MetadataSchemas {
     /**
+     * List metadata schemas
+     * 
      * Returns a collection of metadata schemas.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -20,11 +22,13 @@ public interface MetadataSchemas {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation as paginated response with {@link PagedIterable}.
+     * @return metadata schema collection as paginated response with {@link PagedIterable}.
      */
     PagedIterable<MetadataSchema> list(String resourceGroupName, String serviceName);
 
     /**
+     * List metadata schemas
+     * 
      * Returns a collection of metadata schemas.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -34,11 +38,13 @@ public interface MetadataSchemas {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the response of a MetadataSchema list operation as paginated response with {@link PagedIterable}.
+     * @return metadata schema collection as paginated response with {@link PagedIterable}.
      */
     PagedIterable<MetadataSchema> list(String resourceGroupName, String serviceName, String filter, Context context);
 
     /**
+     * Get metadata schema
+     * 
      * Returns details of the metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -48,12 +54,14 @@ public interface MetadataSchemas {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     Response<MetadataSchema> getWithResponse(String resourceGroupName, String serviceName, String metadataSchemaName,
         Context context);
 
     /**
+     * Get metadata schema
+     * 
      * Returns details of the metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -62,11 +70,13 @@ public interface MetadataSchemas {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     MetadataSchema get(String resourceGroupName, String serviceName, String metadataSchemaName);
 
     /**
+     * Delete metadata schema
+     * 
      * Deletes specified metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -82,6 +92,8 @@ public interface MetadataSchemas {
         Context context);
 
     /**
+     * Delete metadata schema
+     * 
      * Deletes specified metadata schema.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -94,6 +106,8 @@ public interface MetadataSchemas {
     void delete(String resourceGroupName, String serviceName, String metadataSchemaName);
 
     /**
+     * Check if metadata schema exists
+     * 
      * Checks if specified metadata schema exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -109,6 +123,8 @@ public interface MetadataSchemas {
         Context context);
 
     /**
+     * Check if metadata schema exists
+     * 
      * Checks if specified metadata schema exists.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -121,17 +137,21 @@ public interface MetadataSchemas {
     void head(String resourceGroupName, String serviceName, String metadataSchemaName);
 
     /**
+     * Get metadata schema
+     * 
      * Returns details of the metadata schema.
      * 
      * @param id the resource ID.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     MetadataSchema getById(String id);
 
     /**
+     * Get metadata schema
+     * 
      * Returns details of the metadata schema.
      * 
      * @param id the resource ID.
@@ -139,11 +159,13 @@ public interface MetadataSchemas {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return metadata schema entity.
+     * @return metadata schema.
      */
     Response<MetadataSchema> getByIdWithResponse(String id, Context context);
 
     /**
+     * Delete metadata schema
+     * 
      * Deletes specified metadata schema.
      * 
      * @param id the resource ID.
@@ -154,6 +176,8 @@ public interface MetadataSchemas {
     void deleteById(String id);
 
     /**
+     * Delete metadata schema
+     * 
      * Deletes specified metadata schema.
      * 
      * @param id the resource ID.

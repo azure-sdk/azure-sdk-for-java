@@ -8,23 +8,29 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Contact information.
+ * The Contact model.
  */
 @Fluent
 public final class Contact {
     /*
+     * Name
+     * 
      * Name of the contact.
      */
     @JsonProperty(value = "name")
     private String name;
 
     /*
+     * URL
+     * 
      * URL for the contact.
      */
     @JsonProperty(value = "url")
     private String url;
 
     /*
+     * Email address
+     * 
      * Email address of the contact.
      */
     @JsonProperty(value = "email")
@@ -37,7 +43,9 @@ public final class Contact {
     }
 
     /**
-     * Get the name property: Name of the contact.
+     * Get the name property: Name
+     * 
+     * Name of the contact.
      * 
      * @return the name value.
      */
@@ -46,7 +54,9 @@ public final class Contact {
     }
 
     /**
-     * Set the name property: Name of the contact.
+     * Set the name property: Name
+     * 
+     * Name of the contact.
      * 
      * @param name the name value to set.
      * @return the Contact object itself.
@@ -57,7 +67,9 @@ public final class Contact {
     }
 
     /**
-     * Get the url property: URL for the contact.
+     * Get the url property: URL
+     * 
+     * URL for the contact.
      * 
      * @return the url value.
      */
@@ -66,7 +78,9 @@ public final class Contact {
     }
 
     /**
-     * Set the url property: URL for the contact.
+     * Set the url property: URL
+     * 
+     * URL for the contact.
      * 
      * @param url the url value to set.
      * @return the Contact object itself.
@@ -77,7 +91,9 @@ public final class Contact {
     }
 
     /**
-     * Get the email property: Email address of the contact.
+     * Get the email property: Email address
+     * 
+     * Email address of the contact.
      * 
      * @return the email value.
      */
@@ -86,7 +102,9 @@ public final class Contact {
     }
 
     /**
-     * Set the email property: Email address of the contact.
+     * Set the email property: Email address
+     * 
+     * Email address of the contact.
      * 
      * @param email the email value to set.
      * @return the Contact object itself.

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The stage of the Api development lifecycle.
+ * Current lifecycle stage of the API.
  */
 public final class LifecycleStage extends ExpandableStringEnum<LifecycleStage> {
     /**
