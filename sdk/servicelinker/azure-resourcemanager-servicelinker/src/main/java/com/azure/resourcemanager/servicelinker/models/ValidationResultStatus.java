@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ValidationResultStatus. */
+/**
+ * The result of validation.
+ */
 public final class ValidationResultStatus extends ExpandableStringEnum<ValidationResultStatus> {
-    /** Static value success for ValidationResultStatus. */
+    /**
+     * Static value success for ValidationResultStatus.
+     */
     public static final ValidationResultStatus SUCCESS = fromString("success");
 
-    /** Static value failure for ValidationResultStatus. */
+    /**
+     * Static value failure for ValidationResultStatus.
+     */
     public static final ValidationResultStatus FAILURE = fromString("failure");
 
-    /** Static value warning for ValidationResultStatus. */
+    /**
+     * Static value warning for ValidationResultStatus.
+     */
     public static final ValidationResultStatus WARNING = fromString("warning");
 
     /**
+     * Creates a new instance of ValidationResultStatus value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public ValidationResultStatus() {
+    }
+
+    /**
      * Creates or finds a ValidationResultStatus from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ValidationResultStatus.
      */
@@ -32,7 +49,7 @@ public final class ValidationResultStatus extends ExpandableStringEnum<Validatio
 
     /**
      * Gets known ValidationResultStatus values.
-     *
+     * 
      * @return known ValidationResultStatus values.
      */
     public static Collection<ValidationResultStatus> values() {

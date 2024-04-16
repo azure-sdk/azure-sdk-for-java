@@ -5,27 +5,50 @@
 package com.azure.resourcemanager.servicelinker.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The target service properties. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-    defaultImpl = TargetServiceBase.class)
+/**
+ * The target service properties.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = TargetServiceBase.class, visible = true)
 @JsonTypeName("TargetServiceBase")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureResource", value = AzureResource.class),
     @JsonSubTypes.Type(name = "ConfluentBootstrapServer", value = ConfluentBootstrapServer.class),
-    @JsonSubTypes.Type(name = "ConfluentSchemaRegistry", value = ConfluentSchemaRegistry.class)
-})
+    @JsonSubTypes.Type(name = "SelfHostedServer", value = SelfHostedServer.class),
+    @JsonSubTypes.Type(name = "ConfluentSchemaRegistry", value = ConfluentSchemaRegistry.class) })
 @Immutable
 public class TargetServiceBase {
+    /*
+     * The target service type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private TargetServiceType type;
+
+    /**
+     * Creates an instance of TargetServiceBase class.
+     */
+    public TargetServiceBase() {
+        this.type = TargetServiceType.fromString("TargetServiceBase");
+    }
+
+    /**
+     * Get the type property: The target service type.
+     * 
+     * @return the type value.
+     */
+    public TargetServiceType type() {
+        return this.type;
+    }
+
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

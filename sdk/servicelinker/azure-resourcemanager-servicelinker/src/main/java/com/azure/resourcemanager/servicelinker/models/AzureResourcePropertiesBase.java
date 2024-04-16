@@ -5,23 +5,50 @@
 package com.azure.resourcemanager.servicelinker.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The azure resource properties. */
+/**
+ * The azure resource properties.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "type",
-    defaultImpl = AzureResourcePropertiesBase.class)
+    defaultImpl = AzureResourcePropertiesBase.class,
+    visible = true)
 @JsonTypeName("AzureResourcePropertiesBase")
-@JsonSubTypes({@JsonSubTypes.Type(name = "KeyVault", value = AzureKeyVaultProperties.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "KeyVault", value = AzureKeyVaultProperties.class) })
 @Immutable
 public class AzureResourcePropertiesBase {
+    /*
+     * The azure resource type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private AzureResourceType type;
+
+    /**
+     * Creates an instance of AzureResourcePropertiesBase class.
+     */
+    public AzureResourcePropertiesBase() {
+        this.type = AzureResourceType.fromString("AzureResourcePropertiesBase");
+    }
+
+    /**
+     * Get the type property: The azure resource type.
+     * 
+     * @return the type value.
+     */
+    public AzureResourceType type() {
+        return this.type;
+    }
+
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

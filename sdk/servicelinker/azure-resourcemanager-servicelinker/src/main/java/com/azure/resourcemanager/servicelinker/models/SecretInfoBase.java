@@ -5,27 +5,49 @@
 package com.azure.resourcemanager.servicelinker.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The secret info. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "secretType",
-    defaultImpl = SecretInfoBase.class)
+/**
+ * The secret info.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "secretType", defaultImpl = SecretInfoBase.class, visible = true)
 @JsonTypeName("SecretInfoBase")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "rawValue", value = ValueSecretInfo.class),
     @JsonSubTypes.Type(name = "keyVaultSecretReference", value = KeyVaultSecretReferenceSecretInfo.class),
-    @JsonSubTypes.Type(name = "keyVaultSecretUri", value = KeyVaultSecretUriSecretInfo.class)
-})
+    @JsonSubTypes.Type(name = "keyVaultSecretUri", value = KeyVaultSecretUriSecretInfo.class) })
 @Immutable
 public class SecretInfoBase {
+    /*
+     * The secret type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "secretType", required = true)
+    private SecretType secretType;
+
+    /**
+     * Creates an instance of SecretInfoBase class.
+     */
+    public SecretInfoBase() {
+        this.secretType = SecretType.fromString("SecretInfoBase");
+    }
+
+    /**
+     * Get the secretType property: The secret type.
+     * 
+     * @return the secretType value.
+     */
+    public SecretType secretType() {
+        return this.secretType;
+    }
+
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

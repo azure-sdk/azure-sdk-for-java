@@ -8,17 +8,32 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for VNetSolutionType. */
+/**
+ * Type of VNet solution.
+ */
 public final class VNetSolutionType extends ExpandableStringEnum<VNetSolutionType> {
-    /** Static value serviceEndpoint for VNetSolutionType. */
+    /**
+     * Static value serviceEndpoint for VNetSolutionType.
+     */
     public static final VNetSolutionType SERVICE_ENDPOINT = fromString("serviceEndpoint");
 
-    /** Static value privateLink for VNetSolutionType. */
+    /**
+     * Static value privateLink for VNetSolutionType.
+     */
     public static final VNetSolutionType PRIVATE_LINK = fromString("privateLink");
 
     /**
+     * Creates a new instance of VNetSolutionType value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public VNetSolutionType() {
+    }
+
+    /**
      * Creates or finds a VNetSolutionType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding VNetSolutionType.
      */
@@ -29,7 +44,7 @@ public final class VNetSolutionType extends ExpandableStringEnum<VNetSolutionTyp
 
     /**
      * Gets known VNetSolutionType values.
-     *
+     * 
      * @return known VNetSolutionType values.
      */
     public static Collection<VNetSolutionType> values() {

@@ -8,14 +8,27 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AzureResourceType. */
+/**
+ * The azure resource type.
+ */
 public final class AzureResourceType extends ExpandableStringEnum<AzureResourceType> {
-    /** Static value KeyVault for AzureResourceType. */
+    /**
+     * Static value KeyVault for AzureResourceType.
+     */
     public static final AzureResourceType KEY_VAULT = fromString("KeyVault");
 
     /**
+     * Creates a new instance of AzureResourceType value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AzureResourceType() {
+    }
+
+    /**
      * Creates or finds a AzureResourceType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AzureResourceType.
      */
@@ -26,7 +39,7 @@ public final class AzureResourceType extends ExpandableStringEnum<AzureResourceT
 
     /**
      * Gets known AzureResourceType values.
-     *
+     * 
      * @return known AzureResourceType values.
      */
     public static Collection<AzureResourceType> values() {
