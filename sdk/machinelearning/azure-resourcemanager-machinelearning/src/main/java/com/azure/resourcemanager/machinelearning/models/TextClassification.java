@@ -6,14 +6,26 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.util.List;
 
-/** Text Classification task in AutoML NLP vertical. NLP - Natural Language Processing. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
+/**
+ * Text Classification task in AutoML NLP vertical.
+ * NLP - Natural Language Processing.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "taskType", defaultImpl = TextClassification.class, visible = true)
 @JsonTypeName("TextClassification")
 @Fluent
 public final class TextClassification extends AutoMLVertical {
+    /*
+     * [Required] Task type for AutoMLJob.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "taskType", required = true)
+    private TaskType taskType = TaskType.TEXT_CLASSIFICATION;
+
     /*
      * Primary metric for Text-Classification task.
      */
@@ -27,10 +39,28 @@ public final class TextClassification extends AutoMLVertical {
     private NlpVerticalFeaturizationSettings featurizationSettings;
 
     /*
+     * Model/training parameters that will remain constant throughout training.
+     */
+    @JsonProperty(value = "fixedParameters")
+    private NlpFixedParameters fixedParameters;
+
+    /*
      * Execution constraints for AutoMLJob.
      */
     @JsonProperty(value = "limitSettings")
     private NlpVerticalLimitSettings limitSettings;
+
+    /*
+     * Search space for sampling different combinations of models and their hyperparameters.
+     */
+    @JsonProperty(value = "searchSpace")
+    private List<NlpParameterSubspace> searchSpace;
+
+    /*
+     * Settings for model sweeping and hyperparameter tuning.
+     */
+    @JsonProperty(value = "sweepSettings")
+    private NlpSweepSettings sweepSettings;
 
     /*
      * Validation data inputs.
@@ -38,13 +68,25 @@ public final class TextClassification extends AutoMLVertical {
     @JsonProperty(value = "validationData")
     private MLTableJobInput validationData;
 
-    /** Creates an instance of TextClassification class. */
+    /**
+     * Creates an instance of TextClassification class.
+     */
     public TextClassification() {
     }
 
     /**
+     * Get the taskType property: [Required] Task type for AutoMLJob.
+     * 
+     * @return the taskType value.
+     */
+    @Override
+    public TaskType taskType() {
+        return this.taskType;
+    }
+
+    /**
      * Get the primaryMetric property: Primary metric for Text-Classification task.
-     *
+     * 
      * @return the primaryMetric value.
      */
     public ClassificationPrimaryMetrics primaryMetric() {
@@ -53,7 +95,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Set the primaryMetric property: Primary metric for Text-Classification task.
-     *
+     * 
      * @param primaryMetric the primaryMetric value to set.
      * @return the TextClassification object itself.
      */
@@ -64,7 +106,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Get the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @return the featurizationSettings value.
      */
     public NlpVerticalFeaturizationSettings featurizationSettings() {
@@ -73,7 +115,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Set the featurizationSettings property: Featurization inputs needed for AutoML job.
-     *
+     * 
      * @param featurizationSettings the featurizationSettings value to set.
      * @return the TextClassification object itself.
      */
@@ -83,8 +125,28 @@ public final class TextClassification extends AutoMLVertical {
     }
 
     /**
+     * Get the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     * 
+     * @return the fixedParameters value.
+     */
+    public NlpFixedParameters fixedParameters() {
+        return this.fixedParameters;
+    }
+
+    /**
+     * Set the fixedParameters property: Model/training parameters that will remain constant throughout training.
+     * 
+     * @param fixedParameters the fixedParameters value to set.
+     * @return the TextClassification object itself.
+     */
+    public TextClassification withFixedParameters(NlpFixedParameters fixedParameters) {
+        this.fixedParameters = fixedParameters;
+        return this;
+    }
+
+    /**
      * Get the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @return the limitSettings value.
      */
     public NlpVerticalLimitSettings limitSettings() {
@@ -93,7 +155,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Set the limitSettings property: Execution constraints for AutoMLJob.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the TextClassification object itself.
      */
@@ -103,8 +165,50 @@ public final class TextClassification extends AutoMLVertical {
     }
 
     /**
+     * Get the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     * 
+     * @return the searchSpace value.
+     */
+    public List<NlpParameterSubspace> searchSpace() {
+        return this.searchSpace;
+    }
+
+    /**
+     * Set the searchSpace property: Search space for sampling different combinations of models and their
+     * hyperparameters.
+     * 
+     * @param searchSpace the searchSpace value to set.
+     * @return the TextClassification object itself.
+     */
+    public TextClassification withSearchSpace(List<NlpParameterSubspace> searchSpace) {
+        this.searchSpace = searchSpace;
+        return this;
+    }
+
+    /**
+     * Get the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     * 
+     * @return the sweepSettings value.
+     */
+    public NlpSweepSettings sweepSettings() {
+        return this.sweepSettings;
+    }
+
+    /**
+     * Set the sweepSettings property: Settings for model sweeping and hyperparameter tuning.
+     * 
+     * @param sweepSettings the sweepSettings value to set.
+     * @return the TextClassification object itself.
+     */
+    public TextClassification withSweepSettings(NlpSweepSettings sweepSettings) {
+        this.sweepSettings = sweepSettings;
+        return this;
+    }
+
+    /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -113,7 +217,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the TextClassification object itself.
      */
@@ -122,21 +226,27 @@ public final class TextClassification extends AutoMLVertical {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassification withLogVerbosity(LogVerbosity logVerbosity) {
         super.withLogVerbosity(logVerbosity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassification withTargetColumnName(String targetColumnName) {
         super.withTargetColumnName(targetColumnName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TextClassification withTrainingData(MLTableJobInput trainingData) {
         super.withTrainingData(trainingData);
@@ -145,7 +255,7 @@ public final class TextClassification extends AutoMLVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -154,8 +264,17 @@ public final class TextClassification extends AutoMLVertical {
         if (featurizationSettings() != null) {
             featurizationSettings().validate();
         }
+        if (fixedParameters() != null) {
+            fixedParameters().validate();
+        }
         if (limitSettings() != null) {
             limitSettings().validate();
+        }
+        if (searchSpace() != null) {
+            searchSpace().forEach(e -> e.validate());
+        }
+        if (sweepSettings() != null) {
+            sweepSettings().validate();
         }
         if (validationData() != null) {
             validationData().validate();

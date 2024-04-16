@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Target aggregate function. */
+/**
+ * Target aggregate function.
+ */
 public final class TargetAggregationFunction extends ExpandableStringEnum<TargetAggregationFunction> {
-    /** Static value None for TargetAggregationFunction. */
+    /**
+     * Static value None for TargetAggregationFunction.
+     */
     public static final TargetAggregationFunction NONE = fromString("None");
 
-    /** Static value Sum for TargetAggregationFunction. */
+    /**
+     * Static value Sum for TargetAggregationFunction.
+     */
     public static final TargetAggregationFunction SUM = fromString("Sum");
 
-    /** Static value Max for TargetAggregationFunction. */
+    /**
+     * Static value Max for TargetAggregationFunction.
+     */
     public static final TargetAggregationFunction MAX = fromString("Max");
 
-    /** Static value Min for TargetAggregationFunction. */
+    /**
+     * Static value Min for TargetAggregationFunction.
+     */
     public static final TargetAggregationFunction MIN = fromString("Min");
 
-    /** Static value Mean for TargetAggregationFunction. */
+    /**
+     * Static value Mean for TargetAggregationFunction.
+     */
     public static final TargetAggregationFunction MEAN = fromString("Mean");
 
     /**
      * Creates a new instance of TargetAggregationFunction value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class TargetAggregationFunction extends ExpandableStringEnum<Target
 
     /**
      * Creates or finds a TargetAggregationFunction from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding TargetAggregationFunction.
      */
@@ -47,7 +59,7 @@ public final class TargetAggregationFunction extends ExpandableStringEnum<Target
 
     /**
      * Gets known TargetAggregationFunction values.
-     *
+     * 
      * @return known TargetAggregationFunction values.
      */
     public static Collection<TargetAggregationFunction> values() {

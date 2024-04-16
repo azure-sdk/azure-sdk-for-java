@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Mutable batch inference settings per deployment. */
+/**
+ * Mutable batch inference settings per deployment.
+ */
 @Fluent
 public final class PartialBatchDeployment {
     /*
@@ -16,13 +18,15 @@ public final class PartialBatchDeployment {
     @JsonProperty(value = "description")
     private String description;
 
-    /** Creates an instance of PartialBatchDeployment class. */
+    /**
+     * Creates an instance of PartialBatchDeployment class.
+     */
     public PartialBatchDeployment() {
     }
 
     /**
      * Get the description property: Description of the endpoint deployment.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -31,7 +35,7 @@ public final class PartialBatchDeployment {
 
     /**
      * Set the description property: Description of the endpoint deployment.
-     *
+     * 
      * @param description the description value to set.
      * @return the PartialBatchDeployment object itself.
      */
@@ -42,7 +46,7 @@ public final class PartialBatchDeployment {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

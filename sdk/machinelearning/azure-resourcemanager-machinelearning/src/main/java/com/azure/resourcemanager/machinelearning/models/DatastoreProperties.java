@@ -8,25 +8,36 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Base definition for datastore contents configuration. */
+/**
+ * Base definition for datastore contents configuration.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "datastoreType",
-    defaultImpl = DatastoreProperties.class)
+    defaultImpl = DatastoreProperties.class,
+    visible = true)
 @JsonTypeName("DatastoreProperties")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureBlob", value = AzureBlobDatastore.class),
     @JsonSubTypes.Type(name = "AzureDataLakeGen1", value = AzureDataLakeGen1Datastore.class),
     @JsonSubTypes.Type(name = "AzureDataLakeGen2", value = AzureDataLakeGen2Datastore.class),
-    @JsonSubTypes.Type(name = "AzureFile", value = AzureFileDatastore.class)
-})
+    @JsonSubTypes.Type(name = "AzureFile", value = AzureFileDatastore.class),
+    @JsonSubTypes.Type(name = "Hdfs", value = HdfsDatastore.class),
+    @JsonSubTypes.Type(name = "OneLake", value = OneLakeDatastore.class) })
 @Fluent
 public class DatastoreProperties extends ResourceBase {
+    /*
+     * [Required] Storage type backing the datastore.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "datastoreType", required = true)
+    private DatastoreType datastoreType;
+
     /*
      * [Required] Account credentials.
      */
@@ -34,18 +45,36 @@ public class DatastoreProperties extends ResourceBase {
     private DatastoreCredentials credentials;
 
     /*
+     * Intellectual Property details.
+     */
+    @JsonProperty(value = "intellectualProperty")
+    private IntellectualProperty intellectualProperty;
+
+    /*
      * Readonly property to indicate if datastore is the workspace default datastore
      */
     @JsonProperty(value = "isDefault", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isDefault;
 
-    /** Creates an instance of DatastoreProperties class. */
+    /**
+     * Creates an instance of DatastoreProperties class.
+     */
     public DatastoreProperties() {
+        this.datastoreType = DatastoreType.fromString("DatastoreProperties");
+    }
+
+    /**
+     * Get the datastoreType property: [Required] Storage type backing the datastore.
+     * 
+     * @return the datastoreType value.
+     */
+    public DatastoreType datastoreType() {
+        return this.datastoreType;
     }
 
     /**
      * Get the credentials property: [Required] Account credentials.
-     *
+     * 
      * @return the credentials value.
      */
     public DatastoreCredentials credentials() {
@@ -54,7 +83,7 @@ public class DatastoreProperties extends ResourceBase {
 
     /**
      * Set the credentials property: [Required] Account credentials.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the DatastoreProperties object itself.
      */
@@ -64,29 +93,55 @@ public class DatastoreProperties extends ResourceBase {
     }
 
     /**
+     * Get the intellectualProperty property: Intellectual Property details.
+     * 
+     * @return the intellectualProperty value.
+     */
+    public IntellectualProperty intellectualProperty() {
+        return this.intellectualProperty;
+    }
+
+    /**
+     * Set the intellectualProperty property: Intellectual Property details.
+     * 
+     * @param intellectualProperty the intellectualProperty value to set.
+     * @return the DatastoreProperties object itself.
+     */
+    public DatastoreProperties withIntellectualProperty(IntellectualProperty intellectualProperty) {
+        this.intellectualProperty = intellectualProperty;
+        return this;
+    }
+
+    /**
      * Get the isDefault property: Readonly property to indicate if datastore is the workspace default datastore.
-     *
+     * 
      * @return the isDefault value.
      */
     public Boolean isDefault() {
         return this.isDefault;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DatastoreProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DatastoreProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DatastoreProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -95,18 +150,21 @@ public class DatastoreProperties extends ResourceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (credentials() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property credentials in model DatastoreProperties"));
         } else {
             credentials().validate();
+        }
+        if (intellectualProperty() != null) {
+            intellectualProperty().validate();
         }
     }
 

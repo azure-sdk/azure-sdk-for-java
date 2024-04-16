@@ -5,46 +5,50 @@
 package com.azure.resourcemanager.machinelearning.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.resourcemanager.machinelearning.models.FqdnEndpoints;
+import com.azure.resourcemanager.machinelearning.models.FqdnEndpointsPropertyBag;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ExternalFqdnResponse model. */
+/**
+ * The ExternalFqdnResponse model.
+ */
 @Fluent
 public final class ExternalFqdnResponseInner {
     /*
      * The value property.
      */
     @JsonProperty(value = "value")
-    private List<FqdnEndpoints> value;
+    private List<FqdnEndpointsPropertyBag> value;
 
-    /** Creates an instance of ExternalFqdnResponseInner class. */
+    /**
+     * Creates an instance of ExternalFqdnResponseInner class.
+     */
     public ExternalFqdnResponseInner() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
-    public List<FqdnEndpoints> value() {
+    public List<FqdnEndpointsPropertyBag> value() {
         return this.value;
     }
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the ExternalFqdnResponseInner object itself.
      */
-    public ExternalFqdnResponseInner withValue(List<FqdnEndpoints> value) {
+    public ExternalFqdnResponseInner withValue(List<FqdnEndpointsPropertyBag> value) {
         this.value = value;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

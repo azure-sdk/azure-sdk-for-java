@@ -7,27 +7,53 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreSecretsInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Datastore certificate secrets. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "secretsType")
+/**
+ * Datastore certificate secrets.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "secretsType",
+    defaultImpl = CertificateDatastoreSecrets.class,
+    visible = true)
 @JsonTypeName("Certificate")
 @Fluent
 public final class CertificateDatastoreSecrets extends DatastoreSecretsInner {
+    /*
+     * [Required] Credential type used to authentication with storage.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "secretsType", required = true)
+    private SecretsType secretsType = SecretsType.CERTIFICATE;
+
     /*
      * Service principal certificate.
      */
     @JsonProperty(value = "certificate")
     private String certificate;
 
-    /** Creates an instance of CertificateDatastoreSecrets class. */
+    /**
+     * Creates an instance of CertificateDatastoreSecrets class.
+     */
     public CertificateDatastoreSecrets() {
     }
 
     /**
+     * Get the secretsType property: [Required] Credential type used to authentication with storage.
+     * 
+     * @return the secretsType value.
+     */
+    @Override
+    public SecretsType secretsType() {
+        return this.secretsType;
+    }
+
+    /**
      * Get the certificate property: Service principal certificate.
-     *
+     * 
      * @return the certificate value.
      */
     public String certificate() {
@@ -36,7 +62,7 @@ public final class CertificateDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Set the certificate property: Service principal certificate.
-     *
+     * 
      * @param certificate the certificate value to set.
      * @return the CertificateDatastoreSecrets object itself.
      */
@@ -47,7 +73,7 @@ public final class CertificateDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

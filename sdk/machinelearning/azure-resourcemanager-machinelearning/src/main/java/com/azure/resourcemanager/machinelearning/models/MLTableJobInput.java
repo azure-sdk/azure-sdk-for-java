@@ -7,14 +7,28 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The MLTableJobInput model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobInputType")
+/**
+ * The MLTableJobInput model.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "jobInputType",
+    defaultImpl = MLTableJobInput.class,
+    visible = true)
 @JsonTypeName("mltable")
 @Fluent
 public final class MLTableJobInput extends JobInput {
+    /*
+     * [Required] Specifies the type of job.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobInputType", required = true)
+    private JobInputType jobInputType = JobInputType.MLTABLE;
+
     /*
      * Input Asset Delivery Mode.
      */
@@ -22,18 +36,36 @@ public final class MLTableJobInput extends JobInput {
     private InputDeliveryMode mode;
 
     /*
+     * Input Asset Delivery Path.
+     */
+    @JsonProperty(value = "pathOnCompute")
+    private String pathOnCompute;
+
+    /*
      * [Required] Input Asset URI.
      */
     @JsonProperty(value = "uri", required = true)
     private String uri;
 
-    /** Creates an instance of MLTableJobInput class. */
+    /**
+     * Creates an instance of MLTableJobInput class.
+     */
     public MLTableJobInput() {
     }
 
     /**
+     * Get the jobInputType property: [Required] Specifies the type of job.
+     * 
+     * @return the jobInputType value.
+     */
+    @Override
+    public JobInputType jobInputType() {
+        return this.jobInputType;
+    }
+
+    /**
      * Get the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public InputDeliveryMode mode() {
@@ -42,7 +74,7 @@ public final class MLTableJobInput extends JobInput {
 
     /**
      * Set the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the MLTableJobInput object itself.
      */
@@ -52,8 +84,28 @@ public final class MLTableJobInput extends JobInput {
     }
 
     /**
+     * Get the pathOnCompute property: Input Asset Delivery Path.
+     * 
+     * @return the pathOnCompute value.
+     */
+    public String pathOnCompute() {
+        return this.pathOnCompute;
+    }
+
+    /**
+     * Set the pathOnCompute property: Input Asset Delivery Path.
+     * 
+     * @param pathOnCompute the pathOnCompute value to set.
+     * @return the MLTableJobInput object itself.
+     */
+    public MLTableJobInput withPathOnCompute(String pathOnCompute) {
+        this.pathOnCompute = pathOnCompute;
+        return this;
+    }
+
+    /**
      * Get the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -62,7 +114,7 @@ public final class MLTableJobInput extends JobInput {
 
     /**
      * Set the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the MLTableJobInput object itself.
      */
@@ -71,7 +123,9 @@ public final class MLTableJobInput extends JobInput {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableJobInput withDescription(String description) {
         super.withDescription(description);
@@ -80,16 +134,15 @@ public final class MLTableJobInput extends JobInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (uri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property uri in model MLTableJobInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property uri in model MLTableJobInput"));
         }
     }
 

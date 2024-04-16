@@ -6,27 +6,55 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import java.time.OffsetDateTime;
+import java.util.List;
 
-/** The PatAuthTypeWorkspaceConnectionProperties model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "authType")
+/**
+ * The PatAuthTypeWorkspaceConnectionProperties model.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "authType",
+    defaultImpl = PatAuthTypeWorkspaceConnectionProperties.class,
+    visible = true)
 @JsonTypeName("PAT")
 @Fluent
 public final class PatAuthTypeWorkspaceConnectionProperties extends WorkspaceConnectionPropertiesV2 {
+    /*
+     * Authentication type of the connection target
+     */
+    @JsonTypeId
+    @JsonProperty(value = "authType", required = true)
+    private ConnectionAuthType authType = ConnectionAuthType.PAT;
+
     /*
      * The credentials property.
      */
     @JsonProperty(value = "credentials")
     private WorkspaceConnectionPersonalAccessToken credentials;
 
-    /** Creates an instance of PatAuthTypeWorkspaceConnectionProperties class. */
+    /**
+     * Creates an instance of PatAuthTypeWorkspaceConnectionProperties class.
+     */
     public PatAuthTypeWorkspaceConnectionProperties() {
     }
 
     /**
+     * Get the authType property: Authentication type of the connection target.
+     * 
+     * @return the authType value.
+     */
+    @Override
+    public ConnectionAuthType authType() {
+        return this.authType;
+    }
+
+    /**
      * Get the credentials property: The credentials property.
-     *
+     * 
      * @return the credentials value.
      */
     public WorkspaceConnectionPersonalAccessToken credentials() {
@@ -35,47 +63,73 @@ public final class PatAuthTypeWorkspaceConnectionProperties extends WorkspaceCon
 
     /**
      * Set the credentials property: The credentials property.
-     *
+     * 
      * @param credentials the credentials value to set.
      * @return the PatAuthTypeWorkspaceConnectionProperties object itself.
      */
-    public PatAuthTypeWorkspaceConnectionProperties withCredentials(
-        WorkspaceConnectionPersonalAccessToken credentials) {
+    public PatAuthTypeWorkspaceConnectionProperties
+        withCredentials(WorkspaceConnectionPersonalAccessToken credentials) {
         this.credentials = credentials;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PatAuthTypeWorkspaceConnectionProperties withCategory(ConnectionCategory category) {
         super.withCategory(category);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PatAuthTypeWorkspaceConnectionProperties withExpiryTime(OffsetDateTime expiryTime) {
+        super.withExpiryTime(expiryTime);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PatAuthTypeWorkspaceConnectionProperties withIsSharedToAll(Boolean isSharedToAll) {
+        super.withIsSharedToAll(isSharedToAll);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PatAuthTypeWorkspaceConnectionProperties withMetadata(Object metadata) {
+        super.withMetadata(metadata);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public PatAuthTypeWorkspaceConnectionProperties withSharedUserList(List<String> sharedUserList) {
+        super.withSharedUserList(sharedUserList);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PatAuthTypeWorkspaceConnectionProperties withTarget(String target) {
         super.withTarget(target);
         return this;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public PatAuthTypeWorkspaceConnectionProperties withValue(String value) {
-        super.withValue(value);
-        return this;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PatAuthTypeWorkspaceConnectionProperties withValueFormat(ValueFormat valueFormat) {
-        super.withValueFormat(valueFormat);
-        return this;
-    }
-
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

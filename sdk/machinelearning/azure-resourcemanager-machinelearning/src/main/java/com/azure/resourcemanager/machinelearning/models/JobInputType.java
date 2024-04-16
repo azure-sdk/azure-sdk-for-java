@@ -8,32 +8,48 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Enum to determine the Job Input Type. */
+/**
+ * Enum to determine the Job Input Type.
+ */
 public final class JobInputType extends ExpandableStringEnum<JobInputType> {
-    /** Static value literal for JobInputType. */
+    /**
+     * Static value literal for JobInputType.
+     */
     public static final JobInputType LITERAL = fromString("literal");
 
-    /** Static value uri_file for JobInputType. */
+    /**
+     * Static value uri_file for JobInputType.
+     */
     public static final JobInputType URI_FILE = fromString("uri_file");
 
-    /** Static value uri_folder for JobInputType. */
+    /**
+     * Static value uri_folder for JobInputType.
+     */
     public static final JobInputType URI_FOLDER = fromString("uri_folder");
 
-    /** Static value mltable for JobInputType. */
+    /**
+     * Static value mltable for JobInputType.
+     */
     public static final JobInputType MLTABLE = fromString("mltable");
 
-    /** Static value custom_model for JobInputType. */
+    /**
+     * Static value custom_model for JobInputType.
+     */
     public static final JobInputType CUSTOM_MODEL = fromString("custom_model");
 
-    /** Static value mlflow_model for JobInputType. */
+    /**
+     * Static value mlflow_model for JobInputType.
+     */
     public static final JobInputType MLFLOW_MODEL = fromString("mlflow_model");
 
-    /** Static value triton_model for JobInputType. */
+    /**
+     * Static value triton_model for JobInputType.
+     */
     public static final JobInputType TRITON_MODEL = fromString("triton_model");
 
     /**
      * Creates a new instance of JobInputType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -42,7 +58,7 @@ public final class JobInputType extends ExpandableStringEnum<JobInputType> {
 
     /**
      * Creates or finds a JobInputType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding JobInputType.
      */
@@ -53,7 +69,7 @@ public final class JobInputType extends ExpandableStringEnum<JobInputType> {
 
     /**
      * Gets known JobInputType values.
-     *
+     * 
      * @return known JobInputType values.
      */
     public static Collection<JobInputType> values() {

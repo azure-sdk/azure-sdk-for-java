@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Admin credentials for virtual machine. */
+/**
+ * Admin credentials for virtual machine.
+ */
 @Fluent
 public final class VirtualMachineSshCredentials {
     /*
@@ -34,13 +36,15 @@ public final class VirtualMachineSshCredentials {
     @JsonProperty(value = "privateKeyData")
     private String privateKeyData;
 
-    /** Creates an instance of VirtualMachineSshCredentials class. */
+    /**
+     * Creates an instance of VirtualMachineSshCredentials class.
+     */
     public VirtualMachineSshCredentials() {
     }
 
     /**
      * Get the username property: Username of admin account.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -49,7 +53,7 @@ public final class VirtualMachineSshCredentials {
 
     /**
      * Set the username property: Username of admin account.
-     *
+     * 
      * @param username the username value to set.
      * @return the VirtualMachineSshCredentials object itself.
      */
@@ -60,7 +64,7 @@ public final class VirtualMachineSshCredentials {
 
     /**
      * Get the password property: Password of admin account.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -69,7 +73,7 @@ public final class VirtualMachineSshCredentials {
 
     /**
      * Set the password property: Password of admin account.
-     *
+     * 
      * @param password the password value to set.
      * @return the VirtualMachineSshCredentials object itself.
      */
@@ -80,7 +84,7 @@ public final class VirtualMachineSshCredentials {
 
     /**
      * Get the publicKeyData property: Public key data.
-     *
+     * 
      * @return the publicKeyData value.
      */
     public String publicKeyData() {
@@ -89,7 +93,7 @@ public final class VirtualMachineSshCredentials {
 
     /**
      * Set the publicKeyData property: Public key data.
-     *
+     * 
      * @param publicKeyData the publicKeyData value to set.
      * @return the VirtualMachineSshCredentials object itself.
      */
@@ -100,7 +104,7 @@ public final class VirtualMachineSshCredentials {
 
     /**
      * Get the privateKeyData property: Private key data.
-     *
+     * 
      * @return the privateKeyData value.
      */
     public String privateKeyData() {
@@ -109,7 +113,7 @@ public final class VirtualMachineSshCredentials {
 
     /**
      * Set the privateKeyData property: Private key data.
-     *
+     * 
      * @param privateKeyData the privateKeyData value to set.
      * @return the VirtualMachineSshCredentials object itself.
      */
@@ -120,7 +124,7 @@ public final class VirtualMachineSshCredentials {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

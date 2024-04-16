@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The last operation on ComputeInstance. */
+/**
+ * The last operation on ComputeInstance.
+ */
 @Fluent
 public final class ComputeInstanceLastOperation {
     /*
@@ -35,13 +37,15 @@ public final class ComputeInstanceLastOperation {
     @JsonProperty(value = "operationTrigger")
     private OperationTrigger operationTrigger;
 
-    /** Creates an instance of ComputeInstanceLastOperation class. */
+    /**
+     * Creates an instance of ComputeInstanceLastOperation class.
+     */
     public ComputeInstanceLastOperation() {
     }
 
     /**
      * Get the operationName property: Name of the last operation.
-     *
+     * 
      * @return the operationName value.
      */
     public OperationName operationName() {
@@ -50,7 +54,7 @@ public final class ComputeInstanceLastOperation {
 
     /**
      * Set the operationName property: Name of the last operation.
-     *
+     * 
      * @param operationName the operationName value to set.
      * @return the ComputeInstanceLastOperation object itself.
      */
@@ -61,7 +65,7 @@ public final class ComputeInstanceLastOperation {
 
     /**
      * Get the operationTime property: Time of the last operation.
-     *
+     * 
      * @return the operationTime value.
      */
     public OffsetDateTime operationTime() {
@@ -70,7 +74,7 @@ public final class ComputeInstanceLastOperation {
 
     /**
      * Set the operationTime property: Time of the last operation.
-     *
+     * 
      * @param operationTime the operationTime value to set.
      * @return the ComputeInstanceLastOperation object itself.
      */
@@ -81,7 +85,7 @@ public final class ComputeInstanceLastOperation {
 
     /**
      * Get the operationStatus property: Operation status.
-     *
+     * 
      * @return the operationStatus value.
      */
     public OperationStatus operationStatus() {
@@ -90,7 +94,7 @@ public final class ComputeInstanceLastOperation {
 
     /**
      * Set the operationStatus property: Operation status.
-     *
+     * 
      * @param operationStatus the operationStatus value to set.
      * @return the ComputeInstanceLastOperation object itself.
      */
@@ -101,7 +105,7 @@ public final class ComputeInstanceLastOperation {
 
     /**
      * Get the operationTrigger property: Trigger of operation.
-     *
+     * 
      * @return the operationTrigger value.
      */
     public OperationTrigger operationTrigger() {
@@ -110,7 +114,7 @@ public final class ComputeInstanceLastOperation {
 
     /**
      * Set the operationTrigger property: Trigger of operation.
-     *
+     * 
      * @param operationTrigger the operationTrigger value to set.
      * @return the ComputeInstanceLastOperation object itself.
      */
@@ -121,7 +125,7 @@ public final class ComputeInstanceLastOperation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
