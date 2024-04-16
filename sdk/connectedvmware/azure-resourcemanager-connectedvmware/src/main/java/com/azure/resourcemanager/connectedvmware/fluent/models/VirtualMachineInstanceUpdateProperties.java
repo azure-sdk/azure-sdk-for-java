@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.models.NetworkProfileUpdate;
 import com.azure.resourcemanager.connectedvmware.models.StorageProfileUpdate;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes the properties of a Virtual Machine. */
+/**
+ * Describes the properties of a Virtual Machine.
+ */
 @Fluent
 public final class VirtualMachineInstanceUpdateProperties {
     /*
@@ -31,13 +33,15 @@ public final class VirtualMachineInstanceUpdateProperties {
     @JsonProperty(value = "networkProfile")
     private NetworkProfileUpdate networkProfile;
 
-    /** Creates an instance of VirtualMachineInstanceUpdateProperties class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceUpdateProperties class.
+     */
     public VirtualMachineInstanceUpdateProperties() {
     }
 
     /**
      * Get the hardwareProfile property: Specifies the hardware settings for the virtual machine.
-     *
+     * 
      * @return the hardwareProfile value.
      */
     public HardwareProfile hardwareProfile() {
@@ -46,7 +50,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Set the hardwareProfile property: Specifies the hardware settings for the virtual machine.
-     *
+     * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the VirtualMachineInstanceUpdateProperties object itself.
      */
@@ -57,7 +61,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Get the storageProfile property: Specifies the storage settings for the virtual machine disks.
-     *
+     * 
      * @return the storageProfile value.
      */
     public StorageProfileUpdate storageProfile() {
@@ -66,7 +70,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Set the storageProfile property: Specifies the storage settings for the virtual machine disks.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the VirtualMachineInstanceUpdateProperties object itself.
      */
@@ -77,7 +81,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Get the networkProfile property: Specifies the network interfaces of the virtual machine.
-     *
+     * 
      * @return the networkProfile value.
      */
     public NetworkProfileUpdate networkProfile() {
@@ -86,7 +90,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Set the networkProfile property: Specifies the network interfaces of the virtual machine.
-     *
+     * 
      * @param networkProfile the networkProfile value to set.
      * @return the VirtualMachineInstanceUpdateProperties object itself.
      */
@@ -97,7 +101,7 @@ public final class VirtualMachineInstanceUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

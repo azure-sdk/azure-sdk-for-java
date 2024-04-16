@@ -7,7 +7,9 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies the vCenter infrastructure specific settings for the virtual machine. */
+/**
+ * Specifies the vCenter infrastructure specific settings for the virtual machine.
+ */
 @Fluent
 public final class InfrastructureProfile {
     /*
@@ -70,13 +72,15 @@ public final class InfrastructureProfile {
     @JsonProperty(value = "customResourceName", access = JsonProperty.Access.WRITE_ONLY)
     private String customResourceName;
 
-    /** Creates an instance of InfrastructureProfile class. */
+    /**
+     * Creates an instance of InfrastructureProfile class.
+     */
     public InfrastructureProfile() {
     }
 
     /**
      * Get the templateId property: Gets or sets the ARM Id of the template resource to deploy the virtual machine.
-     *
+     * 
      * @return the templateId value.
      */
     public String templateId() {
@@ -85,7 +89,7 @@ public final class InfrastructureProfile {
 
     /**
      * Set the templateId property: Gets or sets the ARM Id of the template resource to deploy the virtual machine.
-     *
+     * 
      * @param templateId the templateId value to set.
      * @return the InfrastructureProfile object itself.
      */
@@ -96,7 +100,7 @@ public final class InfrastructureProfile {
 
     /**
      * Get the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this resource pool resides.
-     *
+     * 
      * @return the vCenterId value.
      */
     public String vCenterId() {
@@ -105,7 +109,7 @@ public final class InfrastructureProfile {
 
     /**
      * Set the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this resource pool resides.
-     *
+     * 
      * @param vCenterId the vCenterId value to set.
      * @return the InfrastructureProfile object itself.
      */
@@ -116,7 +120,7 @@ public final class InfrastructureProfile {
 
     /**
      * Get the moRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID for the virtual machine.
-     *
+     * 
      * @return the moRefId value.
      */
     public String moRefId() {
@@ -125,7 +129,7 @@ public final class InfrastructureProfile {
 
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the virtual machine.
-     *
+     * 
      * @return the inventoryItemId value.
      */
     public String inventoryItemId() {
@@ -134,7 +138,7 @@ public final class InfrastructureProfile {
 
     /**
      * Set the inventoryItemId property: Gets or sets the inventory Item ID for the virtual machine.
-     *
+     * 
      * @param inventoryItemId the inventoryItemId value to set.
      * @return the InfrastructureProfile object itself.
      */
@@ -145,7 +149,7 @@ public final class InfrastructureProfile {
 
     /**
      * Get the moName property: Gets or sets the vCenter Managed Object name for the virtual machine.
-     *
+     * 
      * @return the moName value.
      */
     public String moName() {
@@ -154,7 +158,7 @@ public final class InfrastructureProfile {
 
     /**
      * Get the folderPath property: Gets or sets the folder path of the vm.
-     *
+     * 
      * @return the folderPath value.
      */
     public String folderPath() {
@@ -163,7 +167,7 @@ public final class InfrastructureProfile {
 
     /**
      * Get the instanceUuid property: Gets or sets the instance uuid of the vm.
-     *
+     * 
      * @return the instanceUuid value.
      */
     public String instanceUuid() {
@@ -172,7 +176,7 @@ public final class InfrastructureProfile {
 
     /**
      * Get the smbiosUuid property: Gets or sets the SMBIOS UUID of the vm.
-     *
+     * 
      * @return the smbiosUuid value.
      */
     public String smbiosUuid() {
@@ -181,7 +185,7 @@ public final class InfrastructureProfile {
 
     /**
      * Set the smbiosUuid property: Gets or sets the SMBIOS UUID of the vm.
-     *
+     * 
      * @param smbiosUuid the smbiosUuid value to set.
      * @return the InfrastructureProfile object itself.
      */
@@ -192,7 +196,7 @@ public final class InfrastructureProfile {
 
     /**
      * Get the firmwareType property: Firmware type.
-     *
+     * 
      * @return the firmwareType value.
      */
     public FirmwareType firmwareType() {
@@ -201,7 +205,7 @@ public final class InfrastructureProfile {
 
     /**
      * Set the firmwareType property: Firmware type.
-     *
+     * 
      * @param firmwareType the firmwareType value to set.
      * @return the InfrastructureProfile object itself.
      */
@@ -212,7 +216,7 @@ public final class InfrastructureProfile {
 
     /**
      * Get the customResourceName property: Gets the name of the corresponding resource in Kubernetes.
-     *
+     * 
      * @return the customResourceName value.
      */
     public String customResourceName() {
@@ -221,7 +225,7 @@ public final class InfrastructureProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

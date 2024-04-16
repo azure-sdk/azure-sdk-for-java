@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.VirtualMachineIns
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of VirtualMachineInstances. */
+/**
+ * List of VirtualMachineInstances.
+ */
 @Fluent
 public final class VirtualMachineInstancesList {
     /*
@@ -25,13 +27,15 @@ public final class VirtualMachineInstancesList {
     @JsonProperty(value = "value", required = true)
     private List<VirtualMachineInstanceInner> value;
 
-    /** Creates an instance of VirtualMachineInstancesList class. */
+    /**
+     * Creates an instance of VirtualMachineInstancesList class.
+     */
     public VirtualMachineInstancesList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of VirtualMachines.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +44,7 @@ public final class VirtualMachineInstancesList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of VirtualMachines.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the VirtualMachineInstancesList object itself.
      */
@@ -51,7 +55,7 @@ public final class VirtualMachineInstancesList {
 
     /**
      * Get the value property: Array of VirtualMachines.
-     *
+     * 
      * @return the value value.
      */
     public List<VirtualMachineInstanceInner> value() {
@@ -60,7 +64,7 @@ public final class VirtualMachineInstancesList {
 
     /**
      * Set the value property: Array of VirtualMachines.
-     *
+     * 
      * @param value the value value to set.
      * @return the VirtualMachineInstancesList object itself.
      */
@@ -71,15 +75,14 @@ public final class VirtualMachineInstancesList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property value in model VirtualMachineInstancesList"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model VirtualMachineInstancesList"));
         } else {
             value().forEach(e -> e.validate());
         }
