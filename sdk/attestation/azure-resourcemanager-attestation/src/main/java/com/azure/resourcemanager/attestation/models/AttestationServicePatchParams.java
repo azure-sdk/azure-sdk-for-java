@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Parameters for patching an attestation provider. */
+/**
+ * Parameters for patching an attestation provider.
+ */
 @Fluent
 public final class AttestationServicePatchParams {
     /*
@@ -19,13 +21,21 @@ public final class AttestationServicePatchParams {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of AttestationServicePatchParams class. */
+    /*
+     * Properties of the attestation provider
+     */
+    @JsonProperty(value = "properties")
+    private AttestationServicePatchSpecificParams properties;
+
+    /**
+     * Creates an instance of AttestationServicePatchParams class.
+     */
     public AttestationServicePatchParams() {
     }
 
     /**
      * Get the tags property: The tags that will be assigned to the attestation provider.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +44,7 @@ public final class AttestationServicePatchParams {
 
     /**
      * Set the tags property: The tags that will be assigned to the attestation provider.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the AttestationServicePatchParams object itself.
      */
@@ -44,10 +54,33 @@ public final class AttestationServicePatchParams {
     }
 
     /**
+     * Get the properties property: Properties of the attestation provider.
+     * 
+     * @return the properties value.
+     */
+    public AttestationServicePatchSpecificParams properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of the attestation provider.
+     * 
+     * @param properties the properties value to set.
+     * @return the AttestationServicePatchParams object itself.
+     */
+    public AttestationServicePatchParams withProperties(AttestationServicePatchSpecificParams properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (properties() != null) {
+            properties().validate();
+        }
     }
 }

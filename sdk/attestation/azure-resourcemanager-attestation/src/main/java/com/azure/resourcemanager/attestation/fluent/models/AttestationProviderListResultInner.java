@@ -9,7 +9,9 @@ import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Attestation Providers List. */
+/**
+ * Attestation Providers List.
+ */
 @Fluent
 public final class AttestationProviderListResultInner {
     /*
@@ -24,13 +26,15 @@ public final class AttestationProviderListResultInner {
     @JsonProperty(value = "value")
     private List<AttestationProviderInner> value;
 
-    /** Creates an instance of AttestationProviderListResultInner class. */
+    /**
+     * Creates an instance of AttestationProviderListResultInner class.
+     */
     public AttestationProviderListResultInner() {
     }
 
     /**
      * Get the systemData property: The system metadata relating to this resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -39,7 +43,7 @@ public final class AttestationProviderListResultInner {
 
     /**
      * Get the value property: Attestation Provider array.
-     *
+     * 
      * @return the value value.
      */
     public List<AttestationProviderInner> value() {
@@ -48,7 +52,7 @@ public final class AttestationProviderListResultInner {
 
     /**
      * Set the value property: Attestation Provider array.
-     *
+     * 
      * @param value the value value to set.
      * @return the AttestationProviderListResultInner object itself.
      */
@@ -59,7 +63,7 @@ public final class AttestationProviderListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

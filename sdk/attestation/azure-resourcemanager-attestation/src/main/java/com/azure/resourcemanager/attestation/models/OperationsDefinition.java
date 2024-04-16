@@ -7,7 +7,9 @@ package com.azure.resourcemanager.attestation.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Definition object with the name and properties of an operation. */
+/**
+ * Definition object with the name and properties of an operation.
+ */
 @Fluent
 public final class OperationsDefinition {
     /*
@@ -22,13 +24,21 @@ public final class OperationsDefinition {
     @JsonProperty(value = "display")
     private OperationsDisplayDefinition display;
 
-    /** Creates an instance of OperationsDefinition class. */
+    /*
+     * Properties of the operation
+     */
+    @JsonProperty(value = "properties")
+    private OperationProperties properties;
+
+    /**
+     * Creates an instance of OperationsDefinition class.
+     */
     public OperationsDefinition() {
     }
 
     /**
      * Get the name property: Name of the operation.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +47,7 @@ public final class OperationsDefinition {
 
     /**
      * Set the name property: Name of the operation.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationsDefinition object itself.
      */
@@ -48,7 +58,7 @@ public final class OperationsDefinition {
 
     /**
      * Get the display property: Display object with properties of the operation.
-     *
+     * 
      * @return the display value.
      */
     public OperationsDisplayDefinition display() {
@@ -57,7 +67,7 @@ public final class OperationsDefinition {
 
     /**
      * Set the display property: Display object with properties of the operation.
-     *
+     * 
      * @param display the display value to set.
      * @return the OperationsDefinition object itself.
      */
@@ -67,13 +77,36 @@ public final class OperationsDefinition {
     }
 
     /**
+     * Get the properties property: Properties of the operation.
+     * 
+     * @return the properties value.
+     */
+    public OperationProperties properties() {
+        return this.properties;
+    }
+
+    /**
+     * Set the properties property: Properties of the operation.
+     * 
+     * @param properties the properties value to set.
+     * @return the OperationsDefinition object itself.
+     */
+    public OperationsDefinition withProperties(OperationProperties properties) {
+        this.properties = properties;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (display() != null) {
             display().validate();
+        }
+        if (properties() != null) {
+            properties().validate();
         }
     }
 }

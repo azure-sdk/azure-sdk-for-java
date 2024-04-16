@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.attestation {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.attestation;
     exports com.azure.resourcemanager.attestation.fluent;
     exports com.azure.resourcemanager.attestation.fluent.models;
     exports com.azure.resourcemanager.attestation.models;
-
-    opens com.azure.resourcemanager.attestation.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.attestation.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.attestation.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.attestation.models to com.azure.core, com.fasterxml.jackson.databind;
 }
