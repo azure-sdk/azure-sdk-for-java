@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Settings concerning key vault encryption for a configuration store. */
+/**
+ * Settings concerning key vault encryption for a configuration store.
+ */
 @Fluent
 public final class KeyVaultProperties {
     /*
@@ -22,13 +24,15 @@ public final class KeyVaultProperties {
     @JsonProperty(value = "identityClientId")
     private String identityClientId;
 
-    /** Creates an instance of KeyVaultProperties class. */
+    /**
+     * Creates an instance of KeyVaultProperties class.
+     */
     public KeyVaultProperties() {
     }
 
     /**
      * Get the keyIdentifier property: The URI of the key vault key used to encrypt data.
-     *
+     * 
      * @return the keyIdentifier value.
      */
     public String keyIdentifier() {
@@ -37,7 +41,7 @@ public final class KeyVaultProperties {
 
     /**
      * Set the keyIdentifier property: The URI of the key vault key used to encrypt data.
-     *
+     * 
      * @param keyIdentifier the keyIdentifier value to set.
      * @return the KeyVaultProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class KeyVaultProperties {
 
     /**
      * Get the identityClientId property: The client id of the identity which will be used to access key vault.
-     *
+     * 
      * @return the identityClientId value.
      */
     public String identityClientId() {
@@ -57,7 +61,7 @@ public final class KeyVaultProperties {
 
     /**
      * Set the identityClientId property: The client id of the identity which will be used to access key vault.
-     *
+     * 
      * @param identityClientId the identityClientId value to set.
      * @return the KeyVaultProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class KeyVaultProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

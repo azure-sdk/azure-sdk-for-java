@@ -9,7 +9,9 @@ import com.azure.resourcemanager.appconfiguration.models.OperationDefinitionDisp
 import com.azure.resourcemanager.appconfiguration.models.OperationProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The definition of a configuration store operation. */
+/**
+ * The definition of a configuration store operation.
+ */
 @Fluent
 public final class OperationDefinitionInner {
     /*
@@ -42,13 +44,15 @@ public final class OperationDefinitionInner {
     @JsonProperty(value = "properties")
     private OperationProperties properties;
 
-    /** Creates an instance of OperationDefinitionInner class. */
+    /**
+     * Creates an instance of OperationDefinitionInner class.
+     */
     public OperationDefinitionInner() {
     }
 
     /**
      * Get the name property: Operation name: {provider}/{resource}/{operation}.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -57,7 +61,7 @@ public final class OperationDefinitionInner {
 
     /**
      * Set the name property: Operation name: {provider}/{resource}/{operation}.
-     *
+     * 
      * @param name the name value to set.
      * @return the OperationDefinitionInner object itself.
      */
@@ -68,7 +72,7 @@ public final class OperationDefinitionInner {
 
     /**
      * Get the isDataAction property: Indicates whether the operation is a data action.
-     *
+     * 
      * @return the isDataAction value.
      */
     public Boolean isDataAction() {
@@ -77,7 +81,7 @@ public final class OperationDefinitionInner {
 
     /**
      * Set the isDataAction property: Indicates whether the operation is a data action.
-     *
+     * 
      * @param isDataAction the isDataAction value to set.
      * @return the OperationDefinitionInner object itself.
      */
@@ -88,7 +92,7 @@ public final class OperationDefinitionInner {
 
     /**
      * Get the display property: The display information for the configuration store operation.
-     *
+     * 
      * @return the display value.
      */
     public OperationDefinitionDisplay display() {
@@ -97,7 +101,7 @@ public final class OperationDefinitionInner {
 
     /**
      * Set the display property: The display information for the configuration store operation.
-     *
+     * 
      * @param display the display value to set.
      * @return the OperationDefinitionInner object itself.
      */
@@ -108,7 +112,7 @@ public final class OperationDefinitionInner {
 
     /**
      * Get the origin property: Origin of the operation.
-     *
+     * 
      * @return the origin value.
      */
     public String origin() {
@@ -117,7 +121,7 @@ public final class OperationDefinitionInner {
 
     /**
      * Set the origin property: Origin of the operation.
-     *
+     * 
      * @param origin the origin value to set.
      * @return the OperationDefinitionInner object itself.
      */
@@ -128,7 +132,7 @@ public final class OperationDefinitionInner {
 
     /**
      * Get the properties property: Properties of the operation.
-     *
+     * 
      * @return the properties value.
      */
     public OperationProperties properties() {
@@ -137,7 +141,7 @@ public final class OperationDefinitionInner {
 
     /**
      * Set the properties property: Properties of the operation.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the OperationDefinitionInner object itself.
      */
@@ -148,7 +152,7 @@ public final class OperationDefinitionInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

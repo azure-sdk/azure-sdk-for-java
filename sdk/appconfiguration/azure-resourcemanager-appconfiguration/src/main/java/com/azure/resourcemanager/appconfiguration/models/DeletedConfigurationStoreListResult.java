@@ -9,7 +9,9 @@ import com.azure.resourcemanager.appconfiguration.fluent.models.DeletedConfigura
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of deleted configuration stores. */
+/**
+ * List of deleted configuration stores.
+ */
 @Fluent
 public final class DeletedConfigurationStoreListResult {
     /*
@@ -24,13 +26,15 @@ public final class DeletedConfigurationStoreListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of DeletedConfigurationStoreListResult class. */
+    /**
+     * Creates an instance of DeletedConfigurationStoreListResult class.
+     */
     public DeletedConfigurationStoreListResult() {
     }
 
     /**
      * Get the value property: The list of deleted configuration store.
-     *
+     * 
      * @return the value value.
      */
     public List<DeletedConfigurationStoreInner> value() {
@@ -39,7 +43,7 @@ public final class DeletedConfigurationStoreListResult {
 
     /**
      * Set the value property: The list of deleted configuration store.
-     *
+     * 
      * @param value the value value to set.
      * @return the DeletedConfigurationStoreListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class DeletedConfigurationStoreListResult {
 
     /**
      * Get the nextLink property: The URL to get the next set of deleted configuration stores.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class DeletedConfigurationStoreListResult {
 
     /**
      * Set the nextLink property: The URL to get the next set of deleted configuration stores.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the DeletedConfigurationStoreListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class DeletedConfigurationStoreListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.appconfiguration.fluent.models.ReplicaInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The result of a request to list replicas. */
+/**
+ * The result of a request to list replicas.
+ */
 @Fluent
 public final class ReplicaListResult {
     /*
@@ -24,13 +26,15 @@ public final class ReplicaListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ReplicaListResult class. */
+    /**
+     * Creates an instance of ReplicaListResult class.
+     */
     public ReplicaListResult() {
     }
 
     /**
      * Get the value property: The collection value.
-     *
+     * 
      * @return the value value.
      */
     public List<ReplicaInner> value() {
@@ -39,7 +43,7 @@ public final class ReplicaListResult {
 
     /**
      * Set the value property: The collection value.
-     *
+     * 
      * @param value the value value to set.
      * @return the ReplicaListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class ReplicaListResult {
 
     /**
      * Get the nextLink property: The URI that can be used to request the next set of paged results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ReplicaListResult {
 
     /**
      * Set the nextLink property: The URI that can be used to request the next set of paged results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ReplicaListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class ReplicaListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

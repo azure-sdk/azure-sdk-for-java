@@ -9,7 +9,9 @@ import com.azure.resourcemanager.appconfiguration.fluent.models.ConfigurationSto
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The result of a request to list configuration stores. */
+/**
+ * The result of a request to list configuration stores.
+ */
 @Fluent
 public final class ConfigurationStoreListResult {
     /*
@@ -24,13 +26,15 @@ public final class ConfigurationStoreListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ConfigurationStoreListResult class. */
+    /**
+     * Creates an instance of ConfigurationStoreListResult class.
+     */
     public ConfigurationStoreListResult() {
     }
 
     /**
      * Get the value property: The collection value.
-     *
+     * 
      * @return the value value.
      */
     public List<ConfigurationStoreInner> value() {
@@ -39,7 +43,7 @@ public final class ConfigurationStoreListResult {
 
     /**
      * Set the value property: The collection value.
-     *
+     * 
      * @param value the value value to set.
      * @return the ConfigurationStoreListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class ConfigurationStoreListResult {
 
     /**
      * Get the nextLink property: The URI that can be used to request the next set of paged results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ConfigurationStoreListResult {
 
     /**
      * Set the nextLink property: The URI that can be used to request the next set of paged results.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ConfigurationStoreListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class ConfigurationStoreListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

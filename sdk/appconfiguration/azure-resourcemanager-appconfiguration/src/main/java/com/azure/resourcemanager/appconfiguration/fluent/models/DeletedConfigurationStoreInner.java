@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 import java.util.Map;
 
-/** Deleted configuration store information with extended details. */
+/**
+ * Deleted configuration store information with extended details.
+ */
 @Immutable
 public final class DeletedConfigurationStoreInner {
     /*
@@ -36,13 +38,15 @@ public final class DeletedConfigurationStoreInner {
     @JsonProperty(value = "properties")
     private DeletedConfigurationStoreProperties innerProperties;
 
-    /** Creates an instance of DeletedConfigurationStoreInner class. */
+    /**
+     * Creates an instance of DeletedConfigurationStoreInner class.
+     */
     public DeletedConfigurationStoreInner() {
     }
 
     /**
      * Get the id property: The resource ID for the deleted configuration store.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -51,7 +55,7 @@ public final class DeletedConfigurationStoreInner {
 
     /**
      * Get the name property: The name of the configuration store.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -60,7 +64,7 @@ public final class DeletedConfigurationStoreInner {
 
     /**
      * Get the type property: The resource type of the configuration store.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -69,7 +73,7 @@ public final class DeletedConfigurationStoreInner {
 
     /**
      * Get the innerProperties property: Properties of the deleted configuration store.
-     *
+     * 
      * @return the innerProperties value.
      */
     private DeletedConfigurationStoreProperties innerProperties() {
@@ -78,7 +82,7 @@ public final class DeletedConfigurationStoreInner {
 
     /**
      * Get the configurationStoreId property: The resource id of the original configuration store.
-     *
+     * 
      * @return the configurationStoreId value.
      */
     public String configurationStoreId() {
@@ -87,7 +91,7 @@ public final class DeletedConfigurationStoreInner {
 
     /**
      * Get the location property: The location of the original configuration store.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -96,7 +100,7 @@ public final class DeletedConfigurationStoreInner {
 
     /**
      * Get the deletionDate property: The deleted date.
-     *
+     * 
      * @return the deletionDate value.
      */
     public OffsetDateTime deletionDate() {
@@ -105,7 +109,7 @@ public final class DeletedConfigurationStoreInner {
 
     /**
      * Get the scheduledPurgeDate property: The scheduled purged date.
-     *
+     * 
      * @return the scheduledPurgeDate value.
      */
     public OffsetDateTime scheduledPurgeDate() {
@@ -114,7 +118,7 @@ public final class DeletedConfigurationStoreInner {
 
     /**
      * Get the tags property: Tags of the original configuration store.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -123,7 +127,7 @@ public final class DeletedConfigurationStoreInner {
 
     /**
      * Get the purgeProtectionEnabled property: Purge protection status of the original configuration store.
-     *
+     * 
      * @return the purgeProtectionEnabled value.
      */
     public Boolean purgeProtectionEnabled() {
@@ -132,7 +136,7 @@ public final class DeletedConfigurationStoreInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

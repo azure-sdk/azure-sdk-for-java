@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifications of the Dimension of metrics. */
+/**
+ * Specifications of the Dimension of metrics.
+ */
 @Fluent
 public final class MetricDimension {
     /*
@@ -28,13 +30,15 @@ public final class MetricDimension {
     @JsonProperty(value = "internalName")
     private String internalName;
 
-    /** Creates an instance of MetricDimension class. */
+    /**
+     * Creates an instance of MetricDimension class.
+     */
     public MetricDimension() {
     }
 
     /**
      * Get the name property: Name of the dimension.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -43,7 +47,7 @@ public final class MetricDimension {
 
     /**
      * Set the name property: Name of the dimension.
-     *
+     * 
      * @param name the name value to set.
      * @return the MetricDimension object itself.
      */
@@ -54,7 +58,7 @@ public final class MetricDimension {
 
     /**
      * Get the displayName property: Localized friendly display name of the dimension.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -63,7 +67,7 @@ public final class MetricDimension {
 
     /**
      * Set the displayName property: Localized friendly display name of the dimension.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the MetricDimension object itself.
      */
@@ -74,7 +78,7 @@ public final class MetricDimension {
 
     /**
      * Get the internalName property: Internal name of the dimension.
-     *
+     * 
      * @return the internalName value.
      */
     public String internalName() {
@@ -83,7 +87,7 @@ public final class MetricDimension {
 
     /**
      * Set the internalName property: Internal name of the dimension.
-     *
+     * 
      * @param internalName the internalName value to set.
      * @return the MetricDimension object itself.
      */
@@ -94,7 +98,7 @@ public final class MetricDimension {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

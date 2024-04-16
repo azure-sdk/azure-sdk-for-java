@@ -7,7 +7,9 @@ package com.azure.resourcemanager.appconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The parameters used to regenerate an API key. */
+/**
+ * The parameters used to regenerate an API key.
+ */
 @Fluent
 public final class RegenerateKeyParameters {
     /*
@@ -16,13 +18,15 @@ public final class RegenerateKeyParameters {
     @JsonProperty(value = "id")
     private String id;
 
-    /** Creates an instance of RegenerateKeyParameters class. */
+    /**
+     * Creates an instance of RegenerateKeyParameters class.
+     */
     public RegenerateKeyParameters() {
     }
 
     /**
      * Get the id property: The id of the key to regenerate.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class RegenerateKeyParameters {
 
     /**
      * Set the id property: The id of the key to regenerate.
-     *
+     * 
      * @param id the id value to set.
      * @return the RegenerateKeyParameters object itself.
      */
@@ -42,7 +46,7 @@ public final class RegenerateKeyParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
