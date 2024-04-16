@@ -13,9 +13,7 @@ import java.util.Map;
  */
 public final class EmailServicesUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/communication/resource-manager/Microsoft.Communication/stable/2023-04-01/examples/emailServices/
-     * update.json
+     * x-ms-original-file: specification/communication/resource-manager/Microsoft.Communication/preview/2023-06-01-preview/examples/emailServices/update.json
      */
     /**
      * Sample code: Update EmailService resource.
@@ -24,8 +22,10 @@ public final class EmailServicesUpdateSamples {
      */
     public static void
         updateEmailServiceResource(com.azure.resourcemanager.communication.CommunicationManager manager) {
-        EmailServiceResource resource = manager.emailServices().getByResourceGroupWithResponse("MyResourceGroup",
-            "MyEmailServiceResource", com.azure.core.util.Context.NONE).getValue();
+        EmailServiceResource resource = manager.emailServices()
+            .getByResourceGroupWithResponse("MyResourceGroup", "MyEmailServiceResource",
+                com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("newTag", "newVal")).apply();
     }
 
