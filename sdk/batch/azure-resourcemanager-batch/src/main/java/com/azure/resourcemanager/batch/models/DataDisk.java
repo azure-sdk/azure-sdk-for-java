@@ -16,8 +16,7 @@ public final class DataDisk {
     /*
      * The logical unit number.
      * 
-     * The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct
-     * lun. The value must be between 0 and 63, inclusive.
+     * The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct lun. The value must be between 0 and 63, inclusive.
      */
     @JsonProperty(value = "lun", required = true)
     private int lun;
@@ -27,12 +26,11 @@ public final class DataDisk {
      * 
      * Values are:
      * 
-     * none - The caching mode for the disk is not enabled.
-     * readOnly - The caching mode for the disk is read only.
-     * readWrite - The caching mode for the disk is read and write.
+     *  none - The caching mode for the disk is not enabled.
+     *  readOnly - The caching mode for the disk is read only.
+     *  readWrite - The caching mode for the disk is read and write.
      * 
-     * The default value for caching is none. For information about the caching options see:
-     * https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/.
+     *  The default value for caching is none. For information about the caching options see: https://blogs.msdn.microsoft.com/windowsazurestorage/2012/06/27/exploring-windows-azure-drives-disks-and-images/.
      */
     @JsonProperty(value = "caching")
     private CachingType caching;
@@ -48,8 +46,8 @@ public final class DataDisk {
      * 
      * If omitted, the default is "Standard_LRS". Values are:
      * 
-     * Standard_LRS - The data disk should use standard locally redundant storage.
-     * Premium_LRS - The data disk should use premium locally redundant storage.
+     *  Standard_LRS - The data disk should use standard locally redundant storage.
+     *  Premium_LRS - The data disk should use premium locally redundant storage.
      */
     @JsonProperty(value = "storageAccountType")
     private StorageAccountType storageAccountType;

@@ -109,12 +109,12 @@ public final class AutoScaleRunError {
      */
     public void validate() {
         if (code() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property code in model AutoScaleRunError"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property code in model AutoScaleRunError"));
         }
         if (message() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property message in model AutoScaleRunError"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property message in model AutoScaleRunError"));
         }
         if (details() != null) {
             details().forEach(e -> e.validate());

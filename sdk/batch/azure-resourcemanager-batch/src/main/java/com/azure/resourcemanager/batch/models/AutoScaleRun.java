@@ -111,8 +111,8 @@ public final class AutoScaleRun {
      */
     public void validate() {
         if (evaluationTime() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property evaluationTime in model AutoScaleRun"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property evaluationTime in model AutoScaleRun"));
         }
         if (error() != null) {
             error().validate();

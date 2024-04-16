@@ -66,15 +66,18 @@ public final class ApplicationImpl implements Application, Application.Definitio
     }
 
     public Application create() {
-        this.innerObject = serviceManager.serviceClient().getApplications()
+        this.innerObject = serviceManager.serviceClient()
+            .getApplications()
             .createWithResponse(resourceGroupName, accountName, applicationName, this.innerModel(), Context.NONE)
             .getValue();
         return this;
     }
 
     public Application create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApplications()
-            .createWithResponse(resourceGroupName, accountName, applicationName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApplications()
+            .createWithResponse(resourceGroupName, accountName, applicationName, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
@@ -89,15 +92,18 @@ public final class ApplicationImpl implements Application, Application.Definitio
     }
 
     public Application apply() {
-        this.innerObject = serviceManager.serviceClient().getApplications()
+        this.innerObject = serviceManager.serviceClient()
+            .getApplications()
             .updateWithResponse(resourceGroupName, accountName, applicationName, this.innerModel(), Context.NONE)
             .getValue();
         return this;
     }
 
     public Application apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApplications()
-            .updateWithResponse(resourceGroupName, accountName, applicationName, this.innerModel(), context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApplications()
+            .updateWithResponse(resourceGroupName, accountName, applicationName, this.innerModel(), context)
+            .getValue();
         return this;
     }
 
@@ -110,14 +116,18 @@ public final class ApplicationImpl implements Application, Application.Definitio
     }
 
     public Application refresh() {
-        this.innerObject = serviceManager.serviceClient().getApplications()
-            .getWithResponse(resourceGroupName, accountName, applicationName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApplications()
+            .getWithResponse(resourceGroupName, accountName, applicationName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Application refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getApplications()
-            .getWithResponse(resourceGroupName, accountName, applicationName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getApplications()
+            .getWithResponse(resourceGroupName, accountName, applicationName, context)
+            .getValue();
         return this;
     }
 

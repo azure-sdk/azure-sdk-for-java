@@ -39,16 +39,13 @@ public final class VMExtension {
     private String typeHandlerVersion;
 
     /*
-     * Indicates whether the extension should use a newer minor version if one is available at deployment time. Once
-     * deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set
-     * to true.
+     * Indicates whether the extension should use a newer minor version if one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless redeployed, even with this property set to true.
      */
     @JsonProperty(value = "autoUpgradeMinorVersion")
     private Boolean autoUpgradeMinorVersion;
 
     /*
-     * Indicates whether the extension should be automatically upgraded by the platform if there is a newer version of
-     * the extension available.
+     * Indicates whether the extension should be automatically upgraded by the platform if there is a newer version of the extension available.
      */
     @JsonProperty(value = "enableAutomaticUpgrade")
     private Boolean enableAutomaticUpgrade;
@@ -60,8 +57,7 @@ public final class VMExtension {
     private Object settings;
 
     /*
-     * The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at
-     * all.
+     * The extension can contain either protectedSettings or protectedSettingsFromKeyVault or no protected settings at all. 
      */
     @JsonProperty(value = "protectedSettings")
     private Object protectedSettings;
@@ -161,9 +157,9 @@ public final class VMExtension {
     }
 
     /**
-     * Get the autoUpgradeMinorVersion property: Indicates whether the extension should use a newer minor version if
-     * one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions
-     * unless redeployed, even with this property set to true.
+     * Get the autoUpgradeMinorVersion property: Indicates whether the extension should use a newer minor version if one
+     * is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless
+     * redeployed, even with this property set to true.
      * 
      * @return the autoUpgradeMinorVersion value.
      */
@@ -172,9 +168,9 @@ public final class VMExtension {
     }
 
     /**
-     * Set the autoUpgradeMinorVersion property: Indicates whether the extension should use a newer minor version if
-     * one is available at deployment time. Once deployed, however, the extension will not upgrade minor versions
-     * unless redeployed, even with this property set to true.
+     * Set the autoUpgradeMinorVersion property: Indicates whether the extension should use a newer minor version if one
+     * is available at deployment time. Once deployed, however, the extension will not upgrade minor versions unless
+     * redeployed, even with this property set to true.
      * 
      * @param autoUpgradeMinorVersion the autoUpgradeMinorVersion value to set.
      * @return the VMExtension object itself.
@@ -279,16 +275,16 @@ public final class VMExtension {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model VMExtension"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property name in model VMExtension"));
         }
         if (publisher() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property publisher in model VMExtension"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property publisher in model VMExtension"));
         }
         if (type() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property type in model VMExtension"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property type in model VMExtension"));
         }
     }
 

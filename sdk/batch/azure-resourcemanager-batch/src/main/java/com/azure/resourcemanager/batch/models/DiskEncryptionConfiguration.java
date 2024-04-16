@@ -17,8 +17,7 @@ public final class DiskEncryptionConfiguration {
     /*
      * The list of disk targets Batch Service will encrypt on the compute node
      * 
-     * On Linux pool, only "TemporaryDisk" is supported; on Windows pool, "OsDisk" and "TemporaryDisk" must be
-     * specified.
+     * On Linux pool, only "TemporaryDisk" is supported; on Windows pool, "OsDisk" and "TemporaryDisk" must be specified.
      */
     @JsonProperty(value = "targets")
     private List<DiskEncryptionTarget> targets;

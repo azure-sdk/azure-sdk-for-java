@@ -11,8 +11,7 @@ import com.azure.resourcemanager.batch.models.ActivateApplicationPackageParamete
  */
 public final class ApplicationPackageActivateSamples {
     /*
-     * x-ms-original-file:
-     * specification/batch/resource-manager/Microsoft.Batch/stable/2024-02-01/examples/ApplicationPackageActivate.json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2023-11-01/examples/ApplicationPackageActivate.json
      */
     /**
      * Sample code: ApplicationPackageActivate.
@@ -20,7 +19,8 @@ public final class ApplicationPackageActivateSamples {
      * @param manager Entry point to BatchManager.
      */
     public static void applicationPackageActivate(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.applicationPackages().activateWithResponse("default-azurebatch-japaneast", "sampleacct", "app1", "1",
-            new ActivateApplicationPackageParameters().withFormat("zip"), com.azure.core.util.Context.NONE);
+        manager.applicationPackages()
+            .activateWithResponse("default-azurebatch-japaneast", "sampleacct", "app1", "1",
+                new ActivateApplicationPackageParameters().withFormat("zip"), com.azure.core.util.Context.NONE);
     }
 }

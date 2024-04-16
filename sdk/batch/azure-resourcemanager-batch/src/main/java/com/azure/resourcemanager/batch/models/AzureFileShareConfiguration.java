@@ -36,8 +36,7 @@ public final class AzureFileShareConfiguration {
     /*
      * The relative path on the compute node where the file system will be mounted
      * 
-     * All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR
-     * environment variable.
+     * All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable.
      */
     @JsonProperty(value = "relativeMountPath", required = true)
     private String relativeMountPath;
@@ -177,20 +176,24 @@ public final class AzureFileShareConfiguration {
      */
     public void validate() {
         if (accountName() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property accountName in model AzureFileShareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property accountName in model AzureFileShareConfiguration"));
         }
         if (azureFileUrl() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property azureFileUrl in model AzureFileShareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property azureFileUrl in model AzureFileShareConfiguration"));
         }
         if (accountKey() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property accountKey in model AzureFileShareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property accountKey in model AzureFileShareConfiguration"));
         }
         if (relativeMountPath() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property relativeMountPath in model AzureFileShareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property relativeMountPath in model AzureFileShareConfiguration"));
         }
     }
 

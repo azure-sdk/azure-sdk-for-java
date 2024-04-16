@@ -16,8 +16,7 @@ public final class TaskContainerSettings {
     /*
      * Additional options to the container create command.
      * 
-     * These additional options are supplied as arguments to the "docker create" command, in addition to those
-     * controlled by the Batch Service.
+     * These additional options are supplied as arguments to the "docker create" command, in addition to those controlled by the Batch Service.
      */
     @JsonProperty(value = "containerRunOptions")
     private String containerRunOptions;
@@ -25,8 +24,7 @@ public final class TaskContainerSettings {
     /*
      * The image to use to create the container in which the task will run.
      * 
-     * This is the full image reference, as would be specified to "docker pull". If no tag is provided as part of the
-     * image name, the tag ":latest" is used as a default.
+     * This is the full image reference, as would be specified to "docker pull". If no tag is provided as part of the image name, the tag ":latest" is used as a default.
      */
     @JsonProperty(value = "imageName", required = true)
     private String imageName;
@@ -156,8 +154,9 @@ public final class TaskContainerSettings {
      */
     public void validate() {
         if (imageName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property imageName in model TaskContainerSettings"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property imageName in model TaskContainerSettings"));
         }
         if (registry() != null) {
             registry().validate();

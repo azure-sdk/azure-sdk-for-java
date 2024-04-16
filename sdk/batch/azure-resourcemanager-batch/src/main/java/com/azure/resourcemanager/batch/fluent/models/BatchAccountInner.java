@@ -238,8 +238,8 @@ public final class BatchAccountInner extends Resource {
     }
 
     /**
-     * Get the dedicatedCoreQuotaPerVMFamily property: A list of the dedicated core quota per Virtual Machine family
-     * for the Batch account. For accounts with PoolAllocationMode set to UserSubscription, quota is managed on the
+     * Get the dedicatedCoreQuotaPerVMFamily property: A list of the dedicated core quota per Virtual Machine family for
+     * the Batch account. For accounts with PoolAllocationMode set to UserSubscription, quota is managed on the
      * subscription so this value is not returned.
      * 
      * @return the dedicatedCoreQuotaPerVMFamily value.

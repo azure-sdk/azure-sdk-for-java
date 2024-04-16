@@ -25,8 +25,7 @@ public final class ApplicationProperties {
     private Boolean allowUpdates;
 
     /*
-     * The package to use if a client requests the application but does not specify a version. This property can only
-     * be set to the name of an existing package.
+     * The package to use if a client requests the application but does not specify a version. This property can only be set to the name of an existing package.
      */
     @JsonProperty(value = "defaultVersion")
     private String defaultVersion;

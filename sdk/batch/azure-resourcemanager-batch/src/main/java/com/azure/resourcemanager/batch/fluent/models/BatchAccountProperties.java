@@ -77,8 +77,7 @@ public final class BatchAccountProperties {
     private AutoStorageProperties autoStorage;
 
     /*
-     * Configures how customer data is encrypted inside the Batch account. By default, accounts are encrypted using a
-     * Microsoft managed key. For additional control, a customer-managed key can be used instead.
+     * Configures how customer data is encrypted inside the Batch account. By default, accounts are encrypted using a Microsoft managed key. For additional control, a customer-managed key can be used instead.
      */
     @JsonProperty(value = "encryption", access = JsonProperty.Access.WRITE_ONLY)
     private EncryptionProperties encryption;
@@ -86,8 +85,7 @@ public final class BatchAccountProperties {
     /*
      * The dedicated core quota for the Batch account.
      * 
-     * For accounts with PoolAllocationMode set to UserSubscription, quota is managed on the subscription so this value
-     * is not returned.
+     * For accounts with PoolAllocationMode set to UserSubscription, quota is managed on the subscription so this value is not returned.
      */
     @JsonProperty(value = "dedicatedCoreQuota", access = JsonProperty.Access.WRITE_ONLY)
     private Integer dedicatedCoreQuota;
@@ -95,15 +93,13 @@ public final class BatchAccountProperties {
     /*
      * The Spot/low-priority core quota for the Batch account.
      * 
-     * For accounts with PoolAllocationMode set to UserSubscription, quota is managed on the subscription so this value
-     * is not returned.
+     * For accounts with PoolAllocationMode set to UserSubscription, quota is managed on the subscription so this value is not returned.
      */
     @JsonProperty(value = "lowPriorityCoreQuota", access = JsonProperty.Access.WRITE_ONLY)
     private Integer lowPriorityCoreQuota;
 
     /*
-     * A list of the dedicated core quota per Virtual Machine family for the Batch account. For accounts with
-     * PoolAllocationMode set to UserSubscription, quota is managed on the subscription so this value is not returned.
+     * A list of the dedicated core quota per Virtual Machine family for the Batch account. For accounts with PoolAllocationMode set to UserSubscription, quota is managed on the subscription so this value is not returned.
      */
     @JsonProperty(value = "dedicatedCoreQuotaPerVMFamily", access = JsonProperty.Access.WRITE_ONLY)
     private List<VirtualMachineFamilyCoreQuota> dedicatedCoreQuotaPerVMFamily;
@@ -111,9 +107,7 @@ public final class BatchAccountProperties {
     /*
      * A value indicating whether core quotas per Virtual Machine family are enforced for this account
      * 
-     * If this flag is true, dedicated core quota is enforced via both the dedicatedCoreQuotaPerVMFamily and
-     * dedicatedCoreQuota properties on the account. If this flag is false, dedicated core quota is enforced only via
-     * the dedicatedCoreQuota property on the account and does not consider Virtual Machine family.
+     * If this flag is true, dedicated core quota is enforced via both the dedicatedCoreQuotaPerVMFamily and dedicatedCoreQuota properties on the account. If this flag is false, dedicated core quota is enforced only via the dedicatedCoreQuota property on the account and does not consider Virtual Machine family.
      */
     @JsonProperty(value = "dedicatedCoreQuotaPerVMFamilyEnforced", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean dedicatedCoreQuotaPerVMFamilyEnforced;
@@ -131,8 +125,7 @@ public final class BatchAccountProperties {
     private Integer activeJobAndJobScheduleQuota;
 
     /*
-     * List of allowed authentication modes for the Batch account that can be used to authenticate with the data plane.
-     * This does not affect authentication with the control plane.
+     * List of allowed authentication modes for the Batch account that can be used to authenticate with the data plane. This does not affect authentication with the control plane.
      */
     @JsonProperty(value = "allowedAuthenticationModes", access = JsonProperty.Access.WRITE_ONLY)
     private List<AuthenticationMode> allowedAuthenticationModes;
@@ -285,8 +278,8 @@ public final class BatchAccountProperties {
     }
 
     /**
-     * Get the dedicatedCoreQuotaPerVMFamily property: A list of the dedicated core quota per Virtual Machine family
-     * for the Batch account. For accounts with PoolAllocationMode set to UserSubscription, quota is managed on the
+     * Get the dedicatedCoreQuotaPerVMFamily property: A list of the dedicated core quota per Virtual Machine family for
+     * the Batch account. For accounts with PoolAllocationMode set to UserSubscription, quota is managed on the
      * subscription so this value is not returned.
      * 
      * @return the dedicatedCoreQuotaPerVMFamily value.

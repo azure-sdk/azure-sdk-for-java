@@ -16,10 +16,7 @@ public final class CloudServiceConfiguration {
     /*
      * The Azure Guest OS family to be installed on the virtual machines in the pool.
      * 
-     * Possible values are: 2 - OS Family 2, equivalent to Windows Server 2008 R2 SP1. 3 - OS Family 3, equivalent to
-     * Windows Server 2012. 4 - OS Family 4, equivalent to Windows Server 2012 R2. 5 - OS Family 5, equivalent to
-     * Windows Server 2016. 6 - OS Family 6, equivalent to Windows Server 2019. For more information, see Azure Guest
-     * OS Releases (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
+     * Possible values are: 2 - OS Family 2, equivalent to Windows Server 2008 R2 SP1. 3 - OS Family 3, equivalent to Windows Server 2012. 4 - OS Family 4, equivalent to Windows Server 2012 R2. 5 - OS Family 5, equivalent to Windows Server 2016. 6 - OS Family 6, equivalent to Windows Server 2019. For more information, see Azure Guest OS Releases (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
      */
     @JsonProperty(value = "osFamily", required = true)
     private String osFamily;
@@ -43,8 +40,8 @@ public final class CloudServiceConfiguration {
      * 
      * Possible values are: 2 - OS Family 2, equivalent to Windows Server 2008 R2 SP1. 3 - OS Family 3, equivalent to
      * Windows Server 2012. 4 - OS Family 4, equivalent to Windows Server 2012 R2. 5 - OS Family 5, equivalent to
-     * Windows Server 2016. 6 - OS Family 6, equivalent to Windows Server 2019. For more information, see Azure Guest
-     * OS Releases (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
+     * Windows Server 2016. 6 - OS Family 6, equivalent to Windows Server 2019. For more information, see Azure Guest OS
+     * Releases (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
      * 
      * @return the osFamily value.
      */
@@ -57,8 +54,8 @@ public final class CloudServiceConfiguration {
      * 
      * Possible values are: 2 - OS Family 2, equivalent to Windows Server 2008 R2 SP1. 3 - OS Family 3, equivalent to
      * Windows Server 2012. 4 - OS Family 4, equivalent to Windows Server 2012 R2. 5 - OS Family 5, equivalent to
-     * Windows Server 2016. 6 - OS Family 6, equivalent to Windows Server 2019. For more information, see Azure Guest
-     * OS Releases (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
+     * Windows Server 2016. 6 - OS Family 6, equivalent to Windows Server 2019. For more information, see Azure Guest OS
+     * Releases (https://azure.microsoft.com/documentation/articles/cloud-services-guestos-update-matrix/#releases).
      * 
      * @param osFamily the osFamily value to set.
      * @return the CloudServiceConfiguration object itself.
@@ -99,8 +96,9 @@ public final class CloudServiceConfiguration {
      */
     public void validate() {
         if (osFamily() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property osFamily in model CloudServiceConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property osFamily in model CloudServiceConfiguration"));
         }
     }
 

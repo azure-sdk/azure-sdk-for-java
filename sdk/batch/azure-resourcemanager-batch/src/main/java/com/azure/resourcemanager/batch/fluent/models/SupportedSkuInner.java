@@ -7,7 +7,6 @@ package com.azure.resourcemanager.batch.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.batch.models.SkuCapability;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.OffsetDateTime;
 import java.util.List;
 
 /**
@@ -32,12 +31,6 @@ public final class SupportedSkuInner {
      */
     @JsonProperty(value = "capabilities", access = JsonProperty.Access.WRITE_ONLY)
     private List<SkuCapability> capabilities;
-
-    /*
-     * The time when Azure Batch service will retire this SKU.
-     */
-    @JsonProperty(value = "batchSupportEndOfLife", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime batchSupportEndOfLife;
 
     /**
      * Creates an instance of SupportedSkuInner class.
@@ -70,15 +63,6 @@ public final class SupportedSkuInner {
      */
     public List<SkuCapability> capabilities() {
         return this.capabilities;
-    }
-
-    /**
-     * Get the batchSupportEndOfLife property: The time when Azure Batch service will retire this SKU.
-     * 
-     * @return the batchSupportEndOfLife value.
-     */
-    public OffsetDateTime batchSupportEndOfLife() {
-        return this.batchSupportEndOfLife;
     }
 
     /**

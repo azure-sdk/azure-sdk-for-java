@@ -26,8 +26,7 @@ public class AutoStorageBaseProperties {
     private AutoStorageAuthenticationMode authenticationMode;
 
     /*
-     * The identity referenced here must be assigned to pools which have compute nodes that need access to
-     * auto-storage.
+     * The identity referenced here must be assigned to pools which have compute nodes that need access to auto-storage.
      */
     @JsonProperty(value = "nodeIdentityReference")
     private ComputeNodeIdentityReference nodeIdentityReference;
@@ -81,8 +80,8 @@ public class AutoStorageBaseProperties {
     }
 
     /**
-     * Get the nodeIdentityReference property: The identity referenced here must be assigned to pools which have
-     * compute nodes that need access to auto-storage.
+     * Get the nodeIdentityReference property: The identity referenced here must be assigned to pools which have compute
+     * nodes that need access to auto-storage.
      * 
      * @return the nodeIdentityReference value.
      */
@@ -91,8 +90,8 @@ public class AutoStorageBaseProperties {
     }
 
     /**
-     * Set the nodeIdentityReference property: The identity referenced here must be assigned to pools which have
-     * compute nodes that need access to auto-storage.
+     * Set the nodeIdentityReference property: The identity referenced here must be assigned to pools which have compute
+     * nodes that need access to auto-storage.
      * 
      * @param nodeIdentityReference the nodeIdentityReference value to set.
      * @return the AutoStorageBaseProperties object itself.
@@ -109,8 +108,9 @@ public class AutoStorageBaseProperties {
      */
     public void validate() {
         if (storageAccountId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property storageAccountId in model AutoStorageBaseProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property storageAccountId in model AutoStorageBaseProperties"));
         }
         if (nodeIdentityReference() != null) {
             nodeIdentityReference().validate();

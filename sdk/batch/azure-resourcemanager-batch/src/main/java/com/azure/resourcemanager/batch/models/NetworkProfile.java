@@ -51,8 +51,8 @@ public final class NetworkProfile {
     }
 
     /**
-     * Get the nodeManagementAccess property: Network access profile for nodeManagement endpoint (Batch service
-     * managing compute nodes for Batch pools).
+     * Get the nodeManagementAccess property: Network access profile for nodeManagement endpoint (Batch service managing
+     * compute nodes for Batch pools).
      * 
      * @return the nodeManagementAccess value.
      */
@@ -61,8 +61,8 @@ public final class NetworkProfile {
     }
 
     /**
-     * Set the nodeManagementAccess property: Network access profile for nodeManagement endpoint (Batch service
-     * managing compute nodes for Batch pools).
+     * Set the nodeManagementAccess property: Network access profile for nodeManagement endpoint (Batch service managing
+     * compute nodes for Batch pools).
      * 
      * @param nodeManagementAccess the nodeManagementAccess value to set.
      * @return the NetworkProfile object itself.

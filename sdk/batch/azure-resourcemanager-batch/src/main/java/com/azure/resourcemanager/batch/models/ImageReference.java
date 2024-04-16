@@ -40,22 +40,15 @@ public final class ImageReference {
     /*
      * The version of the Azure Virtual Machines Marketplace image.
      * 
-     * A value of 'latest' can be specified to select the latest version of an image. If omitted, the default is
-     * 'latest'.
+     * A value of 'latest' can be specified to select the latest version of an image. If omitted, the default is 'latest'.
      */
     @JsonProperty(value = "version")
     private String version;
 
     /*
-     * The ARM resource identifier of the Azure Compute Gallery Image. Compute Nodes in the Pool will be created using
-     * this Image Id. This is of the form
-     * /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName
-     * }/images/{imageDefinitionName}/versions/{versionId}.
+     * The ARM resource identifier of the Azure Compute Gallery Image. Compute Nodes in the Pool will be created using this Image Id. This is of the form /subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Compute/galleries/{galleryName}/images/{imageDefinitionName}/versions/{versionId}.
      * 
-     * This property is mutually exclusive with other properties. The Azure Compute Gallery Image must have replicas in
-     * the same region as the Azure Batch account. For information about the firewall settings for the Batch node agent
-     * to communicate with the Batch service see
-     * https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration.
+     * This property is mutually exclusive with other properties. The Azure Compute Gallery Image must have replicas in the same region as the Azure Batch account. For information about the firewall settings for the Batch node agent to communicate with the Batch service see https://docs.microsoft.com/en-us/azure/batch/batch-api-basics#virtual-network-vnet-and-firewall-configuration.
      */
     @JsonProperty(value = "id")
     private String id;

@@ -20,7 +20,6 @@ import com.azure.resourcemanager.batch.models.ResizeOperationStatus;
 import com.azure.resourcemanager.batch.models.ScaleSettings;
 import com.azure.resourcemanager.batch.models.StartTask;
 import com.azure.resourcemanager.batch.models.TaskSchedulingPolicy;
-import com.azure.resourcemanager.batch.models.UpgradePolicy;
 import com.azure.resourcemanager.batch.models.UserAccount;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -44,8 +43,7 @@ public final class PoolProperties {
     /*
      * The last modified time of the pool.
      * 
-     * This is the last time at which the pool level data, such as the targetDedicatedNodes or autoScaleSettings,
-     * changed. It does not factor in node-level changes such as a compute node changing state.
+     * This is the last time at which the pool level data, such as the targetDedicatedNodes or autoScaleSettings, changed. It does not factor in node-level changes such as a compute node changing state.
      */
     @JsonProperty(value = "lastModified", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime lastModified;
@@ -83,15 +81,7 @@ public final class PoolProperties {
     /*
      * The size of virtual machines in the pool. All VMs in a pool are the same size.
      * 
-     * For information about available sizes of virtual machines for Cloud Services pools (pools created with
-     * cloudServiceConfiguration), see Sizes for Cloud Services
-     * (https://azure.microsoft.com/documentation/articles/cloud-services-sizes-specs/). Batch supports all Cloud
-     * Services VM sizes except ExtraSmall. For information about available VM sizes for pools using images from the
-     * Virtual Machines Marketplace (pools created with virtualMachineConfiguration) see Sizes for Virtual Machines
-     * (Linux) (https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/) or Sizes for Virtual
-     * Machines (Windows) (https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/). Batch
-     * supports all Azure VM sizes except STANDARD_A0 and those with premium storage (STANDARD_GS, STANDARD_DS, and
-     * STANDARD_DSV2 series).
+     * For information about available sizes of virtual machines for Cloud Services pools (pools created with cloudServiceConfiguration), see Sizes for Cloud Services (https://azure.microsoft.com/documentation/articles/cloud-services-sizes-specs/). Batch supports all Cloud Services VM sizes except ExtraSmall. For information about available VM sizes for pools using images from the Virtual Machines Marketplace (pools created with virtualMachineConfiguration) see Sizes for Virtual Machines (Linux) (https://azure.microsoft.com/documentation/articles/virtual-machines-linux-sizes/) or Sizes for Virtual Machines (Windows) (https://azure.microsoft.com/documentation/articles/virtual-machines-windows-sizes/). Batch supports all Azure VM sizes except STANDARD_A0 and those with premium storage (STANDARD_GS, STANDARD_DS, and STANDARD_DSV2 series).
      */
     @JsonProperty(value = "vmSize")
     private String vmSize;
@@ -99,8 +89,7 @@ public final class PoolProperties {
     /*
      * Deployment configuration properties.
      * 
-     * Using CloudServiceConfiguration specifies that the nodes should be creating using Azure Cloud Services (PaaS),
-     * while VirtualMachineConfiguration uses Azure Virtual Machines (IaaS).
+     * Using CloudServiceConfiguration specifies that the nodes should be creating using Azure Cloud Services (PaaS), while VirtualMachineConfiguration uses Azure Virtual Machines (IaaS).
      */
     @JsonProperty(value = "deploymentConfiguration")
     private DeploymentConfiguration deploymentConfiguration;
@@ -120,9 +109,7 @@ public final class PoolProperties {
     /*
      * Scale settings for the pool
      * 
-     * Defines the desired size of the pool. This can either be 'fixedScale' where the requested targetDedicatedNodes
-     * is specified, or 'autoScale' which defines a formula which is periodically reevaluated. If this property is not
-     * specified, the pool will have a fixed scale with 0 targetDedicatedNodes.
+     * Defines the desired size of the pool. This can either be 'fixedScale' where the requested targetDedicatedNodes is specified, or 'autoScale' which defines a formula which is periodically reevaluated. If this property is not specified, the pool will have a fixed scale with 0 targetDedicatedNodes.
      */
     @JsonProperty(value = "scaleSettings")
     private ScaleSettings scaleSettings;
@@ -138,9 +125,7 @@ public final class PoolProperties {
     /*
      * Whether the pool permits direct communication between nodes.
      * 
-     * This imposes restrictions on which nodes can be assigned to the pool. Enabling this value can reduce the chance
-     * of the requested number of nodes to be allocated in the pool. If not specified, this value defaults to
-     * 'Disabled'.
+     * This imposes restrictions on which nodes can be assigned to the pool. Enabling this value can reduce the chance of the requested number of nodes to be allocated in the pool. If not specified, this value defaults to 'Disabled'.
      */
     @JsonProperty(value = "interNodeCommunication")
     private InterNodeCommunicationState interNodeCommunication;
@@ -154,8 +139,7 @@ public final class PoolProperties {
     /*
      * The number of task slots that can be used to run concurrent tasks on a single compute node in the pool.
      * 
-     * The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the
-     * pool or 256.
+     * The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the pool or 256.
      */
     @JsonProperty(value = "taskSlotsPerNode")
     private Integer taskSlotsPerNode;
@@ -183,11 +167,9 @@ public final class PoolProperties {
     private List<MetadataItem> metadata;
 
     /*
-     * A task which is run when a compute node joins a pool in the Azure Batch service, or when the compute node is
-     * rebooted or reimaged.
+     * A task which is run when a compute node joins a pool in the Azure Batch service, or when the compute node is rebooted or reimaged.
      * 
-     * In an PATCH (update) operation, this property can be set to an empty object to remove the start task from the
-     * pool.
+     * In an PATCH (update) operation, this property can be set to an empty object to remove the start task from the pool.
      */
     @JsonProperty(value = "startTask")
     private StartTask startTask;
@@ -195,14 +177,9 @@ public final class PoolProperties {
     /*
      * The list of certificates to be installed on each compute node in the pool.
      * 
-     * For Windows compute nodes, the Batch service installs the certificates to the specified certificate store and
-     * location. For Linux compute nodes, the certificates are stored in a directory inside the task working directory
-     * and an environment variable AZ_BATCH_CERTIFICATES_DIR is supplied to the task to query for this location. For
-     * certificates with visibility of 'remoteUser', a 'certs' directory is created in the user's home directory (e.g.,
-     * /home/{user-name}/certs) and certificates are placed in that directory.
+     * For Windows compute nodes, the Batch service installs the certificates to the specified certificate store and location. For Linux compute nodes, the certificates are stored in a directory inside the task working directory and an environment variable AZ_BATCH_CERTIFICATES_DIR is supplied to the task to query for this location. For certificates with visibility of 'remoteUser', a 'certs' directory is created in the user's home directory (e.g., /home/{user-name}/certs) and certificates are placed in that directory.
      * 
-     * Warning: This property is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault
-     * Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead.
+     * Warning: This property is deprecated and will be removed after February, 2024. Please use the [Azure KeyVault Extension](https://learn.microsoft.com/azure/batch/batch-certificate-migration-guide) instead.
      */
     @JsonProperty(value = "certificates")
     private List<CertificateReference> certificates;
@@ -210,9 +187,7 @@ public final class PoolProperties {
     /*
      * The list of application packages to be installed on each compute node in the pool.
      * 
-     * Changes to application package references affect all new compute nodes joining the pool, but do not affect
-     * compute nodes that are already in the pool until they are rebooted or reimaged. There is a maximum of 10
-     * application package references on any given pool.
+     * Changes to application package references affect all new compute nodes joining the pool, but do not affect compute nodes that are already in the pool until they are rebooted or reimaged. There is a maximum of 10 application package references on any given pool.
      */
     @JsonProperty(value = "applicationPackages")
     private List<ApplicationPackageReference> applicationPackages;
@@ -220,8 +195,7 @@ public final class PoolProperties {
     /*
      * The list of application licenses the Batch service will make available on each compute node in the pool.
      * 
-     * The list of application licenses must be a subset of available Batch service application licenses. If a license
-     * is requested which is not supported, pool creation will fail.
+     * The list of application licenses must be a subset of available Batch service application licenses. If a license is requested which is not supported, pool creation will fail.
      */
     @JsonProperty(value = "applicationLicenses")
     private List<String> applicationLicenses;
@@ -229,8 +203,7 @@ public final class PoolProperties {
     /*
      * Details about the current or last completed resize operation.
      * 
-     * Describes either the current operation (if the pool AllocationState is Resizing) or the previously completed
-     * operation (if the AllocationState is Steady).
+     * Describes either the current operation (if the pool AllocationState is Resizing) or the previously completed operation (if the AllocationState is Steady).
      */
     @JsonProperty(value = "resizeOperationStatus", access = JsonProperty.Access.WRITE_ONLY)
     private ResizeOperationStatus resizeOperationStatus;
@@ -258,15 +231,7 @@ public final class PoolProperties {
     private NodeCommunicationMode currentNodeCommunicationMode;
 
     /*
-     * Describes an upgrade policy - automatic, manual, or rolling.
-     */
-    @JsonProperty(value = "upgradePolicy")
-    private UpgradePolicy upgradePolicy;
-
-    /*
-     * The user-defined tags to be associated with the Azure Batch Pool. When specified, these tags are propagated to
-     * the backing Azure resources associated with the pool. This property can only be specified when the Batch account
-     * was created with the poolAllocationMode property set to 'UserSubscription'.
+     * The user-defined tags to be associated with the Azure Batch Pool. When specified, these tags are propagated to the backing Azure resources associated with the pool. This property can only be specified when the Batch account was created with the poolAllocationMode property set to 'UserSubscription'.
      */
     @JsonProperty(value = "resourceTags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
@@ -446,8 +411,8 @@ public final class PoolProperties {
     /**
      * Get the scaleSettings property: Scale settings for the pool
      * 
-     * Defines the desired size of the pool. This can either be 'fixedScale' where the requested targetDedicatedNodes
-     * is specified, or 'autoScale' which defines a formula which is periodically reevaluated. If this property is not
+     * Defines the desired size of the pool. This can either be 'fixedScale' where the requested targetDedicatedNodes is
+     * specified, or 'autoScale' which defines a formula which is periodically reevaluated. If this property is not
      * specified, the pool will have a fixed scale with 0 targetDedicatedNodes.
      * 
      * @return the scaleSettings value.
@@ -459,8 +424,8 @@ public final class PoolProperties {
     /**
      * Set the scaleSettings property: Scale settings for the pool
      * 
-     * Defines the desired size of the pool. This can either be 'fixedScale' where the requested targetDedicatedNodes
-     * is specified, or 'autoScale' which defines a formula which is periodically reevaluated. If this property is not
+     * Defines the desired size of the pool. This can either be 'fixedScale' where the requested targetDedicatedNodes is
+     * specified, or 'autoScale' which defines a formula which is periodically reevaluated. If this property is not
      * specified, the pool will have a fixed scale with 0 targetDedicatedNodes.
      * 
      * @param scaleSettings the scaleSettings value to set.
@@ -534,8 +499,8 @@ public final class PoolProperties {
      * Get the taskSlotsPerNode property: The number of task slots that can be used to run concurrent tasks on a single
      * compute node in the pool.
      * 
-     * The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the
-     * pool or 256.
+     * The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the pool
+     * or 256.
      * 
      * @return the taskSlotsPerNode value.
      */
@@ -547,8 +512,8 @@ public final class PoolProperties {
      * Set the taskSlotsPerNode property: The number of task slots that can be used to run concurrent tasks on a single
      * compute node in the pool.
      * 
-     * The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the
-     * pool or 256.
+     * The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the pool
+     * or 256.
      * 
      * @param taskSlotsPerNode the taskSlotsPerNode value to set.
      * @return the PoolProperties object itself.
@@ -820,26 +785,6 @@ public final class PoolProperties {
     }
 
     /**
-     * Get the upgradePolicy property: Describes an upgrade policy - automatic, manual, or rolling.
-     * 
-     * @return the upgradePolicy value.
-     */
-    public UpgradePolicy upgradePolicy() {
-        return this.upgradePolicy;
-    }
-
-    /**
-     * Set the upgradePolicy property: Describes an upgrade policy - automatic, manual, or rolling.
-     * 
-     * @param upgradePolicy the upgradePolicy value to set.
-     * @return the PoolProperties object itself.
-     */
-    public PoolProperties withUpgradePolicy(UpgradePolicy upgradePolicy) {
-        this.upgradePolicy = upgradePolicy;
-        return this;
-    }
-
-    /**
      * Get the resourceTags property: The user-defined tags to be associated with the Azure Batch Pool. When specified,
      * these tags are propagated to the backing Azure resources associated with the pool. This property can only be
      * specified when the Batch account was created with the poolAllocationMode property set to 'UserSubscription'.
@@ -904,9 +849,6 @@ public final class PoolProperties {
         }
         if (mountConfiguration() != null) {
             mountConfiguration().forEach(e -> e.validate());
-        }
-        if (upgradePolicy() != null) {
-            upgradePolicy().validate();
         }
     }
 }

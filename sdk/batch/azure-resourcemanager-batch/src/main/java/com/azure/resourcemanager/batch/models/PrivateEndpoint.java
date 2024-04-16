@@ -13,9 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class PrivateEndpoint {
     /*
-     * The ARM resource identifier of the private endpoint. This is of the form
-     * /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/privateEndpoints/{
-     * privateEndpoint}.
+     * The ARM resource identifier of the private endpoint. This is of the form /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/privateEndpoints/{privateEndpoint}.
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;

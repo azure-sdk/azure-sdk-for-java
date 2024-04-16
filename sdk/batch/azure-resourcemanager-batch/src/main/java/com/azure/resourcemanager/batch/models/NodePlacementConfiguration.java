@@ -17,8 +17,7 @@ public final class NodePlacementConfiguration {
     /*
      * The placement policy for allocating nodes in the pool.
      * 
-     * Allocation policy used by Batch Service to provision the nodes. If not specified, Batch will use the regional
-     * policy.
+     * Allocation policy used by Batch Service to provision the nodes. If not specified, Batch will use the regional policy.
      */
     @JsonProperty(value = "policy")
     private NodePlacementPolicyType policy;

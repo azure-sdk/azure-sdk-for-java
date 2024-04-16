@@ -15,8 +15,7 @@ public final class ResourceFile {
     /*
      * The storage container name in the auto storage account.
      * 
-     * The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them
-     * must be specified.
+     * The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified.
      */
     @JsonProperty(value = "autoStorageContainerName")
     private String autoStorageContainerName;
@@ -24,11 +23,7 @@ public final class ResourceFile {
     /*
      * The URL of the blob container within Azure Blob Storage.
      * 
-     * The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them
-     * must be specified. This URL must be readable and listable from compute nodes. There are three ways to get such a
-     * URL for a container in Azure storage: include a Shared Access Signature (SAS) granting read and list permissions
-     * on the container, use a managed identity with read and list permissions, or set the ACL for the container to
-     * allow public access.
+     * The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. This URL must be readable and listable from compute nodes. There are three ways to get such a URL for a container in Azure storage: include a Shared Access Signature (SAS) granting read and list permissions on the container, use a managed identity with read and list permissions, or set the ACL for the container to allow public access.
      */
     @JsonProperty(value = "storageContainerUrl")
     private String storageContainerUrl;
@@ -36,22 +31,15 @@ public final class ResourceFile {
     /*
      * The URL of the file to download.
      * 
-     * The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them
-     * must be specified. If the URL points to Azure Blob Storage, it must be readable from compute nodes. There are
-     * three ways to get such a URL for a blob in Azure storage: include a Shared Access Signature (SAS) granting read
-     * permissions on the blob, use a managed identity with read permission, or set the ACL for the blob or its
-     * container to allow public access.
+     * The autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. If the URL points to Azure Blob Storage, it must be readable from compute nodes. There are three ways to get such a URL for a blob in Azure storage: include a Shared Access Signature (SAS) granting read permissions on the blob, use a managed identity with read permission, or set the ACL for the blob or its container to allow public access.
      */
     @JsonProperty(value = "httpUrl")
     private String httpUrl;
 
     /*
-     * The blob prefix to use when downloading blobs from an Azure Storage container. Only the blobs whose names begin
-     * with the specified prefix will be downloaded.
+     * The blob prefix to use when downloading blobs from an Azure Storage container. Only the blobs whose names begin with the specified prefix will be downloaded.
      * 
-     * The property is valid only when autoStorageContainerName or storageContainerUrl is used. This prefix can be a
-     * partial filename or a subdirectory. If a prefix is not specified, all the files in the container will be
-     * downloaded.
+     * The property is valid only when autoStorageContainerName or storageContainerUrl is used. This prefix can be a partial filename or a subdirectory. If a prefix is not specified, all the files in the container will be downloaded.
      */
     @JsonProperty(value = "blobPrefix")
     private String blobPrefix;
@@ -59,12 +47,7 @@ public final class ResourceFile {
     /*
      * The location on the compute node to which to download the file, relative to the task's working directory.
      * 
-     * If the httpUrl property is specified, the filePath is required and describes the path which the file will be
-     * downloaded to, including the filename. Otherwise, if the autoStorageContainerName or storageContainerUrl
-     * property is specified, filePath is optional and is the directory to download the files to. In the case where
-     * filePath is used as a directory, any directory structure already associated with the input data will be retained
-     * in full and appended to the specified filePath directory. The specified relative path cannot break out of the
-     * task's working directory (for example by using '..').
+     * If the httpUrl property is specified, the filePath is required and describes the path which the file will be downloaded to, including the filename. Otherwise, if the autoStorageContainerName or storageContainerUrl property is specified, filePath is optional and is the directory to download the files to. In the case where filePath is used as a directory, any directory structure already associated with the input data will be retained in full and appended to the specified filePath directory. The specified relative path cannot break out of the task's working directory (for example by using '..').
      */
     @JsonProperty(value = "filePath")
     private String filePath;
@@ -72,9 +55,7 @@ public final class ResourceFile {
     /*
      * The file permission mode attribute in octal format.
      * 
-     * This property applies only to files being downloaded to Linux compute nodes. It will be ignored if it is
-     * specified for a resourceFile which will be downloaded to a Windows node. If this property is not specified for a
-     * Linux node, then a default value of 0770 is applied to the file.
+     * This property applies only to files being downloaded to Linux compute nodes. It will be ignored if it is specified for a resourceFile which will be downloaded to a Windows node. If this property is not specified for a Linux node, then a default value of 0770 is applied to the file.
      */
     @JsonProperty(value = "fileMode")
     private String fileMode;
@@ -212,15 +193,15 @@ public final class ResourceFile {
     }
 
     /**
-     * Get the filePath property: The location on the compute node to which to download the file, relative to the
-     * task's working directory.
+     * Get the filePath property: The location on the compute node to which to download the file, relative to the task's
+     * working directory.
      * 
      * If the httpUrl property is specified, the filePath is required and describes the path which the file will be
-     * downloaded to, including the filename. Otherwise, if the autoStorageContainerName or storageContainerUrl
-     * property is specified, filePath is optional and is the directory to download the files to. In the case where
-     * filePath is used as a directory, any directory structure already associated with the input data will be retained
-     * in full and appended to the specified filePath directory. The specified relative path cannot break out of the
-     * task's working directory (for example by using '..').
+     * downloaded to, including the filename. Otherwise, if the autoStorageContainerName or storageContainerUrl property
+     * is specified, filePath is optional and is the directory to download the files to. In the case where filePath is
+     * used as a directory, any directory structure already associated with the input data will be retained in full and
+     * appended to the specified filePath directory. The specified relative path cannot break out of the task's working
+     * directory (for example by using '..').
      * 
      * @return the filePath value.
      */
@@ -229,15 +210,15 @@ public final class ResourceFile {
     }
 
     /**
-     * Set the filePath property: The location on the compute node to which to download the file, relative to the
-     * task's working directory.
+     * Set the filePath property: The location on the compute node to which to download the file, relative to the task's
+     * working directory.
      * 
      * If the httpUrl property is specified, the filePath is required and describes the path which the file will be
-     * downloaded to, including the filename. Otherwise, if the autoStorageContainerName or storageContainerUrl
-     * property is specified, filePath is optional and is the directory to download the files to. In the case where
-     * filePath is used as a directory, any directory structure already associated with the input data will be retained
-     * in full and appended to the specified filePath directory. The specified relative path cannot break out of the
-     * task's working directory (for example by using '..').
+     * downloaded to, including the filename. Otherwise, if the autoStorageContainerName or storageContainerUrl property
+     * is specified, filePath is optional and is the directory to download the files to. In the case where filePath is
+     * used as a directory, any directory structure already associated with the input data will be retained in full and
+     * appended to the specified filePath directory. The specified relative path cannot break out of the task's working
+     * directory (for example by using '..').
      * 
      * @param filePath the filePath value to set.
      * @return the ResourceFile object itself.

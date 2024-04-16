@@ -85,8 +85,9 @@ public final class EndpointAccessProfile {
      */
     public void validate() {
         if (defaultAction() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property defaultAction in model EndpointAccessProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property defaultAction in model EndpointAccessProfile"));
         }
         if (ipRules() != null) {
             ipRules().forEach(e -> e.validate());

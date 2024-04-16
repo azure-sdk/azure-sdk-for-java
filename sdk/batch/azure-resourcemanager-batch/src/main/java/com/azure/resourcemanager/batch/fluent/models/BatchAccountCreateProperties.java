@@ -27,9 +27,7 @@ public final class BatchAccountCreateProperties {
     private AutoStorageBaseProperties autoStorage;
 
     /*
-     * The pool allocation mode also affects how clients may authenticate to the Batch Service API. If the mode is
-     * BatchService, clients may authenticate using access keys or Microsoft Entra ID. If the mode is UserSubscription,
-     * clients must use Microsoft Entra ID. The default is BatchService.
+     * The pool allocation mode also affects how clients may authenticate to the Batch Service API. If the mode is BatchService, clients may authenticate using access keys or Microsoft Entra ID. If the mode is UserSubscription, clients must use Microsoft Entra ID. The default is BatchService.
      */
     @JsonProperty(value = "poolAllocationMode")
     private PoolAllocationMode poolAllocationMode;
@@ -53,15 +51,13 @@ public final class BatchAccountCreateProperties {
     private NetworkProfile networkProfile;
 
     /*
-     * Configures how customer data is encrypted inside the Batch account. By default, accounts are encrypted using a
-     * Microsoft managed key. For additional control, a customer-managed key can be used instead.
+     * Configures how customer data is encrypted inside the Batch account. By default, accounts are encrypted using a Microsoft managed key. For additional control, a customer-managed key can be used instead.
      */
     @JsonProperty(value = "encryption")
     private EncryptionProperties encryption;
 
     /*
-     * List of allowed authentication modes for the Batch account that can be used to authenticate with the data plane.
-     * This does not affect authentication with the control plane.
+     * List of allowed authentication modes for the Batch account that can be used to authenticate with the data plane. This does not affect authentication with the control plane.
      */
     @JsonProperty(value = "allowedAuthenticationModes")
     private List<AuthenticationMode> allowedAuthenticationModes;
@@ -94,8 +90,8 @@ public final class BatchAccountCreateProperties {
 
     /**
      * Get the poolAllocationMode property: The pool allocation mode also affects how clients may authenticate to the
-     * Batch Service API. If the mode is BatchService, clients may authenticate using access keys or Microsoft Entra
-     * ID. If the mode is UserSubscription, clients must use Microsoft Entra ID. The default is BatchService.
+     * Batch Service API. If the mode is BatchService, clients may authenticate using access keys or Microsoft Entra ID.
+     * If the mode is UserSubscription, clients must use Microsoft Entra ID. The default is BatchService.
      * 
      * @return the poolAllocationMode value.
      */
@@ -105,8 +101,8 @@ public final class BatchAccountCreateProperties {
 
     /**
      * Set the poolAllocationMode property: The pool allocation mode also affects how clients may authenticate to the
-     * Batch Service API. If the mode is BatchService, clients may authenticate using access keys or Microsoft Entra
-     * ID. If the mode is UserSubscription, clients must use Microsoft Entra ID. The default is BatchService.
+     * Batch Service API. If the mode is BatchService, clients may authenticate using access keys or Microsoft Entra ID.
+     * If the mode is UserSubscription, clients must use Microsoft Entra ID. The default is BatchService.
      * 
      * @param poolAllocationMode the poolAllocationMode value to set.
      * @return the BatchAccountCreateProperties object itself.

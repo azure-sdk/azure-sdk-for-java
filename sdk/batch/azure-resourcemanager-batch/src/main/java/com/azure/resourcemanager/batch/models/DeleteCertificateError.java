@@ -135,12 +135,12 @@ public final class DeleteCertificateError {
      */
     public void validate() {
         if (code() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property code in model DeleteCertificateError"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property code in model DeleteCertificateError"));
         }
         if (message() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property message in model DeleteCertificateError"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property message in model DeleteCertificateError"));
         }
         if (details() != null) {
             details().forEach(e -> e.validate());

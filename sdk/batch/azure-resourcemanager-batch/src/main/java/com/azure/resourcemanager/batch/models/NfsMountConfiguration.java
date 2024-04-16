@@ -22,8 +22,7 @@ public final class NfsMountConfiguration {
     /*
      * The relative path on the compute node where the file system will be mounted
      * 
-     * All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR
-     * environment variable.
+     * All file systems are mounted relative to the Batch mounts directory, accessible via the AZ_BATCH_NODE_MOUNTS_DIR environment variable.
      */
     @JsonProperty(value = "relativeMountPath", required = true)
     private String relativeMountPath;
@@ -119,12 +118,13 @@ public final class NfsMountConfiguration {
      */
     public void validate() {
         if (source() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property source in model NfsMountConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property source in model NfsMountConfiguration"));
         }
         if (relativeMountPath() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property relativeMountPath in model NfsMountConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property relativeMountPath in model NfsMountConfiguration"));
         }
     }
 

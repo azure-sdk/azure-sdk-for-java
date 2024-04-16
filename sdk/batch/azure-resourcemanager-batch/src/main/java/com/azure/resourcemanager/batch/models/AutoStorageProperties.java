@@ -82,8 +82,9 @@ public final class AutoStorageProperties extends AutoStorageBaseProperties {
     public void validate() {
         super.validate();
         if (lastKeySync() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property lastKeySync in model AutoStorageProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property lastKeySync in model AutoStorageProperties"));
         }
     }
 

@@ -12,8 +12,7 @@ import java.util.Map;
 
 /**
  * The identity of the Batch account, if configured. This is used when the user specifies 'Microsoft.KeyVault' as their
- * Batch account encryption configuration or when `ManagedIdentity` is selected as the auto-storage authentication
- * mode.
+ * Batch account encryption configuration or when `ManagedIdentity` is selected as the auto-storage authentication mode.
  */
 @Fluent
 public final class BatchAccountIdentity {
@@ -24,8 +23,7 @@ public final class BatchAccountIdentity {
     private String principalId;
 
     /*
-     * The tenant id associated with the Batch account. This property will only be provided for a system assigned
-     * identity.
+     * The tenant id associated with the Batch account. This property will only be provided for a system assigned identity.
      */
     @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
     private String tenantId;
@@ -116,8 +114,8 @@ public final class BatchAccountIdentity {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property type in model BatchAccountIdentity"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property type in model BatchAccountIdentity"));
         }
         if (userAssignedIdentities() != null) {
             userAssignedIdentities().values().forEach(e -> {

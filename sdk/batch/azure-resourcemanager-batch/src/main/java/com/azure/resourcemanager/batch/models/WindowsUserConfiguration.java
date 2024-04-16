@@ -15,8 +15,7 @@ public final class WindowsUserConfiguration {
     /*
      * Login mode for user
      * 
-     * Specifies login mode for the user. The default value for VirtualMachineConfiguration pools is interactive mode
-     * and for CloudServiceConfiguration pools is batch mode.
+     * Specifies login mode for the user. The default value for VirtualMachineConfiguration pools is interactive mode and for CloudServiceConfiguration pools is batch mode.
      */
     @JsonProperty(value = "loginMode")
     private LoginMode loginMode;

@@ -109,12 +109,12 @@ public final class ResizeError {
      */
     public void validate() {
         if (code() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property code in model ResizeError"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property code in model ResizeError"));
         }
         if (message() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property message in model ResizeError"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property message in model ResizeError"));
         }
         if (details() != null) {
             details().forEach(e -> e.validate());

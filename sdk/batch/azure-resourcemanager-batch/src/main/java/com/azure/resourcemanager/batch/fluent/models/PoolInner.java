@@ -22,7 +22,6 @@ import com.azure.resourcemanager.batch.models.ResizeOperationStatus;
 import com.azure.resourcemanager.batch.models.ScaleSettings;
 import com.azure.resourcemanager.batch.models.StartTask;
 import com.azure.resourcemanager.batch.models.TaskSchedulingPolicy;
-import com.azure.resourcemanager.batch.models.UpgradePolicy;
 import com.azure.resourcemanager.batch.models.UserAccount;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
@@ -273,8 +272,8 @@ public final class PoolInner extends ProxyResource {
     /**
      * Get the scaleSettings property: Scale settings for the pool
      * 
-     * Defines the desired size of the pool. This can either be 'fixedScale' where the requested targetDedicatedNodes
-     * is specified, or 'autoScale' which defines a formula which is periodically reevaluated. If this property is not
+     * Defines the desired size of the pool. This can either be 'fixedScale' where the requested targetDedicatedNodes is
+     * specified, or 'autoScale' which defines a formula which is periodically reevaluated. If this property is not
      * specified, the pool will have a fixed scale with 0 targetDedicatedNodes.
      * 
      * @return the scaleSettings value.
@@ -286,8 +285,8 @@ public final class PoolInner extends ProxyResource {
     /**
      * Set the scaleSettings property: Scale settings for the pool
      * 
-     * Defines the desired size of the pool. This can either be 'fixedScale' where the requested targetDedicatedNodes
-     * is specified, or 'autoScale' which defines a formula which is periodically reevaluated. If this property is not
+     * Defines the desired size of the pool. This can either be 'fixedScale' where the requested targetDedicatedNodes is
+     * specified, or 'autoScale' which defines a formula which is periodically reevaluated. If this property is not
      * specified, the pool will have a fixed scale with 0 targetDedicatedNodes.
      * 
      * @param scaleSettings the scaleSettings value to set.
@@ -370,8 +369,8 @@ public final class PoolInner extends ProxyResource {
      * Get the taskSlotsPerNode property: The number of task slots that can be used to run concurrent tasks on a single
      * compute node in the pool.
      * 
-     * The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the
-     * pool or 256.
+     * The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the pool
+     * or 256.
      * 
      * @return the taskSlotsPerNode value.
      */
@@ -383,8 +382,8 @@ public final class PoolInner extends ProxyResource {
      * Set the taskSlotsPerNode property: The number of task slots that can be used to run concurrent tasks on a single
      * compute node in the pool.
      * 
-     * The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the
-     * pool or 256.
+     * The default value is 1. The maximum value is the smaller of 4 times the number of cores of the vmSize of the pool
+     * or 256.
      * 
      * @param taskSlotsPerNode the taskSlotsPerNode value to set.
      * @return the PoolInner object itself.
@@ -683,29 +682,6 @@ public final class PoolInner extends ProxyResource {
      */
     public NodeCommunicationMode currentNodeCommunicationMode() {
         return this.innerProperties() == null ? null : this.innerProperties().currentNodeCommunicationMode();
-    }
-
-    /**
-     * Get the upgradePolicy property: Describes an upgrade policy - automatic, manual, or rolling.
-     * 
-     * @return the upgradePolicy value.
-     */
-    public UpgradePolicy upgradePolicy() {
-        return this.innerProperties() == null ? null : this.innerProperties().upgradePolicy();
-    }
-
-    /**
-     * Set the upgradePolicy property: Describes an upgrade policy - automatic, manual, or rolling.
-     * 
-     * @param upgradePolicy the upgradePolicy value to set.
-     * @return the PoolInner object itself.
-     */
-    public PoolInner withUpgradePolicy(UpgradePolicy upgradePolicy) {
-        if (this.innerProperties() == null) {
-            this.innerProperties = new PoolProperties();
-        }
-        this.innerProperties().withUpgradePolicy(upgradePolicy);
-        return this;
     }
 
     /**

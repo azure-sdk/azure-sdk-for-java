@@ -121,8 +121,9 @@ public final class CertificateCreateOrUpdateProperties extends CertificateBasePr
     public void validate() {
         super.validate();
         if (data() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property data in model CertificateCreateOrUpdateProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property data in model CertificateCreateOrUpdateProperties"));
         }
     }
 

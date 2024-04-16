@@ -17,9 +17,7 @@ public final class PoolEndpointConfiguration {
     /*
      * A list of inbound NAT pools that can be used to address specific ports on an individual compute node externally.
      * 
-     * The maximum number of inbound NAT pools per Batch pool is 5. If the maximum number of inbound NAT pools is
-     * exceeded the request fails with HTTP status code 400. This cannot be specified if the IPAddressProvisioningType
-     * is NoPublicIPAddresses.
+     * The maximum number of inbound NAT pools per Batch pool is 5. If the maximum number of inbound NAT pools is exceeded the request fails with HTTP status code 400. This cannot be specified if the IPAddressProvisioningType is NoPublicIPAddresses.
      */
     @JsonProperty(value = "inboundNatPools", required = true)
     private List<InboundNatPool> inboundNatPools;
@@ -67,8 +65,9 @@ public final class PoolEndpointConfiguration {
      */
     public void validate() {
         if (inboundNatPools() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property inboundNatPools in model PoolEndpointConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property inboundNatPools in model PoolEndpointConfiguration"));
         } else {
             inboundNatPools().forEach(e -> e.validate());
         }

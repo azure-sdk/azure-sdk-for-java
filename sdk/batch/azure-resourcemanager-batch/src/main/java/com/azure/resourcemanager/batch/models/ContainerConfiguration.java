@@ -23,8 +23,7 @@ public final class ContainerConfiguration {
     /*
      * The collection of container image names.
      * 
-     * This is the full image reference, as would be specified to "docker pull". An image will be sourced from the
-     * default Docker registry unless the image is fully qualified with an alternative registry.
+     * This is the full image reference, as would be specified to "docker pull". An image will be sourced from the default Docker registry unless the image is fully qualified with an alternative registry.
      */
     @JsonProperty(value = "containerImageNames")
     private List<String> containerImageNames;
@@ -32,8 +31,7 @@ public final class ContainerConfiguration {
     /*
      * Additional private registries from which containers can be pulled.
      * 
-     * If any images must be downloaded from a private registry which requires credentials, then those credentials must
-     * be provided here.
+     * If any images must be downloaded from a private registry which requires credentials, then those credentials must be provided here.
      */
     @JsonProperty(value = "containerRegistries")
     private List<ContainerRegistry> containerRegistries;
@@ -123,8 +121,8 @@ public final class ContainerConfiguration {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property type in model ContainerConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property type in model ContainerConfiguration"));
         }
         if (containerRegistries() != null) {
             containerRegistries().forEach(e -> e.validate());

@@ -33,9 +33,7 @@ public final class ResizeOperationStatus {
     /*
      * The timeout for allocation of compute nodes to the pool or removal of compute nodes from the pool.
      * 
-     * The default value is 15 minutes. The minimum value is 5 minutes. If you specify a value less than 5 minutes, the
-     * Batch service returns an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad
-     * Request).
+     * The default value is 15 minutes. The minimum value is 5 minutes. If you specify a value less than 5 minutes, the Batch service returns an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request).
      */
     @JsonProperty(value = "resizeTimeout")
     private Duration resizeTimeout;
@@ -57,8 +55,7 @@ public final class ResizeOperationStatus {
     /*
      * Details of any errors encountered while performing the last resize on the pool.
      * 
-     * This property is set only if an error occurred during the last pool resize, and only when the pool
-     * allocationState is Steady.
+     * This property is set only if an error occurred during the last pool resize, and only when the pool allocationState is Steady.
      */
     @JsonProperty(value = "errors")
     private List<ResizeError> errors;

@@ -24,7 +24,6 @@ import com.azure.resourcemanager.batch.models.ResizeOperationStatus;
 import com.azure.resourcemanager.batch.models.ScaleSettings;
 import com.azure.resourcemanager.batch.models.StartTask;
 import com.azure.resourcemanager.batch.models.TaskSchedulingPolicy;
-import com.azure.resourcemanager.batch.models.UpgradePolicy;
 import com.azure.resourcemanager.batch.models.UserAccount;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -194,10 +193,6 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
         return this.innerModel().currentNodeCommunicationMode();
     }
 
-    public UpgradePolicy upgradePolicy() {
-        return this.innerModel().upgradePolicy();
-    }
-
     public Map<String, String> resourceTags() {
         Map<String, String> inner = this.innerModel().resourceTags();
         if (inner != null) {
@@ -238,14 +233,20 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
     }
 
     public Pool create() {
-        this.innerObject = serviceManager.serviceClient().getPools().createWithResponse(resourceGroupName, accountName,
-            poolName, this.innerModel(), createIfMatch, createIfNoneMatch, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getPools()
+            .createWithResponse(resourceGroupName, accountName, poolName, this.innerModel(), createIfMatch,
+                createIfNoneMatch, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Pool create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getPools().createWithResponse(resourceGroupName, accountName,
-            poolName, this.innerModel(), createIfMatch, createIfNoneMatch, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getPools()
+            .createWithResponse(resourceGroupName, accountName, poolName, this.innerModel(), createIfMatch,
+                createIfNoneMatch, context)
+            .getValue();
         return this;
     }
 
@@ -263,13 +264,17 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
     }
 
     public Pool apply() {
-        this.innerObject = serviceManager.serviceClient().getPools().updateWithResponse(resourceGroupName, accountName,
-            poolName, this.innerModel(), updateIfMatch, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getPools()
+            .updateWithResponse(resourceGroupName, accountName, poolName, this.innerModel(), updateIfMatch,
+                Context.NONE)
+            .getValue();
         return this;
     }
 
     public Pool apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getPools()
+        this.innerObject = serviceManager.serviceClient()
+            .getPools()
             .updateWithResponse(resourceGroupName, accountName, poolName, this.innerModel(), updateIfMatch, context)
             .getValue();
         return this;
@@ -284,14 +289,18 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
     }
 
     public Pool refresh() {
-        this.innerObject = serviceManager.serviceClient().getPools()
-            .getWithResponse(resourceGroupName, accountName, poolName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getPools()
+            .getWithResponse(resourceGroupName, accountName, poolName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Pool refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getPools()
-            .getWithResponse(resourceGroupName, accountName, poolName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getPools()
+            .getWithResponse(resourceGroupName, accountName, poolName, context)
+            .getValue();
         return this;
     }
 
@@ -393,11 +402,6 @@ public final class PoolImpl implements Pool, Pool.Definition, Pool.Update {
 
     public PoolImpl withTargetNodeCommunicationMode(NodeCommunicationMode targetNodeCommunicationMode) {
         this.innerModel().withTargetNodeCommunicationMode(targetNodeCommunicationMode);
-        return this;
-    }
-
-    public PoolImpl withUpgradePolicy(UpgradePolicy upgradePolicy) {
-        this.innerModel().withUpgradePolicy(upgradePolicy);
         return this;
     }
 

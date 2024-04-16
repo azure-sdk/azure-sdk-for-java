@@ -24,10 +24,7 @@ public final class PublicIpAddressConfiguration {
     /*
      * The list of public IPs which the Batch service will use when provisioning Compute Nodes.
      * 
-     * The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100
-     * Spot/low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would
-     * need at least 3 public IPs specified. Each element of this collection is of the form:
-     * /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}.
+     * The number of IPs specified here limits the maximum size of the Pool - 100 dedicated nodes or 100 Spot/low-priority nodes can be allocated for each public IP. For example, a pool needing 250 dedicated VMs would need at least 3 public IPs specified. Each element of this collection is of the form: /subscriptions/{subscription}/resourceGroups/{group}/providers/Microsoft.Network/publicIPAddresses/{ip}.
      */
     @JsonProperty(value = "ipAddressIds")
     private List<String> ipAddressIds;

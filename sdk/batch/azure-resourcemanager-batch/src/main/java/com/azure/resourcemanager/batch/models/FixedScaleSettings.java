@@ -16,9 +16,7 @@ public final class FixedScaleSettings {
     /*
      * The timeout for allocation of compute nodes to the pool.
      * 
-     * The default value is 15 minutes. Timeout values use ISO 8601 format. For example, use PT10M for 10 minutes. The
-     * minimum value is 5 minutes. If you specify a value less than 5 minutes, the Batch service rejects the request
-     * with an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request).
+     * The default value is 15 minutes. Timeout values use ISO 8601 format. For example, use PT10M for 10 minutes. The minimum value is 5 minutes. If you specify a value less than 5 minutes, the Batch service rejects the request with an error; if you are calling the REST API directly, the HTTP status code is 400 (Bad Request).
      */
     @JsonProperty(value = "resizeTimeout")
     private Duration resizeTimeout;

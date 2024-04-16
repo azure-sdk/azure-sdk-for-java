@@ -13,9 +13,7 @@ import com.azure.resourcemanager.batch.models.PrivateLinkServiceConnectionStatus
  */
 public final class PrivateEndpointConnectionUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/batch/resource-manager/Microsoft.Batch/stable/2024-02-01/examples/PrivateEndpointConnectionUpdate.
-     * json
+     * x-ms-original-file: specification/batch/resource-manager/Microsoft.Batch/stable/2023-11-01/examples/PrivateEndpointConnectionUpdate.json
      */
     /**
      * Sample code: UpdatePrivateEndpointConnection.
@@ -23,11 +21,12 @@ public final class PrivateEndpointConnectionUpdateSamples {
      * @param manager Entry point to BatchManager.
      */
     public static void updatePrivateEndpointConnection(com.azure.resourcemanager.batch.BatchManager manager) {
-        manager.privateEndpointConnections().update("default-azurebatch-japaneast", "sampleacct",
-            "testprivateEndpointConnection5.24d6b4b5-e65c-4330-bbe9-3a290d62f8e0",
-            new PrivateEndpointConnectionInner().withPrivateLinkServiceConnectionState(
-                new PrivateLinkServiceConnectionState().withStatus(PrivateLinkServiceConnectionStatus.APPROVED)
-                    .withDescription("Approved by xyz.abc@company.com")),
-            null, com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .update("default-azurebatch-japaneast", "sampleacct",
+                "testprivateEndpointConnection5.24d6b4b5-e65c-4330-bbe9-3a290d62f8e0",
+                new PrivateEndpointConnectionInner().withPrivateLinkServiceConnectionState(
+                    new PrivateLinkServiceConnectionState().withStatus(PrivateLinkServiceConnectionStatus.APPROVED)
+                        .withDescription("Approved by xyz.abc@company.com")),
+                null, com.azure.core.util.Context.NONE);
     }
 }

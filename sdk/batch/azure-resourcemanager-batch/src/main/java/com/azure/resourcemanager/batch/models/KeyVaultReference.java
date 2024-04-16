@@ -78,12 +78,12 @@ public final class KeyVaultReference {
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property id in model KeyVaultReference"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property id in model KeyVaultReference"));
         }
         if (url() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property url in model KeyVaultReference"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property url in model KeyVaultReference"));
         }
     }
 

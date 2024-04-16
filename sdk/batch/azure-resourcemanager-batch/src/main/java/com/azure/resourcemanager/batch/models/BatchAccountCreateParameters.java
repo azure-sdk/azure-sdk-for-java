@@ -142,8 +142,8 @@ public final class BatchAccountCreateParameters {
 
     /**
      * Get the poolAllocationMode property: The pool allocation mode also affects how clients may authenticate to the
-     * Batch Service API. If the mode is BatchService, clients may authenticate using access keys or Microsoft Entra
-     * ID. If the mode is UserSubscription, clients must use Microsoft Entra ID. The default is BatchService.
+     * Batch Service API. If the mode is BatchService, clients may authenticate using access keys or Microsoft Entra ID.
+     * If the mode is UserSubscription, clients must use Microsoft Entra ID. The default is BatchService.
      * 
      * @return the poolAllocationMode value.
      */
@@ -153,8 +153,8 @@ public final class BatchAccountCreateParameters {
 
     /**
      * Set the poolAllocationMode property: The pool allocation mode also affects how clients may authenticate to the
-     * Batch Service API. If the mode is BatchService, clients may authenticate using access keys or Microsoft Entra
-     * ID. If the mode is UserSubscription, clients must use Microsoft Entra ID. The default is BatchService.
+     * Batch Service API. If the mode is BatchService, clients may authenticate using access keys or Microsoft Entra ID.
+     * If the mode is UserSubscription, clients must use Microsoft Entra ID. The default is BatchService.
      * 
      * @param poolAllocationMode the poolAllocationMode value to set.
      * @return the BatchAccountCreateParameters object itself.
@@ -296,8 +296,9 @@ public final class BatchAccountCreateParameters {
      */
     public void validate() {
         if (location() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property location in model BatchAccountCreateParameters"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property location in model BatchAccountCreateParameters"));
         }
         if (innerProperties() != null) {
             innerProperties().validate();

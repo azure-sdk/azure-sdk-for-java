@@ -15,9 +15,7 @@ public final class DeploymentConfiguration {
     /*
      * The configuration for nodes in a pool based on the Azure Cloud Services platform.
      * 
-     * This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be
-     * specified. This property cannot be specified if the Batch account was created with its poolAllocationMode
-     * property set to 'UserSubscription'.
+     * This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified. This property cannot be specified if the Batch account was created with its poolAllocationMode property set to 'UserSubscription'.
      */
     @JsonProperty(value = "cloudServiceConfiguration")
     private CloudServiceConfiguration cloudServiceConfiguration;
@@ -40,9 +38,9 @@ public final class DeploymentConfiguration {
      * Get the cloudServiceConfiguration property: The configuration for nodes in a pool based on the Azure Cloud
      * Services platform.
      * 
-     * This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be
-     * specified. This property cannot be specified if the Batch account was created with its poolAllocationMode
-     * property set to 'UserSubscription'.
+     * This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified.
+     * This property cannot be specified if the Batch account was created with its poolAllocationMode property set to
+     * 'UserSubscription'.
      * 
      * @return the cloudServiceConfiguration value.
      */
@@ -54,9 +52,9 @@ public final class DeploymentConfiguration {
      * Set the cloudServiceConfiguration property: The configuration for nodes in a pool based on the Azure Cloud
      * Services platform.
      * 
-     * This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be
-     * specified. This property cannot be specified if the Batch account was created with its poolAllocationMode
-     * property set to 'UserSubscription'.
+     * This property and virtualMachineConfiguration are mutually exclusive and one of the properties must be specified.
+     * This property cannot be specified if the Batch account was created with its poolAllocationMode property set to
+     * 'UserSubscription'.
      * 
      * @param cloudServiceConfiguration the cloudServiceConfiguration value to set.
      * @return the DeploymentConfiguration object itself.
