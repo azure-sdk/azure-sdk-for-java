@@ -7,14 +7,28 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.Office365ProjectCheckRequirementsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents Office365 Project requirements check request. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Office365 Project requirements check request.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "kind",
+    defaultImpl = Office365ProjectCheckRequirements.class,
+    visible = true)
 @JsonTypeName("Office365Project")
 @Fluent
 public final class Office365ProjectCheckRequirements extends DataConnectorsCheckRequirements {
+    /*
+     * Describes the kind of connector to be checked.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.OFFICE365PROJECT;
+
     /*
      * Office365 Project requirements check properties.
      */
@@ -22,8 +36,24 @@ public final class Office365ProjectCheckRequirements extends DataConnectorsCheck
     private Office365ProjectCheckRequirementsProperties innerProperties;
 
     /**
+     * Creates an instance of Office365ProjectCheckRequirements class.
+     */
+    public Office365ProjectCheckRequirements() {
+    }
+
+    /**
+     * Get the kind property: Describes the kind of connector to be checked.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Office365 Project requirements check properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private Office365ProjectCheckRequirementsProperties innerProperties() {
@@ -31,8 +61,31 @@ public final class Office365ProjectCheckRequirements extends DataConnectorsCheck
     }
 
     /**
+     * Get the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @return the tenantId value.
+     */
+    public String tenantId() {
+        return this.innerProperties() == null ? null : this.innerProperties().tenantId();
+    }
+
+    /**
+     * Set the tenantId property: The tenant id to connect to, and get the data from.
+     * 
+     * @param tenantId the tenantId value to set.
+     * @return the Office365ProjectCheckRequirements object itself.
+     */
+    public Office365ProjectCheckRequirements withTenantId(String tenantId) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new Office365ProjectCheckRequirementsProperties();
+        }
+        this.innerProperties().withTenantId(tenantId);
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

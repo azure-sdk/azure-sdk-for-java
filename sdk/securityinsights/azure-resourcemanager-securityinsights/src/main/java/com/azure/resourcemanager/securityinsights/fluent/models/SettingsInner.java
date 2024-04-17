@@ -9,27 +9,52 @@ import com.azure.resourcemanager.securityinsights.models.Anomalies;
 import com.azure.resourcemanager.securityinsights.models.EntityAnalytics;
 import com.azure.resourcemanager.securityinsights.models.EyesOn;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
+import com.azure.resourcemanager.securityinsights.models.SettingKind;
 import com.azure.resourcemanager.securityinsights.models.Ueba;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The Setting. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "kind",
-    defaultImpl = SettingsInner.class)
+/**
+ * The Setting.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = SettingsInner.class, visible = true)
 @JsonTypeName("Settings")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Anomalies", value = Anomalies.class),
     @JsonSubTypes.Type(name = "EyesOn", value = EyesOn.class),
     @JsonSubTypes.Type(name = "EntityAnalytics", value = EntityAnalytics.class),
-    @JsonSubTypes.Type(name = "Ueba", value = Ueba.class)
-})
+    @JsonSubTypes.Type(name = "Ueba", value = Ueba.class) })
 @Fluent
 public class SettingsInner extends ResourceWithEtag {
-    /** {@inheritDoc} */
+    /*
+     * The kind of the setting
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private SettingKind kind;
+
+    /**
+     * Creates an instance of SettingsInner class.
+     */
+    public SettingsInner() {
+        this.kind = SettingKind.fromString("Settings");
+    }
+
+    /**
+     * Get the kind property: The kind of the setting.
+     * 
+     * @return the kind value.
+     */
+    public SettingKind kind() {
+        return this.kind;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SettingsInner withEtag(String etag) {
         super.withEtag(etag);
@@ -38,7 +63,7 @@ public class SettingsInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

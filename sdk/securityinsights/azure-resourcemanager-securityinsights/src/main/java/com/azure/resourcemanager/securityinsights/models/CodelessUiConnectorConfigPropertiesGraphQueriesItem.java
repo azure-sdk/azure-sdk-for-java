@@ -6,24 +6,38 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The CodelessUiConnectorConfigPropertiesGraphQueriesItem model. */
+/**
+ * The CodelessUiConnectorConfigPropertiesGraphQueriesItem model.
+ */
 @Fluent
 public final class CodelessUiConnectorConfigPropertiesGraphQueriesItem extends GraphQueries {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of CodelessUiConnectorConfigPropertiesGraphQueriesItem class.
+     */
+    public CodelessUiConnectorConfigPropertiesGraphQueriesItem() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiConnectorConfigPropertiesGraphQueriesItem withMetricName(String metricName) {
         super.withMetricName(metricName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiConnectorConfigPropertiesGraphQueriesItem withLegend(String legend) {
         super.withLegend(legend);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiConnectorConfigPropertiesGraphQueriesItem withBaseQuery(String baseQuery) {
         super.withBaseQuery(baseQuery);
@@ -32,7 +46,7 @@ public final class CodelessUiConnectorConfigPropertiesGraphQueriesItem extends G
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

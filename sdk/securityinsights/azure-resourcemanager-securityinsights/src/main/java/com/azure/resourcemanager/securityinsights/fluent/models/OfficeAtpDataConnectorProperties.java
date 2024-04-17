@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.AlertsDataTypeOfDataCon
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** OfficeATP (Office 365 Advanced Threat Protection) data connector properties. */
+/**
+ * OfficeATP (Office 365 Advanced Threat Protection) data connector properties.
+ */
 @Fluent
 public final class OfficeAtpDataConnectorProperties extends DataConnectorTenantId {
     /*
@@ -19,8 +21,14 @@ public final class OfficeAtpDataConnectorProperties extends DataConnectorTenantI
     private AlertsDataTypeOfDataConnector dataTypes;
 
     /**
+     * Creates an instance of OfficeAtpDataConnectorProperties class.
+     */
+    public OfficeAtpDataConnectorProperties() {
+    }
+
+    /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AlertsDataTypeOfDataConnector dataTypes() {
@@ -29,7 +37,7 @@ public final class OfficeAtpDataConnectorProperties extends DataConnectorTenantI
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the OfficeAtpDataConnectorProperties object itself.
      */
@@ -38,7 +46,9 @@ public final class OfficeAtpDataConnectorProperties extends DataConnectorTenantI
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OfficeAtpDataConnectorProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -47,7 +57,7 @@ public final class OfficeAtpDataConnectorProperties extends DataConnectorTenantI
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
