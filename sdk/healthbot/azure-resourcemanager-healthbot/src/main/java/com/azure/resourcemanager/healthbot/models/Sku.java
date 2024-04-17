@@ -8,18 +8,26 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The resource model definition representing SKU. */
+/**
+ * The resource model definition representing SKU.
+ */
 @Fluent
 public final class Sku {
     /*
-     * The name of the HealthBot SKU
+     * The name of the Azure Health Bot SKU
      */
     @JsonProperty(value = "name", required = true)
     private SkuName name;
 
     /**
-     * Get the name property: The name of the HealthBot SKU.
-     *
+     * Creates an instance of Sku class.
+     */
+    public Sku() {
+    }
+
+    /**
+     * Get the name property: The name of the Azure Health Bot SKU.
+     * 
      * @return the name value.
      */
     public SkuName name() {
@@ -27,8 +35,8 @@ public final class Sku {
     }
 
     /**
-     * Set the name property: The name of the HealthBot SKU.
-     *
+     * Set the name property: The name of the Azure Health Bot SKU.
+     * 
      * @param name the name value to set.
      * @return the Sku object itself.
      */
@@ -39,13 +47,12 @@ public final class Sku {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property name in model Sku"));
+            throw LOGGER.atError().log(new IllegalArgumentException("Missing required property name in model Sku"));
         }
     }
 

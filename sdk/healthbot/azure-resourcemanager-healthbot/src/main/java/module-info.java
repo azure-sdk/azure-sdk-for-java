@@ -4,16 +4,10 @@
 
 module com.azure.resourcemanager.healthbot {
     requires transitive com.azure.core.management;
-
     exports com.azure.resourcemanager.healthbot;
     exports com.azure.resourcemanager.healthbot.fluent;
     exports com.azure.resourcemanager.healthbot.fluent.models;
     exports com.azure.resourcemanager.healthbot.models;
-
-    opens com.azure.resourcemanager.healthbot.fluent.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
-    opens com.azure.resourcemanager.healthbot.models to
-        com.azure.core,
-        com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.healthbot.fluent.models to com.azure.core, com.fasterxml.jackson.databind;
+    opens com.azure.resourcemanager.healthbot.models to com.azure.core, com.fasterxml.jackson.databind;
 }
