@@ -5,55 +5,62 @@ package com.azure.ai.openai.assistants.models;
 
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import com.azure.json.JsonReader;
+import com.azure.json.JsonToken;
+import com.azure.json.JsonWriter;
+import java.io.IOException;
 
 /**
  * Represents an assistant that can call the model and use tools.
  */
 @Immutable
-public final class OpenAIFile implements JsonSerializable<OpenAIFile> {
+public final class OpenAIFile {
 
     /*
      * The object type, which is always 'file'.
      */
     @Generated
+    @JsonProperty(value = "object")
     private final String object = "file";
 
     /*
      * The identifier, which can be referenced in API endpoints.
      */
     @Generated
+    @JsonProperty(value = "id")
     private final String id;
 
     /*
      * The size of the file, in bytes.
      */
     @Generated
+    @JsonProperty(value = "bytes")
     private final int bytes;
 
     /*
      * The name of the file.
      */
     @Generated
+    @JsonProperty(value = "filename")
     private final String filename;
 
     /*
      * The Unix timestamp, in seconds, representing when this object was created.
      */
     @Generated
+    @JsonProperty(value = "created_at")
     private final long createdAt;
 
     /*
      * The intended purpose of a file.
      */
     @Generated
+    @JsonProperty(value = "purpose")
     private final FilePurpose purpose;
 
     /**
@@ -185,5 +192,13 @@ public final class OpenAIFile implements JsonSerializable<OpenAIFile> {
             }
             return new OpenAIFile(id, bytes, filename, createdAt, purpose);
         });
+    }
+
+    @Generated
+    @JsonCreator
+    private OpenAIFile(@JsonProperty(value = "id") String id, @JsonProperty(value = "bytes") int bytes,
+        @JsonProperty(value = "filename") String filename, @JsonProperty(value = "created_at") long createdAt,
+        @JsonProperty(value = "purpose") FilePurpose purpose) {
+        this(id, bytes, filename, OffsetDateTime.ofInstant(Instant.ofEpochSecond(createdAt), ZoneOffset.UTC), purpose);
     }
 }
