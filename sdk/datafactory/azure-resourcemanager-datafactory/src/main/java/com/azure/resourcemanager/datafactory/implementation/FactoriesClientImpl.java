@@ -35,7 +35,6 @@ import com.azure.resourcemanager.datafactory.fluent.models.AccessPolicyResponseI
 import com.azure.resourcemanager.datafactory.fluent.models.FactoryInner;
 import com.azure.resourcemanager.datafactory.fluent.models.GitHubAccessTokenResponseInner;
 import com.azure.resourcemanager.datafactory.models.FactoryListResponse;
-import com.azure.resourcemanager.datafactory.models.FactoryRepoUpdate;
 import com.azure.resourcemanager.datafactory.models.FactoryUpdateParameters;
 import com.azure.resourcemanager.datafactory.models.GitHubAccessTokenRequest;
 import com.azure.resourcemanager.datafactory.models.UserAccessPolicy;
@@ -80,16 +79,6 @@ public final class FactoriesClientImpl implements FactoriesClient {
         Mono<Response<FactoryListResponse>> list(@HostParam("$host") String endpoint,
             @PathParam("subscriptionId") String subscriptionId, @QueryParam("api-version") String apiVersion,
             @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Post("/subscriptions/{subscriptionId}/providers/Microsoft.DataFactory/locations/{locationId}/configureFactoryRepo")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<FactoryInner>> configureFactoryRepo(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId, @PathParam("locationId") String locationId,
-            @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") FactoryRepoUpdate factoryRepoUpdate, @HeaderParam("Accept") String accept,
-            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataFactory/factories")
@@ -282,129 +271,6 @@ public final class FactoriesClientImpl implements FactoriesClient {
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<FactoryInner> list(Context context) {
         return new PagedIterable<>(listAsync(context));
-    }
-
-    /**
-     * Updates a factory's repo information.
-     * 
-     * @param locationId The location identifier.
-     * @param factoryRepoUpdate Update factory repo request definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return factory resource type along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FactoryInner>> configureFactoryRepoWithResponseAsync(String locationId,
-        FactoryRepoUpdate factoryRepoUpdate) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (locationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationId is required and cannot be null."));
-        }
-        if (factoryRepoUpdate == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter factoryRepoUpdate is required and cannot be null."));
-        } else {
-            factoryRepoUpdate.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.configureFactoryRepo(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                    locationId, this.client.getApiVersion(), factoryRepoUpdate, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Updates a factory's repo information.
-     * 
-     * @param locationId The location identifier.
-     * @param factoryRepoUpdate Update factory repo request definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return factory resource type along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<FactoryInner>> configureFactoryRepoWithResponseAsync(String locationId,
-        FactoryRepoUpdate factoryRepoUpdate, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (locationId == null) {
-            return Mono.error(new IllegalArgumentException("Parameter locationId is required and cannot be null."));
-        }
-        if (factoryRepoUpdate == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter factoryRepoUpdate is required and cannot be null."));
-        } else {
-            factoryRepoUpdate.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.configureFactoryRepo(this.client.getEndpoint(), this.client.getSubscriptionId(), locationId,
-            this.client.getApiVersion(), factoryRepoUpdate, accept, context);
-    }
-
-    /**
-     * Updates a factory's repo information.
-     * 
-     * @param locationId The location identifier.
-     * @param factoryRepoUpdate Update factory repo request definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return factory resource type on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<FactoryInner> configureFactoryRepoAsync(String locationId, FactoryRepoUpdate factoryRepoUpdate) {
-        return configureFactoryRepoWithResponseAsync(locationId, factoryRepoUpdate)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Updates a factory's repo information.
-     * 
-     * @param locationId The location identifier.
-     * @param factoryRepoUpdate Update factory repo request definition.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return factory resource type along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<FactoryInner> configureFactoryRepoWithResponse(String locationId,
-        FactoryRepoUpdate factoryRepoUpdate, Context context) {
-        return configureFactoryRepoWithResponseAsync(locationId, factoryRepoUpdate, context).block();
-    }
-
-    /**
-     * Updates a factory's repo information.
-     * 
-     * @param locationId The location identifier.
-     * @param factoryRepoUpdate Update factory repo request definition.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return factory resource type.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public FactoryInner configureFactoryRepo(String locationId, FactoryRepoUpdate factoryRepoUpdate) {
-        return configureFactoryRepoWithResponse(locationId, factoryRepoUpdate, Context.NONE).getValue();
     }
 
     /**
