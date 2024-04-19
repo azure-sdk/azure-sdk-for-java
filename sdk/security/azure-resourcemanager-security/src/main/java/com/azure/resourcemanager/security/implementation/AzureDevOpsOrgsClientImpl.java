@@ -164,11 +164,10 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listAvailable(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, apiVersion, accept, context))
+                resourceGroupName, securityConnectorName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -203,11 +202,10 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listAvailable(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, apiVersion, accept, context);
+            securityConnectorName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -289,11 +287,10 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, apiVersion, accept, context))
+                resourceGroupName, securityConnectorName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<AzureDevOpsOrgInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
                 res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -330,12 +327,11 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, securityConnectorName,
-                apiVersion, accept, context)
+                this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -439,11 +435,10 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
         if (orgName == null) {
             return Mono.error(new IllegalArgumentException("Parameter orgName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, orgName, apiVersion, accept, context))
+                resourceGroupName, securityConnectorName, orgName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -481,11 +476,10 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
         if (orgName == null) {
             return Mono.error(new IllegalArgumentException("Parameter orgName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, orgName, apiVersion, accept, context);
+            securityConnectorName, orgName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -578,11 +572,11 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
         } else {
             azureDevOpsOrg.validate();
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, orgName, apiVersion, azureDevOpsOrg, accept, context))
+                resourceGroupName, securityConnectorName, orgName, this.client.getApiVersion(), azureDevOpsOrg, accept,
+                context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -626,11 +620,10 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
         } else {
             azureDevOpsOrg.validate();
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, orgName, apiVersion, azureDevOpsOrg, accept, context);
+            securityConnectorName, orgName, this.client.getApiVersion(), azureDevOpsOrg, accept, context);
     }
 
     /**
@@ -754,7 +747,8 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
     private Mono<AzureDevOpsOrgInner> createOrUpdateAsync(String resourceGroupName, String securityConnectorName,
         String orgName, AzureDevOpsOrgInner azureDevOpsOrg, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, securityConnectorName, orgName, azureDevOpsOrg, context)
-            .last().flatMap(this.client::getLroFinalResultOrError);
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -833,11 +827,11 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
         } else {
             azureDevOpsOrg.validate();
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, orgName, apiVersion, azureDevOpsOrg, accept, context))
+            .withContext(
+                context -> service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
+                    securityConnectorName, orgName, this.client.getApiVersion(), azureDevOpsOrg, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -881,11 +875,10 @@ public final class AzureDevOpsOrgsClientImpl implements AzureDevOpsOrgsClient {
         } else {
             azureDevOpsOrg.validate();
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.update(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, orgName, apiVersion, azureDevOpsOrg, accept, context);
+            securityConnectorName, orgName, this.client.getApiVersion(), azureDevOpsOrg, accept, context);
     }
 
     /**

@@ -103,11 +103,10 @@ public final class GitLabSubgroupsClientImpl implements GitLabSubgroupsClient {
         if (groupFQName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupFQName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, groupFQName, apiVersion, accept, context))
+                resourceGroupName, securityConnectorName, groupFQName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -146,11 +145,10 @@ public final class GitLabSubgroupsClientImpl implements GitLabSubgroupsClient {
         if (groupFQName == null) {
             return Mono.error(new IllegalArgumentException("Parameter groupFQName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, groupFQName, apiVersion, accept, context);
+            securityConnectorName, groupFQName, this.client.getApiVersion(), accept, context);
     }
 
     /**

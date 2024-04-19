@@ -57,8 +57,8 @@ public final class GitHubOwnersClientImpl implements GitHubOwnersClient {
     }
 
     /**
-     * The interface defining all the services for SecurityCenterGitHubOwners to be used by the proxy service to
-     * perform REST calls.
+     * The interface defining all the services for SecurityCenterGitHubOwners to be used by the proxy service to perform
+     * REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "SecurityCenterGitHub")
@@ -132,11 +132,10 @@ public final class GitHubOwnersClientImpl implements GitHubOwnersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.listAvailable(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, apiVersion, accept, context))
+                resourceGroupName, securityConnectorName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -171,11 +170,10 @@ public final class GitHubOwnersClientImpl implements GitHubOwnersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.listAvailable(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, apiVersion, accept, context);
+            securityConnectorName, this.client.getApiVersion(), accept, context);
     }
 
     /**
@@ -257,11 +255,10 @@ public final class GitHubOwnersClientImpl implements GitHubOwnersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, apiVersion, accept, context))
+                resourceGroupName, securityConnectorName, this.client.getApiVersion(), accept, context))
             .<PagedResponse<GitHubOwnerInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
                 res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
@@ -298,12 +295,11 @@ public final class GitHubOwnersClientImpl implements GitHubOwnersClient {
             return Mono
                 .error(new IllegalArgumentException("Parameter securityConnectorName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
             .list(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName, securityConnectorName,
-                apiVersion, accept, context)
+                this.client.getApiVersion(), accept, context)
             .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
                 res.getValue().value(), res.getValue().nextLink(), null));
     }
@@ -407,11 +403,10 @@ public final class GitHubOwnersClientImpl implements GitHubOwnersClient {
         if (ownerName == null) {
             return Mono.error(new IllegalArgumentException("Parameter ownerName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, securityConnectorName, ownerName, apiVersion, accept, context))
+                resourceGroupName, securityConnectorName, ownerName, this.client.getApiVersion(), accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -449,11 +444,10 @@ public final class GitHubOwnersClientImpl implements GitHubOwnersClient {
         if (ownerName == null) {
             return Mono.error(new IllegalArgumentException("Parameter ownerName is required and cannot be null."));
         }
-        final String apiVersion = "2023-09-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            securityConnectorName, ownerName, apiVersion, accept, context);
+            securityConnectorName, ownerName, this.client.getApiVersion(), accept, context);
     }
 
     /**
