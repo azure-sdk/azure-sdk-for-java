@@ -7,6 +7,7 @@ import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
 import com.azure.core.models.ResponseError;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * Information about content filtering evaluated against generated model output.
@@ -63,7 +64,7 @@ public final class ContentFilterResultsForChoice {
      */
     @Generated
     @JsonProperty(value = "custom_blocklists")
-    private ContentFilterDetailedResults customBlocklists;
+    private List<ContentFilterBlocklistIdResult> customBlocklists;
 
     /*
      * Describes an error returned if the content filtering system is
@@ -159,7 +160,7 @@ public final class ContentFilterResultsForChoice {
      * @return the customBlocklists value.
      */
     @Generated
-    public ContentFilterDetailedResults getCustomBlocklists() {
+    public List<ContentFilterBlocklistIdResult> getCustomBlocklists() {
         return this.customBlocklists;
     }
 

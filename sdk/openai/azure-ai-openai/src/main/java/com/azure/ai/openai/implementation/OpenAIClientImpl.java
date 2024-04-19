@@ -450,13 +450,6 @@ public final class OpenAIClientImpl {
      *             seek: int (Required)
      *         }
      *     ]
-     *     words (Optional): [
-     *          (Optional){
-     *             word: String (Required)
-     *             start: double (Required)
-     *             end: double (Required)
-     *         }
-     *     ]
      * }
      * }</pre>
      * 
@@ -506,13 +499,6 @@ public final class OpenAIClientImpl {
      *                 int (Required)
      *             ]
      *             seek: int (Required)
-     *         }
-     *     ]
-     *     words (Optional): [
-     *          (Optional){
-     *             word: String (Required)
-     *             start: double (Required)
-     *             end: double (Required)
      *         }
      *     ]
      * }
@@ -739,8 +725,8 @@ public final class OpenAIClientImpl {
      *             prompt_index: int (Required)
      *             content_filter_results (Required): {
      *                 sexual (Optional): {
-     *                     filtered: boolean (Required)
      *                     severity: String(safe/low/medium/high) (Required)
+     *                     filtered: boolean (Required)
      *                 }
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
@@ -749,15 +735,12 @@ public final class OpenAIClientImpl {
      *                     filtered: boolean (Required)
      *                     detected: boolean (Required)
      *                 }
-     *                 custom_blocklists (Optional): {
-     *                     filtered: boolean (Required)
-     *                     details (Required): [
-     *                          (Required){
-     *                             filtered: boolean (Required)
-     *                             id: String (Required)
-     *                         }
-     *                     ]
-     *                 }
+     *                 custom_blocklists (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                         filtered: boolean (Required)
+     *                     }
+     *                 ]
      *                 error (Optional): {
      *                     code: String (Required)
      *                     message: String (Required)
@@ -771,7 +754,6 @@ public final class OpenAIClientImpl {
      *                     }
      *                 }
      *                 jailbreak (Optional): (recursive schema, see jailbreak above)
-     *                 indirect_attack (Optional): (recursive schema, see indirect_attack above)
      *             }
      *         }
      *     ]
@@ -785,7 +767,9 @@ public final class OpenAIClientImpl {
      *                 hate (Optional): (recursive schema, see hate above)
      *                 self_harm (Optional): (recursive schema, see self_harm above)
      *                 profanity (Optional): (recursive schema, see profanity above)
-     *                 custom_blocklists (Optional): (recursive schema, see custom_blocklists above)
+     *                 custom_blocklists (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
      *                 error (Optional): (recursive schema, see error above)
      *                 protected_material_text (Optional): (recursive schema, see protected_material_text above)
      *                 protected_material_code (Optional): {
@@ -889,8 +873,8 @@ public final class OpenAIClientImpl {
      *             prompt_index: int (Required)
      *             content_filter_results (Required): {
      *                 sexual (Optional): {
-     *                     filtered: boolean (Required)
      *                     severity: String(safe/low/medium/high) (Required)
+     *                     filtered: boolean (Required)
      *                 }
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
@@ -899,15 +883,12 @@ public final class OpenAIClientImpl {
      *                     filtered: boolean (Required)
      *                     detected: boolean (Required)
      *                 }
-     *                 custom_blocklists (Optional): {
-     *                     filtered: boolean (Required)
-     *                     details (Required): [
-     *                          (Required){
-     *                             filtered: boolean (Required)
-     *                             id: String (Required)
-     *                         }
-     *                     ]
-     *                 }
+     *                 custom_blocklists (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                         filtered: boolean (Required)
+     *                     }
+     *                 ]
      *                 error (Optional): {
      *                     code: String (Required)
      *                     message: String (Required)
@@ -921,7 +902,6 @@ public final class OpenAIClientImpl {
      *                     }
      *                 }
      *                 jailbreak (Optional): (recursive schema, see jailbreak above)
-     *                 indirect_attack (Optional): (recursive schema, see indirect_attack above)
      *             }
      *         }
      *     ]
@@ -935,7 +915,9 @@ public final class OpenAIClientImpl {
      *                 hate (Optional): (recursive schema, see hate above)
      *                 self_harm (Optional): (recursive schema, see self_harm above)
      *                 profanity (Optional): (recursive schema, see profanity above)
-     *                 custom_blocklists (Optional): (recursive schema, see custom_blocklists above)
+     *                 custom_blocklists (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
      *                 error (Optional): (recursive schema, see error above)
      *                 protected_material_text (Optional): (recursive schema, see protected_material_text above)
      *                 protected_material_code (Optional): {
@@ -1120,8 +1102,8 @@ public final class OpenAIClientImpl {
      *             delta (Optional): (recursive schema, see delta above)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
-     *                     filtered: boolean (Required)
      *                     severity: String(safe/low/medium/high) (Required)
+     *                     filtered: boolean (Required)
      *                 }
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
@@ -1130,15 +1112,12 @@ public final class OpenAIClientImpl {
      *                     filtered: boolean (Required)
      *                     detected: boolean (Required)
      *                 }
-     *                 custom_blocklists (Optional): {
-     *                     filtered: boolean (Required)
-     *                     details (Required): [
-     *                          (Required){
-     *                             filtered: boolean (Required)
-     *                             id: String (Required)
-     *                         }
-     *                     ]
-     *                 }
+     *                 custom_blocklists (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                         filtered: boolean (Required)
+     *                     }
+     *                 ]
      *                 error (Optional): {
      *                     code: String (Required)
      *                     message: String (Required)
@@ -1193,10 +1172,11 @@ public final class OpenAIClientImpl {
      *                 hate (Optional): (recursive schema, see hate above)
      *                 self_harm (Optional): (recursive schema, see self_harm above)
      *                 profanity (Optional): (recursive schema, see profanity above)
-     *                 custom_blocklists (Optional): (recursive schema, see custom_blocklists above)
+     *                 custom_blocklists (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
      *                 error (Optional): (recursive schema, see error above)
      *                 jailbreak (Optional): (recursive schema, see jailbreak above)
-     *                 indirect_attack (Optional): (recursive schema, see indirect_attack above)
      *             }
      *         }
      *     ]
@@ -1358,8 +1338,8 @@ public final class OpenAIClientImpl {
      *             delta (Optional): (recursive schema, see delta above)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
-     *                     filtered: boolean (Required)
      *                     severity: String(safe/low/medium/high) (Required)
+     *                     filtered: boolean (Required)
      *                 }
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
@@ -1368,15 +1348,12 @@ public final class OpenAIClientImpl {
      *                     filtered: boolean (Required)
      *                     detected: boolean (Required)
      *                 }
-     *                 custom_blocklists (Optional): {
-     *                     filtered: boolean (Required)
-     *                     details (Required): [
-     *                          (Required){
-     *                             filtered: boolean (Required)
-     *                             id: String (Required)
-     *                         }
-     *                     ]
-     *                 }
+     *                 custom_blocklists (Optional): [
+     *                      (Optional){
+     *                         id: String (Required)
+     *                         filtered: boolean (Required)
+     *                     }
+     *                 ]
      *                 error (Optional): {
      *                     code: String (Required)
      *                     message: String (Required)
@@ -1431,10 +1408,11 @@ public final class OpenAIClientImpl {
      *                 hate (Optional): (recursive schema, see hate above)
      *                 self_harm (Optional): (recursive schema, see self_harm above)
      *                 profanity (Optional): (recursive schema, see profanity above)
-     *                 custom_blocklists (Optional): (recursive schema, see custom_blocklists above)
+     *                 custom_blocklists (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
      *                 error (Optional): (recursive schema, see error above)
      *                 jailbreak (Optional): (recursive schema, see jailbreak above)
-     *                 indirect_attack (Optional): (recursive schema, see indirect_attack above)
      *             }
      *         }
      *     ]
@@ -1497,8 +1475,8 @@ public final class OpenAIClientImpl {
      *             b64_json: String (Optional)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
-     *                     filtered: boolean (Required)
      *                     severity: String(safe/low/medium/high) (Required)
+     *                     filtered: boolean (Required)
      *                 }
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
@@ -1569,8 +1547,8 @@ public final class OpenAIClientImpl {
      *             b64_json: String (Optional)
      *             content_filter_results (Optional): {
      *                 sexual (Optional): {
-     *                     filtered: boolean (Required)
      *                     severity: String(safe/low/medium/high) (Required)
+     *                     filtered: boolean (Required)
      *                 }
      *                 violence (Optional): (recursive schema, see violence above)
      *                 hate (Optional): (recursive schema, see hate above)
@@ -1619,7 +1597,7 @@ public final class OpenAIClientImpl {
      * {
      *     input: String (Required)
      *     voice: String(alloy/echo/fable/onyx/nova/shimmer) (Required)
-     *     response_format: String(mp3/opus/aac/flac/wav/pcm) (Optional)
+     *     response_format: String(mp3/opus/aac/flac) (Optional)
      *     speed: Double (Optional)
      *     model: String (Optional)
      * }
@@ -1659,7 +1637,7 @@ public final class OpenAIClientImpl {
      * {
      *     input: String (Required)
      *     voice: String(alloy/echo/fable/onyx/nova/shimmer) (Required)
-     *     response_format: String(mp3/opus/aac/flac/wav/pcm) (Optional)
+     *     response_format: String(mp3/opus/aac/flac) (Optional)
      *     speed: Double (Optional)
      *     model: String (Optional)
      * }

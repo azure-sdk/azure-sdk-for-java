@@ -118,21 +118,4 @@ public final class AudioTranscription {
     public List<AudioTranscriptionSegment> getSegments() {
         return this.segments;
     }
-
-    /*
-     * A collection of information about the timing of each processed word.
-     */
-    @Generated
-    @JsonProperty(value = "words")
-    private List<AudioTranscriptionWord> words;
-
-    /**
-     * Get the words property: A collection of information about the timing of each processed word.
-     *
-     * @return the words value.
-     */
-    @Generated
-    public List<AudioTranscriptionWord> getWords() {
-        return this.words;
-    }
 }

@@ -51,14 +51,14 @@ public final class ContentFilterResult {
     /**
      * Creates an instance of ContentFilterResult class.
      *
-     * @param filtered the filtered value to set.
      * @param severity the severity value to set.
+     * @param filtered the filtered value to set.
      */
     @Generated
     @JsonCreator
-    private ContentFilterResult(@JsonProperty(value = "filtered") boolean filtered,
-        @JsonProperty(value = "severity") ContentFilterSeverity severity) {
-        this.filtered = filtered;
+    private ContentFilterResult(@JsonProperty(value = "severity") ContentFilterSeverity severity,
+        @JsonProperty(value = "filtered") boolean filtered) {
         this.severity = severity;
+        this.filtered = filtered;
     }
 }

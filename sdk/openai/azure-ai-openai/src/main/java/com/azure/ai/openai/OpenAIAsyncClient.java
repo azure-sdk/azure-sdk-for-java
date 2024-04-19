@@ -829,13 +829,6 @@ public final class OpenAIAsyncClient {
      *             seek: int (Required)
      *         }
      *     ]
-     *     words (Optional): [
-     *          (Optional){
-     *             word: String (Required)
-     *             start: double (Required)
-     *             end: double (Required)
-     *         }
-     *     ]
      * }
      * }</pre>
      *

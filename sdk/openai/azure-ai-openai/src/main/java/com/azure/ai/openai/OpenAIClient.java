@@ -1083,13 +1083,6 @@ public final class OpenAIClient {
      *             seek: int (Required)
      *         }
      *     ]
-     *     words (Optional): [
-     *          (Optional){
-     *             word: String (Required)
-     *             start: double (Required)
-     *             end: double (Required)
-     *         }
-     *     ]
      * }
      * }</pre>
      *

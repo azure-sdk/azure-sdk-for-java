@@ -51,14 +51,14 @@ public final class ContentFilterBlocklistIdResult {
     /**
      * Creates an instance of ContentFilterBlocklistIdResult class.
      *
-     * @param filtered the filtered value to set.
      * @param id the id value to set.
+     * @param filtered the filtered value to set.
      */
     @Generated
     @JsonCreator
-    private ContentFilterBlocklistIdResult(@JsonProperty(value = "filtered") boolean filtered,
-        @JsonProperty(value = "id") String id) {
-        this.filtered = filtered;
+    private ContentFilterBlocklistIdResult(@JsonProperty(value = "id") String id,
+        @JsonProperty(value = "filtered") boolean filtered) {
         this.id = id;
+        this.filtered = filtered;
     }
 }

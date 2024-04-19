@@ -7,6 +7,7 @@ import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
 import com.azure.core.models.ResponseError;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * Information about content filtering evaluated against input data to Azure OpenAI.
@@ -63,7 +64,7 @@ public final class ContentFilterResultDetailsForPrompt {
      */
     @Generated
     @JsonProperty(value = "custom_blocklists")
-    private ContentFilterDetailedResults customBlocklists;
+    private List<ContentFilterBlocklistIdResult> customBlocklists;
 
     /*
      * Describes an error returned if the content filtering system is
@@ -145,7 +146,7 @@ public final class ContentFilterResultDetailsForPrompt {
      * @return the customBlocklists value.
      */
     @Generated
-    public ContentFilterDetailedResults getCustomBlocklists() {
+    public List<ContentFilterBlocklistIdResult> getCustomBlocklists() {
         return this.customBlocklists;
     }
 
@@ -175,22 +176,5 @@ public final class ContentFilterResultDetailsForPrompt {
      */
     @Generated
     private ContentFilterResultDetailsForPrompt() {
-    }
-
-    /*
-     * Whether an indirect attack was detected in the prompt.
-     */
-    @Generated
-    @JsonProperty(value = "indirect_attack")
-    private ContentFilterDetectionResult indirectAttack;
-
-    /**
-     * Get the indirectAttack property: Whether an indirect attack was detected in the prompt.
-     *
-     * @return the indirectAttack value.
-     */
-    @Generated
-    public ContentFilterDetectionResult getIndirectAttack() {
-        return this.indirectAttack;
     }
 }

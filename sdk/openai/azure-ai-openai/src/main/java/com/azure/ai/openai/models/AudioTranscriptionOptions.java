@@ -5,7 +5,6 @@ package com.azure.ai.openai.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.annotation.Generated;
-import java.util.List;
 import com.azure.core.util.CoreUtils;
 
 /**
@@ -231,45 +230,5 @@ public final class AudioTranscriptionOptions {
      */
     public AudioTranscriptionOptions(byte[] file) {
         this.file = file;
-    }
-
-    /*
-     * The timestamp granularities to populate for this transcription.
-     * `response_format` must be set `verbose_json` to use timestamp granularities.
-     * Either or both of these options are supported: `word`, or `segment`.
-     * Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional latency.
-     */
-    @Generated
-    private List<AudioTranscriptionTimestampGranularity> timestampGranularities;
-
-    /**
-     * Get the timestampGranularities property: The timestamp granularities to populate for this transcription.
-     * `response_format` must be set `verbose_json` to use timestamp granularities.
-     * Either or both of these options are supported: `word`, or `segment`.
-     * Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional
-     * latency.
-     *
-     * @return the timestampGranularities value.
-     */
-    @Generated
-    public List<AudioTranscriptionTimestampGranularity> getTimestampGranularities() {
-        return this.timestampGranularities;
-    }
-
-    /**
-     * Set the timestampGranularities property: The timestamp granularities to populate for this transcription.
-     * `response_format` must be set `verbose_json` to use timestamp granularities.
-     * Either or both of these options are supported: `word`, or `segment`.
-     * Note: There is no additional latency for segment timestamps, but generating word timestamps incurs additional
-     * latency.
-     *
-     * @param timestampGranularities the timestampGranularities value to set.
-     * @return the AudioTranscriptionOptions object itself.
-     */
-    @Generated
-    public AudioTranscriptionOptions
-        setTimestampGranularities(List<AudioTranscriptionTimestampGranularity> timestampGranularities) {
-        this.timestampGranularities = timestampGranularities;
-        return this;
     }
 }
