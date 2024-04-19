@@ -7,9 +7,29 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Asset output type. */
+/**
+ * Asset output type.
+ */
 @Fluent
 public class AssetJobOutput {
+    /*
+     * Output Asset Name.
+     */
+    @JsonProperty(value = "assetName")
+    private String assetName;
+
+    /*
+     * Output Asset Version.
+     */
+    @JsonProperty(value = "assetVersion")
+    private String assetVersion;
+
+    /*
+     * Auto delete setting of output data asset.
+     */
+    @JsonProperty(value = "autoDeleteSetting")
+    private AutoDeleteSetting autoDeleteSetting;
+
     /*
      * Output Asset Delivery Mode.
      */
@@ -17,18 +37,86 @@ public class AssetJobOutput {
     private OutputDeliveryMode mode;
 
     /*
+     * Output Asset Delivery Path.
+     */
+    @JsonProperty(value = "pathOnCompute")
+    private String pathOnCompute;
+
+    /*
      * Output Asset URI.
      */
     @JsonProperty(value = "uri")
     private String uri;
 
-    /** Creates an instance of AssetJobOutput class. */
+    /**
+     * Creates an instance of AssetJobOutput class.
+     */
     public AssetJobOutput() {
     }
 
     /**
+     * Get the assetName property: Output Asset Name.
+     * 
+     * @return the assetName value.
+     */
+    public String assetName() {
+        return this.assetName;
+    }
+
+    /**
+     * Set the assetName property: Output Asset Name.
+     * 
+     * @param assetName the assetName value to set.
+     * @return the AssetJobOutput object itself.
+     */
+    public AssetJobOutput withAssetName(String assetName) {
+        this.assetName = assetName;
+        return this;
+    }
+
+    /**
+     * Get the assetVersion property: Output Asset Version.
+     * 
+     * @return the assetVersion value.
+     */
+    public String assetVersion() {
+        return this.assetVersion;
+    }
+
+    /**
+     * Set the assetVersion property: Output Asset Version.
+     * 
+     * @param assetVersion the assetVersion value to set.
+     * @return the AssetJobOutput object itself.
+     */
+    public AssetJobOutput withAssetVersion(String assetVersion) {
+        this.assetVersion = assetVersion;
+        return this;
+    }
+
+    /**
+     * Get the autoDeleteSetting property: Auto delete setting of output data asset.
+     * 
+     * @return the autoDeleteSetting value.
+     */
+    public AutoDeleteSetting autoDeleteSetting() {
+        return this.autoDeleteSetting;
+    }
+
+    /**
+     * Set the autoDeleteSetting property: Auto delete setting of output data asset.
+     * 
+     * @param autoDeleteSetting the autoDeleteSetting value to set.
+     * @return the AssetJobOutput object itself.
+     */
+    public AssetJobOutput withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        this.autoDeleteSetting = autoDeleteSetting;
+        return this;
+    }
+
+    /**
      * Get the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public OutputDeliveryMode mode() {
@@ -37,7 +125,7 @@ public class AssetJobOutput {
 
     /**
      * Set the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the AssetJobOutput object itself.
      */
@@ -47,8 +135,28 @@ public class AssetJobOutput {
     }
 
     /**
+     * Get the pathOnCompute property: Output Asset Delivery Path.
+     * 
+     * @return the pathOnCompute value.
+     */
+    public String pathOnCompute() {
+        return this.pathOnCompute;
+    }
+
+    /**
+     * Set the pathOnCompute property: Output Asset Delivery Path.
+     * 
+     * @param pathOnCompute the pathOnCompute value to set.
+     * @return the AssetJobOutput object itself.
+     */
+    public AssetJobOutput withPathOnCompute(String pathOnCompute) {
+        this.pathOnCompute = pathOnCompute;
+        return this;
+    }
+
+    /**
      * Get the uri property: Output Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -57,7 +165,7 @@ public class AssetJobOutput {
 
     /**
      * Set the uri property: Output Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the AssetJobOutput object itself.
      */
@@ -68,9 +176,12 @@ public class AssetJobOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (autoDeleteSetting() != null) {
+            autoDeleteSetting().validate();
+        }
     }
 }

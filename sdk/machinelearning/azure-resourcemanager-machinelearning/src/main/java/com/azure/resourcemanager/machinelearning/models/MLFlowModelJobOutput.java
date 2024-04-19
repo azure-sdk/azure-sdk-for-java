@@ -6,14 +6,46 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The MLFlowModelJobOutput model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobOutputType")
+/**
+ * The MLFlowModelJobOutput model.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "jobOutputType",
+    defaultImpl = MLFlowModelJobOutput.class,
+    visible = true)
 @JsonTypeName("mlflow_model")
 @Fluent
 public final class MLFlowModelJobOutput extends JobOutput {
+    /*
+     * [Required] Specifies the type of job.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobOutputType", required = true)
+    private JobOutputType jobOutputType = JobOutputType.MLFLOW_MODEL;
+
+    /*
+     * Output Asset Name.
+     */
+    @JsonProperty(value = "assetName")
+    private String assetName;
+
+    /*
+     * Output Asset Version.
+     */
+    @JsonProperty(value = "assetVersion")
+    private String assetVersion;
+
+    /*
+     * Auto delete setting of output data asset.
+     */
+    @JsonProperty(value = "autoDeleteSetting")
+    private AutoDeleteSetting autoDeleteSetting;
+
     /*
      * Output Asset Delivery Mode.
      */
@@ -21,18 +53,96 @@ public final class MLFlowModelJobOutput extends JobOutput {
     private OutputDeliveryMode mode;
 
     /*
+     * Output Asset Delivery Path.
+     */
+    @JsonProperty(value = "pathOnCompute")
+    private String pathOnCompute;
+
+    /*
      * Output Asset URI.
      */
     @JsonProperty(value = "uri")
     private String uri;
 
-    /** Creates an instance of MLFlowModelJobOutput class. */
+    /**
+     * Creates an instance of MLFlowModelJobOutput class.
+     */
     public MLFlowModelJobOutput() {
     }
 
     /**
+     * Get the jobOutputType property: [Required] Specifies the type of job.
+     * 
+     * @return the jobOutputType value.
+     */
+    @Override
+    public JobOutputType jobOutputType() {
+        return this.jobOutputType;
+    }
+
+    /**
+     * Get the assetName property: Output Asset Name.
+     * 
+     * @return the assetName value.
+     */
+    public String assetName() {
+        return this.assetName;
+    }
+
+    /**
+     * Set the assetName property: Output Asset Name.
+     * 
+     * @param assetName the assetName value to set.
+     * @return the MLFlowModelJobOutput object itself.
+     */
+    public MLFlowModelJobOutput withAssetName(String assetName) {
+        this.assetName = assetName;
+        return this;
+    }
+
+    /**
+     * Get the assetVersion property: Output Asset Version.
+     * 
+     * @return the assetVersion value.
+     */
+    public String assetVersion() {
+        return this.assetVersion;
+    }
+
+    /**
+     * Set the assetVersion property: Output Asset Version.
+     * 
+     * @param assetVersion the assetVersion value to set.
+     * @return the MLFlowModelJobOutput object itself.
+     */
+    public MLFlowModelJobOutput withAssetVersion(String assetVersion) {
+        this.assetVersion = assetVersion;
+        return this;
+    }
+
+    /**
+     * Get the autoDeleteSetting property: Auto delete setting of output data asset.
+     * 
+     * @return the autoDeleteSetting value.
+     */
+    public AutoDeleteSetting autoDeleteSetting() {
+        return this.autoDeleteSetting;
+    }
+
+    /**
+     * Set the autoDeleteSetting property: Auto delete setting of output data asset.
+     * 
+     * @param autoDeleteSetting the autoDeleteSetting value to set.
+     * @return the MLFlowModelJobOutput object itself.
+     */
+    public MLFlowModelJobOutput withAutoDeleteSetting(AutoDeleteSetting autoDeleteSetting) {
+        this.autoDeleteSetting = autoDeleteSetting;
+        return this;
+    }
+
+    /**
      * Get the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public OutputDeliveryMode mode() {
@@ -41,7 +151,7 @@ public final class MLFlowModelJobOutput extends JobOutput {
 
     /**
      * Set the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the MLFlowModelJobOutput object itself.
      */
@@ -51,8 +161,28 @@ public final class MLFlowModelJobOutput extends JobOutput {
     }
 
     /**
+     * Get the pathOnCompute property: Output Asset Delivery Path.
+     * 
+     * @return the pathOnCompute value.
+     */
+    public String pathOnCompute() {
+        return this.pathOnCompute;
+    }
+
+    /**
+     * Set the pathOnCompute property: Output Asset Delivery Path.
+     * 
+     * @param pathOnCompute the pathOnCompute value to set.
+     * @return the MLFlowModelJobOutput object itself.
+     */
+    public MLFlowModelJobOutput withPathOnCompute(String pathOnCompute) {
+        this.pathOnCompute = pathOnCompute;
+        return this;
+    }
+
+    /**
      * Get the uri property: Output Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -61,7 +191,7 @@ public final class MLFlowModelJobOutput extends JobOutput {
 
     /**
      * Set the uri property: Output Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the MLFlowModelJobOutput object itself.
      */
@@ -70,7 +200,9 @@ public final class MLFlowModelJobOutput extends JobOutput {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLFlowModelJobOutput withDescription(String description) {
         super.withDescription(description);
@@ -79,11 +211,14 @@ public final class MLFlowModelJobOutput extends JobOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
+        if (autoDeleteSetting() != null) {
+            autoDeleteSetting().validate();
+        }
     }
 }

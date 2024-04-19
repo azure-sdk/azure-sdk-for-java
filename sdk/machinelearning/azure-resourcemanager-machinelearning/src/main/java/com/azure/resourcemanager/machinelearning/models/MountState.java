@@ -8,29 +8,43 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Mount state. */
+/**
+ * Mount state.
+ */
 public final class MountState extends ExpandableStringEnum<MountState> {
-    /** Static value MountRequested for MountState. */
+    /**
+     * Static value MountRequested for MountState.
+     */
     public static final MountState MOUNT_REQUESTED = fromString("MountRequested");
 
-    /** Static value Mounted for MountState. */
+    /**
+     * Static value Mounted for MountState.
+     */
     public static final MountState MOUNTED = fromString("Mounted");
 
-    /** Static value MountFailed for MountState. */
+    /**
+     * Static value MountFailed for MountState.
+     */
     public static final MountState MOUNT_FAILED = fromString("MountFailed");
 
-    /** Static value UnmountRequested for MountState. */
+    /**
+     * Static value UnmountRequested for MountState.
+     */
     public static final MountState UNMOUNT_REQUESTED = fromString("UnmountRequested");
 
-    /** Static value UnmountFailed for MountState. */
+    /**
+     * Static value UnmountFailed for MountState.
+     */
     public static final MountState UNMOUNT_FAILED = fromString("UnmountFailed");
 
-    /** Static value Unmounted for MountState. */
+    /**
+     * Static value Unmounted for MountState.
+     */
     public static final MountState UNMOUNTED = fromString("Unmounted");
 
     /**
      * Creates a new instance of MountState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -39,7 +53,7 @@ public final class MountState extends ExpandableStringEnum<MountState> {
 
     /**
      * Creates or finds a MountState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding MountState.
      */
@@ -50,7 +64,7 @@ public final class MountState extends ExpandableStringEnum<MountState> {
 
     /**
      * Gets known MountState values.
-     *
+     * 
      * @return known MountState values.
      */
     public static Collection<MountState> values() {

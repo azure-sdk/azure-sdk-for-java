@@ -9,28 +9,52 @@ import com.azure.resourcemanager.machinelearning.fluent.models.WorkspaceConnecti
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult model. */
+/**
+ * The WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult model.
+ */
 @Fluent
 public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult {
+    /*
+     * The nextLink property.
+     */
+    @JsonProperty(value = "nextLink")
+    private String nextLink;
+
     /*
      * The value property.
      */
     @JsonProperty(value = "value")
     private List<WorkspaceConnectionPropertiesV2BasicResourceInner> value;
 
-    /*
-     * The nextLink property.
+    /**
+     * Creates an instance of WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult class.
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
-    private String nextLink;
-
-    /** Creates an instance of WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult class. */
     public WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult() {
     }
 
     /**
+     * Get the nextLink property: The nextLink property.
+     * 
+     * @return the nextLink value.
+     */
+    public String nextLink() {
+        return this.nextLink;
+    }
+
+    /**
+     * Set the nextLink property: The nextLink property.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult object itself.
+     */
+    public WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkspaceConnectionPropertiesV2BasicResourceInner> value() {
@@ -39,28 +63,19 @@ public final class WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResul
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult object itself.
      */
-    public WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult withValue(
-        List<WorkspaceConnectionPropertiesV2BasicResourceInner> value) {
+    public WorkspaceConnectionPropertiesV2BasicResourceArmPaginatedResult
+        withValue(List<WorkspaceConnectionPropertiesV2BasicResourceInner> value) {
         this.value = value;
         return this;
     }
 
     /**
-     * Get the nextLink property: The nextLink property.
-     *
-     * @return the nextLink value.
-     */
-    public String nextLink() {
-        return this.nextLink;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

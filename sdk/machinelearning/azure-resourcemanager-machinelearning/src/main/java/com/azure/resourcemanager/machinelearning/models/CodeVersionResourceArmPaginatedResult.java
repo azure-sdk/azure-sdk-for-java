@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.CodeVersionInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of CodeVersion entities. */
+/**
+ * A paginated list of CodeVersion entities.
+ */
 @Fluent
 public final class CodeVersionResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class CodeVersionResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<CodeVersionInner> value;
 
-    /** Creates an instance of CodeVersionResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of CodeVersionResourceArmPaginatedResult class.
+     */
     public CodeVersionResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of CodeVersion objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class CodeVersionResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of CodeVersion objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the CodeVersionResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class CodeVersionResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type CodeVersion.
-     *
+     * 
      * @return the value value.
      */
     public List<CodeVersionInner> value() {
@@ -61,7 +65,7 @@ public final class CodeVersionResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type CodeVersion.
-     *
+     * 
      * @param value the value value to set.
      * @return the CodeVersionResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class CodeVersionResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

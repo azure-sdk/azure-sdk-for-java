@@ -5,30 +5,54 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The ScheduleActionBase model. */
+/**
+ * The ScheduleActionBase model.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "actionType",
-    defaultImpl = ScheduleActionBase.class)
+    defaultImpl = ScheduleActionBase.class,
+    visible = true)
 @JsonTypeName("ScheduleActionBase")
 @JsonSubTypes({
+    @JsonSubTypes.Type(name = "CreateMonitor", value = CreateMonitorAction.class),
     @JsonSubTypes.Type(name = "InvokeBatchEndpoint", value = EndpointScheduleAction.class),
-    @JsonSubTypes.Type(name = "CreateJob", value = JobScheduleAction.class)
-})
+    @JsonSubTypes.Type(name = "ImportData", value = ImportDataAction.class),
+    @JsonSubTypes.Type(name = "CreateJob", value = JobScheduleAction.class) })
 @Immutable
 public class ScheduleActionBase {
-    /** Creates an instance of ScheduleActionBase class. */
+    /*
+     * [Required] Specifies the action type of the schedule
+     */
+    @JsonTypeId
+    @JsonProperty(value = "actionType", required = true)
+    private ScheduleActionType actionType;
+
+    /**
+     * Creates an instance of ScheduleActionBase class.
+     */
     public ScheduleActionBase() {
+        this.actionType = ScheduleActionType.fromString("ScheduleActionBase");
+    }
+
+    /**
+     * Get the actionType property: [Required] Specifies the action type of the schedule.
+     * 
+     * @return the actionType value.
+     */
+    public ScheduleActionType actionType() {
+        return this.actionType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
