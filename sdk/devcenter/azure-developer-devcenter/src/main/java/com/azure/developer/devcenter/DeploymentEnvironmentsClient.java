@@ -48,9 +48,11 @@ public final class DeploymentEnvironmentsClient {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -93,9 +95,11 @@ public final class DeploymentEnvironmentsClient {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -141,9 +145,11 @@ public final class DeploymentEnvironmentsClient {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -190,9 +196,11 @@ public final class DeploymentEnvironmentsClient {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -219,9 +227,11 @@ public final class DeploymentEnvironmentsClient {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -271,8 +281,8 @@ public final class DeploymentEnvironmentsClient {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -317,6 +327,7 @@ public final class DeploymentEnvironmentsClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      * }
      * }</pre>
@@ -341,6 +352,7 @@ public final class DeploymentEnvironmentsClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      * }
      * }</pre>
@@ -367,6 +379,7 @@ public final class DeploymentEnvironmentsClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -410,6 +423,7 @@ public final class DeploymentEnvironmentsClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -455,6 +469,7 @@ public final class DeploymentEnvironmentsClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -502,9 +517,11 @@ public final class DeploymentEnvironmentsClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     deploymentTargetId: String (Required)
      *     status: String(Enabled/Disabled) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      *

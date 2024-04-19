@@ -11,6 +11,8 @@ import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
 import com.azure.json.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
@@ -203,6 +205,8 @@ public final class DevCenterEnvironment implements JsonSerializable<DevCenterEnv
         jsonWriter.writeStringField("environmentType", this.environmentTypeName);
         jsonWriter.writeStringField("catalogName", this.catalogName);
         jsonWriter.writeStringField("environmentDefinitionName", this.environmentDefinitionName);
+        jsonWriter.writeStringField("expirationDate",
+            this.expirationDate == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.expirationDate));
         jsonWriter.writeMapField("parameters", this.parameters, (writer, element) -> writer.writeUntyped(element));
         return jsonWriter.writeEndObject();
     }
@@ -261,5 +265,52 @@ public final class DevCenterEnvironment implements JsonSerializable<DevCenterEnv
             deserializedDevCenterEnvironment.error = error;
             return deserializedDevCenterEnvironment;
         });
+    }
+
+    /*
+     * The time the expiration date will be triggered (UTC), after which the
+     * environment and associated resources will be deleted.
+     */
+    @Generated
+    private OffsetDateTime expirationDate;
+
+    /*
+     * The unique URI of the environment.
+     */
+    @Generated
+    private String uri;
+
+    /**
+     * Get the expirationDate property: The time the expiration date will be triggered (UTC), after which the
+     * environment and associated resources will be deleted.
+     *
+     * @return the expirationDate value.
+     */
+    @Generated
+    public OffsetDateTime getExpirationDate() {
+        return this.expirationDate;
+    }
+
+    /**
+     * Set the expirationDate property: The time the expiration date will be triggered (UTC), after which the
+     * environment and associated resources will be deleted.
+     *
+     * @param expirationDate the expirationDate value to set.
+     * @return the DevCenterEnvironment object itself.
+     */
+    @Generated
+    public DevCenterEnvironment setExpirationDate(OffsetDateTime expirationDate) {
+        this.expirationDate = expirationDate;
+        return this;
+    }
+
+    /**
+     * Get the uri property: The unique URI of the environment.
+     *
+     * @return the uri value.
+     */
+    @Generated
+    public String getUri() {
+        return this.uri;
     }
 }

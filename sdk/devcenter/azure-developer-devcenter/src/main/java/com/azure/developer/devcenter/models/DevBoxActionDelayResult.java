@@ -25,7 +25,7 @@ public final class DevBoxActionDelayResult implements JsonSerializable<DevBoxAct
     private final String actionName;
 
     /*
-     * The delayed action
+     * The delayed action.
      */
     @Generated
     private DevBoxAction action;
@@ -35,18 +35,6 @@ public final class DevBoxActionDelayResult implements JsonSerializable<DevBoxAct
      */
     @Generated
     private ResponseError error;
-
-    /**
-     * Creates an instance of DevBoxActionDelayResult class.
-     *
-     * @param actionName the actionName value to set.
-     * @param delayStatus the delayStatus value to set.
-     */
-    @Generated
-    private DevBoxActionDelayResult(String actionName, DevBoxActionDelayStatus delayStatus) {
-        this.actionName = actionName;
-        this.delayStatus = delayStatus;
-    }
 
     /**
      * Get the actionName property: The name of the action.
@@ -101,6 +89,7 @@ public final class DevBoxActionDelayResult implements JsonSerializable<DevBoxAct
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("uri", this.uri);
         jsonWriter.writeStringField("name", this.actionName);
         jsonWriter.writeStringField("result", this.delayStatus == null ? null : this.delayStatus.toString());
         jsonWriter.writeJsonField("action", this.action);
@@ -120,6 +109,7 @@ public final class DevBoxActionDelayResult implements JsonSerializable<DevBoxAct
     @Generated
     public static DevBoxActionDelayResult fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
+            String uri = null;
             String actionName = null;
             DevBoxActionDelayStatus delayStatus = null;
             DevBoxAction action = null;
@@ -127,7 +117,9 @@ public final class DevBoxActionDelayResult implements JsonSerializable<DevBoxAct
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
-                if ("name".equals(fieldName)) {
+                if ("uri".equals(fieldName)) {
+                    uri = reader.getString();
+                } else if ("name".equals(fieldName)) {
                     actionName = reader.getString();
                 } else if ("result".equals(fieldName)) {
                     delayStatus = DevBoxActionDelayStatus.fromString(reader.getString());
@@ -140,10 +132,40 @@ public final class DevBoxActionDelayResult implements JsonSerializable<DevBoxAct
                 }
             }
             DevBoxActionDelayResult deserializedDevBoxActionDelayResult
-                = new DevBoxActionDelayResult(actionName, delayStatus);
+                = new DevBoxActionDelayResult(uri, actionName, delayStatus);
             deserializedDevBoxActionDelayResult.action = action;
             deserializedDevBoxActionDelayResult.error = error;
             return deserializedDevBoxActionDelayResult;
         });
+    }
+
+    /*
+     * The unique URI of the action.
+     */
+    @Generated
+    private final String uri;
+
+    /**
+     * Creates an instance of DevBoxActionDelayResult class.
+     *
+     * @param uri the uri value to set.
+     * @param actionName the actionName value to set.
+     * @param delayStatus the delayStatus value to set.
+     */
+    @Generated
+    private DevBoxActionDelayResult(String uri, String actionName, DevBoxActionDelayStatus delayStatus) {
+        this.uri = uri;
+        this.actionName = actionName;
+        this.delayStatus = delayStatus;
+    }
+
+    /**
+     * Get the uri property: The unique URI of the action.
+     *
+     * @return the uri value.
+     */
+    @Generated
+    public String getUri() {
+        return this.uri;
     }
 }

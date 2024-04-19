@@ -57,6 +57,7 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
@@ -84,6 +85,7 @@ public final class DevBoxesAsyncClient {
      *         gracePeriodMinutes: Integer (Optional)
      *     }
      *     healthStatus: String(Unknown/Pending/Healthy/Warning/Unhealthy) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      *
@@ -107,6 +109,7 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
@@ -134,6 +137,7 @@ public final class DevBoxesAsyncClient {
      *         gracePeriodMinutes: Integer (Optional)
      *     }
      *     healthStatus: String(Unknown/Pending/Healthy/Warning/Unhealthy) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      *
@@ -154,12 +158,15 @@ public final class DevBoxesAsyncClient {
     }
 
     /**
-     * Lists available schedules for a pool.
+     * Lists all schedules within a pool that are configured by your project administrator.
      * <p><strong>Response Body Schema</strong></p>
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool) (Required)
      *     type: String(StopDevBox) (Required)
      *     frequency: String(Daily) (Required)
      *     time: String (Required)
@@ -167,14 +174,14 @@ public final class DevBoxesAsyncClient {
      * }
      * }</pre>
      *
-     * @param projectName Name of the project.
-     * @param poolName Pool name.
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param poolName The name of a pool of Dev Boxes.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return paged collection of Schedule items as paginated response with {@link PagedFlux}.
+     * @return the Schedule list result as paginated response with {@link PagedFlux}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)
@@ -188,7 +195,10 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool) (Required)
      *     type: String(StopDevBox) (Required)
      *     frequency: String(Daily) (Required)
      *     time: String (Required)
@@ -219,6 +229,7 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -283,6 +294,7 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -349,6 +361,7 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -416,6 +429,7 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -485,6 +499,7 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -534,6 +549,7 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -606,8 +622,8 @@ public final class DevBoxesAsyncClient {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -653,8 +669,8 @@ public final class DevBoxesAsyncClient {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -707,8 +723,8 @@ public final class DevBoxesAsyncClient {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -754,8 +770,8 @@ public final class DevBoxesAsyncClient {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -829,9 +845,12 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -863,9 +882,12 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -922,9 +944,12 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -960,12 +985,16 @@ public final class DevBoxesAsyncClient {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     result: String(Succeeded/Failed) (Required)
      *     action (Optional): {
+     *         uri: String (Required)
      *         name: String (Required)
      *         actionType: String(Stop) (Required)
      *         sourceId: String (Required)
+     *         sourceUri: String (Required)
+     *         sourceType: String(Pool/Schedule) (Required)
      *         suspendedUntil: OffsetDateTime (Optional)
      *         next (Optional): {
      *             scheduledTime: OffsetDateTime (Required)
@@ -1060,17 +1089,17 @@ public final class DevBoxesAsyncClient {
     }
 
     /**
-     * Lists available schedules for a pool.
+     * Lists all schedules within a pool that are configured by your project administrator.
      *
-     * @param projectName Name of the project.
-     * @param poolName Pool name.
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param poolName The name of a pool of Dev Boxes.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return paged collection of Schedule items as paginated response with {@link PagedFlux}.
+     * @return the Schedule list result as paginated response with {@link PagedFlux}.
      */
     @Generated
     @ServiceMethod(returns = ReturnType.COLLECTION)

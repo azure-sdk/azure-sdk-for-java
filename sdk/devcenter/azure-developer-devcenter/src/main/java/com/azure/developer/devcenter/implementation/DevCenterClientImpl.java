@@ -219,9 +219,11 @@ public final class DevCenterClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     description: String (Optional)
      *     maxDevBoxesPerUser: Integer (Optional)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -249,9 +251,11 @@ public final class DevCenterClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     description: String (Optional)
      *     maxDevBoxesPerUser: Integer (Optional)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -277,9 +281,11 @@ public final class DevCenterClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     description: String (Optional)
      *     maxDevBoxesPerUser: Integer (Optional)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -305,9 +311,11 @@ public final class DevCenterClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     description: String (Optional)
      *     maxDevBoxesPerUser: Integer (Optional)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -333,9 +341,11 @@ public final class DevCenterClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     description: String (Optional)
      *     maxDevBoxesPerUser: Integer (Optional)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -360,9 +370,11 @@ public final class DevCenterClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     description: String (Optional)
      *     maxDevBoxesPerUser: Integer (Optional)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -387,9 +399,11 @@ public final class DevCenterClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     description: String (Optional)
      *     maxDevBoxesPerUser: Integer (Optional)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -421,9 +435,11 @@ public final class DevCenterClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     description: String (Optional)
      *     maxDevBoxesPerUser: Integer (Optional)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
