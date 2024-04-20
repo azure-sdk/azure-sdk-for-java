@@ -13,7 +13,12 @@ public enum PurviewDataMapServiceVersion implements ServiceVersion {
     /**
      * Enum value 2023-09-01.
      */
-    V2023_09_01("2023-09-01");
+    V2023_09_01("2023-09-01"),
+
+    /**
+     * Enum value 2024-03-01-preview.
+     */
+    V2024_03_01_PREVIEW("2024-03-01-preview");
 
     private final String version;
 
@@ -35,6 +40,6 @@ public enum PurviewDataMapServiceVersion implements ServiceVersion {
      * @return The latest {@link PurviewDataMapServiceVersion}.
      */
     public static PurviewDataMapServiceVersion getLatest() {
-        return V2023_09_01;
+        return V2024_03_01_PREVIEW;
     }
 }
