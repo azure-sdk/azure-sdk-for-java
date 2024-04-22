@@ -8,22 +8,26 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Strictly used in update requests. */
+/**
+ * Strictly used in update requests.
+ */
 @Fluent
-public class PartialMinimalTrackedResourceWithIdentity extends PartialMinimalTrackedResource {
+public final class PartialMinimalTrackedResourceWithIdentity extends PartialMinimalTrackedResource {
     /*
      * Managed service identity (system assigned and/or user assigned identities)
      */
     @JsonProperty(value = "identity")
     private PartialManagedServiceIdentity identity;
 
-    /** Creates an instance of PartialMinimalTrackedResourceWithIdentity class. */
+    /**
+     * Creates an instance of PartialMinimalTrackedResourceWithIdentity class.
+     */
     public PartialMinimalTrackedResourceWithIdentity() {
     }
 
     /**
      * Get the identity property: Managed service identity (system assigned and/or user assigned identities).
-     *
+     * 
      * @return the identity value.
      */
     public PartialManagedServiceIdentity identity() {
@@ -32,7 +36,7 @@ public class PartialMinimalTrackedResourceWithIdentity extends PartialMinimalTra
 
     /**
      * Set the identity property: Managed service identity (system assigned and/or user assigned identities).
-     *
+     * 
      * @param identity the identity value to set.
      * @return the PartialMinimalTrackedResourceWithIdentity object itself.
      */
@@ -41,7 +45,9 @@ public class PartialMinimalTrackedResourceWithIdentity extends PartialMinimalTra
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public PartialMinimalTrackedResourceWithIdentity withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -50,7 +56,7 @@ public class PartialMinimalTrackedResourceWithIdentity extends PartialMinimalTra
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

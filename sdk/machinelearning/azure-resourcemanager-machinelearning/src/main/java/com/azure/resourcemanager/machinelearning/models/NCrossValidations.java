@@ -5,30 +5,48 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** N-Cross validations value. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "mode",
-    defaultImpl = NCrossValidations.class)
+/**
+ * N-Cross validations value.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "mode", defaultImpl = NCrossValidations.class, visible = true)
 @JsonTypeName("NCrossValidations")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Auto", value = AutoNCrossValidations.class),
-    @JsonSubTypes.Type(name = "Custom", value = CustomNCrossValidations.class)
-})
+    @JsonSubTypes.Type(name = "Custom", value = CustomNCrossValidations.class) })
 @Immutable
 public class NCrossValidations {
-    /** Creates an instance of NCrossValidations class. */
+    /*
+     * [Required] Mode for determining N-Cross validations.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private NCrossValidationsMode mode;
+
+    /**
+     * Creates an instance of NCrossValidations class.
+     */
     public NCrossValidations() {
+        this.mode = NCrossValidationsMode.fromString("NCrossValidations");
+    }
+
+    /**
+     * Get the mode property: [Required] Mode for determining N-Cross validations.
+     * 
+     * @return the mode value.
+     */
+    public NCrossValidationsMode mode() {
+        return this.mode;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

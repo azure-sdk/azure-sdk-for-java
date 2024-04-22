@@ -5,31 +5,55 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The Sampling Algorithm used to generate hyperparameter values, along with properties to configure the algorithm. */
+/**
+ * The Sampling Algorithm used to generate hyperparameter values, along with properties to
+ * configure the algorithm.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "samplingAlgorithmType",
-    defaultImpl = SamplingAlgorithm.class)
+    defaultImpl = SamplingAlgorithm.class,
+    visible = true)
 @JsonTypeName("SamplingAlgorithm")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Bayesian", value = BayesianSamplingAlgorithm.class),
     @JsonSubTypes.Type(name = "Grid", value = GridSamplingAlgorithm.class),
-    @JsonSubTypes.Type(name = "Random", value = RandomSamplingAlgorithm.class)
-})
+    @JsonSubTypes.Type(name = "Random", value = RandomSamplingAlgorithm.class) })
 @Immutable
 public class SamplingAlgorithm {
-    /** Creates an instance of SamplingAlgorithm class. */
+    /*
+     * [Required] The algorithm used for generating hyperparameter values, along with configuration properties
+     */
+    @JsonTypeId
+    @JsonProperty(value = "samplingAlgorithmType", required = true)
+    private SamplingAlgorithmType samplingAlgorithmType;
+
+    /**
+     * Creates an instance of SamplingAlgorithm class.
+     */
     public SamplingAlgorithm() {
+        this.samplingAlgorithmType = SamplingAlgorithmType.fromString("SamplingAlgorithm");
+    }
+
+    /**
+     * Get the samplingAlgorithmType property: [Required] The algorithm used for generating hyperparameter values, along
+     * with configuration properties.
+     * 
+     * @return the samplingAlgorithmType value.
+     */
+    public SamplingAlgorithmType samplingAlgorithmType() {
+        return this.samplingAlgorithmType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

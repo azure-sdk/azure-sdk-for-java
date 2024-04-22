@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Asset output type. */
+/**
+ * Asset output type.
+ */
 @Fluent
 public class AssetJobOutput {
     /*
@@ -22,13 +24,15 @@ public class AssetJobOutput {
     @JsonProperty(value = "uri")
     private String uri;
 
-    /** Creates an instance of AssetJobOutput class. */
+    /**
+     * Creates an instance of AssetJobOutput class.
+     */
     public AssetJobOutput() {
     }
 
     /**
      * Get the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public OutputDeliveryMode mode() {
@@ -37,7 +41,7 @@ public class AssetJobOutput {
 
     /**
      * Set the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the AssetJobOutput object itself.
      */
@@ -48,7 +52,7 @@ public class AssetJobOutput {
 
     /**
      * Get the uri property: Output Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -57,7 +61,7 @@ public class AssetJobOutput {
 
     /**
      * Set the uri property: Output Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the AssetJobOutput object itself.
      */
@@ -68,7 +72,7 @@ public class AssetJobOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
