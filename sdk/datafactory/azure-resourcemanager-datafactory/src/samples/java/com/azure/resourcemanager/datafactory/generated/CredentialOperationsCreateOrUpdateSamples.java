@@ -4,7 +4,6 @@
 
 package com.azure.resourcemanager.datafactory.generated;
 
-import com.azure.resourcemanager.datafactory.fluent.models.CredentialResourceInner;
 import com.azure.resourcemanager.datafactory.models.ManagedIdentityCredential;
 
 /**
@@ -21,9 +20,10 @@ public final class CredentialOperationsCreateOrUpdateSamples {
      */
     public static void credentialsCreate(com.azure.resourcemanager.datafactory.DataFactoryManager manager) {
         manager.credentialOperations()
-            .createOrUpdateWithResponse("exampleResourceGroup", "exampleFactoryName", "exampleCredential",
-                new CredentialResourceInner().withProperties(new ManagedIdentityCredential().withResourceId(
-                    "/subscriptions/12345678-1234-1234-1234-12345678abc/resourcegroups/exampleResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/exampleUami")),
-                null, com.azure.core.util.Context.NONE);
+            .define("exampleCredential")
+            .withExistingFactory("exampleResourceGroup", "exampleFactoryName")
+            .withProperties(new ManagedIdentityCredential().withResourceId(
+                "/subscriptions/12345678-1234-1234-1234-12345678abc/resourcegroups/exampleResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/exampleUami"))
+            .create();
     }
 }
