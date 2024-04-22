@@ -7,6 +7,8 @@ package com.azure.analytics.purview.datamap;
 import com.azure.analytics.purview.datamap.implementation.DiscoveriesImpl;
 import com.azure.analytics.purview.datamap.models.AutoCompleteOptions;
 import com.azure.analytics.purview.datamap.models.AutoCompleteResult;
+import com.azure.analytics.purview.datamap.models.NavigationRequest;
+import com.azure.analytics.purview.datamap.models.NavigationResult;
 import com.azure.analytics.purview.datamap.models.QueryOptions;
 import com.azure.analytics.purview.datamap.models.QueryResult;
 import com.azure.analytics.purview.datamap.models.SuggestOptions;
@@ -318,6 +320,66 @@ public final class DiscoveryClient {
     }
 
     /**
+     * Navigate entities by itemPath.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     navigationMode: String(assetType/azureResourceHierarchy) (Optional)
+     *     itemPath (Required): {
+     *         path: String (Required)
+     *         extendedProperties (Optional): {
+     *             String: Object (Required)
+     *         }
+     *     }
+     *     includeNextLevelAssetCount: Boolean (Optional)
+     *     properties (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     continuationToken: String (Optional)
+     *     items (Optional): [
+     *          (Optional){
+     *             name: String (Optional)
+     *             itemPath (Optional): {
+     *                 path: String (Required)
+     *                 extendedProperties (Optional): {
+     *                     String: Object (Required)
+     *                 }
+     *             }
+     *             type: String (Optional)
+     *             isEntity: Boolean (Optional)
+     *             isLeafNode: Boolean (Optional)
+     *             count: Integer (Optional)
+     *             properties (Optional): {
+     *                 String: Object (Required)
+     *             }
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param navigationRequest The request payload of Navigation API.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response payload of the Navigation API along with {@link Response}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> navigateWithResponse(BinaryData navigationRequest, RequestOptions requestOptions) {
+        return this.serviceClient.navigateWithResponse(navigationRequest, requestOptions);
+    }
+
+    /**
      * Get data using search.
      * 
      * @param queryOptions The search query of advanced search request.
@@ -378,5 +440,26 @@ public final class DiscoveryClient {
         RequestOptions requestOptions = new RequestOptions();
         return autoCompleteWithResponse(BinaryData.fromObject(autoCompleteOptions), requestOptions).getValue()
             .toObject(AutoCompleteResult.class);
+    }
+
+    /**
+     * Navigate entities by itemPath.
+     * 
+     * @param navigationRequest The request payload of Navigation API.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response payload of the Navigation API.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public NavigationResult navigate(NavigationRequest navigationRequest) {
+        // Generated convenience method for navigateWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return navigateWithResponse(BinaryData.fromObject(navigationRequest), requestOptions).getValue()
+            .toObject(NavigationResult.class);
     }
 }

@@ -130,6 +130,28 @@ public final class DiscoveriesImpl {
             @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
             @BodyParam("application/json") BinaryData autoCompleteOptions, RequestOptions requestOptions,
             Context context);
+
+        @Post("/navigate")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Mono<Response<BinaryData>> navigate(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData navigationRequest, RequestOptions requestOptions,
+            Context context);
+
+        @Post("/navigate")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(value = ClientAuthenticationException.class, code = { 401 })
+        @UnexpectedResponseExceptionType(value = ResourceNotFoundException.class, code = { 404 })
+        @UnexpectedResponseExceptionType(value = ResourceModifiedException.class, code = { 409 })
+        @UnexpectedResponseExceptionType(HttpResponseException.class)
+        Response<BinaryData> navigateSync(@HostParam("endpoint") String endpoint,
+            @QueryParam("api-version") String apiVersion, @HeaderParam("accept") String accept,
+            @BodyParam("application/json") BinaryData navigationRequest, RequestOptions requestOptions,
+            Context context);
     }
 
     /**
@@ -690,5 +712,129 @@ public final class DiscoveriesImpl {
         final String accept = "application/json";
         return service.autoCompleteSync(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(), accept,
             autoCompleteOptions, requestOptions, Context.NONE);
+    }
+
+    /**
+     * Navigate entities by itemPath.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     navigationMode: String(assetType/azureResourceHierarchy) (Optional)
+     *     itemPath (Required): {
+     *         path: String (Required)
+     *         extendedProperties (Optional): {
+     *             String: Object (Required)
+     *         }
+     *     }
+     *     includeNextLevelAssetCount: Boolean (Optional)
+     *     properties (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     continuationToken: String (Optional)
+     *     items (Optional): [
+     *          (Optional){
+     *             name: String (Optional)
+     *             itemPath (Optional): {
+     *                 path: String (Required)
+     *                 extendedProperties (Optional): {
+     *                     String: Object (Required)
+     *                 }
+     *             }
+     *             type: String (Optional)
+     *             isEntity: Boolean (Optional)
+     *             isLeafNode: Boolean (Optional)
+     *             count: Integer (Optional)
+     *             properties (Optional): {
+     *                 String: Object (Required)
+     *             }
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param navigationRequest The request payload of Navigation API.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response payload of the Navigation API along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> navigateWithResponseAsync(BinaryData navigationRequest,
+        RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.navigate(this.client.getEndpoint(),
+            this.client.getServiceVersion().getVersion(), accept, navigationRequest, requestOptions, context));
+    }
+
+    /**
+     * Navigate entities by itemPath.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     navigationMode: String(assetType/azureResourceHierarchy) (Optional)
+     *     itemPath (Required): {
+     *         path: String (Required)
+     *         extendedProperties (Optional): {
+     *             String: Object (Required)
+     *         }
+     *     }
+     *     includeNextLevelAssetCount: Boolean (Optional)
+     *     properties (Optional): {
+     *         String: Object (Required)
+     *     }
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     continuationToken: String (Optional)
+     *     items (Optional): [
+     *          (Optional){
+     *             name: String (Optional)
+     *             itemPath (Optional): {
+     *                 path: String (Required)
+     *                 extendedProperties (Optional): {
+     *                     String: Object (Required)
+     *                 }
+     *             }
+     *             type: String (Optional)
+     *             isEntity: Boolean (Optional)
+     *             isLeafNode: Boolean (Optional)
+     *             count: Integer (Optional)
+     *             properties (Optional): {
+     *                 String: Object (Required)
+     *             }
+     *         }
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * @param navigationRequest The request payload of Navigation API.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the response payload of the Navigation API along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<BinaryData> navigateWithResponse(BinaryData navigationRequest, RequestOptions requestOptions) {
+        final String accept = "application/json";
+        return service.navigateSync(this.client.getEndpoint(), this.client.getServiceVersion().getVersion(), accept,
+            navigationRequest, requestOptions, Context.NONE);
     }
 }
