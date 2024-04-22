@@ -37,8 +37,7 @@ public final class SkuInformationInner {
     private String resourceType;
 
     /*
-     * The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g.
-     * West US, East US, Southeast Asia, etc.).
+     * The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).
      */
     @JsonProperty(value = "locations", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> locations;
@@ -111,8 +110,8 @@ public final class SkuInformationInner {
     }
 
     /**
-     * Get the locations property: The set of locations that the SKU is available. This will be supported and
-     * registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).
+     * Get the locations property: The set of locations that the SKU is available. This will be supported and registered
+     * Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.).
      * 
      * @return the locations value.
      */
@@ -145,8 +144,8 @@ public final class SkuInformationInner {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model SkuInformationInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property name in model SkuInformationInner"));
         }
         if (locationInfo() != null) {
             locationInfo().forEach(e -> e.validate());

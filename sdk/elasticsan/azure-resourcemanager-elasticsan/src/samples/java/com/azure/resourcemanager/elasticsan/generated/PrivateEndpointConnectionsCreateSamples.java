@@ -14,8 +14,7 @@ import java.util.Arrays;
  */
 public final class PrivateEndpointConnectionsCreateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * PrivateEndpointConnections_Create_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/PrivateEndpointConnections_Create_MaximumSet_Gen.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Create_MaximumSet_Gen.
@@ -24,17 +23,20 @@ public final class PrivateEndpointConnectionsCreateSamples {
      */
     public static void
         privateEndpointConnectionsCreateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.privateEndpointConnections().define("privateendpointconnectionname")
-            .withExistingElasticSan("resourcegroupname", "elasticsanname")
+        manager.privateEndpointConnections()
+            .define("ds")
+            .withExistingElasticSan("rgelasticsan", "elasticsanname")
             .withPrivateLinkServiceConnectionState(
                 new PrivateLinkServiceConnectionState().withStatus(PrivateEndpointServiceConnectionStatus.PENDING)
-                    .withDescription("dxl").withActionsRequired("jhjdpwvyzipggtn"))
-            .withPrivateEndpoint(new PrivateEndpoint()).withGroupIds(Arrays.asList("jdwrzpemdjrpiwzvy")).create();
+                    .withDescription("uwtjmilkpbyiscewqnotojf")
+                    .withActionsRequired("ouhlq"))
+            .withPrivateEndpoint(new PrivateEndpoint())
+            .withGroupIds(Arrays.asList("nzcvnyufvpmhhtkfgohklcnwfymff"))
+            .create();
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * PrivateEndpointConnections_Create_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/PrivateEndpointConnections_Create_MinimumSet_Gen.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Create_MinimumSet_Gen.
@@ -43,8 +45,10 @@ public final class PrivateEndpointConnectionsCreateSamples {
      */
     public static void
         privateEndpointConnectionsCreateMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.privateEndpointConnections().define("privateendpointconnectionname")
+        manager.privateEndpointConnections()
+            .define("privateendpointconnectionname")
             .withExistingElasticSan("resourcegroupname", "elasticsanname")
-            .withPrivateLinkServiceConnectionState(new PrivateLinkServiceConnectionState()).create();
+            .withPrivateLinkServiceConnectionState(new PrivateLinkServiceConnectionState())
+            .create();
     }
 }

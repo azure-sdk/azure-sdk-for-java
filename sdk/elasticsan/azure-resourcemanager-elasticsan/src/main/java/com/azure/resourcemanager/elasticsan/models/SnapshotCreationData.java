@@ -14,8 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class SnapshotCreationData {
     /*
-     * Fully qualified resource ID of the volume. E.g.
-     * "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}"
+     * Fully qualified resource ID of the volume. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}"
      */
     @JsonProperty(value = "sourceId", required = true)
     private String sourceId;
@@ -55,8 +54,8 @@ public final class SnapshotCreationData {
      */
     public void validate() {
         if (sourceId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property sourceId in model SnapshotCreationData"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property sourceId in model SnapshotCreationData"));
         }
     }
 

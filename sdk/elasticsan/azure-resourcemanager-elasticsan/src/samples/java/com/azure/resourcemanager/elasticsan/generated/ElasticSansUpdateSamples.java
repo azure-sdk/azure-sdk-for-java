@@ -4,8 +4,11 @@
 
 package com.azure.resourcemanager.elasticsan.generated;
 
+import com.azure.resourcemanager.elasticsan.models.AutoScaleProperties;
 import com.azure.resourcemanager.elasticsan.models.ElasticSan;
+import com.azure.resourcemanager.elasticsan.models.PolicyEnforcement;
 import com.azure.resourcemanager.elasticsan.models.PublicNetworkAccess;
+import com.azure.resourcemanager.elasticsan.models.ScaleUpProperties;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,8 +17,7 @@ import java.util.Map;
  */
 public final class ElasticSansUpdateSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * ElasticSans_Update_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/ElasticSans_Update_MinimumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Update_MinimumSet_Gen.
@@ -30,8 +32,7 @@ public final class ElasticSansUpdateSamples {
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * ElasticSans_Update_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/ElasticSans_Update_MaximumSet_Gen.json
      */
     /**
      * Sample code: ElasticSans_Update_MaximumSet_Gen.
@@ -40,10 +41,19 @@ public final class ElasticSansUpdateSamples {
      */
     public static void elasticSansUpdateMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
         ElasticSan resource = manager.elasticSans()
-            .getByResourceGroupWithResponse("resourcegroupname", "elasticsanname", com.azure.core.util.Context.NONE)
+            .getByResourceGroupWithResponse("rgelasticsan", "elasticsanname", com.azure.core.util.Context.NONE)
             .getValue();
-        resource.update().withTags(mapOf("key1931", "fakeTokenPlaceholder")).withBaseSizeTiB(13L)
-            .withExtendedCapacitySizeTiB(29L).withPublicNetworkAccess(PublicNetworkAccess.ENABLED).apply();
+        resource.update()
+            .withTags(mapOf("key3167", "fakeTokenPlaceholder"))
+            .withBaseSizeTiB(3L)
+            .withExtendedCapacitySizeTiB(18L)
+            .withPublicNetworkAccess(PublicNetworkAccess.ENABLED)
+            .withAutoScaleProperties(
+                new AutoScaleProperties().withScaleUpProperties(new ScaleUpProperties().withUnusedSizeTiB(21L)
+                    .withIncreaseCapacityUnitByTiB(3L)
+                    .withMaxScaleUpTiB(23L)
+                    .withPolicyEnforcement(PolicyEnforcement.ENABLED)))
+            .apply();
     }
 
     // Use "Map.of" if available

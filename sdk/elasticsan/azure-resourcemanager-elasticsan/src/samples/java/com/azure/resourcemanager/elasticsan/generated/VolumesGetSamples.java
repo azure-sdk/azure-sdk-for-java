@@ -9,8 +9,7 @@ package com.azure.resourcemanager.elasticsan.generated;
  */
 public final class VolumesGetSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * Volumes_Get_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/Volumes_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Get_MaximumSet_Gen.
@@ -18,13 +17,13 @@ public final class VolumesGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesGetMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
-            com.azure.core.util.Context.NONE);
+        manager.volumes()
+            .getWithResponse("rgelasticsan", "elasticsanname", "volumegroupname", "volumename",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * Volumes_Get_MinimumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/preview/2024-06-01-preview/examples/Volumes_Get_MinimumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Get_MinimumSet_Gen.
@@ -32,7 +31,8 @@ public final class VolumesGetSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesGetMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
-            com.azure.core.util.Context.NONE);
+        manager.volumes()
+            .getWithResponse("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
+                com.azure.core.util.Context.NONE);
     }
 }

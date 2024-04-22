@@ -99,8 +99,9 @@ public final class SnapshotProperties {
      */
     public void validate() {
         if (creationData() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property creationData in model SnapshotProperties"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property creationData in model SnapshotProperties"));
         } else {
             creationData().validate();
         }
