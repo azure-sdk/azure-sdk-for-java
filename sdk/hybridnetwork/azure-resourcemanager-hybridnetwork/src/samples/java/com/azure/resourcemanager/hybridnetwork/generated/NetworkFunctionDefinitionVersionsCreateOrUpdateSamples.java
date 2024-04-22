@@ -45,9 +45,7 @@ import java.util.Arrays;
  */
 public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
-     * VirtualNetworkFunctionDefinitionVersionCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/VirtualNetworkFunctionDefinitionVersionCreate.json
      */
     /**
      * Sample code: Create or update a network function definition version resource for AzureCore VNF.
@@ -56,7 +54,9 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
      */
     public static void createOrUpdateANetworkFunctionDefinitionVersionResourceForAzureCoreVNF(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().define("1.0.0").withRegion("eastus")
+        manager.networkFunctionDefinitionVersions()
+            .define("1.0.0")
+            .withRegion("eastus")
             .withExistingNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName")
             .withProperties(new VirtualNetworkFunctionDefinitionVersion().withDescription("test NFDV for AzureCore")
                 .withDeployParameters(
@@ -65,17 +65,19 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
                     new AzureCoreNetworkFunctionTemplate().withNetworkFunctionApplications(Arrays.asList(
                         new AzureCoreNetworkFunctionVhdApplication().withName("testImageRole")
                             .withDependsOnProfile(new DependsOnProfile()
-                                .withInstallDependsOn(Arrays.asList()).withUninstallDependsOn(Arrays.asList())
+                                .withInstallDependsOn(Arrays.asList())
+                                .withUninstallDependsOn(Arrays.asList())
                                 .withUpdateDependsOn(Arrays.asList()))
                             .withArtifactProfile(new AzureCoreVhdImageArtifactProfile()
                                 .withArtifactStore(new ReferencedResource().withId(
                                     "/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore"))
                                 .withVhdArtifactProfile(
                                     new VhdImageArtifactProfile().withVhdName("test-image").withVhdVersion("1-0-0")))
-                            .withDeployParametersMappingRuleProfile(new AzureCoreVhdImageDeployMappingRuleProfile()
-                                .withApplicationEnablement(ApplicationEnablement.UNKNOWN)
-                                .withVhdImageMappingRuleProfile(
-                                    new VhdImageMappingRuleProfile().withUserConfiguration(""))),
+                            .withDeployParametersMappingRuleProfile(
+                                new AzureCoreVhdImageDeployMappingRuleProfile()
+                                    .withApplicationEnablement(ApplicationEnablement.UNKNOWN)
+                                    .withVhdImageMappingRuleProfile(
+                                        new VhdImageMappingRuleProfile().withUserConfiguration(""))),
                         new AzureCoreNetworkFunctionArmTemplateApplication().withName("testTemplateRole")
                             .withDependsOnProfile(
                                 new DependsOnProfile().withInstallDependsOn(Arrays.asList("testImageRole"))
@@ -84,8 +86,9 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
                             .withArtifactProfile(new AzureCoreArmTemplateArtifactProfile()
                                 .withArtifactStore(new ReferencedResource().withId(
                                     "/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore"))
-                                .withTemplateArtifactProfile(new ArmTemplateArtifactProfile()
-                                    .withTemplateName("test-template").withTemplateVersion("1.0.0")))
+                                .withTemplateArtifactProfile(
+                                    new ArmTemplateArtifactProfile().withTemplateName("test-template")
+                                        .withTemplateVersion("1.0.0")))
                             .withDeployParametersMappingRuleProfile(new AzureCoreArmTemplateDeployMappingRuleProfile()
                                 .withApplicationEnablement(ApplicationEnablement.UNKNOWN)
                                 .withTemplateMappingRuleProfile(
@@ -95,9 +98,7 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionCreate.json
      */
     /**
      * Sample code: Create or update a network function definition version resource for AzureOperatorNexus VNF.
@@ -106,7 +107,9 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
      */
     public static void createOrUpdateANetworkFunctionDefinitionVersionResourceForAzureOperatorNexusVNF(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().define("1.0.0").withRegion("eastus")
+        manager.networkFunctionDefinitionVersions()
+            .define("1.0.0")
+            .withRegion("eastus")
             .withExistingNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName")
             .withProperties(new VirtualNetworkFunctionDefinitionVersion()
                 .withDescription("test NFDV for AzureOperatorNexus")
@@ -116,7 +119,8 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
                     new AzureOperatorNexusNetworkFunctionTemplate().withNetworkFunctionApplications(Arrays.asList(
                         new AzureOperatorNexusNetworkFunctionImageApplication().withName("testImageRole")
                             .withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList())
-                                .withUninstallDependsOn(Arrays.asList()).withUpdateDependsOn(Arrays.asList()))
+                                .withUninstallDependsOn(Arrays.asList())
+                                .withUpdateDependsOn(Arrays.asList()))
                             .withArtifactProfile(new AzureOperatorNexusImageArtifactProfile()
                                 .withArtifactStore(new ReferencedResource().withId(
                                     "/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore"))
@@ -135,8 +139,9 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
                             .withArtifactProfile(new AzureOperatorNexusArmTemplateArtifactProfile()
                                 .withArtifactStore(new ReferencedResource().withId(
                                     "/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore"))
-                                .withTemplateArtifactProfile(new ArmTemplateArtifactProfile()
-                                    .withTemplateName("test-template").withTemplateVersion("1.0.0")))
+                                .withTemplateArtifactProfile(
+                                    new ArmTemplateArtifactProfile().withTemplateName("test-template")
+                                        .withTemplateVersion("1.0.0")))
                             .withDeployParametersMappingRuleProfile(
                                 new AzureOperatorNexusArmTemplateDeployMappingRuleProfile()
                                     .withApplicationEnablement(ApplicationEnablement.UNKNOWN)
@@ -147,9 +152,7 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionVersionCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkFunctionDefinitionVersionCreate.json
      */
     /**
      * Sample code: Create or update a network function definition version resource.
@@ -158,7 +161,9 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
      */
     public static void createOrUpdateANetworkFunctionDefinitionVersionResource(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().define("1.0.0").withRegion("eastus")
+        manager.networkFunctionDefinitionVersions()
+            .define("1.0.0")
+            .withRegion("eastus")
             .withExistingNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName")
             .withProperties(new ContainerizedNetworkFunctionDefinitionVersion().withDeployParameters(
                 "{\"type\":\"object\",\"properties\":{\"releaseName\":{\"type\":\"string\"},\"namespace\":{\"type\":\"string\"}}}")
@@ -166,7 +171,8 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
                     .withNetworkFunctionApplications(Arrays.asList(new AzureArcKubernetesHelmApplication()
                         .withName("fedrbac")
                         .withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList())
-                            .withUninstallDependsOn(Arrays.asList()).withUpdateDependsOn(Arrays.asList()))
+                            .withUninstallDependsOn(Arrays.asList())
+                            .withUpdateDependsOn(Arrays.asList()))
                         .withArtifactProfile(new AzureArcKubernetesArtifactProfile()
                             .withArtifactStore(new ReferencedResource().withId(
                                 "/subscriptions/subid/resourcegroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/testArtifactStore"))
@@ -175,15 +181,19 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
                                 .withRegistryValuesPaths(Arrays.asList("global.registry.docker.repoPath"))
                                 .withImagePullSecretsValuesPaths(Arrays.asList("global.imagePullSecrets"))))
                         .withDeployParametersMappingRuleProfile(new AzureArcKubernetesDeployMappingRuleProfile()
-                            .withApplicationEnablement(ApplicationEnablement.ENABLED).withHelmMappingRuleProfile(
+                            .withApplicationEnablement(ApplicationEnablement.ENABLED)
+                            .withHelmMappingRuleProfile(
                                 new HelmMappingRuleProfile().withReleaseNamespace("{deployParameters.namesapce}")
-                                    .withReleaseName("{deployParameters.releaseName}").withHelmPackageVersion("2.1.3")
+                                    .withReleaseName("{deployParameters.releaseName}")
+                                    .withHelmPackageVersion("2.1.3")
                                     .withValues("")
                                     .withOptions(new HelmMappingRuleProfileOptions()
                                         .withInstallOptions(new HelmInstallOptions().withAtomic("true")
-                                            .withWaitOption("waitValue").withTimeout("30"))
+                                            .withWaitOption("true")
+                                            .withTimeout("30"))
                                         .withUpgradeOptions(new HelmUpgradeOptions().withAtomic("true")
-                                            .withWaitOption("waitValue").withTimeout("30")))))))))
+                                            .withWaitOption("true")
+                                            .withTimeout("30")))))))))
             .create();
     }
 }

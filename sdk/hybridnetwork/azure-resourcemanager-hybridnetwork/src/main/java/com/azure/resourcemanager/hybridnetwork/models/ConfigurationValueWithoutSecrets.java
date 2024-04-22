@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * The ConfigurationValue with no secrets.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "configurationType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "configurationType",
+    defaultImpl = ConfigurationValueWithoutSecrets.class,
+    visible = true)
 @JsonTypeName("Open")
 @Fluent
 public final class ConfigurationValueWithoutSecrets extends ConfigurationGroupValuePropertiesFormat {
+    /*
+     * The value which indicates if configuration values are secrets
+     */
+    @JsonTypeId
+    @JsonProperty(value = "configurationType", required = true)
+    private ConfigurationGroupValueConfigurationType configurationType = ConfigurationGroupValueConfigurationType.OPEN;
+
     /*
      * Name and value pairs that define the configuration value. It can be a well formed escaped JSON string.
      */
@@ -26,6 +38,16 @@ public final class ConfigurationValueWithoutSecrets extends ConfigurationGroupVa
      * Creates an instance of ConfigurationValueWithoutSecrets class.
      */
     public ConfigurationValueWithoutSecrets() {
+    }
+
+    /**
+     * Get the configurationType property: The value which indicates if configuration values are secrets.
+     * 
+     * @return the configurationType value.
+     */
+    @Override
+    public ConfigurationGroupValueConfigurationType configurationType() {
+        return this.configurationType;
     }
 
     /**

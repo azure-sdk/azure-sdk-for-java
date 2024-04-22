@@ -6,6 +6,7 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * NetworkFunction with no secrets.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "configurationType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "configurationType",
+    defaultImpl = NetworkFunctionValueWithoutSecrets.class,
+    visible = true)
 @JsonTypeName("Open")
 @Fluent
 public final class NetworkFunctionValueWithoutSecrets extends NetworkFunctionPropertiesFormat {
+    /*
+     * The value which indicates if NF  values are secrets
+     */
+    @JsonTypeId
+    @JsonProperty(value = "configurationType", required = true)
+    private NetworkFunctionConfigurationType configurationType = NetworkFunctionConfigurationType.OPEN;
+
     /*
      * The JSON-serialized deployment values from the user.
      */
@@ -27,6 +39,16 @@ public final class NetworkFunctionValueWithoutSecrets extends NetworkFunctionPro
      * Creates an instance of NetworkFunctionValueWithoutSecrets class.
      */
     public NetworkFunctionValueWithoutSecrets() {
+    }
+
+    /**
+     * Get the configurationType property: The value which indicates if NF values are secrets.
+     * 
+     * @return the configurationType value.
+     */
+    @Override
+    public NetworkFunctionConfigurationType configurationType() {
+        return this.configurationType;
     }
 
     /**

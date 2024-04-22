@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class NetworkServiceDesignVersionsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignVersionDelete.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkServiceDesignVersionDelete.json
      */
     /**
      * Sample code: Delete a network service design version.
@@ -20,7 +18,8 @@ public final class NetworkServiceDesignVersionsDeleteSamples {
      */
     public static void
         deleteANetworkServiceDesignVersion(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions().delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
-            "1.0.0", com.azure.core.util.Context.NONE);
+        manager.networkServiceDesignVersions()
+            .delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 }

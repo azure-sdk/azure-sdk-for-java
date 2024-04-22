@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinitionGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionVersionListByNetworkFunctionDefinitionGroup.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkFunctionDefinitionVersionListByNetworkFunctionDefinitionGroup.json
      */
     /**
      * Sample code: Get Publisher resource.
@@ -19,7 +17,8 @@ public final class NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinit
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void getPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().listByNetworkFunctionDefinitionGroup("rg", "TestPublisher",
-            "TestNetworkFunctionDefinitionGroupNameName", com.azure.core.util.Context.NONE);
+        manager.networkFunctionDefinitionVersions()
+            .listByNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupNameName",
+                com.azure.core.util.Context.NONE);
     }
 }

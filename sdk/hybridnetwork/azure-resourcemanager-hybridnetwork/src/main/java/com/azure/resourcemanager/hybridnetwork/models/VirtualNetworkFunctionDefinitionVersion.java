@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Virtual network function network function definition version properties.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "networkFunctionType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "networkFunctionType",
+    defaultImpl = VirtualNetworkFunctionDefinitionVersion.class,
+    visible = true)
 @JsonTypeName("VirtualNetworkFunction")
 @Fluent
 public final class VirtualNetworkFunctionDefinitionVersion extends NetworkFunctionDefinitionVersionPropertiesFormat {
+    /*
+     * The network function type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "networkFunctionType", required = true)
+    private NetworkFunctionType networkFunctionType = NetworkFunctionType.VIRTUAL_NETWORK_FUNCTION;
+
     /*
      * Virtual network function template.
      */
@@ -26,6 +38,16 @@ public final class VirtualNetworkFunctionDefinitionVersion extends NetworkFuncti
      * Creates an instance of VirtualNetworkFunctionDefinitionVersion class.
      */
     public VirtualNetworkFunctionDefinitionVersion() {
+    }
+
+    /**
+     * Get the networkFunctionType property: The network function type.
+     * 
+     * @return the networkFunctionType value.
+     */
+    @Override
+    public NetworkFunctionType networkFunctionType() {
+        return this.networkFunctionType;
     }
 
     /**

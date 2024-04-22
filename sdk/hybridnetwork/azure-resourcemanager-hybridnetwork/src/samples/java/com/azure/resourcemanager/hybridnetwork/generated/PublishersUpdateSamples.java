@@ -13,9 +13,7 @@ import java.util.Map;
  */
 public final class PublishersUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * PublisherUpdateTags.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PublisherUpdateTags.json
      */
     /**
      * Sample code: Update a publisher tags.
@@ -24,7 +22,8 @@ public final class PublishersUpdateSamples {
      */
     public static void updateAPublisherTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         Publisher resource = manager.publishers()
-            .getByResourceGroupWithResponse("rg", "TestPublisher", com.azure.core.util.Context.NONE).getValue();
+            .getByResourceGroupWithResponse("rg", "TestPublisher", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 

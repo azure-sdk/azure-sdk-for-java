@@ -6,17 +6,29 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Azure Operator Distributed Services network function Template application definition.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "artifactType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "artifactType",
+    defaultImpl = AzureOperatorNexusNetworkFunctionArmTemplateApplication.class,
+    visible = true)
 @JsonTypeName("ArmTemplate")
 @Fluent
 public final class AzureOperatorNexusNetworkFunctionArmTemplateApplication
     extends AzureOperatorNexusNetworkFunctionApplication {
+    /*
+     * The artifact type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "artifactType", required = true)
+    private AzureOperatorNexusArtifactType artifactType = AzureOperatorNexusArtifactType.ARM_TEMPLATE;
+
     /*
      * Azure Operator Distributed Services Template artifact profile.
      */
@@ -33,6 +45,16 @@ public final class AzureOperatorNexusNetworkFunctionArmTemplateApplication
      * Creates an instance of AzureOperatorNexusNetworkFunctionArmTemplateApplication class.
      */
     public AzureOperatorNexusNetworkFunctionArmTemplateApplication() {
+    }
+
+    /**
+     * Get the artifactType property: The artifact type.
+     * 
+     * @return the artifactType value.
+     */
+    @Override
+    public AzureOperatorNexusArtifactType artifactType() {
+        return this.artifactType;
     }
 
     /**

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.hybridnetwork.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactAccessCredentialInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
@@ -15,10 +16,21 @@ import java.util.List;
 /**
  * The azure storage account credential definition.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "credentialType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "credentialType",
+    defaultImpl = AzureStorageAccountCredential.class,
+    visible = true)
 @JsonTypeName("AzureStorageAccountToken")
 @Fluent
 public final class AzureStorageAccountCredential extends ArtifactAccessCredentialInner {
+    /*
+     * The credential type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "credentialType", required = true)
+    private CredentialType credentialType = CredentialType.AZURE_STORAGE_ACCOUNT_TOKEN;
+
     /*
      * The storage account Id
      */
@@ -41,6 +53,16 @@ public final class AzureStorageAccountCredential extends ArtifactAccessCredentia
      * Creates an instance of AzureStorageAccountCredential class.
      */
     public AzureStorageAccountCredential() {
+    }
+
+    /**
+     * Get the credentialType property: The credential type.
+     * 
+     * @return the credentialType value.
+     */
+    @Override
+    public CredentialType credentialType() {
+        return this.credentialType;
     }
 
     /**

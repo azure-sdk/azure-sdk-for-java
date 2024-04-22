@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class ConfigurationGroupValuesListSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueListBySubscription.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ConfigurationGroupValueListBySubscription.json
      */
     /**
      * Sample code: List all hybrid network sites in a subscription.

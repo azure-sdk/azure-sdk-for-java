@@ -4,8 +4,8 @@
 
 package com.azure.resourcemanager.hybridnetwork.generated;
 
-import com.azure.resourcemanager.hybridnetwork.models.ConfigurationValueWithSecrets;
 import com.azure.resourcemanager.hybridnetwork.models.ConfigurationValueWithoutSecrets;
+import com.azure.resourcemanager.hybridnetwork.models.ConfigurationValueWithSecrets;
 import com.azure.resourcemanager.hybridnetwork.models.OpenDeploymentResourceReference;
 import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceReference;
 
@@ -14,9 +14,7 @@ import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceRe
  */
 public final class ConfigurationGroupValuesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ConfigurationGroupValueCreate.json
      */
     /**
      * Sample code: Create or update configuration group value.
@@ -25,7 +23,9 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
      */
     public static void
         createOrUpdateConfigurationGroupValue(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().define("testConfigurationGroupValue").withRegion("eastus")
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
             .withExistingResourceGroup("rg1")
             .withProperties(new ConfigurationValueWithoutSecrets()
                 .withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId(
@@ -36,9 +36,7 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueFirstPartyCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ConfigurationGroupValueFirstPartyCreate.json
      */
     /**
      * Sample code: Create or update first party configuration group value.
@@ -47,7 +45,9 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
      */
     public static void createOrUpdateFirstPartyConfigurationGroupValue(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().define("testConfigurationGroupValue").withRegion("eastus")
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
             .withExistingResourceGroup("rg1")
             .withProperties(new ConfigurationValueWithoutSecrets()
                 .withConfigurationGroupSchemaResourceReference(new SecretDeploymentResourceReference().withId(
@@ -58,9 +58,7 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueCreateSecret.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ConfigurationGroupValueCreateSecret.json
      */
     /**
      * Sample code: Create or update configuration group value with secrets.
@@ -69,7 +67,9 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
      */
     public static void createOrUpdateConfigurationGroupValueWithSecrets(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().define("testConfigurationGroupValue").withRegion("eastus")
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
             .withExistingResourceGroup("rg1")
             .withProperties(new ConfigurationValueWithSecrets()
                 .withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId(

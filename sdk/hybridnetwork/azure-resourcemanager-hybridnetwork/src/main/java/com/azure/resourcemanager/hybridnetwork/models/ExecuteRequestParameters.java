@@ -78,12 +78,14 @@ public final class ExecuteRequestParameters {
      */
     public void validate() {
         if (serviceEndpoint() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property serviceEndpoint in model ExecuteRequestParameters"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property serviceEndpoint in model ExecuteRequestParameters"));
         }
         if (requestMetadata() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property requestMetadata in model ExecuteRequestParameters"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property requestMetadata in model ExecuteRequestParameters"));
         } else {
             requestMetadata().validate();
         }

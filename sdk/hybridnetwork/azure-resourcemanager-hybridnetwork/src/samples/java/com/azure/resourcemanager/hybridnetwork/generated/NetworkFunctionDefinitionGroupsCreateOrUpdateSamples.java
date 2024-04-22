@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class NetworkFunctionDefinitionGroupsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionGroupCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkFunctionDefinitionGroupCreate.json
      */
     /**
      * Sample code: Create or update the network function definition group.
@@ -20,7 +18,10 @@ public final class NetworkFunctionDefinitionGroupsCreateOrUpdateSamples {
      */
     public static void createOrUpdateTheNetworkFunctionDefinitionGroup(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionGroups().define("TestNetworkFunctionDefinitionGroupName").withRegion("eastus")
-            .withExistingPublisher("rg", "TestPublisher").create();
+        manager.networkFunctionDefinitionGroups()
+            .define("TestNetworkFunctionDefinitionGroupName")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .create();
     }
 }

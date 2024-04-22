@@ -13,9 +13,7 @@ import java.util.Map;
  */
 public final class ConfigurationGroupSchemasUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupSchemaUpdateTags.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ConfigurationGroupSchemaUpdateTags.json
      */
     /**
      * Sample code: Create or update the configuration group schema resource.

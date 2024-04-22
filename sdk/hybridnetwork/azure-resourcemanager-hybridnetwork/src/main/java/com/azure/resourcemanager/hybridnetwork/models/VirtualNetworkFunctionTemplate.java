@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,19 +16,36 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "nfviType",
-    defaultImpl = VirtualNetworkFunctionTemplate.class)
+    defaultImpl = VirtualNetworkFunctionTemplate.class,
+    visible = true)
 @JsonTypeName("VirtualNetworkFunctionTemplate")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureCore", value = AzureCoreNetworkFunctionTemplate.class),
     @JsonSubTypes.Type(name = "AzureOperatorNexus", value = AzureOperatorNexusNetworkFunctionTemplate.class) })
 @Immutable
 public class VirtualNetworkFunctionTemplate {
+    /*
+     * The network function type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "nfviType", required = true)
+    private VirtualNetworkFunctionNfviType nfviType;
+
     /**
      * Creates an instance of VirtualNetworkFunctionTemplate class.
      */
     public VirtualNetworkFunctionTemplate() {
+        this.nfviType = VirtualNetworkFunctionNfviType.fromString("VirtualNetworkFunctionTemplate");
+    }
+
+    /**
+     * Get the nfviType property: The network function type.
+     * 
+     * @return the nfviType value.
+     */
+    public VirtualNetworkFunctionNfviType nfviType() {
+        return this.nfviType;
     }
 
     /**

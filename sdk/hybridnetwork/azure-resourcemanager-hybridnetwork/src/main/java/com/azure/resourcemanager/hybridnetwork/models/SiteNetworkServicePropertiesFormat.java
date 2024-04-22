@@ -69,8 +69,7 @@ public final class SiteNetworkServicePropertiesFormat {
     private DeploymentResourceIdReference networkServiceDesignVersionResourceReference;
 
     /*
-     * The goal state of the site network service resource. This has references to the configuration group value
-     * objects that describe the desired state of the site network service.
+     * The goal state of the site network service resource. This has references to the configuration group value objects that describe the desired state of the site network service.
      */
     @JsonProperty(value = "desiredStateConfigurationGroupValueReferences")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
@@ -254,8 +253,7 @@ public final class SiteNetworkServicePropertiesFormat {
     }
 
     /**
-     * Get the lastStateConfigurationGroupValueReferences property: The last state of the site network service
-     * resource.
+     * Get the lastStateConfigurationGroupValueReferences property: The last state of the site network service resource.
      * 
      * @return the lastStateConfigurationGroupValueReferences value.
      */

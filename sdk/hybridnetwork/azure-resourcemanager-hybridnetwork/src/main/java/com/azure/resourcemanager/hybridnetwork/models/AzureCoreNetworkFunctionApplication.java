@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,19 +16,36 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "artifactType",
-    defaultImpl = AzureCoreNetworkFunctionApplication.class)
+    defaultImpl = AzureCoreNetworkFunctionApplication.class,
+    visible = true)
 @JsonTypeName("AzureCoreNetworkFunctionApplication")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "VhdImageFile", value = AzureCoreNetworkFunctionVhdApplication.class),
     @JsonSubTypes.Type(name = "ArmTemplate", value = AzureCoreNetworkFunctionArmTemplateApplication.class) })
 @Fluent
 public class AzureCoreNetworkFunctionApplication extends NetworkFunctionApplication {
+    /*
+     * The artifact type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "artifactType", required = true)
+    private AzureCoreArtifactType artifactType;
+
     /**
      * Creates an instance of AzureCoreNetworkFunctionApplication class.
      */
     public AzureCoreNetworkFunctionApplication() {
+        this.artifactType = AzureCoreArtifactType.fromString("AzureCoreNetworkFunctionApplication");
+    }
+
+    /**
+     * Get the artifactType property: The artifact type.
+     * 
+     * @return the artifactType value.
+     */
+    public AzureCoreArtifactType artifactType() {
+        return this.artifactType;
     }
 
     /**

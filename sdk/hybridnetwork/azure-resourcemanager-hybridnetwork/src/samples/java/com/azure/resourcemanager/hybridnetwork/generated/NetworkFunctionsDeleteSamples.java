@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class NetworkFunctionsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDelete.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkFunctionDelete.json
      */
     /**
      * Sample code: Delete network function resource.
@@ -24,9 +22,7 @@ public final class NetworkFunctionsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
-     * VirtualNetworkFunctionDelete.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/VirtualNetworkFunctionDelete.json
      */
     /**
      * Sample code: Delete virtual network function resource on AzureCore.
@@ -39,9 +35,7 @@ public final class NetworkFunctionsDeleteSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * AzureOperatorNexus/VirtualNetworkFunctionDelete.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureOperatorNexus/VirtualNetworkFunctionDelete.json
      */
     /**
      * Sample code: Delete virtual network function resource on AzureOperatorNexus.

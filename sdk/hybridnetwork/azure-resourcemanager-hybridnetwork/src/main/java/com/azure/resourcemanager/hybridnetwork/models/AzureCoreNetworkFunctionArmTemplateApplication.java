@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Azure core network function Template application definition.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "artifactType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "artifactType",
+    defaultImpl = AzureCoreNetworkFunctionArmTemplateApplication.class,
+    visible = true)
 @JsonTypeName("ArmTemplate")
 @Fluent
 public final class AzureCoreNetworkFunctionArmTemplateApplication extends AzureCoreNetworkFunctionApplication {
+    /*
+     * The artifact type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "artifactType", required = true)
+    private AzureCoreArtifactType artifactType = AzureCoreArtifactType.ARM_TEMPLATE;
+
     /*
      * Azure template artifact profile.
      */
@@ -32,6 +44,16 @@ public final class AzureCoreNetworkFunctionArmTemplateApplication extends AzureC
      * Creates an instance of AzureCoreNetworkFunctionArmTemplateApplication class.
      */
     public AzureCoreNetworkFunctionArmTemplateApplication() {
+    }
+
+    /**
+     * Get the artifactType property: The artifact type.
+     * 
+     * @return the artifactType value.
+     */
+    @Override
+    public AzureCoreArtifactType artifactType() {
+        return this.artifactType;
     }
 
     /**

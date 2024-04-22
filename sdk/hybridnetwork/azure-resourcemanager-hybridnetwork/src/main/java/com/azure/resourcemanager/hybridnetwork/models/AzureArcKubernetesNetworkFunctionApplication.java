@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,17 +16,34 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "artifactType",
-    defaultImpl = AzureArcKubernetesNetworkFunctionApplication.class)
+    defaultImpl = AzureArcKubernetesNetworkFunctionApplication.class,
+    visible = true)
 @JsonTypeName("AzureArcKubernetesNetworkFunctionApplication")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "HelmPackage", value = AzureArcKubernetesHelmApplication.class) })
 @Fluent
 public class AzureArcKubernetesNetworkFunctionApplication extends NetworkFunctionApplication {
+    /*
+     * The artifact type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "artifactType", required = true)
+    private AzureArcKubernetesArtifactType artifactType;
+
     /**
      * Creates an instance of AzureArcKubernetesNetworkFunctionApplication class.
      */
     public AzureArcKubernetesNetworkFunctionApplication() {
+        this.artifactType = AzureArcKubernetesArtifactType.fromString("AzureArcKubernetesNetworkFunctionApplication");
+    }
+
+    /**
+     * Get the artifactType property: The artifact type.
+     * 
+     * @return the artifactType value.
+     */
+    public AzureArcKubernetesArtifactType artifactType() {
+        return this.artifactType;
     }
 
     /**

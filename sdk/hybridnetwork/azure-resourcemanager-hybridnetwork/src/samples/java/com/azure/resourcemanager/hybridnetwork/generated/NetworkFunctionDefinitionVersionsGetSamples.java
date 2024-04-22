@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class NetworkFunctionDefinitionVersionsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionDefinitionVersionGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkFunctionDefinitionVersionGet.json
      */
     /**
      * Sample code: Get a network function definition version resource.
@@ -20,14 +18,13 @@ public final class NetworkFunctionDefinitionVersionsGetSamples {
      */
     public static void getANetworkFunctionDefinitionVersionResource(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().getWithResponse("rg", "TestPublisher",
-            "TestNetworkFunctionDefinitionGroupName", "1.0.0", com.azure.core.util.Context.NONE);
+        manager.networkFunctionDefinitionVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
-     * VirtualNetworkFunctionDefinitionVersionGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/VirtualNetworkFunctionDefinitionVersionGet.json
      */
     /**
      * Sample code: Get network function definition version resource for AzureCore VNF.
@@ -36,14 +33,13 @@ public final class NetworkFunctionDefinitionVersionsGetSamples {
      */
     public static void getNetworkFunctionDefinitionVersionResourceForAzureCoreVNF(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().getWithResponse("rg", "TestPublisher",
-            "TestNetworkFunctionDefinitionGroupName", "1.0.0", com.azure.core.util.Context.NONE);
+        manager.networkFunctionDefinitionVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureOperatorNexus/VirtualNetworkFunctionDefinitionVersionGet.json
      */
     /**
      * Sample code: Get network function definition version resource for AzureOperatorNexus VNF.
@@ -52,7 +48,8 @@ public final class NetworkFunctionDefinitionVersionsGetSamples {
      */
     public static void getNetworkFunctionDefinitionVersionResourceForAzureOperatorNexusVNF(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().getWithResponse("rg", "TestPublisher",
-            "TestNetworkFunctionDefinitionGroupName", "1.0.0", com.azure.core.util.Context.NONE);
+        manager.networkFunctionDefinitionVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 }

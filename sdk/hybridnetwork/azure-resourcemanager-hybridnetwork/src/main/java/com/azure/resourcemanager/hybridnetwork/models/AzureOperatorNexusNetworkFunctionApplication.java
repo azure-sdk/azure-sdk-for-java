@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,19 +16,36 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "artifactType",
-    defaultImpl = AzureOperatorNexusNetworkFunctionApplication.class)
+    defaultImpl = AzureOperatorNexusNetworkFunctionApplication.class,
+    visible = true)
 @JsonTypeName("AzureOperatorNexusNetworkFunctionApplication")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "ImageFile", value = AzureOperatorNexusNetworkFunctionImageApplication.class),
     @JsonSubTypes.Type(name = "ArmTemplate", value = AzureOperatorNexusNetworkFunctionArmTemplateApplication.class) })
 @Fluent
 public class AzureOperatorNexusNetworkFunctionApplication extends NetworkFunctionApplication {
+    /*
+     * The artifact type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "artifactType", required = true)
+    private AzureOperatorNexusArtifactType artifactType;
+
     /**
      * Creates an instance of AzureOperatorNexusNetworkFunctionApplication class.
      */
     public AzureOperatorNexusNetworkFunctionApplication() {
+        this.artifactType = AzureOperatorNexusArtifactType.fromString("AzureOperatorNexusNetworkFunctionApplication");
+    }
+
+    /**
+     * Get the artifactType property: The artifact type.
+     * 
+     * @return the artifactType value.
+     */
+    public AzureOperatorNexusArtifactType artifactType() {
+        return this.artifactType;
     }
 
     /**

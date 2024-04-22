@@ -7,6 +7,7 @@ package com.azure.resourcemanager.hybridnetwork.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactAccessCredentialInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
@@ -15,10 +16,21 @@ import java.util.List;
 /**
  * The azure container registry scoped token credential definition.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "credentialType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "credentialType",
+    defaultImpl = AzureContainerRegistryScopedTokenCredential.class,
+    visible = true)
 @JsonTypeName("AzureContainerRegistryScopedToken")
 @Fluent
 public final class AzureContainerRegistryScopedTokenCredential extends ArtifactAccessCredentialInner {
+    /*
+     * The credential type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "credentialType", required = true)
+    private CredentialType credentialType = CredentialType.AZURE_CONTAINER_REGISTRY_SCOPED_TOKEN;
+
     /*
      * The username of the credential.
      */
@@ -53,6 +65,16 @@ public final class AzureContainerRegistryScopedTokenCredential extends ArtifactA
      * Creates an instance of AzureContainerRegistryScopedTokenCredential class.
      */
     public AzureContainerRegistryScopedTokenCredential() {
+    }
+
+    /**
+     * Get the credentialType property: The credential type.
+     * 
+     * @return the credentialType value.
+     */
+    @Override
+    public CredentialType credentialType() {
+        return this.credentialType;
     }
 
     /**

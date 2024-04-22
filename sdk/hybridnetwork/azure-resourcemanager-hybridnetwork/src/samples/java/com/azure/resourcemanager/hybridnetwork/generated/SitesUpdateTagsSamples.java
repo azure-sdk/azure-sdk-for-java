@@ -13,9 +13,7 @@ import java.util.Map;
  */
 public final class SitesUpdateTagsSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteUpdateTags.
-     * json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteUpdateTags.json
      */
     /**
      * Sample code: Update network site tags.
@@ -24,7 +22,8 @@ public final class SitesUpdateTagsSamples {
      */
     public static void updateNetworkSiteTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         Site resource = manager.sites()
-            .getByResourceGroupWithResponse("rg1", "testSite", com.azure.core.util.Context.NONE).getValue();
+            .getByResourceGroupWithResponse("rg1", "testSite", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 

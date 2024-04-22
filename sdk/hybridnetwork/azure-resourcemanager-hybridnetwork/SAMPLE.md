@@ -129,7 +129,6 @@ import com.azure.resourcemanager.hybridnetwork.models.ArtifactManifestProperties
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactType;
 import com.azure.resourcemanager.hybridnetwork.models.ManifestArtifactFormat;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 /**
  * Samples for ArtifactManifests CreateOrUpdate.
@@ -143,8 +142,20 @@ public final class ArtifactManifestsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateTheArtifactManifestResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests().define("TestManifest").withRegion("eastus").withExistingArtifactStore("rg", "TestPublisher", "TestArtifactStore").withProperties(new ArtifactManifestPropertiesFormat().withArtifacts(Arrays.asList(new ManifestArtifactFormat().withArtifactName("fed-rbac").withArtifactType(ArtifactType.OCIARTIFACT).withArtifactVersion("1.0.0"), new ManifestArtifactFormat().withArtifactName("nginx").withArtifactType(ArtifactType.OCIARTIFACT).withArtifactVersion("v1")))).create();
+    public static void createOrUpdateTheArtifactManifestResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactManifests()
+            .define("TestManifest")
+            .withRegion("eastus")
+            .withExistingArtifactStore("rg", "TestPublisher", "TestArtifactStore")
+            .withProperties(new ArtifactManifestPropertiesFormat().withArtifacts(Arrays.asList(
+                new ManifestArtifactFormat().withArtifactName("fed-rbac")
+                    .withArtifactType(ArtifactType.OCIARTIFACT)
+                    .withArtifactVersion("1.0.0"),
+                new ManifestArtifactFormat().withArtifactName("nginx")
+                    .withArtifactType(ArtifactType.OCIARTIFACT)
+                    .withArtifactVersion("v1"))))
+            .create();
     }
 }
 ```
@@ -164,8 +175,10 @@ public final class ArtifactManifestsDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteAArtifactManifestResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests().delete("rg", "TestPublisher", "TestArtifactStore", "TestManifest", com.azure.core.util.Context.NONE);
+    public static void
+        deleteAArtifactManifestResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactManifests()
+            .delete("rg", "TestPublisher", "TestArtifactStore", "TestManifest", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -185,8 +198,11 @@ public final class ArtifactManifestsGetSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getAArtifactManifestResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests().getWithResponse("rg", "TestPublisher", "TestArtifactStore", "TestManifest", com.azure.core.util.Context.NONE);
+    public static void
+        getAArtifactManifestResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactManifests()
+            .getWithResponse("rg", "TestPublisher", "TestArtifactStore", "TestManifest",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -206,8 +222,10 @@ public final class ArtifactManifestsListByArtifactStoreSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getArtifactManifestListResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests().listByArtifactStore("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE);
+    public static void
+        getArtifactManifestListResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactManifests()
+            .listByArtifactStore("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -227,8 +245,11 @@ public final class ArtifactManifestsListCredentialSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listACredentialForArtifactManifest(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests().listCredentialWithResponse("rg", "TestPublisher", "TestArtifactStore", "TestArtifactManifestName", com.azure.core.util.Context.NONE);
+    public static void
+        listACredentialForArtifactManifest(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactManifests()
+            .listCredentialWithResponse("rg", "TestPublisher", "TestArtifactStore", "TestArtifactManifestName",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -252,8 +273,12 @@ public final class ArtifactManifestsUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void updateAArtifactManifestResourceTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        ArtifactManifest resource = manager.artifactManifests().getWithResponse("rg", "TestPublisher", "TestArtifactStore", "TestManifest", com.azure.core.util.Context.NONE).getValue();
+    public static void
+        updateAArtifactManifestResourceTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        ArtifactManifest resource = manager.artifactManifests()
+            .getWithResponse("rg", "TestPublisher", "TestArtifactStore", "TestManifest",
+                com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -276,7 +301,6 @@ public final class ArtifactManifestsUpdateSamples {
 ```java
 import com.azure.resourcemanager.hybridnetwork.fluent.models.ArtifactManifestUpdateStateInner;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactManifestState;
-import java.util.stream.Collectors;
 
 /**
  * Samples for ArtifactManifests UpdateState.
@@ -290,8 +314,12 @@ public final class ArtifactManifestsUpdateStateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void updateArtifactManifestState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests().updateState("rg", "TestPublisher", "TestArtifactStore", "TestArtifactManifestName", new ArtifactManifestUpdateStateInner().withArtifactManifestState(ArtifactManifestState.UPLOADED), com.azure.core.util.Context.NONE);
+    public static void
+        updateArtifactManifestState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactManifests()
+            .updateState("rg", "TestPublisher", "TestArtifactStore", "TestArtifactManifestName",
+                new ArtifactManifestUpdateStateInner().withArtifactManifestState(ArtifactManifestState.UPLOADED),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -303,7 +331,6 @@ import com.azure.resourcemanager.hybridnetwork.models.ArtifactReplicationStrateg
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePropertiesFormat;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStorePropertiesFormatManagedResourceGroupConfiguration;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreType;
-import java.util.stream.Collectors;
 
 /**
  * Samples for ArtifactStores CreateOrUpdate.
@@ -317,8 +344,19 @@ public final class ArtifactStoresCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateAnArtifactStoreOfPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactStores().define("TestArtifactStore").withRegion("eastus").withExistingPublisher("rg", "TestPublisher").withProperties(new ArtifactStorePropertiesFormat().withStoreType(ArtifactStoreType.AZURE_CONTAINER_REGISTRY).withReplicationStrategy(ArtifactReplicationStrategy.SINGLE_REPLICATION).withManagedResourceGroupConfiguration(new ArtifactStorePropertiesFormatManagedResourceGroupConfiguration().withName("testRg").withLocation("eastus"))).create();
+    public static void createOrUpdateAnArtifactStoreOfPublisherResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.artifactStores()
+            .define("TestArtifactStore")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .withProperties(
+                new ArtifactStorePropertiesFormat().withStoreType(ArtifactStoreType.AZURE_CONTAINER_REGISTRY)
+                    .withReplicationStrategy(ArtifactReplicationStrategy.SINGLE_REPLICATION)
+                    .withManagedResourceGroupConfiguration(
+                        new ArtifactStorePropertiesFormatManagedResourceGroupConfiguration().withName("testRg")
+                            .withLocation("eastus")))
+            .create();
     }
 }
 ```
@@ -338,7 +376,8 @@ public final class ArtifactStoresDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteAArtifactStoreOfPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void
+        deleteAArtifactStoreOfPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.artifactStores().delete("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE);
     }
 }
@@ -360,7 +399,8 @@ public final class ArtifactStoresGetSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void getAArtifactStoreResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactStores().getWithResponse("rg", "TestPublisher", "TestArtifactStoreName", com.azure.core.util.Context.NONE);
+        manager.artifactStores()
+            .getWithResponse("rg", "TestPublisher", "TestArtifactStoreName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -380,7 +420,8 @@ public final class ArtifactStoresListByPublisherSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getApplicationGroupsUnderAPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void getApplicationGroupsUnderAPublisherResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.artifactStores().listByPublisher("rg", "TestPublisher", com.azure.core.util.Context.NONE);
     }
 }
@@ -405,8 +446,11 @@ public final class ArtifactStoresUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void updateArtifactStoreResourceTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        ArtifactStore resource = manager.artifactStores().getWithResponse("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE).getValue();
+    public static void
+        updateArtifactStoreResourceTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        ArtifactStore resource = manager.artifactStores()
+            .getWithResponse("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -460,7 +504,8 @@ public final class ComponentsListByNetworkFunctionSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listComponentsInNetworkFunction(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void
+        listComponentsInNetworkFunction(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.components().listByNetworkFunction("rg", "testNf", com.azure.core.util.Context.NONE);
     }
 }
@@ -483,8 +528,16 @@ public final class ConfigurationGroupSchemasCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateTheNetworkFunctionDefinitionGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas().define("testConfigurationGroupSchema").withRegion("westUs2").withExistingPublisher("rg1", "testPublisher").withProperties(new ConfigurationGroupSchemaPropertiesFormat().withDescription("Schema with no secrets").withSchemaDefinition("{\"type\":\"object\",\"properties\":{\"interconnect-groups\":{\"type\":\"object\",\"properties\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"international-interconnects\":{\"type\":\"array\",\"item\":{\"type\":\"string\"}},\"domestic-interconnects\":{\"type\":\"array\",\"item\":{\"type\":\"string\"}}}}},\"interconnect-group-assignments\":{\"type\":\"object\",\"properties\":{\"type\":\"object\",\"properties\":{\"ssc\":{\"type\":\"string\"},\"interconnects-interconnects\":{\"type\":\"string\"}}}}},\"required\":[\"interconnect-groups\",\"interconnect-group-assignments\"]}")).create();
+    public static void createOrUpdateTheNetworkFunctionDefinitionGroup(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupSchemas()
+            .define("testConfigurationGroupSchema")
+            .withRegion("westUs2")
+            .withExistingPublisher("rg1", "testPublisher")
+            .withProperties(new ConfigurationGroupSchemaPropertiesFormat().withDescription("Schema with no secrets")
+                .withSchemaDefinition(
+                    "{\"type\":\"object\",\"properties\":{\"interconnect-groups\":{\"type\":\"object\",\"properties\":{\"type\":\"object\",\"properties\":{\"name\":{\"type\":\"string\"},\"international-interconnects\":{\"type\":\"array\",\"item\":{\"type\":\"string\"}},\"domestic-interconnects\":{\"type\":\"array\",\"item\":{\"type\":\"string\"}}}}},\"interconnect-group-assignments\":{\"type\":\"object\",\"properties\":{\"type\":\"object\",\"properties\":{\"ssc\":{\"type\":\"string\"},\"interconnects-interconnects\":{\"type\":\"string\"}}}}},\"required\":[\"interconnect-groups\",\"interconnect-group-assignments\"]}"))
+            .create();
     }
 }
 ```
@@ -504,8 +557,10 @@ public final class ConfigurationGroupSchemasDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas().delete("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE);
+    public static void
+        deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupSchemas()
+            .delete("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -525,8 +580,10 @@ public final class ConfigurationGroupSchemasGetSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getANetworkFunctionDefinitionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas().getWithResponse("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE);
+    public static void getANetworkFunctionDefinitionGroupResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupSchemas()
+            .getWithResponse("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -546,7 +603,8 @@ public final class ConfigurationGroupSchemasListByPublisherSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getNetworkFunctionDefinitionGroupsUnderPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void getNetworkFunctionDefinitionGroupsUnderPublisherResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.configurationGroupSchemas().listByPublisher("rg1", "testPublisher", com.azure.core.util.Context.NONE);
     }
 }
@@ -571,8 +629,11 @@ public final class ConfigurationGroupSchemasUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateTheConfigurationGroupSchemaResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        ConfigurationGroupSchema resource = manager.configurationGroupSchemas().getWithResponse("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE).getValue();
+    public static void createOrUpdateTheConfigurationGroupSchemaResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        ConfigurationGroupSchema resource = manager.configurationGroupSchemas()
+            .getWithResponse("rg1", "testPublisher", "testConfigurationGroupSchema", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -595,7 +656,6 @@ public final class ConfigurationGroupSchemasUpdateSamples {
 ```java
 import com.azure.resourcemanager.hybridnetwork.fluent.models.ConfigurationGroupSchemaVersionUpdateStateInner;
 import com.azure.resourcemanager.hybridnetwork.models.VersionState;
-import java.util.stream.Collectors;
 
 /**
  * Samples for ConfigurationGroupSchemas UpdateState.
@@ -609,8 +669,12 @@ public final class ConfigurationGroupSchemasUpdateStateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void updateNetworkServiceDesignVersionState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas().updateState("rg1", "testPublisher", "testConfigurationGroupSchema", new ConfigurationGroupSchemaVersionUpdateStateInner().withVersionState(VersionState.ACTIVE), com.azure.core.util.Context.NONE);
+    public static void
+        updateNetworkServiceDesignVersionState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupSchemas()
+            .updateState("rg1", "testPublisher", "testConfigurationGroupSchema",
+                new ConfigurationGroupSchemaVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -635,8 +699,18 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateConfigurationGroupValue(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().define("testConfigurationGroupValue").withRegion("eastus").withExistingResourceGroup("rg1").withProperties(new ConfigurationValueWithoutSecrets().withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId("/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName")).withConfigurationValue("{\"interconnect-groups\":{\"stripe-one\":{\"name\":\"Stripe one\",\"international-interconnects\":[\"france\",\"germany\"],\"domestic-interconnects\":[\"birmingham\",\"edinburgh\"]},\"stripe-two\":{\"name\":\"Stripe two\",\"international-interconnects\":[\"germany\",\"italy\"],\"domestic-interconnects\":[\"edinburgh\",\"london\"]}},\"interconnect-group-assignments\":{\"ssc-one\":{\"ssc\":\"SSC 1\",\"interconnects\":\"stripe-one\"},\"ssc-two\":{\"ssc\":\"SSC 2\",\"interconnects\":\"stripe-two\"}}}")).create();
+    public static void
+        createOrUpdateConfigurationGroupValue(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new ConfigurationValueWithoutSecrets()
+                .withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName"))
+                .withConfigurationValue(
+                    "{\"interconnect-groups\":{\"stripe-one\":{\"name\":\"Stripe one\",\"international-interconnects\":[\"france\",\"germany\"],\"domestic-interconnects\":[\"birmingham\",\"edinburgh\"]},\"stripe-two\":{\"name\":\"Stripe two\",\"international-interconnects\":[\"germany\",\"italy\"],\"domestic-interconnects\":[\"edinburgh\",\"london\"]}},\"interconnect-group-assignments\":{\"ssc-one\":{\"ssc\":\"SSC 1\",\"interconnects\":\"stripe-one\"},\"ssc-two\":{\"ssc\":\"SSC 2\",\"interconnects\":\"stripe-two\"}}}"))
+            .create();
     }
 
     /*
@@ -647,8 +721,18 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateFirstPartyConfigurationGroupValue(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().define("testConfigurationGroupValue").withRegion("eastus").withExistingResourceGroup("rg1").withProperties(new ConfigurationValueWithoutSecrets().withConfigurationGroupSchemaResourceReference(new SecretDeploymentResourceReference().withId("/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName")).withConfigurationValue("{\"interconnect-groups\":{\"stripe-one\":{\"name\":\"Stripe one\",\"international-interconnects\":[\"france\",\"germany\"],\"domestic-interconnects\":[\"birmingham\",\"edinburgh\"]},\"stripe-two\":{\"name\":\"Stripe two\",\"international-interconnects\":[\"germany\",\"italy\"],\"domestic-interconnects\":[\"edinburgh\",\"london\"]}},\"interconnect-group-assignments\":{\"ssc-one\":{\"ssc\":\"SSC 1\",\"interconnects\":\"stripe-one\"},\"ssc-two\":{\"ssc\":\"SSC 2\",\"interconnects\":\"stripe-two\"}}}")).create();
+    public static void createOrUpdateFirstPartyConfigurationGroupValue(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new ConfigurationValueWithoutSecrets()
+                .withConfigurationGroupSchemaResourceReference(new SecretDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName"))
+                .withConfigurationValue(
+                    "{\"interconnect-groups\":{\"stripe-one\":{\"name\":\"Stripe one\",\"international-interconnects\":[\"france\",\"germany\"],\"domestic-interconnects\":[\"birmingham\",\"edinburgh\"]},\"stripe-two\":{\"name\":\"Stripe two\",\"international-interconnects\":[\"germany\",\"italy\"],\"domestic-interconnects\":[\"edinburgh\",\"london\"]}},\"interconnect-group-assignments\":{\"ssc-one\":{\"ssc\":\"SSC 1\",\"interconnects\":\"stripe-one\"},\"ssc-two\":{\"ssc\":\"SSC 2\",\"interconnects\":\"stripe-two\"}}}"))
+            .create();
     }
 
     /*
@@ -659,8 +743,17 @@ public final class ConfigurationGroupValuesCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateConfigurationGroupValueWithSecrets(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().define("testConfigurationGroupValue").withRegion("eastus").withExistingResourceGroup("rg1").withProperties(new ConfigurationValueWithSecrets().withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId("/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName")).withSecretConfigurationValue("fakeTokenPlaceholder")).create();
+    public static void createOrUpdateConfigurationGroupValueWithSecrets(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues()
+            .define("testConfigurationGroupValue")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new ConfigurationValueWithSecrets()
+                .withConfigurationGroupSchemaResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/testRG/providers/microsoft.hybridnetwork/publishers/testPublisher/configurationGroupSchemas/testConfigurationGroupSchemaName"))
+                .withSecretConfigurationValue("fakeTokenPlaceholder"))
+            .create();
     }
 }
 ```
@@ -680,8 +773,10 @@ public final class ConfigurationGroupValuesDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteHybridConfigurationGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().delete("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE);
+    public static void
+        deleteHybridConfigurationGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues()
+            .delete("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -701,8 +796,10 @@ public final class ConfigurationGroupValuesGetByResourceGroupSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getHybridConfigurationGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().getByResourceGroupWithResponse("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE);
+    public static void
+        getHybridConfigurationGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.configurationGroupValues()
+            .getByResourceGroupWithResponse("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -722,7 +819,8 @@ public final class ConfigurationGroupValuesListSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void
+        listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.configurationGroupValues().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -743,7 +841,8 @@ public final class ConfigurationGroupValuesListByResourceGroupSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listAllHybridNetworkConfigurationGroupValuesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void listAllHybridNetworkConfigurationGroupValuesInASubscription(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.configurationGroupValues().listByResourceGroup("rg1", com.azure.core.util.Context.NONE);
     }
 }
@@ -768,8 +867,11 @@ public final class ConfigurationGroupValuesUpdateTagsSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void updateHybridConfigurationGroupTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        ConfigurationGroupValue resource = manager.configurationGroupValues().getByResourceGroupWithResponse("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE).getValue();
+    public static void
+        updateHybridConfigurationGroupTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        ConfigurationGroupValue resource = manager.configurationGroupValues()
+            .getByResourceGroupWithResponse("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -802,8 +904,13 @@ public final class NetworkFunctionDefinitionGroupsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateTheNetworkFunctionDefinitionGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionGroups().define("TestNetworkFunctionDefinitionGroupName").withRegion("eastus").withExistingPublisher("rg", "TestPublisher").create();
+    public static void createOrUpdateTheNetworkFunctionDefinitionGroup(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionGroups()
+            .define("TestNetworkFunctionDefinitionGroupName")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .create();
     }
 }
 ```
@@ -823,8 +930,10 @@ public final class NetworkFunctionDefinitionGroupsDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionGroups().delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", com.azure.core.util.Context.NONE);
+    public static void
+        deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionGroups()
+            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -844,8 +953,11 @@ public final class NetworkFunctionDefinitionGroupsGetSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getANetworkFunctionDefinitionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionGroups().getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", com.azure.core.util.Context.NONE);
+    public static void getANetworkFunctionDefinitionGroupResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionGroups()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -865,8 +977,10 @@ public final class NetworkFunctionDefinitionGroupsListByPublisherSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getNetworkFunctionDefinitionGroupsUnderPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionGroups().listByPublisher("rg", "TestPublisher", com.azure.core.util.Context.NONE);
+    public static void getNetworkFunctionDefinitionGroupsUnderPublisherResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionGroups()
+            .listByPublisher("rg", "TestPublisher", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -890,8 +1004,12 @@ public final class NetworkFunctionDefinitionGroupsUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateTheNetworkFunctionDefinitionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        NetworkFunctionDefinitionGroup resource = manager.networkFunctionDefinitionGroups().getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", com.azure.core.util.Context.NONE).getValue();
+    public static void createOrUpdateTheNetworkFunctionDefinitionGroupResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        NetworkFunctionDefinitionGroup resource = manager.networkFunctionDefinitionGroups()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName",
+                com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -947,7 +1065,6 @@ import com.azure.resourcemanager.hybridnetwork.models.VhdImageArtifactProfile;
 import com.azure.resourcemanager.hybridnetwork.models.VhdImageMappingRuleProfile;
 import com.azure.resourcemanager.hybridnetwork.models.VirtualNetworkFunctionDefinitionVersion;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 /**
  * Samples for NetworkFunctionDefinitionVersions CreateOrUpdate.
@@ -961,8 +1078,49 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateANetworkFunctionDefinitionVersionResourceForAzureCoreVNF(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().define("1.0.0").withRegion("eastus").withExistingNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName").withProperties(new VirtualNetworkFunctionDefinitionVersion().withDescription("test NFDV for AzureCore").withDeployParameters("{\"virtualMachineName\":{\"type\":\"string\"},\"cpuCores\":{\"type\":\"int\"},\"memorySizeGB\":{\"type\":\"int\"},\"cloudServicesNetworkAttachment\":{\"type\":\"object\",\"properties\":{\"networkAttachmentName\":{\"type\":\"string\"},\"attachedNetworkId\":{\"type\":\"string\"},\"ipAllocationMethod\":{\"type\":\"string\"},\"ipv4Address\":{\"type\":\"string\"},\"ipv6Address\":{\"type\":\"string\"},\"defaultGateway\":{\"type\":\"string\"}},\"required\":[\"attachedNetworkId\",\"ipAllocationMethod\"]},\"networkAttachments\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"networkAttachmentName\":{\"type\":\"string\"},\"attachedNetworkId\":{\"type\":\"string\"},\"ipAllocationMethod\":{\"type\":\"string\"},\"ipv4Address\":{\"type\":\"string\"},\"ipv6Address\":{\"type\":\"string\"},\"defaultGateway\":{\"type\":\"string\"}},\"required\":[\"attachedNetworkId\",\"ipAllocationMethod\"]}},\"storageProfile\":{\"type\":\"object\",\"properties\":{\"osDisk\":{\"type\":\"object\",\"properties\":{\"createOption\":{\"type\":\"string\"},\"deleteOption\":{\"type\":\"string\"},\"diskSizeGB\":{\"type\":\"integer\"}},\"required\":[\"diskSizeGB\"]}},\"required\":[\"osDisk\"]},\"sshPublicKeys\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"keyData\":{\"type\":\"string\"}},\"required\":[\"keyData\"]}},\"userData\":{\"type\":\"string\"},\"adminUsername\":{\"type\":\"string\"},\"bootMethod\":{\"type\":\"string\",\"default\":\"UEFI\",\"enum\":[\"UEFI\",\"BIOS\"]},\"isolateEmulatorThread\":{\"type\":\"string\"},\"virtioInterface\":{\"type\":\"string\"},\"placementHints\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"hintType\":{\"type\":\"string\",\"enum\":[\"Affinity\",\"AntiAffinity\"]},\"resourceId\":{\"type\":\"string\"},\"schedulingExecution\":{\"type\":\"string\",\"enum\":[\"Soft\",\"Hard\"]},\"scope\":{\"type\":\"string\"}},\"required\":[\"hintType\",\"schedulingExecution\",\"resourceId\",\"scope\"]}}}").withNetworkFunctionTemplate(new AzureCoreNetworkFunctionTemplate().withNetworkFunctionApplications(Arrays.asList(new AzureCoreNetworkFunctionVhdApplication().withName("testImageRole").withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList()).withUninstallDependsOn(Arrays.asList()).withUpdateDependsOn(Arrays.asList())).withArtifactProfile(new AzureCoreVhdImageArtifactProfile().withArtifactStore(new ReferencedResource().withId("/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore")).withVhdArtifactProfile(new VhdImageArtifactProfile().withVhdName("test-image").withVhdVersion("1-0-0"))).withDeployParametersMappingRuleProfile(new AzureCoreVhdImageDeployMappingRuleProfile().withApplicationEnablement(ApplicationEnablement.UNKNOWN).withVhdImageMappingRuleProfile(new VhdImageMappingRuleProfile().withUserConfiguration(""))), new AzureCoreNetworkFunctionArmTemplateApplication().withName("testTemplateRole").withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList("testImageRole")).withUninstallDependsOn(Arrays.asList("testImageRole")).withUpdateDependsOn(Arrays.asList("testImageRole"))).withArtifactProfile(new AzureCoreArmTemplateArtifactProfile().withArtifactStore(new ReferencedResource().withId("/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore")).withTemplateArtifactProfile(new ArmTemplateArtifactProfile().withTemplateName("test-template").withTemplateVersion("1.0.0"))).withDeployParametersMappingRuleProfile(new AzureCoreArmTemplateDeployMappingRuleProfile().withApplicationEnablement(ApplicationEnablement.UNKNOWN).withTemplateMappingRuleProfile(new ArmTemplateMappingRuleProfile().withTemplateParameters("{\"virtualMachineName\":\"{deployParameters.virtualMachineName}\",\"cpuCores\":\"{deployParameters.cpuCores}\",\"memorySizeGB\":\"{deployParameters.memorySizeGB}\",\"cloudServicesNetworkAttachment\":\"{deployParameters.cloudServicesNetworkAttachment}\",\"networkAttachments\":\"{deployParameters.networkAttachments}\",\"sshPublicKeys\":\"{deployParameters.sshPublicKeys}\",\"storageProfile\":\"{deployParameters.storageProfile}\",\"isolateEmulatorThread\":\"{deployParameters.isolateEmulatorThread}\",\"virtioInterface\":\"{deployParameters.virtioInterface}\",\"userData\":\"{deployParameters.userData}\",\"adminUsername\":\"{deployParameters.adminUsername}\",\"bootMethod\":\"{deployParameters.bootMethod}\",\"placementHints\":\"{deployParameters.placementHints}\"}"))))))).create();
+    public static void createOrUpdateANetworkFunctionDefinitionVersionResourceForAzureCoreVNF(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .define("1.0.0")
+            .withRegion("eastus")
+            .withExistingNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName")
+            .withProperties(new VirtualNetworkFunctionDefinitionVersion().withDescription("test NFDV for AzureCore")
+                .withDeployParameters(
+                    "{\"virtualMachineName\":{\"type\":\"string\"},\"cpuCores\":{\"type\":\"int\"},\"memorySizeGB\":{\"type\":\"int\"},\"cloudServicesNetworkAttachment\":{\"type\":\"object\",\"properties\":{\"networkAttachmentName\":{\"type\":\"string\"},\"attachedNetworkId\":{\"type\":\"string\"},\"ipAllocationMethod\":{\"type\":\"string\"},\"ipv4Address\":{\"type\":\"string\"},\"ipv6Address\":{\"type\":\"string\"},\"defaultGateway\":{\"type\":\"string\"}},\"required\":[\"attachedNetworkId\",\"ipAllocationMethod\"]},\"networkAttachments\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"networkAttachmentName\":{\"type\":\"string\"},\"attachedNetworkId\":{\"type\":\"string\"},\"ipAllocationMethod\":{\"type\":\"string\"},\"ipv4Address\":{\"type\":\"string\"},\"ipv6Address\":{\"type\":\"string\"},\"defaultGateway\":{\"type\":\"string\"}},\"required\":[\"attachedNetworkId\",\"ipAllocationMethod\"]}},\"storageProfile\":{\"type\":\"object\",\"properties\":{\"osDisk\":{\"type\":\"object\",\"properties\":{\"createOption\":{\"type\":\"string\"},\"deleteOption\":{\"type\":\"string\"},\"diskSizeGB\":{\"type\":\"integer\"}},\"required\":[\"diskSizeGB\"]}},\"required\":[\"osDisk\"]},\"sshPublicKeys\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"keyData\":{\"type\":\"string\"}},\"required\":[\"keyData\"]}},\"userData\":{\"type\":\"string\"},\"adminUsername\":{\"type\":\"string\"},\"bootMethod\":{\"type\":\"string\",\"default\":\"UEFI\",\"enum\":[\"UEFI\",\"BIOS\"]},\"isolateEmulatorThread\":{\"type\":\"string\"},\"virtioInterface\":{\"type\":\"string\"},\"placementHints\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"hintType\":{\"type\":\"string\",\"enum\":[\"Affinity\",\"AntiAffinity\"]},\"resourceId\":{\"type\":\"string\"},\"schedulingExecution\":{\"type\":\"string\",\"enum\":[\"Soft\",\"Hard\"]},\"scope\":{\"type\":\"string\"}},\"required\":[\"hintType\",\"schedulingExecution\",\"resourceId\",\"scope\"]}}}")
+                .withNetworkFunctionTemplate(
+                    new AzureCoreNetworkFunctionTemplate().withNetworkFunctionApplications(Arrays.asList(
+                        new AzureCoreNetworkFunctionVhdApplication().withName("testImageRole")
+                            .withDependsOnProfile(new DependsOnProfile()
+                                .withInstallDependsOn(Arrays.asList())
+                                .withUninstallDependsOn(Arrays.asList())
+                                .withUpdateDependsOn(Arrays.asList()))
+                            .withArtifactProfile(new AzureCoreVhdImageArtifactProfile()
+                                .withArtifactStore(new ReferencedResource().withId(
+                                    "/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore"))
+                                .withVhdArtifactProfile(
+                                    new VhdImageArtifactProfile().withVhdName("test-image").withVhdVersion("1-0-0")))
+                            .withDeployParametersMappingRuleProfile(
+                                new AzureCoreVhdImageDeployMappingRuleProfile()
+                                    .withApplicationEnablement(ApplicationEnablement.UNKNOWN)
+                                    .withVhdImageMappingRuleProfile(
+                                        new VhdImageMappingRuleProfile().withUserConfiguration(""))),
+                        new AzureCoreNetworkFunctionArmTemplateApplication().withName("testTemplateRole")
+                            .withDependsOnProfile(
+                                new DependsOnProfile().withInstallDependsOn(Arrays.asList("testImageRole"))
+                                    .withUninstallDependsOn(Arrays.asList("testImageRole"))
+                                    .withUpdateDependsOn(Arrays.asList("testImageRole")))
+                            .withArtifactProfile(new AzureCoreArmTemplateArtifactProfile()
+                                .withArtifactStore(new ReferencedResource().withId(
+                                    "/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore"))
+                                .withTemplateArtifactProfile(
+                                    new ArmTemplateArtifactProfile().withTemplateName("test-template")
+                                        .withTemplateVersion("1.0.0")))
+                            .withDeployParametersMappingRuleProfile(new AzureCoreArmTemplateDeployMappingRuleProfile()
+                                .withApplicationEnablement(ApplicationEnablement.UNKNOWN)
+                                .withTemplateMappingRuleProfile(
+                                    new ArmTemplateMappingRuleProfile().withTemplateParameters(
+                                        "{\"virtualMachineName\":\"{deployParameters.virtualMachineName}\",\"cpuCores\":\"{deployParameters.cpuCores}\",\"memorySizeGB\":\"{deployParameters.memorySizeGB}\",\"cloudServicesNetworkAttachment\":\"{deployParameters.cloudServicesNetworkAttachment}\",\"networkAttachments\":\"{deployParameters.networkAttachments}\",\"sshPublicKeys\":\"{deployParameters.sshPublicKeys}\",\"storageProfile\":\"{deployParameters.storageProfile}\",\"isolateEmulatorThread\":\"{deployParameters.isolateEmulatorThread}\",\"virtioInterface\":\"{deployParameters.virtioInterface}\",\"userData\":\"{deployParameters.userData}\",\"adminUsername\":\"{deployParameters.adminUsername}\",\"bootMethod\":\"{deployParameters.bootMethod}\",\"placementHints\":\"{deployParameters.placementHints}\"}")))))))
+            .create();
     }
 
     /*
@@ -973,8 +1131,50 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateANetworkFunctionDefinitionVersionResourceForAzureOperatorNexusVNF(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().define("1.0.0").withRegion("eastus").withExistingNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName").withProperties(new VirtualNetworkFunctionDefinitionVersion().withDescription("test NFDV for AzureOperatorNexus").withDeployParameters("{\"virtualMachineName\":{\"type\":\"string\"},\"extendedLocationName\":{\"type\":\"string\"},\"cpuCores\":{\"type\":\"int\"},\"memorySizeGB\":{\"type\":\"int\"},\"cloudServicesNetworkAttachment\":{\"type\":\"object\",\"properties\":{\"networkAttachmentName\":{\"type\":\"string\"},\"attachedNetworkId\":{\"type\":\"string\"},\"ipAllocationMethod\":{\"type\":\"string\"},\"ipv4Address\":{\"type\":\"string\"},\"ipv6Address\":{\"type\":\"string\"},\"defaultGateway\":{\"type\":\"string\"}},\"required\":[\"attachedNetworkId\",\"ipAllocationMethod\"]},\"networkAttachments\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"networkAttachmentName\":{\"type\":\"string\"},\"attachedNetworkId\":{\"type\":\"string\"},\"ipAllocationMethod\":{\"type\":\"string\"},\"ipv4Address\":{\"type\":\"string\"},\"ipv6Address\":{\"type\":\"string\"},\"defaultGateway\":{\"type\":\"string\"}},\"required\":[\"attachedNetworkId\",\"ipAllocationMethod\"]}},\"storageProfile\":{\"type\":\"object\",\"properties\":{\"osDisk\":{\"type\":\"object\",\"properties\":{\"createOption\":{\"type\":\"string\"},\"deleteOption\":{\"type\":\"string\"},\"diskSizeGB\":{\"type\":\"integer\"}},\"required\":[\"diskSizeGB\"]}},\"required\":[\"osDisk\"]},\"sshPublicKeys\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"keyData\":{\"type\":\"string\"}},\"required\":[\"keyData\"]}},\"userData\":{\"type\":\"string\"},\"adminUsername\":{\"type\":\"string\"},\"bootMethod\":{\"type\":\"string\",\"default\":\"UEFI\",\"enum\":[\"UEFI\",\"BIOS\"]},\"isolateEmulatorThread\":{\"type\":\"string\"},\"virtioInterface\":{\"type\":\"string\"},\"placementHints\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"hintType\":{\"type\":\"string\",\"enum\":[\"Affinity\",\"AntiAffinity\"]},\"resourceId\":{\"type\":\"string\"},\"schedulingExecution\":{\"type\":\"string\",\"enum\":[\"Soft\",\"Hard\"]},\"scope\":{\"type\":\"string\"}},\"required\":[\"hintType\",\"schedulingExecution\",\"resourceId\",\"scope\"]}}}").withNetworkFunctionTemplate(new AzureOperatorNexusNetworkFunctionTemplate().withNetworkFunctionApplications(Arrays.asList(new AzureOperatorNexusNetworkFunctionImageApplication().withName("testImageRole").withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList()).withUninstallDependsOn(Arrays.asList()).withUpdateDependsOn(Arrays.asList())).withArtifactProfile(new AzureOperatorNexusImageArtifactProfile().withArtifactStore(new ReferencedResource().withId("/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore")).withImageArtifactProfile(new ImageArtifactProfile().withImageName("test-image").withImageVersion("1.0.0"))).withDeployParametersMappingRuleProfile(new AzureOperatorNexusImageDeployMappingRuleProfile().withApplicationEnablement(ApplicationEnablement.UNKNOWN).withImageMappingRuleProfile(new ImageMappingRuleProfile().withUserConfiguration(""))), new AzureOperatorNexusNetworkFunctionArmTemplateApplication().withName("testTemplateRole").withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList("testImageRole")).withUninstallDependsOn(Arrays.asList("testImageRole")).withUpdateDependsOn(Arrays.asList("testImageRole"))).withArtifactProfile(new AzureOperatorNexusArmTemplateArtifactProfile().withArtifactStore(new ReferencedResource().withId("/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore")).withTemplateArtifactProfile(new ArmTemplateArtifactProfile().withTemplateName("test-template").withTemplateVersion("1.0.0"))).withDeployParametersMappingRuleProfile(new AzureOperatorNexusArmTemplateDeployMappingRuleProfile().withApplicationEnablement(ApplicationEnablement.UNKNOWN).withTemplateMappingRuleProfile(new ArmTemplateMappingRuleProfile().withTemplateParameters("{\"virtualMachineName\":\"{deployParameters.virtualMachineName}\",\"extendedLocationName\":\"{deployParameters.extendedLocationName}\",\"cpuCores\":\"{deployParameters.cpuCores}\",\"memorySizeGB\":\"{deployParameters.memorySizeGB}\",\"cloudServicesNetworkAttachment\":\"{deployParameters.cloudServicesNetworkAttachment}\",\"networkAttachments\":\"{deployParameters.networkAttachments}\",\"sshPublicKeys\":\"{deployParameters.sshPublicKeys}\",\"storageProfile\":\"{deployParameters.storageProfile}\",\"isolateEmulatorThread\":\"{deployParameters.isolateEmulatorThread}\",\"virtioInterface\":\"{deployParameters.virtioInterface}\",\"userData\":\"{deployParameters.userData}\",\"adminUsername\":\"{deployParameters.adminUsername}\",\"bootMethod\":\"{deployParameters.bootMethod}\",\"placementHints\":\"{deployParameters.placementHints}\"}"))))))).create();
+    public static void createOrUpdateANetworkFunctionDefinitionVersionResourceForAzureOperatorNexusVNF(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .define("1.0.0")
+            .withRegion("eastus")
+            .withExistingNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName")
+            .withProperties(new VirtualNetworkFunctionDefinitionVersion()
+                .withDescription("test NFDV for AzureOperatorNexus")
+                .withDeployParameters(
+                    "{\"virtualMachineName\":{\"type\":\"string\"},\"extendedLocationName\":{\"type\":\"string\"},\"cpuCores\":{\"type\":\"int\"},\"memorySizeGB\":{\"type\":\"int\"},\"cloudServicesNetworkAttachment\":{\"type\":\"object\",\"properties\":{\"networkAttachmentName\":{\"type\":\"string\"},\"attachedNetworkId\":{\"type\":\"string\"},\"ipAllocationMethod\":{\"type\":\"string\"},\"ipv4Address\":{\"type\":\"string\"},\"ipv6Address\":{\"type\":\"string\"},\"defaultGateway\":{\"type\":\"string\"}},\"required\":[\"attachedNetworkId\",\"ipAllocationMethod\"]},\"networkAttachments\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"networkAttachmentName\":{\"type\":\"string\"},\"attachedNetworkId\":{\"type\":\"string\"},\"ipAllocationMethod\":{\"type\":\"string\"},\"ipv4Address\":{\"type\":\"string\"},\"ipv6Address\":{\"type\":\"string\"},\"defaultGateway\":{\"type\":\"string\"}},\"required\":[\"attachedNetworkId\",\"ipAllocationMethod\"]}},\"storageProfile\":{\"type\":\"object\",\"properties\":{\"osDisk\":{\"type\":\"object\",\"properties\":{\"createOption\":{\"type\":\"string\"},\"deleteOption\":{\"type\":\"string\"},\"diskSizeGB\":{\"type\":\"integer\"}},\"required\":[\"diskSizeGB\"]}},\"required\":[\"osDisk\"]},\"sshPublicKeys\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"keyData\":{\"type\":\"string\"}},\"required\":[\"keyData\"]}},\"userData\":{\"type\":\"string\"},\"adminUsername\":{\"type\":\"string\"},\"bootMethod\":{\"type\":\"string\",\"default\":\"UEFI\",\"enum\":[\"UEFI\",\"BIOS\"]},\"isolateEmulatorThread\":{\"type\":\"string\"},\"virtioInterface\":{\"type\":\"string\"},\"placementHints\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"hintType\":{\"type\":\"string\",\"enum\":[\"Affinity\",\"AntiAffinity\"]},\"resourceId\":{\"type\":\"string\"},\"schedulingExecution\":{\"type\":\"string\",\"enum\":[\"Soft\",\"Hard\"]},\"scope\":{\"type\":\"string\"}},\"required\":[\"hintType\",\"schedulingExecution\",\"resourceId\",\"scope\"]}}}")
+                .withNetworkFunctionTemplate(
+                    new AzureOperatorNexusNetworkFunctionTemplate().withNetworkFunctionApplications(Arrays.asList(
+                        new AzureOperatorNexusNetworkFunctionImageApplication().withName("testImageRole")
+                            .withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList())
+                                .withUninstallDependsOn(Arrays.asList())
+                                .withUpdateDependsOn(Arrays.asList()))
+                            .withArtifactProfile(new AzureOperatorNexusImageArtifactProfile()
+                                .withArtifactStore(new ReferencedResource().withId(
+                                    "/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore"))
+                                .withImageArtifactProfile(
+                                    new ImageArtifactProfile().withImageName("test-image").withImageVersion("1.0.0")))
+                            .withDeployParametersMappingRuleProfile(
+                                new AzureOperatorNexusImageDeployMappingRuleProfile()
+                                    .withApplicationEnablement(ApplicationEnablement.UNKNOWN)
+                                    .withImageMappingRuleProfile(
+                                        new ImageMappingRuleProfile().withUserConfiguration(""))),
+                        new AzureOperatorNexusNetworkFunctionArmTemplateApplication().withName("testTemplateRole")
+                            .withDependsOnProfile(
+                                new DependsOnProfile().withInstallDependsOn(Arrays.asList("testImageRole"))
+                                    .withUninstallDependsOn(Arrays.asList("testImageRole"))
+                                    .withUpdateDependsOn(Arrays.asList("testImageRole")))
+                            .withArtifactProfile(new AzureOperatorNexusArmTemplateArtifactProfile()
+                                .withArtifactStore(new ReferencedResource().withId(
+                                    "/subscriptions/subid/resourceGroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/TestArtifactStore"))
+                                .withTemplateArtifactProfile(
+                                    new ArmTemplateArtifactProfile().withTemplateName("test-template")
+                                        .withTemplateVersion("1.0.0")))
+                            .withDeployParametersMappingRuleProfile(
+                                new AzureOperatorNexusArmTemplateDeployMappingRuleProfile()
+                                    .withApplicationEnablement(ApplicationEnablement.UNKNOWN)
+                                    .withTemplateMappingRuleProfile(
+                                        new ArmTemplateMappingRuleProfile().withTemplateParameters(
+                                            "{\"virtualMachineName\":\"{deployParameters.virtualMachineName}\",\"extendedLocationName\":\"{deployParameters.extendedLocationName}\",\"cpuCores\":\"{deployParameters.cpuCores}\",\"memorySizeGB\":\"{deployParameters.memorySizeGB}\",\"cloudServicesNetworkAttachment\":\"{deployParameters.cloudServicesNetworkAttachment}\",\"networkAttachments\":\"{deployParameters.networkAttachments}\",\"sshPublicKeys\":\"{deployParameters.sshPublicKeys}\",\"storageProfile\":\"{deployParameters.storageProfile}\",\"isolateEmulatorThread\":\"{deployParameters.isolateEmulatorThread}\",\"virtioInterface\":\"{deployParameters.virtioInterface}\",\"userData\":\"{deployParameters.userData}\",\"adminUsername\":\"{deployParameters.adminUsername}\",\"bootMethod\":\"{deployParameters.bootMethod}\",\"placementHints\":\"{deployParameters.placementHints}\"}")))))))
+            .create();
     }
 
     /*
@@ -985,8 +1185,42 @@ public final class NetworkFunctionDefinitionVersionsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateANetworkFunctionDefinitionVersionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().define("1.0.0").withRegion("eastus").withExistingNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName").withProperties(new ContainerizedNetworkFunctionDefinitionVersion().withDeployParameters("{\"type\":\"object\",\"properties\":{\"releaseName\":{\"type\":\"string\"},\"namespace\":{\"type\":\"string\"}}}").withNetworkFunctionTemplate(new AzureArcKubernetesNetworkFunctionTemplate().withNetworkFunctionApplications(Arrays.asList(new AzureArcKubernetesHelmApplication().withName("fedrbac").withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList()).withUninstallDependsOn(Arrays.asList()).withUpdateDependsOn(Arrays.asList())).withArtifactProfile(new AzureArcKubernetesArtifactProfile().withArtifactStore(new ReferencedResource().withId("/subscriptions/subid/resourcegroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/testArtifactStore")).withHelmArtifactProfile(new HelmArtifactProfile().withHelmPackageName("fed-rbac").withHelmPackageVersionRange("~2.1.3").withRegistryValuesPaths(Arrays.asList("global.registry.docker.repoPath")).withImagePullSecretsValuesPaths(Arrays.asList("global.imagePullSecrets")))).withDeployParametersMappingRuleProfile(new AzureArcKubernetesDeployMappingRuleProfile().withApplicationEnablement(ApplicationEnablement.ENABLED).withHelmMappingRuleProfile(new HelmMappingRuleProfile().withReleaseNamespace("{deployParameters.namesapce}").withReleaseName("{deployParameters.releaseName}").withHelmPackageVersion("2.1.3").withValues("").withOptions(new HelmMappingRuleProfileOptions().withInstallOptions(new HelmInstallOptions().withAtomic("true").withWaitOption("waitValue").withTimeout("30")).withUpgradeOptions(new HelmUpgradeOptions().withAtomic("true").withWaitOption("waitValue").withTimeout("30"))))))))).create();
+    public static void createOrUpdateANetworkFunctionDefinitionVersionResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .define("1.0.0")
+            .withRegion("eastus")
+            .withExistingNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName")
+            .withProperties(new ContainerizedNetworkFunctionDefinitionVersion().withDeployParameters(
+                "{\"type\":\"object\",\"properties\":{\"releaseName\":{\"type\":\"string\"},\"namespace\":{\"type\":\"string\"}}}")
+                .withNetworkFunctionTemplate(new AzureArcKubernetesNetworkFunctionTemplate()
+                    .withNetworkFunctionApplications(Arrays.asList(new AzureArcKubernetesHelmApplication()
+                        .withName("fedrbac")
+                        .withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList())
+                            .withUninstallDependsOn(Arrays.asList())
+                            .withUpdateDependsOn(Arrays.asList()))
+                        .withArtifactProfile(new AzureArcKubernetesArtifactProfile()
+                            .withArtifactStore(new ReferencedResource().withId(
+                                "/subscriptions/subid/resourcegroups/rg/providers/microsoft.hybridnetwork/publishers/TestPublisher/artifactStores/testArtifactStore"))
+                            .withHelmArtifactProfile(new HelmArtifactProfile().withHelmPackageName("fed-rbac")
+                                .withHelmPackageVersionRange("~2.1.3")
+                                .withRegistryValuesPaths(Arrays.asList("global.registry.docker.repoPath"))
+                                .withImagePullSecretsValuesPaths(Arrays.asList("global.imagePullSecrets"))))
+                        .withDeployParametersMappingRuleProfile(new AzureArcKubernetesDeployMappingRuleProfile()
+                            .withApplicationEnablement(ApplicationEnablement.ENABLED)
+                            .withHelmMappingRuleProfile(
+                                new HelmMappingRuleProfile().withReleaseNamespace("{deployParameters.namesapce}")
+                                    .withReleaseName("{deployParameters.releaseName}")
+                                    .withHelmPackageVersion("2.1.3")
+                                    .withValues("")
+                                    .withOptions(new HelmMappingRuleProfileOptions()
+                                        .withInstallOptions(new HelmInstallOptions().withAtomic("true")
+                                            .withWaitOption("true")
+                                            .withTimeout("30"))
+                                        .withUpgradeOptions(new HelmUpgradeOptions().withAtomic("true")
+                                            .withWaitOption("true")
+                                            .withTimeout("30")))))))))
+            .create();
     }
 }
 ```
@@ -1006,8 +1240,11 @@ public final class NetworkFunctionDefinitionVersionsDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteANetworkFunctionDefinitionVersion(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0", com.azure.core.util.Context.NONE);
+    public static void
+        deleteANetworkFunctionDefinitionVersion(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1018,8 +1255,11 @@ public final class NetworkFunctionDefinitionVersionsDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteANetworkFunctionDefinitionVersionForAzureOperatorNexusVNF(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0", com.azure.core.util.Context.NONE);
+    public static void deleteANetworkFunctionDefinitionVersionForAzureOperatorNexusVNF(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1030,8 +1270,11 @@ public final class NetworkFunctionDefinitionVersionsDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteANetworkFunctionDefinitionVersionForAzureCoreVNF(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0", com.azure.core.util.Context.NONE);
+    public static void deleteANetworkFunctionDefinitionVersionForAzureCoreVNF(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .delete("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1051,8 +1294,11 @@ public final class NetworkFunctionDefinitionVersionsGetSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getANetworkFunctionDefinitionVersionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0", com.azure.core.util.Context.NONE);
+    public static void getANetworkFunctionDefinitionVersionResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1063,8 +1309,11 @@ public final class NetworkFunctionDefinitionVersionsGetSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getNetworkFunctionDefinitionVersionResourceForAzureCoreVNF(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0", com.azure.core.util.Context.NONE);
+    public static void getNetworkFunctionDefinitionVersionResourceForAzureCoreVNF(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 
     /*
@@ -1075,8 +1324,11 @@ public final class NetworkFunctionDefinitionVersionsGetSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getNetworkFunctionDefinitionVersionResourceForAzureOperatorNexusVNF(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0", com.azure.core.util.Context.NONE);
+    public static void getNetworkFunctionDefinitionVersionResourceForAzureOperatorNexusVNF(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1097,7 +1349,9 @@ public final class NetworkFunctionDefinitionVersionsListByNetworkFunctionDefinit
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void getPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().listByNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupNameName", com.azure.core.util.Context.NONE);
+        manager.networkFunctionDefinitionVersions()
+            .listByNetworkFunctionDefinitionGroup("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupNameName",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1121,8 +1375,12 @@ public final class NetworkFunctionDefinitionVersionsUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void updateTheNetworkFunctionDefinitionVersionTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        NetworkFunctionDefinitionVersion resource = manager.networkFunctionDefinitionVersions().getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0", com.azure.core.util.Context.NONE).getValue();
+    public static void updateTheNetworkFunctionDefinitionVersionTags(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        NetworkFunctionDefinitionVersion resource = manager.networkFunctionDefinitionVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkFunctionDefinitionGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -1145,7 +1403,6 @@ public final class NetworkFunctionDefinitionVersionsUpdateSamples {
 ```java
 import com.azure.resourcemanager.hybridnetwork.fluent.models.NetworkFunctionDefinitionVersionUpdateStateInner;
 import com.azure.resourcemanager.hybridnetwork.models.VersionState;
-import java.util.stream.Collectors;
 
 /**
  * Samples for NetworkFunctionDefinitionVersions UpdateState.
@@ -1159,8 +1416,12 @@ public final class NetworkFunctionDefinitionVersionsUpdateStateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void updateNetworkFunctionDefinitionVersionState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctionDefinitionVersions().updateState("rg", "TestPublisher", "TestSkuGroup", "1.0.0", new NetworkFunctionDefinitionVersionUpdateStateInner().withVersionState(VersionState.ACTIVE), com.azure.core.util.Context.NONE);
+    public static void updateNetworkFunctionDefinitionVersionState(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctionDefinitionVersions()
+            .updateState("rg", "TestPublisher", "TestSkuGroup", "1.0.0",
+                new NetworkFunctionDefinitionVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1174,7 +1435,6 @@ import com.azure.resourcemanager.hybridnetwork.models.NfviType;
 import com.azure.resourcemanager.hybridnetwork.models.OpenDeploymentResourceReference;
 import com.azure.resourcemanager.hybridnetwork.models.SecretDeploymentResourceReference;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 /**
  * Samples for NetworkFunctions CreateOrUpdate.
@@ -1188,8 +1448,21 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createVirtualNetworkFunctionResourceOnAzureCore(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().define("testNf").withRegion("eastus").withExistingResourceGroup("rg").withProperties(new NetworkFunctionValueWithoutSecrets().withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId("/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1")).withNfviType(NfviType.AZURE_CORE).withNfviId("/subscriptions/subid/resourceGroups/testResourceGroup").withAllowSoftwareUpdate(false).withDeploymentValues("{\"virtualMachineName\":\"test-VM\",\"cpuCores\":4,\"memorySizeGB\":8,\"cloudServicesNetworkAttachment\":{\"attachedNetworkId\":\"test-csnet\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-cs-vlan\"},\"networkAttachments\":[{\"attachedNetworkId\":\"test-l3vlan\",\"defaultGateway\":\"True\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-vlan\"}],\"sshPublicKeys\":[{\"keyData\":\"ssh-rsa CMIIIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0TqlveKKlc2MFvEmuXJiLGBsY1t4ML4uiRADGSZlnc+7Ugv3h+MCjkkwOKiOdsNo8k4KSBIG5GcQfKYOOd17AJvqCL6cGQbaLuqv0a64jeDm8oO8/xN/IM0oKw7rMr/2oAJOgIsfeXPkRxWWic9AVIS++H5Qi2r7bUFX+cqFsyUCAwEBBQ==\"}],\"storageProfile\":{\"osDisk\":{\"createOption\":\"Ephemeral\",\"deleteOption\":\"Delete\",\"diskSizeGB\":10}},\"userData\":\"testUserData\",\"adminUsername\":\"testUser\",\"virtioInterface\":\"Transitional\",\"isolateEmulatorThread\":\"False\",\"bootMethod\":\"BIOS\",\"placementHints\":[]}")).create();
+    public static void createVirtualNetworkFunctionResourceOnAzureCore(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .define("testNf")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new NetworkFunctionValueWithoutSecrets()
+                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
+                .withNfviType(NfviType.AZURE_CORE)
+                .withNfviId("/subscriptions/subid/resourceGroups/testResourceGroup")
+                .withAllowSoftwareUpdate(false)
+                .withDeploymentValues(
+                    "{\"virtualMachineName\":\"test-VM\",\"cpuCores\":4,\"memorySizeGB\":8,\"cloudServicesNetworkAttachment\":{\"attachedNetworkId\":\"test-csnet\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-cs-vlan\"},\"networkAttachments\":[{\"attachedNetworkId\":\"test-l3vlan\",\"defaultGateway\":\"True\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-vlan\"}],\"sshPublicKeys\":[{\"keyData\":\"ssh-rsa CMIIIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0TqlveKKlc2MFvEmuXJiLGBsY1t4ML4uiRADGSZlnc+7Ugv3h+MCjkkwOKiOdsNo8k4KSBIG5GcQfKYOOd17AJvqCL6cGQbaLuqv0a64jeDm8oO8/xN/IM0oKw7rMr/2oAJOgIsfeXPkRxWWic9AVIS++H5Qi2r7bUFX+cqFsyUCAwEBBQ==\"}],\"storageProfile\":{\"osDisk\":{\"createOption\":\"Ephemeral\",\"deleteOption\":\"Delete\",\"diskSizeGB\":10}},\"userData\":\"testUserData\",\"adminUsername\":\"testUser\",\"virtioInterface\":\"Transitional\",\"isolateEmulatorThread\":\"False\",\"bootMethod\":\"BIOS\",\"placementHints\":[]}"))
+            .create();
     }
 
     /*
@@ -1200,8 +1473,24 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createFirstPartyNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().define("testNf").withRegion("eastus").withExistingResourceGroup("rg").withProperties(new NetworkFunctionValueWithoutSecrets().withNetworkFunctionDefinitionVersionResourceReference(new SecretDeploymentResourceReference().withId("/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1")).withNfviType(NfviType.AZURE_ARC_KUBERNETES).withNfviId("/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation").withAllowSoftwareUpdate(false).withRoleOverrideValues(Arrays.asList("{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}", "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}")).withDeploymentValues("{\"releaseName\":\"testReleaseName\",\"namespace\":\"testNamespace\"}")).create();
+    public static void
+        createFirstPartyNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .define("testNf")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new NetworkFunctionValueWithoutSecrets()
+                .withNetworkFunctionDefinitionVersionResourceReference(new SecretDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
+                .withNfviType(NfviType.AZURE_ARC_KUBERNETES)
+                .withNfviId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
+                .withAllowSoftwareUpdate(false)
+                .withRoleOverrideValues(Arrays.asList(
+                    "{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}",
+                    "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}"))
+                .withDeploymentValues("{\"releaseName\":\"testReleaseName\",\"namespace\":\"testNamespace\"}"))
+            .create();
     }
 
     /*
@@ -1212,8 +1501,24 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().define("testNf").withRegion("eastus").withExistingResourceGroup("rg").withProperties(new NetworkFunctionValueWithoutSecrets().withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId("/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1")).withNfviType(NfviType.AZURE_ARC_KUBERNETES).withNfviId("/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation").withAllowSoftwareUpdate(false).withRoleOverrideValues(Arrays.asList("{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}", "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}")).withDeploymentValues("{\"releaseName\":\"testReleaseName\",\"namespace\":\"testNamespace\"}")).create();
+    public static void
+        createNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .define("testNf")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new NetworkFunctionValueWithoutSecrets()
+                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
+                .withNfviType(NfviType.AZURE_ARC_KUBERNETES)
+                .withNfviId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
+                .withAllowSoftwareUpdate(false)
+                .withRoleOverrideValues(Arrays.asList(
+                    "{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}",
+                    "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}"))
+                .withDeploymentValues("{\"releaseName\":\"testReleaseName\",\"namespace\":\"testNamespace\"}"))
+            .create();
     }
 
     /*
@@ -1224,8 +1529,24 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createNetworkFunctionResourceWithSecrets(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().define("testNf").withRegion("eastus").withExistingResourceGroup("rg").withProperties(new NetworkFunctionValueWithSecrets().withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId("/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1")).withNfviType(NfviType.AZURE_ARC_KUBERNETES).withNfviId("/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation").withAllowSoftwareUpdate(false).withRoleOverrideValues(Arrays.asList("{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}", "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}")).withSecretDeploymentValues("fakeTokenPlaceholder")).create();
+    public static void
+        createNetworkFunctionResourceWithSecrets(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .define("testNf")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new NetworkFunctionValueWithSecrets()
+                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
+                .withNfviType(NfviType.AZURE_ARC_KUBERNETES)
+                .withNfviId(
+                    "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
+                .withAllowSoftwareUpdate(false)
+                .withRoleOverrideValues(Arrays.asList(
+                    "{\"name\":\"testRoleOne\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"helmPackageVersion\":\"2.1.3\",\"values\":\"{\\\"roleOneParam\\\":\\\"roleOneOverrideValue\\\"}\"}}}",
+                    "{\"name\":\"testRoleTwo\",\"deployParametersMappingRuleProfile\":{\"helmMappingRuleProfile\":{\"releaseName\":\"overrideReleaseName\",\"releaseNamespace\":\"overrideNamespace\",\"values\":\"{\\\"roleTwoParam\\\":\\\"roleTwoOverrideValue\\\"}\"}}}"))
+                .withSecretDeploymentValues("fakeTokenPlaceholder"))
+            .create();
     }
 
     /*
@@ -1236,8 +1557,22 @@ public final class NetworkFunctionsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createVirtualNetworkFunctionResourceOnAzureOperatorNexus(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().define("testNf").withRegion("eastus").withExistingResourceGroup("rg").withProperties(new NetworkFunctionValueWithoutSecrets().withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId("/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1")).withNfviType(NfviType.AZURE_OPERATOR_NEXUS).withNfviId("/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation").withAllowSoftwareUpdate(false).withDeploymentValues("{\"virtualMachineName\":\"test-VM\",\"extendedLocationName\":\"test-cluster\",\"cpuCores\":4,\"memorySizeGB\":8,\"cloudServicesNetworkAttachment\":{\"attachedNetworkId\":\"test-csnet\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-cs-vlan\"},\"networkAttachments\":[{\"attachedNetworkId\":\"test-l3vlan\",\"defaultGateway\":\"True\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-vlan\"}],\"sshPublicKeys\":[{\"keyData\":\"ssh-rsa CMIIIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0TqlveKKlc2MFvEmuXJiLGBsY1t4ML4uiRADGSZlnc+7Ugv3h+MCjkkwOKiOdsNo8k4KSBIG5GcQfKYOOd17AJvqCL6cGQbaLuqv0a64jeDm8oO8/xN/IM0oKw7rMr/2oAJOgIsfeXPkRxWWic9AVIS++H5Qi2r7bUFX+cqFsyUCAwEBBQ==\"}],\"storageProfile\":{\"osDisk\":{\"createOption\":\"Ephemeral\",\"deleteOption\":\"Delete\",\"diskSizeGB\":10}},\"userData\":\"testUserData\",\"adminUsername\":\"testUser\",\"virtioInterface\":\"Transitional\",\"isolateEmulatorThread\":\"False\",\"bootMethod\":\"BIOS\",\"placementHints\":[]}")).create();
+    public static void createVirtualNetworkFunctionResourceOnAzureOperatorNexus(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .define("testNf")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new NetworkFunctionValueWithoutSecrets()
+                .withNetworkFunctionDefinitionVersionResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/testVendor/networkFunctionDefinitionGroups/testnetworkFunctionDefinitionGroupName/networkFunctionDefinitionVersions/1.0.1"))
+                .withNfviType(NfviType.AZURE_OPERATOR_NEXUS)
+                .withNfviId(
+                    "/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation")
+                .withAllowSoftwareUpdate(false)
+                .withDeploymentValues(
+                    "{\"virtualMachineName\":\"test-VM\",\"extendedLocationName\":\"test-cluster\",\"cpuCores\":4,\"memorySizeGB\":8,\"cloudServicesNetworkAttachment\":{\"attachedNetworkId\":\"test-csnet\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-cs-vlan\"},\"networkAttachments\":[{\"attachedNetworkId\":\"test-l3vlan\",\"defaultGateway\":\"True\",\"ipAllocationMethod\":\"Dynamic\",\"networkAttachmentName\":\"test-vlan\"}],\"sshPublicKeys\":[{\"keyData\":\"ssh-rsa CMIIIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA0TqlveKKlc2MFvEmuXJiLGBsY1t4ML4uiRADGSZlnc+7Ugv3h+MCjkkwOKiOdsNo8k4KSBIG5GcQfKYOOd17AJvqCL6cGQbaLuqv0a64jeDm8oO8/xN/IM0oKw7rMr/2oAJOgIsfeXPkRxWWic9AVIS++H5Qi2r7bUFX+cqFsyUCAwEBBQ==\"}],\"storageProfile\":{\"osDisk\":{\"createOption\":\"Ephemeral\",\"deleteOption\":\"Delete\",\"diskSizeGB\":10}},\"userData\":\"testUserData\",\"adminUsername\":\"testUser\",\"virtioInterface\":\"Transitional\",\"isolateEmulatorThread\":\"False\",\"bootMethod\":\"BIOS\",\"placementHints\":[]}"))
+            .create();
     }
 }
 ```
@@ -1257,7 +1592,8 @@ public final class NetworkFunctionsDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void
+        deleteNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.networkFunctions().delete("rg", "testNf", com.azure.core.util.Context.NONE);
     }
 
@@ -1269,7 +1605,8 @@ public final class NetworkFunctionsDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteVirtualNetworkFunctionResourceOnAzureCore(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void deleteVirtualNetworkFunctionResourceOnAzureCore(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.networkFunctions().delete("rg", "testNf", com.azure.core.util.Context.NONE);
     }
 
@@ -1281,7 +1618,8 @@ public final class NetworkFunctionsDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteVirtualNetworkFunctionResourceOnAzureOperatorNexus(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void deleteVirtualNetworkFunctionResourceOnAzureOperatorNexus(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.networkFunctions().delete("rg", "testNf", com.azure.core.util.Context.NONE);
     }
 }
@@ -1293,7 +1631,6 @@ public final class NetworkFunctionsDeleteSamples {
 import com.azure.resourcemanager.hybridnetwork.models.ExecuteRequestParameters;
 import com.azure.resourcemanager.hybridnetwork.models.HttpMethod;
 import com.azure.resourcemanager.hybridnetwork.models.RequestMetadata;
-import java.util.stream.Collectors;
 
 /**
  * Samples for NetworkFunctions ExecuteRequest.
@@ -1303,12 +1640,21 @@ public final class NetworkFunctionsExecuteRequestSamples {
      * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkFunctionsExecuteRequest.json
      */
     /**
-     * Sample code: Send request to  network function services.
+     * Sample code: Send request to network function services.
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void sendRequestToNetworkFunctionServices(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkFunctions().executeRequest("rg", "testNetworkfunction", new ExecuteRequestParameters().withServiceEndpoint("serviceEndpoint").withRequestMetadata(new RequestMetadata().withRelativePath("/simProfiles/testSimProfile").withHttpMethod(HttpMethod.POST).withSerializedBody("{\"subscriptionProfile\":\"ChantestSubscription15\",\"permanentKey\":\"00112233445566778899AABBCCDDEEFF\",\"opcOperatorCode\":\"63bfa50ee6523365ff14c1f45f88737d\",\"staticIpAddresses\":{\"internet\":{\"ipv4Addr\":\"198.51.100.1\",\"ipv6Prefix\":\"2001:db8:abcd:12::0/64\"},\"another_network\":{\"ipv6Prefix\":\"2001:111:cdef:22::0/64\"}}}").withApiVersion("apiVersionQueryString")), com.azure.core.util.Context.NONE);
+    public static void
+        sendRequestToNetworkFunctionServices(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkFunctions()
+            .executeRequest("rg", "testNetworkfunction", new ExecuteRequestParameters()
+                .withServiceEndpoint("serviceEndpoint")
+                .withRequestMetadata(new RequestMetadata().withRelativePath("/simProfiles/testSimProfile")
+                    .withHttpMethod(HttpMethod.POST)
+                    .withSerializedBody(
+                        "{\"subscriptionProfile\":\"ChantestSubscription15\",\"permanentKey\":\"00112233445566778899AABBCCDDEEFF\",\"opcOperatorCode\":\"63bfa50ee6523365ff14c1f45f88737d\",\"staticIpAddresses\":{\"internet\":{\"ipv4Addr\":\"198.51.100.1\",\"ipv6Prefix\":\"2001:db8:abcd:12::0/64\"},\"another_network\":{\"ipv6Prefix\":\"2001:111:cdef:22::0/64\"}}}")
+                    .withApiVersion("apiVersionQueryString")),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1328,7 +1674,8 @@ public final class NetworkFunctionsGetByResourceGroupSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getVirtualNetworkFunctionResourceOnAzureOperatorNexus(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void getVirtualNetworkFunctionResourceOnAzureOperatorNexus(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.networkFunctions().getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE);
     }
 
@@ -1340,7 +1687,8 @@ public final class NetworkFunctionsGetByResourceGroupSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void
+        getNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.networkFunctions().getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE);
     }
 
@@ -1352,7 +1700,8 @@ public final class NetworkFunctionsGetByResourceGroupSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getVirtualNetworkFunctionResourceOnAzureCore(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void getVirtualNetworkFunctionResourceOnAzureCore(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.networkFunctions().getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE);
     }
 }
@@ -1373,7 +1722,8 @@ public final class NetworkFunctionsListSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listAllNetworkFunctionResourcesInSubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void listAllNetworkFunctionResourcesInSubscription(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.networkFunctions().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -1394,7 +1744,8 @@ public final class NetworkFunctionsListByResourceGroupSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listNetworkFunctionInResourceGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void
+        listNetworkFunctionInResourceGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.networkFunctions().listByResourceGroup("rg", com.azure.core.util.Context.NONE);
     }
 }
@@ -1419,8 +1770,11 @@ public final class NetworkFunctionsUpdateTagsSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void updateTagsForNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        NetworkFunction resource = manager.networkFunctions().getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE).getValue();
+    public static void
+        updateTagsForNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        NetworkFunction resource = manager.networkFunctions()
+            .getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -1453,8 +1807,13 @@ public final class NetworkServiceDesignGroupsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateTheNetworkServiceDesignGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignGroups().define("TestNetworkServiceDesignGroupName").withRegion("eastus").withExistingPublisher("rg", "TestPublisher").create();
+    public static void createOrUpdateTheNetworkServiceDesignGroup(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignGroups()
+            .define("TestNetworkServiceDesignGroupName")
+            .withRegion("eastus")
+            .withExistingPublisher("rg", "TestPublisher")
+            .create();
     }
 }
 ```
@@ -1474,8 +1833,10 @@ public final class NetworkServiceDesignGroupsDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignGroups().delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", com.azure.core.util.Context.NONE);
+    public static void
+        deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignGroups()
+            .delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1495,8 +1856,11 @@ public final class NetworkServiceDesignGroupsGetSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getANetworkServiceDesignGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignGroups().getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", com.azure.core.util.Context.NONE);
+    public static void
+        getANetworkServiceDesignGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignGroups()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1516,7 +1880,8 @@ public final class NetworkServiceDesignGroupsListByPublisherSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getNetworkServiceDesignGroupsUnderPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void getNetworkServiceDesignGroupsUnderPublisherResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.networkServiceDesignGroups().listByPublisher("rg", "TestPublisher", com.azure.core.util.Context.NONE);
     }
 }
@@ -1541,8 +1906,12 @@ public final class NetworkServiceDesignGroupsUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateTheNetworkServiceDesignGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        NetworkServiceDesignGroup resource = manager.networkServiceDesignGroups().getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", com.azure.core.util.Context.NONE).getValue();
+    public static void createOrUpdateTheNetworkServiceDesignGroupResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        NetworkServiceDesignGroup resource = manager.networkServiceDesignGroups()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
+                com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -1573,7 +1942,6 @@ import com.azure.resourcemanager.hybridnetwork.models.TemplateType;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Samples for NetworkServiceDesignVersions CreateOrUpdate.
@@ -1587,8 +1955,28 @@ public final class NetworkServiceDesignVersionsCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateANetworkServiceDesignVersionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions().define("1.0.0").withRegion("eastus").withExistingNetworkServiceDesignGroup("rg", "TestPublisher", "TestNetworkServiceDesignGroupName").withProperties(new NetworkServiceDesignVersionPropertiesFormat().withConfigurationGroupSchemaReferences(mapOf("MyVM_Configuration", new ReferencedResource().withId("/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/publishers/contosoGroup/networkServiceDesignGroups/NSD_contoso/configurationGroupSchemas/MyVM_Configuration_Schema"))).withResourceElementTemplates(Arrays.asList(new ArmResourceDefinitionResourceElementTemplateDetails().withName("MyVM").withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList())).withConfiguration(new ArmResourceDefinitionResourceElementTemplate().withTemplateType(TemplateType.ARM_TEMPLATE).withParameterValues("{\"publisherName\":\"{configurationparameters('MyVM_Configuration').publisherName}\",\"skuGroupName\":\"{configurationparameters('MyVM_Configuration').skuGroupName}\",\"skuVersion\":\"{configurationparameters('MyVM_Configuration').skuVersion}\",\"skuOfferingLocation\":\"{configurationparameters('MyVM_Configuration').skuOfferingLocation}\",\"nfviType\":\"{nfvis().nfvisFromSitePerNfviType.AzureCore.nfviAlias1.nfviType}\",\"nfviId\":\"{nfvis().nfvisFromSitePerNfviType.AzureCore.nfviAlias1.nfviId}\",\"allowSoftwareUpdates\":\"{configurationparameters('MyVM_Configuration').allowSoftwareUpdates}\",\"virtualNetworkName\":\"{configurationparameters('MyVM_Configuration').vnetName}\",\"subnetName\":\"{configurationparameters('MyVM_Configuration').subnetName}\",\"subnetAddressPrefix\":\"{configurationparameters('MyVM_Configuration').subnetAddressPrefix}\",\"managedResourceGroup\":\"{configurationparameters('SNSSelf').managedResourceGroupName}\",\"adminPassword\":\"{secretparameters('MyVM_Configuration').adminPassword}\"}").withArtifactProfile(new NsdArtifactProfile().withArtifactStoreReference(new ReferencedResource().withId("/subscriptions/subid/providers/Microsoft.HybridNetwork/publishers/contosoGroup/artifactStoreReference/store1")).withArtifactName("MyVMArmTemplate").withArtifactVersion("1.0.0")))))).create();
+    public static void createOrUpdateANetworkServiceDesignVersionResource(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignVersions()
+            .define("1.0.0")
+            .withRegion("eastus")
+            .withExistingNetworkServiceDesignGroup("rg", "TestPublisher", "TestNetworkServiceDesignGroupName")
+            .withProperties(new NetworkServiceDesignVersionPropertiesFormat()
+                .withConfigurationGroupSchemaReferences(mapOf("MyVM_Configuration", new ReferencedResource().withId(
+                    "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/publishers/contosoGroup/networkServiceDesignGroups/NSD_contoso/configurationGroupSchemas/MyVM_Configuration_Schema")))
+                .withResourceElementTemplates(Arrays.asList(new ArmResourceDefinitionResourceElementTemplateDetails()
+                    .withName("MyVM")
+                    .withDependsOnProfile(new DependsOnProfile().withInstallDependsOn(Arrays.asList()))
+                    .withConfiguration(new ArmResourceDefinitionResourceElementTemplate()
+                        .withTemplateType(TemplateType.ARM_TEMPLATE)
+                        .withParameterValues(
+                            "{\"publisherName\":\"{configurationparameters('MyVM_Configuration').publisherName}\",\"skuGroupName\":\"{configurationparameters('MyVM_Configuration').skuGroupName}\",\"skuVersion\":\"{configurationparameters('MyVM_Configuration').skuVersion}\",\"skuOfferingLocation\":\"{configurationparameters('MyVM_Configuration').skuOfferingLocation}\",\"nfviType\":\"{nfvis().nfvisFromSitePerNfviType.AzureCore.nfviAlias1.nfviType}\",\"nfviId\":\"{nfvis().nfvisFromSitePerNfviType.AzureCore.nfviAlias1.nfviId}\",\"allowSoftwareUpdates\":\"{configurationparameters('MyVM_Configuration').allowSoftwareUpdates}\",\"virtualNetworkName\":\"{configurationparameters('MyVM_Configuration').vnetName}\",\"subnetName\":\"{configurationparameters('MyVM_Configuration').subnetName}\",\"subnetAddressPrefix\":\"{configurationparameters('MyVM_Configuration').subnetAddressPrefix}\",\"managedResourceGroup\":\"{configurationparameters('SNSSelf').managedResourceGroupName}\",\"adminPassword\":\"{secretparameters('MyVM_Configuration').adminPassword}\"}")
+                        .withArtifactProfile(new NsdArtifactProfile()
+                            .withArtifactStoreReference(new ReferencedResource().withId(
+                                "/subscriptions/subid/providers/Microsoft.HybridNetwork/publishers/contosoGroup/artifactStoreReference/store1"))
+                            .withArtifactName("MyVMArmTemplate")
+                            .withArtifactVersion("1.0.0"))))))
+            .create();
     }
 
     // Use "Map.of" if available
@@ -1620,8 +2008,11 @@ public final class NetworkServiceDesignVersionsDeleteSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void deleteANetworkServiceDesignVersion(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions().delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0", com.azure.core.util.Context.NONE);
+    public static void
+        deleteANetworkServiceDesignVersion(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignVersions()
+            .delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1641,8 +2032,11 @@ public final class NetworkServiceDesignVersionsGetSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void getANetworkServiceDesignVersionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions().getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0", com.azure.core.util.Context.NONE);
+    public static void
+        getANetworkServiceDesignVersionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1663,7 +2057,9 @@ public final class NetworkServiceDesignVersionsListByNetworkServiceDesignGroupSa
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void getPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions().listByNetworkServiceDesignGroup("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", com.azure.core.util.Context.NONE);
+        manager.networkServiceDesignVersions()
+            .listByNetworkServiceDesignGroup("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1687,8 +2083,12 @@ public final class NetworkServiceDesignVersionsUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void updateTheNetworkServiceDesignVersionTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        NetworkServiceDesignVersion resource = manager.networkServiceDesignVersions().getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0", com.azure.core.util.Context.NONE).getValue();
+    public static void
+        updateTheNetworkServiceDesignVersionTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        NetworkServiceDesignVersion resource = manager.networkServiceDesignVersions()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
+                com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -1711,7 +2111,6 @@ public final class NetworkServiceDesignVersionsUpdateSamples {
 ```java
 import com.azure.resourcemanager.hybridnetwork.fluent.models.NetworkServiceDesignVersionUpdateStateInner;
 import com.azure.resourcemanager.hybridnetwork.models.VersionState;
-import java.util.stream.Collectors;
 
 /**
  * Samples for NetworkServiceDesignVersions UpdateState.
@@ -1725,8 +2124,12 @@ public final class NetworkServiceDesignVersionsUpdateStateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void updateNetworkServiceDesignVersionState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignVersions().updateState("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0", new NetworkServiceDesignVersionUpdateStateInner().withVersionState(VersionState.ACTIVE), com.azure.core.util.Context.NONE);
+    public static void
+        updateNetworkServiceDesignVersionState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.networkServiceDesignVersions()
+            .updateState("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", "1.0.0",
+                new NetworkServiceDesignVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1768,7 +2171,9 @@ public final class ProxyArtifactGetSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void getAnArtifactOverview(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.proxyArtifacts().get("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", "fedrbac", com.azure.core.util.Context.NONE);
+        manager.proxyArtifacts()
+            .get("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", "fedrbac",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1788,8 +2193,10 @@ public final class ProxyArtifactListSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listArtifactsUnderAnArtifactStore(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.proxyArtifacts().list("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", com.azure.core.util.Context.NONE);
+    public static void
+        listArtifactsUnderAnArtifactStore(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.proxyArtifacts()
+            .list("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1800,7 +2207,6 @@ public final class ProxyArtifactListSamples {
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactChangeState;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactChangeStateProperties;
 import com.azure.resourcemanager.hybridnetwork.models.ArtifactState;
-import java.util.stream.Collectors;
 
 /**
  * Samples for ProxyArtifact UpdateState.
@@ -1815,7 +2221,11 @@ public final class ProxyArtifactUpdateStateSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void updateAnArtifactState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.proxyArtifacts().updateState("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", "fedrbac", "1.0.0", new ArtifactChangeState().withProperties(new ArtifactChangeStateProperties().withArtifactState(ArtifactState.DEPRECATED)), com.azure.core.util.Context.NONE);
+        manager.proxyArtifacts()
+            .updateState("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", "fedrbac", "1.0.0",
+                new ArtifactChangeState()
+                    .withProperties(new ArtifactChangeStateProperties().withArtifactState(ArtifactState.DEPRECATED)),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -1825,7 +2235,6 @@ public final class ProxyArtifactUpdateStateSamples {
 ```java
 import com.azure.resourcemanager.hybridnetwork.models.PublisherPropertiesFormat;
 import com.azure.resourcemanager.hybridnetwork.models.PublisherScope;
-import java.util.stream.Collectors;
 
 /**
  * Samples for Publishers CreateOrUpdate.
@@ -1839,8 +2248,14 @@ public final class PublishersCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createOrUpdateAPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.publishers().define("TestPublisher").withRegion("eastus").withExistingResourceGroup("rg").withProperties(new PublisherPropertiesFormat().withScope(PublisherScope.fromString("Public"))).create();
+    public static void
+        createOrUpdateAPublisherResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.publishers()
+            .define("TestPublisher")
+            .withRegion("eastus")
+            .withExistingResourceGroup("rg")
+            .withProperties(new PublisherPropertiesFormat().withScope(PublisherScope.fromString("Public")))
+            .create();
     }
 }
 ```
@@ -1902,7 +2317,8 @@ public final class PublishersListSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listAllPublisherResourcesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void
+        listAllPublisherResourcesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.publishers().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -1923,7 +2339,8 @@ public final class PublishersListByResourceGroupSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listAllPublisherResourcesInAResourceGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void listAllPublisherResourcesInAResourceGroup(
+        com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.publishers().listByResourceGroup("rg", com.azure.core.util.Context.NONE);
     }
 }
@@ -1949,7 +2366,9 @@ public final class PublishersUpdateSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void updateAPublisherTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        Publisher resource = manager.publishers().getByResourceGroupWithResponse("rg", "TestPublisher", com.azure.core.util.Context.NONE).getValue();
+        Publisher resource = manager.publishers()
+            .getByResourceGroupWithResponse("rg", "TestPublisher", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -1978,7 +2397,6 @@ import com.azure.resourcemanager.hybridnetwork.models.Sku;
 import com.azure.resourcemanager.hybridnetwork.models.SkuName;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Samples for SiteNetworkServices CreateOrUpdate.
@@ -1993,7 +2411,20 @@ public final class SiteNetworkServicesCreateOrUpdateSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void createSiteNetworkService(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.siteNetworkServices().define("testSiteNetworkServiceName").withRegion("westUs2").withExistingResourceGroup("rg1").withProperties(new SiteNetworkServicePropertiesFormat().withSiteReference(new ReferencedResource().withId("/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/sites/testSite")).withNetworkServiceDesignVersionResourceReference(new OpenDeploymentResourceReference().withId("/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/TestPublisher/networkServiceDesignGroups/TestNetworkServiceDesignGroupName/networkServiceDesignVersions/1.0.0")).withDesiredStateConfigurationGroupValueReferences(mapOf("MyVM_Configuration", new ReferencedResource().withId("/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/configurationgroupvalues/MyVM_Configuration1")))).withSku(new Sku().withName(SkuName.STANDARD)).create();
+        manager.siteNetworkServices()
+            .define("testSiteNetworkServiceName")
+            .withRegion("westUs2")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new SiteNetworkServicePropertiesFormat()
+                .withSiteReference(new ReferencedResource().withId(
+                    "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/sites/testSite"))
+                .withNetworkServiceDesignVersionResourceReference(new OpenDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/TestPublisher/networkServiceDesignGroups/TestNetworkServiceDesignGroupName/networkServiceDesignVersions/1.0.0"))
+                .withDesiredStateConfigurationGroupValueReferences(mapOf("MyVM_Configuration",
+                    new ReferencedResource().withId(
+                        "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/configurationgroupvalues/MyVM_Configuration1"))))
+            .withSku(new Sku().withName(SkuName.STANDARD))
+            .create();
     }
 
     /*
@@ -2004,8 +2435,22 @@ public final class SiteNetworkServicesCreateOrUpdateSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void createFirstPartySiteNetworkService(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.siteNetworkServices().define("testSiteNetworkServiceName").withRegion("westUs2").withExistingResourceGroup("rg1").withProperties(new SiteNetworkServicePropertiesFormat().withSiteReference(new ReferencedResource().withId("/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/sites/testSite")).withNetworkServiceDesignVersionResourceReference(new SecretDeploymentResourceReference().withId("/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/TestPublisher/networkServiceDesignGroups/TestNetworkServiceDesignGroupName/networkServiceDesignVersions/1.0.0")).withDesiredStateConfigurationGroupValueReferences(mapOf("MyVM_Configuration", new ReferencedResource().withId("/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/configurationgroupvalues/MyVM_Configuration1")))).withSku(new Sku().withName(SkuName.STANDARD)).create();
+    public static void
+        createFirstPartySiteNetworkService(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+        manager.siteNetworkServices()
+            .define("testSiteNetworkServiceName")
+            .withRegion("westUs2")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new SiteNetworkServicePropertiesFormat()
+                .withSiteReference(new ReferencedResource().withId(
+                    "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/sites/testSite"))
+                .withNetworkServiceDesignVersionResourceReference(new SecretDeploymentResourceReference().withId(
+                    "/subscriptions/subid/resourcegroups/rg/providers/Microsoft.HybridNetwork/publishers/TestPublisher/networkServiceDesignGroups/TestNetworkServiceDesignGroupName/networkServiceDesignVersions/1.0.0"))
+                .withDesiredStateConfigurationGroupValueReferences(mapOf("MyVM_Configuration",
+                    new ReferencedResource().withId(
+                        "/subscriptions/subid/resourcegroups/contosorg1/providers/microsoft.hybridnetwork/configurationgroupvalues/MyVM_Configuration1"))))
+            .withSku(new Sku().withName(SkuName.STANDARD))
+            .create();
     }
 
     // Use "Map.of" if available
@@ -2059,7 +2504,8 @@ public final class SiteNetworkServicesGetByResourceGroupSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void getNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.siteNetworkServices().getByResourceGroupWithResponse("rg1", "testSiteNetworkServiceName", com.azure.core.util.Context.NONE);
+        manager.siteNetworkServices()
+            .getByResourceGroupWithResponse("rg1", "testSiteNetworkServiceName", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -2079,7 +2525,8 @@ public final class SiteNetworkServicesListSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void
+        listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.siteNetworkServices().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -2126,7 +2573,9 @@ public final class SiteNetworkServicesUpdateTagsSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void updateNetworkSiteTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        SiteNetworkService resource = manager.siteNetworkServices().getByResourceGroupWithResponse("rg1", "testSiteNetworkServiceName", com.azure.core.util.Context.NONE).getValue();
+        SiteNetworkService resource = manager.siteNetworkServices()
+            .getByResourceGroupWithResponse("rg1", "testSiteNetworkServiceName", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 
@@ -2167,7 +2616,19 @@ public final class SitesCreateOrUpdateSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void createNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.sites().define("testSite").withRegion("westUs2").withExistingResourceGroup("rg1").withProperties(new SitePropertiesFormat().withNfvis(Arrays.asList(new AzureCoreNfviDetails().withName("nfvi1").withLocation("westUs2"), new AzureArcK8SClusterNfviDetails().withName("nfvi2").withCustomLocationReference(new ReferencedResource().withId("/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation1")), new AzureOperatorNexusClusterNfviDetails().withName("nfvi3").withCustomLocationReference(new ReferencedResource().withId("/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation2"))))).create();
+        manager.sites()
+            .define("testSite")
+            .withRegion("westUs2")
+            .withExistingResourceGroup("rg1")
+            .withProperties(new SitePropertiesFormat().withNfvis(Arrays.asList(
+                new AzureCoreNfviDetails().withName("nfvi1").withLocation("westUs2"),
+                new AzureArcK8SClusterNfviDetails().withName("nfvi2")
+                    .withCustomLocationReference(new ReferencedResource().withId(
+                        "/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation1")),
+                new AzureOperatorNexusClusterNfviDetails().withName("nfvi3")
+                    .withCustomLocationReference(new ReferencedResource().withId(
+                        "/subscriptions/subid/resourceGroups/testResourceGroup/providers/Microsoft.ExtendedLocation/customLocations/testCustomLocation2")))))
+            .create();
     }
 }
 ```
@@ -2229,7 +2690,8 @@ public final class SitesListSamples {
      * 
      * @param manager Entry point to HybridNetworkManager.
      */
-    public static void listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
+    public static void
+        listAllHybridNetworkSitesInASubscription(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         manager.sites().list(com.azure.core.util.Context.NONE);
     }
 }
@@ -2276,7 +2738,9 @@ public final class SitesUpdateTagsSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void updateNetworkSiteTags(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        Site resource = manager.sites().getByResourceGroupWithResponse("rg1", "testSite", com.azure.core.util.Context.NONE).getValue();
+        Site resource = manager.sites()
+            .getByResourceGroupWithResponse("rg1", "testSite", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 

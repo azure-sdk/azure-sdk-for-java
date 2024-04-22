@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class ConfigurationGroupValuesDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueDelete.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ConfigurationGroupValueDelete.json
      */
     /**
      * Sample code: Delete hybrid configuration group resource.
@@ -20,7 +18,7 @@ public final class ConfigurationGroupValuesDeleteSamples {
      */
     public static void
         deleteHybridConfigurationGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().delete("rg1", "testConfigurationGroupValue",
-            com.azure.core.util.Context.NONE);
+        manager.configurationGroupValues()
+            .delete("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE);
     }
 }

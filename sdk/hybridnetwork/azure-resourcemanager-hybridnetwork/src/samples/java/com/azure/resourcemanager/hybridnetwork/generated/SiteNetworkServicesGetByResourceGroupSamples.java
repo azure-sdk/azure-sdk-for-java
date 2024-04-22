@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class SiteNetworkServicesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * SiteNetworkServiceGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteNetworkServiceGet.json
      */
     /**
      * Sample code: Get network site.
@@ -19,7 +17,7 @@ public final class SiteNetworkServicesGetByResourceGroupSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void getNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.siteNetworkServices().getByResourceGroupWithResponse("rg1", "testSiteNetworkServiceName",
-            com.azure.core.util.Context.NONE);
+        manager.siteNetworkServices()
+            .getByResourceGroupWithResponse("rg1", "testSiteNetworkServiceName", com.azure.core.util.Context.NONE);
     }
 }

@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class ProxyArtifactListSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PureProxyArtifact
-     * /ArtifactList.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PureProxyArtifact/ArtifactList.json
      */
     /**
      * Sample code: List artifacts under an artifact store.
@@ -20,7 +18,7 @@ public final class ProxyArtifactListSamples {
      */
     public static void
         listArtifactsUnderAnArtifactStore(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.proxyArtifacts().list("TestResourceGroup", "TestPublisher", "TestArtifactStoreName",
-            com.azure.core.util.Context.NONE);
+        manager.proxyArtifacts()
+            .list("TestResourceGroup", "TestPublisher", "TestArtifactStoreName", com.azure.core.util.Context.NONE);
     }
 }

@@ -14,8 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class NetworkFunctionDefinitionVersionUpdateStateInner {
     /*
-     * The network function definition version state. Only the 'Active' and 'Deprecated' states are allowed for
-     * updates. Other states are used for internal state transitioning.
+     * The network function definition version state. Only the 'Active' and 'Deprecated' states are allowed for updates. Other states are used for internal state transitioning.
      */
     @JsonProperty(value = "versionState")
     private VersionState versionState;

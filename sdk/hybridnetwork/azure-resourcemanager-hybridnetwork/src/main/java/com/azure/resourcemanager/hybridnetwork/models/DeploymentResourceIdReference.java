@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,19 +16,36 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "idType",
-    defaultImpl = DeploymentResourceIdReference.class)
+    defaultImpl = DeploymentResourceIdReference.class,
+    visible = true)
 @JsonTypeName("DeploymentResourceIdReference")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Secret", value = SecretDeploymentResourceReference.class),
     @JsonSubTypes.Type(name = "Open", value = OpenDeploymentResourceReference.class) })
 @Immutable
 public class DeploymentResourceIdReference {
+    /*
+     * The resource reference arm id type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "idType", required = true)
+    private IdType idType;
+
     /**
      * Creates an instance of DeploymentResourceIdReference class.
      */
     public DeploymentResourceIdReference() {
+        this.idType = IdType.fromString("DeploymentResourceIdReference");
+    }
+
+    /**
+     * Get the idType property: The resource reference arm id type.
+     * 
+     * @return the idType value.
+     */
+    public IdType idType() {
+        return this.idType;
     }
 
     /**

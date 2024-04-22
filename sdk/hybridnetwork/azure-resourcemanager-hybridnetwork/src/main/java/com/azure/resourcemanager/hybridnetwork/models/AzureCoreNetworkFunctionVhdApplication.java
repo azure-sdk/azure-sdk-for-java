@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Azure core network function vhd application definition.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "artifactType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "artifactType",
+    defaultImpl = AzureCoreNetworkFunctionVhdApplication.class,
+    visible = true)
 @JsonTypeName("VhdImageFile")
 @Fluent
 public final class AzureCoreNetworkFunctionVhdApplication extends AzureCoreNetworkFunctionApplication {
+    /*
+     * The artifact type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "artifactType", required = true)
+    private AzureCoreArtifactType artifactType = AzureCoreArtifactType.VHD_IMAGE_FILE;
+
     /*
      * Azure vhd image artifact profile.
      */
@@ -32,6 +44,16 @@ public final class AzureCoreNetworkFunctionVhdApplication extends AzureCoreNetwo
      * Creates an instance of AzureCoreNetworkFunctionVhdApplication class.
      */
     public AzureCoreNetworkFunctionVhdApplication() {
+    }
+
+    /**
+     * Get the artifactType property: The artifact type.
+     * 
+     * @return the artifactType value.
+     */
+    @Override
+    public AzureCoreArtifactType artifactType() {
+        return this.artifactType;
     }
 
     /**

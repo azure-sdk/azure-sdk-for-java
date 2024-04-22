@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class NetworkServiceDesignGroupsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignGroupDelete.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkServiceDesignGroupDelete.json
      */
     /**
      * Sample code: Delete a network function group resource.
@@ -20,7 +18,7 @@ public final class NetworkServiceDesignGroupsDeleteSamples {
      */
     public static void
         deleteANetworkFunctionGroupResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.networkServiceDesignGroups().delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
-            com.azure.core.util.Context.NONE);
+        manager.networkServiceDesignGroups()
+            .delete("rg", "TestPublisher", "TestNetworkServiceDesignGroupName", com.azure.core.util.Context.NONE);
     }
 }

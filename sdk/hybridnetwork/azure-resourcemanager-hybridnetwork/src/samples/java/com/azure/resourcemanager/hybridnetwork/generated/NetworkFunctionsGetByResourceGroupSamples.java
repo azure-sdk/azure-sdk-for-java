@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class NetworkFunctionsGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * AzureOperatorNexus/VirtualNetworkFunctionGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureOperatorNexus/VirtualNetworkFunctionGet.json
      */
     /**
      * Sample code: Get virtual network function resource on AzureOperatorNexus.
@@ -24,9 +22,7 @@ public final class NetworkFunctionsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkFunctionGet.json
      */
     /**
      * Sample code: Get network function resource.
@@ -39,9 +35,7 @@ public final class NetworkFunctionsGetByResourceGroupSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/
-     * VirtualNetworkFunctionGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/AzureCore/VirtualNetworkFunctionGet.json
      */
     /**
      * Sample code: Get virtual network function resource on AzureCore.

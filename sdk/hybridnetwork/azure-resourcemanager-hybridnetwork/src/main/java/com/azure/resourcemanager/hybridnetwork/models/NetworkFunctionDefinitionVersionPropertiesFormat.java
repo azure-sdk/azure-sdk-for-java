@@ -7,6 +7,7 @@ package com.azure.resourcemanager.hybridnetwork.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "networkFunctionType",
-    defaultImpl = NetworkFunctionDefinitionVersionPropertiesFormat.class)
+    defaultImpl = NetworkFunctionDefinitionVersionPropertiesFormat.class,
+    visible = true)
 @JsonTypeName("NetworkFunctionDefinitionVersionPropertiesFormat")
 @JsonSubTypes({
     @JsonSubTypes.Type(
@@ -26,6 +27,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "VirtualNetworkFunction", value = VirtualNetworkFunctionDefinitionVersion.class) })
 @Fluent
 public class NetworkFunctionDefinitionVersionPropertiesFormat {
+    /*
+     * The network function type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "networkFunctionType", required = true)
+    private NetworkFunctionType networkFunctionType;
+
     /*
      * The provisioning state of the network function definition version resource.
      */
@@ -54,6 +62,16 @@ public class NetworkFunctionDefinitionVersionPropertiesFormat {
      * Creates an instance of NetworkFunctionDefinitionVersionPropertiesFormat class.
      */
     public NetworkFunctionDefinitionVersionPropertiesFormat() {
+        this.networkFunctionType = NetworkFunctionType.fromString("NetworkFunctionDefinitionVersionPropertiesFormat");
+    }
+
+    /**
+     * Get the networkFunctionType property: The network function type.
+     * 
+     * @return the networkFunctionType value.
+     */
+    public NetworkFunctionType networkFunctionType() {
+        return this.networkFunctionType;
     }
 
     /**

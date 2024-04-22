@@ -6,17 +6,29 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Azure Operator Distributed Services network function image application definition.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "artifactType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "artifactType",
+    defaultImpl = AzureOperatorNexusNetworkFunctionImageApplication.class,
+    visible = true)
 @JsonTypeName("ImageFile")
 @Fluent
 public final class AzureOperatorNexusNetworkFunctionImageApplication
     extends AzureOperatorNexusNetworkFunctionApplication {
+    /*
+     * The artifact type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "artifactType", required = true)
+    private AzureOperatorNexusArtifactType artifactType = AzureOperatorNexusArtifactType.IMAGE_FILE;
+
     /*
      * Azure Operator Distributed Services image artifact profile.
      */
@@ -33,6 +45,16 @@ public final class AzureOperatorNexusNetworkFunctionImageApplication
      * Creates an instance of AzureOperatorNexusNetworkFunctionImageApplication class.
      */
     public AzureOperatorNexusNetworkFunctionImageApplication() {
+    }
+
+    /**
+     * Get the artifactType property: The artifact type.
+     * 
+     * @return the artifactType value.
+     */
+    @Override
+    public AzureOperatorNexusArtifactType artifactType() {
+        return this.artifactType;
     }
 
     /**

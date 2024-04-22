@@ -13,9 +13,7 @@ import java.util.Map;
  */
 public final class SiteNetworkServicesUpdateTagsSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * SiteNetworkServiceUpdateTags.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteNetworkServiceUpdateTags.json
      */
     /**
      * Sample code: Update network site tags.

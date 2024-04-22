@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * The network function definition resource element template details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = NetworkFunctionDefinitionResourceElementTemplateDetails.class,
+    visible = true)
 @JsonTypeName("NetworkFunctionDefinition")
 @Fluent
 public final class NetworkFunctionDefinitionResourceElementTemplateDetails extends ResourceElementTemplate {
+    /*
+     * The resource element template type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private Type resourceElementType = Type.NETWORK_FUNCTION_DEFINITION;
+
     /*
      * The resource element template type.
      */
@@ -26,6 +38,16 @@ public final class NetworkFunctionDefinitionResourceElementTemplateDetails exten
      * Creates an instance of NetworkFunctionDefinitionResourceElementTemplateDetails class.
      */
     public NetworkFunctionDefinitionResourceElementTemplateDetails() {
+    }
+
+    /**
+     * Get the resourceElementType property: The resource element template type.
+     * 
+     * @return the resourceElementType value.
+     */
+    @Override
+    public Type resourceElementType() {
+        return this.resourceElementType;
     }
 
     /**

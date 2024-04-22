@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class ArtifactManifestsListByArtifactStoreSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ArtifactManifestListByArtifactStore.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ArtifactManifestListByArtifactStore.json
      */
     /**
      * Sample code: Get artifact manifest list resource.
@@ -20,7 +18,7 @@ public final class ArtifactManifestsListByArtifactStoreSamples {
      */
     public static void
         getArtifactManifestListResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactManifests().listByArtifactStore("rg", "TestPublisher", "TestArtifactStore",
-            com.azure.core.util.Context.NONE);
+        manager.artifactManifests()
+            .listByArtifactStore("rg", "TestPublisher", "TestArtifactStore", com.azure.core.util.Context.NONE);
     }
 }

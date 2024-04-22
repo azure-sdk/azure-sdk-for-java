@@ -6,17 +6,29 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Containerized network function network function definition version properties.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "networkFunctionType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "networkFunctionType",
+    defaultImpl = ContainerizedNetworkFunctionDefinitionVersion.class,
+    visible = true)
 @JsonTypeName("ContainerizedNetworkFunction")
 @Fluent
 public final class ContainerizedNetworkFunctionDefinitionVersion
     extends NetworkFunctionDefinitionVersionPropertiesFormat {
+    /*
+     * The network function type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "networkFunctionType", required = true)
+    private NetworkFunctionType networkFunctionType = NetworkFunctionType.CONTAINERIZED_NETWORK_FUNCTION;
+
     /*
      * Containerized network function template.
      */
@@ -27,6 +39,16 @@ public final class ContainerizedNetworkFunctionDefinitionVersion
      * Creates an instance of ContainerizedNetworkFunctionDefinitionVersion class.
      */
     public ContainerizedNetworkFunctionDefinitionVersion() {
+    }
+
+    /**
+     * Get the networkFunctionType property: The network function type.
+     * 
+     * @return the networkFunctionType value.
+     */
+    @Override
+    public NetworkFunctionType networkFunctionType() {
+        return this.networkFunctionType;
     }
 
     /**

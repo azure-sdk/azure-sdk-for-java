@@ -6,6 +6,7 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * Azure Arc kubernetes network function template.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "nfviType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "nfviType",
+    defaultImpl = AzureArcKubernetesNetworkFunctionTemplate.class,
+    visible = true)
 @JsonTypeName("AzureArcKubernetes")
 @Fluent
 public final class AzureArcKubernetesNetworkFunctionTemplate extends ContainerizedNetworkFunctionTemplate {
+    /*
+     * The network function type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "nfviType", required = true)
+    private ContainerizedNetworkFunctionNfviType nfviType = ContainerizedNetworkFunctionNfviType.AZURE_ARC_KUBERNETES;
+
     /*
      * Network function applications.
      */
@@ -27,6 +39,16 @@ public final class AzureArcKubernetesNetworkFunctionTemplate extends Containeriz
      * Creates an instance of AzureArcKubernetesNetworkFunctionTemplate class.
      */
     public AzureArcKubernetesNetworkFunctionTemplate() {
+    }
+
+    /**
+     * Get the nfviType property: The network function type.
+     * 
+     * @return the nfviType value.
+     */
+    @Override
+    public ContainerizedNetworkFunctionNfviType nfviType() {
+        return this.nfviType;
     }
 
     /**

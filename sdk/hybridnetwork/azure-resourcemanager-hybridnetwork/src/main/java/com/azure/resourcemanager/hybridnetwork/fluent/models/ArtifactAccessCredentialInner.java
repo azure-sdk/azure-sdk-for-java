@@ -7,7 +7,10 @@ package com.azure.resourcemanager.hybridnetwork.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.hybridnetwork.models.AzureContainerRegistryScopedTokenCredential;
 import com.azure.resourcemanager.hybridnetwork.models.AzureStorageAccountCredential;
+import com.azure.resourcemanager.hybridnetwork.models.CredentialType;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -16,9 +19,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "credentialType",
-    defaultImpl = ArtifactAccessCredentialInner.class)
+    defaultImpl = ArtifactAccessCredentialInner.class,
+    visible = true)
 @JsonTypeName("ArtifactAccessCredential")
 @JsonSubTypes({
     @JsonSubTypes.Type(
@@ -27,10 +30,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "AzureStorageAccountToken", value = AzureStorageAccountCredential.class) })
 @Immutable
 public class ArtifactAccessCredentialInner {
+    /*
+     * The credential type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "credentialType", required = true)
+    private CredentialType credentialType;
+
     /**
      * Creates an instance of ArtifactAccessCredentialInner class.
      */
     public ArtifactAccessCredentialInner() {
+        this.credentialType = CredentialType.fromString("ArtifactAccessCredential");
+    }
+
+    /**
+     * Get the credentialType property: The credential type.
+     * 
+     * @return the credentialType value.
+     */
+    public CredentialType credentialType() {
+        return this.credentialType;
     }
 
     /**

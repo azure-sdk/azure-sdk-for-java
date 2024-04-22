@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * The AzureArcK8sCluster NFVI detail.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "nfviType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "nfviType",
+    defaultImpl = AzureArcK8SClusterNfviDetails.class,
+    visible = true)
 @JsonTypeName("AzureArcKubernetes")
 @Fluent
 public final class AzureArcK8SClusterNfviDetails extends NfvIs {
+    /*
+     * The NFVI type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "nfviType", required = true)
+    private NfviType nfviType = NfviType.AZURE_ARC_KUBERNETES;
+
     /*
      * The reference to the custom location.
      */
@@ -26,6 +38,16 @@ public final class AzureArcK8SClusterNfviDetails extends NfvIs {
      * Creates an instance of AzureArcK8SClusterNfviDetails class.
      */
     public AzureArcK8SClusterNfviDetails() {
+    }
+
+    /**
+     * Get the nfviType property: The NFVI type.
+     * 
+     * @return the nfviType value.
+     */
+    @Override
+    public NfviType nfviType() {
+        return this.nfviType;
     }
 
     /**

@@ -13,9 +13,7 @@ import java.util.Map;
  */
 public final class ConfigurationGroupValuesUpdateTagsSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueUpdateTags.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ConfigurationGroupValueUpdateTags.json
      */
     /**
      * Sample code: Update hybrid configuration group tags.

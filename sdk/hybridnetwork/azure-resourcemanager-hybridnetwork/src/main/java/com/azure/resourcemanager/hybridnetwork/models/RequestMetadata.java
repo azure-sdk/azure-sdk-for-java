@@ -130,16 +130,16 @@ public final class RequestMetadata {
      */
     public void validate() {
         if (relativePath() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property relativePath in model RequestMetadata"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property relativePath in model RequestMetadata"));
         }
         if (httpMethod() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property httpMethod in model RequestMetadata"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property httpMethod in model RequestMetadata"));
         }
         if (serializedBody() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property serializedBody in model RequestMetadata"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property serializedBody in model RequestMetadata"));
         }
     }
 

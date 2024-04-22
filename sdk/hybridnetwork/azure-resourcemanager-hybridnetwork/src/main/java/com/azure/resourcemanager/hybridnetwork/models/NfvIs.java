@@ -7,17 +7,14 @@ package com.azure.resourcemanager.hybridnetwork.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * The NFVI object.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "nfviType",
-    defaultImpl = NfvIs.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "nfviType", defaultImpl = NfvIs.class, visible = true)
 @JsonTypeName("NfvIs")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureCore", value = AzureCoreNfviDetails.class),
@@ -25,6 +22,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "AzureOperatorNexus", value = AzureOperatorNexusClusterNfviDetails.class) })
 @Fluent
 public class NfvIs {
+    /*
+     * The NFVI type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "nfviType", required = true)
+    private NfviType nfviType;
+
     /*
      * Name of the nfvi.
      */
@@ -35,6 +39,16 @@ public class NfvIs {
      * Creates an instance of NfvIs class.
      */
     public NfvIs() {
+        this.nfviType = NfviType.fromString("NfvIs");
+    }
+
+    /**
+     * Get the nfviType property: The NFVI type.
+     * 
+     * @return the nfviType value.
+     */
+    public NfviType nfviType() {
+        return this.nfviType;
     }
 
     /**

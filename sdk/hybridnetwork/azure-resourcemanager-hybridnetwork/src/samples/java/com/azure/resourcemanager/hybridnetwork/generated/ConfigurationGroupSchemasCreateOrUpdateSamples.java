@@ -11,9 +11,7 @@ import com.azure.resourcemanager.hybridnetwork.models.ConfigurationGroupSchemaPr
  */
 public final class ConfigurationGroupSchemasCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupSchemaCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ConfigurationGroupSchemaCreate.json
      */
     /**
      * Sample code: Create or update the network function definition group.
@@ -22,7 +20,9 @@ public final class ConfigurationGroupSchemasCreateOrUpdateSamples {
      */
     public static void createOrUpdateTheNetworkFunctionDefinitionGroup(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas().define("testConfigurationGroupSchema").withRegion("westUs2")
+        manager.configurationGroupSchemas()
+            .define("testConfigurationGroupSchema")
+            .withRegion("westUs2")
             .withExistingPublisher("rg1", "testPublisher")
             .withProperties(new ConfigurationGroupSchemaPropertiesFormat().withDescription("Schema with no secrets")
                 .withSchemaDefinition(

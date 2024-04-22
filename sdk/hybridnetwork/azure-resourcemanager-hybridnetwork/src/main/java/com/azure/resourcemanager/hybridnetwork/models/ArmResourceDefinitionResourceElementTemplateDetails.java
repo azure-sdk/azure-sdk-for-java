@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * The arm resource definition resource element template details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ArmResourceDefinitionResourceElementTemplateDetails.class,
+    visible = true)
 @JsonTypeName("ArmResourceDefinition")
 @Fluent
 public final class ArmResourceDefinitionResourceElementTemplateDetails extends ResourceElementTemplate {
+    /*
+     * The resource element template type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private Type resourceElementType = Type.ARM_RESOURCE_DEFINITION;
+
     /*
      * The resource element template type.
      */
@@ -26,6 +38,16 @@ public final class ArmResourceDefinitionResourceElementTemplateDetails extends R
      * Creates an instance of ArmResourceDefinitionResourceElementTemplateDetails class.
      */
     public ArmResourceDefinitionResourceElementTemplateDetails() {
+    }
+
+    /**
+     * Get the resourceElementType property: The resource element template type.
+     * 
+     * @return the resourceElementType value.
+     */
+    @Override
+    public Type resourceElementType() {
+        return this.resourceElementType;
     }
 
     /**

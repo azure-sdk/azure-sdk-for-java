@@ -7,6 +7,7 @@ package com.azure.resourcemanager.hybridnetwork.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "type",
-    defaultImpl = ResourceElementTemplate.class)
+    defaultImpl = ResourceElementTemplate.class,
+    visible = true)
 @JsonTypeName("ResourceElementTemplate")
 @JsonSubTypes({
     @JsonSubTypes.Type(
@@ -28,6 +29,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         value = NetworkFunctionDefinitionResourceElementTemplateDetails.class) })
 @Fluent
 public class ResourceElementTemplate {
+    /*
+     * The resource element template type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private Type resourceElementType;
+
     /*
      * Name of the resource element template.
      */
@@ -44,6 +52,16 @@ public class ResourceElementTemplate {
      * Creates an instance of ResourceElementTemplate class.
      */
     public ResourceElementTemplate() {
+        this.resourceElementType = Type.fromString("ResourceElementTemplate");
+    }
+
+    /**
+     * Get the resourceElementType property: The resource element template type.
+     * 
+     * @return the resourceElementType value.
+     */
+    public Type resourceElementType() {
+        return this.resourceElementType;
     }
 
     /**

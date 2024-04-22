@@ -6,6 +6,7 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * NetworkFunction with secrets.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "configurationType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "configurationType",
+    defaultImpl = NetworkFunctionValueWithSecrets.class,
+    visible = true)
 @JsonTypeName("Secret")
 @Fluent
 public final class NetworkFunctionValueWithSecrets extends NetworkFunctionPropertiesFormat {
+    /*
+     * The value which indicates if NF  values are secrets
+     */
+    @JsonTypeId
+    @JsonProperty(value = "configurationType", required = true)
+    private NetworkFunctionConfigurationType configurationType = NetworkFunctionConfigurationType.SECRET;
+
     /*
      * The JSON-serialized secret deployment values from the user. This contains secrets like passwords,keys etc
      */
@@ -27,6 +39,16 @@ public final class NetworkFunctionValueWithSecrets extends NetworkFunctionProper
      * Creates an instance of NetworkFunctionValueWithSecrets class.
      */
     public NetworkFunctionValueWithSecrets() {
+    }
+
+    /**
+     * Get the configurationType property: The value which indicates if NF values are secrets.
+     * 
+     * @return the configurationType value.
+     */
+    @Override
+    public NetworkFunctionConfigurationType configurationType() {
+        return this.configurationType;
     }
 
     /**

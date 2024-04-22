@@ -19,7 +19,7 @@ public final class ArmResourceDefinitionResourceElementTemplate {
     private TemplateType templateType;
 
     /*
-     * Name and value pairs that define the parameter values. It can be a well formed escaped JSON string.
+     * Name and value pairs that define the parameter values. It can be  a well formed escaped JSON string.
      */
     @JsonProperty(value = "parameterValues")
     private String parameterValues;
@@ -57,8 +57,8 @@ public final class ArmResourceDefinitionResourceElementTemplate {
     }
 
     /**
-     * Get the parameterValues property: Name and value pairs that define the parameter values. It can be a well
-     * formed escaped JSON string.
+     * Get the parameterValues property: Name and value pairs that define the parameter values. It can be a well formed
+     * escaped JSON string.
      * 
      * @return the parameterValues value.
      */
@@ -67,8 +67,8 @@ public final class ArmResourceDefinitionResourceElementTemplate {
     }
 
     /**
-     * Set the parameterValues property: Name and value pairs that define the parameter values. It can be a well
-     * formed escaped JSON string.
+     * Set the parameterValues property: Name and value pairs that define the parameter values. It can be a well formed
+     * escaped JSON string.
      * 
      * @param parameterValues the parameterValues value to set.
      * @return the ArmResourceDefinitionResourceElementTemplate object itself.

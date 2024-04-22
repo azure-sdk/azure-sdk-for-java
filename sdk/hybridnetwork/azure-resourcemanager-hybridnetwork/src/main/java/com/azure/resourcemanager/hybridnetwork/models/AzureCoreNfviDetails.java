@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * The Azure Core NFVI detail.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "nfviType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "nfviType",
+    defaultImpl = AzureCoreNfviDetails.class,
+    visible = true)
 @JsonTypeName("AzureCore")
 @Fluent
 public final class AzureCoreNfviDetails extends NfvIs {
+    /*
+     * The NFVI type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "nfviType", required = true)
+    private NfviType nfviType = NfviType.AZURE_CORE;
+
     /*
      * Location of the Azure core.
      */
@@ -26,6 +38,16 @@ public final class AzureCoreNfviDetails extends NfvIs {
      * Creates an instance of AzureCoreNfviDetails class.
      */
     public AzureCoreNfviDetails() {
+    }
+
+    /**
+     * Get the nfviType property: The NFVI type.
+     * 
+     * @return the nfviType value.
+     */
+    @Override
+    public NfviType nfviType() {
+        return this.nfviType;
     }
 
     /**

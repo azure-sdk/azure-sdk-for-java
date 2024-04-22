@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Non secret deployment resource id reference.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "idType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "idType",
+    defaultImpl = OpenDeploymentResourceReference.class,
+    visible = true)
 @JsonTypeName("Open")
 @Fluent
 public final class OpenDeploymentResourceReference extends DeploymentResourceIdReference {
+    /*
+     * The resource reference arm id type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "idType", required = true)
+    private IdType idType = IdType.OPEN;
+
     /*
      * Resource ID.
      */
@@ -26,6 +38,16 @@ public final class OpenDeploymentResourceReference extends DeploymentResourceIdR
      * Creates an instance of OpenDeploymentResourceReference class.
      */
     public OpenDeploymentResourceReference() {
+    }
+
+    /**
+     * Get the idType property: The resource reference arm id type.
+     * 
+     * @return the idType value.
+     */
+    @Override
+    public IdType idType() {
+        return this.idType;
     }
 
     /**

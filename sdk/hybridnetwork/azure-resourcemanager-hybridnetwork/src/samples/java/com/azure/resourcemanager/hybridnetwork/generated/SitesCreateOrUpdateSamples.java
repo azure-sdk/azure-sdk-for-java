@@ -16,8 +16,7 @@ import java.util.Arrays;
  */
 public final class SitesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteCreate.json
      */
     /**
      * Sample code: Create network site.
@@ -25,7 +24,10 @@ public final class SitesCreateOrUpdateSamples {
      * @param manager Entry point to HybridNetworkManager.
      */
     public static void createNetworkSite(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.sites().define("testSite").withRegion("westUs2").withExistingResourceGroup("rg1")
+        manager.sites()
+            .define("testSite")
+            .withRegion("westUs2")
+            .withExistingResourceGroup("rg1")
             .withProperties(new SitePropertiesFormat().withNfvis(Arrays.asList(
                 new AzureCoreNfviDetails().withName("nfvi1").withLocation("westUs2"),
                 new AzureArcK8SClusterNfviDetails().withName("nfvi2")

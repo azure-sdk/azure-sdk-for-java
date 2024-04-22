@@ -68,8 +68,8 @@ public final class NetworkFunctionsClientImpl implements NetworkFunctionsClient 
     }
 
     /**
-     * The interface defining all the services for HybridNetworkManagementClientNetworkFunctions to be used by the
-     * proxy service to perform REST calls.
+     * The interface defining all the services for HybridNetworkManagementClientNetworkFunctions to be used by the proxy
+     * service to perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "HybridNetworkManagem")

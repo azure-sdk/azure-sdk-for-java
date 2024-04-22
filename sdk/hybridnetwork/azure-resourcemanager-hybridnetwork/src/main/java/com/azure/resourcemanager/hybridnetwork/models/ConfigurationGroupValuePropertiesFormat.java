@@ -7,6 +7,7 @@ package com.azure.resourcemanager.hybridnetwork.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,15 +16,22 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "configurationType",
-    defaultImpl = ConfigurationGroupValuePropertiesFormat.class)
+    defaultImpl = ConfigurationGroupValuePropertiesFormat.class,
+    visible = true)
 @JsonTypeName("ConfigurationGroupValuePropertiesFormat")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Secret", value = ConfigurationValueWithSecrets.class),
     @JsonSubTypes.Type(name = "Open", value = ConfigurationValueWithoutSecrets.class) })
 @Fluent
 public class ConfigurationGroupValuePropertiesFormat {
+    /*
+     * The value which indicates if configuration values are secrets
+     */
+    @JsonTypeId
+    @JsonProperty(value = "configurationType", required = true)
+    private ConfigurationGroupValueConfigurationType configurationType;
+
     /*
      * The provisioning state of the site resource.
      */
@@ -64,6 +72,17 @@ public class ConfigurationGroupValuePropertiesFormat {
      * Creates an instance of ConfigurationGroupValuePropertiesFormat class.
      */
     public ConfigurationGroupValuePropertiesFormat() {
+        this.configurationType
+            = ConfigurationGroupValueConfigurationType.fromString("ConfigurationGroupValuePropertiesFormat");
+    }
+
+    /**
+     * Get the configurationType property: The value which indicates if configuration values are secrets.
+     * 
+     * @return the configurationType value.
+     */
+    public ConfigurationGroupValueConfigurationType configurationType() {
+        return this.configurationType;
     }
 
     /**

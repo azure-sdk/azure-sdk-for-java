@@ -6,16 +6,28 @@ package com.azure.resourcemanager.hybridnetwork.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Azure arc kubernetes helm application configurations.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "artifactType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "artifactType",
+    defaultImpl = AzureArcKubernetesHelmApplication.class,
+    visible = true)
 @JsonTypeName("HelmPackage")
 @Fluent
 public final class AzureArcKubernetesHelmApplication extends AzureArcKubernetesNetworkFunctionApplication {
+    /*
+     * The artifact type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "artifactType", required = true)
+    private AzureArcKubernetesArtifactType artifactType = AzureArcKubernetesArtifactType.HELM_PACKAGE;
+
     /*
      * Azure arc kubernetes artifact profile.
      */
@@ -32,6 +44,16 @@ public final class AzureArcKubernetesHelmApplication extends AzureArcKubernetesN
      * Creates an instance of AzureArcKubernetesHelmApplication class.
      */
     public AzureArcKubernetesHelmApplication() {
+    }
+
+    /**
+     * Get the artifactType property: The artifact type.
+     * 
+     * @return the artifactType value.
+     */
+    @Override
+    public AzureArcKubernetesArtifactType artifactType() {
+        return this.artifactType;
     }
 
     /**

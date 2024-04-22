@@ -7,6 +7,7 @@ package com.azure.resourcemanager.hybridnetwork.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -16,15 +17,22 @@ import java.util.List;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "configurationType",
-    defaultImpl = NetworkFunctionPropertiesFormat.class)
+    defaultImpl = NetworkFunctionPropertiesFormat.class,
+    visible = true)
 @JsonTypeName("NetworkFunctionPropertiesFormat")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Secret", value = NetworkFunctionValueWithSecrets.class),
     @JsonSubTypes.Type(name = "Open", value = NetworkFunctionValueWithoutSecrets.class) })
 @Fluent
 public class NetworkFunctionPropertiesFormat {
+    /*
+     * The value which indicates if NF  values are secrets
+     */
+    @JsonTypeId
+    @JsonProperty(value = "configurationType", required = true)
+    private NetworkFunctionConfigurationType configurationType;
+
     /*
      * The provisioning state of the network function resource.
      */
@@ -95,6 +103,16 @@ public class NetworkFunctionPropertiesFormat {
      * Creates an instance of NetworkFunctionPropertiesFormat class.
      */
     public NetworkFunctionPropertiesFormat() {
+        this.configurationType = NetworkFunctionConfigurationType.fromString("NetworkFunctionPropertiesFormat");
+    }
+
+    /**
+     * Get the configurationType property: The value which indicates if NF values are secrets.
+     * 
+     * @return the configurationType value.
+     */
+    public NetworkFunctionConfigurationType configurationType() {
+        return this.configurationType;
     }
 
     /**

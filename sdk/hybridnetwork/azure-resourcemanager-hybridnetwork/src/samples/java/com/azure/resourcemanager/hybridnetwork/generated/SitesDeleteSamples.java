@@ -9,8 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class SitesDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteDelete.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/SiteDelete.json
      */
     /**
      * Sample code: Delete network site.

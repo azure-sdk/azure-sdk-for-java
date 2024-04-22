@@ -12,9 +12,7 @@ import com.azure.resourcemanager.hybridnetwork.models.VersionState;
  */
 public final class ConfigurationGroupSchemasUpdateStateSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupSchemaVersionUpdateState.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ConfigurationGroupSchemaVersionUpdateState.json
      */
     /**
      * Sample code: Update network service design version state.
@@ -23,8 +21,9 @@ public final class ConfigurationGroupSchemasUpdateStateSamples {
      */
     public static void
         updateNetworkServiceDesignVersionState(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupSchemas().updateState("rg1", "testPublisher", "testConfigurationGroupSchema",
-            new ConfigurationGroupSchemaVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
-            com.azure.core.util.Context.NONE);
+        manager.configurationGroupSchemas()
+            .updateState("rg1", "testPublisher", "testConfigurationGroupSchema",
+                new ConfigurationGroupSchemaVersionUpdateStateInner().withVersionState(VersionState.ACTIVE),
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -13,9 +13,7 @@ import java.util.Map;
  */
 public final class NetworkServiceDesignGroupsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkServiceDesignGroupUpdateTags.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkServiceDesignGroupUpdateTags.json
      */
     /**
      * Sample code: Create or update the network service design group resource.
@@ -24,8 +22,10 @@ public final class NetworkServiceDesignGroupsUpdateSamples {
      */
     public static void createOrUpdateTheNetworkServiceDesignGroupResource(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        NetworkServiceDesignGroup resource = manager.networkServiceDesignGroups().getWithResponse("rg", "TestPublisher",
-            "TestNetworkServiceDesignGroupName", com.azure.core.util.Context.NONE).getValue();
+        NetworkServiceDesignGroup resource = manager.networkServiceDesignGroups()
+            .getWithResponse("rg", "TestPublisher", "TestNetworkServiceDesignGroupName",
+                com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 

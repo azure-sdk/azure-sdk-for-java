@@ -9,8 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class PublishersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PublisherGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/PublisherGet.json
      */
     /**
      * Sample code: Get a publisher resource.

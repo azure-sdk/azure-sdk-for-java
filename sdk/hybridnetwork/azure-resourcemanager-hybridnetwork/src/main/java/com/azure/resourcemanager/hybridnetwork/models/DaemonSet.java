@@ -44,7 +44,7 @@ public final class DaemonSet {
     private Integer ready;
 
     /*
-     * Number of upto date pods
+     * Number of  upto date pods
      */
     @JsonProperty(value = "upToDate")
     private Integer upToDate;

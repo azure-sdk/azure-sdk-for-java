@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hybridnetwork.generated;
  */
 public final class ConfigurationGroupValuesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ConfigurationGroupValueGet.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ConfigurationGroupValueGet.json
      */
     /**
      * Sample code: Get hybrid configuration group.
@@ -20,7 +18,7 @@ public final class ConfigurationGroupValuesGetByResourceGroupSamples {
      */
     public static void
         getHybridConfigurationGroup(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.configurationGroupValues().getByResourceGroupWithResponse("rg1", "testConfigurationGroupValue",
-            com.azure.core.util.Context.NONE);
+        manager.configurationGroupValues()
+            .getByResourceGroupWithResponse("rg1", "testConfigurationGroupValue", com.azure.core.util.Context.NONE);
     }
 }

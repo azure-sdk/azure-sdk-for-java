@@ -13,9 +13,7 @@ import java.util.Map;
  */
 public final class NetworkFunctionsUpdateTagsSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * NetworkFunctionUpdateTags.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/NetworkFunctionUpdateTags.json
      */
     /**
      * Sample code: Update tags for network function resource.
@@ -25,7 +23,8 @@ public final class NetworkFunctionsUpdateTagsSamples {
     public static void
         updateTagsForNetworkFunctionResource(com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
         NetworkFunction resource = manager.networkFunctions()
-            .getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE).getValue();
+            .getByResourceGroupWithResponse("rg", "testNf", com.azure.core.util.Context.NONE)
+            .getValue();
         resource.update().withTags(mapOf("tag1", "value1", "tag2", "value2")).apply();
     }
 

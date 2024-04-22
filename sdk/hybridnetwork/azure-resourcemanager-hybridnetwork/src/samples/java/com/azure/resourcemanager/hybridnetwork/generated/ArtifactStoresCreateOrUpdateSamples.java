@@ -14,9 +14,7 @@ import com.azure.resourcemanager.hybridnetwork.models.ArtifactStoreType;
  */
 public final class ArtifactStoresCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/
-     * ArtifactStoreCreate.json
+     * x-ms-original-file: specification/hybridnetwork/resource-manager/Microsoft.HybridNetwork/stable/2023-09-01/examples/ArtifactStoreCreate.json
      */
     /**
      * Sample code: Create or update an artifact store of publisher resource.
@@ -25,7 +23,9 @@ public final class ArtifactStoresCreateOrUpdateSamples {
      */
     public static void createOrUpdateAnArtifactStoreOfPublisherResource(
         com.azure.resourcemanager.hybridnetwork.HybridNetworkManager manager) {
-        manager.artifactStores().define("TestArtifactStore").withRegion("eastus")
+        manager.artifactStores()
+            .define("TestArtifactStore")
+            .withRegion("eastus")
             .withExistingPublisher("rg", "TestPublisher")
             .withProperties(
                 new ArtifactStorePropertiesFormat().withStoreType(ArtifactStoreType.AZURE_CONTAINER_REGISTRY)
