@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** User assigned identity properties. */
+/**
+ * User assigned identity properties.
+ */
 @Fluent
 public final class UserAssignedProperties {
     /*
@@ -16,13 +18,15 @@ public final class UserAssignedProperties {
     @JsonProperty(value = "resourceId")
     private String resourceId;
 
-    /** Creates an instance of UserAssignedProperties class. */
+    /**
+     * Creates an instance of UserAssignedProperties class.
+     */
     public UserAssignedProperties() {
     }
 
     /**
      * Get the resourceId property: Arm resource id for user assigned identity to be used to fetch MSI token.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -31,7 +35,7 @@ public final class UserAssignedProperties {
 
     /**
      * Set the resourceId property: Arm resource id for user assigned identity to be used to fetch MSI token.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the UserAssignedProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class UserAssignedProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

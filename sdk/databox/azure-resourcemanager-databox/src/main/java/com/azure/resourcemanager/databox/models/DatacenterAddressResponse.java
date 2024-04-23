@@ -7,23 +7,32 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Datacenter address for given storage location. */
+/**
+ * Datacenter address for given storage location.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "datacenterAddressType",
-    defaultImpl = DatacenterAddressResponse.class)
+    defaultImpl = DatacenterAddressResponse.class,
+    visible = true)
 @JsonTypeName("DatacenterAddressResponse")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "DatacenterAddressInstruction", value = DatacenterAddressInstructionResponse.class),
-    @JsonSubTypes.Type(name = "DatacenterAddressLocation", value = DatacenterAddressLocationResponse.class)
-})
+    @JsonSubTypes.Type(name = "DatacenterAddressLocation", value = DatacenterAddressLocationResponse.class) })
 @Immutable
 public class DatacenterAddressResponse {
+    /*
+     * Data center address type
+     */
+    @JsonTypeId
+    @JsonProperty(value = "datacenterAddressType", required = true)
+    private DatacenterAddressType datacenterAddressType;
+
     /*
      * List of supported carriers for return shipment.
      */
@@ -36,13 +45,25 @@ public class DatacenterAddressResponse {
     @JsonProperty(value = "dataCenterAzureLocation", access = JsonProperty.Access.WRITE_ONLY)
     private String dataCenterAzureLocation;
 
-    /** Creates an instance of DatacenterAddressResponse class. */
+    /**
+     * Creates an instance of DatacenterAddressResponse class.
+     */
     public DatacenterAddressResponse() {
+        this.datacenterAddressType = DatacenterAddressType.fromString("DatacenterAddressResponse");
+    }
+
+    /**
+     * Get the datacenterAddressType property: Data center address type.
+     * 
+     * @return the datacenterAddressType value.
+     */
+    public DatacenterAddressType datacenterAddressType() {
+        return this.datacenterAddressType;
     }
 
     /**
      * Get the supportedCarriersForReturnShipment property: List of supported carriers for return shipment.
-     *
+     * 
      * @return the supportedCarriersForReturnShipment value.
      */
     public List<String> supportedCarriersForReturnShipment() {
@@ -51,7 +72,7 @@ public class DatacenterAddressResponse {
 
     /**
      * Get the dataCenterAzureLocation property: Azure Location where the Data Center serves primarily.
-     *
+     * 
      * @return the dataCenterAzureLocation value.
      */
     public String dataCenterAzureLocation() {
@@ -60,7 +81,7 @@ public class DatacenterAddressResponse {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

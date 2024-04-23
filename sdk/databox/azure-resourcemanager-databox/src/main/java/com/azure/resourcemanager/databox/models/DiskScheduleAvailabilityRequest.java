@@ -6,28 +6,54 @@ package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request body to get the availability for scheduling disk orders. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "skuName")
+/**
+ * Request body to get the availability for scheduling disk orders.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "skuName",
+    defaultImpl = DiskScheduleAvailabilityRequest.class,
+    visible = true)
 @JsonTypeName("DataBoxDisk")
 @Fluent
 public final class DiskScheduleAvailabilityRequest extends ScheduleAvailabilityRequest {
+    /*
+     * Sku Name for which the order is to be scheduled.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "skuName", required = true)
+    private SkuName skuName = SkuName.DATA_BOX_DISK;
+
     /*
      * The expected size of the data, which needs to be transferred in this job, in terabytes.
      */
     @JsonProperty(value = "expectedDataSizeInTeraBytes", required = true)
     private int expectedDataSizeInTeraBytes;
 
-    /** Creates an instance of DiskScheduleAvailabilityRequest class. */
+    /**
+     * Creates an instance of DiskScheduleAvailabilityRequest class.
+     */
     public DiskScheduleAvailabilityRequest() {
+    }
+
+    /**
+     * Get the skuName property: Sku Name for which the order is to be scheduled.
+     * 
+     * @return the skuName value.
+     */
+    @Override
+    public SkuName skuName() {
+        return this.skuName;
     }
 
     /**
      * Get the expectedDataSizeInTeraBytes property: The expected size of the data, which needs to be transferred in
      * this job, in terabytes.
-     *
+     * 
      * @return the expectedDataSizeInTeraBytes value.
      */
     public int expectedDataSizeInTeraBytes() {
@@ -37,7 +63,7 @@ public final class DiskScheduleAvailabilityRequest extends ScheduleAvailabilityR
     /**
      * Set the expectedDataSizeInTeraBytes property: The expected size of the data, which needs to be transferred in
      * this job, in terabytes.
-     *
+     * 
      * @param expectedDataSizeInTeraBytes the expectedDataSizeInTeraBytes value to set.
      * @return the DiskScheduleAvailabilityRequest object itself.
      */
@@ -46,14 +72,18 @@ public final class DiskScheduleAvailabilityRequest extends ScheduleAvailabilityR
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DiskScheduleAvailabilityRequest withStorageLocation(String storageLocation) {
         super.withStorageLocation(storageLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DiskScheduleAvailabilityRequest withCountry(String country) {
         super.withCountry(country);
@@ -62,7 +92,7 @@ public final class DiskScheduleAvailabilityRequest extends ScheduleAvailabilityR
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

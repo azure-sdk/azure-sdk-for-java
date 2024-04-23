@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Preferences related to the Encryption. */
+/**
+ * Preferences related to the Encryption.
+ */
 @Fluent
 public final class EncryptionPreferences {
     /*
@@ -22,13 +24,15 @@ public final class EncryptionPreferences {
     @JsonProperty(value = "hardwareEncryption")
     private HardwareEncryption hardwareEncryption;
 
-    /** Creates an instance of EncryptionPreferences class. */
+    /**
+     * Creates an instance of EncryptionPreferences class.
+     */
     public EncryptionPreferences() {
     }
 
     /**
      * Get the doubleEncryption property: Defines secondary layer of software-based encryption enablement.
-     *
+     * 
      * @return the doubleEncryption value.
      */
     public DoubleEncryption doubleEncryption() {
@@ -37,7 +41,7 @@ public final class EncryptionPreferences {
 
     /**
      * Set the doubleEncryption property: Defines secondary layer of software-based encryption enablement.
-     *
+     * 
      * @param doubleEncryption the doubleEncryption value to set.
      * @return the EncryptionPreferences object itself.
      */
@@ -48,7 +52,7 @@ public final class EncryptionPreferences {
 
     /**
      * Get the hardwareEncryption property: Defines Hardware level encryption (Only for disk).
-     *
+     * 
      * @return the hardwareEncryption value.
      */
     public HardwareEncryption hardwareEncryption() {
@@ -57,7 +61,7 @@ public final class EncryptionPreferences {
 
     /**
      * Set the hardwareEncryption property: Defines Hardware level encryption (Only for disk).
-     *
+     * 
      * @param hardwareEncryption the hardwareEncryption value to set.
      * @return the EncryptionPreferences object itself.
      */
@@ -68,7 +72,7 @@ public final class EncryptionPreferences {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

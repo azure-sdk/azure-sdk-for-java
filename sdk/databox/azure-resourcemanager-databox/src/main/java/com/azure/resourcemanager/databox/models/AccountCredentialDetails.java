@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Credential details of the account. */
+/**
+ * Credential details of the account.
+ */
 @Immutable
 public final class AccountCredentialDetails {
     /*
@@ -35,13 +37,15 @@ public final class AccountCredentialDetails {
     @JsonProperty(value = "shareCredentialDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<ShareCredentialDetails> shareCredentialDetails;
 
-    /** Creates an instance of AccountCredentialDetails class. */
+    /**
+     * Creates an instance of AccountCredentialDetails class.
+     */
     public AccountCredentialDetails() {
     }
 
     /**
      * Get the accountName property: Name of the account.
-     *
+     * 
      * @return the accountName value.
      */
     public String accountName() {
@@ -50,7 +54,7 @@ public final class AccountCredentialDetails {
 
     /**
      * Get the dataAccountType property: Type of the account.
-     *
+     * 
      * @return the dataAccountType value.
      */
     public DataAccountType dataAccountType() {
@@ -60,7 +64,7 @@ public final class AccountCredentialDetails {
     /**
      * Get the accountConnectionString property: Connection string of the account endpoint to use the account as a
      * storage endpoint on the device.
-     *
+     * 
      * @return the accountConnectionString value.
      */
     public String accountConnectionString() {
@@ -69,7 +73,7 @@ public final class AccountCredentialDetails {
 
     /**
      * Get the shareCredentialDetails property: Per share level unencrypted access credentials.
-     *
+     * 
      * @return the shareCredentialDetails value.
      */
     public List<ShareCredentialDetails> shareCredentialDetails() {
@@ -78,7 +82,7 @@ public final class AccountCredentialDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,15 +7,29 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Request to validate export and import data details. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
+/**
+ * Request to validate export and import data details.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "validationType",
+    defaultImpl = DataTransferDetailsValidationRequest.class,
+    visible = true)
 @JsonTypeName("ValidateDataTransferDetails")
 @Fluent
 public final class DataTransferDetailsValidationRequest extends ValidationInputRequest {
+    /*
+     * Identifies the type of validation request.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "validationType", required = true)
+    private ValidationInputDiscriminator validationType = ValidationInputDiscriminator.VALIDATE_DATA_TRANSFER_DETAILS;
+
     /*
      * List of DataTransfer details to be used to export data from azure.
      */
@@ -40,13 +54,31 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
     @JsonProperty(value = "transferType", required = true)
     private TransferType transferType;
 
-    /** Creates an instance of DataTransferDetailsValidationRequest class. */
+    /*
+     * The model name.
+     */
+    @JsonProperty(value = "model", access = JsonProperty.Access.WRITE_ONLY)
+    private ModelName model;
+
+    /**
+     * Creates an instance of DataTransferDetailsValidationRequest class.
+     */
     public DataTransferDetailsValidationRequest() {
     }
 
     /**
+     * Get the validationType property: Identifies the type of validation request.
+     * 
+     * @return the validationType value.
+     */
+    @Override
+    public ValidationInputDiscriminator validationType() {
+        return this.validationType;
+    }
+
+    /**
      * Get the dataExportDetails property: List of DataTransfer details to be used to export data from azure.
-     *
+     * 
      * @return the dataExportDetails value.
      */
     public List<DataExportDetails> dataExportDetails() {
@@ -55,7 +87,7 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
 
     /**
      * Set the dataExportDetails property: List of DataTransfer details to be used to export data from azure.
-     *
+     * 
      * @param dataExportDetails the dataExportDetails value to set.
      * @return the DataTransferDetailsValidationRequest object itself.
      */
@@ -66,7 +98,7 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
 
     /**
      * Get the dataImportDetails property: List of DataTransfer details to be used to import data to azure.
-     *
+     * 
      * @return the dataImportDetails value.
      */
     public List<DataImportDetails> dataImportDetails() {
@@ -75,7 +107,7 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
 
     /**
      * Set the dataImportDetails property: List of DataTransfer details to be used to import data to azure.
-     *
+     * 
      * @param dataImportDetails the dataImportDetails value to set.
      * @return the DataTransferDetailsValidationRequest object itself.
      */
@@ -86,7 +118,7 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
 
     /**
      * Get the deviceType property: Device type.
-     *
+     * 
      * @return the deviceType value.
      */
     public SkuName deviceType() {
@@ -95,7 +127,7 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
 
     /**
      * Set the deviceType property: Device type.
-     *
+     * 
      * @param deviceType the deviceType value to set.
      * @return the DataTransferDetailsValidationRequest object itself.
      */
@@ -106,7 +138,7 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
 
     /**
      * Get the transferType property: Type of the transfer.
-     *
+     * 
      * @return the transferType value.
      */
     public TransferType transferType() {
@@ -115,7 +147,7 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
 
     /**
      * Set the transferType property: Type of the transfer.
-     *
+     * 
      * @param transferType the transferType value to set.
      * @return the DataTransferDetailsValidationRequest object itself.
      */
@@ -125,8 +157,17 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
     }
 
     /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -139,16 +180,14 @@ public final class DataTransferDetailsValidationRequest extends ValidationInputR
             dataImportDetails().forEach(e -> e.validate());
         }
         if (deviceType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property deviceType in model DataTransferDetailsValidationRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property deviceType in model DataTransferDetailsValidationRequest"));
         }
         if (transferType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property transferType in model DataTransferDetailsValidationRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property transferType in model DataTransferDetailsValidationRequest"));
         }
     }
 

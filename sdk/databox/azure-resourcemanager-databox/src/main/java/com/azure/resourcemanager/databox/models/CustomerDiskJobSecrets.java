@@ -6,15 +6,29 @@ package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The secrets related to customer disk job. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobSecretsType")
+/**
+ * The secrets related to customer disk job.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "jobSecretsType",
+    defaultImpl = CustomerDiskJobSecrets.class,
+    visible = true)
 @JsonTypeName("DataBoxCustomerDisk")
 @Immutable
 public final class CustomerDiskJobSecrets extends JobSecrets {
+    /*
+     * Used to indicate what type of job secrets object.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobSecretsType", required = true)
+    private ClassDiscriminator jobSecretsType = ClassDiscriminator.DATA_BOX_CUSTOMER_DISK;
+
     /*
      * Contains the list of secrets object for that device.
      */
@@ -27,13 +41,25 @@ public final class CustomerDiskJobSecrets extends JobSecrets {
     @JsonProperty(value = "carrierAccountNumber", access = JsonProperty.Access.WRITE_ONLY)
     private String carrierAccountNumber;
 
-    /** Creates an instance of CustomerDiskJobSecrets class. */
+    /**
+     * Creates an instance of CustomerDiskJobSecrets class.
+     */
     public CustomerDiskJobSecrets() {
     }
 
     /**
+     * Get the jobSecretsType property: Used to indicate what type of job secrets object.
+     * 
+     * @return the jobSecretsType value.
+     */
+    @Override
+    public ClassDiscriminator jobSecretsType() {
+        return this.jobSecretsType;
+    }
+
+    /**
      * Get the diskSecrets property: Contains the list of secrets object for that device.
-     *
+     * 
      * @return the diskSecrets value.
      */
     public List<DiskSecret> diskSecrets() {
@@ -42,7 +68,7 @@ public final class CustomerDiskJobSecrets extends JobSecrets {
 
     /**
      * Get the carrierAccountNumber property: Carrier Account Number of the customer.
-     *
+     * 
      * @return the carrierAccountNumber value.
      */
     public String carrierAccountNumber() {
@@ -51,7 +77,7 @@ public final class CustomerDiskJobSecrets extends JobSecrets {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

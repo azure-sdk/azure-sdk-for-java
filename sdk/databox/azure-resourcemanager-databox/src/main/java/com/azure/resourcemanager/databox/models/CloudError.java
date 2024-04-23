@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Provides additional information about an http error response. */
+/**
+ * Provides additional information about an http error response.
+ */
 @Fluent
 public final class CloudError {
     /*
@@ -41,13 +43,15 @@ public final class CloudError {
     @JsonProperty(value = "target")
     private String target;
 
-    /** Creates an instance of CloudError class. */
+    /**
+     * Creates an instance of CloudError class.
+     */
     public CloudError() {
     }
 
     /**
      * Get the additionalInfo property: Gets or sets additional error info.
-     *
+     * 
      * @return the additionalInfo value.
      */
     public List<AdditionalErrorInfo> additionalInfo() {
@@ -56,7 +60,7 @@ public final class CloudError {
 
     /**
      * Get the code property: Error code.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -65,7 +69,7 @@ public final class CloudError {
 
     /**
      * Set the code property: Error code.
-     *
+     * 
      * @param code the code value to set.
      * @return the CloudError object itself.
      */
@@ -76,7 +80,7 @@ public final class CloudError {
 
     /**
      * Get the details property: Gets or sets details for the error.
-     *
+     * 
      * @return the details value.
      */
     public List<CloudError> details() {
@@ -85,7 +89,7 @@ public final class CloudError {
 
     /**
      * Get the message property: The error message parsed from the body of the http error response.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -94,7 +98,7 @@ public final class CloudError {
 
     /**
      * Set the message property: The error message parsed from the body of the http error response.
-     *
+     * 
      * @param message the message value to set.
      * @return the CloudError object itself.
      */
@@ -105,7 +109,7 @@ public final class CloudError {
 
     /**
      * Get the target property: Gets or sets the target of the error.
-     *
+     * 
      * @return the target value.
      */
     public String target() {
@@ -114,7 +118,7 @@ public final class CloudError {
 
     /**
      * Set the target property: Gets or sets the target of the error.
-     *
+     * 
      * @param target the target value to set.
      * @return the CloudError object itself.
      */
@@ -125,7 +129,7 @@ public final class CloudError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

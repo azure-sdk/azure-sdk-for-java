@@ -7,15 +7,23 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Type of the filter file. */
+/**
+ * Type of the filter file.
+ */
 public enum FilterFileType {
-    /** Enum value AzureBlob. */
+    /**
+     * Enum value AzureBlob.
+     */
     AZURE_BLOB("AzureBlob"),
 
-    /** Enum value AzureFile. */
+    /**
+     * Enum value AzureFile.
+     */
     AZURE_FILE("AzureFile");
 
-    /** The actual serialized value for a FilterFileType instance. */
+    /**
+     * The actual serialized value for a FilterFileType instance.
+     */
     private final String value;
 
     FilterFileType(String value) {
@@ -24,7 +32,7 @@ public enum FilterFileType {
 
     /**
      * Parses a serialized value to a FilterFileType instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed FilterFileType object, or null if unable to parse.
      */
@@ -42,7 +50,9 @@ public enum FilterFileType {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

@@ -19,13 +19,15 @@ public final class TransferConfigurationTransferAllDetails {
     @JsonProperty(value = "include")
     private TransferAllDetails include;
 
-    /** Creates an instance of TransferConfigurationTransferAllDetails class. */
+    /**
+     * Creates an instance of TransferConfigurationTransferAllDetails class.
+     */
     public TransferConfigurationTransferAllDetails() {
     }
 
     /**
      * Get the include property: Details to transfer all data.
-     *
+     * 
      * @return the include value.
      */
     public TransferAllDetails include() {
@@ -34,7 +36,7 @@ public final class TransferConfigurationTransferAllDetails {
 
     /**
      * Set the include property: Details to transfer all data.
-     *
+     * 
      * @param include the include value to set.
      * @return the TransferConfigurationTransferAllDetails object itself.
      */
@@ -45,7 +47,7 @@ public final class TransferConfigurationTransferAllDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

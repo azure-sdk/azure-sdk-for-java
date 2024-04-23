@@ -6,27 +6,53 @@ package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Datacenter instruction for given storage location. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "datacenterAddressType")
+/**
+ * Datacenter instruction for given storage location.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "datacenterAddressType",
+    defaultImpl = DatacenterAddressInstructionResponse.class,
+    visible = true)
 @JsonTypeName("DatacenterAddressInstruction")
 @Immutable
 public final class DatacenterAddressInstructionResponse extends DatacenterAddressResponse {
+    /*
+     * Data center address type
+     */
+    @JsonTypeId
+    @JsonProperty(value = "datacenterAddressType", required = true)
+    private DatacenterAddressType datacenterAddressType = DatacenterAddressType.DATACENTER_ADDRESS_INSTRUCTION;
+
     /*
      * Data center communication instruction
      */
     @JsonProperty(value = "communicationInstruction", access = JsonProperty.Access.WRITE_ONLY)
     private String communicationInstruction;
 
-    /** Creates an instance of DatacenterAddressInstructionResponse class. */
+    /**
+     * Creates an instance of DatacenterAddressInstructionResponse class.
+     */
     public DatacenterAddressInstructionResponse() {
     }
 
     /**
+     * Get the datacenterAddressType property: Data center address type.
+     * 
+     * @return the datacenterAddressType value.
+     */
+    @Override
+    public DatacenterAddressType datacenterAddressType() {
+        return this.datacenterAddressType;
+    }
+
+    /**
      * Get the communicationInstruction property: Data center communication instruction.
-     *
+     * 
      * @return the communicationInstruction value.
      */
     public String communicationInstruction() {
@@ -35,7 +61,7 @@ public final class DatacenterAddressInstructionResponse extends DatacenterAddres
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

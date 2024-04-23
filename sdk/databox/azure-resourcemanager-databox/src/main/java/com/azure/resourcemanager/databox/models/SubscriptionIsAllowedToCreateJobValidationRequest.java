@@ -5,21 +5,49 @@
 package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request to validate subscription permission to create jobs. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
+/**
+ * Request to validate subscription permission to create jobs.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "validationType",
+    defaultImpl = SubscriptionIsAllowedToCreateJobValidationRequest.class,
+    visible = true)
 @JsonTypeName("ValidateSubscriptionIsAllowedToCreateJob")
 @Immutable
 public final class SubscriptionIsAllowedToCreateJobValidationRequest extends ValidationInputRequest {
-    /** Creates an instance of SubscriptionIsAllowedToCreateJobValidationRequest class. */
+    /*
+     * Identifies the type of validation request.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "validationType", required = true)
+    private ValidationInputDiscriminator validationType
+        = ValidationInputDiscriminator.VALIDATE_SUBSCRIPTION_IS_ALLOWED_TO_CREATE_JOB;
+
+    /**
+     * Creates an instance of SubscriptionIsAllowedToCreateJobValidationRequest class.
+     */
     public SubscriptionIsAllowedToCreateJobValidationRequest() {
     }
 
     /**
+     * Get the validationType property: Identifies the type of validation request.
+     * 
+     * @return the validationType value.
+     */
+    @Override
+    public ValidationInputDiscriminator validationType() {
+        return this.validationType;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

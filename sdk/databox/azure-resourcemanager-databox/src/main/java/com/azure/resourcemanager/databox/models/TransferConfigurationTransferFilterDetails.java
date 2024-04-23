@@ -19,13 +19,15 @@ public final class TransferConfigurationTransferFilterDetails {
     @JsonProperty(value = "include")
     private TransferFilterDetails include;
 
-    /** Creates an instance of TransferConfigurationTransferFilterDetails class. */
+    /**
+     * Creates an instance of TransferConfigurationTransferFilterDetails class.
+     */
     public TransferConfigurationTransferFilterDetails() {
     }
 
     /**
      * Get the include property: Details of the filtering the transfer of data.
-     *
+     * 
      * @return the include value.
      */
     public TransferFilterDetails include() {
@@ -34,7 +36,7 @@ public final class TransferConfigurationTransferFilterDetails {
 
     /**
      * Set the include property: Details of the filtering the transfer of data.
-     *
+     * 
      * @param include the include value to set.
      * @return the TransferConfigurationTransferFilterDetails object itself.
      */
@@ -45,7 +47,7 @@ public final class TransferConfigurationTransferFilterDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

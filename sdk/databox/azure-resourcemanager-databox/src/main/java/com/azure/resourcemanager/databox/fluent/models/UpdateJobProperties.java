@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.databox.models.UpdateJobDetails;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Job Properties for update. */
+/**
+ * Job Properties for update.
+ */
 @Fluent
 public final class UpdateJobProperties {
     /*
@@ -17,13 +19,15 @@ public final class UpdateJobProperties {
     @JsonProperty(value = "details")
     private UpdateJobDetails details;
 
-    /** Creates an instance of UpdateJobProperties class. */
+    /**
+     * Creates an instance of UpdateJobProperties class.
+     */
     public UpdateJobProperties() {
     }
 
     /**
      * Get the details property: Details of a job to be updated.
-     *
+     * 
      * @return the details value.
      */
     public UpdateJobDetails details() {
@@ -32,7 +36,7 @@ public final class UpdateJobProperties {
 
     /**
      * Set the details property: Details of a job to be updated.
-     *
+     * 
      * @param details the details value to set.
      * @return the UpdateJobProperties object itself.
      */
@@ -43,7 +47,7 @@ public final class UpdateJobProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

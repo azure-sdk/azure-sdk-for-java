@@ -6,27 +6,53 @@ package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Properties of create order limit for subscription validation response. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
+/**
+ * Properties of create order limit for subscription validation response.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "validationType",
+    defaultImpl = CreateOrderLimitForSubscriptionValidationResponseProperties.class,
+    visible = true)
 @JsonTypeName("ValidateCreateOrderLimit")
 @Immutable
 public final class CreateOrderLimitForSubscriptionValidationResponseProperties extends ValidationInputResponse {
+    /*
+     * Identifies the type of validation response.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "validationType", required = true)
+    private ValidationInputDiscriminator validationType = ValidationInputDiscriminator.VALIDATE_CREATE_ORDER_LIMIT;
+
     /*
      * Create order limit validation status.
      */
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationStatus status;
 
-    /** Creates an instance of CreateOrderLimitForSubscriptionValidationResponseProperties class. */
+    /**
+     * Creates an instance of CreateOrderLimitForSubscriptionValidationResponseProperties class.
+     */
     public CreateOrderLimitForSubscriptionValidationResponseProperties() {
     }
 
     /**
+     * Get the validationType property: Identifies the type of validation response.
+     * 
+     * @return the validationType value.
+     */
+    @Override
+    public ValidationInputDiscriminator validationType() {
+        return this.validationType;
+    }
+
+    /**
      * Get the status property: Create order limit validation status.
-     *
+     * 
      * @return the status value.
      */
     public ValidationStatus status() {
@@ -35,7 +61,7 @@ public final class CreateOrderLimitForSubscriptionValidationResponseProperties e
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

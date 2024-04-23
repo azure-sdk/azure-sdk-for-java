@@ -6,15 +6,29 @@ package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Databox Heavy Device Job Details. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobDetailsType")
+/**
+ * Databox Heavy Device Job Details.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "jobDetailsType",
+    defaultImpl = DataBoxHeavyJobDetails.class,
+    visible = true)
 @JsonTypeName("DataBoxHeavy")
 @Fluent
 public final class DataBoxHeavyJobDetails extends JobDetails {
+    /*
+     * Indicates the type of job details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobDetailsType", required = true)
+    private ClassDiscriminator jobDetailsType = ClassDiscriminator.DATA_BOX_HEAVY;
+
     /*
      * Copy progress per account.
      */
@@ -22,22 +36,30 @@ public final class DataBoxHeavyJobDetails extends JobDetails {
     private List<CopyProgress> copyProgress;
 
     /*
-     * Set Device password for unlocking Databox Heavy. Should not be passed for TransferType:ExportFromAzure jobs. If
-     * this is not passed, the service will generate password itself. This will not be returned in Get Call. Password
-     * Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one
-     * uppercase alphabet, one number and one special character. Password cannot have the following characters :
-     * IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+
+     * Set Device password for unlocking Databox Heavy. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+
      */
     @JsonProperty(value = "devicePassword")
     private String devicePassword;
 
-    /** Creates an instance of DataBoxHeavyJobDetails class. */
+    /**
+     * Creates an instance of DataBoxHeavyJobDetails class.
+     */
     public DataBoxHeavyJobDetails() {
     }
 
     /**
+     * Get the jobDetailsType property: Indicates the type of job details.
+     * 
+     * @return the jobDetailsType value.
+     */
+    @Override
+    public ClassDiscriminator jobDetailsType() {
+        return this.jobDetailsType;
+    }
+
+    /**
      * Get the copyProgress property: Copy progress per account.
-     *
+     * 
      * @return the copyProgress value.
      */
     public List<CopyProgress> copyProgress() {
@@ -49,9 +71,9 @@ public final class DataBoxHeavyJobDetails extends JobDetails {
      * TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will
      * not be returned in Get Call. Password Requirements : Password must be minimum of 12 and maximum of 64 characters.
      * Password must have at least one uppercase alphabet, one number and one special character. Password cannot have
-     * the following characters : IilLoO0 Password can have only alphabets, numbers and these characters
-     * : @#\-$%^!+=;:_()]+.
-     *
+     * the following characters : IilLoO0 Password can have only alphabets, numbers and these characters :
+     * &#064;#\-$%^!+=;:_()]+.
+     * 
      * @return the devicePassword value.
      */
     public String devicePassword() {
@@ -63,9 +85,9 @@ public final class DataBoxHeavyJobDetails extends JobDetails {
      * TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will
      * not be returned in Get Call. Password Requirements : Password must be minimum of 12 and maximum of 64 characters.
      * Password must have at least one uppercase alphabet, one number and one special character. Password cannot have
-     * the following characters : IilLoO0 Password can have only alphabets, numbers and these characters
-     * : @#\-$%^!+=;:_()]+.
-     *
+     * the following characters : IilLoO0 Password can have only alphabets, numbers and these characters :
+     * &#064;#\-$%^!+=;:_()]+.
+     * 
      * @param devicePassword the devicePassword value to set.
      * @return the DataBoxHeavyJobDetails object itself.
      */
@@ -74,56 +96,72 @@ public final class DataBoxHeavyJobDetails extends JobDetails {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxHeavyJobDetails withContactDetails(ContactDetails contactDetails) {
         super.withContactDetails(contactDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxHeavyJobDetails withShippingAddress(ShippingAddress shippingAddress) {
         super.withShippingAddress(shippingAddress);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxHeavyJobDetails withDataImportDetails(List<DataImportDetails> dataImportDetails) {
         super.withDataImportDetails(dataImportDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxHeavyJobDetails withDataExportDetails(List<DataExportDetails> dataExportDetails) {
         super.withDataExportDetails(dataExportDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxHeavyJobDetails withPreferences(Preferences preferences) {
         super.withPreferences(preferences);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxHeavyJobDetails withReverseShippingDetails(ReverseShippingDetails reverseShippingDetails) {
         super.withReverseShippingDetails(reverseShippingDetails);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxHeavyJobDetails withKeyEncryptionKey(KeyEncryptionKey keyEncryptionKey) {
         super.withKeyEncryptionKey(keyEncryptionKey);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxHeavyJobDetails withExpectedDataSizeInTeraBytes(Integer expectedDataSizeInTeraBytes) {
         super.withExpectedDataSizeInTeraBytes(expectedDataSizeInTeraBytes);
@@ -132,7 +170,7 @@ public final class DataBoxHeavyJobDetails extends JobDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

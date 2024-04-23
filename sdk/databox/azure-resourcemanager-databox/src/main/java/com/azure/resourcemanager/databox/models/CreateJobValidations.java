@@ -5,20 +5,49 @@
 package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** It does all pre-job creation validations. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationCategory")
+/**
+ * It does all pre-job creation validations.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "validationCategory",
+    defaultImpl = CreateJobValidations.class,
+    visible = true)
 @JsonTypeName("JobCreationValidation")
 @Fluent
 public final class CreateJobValidations extends ValidationRequest {
-    /** Creates an instance of CreateJobValidations class. */
+    /*
+     * Identify the nature of validation.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "validationCategory", required = true)
+    private String validationCategory = "JobCreationValidation";
+
+    /**
+     * Creates an instance of CreateJobValidations class.
+     */
     public CreateJobValidations() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the validationCategory property: Identify the nature of validation.
+     * 
+     * @return the validationCategory value.
+     */
+    @Override
+    public String validationCategory() {
+        return this.validationCategory;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CreateJobValidations withIndividualRequestDetails(List<ValidationInputRequest> individualRequestDetails) {
         super.withIndividualRequestDetails(individualRequestDetails);
@@ -27,7 +56,7 @@ public final class CreateJobValidations extends ValidationRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -7,14 +7,28 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The requirements to validate customer address where the device needs to be shipped. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
+/**
+ * The requirements to validate customer address where the device needs to be shipped.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "validationType",
+    defaultImpl = ValidateAddress.class,
+    visible = true)
 @JsonTypeName("ValidateAddress")
 @Fluent
 public final class ValidateAddress extends ValidationInputRequest {
+    /*
+     * Identifies the type of validation request.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "validationType", required = true)
+    private ValidationInputDiscriminator validationType = ValidationInputDiscriminator.VALIDATE_ADDRESS;
+
     /*
      * Shipping address of the customer.
      */
@@ -33,13 +47,31 @@ public final class ValidateAddress extends ValidationInputRequest {
     @JsonProperty(value = "transportPreferences")
     private TransportPreferences transportPreferences;
 
-    /** Creates an instance of ValidateAddress class. */
+    /*
+     * The model name.
+     */
+    @JsonProperty(value = "model", access = JsonProperty.Access.WRITE_ONLY)
+    private ModelName model;
+
+    /**
+     * Creates an instance of ValidateAddress class.
+     */
     public ValidateAddress() {
     }
 
     /**
+     * Get the validationType property: Identifies the type of validation request.
+     * 
+     * @return the validationType value.
+     */
+    @Override
+    public ValidationInputDiscriminator validationType() {
+        return this.validationType;
+    }
+
+    /**
      * Get the shippingAddress property: Shipping address of the customer.
-     *
+     * 
      * @return the shippingAddress value.
      */
     public ShippingAddress shippingAddress() {
@@ -48,7 +80,7 @@ public final class ValidateAddress extends ValidationInputRequest {
 
     /**
      * Set the shippingAddress property: Shipping address of the customer.
-     *
+     * 
      * @param shippingAddress the shippingAddress value to set.
      * @return the ValidateAddress object itself.
      */
@@ -59,7 +91,7 @@ public final class ValidateAddress extends ValidationInputRequest {
 
     /**
      * Get the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @return the deviceType value.
      */
     public SkuName deviceType() {
@@ -68,7 +100,7 @@ public final class ValidateAddress extends ValidationInputRequest {
 
     /**
      * Set the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @param deviceType the deviceType value to set.
      * @return the ValidateAddress object itself.
      */
@@ -79,7 +111,7 @@ public final class ValidateAddress extends ValidationInputRequest {
 
     /**
      * Get the transportPreferences property: Preferences related to the shipment logistics of the sku.
-     *
+     * 
      * @return the transportPreferences value.
      */
     public TransportPreferences transportPreferences() {
@@ -88,7 +120,7 @@ public final class ValidateAddress extends ValidationInputRequest {
 
     /**
      * Set the transportPreferences property: Preferences related to the shipment logistics of the sku.
-     *
+     * 
      * @param transportPreferences the transportPreferences value to set.
      * @return the ValidateAddress object itself.
      */
@@ -98,24 +130,32 @@ public final class ValidateAddress extends ValidationInputRequest {
     }
 
     /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (shippingAddress() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property shippingAddress in model ValidateAddress"));
         } else {
             shippingAddress().validate();
         }
         if (deviceType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property deviceType in model ValidateAddress"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property deviceType in model ValidateAddress"));
         }
         if (transportPreferences() != null) {
             transportPreferences().validate();

@@ -7,15 +7,23 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Transport Shipment Type supported for given region. */
+/**
+ * Transport Shipment Type supported for given region.
+ */
 public enum TransportShipmentTypes {
-    /** Enum value CustomerManaged. */
+    /**
+     * Enum value CustomerManaged.
+     */
     CUSTOMER_MANAGED("CustomerManaged"),
 
-    /** Enum value MicrosoftManaged. */
+    /**
+     * Enum value MicrosoftManaged.
+     */
     MICROSOFT_MANAGED("MicrosoftManaged");
 
-    /** The actual serialized value for a TransportShipmentTypes instance. */
+    /**
+     * The actual serialized value for a TransportShipmentTypes instance.
+     */
     private final String value;
 
     TransportShipmentTypes(String value) {
@@ -24,7 +32,7 @@ public enum TransportShipmentTypes {
 
     /**
      * Parses a serialized value to a TransportShipmentTypes instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed TransportShipmentTypes object, or null if unable to parse.
      */
@@ -42,7 +50,9 @@ public enum TransportShipmentTypes {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The Mitigate Job captured from request body for Mitigate API. */
+/**
+ * The Mitigate Job captured from request body for Mitigate API.
+ */
 @Fluent
 public final class MitigateJobRequest {
     /*
@@ -25,13 +27,15 @@ public final class MitigateJobRequest {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, CustomerResolutionCode> serialNumberCustomerResolutionMap;
 
-    /** Creates an instance of MitigateJobRequest class. */
+    /**
+     * Creates an instance of MitigateJobRequest class.
+     */
     public MitigateJobRequest() {
     }
 
     /**
      * Get the customerResolutionCode property: Resolution code for the job.
-     *
+     * 
      * @return the customerResolutionCode value.
      */
     public CustomerResolutionCode customerResolutionCode() {
@@ -40,7 +44,7 @@ public final class MitigateJobRequest {
 
     /**
      * Set the customerResolutionCode property: Resolution code for the job.
-     *
+     * 
      * @param customerResolutionCode the customerResolutionCode value to set.
      * @return the MitigateJobRequest object itself.
      */
@@ -52,7 +56,7 @@ public final class MitigateJobRequest {
     /**
      * Get the serialNumberCustomerResolutionMap property: Serial number and the customer resolution code corresponding
      * to each serial number.
-     *
+     * 
      * @return the serialNumberCustomerResolutionMap value.
      */
     public Map<String, CustomerResolutionCode> serialNumberCustomerResolutionMap() {
@@ -62,19 +66,19 @@ public final class MitigateJobRequest {
     /**
      * Set the serialNumberCustomerResolutionMap property: Serial number and the customer resolution code corresponding
      * to each serial number.
-     *
+     * 
      * @param serialNumberCustomerResolutionMap the serialNumberCustomerResolutionMap value to set.
      * @return the MitigateJobRequest object itself.
      */
-    public MitigateJobRequest withSerialNumberCustomerResolutionMap(
-        Map<String, CustomerResolutionCode> serialNumberCustomerResolutionMap) {
+    public MitigateJobRequest
+        withSerialNumberCustomerResolutionMap(Map<String, CustomerResolutionCode> serialNumberCustomerResolutionMap) {
         this.serialNumberCustomerResolutionMap = serialNumberCustomerResolutionMap;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

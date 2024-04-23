@@ -7,27 +7,59 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request to validate create order limit for current subscription. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
+/**
+ * Request to validate create order limit for current subscription.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "validationType",
+    defaultImpl = CreateOrderLimitForSubscriptionValidationRequest.class,
+    visible = true)
 @JsonTypeName("ValidateCreateOrderLimit")
 @Fluent
 public final class CreateOrderLimitForSubscriptionValidationRequest extends ValidationInputRequest {
+    /*
+     * Identifies the type of validation request.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "validationType", required = true)
+    private ValidationInputDiscriminator validationType = ValidationInputDiscriminator.VALIDATE_CREATE_ORDER_LIMIT;
+
     /*
      * Device type to be used for the job.
      */
     @JsonProperty(value = "deviceType", required = true)
     private SkuName deviceType;
 
-    /** Creates an instance of CreateOrderLimitForSubscriptionValidationRequest class. */
+    /*
+     * Error, if any, in the stage
+     */
+    @JsonProperty(value = "model", access = JsonProperty.Access.WRITE_ONLY)
+    private ModelName model;
+
+    /**
+     * Creates an instance of CreateOrderLimitForSubscriptionValidationRequest class.
+     */
     public CreateOrderLimitForSubscriptionValidationRequest() {
     }
 
     /**
+     * Get the validationType property: Identifies the type of validation request.
+     * 
+     * @return the validationType value.
+     */
+    @Override
+    public ValidationInputDiscriminator validationType() {
+        return this.validationType;
+    }
+
+    /**
      * Get the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @return the deviceType value.
      */
     public SkuName deviceType() {
@@ -36,7 +68,7 @@ public final class CreateOrderLimitForSubscriptionValidationRequest extends Vali
 
     /**
      * Set the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @param deviceType the deviceType value to set.
      * @return the CreateOrderLimitForSubscriptionValidationRequest object itself.
      */
@@ -46,19 +78,26 @@ public final class CreateOrderLimitForSubscriptionValidationRequest extends Vali
     }
 
     /**
+     * Get the model property: Error, if any, in the stage.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (deviceType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property deviceType in model"
-                            + " CreateOrderLimitForSubscriptionValidationRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property deviceType in model CreateOrderLimitForSubscriptionValidationRequest"));
         }
     }
 

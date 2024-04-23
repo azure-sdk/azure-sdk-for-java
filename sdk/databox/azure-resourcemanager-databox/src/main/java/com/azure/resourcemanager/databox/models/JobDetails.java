@@ -8,25 +8,30 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Job details. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "jobDetailsType",
-    defaultImpl = JobDetails.class)
+/**
+ * Job details.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "jobDetailsType", defaultImpl = JobDetails.class, visible = true)
 @JsonTypeName("JobDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "DataBoxCustomerDisk", value = DataBoxCustomerDiskJobDetails.class),
     @JsonSubTypes.Type(name = "DataBoxDisk", value = DataBoxDiskJobDetails.class),
     @JsonSubTypes.Type(name = "DataBoxHeavy", value = DataBoxHeavyJobDetails.class),
-    @JsonSubTypes.Type(name = "DataBox", value = DataBoxJobDetails.class)
-})
+    @JsonSubTypes.Type(name = "DataBox", value = DataBoxJobDetails.class) })
 @Fluent
 public class JobDetails {
+    /*
+     * Indicates the type of job details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobDetailsType", required = true)
+    private ClassDiscriminator jobDetailsType;
+
     /*
      * List of stages that run in the job.
      */
@@ -141,13 +146,25 @@ public class JobDetails {
     @JsonProperty(value = "dataCenterCode", access = JsonProperty.Access.WRITE_ONLY)
     private DataCenterCode dataCenterCode;
 
-    /** Creates an instance of JobDetails class. */
+    /**
+     * Creates an instance of JobDetails class.
+     */
     public JobDetails() {
+        this.jobDetailsType = ClassDiscriminator.fromString("JobDetails");
+    }
+
+    /**
+     * Get the jobDetailsType property: Indicates the type of job details.
+     * 
+     * @return the jobDetailsType value.
+     */
+    public ClassDiscriminator jobDetailsType() {
+        return this.jobDetailsType;
     }
 
     /**
      * Get the jobStages property: List of stages that run in the job.
-     *
+     * 
      * @return the jobStages value.
      */
     public List<JobStages> jobStages() {
@@ -156,7 +173,7 @@ public class JobDetails {
 
     /**
      * Get the contactDetails property: Contact details for notification and shipping.
-     *
+     * 
      * @return the contactDetails value.
      */
     public ContactDetails contactDetails() {
@@ -165,7 +182,7 @@ public class JobDetails {
 
     /**
      * Set the contactDetails property: Contact details for notification and shipping.
-     *
+     * 
      * @param contactDetails the contactDetails value to set.
      * @return the JobDetails object itself.
      */
@@ -176,7 +193,7 @@ public class JobDetails {
 
     /**
      * Get the shippingAddress property: Shipping address of the customer.
-     *
+     * 
      * @return the shippingAddress value.
      */
     public ShippingAddress shippingAddress() {
@@ -185,7 +202,7 @@ public class JobDetails {
 
     /**
      * Set the shippingAddress property: Shipping address of the customer.
-     *
+     * 
      * @param shippingAddress the shippingAddress value to set.
      * @return the JobDetails object itself.
      */
@@ -196,7 +213,7 @@ public class JobDetails {
 
     /**
      * Get the deliveryPackage property: Delivery package shipping details.
-     *
+     * 
      * @return the deliveryPackage value.
      */
     public PackageShippingDetails deliveryPackage() {
@@ -205,7 +222,7 @@ public class JobDetails {
 
     /**
      * Get the returnPackage property: Return package shipping details.
-     *
+     * 
      * @return the returnPackage value.
      */
     public PackageShippingDetails returnPackage() {
@@ -214,7 +231,7 @@ public class JobDetails {
 
     /**
      * Get the dataImportDetails property: Details of the data to be imported into azure.
-     *
+     * 
      * @return the dataImportDetails value.
      */
     public List<DataImportDetails> dataImportDetails() {
@@ -223,7 +240,7 @@ public class JobDetails {
 
     /**
      * Set the dataImportDetails property: Details of the data to be imported into azure.
-     *
+     * 
      * @param dataImportDetails the dataImportDetails value to set.
      * @return the JobDetails object itself.
      */
@@ -234,7 +251,7 @@ public class JobDetails {
 
     /**
      * Get the dataExportDetails property: Details of the data to be exported from azure.
-     *
+     * 
      * @return the dataExportDetails value.
      */
     public List<DataExportDetails> dataExportDetails() {
@@ -243,7 +260,7 @@ public class JobDetails {
 
     /**
      * Set the dataExportDetails property: Details of the data to be exported from azure.
-     *
+     * 
      * @param dataExportDetails the dataExportDetails value to set.
      * @return the JobDetails object itself.
      */
@@ -254,7 +271,7 @@ public class JobDetails {
 
     /**
      * Get the preferences property: Preferences for the order.
-     *
+     * 
      * @return the preferences value.
      */
     public Preferences preferences() {
@@ -263,7 +280,7 @@ public class JobDetails {
 
     /**
      * Set the preferences property: Preferences for the order.
-     *
+     * 
      * @param preferences the preferences value to set.
      * @return the JobDetails object itself.
      */
@@ -274,7 +291,7 @@ public class JobDetails {
 
     /**
      * Get the reverseShippingDetails property: Optional Reverse Shipping details for order.
-     *
+     * 
      * @return the reverseShippingDetails value.
      */
     public ReverseShippingDetails reverseShippingDetails() {
@@ -283,7 +300,7 @@ public class JobDetails {
 
     /**
      * Set the reverseShippingDetails property: Optional Reverse Shipping details for order.
-     *
+     * 
      * @param reverseShippingDetails the reverseShippingDetails value to set.
      * @return the JobDetails object itself.
      */
@@ -294,7 +311,7 @@ public class JobDetails {
 
     /**
      * Get the copyLogDetails property: List of copy log details.
-     *
+     * 
      * @return the copyLogDetails value.
      */
     public List<CopyLogDetails> copyLogDetails() {
@@ -303,7 +320,7 @@ public class JobDetails {
 
     /**
      * Get the reverseShipmentLabelSasKey property: Shared access key to download the return shipment label.
-     *
+     * 
      * @return the reverseShipmentLabelSasKey value.
      */
     public String reverseShipmentLabelSasKey() {
@@ -312,7 +329,7 @@ public class JobDetails {
 
     /**
      * Get the chainOfCustodySasKey property: Shared access key to download the chain of custody logs.
-     *
+     * 
      * @return the chainOfCustodySasKey value.
      */
     public String chainOfCustodySasKey() {
@@ -321,7 +338,7 @@ public class JobDetails {
 
     /**
      * Get the deviceErasureDetails property: Holds device data erasure details.
-     *
+     * 
      * @return the deviceErasureDetails value.
      */
     public DeviceErasureDetails deviceErasureDetails() {
@@ -330,7 +347,7 @@ public class JobDetails {
 
     /**
      * Get the keyEncryptionKey property: Details about which key encryption type is being used.
-     *
+     * 
      * @return the keyEncryptionKey value.
      */
     public KeyEncryptionKey keyEncryptionKey() {
@@ -339,7 +356,7 @@ public class JobDetails {
 
     /**
      * Set the keyEncryptionKey property: Details about which key encryption type is being used.
-     *
+     * 
      * @param keyEncryptionKey the keyEncryptionKey value to set.
      * @return the JobDetails object itself.
      */
@@ -351,7 +368,7 @@ public class JobDetails {
     /**
      * Get the expectedDataSizeInTeraBytes property: The expected size of the data, which needs to be transferred in
      * this job, in terabytes.
-     *
+     * 
      * @return the expectedDataSizeInTeraBytes value.
      */
     public Integer expectedDataSizeInTeraBytes() {
@@ -361,7 +378,7 @@ public class JobDetails {
     /**
      * Set the expectedDataSizeInTeraBytes property: The expected size of the data, which needs to be transferred in
      * this job, in terabytes.
-     *
+     * 
      * @param expectedDataSizeInTeraBytes the expectedDataSizeInTeraBytes value to set.
      * @return the JobDetails object itself.
      */
@@ -372,7 +389,7 @@ public class JobDetails {
 
     /**
      * Get the actions property: Available actions on the job.
-     *
+     * 
      * @return the actions value.
      */
     public List<CustomerResolutionCode> actions() {
@@ -381,7 +398,7 @@ public class JobDetails {
 
     /**
      * Get the lastMitigationActionOnJob property: Last mitigation action performed on the job.
-     *
+     * 
      * @return the lastMitigationActionOnJob value.
      */
     public LastMitigationActionOnJob lastMitigationActionOnJob() {
@@ -390,7 +407,7 @@ public class JobDetails {
 
     /**
      * Get the datacenterAddress property: Datacenter address to ship to, for the given sku and storage location.
-     *
+     * 
      * @return the datacenterAddress value.
      */
     public DatacenterAddressResponse datacenterAddress() {
@@ -399,7 +416,7 @@ public class JobDetails {
 
     /**
      * Get the dataCenterCode property: DataCenter code.
-     *
+     * 
      * @return the dataCenterCode value.
      */
     public DataCenterCode dataCenterCode() {
@@ -408,7 +425,7 @@ public class JobDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
@@ -416,9 +433,8 @@ public class JobDetails {
             jobStages().forEach(e -> e.validate());
         }
         if (contactDetails() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property contactDetails in model JobDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property contactDetails in model JobDetails"));
         } else {
             contactDetails().validate();
         }

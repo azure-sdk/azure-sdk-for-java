@@ -7,34 +7,51 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Account details of the data to be transferred. */
+/**
+ * Account details of the data to be transferred.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "dataAccountType",
-    defaultImpl = DataAccountDetails.class)
+    defaultImpl = DataAccountDetails.class,
+    visible = true)
 @JsonTypeName("DataAccountDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "ManagedDisk", value = ManagedDiskDetails.class),
-    @JsonSubTypes.Type(name = "StorageAccount", value = StorageAccountDetails.class)
-})
+    @JsonSubTypes.Type(name = "StorageAccount", value = StorageAccountDetails.class) })
 @Fluent
 public class DataAccountDetails {
     /*
-     * Password for all the shares to be created on the device. Should not be passed for TransferType:ExportFromAzure
-     * jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call.
-     * Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at
-     * least one uppercase alphabet, one number and one special character. Password cannot have the following
-     * characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+
+     * Account Type of the data to be transferred.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "dataAccountType", required = true)
+    private DataAccountType dataAccountType;
+
+    /*
+     * Password for all the shares to be created on the device. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+
      */
     @JsonProperty(value = "sharePassword")
     private String sharePassword;
 
-    /** Creates an instance of DataAccountDetails class. */
+    /**
+     * Creates an instance of DataAccountDetails class.
+     */
     public DataAccountDetails() {
+        this.dataAccountType = DataAccountType.fromString("DataAccountDetails");
+    }
+
+    /**
+     * Get the dataAccountType property: Account Type of the data to be transferred.
+     * 
+     * @return the dataAccountType value.
+     */
+    public DataAccountType dataAccountType() {
+        return this.dataAccountType;
     }
 
     /**
@@ -42,9 +59,9 @@ public class DataAccountDetails {
      * TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will
      * not be returned in Get Call. Password Requirements : Password must be minimum of 12 and maximum of 64 characters.
      * Password must have at least one uppercase alphabet, one number and one special character. Password cannot have
-     * the following characters : IilLoO0 Password can have only alphabets, numbers and these characters
-     * : @#\-$%^!+=;:_()]+.
-     *
+     * the following characters : IilLoO0 Password can have only alphabets, numbers and these characters :
+     * &#064;#\-$%^!+=;:_()]+.
+     * 
      * @return the sharePassword value.
      */
     public String sharePassword() {
@@ -56,9 +73,9 @@ public class DataAccountDetails {
      * TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will
      * not be returned in Get Call. Password Requirements : Password must be minimum of 12 and maximum of 64 characters.
      * Password must have at least one uppercase alphabet, one number and one special character. Password cannot have
-     * the following characters : IilLoO0 Password can have only alphabets, numbers and these characters
-     * : @#\-$%^!+=;:_()]+.
-     *
+     * the following characters : IilLoO0 Password can have only alphabets, numbers and these characters :
+     * &#064;#\-$%^!+=;:_()]+.
+     * 
      * @param sharePassword the sharePassword value to set.
      * @return the DataAccountDetails object itself.
      */
@@ -69,7 +86,7 @@ public class DataAccountDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

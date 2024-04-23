@@ -5,16 +5,20 @@
 package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Minimum fields that must be present in any type of validation request. */
+/**
+ * Minimum fields that must be present in any type of validation request.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "validationType",
-    defaultImpl = ValidationInputRequest.class)
+    defaultImpl = ValidationInputRequest.class,
+    visible = true)
 @JsonTypeName("ValidationInputRequest")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "ValidateAddress", value = ValidateAddress.class),
@@ -26,17 +30,35 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "ValidateSkuAvailability", value = SkuAvailabilityValidationRequest.class),
     @JsonSubTypes.Type(
         name = "ValidateSubscriptionIsAllowedToCreateJob",
-        value = SubscriptionIsAllowedToCreateJobValidationRequest.class)
-})
+        value = SubscriptionIsAllowedToCreateJobValidationRequest.class) })
 @Immutable
 public class ValidationInputRequest {
-    /** Creates an instance of ValidationInputRequest class. */
+    /*
+     * Identifies the type of validation request.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "validationType", required = true)
+    private ValidationInputDiscriminator validationType;
+
+    /**
+     * Creates an instance of ValidationInputRequest class.
+     */
     public ValidationInputRequest() {
+        this.validationType = ValidationInputDiscriminator.fromString("ValidationInputRequest");
+    }
+
+    /**
+     * Get the validationType property: Identifies the type of validation request.
+     * 
+     * @return the validationType value.
+     */
+    public ValidationInputDiscriminator validationType() {
+        return this.validationType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

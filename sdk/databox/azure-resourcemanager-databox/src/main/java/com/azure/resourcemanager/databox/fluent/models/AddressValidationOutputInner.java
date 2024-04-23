@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.azure.resourcemanager.databox.models.AddressValidationProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Output of the address validation api. */
+/**
+ * Output of the address validation api.
+ */
 @Immutable
 public final class AddressValidationOutputInner {
     /*
@@ -17,13 +19,15 @@ public final class AddressValidationOutputInner {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private AddressValidationProperties properties;
 
-    /** Creates an instance of AddressValidationOutputInner class. */
+    /**
+     * Creates an instance of AddressValidationOutputInner class.
+     */
     public AddressValidationOutputInner() {
     }
 
     /**
      * Get the properties property: The address validation properties.
-     *
+     * 
      * @return the properties value.
      */
     public AddressValidationProperties properties() {
@@ -32,7 +36,7 @@ public final class AddressValidationOutputInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

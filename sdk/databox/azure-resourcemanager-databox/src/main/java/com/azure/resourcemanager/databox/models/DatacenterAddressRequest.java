@@ -8,12 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Request body to get the datacenter address. */
+/**
+ * Request body to get the datacenter address.
+ */
 @Fluent
 public final class DatacenterAddressRequest {
     /*
-     * Storage location. For locations check:
-     * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01
+     * Storage location. For locations check: https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01
      */
     @JsonProperty(value = "storageLocation", required = true)
     private String storageLocation;
@@ -24,14 +25,22 @@ public final class DatacenterAddressRequest {
     @JsonProperty(value = "skuName", required = true)
     private SkuName skuName;
 
-    /** Creates an instance of DatacenterAddressRequest class. */
+    /*
+     * The model name.
+     */
+    @JsonProperty(value = "model", access = JsonProperty.Access.WRITE_ONLY)
+    private ModelName model;
+
+    /**
+     * Creates an instance of DatacenterAddressRequest class.
+     */
     public DatacenterAddressRequest() {
     }
 
     /**
      * Get the storageLocation property: Storage location. For locations check:
      * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01.
-     *
+     * 
      * @return the storageLocation value.
      */
     public String storageLocation() {
@@ -41,7 +50,7 @@ public final class DatacenterAddressRequest {
     /**
      * Set the storageLocation property: Storage location. For locations check:
      * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01.
-     *
+     * 
      * @param storageLocation the storageLocation value to set.
      * @return the DatacenterAddressRequest object itself.
      */
@@ -52,7 +61,7 @@ public final class DatacenterAddressRequest {
 
     /**
      * Get the skuName property: Sku Name for which the data center address requested.
-     *
+     * 
      * @return the skuName value.
      */
     public SkuName skuName() {
@@ -61,7 +70,7 @@ public final class DatacenterAddressRequest {
 
     /**
      * Set the skuName property: Sku Name for which the data center address requested.
-     *
+     * 
      * @param skuName the skuName value to set.
      * @return the DatacenterAddressRequest object itself.
      */
@@ -71,22 +80,29 @@ public final class DatacenterAddressRequest {
     }
 
     /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (storageLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storageLocation in model DatacenterAddressRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property storageLocation in model DatacenterAddressRequest"));
         }
         if (skuName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property skuName in model DatacenterAddressRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property skuName in model DatacenterAddressRequest"));
         }
     }
 

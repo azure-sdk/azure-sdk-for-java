@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Contains all the secrets of a Disk. */
+/**
+ * Contains all the secrets of a Disk.
+ */
 @Immutable
 public final class DiskSecret {
     /*
@@ -22,13 +24,15 @@ public final class DiskSecret {
     @JsonProperty(value = "bitLockerKey", access = JsonProperty.Access.WRITE_ONLY)
     private String bitLockerKey;
 
-    /** Creates an instance of DiskSecret class. */
+    /**
+     * Creates an instance of DiskSecret class.
+     */
     public DiskSecret() {
     }
 
     /**
      * Get the diskSerialNumber property: Serial number of the assigned disk.
-     *
+     * 
      * @return the diskSerialNumber value.
      */
     public String diskSerialNumber() {
@@ -37,7 +41,7 @@ public final class DiskSecret {
 
     /**
      * Get the bitLockerKey property: Bit Locker key of the disk which can be used to unlock the disk to copy data.
-     *
+     * 
      * @return the bitLockerKey value.
      */
     public String bitLockerKey() {
@@ -46,7 +50,7 @@ public final class DiskSecret {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

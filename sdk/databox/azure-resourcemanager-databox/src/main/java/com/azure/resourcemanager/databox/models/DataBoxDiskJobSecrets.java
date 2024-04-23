@@ -6,15 +6,29 @@ package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The secrets related to disk job. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobSecretsType")
+/**
+ * The secrets related to disk job.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "jobSecretsType",
+    defaultImpl = DataBoxDiskJobSecrets.class,
+    visible = true)
 @JsonTypeName("DataBoxDisk")
 @Immutable
 public final class DataBoxDiskJobSecrets extends JobSecrets {
+    /*
+     * Used to indicate what type of job secrets object.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobSecretsType", required = true)
+    private ClassDiscriminator jobSecretsType = ClassDiscriminator.DATA_BOX_DISK;
+
     /*
      * Contains the list of secrets object for that device.
      */
@@ -33,13 +47,25 @@ public final class DataBoxDiskJobSecrets extends JobSecrets {
     @JsonProperty(value = "isPasskeyUserDefined", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isPasskeyUserDefined;
 
-    /** Creates an instance of DataBoxDiskJobSecrets class. */
+    /**
+     * Creates an instance of DataBoxDiskJobSecrets class.
+     */
     public DataBoxDiskJobSecrets() {
     }
 
     /**
+     * Get the jobSecretsType property: Used to indicate what type of job secrets object.
+     * 
+     * @return the jobSecretsType value.
+     */
+    @Override
+    public ClassDiscriminator jobSecretsType() {
+        return this.jobSecretsType;
+    }
+
+    /**
      * Get the diskSecrets property: Contains the list of secrets object for that device.
-     *
+     * 
      * @return the diskSecrets value.
      */
     public List<DiskSecret> diskSecrets() {
@@ -48,7 +74,7 @@ public final class DataBoxDiskJobSecrets extends JobSecrets {
 
     /**
      * Get the passKey property: PassKey for the disk Job.
-     *
+     * 
      * @return the passKey value.
      */
     public String passKey() {
@@ -57,7 +83,7 @@ public final class DataBoxDiskJobSecrets extends JobSecrets {
 
     /**
      * Get the isPasskeyUserDefined property: Whether passkey was provided by user.
-     *
+     * 
      * @return the isPasskeyUserDefined value.
      */
     public Boolean isPasskeyUserDefined() {
@@ -66,7 +92,7 @@ public final class DataBoxDiskJobSecrets extends JobSecrets {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

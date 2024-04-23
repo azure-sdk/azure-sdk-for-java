@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Package carrier details. */
+/**
+ * Package carrier details.
+ */
 @Fluent
 public final class PackageCarrierDetails {
     /*
@@ -28,13 +30,15 @@ public final class PackageCarrierDetails {
     @JsonProperty(value = "trackingId")
     private String trackingId;
 
-    /** Creates an instance of PackageCarrierDetails class. */
+    /**
+     * Creates an instance of PackageCarrierDetails class.
+     */
     public PackageCarrierDetails() {
     }
 
     /**
      * Get the carrierAccountNumber property: Carrier Account Number of customer for customer disk.
-     *
+     * 
      * @return the carrierAccountNumber value.
      */
     public String carrierAccountNumber() {
@@ -43,7 +47,7 @@ public final class PackageCarrierDetails {
 
     /**
      * Set the carrierAccountNumber property: Carrier Account Number of customer for customer disk.
-     *
+     * 
      * @param carrierAccountNumber the carrierAccountNumber value to set.
      * @return the PackageCarrierDetails object itself.
      */
@@ -54,7 +58,7 @@ public final class PackageCarrierDetails {
 
     /**
      * Get the carrierName property: Name of the carrier.
-     *
+     * 
      * @return the carrierName value.
      */
     public String carrierName() {
@@ -63,7 +67,7 @@ public final class PackageCarrierDetails {
 
     /**
      * Set the carrierName property: Name of the carrier.
-     *
+     * 
      * @param carrierName the carrierName value to set.
      * @return the PackageCarrierDetails object itself.
      */
@@ -74,7 +78,7 @@ public final class PackageCarrierDetails {
 
     /**
      * Get the trackingId property: Tracking Id of shipment.
-     *
+     * 
      * @return the trackingId value.
      */
     public String trackingId() {
@@ -83,7 +87,7 @@ public final class PackageCarrierDetails {
 
     /**
      * Set the trackingId property: Tracking Id of shipment.
-     *
+     * 
      * @param trackingId the trackingId value to set.
      * @return the PackageCarrierDetails object itself.
      */
@@ -94,7 +98,7 @@ public final class PackageCarrierDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

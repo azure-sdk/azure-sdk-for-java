@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** DataBox Disk Copy Progress. */
+/**
+ * DataBox Disk Copy Progress.
+ */
 @Immutable
 public final class DataBoxDiskCopyProgress {
     /*
@@ -47,13 +49,15 @@ public final class DataBoxDiskCopyProgress {
     @JsonProperty(value = "actions", access = JsonProperty.Access.WRITE_ONLY)
     private List<CustomerResolutionCode> actions;
 
-    /** Creates an instance of DataBoxDiskCopyProgress class. */
+    /**
+     * Creates an instance of DataBoxDiskCopyProgress class.
+     */
     public DataBoxDiskCopyProgress() {
     }
 
     /**
      * Get the serialNumber property: The serial number of the disk.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -62,7 +66,7 @@ public final class DataBoxDiskCopyProgress {
 
     /**
      * Get the bytesCopied property: Bytes copied during the copy of disk.
-     *
+     * 
      * @return the bytesCopied value.
      */
     public Long bytesCopied() {
@@ -71,7 +75,7 @@ public final class DataBoxDiskCopyProgress {
 
     /**
      * Get the percentComplete property: Indicates the percentage completed for the copy of the disk.
-     *
+     * 
      * @return the percentComplete value.
      */
     public Integer percentComplete() {
@@ -80,7 +84,7 @@ public final class DataBoxDiskCopyProgress {
 
     /**
      * Get the status property: The Status of the copy.
-     *
+     * 
      * @return the status value.
      */
     public CopyStatus status() {
@@ -89,7 +93,7 @@ public final class DataBoxDiskCopyProgress {
 
     /**
      * Get the error property: Error, if any, in the stage.
-     *
+     * 
      * @return the error value.
      */
     public CloudError error() {
@@ -98,7 +102,7 @@ public final class DataBoxDiskCopyProgress {
 
     /**
      * Get the actions property: Available actions on the job.
-     *
+     * 
      * @return the actions value.
      */
     public List<CustomerResolutionCode> actions() {
@@ -107,7 +111,7 @@ public final class DataBoxDiskCopyProgress {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

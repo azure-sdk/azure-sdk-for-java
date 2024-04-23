@@ -6,14 +6,28 @@ package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Copy Log Details for a disk. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "copyLogDetailsType")
+/**
+ * Copy Log Details for a disk.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "copyLogDetailsType",
+    defaultImpl = DataBoxDiskCopyLogDetails.class,
+    visible = true)
 @JsonTypeName("DataBoxDisk")
 @Immutable
 public final class DataBoxDiskCopyLogDetails extends CopyLogDetails {
+    /*
+     * Indicates the type of job details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "copyLogDetailsType", required = true)
+    private ClassDiscriminator copyLogDetailsType = ClassDiscriminator.DATA_BOX_DISK;
+
     /*
      * Disk Serial Number.
      */
@@ -32,13 +46,25 @@ public final class DataBoxDiskCopyLogDetails extends CopyLogDetails {
     @JsonProperty(value = "verboseLogLink", access = JsonProperty.Access.WRITE_ONLY)
     private String verboseLogLink;
 
-    /** Creates an instance of DataBoxDiskCopyLogDetails class. */
+    /**
+     * Creates an instance of DataBoxDiskCopyLogDetails class.
+     */
     public DataBoxDiskCopyLogDetails() {
     }
 
     /**
+     * Get the copyLogDetailsType property: Indicates the type of job details.
+     * 
+     * @return the copyLogDetailsType value.
+     */
+    @Override
+    public ClassDiscriminator copyLogDetailsType() {
+        return this.copyLogDetailsType;
+    }
+
+    /**
      * Get the diskSerialNumber property: Disk Serial Number.
-     *
+     * 
      * @return the diskSerialNumber value.
      */
     public String diskSerialNumber() {
@@ -47,7 +73,7 @@ public final class DataBoxDiskCopyLogDetails extends CopyLogDetails {
 
     /**
      * Get the errorLogLink property: Link for copy error logs.
-     *
+     * 
      * @return the errorLogLink value.
      */
     public String errorLogLink() {
@@ -56,7 +82,7 @@ public final class DataBoxDiskCopyLogDetails extends CopyLogDetails {
 
     /**
      * Get the verboseLogLink property: Link for copy verbose logs.
-     *
+     * 
      * @return the verboseLogLink value.
      */
     public String verboseLogLink() {
@@ -65,7 +91,7 @@ public final class DataBoxDiskCopyLogDetails extends CopyLogDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

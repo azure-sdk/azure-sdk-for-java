@@ -13,7 +13,9 @@ import com.azure.resourcemanager.databox.models.SkuDisabledReason;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Information of the sku. */
+/**
+ * Information of the sku.
+ */
 @Immutable
 public final class SkuInformationInner {
     /*
@@ -34,13 +36,15 @@ public final class SkuInformationInner {
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private SkuProperties innerProperties;
 
-    /** Creates an instance of SkuInformationInner class. */
+    /**
+     * Creates an instance of SkuInformationInner class.
+     */
     public SkuInformationInner() {
     }
 
     /**
      * Get the sku property: The Sku.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -49,7 +53,7 @@ public final class SkuInformationInner {
 
     /**
      * Get the enabled property: The sku is enabled or not.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -58,7 +62,7 @@ public final class SkuInformationInner {
 
     /**
      * Get the innerProperties property: Properties of the sku.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SkuProperties innerProperties() {
@@ -67,7 +71,7 @@ public final class SkuInformationInner {
 
     /**
      * Get the dataLocationToServiceLocationMap property: The map of data location to service location.
-     *
+     * 
      * @return the dataLocationToServiceLocationMap value.
      */
     public List<DataLocationToServiceLocationMap> dataLocationToServiceLocationMap() {
@@ -76,7 +80,7 @@ public final class SkuInformationInner {
 
     /**
      * Get the capacity property: Capacity of the Sku.
-     *
+     * 
      * @return the capacity value.
      */
     public SkuCapacity capacity() {
@@ -85,7 +89,7 @@ public final class SkuInformationInner {
 
     /**
      * Get the costs property: Cost of the Sku.
-     *
+     * 
      * @return the costs value.
      */
     public List<SkuCost> costs() {
@@ -94,7 +98,7 @@ public final class SkuInformationInner {
 
     /**
      * Get the apiVersions property: Api versions that support this Sku.
-     *
+     * 
      * @return the apiVersions value.
      */
     public List<String> apiVersions() {
@@ -103,7 +107,7 @@ public final class SkuInformationInner {
 
     /**
      * Get the disabledReason property: Reason why the Sku is disabled.
-     *
+     * 
      * @return the disabledReason value.
      */
     public SkuDisabledReason disabledReason() {
@@ -112,7 +116,7 @@ public final class SkuInformationInner {
 
     /**
      * Get the disabledReasonMessage property: Message for why the Sku is disabled.
-     *
+     * 
      * @return the disabledReasonMessage value.
      */
     public String disabledReasonMessage() {
@@ -121,7 +125,7 @@ public final class SkuInformationInner {
 
     /**
      * Get the requiredFeature property: Required feature to access the sku.
-     *
+     * 
      * @return the requiredFeature value.
      */
     public String requiredFeature() {
@@ -131,7 +135,7 @@ public final class SkuInformationInner {
     /**
      * Get the countriesWithinCommerceBoundary property: List of all the Countries in the SKU specific commerce
      * boundary.
-     *
+     * 
      * @return the countriesWithinCommerceBoundary value.
      */
     public List<String> countriesWithinCommerceBoundary() {
@@ -140,7 +144,7 @@ public final class SkuInformationInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

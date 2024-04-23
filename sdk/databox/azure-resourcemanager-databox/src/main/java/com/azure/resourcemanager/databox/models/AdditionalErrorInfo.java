@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** This class represents additional info which Resource Providers pass when an error occurs. */
+/**
+ * This class represents additional info which Resource Providers pass when an error occurs.
+ */
 @Fluent
 public final class AdditionalErrorInfo {
     /*
@@ -22,13 +24,15 @@ public final class AdditionalErrorInfo {
     @JsonProperty(value = "type")
     private String type;
 
-    /** Creates an instance of AdditionalErrorInfo class. */
+    /**
+     * Creates an instance of AdditionalErrorInfo class.
+     */
     public AdditionalErrorInfo() {
     }
 
     /**
      * Get the info property: Additional information of the type of error.
-     *
+     * 
      * @return the info value.
      */
     public Object info() {
@@ -37,7 +41,7 @@ public final class AdditionalErrorInfo {
 
     /**
      * Set the info property: Additional information of the type of error.
-     *
+     * 
      * @param info the info value to set.
      * @return the AdditionalErrorInfo object itself.
      */
@@ -48,7 +52,7 @@ public final class AdditionalErrorInfo {
 
     /**
      * Get the type property: Type of error (e.g. CustomerIntervention, PolicyViolation, SecurityViolation).
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -57,7 +61,7 @@ public final class AdditionalErrorInfo {
 
     /**
      * Set the type property: Type of error (e.g. CustomerIntervention, PolicyViolation, SecurityViolation).
-     *
+     * 
      * @param type the type value to set.
      * @return the AdditionalErrorInfo object itself.
      */
@@ -68,7 +72,7 @@ public final class AdditionalErrorInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

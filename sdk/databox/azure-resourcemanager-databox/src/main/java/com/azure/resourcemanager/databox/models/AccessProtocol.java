@@ -7,15 +7,23 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for AccessProtocol. */
+/**
+ * Defines values for AccessProtocol.
+ */
 public enum AccessProtocol {
-    /** Enum value SMB. */
+    /**
+     * Enum value SMB.
+     */
     SMB("SMB"),
 
-    /** Enum value NFS. */
+    /**
+     * Enum value NFS.
+     */
     NFS("NFS");
 
-    /** The actual serialized value for a AccessProtocol instance. */
+    /**
+     * The actual serialized value for a AccessProtocol instance.
+     */
     private final String value;
 
     AccessProtocol(String value) {
@@ -24,7 +32,7 @@ public enum AccessProtocol {
 
     /**
      * Parses a serialized value to a AccessProtocol instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed AccessProtocol object, or null if unable to parse.
      */
@@ -42,7 +50,9 @@ public enum AccessProtocol {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

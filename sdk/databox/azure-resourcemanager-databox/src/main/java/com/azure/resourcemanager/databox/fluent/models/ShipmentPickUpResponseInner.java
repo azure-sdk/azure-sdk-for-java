@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Shipment pick up response. */
+/**
+ * Shipment pick up response.
+ */
 @Immutable
 public final class ShipmentPickUpResponseInner {
     /*
@@ -23,13 +25,15 @@ public final class ShipmentPickUpResponseInner {
     @JsonProperty(value = "readyByTime", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime readyByTime;
 
-    /** Creates an instance of ShipmentPickUpResponseInner class. */
+    /**
+     * Creates an instance of ShipmentPickUpResponseInner class.
+     */
     public ShipmentPickUpResponseInner() {
     }
 
     /**
      * Get the confirmationNumber property: Confirmation number for the pick up request.
-     *
+     * 
      * @return the confirmationNumber value.
      */
     public String confirmationNumber() {
@@ -39,7 +43,7 @@ public final class ShipmentPickUpResponseInner {
     /**
      * Get the readyByTime property: Time by which shipment should be ready for pick up, this is in local time of pick
      * up area.
-     *
+     * 
      * @return the readyByTime value.
      */
     public OffsetDateTime readyByTime() {
@@ -48,7 +52,7 @@ public final class ShipmentPickUpResponseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,14 +7,28 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Details of the managed disks. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "dataAccountType")
+/**
+ * Details of the managed disks.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "dataAccountType",
+    defaultImpl = ManagedDiskDetails.class,
+    visible = true)
 @JsonTypeName("ManagedDisk")
 @Fluent
 public final class ManagedDiskDetails extends DataAccountDetails {
+    /*
+     * Account Type of the data to be transferred.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "dataAccountType", required = true)
+    private DataAccountType dataAccountType = DataAccountType.MANAGED_DISK;
+
     /*
      * Resource Group Id of the compute disks.
      */
@@ -27,13 +41,25 @@ public final class ManagedDiskDetails extends DataAccountDetails {
     @JsonProperty(value = "stagingStorageAccountId", required = true)
     private String stagingStorageAccountId;
 
-    /** Creates an instance of ManagedDiskDetails class. */
+    /**
+     * Creates an instance of ManagedDiskDetails class.
+     */
     public ManagedDiskDetails() {
     }
 
     /**
+     * Get the dataAccountType property: Account Type of the data to be transferred.
+     * 
+     * @return the dataAccountType value.
+     */
+    @Override
+    public DataAccountType dataAccountType() {
+        return this.dataAccountType;
+    }
+
+    /**
      * Get the resourceGroupId property: Resource Group Id of the compute disks.
-     *
+     * 
      * @return the resourceGroupId value.
      */
     public String resourceGroupId() {
@@ -42,7 +68,7 @@ public final class ManagedDiskDetails extends DataAccountDetails {
 
     /**
      * Set the resourceGroupId property: Resource Group Id of the compute disks.
-     *
+     * 
      * @param resourceGroupId the resourceGroupId value to set.
      * @return the ManagedDiskDetails object itself.
      */
@@ -54,7 +80,7 @@ public final class ManagedDiskDetails extends DataAccountDetails {
     /**
      * Get the stagingStorageAccountId property: Resource Id of the storage account that can be used to copy the vhd for
      * staging.
-     *
+     * 
      * @return the stagingStorageAccountId value.
      */
     public String stagingStorageAccountId() {
@@ -64,7 +90,7 @@ public final class ManagedDiskDetails extends DataAccountDetails {
     /**
      * Set the stagingStorageAccountId property: Resource Id of the storage account that can be used to copy the vhd for
      * staging.
-     *
+     * 
      * @param stagingStorageAccountId the stagingStorageAccountId value to set.
      * @return the ManagedDiskDetails object itself.
      */
@@ -73,7 +99,9 @@ public final class ManagedDiskDetails extends DataAccountDetails {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedDiskDetails withSharePassword(String sharePassword) {
         super.withSharePassword(sharePassword);
@@ -82,23 +110,21 @@ public final class ManagedDiskDetails extends DataAccountDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (resourceGroupId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property resourceGroupId in model ManagedDiskDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property resourceGroupId in model ManagedDiskDetails"));
         }
         if (stagingStorageAccountId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property stagingStorageAccountId in model ManagedDiskDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property stagingStorageAccountId in model ManagedDiskDetails"));
         }
     }
 

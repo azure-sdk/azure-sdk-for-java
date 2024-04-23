@@ -6,28 +6,54 @@ package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The secrets related to a databox heavy job. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobSecretsType")
+/**
+ * The secrets related to a databox heavy job.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "jobSecretsType",
+    defaultImpl = DataBoxHeavyJobSecrets.class,
+    visible = true)
 @JsonTypeName("DataBoxHeavy")
 @Immutable
 public final class DataBoxHeavyJobSecrets extends JobSecrets {
+    /*
+     * Used to indicate what type of job secrets object.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobSecretsType", required = true)
+    private ClassDiscriminator jobSecretsType = ClassDiscriminator.DATA_BOX_HEAVY;
+
     /*
      * Contains the list of secret objects for a databox heavy job.
      */
     @JsonProperty(value = "cabinetPodSecrets", access = JsonProperty.Access.WRITE_ONLY)
     private List<DataBoxHeavySecret> cabinetPodSecrets;
 
-    /** Creates an instance of DataBoxHeavyJobSecrets class. */
+    /**
+     * Creates an instance of DataBoxHeavyJobSecrets class.
+     */
     public DataBoxHeavyJobSecrets() {
     }
 
     /**
+     * Get the jobSecretsType property: Used to indicate what type of job secrets object.
+     * 
+     * @return the jobSecretsType value.
+     */
+    @Override
+    public ClassDiscriminator jobSecretsType() {
+        return this.jobSecretsType;
+    }
+
+    /**
      * Get the cabinetPodSecrets property: Contains the list of secret objects for a databox heavy job.
-     *
+     * 
      * @return the cabinetPodSecrets value.
      */
     public List<DataBoxHeavySecret> cabinetPodSecrets() {
@@ -36,7 +62,7 @@ public final class DataBoxHeavyJobSecrets extends JobSecrets {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

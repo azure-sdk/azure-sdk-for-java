@@ -9,7 +9,9 @@ import com.azure.resourcemanager.databox.fluent.models.JobResourceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Job Resource Collection. */
+/**
+ * Job Resource Collection.
+ */
 @Fluent
 public final class JobResourceList {
     /*
@@ -24,13 +26,15 @@ public final class JobResourceList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of JobResourceList class. */
+    /**
+     * Creates an instance of JobResourceList class.
+     */
     public JobResourceList() {
     }
 
     /**
      * Get the value property: List of job resources.
-     *
+     * 
      * @return the value value.
      */
     public List<JobResourceInner> value() {
@@ -39,7 +43,7 @@ public final class JobResourceList {
 
     /**
      * Set the value property: List of job resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the JobResourceList object itself.
      */
@@ -50,7 +54,7 @@ public final class JobResourceList {
 
     /**
      * Get the nextLink property: Link for the next set of job resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class JobResourceList {
 
     /**
      * Set the nextLink property: Link for the next set of job resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the JobResourceList object itself.
      */
@@ -70,7 +74,7 @@ public final class JobResourceList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

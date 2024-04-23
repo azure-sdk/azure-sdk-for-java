@@ -8,26 +8,34 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request body to get the availability for scheduling orders. */
+/**
+ * Request body to get the availability for scheduling orders.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "skuName",
-    defaultImpl = ScheduleAvailabilityRequest.class)
+    defaultImpl = ScheduleAvailabilityRequest.class,
+    visible = true)
 @JsonTypeName("ScheduleAvailabilityRequest")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "DataBox", value = DataBoxScheduleAvailabilityRequest.class),
     @JsonSubTypes.Type(name = "DataBoxDisk", value = DiskScheduleAvailabilityRequest.class),
-    @JsonSubTypes.Type(name = "DataBoxHeavy", value = HeavyScheduleAvailabilityRequest.class)
-})
+    @JsonSubTypes.Type(name = "DataBoxHeavy", value = HeavyScheduleAvailabilityRequest.class) })
 @Fluent
 public class ScheduleAvailabilityRequest {
     /*
-     * Location for data transfer. For locations check:
-     * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01
+     * Sku Name for which the order is to be scheduled.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "skuName", required = true)
+    private SkuName skuName;
+
+    /*
+     * Location for data transfer. For locations check: https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01
      */
     @JsonProperty(value = "storageLocation", required = true)
     private String storageLocation;
@@ -38,14 +46,32 @@ public class ScheduleAvailabilityRequest {
     @JsonProperty(value = "country")
     private String country;
 
-    /** Creates an instance of ScheduleAvailabilityRequest class. */
+    /*
+     * The model name.
+     */
+    @JsonProperty(value = "model", access = JsonProperty.Access.WRITE_ONLY)
+    private ModelName model;
+
+    /**
+     * Creates an instance of ScheduleAvailabilityRequest class.
+     */
     public ScheduleAvailabilityRequest() {
+        this.skuName = SkuName.fromString("ScheduleAvailabilityRequest");
+    }
+
+    /**
+     * Get the skuName property: Sku Name for which the order is to be scheduled.
+     * 
+     * @return the skuName value.
+     */
+    public SkuName skuName() {
+        return this.skuName;
     }
 
     /**
      * Get the storageLocation property: Location for data transfer. For locations check:
      * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01.
-     *
+     * 
      * @return the storageLocation value.
      */
     public String storageLocation() {
@@ -55,7 +81,7 @@ public class ScheduleAvailabilityRequest {
     /**
      * Set the storageLocation property: Location for data transfer. For locations check:
      * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01.
-     *
+     * 
      * @param storageLocation the storageLocation value to set.
      * @return the ScheduleAvailabilityRequest object itself.
      */
@@ -66,7 +92,7 @@ public class ScheduleAvailabilityRequest {
 
     /**
      * Get the country property: Country in which storage location should be supported.
-     *
+     * 
      * @return the country value.
      */
     public String country() {
@@ -75,7 +101,7 @@ public class ScheduleAvailabilityRequest {
 
     /**
      * Set the country property: Country in which storage location should be supported.
-     *
+     * 
      * @param country the country value to set.
      * @return the ScheduleAvailabilityRequest object itself.
      */
@@ -85,16 +111,24 @@ public class ScheduleAvailabilityRequest {
     }
 
     /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (storageLocation() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storageLocation in model ScheduleAvailabilityRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property storageLocation in model ScheduleAvailabilityRequest"));
         }
     }
 

@@ -7,24 +7,29 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The base class for the secrets. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "jobSecretsType",
-    defaultImpl = JobSecrets.class)
+/**
+ * The base class for the secrets.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "jobSecretsType", defaultImpl = JobSecrets.class, visible = true)
 @JsonTypeName("JobSecrets")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "DataBoxCustomerDisk", value = CustomerDiskJobSecrets.class),
     @JsonSubTypes.Type(name = "DataBoxDisk", value = DataBoxDiskJobSecrets.class),
     @JsonSubTypes.Type(name = "DataBoxHeavy", value = DataBoxHeavyJobSecrets.class),
-    @JsonSubTypes.Type(name = "DataBox", value = DataboxJobSecrets.class)
-})
+    @JsonSubTypes.Type(name = "DataBox", value = DataboxJobSecrets.class) })
 @Immutable
 public class JobSecrets {
+    /*
+     * Used to indicate what type of job secrets object.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobSecretsType", required = true)
+    private ClassDiscriminator jobSecretsType;
+
     /*
      * Dc Access Security Code for Customer Managed Shipping
      */
@@ -37,13 +42,25 @@ public class JobSecrets {
     @JsonProperty(value = "error", access = JsonProperty.Access.WRITE_ONLY)
     private CloudError error;
 
-    /** Creates an instance of JobSecrets class. */
+    /**
+     * Creates an instance of JobSecrets class.
+     */
     public JobSecrets() {
+        this.jobSecretsType = ClassDiscriminator.fromString("JobSecrets");
+    }
+
+    /**
+     * Get the jobSecretsType property: Used to indicate what type of job secrets object.
+     * 
+     * @return the jobSecretsType value.
+     */
+    public ClassDiscriminator jobSecretsType() {
+        return this.jobSecretsType;
     }
 
     /**
      * Get the dcAccessSecurityCode property: Dc Access Security Code for Customer Managed Shipping.
-     *
+     * 
      * @return the dcAccessSecurityCode value.
      */
     public DcAccessSecurityCode dcAccessSecurityCode() {
@@ -52,7 +69,7 @@ public class JobSecrets {
 
     /**
      * Get the error property: Error while fetching the secrets.
-     *
+     * 
      * @return the error value.
      */
     public CloudError error() {
@@ -61,7 +78,7 @@ public class JobSecrets {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

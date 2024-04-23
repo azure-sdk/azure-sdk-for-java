@@ -5,27 +5,50 @@
 package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Granular Details for log generated during copy. */
+/**
+ * Granular Details for log generated during copy.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "copyLogDetailsType",
-    defaultImpl = GranularCopyLogDetails.class)
+    defaultImpl = GranularCopyLogDetails.class,
+    visible = true)
 @JsonTypeName("GranularCopyLogDetails")
-@JsonSubTypes({@JsonSubTypes.Type(name = "DataBoxCustomerDisk", value = DataBoxDiskGranularCopyLogDetails.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "DataBoxCustomerDisk", value = DataBoxDiskGranularCopyLogDetails.class) })
 @Immutable
 public class GranularCopyLogDetails {
-    /** Creates an instance of GranularCopyLogDetails class. */
+    /*
+     * Indicates the type of job details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "copyLogDetailsType", required = true)
+    private ClassDiscriminator copyLogDetailsType;
+
+    /**
+     * Creates an instance of GranularCopyLogDetails class.
+     */
     public GranularCopyLogDetails() {
+        this.copyLogDetailsType = ClassDiscriminator.fromString("GranularCopyLogDetails");
+    }
+
+    /**
+     * Get the copyLogDetailsType property: Indicates the type of job details.
+     * 
+     * @return the copyLogDetailsType value.
+     */
+    public ClassDiscriminator copyLogDetailsType() {
+        return this.copyLogDetailsType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

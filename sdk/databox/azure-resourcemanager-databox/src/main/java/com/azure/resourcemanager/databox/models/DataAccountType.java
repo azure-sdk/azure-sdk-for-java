@@ -7,15 +7,23 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Type of the account. */
+/**
+ * Type of the account.
+ */
 public enum DataAccountType {
-    /** Enum value StorageAccount. */
+    /**
+     * Enum value StorageAccount.
+     */
     STORAGE_ACCOUNT("StorageAccount"),
 
-    /** Enum value ManagedDisk. */
+    /**
+     * Enum value ManagedDisk.
+     */
     MANAGED_DISK("ManagedDisk");
 
-    /** The actual serialized value for a DataAccountType instance. */
+    /**
+     * The actual serialized value for a DataAccountType instance.
+     */
     private final String value;
 
     DataAccountType(String value) {
@@ -24,7 +32,7 @@ public enum DataAccountType {
 
     /**
      * Parses a serialized value to a DataAccountType instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed DataAccountType object, or null if unable to parse.
      */
@@ -42,7 +50,9 @@ public enum DataAccountType {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

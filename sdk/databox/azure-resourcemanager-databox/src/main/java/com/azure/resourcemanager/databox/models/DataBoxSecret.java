@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The secrets related to a DataBox. */
+/**
+ * The secrets related to a DataBox.
+ */
 @Immutable
 public final class DataBoxSecret {
     /*
@@ -41,13 +43,15 @@ public final class DataBoxSecret {
     @JsonProperty(value = "accountCredentialDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<AccountCredentialDetails> accountCredentialDetails;
 
-    /** Creates an instance of DataBoxSecret class. */
+    /**
+     * Creates an instance of DataBoxSecret class.
+     */
     public DataBoxSecret() {
     }
 
     /**
      * Get the deviceSerialNumber property: Serial number of the assigned device.
-     *
+     * 
      * @return the deviceSerialNumber value.
      */
     public String deviceSerialNumber() {
@@ -56,7 +60,7 @@ public final class DataBoxSecret {
 
     /**
      * Get the devicePassword property: Password for out of the box experience on device.
-     *
+     * 
      * @return the devicePassword value.
      */
     public String devicePassword() {
@@ -65,7 +69,7 @@ public final class DataBoxSecret {
 
     /**
      * Get the networkConfigurations property: Network configuration of the appliance.
-     *
+     * 
      * @return the networkConfigurations value.
      */
     public List<ApplianceNetworkConfiguration> networkConfigurations() {
@@ -74,7 +78,7 @@ public final class DataBoxSecret {
 
     /**
      * Get the encodedValidationCertPubKey property: The base 64 encoded public key to authenticate with the device.
-     *
+     * 
      * @return the encodedValidationCertPubKey value.
      */
     public String encodedValidationCertPubKey() {
@@ -83,7 +87,7 @@ public final class DataBoxSecret {
 
     /**
      * Get the accountCredentialDetails property: Per account level access credentials.
-     *
+     * 
      * @return the accountCredentialDetails value.
      */
     public List<AccountCredentialDetails> accountCredentialDetails() {
@@ -92,7 +96,7 @@ public final class DataBoxSecret {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

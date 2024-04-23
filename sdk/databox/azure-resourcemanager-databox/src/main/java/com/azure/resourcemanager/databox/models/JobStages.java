@@ -7,8 +7,11 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
+import java.util.List;
 
-/** Job stages. */
+/**
+ * Job stages.
+ */
 @Immutable
 public final class JobStages {
     /*
@@ -41,13 +44,21 @@ public final class JobStages {
     @JsonProperty(value = "jobStageDetails", access = JsonProperty.Access.WRITE_ONLY)
     private Object jobStageDetails;
 
-    /** Creates an instance of JobStages class. */
+    /*
+     * Delay information for the job stages.
+     */
+    @JsonProperty(value = "delayInformation", access = JsonProperty.Access.WRITE_ONLY)
+    private List<JobDelayDetails> delayInformation;
+
+    /**
+     * Creates an instance of JobStages class.
+     */
     public JobStages() {
     }
 
     /**
      * Get the stageName property: Name of the job stage.
-     *
+     * 
      * @return the stageName value.
      */
     public StageName stageName() {
@@ -56,7 +67,7 @@ public final class JobStages {
 
     /**
      * Get the displayName property: Display name of the job stage.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -65,7 +76,7 @@ public final class JobStages {
 
     /**
      * Get the stageStatus property: Status of the job stage.
-     *
+     * 
      * @return the stageStatus value.
      */
     public StageStatus stageStatus() {
@@ -74,7 +85,7 @@ public final class JobStages {
 
     /**
      * Get the stageTime property: Time for the job stage in UTC ISO 8601 format.
-     *
+     * 
      * @return the stageTime value.
      */
     public OffsetDateTime stageTime() {
@@ -83,7 +94,7 @@ public final class JobStages {
 
     /**
      * Get the jobStageDetails property: Job Stage Details.
-     *
+     * 
      * @return the jobStageDetails value.
      */
     public Object jobStageDetails() {
@@ -91,10 +102,22 @@ public final class JobStages {
     }
 
     /**
+     * Get the delayInformation property: Delay information for the job stages.
+     * 
+     * @return the delayInformation value.
+     */
+    public List<JobDelayDetails> delayInformation() {
+        return this.delayInformation;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (delayInformation() != null) {
+            delayInformation().forEach(e -> e.validate());
+        }
     }
 }

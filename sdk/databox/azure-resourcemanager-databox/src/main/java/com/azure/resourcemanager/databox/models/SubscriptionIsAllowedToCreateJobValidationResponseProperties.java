@@ -6,27 +6,54 @@ package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Properties of subscription permission to create job validation response. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
+/**
+ * Properties of subscription permission to create job validation response.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "validationType",
+    defaultImpl = SubscriptionIsAllowedToCreateJobValidationResponseProperties.class,
+    visible = true)
 @JsonTypeName("ValidateSubscriptionIsAllowedToCreateJob")
 @Immutable
 public final class SubscriptionIsAllowedToCreateJobValidationResponseProperties extends ValidationInputResponse {
+    /*
+     * Identifies the type of validation response.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "validationType", required = true)
+    private ValidationInputDiscriminator validationType
+        = ValidationInputDiscriminator.VALIDATE_SUBSCRIPTION_IS_ALLOWED_TO_CREATE_JOB;
+
     /*
      * Validation status of subscription permission to create job.
      */
     @JsonProperty(value = "status", access = JsonProperty.Access.WRITE_ONLY)
     private ValidationStatus status;
 
-    /** Creates an instance of SubscriptionIsAllowedToCreateJobValidationResponseProperties class. */
+    /**
+     * Creates an instance of SubscriptionIsAllowedToCreateJobValidationResponseProperties class.
+     */
     public SubscriptionIsAllowedToCreateJobValidationResponseProperties() {
     }
 
     /**
+     * Get the validationType property: Identifies the type of validation response.
+     * 
+     * @return the validationType value.
+     */
+    @Override
+    public ValidationInputDiscriminator validationType() {
+        return this.validationType;
+    }
+
+    /**
      * Get the status property: Validation status of subscription permission to create job.
-     *
+     * 
      * @return the status value.
      */
     public ValidationStatus status() {
@@ -35,7 +62,7 @@ public final class SubscriptionIsAllowedToCreateJobValidationResponseProperties 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

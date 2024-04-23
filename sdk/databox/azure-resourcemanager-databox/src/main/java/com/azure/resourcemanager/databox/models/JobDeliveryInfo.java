@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Additional delivery info. */
+/**
+ * Additional delivery info.
+ */
 @Fluent
 public final class JobDeliveryInfo {
     /*
@@ -17,13 +19,15 @@ public final class JobDeliveryInfo {
     @JsonProperty(value = "scheduledDateTime")
     private OffsetDateTime scheduledDateTime;
 
-    /** Creates an instance of JobDeliveryInfo class. */
+    /**
+     * Creates an instance of JobDeliveryInfo class.
+     */
     public JobDeliveryInfo() {
     }
 
     /**
      * Get the scheduledDateTime property: Scheduled date time.
-     *
+     * 
      * @return the scheduledDateTime value.
      */
     public OffsetDateTime scheduledDateTime() {
@@ -32,7 +36,7 @@ public final class JobDeliveryInfo {
 
     /**
      * Set the scheduledDateTime property: Scheduled date time.
-     *
+     * 
      * @param scheduledDateTime the scheduledDateTime value to set.
      * @return the JobDeliveryInfo object itself.
      */
@@ -43,7 +47,7 @@ public final class JobDeliveryInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

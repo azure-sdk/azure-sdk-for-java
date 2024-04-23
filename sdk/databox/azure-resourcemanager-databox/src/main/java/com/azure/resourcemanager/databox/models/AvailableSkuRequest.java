@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The filters for showing the available skus. */
+/**
+ * The filters for showing the available skus.
+ */
 @Fluent
 public final class AvailableSkuRequest {
     /*
@@ -19,15 +21,13 @@ public final class AvailableSkuRequest {
     private TransferType transferType;
 
     /*
-     * ISO country code. Country for hardware shipment. For codes check:
-     * https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements
+     * ISO country code. Country for hardware shipment. For codes check: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements
      */
     @JsonProperty(value = "country", required = true)
     private String country;
 
     /*
-     * Location for data transfer. For locations check:
-     * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01
+     * Location for data transfer. For locations check: https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01
      */
     @JsonProperty(value = "location", required = true)
     private String location;
@@ -38,13 +38,15 @@ public final class AvailableSkuRequest {
     @JsonProperty(value = "skuNames")
     private List<SkuName> skuNames;
 
-    /** Creates an instance of AvailableSkuRequest class. */
+    /**
+     * Creates an instance of AvailableSkuRequest class.
+     */
     public AvailableSkuRequest() {
     }
 
     /**
      * Get the transferType property: Type of the transfer.
-     *
+     * 
      * @return the transferType value.
      */
     public TransferType transferType() {
@@ -53,7 +55,7 @@ public final class AvailableSkuRequest {
 
     /**
      * Set the transferType property: Type of the transfer.
-     *
+     * 
      * @param transferType the transferType value to set.
      * @return the AvailableSkuRequest object itself.
      */
@@ -65,7 +67,7 @@ public final class AvailableSkuRequest {
     /**
      * Get the country property: ISO country code. Country for hardware shipment. For codes check:
      * https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements.
-     *
+     * 
      * @return the country value.
      */
     public String country() {
@@ -75,7 +77,7 @@ public final class AvailableSkuRequest {
     /**
      * Set the country property: ISO country code. Country for hardware shipment. For codes check:
      * https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements.
-     *
+     * 
      * @param country the country value to set.
      * @return the AvailableSkuRequest object itself.
      */
@@ -87,7 +89,7 @@ public final class AvailableSkuRequest {
     /**
      * Get the location property: Location for data transfer. For locations check:
      * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -97,7 +99,7 @@ public final class AvailableSkuRequest {
     /**
      * Set the location property: Location for data transfer. For locations check:
      * https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01.
-     *
+     * 
      * @param location the location value to set.
      * @return the AvailableSkuRequest object itself.
      */
@@ -108,7 +110,7 @@ public final class AvailableSkuRequest {
 
     /**
      * Get the skuNames property: Sku Names to filter for available skus.
-     *
+     * 
      * @return the skuNames value.
      */
     public List<SkuName> skuNames() {
@@ -117,7 +119,7 @@ public final class AvailableSkuRequest {
 
     /**
      * Set the skuNames property: Sku Names to filter for available skus.
-     *
+     * 
      * @param skuNames the skuNames value to set.
      * @return the AvailableSkuRequest object itself.
      */
@@ -128,25 +130,22 @@ public final class AvailableSkuRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (transferType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property transferType in model AvailableSkuRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property transferType in model AvailableSkuRequest"));
         }
         if (country() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property country in model AvailableSkuRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property country in model AvailableSkuRequest"));
         }
         if (location() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property location in model AvailableSkuRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property location in model AvailableSkuRequest"));
         }
     }
 

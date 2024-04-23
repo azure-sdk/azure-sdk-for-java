@@ -12,7 +12,9 @@ import com.azure.resourcemanager.databox.models.SkuDisabledReason;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties of the sku. */
+/**
+ * Properties of the sku.
+ */
 @Immutable
 public final class SkuProperties {
     /*
@@ -63,13 +65,15 @@ public final class SkuProperties {
     @JsonProperty(value = "countriesWithinCommerceBoundary", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> countriesWithinCommerceBoundary;
 
-    /** Creates an instance of SkuProperties class. */
+    /**
+     * Creates an instance of SkuProperties class.
+     */
     public SkuProperties() {
     }
 
     /**
      * Get the dataLocationToServiceLocationMap property: The map of data location to service location.
-     *
+     * 
      * @return the dataLocationToServiceLocationMap value.
      */
     public List<DataLocationToServiceLocationMap> dataLocationToServiceLocationMap() {
@@ -78,7 +82,7 @@ public final class SkuProperties {
 
     /**
      * Get the capacity property: Capacity of the Sku.
-     *
+     * 
      * @return the capacity value.
      */
     public SkuCapacity capacity() {
@@ -87,7 +91,7 @@ public final class SkuProperties {
 
     /**
      * Get the costs property: Cost of the Sku.
-     *
+     * 
      * @return the costs value.
      */
     public List<SkuCost> costs() {
@@ -96,7 +100,7 @@ public final class SkuProperties {
 
     /**
      * Get the apiVersions property: Api versions that support this Sku.
-     *
+     * 
      * @return the apiVersions value.
      */
     public List<String> apiVersions() {
@@ -105,7 +109,7 @@ public final class SkuProperties {
 
     /**
      * Get the disabledReason property: Reason why the Sku is disabled.
-     *
+     * 
      * @return the disabledReason value.
      */
     public SkuDisabledReason disabledReason() {
@@ -114,7 +118,7 @@ public final class SkuProperties {
 
     /**
      * Get the disabledReasonMessage property: Message for why the Sku is disabled.
-     *
+     * 
      * @return the disabledReasonMessage value.
      */
     public String disabledReasonMessage() {
@@ -123,7 +127,7 @@ public final class SkuProperties {
 
     /**
      * Get the requiredFeature property: Required feature to access the sku.
-     *
+     * 
      * @return the requiredFeature value.
      */
     public String requiredFeature() {
@@ -133,7 +137,7 @@ public final class SkuProperties {
     /**
      * Get the countriesWithinCommerceBoundary property: List of all the Countries in the SKU specific commerce
      * boundary.
-     *
+     * 
      * @return the countriesWithinCommerceBoundary value.
      */
     public List<String> countriesWithinCommerceBoundary() {
@@ -142,7 +146,7 @@ public final class SkuProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

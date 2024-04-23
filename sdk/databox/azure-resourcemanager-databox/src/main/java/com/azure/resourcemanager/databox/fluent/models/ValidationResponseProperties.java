@@ -10,7 +10,9 @@ import com.azure.resourcemanager.databox.models.ValidationInputResponse;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties of pre job creation validation response. */
+/**
+ * Properties of pre job creation validation response.
+ */
 @Immutable
 public final class ValidationResponseProperties {
     /*
@@ -25,13 +27,15 @@ public final class ValidationResponseProperties {
     @JsonProperty(value = "individualResponseDetails", access = JsonProperty.Access.WRITE_ONLY)
     private List<ValidationInputResponse> individualResponseDetails;
 
-    /** Creates an instance of ValidationResponseProperties class. */
+    /**
+     * Creates an instance of ValidationResponseProperties class.
+     */
     public ValidationResponseProperties() {
     }
 
     /**
      * Get the status property: Overall validation status.
-     *
+     * 
      * @return the status value.
      */
     public OverallValidationStatus status() {
@@ -41,7 +45,7 @@ public final class ValidationResponseProperties {
     /**
      * Get the individualResponseDetails property: List of response details contain validationType and its response as
      * key and value respectively.
-     *
+     * 
      * @return the individualResponseDetails value.
      */
     public List<ValidationInputResponse> individualResponseDetails() {
@@ -50,7 +54,7 @@ public final class ValidationResponseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,34 +8,56 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Minimum request requirement of any validation category. */
+/**
+ * Minimum request requirement of any validation category.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "validationCategory",
-    defaultImpl = ValidationRequest.class)
+    defaultImpl = ValidationRequest.class,
+    visible = true)
 @JsonTypeName("ValidationRequest")
-@JsonSubTypes({@JsonSubTypes.Type(name = "JobCreationValidation", value = CreateJobValidations.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "JobCreationValidation", value = CreateJobValidations.class) })
 @Fluent
 public class ValidationRequest {
+    /*
+     * Identify the nature of validation.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "validationCategory", required = true)
+    private String validationCategory;
+
     /*
      * List of request details contain validationType and its request as key and value respectively.
      */
     @JsonProperty(value = "individualRequestDetails", required = true)
     private List<ValidationInputRequest> individualRequestDetails;
 
-    /** Creates an instance of ValidationRequest class. */
+    /**
+     * Creates an instance of ValidationRequest class.
+     */
     public ValidationRequest() {
+        this.validationCategory = "ValidationRequest";
+    }
+
+    /**
+     * Get the validationCategory property: Identify the nature of validation.
+     * 
+     * @return the validationCategory value.
+     */
+    public String validationCategory() {
+        return this.validationCategory;
     }
 
     /**
      * Get the individualRequestDetails property: List of request details contain validationType and its request as key
      * and value respectively.
-     *
+     * 
      * @return the individualRequestDetails value.
      */
     public List<ValidationInputRequest> individualRequestDetails() {
@@ -45,7 +67,7 @@ public class ValidationRequest {
     /**
      * Set the individualRequestDetails property: List of request details contain validationType and its request as key
      * and value respectively.
-     *
+     * 
      * @param individualRequestDetails the individualRequestDetails value to set.
      * @return the ValidationRequest object itself.
      */
@@ -56,15 +78,14 @@ public class ValidationRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (individualRequestDetails() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property individualRequestDetails in model ValidationRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property individualRequestDetails in model ValidationRequest"));
         } else {
             individualRequestDetails().forEach(e -> e.validate());
         }

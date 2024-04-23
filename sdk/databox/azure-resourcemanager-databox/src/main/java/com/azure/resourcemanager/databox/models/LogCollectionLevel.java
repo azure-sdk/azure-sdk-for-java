@@ -7,15 +7,23 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Level of the logs to be collected. */
+/**
+ * Level of the logs to be collected.
+ */
 public enum LogCollectionLevel {
-    /** Enum value Error. */
+    /**
+     * Enum value Error.
+     */
     ERROR("Error"),
 
-    /** Enum value Verbose. */
+    /**
+     * Enum value Verbose.
+     */
     VERBOSE("Verbose");
 
-    /** The actual serialized value for a LogCollectionLevel instance. */
+    /**
+     * The actual serialized value for a LogCollectionLevel instance.
+     */
     private final String value;
 
     LogCollectionLevel(String value) {
@@ -24,7 +32,7 @@ public enum LogCollectionLevel {
 
     /**
      * Parses a serialized value to a LogCollectionLevel instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed LogCollectionLevel object, or null if unable to parse.
      */
@@ -42,7 +50,9 @@ public enum LogCollectionLevel {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

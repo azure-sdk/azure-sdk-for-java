@@ -7,15 +7,23 @@ package com.azure.resourcemanager.databox.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Type of the transfer. */
+/**
+ * Type of the transfer.
+ */
 public enum TransferType {
-    /** Enum value ImportToAzure. */
+    /**
+     * Enum value ImportToAzure.
+     */
     IMPORT_TO_AZURE("ImportToAzure"),
 
-    /** Enum value ExportFromAzure. */
+    /**
+     * Enum value ExportFromAzure.
+     */
     EXPORT_FROM_AZURE("ExportFromAzure");
 
-    /** The actual serialized value for a TransferType instance. */
+    /**
+     * The actual serialized value for a TransferType instance.
+     */
     private final String value;
 
     TransferType(String value) {
@@ -24,7 +32,7 @@ public enum TransferType {
 
     /**
      * Parses a serialized value to a TransferType instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed TransferType object, or null if unable to parse.
      */
@@ -42,7 +50,9 @@ public enum TransferType {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

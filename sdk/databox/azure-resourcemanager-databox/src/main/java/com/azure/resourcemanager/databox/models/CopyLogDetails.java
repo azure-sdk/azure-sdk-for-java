@@ -5,32 +5,54 @@
 package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Details for log generated during copy. */
+/**
+ * Details for log generated during copy.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "copyLogDetailsType",
-    defaultImpl = CopyLogDetails.class)
+    defaultImpl = CopyLogDetails.class,
+    visible = true)
 @JsonTypeName("CopyLogDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "DataBox", value = DataBoxAccountCopyLogDetails.class),
     @JsonSubTypes.Type(name = "DataBoxCustomerDisk", value = DataBoxCustomerDiskCopyLogDetails.class),
     @JsonSubTypes.Type(name = "DataBoxDisk", value = DataBoxDiskCopyLogDetails.class),
-    @JsonSubTypes.Type(name = "DataBoxHeavy", value = DataBoxHeavyAccountCopyLogDetails.class)
-})
+    @JsonSubTypes.Type(name = "DataBoxHeavy", value = DataBoxHeavyAccountCopyLogDetails.class) })
 @Immutable
 public class CopyLogDetails {
-    /** Creates an instance of CopyLogDetails class. */
+    /*
+     * Indicates the type of job details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "copyLogDetailsType", required = true)
+    private ClassDiscriminator copyLogDetailsType;
+
+    /**
+     * Creates an instance of CopyLogDetails class.
+     */
     public CopyLogDetails() {
+        this.copyLogDetailsType = ClassDiscriminator.fromString("CopyLogDetails");
+    }
+
+    /**
+     * Get the copyLogDetailsType property: Indicates the type of job details.
+     * 
+     * @return the copyLogDetailsType value.
+     */
+    public ClassDiscriminator copyLogDetailsType() {
+        return this.copyLogDetailsType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

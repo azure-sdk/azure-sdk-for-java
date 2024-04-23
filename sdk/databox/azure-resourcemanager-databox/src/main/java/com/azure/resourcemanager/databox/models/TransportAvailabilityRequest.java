@@ -7,7 +7,9 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Request body to get the transport availability for given sku. */
+/**
+ * Request body to get the transport availability for given sku.
+ */
 @Fluent
 public final class TransportAvailabilityRequest {
     /*
@@ -16,13 +18,21 @@ public final class TransportAvailabilityRequest {
     @JsonProperty(value = "skuName")
     private SkuName skuName;
 
-    /** Creates an instance of TransportAvailabilityRequest class. */
+    /*
+     * The model name.
+     */
+    @JsonProperty(value = "model", access = JsonProperty.Access.WRITE_ONLY)
+    private ModelName model;
+
+    /**
+     * Creates an instance of TransportAvailabilityRequest class.
+     */
     public TransportAvailabilityRequest() {
     }
 
     /**
      * Get the skuName property: Type of the device.
-     *
+     * 
      * @return the skuName value.
      */
     public SkuName skuName() {
@@ -31,7 +41,7 @@ public final class TransportAvailabilityRequest {
 
     /**
      * Set the skuName property: Type of the device.
-     *
+     * 
      * @param skuName the skuName value to set.
      * @return the TransportAvailabilityRequest object itself.
      */
@@ -41,8 +51,17 @@ public final class TransportAvailabilityRequest {
     }
 
     /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

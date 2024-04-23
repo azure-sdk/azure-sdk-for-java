@@ -7,14 +7,28 @@ package com.azure.resourcemanager.databox.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request to validate preference of transport and data center. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "validationType")
+/**
+ * Request to validate preference of transport and data center.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "validationType",
+    defaultImpl = PreferencesValidationRequest.class,
+    visible = true)
 @JsonTypeName("ValidatePreferences")
 @Fluent
 public final class PreferencesValidationRequest extends ValidationInputRequest {
+    /*
+     * Identifies the type of validation request.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "validationType", required = true)
+    private ValidationInputDiscriminator validationType = ValidationInputDiscriminator.VALIDATE_PREFERENCES;
+
     /*
      * Preference of transport and data center.
      */
@@ -27,13 +41,31 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
     @JsonProperty(value = "deviceType", required = true)
     private SkuName deviceType;
 
-    /** Creates an instance of PreferencesValidationRequest class. */
+    /*
+     * The model name.
+     */
+    @JsonProperty(value = "model", access = JsonProperty.Access.WRITE_ONLY)
+    private ModelName model;
+
+    /**
+     * Creates an instance of PreferencesValidationRequest class.
+     */
     public PreferencesValidationRequest() {
     }
 
     /**
+     * Get the validationType property: Identifies the type of validation request.
+     * 
+     * @return the validationType value.
+     */
+    @Override
+    public ValidationInputDiscriminator validationType() {
+        return this.validationType;
+    }
+
+    /**
      * Get the preference property: Preference of transport and data center.
-     *
+     * 
      * @return the preference value.
      */
     public Preferences preference() {
@@ -42,7 +74,7 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
 
     /**
      * Set the preference property: Preference of transport and data center.
-     *
+     * 
      * @param preference the preference value to set.
      * @return the PreferencesValidationRequest object itself.
      */
@@ -53,7 +85,7 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
 
     /**
      * Get the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @return the deviceType value.
      */
     public SkuName deviceType() {
@@ -62,7 +94,7 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
 
     /**
      * Set the deviceType property: Device type to be used for the job.
-     *
+     * 
      * @param deviceType the deviceType value to set.
      * @return the PreferencesValidationRequest object itself.
      */
@@ -72,8 +104,17 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
     }
 
     /**
+     * Get the model property: The model name.
+     * 
+     * @return the model value.
+     */
+    public ModelName model() {
+        return this.model;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -83,10 +124,9 @@ public final class PreferencesValidationRequest extends ValidationInputRequest {
             preference().validate();
         }
         if (deviceType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property deviceType in model PreferencesValidationRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property deviceType in model PreferencesValidationRequest"));
         }
     }
 

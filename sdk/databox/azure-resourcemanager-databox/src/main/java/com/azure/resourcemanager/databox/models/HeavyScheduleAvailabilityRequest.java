@@ -5,26 +5,57 @@
 package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request body to get the availability for scheduling heavy orders. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "skuName")
+/**
+ * Request body to get the availability for scheduling heavy orders.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "skuName",
+    defaultImpl = HeavyScheduleAvailabilityRequest.class,
+    visible = true)
 @JsonTypeName("DataBoxHeavy")
 @Fluent
 public final class HeavyScheduleAvailabilityRequest extends ScheduleAvailabilityRequest {
-    /** Creates an instance of HeavyScheduleAvailabilityRequest class. */
+    /*
+     * Sku Name for which the order is to be scheduled.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "skuName", required = true)
+    private SkuName skuName = SkuName.DATA_BOX_HEAVY;
+
+    /**
+     * Creates an instance of HeavyScheduleAvailabilityRequest class.
+     */
     public HeavyScheduleAvailabilityRequest() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the skuName property: Sku Name for which the order is to be scheduled.
+     * 
+     * @return the skuName value.
+     */
+    @Override
+    public SkuName skuName() {
+        return this.skuName;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HeavyScheduleAvailabilityRequest withStorageLocation(String storageLocation) {
         super.withStorageLocation(storageLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HeavyScheduleAvailabilityRequest withCountry(String country) {
         super.withCountry(country);
@@ -33,7 +64,7 @@ public final class HeavyScheduleAvailabilityRequest extends ScheduleAvailability
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

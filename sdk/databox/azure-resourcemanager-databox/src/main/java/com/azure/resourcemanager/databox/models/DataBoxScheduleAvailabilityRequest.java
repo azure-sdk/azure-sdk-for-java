@@ -5,26 +5,57 @@
 package com.azure.resourcemanager.databox.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Request body to get the availability for scheduling data box orders orders. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "skuName")
+/**
+ * Request body to get the availability for scheduling data box orders orders.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "skuName",
+    defaultImpl = DataBoxScheduleAvailabilityRequest.class,
+    visible = true)
 @JsonTypeName("DataBox")
 @Fluent
 public final class DataBoxScheduleAvailabilityRequest extends ScheduleAvailabilityRequest {
-    /** Creates an instance of DataBoxScheduleAvailabilityRequest class. */
+    /*
+     * Sku Name for which the order is to be scheduled.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "skuName", required = true)
+    private SkuName skuName = SkuName.DATA_BOX;
+
+    /**
+     * Creates an instance of DataBoxScheduleAvailabilityRequest class.
+     */
     public DataBoxScheduleAvailabilityRequest() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the skuName property: Sku Name for which the order is to be scheduled.
+     * 
+     * @return the skuName value.
+     */
+    @Override
+    public SkuName skuName() {
+        return this.skuName;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxScheduleAvailabilityRequest withStorageLocation(String storageLocation) {
         super.withStorageLocation(storageLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DataBoxScheduleAvailabilityRequest withCountry(String country) {
         super.withCountry(country);
@@ -33,7 +64,7 @@ public final class DataBoxScheduleAvailabilityRequest extends ScheduleAvailabili
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
