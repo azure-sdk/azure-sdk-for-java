@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Definition of a component version: defines resources that span component types. */
+/**
+ * Definition of a component version: defines resources that span component types.
+ */
 @Fluent
 public final class ComponentVersionProperties extends AssetBase {
     /*
@@ -18,14 +20,22 @@ public final class ComponentVersionProperties extends AssetBase {
     @JsonProperty(value = "componentSpec")
     private Object componentSpec;
 
-    /** Creates an instance of ComponentVersionProperties class. */
+    /*
+     * Provisioning state for the component version.
+     */
+    @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
+    private AssetProvisioningState provisioningState;
+
+    /**
+     * Creates an instance of ComponentVersionProperties class.
+     */
     public ComponentVersionProperties() {
     }
 
     /**
-     * Get the componentSpec property: Defines Component definition details. &lt;see
-     * href="https://docs.microsoft.com/en-us/azure/machine-learning/reference-yaml-component-command" /&gt;.
-     *
+     * Get the componentSpec property: Defines Component definition details.
+     * &lt;see href="https://docs.microsoft.com/en-us/azure/machine-learning/reference-yaml-component-command" /&gt;.
+     * 
      * @return the componentSpec value.
      */
     public Object componentSpec() {
@@ -33,9 +43,9 @@ public final class ComponentVersionProperties extends AssetBase {
     }
 
     /**
-     * Set the componentSpec property: Defines Component definition details. &lt;see
-     * href="https://docs.microsoft.com/en-us/azure/machine-learning/reference-yaml-component-command" /&gt;.
-     *
+     * Set the componentSpec property: Defines Component definition details.
+     * &lt;see href="https://docs.microsoft.com/en-us/azure/machine-learning/reference-yaml-component-command" /&gt;.
+     * 
      * @param componentSpec the componentSpec value to set.
      * @return the ComponentVersionProperties object itself.
      */
@@ -44,35 +54,54 @@ public final class ComponentVersionProperties extends AssetBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the provisioningState property: Provisioning state for the component version.
+     * 
+     * @return the provisioningState value.
+     */
+    public AssetProvisioningState provisioningState() {
+        return this.provisioningState;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ComponentVersionProperties withIsAnonymous(Boolean isAnonymous) {
         super.withIsAnonymous(isAnonymous);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ComponentVersionProperties withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ComponentVersionProperties withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ComponentVersionProperties withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ComponentVersionProperties withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -81,7 +110,7 @@ public final class ComponentVersionProperties extends AssetBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

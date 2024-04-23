@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The VirtualMachineSchemaProperties model. */
+/**
+ * The VirtualMachineSchemaProperties model.
+ */
 @Fluent
 public final class VirtualMachineSchemaProperties {
     /*
@@ -46,13 +48,15 @@ public final class VirtualMachineSchemaProperties {
     @JsonProperty(value = "isNotebookInstanceCompute")
     private Boolean isNotebookInstanceCompute;
 
-    /** Creates an instance of VirtualMachineSchemaProperties class. */
+    /**
+     * Creates an instance of VirtualMachineSchemaProperties class.
+     */
     public VirtualMachineSchemaProperties() {
     }
 
     /**
      * Get the virtualMachineSize property: Virtual Machine size.
-     *
+     * 
      * @return the virtualMachineSize value.
      */
     public String virtualMachineSize() {
@@ -61,7 +65,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Set the virtualMachineSize property: Virtual Machine size.
-     *
+     * 
      * @param virtualMachineSize the virtualMachineSize value to set.
      * @return the VirtualMachineSchemaProperties object itself.
      */
@@ -72,7 +76,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Get the sshPort property: Port open for ssh connections.
-     *
+     * 
      * @return the sshPort value.
      */
     public Integer sshPort() {
@@ -81,7 +85,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Set the sshPort property: Port open for ssh connections.
-     *
+     * 
      * @param sshPort the sshPort value to set.
      * @return the VirtualMachineSchemaProperties object itself.
      */
@@ -92,7 +96,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Get the notebookServerPort property: Notebook server port open for ssh connections.
-     *
+     * 
      * @return the notebookServerPort value.
      */
     public Integer notebookServerPort() {
@@ -101,7 +105,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Set the notebookServerPort property: Notebook server port open for ssh connections.
-     *
+     * 
      * @param notebookServerPort the notebookServerPort value to set.
      * @return the VirtualMachineSchemaProperties object itself.
      */
@@ -112,7 +116,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Get the address property: Public IP address of the virtual machine.
-     *
+     * 
      * @return the address value.
      */
     public String address() {
@@ -121,7 +125,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Set the address property: Public IP address of the virtual machine.
-     *
+     * 
      * @param address the address value to set.
      * @return the VirtualMachineSchemaProperties object itself.
      */
@@ -132,7 +136,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Get the administratorAccount property: Admin credentials for virtual machine.
-     *
+     * 
      * @return the administratorAccount value.
      */
     public VirtualMachineSshCredentials administratorAccount() {
@@ -141,7 +145,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Set the administratorAccount property: Admin credentials for virtual machine.
-     *
+     * 
      * @param administratorAccount the administratorAccount value to set.
      * @return the VirtualMachineSchemaProperties object itself.
      */
@@ -152,7 +156,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Get the isNotebookInstanceCompute property: Indicates whether this compute will be used for running notebooks.
-     *
+     * 
      * @return the isNotebookInstanceCompute value.
      */
     public Boolean isNotebookInstanceCompute() {
@@ -161,7 +165,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Set the isNotebookInstanceCompute property: Indicates whether this compute will be used for running notebooks.
-     *
+     * 
      * @param isNotebookInstanceCompute the isNotebookInstanceCompute value to set.
      * @return the VirtualMachineSchemaProperties object itself.
      */
@@ -172,7 +176,7 @@ public final class VirtualMachineSchemaProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

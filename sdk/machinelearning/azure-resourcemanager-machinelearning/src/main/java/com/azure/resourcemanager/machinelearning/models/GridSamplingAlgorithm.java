@@ -5,21 +5,49 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines a Sampling Algorithm that exhaustively generates every value combination in the space. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "samplingAlgorithmType")
+/**
+ * Defines a Sampling Algorithm that exhaustively generates every value combination in the space.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "samplingAlgorithmType",
+    defaultImpl = GridSamplingAlgorithm.class,
+    visible = true)
 @JsonTypeName("Grid")
 @Immutable
 public final class GridSamplingAlgorithm extends SamplingAlgorithm {
-    /** Creates an instance of GridSamplingAlgorithm class. */
+    /*
+     * [Required] The algorithm used for generating hyperparameter values, along with configuration properties
+     */
+    @JsonTypeId
+    @JsonProperty(value = "samplingAlgorithmType", required = true)
+    private SamplingAlgorithmType samplingAlgorithmType = SamplingAlgorithmType.GRID;
+
+    /**
+     * Creates an instance of GridSamplingAlgorithm class.
+     */
     public GridSamplingAlgorithm() {
     }
 
     /**
+     * Get the samplingAlgorithmType property: [Required] The algorithm used for generating hyperparameter values, along
+     * with configuration properties.
+     * 
+     * @return the samplingAlgorithmType value.
+     */
+    @Override
+    public SamplingAlgorithmType samplingAlgorithmType() {
+        return this.samplingAlgorithmType;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
