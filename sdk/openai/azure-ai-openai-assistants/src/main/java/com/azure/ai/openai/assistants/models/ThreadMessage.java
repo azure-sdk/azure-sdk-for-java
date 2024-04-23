@@ -5,11 +5,8 @@ package com.azure.ai.openai.assistants.models;
 
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -20,54 +17,62 @@ import java.util.Map;
  * A single, existing message within an assistant thread.
  */
 @Immutable
-public final class ThreadMessage implements JsonSerializable<ThreadMessage> {
+public final class ThreadMessage {
 
     /*
      * The identifier, which can be referenced in API endpoints.
      */
     @Generated
+    @JsonProperty(value = "id")
     private final String id;
 
     /*
      * The object type, which is always 'thread.message'.
      */
     @Generated
+    @JsonProperty(value = "object")
     private final String object = "thread.message";
 
     /*
      * The Unix timestamp, in seconds, representing when this object was created.
      */
     @Generated
+    @JsonProperty(value = "created_at")
     private final long createdAt;
 
     /*
      * The ID of the thread that this message belongs to.
      */
     @Generated
+    @JsonProperty(value = "thread_id")
     private final String threadId;
 
     /*
      * The role associated with the assistant thread message.
      */
     @Generated
+    @JsonProperty(value = "role")
     private final MessageRole role;
 
     /*
      * The list of content items associated with the assistant thread message.
      */
     @Generated
+    @JsonProperty(value = "content")
     private final List<MessageContent> content;
 
     /*
      * If applicable, the ID of the assistant that authored this message.
      */
     @Generated
+    @JsonProperty(value = "assistant_id")
     private String assistantId;
 
     /*
      * If applicable, the ID of the run associated with the authoring of this message.
      */
     @Generated
+    @JsonProperty(value = "run_id")
     private String runId;
 
     /*
@@ -75,12 +80,14 @@ public final class ThreadMessage implements JsonSerializable<ThreadMessage> {
      * access files.
      */
     @Generated
+    @JsonProperty(value = "file_ids")
     private final List<String> fileIds;
 
     /*
      * A set of up to 16 key/value pairs that can be attached to an object, used for storing additional information about that object in a structured format. Keys may be up to 64 characters in length and values may be up to 512 characters in length.
      */
     @Generated
+    @JsonProperty(value = "metadata")
     private final Map<String, String> metadata;
 
     /**
@@ -187,20 +194,53 @@ public final class ThreadMessage implements JsonSerializable<ThreadMessage> {
         return this.metadata;
     }
 
+    /*
+     * The status of the message.
+     */
+    @Generated
+    @JsonProperty(value = "status")
+    private final MessageStatus status;
+
+    /*
+     * On an incomplete message, details about why the message is incomplete.
+     */
+    @Generated
+    @JsonProperty(value = "incomplete_details")
+    private final MessageIncompleteDetailsReason incompleteDetails;
+
+    /*
+     * The Unix timestamp (in seconds) for when the message was completed.
+     */
+    @Generated
+    @JsonProperty(value = "completed_at")
+    private final Long completedAt;
+
+    /*
+     * The Unix timestamp (in seconds) for when the message was marked as incomplete.
+     */
+    @Generated
+    @JsonProperty(value = "incomplete_at")
+    private final Long incompleteAt;
+
     /**
      * Creates an instance of ThreadMessage class.
      *
      * @param id the id value to set.
      * @param createdAt the createdAt value to set.
      * @param threadId the threadId value to set.
+     * @param status the status value to set.
+     * @param incompleteDetails the incompleteDetails value to set.
+     * @param completedAt the completedAt value to set.
+     * @param incompleteAt the incompleteAt value to set.
      * @param role the role value to set.
      * @param content the content value to set.
      * @param fileIds the fileIds value to set.
      * @param metadata the metadata value to set.
      */
     @Generated
-    private ThreadMessage(String id, OffsetDateTime createdAt, String threadId, MessageRole role,
-        List<MessageContent> content, List<String> fileIds, Map<String, String> metadata) {
+    private ThreadMessage(String id, OffsetDateTime createdAt, String threadId, MessageStatus status,
+        MessageIncompleteDetailsReason incompleteDetails, OffsetDateTime completedAt, OffsetDateTime incompleteAt,
+        MessageRole role, List<MessageContent> content, List<String> fileIds, Map<String, String> metadata) {
         this.id = id;
         if (createdAt == null) {
             this.createdAt = 0L;
@@ -208,83 +248,83 @@ public final class ThreadMessage implements JsonSerializable<ThreadMessage> {
             this.createdAt = createdAt.toEpochSecond();
         }
         this.threadId = threadId;
+        this.status = status;
+        this.incompleteDetails = incompleteDetails;
+        if (completedAt == null) {
+            this.completedAt = null;
+        } else {
+            this.completedAt = completedAt.toEpochSecond();
+        }
+        if (incompleteAt == null) {
+            this.incompleteAt = null;
+        } else {
+            this.incompleteAt = incompleteAt.toEpochSecond();
+        }
         this.role = role;
         this.content = content;
         this.fileIds = fileIds;
         this.metadata = metadata;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Generated
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("id", this.id);
-        jsonWriter.writeStringField("object", this.object);
-        jsonWriter.writeLongField("created_at", this.createdAt);
-        jsonWriter.writeStringField("thread_id", this.threadId);
-        jsonWriter.writeStringField("role", this.role == null ? null : this.role.toString());
-        jsonWriter.writeArrayField("content", this.content, (writer, element) -> writer.writeJson(element));
-        jsonWriter.writeArrayField("file_ids", this.fileIds, (writer, element) -> writer.writeString(element));
-        jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeString(element));
-        jsonWriter.writeStringField("assistant_id", this.assistantId);
-        jsonWriter.writeStringField("run_id", this.runId);
-        return jsonWriter.writeEndObject();
+    @JsonCreator
+    private ThreadMessage(@JsonProperty(value = "id") String id, @JsonProperty(value = "created_at") long createdAt,
+        @JsonProperty(value = "thread_id") String threadId, @JsonProperty(value = "status") MessageStatus status,
+        @JsonProperty(value = "incomplete_details") MessageIncompleteDetailsReason incompleteDetails,
+        @JsonProperty(value = "completed_at") Long completedAt,
+        @JsonProperty(value = "incomplete_at") Long incompleteAt, @JsonProperty(value = "role") MessageRole role,
+        @JsonProperty(value = "content") List<MessageContent> content,
+        @JsonProperty(value = "file_ids") List<String> fileIds,
+        @JsonProperty(value = "metadata") Map<String, String> metadata) {
+        this(id, OffsetDateTime.ofInstant(Instant.ofEpochSecond(createdAt), ZoneOffset.UTC), threadId, status,
+            incompleteDetails, OffsetDateTime.ofInstant(Instant.ofEpochSecond(completedAt), ZoneOffset.UTC),
+            OffsetDateTime.ofInstant(Instant.ofEpochSecond(incompleteAt), ZoneOffset.UTC), role, content, fileIds,
+            metadata);
     }
 
     /**
-     * Reads an instance of ThreadMessage from the JsonReader.
+     * Get the status property: The status of the message.
      *
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of ThreadMessage if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the ThreadMessage.
+     * @return the status value.
      */
     @Generated
-    public static ThreadMessage fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            String id = null;
-            OffsetDateTime createdAt = null;
-            String threadId = null;
-            MessageRole role = null;
-            List<MessageContent> content = null;
-            List<String> fileIds = null;
-            Map<String, String> metadata = null;
-            String assistantId = null;
-            String runId = null;
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-                if ("id".equals(fieldName)) {
-                    id = reader.getString();
-                } else if ("created_at".equals(fieldName)) {
-                    createdAt = OffsetDateTime.ofInstant(Instant.ofEpochSecond(reader.getLong()), ZoneOffset.UTC);
-                } else if ("thread_id".equals(fieldName)) {
-                    threadId = reader.getString();
-                } else if ("role".equals(fieldName)) {
-                    role = MessageRole.fromString(reader.getString());
-                } else if ("content".equals(fieldName)) {
-                    content = reader.readArray(reader1 -> MessageContent.fromJson(reader1));
-                } else if ("file_ids".equals(fieldName)) {
-                    fileIds = reader.readArray(reader1 -> reader1.getString());
-                } else if ("metadata".equals(fieldName)) {
-                    metadata = reader.readMap(reader1 -> reader1.getString());
-                } else if ("assistant_id".equals(fieldName)) {
-                    assistantId = reader.getString();
-                } else if ("run_id".equals(fieldName)) {
-                    runId = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-            ThreadMessage deserializedThreadMessage
-                = new ThreadMessage(id, createdAt, threadId, role, content, fileIds, metadata);
-            deserializedThreadMessage.assistantId = assistantId;
-            deserializedThreadMessage.runId = runId;
-            return deserializedThreadMessage;
-        });
+    public MessageStatus getStatus() {
+        return this.status;
+    }
+
+    /**
+     * Get the incompleteDetails property: On an incomplete message, details about why the message is incomplete.
+     *
+     * @return the incompleteDetails value.
+     */
+    @Generated
+    public MessageIncompleteDetailsReason getIncompleteDetails() {
+        return this.incompleteDetails;
+    }
+
+    /**
+     * Get the completedAt property: The Unix timestamp (in seconds) for when the message was completed.
+     *
+     * @return the completedAt value.
+     */
+    @Generated
+    public OffsetDateTime getCompletedAt() {
+        if (this.completedAt == null) {
+            return null;
+        }
+        return OffsetDateTime.ofInstant(Instant.ofEpochSecond(this.completedAt), ZoneOffset.UTC);
+    }
+
+    /**
+     * Get the incompleteAt property: The Unix timestamp (in seconds) for when the message was marked as incomplete.
+     *
+     * @return the incompleteAt value.
+     */
+    @Generated
+    public OffsetDateTime getIncompleteAt() {
+        if (this.incompleteAt == null) {
+            return null;
+        }
+        return OffsetDateTime.ofInstant(Instant.ofEpochSecond(this.incompleteAt), ZoneOffset.UTC);
     }
 }

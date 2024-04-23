@@ -5,15 +5,22 @@ package com.azure.ai.openai.assistants.models;
 
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
-import com.azure.json.JsonReader;
-import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
-import java.io.IOException;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A citation within the message that points to a specific quote from a specific File associated with the assistant or
  * the message. Generated when the assistant uses the 'retrieval' tool to search files.
  */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = MessageTextFileCitationAnnotation.class,
+    visible = true)
+@JsonTypeName("file_citation")
 @Immutable
 public final class MessageTextFileCitationAnnotation extends MessageTextAnnotation {
 
@@ -22,22 +29,8 @@ public final class MessageTextFileCitationAnnotation extends MessageTextAnnotati
      * Generated when the assistant uses the "retrieval" tool to search files.
      */
     @Generated
+    @JsonProperty(value = "file_citation")
     private final MessageTextFileCitationDetails fileCitation;
-
-    /**
-     * Creates an instance of MessageTextFileCitationAnnotation class.
-     *
-     * @param text the text value to set.
-     * @param startIndex the startIndex value to set.
-     * @param endIndex the endIndex value to set.
-     * @param fileCitation the fileCitation value to set.
-     */
-    @Generated
-    private MessageTextFileCitationAnnotation(String text, int startIndex, int endIndex,
-        MessageTextFileCitationDetails fileCitation) {
-        super(text, startIndex, endIndex);
-        this.fileCitation = fileCitation;
-    }
 
     /**
      * Get the fileCitation property: A citation within the message that points to a specific quote from a specific
@@ -51,66 +44,12 @@ public final class MessageTextFileCitationAnnotation extends MessageTextAnnotati
         return this.fileCitation;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Generated
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("text", getText());
-        jsonWriter.writeIntField("start_index", getStartIndex());
-        jsonWriter.writeIntField("end_index", getEndIndex());
-        jsonWriter.writeJsonField("file_citation", this.fileCitation);
-        jsonWriter.writeStringField("type", this.type);
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of MessageTextFileCitationAnnotation from the JsonReader.
-     *
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of MessageTextFileCitationAnnotation if the JsonReader was pointing to an instance of it, or
-     * null if it was pointing to JSON null.
-     * @throws IllegalStateException If the deserialized JSON object was missing any required properties.
-     * @throws IOException If an error occurs while reading the MessageTextFileCitationAnnotation.
-     */
-    @Generated
-    public static MessageTextFileCitationAnnotation fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            String text = null;
-            int startIndex = 0;
-            int endIndex = 0;
-            MessageTextFileCitationDetails fileCitation = null;
-            String type = "file_citation";
-            while (reader.nextToken() != JsonToken.END_OBJECT) {
-                String fieldName = reader.getFieldName();
-                reader.nextToken();
-                if ("text".equals(fieldName)) {
-                    text = reader.getString();
-                } else if ("start_index".equals(fieldName)) {
-                    startIndex = reader.getInt();
-                } else if ("end_index".equals(fieldName)) {
-                    endIndex = reader.getInt();
-                } else if ("file_citation".equals(fieldName)) {
-                    fileCitation = MessageTextFileCitationDetails.fromJson(reader);
-                } else if ("type".equals(fieldName)) {
-                    type = reader.getString();
-                } else {
-                    reader.skipChildren();
-                }
-            }
-            MessageTextFileCitationAnnotation deserializedMessageTextFileCitationAnnotation
-                = new MessageTextFileCitationAnnotation(text, startIndex, endIndex, fileCitation);
-            deserializedMessageTextFileCitationAnnotation.type = type;
-            return deserializedMessageTextFileCitationAnnotation;
-        });
-    }
-
     /*
      * The object type.
      */
     @Generated
+    @JsonTypeId
+    @JsonProperty(value = "type")
     private String type = "file_citation";
 
     /**
@@ -122,5 +61,53 @@ public final class MessageTextFileCitationAnnotation extends MessageTextAnnotati
     @Override
     public String getType() {
         return this.type;
+    }
+
+    /*
+     * The first text index associated with this text annotation.
+     */
+    @Generated
+    @JsonProperty(value = "start_index")
+    private Integer startIndex;
+
+    /*
+     * The last text index associated with this text annotation.
+     */
+    @Generated
+    @JsonProperty(value = "end_index")
+    private Integer endIndex;
+
+    /**
+     * Creates an instance of MessageTextFileCitationAnnotation class.
+     *
+     * @param text the text value to set.
+     * @param fileCitation the fileCitation value to set.
+     */
+    @Generated
+    @JsonCreator
+    private MessageTextFileCitationAnnotation(@JsonProperty(value = "text") String text,
+        @JsonProperty(value = "file_citation") MessageTextFileCitationDetails fileCitation) {
+        super(text);
+        this.fileCitation = fileCitation;
+    }
+
+    /**
+     * Get the startIndex property: The first text index associated with this text annotation.
+     *
+     * @return the startIndex value.
+     */
+    @Generated
+    public Integer getStartIndex() {
+        return this.startIndex;
+    }
+
+    /**
+     * Get the endIndex property: The last text index associated with this text annotation.
+     *
+     * @return the endIndex value.
+     */
+    @Generated
+    public Integer getEndIndex() {
+        return this.endIndex;
     }
 }
