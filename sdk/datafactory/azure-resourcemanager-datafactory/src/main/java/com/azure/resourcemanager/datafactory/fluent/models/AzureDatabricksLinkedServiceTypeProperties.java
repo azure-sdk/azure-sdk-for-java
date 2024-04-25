@@ -129,6 +129,25 @@ public final class AzureDatabricksLinkedServiceTypeProperties {
     private Object policyId;
 
     /*
+     * A set of optional, user-specified cluster attributes key-value pairs.
+     */
+    @JsonProperty(value = "newClusterAttributes")
+    @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
+    private Map<String, Object> newClusterAttributes;
+
+    /*
+     * Cluster option (Fixed / Autoscaling / Single Node) to enables the cluster nodes to be fixed or automatically scale between the minimum and maximum number of nodes, based on load. Single node clusters consists of a driver but no workers. Type: string (or Expression with resultType string).
+     */
+    @JsonProperty(value = "clusterOption")
+    private Object clusterOption;
+
+    /*
+     * Access mode for data secured in unity catalog. Type: string (or Expression with resultType string).
+     */
+    @JsonProperty(value = "dataSecurityMode")
+    private Object dataSecurityMode;
+
+    /*
      * The credential reference containing authentication information.
      */
     @JsonProperty(value = "credential")
@@ -548,6 +567,73 @@ public final class AzureDatabricksLinkedServiceTypeProperties {
      */
     public AzureDatabricksLinkedServiceTypeProperties withPolicyId(Object policyId) {
         this.policyId = policyId;
+        return this;
+    }
+
+    /**
+     * Get the newClusterAttributes property: A set of optional, user-specified cluster attributes key-value pairs.
+     * 
+     * @return the newClusterAttributes value.
+     */
+    public Map<String, Object> newClusterAttributes() {
+        return this.newClusterAttributes;
+    }
+
+    /**
+     * Set the newClusterAttributes property: A set of optional, user-specified cluster attributes key-value pairs.
+     * 
+     * @param newClusterAttributes the newClusterAttributes value to set.
+     * @return the AzureDatabricksLinkedServiceTypeProperties object itself.
+     */
+    public AzureDatabricksLinkedServiceTypeProperties
+        withNewClusterAttributes(Map<String, Object> newClusterAttributes) {
+        this.newClusterAttributes = newClusterAttributes;
+        return this;
+    }
+
+    /**
+     * Get the clusterOption property: Cluster option (Fixed / Autoscaling / Single Node) to enables the cluster nodes
+     * to be fixed or automatically scale between the minimum and maximum number of nodes, based on load. Single node
+     * clusters consists of a driver but no workers. Type: string (or Expression with resultType string).
+     * 
+     * @return the clusterOption value.
+     */
+    public Object clusterOption() {
+        return this.clusterOption;
+    }
+
+    /**
+     * Set the clusterOption property: Cluster option (Fixed / Autoscaling / Single Node) to enables the cluster nodes
+     * to be fixed or automatically scale between the minimum and maximum number of nodes, based on load. Single node
+     * clusters consists of a driver but no workers. Type: string (or Expression with resultType string).
+     * 
+     * @param clusterOption the clusterOption value to set.
+     * @return the AzureDatabricksLinkedServiceTypeProperties object itself.
+     */
+    public AzureDatabricksLinkedServiceTypeProperties withClusterOption(Object clusterOption) {
+        this.clusterOption = clusterOption;
+        return this;
+    }
+
+    /**
+     * Get the dataSecurityMode property: Access mode for data secured in unity catalog. Type: string (or Expression
+     * with resultType string).
+     * 
+     * @return the dataSecurityMode value.
+     */
+    public Object dataSecurityMode() {
+        return this.dataSecurityMode;
+    }
+
+    /**
+     * Set the dataSecurityMode property: Access mode for data secured in unity catalog. Type: string (or Expression
+     * with resultType string).
+     * 
+     * @param dataSecurityMode the dataSecurityMode value to set.
+     * @return the AzureDatabricksLinkedServiceTypeProperties object itself.
+     */
+    public AzureDatabricksLinkedServiceTypeProperties withDataSecurityMode(Object dataSecurityMode) {
+        this.dataSecurityMode = dataSecurityMode;
         return this;
     }
 
