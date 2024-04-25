@@ -18,7 +18,7 @@ import java.io.IOException;
 public final class DevCenterProject implements JsonSerializable<DevCenterProject> {
 
     /*
-     * Name of the project
+     * Name of the project.
      */
     @Generated
     private String name;
@@ -35,13 +35,6 @@ public final class DevCenterProject implements JsonSerializable<DevCenterProject
      */
     @Generated
     private Integer maxDevBoxesPerUser;
-
-    /**
-     * Creates an instance of DevCenterProject class.
-     */
-    @Generated
-    private DevCenterProject() {
-    }
 
     /**
      * Get the name property: Name of the project.
@@ -81,8 +74,10 @@ public final class DevCenterProject implements JsonSerializable<DevCenterProject
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("uri", this.uri);
         jsonWriter.writeStringField("description", this.description);
         jsonWriter.writeNumberField("maxDevBoxesPerUser", this.maxDevBoxesPerUser);
+        jsonWriter.writeStringField("displayName", this.displayName);
         return jsonWriter.writeEndObject();
     }
 
@@ -98,27 +93,76 @@ public final class DevCenterProject implements JsonSerializable<DevCenterProject
     @Generated
     public static DevCenterProject fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
+            String uri = null;
             String name = null;
             String description = null;
             Integer maxDevBoxesPerUser = null;
+            String displayName = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
-                if ("name".equals(fieldName)) {
+                if ("uri".equals(fieldName)) {
+                    uri = reader.getString();
+                } else if ("name".equals(fieldName)) {
                     name = reader.getString();
                 } else if ("description".equals(fieldName)) {
                     description = reader.getString();
                 } else if ("maxDevBoxesPerUser".equals(fieldName)) {
                     maxDevBoxesPerUser = reader.getNullable(JsonReader::getInt);
+                } else if ("displayName".equals(fieldName)) {
+                    displayName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
-            DevCenterProject deserializedDevCenterProject = new DevCenterProject();
+            DevCenterProject deserializedDevCenterProject = new DevCenterProject(uri);
             deserializedDevCenterProject.name = name;
             deserializedDevCenterProject.description = description;
             deserializedDevCenterProject.maxDevBoxesPerUser = maxDevBoxesPerUser;
+            deserializedDevCenterProject.displayName = displayName;
             return deserializedDevCenterProject;
         });
+    }
+
+    /*
+     * The unique URI of the project.
+     */
+    @Generated
+    private final String uri;
+
+    /*
+     * Display name of the pool.
+     */
+    @Generated
+    private String displayName;
+
+    /**
+     * Creates an instance of DevCenterProject class.
+     *
+     * @param uri the uri value to set.
+     */
+    @Generated
+    private DevCenterProject(String uri) {
+        this.uri = uri;
+    }
+
+    /**
+     * Get the uri property: The unique URI of the project.
+     *
+     * @return the uri value.
+     */
+    @Generated
+    public String getUri() {
+        return this.uri;
+    }
+
+    /**
+     * Get the displayName property: Display name of the pool.
+     *
+     * @return the displayName value.
+     */
+    @Generated
+    public String getDisplayName() {
+        return this.displayName;
     }
 }

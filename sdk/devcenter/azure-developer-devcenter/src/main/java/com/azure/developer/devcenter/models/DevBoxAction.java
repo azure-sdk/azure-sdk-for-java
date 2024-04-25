@@ -32,7 +32,7 @@ public final class DevBoxAction implements JsonSerializable<DevBoxAction> {
     private final DevBoxActionType actionType;
 
     /*
-     * The id of the resource which triggered this action
+     * The id of the resource which triggered this action.
      */
     @Generated
     private final String sourceId;
@@ -48,18 +48,6 @@ public final class DevBoxAction implements JsonSerializable<DevBoxAction> {
      */
     @Generated
     private DevBoxNextAction nextAction;
-
-    /**
-     * Creates an instance of DevBoxAction class.
-     *
-     * @param actionType the actionType value to set.
-     * @param sourceId the sourceId value to set.
-     */
-    @Generated
-    private DevBoxAction(DevBoxActionType actionType, String sourceId) {
-        this.actionType = actionType;
-        this.sourceId = sourceId;
-    }
 
     /**
      * Get the name property: The name of the action.
@@ -118,8 +106,11 @@ public final class DevBoxAction implements JsonSerializable<DevBoxAction> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("uri", this.uri);
         jsonWriter.writeStringField("actionType", this.actionType == null ? null : this.actionType.toString());
         jsonWriter.writeStringField("sourceId", this.sourceId);
+        jsonWriter.writeStringField("sourceUri", this.sourceUri);
+        jsonWriter.writeStringField("sourceType", this.sourceType == null ? null : this.sourceType.toString());
         jsonWriter.writeStringField("suspendedUntil",
             this.suspendedUntil == null ? null : DateTimeFormatter.ISO_OFFSET_DATE_TIME.format(this.suspendedUntil));
         jsonWriter.writeJsonField("next", this.nextAction);
@@ -138,20 +129,29 @@ public final class DevBoxAction implements JsonSerializable<DevBoxAction> {
     @Generated
     public static DevBoxAction fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
+            String uri = null;
             String name = null;
             DevBoxActionType actionType = null;
             String sourceId = null;
+            String sourceUri = null;
+            DevBoxActionSourceType sourceType = null;
             OffsetDateTime suspendedUntil = null;
             DevBoxNextAction nextAction = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
-                if ("name".equals(fieldName)) {
+                if ("uri".equals(fieldName)) {
+                    uri = reader.getString();
+                } else if ("name".equals(fieldName)) {
                     name = reader.getString();
                 } else if ("actionType".equals(fieldName)) {
                     actionType = DevBoxActionType.fromString(reader.getString());
                 } else if ("sourceId".equals(fieldName)) {
                     sourceId = reader.getString();
+                } else if ("sourceUri".equals(fieldName)) {
+                    sourceUri = reader.getString();
+                } else if ("sourceType".equals(fieldName)) {
+                    sourceType = DevBoxActionSourceType.fromString(reader.getString());
                 } else if ("suspendedUntil".equals(fieldName)) {
                     suspendedUntil
                         = reader.getNullable(nonNullReader -> OffsetDateTime.parse(nonNullReader.getString()));
@@ -161,11 +161,78 @@ public final class DevBoxAction implements JsonSerializable<DevBoxAction> {
                     reader.skipChildren();
                 }
             }
-            DevBoxAction deserializedDevBoxAction = new DevBoxAction(actionType, sourceId);
+            DevBoxAction deserializedDevBoxAction = new DevBoxAction(uri, actionType, sourceId, sourceUri, sourceType);
             deserializedDevBoxAction.name = name;
             deserializedDevBoxAction.suspendedUntil = suspendedUntil;
             deserializedDevBoxAction.nextAction = nextAction;
             return deserializedDevBoxAction;
         });
+    }
+
+    /*
+     * The unique URI for the Dev Box action.
+     */
+    @Generated
+    private final String uri;
+
+    /*
+     * The URI of the resource which triggered this action.
+     */
+    @Generated
+    private final String sourceUri;
+
+    /*
+     * The type of the resource which triggered this action.
+     */
+    @Generated
+    private final DevBoxActionSourceType sourceType;
+
+    /**
+     * Creates an instance of DevBoxAction class.
+     *
+     * @param uri the uri value to set.
+     * @param actionType the actionType value to set.
+     * @param sourceId the sourceId value to set.
+     * @param sourceUri the sourceUri value to set.
+     * @param sourceType the sourceType value to set.
+     */
+    @Generated
+    private DevBoxAction(String uri, DevBoxActionType actionType, String sourceId, String sourceUri,
+        DevBoxActionSourceType sourceType) {
+        this.uri = uri;
+        this.actionType = actionType;
+        this.sourceId = sourceId;
+        this.sourceUri = sourceUri;
+        this.sourceType = sourceType;
+    }
+
+    /**
+     * Get the uri property: The unique URI for the Dev Box action.
+     *
+     * @return the uri value.
+     */
+    @Generated
+    public String getUri() {
+        return this.uri;
+    }
+
+    /**
+     * Get the sourceUri property: The URI of the resource which triggered this action.
+     *
+     * @return the sourceUri value.
+     */
+    @Generated
+    public String getSourceUri() {
+        return this.sourceUri;
+    }
+
+    /**
+     * Get the sourceType property: The type of the resource which triggered this action.
+     *
+     * @return the sourceType value.
+     */
+    @Generated
+    public DevBoxActionSourceType getSourceType() {
+        return this.sourceType;
     }
 }
