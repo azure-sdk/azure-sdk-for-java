@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.connectedvmware.fluent.models.VirtualMachineInstanceUpdateProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the virtualMachineInstanceUpdate. */
+/**
+ * Defines the virtualMachineInstanceUpdate.
+ */
 @Fluent
 public final class VirtualMachineInstanceUpdate {
     /*
@@ -17,13 +19,15 @@ public final class VirtualMachineInstanceUpdate {
     @JsonProperty(value = "properties")
     private VirtualMachineInstanceUpdateProperties innerProperties;
 
-    /** Creates an instance of VirtualMachineInstanceUpdate class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceUpdate class.
+     */
     public VirtualMachineInstanceUpdate() {
     }
 
     /**
      * Get the innerProperties property: Resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private VirtualMachineInstanceUpdateProperties innerProperties() {
@@ -32,7 +36,7 @@ public final class VirtualMachineInstanceUpdate {
 
     /**
      * Get the hardwareProfile property: Specifies the hardware settings for the virtual machine.
-     *
+     * 
      * @return the hardwareProfile value.
      */
     public HardwareProfile hardwareProfile() {
@@ -41,7 +45,7 @@ public final class VirtualMachineInstanceUpdate {
 
     /**
      * Set the hardwareProfile property: Specifies the hardware settings for the virtual machine.
-     *
+     * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the VirtualMachineInstanceUpdate object itself.
      */
@@ -55,7 +59,7 @@ public final class VirtualMachineInstanceUpdate {
 
     /**
      * Get the storageProfile property: Specifies the storage settings for the virtual machine disks.
-     *
+     * 
      * @return the storageProfile value.
      */
     public StorageProfileUpdate storageProfile() {
@@ -64,7 +68,7 @@ public final class VirtualMachineInstanceUpdate {
 
     /**
      * Set the storageProfile property: Specifies the storage settings for the virtual machine disks.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the VirtualMachineInstanceUpdate object itself.
      */
@@ -78,7 +82,7 @@ public final class VirtualMachineInstanceUpdate {
 
     /**
      * Get the networkProfile property: Specifies the network interfaces of the virtual machine.
-     *
+     * 
      * @return the networkProfile value.
      */
     public NetworkProfileUpdate networkProfile() {
@@ -87,7 +91,7 @@ public final class VirtualMachineInstanceUpdate {
 
     /**
      * Set the networkProfile property: Specifies the network interfaces of the virtual machine.
-     *
+     * 
      * @param networkProfile the networkProfile value to set.
      * @return the VirtualMachineInstanceUpdate object itself.
      */
@@ -101,7 +105,7 @@ public final class VirtualMachineInstanceUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

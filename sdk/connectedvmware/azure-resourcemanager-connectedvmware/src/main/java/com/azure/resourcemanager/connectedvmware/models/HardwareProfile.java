@@ -7,7 +7,9 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies the hardware settings for the virtual machine. */
+/**
+ * Specifies the hardware settings for the virtual machine.
+ */
 @Fluent
 public final class HardwareProfile {
     /*
@@ -46,13 +48,15 @@ public final class HardwareProfile {
     @JsonProperty(value = "memoryHotAddEnabled", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean memoryHotAddEnabled;
 
-    /** Creates an instance of HardwareProfile class. */
+    /**
+     * Creates an instance of HardwareProfile class.
+     */
     public HardwareProfile() {
     }
 
     /**
      * Get the memorySizeMB property: Gets or sets memory size in MBs for the vm.
-     *
+     * 
      * @return the memorySizeMB value.
      */
     public Integer memorySizeMB() {
@@ -61,7 +65,7 @@ public final class HardwareProfile {
 
     /**
      * Set the memorySizeMB property: Gets or sets memory size in MBs for the vm.
-     *
+     * 
      * @param memorySizeMB the memorySizeMB value to set.
      * @return the HardwareProfile object itself.
      */
@@ -72,7 +76,7 @@ public final class HardwareProfile {
 
     /**
      * Get the numCPUs property: Gets or sets the number of vCPUs for the vm.
-     *
+     * 
      * @return the numCPUs value.
      */
     public Integer numCPUs() {
@@ -81,7 +85,7 @@ public final class HardwareProfile {
 
     /**
      * Set the numCPUs property: Gets or sets the number of vCPUs for the vm.
-     *
+     * 
      * @param numCPUs the numCPUs value to set.
      * @return the HardwareProfile object itself.
      */
@@ -93,7 +97,7 @@ public final class HardwareProfile {
     /**
      * Get the numCoresPerSocket property: Gets or sets the number of cores per socket for the vm. Defaults to 1 if
      * unspecified.
-     *
+     * 
      * @return the numCoresPerSocket value.
      */
     public Integer numCoresPerSocket() {
@@ -103,7 +107,7 @@ public final class HardwareProfile {
     /**
      * Set the numCoresPerSocket property: Gets or sets the number of cores per socket for the vm. Defaults to 1 if
      * unspecified.
-     *
+     * 
      * @param numCoresPerSocket the numCoresPerSocket value to set.
      * @return the HardwareProfile object itself.
      */
@@ -115,7 +119,7 @@ public final class HardwareProfile {
     /**
      * Get the cpuHotAddEnabled property: Gets or sets a value indicating whether virtual processors can be added while
      * this virtual machine is running.
-     *
+     * 
      * @return the cpuHotAddEnabled value.
      */
     public Boolean cpuHotAddEnabled() {
@@ -125,7 +129,7 @@ public final class HardwareProfile {
     /**
      * Get the cpuHotRemoveEnabled property: Gets or sets a value indicating whether virtual processors can be removed
      * while this virtual machine is running.
-     *
+     * 
      * @return the cpuHotRemoveEnabled value.
      */
     public Boolean cpuHotRemoveEnabled() {
@@ -135,7 +139,7 @@ public final class HardwareProfile {
     /**
      * Get the memoryHotAddEnabled property: Gets or sets a value indicating whether memory can be added while this
      * virtual machine is running.
-     *
+     * 
      * @return the memoryHotAddEnabled value.
      */
     public Boolean memoryHotAddEnabled() {
@@ -144,7 +148,7 @@ public final class HardwareProfile {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

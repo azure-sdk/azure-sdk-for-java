@@ -17,7 +17,9 @@ import com.azure.resourcemanager.connectedvmware.models.StorageProfile;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the properties of a Virtual Machine Instance. */
+/**
+ * Describes the properties of a Virtual Machine Instance.
+ */
 @Fluent
 public final class VirtualMachineInstanceProperties {
     /*
@@ -86,13 +88,15 @@ public final class VirtualMachineInstanceProperties {
     @JsonProperty(value = "resourceUid", access = JsonProperty.Access.WRITE_ONLY)
     private String resourceUid;
 
-    /** Creates an instance of VirtualMachineInstanceProperties class. */
+    /**
+     * Creates an instance of VirtualMachineInstanceProperties class.
+     */
     public VirtualMachineInstanceProperties() {
     }
 
     /**
      * Get the placementProfile property: Placement properties.
-     *
+     * 
      * @return the placementProfile value.
      */
     public PlacementProfile placementProfile() {
@@ -101,7 +105,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the placementProfile property: Placement properties.
-     *
+     * 
      * @param placementProfile the placementProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -112,7 +116,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the osProfile property: OS properties.
-     *
+     * 
      * @return the osProfile value.
      */
     public OsProfileForVMInstance osProfile() {
@@ -121,7 +125,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the osProfile property: OS properties.
-     *
+     * 
      * @param osProfile the osProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -132,7 +136,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the hardwareProfile property: Hardware properties.
-     *
+     * 
      * @return the hardwareProfile value.
      */
     public HardwareProfile hardwareProfile() {
@@ -141,7 +145,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the hardwareProfile property: Hardware properties.
-     *
+     * 
      * @param hardwareProfile the hardwareProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -152,7 +156,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the networkProfile property: Network properties.
-     *
+     * 
      * @return the networkProfile value.
      */
     public NetworkProfile networkProfile() {
@@ -161,7 +165,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the networkProfile property: Network properties.
-     *
+     * 
      * @param networkProfile the networkProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -172,7 +176,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the storageProfile property: Storage properties.
-     *
+     * 
      * @return the storageProfile value.
      */
     public StorageProfile storageProfile() {
@@ -181,7 +185,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the storageProfile property: Storage properties.
-     *
+     * 
      * @param storageProfile the storageProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -192,7 +196,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the securityProfile property: Gets the security profile.
-     *
+     * 
      * @return the securityProfile value.
      */
     public SecurityProfile securityProfile() {
@@ -201,7 +205,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the securityProfile property: Gets the security profile.
-     *
+     * 
      * @param securityProfile the securityProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -212,7 +216,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the infrastructureProfile property: Gets the infrastructure profile.
-     *
+     * 
      * @return the infrastructureProfile value.
      */
     public InfrastructureProfile infrastructureProfile() {
@@ -221,7 +225,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Set the infrastructureProfile property: Gets the infrastructure profile.
-     *
+     * 
      * @param infrastructureProfile the infrastructureProfile value to set.
      * @return the VirtualMachineInstanceProperties object itself.
      */
@@ -232,7 +236,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the powerState property: Gets the power state of the virtual machine.
-     *
+     * 
      * @return the powerState value.
      */
     public String powerState() {
@@ -241,7 +245,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the statuses property: The resource status information.
-     *
+     * 
      * @return the statuses value.
      */
     public List<ResourceStatus> statuses() {
@@ -250,7 +254,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the provisioningState property: Gets the provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -259,7 +263,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Get the resourceUid property: Gets or sets a unique identifier for the vm resource.
-     *
+     * 
      * @return the resourceUid value.
      */
     public String resourceUid() {
@@ -268,7 +272,7 @@ public final class VirtualMachineInstanceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -6,27 +6,89 @@ package com.azure.resourcemanager.connectedvmware.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The host inventory item. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "inventoryType")
+/**
+ * The host inventory item.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "inventoryType",
+    defaultImpl = HostInventoryItem.class,
+    visible = true)
 @JsonTypeName("Host")
 @Fluent
 public final class HostInventoryItem extends InventoryItemProperties {
+    /*
+     * They inventory type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "inventoryType", required = true)
+    private InventoryType inventoryType = InventoryType.HOST;
+
     /*
      * Parent host inventory resource details.
      */
     @JsonProperty(value = "parent")
     private InventoryItemDetails parent;
 
-    /** Creates an instance of HostInventoryItem class. */
+    /*
+     * Gets or sets the number of cores per socket on the host.
+     */
+    @JsonProperty(value = "numCoresPerSocket", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer numCoresPerSocket;
+
+    /*
+     * Gets or sets the number of sockets on the host.
+     */
+    @JsonProperty(value = "numSockets", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer numSockets;
+
+    /*
+     * Gets or sets the version of the host.
+     */
+    @JsonProperty(value = "version", access = JsonProperty.Access.WRITE_ONLY)
+    private String version;
+
+    /*
+     * Gets or sets the cpu model of the host.
+     */
+    @JsonProperty(value = "cpuModel", access = JsonProperty.Access.WRITE_ONLY)
+    private String cpuModel;
+
+    /*
+     * Gets the total amount of physical memory on the host in GB.
+     */
+    @JsonProperty(value = "memorySizeGB", access = JsonProperty.Access.WRITE_ONLY)
+    private Long memorySizeGB;
+
+    /*
+     * Gets or sets the power state of the host.
+     */
+    @JsonProperty(value = "powerState", access = JsonProperty.Access.WRITE_ONLY)
+    private String powerState;
+
+    /**
+     * Creates an instance of HostInventoryItem class.
+     */
     public HostInventoryItem() {
     }
 
     /**
+     * Get the inventoryType property: They inventory type.
+     * 
+     * @return the inventoryType value.
+     */
+    @Override
+    public InventoryType inventoryType() {
+        return this.inventoryType;
+    }
+
+    /**
      * Get the parent property: Parent host inventory resource details.
-     *
+     * 
      * @return the parent value.
      */
     public InventoryItemDetails parent() {
@@ -35,7 +97,7 @@ public final class HostInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the parent property: Parent host inventory resource details.
-     *
+     * 
      * @param parent the parent value to set.
      * @return the HostInventoryItem object itself.
      */
@@ -44,21 +106,81 @@ public final class HostInventoryItem extends InventoryItemProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the numCoresPerSocket property: Gets or sets the number of cores per socket on the host.
+     * 
+     * @return the numCoresPerSocket value.
+     */
+    public Integer numCoresPerSocket() {
+        return this.numCoresPerSocket;
+    }
+
+    /**
+     * Get the numSockets property: Gets or sets the number of sockets on the host.
+     * 
+     * @return the numSockets value.
+     */
+    public Integer numSockets() {
+        return this.numSockets;
+    }
+
+    /**
+     * Get the version property: Gets or sets the version of the host.
+     * 
+     * @return the version value.
+     */
+    public String version() {
+        return this.version;
+    }
+
+    /**
+     * Get the cpuModel property: Gets or sets the cpu model of the host.
+     * 
+     * @return the cpuModel value.
+     */
+    public String cpuModel() {
+        return this.cpuModel;
+    }
+
+    /**
+     * Get the memorySizeGB property: Gets the total amount of physical memory on the host in GB.
+     * 
+     * @return the memorySizeGB value.
+     */
+    public Long memorySizeGB() {
+        return this.memorySizeGB;
+    }
+
+    /**
+     * Get the powerState property: Gets or sets the power state of the host.
+     * 
+     * @return the powerState value.
+     */
+    public String powerState() {
+        return this.powerState;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HostInventoryItem withManagedResourceId(String managedResourceId) {
         super.withManagedResourceId(managedResourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HostInventoryItem withMoRefId(String moRefId) {
         super.withMoRefId(moRefId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public HostInventoryItem withMoName(String moName) {
         super.withMoName(moName);
@@ -67,7 +189,7 @@ public final class HostInventoryItem extends InventoryItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

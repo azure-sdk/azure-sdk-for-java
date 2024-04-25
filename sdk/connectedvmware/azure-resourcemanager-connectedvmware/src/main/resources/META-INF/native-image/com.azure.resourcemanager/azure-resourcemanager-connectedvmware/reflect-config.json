@@ -194,6 +194,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.connectedvmware.models.WindowsConfiguration",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.connectedvmware.models.HardwareProfile",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -305,6 +310,26 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.connectedvmware.models.GuestAgentList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.connectedvmware.models.VirtualDiskInventory",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.connectedvmware.models.NetworkProfileInventory",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.connectedvmware.models.NetworkInterfaceInventory",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.connectedvmware.models.StorageProfileInventory",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

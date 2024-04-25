@@ -7,7 +7,9 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Username / Password Credentials to connect to guest. */
+/**
+ * Username / Password Credentials to connect to guest.
+ */
 @Fluent
 public final class GuestCredential {
     /*
@@ -22,13 +24,21 @@ public final class GuestCredential {
     @JsonProperty(value = "password")
     private String password;
 
-    /** Creates an instance of GuestCredential class. */
+    /*
+     * Private key used to authenticate to a virtual machine through ssh.
+     */
+    @JsonProperty(value = "privateKey")
+    private String privateKey;
+
+    /**
+     * Creates an instance of GuestCredential class.
+     */
     public GuestCredential() {
     }
 
     /**
      * Get the username property: Gets or sets username to connect with the guest.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -37,7 +47,7 @@ public final class GuestCredential {
 
     /**
      * Set the username property: Gets or sets username to connect with the guest.
-     *
+     * 
      * @param username the username value to set.
      * @return the GuestCredential object itself.
      */
@@ -48,7 +58,7 @@ public final class GuestCredential {
 
     /**
      * Get the password property: Gets or sets the password to connect with the guest.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -57,7 +67,7 @@ public final class GuestCredential {
 
     /**
      * Set the password property: Gets or sets the password to connect with the guest.
-     *
+     * 
      * @param password the password value to set.
      * @return the GuestCredential object itself.
      */
@@ -67,8 +77,28 @@ public final class GuestCredential {
     }
 
     /**
+     * Get the privateKey property: Private key used to authenticate to a virtual machine through ssh.
+     * 
+     * @return the privateKey value.
+     */
+    public String privateKey() {
+        return this.privateKey;
+    }
+
+    /**
+     * Set the privateKey property: Private key used to authenticate to a virtual machine through ssh.
+     * 
+     * @param privateKey the privateKey value to set.
+     * @return the GuestCredential object itself.
+     */
+    public GuestCredential withPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

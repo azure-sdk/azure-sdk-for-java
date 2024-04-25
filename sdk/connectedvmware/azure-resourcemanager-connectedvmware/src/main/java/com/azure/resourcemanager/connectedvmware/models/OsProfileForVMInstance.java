@@ -7,7 +7,9 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies the operating system settings for the virtual machine. */
+/**
+ * Specifies the operating system settings for the virtual machine.
+ */
 @Fluent
 public final class OsProfileForVMInstance {
     /*
@@ -64,13 +66,21 @@ public final class OsProfileForVMInstance {
     @JsonProperty(value = "toolsVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String toolsVersion;
 
-    /** Creates an instance of OsProfileForVMInstance class. */
+    /*
+     * Windows Configuration.
+     */
+    @JsonProperty(value = "windowsConfiguration")
+    private WindowsConfiguration windowsConfiguration;
+
+    /**
+     * Creates an instance of OsProfileForVMInstance class.
+     */
     public OsProfileForVMInstance() {
     }
 
     /**
      * Get the computerName property: Gets or sets computer name.
-     *
+     * 
      * @return the computerName value.
      */
     public String computerName() {
@@ -79,7 +89,7 @@ public final class OsProfileForVMInstance {
 
     /**
      * Set the computerName property: Gets or sets computer name.
-     *
+     * 
      * @param computerName the computerName value to set.
      * @return the OsProfileForVMInstance object itself.
      */
@@ -90,7 +100,7 @@ public final class OsProfileForVMInstance {
 
     /**
      * Get the adminUsername property: Gets or sets administrator username.
-     *
+     * 
      * @return the adminUsername value.
      */
     public String adminUsername() {
@@ -99,7 +109,7 @@ public final class OsProfileForVMInstance {
 
     /**
      * Set the adminUsername property: Gets or sets administrator username.
-     *
+     * 
      * @param adminUsername the adminUsername value to set.
      * @return the OsProfileForVMInstance object itself.
      */
@@ -110,7 +120,7 @@ public final class OsProfileForVMInstance {
 
     /**
      * Get the adminPassword property: Sets administrator password.
-     *
+     * 
      * @return the adminPassword value.
      */
     public String adminPassword() {
@@ -119,7 +129,7 @@ public final class OsProfileForVMInstance {
 
     /**
      * Set the adminPassword property: Sets administrator password.
-     *
+     * 
      * @param adminPassword the adminPassword value to set.
      * @return the OsProfileForVMInstance object itself.
      */
@@ -130,7 +140,7 @@ public final class OsProfileForVMInstance {
 
     /**
      * Get the guestId property: Gets or sets the guestId.
-     *
+     * 
      * @return the guestId value.
      */
     public String guestId() {
@@ -139,7 +149,7 @@ public final class OsProfileForVMInstance {
 
     /**
      * Set the guestId property: Gets or sets the guestId.
-     *
+     * 
      * @param guestId the guestId value to set.
      * @return the OsProfileForVMInstance object itself.
      */
@@ -150,7 +160,7 @@ public final class OsProfileForVMInstance {
 
     /**
      * Get the osType property: Gets or sets the type of the os.
-     *
+     * 
      * @return the osType value.
      */
     public OsType osType() {
@@ -159,7 +169,7 @@ public final class OsProfileForVMInstance {
 
     /**
      * Set the osType property: Gets or sets the type of the os.
-     *
+     * 
      * @param osType the osType value to set.
      * @return the OsProfileForVMInstance object itself.
      */
@@ -170,7 +180,7 @@ public final class OsProfileForVMInstance {
 
     /**
      * Get the osSku property: Gets or sets os sku.
-     *
+     * 
      * @return the osSku value.
      */
     public String osSku() {
@@ -180,7 +190,7 @@ public final class OsProfileForVMInstance {
     /**
      * Get the toolsRunningStatus property: Gets or sets the current running status of VMware Tools running in the guest
      * operating system.
-     *
+     * 
      * @return the toolsRunningStatus value.
      */
     public String toolsRunningStatus() {
@@ -190,7 +200,7 @@ public final class OsProfileForVMInstance {
     /**
      * Get the toolsVersionStatus property: Gets or sets the current version status of VMware Tools installed in the
      * guest operating system.
-     *
+     * 
      * @return the toolsVersionStatus value.
      */
     public String toolsVersionStatus() {
@@ -199,7 +209,7 @@ public final class OsProfileForVMInstance {
 
     /**
      * Get the toolsVersion property: Gets or sets the current version of VMware Tools.
-     *
+     * 
      * @return the toolsVersion value.
      */
     public String toolsVersion() {
@@ -207,10 +217,33 @@ public final class OsProfileForVMInstance {
     }
 
     /**
+     * Get the windowsConfiguration property: Windows Configuration.
+     * 
+     * @return the windowsConfiguration value.
+     */
+    public WindowsConfiguration windowsConfiguration() {
+        return this.windowsConfiguration;
+    }
+
+    /**
+     * Set the windowsConfiguration property: Windows Configuration.
+     * 
+     * @param windowsConfiguration the windowsConfiguration value to set.
+     * @return the OsProfileForVMInstance object itself.
+     */
+    public OsProfileForVMInstance withWindowsConfiguration(WindowsConfiguration windowsConfiguration) {
+        this.windowsConfiguration = windowsConfiguration;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (windowsConfiguration() != null) {
+            windowsConfiguration().validate();
+        }
     }
 }

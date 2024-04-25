@@ -11,7 +11,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.connectedvmware.models.InventoryItemProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines the inventory item. */
+/**
+ * Defines the inventory item.
+ */
 @Fluent
 public final class InventoryItemInner extends ProxyResource {
     /*
@@ -21,9 +23,7 @@ public final class InventoryItemInner extends ProxyResource {
     private InventoryItemProperties properties;
 
     /*
-     * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g.
-     * ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist
-     * this value.
+     * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist this value.
      */
     @JsonProperty(value = "kind")
     private String kind;
@@ -34,13 +34,15 @@ public final class InventoryItemInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of InventoryItemInner class. */
+    /**
+     * Creates an instance of InventoryItemInner class.
+     */
     public InventoryItemInner() {
     }
 
     /**
      * Get the properties property: Resource properties.
-     *
+     * 
      * @return the properties value.
      */
     public InventoryItemProperties properties() {
@@ -49,7 +51,7 @@ public final class InventoryItemInner extends ProxyResource {
 
     /**
      * Set the properties property: Resource properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the InventoryItemInner object itself.
      */
@@ -62,7 +64,7 @@ public final class InventoryItemInner extends ProxyResource {
      * Get the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
      * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
      * validate and persist this value.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -73,7 +75,7 @@ public final class InventoryItemInner extends ProxyResource {
      * Set the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
      * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
      * validate and persist this value.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the InventoryItemInner object itself.
      */
@@ -84,7 +86,7 @@ public final class InventoryItemInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -93,14 +95,13 @@ public final class InventoryItemInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property properties in model InventoryItemInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property properties in model InventoryItemInner"));
         } else {
             properties().validate();
         }

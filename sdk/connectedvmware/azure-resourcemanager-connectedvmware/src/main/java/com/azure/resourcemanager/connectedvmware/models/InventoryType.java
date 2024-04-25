@@ -8,32 +8,48 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The inventory type. */
+/**
+ * The inventory type.
+ */
 public final class InventoryType extends ExpandableStringEnum<InventoryType> {
-    /** Static value ResourcePool for InventoryType. */
+    /**
+     * Static value ResourcePool for InventoryType.
+     */
     public static final InventoryType RESOURCE_POOL = fromString("ResourcePool");
 
-    /** Static value VirtualMachine for InventoryType. */
+    /**
+     * Static value VirtualMachine for InventoryType.
+     */
     public static final InventoryType VIRTUAL_MACHINE = fromString("VirtualMachine");
 
-    /** Static value VirtualMachineTemplate for InventoryType. */
+    /**
+     * Static value VirtualMachineTemplate for InventoryType.
+     */
     public static final InventoryType VIRTUAL_MACHINE_TEMPLATE = fromString("VirtualMachineTemplate");
 
-    /** Static value VirtualNetwork for InventoryType. */
+    /**
+     * Static value VirtualNetwork for InventoryType.
+     */
     public static final InventoryType VIRTUAL_NETWORK = fromString("VirtualNetwork");
 
-    /** Static value Cluster for InventoryType. */
+    /**
+     * Static value Cluster for InventoryType.
+     */
     public static final InventoryType CLUSTER = fromString("Cluster");
 
-    /** Static value Datastore for InventoryType. */
+    /**
+     * Static value Datastore for InventoryType.
+     */
     public static final InventoryType DATASTORE = fromString("Datastore");
 
-    /** Static value Host for InventoryType. */
+    /**
+     * Static value Host for InventoryType.
+     */
     public static final InventoryType HOST = fromString("Host");
 
     /**
      * Creates a new instance of InventoryType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -42,7 +58,7 @@ public final class InventoryType extends ExpandableStringEnum<InventoryType> {
 
     /**
      * Creates or finds a InventoryType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding InventoryType.
      */
@@ -53,7 +69,7 @@ public final class InventoryType extends ExpandableStringEnum<InventoryType> {
 
     /**
      * Gets known InventoryType values.
-     *
+     * 
      * @return known InventoryType values.
      */
     public static Collection<InventoryType> values() {

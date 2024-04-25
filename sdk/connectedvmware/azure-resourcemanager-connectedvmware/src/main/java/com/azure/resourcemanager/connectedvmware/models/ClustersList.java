@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.fluent.models.ClusterInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Clusters. */
+/**
+ * List of Clusters.
+ */
 @Fluent
 public final class ClustersList {
     /*
@@ -25,13 +27,15 @@ public final class ClustersList {
     @JsonProperty(value = "value", required = true)
     private List<ClusterInner> value;
 
-    /** Creates an instance of ClustersList class. */
+    /**
+     * Creates an instance of ClustersList class.
+     */
     public ClustersList() {
     }
 
     /**
      * Get the nextLink property: Url to follow for getting next page of Clusters.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -40,7 +44,7 @@ public final class ClustersList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of Clusters.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ClustersList object itself.
      */
@@ -51,7 +55,7 @@ public final class ClustersList {
 
     /**
      * Get the value property: Array of Clusters.
-     *
+     * 
      * @return the value value.
      */
     public List<ClusterInner> value() {
@@ -60,7 +64,7 @@ public final class ClustersList {
 
     /**
      * Set the value property: Array of Clusters.
-     *
+     * 
      * @param value the value value to set.
      * @return the ClustersList object itself.
      */
@@ -71,14 +75,13 @@ public final class ClustersList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property value in model ClustersList"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model ClustersList"));
         } else {
             value().forEach(e -> e.validate());
         }

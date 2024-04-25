@@ -6,15 +6,29 @@ package com.azure.resourcemanager.connectedvmware.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** The VM inventory item. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "inventoryType")
+/**
+ * The VM inventory item.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "inventoryType",
+    defaultImpl = VirtualMachineInventoryItem.class,
+    visible = true)
 @JsonTypeName("VirtualMachine")
 @Fluent
 public final class VirtualMachineInventoryItem extends InventoryItemProperties {
+    /*
+     * They inventory type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "inventoryType", required = true)
+    private InventoryType inventoryType = InventoryType.VIRTUAL_MACHINE;
+
     /*
      * Gets or sets the type of the os.
      */
@@ -93,13 +107,91 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     @JsonProperty(value = "toolsVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String toolsVersion;
 
-    /** Creates an instance of VirtualMachineInventoryItem class. */
+    /*
+     * Firmware type
+     */
+    @JsonProperty(value = "firmwareType", access = JsonProperty.Access.WRITE_ONLY)
+    private FirmwareType firmwareType;
+
+    /*
+     * Gets a value indicating whether change tracking is supported.
+     */
+    @JsonProperty(value = "changeTrackingSupported", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean changeTrackingSupported;
+
+    /*
+     * Gets a value indicating whether change tracking is enabled.
+     */
+    @JsonProperty(value = "changeTrackingEnabled", access = JsonProperty.Access.WRITE_ONLY)
+    private Boolean changeTrackingEnabled;
+
+    /*
+     * Gets a value indicating the maximum possible number of snapshots.
+     */
+    @JsonProperty(value = "maxSnapshots", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer maxSnapshots;
+
+    /*
+     * Gets a value indicating the number of snapshots on the vm.
+     */
+    @JsonProperty(value = "numberOfSnapshots", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer numberOfSnapshots;
+
+    /*
+     * Gets or sets the disk Enabled UUID of the vm.
+     */
+    @JsonProperty(value = "diskEnabledUuid", access = JsonProperty.Access.WRITE_ONLY)
+    private String diskEnabledUuid;
+
+    /*
+     * Gets the computer name.
+     */
+    @JsonProperty(value = "computerName", access = JsonProperty.Access.WRITE_ONLY)
+    private String computerName;
+
+    /*
+     * Gets or sets memory size in MBs for the vm.
+     */
+    @JsonProperty(value = "memorySizeMB", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer memorySizeMB;
+
+    /*
+     * Gets or sets the number of vCPU for the vm.
+     */
+    @JsonProperty(value = "numCPUs", access = JsonProperty.Access.WRITE_ONLY)
+    private Integer numCPUs;
+
+    /*
+     * Storage properties.
+     */
+    @JsonProperty(value = "storageProfile")
+    private StorageProfileInventory storageProfile;
+
+    /*
+     * Network properties.
+     */
+    @JsonProperty(value = "networkProfile")
+    private NetworkProfileInventory networkProfile;
+
+    /**
+     * Creates an instance of VirtualMachineInventoryItem class.
+     */
     public VirtualMachineInventoryItem() {
     }
 
     /**
+     * Get the inventoryType property: They inventory type.
+     * 
+     * @return the inventoryType value.
+     */
+    @Override
+    public InventoryType inventoryType() {
+        return this.inventoryType;
+    }
+
+    /**
      * Get the osType property: Gets or sets the type of the os.
-     *
+     * 
      * @return the osType value.
      */
     public OsType osType() {
@@ -108,7 +200,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the osType property: Gets or sets the type of the os.
-     *
+     * 
      * @param osType the osType value to set.
      * @return the VirtualMachineInventoryItem object itself.
      */
@@ -119,7 +211,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the osName property: Gets or sets os name.
-     *
+     * 
      * @return the osName value.
      */
     public String osName() {
@@ -128,7 +220,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the osName property: Gets or sets os name.
-     *
+     * 
      * @param osName the osName value to set.
      * @return the VirtualMachineInventoryItem object itself.
      */
@@ -139,7 +231,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the ipAddresses property: Gets or sets the nic ip addresses.
-     *
+     * 
      * @return the ipAddresses value.
      */
     public List<String> ipAddresses() {
@@ -148,7 +240,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the ipAddresses property: Gets or sets the nic ip addresses.
-     *
+     * 
      * @param ipAddresses the ipAddresses value to set.
      * @return the VirtualMachineInventoryItem object itself.
      */
@@ -159,7 +251,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the folderPath property: Gets or sets the folder path of the vm.
-     *
+     * 
      * @return the folderPath value.
      */
     public String folderPath() {
@@ -168,7 +260,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the folderPath property: Gets or sets the folder path of the vm.
-     *
+     * 
      * @param folderPath the folderPath value to set.
      * @return the VirtualMachineInventoryItem object itself.
      */
@@ -179,7 +271,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the host property: Host inventory resource details.
-     *
+     * 
      * @return the host value.
      */
     public InventoryItemDetails host() {
@@ -188,7 +280,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the host property: Host inventory resource details.
-     *
+     * 
      * @param host the host value to set.
      * @return the VirtualMachineInventoryItem object itself.
      */
@@ -199,7 +291,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the resourcePool property: ResourcePool inventory resource details.
-     *
+     * 
      * @return the resourcePool value.
      */
     public InventoryItemDetails resourcePool() {
@@ -208,7 +300,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the resourcePool property: ResourcePool inventory resource details.
-     *
+     * 
      * @param resourcePool the resourcePool value to set.
      * @return the VirtualMachineInventoryItem object itself.
      */
@@ -219,7 +311,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the cluster property: Cluster inventory resource details.
-     *
+     * 
      * @return the cluster value.
      */
     public InventoryItemDetails cluster() {
@@ -228,7 +320,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the cluster property: Cluster inventory resource details.
-     *
+     * 
      * @param cluster the cluster value to set.
      * @return the VirtualMachineInventoryItem object itself.
      */
@@ -239,7 +331,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the instanceUuid property: Gets or sets the instance uuid of the vm.
-     *
+     * 
      * @return the instanceUuid value.
      */
     public String instanceUuid() {
@@ -248,7 +340,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the instanceUuid property: Gets or sets the instance uuid of the vm.
-     *
+     * 
      * @param instanceUuid the instanceUuid value to set.
      * @return the VirtualMachineInventoryItem object itself.
      */
@@ -259,7 +351,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the smbiosUuid property: Gets or sets the SMBIOS UUID of the vm.
-     *
+     * 
      * @return the smbiosUuid value.
      */
     public String smbiosUuid() {
@@ -268,7 +360,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Set the smbiosUuid property: Gets or sets the SMBIOS UUID of the vm.
-     *
+     * 
      * @param smbiosUuid the smbiosUuid value to set.
      * @return the VirtualMachineInventoryItem object itself.
      */
@@ -279,7 +371,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the powerState property: Gets the power state of the virtual machine.
-     *
+     * 
      * @return the powerState value.
      */
     public String powerState() {
@@ -289,7 +381,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     /**
      * Get the toolsRunningStatus property: Gets or sets the current running status of VMware Tools running in the guest
      * operating system.
-     *
+     * 
      * @return the toolsRunningStatus value.
      */
     public String toolsRunningStatus() {
@@ -299,7 +391,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
     /**
      * Get the toolsVersionStatus property: Gets or sets the current version status of VMware Tools installed in the
      * guest operating system.
-     *
+     * 
      * @return the toolsVersionStatus value.
      */
     public String toolsVersionStatus() {
@@ -308,28 +400,155 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Get the toolsVersion property: Gets or sets the current version of VMware Tools.
-     *
+     * 
      * @return the toolsVersion value.
      */
     public String toolsVersion() {
         return this.toolsVersion;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the firmwareType property: Firmware type.
+     * 
+     * @return the firmwareType value.
+     */
+    public FirmwareType firmwareType() {
+        return this.firmwareType;
+    }
+
+    /**
+     * Get the changeTrackingSupported property: Gets a value indicating whether change tracking is supported.
+     * 
+     * @return the changeTrackingSupported value.
+     */
+    public Boolean changeTrackingSupported() {
+        return this.changeTrackingSupported;
+    }
+
+    /**
+     * Get the changeTrackingEnabled property: Gets a value indicating whether change tracking is enabled.
+     * 
+     * @return the changeTrackingEnabled value.
+     */
+    public Boolean changeTrackingEnabled() {
+        return this.changeTrackingEnabled;
+    }
+
+    /**
+     * Get the maxSnapshots property: Gets a value indicating the maximum possible number of snapshots.
+     * 
+     * @return the maxSnapshots value.
+     */
+    public Integer maxSnapshots() {
+        return this.maxSnapshots;
+    }
+
+    /**
+     * Get the numberOfSnapshots property: Gets a value indicating the number of snapshots on the vm.
+     * 
+     * @return the numberOfSnapshots value.
+     */
+    public Integer numberOfSnapshots() {
+        return this.numberOfSnapshots;
+    }
+
+    /**
+     * Get the diskEnabledUuid property: Gets or sets the disk Enabled UUID of the vm.
+     * 
+     * @return the diskEnabledUuid value.
+     */
+    public String diskEnabledUuid() {
+        return this.diskEnabledUuid;
+    }
+
+    /**
+     * Get the computerName property: Gets the computer name.
+     * 
+     * @return the computerName value.
+     */
+    public String computerName() {
+        return this.computerName;
+    }
+
+    /**
+     * Get the memorySizeMB property: Gets or sets memory size in MBs for the vm.
+     * 
+     * @return the memorySizeMB value.
+     */
+    public Integer memorySizeMB() {
+        return this.memorySizeMB;
+    }
+
+    /**
+     * Get the numCPUs property: Gets or sets the number of vCPU for the vm.
+     * 
+     * @return the numCPUs value.
+     */
+    public Integer numCPUs() {
+        return this.numCPUs;
+    }
+
+    /**
+     * Get the storageProfile property: Storage properties.
+     * 
+     * @return the storageProfile value.
+     */
+    public StorageProfileInventory storageProfile() {
+        return this.storageProfile;
+    }
+
+    /**
+     * Set the storageProfile property: Storage properties.
+     * 
+     * @param storageProfile the storageProfile value to set.
+     * @return the VirtualMachineInventoryItem object itself.
+     */
+    public VirtualMachineInventoryItem withStorageProfile(StorageProfileInventory storageProfile) {
+        this.storageProfile = storageProfile;
+        return this;
+    }
+
+    /**
+     * Get the networkProfile property: Network properties.
+     * 
+     * @return the networkProfile value.
+     */
+    public NetworkProfileInventory networkProfile() {
+        return this.networkProfile;
+    }
+
+    /**
+     * Set the networkProfile property: Network properties.
+     * 
+     * @param networkProfile the networkProfile value to set.
+     * @return the VirtualMachineInventoryItem object itself.
+     */
+    public VirtualMachineInventoryItem withNetworkProfile(NetworkProfileInventory networkProfile) {
+        this.networkProfile = networkProfile;
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualMachineInventoryItem withManagedResourceId(String managedResourceId) {
         super.withManagedResourceId(managedResourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualMachineInventoryItem withMoRefId(String moRefId) {
         super.withMoRefId(moRefId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualMachineInventoryItem withMoName(String moName) {
         super.withMoName(moName);
@@ -338,7 +557,7 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -352,6 +571,12 @@ public final class VirtualMachineInventoryItem extends InventoryItemProperties {
         }
         if (cluster() != null) {
             cluster().validate();
+        }
+        if (storageProfile() != null) {
+            storageProfile().validate();
+        }
+        if (networkProfile() != null) {
+            networkProfile().validate();
         }
     }
 }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Virtual disk model. */
+/**
+ * Virtual disk model.
+ */
 @Fluent
 public final class VirtualDisk {
     /*
@@ -70,13 +72,15 @@ public final class VirtualDisk {
     @JsonProperty(value = "diskType")
     private DiskType diskType;
 
-    /** Creates an instance of VirtualDisk class. */
+    /**
+     * Creates an instance of VirtualDisk class.
+     */
     public VirtualDisk() {
     }
 
     /**
      * Get the name property: Gets or sets the name of the virtual disk.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -85,7 +89,7 @@ public final class VirtualDisk {
 
     /**
      * Set the name property: Gets or sets the name of the virtual disk.
-     *
+     * 
      * @param name the name value to set.
      * @return the VirtualDisk object itself.
      */
@@ -96,7 +100,7 @@ public final class VirtualDisk {
 
     /**
      * Get the label property: Gets or sets the label of the virtual disk in vCenter.
-     *
+     * 
      * @return the label value.
      */
     public String label() {
@@ -105,7 +109,7 @@ public final class VirtualDisk {
 
     /**
      * Get the diskObjectId property: Gets or sets the disk object id.
-     *
+     * 
      * @return the diskObjectId value.
      */
     public String diskObjectId() {
@@ -114,7 +118,7 @@ public final class VirtualDisk {
 
     /**
      * Get the diskSizeGB property: Gets or sets the disk total size.
-     *
+     * 
      * @return the diskSizeGB value.
      */
     public Integer diskSizeGB() {
@@ -123,7 +127,7 @@ public final class VirtualDisk {
 
     /**
      * Set the diskSizeGB property: Gets or sets the disk total size.
-     *
+     * 
      * @param diskSizeGB the diskSizeGB value to set.
      * @return the VirtualDisk object itself.
      */
@@ -134,7 +138,7 @@ public final class VirtualDisk {
 
     /**
      * Get the deviceKey property: Gets or sets the device key value.
-     *
+     * 
      * @return the deviceKey value.
      */
     public Integer deviceKey() {
@@ -143,7 +147,7 @@ public final class VirtualDisk {
 
     /**
      * Set the deviceKey property: Gets or sets the device key value.
-     *
+     * 
      * @param deviceKey the deviceKey value to set.
      * @return the VirtualDisk object itself.
      */
@@ -154,7 +158,7 @@ public final class VirtualDisk {
 
     /**
      * Get the diskMode property: Gets or sets the disk mode.
-     *
+     * 
      * @return the diskMode value.
      */
     public DiskMode diskMode() {
@@ -163,7 +167,7 @@ public final class VirtualDisk {
 
     /**
      * Set the diskMode property: Gets or sets the disk mode.
-     *
+     * 
      * @param diskMode the diskMode value to set.
      * @return the VirtualDisk object itself.
      */
@@ -174,7 +178,7 @@ public final class VirtualDisk {
 
     /**
      * Get the controllerKey property: Gets or sets the controller id.
-     *
+     * 
      * @return the controllerKey value.
      */
     public Integer controllerKey() {
@@ -183,7 +187,7 @@ public final class VirtualDisk {
 
     /**
      * Set the controllerKey property: Gets or sets the controller id.
-     *
+     * 
      * @param controllerKey the controllerKey value to set.
      * @return the VirtualDisk object itself.
      */
@@ -194,7 +198,7 @@ public final class VirtualDisk {
 
     /**
      * Get the unitNumber property: Gets or sets the unit number of the disk on the controller.
-     *
+     * 
      * @return the unitNumber value.
      */
     public Integer unitNumber() {
@@ -203,7 +207,7 @@ public final class VirtualDisk {
 
     /**
      * Set the unitNumber property: Gets or sets the unit number of the disk on the controller.
-     *
+     * 
      * @param unitNumber the unitNumber value to set.
      * @return the VirtualDisk object itself.
      */
@@ -214,7 +218,7 @@ public final class VirtualDisk {
 
     /**
      * Get the deviceName property: Gets or sets the device name.
-     *
+     * 
      * @return the deviceName value.
      */
     public String deviceName() {
@@ -223,7 +227,7 @@ public final class VirtualDisk {
 
     /**
      * Set the deviceName property: Gets or sets the device name.
-     *
+     * 
      * @param deviceName the deviceName value to set.
      * @return the VirtualDisk object itself.
      */
@@ -234,7 +238,7 @@ public final class VirtualDisk {
 
     /**
      * Get the diskType property: Gets or sets the disk backing type.
-     *
+     * 
      * @return the diskType value.
      */
     public DiskType diskType() {
@@ -243,7 +247,7 @@ public final class VirtualDisk {
 
     /**
      * Set the diskType property: Gets or sets the disk backing type.
-     *
+     * 
      * @param diskType the diskType value to set.
      * @return the VirtualDisk object itself.
      */
@@ -254,7 +258,7 @@ public final class VirtualDisk {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
