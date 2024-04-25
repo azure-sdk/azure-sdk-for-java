@@ -13,15 +13,19 @@ import java.util.Collection;
  * Application Insights component.
  */
 public final class ItemScope extends ExpandableStringEnum<ItemScope> {
-    /** Static value shared for ItemScope. */
+    /**
+     * Static value shared for ItemScope.
+     */
     public static final ItemScope SHARED = fromString("shared");
 
-    /** Static value user for ItemScope. */
+    /**
+     * Static value user for ItemScope.
+     */
     public static final ItemScope USER = fromString("user");
 
     /**
      * Creates a new instance of ItemScope value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +34,7 @@ public final class ItemScope extends ExpandableStringEnum<ItemScope> {
 
     /**
      * Creates or finds a ItemScope from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ItemScope.
      */
@@ -41,7 +45,7 @@ public final class ItemScope extends ExpandableStringEnum<ItemScope> {
 
     /**
      * Gets known ItemScope values.
-     *
+     * 
      * @return known ItemScope values.
      */
     public static Collection<ItemScope> values() {

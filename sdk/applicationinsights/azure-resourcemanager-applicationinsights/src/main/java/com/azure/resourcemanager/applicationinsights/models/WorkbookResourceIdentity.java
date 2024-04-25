@@ -7,31 +7,39 @@ package com.azure.resourcemanager.applicationinsights.models;
 import com.azure.core.annotation.Fluent;
 import java.util.Map;
 
-/** Identity used for BYOS. */
+/**
+ * Identity used for BYOS.
+ */
 @Fluent
 public final class WorkbookResourceIdentity extends ManagedServiceIdentity {
-    /** Creates an instance of WorkbookResourceIdentity class. */
+    /**
+     * Creates an instance of WorkbookResourceIdentity class.
+     */
     public WorkbookResourceIdentity() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public WorkbookResourceIdentity withType(ManagedServiceIdentityType type) {
         super.withType(type);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public WorkbookResourceIdentity withUserAssignedIdentities(
-        Map<String, UserAssignedIdentity> userAssignedIdentities) {
+    public WorkbookResourceIdentity
+        withUserAssignedIdentities(Map<String, UserAssignedIdentity> userAssignedIdentities) {
         super.withUserAssignedIdentities(userAssignedIdentities);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

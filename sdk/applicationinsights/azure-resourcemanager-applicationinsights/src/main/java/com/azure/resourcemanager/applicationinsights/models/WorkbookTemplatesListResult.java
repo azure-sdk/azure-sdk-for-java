@@ -9,7 +9,9 @@ import com.azure.resourcemanager.applicationinsights.fluent.models.WorkbookTempl
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** WorkbookTemplate list result. */
+/**
+ * WorkbookTemplate list result.
+ */
 @Fluent
 public final class WorkbookTemplatesListResult {
     /*
@@ -18,13 +20,15 @@ public final class WorkbookTemplatesListResult {
     @JsonProperty(value = "value")
     private List<WorkbookTemplateInner> value;
 
-    /** Creates an instance of WorkbookTemplatesListResult class. */
+    /**
+     * Creates an instance of WorkbookTemplatesListResult class.
+     */
     public WorkbookTemplatesListResult() {
     }
 
     /**
      * Get the value property: An array of workbook templates.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkbookTemplateInner> value() {
@@ -33,7 +37,7 @@ public final class WorkbookTemplatesListResult {
 
     /**
      * Set the value property: An array of workbook templates.
-     *
+     * 
      * @param value the value value to set.
      * @return the WorkbookTemplatesListResult object itself.
      */
@@ -44,7 +48,7 @@ public final class WorkbookTemplatesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
