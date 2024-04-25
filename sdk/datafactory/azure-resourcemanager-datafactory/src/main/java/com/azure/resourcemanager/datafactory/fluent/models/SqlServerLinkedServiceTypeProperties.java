@@ -5,21 +5,28 @@
 package com.azure.resourcemanager.datafactory.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.datafactory.models.SecretBase;
 import com.azure.resourcemanager.datafactory.models.SqlAlwaysEncryptedProperties;
+import com.azure.resourcemanager.datafactory.models.SqlServerAuthenticationType;
+import com.azure.resourcemanager.datafactory.models.SqlServerBaseLinkedServiceTypeProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * SQL Server linked service properties.
  */
 @Fluent
-public final class SqlServerLinkedServiceTypeProperties {
+public final class SqlServerLinkedServiceTypeProperties extends SqlServerBaseLinkedServiceTypeProperties {
     /*
      * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
      */
-    @JsonProperty(value = "connectionString", required = true)
+    @JsonProperty(value = "connectionString")
     private Object connectionString;
+
+    /*
+     * The type used for authentication. Type: string.
+     */
+    @JsonProperty(value = "authenticationType")
+    private SqlServerAuthenticationType authenticationType;
 
     /*
      * The on-premises Windows authentication user name. Type: string (or Expression with resultType string).
@@ -70,6 +77,26 @@ public final class SqlServerLinkedServiceTypeProperties {
      */
     public SqlServerLinkedServiceTypeProperties withConnectionString(Object connectionString) {
         this.connectionString = connectionString;
+        return this;
+    }
+
+    /**
+     * Get the authenticationType property: The type used for authentication. Type: string.
+     * 
+     * @return the authenticationType value.
+     */
+    public SqlServerAuthenticationType authenticationType() {
+        return this.authenticationType;
+    }
+
+    /**
+     * Set the authenticationType property: The type used for authentication. Type: string.
+     * 
+     * @param authenticationType the authenticationType value to set.
+     * @return the SqlServerLinkedServiceTypeProperties object itself.
+     */
+    public SqlServerLinkedServiceTypeProperties withAuthenticationType(SqlServerAuthenticationType authenticationType) {
+        this.authenticationType = authenticationType;
         return this;
     }
 
@@ -159,16 +186,184 @@ public final class SqlServerLinkedServiceTypeProperties {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withServer(Object server) {
+        super.withServer(server);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withDatabase(Object database) {
+        super.withDatabase(database);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withEncrypt(Object encrypt) {
+        super.withEncrypt(encrypt);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withTrustServerCertificate(Object trustServerCertificate) {
+        super.withTrustServerCertificate(trustServerCertificate);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withHostnameInCertificate(Object hostnameInCertificate) {
+        super.withHostnameInCertificate(hostnameInCertificate);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withApplicationIntent(Object applicationIntent) {
+        super.withApplicationIntent(applicationIntent);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withConnectTimeout(Object connectTimeout) {
+        super.withConnectTimeout(connectTimeout);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withConnectRetryCount(Object connectRetryCount) {
+        super.withConnectRetryCount(connectRetryCount);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withConnectRetryInterval(Object connectRetryInterval) {
+        super.withConnectRetryInterval(connectRetryInterval);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withLoadBalanceTimeout(Object loadBalanceTimeout) {
+        super.withLoadBalanceTimeout(loadBalanceTimeout);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withCommandTimeout(Object commandTimeout) {
+        super.withCommandTimeout(commandTimeout);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withIntegratedSecurity(Object integratedSecurity) {
+        super.withIntegratedSecurity(integratedSecurity);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withFailoverPartner(Object failoverPartner) {
+        super.withFailoverPartner(failoverPartner);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withMaxPoolSize(Object maxPoolSize) {
+        super.withMaxPoolSize(maxPoolSize);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withMinPoolSize(Object minPoolSize) {
+        super.withMinPoolSize(minPoolSize);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withMultipleActiveResultSets(Object multipleActiveResultSets) {
+        super.withMultipleActiveResultSets(multipleActiveResultSets);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withMultiSubnetFailover(Object multiSubnetFailover) {
+        super.withMultiSubnetFailover(multiSubnetFailover);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withPacketSize(Object packetSize) {
+        super.withPacketSize(packetSize);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SqlServerLinkedServiceTypeProperties withPooling(Object pooling) {
+        super.withPooling(pooling);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
-        if (connectionString() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property connectionString in model SqlServerLinkedServiceTypeProperties"));
-        }
+        super.validate();
         if (password() != null) {
             password().validate();
         }
@@ -176,6 +371,4 @@ public final class SqlServerLinkedServiceTypeProperties {
             alwaysEncryptedSettings().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SqlServerLinkedServiceTypeProperties.class);
 }
