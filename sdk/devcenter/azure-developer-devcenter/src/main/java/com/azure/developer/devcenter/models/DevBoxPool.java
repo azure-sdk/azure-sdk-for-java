@@ -18,25 +18,25 @@ import java.io.IOException;
 public final class DevBoxPool implements JsonSerializable<DevBoxPool> {
 
     /*
-     * Pool name
+     * Pool name.
      */
     @Generated
     private String name;
 
     /*
-     * Azure region where Dev Boxes in the pool are located
+     * Azure region where Dev Boxes in the pool are located.
      */
     @Generated
     private final String location;
 
     /*
-     * The operating system type of Dev Boxes in this pool
+     * The operating system type of Dev Boxes in this pool.
      */
     @Generated
     private DevBoxOsType osType;
 
     /*
-     * Hardware settings for the Dev Boxes created in this pool
+     * Hardware settings for the Dev Boxes created in this pool.
      */
     @Generated
     private DevBoxHardwareProfile hardwareProfile;
@@ -48,13 +48,13 @@ public final class DevBoxPool implements JsonSerializable<DevBoxPool> {
     private HibernateSupport hibernateSupport;
 
     /*
-     * Storage settings for Dev Box created in this pool
+     * Storage settings for Dev Box created in this pool.
      */
     @Generated
     private DevBoxStorageProfile storageProfile;
 
     /*
-     * Image settings for Dev Boxes create in this pool
+     * Image settings for Dev Boxes create in this pool.
      */
     @Generated
     private DevBoxImageReference imageReference;
@@ -78,18 +78,6 @@ public final class DevBoxPool implements JsonSerializable<DevBoxPool> {
      */
     @Generated
     private final PoolHealthStatus healthStatus;
-
-    /**
-     * Creates an instance of DevBoxPool class.
-     *
-     * @param location the location value to set.
-     * @param healthStatus the healthStatus value to set.
-     */
-    @Generated
-    private DevBoxPool(String location, PoolHealthStatus healthStatus) {
-        this.location = location;
-        this.healthStatus = healthStatus;
-    }
 
     /**
      * Get the name property: Pool name.
@@ -201,6 +189,7 @@ public final class DevBoxPool implements JsonSerializable<DevBoxPool> {
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("uri", this.uri);
         jsonWriter.writeStringField("location", this.location);
         jsonWriter.writeStringField("healthStatus", this.healthStatus == null ? null : this.healthStatus.toString());
         jsonWriter.writeStringField("osType", this.osType == null ? null : this.osType.toString());
@@ -212,6 +201,7 @@ public final class DevBoxPool implements JsonSerializable<DevBoxPool> {
         jsonWriter.writeStringField("localAdministrator",
             this.localAdministratorStatus == null ? null : this.localAdministratorStatus.toString());
         jsonWriter.writeJsonField("stopOnDisconnect", this.stopOnDisconnect);
+        jsonWriter.writeStringField("displayName", this.displayName);
         return jsonWriter.writeEndObject();
     }
 
@@ -227,6 +217,7 @@ public final class DevBoxPool implements JsonSerializable<DevBoxPool> {
     @Generated
     public static DevBoxPool fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
+            String uri = null;
             String name = null;
             String location = null;
             PoolHealthStatus healthStatus = null;
@@ -237,10 +228,13 @@ public final class DevBoxPool implements JsonSerializable<DevBoxPool> {
             DevBoxImageReference imageReference = null;
             LocalAdministratorStatus localAdministratorStatus = null;
             StopOnDisconnectConfiguration stopOnDisconnect = null;
+            String displayName = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
-                if ("name".equals(fieldName)) {
+                if ("uri".equals(fieldName)) {
+                    uri = reader.getString();
+                } else if ("name".equals(fieldName)) {
                     name = reader.getString();
                 } else if ("location".equals(fieldName)) {
                     location = reader.getString();
@@ -260,11 +254,13 @@ public final class DevBoxPool implements JsonSerializable<DevBoxPool> {
                     localAdministratorStatus = LocalAdministratorStatus.fromString(reader.getString());
                 } else if ("stopOnDisconnect".equals(fieldName)) {
                     stopOnDisconnect = StopOnDisconnectConfiguration.fromJson(reader);
+                } else if ("displayName".equals(fieldName)) {
+                    displayName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
-            DevBoxPool deserializedDevBoxPool = new DevBoxPool(location, healthStatus);
+            DevBoxPool deserializedDevBoxPool = new DevBoxPool(uri, location, healthStatus);
             deserializedDevBoxPool.name = name;
             deserializedDevBoxPool.osType = osType;
             deserializedDevBoxPool.hardwareProfile = hardwareProfile;
@@ -273,7 +269,54 @@ public final class DevBoxPool implements JsonSerializable<DevBoxPool> {
             deserializedDevBoxPool.imageReference = imageReference;
             deserializedDevBoxPool.localAdministratorStatus = localAdministratorStatus;
             deserializedDevBoxPool.stopOnDisconnect = stopOnDisconnect;
+            deserializedDevBoxPool.displayName = displayName;
             return deserializedDevBoxPool;
         });
+    }
+
+    /*
+     * The unique URI of the pool.
+     */
+    @Generated
+    private final String uri;
+
+    /*
+     * Display name of the pool.
+     */
+    @Generated
+    private String displayName;
+
+    /**
+     * Creates an instance of DevBoxPool class.
+     *
+     * @param uri the uri value to set.
+     * @param location the location value to set.
+     * @param healthStatus the healthStatus value to set.
+     */
+    @Generated
+    private DevBoxPool(String uri, String location, PoolHealthStatus healthStatus) {
+        this.uri = uri;
+        this.location = location;
+        this.healthStatus = healthStatus;
+    }
+
+    /**
+     * Get the uri property: The unique URI of the pool.
+     *
+     * @return the uri value.
+     */
+    @Generated
+    public String getUri() {
+        return this.uri;
+    }
+
+    /**
+     * Get the displayName property: Display name of the pool.
+     *
+     * @return the displayName value.
+     */
+    @Generated
+    public String getDisplayName() {
+        return this.displayName;
     }
 }

@@ -19,7 +19,7 @@ import java.time.LocalTime;
 public final class DevBoxSchedule implements JsonSerializable<DevBoxSchedule> {
 
     /*
-     * Display name for the Schedule
+     * Display name for the Schedule.
      */
     @Generated
     private String name;
@@ -164,5 +164,53 @@ public final class DevBoxSchedule implements JsonSerializable<DevBoxSchedule> {
             deserializedDevBoxSchedule.name = name;
             return deserializedDevBoxSchedule;
         });
+    }
+
+    /*
+     * The unique URI of the schedule.
+     */
+    @Generated
+    private final String uri;
+
+    /*
+     * The URI of the resource that this schedule belongs to.
+     */
+    @Generated
+    private final String sourceUri;
+
+    /*
+     * The type of the resource that this schedule belongs to.
+     */
+    @Generated
+    private final ScheduleSourceType sourceType;
+
+    /**
+     * Get the uri property: The unique URI of the schedule.
+     *
+     * @return the uri value.
+     */
+    @Generated
+    public String getUri() {
+        return this.uri;
+    }
+
+    /**
+     * Get the sourceUri property: The URI of the resource that this schedule belongs to.
+     *
+     * @return the sourceUri value.
+     */
+    @Generated
+    public String getSourceUri() {
+        return this.sourceUri;
+    }
+
+    /**
+     * Get the sourceType property: The type of the resource that this schedule belongs to.
+     *
+     * @return the sourceType value.
+     */
+    @Generated
+    public ScheduleSourceType getSourceType() {
+        return this.sourceType;
     }
 }
