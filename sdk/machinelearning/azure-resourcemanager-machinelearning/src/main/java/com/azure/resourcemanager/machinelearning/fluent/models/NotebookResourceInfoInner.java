@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.NotebookPreparationError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The NotebookResourceInfo model. */
+/**
+ * The NotebookResourceInfo model.
+ */
 @Fluent
 public final class NotebookResourceInfoInner {
     /*
@@ -29,13 +31,15 @@ public final class NotebookResourceInfoInner {
     @JsonProperty(value = "notebookPreparationError")
     private NotebookPreparationError notebookPreparationError;
 
-    /** Creates an instance of NotebookResourceInfoInner class. */
+    /**
+     * Creates an instance of NotebookResourceInfoInner class.
+     */
     public NotebookResourceInfoInner() {
     }
 
     /**
      * Get the fqdn property: The fqdn property.
-     *
+     * 
      * @return the fqdn value.
      */
     public String fqdn() {
@@ -44,7 +48,7 @@ public final class NotebookResourceInfoInner {
 
     /**
      * Set the fqdn property: The fqdn property.
-     *
+     * 
      * @param fqdn the fqdn value to set.
      * @return the NotebookResourceInfoInner object itself.
      */
@@ -55,7 +59,7 @@ public final class NotebookResourceInfoInner {
 
     /**
      * Get the resourceId property: the data plane resourceId that used to initialize notebook component.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -64,7 +68,7 @@ public final class NotebookResourceInfoInner {
 
     /**
      * Set the resourceId property: the data plane resourceId that used to initialize notebook component.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the NotebookResourceInfoInner object itself.
      */
@@ -75,7 +79,7 @@ public final class NotebookResourceInfoInner {
 
     /**
      * Get the notebookPreparationError property: The error that occurs when preparing notebook.
-     *
+     * 
      * @return the notebookPreparationError value.
      */
     public NotebookPreparationError notebookPreparationError() {
@@ -84,7 +88,7 @@ public final class NotebookResourceInfoInner {
 
     /**
      * Set the notebookPreparationError property: The error that occurs when preparing notebook.
-     *
+     * 
      * @param notebookPreparationError the notebookPreparationError value to set.
      * @return the NotebookResourceInfoInner object itself.
      */
@@ -95,7 +99,7 @@ public final class NotebookResourceInfoInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

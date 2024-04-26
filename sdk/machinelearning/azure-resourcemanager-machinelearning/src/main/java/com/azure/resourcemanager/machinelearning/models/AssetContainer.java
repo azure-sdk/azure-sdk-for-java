@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The AssetContainer model. */
+/**
+ * The AssetContainer model.
+ */
 @Fluent
 public class AssetContainer extends ResourceBase {
     /*
@@ -29,13 +31,15 @@ public class AssetContainer extends ResourceBase {
     @JsonProperty(value = "nextVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String nextVersion;
 
-    /** Creates an instance of AssetContainer class. */
+    /**
+     * Creates an instance of AssetContainer class.
+     */
     public AssetContainer() {
     }
 
     /**
      * Get the isArchived property: Is the asset archived?.
-     *
+     * 
      * @return the isArchived value.
      */
     public Boolean isArchived() {
@@ -44,7 +48,7 @@ public class AssetContainer extends ResourceBase {
 
     /**
      * Set the isArchived property: Is the asset archived?.
-     *
+     * 
      * @param isArchived the isArchived value to set.
      * @return the AssetContainer object itself.
      */
@@ -55,7 +59,7 @@ public class AssetContainer extends ResourceBase {
 
     /**
      * Get the latestVersion property: The latest version inside this container.
-     *
+     * 
      * @return the latestVersion value.
      */
     public String latestVersion() {
@@ -64,28 +68,34 @@ public class AssetContainer extends ResourceBase {
 
     /**
      * Get the nextVersion property: The next auto incremental version.
-     *
+     * 
      * @return the nextVersion value.
      */
     public String nextVersion() {
         return this.nextVersion;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AssetContainer withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AssetContainer withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AssetContainer withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -94,7 +104,7 @@ public class AssetContainer extends ResourceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
