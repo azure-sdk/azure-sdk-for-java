@@ -5,21 +5,44 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The AutoTargetLags model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
+/**
+ * The AutoTargetLags model.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "mode", defaultImpl = AutoTargetLags.class, visible = true)
 @JsonTypeName("Auto")
 @Immutable
 public final class AutoTargetLags extends TargetLags {
-    /** Creates an instance of AutoTargetLags class. */
+    /*
+     * [Required] Set target lags mode - Auto/Custom
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private TargetLagsMode mode = TargetLagsMode.AUTO;
+
+    /**
+     * Creates an instance of AutoTargetLags class.
+     */
     public AutoTargetLags() {
     }
 
     /**
+     * Get the mode property: [Required] Set target lags mode - Auto/Custom.
+     * 
+     * @return the mode value.
+     */
+    @Override
+    public TargetLagsMode mode() {
+        return this.mode;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

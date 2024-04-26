@@ -6,27 +6,49 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** A Machine Learning compute based on Kubernetes Compute. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
+/**
+ * A Machine Learning compute based on Kubernetes Compute.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "computeType", defaultImpl = Kubernetes.class, visible = true)
 @JsonTypeName("Kubernetes")
 @Fluent
 public final class Kubernetes extends Compute {
+    /*
+     * The type of compute
+     */
+    @JsonTypeId
+    @JsonProperty(value = "computeType", required = true)
+    private ComputeType computeType = ComputeType.KUBERNETES;
+
     /*
      * Properties of Kubernetes
      */
     @JsonProperty(value = "properties")
     private KubernetesProperties properties;
 
-    /** Creates an instance of Kubernetes class. */
+    /**
+     * Creates an instance of Kubernetes class.
+     */
     public Kubernetes() {
     }
 
     /**
+     * Get the computeType property: The type of compute.
+     * 
+     * @return the computeType value.
+     */
+    @Override
+    public ComputeType computeType() {
+        return this.computeType;
+    }
+
+    /**
      * Get the properties property: Properties of Kubernetes.
-     *
+     * 
      * @return the properties value.
      */
     public KubernetesProperties properties() {
@@ -35,7 +57,7 @@ public final class Kubernetes extends Compute {
 
     /**
      * Set the properties property: Properties of Kubernetes.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the Kubernetes object itself.
      */
@@ -44,28 +66,36 @@ public final class Kubernetes extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Kubernetes withComputeLocation(String computeLocation) {
         super.withComputeLocation(computeLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Kubernetes withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Kubernetes withResourceId(String resourceId) {
         super.withResourceId(resourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Kubernetes withDisableLocalAuth(Boolean disableLocalAuth) {
         super.withDisableLocalAuth(disableLocalAuth);
@@ -74,7 +104,7 @@ public final class Kubernetes extends Compute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

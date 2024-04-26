@@ -6,27 +6,53 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines an early termination policy that cancels a given percentage of runs at each evaluation interval. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "policyType")
+/**
+ * Defines an early termination policy that cancels a given percentage of runs at each evaluation interval.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "policyType",
+    defaultImpl = TruncationSelectionPolicy.class,
+    visible = true)
 @JsonTypeName("TruncationSelection")
 @Fluent
 public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
+    /*
+     * [Required] Name of policy configuration
+     */
+    @JsonTypeId
+    @JsonProperty(value = "policyType", required = true)
+    private EarlyTerminationPolicyType policyType = EarlyTerminationPolicyType.TRUNCATION_SELECTION;
+
     /*
      * The percentage of runs to cancel at each evaluation interval.
      */
     @JsonProperty(value = "truncationPercentage")
     private Integer truncationPercentage;
 
-    /** Creates an instance of TruncationSelectionPolicy class. */
+    /**
+     * Creates an instance of TruncationSelectionPolicy class.
+     */
     public TruncationSelectionPolicy() {
     }
 
     /**
+     * Get the policyType property: [Required] Name of policy configuration.
+     * 
+     * @return the policyType value.
+     */
+    @Override
+    public EarlyTerminationPolicyType policyType() {
+        return this.policyType;
+    }
+
+    /**
      * Get the truncationPercentage property: The percentage of runs to cancel at each evaluation interval.
-     *
+     * 
      * @return the truncationPercentage value.
      */
     public Integer truncationPercentage() {
@@ -35,7 +61,7 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
 
     /**
      * Set the truncationPercentage property: The percentage of runs to cancel at each evaluation interval.
-     *
+     * 
      * @param truncationPercentage the truncationPercentage value to set.
      * @return the TruncationSelectionPolicy object itself.
      */
@@ -44,14 +70,18 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TruncationSelectionPolicy withDelayEvaluation(Integer delayEvaluation) {
         super.withDelayEvaluation(delayEvaluation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TruncationSelectionPolicy withEvaluationInterval(Integer evaluationInterval) {
         super.withEvaluationInterval(evaluationInterval);
@@ -60,7 +90,7 @@ public final class TruncationSelectionPolicy extends EarlyTerminationPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
