@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Statuses of objects deployed by the user-specified kustomizations from the git repository. */
+/**
+ * Statuses of objects deployed by the user-specified kustomizations from the git repository.
+ */
 @Fluent
 public final class ObjectStatusDefinition {
     /*
@@ -30,8 +32,7 @@ public final class ObjectStatusDefinition {
     private String kind;
 
     /*
-     * Compliance state of the applied object showing whether the applied object has come into a ready state on the
-     * cluster.
+     * Compliance state of the applied object showing whether the applied object has come into a ready state on the cluster.
      */
     @JsonProperty(value = "complianceState")
     private FluxComplianceState complianceState;
@@ -54,13 +55,15 @@ public final class ObjectStatusDefinition {
     @JsonProperty(value = "helmReleaseProperties")
     private HelmReleasePropertiesDefinition helmReleaseProperties;
 
-    /** Creates an instance of ObjectStatusDefinition class. */
+    /**
+     * Creates an instance of ObjectStatusDefinition class.
+     */
     public ObjectStatusDefinition() {
     }
 
     /**
      * Get the name property: Name of the applied object.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -69,7 +72,7 @@ public final class ObjectStatusDefinition {
 
     /**
      * Set the name property: Name of the applied object.
-     *
+     * 
      * @param name the name value to set.
      * @return the ObjectStatusDefinition object itself.
      */
@@ -80,7 +83,7 @@ public final class ObjectStatusDefinition {
 
     /**
      * Get the namespace property: Namespace of the applied object.
-     *
+     * 
      * @return the namespace value.
      */
     public String namespace() {
@@ -89,7 +92,7 @@ public final class ObjectStatusDefinition {
 
     /**
      * Set the namespace property: Namespace of the applied object.
-     *
+     * 
      * @param namespace the namespace value to set.
      * @return the ObjectStatusDefinition object itself.
      */
@@ -100,7 +103,7 @@ public final class ObjectStatusDefinition {
 
     /**
      * Get the kind property: Kind of the applied object.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -109,7 +112,7 @@ public final class ObjectStatusDefinition {
 
     /**
      * Set the kind property: Kind of the applied object.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the ObjectStatusDefinition object itself.
      */
@@ -121,7 +124,7 @@ public final class ObjectStatusDefinition {
     /**
      * Get the complianceState property: Compliance state of the applied object showing whether the applied object has
      * come into a ready state on the cluster.
-     *
+     * 
      * @return the complianceState value.
      */
     public FluxComplianceState complianceState() {
@@ -131,7 +134,7 @@ public final class ObjectStatusDefinition {
     /**
      * Set the complianceState property: Compliance state of the applied object showing whether the applied object has
      * come into a ready state on the cluster.
-     *
+     * 
      * @param complianceState the complianceState value to set.
      * @return the ObjectStatusDefinition object itself.
      */
@@ -142,7 +145,7 @@ public final class ObjectStatusDefinition {
 
     /**
      * Get the appliedBy property: Object reference to the Kustomization that applied this object.
-     *
+     * 
      * @return the appliedBy value.
      */
     public ObjectReferenceDefinition appliedBy() {
@@ -151,7 +154,7 @@ public final class ObjectStatusDefinition {
 
     /**
      * Set the appliedBy property: Object reference to the Kustomization that applied this object.
-     *
+     * 
      * @param appliedBy the appliedBy value to set.
      * @return the ObjectStatusDefinition object itself.
      */
@@ -162,7 +165,7 @@ public final class ObjectStatusDefinition {
 
     /**
      * Get the statusConditions property: List of Kubernetes object status conditions present on the cluster.
-     *
+     * 
      * @return the statusConditions value.
      */
     public List<ObjectStatusConditionDefinition> statusConditions() {
@@ -171,7 +174,7 @@ public final class ObjectStatusDefinition {
 
     /**
      * Set the statusConditions property: List of Kubernetes object status conditions present on the cluster.
-     *
+     * 
      * @param statusConditions the statusConditions value to set.
      * @return the ObjectStatusDefinition object itself.
      */
@@ -183,7 +186,7 @@ public final class ObjectStatusDefinition {
     /**
      * Get the helmReleaseProperties property: Additional properties that are provided from objects of the HelmRelease
      * kind.
-     *
+     * 
      * @return the helmReleaseProperties value.
      */
     public HelmReleasePropertiesDefinition helmReleaseProperties() {
@@ -193,7 +196,7 @@ public final class ObjectStatusDefinition {
     /**
      * Set the helmReleaseProperties property: Additional properties that are provided from objects of the HelmRelease
      * kind.
-     *
+     * 
      * @param helmReleaseProperties the helmReleaseProperties value to set.
      * @return the ObjectStatusDefinition object itself.
      */
@@ -204,7 +207,7 @@ public final class ObjectStatusDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

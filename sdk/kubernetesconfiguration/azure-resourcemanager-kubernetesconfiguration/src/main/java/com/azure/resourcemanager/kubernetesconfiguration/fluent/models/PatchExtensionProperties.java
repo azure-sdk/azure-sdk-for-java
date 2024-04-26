@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Updatable properties of an Extension Patch Request. */
+/**
+ * Updatable properties of an Extension Patch Request.
+ */
 @Fluent
 public final class PatchExtensionProperties {
     /*
@@ -19,15 +21,13 @@ public final class PatchExtensionProperties {
     private Boolean autoUpgradeMinorVersion;
 
     /*
-     * ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable, Preview, etc.) - only if
-     * autoUpgradeMinorVersion is 'true'.
+     * ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable, Preview, etc.) - only if autoUpgradeMinorVersion is 'true'.
      */
     @JsonProperty(value = "releaseTrain")
     private String releaseTrain;
 
     /*
-     * Version of the extension for this extension, if it is 'pinned' to a specific version. autoUpgradeMinorVersion
-     * must be 'false'.
+     * Version of the extension for this extension, if it is 'pinned' to a specific version. autoUpgradeMinorVersion must be 'false'.
      */
     @JsonProperty(value = "version")
     private String version;
@@ -46,14 +46,16 @@ public final class PatchExtensionProperties {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> configurationProtectedSettings;
 
-    /** Creates an instance of PatchExtensionProperties class. */
+    /**
+     * Creates an instance of PatchExtensionProperties class.
+     */
     public PatchExtensionProperties() {
     }
 
     /**
      * Get the autoUpgradeMinorVersion property: Flag to note if this extension participates in auto upgrade of minor
      * version, or not.
-     *
+     * 
      * @return the autoUpgradeMinorVersion value.
      */
     public Boolean autoUpgradeMinorVersion() {
@@ -63,7 +65,7 @@ public final class PatchExtensionProperties {
     /**
      * Set the autoUpgradeMinorVersion property: Flag to note if this extension participates in auto upgrade of minor
      * version, or not.
-     *
+     * 
      * @param autoUpgradeMinorVersion the autoUpgradeMinorVersion value to set.
      * @return the PatchExtensionProperties object itself.
      */
@@ -75,7 +77,7 @@ public final class PatchExtensionProperties {
     /**
      * Get the releaseTrain property: ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable,
      * Preview, etc.) - only if autoUpgradeMinorVersion is 'true'.
-     *
+     * 
      * @return the releaseTrain value.
      */
     public String releaseTrain() {
@@ -85,7 +87,7 @@ public final class PatchExtensionProperties {
     /**
      * Set the releaseTrain property: ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable,
      * Preview, etc.) - only if autoUpgradeMinorVersion is 'true'.
-     *
+     * 
      * @param releaseTrain the releaseTrain value to set.
      * @return the PatchExtensionProperties object itself.
      */
@@ -97,7 +99,7 @@ public final class PatchExtensionProperties {
     /**
      * Get the version property: Version of the extension for this extension, if it is 'pinned' to a specific version.
      * autoUpgradeMinorVersion must be 'false'.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -107,7 +109,7 @@ public final class PatchExtensionProperties {
     /**
      * Set the version property: Version of the extension for this extension, if it is 'pinned' to a specific version.
      * autoUpgradeMinorVersion must be 'false'.
-     *
+     * 
      * @param version the version value to set.
      * @return the PatchExtensionProperties object itself.
      */
@@ -119,7 +121,7 @@ public final class PatchExtensionProperties {
     /**
      * Get the configurationSettings property: Configuration settings, as name-value pairs for configuring this
      * extension.
-     *
+     * 
      * @return the configurationSettings value.
      */
     public Map<String, String> configurationSettings() {
@@ -129,7 +131,7 @@ public final class PatchExtensionProperties {
     /**
      * Set the configurationSettings property: Configuration settings, as name-value pairs for configuring this
      * extension.
-     *
+     * 
      * @param configurationSettings the configurationSettings value to set.
      * @return the PatchExtensionProperties object itself.
      */
@@ -141,7 +143,7 @@ public final class PatchExtensionProperties {
     /**
      * Get the configurationProtectedSettings property: Configuration settings that are sensitive, as name-value pairs
      * for configuring this extension.
-     *
+     * 
      * @return the configurationProtectedSettings value.
      */
     public Map<String, String> configurationProtectedSettings() {
@@ -151,19 +153,19 @@ public final class PatchExtensionProperties {
     /**
      * Set the configurationProtectedSettings property: Configuration settings that are sensitive, as name-value pairs
      * for configuring this extension.
-     *
+     * 
      * @param configurationProtectedSettings the configurationProtectedSettings value to set.
      * @return the PatchExtensionProperties object itself.
      */
-    public PatchExtensionProperties withConfigurationProtectedSettings(
-        Map<String, String> configurationProtectedSettings) {
+    public PatchExtensionProperties
+        withConfigurationProtectedSettings(Map<String, String> configurationProtectedSettings) {
         this.configurationProtectedSettings = configurationProtectedSettings;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

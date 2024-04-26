@@ -15,12 +15,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Properties of an Extension resource. */
+/**
+ * Properties of an Extension resource.
+ */
 @Fluent
 public final class ExtensionProperties {
     /*
-     * Type of the Extension, of which this resource is an instance of.  It must be one of the Extension Types
-     * registered with Microsoft.KubernetesConfiguration by the Extension publisher.
+     * Type of the Extension, of which this resource is an instance of.  It must be one of the Extension Types registered with Microsoft.KubernetesConfiguration by the Extension publisher.
      */
     @JsonProperty(value = "extensionType")
     private String extensionType;
@@ -32,15 +33,13 @@ public final class ExtensionProperties {
     private Boolean autoUpgradeMinorVersion;
 
     /*
-     * ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable, Preview, etc.) - only if
-     * autoUpgradeMinorVersion is 'true'.
+     * ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable, Preview, etc.) - only if autoUpgradeMinorVersion is 'true'.
      */
     @JsonProperty(value = "releaseTrain")
     private String releaseTrain;
 
     /*
-     * User-specified version of the extension for this extension to 'pin'. To use 'version', autoUpgradeMinorVersion
-     * must be 'false'.
+     * User-specified version of the extension for this extension to 'pin'. To use 'version', autoUpgradeMinorVersion must be 'false'.
      */
     @JsonProperty(value = "version")
     private String version;
@@ -114,14 +113,16 @@ public final class ExtensionProperties {
     @JsonProperty(value = "isSystemExtension", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isSystemExtension;
 
-    /** Creates an instance of ExtensionProperties class. */
+    /**
+     * Creates an instance of ExtensionProperties class.
+     */
     public ExtensionProperties() {
     }
 
     /**
      * Get the extensionType property: Type of the Extension, of which this resource is an instance of. It must be one
      * of the Extension Types registered with Microsoft.KubernetesConfiguration by the Extension publisher.
-     *
+     * 
      * @return the extensionType value.
      */
     public String extensionType() {
@@ -131,7 +132,7 @@ public final class ExtensionProperties {
     /**
      * Set the extensionType property: Type of the Extension, of which this resource is an instance of. It must be one
      * of the Extension Types registered with Microsoft.KubernetesConfiguration by the Extension publisher.
-     *
+     * 
      * @param extensionType the extensionType value to set.
      * @return the ExtensionProperties object itself.
      */
@@ -143,7 +144,7 @@ public final class ExtensionProperties {
     /**
      * Get the autoUpgradeMinorVersion property: Flag to note if this extension participates in auto upgrade of minor
      * version, or not.
-     *
+     * 
      * @return the autoUpgradeMinorVersion value.
      */
     public Boolean autoUpgradeMinorVersion() {
@@ -153,7 +154,7 @@ public final class ExtensionProperties {
     /**
      * Set the autoUpgradeMinorVersion property: Flag to note if this extension participates in auto upgrade of minor
      * version, or not.
-     *
+     * 
      * @param autoUpgradeMinorVersion the autoUpgradeMinorVersion value to set.
      * @return the ExtensionProperties object itself.
      */
@@ -165,7 +166,7 @@ public final class ExtensionProperties {
     /**
      * Get the releaseTrain property: ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable,
      * Preview, etc.) - only if autoUpgradeMinorVersion is 'true'.
-     *
+     * 
      * @return the releaseTrain value.
      */
     public String releaseTrain() {
@@ -175,7 +176,7 @@ public final class ExtensionProperties {
     /**
      * Set the releaseTrain property: ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable,
      * Preview, etc.) - only if autoUpgradeMinorVersion is 'true'.
-     *
+     * 
      * @param releaseTrain the releaseTrain value to set.
      * @return the ExtensionProperties object itself.
      */
@@ -187,7 +188,7 @@ public final class ExtensionProperties {
     /**
      * Get the version property: User-specified version of the extension for this extension to 'pin'. To use 'version',
      * autoUpgradeMinorVersion must be 'false'.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -197,7 +198,7 @@ public final class ExtensionProperties {
     /**
      * Set the version property: User-specified version of the extension for this extension to 'pin'. To use 'version',
      * autoUpgradeMinorVersion must be 'false'.
-     *
+     * 
      * @param version the version value to set.
      * @return the ExtensionProperties object itself.
      */
@@ -208,7 +209,7 @@ public final class ExtensionProperties {
 
     /**
      * Get the scope property: Scope at which the extension is installed.
-     *
+     * 
      * @return the scope value.
      */
     public Scope scope() {
@@ -217,7 +218,7 @@ public final class ExtensionProperties {
 
     /**
      * Set the scope property: Scope at which the extension is installed.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the ExtensionProperties object itself.
      */
@@ -229,7 +230,7 @@ public final class ExtensionProperties {
     /**
      * Get the configurationSettings property: Configuration settings, as name-value pairs for configuring this
      * extension.
-     *
+     * 
      * @return the configurationSettings value.
      */
     public Map<String, String> configurationSettings() {
@@ -239,7 +240,7 @@ public final class ExtensionProperties {
     /**
      * Set the configurationSettings property: Configuration settings, as name-value pairs for configuring this
      * extension.
-     *
+     * 
      * @param configurationSettings the configurationSettings value to set.
      * @return the ExtensionProperties object itself.
      */
@@ -251,7 +252,7 @@ public final class ExtensionProperties {
     /**
      * Get the configurationProtectedSettings property: Configuration settings that are sensitive, as name-value pairs
      * for configuring this extension.
-     *
+     * 
      * @return the configurationProtectedSettings value.
      */
     public Map<String, String> configurationProtectedSettings() {
@@ -261,7 +262,7 @@ public final class ExtensionProperties {
     /**
      * Set the configurationProtectedSettings property: Configuration settings that are sensitive, as name-value pairs
      * for configuring this extension.
-     *
+     * 
      * @param configurationProtectedSettings the configurationProtectedSettings value to set.
      * @return the ExtensionProperties object itself.
      */
@@ -272,7 +273,7 @@ public final class ExtensionProperties {
 
     /**
      * Get the currentVersion property: Currently installed version of the extension.
-     *
+     * 
      * @return the currentVersion value.
      */
     public String currentVersion() {
@@ -281,7 +282,7 @@ public final class ExtensionProperties {
 
     /**
      * Get the provisioningState property: Status of installation of this extension.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -290,7 +291,7 @@ public final class ExtensionProperties {
 
     /**
      * Get the statuses property: Status from this extension.
-     *
+     * 
      * @return the statuses value.
      */
     public List<ExtensionStatus> statuses() {
@@ -299,7 +300,7 @@ public final class ExtensionProperties {
 
     /**
      * Set the statuses property: Status from this extension.
-     *
+     * 
      * @param statuses the statuses value to set.
      * @return the ExtensionProperties object itself.
      */
@@ -310,7 +311,7 @@ public final class ExtensionProperties {
 
     /**
      * Get the errorInfo property: Error information from the Agent - e.g. errors during installation.
-     *
+     * 
      * @return the errorInfo value.
      */
     public ManagementError errorInfo() {
@@ -319,7 +320,7 @@ public final class ExtensionProperties {
 
     /**
      * Get the customLocationSettings property: Custom Location settings properties.
-     *
+     * 
      * @return the customLocationSettings value.
      */
     public Map<String, String> customLocationSettings() {
@@ -328,7 +329,7 @@ public final class ExtensionProperties {
 
     /**
      * Get the packageUri property: Uri of the Helm package.
-     *
+     * 
      * @return the packageUri value.
      */
     public String packageUri() {
@@ -337,7 +338,7 @@ public final class ExtensionProperties {
 
     /**
      * Get the aksAssignedIdentity property: Identity of the Extension resource in an AKS cluster.
-     *
+     * 
      * @return the aksAssignedIdentity value.
      */
     public ExtensionPropertiesAksAssignedIdentity aksAssignedIdentity() {
@@ -346,7 +347,7 @@ public final class ExtensionProperties {
 
     /**
      * Set the aksAssignedIdentity property: Identity of the Extension resource in an AKS cluster.
-     *
+     * 
      * @param aksAssignedIdentity the aksAssignedIdentity value to set.
      * @return the ExtensionProperties object itself.
      */
@@ -357,7 +358,7 @@ public final class ExtensionProperties {
 
     /**
      * Get the isSystemExtension property: Flag to note if this extension is a system extension.
-     *
+     * 
      * @return the isSystemExtension value.
      */
     public Boolean isSystemExtension() {
@@ -366,7 +367,7 @@ public final class ExtensionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

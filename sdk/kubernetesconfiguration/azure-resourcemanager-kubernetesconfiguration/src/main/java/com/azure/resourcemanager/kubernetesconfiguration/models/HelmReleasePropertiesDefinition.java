@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties for HelmRelease objects. */
+/**
+ * Properties for HelmRelease objects.
+ */
 @Fluent
 public final class HelmReleasePropertiesDefinition {
     /*
@@ -40,13 +42,15 @@ public final class HelmReleasePropertiesDefinition {
     @JsonProperty(value = "upgradeFailureCount")
     private Long upgradeFailureCount;
 
-    /** Creates an instance of HelmReleasePropertiesDefinition class. */
+    /**
+     * Creates an instance of HelmReleasePropertiesDefinition class.
+     */
     public HelmReleasePropertiesDefinition() {
     }
 
     /**
      * Get the lastRevisionApplied property: The revision number of the last released object change.
-     *
+     * 
      * @return the lastRevisionApplied value.
      */
     public Long lastRevisionApplied() {
@@ -55,7 +59,7 @@ public final class HelmReleasePropertiesDefinition {
 
     /**
      * Set the lastRevisionApplied property: The revision number of the last released object change.
-     *
+     * 
      * @param lastRevisionApplied the lastRevisionApplied value to set.
      * @return the HelmReleasePropertiesDefinition object itself.
      */
@@ -66,7 +70,7 @@ public final class HelmReleasePropertiesDefinition {
 
     /**
      * Get the helmChartRef property: The reference to the HelmChart object used as the source to this HelmRelease.
-     *
+     * 
      * @return the helmChartRef value.
      */
     public ObjectReferenceDefinition helmChartRef() {
@@ -75,7 +79,7 @@ public final class HelmReleasePropertiesDefinition {
 
     /**
      * Set the helmChartRef property: The reference to the HelmChart object used as the source to this HelmRelease.
-     *
+     * 
      * @param helmChartRef the helmChartRef value to set.
      * @return the HelmReleasePropertiesDefinition object itself.
      */
@@ -86,7 +90,7 @@ public final class HelmReleasePropertiesDefinition {
 
     /**
      * Get the failureCount property: Total number of times that the HelmRelease failed to install or upgrade.
-     *
+     * 
      * @return the failureCount value.
      */
     public Long failureCount() {
@@ -95,7 +99,7 @@ public final class HelmReleasePropertiesDefinition {
 
     /**
      * Set the failureCount property: Total number of times that the HelmRelease failed to install or upgrade.
-     *
+     * 
      * @param failureCount the failureCount value to set.
      * @return the HelmReleasePropertiesDefinition object itself.
      */
@@ -106,7 +110,7 @@ public final class HelmReleasePropertiesDefinition {
 
     /**
      * Get the installFailureCount property: Number of times that the HelmRelease failed to install.
-     *
+     * 
      * @return the installFailureCount value.
      */
     public Long installFailureCount() {
@@ -115,7 +119,7 @@ public final class HelmReleasePropertiesDefinition {
 
     /**
      * Set the installFailureCount property: Number of times that the HelmRelease failed to install.
-     *
+     * 
      * @param installFailureCount the installFailureCount value to set.
      * @return the HelmReleasePropertiesDefinition object itself.
      */
@@ -126,7 +130,7 @@ public final class HelmReleasePropertiesDefinition {
 
     /**
      * Get the upgradeFailureCount property: Number of times that the HelmRelease failed to upgrade.
-     *
+     * 
      * @return the upgradeFailureCount value.
      */
     public Long upgradeFailureCount() {
@@ -135,7 +139,7 @@ public final class HelmReleasePropertiesDefinition {
 
     /**
      * Set the upgradeFailureCount property: Number of times that the HelmRelease failed to upgrade.
-     *
+     * 
      * @param upgradeFailureCount the upgradeFailureCount value to set.
      * @return the HelmReleasePropertiesDefinition object itself.
      */
@@ -146,7 +150,7 @@ public final class HelmReleasePropertiesDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

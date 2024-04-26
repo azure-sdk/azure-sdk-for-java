@@ -8,26 +8,38 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Compliance state of the cluster object. */
+/**
+ * Compliance state of the cluster object.
+ */
 public final class FluxComplianceState extends ExpandableStringEnum<FluxComplianceState> {
-    /** Static value Compliant for FluxComplianceState. */
+    /**
+     * Static value Compliant for FluxComplianceState.
+     */
     public static final FluxComplianceState COMPLIANT = fromString("Compliant");
 
-    /** Static value Non-Compliant for FluxComplianceState. */
+    /**
+     * Static value Non-Compliant for FluxComplianceState.
+     */
     public static final FluxComplianceState NON_COMPLIANT = fromString("Non-Compliant");
 
-    /** Static value Pending for FluxComplianceState. */
+    /**
+     * Static value Pending for FluxComplianceState.
+     */
     public static final FluxComplianceState PENDING = fromString("Pending");
 
-    /** Static value Suspended for FluxComplianceState. */
+    /**
+     * Static value Suspended for FluxComplianceState.
+     */
     public static final FluxComplianceState SUSPENDED = fromString("Suspended");
 
-    /** Static value Unknown for FluxComplianceState. */
+    /**
+     * Static value Unknown for FluxComplianceState.
+     */
     public static final FluxComplianceState UNKNOWN = fromString("Unknown");
 
     /**
      * Creates a new instance of FluxComplianceState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -36,7 +48,7 @@ public final class FluxComplianceState extends ExpandableStringEnum<FluxComplian
 
     /**
      * Creates or finds a FluxComplianceState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding FluxComplianceState.
      */
@@ -47,7 +59,7 @@ public final class FluxComplianceState extends ExpandableStringEnum<FluxComplian
 
     /**
      * Gets known FluxComplianceState values.
-     *
+     * 
      * @return known FluxComplianceState values.
      */
     public static Collection<FluxComplianceState> values() {

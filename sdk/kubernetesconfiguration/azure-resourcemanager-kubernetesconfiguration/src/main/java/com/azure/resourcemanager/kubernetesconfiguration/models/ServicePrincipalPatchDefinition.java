@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Parameters to authenticate using Service Principal. */
+/**
+ * Parameters to authenticate using Service Principal.
+ */
 @Fluent
 public final class ServicePrincipalPatchDefinition {
     /*
@@ -29,31 +31,32 @@ public final class ServicePrincipalPatchDefinition {
     private String clientSecret;
 
     /*
-     * Base64-encoded certificate used to authenticate a Service Principal
+     * Base64-encoded certificate used to authenticate a Service Principal 
      */
     @JsonProperty(value = "clientCertificate")
     private String clientCertificate;
 
     /*
-     * The password for the certificate used to authenticate a Service Principal
+     * The password for the certificate used to authenticate a Service Principal 
      */
     @JsonProperty(value = "clientCertificatePassword")
     private String clientCertificatePassword;
 
     /*
-     * Specifies whether to include x5c header in client claims when acquiring a token to enable subject name / issuer
-     * based authentication for the Client Certificate
+     * Specifies whether to include x5c header in client claims when acquiring a token to enable subject name / issuer based authentication for the Client Certificate
      */
     @JsonProperty(value = "clientCertificateSendChain")
     private Boolean clientCertificateSendChain;
 
-    /** Creates an instance of ServicePrincipalPatchDefinition class. */
+    /**
+     * Creates an instance of ServicePrincipalPatchDefinition class.
+     */
     public ServicePrincipalPatchDefinition() {
     }
 
     /**
      * Get the clientId property: The client Id for authenticating a Service Principal.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -62,7 +65,7 @@ public final class ServicePrincipalPatchDefinition {
 
     /**
      * Set the clientId property: The client Id for authenticating a Service Principal.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the ServicePrincipalPatchDefinition object itself.
      */
@@ -73,7 +76,7 @@ public final class ServicePrincipalPatchDefinition {
 
     /**
      * Get the tenantId property: The tenant Id for authenticating a Service Principal.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -82,7 +85,7 @@ public final class ServicePrincipalPatchDefinition {
 
     /**
      * Set the tenantId property: The tenant Id for authenticating a Service Principal.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the ServicePrincipalPatchDefinition object itself.
      */
@@ -93,7 +96,7 @@ public final class ServicePrincipalPatchDefinition {
 
     /**
      * Get the clientSecret property: The client secret for authenticating a Service Principal.
-     *
+     * 
      * @return the clientSecret value.
      */
     public String clientSecret() {
@@ -102,7 +105,7 @@ public final class ServicePrincipalPatchDefinition {
 
     /**
      * Set the clientSecret property: The client secret for authenticating a Service Principal.
-     *
+     * 
      * @param clientSecret the clientSecret value to set.
      * @return the ServicePrincipalPatchDefinition object itself.
      */
@@ -113,7 +116,7 @@ public final class ServicePrincipalPatchDefinition {
 
     /**
      * Get the clientCertificate property: Base64-encoded certificate used to authenticate a Service Principal.
-     *
+     * 
      * @return the clientCertificate value.
      */
     public String clientCertificate() {
@@ -122,7 +125,7 @@ public final class ServicePrincipalPatchDefinition {
 
     /**
      * Set the clientCertificate property: Base64-encoded certificate used to authenticate a Service Principal.
-     *
+     * 
      * @param clientCertificate the clientCertificate value to set.
      * @return the ServicePrincipalPatchDefinition object itself.
      */
@@ -134,7 +137,7 @@ public final class ServicePrincipalPatchDefinition {
     /**
      * Get the clientCertificatePassword property: The password for the certificate used to authenticate a Service
      * Principal.
-     *
+     * 
      * @return the clientCertificatePassword value.
      */
     public String clientCertificatePassword() {
@@ -144,7 +147,7 @@ public final class ServicePrincipalPatchDefinition {
     /**
      * Set the clientCertificatePassword property: The password for the certificate used to authenticate a Service
      * Principal.
-     *
+     * 
      * @param clientCertificatePassword the clientCertificatePassword value to set.
      * @return the ServicePrincipalPatchDefinition object itself.
      */
@@ -156,7 +159,7 @@ public final class ServicePrincipalPatchDefinition {
     /**
      * Get the clientCertificateSendChain property: Specifies whether to include x5c header in client claims when
      * acquiring a token to enable subject name / issuer based authentication for the Client Certificate.
-     *
+     * 
      * @return the clientCertificateSendChain value.
      */
     public Boolean clientCertificateSendChain() {
@@ -166,7 +169,7 @@ public final class ServicePrincipalPatchDefinition {
     /**
      * Set the clientCertificateSendChain property: Specifies whether to include x5c header in client claims when
      * acquiring a token to enable subject name / issuer based authentication for the Client Certificate.
-     *
+     * 
      * @param clientCertificateSendChain the clientCertificateSendChain value to set.
      * @return the ServicePrincipalPatchDefinition object itself.
      */
@@ -177,7 +180,7 @@ public final class ServicePrincipalPatchDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
