@@ -1991,6 +1991,10 @@ public final class AssistantsClientImpl {
      *     object: String (Required)
      *     created_at: long (Required)
      *     thread_id: String (Required)
+     *     status: String(in_progress/incomplete/completed) (Required)
+     *     incomplete_details: String(content_filter/max_tokens/run_cancelled/run_failed) (Required)
+     *     completed_at: Long (Required)
+     *     incomplete_at: Long (Required)
      *     role: String(user/assistant) (Required)
      *     content (Required): [
      *          (Required){
@@ -2051,6 +2055,10 @@ public final class AssistantsClientImpl {
      *     object: String (Required)
      *     created_at: long (Required)
      *     thread_id: String (Required)
+     *     status: String(in_progress/incomplete/completed) (Required)
+     *     incomplete_details: String(content_filter/max_tokens/run_cancelled/run_failed) (Required)
+     *     completed_at: Long (Required)
+     *     incomplete_at: Long (Required)
      *     role: String(user/assistant) (Required)
      *     content (Required): [
      *          (Required){
@@ -2114,6 +2122,10 @@ public final class AssistantsClientImpl {
      *             object: String (Required)
      *             created_at: long (Required)
      *             thread_id: String (Required)
+     *             status: String(in_progress/incomplete/completed) (Required)
+     *             incomplete_details: String(content_filter/max_tokens/run_cancelled/run_failed) (Required)
+     *             completed_at: Long (Required)
+     *             incomplete_at: Long (Required)
      *             role: String(user/assistant) (Required)
      *             content (Required): [
      *                  (Required){
@@ -2182,6 +2194,10 @@ public final class AssistantsClientImpl {
      *             object: String (Required)
      *             created_at: long (Required)
      *             thread_id: String (Required)
+     *             status: String(in_progress/incomplete/completed) (Required)
+     *             incomplete_details: String(content_filter/max_tokens/run_cancelled/run_failed) (Required)
+     *             completed_at: Long (Required)
+     *             incomplete_at: Long (Required)
      *             role: String(user/assistant) (Required)
      *             content (Required): [
      *                  (Required){
@@ -2228,6 +2244,10 @@ public final class AssistantsClientImpl {
      *     object: String (Required)
      *     created_at: long (Required)
      *     thread_id: String (Required)
+     *     status: String(in_progress/incomplete/completed) (Required)
+     *     incomplete_details: String(content_filter/max_tokens/run_cancelled/run_failed) (Required)
+     *     completed_at: Long (Required)
+     *     incomplete_at: Long (Required)
      *     role: String(user/assistant) (Required)
      *     content (Required): [
      *          (Required){
@@ -2273,6 +2293,10 @@ public final class AssistantsClientImpl {
      *     object: String (Required)
      *     created_at: long (Required)
      *     thread_id: String (Required)
+     *     status: String(in_progress/incomplete/completed) (Required)
+     *     incomplete_details: String(content_filter/max_tokens/run_cancelled/run_failed) (Required)
+     *     completed_at: Long (Required)
+     *     incomplete_at: Long (Required)
      *     role: String(user/assistant) (Required)
      *     content (Required): [
      *          (Required){
@@ -2326,6 +2350,10 @@ public final class AssistantsClientImpl {
      *     object: String (Required)
      *     created_at: long (Required)
      *     thread_id: String (Required)
+     *     status: String(in_progress/incomplete/completed) (Required)
+     *     incomplete_details: String(content_filter/max_tokens/run_cancelled/run_failed) (Required)
+     *     completed_at: Long (Required)
+     *     incomplete_at: Long (Required)
      *     role: String(user/assistant) (Required)
      *     content (Required): [
      *          (Required){
@@ -2382,6 +2410,10 @@ public final class AssistantsClientImpl {
      *     object: String (Required)
      *     created_at: long (Required)
      *     thread_id: String (Required)
+     *     status: String(in_progress/incomplete/completed) (Required)
+     *     incomplete_details: String(content_filter/max_tokens/run_cancelled/run_failed) (Required)
+     *     completed_at: Long (Required)
+     *     incomplete_at: Long (Required)
      *     role: String(user/assistant) (Required)
      *     content (Required): [
      *          (Required){
@@ -2606,6 +2638,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     stream: Boolean (Optional)
      *     metadata (Optional): {
      *         String: String (Required)
      *     }
@@ -2644,6 +2677,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -2683,6 +2721,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     stream: Boolean (Optional)
      *     metadata (Optional): {
      *         String: String (Required)
      *     }
@@ -2721,6 +2760,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -2798,6 +2842,11 @@ public final class AssistantsClientImpl {
      *             completed_at: Long (Required)
      *             cancelled_at: Long (Required)
      *             failed_at: Long (Required)
+     *             usage (Required): {
+     *                 completion_tokens: long (Required)
+     *                 prompt_tokens: long (Required)
+     *                 total_tokens: long (Required)
+     *             }
      *             metadata (Required): {
      *                 String: String (Required)
      *             }
@@ -2879,6 +2928,11 @@ public final class AssistantsClientImpl {
      *             completed_at: Long (Required)
      *             cancelled_at: Long (Required)
      *             failed_at: Long (Required)
+     *             usage (Required): {
+     *                 completion_tokens: long (Required)
+     *                 prompt_tokens: long (Required)
+     *                 total_tokens: long (Required)
+     *             }
      *             metadata (Required): {
      *                 String: String (Required)
      *             }
@@ -2938,6 +2992,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -2996,6 +3055,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -3061,6 +3125,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -3130,6 +3199,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -3167,6 +3241,7 @@ public final class AssistantsClientImpl {
      *             output: String (Optional)
      *         }
      *     ]
+     *     stream: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -3202,6 +3277,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -3240,6 +3320,7 @@ public final class AssistantsClientImpl {
      *             output: String (Optional)
      *         }
      *     ]
+     *     stream: Boolean (Optional)
      * }
      * }</pre>
      * 
@@ -3275,6 +3356,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -3333,6 +3419,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -3391,6 +3482,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -3443,6 +3539,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     stream: Boolean (Optional)
      *     metadata (Optional): {
      *         String: String (Required)
      *     }
@@ -3481,6 +3578,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -3535,6 +3637,7 @@ public final class AssistantsClientImpl {
      *             type: String (Required)
      *         }
      *     ]
+     *     stream: Boolean (Optional)
      *     metadata (Optional): {
      *         String: String (Required)
      *     }
@@ -3573,6 +3676,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -3620,6 +3728,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -3669,6 +3782,11 @@ public final class AssistantsClientImpl {
      *     completed_at: Long (Required)
      *     cancelled_at: Long (Required)
      *     failed_at: Long (Required)
+     *     usage (Required): {
+     *         completion_tokens: long (Required)
+     *         prompt_tokens: long (Required)
+     *         total_tokens: long (Required)
+     *     }
      *     metadata (Required): {
      *         String: String (Required)
      *     }
@@ -3738,6 +3856,11 @@ public final class AssistantsClientImpl {
      *             completed_at: Long (Required)
      *             cancelled_at: Long (Required)
      *             failed_at: Long (Required)
+     *             usage (Required): {
+     *                 completion_tokens: long (Required)
+     *                 prompt_tokens: long (Required)
+     *                 total_tokens: long (Required)
+     *             }
      *             metadata (Required): {
      *                 String: String (Required)
      *             }
@@ -3812,6 +3935,11 @@ public final class AssistantsClientImpl {
      *             completed_at: Long (Required)
      *             cancelled_at: Long (Required)
      *             failed_at: Long (Required)
+     *             usage (Required): {
+     *                 completion_tokens: long (Required)
+     *                 prompt_tokens: long (Required)
+     *                 total_tokens: long (Required)
+     *             }
      *             metadata (Required): {
      *                 String: String (Required)
      *             }

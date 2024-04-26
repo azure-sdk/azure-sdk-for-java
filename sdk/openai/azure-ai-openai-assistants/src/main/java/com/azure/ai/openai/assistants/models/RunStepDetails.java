@@ -5,17 +5,25 @@ package com.azure.ai.openai.assistants.models;
 
 import com.azure.core.annotation.Generated;
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.azure.json.JsonReader;
-import com.azure.json.JsonSerializable;
 import com.azure.json.JsonToken;
-import com.azure.json.JsonWriter;
 import java.io.IOException;
 
 /**
  * An abstract representation of the details for a run step.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = RunStepDetails.class, visible = true)
+@JsonTypeName("RunStepDetails")
+@JsonSubTypes({
+    @JsonSubTypes.Type(name = "message_creation", value = RunStepMessageCreationDetails.class),
+    @JsonSubTypes.Type(name = "tool_calls", value = RunStepToolCallDetails.class) })
 @Immutable
-public class RunStepDetails implements JsonSerializable<RunStepDetails> {
+public class RunStepDetails {
 
     /**
      * Creates an instance of RunStepDetails class.
@@ -41,6 +49,8 @@ public class RunStepDetails implements JsonSerializable<RunStepDetails> {
      * The object type.
      */
     @Generated
+    @JsonTypeId
+    @JsonProperty(value = "type")
     private RunStepType type;
 
     /**
@@ -51,53 +61,5 @@ public class RunStepDetails implements JsonSerializable<RunStepDetails> {
     @Generated
     public RunStepType getType() {
         return this.type;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Generated
-    @Override
-    public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
-        jsonWriter.writeStartObject();
-        jsonWriter.writeStringField("type", this.type == null ? null : this.type.toString());
-        return jsonWriter.writeEndObject();
-    }
-
-    /**
-     * Reads an instance of RunStepDetails from the JsonReader.
-     *
-     * @param jsonReader The JsonReader being read.
-     * @return An instance of RunStepDetails if the JsonReader was pointing to an instance of it, or null if it was
-     * pointing to JSON null.
-     * @throws IOException If an error occurs while reading the RunStepDetails.
-     */
-    @Generated
-    public static RunStepDetails fromJson(JsonReader jsonReader) throws IOException {
-        return jsonReader.readObject(reader -> {
-            String discriminatorValue = null;
-            try (JsonReader readerToUse = reader.bufferObject()) {
-                // Prepare for reading
-                readerToUse.nextToken();
-                while (readerToUse.nextToken() != JsonToken.END_OBJECT) {
-                    String fieldName = readerToUse.getFieldName();
-                    readerToUse.nextToken();
-                    if ("type".equals(fieldName)) {
-                        discriminatorValue = readerToUse.getString();
-                        break;
-                    } else {
-                        readerToUse.skipChildren();
-                    }
-                }
-                // Use the discriminator value to determine which subtype should be deserialized.
-                if ("message_creation".equals(discriminatorValue)) {
-                    return RunStepMessageCreationDetails.fromJson(readerToUse.reset());
-                } else if ("tool_calls".equals(discriminatorValue)) {
-                    return RunStepToolCallDetails.fromJson(readerToUse.reset());
-                } else {
-                    return fromJsonKnownDiscriminator(readerToUse.reset());
-                }
-            }
-        });
     }
 }
