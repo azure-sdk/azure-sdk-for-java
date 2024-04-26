@@ -734,6 +734,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
@@ -761,6 +762,7 @@ public final class DevBoxesClientImpl {
      *         gracePeriodMinutes: Integer (Optional)
      *     }
      *     healthStatus: String(Unknown/Pending/Healthy/Warning/Unhealthy) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -789,6 +791,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
@@ -816,6 +819,7 @@ public final class DevBoxesClientImpl {
      *         gracePeriodMinutes: Integer (Optional)
      *     }
      *     healthStatus: String(Unknown/Pending/Healthy/Warning/Unhealthy) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -842,6 +846,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
@@ -869,6 +874,7 @@ public final class DevBoxesClientImpl {
      *         gracePeriodMinutes: Integer (Optional)
      *     }
      *     healthStatus: String(Unknown/Pending/Healthy/Warning/Unhealthy) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -895,6 +901,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
@@ -922,6 +929,7 @@ public final class DevBoxesClientImpl {
      *         gracePeriodMinutes: Integer (Optional)
      *     }
      *     healthStatus: String(Unknown/Pending/Healthy/Warning/Unhealthy) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -948,6 +956,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
@@ -975,6 +984,7 @@ public final class DevBoxesClientImpl {
      *         gracePeriodMinutes: Integer (Optional)
      *     }
      *     healthStatus: String(Unknown/Pending/Healthy/Warning/Unhealthy) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -1001,6 +1011,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
@@ -1028,6 +1039,7 @@ public final class DevBoxesClientImpl {
      *         gracePeriodMinutes: Integer (Optional)
      *     }
      *     healthStatus: String(Unknown/Pending/Healthy/Warning/Unhealthy) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -1049,12 +1061,15 @@ public final class DevBoxesClientImpl {
     }
 
     /**
-     * Lists available schedules for a pool.
+     * Lists all schedules within a pool that are configured by your project administrator.
      * <p><strong>Response Body Schema</strong></p>
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool) (Required)
      *     type: String(StopDevBox) (Required)
      *     frequency: String(Daily) (Required)
      *     time: String (Required)
@@ -1062,8 +1077,8 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName Name of the project.
-     * @param poolName Pool name.
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param poolName The name of a pool of Dev Boxes.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1084,12 +1099,15 @@ public final class DevBoxesClientImpl {
     }
 
     /**
-     * Lists available schedules for a pool.
+     * Lists all schedules within a pool that are configured by your project administrator.
      * <p><strong>Response Body Schema</strong></p>
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool) (Required)
      *     type: String(StopDevBox) (Required)
      *     frequency: String(Daily) (Required)
      *     time: String (Required)
@@ -1097,8 +1115,8 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName Name of the project.
-     * @param poolName Pool name.
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param poolName The name of a pool of Dev Boxes.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1117,12 +1135,15 @@ public final class DevBoxesClientImpl {
     }
 
     /**
-     * Lists available schedules for a pool.
+     * Lists all schedules within a pool that are configured by your project administrator.
      * <p><strong>Response Body Schema</strong></p>
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool) (Required)
      *     type: String(StopDevBox) (Required)
      *     frequency: String(Daily) (Required)
      *     time: String (Required)
@@ -1130,8 +1151,8 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName Name of the project.
-     * @param poolName Pool name.
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param poolName The name of a pool of Dev Boxes.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1150,12 +1171,15 @@ public final class DevBoxesClientImpl {
     }
 
     /**
-     * Lists available schedules for a pool.
+     * Lists all schedules within a pool that are configured by your project administrator.
      * <p><strong>Response Body Schema</strong></p>
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool) (Required)
      *     type: String(StopDevBox) (Required)
      *     frequency: String(Daily) (Required)
      *     time: String (Required)
@@ -1163,8 +1187,8 @@ public final class DevBoxesClientImpl {
      * }
      * }</pre>
      * 
-     * @param projectName Name of the project.
-     * @param poolName Pool name.
+     * @param projectName The DevCenter Project upon which to execute operations.
+     * @param poolName The name of a pool of Dev Boxes.
      * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
      * @throws HttpResponseException thrown if the request is rejected by server.
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
@@ -1187,7 +1211,10 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool) (Required)
      *     type: String(StopDevBox) (Required)
      *     frequency: String(Daily) (Required)
      *     time: String (Required)
@@ -1220,7 +1247,10 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool) (Required)
      *     type: String(StopDevBox) (Required)
      *     frequency: String(Daily) (Required)
      *     time: String (Required)
@@ -1252,6 +1282,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -1302,7 +1333,8 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged collection of DevBox items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listAllDevBoxesSinglePageAsync(RequestOptions requestOptions) {
@@ -1320,6 +1352,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -1370,7 +1403,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result as paginated response with {@link PagedFlux}.
+     * @return paged collection of DevBox items as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listAllDevBoxesAsync(RequestOptions requestOptions) {
@@ -1387,6 +1420,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -1437,7 +1471,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse}.
+     * @return paged collection of DevBox items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listAllDevBoxesSinglePage(RequestOptions requestOptions) {
@@ -1454,6 +1488,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -1504,7 +1539,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result as paginated response with {@link PagedIterable}.
+     * @return paged collection of DevBox items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listAllDevBoxes(RequestOptions requestOptions) {
@@ -1521,6 +1556,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -1573,7 +1609,8 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged collection of DevBox items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listAllDevBoxesByUserSinglePageAsync(String userId,
@@ -1592,6 +1629,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -1644,7 +1682,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result as paginated response with {@link PagedFlux}.
+     * @return paged collection of DevBox items as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listAllDevBoxesByUserAsync(String userId, RequestOptions requestOptions) {
@@ -1661,6 +1699,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -1713,7 +1752,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse}.
+     * @return paged collection of DevBox items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listAllDevBoxesByUserSinglePage(String userId, RequestOptions requestOptions) {
@@ -1730,6 +1769,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -1782,7 +1822,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result as paginated response with {@link PagedIterable}.
+     * @return paged collection of DevBox items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listAllDevBoxesByUser(String userId, RequestOptions requestOptions) {
@@ -1799,6 +1839,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -1852,7 +1893,8 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged collection of DevBox items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listDevBoxesSinglePageAsync(String projectName, String userId,
@@ -1871,6 +1913,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -1924,7 +1967,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result as paginated response with {@link PagedFlux}.
+     * @return paged collection of DevBox items as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listDevBoxesAsync(String projectName, String userId, RequestOptions requestOptions) {
@@ -1941,6 +1984,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -1994,7 +2038,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse}.
+     * @return paged collection of DevBox items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listDevBoxesSinglePage(String projectName, String userId,
@@ -2012,6 +2056,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2065,7 +2110,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result as paginated response with {@link PagedIterable}.
+     * @return paged collection of DevBox items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listDevBoxes(String projectName, String userId, RequestOptions requestOptions) {
@@ -2082,6 +2127,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2152,6 +2198,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2222,6 +2269,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2271,6 +2319,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2344,6 +2393,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2393,6 +2443,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2465,6 +2516,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2514,6 +2566,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2592,6 +2645,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2641,6 +2695,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2719,6 +2774,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2768,6 +2824,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2846,6 +2903,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2895,6 +2953,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -2974,8 +3033,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3023,8 +3082,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3071,8 +3130,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3125,8 +3184,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3179,8 +3238,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3233,8 +3292,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3287,8 +3346,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3336,8 +3395,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3384,8 +3443,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3438,8 +3497,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3492,8 +3551,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3546,8 +3605,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3607,8 +3666,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3663,8 +3722,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3718,8 +3777,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3779,8 +3838,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3840,8 +3899,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3901,8 +3960,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -3955,8 +4014,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -4004,8 +4063,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -4052,8 +4111,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -4106,8 +4165,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -4160,8 +4219,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -4214,8 +4273,8 @@ public final class DevBoxesClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -4327,9 +4386,12 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -4366,9 +4428,12 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -4403,9 +4468,12 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -4441,9 +4509,12 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -4478,9 +4549,12 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -4515,9 +4589,12 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -4598,9 +4675,12 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -4637,9 +4717,12 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -4674,12 +4757,16 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     result: String(Succeeded/Failed) (Required)
      *     action (Optional): {
+     *         uri: String (Required)
      *         name: String (Required)
      *         actionType: String(Stop) (Required)
      *         sourceId: String (Required)
+     *         sourceUri: String (Required)
+     *         sourceType: String(Pool/Schedule) (Required)
      *         suspendedUntil: OffsetDateTime (Optional)
      *         next (Optional): {
      *             scheduledTime: OffsetDateTime (Required)
@@ -4710,7 +4797,8 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the actions list result along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged collection of DevBoxActionDelayResult items along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> delayAllActionsSinglePageAsync(String projectName, String userId,
@@ -4729,12 +4817,16 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     result: String(Succeeded/Failed) (Required)
      *     action (Optional): {
+     *         uri: String (Required)
      *         name: String (Required)
      *         actionType: String(Stop) (Required)
      *         sourceId: String (Required)
+     *         sourceUri: String (Required)
+     *         sourceType: String(Pool/Schedule) (Required)
      *         suspendedUntil: OffsetDateTime (Optional)
      *         next (Optional): {
      *             scheduledTime: OffsetDateTime (Required)
@@ -4765,7 +4857,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the actions list result as paginated response with {@link PagedFlux}.
+     * @return paged collection of DevBoxActionDelayResult items as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> delayAllActionsAsync(String projectName, String userId, String devBoxName,
@@ -4784,12 +4876,16 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     result: String(Succeeded/Failed) (Required)
      *     action (Optional): {
+     *         uri: String (Required)
      *         name: String (Required)
      *         actionType: String(Stop) (Required)
      *         sourceId: String (Required)
+     *         sourceUri: String (Required)
+     *         sourceType: String(Pool/Schedule) (Required)
      *         suspendedUntil: OffsetDateTime (Optional)
      *         next (Optional): {
      *             scheduledTime: OffsetDateTime (Required)
@@ -4820,7 +4916,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the actions list result along with {@link PagedResponse}.
+     * @return paged collection of DevBoxActionDelayResult items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> delayAllActionsSinglePage(String projectName, String userId, String devBoxName,
@@ -4839,12 +4935,16 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     result: String(Succeeded/Failed) (Required)
      *     action (Optional): {
+     *         uri: String (Required)
      *         name: String (Required)
      *         actionType: String(Stop) (Required)
      *         sourceId: String (Required)
+     *         sourceUri: String (Required)
+     *         sourceType: String(Pool/Schedule) (Required)
      *         suspendedUntil: OffsetDateTime (Optional)
      *         next (Optional): {
      *             scheduledTime: OffsetDateTime (Required)
@@ -4875,7 +4975,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the actions list result as paginated response with {@link PagedIterable}.
+     * @return paged collection of DevBoxActionDelayResult items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> delayAllActions(String projectName, String userId, String devBoxName,
@@ -4894,6 +4994,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
@@ -4921,6 +5022,7 @@ public final class DevBoxesClientImpl {
      *         gracePeriodMinutes: Integer (Optional)
      *     }
      *     healthStatus: String(Unknown/Pending/Healthy/Warning/Unhealthy) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -4951,6 +5053,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     location: String (Required)
      *     osType: String(Windows) (Optional)
@@ -4978,6 +5081,7 @@ public final class DevBoxesClientImpl {
      *         gracePeriodMinutes: Integer (Optional)
      *     }
      *     healthStatus: String(Unknown/Pending/Healthy/Warning/Unhealthy) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -5006,7 +5110,10 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool) (Required)
      *     type: String(StopDevBox) (Required)
      *     frequency: String(Daily) (Required)
      *     time: String (Required)
@@ -5042,7 +5149,10 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool) (Required)
      *     type: String(StopDevBox) (Required)
      *     frequency: String(Daily) (Required)
      *     time: String (Required)
@@ -5075,6 +5185,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -5128,7 +5239,8 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged collection of DevBox items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listAllDevBoxesNextSinglePageAsync(String nextLink,
@@ -5147,6 +5259,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -5200,7 +5313,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse}.
+     * @return paged collection of DevBox items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listAllDevBoxesNextSinglePage(String nextLink, RequestOptions requestOptions) {
@@ -5217,6 +5330,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -5270,7 +5384,8 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged collection of DevBox items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listAllDevBoxesByUserNextSinglePageAsync(String nextLink,
@@ -5288,6 +5403,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -5341,7 +5457,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse}.
+     * @return paged collection of DevBox items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listAllDevBoxesByUserNextSinglePage(String nextLink,
@@ -5359,6 +5475,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -5412,7 +5529,8 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged collection of DevBox items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listDevBoxesNextSinglePageAsync(String nextLink,
@@ -5431,6 +5549,7 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     projectName: String (Optional)
      *     poolName: String (Required)
@@ -5484,7 +5603,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the Dev Box list result along with {@link PagedResponse}.
+     * @return paged collection of DevBox items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listDevBoxesNextSinglePage(String nextLink, RequestOptions requestOptions) {
@@ -5501,9 +5620,12 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -5539,9 +5661,12 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     actionType: String(Stop) (Required)
      *     sourceId: String (Required)
+     *     sourceUri: String (Required)
+     *     sourceType: String(Pool/Schedule) (Required)
      *     suspendedUntil: OffsetDateTime (Optional)
      *     next (Optional): {
      *         scheduledTime: OffsetDateTime (Required)
@@ -5574,12 +5699,16 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     result: String(Succeeded/Failed) (Required)
      *     action (Optional): {
+     *         uri: String (Required)
      *         name: String (Required)
      *         actionType: String(Stop) (Required)
      *         sourceId: String (Required)
+     *         sourceUri: String (Required)
+     *         sourceType: String(Pool/Schedule) (Required)
      *         suspendedUntil: OffsetDateTime (Optional)
      *         next (Optional): {
      *             scheduledTime: OffsetDateTime (Required)
@@ -5608,7 +5737,8 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the actions list result along with {@link PagedResponse} on successful completion of {@link Mono}.
+     * @return paged collection of DevBoxActionDelayResult items along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> delayAllActionsNextSinglePageAsync(String nextLink,
@@ -5627,12 +5757,16 @@ public final class DevBoxesClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     result: String(Succeeded/Failed) (Required)
      *     action (Optional): {
+     *         uri: String (Required)
      *         name: String (Required)
      *         actionType: String(Stop) (Required)
      *         sourceId: String (Required)
+     *         sourceUri: String (Required)
+     *         sourceType: String(Pool/Schedule) (Required)
      *         suspendedUntil: OffsetDateTime (Optional)
      *         next (Optional): {
      *             scheduledTime: OffsetDateTime (Required)
@@ -5661,7 +5795,7 @@ public final class DevBoxesClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return the actions list result along with {@link PagedResponse}.
+     * @return paged collection of DevBoxActionDelayResult items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> delayAllActionsNextSinglePage(String nextLink, RequestOptions requestOptions) {

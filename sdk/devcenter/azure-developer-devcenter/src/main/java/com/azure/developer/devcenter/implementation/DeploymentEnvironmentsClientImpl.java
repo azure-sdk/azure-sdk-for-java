@@ -529,9 +529,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -560,7 +562,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation along with {@link PagedResponse} on successful completion of
+     * @return paged collection of Environment items along with {@link PagedResponse} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -580,9 +582,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -611,7 +615,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation as paginated response with {@link PagedFlux}.
+     * @return paged collection of Environment items as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listAllEnvironmentsAsync(String projectName, RequestOptions requestOptions) {
@@ -628,9 +632,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -659,7 +665,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation along with {@link PagedResponse}.
+     * @return paged collection of Environment items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listAllEnvironmentsSinglePage(String projectName, RequestOptions requestOptions) {
@@ -676,9 +682,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -707,7 +715,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation as paginated response with {@link PagedIterable}.
+     * @return paged collection of Environment items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listAllEnvironments(String projectName, RequestOptions requestOptions) {
@@ -724,9 +732,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -757,7 +767,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation along with {@link PagedResponse} on successful completion of
+     * @return paged collection of Environment items along with {@link PagedResponse} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -777,9 +787,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -810,7 +822,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation as paginated response with {@link PagedFlux}.
+     * @return paged collection of Environment items as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listEnvironmentsAsync(String projectName, String userId,
@@ -828,9 +840,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -861,7 +875,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation along with {@link PagedResponse}.
+     * @return paged collection of Environment items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listEnvironmentsSinglePage(String projectName, String userId,
@@ -879,9 +893,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -912,7 +928,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation as paginated response with {@link PagedIterable}.
+     * @return paged collection of Environment items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listEnvironments(String projectName, String userId,
@@ -930,9 +946,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -981,9 +999,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1031,9 +1051,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1060,9 +1082,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1112,9 +1136,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1141,9 +1167,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1192,9 +1220,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1221,9 +1251,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1279,9 +1311,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1308,9 +1342,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1366,9 +1402,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1395,9 +1433,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1454,9 +1494,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1483,9 +1525,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -1543,8 +1587,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -1593,8 +1637,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -1641,8 +1685,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -1695,8 +1739,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -1749,8 +1793,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -1803,8 +1847,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * <pre>{@code
      * {
      *     id: String (Required)
-     *     name: String (Optional)
-     *     status: String(Running/Completed/Canceled/Failed) (Required)
+     *     name: String (Required)
+     *     status: String(NotStarted/Running/Succeeded/Failed/Canceled) (Required)
      *     resourceId: String (Optional)
      *     startTime: OffsetDateTime (Optional)
      *     endTime: OffsetDateTime (Optional)
@@ -1856,6 +1900,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      * }
      * }</pre>
@@ -1886,6 +1931,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      * }
      * }</pre>
@@ -1913,6 +1959,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      * }
      * }</pre>
@@ -1940,6 +1987,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      * }
      * }</pre>
@@ -1967,6 +2015,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      * }
      * }</pre>
@@ -1995,6 +2044,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      * }
      * }</pre>
@@ -2022,6 +2072,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2051,8 +2102,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return paged collection of EnvironmentDefinition items along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listEnvironmentDefinitionsSinglePageAsync(String projectName,
@@ -2071,6 +2122,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2100,7 +2152,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation as paginated response with {@link PagedFlux}.
+     * @return paged collection of EnvironmentDefinition items as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listEnvironmentDefinitionsAsync(String projectName, RequestOptions requestOptions) {
@@ -2117,6 +2169,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2146,7 +2199,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation along with {@link PagedResponse}.
+     * @return paged collection of EnvironmentDefinition items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listEnvironmentDefinitionsSinglePage(String projectName,
@@ -2164,6 +2217,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2193,7 +2247,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation as paginated response with {@link PagedIterable}.
+     * @return paged collection of EnvironmentDefinition items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listEnvironmentDefinitions(String projectName, RequestOptions requestOptions) {
@@ -2210,6 +2264,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2240,8 +2295,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return paged collection of EnvironmentDefinition items along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listEnvironmentDefinitionsByCatalogSinglePageAsync(String projectName,
@@ -2260,6 +2315,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2290,7 +2346,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation as paginated response with {@link PagedFlux}.
+     * @return paged collection of EnvironmentDefinition items as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listEnvironmentDefinitionsByCatalogAsync(String projectName, String catalogName,
@@ -2309,6 +2365,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2339,7 +2396,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation along with {@link PagedResponse}.
+     * @return paged collection of EnvironmentDefinition items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listEnvironmentDefinitionsByCatalogSinglePage(String projectName,
@@ -2357,6 +2414,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2387,7 +2445,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation as paginated response with {@link PagedIterable}.
+     * @return paged collection of EnvironmentDefinition items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listEnvironmentDefinitionsByCatalog(String projectName, String catalogName,
@@ -2406,6 +2464,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2455,6 +2514,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2502,9 +2562,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     deploymentTargetId: String (Required)
      *     status: String(Enabled/Disabled) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -2514,8 +2576,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return result of the environment type list operation along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return paged collection of EnvironmentType items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listEnvironmentTypesSinglePageAsync(String projectName,
@@ -2534,9 +2596,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     deploymentTargetId: String (Required)
      *     status: String(Enabled/Disabled) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -2546,7 +2610,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return result of the environment type list operation as paginated response with {@link PagedFlux}.
+     * @return paged collection of EnvironmentType items as paginated response with {@link PagedFlux}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedFlux<BinaryData> listEnvironmentTypesAsync(String projectName, RequestOptions requestOptions) {
@@ -2563,9 +2627,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     deploymentTargetId: String (Required)
      *     status: String(Enabled/Disabled) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -2575,7 +2641,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return result of the environment type list operation along with {@link PagedResponse}.
+     * @return paged collection of EnvironmentType items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listEnvironmentTypesSinglePage(String projectName,
@@ -2593,9 +2659,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     deploymentTargetId: String (Required)
      *     status: String(Enabled/Disabled) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -2605,7 +2673,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return result of the environment type list operation as paginated response with {@link PagedIterable}.
+     * @return paged collection of EnvironmentType items as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
     public PagedIterable<BinaryData> listEnvironmentTypes(String projectName, RequestOptions requestOptions) {
@@ -2622,9 +2690,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -2655,7 +2725,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation along with {@link PagedResponse} on successful completion of
+     * @return paged collection of Environment items along with {@link PagedResponse} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -2674,9 +2744,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -2707,7 +2779,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation along with {@link PagedResponse}.
+     * @return paged collection of Environment items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listAllEnvironmentsNextSinglePage(String nextLink,
@@ -2725,9 +2797,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -2758,7 +2832,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation along with {@link PagedResponse} on successful completion of
+     * @return paged collection of Environment items along with {@link PagedResponse} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -2778,9 +2852,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     expirationDate: OffsetDateTime (Optional)
      *     parameters (Optional): {
      *         String: Object (Required)
      *     }
+     *     uri: String (Required)
      *     name: String (Required)
      *     environmentType: String (Required)
      *     user: String (Optional)
@@ -2811,7 +2887,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment list operation along with {@link PagedResponse}.
+     * @return paged collection of Environment items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listEnvironmentsNextSinglePage(String nextLink, RequestOptions requestOptions) {
@@ -2828,6 +2904,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      * }
      * }</pre>
@@ -2860,6 +2937,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      * }
      * }</pre>
@@ -2889,6 +2967,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2920,8 +2999,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return paged collection of EnvironmentDefinition items along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listEnvironmentDefinitionsNextSinglePageAsync(String nextLink,
@@ -2940,6 +3019,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -2971,7 +3051,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation along with {@link PagedResponse}.
+     * @return paged collection of EnvironmentDefinition items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listEnvironmentDefinitionsNextSinglePage(String nextLink,
@@ -2989,6 +3069,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -3020,8 +3101,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
+     * @return paged collection of EnvironmentDefinition items along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listEnvironmentDefinitionsByCatalogNextSinglePageAsync(String nextLink,
@@ -3040,6 +3121,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     id: String (Required)
      *     name: String (Required)
      *     catalogName: String (Required)
@@ -3071,7 +3153,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return results of the environment definition list operation along with {@link PagedResponse}.
+     * @return paged collection of EnvironmentDefinition items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listEnvironmentDefinitionsByCatalogNextSinglePage(String nextLink,
@@ -3089,9 +3171,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     deploymentTargetId: String (Required)
      *     status: String(Enabled/Disabled) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -3103,8 +3187,8 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return result of the environment type list operation along with {@link PagedResponse} on successful completion
-     * of {@link Mono}.
+     * @return paged collection of EnvironmentType items along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<BinaryData>> listEnvironmentTypesNextSinglePageAsync(String nextLink,
@@ -3122,9 +3206,11 @@ public final class DeploymentEnvironmentsClientImpl {
      * 
      * <pre>{@code
      * {
+     *     uri: String (Required)
      *     name: String (Required)
      *     deploymentTargetId: String (Required)
      *     status: String(Enabled/Disabled) (Required)
+     *     displayName: String (Optional)
      * }
      * }</pre>
      * 
@@ -3136,7 +3222,7 @@ public final class DeploymentEnvironmentsClientImpl {
      * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
      * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
      * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
-     * @return result of the environment type list operation along with {@link PagedResponse}.
+     * @return paged collection of EnvironmentType items along with {@link PagedResponse}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private PagedResponse<BinaryData> listEnvironmentTypesNextSinglePage(String nextLink,

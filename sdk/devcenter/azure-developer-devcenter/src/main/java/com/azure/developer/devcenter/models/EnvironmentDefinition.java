@@ -61,18 +61,6 @@ public final class EnvironmentDefinition implements JsonSerializable<Environment
     private String templatePath;
 
     /**
-     * Creates an instance of EnvironmentDefinition class.
-     *
-     * @param id the id value to set.
-     * @param catalogName the catalogName value to set.
-     */
-    @Generated
-    private EnvironmentDefinition(String id, String catalogName) {
-        this.id = id;
-        this.catalogName = catalogName;
-    }
-
-    /**
      * Get the id property: The ID of the environment definition.
      *
      * @return the id value.
@@ -149,6 +137,7 @@ public final class EnvironmentDefinition implements JsonSerializable<Environment
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("uri", this.uri);
         jsonWriter.writeStringField("id", this.id);
         jsonWriter.writeStringField("catalogName", this.catalogName);
         jsonWriter.writeStringField("description", this.description);
@@ -170,6 +159,7 @@ public final class EnvironmentDefinition implements JsonSerializable<Environment
     @Generated
     public static EnvironmentDefinition fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
+            String uri = null;
             String id = null;
             String name = null;
             String catalogName = null;
@@ -180,7 +170,9 @@ public final class EnvironmentDefinition implements JsonSerializable<Environment
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
-                if ("id".equals(fieldName)) {
+                if ("uri".equals(fieldName)) {
+                    uri = reader.getString();
+                } else if ("id".equals(fieldName)) {
                     id = reader.getString();
                 } else if ("name".equals(fieldName)) {
                     name = reader.getString();
@@ -198,7 +190,7 @@ public final class EnvironmentDefinition implements JsonSerializable<Environment
                     reader.skipChildren();
                 }
             }
-            EnvironmentDefinition deserializedEnvironmentDefinition = new EnvironmentDefinition(id, catalogName);
+            EnvironmentDefinition deserializedEnvironmentDefinition = new EnvironmentDefinition(uri, id, catalogName);
             deserializedEnvironmentDefinition.name = name;
             deserializedEnvironmentDefinition.description = description;
             deserializedEnvironmentDefinition.parameters = parameters;
@@ -206,5 +198,35 @@ public final class EnvironmentDefinition implements JsonSerializable<Environment
             deserializedEnvironmentDefinition.templatePath = templatePath;
             return deserializedEnvironmentDefinition;
         });
+    }
+
+    /*
+     * The unique URI of the environment definition.
+     */
+    @Generated
+    private final String uri;
+
+    /**
+     * Creates an instance of EnvironmentDefinition class.
+     *
+     * @param uri the uri value to set.
+     * @param id the id value to set.
+     * @param catalogName the catalogName value to set.
+     */
+    @Generated
+    private EnvironmentDefinition(String uri, String id, String catalogName) {
+        this.uri = uri;
+        this.id = id;
+        this.catalogName = catalogName;
+    }
+
+    /**
+     * Get the uri property: The unique URI of the environment definition.
+     *
+     * @return the uri value.
+     */
+    @Generated
+    public String getUri() {
+        return this.uri;
     }
 }
