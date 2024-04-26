@@ -24,13 +24,6 @@ public final class DevCenterCatalog implements JsonSerializable<DevCenterCatalog
     private String name;
 
     /**
-     * Creates an instance of DevCenterCatalog class.
-     */
-    @Generated
-    private DevCenterCatalog() {
-    }
-
-    /**
      * Get the name property: Name of the catalog.
      *
      * @return the name value.
@@ -47,6 +40,7 @@ public final class DevCenterCatalog implements JsonSerializable<DevCenterCatalog
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("uri", this.uri);
         return jsonWriter.writeEndObject();
     }
 
@@ -62,19 +56,48 @@ public final class DevCenterCatalog implements JsonSerializable<DevCenterCatalog
     @Generated
     public static DevCenterCatalog fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
+            String uri = null;
             String name = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
-                if ("name".equals(fieldName)) {
+                if ("uri".equals(fieldName)) {
+                    uri = reader.getString();
+                } else if ("name".equals(fieldName)) {
                     name = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
-            DevCenterCatalog deserializedDevCenterCatalog = new DevCenterCatalog();
+            DevCenterCatalog deserializedDevCenterCatalog = new DevCenterCatalog(uri);
             deserializedDevCenterCatalog.name = name;
             return deserializedDevCenterCatalog;
         });
+    }
+
+    /*
+     * The unique URI of the catalog.
+     */
+    @Generated
+    private final String uri;
+
+    /**
+     * Creates an instance of DevCenterCatalog class.
+     *
+     * @param uri the uri value to set.
+     */
+    @Generated
+    private DevCenterCatalog(String uri) {
+        this.uri = uri;
+    }
+
+    /**
+     * Get the uri property: The unique URI of the catalog.
+     *
+     * @return the uri value.
+     */
+    @Generated
+    public String getUri() {
+        return this.uri;
     }
 }

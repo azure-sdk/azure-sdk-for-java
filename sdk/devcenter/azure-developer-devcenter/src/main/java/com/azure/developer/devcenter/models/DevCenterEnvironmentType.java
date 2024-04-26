@@ -18,7 +18,7 @@ import java.io.IOException;
 public final class DevCenterEnvironmentType implements JsonSerializable<DevCenterEnvironmentType> {
 
     /*
-     * Name of the environment type
+     * Name of the environment type.
      */
     @Generated
     private final String name;
@@ -36,20 +36,6 @@ public final class DevCenterEnvironmentType implements JsonSerializable<DevCente
      */
     @Generated
     private final EnvironmentTypeStatus status;
-
-    /**
-     * Creates an instance of DevCenterEnvironmentType class.
-     *
-     * @param name the name value to set.
-     * @param deploymentTargetId the deploymentTargetId value to set.
-     * @param status the status value to set.
-     */
-    @Generated
-    private DevCenterEnvironmentType(String name, String deploymentTargetId, EnvironmentTypeStatus status) {
-        this.name = name;
-        this.deploymentTargetId = deploymentTargetId;
-        this.status = status;
-    }
 
     /**
      * Get the name property: Name of the environment type.
@@ -90,9 +76,11 @@ public final class DevCenterEnvironmentType implements JsonSerializable<DevCente
     @Override
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
+        jsonWriter.writeStringField("uri", this.uri);
         jsonWriter.writeStringField("name", this.name);
         jsonWriter.writeStringField("deploymentTargetId", this.deploymentTargetId);
         jsonWriter.writeStringField("status", this.status == null ? null : this.status.toString());
+        jsonWriter.writeStringField("displayName", this.displayName);
         return jsonWriter.writeEndObject();
     }
 
@@ -108,23 +96,80 @@ public final class DevCenterEnvironmentType implements JsonSerializable<DevCente
     @Generated
     public static DevCenterEnvironmentType fromJson(JsonReader jsonReader) throws IOException {
         return jsonReader.readObject(reader -> {
+            String uri = null;
             String name = null;
             String deploymentTargetId = null;
             EnvironmentTypeStatus status = null;
+            String displayName = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
-                if ("name".equals(fieldName)) {
+                if ("uri".equals(fieldName)) {
+                    uri = reader.getString();
+                } else if ("name".equals(fieldName)) {
                     name = reader.getString();
                 } else if ("deploymentTargetId".equals(fieldName)) {
                     deploymentTargetId = reader.getString();
                 } else if ("status".equals(fieldName)) {
                     status = EnvironmentTypeStatus.fromString(reader.getString());
+                } else if ("displayName".equals(fieldName)) {
+                    displayName = reader.getString();
                 } else {
                     reader.skipChildren();
                 }
             }
-            return new DevCenterEnvironmentType(name, deploymentTargetId, status);
+            DevCenterEnvironmentType deserializedDevCenterEnvironmentType
+                = new DevCenterEnvironmentType(uri, name, deploymentTargetId, status);
+            deserializedDevCenterEnvironmentType.displayName = displayName;
+            return deserializedDevCenterEnvironmentType;
         });
+    }
+
+    /*
+     * The unique URI of the environment type.
+     */
+    @Generated
+    private final String uri;
+
+    /*
+     * Display name of the environment type.
+     */
+    @Generated
+    private String displayName;
+
+    /**
+     * Creates an instance of DevCenterEnvironmentType class.
+     *
+     * @param uri the uri value to set.
+     * @param name the name value to set.
+     * @param deploymentTargetId the deploymentTargetId value to set.
+     * @param status the status value to set.
+     */
+    @Generated
+    private DevCenterEnvironmentType(String uri, String name, String deploymentTargetId, EnvironmentTypeStatus status) {
+        this.uri = uri;
+        this.name = name;
+        this.deploymentTargetId = deploymentTargetId;
+        this.status = status;
+    }
+
+    /**
+     * Get the uri property: The unique URI of the environment type.
+     *
+     * @return the uri value.
+     */
+    @Generated
+    public String getUri() {
+        return this.uri;
+    }
+
+    /**
+     * Get the displayName property: Display name of the environment type.
+     *
+     * @return the displayName value.
+     */
+    @Generated
+    public String getDisplayName() {
+        return this.displayName;
     }
 }
