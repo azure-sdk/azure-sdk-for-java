@@ -18,7 +18,7 @@ public final class ExperimentUpdate {
      * The identity of the experiment resource.
      */
     @JsonProperty(value = "identity")
-    private ResourceIdentity identity;
+    private ExperimentIdentity identity;
 
     /*
      * The tags of the experiment resource.
@@ -38,7 +38,7 @@ public final class ExperimentUpdate {
      * 
      * @return the identity value.
      */
-    public ResourceIdentity identity() {
+    public ExperimentIdentity identity() {
         return this.identity;
     }
 
@@ -48,7 +48,7 @@ public final class ExperimentUpdate {
      * @param identity the identity value to set.
      * @return the ExperimentUpdate object itself.
      */
-    public ExperimentUpdate withIdentity(ResourceIdentity identity) {
+    public ExperimentUpdate withIdentity(ExperimentIdentity identity) {
         this.identity = identity;
         return this;
     }

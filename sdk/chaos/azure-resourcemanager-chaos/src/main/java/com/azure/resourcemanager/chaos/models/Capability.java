@@ -33,7 +33,7 @@ public interface Capability {
     String type();
 
     /**
-     * Gets the systemData property: The standard system metadata of a resource type.
+     * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */

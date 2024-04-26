@@ -7,6 +7,7 @@ package com.azure.resourcemanager.chaos.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.Duration;
@@ -15,10 +16,17 @@ import java.util.List;
 /**
  * Model that represents a continuous action.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = ContinuousAction.class, visible = true)
 @JsonTypeName("continuous")
 @Fluent
 public final class ContinuousAction extends ChaosExperimentAction {
+    /*
+     * Enum that discriminates between action models.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "continuous";
+
     /*
      * ISO8601 formatted string that represents a duration.
      */
@@ -41,6 +49,16 @@ public final class ContinuousAction extends ChaosExperimentAction {
      * Creates an instance of ContinuousAction class.
      */
     public ContinuousAction() {
+    }
+
+    /**
+     * Get the type property: Enum that discriminates between action models.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -121,18 +139,18 @@ public final class ContinuousAction extends ChaosExperimentAction {
     public void validate() {
         super.validate();
         if (duration() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property duration in model ContinuousAction"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property duration in model ContinuousAction"));
         }
         if (parameters() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property parameters in model ContinuousAction"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property parameters in model ContinuousAction"));
         } else {
             parameters().forEach(e -> e.validate());
         }
         if (selectorId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property selectorId in model ContinuousAction"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property selectorId in model ContinuousAction"));
         }
     }
 
