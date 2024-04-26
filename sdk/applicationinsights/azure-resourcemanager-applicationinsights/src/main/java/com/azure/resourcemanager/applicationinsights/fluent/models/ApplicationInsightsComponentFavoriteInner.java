@@ -9,7 +9,9 @@ import com.azure.resourcemanager.applicationinsights.models.FavoriteType;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties that define a favorite that is associated to an Application Insights component. */
+/**
+ * Properties that define a favorite that is associated to an Application Insights component.
+ */
 @Fluent
 public final class ApplicationInsightsComponentFavoriteInner {
     /*
@@ -19,15 +21,13 @@ public final class ApplicationInsightsComponentFavoriteInner {
     private String name;
 
     /*
-     * Configuration of this particular favorite, which are driven by the Azure portal UX. Configuration data is a
-     * string containing valid JSON
+     * Configuration of this particular favorite, which are driven by the Azure portal UX. Configuration data is a string containing valid JSON
      */
     @JsonProperty(value = "Config")
     private String config;
 
     /*
-     * This instance's version of the data model. This can change as new features are added that can be marked
-     * favorite. Current examples include MetricsExplorer (ME) and Search.
+     * This instance's version of the data model. This can change as new features are added that can be marked favorite. Current examples include MetricsExplorer (ME) and Search.
      */
     @JsonProperty(value = "Version")
     private String version;
@@ -39,8 +39,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
     private String favoriteId;
 
     /*
-     * Enum indicating if this favorite definition is owned by a specific user or is shared between all users with
-     * access to the Application Insights component.
+     * Enum indicating if this favorite definition is owned by a specific user or is shared between all users with access to the Application Insights component.
      */
     @JsonProperty(value = "FavoriteType")
     private FavoriteType favoriteType;
@@ -81,13 +80,15 @@ public final class ApplicationInsightsComponentFavoriteInner {
     @JsonProperty(value = "UserId", access = JsonProperty.Access.WRITE_ONLY)
     private String userId;
 
-    /** Creates an instance of ApplicationInsightsComponentFavoriteInner class. */
+    /**
+     * Creates an instance of ApplicationInsightsComponentFavoriteInner class.
+     */
     public ApplicationInsightsComponentFavoriteInner() {
     }
 
     /**
      * Get the name property: The user-defined name of the favorite.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -96,7 +97,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
 
     /**
      * Set the name property: The user-defined name of the favorite.
-     *
+     * 
      * @param name the name value to set.
      * @return the ApplicationInsightsComponentFavoriteInner object itself.
      */
@@ -108,7 +109,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
     /**
      * Get the config property: Configuration of this particular favorite, which are driven by the Azure portal UX.
      * Configuration data is a string containing valid JSON.
-     *
+     * 
      * @return the config value.
      */
     public String config() {
@@ -118,7 +119,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
     /**
      * Set the config property: Configuration of this particular favorite, which are driven by the Azure portal UX.
      * Configuration data is a string containing valid JSON.
-     *
+     * 
      * @param config the config value to set.
      * @return the ApplicationInsightsComponentFavoriteInner object itself.
      */
@@ -130,7 +131,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
     /**
      * Get the version property: This instance's version of the data model. This can change as new features are added
      * that can be marked favorite. Current examples include MetricsExplorer (ME) and Search.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -140,7 +141,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
     /**
      * Set the version property: This instance's version of the data model. This can change as new features are added
      * that can be marked favorite. Current examples include MetricsExplorer (ME) and Search.
-     *
+     * 
      * @param version the version value to set.
      * @return the ApplicationInsightsComponentFavoriteInner object itself.
      */
@@ -151,7 +152,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
 
     /**
      * Get the favoriteId property: Internally assigned unique id of the favorite definition.
-     *
+     * 
      * @return the favoriteId value.
      */
     public String favoriteId() {
@@ -161,7 +162,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
     /**
      * Get the favoriteType property: Enum indicating if this favorite definition is owned by a specific user or is
      * shared between all users with access to the Application Insights component.
-     *
+     * 
      * @return the favoriteType value.
      */
     public FavoriteType favoriteType() {
@@ -171,7 +172,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
     /**
      * Set the favoriteType property: Enum indicating if this favorite definition is owned by a specific user or is
      * shared between all users with access to the Application Insights component.
-     *
+     * 
      * @param favoriteType the favoriteType value to set.
      * @return the ApplicationInsightsComponentFavoriteInner object itself.
      */
@@ -182,7 +183,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
 
     /**
      * Get the sourceType property: The source of the favorite definition.
-     *
+     * 
      * @return the sourceType value.
      */
     public String sourceType() {
@@ -191,7 +192,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
 
     /**
      * Set the sourceType property: The source of the favorite definition.
-     *
+     * 
      * @param sourceType the sourceType value to set.
      * @return the ApplicationInsightsComponentFavoriteInner object itself.
      */
@@ -203,7 +204,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
     /**
      * Get the timeModified property: Date and time in UTC of the last modification that was made to this favorite
      * definition.
-     *
+     * 
      * @return the timeModified value.
      */
     public String timeModified() {
@@ -212,7 +213,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
 
     /**
      * Get the tags property: A list of 0 or more tags that are associated with this favorite definition.
-     *
+     * 
      * @return the tags value.
      */
     public List<String> tags() {
@@ -221,7 +222,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
 
     /**
      * Set the tags property: A list of 0 or more tags that are associated with this favorite definition.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ApplicationInsightsComponentFavoriteInner object itself.
      */
@@ -232,7 +233,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
 
     /**
      * Get the category property: Favorite category, as defined by the user at creation time.
-     *
+     * 
      * @return the category value.
      */
     public String category() {
@@ -241,7 +242,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
 
     /**
      * Set the category property: Favorite category, as defined by the user at creation time.
-     *
+     * 
      * @param category the category value to set.
      * @return the ApplicationInsightsComponentFavoriteInner object itself.
      */
@@ -253,7 +254,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
     /**
      * Get the isGeneratedFromTemplate property: Flag denoting wether or not this favorite was generated from a
      * template.
-     *
+     * 
      * @return the isGeneratedFromTemplate value.
      */
     public Boolean isGeneratedFromTemplate() {
@@ -263,7 +264,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
     /**
      * Set the isGeneratedFromTemplate property: Flag denoting wether or not this favorite was generated from a
      * template.
-     *
+     * 
      * @param isGeneratedFromTemplate the isGeneratedFromTemplate value to set.
      * @return the ApplicationInsightsComponentFavoriteInner object itself.
      */
@@ -274,7 +275,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
 
     /**
      * Get the userId property: Unique user id of the specific user that owns this favorite.
-     *
+     * 
      * @return the userId value.
      */
     public String userId() {
@@ -283,7 +284,7 @@ public final class ApplicationInsightsComponentFavoriteInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
