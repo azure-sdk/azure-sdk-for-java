@@ -24,12 +24,6 @@ public final class LogAnalyticsConfiguration {
     @JsonProperty(value = "sharedKey")
     private String sharedKey;
 
-    /*
-     * Boolean indicating whether to parse json string log into dynamic json columns
-     */
-    @JsonProperty(value = "dynamicJsonColumns")
-    private Boolean dynamicJsonColumns;
-
     /**
      * Creates an instance of LogAnalyticsConfiguration class.
      */
@@ -73,28 +67,6 @@ public final class LogAnalyticsConfiguration {
      */
     public LogAnalyticsConfiguration withSharedKey(String sharedKey) {
         this.sharedKey = sharedKey;
-        return this;
-    }
-
-    /**
-     * Get the dynamicJsonColumns property: Boolean indicating whether to parse json string log into dynamic json
-     * columns.
-     * 
-     * @return the dynamicJsonColumns value.
-     */
-    public Boolean dynamicJsonColumns() {
-        return this.dynamicJsonColumns;
-    }
-
-    /**
-     * Set the dynamicJsonColumns property: Boolean indicating whether to parse json string log into dynamic json
-     * columns.
-     * 
-     * @param dynamicJsonColumns the dynamicJsonColumns value to set.
-     * @return the LogAnalyticsConfiguration object itself.
-     */
-    public LogAnalyticsConfiguration withDynamicJsonColumns(Boolean dynamicJsonColumns) {
-        this.dynamicJsonColumns = dynamicJsonColumns;
         return this;
     }
 

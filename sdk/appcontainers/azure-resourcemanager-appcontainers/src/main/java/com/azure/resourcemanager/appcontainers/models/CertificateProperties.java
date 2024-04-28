@@ -22,12 +22,6 @@ public final class CertificateProperties {
     private CertificateProvisioningState provisioningState;
 
     /*
-     * Properties for a certificate stored in a Key Vault.
-     */
-    @JsonProperty(value = "certificateKeyVaultProperties")
-    private CertificateKeyVaultProperties certificateKeyVaultProperties;
-
-    /*
      * Certificate password.
      */
     @JsonProperty(value = "password")
@@ -87,12 +81,6 @@ public final class CertificateProperties {
     @JsonProperty(value = "publicKeyHash", access = JsonProperty.Access.WRITE_ONLY)
     private String publicKeyHash;
 
-    /*
-     * The type of the certificate. Allowed values are `ServerSSLCertificate` and `ImagePullTrustedCA`
-     */
-    @JsonProperty(value = "certificateType")
-    private CertificateType certificateType;
-
     /**
      * Creates an instance of CertificateProperties class.
      */
@@ -106,27 +94,6 @@ public final class CertificateProperties {
      */
     public CertificateProvisioningState provisioningState() {
         return this.provisioningState;
-    }
-
-    /**
-     * Get the certificateKeyVaultProperties property: Properties for a certificate stored in a Key Vault.
-     * 
-     * @return the certificateKeyVaultProperties value.
-     */
-    public CertificateKeyVaultProperties certificateKeyVaultProperties() {
-        return this.certificateKeyVaultProperties;
-    }
-
-    /**
-     * Set the certificateKeyVaultProperties property: Properties for a certificate stored in a Key Vault.
-     * 
-     * @param certificateKeyVaultProperties the certificateKeyVaultProperties value to set.
-     * @return the CertificateProperties object itself.
-     */
-    public CertificateProperties
-        withCertificateKeyVaultProperties(CertificateKeyVaultProperties certificateKeyVaultProperties) {
-        this.certificateKeyVaultProperties = certificateKeyVaultProperties;
-        return this;
     }
 
     /**
@@ -242,35 +209,10 @@ public final class CertificateProperties {
     }
 
     /**
-     * Get the certificateType property: The type of the certificate. Allowed values are `ServerSSLCertificate` and
-     * `ImagePullTrustedCA`.
-     * 
-     * @return the certificateType value.
-     */
-    public CertificateType certificateType() {
-        return this.certificateType;
-    }
-
-    /**
-     * Set the certificateType property: The type of the certificate. Allowed values are `ServerSSLCertificate` and
-     * `ImagePullTrustedCA`.
-     * 
-     * @param certificateType the certificateType value to set.
-     * @return the CertificateProperties object itself.
-     */
-    public CertificateProperties withCertificateType(CertificateType certificateType) {
-        this.certificateType = certificateType;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (certificateKeyVaultProperties() != null) {
-            certificateKeyVaultProperties().validate();
-        }
     }
 }

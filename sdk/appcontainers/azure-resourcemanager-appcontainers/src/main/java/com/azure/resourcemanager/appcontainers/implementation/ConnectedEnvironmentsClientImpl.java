@@ -736,7 +736,8 @@ public final class ConnectedEnvironmentsClientImpl implements ConnectedEnvironme
     private Mono<ConnectedEnvironmentInner> createOrUpdateAsync(String resourceGroupName,
         String connectedEnvironmentName, ConnectedEnvironmentInner environmentEnvelope, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, connectedEnvironmentName, environmentEnvelope, context)
-            .last().flatMap(this.client::getLroFinalResultOrError);
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**

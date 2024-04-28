@@ -18,12 +18,6 @@ public final class ManagedEnvironmentStorageProperties {
     @JsonProperty(value = "azureFile")
     private AzureFileProperties azureFile;
 
-    /*
-     * NFS Azure file properties
-     */
-    @JsonProperty(value = "nfsAzureFile")
-    private NfsAzureFileProperties nfsAzureFile;
-
     /**
      * Creates an instance of ManagedEnvironmentStorageProperties class.
      */
@@ -51,26 +45,6 @@ public final class ManagedEnvironmentStorageProperties {
     }
 
     /**
-     * Get the nfsAzureFile property: NFS Azure file properties.
-     * 
-     * @return the nfsAzureFile value.
-     */
-    public NfsAzureFileProperties nfsAzureFile() {
-        return this.nfsAzureFile;
-    }
-
-    /**
-     * Set the nfsAzureFile property: NFS Azure file properties.
-     * 
-     * @param nfsAzureFile the nfsAzureFile value to set.
-     * @return the ManagedEnvironmentStorageProperties object itself.
-     */
-    public ManagedEnvironmentStorageProperties withNfsAzureFile(NfsAzureFileProperties nfsAzureFile) {
-        this.nfsAzureFile = nfsAzureFile;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -78,9 +52,6 @@ public final class ManagedEnvironmentStorageProperties {
     public void validate() {
         if (azureFile() != null) {
             azureFile().validate();
-        }
-        if (nfsAzureFile() != null) {
-            nfsAzureFile().validate();
         }
     }
 }

@@ -28,16 +28,13 @@ public final class ContainerAppInner extends Resource {
     private ExtendedLocation extendedLocation;
 
     /*
-     * managed identities for the Container App to interact with other Azure services without maintaining any secrets
-     * or credentials in code.
+     * managed identities for the Container App to interact with other Azure services without maintaining any secrets or credentials in code.
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
 
     /*
-     * The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is
-     * managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if
-     * it is removed from the template since it is managed by another resource.
+     * The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource.
      */
     @JsonProperty(value = "managedBy")
     private String managedBy;
@@ -81,8 +78,8 @@ public final class ContainerAppInner extends Resource {
     }
 
     /**
-     * Get the identity property: managed identities for the Container App to interact with other Azure services
-     * without maintaining any secrets or credentials in code.
+     * Get the identity property: managed identities for the Container App to interact with other Azure services without
+     * maintaining any secrets or credentials in code.
      * 
      * @return the identity value.
      */
@@ -91,8 +88,8 @@ public final class ContainerAppInner extends Resource {
     }
 
     /**
-     * Set the identity property: managed identities for the Container App to interact with other Azure services
-     * without maintaining any secrets or credentials in code.
+     * Set the identity property: managed identities for the Container App to interact with other Azure services without
+     * maintaining any secrets or credentials in code.
      * 
      * @param identity the identity value to set.
      * @return the ContainerAppInner object itself.
@@ -103,9 +100,9 @@ public final class ContainerAppInner extends Resource {
     }
 
     /**
-     * Get the managedBy property: The fully qualified resource ID of the resource that manages this resource.
-     * Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment
-     * will not delete the resource if it is removed from the template since it is managed by another resource.
+     * Get the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
+     * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
+     * delete the resource if it is removed from the template since it is managed by another resource.
      * 
      * @return the managedBy value.
      */
@@ -114,9 +111,9 @@ public final class ContainerAppInner extends Resource {
     }
 
     /**
-     * Set the managedBy property: The fully qualified resource ID of the resource that manages this resource.
-     * Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment
-     * will not delete the resource if it is removed from the template since it is managed by another resource.
+     * Set the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
+     * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
+     * delete the resource if it is removed from the template since it is managed by another resource.
      * 
      * @param managedBy the managedBy value to set.
      * @return the ContainerAppInner object itself.

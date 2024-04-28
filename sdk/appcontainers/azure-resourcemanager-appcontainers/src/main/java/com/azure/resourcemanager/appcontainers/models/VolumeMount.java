@@ -57,8 +57,7 @@ public final class VolumeMount {
     }
 
     /**
-     * Get the mountPath property: Path within the container at which the volume should be mounted.Must not contain
-     * ':'.
+     * Get the mountPath property: Path within the container at which the volume should be mounted.Must not contain ':'.
      * 
      * @return the mountPath value.
      */
@@ -67,8 +66,7 @@ public final class VolumeMount {
     }
 
     /**
-     * Set the mountPath property: Path within the container at which the volume should be mounted.Must not contain
-     * ':'.
+     * Set the mountPath property: Path within the container at which the volume should be mounted.Must not contain ':'.
      * 
      * @param mountPath the mountPath value to set.
      * @return the VolumeMount object itself.
@@ -79,8 +77,8 @@ public final class VolumeMount {
     }
 
     /**
-     * Get the subPath property: Path within the volume from which the container's volume should be mounted. Defaults
-     * to "" (volume's root).
+     * Get the subPath property: Path within the volume from which the container's volume should be mounted. Defaults to
+     * "" (volume's root).
      * 
      * @return the subPath value.
      */
@@ -89,8 +87,8 @@ public final class VolumeMount {
     }
 
     /**
-     * Set the subPath property: Path within the volume from which the container's volume should be mounted. Defaults
-     * to "" (volume's root).
+     * Set the subPath property: Path within the volume from which the container's volume should be mounted. Defaults to
+     * "" (volume's root).
      * 
      * @param subPath the subPath value to set.
      * @return the VolumeMount object itself.

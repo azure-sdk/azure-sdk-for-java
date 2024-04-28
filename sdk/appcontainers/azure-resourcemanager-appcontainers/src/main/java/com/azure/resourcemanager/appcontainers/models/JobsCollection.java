@@ -69,8 +69,8 @@ public final class JobsCollection {
      */
     public void validate() {
         if (value() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property value in model JobsCollection"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model JobsCollection"));
         } else {
             value().forEach(e -> e.validate());
         }

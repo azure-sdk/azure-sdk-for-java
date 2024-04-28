@@ -6,7 +6,6 @@ package com.azure.resourcemanager.appcontainers.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 
 /**
  * Configuration properties that define the mutable settings of a Container App SourceControl.
@@ -66,12 +65,6 @@ public final class GithubActionConfiguration {
      */
     @JsonProperty(value = "runtimeVersion")
     private String runtimeVersion;
-
-    /*
-     * List of environment variables to be passed to the build.
-     */
-    @JsonProperty(value = "buildEnvironmentVariables")
-    private List<EnvironmentVariable> buildEnvironmentVariables;
 
     /**
      * Creates an instance of GithubActionConfiguration class.
@@ -260,27 +253,6 @@ public final class GithubActionConfiguration {
     }
 
     /**
-     * Get the buildEnvironmentVariables property: List of environment variables to be passed to the build.
-     * 
-     * @return the buildEnvironmentVariables value.
-     */
-    public List<EnvironmentVariable> buildEnvironmentVariables() {
-        return this.buildEnvironmentVariables;
-    }
-
-    /**
-     * Set the buildEnvironmentVariables property: List of environment variables to be passed to the build.
-     * 
-     * @param buildEnvironmentVariables the buildEnvironmentVariables value to set.
-     * @return the GithubActionConfiguration object itself.
-     */
-    public GithubActionConfiguration
-        withBuildEnvironmentVariables(List<EnvironmentVariable> buildEnvironmentVariables) {
-        this.buildEnvironmentVariables = buildEnvironmentVariables;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -291,9 +263,6 @@ public final class GithubActionConfiguration {
         }
         if (azureCredentials() != null) {
             azureCredentials().validate();
-        }
-        if (buildEnvironmentVariables() != null) {
-            buildEnvironmentVariables().forEach(e -> e.validate());
         }
     }
 }

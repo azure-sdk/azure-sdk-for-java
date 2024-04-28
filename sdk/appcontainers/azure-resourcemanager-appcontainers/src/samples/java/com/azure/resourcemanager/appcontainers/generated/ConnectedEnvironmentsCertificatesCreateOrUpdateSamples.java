@@ -11,8 +11,7 @@ import com.azure.resourcemanager.appcontainers.models.CertificateProperties;
  */
 public final class ConnectedEnvironmentsCertificatesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/preview/2023-11-02-preview/examples/
-     * ConnectedEnvironmentsCertificate_CreateOrUpdate.json
+     * x-ms-original-file: specification/app/resource-manager/Microsoft.App/stable/2024-03-01/examples/ConnectedEnvironmentsCertificate_CreateOrUpdate.json
      */
     /**
      * Sample code: Create or Update Certificate.
@@ -21,10 +20,12 @@ public final class ConnectedEnvironmentsCertificatesCreateOrUpdateSamples {
      */
     public static void
         createOrUpdateCertificate(com.azure.resourcemanager.appcontainers.ContainerAppsApiManager manager) {
-        manager.connectedEnvironmentsCertificates().define("certificate-firendly-name").withRegion("East US")
+        manager.connectedEnvironmentsCertificates()
+            .define("certificate-firendly-name")
+            .withRegion("East US")
             .withExistingConnectedEnvironment("examplerg", "testcontainerenv")
             .withProperties(
-                new CertificateProperties().withPassword("fakeTokenPlaceholder").withValue("Y2VydA==".getBytes()))
+                new CertificateProperties().withPassword("fakeTokenPlaceholder").withValue("<value>".getBytes()))
             .create();
     }
 }
