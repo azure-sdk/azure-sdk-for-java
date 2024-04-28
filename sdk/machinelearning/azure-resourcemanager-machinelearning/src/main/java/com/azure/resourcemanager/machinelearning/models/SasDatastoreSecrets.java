@@ -7,27 +7,53 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreSecretsInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Datastore SAS secrets. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "secretsType")
+/**
+ * Datastore SAS secrets.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "secretsType",
+    defaultImpl = SasDatastoreSecrets.class,
+    visible = true)
 @JsonTypeName("Sas")
 @Fluent
 public final class SasDatastoreSecrets extends DatastoreSecretsInner {
+    /*
+     * [Required] Credential type used to authentication with storage.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "secretsType", required = true)
+    private SecretsType secretsType = SecretsType.SAS;
+
     /*
      * Storage container SAS token.
      */
     @JsonProperty(value = "sasToken")
     private String sasToken;
 
-    /** Creates an instance of SasDatastoreSecrets class. */
+    /**
+     * Creates an instance of SasDatastoreSecrets class.
+     */
     public SasDatastoreSecrets() {
     }
 
     /**
+     * Get the secretsType property: [Required] Credential type used to authentication with storage.
+     * 
+     * @return the secretsType value.
+     */
+    @Override
+    public SecretsType secretsType() {
+        return this.secretsType;
+    }
+
+    /**
      * Get the sasToken property: Storage container SAS token.
-     *
+     * 
      * @return the sasToken value.
      */
     public String sasToken() {
@@ -36,7 +62,7 @@ public final class SasDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Set the sasToken property: Storage container SAS token.
-     *
+     * 
      * @param sasToken the sasToken value to set.
      * @return the SasDatastoreSecrets object itself.
      */
@@ -47,7 +73,7 @@ public final class SasDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
