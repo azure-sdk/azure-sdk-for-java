@@ -8,21 +8,29 @@ import com.azure.core.annotation.Fluent;
 import java.time.Duration;
 import java.util.List;
 
-/** The DefaultRolloutSpecificationLowTraffic model. */
+/**
+ * The DefaultRolloutSpecificationLowTraffic model.
+ */
 @Fluent
 public final class DefaultRolloutSpecificationLowTraffic extends TrafficRegionRolloutConfiguration {
-    /** Creates an instance of DefaultRolloutSpecificationLowTraffic class. */
+    /**
+     * Creates an instance of DefaultRolloutSpecificationLowTraffic class.
+     */
     public DefaultRolloutSpecificationLowTraffic() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationLowTraffic withWaitDuration(Duration waitDuration) {
         super.withWaitDuration(waitDuration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationLowTraffic withRegions(List<String> regions) {
         super.withRegions(regions);
@@ -31,7 +39,7 @@ public final class DefaultRolloutSpecificationLowTraffic extends TrafficRegionRo
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

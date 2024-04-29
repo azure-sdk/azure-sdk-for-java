@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The SubscriptionStateRule model. */
+/**
+ * The SubscriptionStateRule model.
+ */
 @Fluent
 public final class SubscriptionStateRule {
     /*
@@ -23,13 +25,15 @@ public final class SubscriptionStateRule {
     @JsonProperty(value = "allowedActions")
     private List<String> allowedActions;
 
-    /** Creates an instance of SubscriptionStateRule class. */
+    /**
+     * Creates an instance of SubscriptionStateRule class.
+     */
     public SubscriptionStateRule() {
     }
 
     /**
      * Get the state property: The state property.
-     *
+     * 
      * @return the state value.
      */
     public SubscriptionState state() {
@@ -38,7 +42,7 @@ public final class SubscriptionStateRule {
 
     /**
      * Set the state property: The state property.
-     *
+     * 
      * @param state the state value to set.
      * @return the SubscriptionStateRule object itself.
      */
@@ -49,7 +53,7 @@ public final class SubscriptionStateRule {
 
     /**
      * Get the allowedActions property: The allowedActions property.
-     *
+     * 
      * @return the allowedActions value.
      */
     public List<String> allowedActions() {
@@ -58,7 +62,7 @@ public final class SubscriptionStateRule {
 
     /**
      * Set the allowedActions property: The allowedActions property.
-     *
+     * 
      * @param allowedActions the allowedActions value to set.
      * @return the SubscriptionStateRule object itself.
      */
@@ -69,7 +73,7 @@ public final class SubscriptionStateRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

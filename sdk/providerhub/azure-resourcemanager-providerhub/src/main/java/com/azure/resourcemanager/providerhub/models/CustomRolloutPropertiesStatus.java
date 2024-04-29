@@ -8,31 +8,39 @@ import com.azure.core.annotation.Fluent;
 import java.util.List;
 import java.util.Map;
 
-/** The CustomRolloutPropertiesStatus model. */
+/**
+ * The CustomRolloutPropertiesStatus model.
+ */
 @Fluent
 public final class CustomRolloutPropertiesStatus extends CustomRolloutStatus {
-    /** Creates an instance of CustomRolloutPropertiesStatus class. */
+    /**
+     * Creates an instance of CustomRolloutPropertiesStatus class.
+     */
     public CustomRolloutPropertiesStatus() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CustomRolloutPropertiesStatus withCompletedRegions(List<String> completedRegions) {
         super.withCompletedRegions(completedRegions);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public CustomRolloutPropertiesStatus withFailedOrSkippedRegions(
-        Map<String, ExtendedErrorInfo> failedOrSkippedRegions) {
+    public CustomRolloutPropertiesStatus
+        withFailedOrSkippedRegions(Map<String, ExtendedErrorInfo> failedOrSkippedRegions) {
         super.withFailedOrSkippedRegions(failedOrSkippedRegions);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

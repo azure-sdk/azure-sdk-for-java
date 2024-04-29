@@ -7,7 +7,9 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ResourceTypeExtensionOptions model. */
+/**
+ * The ResourceTypeExtensionOptions model.
+ */
 @Fluent
 public class ResourceTypeExtensionOptions {
     /*
@@ -16,13 +18,15 @@ public class ResourceTypeExtensionOptions {
     @JsonProperty(value = "resourceCreationBegin")
     private ResourceTypeExtensionOptionsResourceCreationBegin resourceCreationBegin;
 
-    /** Creates an instance of ResourceTypeExtensionOptions class. */
+    /**
+     * Creates an instance of ResourceTypeExtensionOptions class.
+     */
     public ResourceTypeExtensionOptions() {
     }
 
     /**
      * Get the resourceCreationBegin property: The resourceCreationBegin property.
-     *
+     * 
      * @return the resourceCreationBegin value.
      */
     public ResourceTypeExtensionOptionsResourceCreationBegin resourceCreationBegin() {
@@ -31,19 +35,19 @@ public class ResourceTypeExtensionOptions {
 
     /**
      * Set the resourceCreationBegin property: The resourceCreationBegin property.
-     *
+     * 
      * @param resourceCreationBegin the resourceCreationBegin value to set.
      * @return the ResourceTypeExtensionOptions object itself.
      */
-    public ResourceTypeExtensionOptions withResourceCreationBegin(
-        ResourceTypeExtensionOptionsResourceCreationBegin resourceCreationBegin) {
+    public ResourceTypeExtensionOptions
+        withResourceCreationBegin(ResourceTypeExtensionOptionsResourceCreationBegin resourceCreationBegin) {
         this.resourceCreationBegin = resourceCreationBegin;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

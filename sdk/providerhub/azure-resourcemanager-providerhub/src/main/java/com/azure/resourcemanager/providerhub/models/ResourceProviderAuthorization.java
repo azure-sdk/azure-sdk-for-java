@@ -7,7 +7,9 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ResourceProviderAuthorization model. */
+/**
+ * The ResourceProviderAuthorization model.
+ */
 @Fluent
 public final class ResourceProviderAuthorization {
     /*
@@ -28,13 +30,15 @@ public final class ResourceProviderAuthorization {
     @JsonProperty(value = "managedByRoleDefinitionId")
     private String managedByRoleDefinitionId;
 
-    /** Creates an instance of ResourceProviderAuthorization class. */
+    /**
+     * Creates an instance of ResourceProviderAuthorization class.
+     */
     public ResourceProviderAuthorization() {
     }
 
     /**
      * Get the applicationId property: The applicationId property.
-     *
+     * 
      * @return the applicationId value.
      */
     public String applicationId() {
@@ -43,7 +47,7 @@ public final class ResourceProviderAuthorization {
 
     /**
      * Set the applicationId property: The applicationId property.
-     *
+     * 
      * @param applicationId the applicationId value to set.
      * @return the ResourceProviderAuthorization object itself.
      */
@@ -54,7 +58,7 @@ public final class ResourceProviderAuthorization {
 
     /**
      * Get the roleDefinitionId property: The roleDefinitionId property.
-     *
+     * 
      * @return the roleDefinitionId value.
      */
     public String roleDefinitionId() {
@@ -63,7 +67,7 @@ public final class ResourceProviderAuthorization {
 
     /**
      * Set the roleDefinitionId property: The roleDefinitionId property.
-     *
+     * 
      * @param roleDefinitionId the roleDefinitionId value to set.
      * @return the ResourceProviderAuthorization object itself.
      */
@@ -74,7 +78,7 @@ public final class ResourceProviderAuthorization {
 
     /**
      * Get the managedByRoleDefinitionId property: The managedByRoleDefinitionId property.
-     *
+     * 
      * @return the managedByRoleDefinitionId value.
      */
     public String managedByRoleDefinitionId() {
@@ -83,7 +87,7 @@ public final class ResourceProviderAuthorization {
 
     /**
      * Set the managedByRoleDefinitionId property: The managedByRoleDefinitionId property.
-     *
+     * 
      * @param managedByRoleDefinitionId the managedByRoleDefinitionId value to set.
      * @return the ResourceProviderAuthorization object itself.
      */
@@ -94,7 +98,7 @@ public final class ResourceProviderAuthorization {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

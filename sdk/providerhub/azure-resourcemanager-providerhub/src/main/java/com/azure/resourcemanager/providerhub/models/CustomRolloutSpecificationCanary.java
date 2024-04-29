@@ -7,14 +7,20 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The CustomRolloutSpecificationCanary model. */
+/**
+ * The CustomRolloutSpecificationCanary model.
+ */
 @Fluent
 public final class CustomRolloutSpecificationCanary extends TrafficRegions {
-    /** Creates an instance of CustomRolloutSpecificationCanary class. */
+    /**
+     * Creates an instance of CustomRolloutSpecificationCanary class.
+     */
     public CustomRolloutSpecificationCanary() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CustomRolloutSpecificationCanary withRegions(List<String> regions) {
         super.withRegions(regions);
@@ -23,7 +29,7 @@ public final class CustomRolloutSpecificationCanary extends TrafficRegions {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -6,14 +6,20 @@ package com.azure.resourcemanager.providerhub.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceTypeIdentityManagement model. */
+/**
+ * The ResourceTypeIdentityManagement model.
+ */
 @Fluent
 public final class ResourceTypeIdentityManagement extends IdentityManagement {
-    /** Creates an instance of ResourceTypeIdentityManagement class. */
+    /**
+     * Creates an instance of ResourceTypeIdentityManagement class.
+     */
     public ResourceTypeIdentityManagement() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceTypeIdentityManagement withType(IdentityManagementTypes type) {
         super.withType(type);
@@ -22,7 +28,7 @@ public final class ResourceTypeIdentityManagement extends IdentityManagement {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

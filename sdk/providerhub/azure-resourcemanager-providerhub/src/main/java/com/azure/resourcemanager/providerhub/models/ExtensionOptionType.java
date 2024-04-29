@@ -8,21 +8,29 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ExtensionOptionType. */
+/**
+ * Defines values for ExtensionOptionType.
+ */
 public final class ExtensionOptionType extends ExpandableStringEnum<ExtensionOptionType> {
-    /** Static value NotSpecified for ExtensionOptionType. */
+    /**
+     * Static value NotSpecified for ExtensionOptionType.
+     */
     public static final ExtensionOptionType NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value DoNotMergeExistingReadOnlyAndSecretProperties for ExtensionOptionType. */
-    public static final ExtensionOptionType DO_NOT_MERGE_EXISTING_READ_ONLY_AND_SECRET_PROPERTIES =
-        fromString("DoNotMergeExistingReadOnlyAndSecretProperties");
+    /**
+     * Static value DoNotMergeExistingReadOnlyAndSecretProperties for ExtensionOptionType.
+     */
+    public static final ExtensionOptionType DO_NOT_MERGE_EXISTING_READ_ONLY_AND_SECRET_PROPERTIES
+        = fromString("DoNotMergeExistingReadOnlyAndSecretProperties");
 
-    /** Static value IncludeInternalMetadata for ExtensionOptionType. */
+    /**
+     * Static value IncludeInternalMetadata for ExtensionOptionType.
+     */
     public static final ExtensionOptionType INCLUDE_INTERNAL_METADATA = fromString("IncludeInternalMetadata");
 
     /**
      * Creates a new instance of ExtensionOptionType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -31,7 +39,7 @@ public final class ExtensionOptionType extends ExpandableStringEnum<ExtensionOpt
 
     /**
      * Creates or finds a ExtensionOptionType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ExtensionOptionType.
      */
@@ -42,7 +50,7 @@ public final class ExtensionOptionType extends ExpandableStringEnum<ExtensionOpt
 
     /**
      * Gets known ExtensionOptionType values.
-     *
+     * 
      * @return known ExtensionOptionType values.
      */
     public static Collection<ExtensionOptionType> values() {

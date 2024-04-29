@@ -8,77 +8,97 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.providerhub.fluent.models.ResourceTypeRegistrationInner;
 import java.util.List;
 
-/** The DefaultRolloutPropertiesSpecification model. */
+/**
+ * The DefaultRolloutPropertiesSpecification model.
+ */
 @Fluent
 public final class DefaultRolloutPropertiesSpecification extends DefaultRolloutSpecification {
-    /** Creates an instance of DefaultRolloutPropertiesSpecification class. */
+    /**
+     * Creates an instance of DefaultRolloutPropertiesSpecification class.
+     */
     public DefaultRolloutPropertiesSpecification() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutPropertiesSpecification withCanary(DefaultRolloutSpecificationCanary canary) {
         super.withCanary(canary);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutPropertiesSpecification withLowTraffic(DefaultRolloutSpecificationLowTraffic lowTraffic) {
         super.withLowTraffic(lowTraffic);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DefaultRolloutPropertiesSpecification withMediumTraffic(
-        DefaultRolloutSpecificationMediumTraffic mediumTraffic) {
+    public DefaultRolloutPropertiesSpecification
+        withMediumTraffic(DefaultRolloutSpecificationMediumTraffic mediumTraffic) {
         super.withMediumTraffic(mediumTraffic);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutPropertiesSpecification withHighTraffic(DefaultRolloutSpecificationHighTraffic highTraffic) {
         super.withHighTraffic(highTraffic);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DefaultRolloutPropertiesSpecification withRestOfTheWorldGroupOne(
-        DefaultRolloutSpecificationRestOfTheWorldGroupOne restOfTheWorldGroupOne) {
+    public DefaultRolloutPropertiesSpecification
+        withRestOfTheWorldGroupOne(DefaultRolloutSpecificationRestOfTheWorldGroupOne restOfTheWorldGroupOne) {
         super.withRestOfTheWorldGroupOne(restOfTheWorldGroupOne);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DefaultRolloutPropertiesSpecification withRestOfTheWorldGroupTwo(
-        DefaultRolloutSpecificationRestOfTheWorldGroupTwo restOfTheWorldGroupTwo) {
+    public DefaultRolloutPropertiesSpecification
+        withRestOfTheWorldGroupTwo(DefaultRolloutSpecificationRestOfTheWorldGroupTwo restOfTheWorldGroupTwo) {
         super.withRestOfTheWorldGroupTwo(restOfTheWorldGroupTwo);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DefaultRolloutPropertiesSpecification withProviderRegistration(
-        DefaultRolloutSpecificationProviderRegistration providerRegistration) {
+    public DefaultRolloutPropertiesSpecification
+        withProviderRegistration(DefaultRolloutSpecificationProviderRegistration providerRegistration) {
         super.withProviderRegistration(providerRegistration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public DefaultRolloutPropertiesSpecification withResourceTypeRegistrations(
-        List<ResourceTypeRegistrationInner> resourceTypeRegistrations) {
+    public DefaultRolloutPropertiesSpecification
+        withResourceTypeRegistrations(List<ResourceTypeRegistrationInner> resourceTypeRegistrations) {
         super.withResourceTypeRegistrations(resourceTypeRegistrations);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

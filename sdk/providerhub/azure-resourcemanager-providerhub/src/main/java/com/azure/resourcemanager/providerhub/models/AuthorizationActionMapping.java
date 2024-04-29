@@ -7,7 +7,9 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The AuthorizationActionMapping model. */
+/**
+ * The AuthorizationActionMapping model.
+ */
 @Fluent
 public final class AuthorizationActionMapping {
     /*
@@ -22,13 +24,15 @@ public final class AuthorizationActionMapping {
     @JsonProperty(value = "desired")
     private String desired;
 
-    /** Creates an instance of AuthorizationActionMapping class. */
+    /**
+     * Creates an instance of AuthorizationActionMapping class.
+     */
     public AuthorizationActionMapping() {
     }
 
     /**
      * Get the original property: The original property.
-     *
+     * 
      * @return the original value.
      */
     public String original() {
@@ -37,7 +41,7 @@ public final class AuthorizationActionMapping {
 
     /**
      * Set the original property: The original property.
-     *
+     * 
      * @param original the original value to set.
      * @return the AuthorizationActionMapping object itself.
      */
@@ -48,7 +52,7 @@ public final class AuthorizationActionMapping {
 
     /**
      * Get the desired property: The desired property.
-     *
+     * 
      * @return the desired value.
      */
     public String desired() {
@@ -57,7 +61,7 @@ public final class AuthorizationActionMapping {
 
     /**
      * Set the desired property: The desired property.
-     *
+     * 
      * @param desired the desired value to set.
      * @return the AuthorizationActionMapping object itself.
      */
@@ -68,7 +72,7 @@ public final class AuthorizationActionMapping {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

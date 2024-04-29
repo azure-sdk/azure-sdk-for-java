@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Duration;
 import java.util.List;
 
-/** The ResourceTypeEndpoint model. */
+/**
+ * The ResourceTypeEndpoint model.
+ */
 @Fluent
 public final class ResourceTypeEndpoint {
     /*
@@ -54,13 +56,15 @@ public final class ResourceTypeEndpoint {
     @JsonProperty(value = "timeout")
     private Duration timeout;
 
-    /** Creates an instance of ResourceTypeEndpoint class. */
+    /**
+     * Creates an instance of ResourceTypeEndpoint class.
+     */
     public ResourceTypeEndpoint() {
     }
 
     /**
      * Get the enabled property: The enabled property.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -69,7 +73,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Set the enabled property: The enabled property.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the ResourceTypeEndpoint object itself.
      */
@@ -80,7 +84,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Get the apiVersions property: The apiVersions property.
-     *
+     * 
      * @return the apiVersions value.
      */
     public List<String> apiVersions() {
@@ -89,7 +93,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Set the apiVersions property: The apiVersions property.
-     *
+     * 
      * @param apiVersions the apiVersions value to set.
      * @return the ResourceTypeEndpoint object itself.
      */
@@ -100,7 +104,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Get the locations property: The locations property.
-     *
+     * 
      * @return the locations value.
      */
     public List<String> locations() {
@@ -109,7 +113,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Set the locations property: The locations property.
-     *
+     * 
      * @param locations the locations value to set.
      * @return the ResourceTypeEndpoint object itself.
      */
@@ -120,7 +124,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Get the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @return the requiredFeatures value.
      */
     public List<String> requiredFeatures() {
@@ -129,7 +133,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Set the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @param requiredFeatures the requiredFeatures value to set.
      * @return the ResourceTypeEndpoint object itself.
      */
@@ -140,7 +144,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Get the featuresRule property: The featuresRule property.
-     *
+     * 
      * @return the featuresRule value.
      */
     public ResourceTypeEndpointFeaturesRule featuresRule() {
@@ -149,7 +153,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Set the featuresRule property: The featuresRule property.
-     *
+     * 
      * @param featuresRule the featuresRule value to set.
      * @return the ResourceTypeEndpoint object itself.
      */
@@ -160,7 +164,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Get the extensions property: The extensions property.
-     *
+     * 
      * @return the extensions value.
      */
     public List<ResourceTypeExtension> extensions() {
@@ -169,7 +173,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Set the extensions property: The extensions property.
-     *
+     * 
      * @param extensions the extensions value to set.
      * @return the ResourceTypeEndpoint object itself.
      */
@@ -180,7 +184,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Get the timeout property: The timeout property.
-     *
+     * 
      * @return the timeout value.
      */
     public Duration timeout() {
@@ -189,7 +193,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Set the timeout property: The timeout property.
-     *
+     * 
      * @param timeout the timeout value to set.
      * @return the ResourceTypeEndpoint object itself.
      */
@@ -200,7 +204,7 @@ public final class ResourceTypeEndpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

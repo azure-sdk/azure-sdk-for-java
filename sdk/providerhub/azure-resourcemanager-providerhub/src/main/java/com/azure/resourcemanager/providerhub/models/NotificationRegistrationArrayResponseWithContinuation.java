@@ -9,7 +9,9 @@ import com.azure.resourcemanager.providerhub.fluent.models.NotificationRegistrat
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The NotificationRegistrationArrayResponseWithContinuation model. */
+/**
+ * The NotificationRegistrationArrayResponseWithContinuation model.
+ */
 @Fluent
 public final class NotificationRegistrationArrayResponseWithContinuation {
     /*
@@ -24,13 +26,15 @@ public final class NotificationRegistrationArrayResponseWithContinuation {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of NotificationRegistrationArrayResponseWithContinuation class. */
+    /**
+     * Creates an instance of NotificationRegistrationArrayResponseWithContinuation class.
+     */
     public NotificationRegistrationArrayResponseWithContinuation() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<NotificationRegistrationInner> value() {
@@ -39,7 +43,7 @@ public final class NotificationRegistrationArrayResponseWithContinuation {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the NotificationRegistrationArrayResponseWithContinuation object itself.
      */
@@ -50,7 +54,7 @@ public final class NotificationRegistrationArrayResponseWithContinuation {
 
     /**
      * Get the nextLink property: The URL to get to the next set of results, if there are any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class NotificationRegistrationArrayResponseWithContinuation {
 
     /**
      * Set the nextLink property: The URL to get to the next set of results, if there are any.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the NotificationRegistrationArrayResponseWithContinuation object itself.
      */
@@ -70,7 +74,7 @@ public final class NotificationRegistrationArrayResponseWithContinuation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

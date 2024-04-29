@@ -9,7 +9,9 @@ import com.azure.resourcemanager.providerhub.fluent.models.DefaultRolloutInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The DefaultRolloutArrayResponseWithContinuation model. */
+/**
+ * The DefaultRolloutArrayResponseWithContinuation model.
+ */
 @Fluent
 public final class DefaultRolloutArrayResponseWithContinuation {
     /*
@@ -24,13 +26,15 @@ public final class DefaultRolloutArrayResponseWithContinuation {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of DefaultRolloutArrayResponseWithContinuation class. */
+    /**
+     * Creates an instance of DefaultRolloutArrayResponseWithContinuation class.
+     */
     public DefaultRolloutArrayResponseWithContinuation() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public List<DefaultRolloutInner> value() {
@@ -39,7 +43,7 @@ public final class DefaultRolloutArrayResponseWithContinuation {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the DefaultRolloutArrayResponseWithContinuation object itself.
      */
@@ -50,7 +54,7 @@ public final class DefaultRolloutArrayResponseWithContinuation {
 
     /**
      * Get the nextLink property: The URL to get to the next set of results, if there are any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class DefaultRolloutArrayResponseWithContinuation {
 
     /**
      * Set the nextLink property: The URL to get to the next set of results, if there are any.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the DefaultRolloutArrayResponseWithContinuation object itself.
      */
@@ -70,7 +74,7 @@ public final class DefaultRolloutArrayResponseWithContinuation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

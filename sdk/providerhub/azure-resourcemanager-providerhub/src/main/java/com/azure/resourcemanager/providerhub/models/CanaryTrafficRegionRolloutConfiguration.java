@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The CanaryTrafficRegionRolloutConfiguration model. */
+/**
+ * The CanaryTrafficRegionRolloutConfiguration model.
+ */
 @Fluent
 public class CanaryTrafficRegionRolloutConfiguration {
     /*
@@ -23,13 +25,15 @@ public class CanaryTrafficRegionRolloutConfiguration {
     @JsonProperty(value = "regions")
     private List<String> regions;
 
-    /** Creates an instance of CanaryTrafficRegionRolloutConfiguration class. */
+    /**
+     * Creates an instance of CanaryTrafficRegionRolloutConfiguration class.
+     */
     public CanaryTrafficRegionRolloutConfiguration() {
     }
 
     /**
      * Get the skipRegions property: The skipRegions property.
-     *
+     * 
      * @return the skipRegions value.
      */
     public List<String> skipRegions() {
@@ -38,7 +42,7 @@ public class CanaryTrafficRegionRolloutConfiguration {
 
     /**
      * Set the skipRegions property: The skipRegions property.
-     *
+     * 
      * @param skipRegions the skipRegions value to set.
      * @return the CanaryTrafficRegionRolloutConfiguration object itself.
      */
@@ -49,7 +53,7 @@ public class CanaryTrafficRegionRolloutConfiguration {
 
     /**
      * Get the regions property: The regions property.
-     *
+     * 
      * @return the regions value.
      */
     public List<String> regions() {
@@ -58,7 +62,7 @@ public class CanaryTrafficRegionRolloutConfiguration {
 
     /**
      * Set the regions property: The regions property.
-     *
+     * 
      * @param regions the regions value to set.
      * @return the CanaryTrafficRegionRolloutConfiguration object itself.
      */
@@ -69,7 +73,7 @@ public class CanaryTrafficRegionRolloutConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

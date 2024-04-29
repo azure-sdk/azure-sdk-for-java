@@ -10,7 +10,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** The DefaultRolloutStatus model. */
+/**
+ * The DefaultRolloutStatus model.
+ */
 @Fluent
 public class DefaultRolloutStatus extends RolloutStatusBase {
     /*
@@ -31,13 +33,15 @@ public class DefaultRolloutStatus extends RolloutStatusBase {
     @JsonProperty(value = "subscriptionReregistrationResult")
     private SubscriptionReregistrationResult subscriptionReregistrationResult;
 
-    /** Creates an instance of DefaultRolloutStatus class. */
+    /**
+     * Creates an instance of DefaultRolloutStatus class.
+     */
     public DefaultRolloutStatus() {
     }
 
     /**
      * Get the nextTrafficRegion property: The nextTrafficRegion property.
-     *
+     * 
      * @return the nextTrafficRegion value.
      */
     public TrafficRegionCategory nextTrafficRegion() {
@@ -46,7 +50,7 @@ public class DefaultRolloutStatus extends RolloutStatusBase {
 
     /**
      * Set the nextTrafficRegion property: The nextTrafficRegion property.
-     *
+     * 
      * @param nextTrafficRegion the nextTrafficRegion value to set.
      * @return the DefaultRolloutStatus object itself.
      */
@@ -57,7 +61,7 @@ public class DefaultRolloutStatus extends RolloutStatusBase {
 
     /**
      * Get the nextTrafficRegionScheduledTime property: The nextTrafficRegionScheduledTime property.
-     *
+     * 
      * @return the nextTrafficRegionScheduledTime value.
      */
     public OffsetDateTime nextTrafficRegionScheduledTime() {
@@ -66,7 +70,7 @@ public class DefaultRolloutStatus extends RolloutStatusBase {
 
     /**
      * Set the nextTrafficRegionScheduledTime property: The nextTrafficRegionScheduledTime property.
-     *
+     * 
      * @param nextTrafficRegionScheduledTime the nextTrafficRegionScheduledTime value to set.
      * @return the DefaultRolloutStatus object itself.
      */
@@ -77,7 +81,7 @@ public class DefaultRolloutStatus extends RolloutStatusBase {
 
     /**
      * Get the subscriptionReregistrationResult property: The subscriptionReregistrationResult property.
-     *
+     * 
      * @return the subscriptionReregistrationResult value.
      */
     public SubscriptionReregistrationResult subscriptionReregistrationResult() {
@@ -86,24 +90,28 @@ public class DefaultRolloutStatus extends RolloutStatusBase {
 
     /**
      * Set the subscriptionReregistrationResult property: The subscriptionReregistrationResult property.
-     *
+     * 
      * @param subscriptionReregistrationResult the subscriptionReregistrationResult value to set.
      * @return the DefaultRolloutStatus object itself.
      */
-    public DefaultRolloutStatus withSubscriptionReregistrationResult(
-        SubscriptionReregistrationResult subscriptionReregistrationResult) {
+    public DefaultRolloutStatus
+        withSubscriptionReregistrationResult(SubscriptionReregistrationResult subscriptionReregistrationResult) {
         this.subscriptionReregistrationResult = subscriptionReregistrationResult;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutStatus withCompletedRegions(List<String> completedRegions) {
         super.withCompletedRegions(completedRegions);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutStatus withFailedOrSkippedRegions(Map<String, ExtendedErrorInfo> failedOrSkippedRegions) {
         super.withFailedOrSkippedRegions(failedOrSkippedRegions);
@@ -112,7 +120,7 @@ public class DefaultRolloutStatus extends RolloutStatusBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

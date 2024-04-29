@@ -8,15 +8,21 @@ import com.azure.core.annotation.Fluent;
 import java.time.Duration;
 import java.util.List;
 
-/** The ProviderRegistrationPropertiesSubscriptionLifecycleNotificationSpecifications model. */
+/**
+ * The ProviderRegistrationPropertiesSubscriptionLifecycleNotificationSpecifications model.
+ */
 @Fluent
 public final class ProviderRegistrationPropertiesSubscriptionLifecycleNotificationSpecifications
     extends SubscriptionLifecycleNotificationSpecifications {
-    /** Creates an instance of ProviderRegistrationPropertiesSubscriptionLifecycleNotificationSpecifications class. */
+    /**
+     * Creates an instance of ProviderRegistrationPropertiesSubscriptionLifecycleNotificationSpecifications class.
+     */
     public ProviderRegistrationPropertiesSubscriptionLifecycleNotificationSpecifications() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ProviderRegistrationPropertiesSubscriptionLifecycleNotificationSpecifications
         withSubscriptionStateOverrideActions(List<SubscriptionStateOverrideAction> subscriptionStateOverrideActions) {
@@ -24,17 +30,19 @@ public final class ProviderRegistrationPropertiesSubscriptionLifecycleNotificati
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ProviderRegistrationPropertiesSubscriptionLifecycleNotificationSpecifications withSoftDeleteTtl(
-        Duration softDeleteTtl) {
+    public ProviderRegistrationPropertiesSubscriptionLifecycleNotificationSpecifications
+        withSoftDeleteTtl(Duration softDeleteTtl) {
         super.withSoftDeleteTtl(softDeleteTtl);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

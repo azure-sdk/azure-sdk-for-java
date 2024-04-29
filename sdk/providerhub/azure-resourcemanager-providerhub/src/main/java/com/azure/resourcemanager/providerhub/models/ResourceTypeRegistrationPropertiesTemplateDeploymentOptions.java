@@ -7,32 +7,40 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The ResourceTypeRegistrationPropertiesTemplateDeploymentOptions model. */
+/**
+ * The ResourceTypeRegistrationPropertiesTemplateDeploymentOptions model.
+ */
 @Fluent
 public final class ResourceTypeRegistrationPropertiesTemplateDeploymentOptions extends TemplateDeploymentOptions {
-    /** Creates an instance of ResourceTypeRegistrationPropertiesTemplateDeploymentOptions class. */
+    /**
+     * Creates an instance of ResourceTypeRegistrationPropertiesTemplateDeploymentOptions class.
+     */
     public ResourceTypeRegistrationPropertiesTemplateDeploymentOptions() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ResourceTypeRegistrationPropertiesTemplateDeploymentOptions withPreflightSupported(
-        Boolean preflightSupported) {
+    public ResourceTypeRegistrationPropertiesTemplateDeploymentOptions
+        withPreflightSupported(Boolean preflightSupported) {
         super.withPreflightSupported(preflightSupported);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ResourceTypeRegistrationPropertiesTemplateDeploymentOptions withPreflightOptions(
-        List<PreflightOption> preflightOptions) {
+    public ResourceTypeRegistrationPropertiesTemplateDeploymentOptions
+        withPreflightOptions(List<PreflightOption> preflightOptions) {
         super.withPreflightOptions(preflightOptions);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -9,7 +9,9 @@ import com.azure.core.management.ProxyResource;
 import com.azure.resourcemanager.providerhub.models.ProviderRegistrationProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ProviderRegistration model. */
+/**
+ * The ProviderRegistration model.
+ */
 @Fluent
 public class ProviderRegistrationInner extends ProxyResource {
     /*
@@ -18,13 +20,15 @@ public class ProviderRegistrationInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private ProviderRegistrationProperties properties;
 
-    /** Creates an instance of ProviderRegistrationInner class. */
+    /**
+     * Creates an instance of ProviderRegistrationInner class.
+     */
     public ProviderRegistrationInner() {
     }
 
     /**
      * Get the properties property: The properties property.
-     *
+     * 
      * @return the properties value.
      */
     public ProviderRegistrationProperties properties() {
@@ -33,7 +37,7 @@ public class ProviderRegistrationInner extends ProxyResource {
 
     /**
      * Set the properties property: The properties property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ProviderRegistrationInner object itself.
      */
@@ -44,7 +48,7 @@ public class ProviderRegistrationInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

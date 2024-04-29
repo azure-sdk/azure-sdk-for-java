@@ -7,7 +7,9 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ReRegisterSubscriptionMetadata model. */
+/**
+ * The ReRegisterSubscriptionMetadata model.
+ */
 @Fluent
 public class ReRegisterSubscriptionMetadata {
     /*
@@ -22,13 +24,15 @@ public class ReRegisterSubscriptionMetadata {
     @JsonProperty(value = "concurrencyLimit")
     private Integer concurrencyLimit;
 
-    /** Creates an instance of ReRegisterSubscriptionMetadata class. */
+    /**
+     * Creates an instance of ReRegisterSubscriptionMetadata class.
+     */
     public ReRegisterSubscriptionMetadata() {
     }
 
     /**
      * Get the enabled property: The enabled property.
-     *
+     * 
      * @return the enabled value.
      */
     public boolean enabled() {
@@ -37,7 +41,7 @@ public class ReRegisterSubscriptionMetadata {
 
     /**
      * Set the enabled property: The enabled property.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the ReRegisterSubscriptionMetadata object itself.
      */
@@ -48,7 +52,7 @@ public class ReRegisterSubscriptionMetadata {
 
     /**
      * Get the concurrencyLimit property: The concurrencyLimit property.
-     *
+     * 
      * @return the concurrencyLimit value.
      */
     public Integer concurrencyLimit() {
@@ -57,7 +61,7 @@ public class ReRegisterSubscriptionMetadata {
 
     /**
      * Set the concurrencyLimit property: The concurrencyLimit property.
-     *
+     * 
      * @param concurrencyLimit the concurrencyLimit value to set.
      * @return the ReRegisterSubscriptionMetadata object itself.
      */
@@ -68,7 +72,7 @@ public class ReRegisterSubscriptionMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

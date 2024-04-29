@@ -6,35 +6,47 @@ package com.azure.resourcemanager.providerhub.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Display information of the operation. */
+/**
+ * Display information of the operation.
+ */
 @Fluent
 public final class OperationsDefinitionDisplay extends OperationsDisplayDefinition {
-    /** Creates an instance of OperationsDefinitionDisplay class. */
+    /**
+     * Creates an instance of OperationsDefinitionDisplay class.
+     */
     public OperationsDefinitionDisplay() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OperationsDefinitionDisplay withProvider(String provider) {
         super.withProvider(provider);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OperationsDefinitionDisplay withResource(String resource) {
         super.withResource(resource);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OperationsDefinitionDisplay withOperation(String operation) {
         super.withOperation(operation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public OperationsDefinitionDisplay withDescription(String description) {
         super.withDescription(description);
@@ -43,7 +55,7 @@ public final class OperationsDefinitionDisplay extends OperationsDisplayDefiniti
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

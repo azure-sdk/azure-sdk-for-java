@@ -8,21 +8,29 @@ import com.azure.core.annotation.Fluent;
 import java.time.Duration;
 import java.util.List;
 
-/** The DefaultRolloutSpecificationMediumTraffic model. */
+/**
+ * The DefaultRolloutSpecificationMediumTraffic model.
+ */
 @Fluent
 public final class DefaultRolloutSpecificationMediumTraffic extends TrafficRegionRolloutConfiguration {
-    /** Creates an instance of DefaultRolloutSpecificationMediumTraffic class. */
+    /**
+     * Creates an instance of DefaultRolloutSpecificationMediumTraffic class.
+     */
     public DefaultRolloutSpecificationMediumTraffic() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationMediumTraffic withWaitDuration(Duration waitDuration) {
         super.withWaitDuration(waitDuration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationMediumTraffic withRegions(List<String> regions) {
         super.withRegions(regions);
@@ -31,7 +39,7 @@ public final class DefaultRolloutSpecificationMediumTraffic extends TrafficRegio
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
