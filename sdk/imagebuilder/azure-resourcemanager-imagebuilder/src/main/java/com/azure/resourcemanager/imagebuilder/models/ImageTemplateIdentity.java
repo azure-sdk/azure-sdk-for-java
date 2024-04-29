@@ -15,18 +15,13 @@ import java.util.Map;
 @Fluent
 public final class ImageTemplateIdentity {
     /*
-     * The type of identity used for the image template. The type 'None' will remove any identities from the image
-     * template.
+     * The type of identity used for the image template. The type 'None' will remove any identities from the image template.
      */
     @JsonProperty(value = "type")
     private ResourceIdentityType type;
 
     /*
-     * The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys
-     * will be ARM resource ids in the form:
-     * '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/
-     * userAssignedIdentities/{identityName}.
-     * The dictionary values can be empty objects ({}) in requests.
+     * The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests.
      */
     @JsonProperty(value = "userAssignedIdentities")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)

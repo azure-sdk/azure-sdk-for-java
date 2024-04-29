@@ -7,6 +7,7 @@ package com.azure.resourcemanager.imagebuilder.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "type",
-    defaultImpl = ImageTemplateInVMValidator.class)
+    defaultImpl = ImageTemplateInVMValidator.class,
+    visible = true)
 @JsonTypeName("ImageTemplateInVMValidator")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Shell", value = ImageTemplateShellValidator.class),
@@ -25,6 +26,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "File", value = ImageTemplateFileValidator.class) })
 @Fluent
 public class ImageTemplateInVMValidator {
+    /*
+     * The type of validation you want to use on the Image. For example, "Shell" can be shell validation
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type;
+
     /*
      * Friendly Name to provide context on what this validation step does
      */
@@ -35,6 +43,17 @@ public class ImageTemplateInVMValidator {
      * Creates an instance of ImageTemplateInVMValidator class.
      */
     public ImageTemplateInVMValidator() {
+        this.type = "ImageTemplateInVMValidator";
+    }
+
+    /**
+     * Get the type property: The type of validation you want to use on the Image. For example, "Shell" can be shell
+     * validation.
+     * 
+     * @return the type value.
+     */
+    public String type() {
+        return this.type;
     }
 
     /**

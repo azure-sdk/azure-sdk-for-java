@@ -7,6 +7,7 @@ package com.azure.resourcemanager.imagebuilder.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,10 +15,21 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * Describes an image source that is a managed image in customer subscription. This image must reside in the same
  * subscription and region as the Image Builder template.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplateManagedImageSource.class,
+    visible = true)
 @JsonTypeName("ManagedImage")
 @Fluent
 public final class ImageTemplateManagedImageSource extends ImageTemplateSource {
+    /*
+     * Specifies the type of source image you want to start with.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "ManagedImage";
+
     /*
      * ARM resource id of the managed image in customer subscription
      */
@@ -28,6 +40,16 @@ public final class ImageTemplateManagedImageSource extends ImageTemplateSource {
      * Creates an instance of ImageTemplateManagedImageSource class.
      */
     public ImageTemplateManagedImageSource() {
+    }
+
+    /**
+     * Get the type property: Specifies the type of source image you want to start with.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -59,8 +81,9 @@ public final class ImageTemplateManagedImageSource extends ImageTemplateSource {
     public void validate() {
         super.validate();
         if (imageId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property imageId in model ImageTemplateManagedImageSource"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property imageId in model ImageTemplateManagedImageSource"));
         }
     }
 

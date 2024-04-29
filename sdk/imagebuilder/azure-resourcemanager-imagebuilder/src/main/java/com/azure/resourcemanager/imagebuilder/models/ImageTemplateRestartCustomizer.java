@@ -6,16 +6,28 @@ package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Reboots a VM and waits for it to come back online (Windows). Corresponds to Packer windows-restart provisioner.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplateRestartCustomizer.class,
+    visible = true)
 @JsonTypeName("WindowsRestart")
 @Fluent
 public final class ImageTemplateRestartCustomizer extends ImageTemplateCustomizer {
+    /*
+     * The type of customization tool you want to use on the Image. For example, "Shell" can be shell customizer
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "WindowsRestart";
+
     /*
      * Command to execute the restart [Default: 'shutdown /r /f /t 0 /c "packer restart"']
      */
@@ -29,8 +41,7 @@ public final class ImageTemplateRestartCustomizer extends ImageTemplateCustomize
     private String restartCheckCommand;
 
     /*
-     * Restart timeout specified as a string of magnitude and unit, e.g. '5m' (5 minutes) or '2h' (2 hours) [Default:
-     * '5m']
+     * Restart timeout specified as a string of magnitude and unit, e.g. '5m' (5 minutes) or '2h' (2 hours) [Default: '5m']
      */
     @JsonProperty(value = "restartTimeout")
     private String restartTimeout;
@@ -39,6 +50,17 @@ public final class ImageTemplateRestartCustomizer extends ImageTemplateCustomize
      * Creates an instance of ImageTemplateRestartCustomizer class.
      */
     public ImageTemplateRestartCustomizer() {
+    }
+
+    /**
+     * Get the type property: The type of customization tool you want to use on the Image. For example, "Shell" can be
+     * shell customizer.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**

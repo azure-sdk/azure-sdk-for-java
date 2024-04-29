@@ -8,11 +8,6 @@ package com.azure.resourcemanager.imagebuilder.generated;
  * Samples for VirtualMachineImageTemplates List.
  */
 public final class VirtualMachineImageTemplatesListSamples {
-    /*
-     * x-ms-original-file:
-     * specification/imagebuilder/resource-manager/Microsoft.VirtualMachineImages/stable/2023-07-01/examples/
-     * ListImageTemplates.json
-     */
     /**
      * Sample code: List images by subscription.
      * 

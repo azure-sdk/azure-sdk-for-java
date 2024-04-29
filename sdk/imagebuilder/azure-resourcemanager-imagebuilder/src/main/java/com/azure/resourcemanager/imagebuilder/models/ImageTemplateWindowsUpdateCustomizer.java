@@ -6,6 +6,7 @@ package com.azure.resourcemanager.imagebuilder.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,20 +15,29 @@ import java.util.List;
  * Installs Windows Updates. Corresponds to Packer Windows Update Provisioner
  * (https://github.com/rgl/packer-provisioner-windows-update).
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ImageTemplateWindowsUpdateCustomizer.class,
+    visible = true)
 @JsonTypeName("WindowsUpdate")
 @Fluent
 public final class ImageTemplateWindowsUpdateCustomizer extends ImageTemplateCustomizer {
     /*
-     * Criteria to search updates. Omit or specify empty string to use the default (search all). Refer to above link
-     * for examples and detailed description of this field.
+     * The type of customization tool you want to use on the Image. For example, "Shell" can be shell customizer
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "WindowsUpdate";
+
+    /*
+     * Criteria to search updates. Omit or specify empty string to use the default (search all). Refer to above link for examples and detailed description of this field.
      */
     @JsonProperty(value = "searchCriteria")
     private String searchCriteria;
 
     /*
-     * Array of filters to select updates to apply. Omit or specify empty array to use the default (no filter). Refer
-     * to above link for examples and detailed description of this field.
+     * Array of filters to select updates to apply. Omit or specify empty array to use the default (no filter). Refer to above link for examples and detailed description of this field.
      */
     @JsonProperty(value = "filters")
     private List<String> filters;
@@ -42,6 +52,17 @@ public final class ImageTemplateWindowsUpdateCustomizer extends ImageTemplateCus
      * Creates an instance of ImageTemplateWindowsUpdateCustomizer class.
      */
     public ImageTemplateWindowsUpdateCustomizer() {
+    }
+
+    /**
+     * Get the type property: The type of customization tool you want to use on the Image. For example, "Shell" can be
+     * shell customizer.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
