@@ -18,7 +18,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The Extension object. */
+/**
+ * The Extension object.
+ */
 @Fluent
 public final class ExtensionInner extends ProxyResource {
     /*
@@ -34,8 +36,7 @@ public final class ExtensionInner extends ProxyResource {
     private Identity identity;
 
     /*
-     * Top level metadata
-     * https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/common-api-contracts.md#system-metadata-for-all-azure-resources
+     * Top level metadata https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/common-api-contracts.md#system-metadata-for-all-azure-resources
      */
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
@@ -46,13 +47,15 @@ public final class ExtensionInner extends ProxyResource {
     @JsonProperty(value = "plan")
     private Plan plan;
 
-    /** Creates an instance of ExtensionInner class. */
+    /**
+     * Creates an instance of ExtensionInner class.
+     */
     public ExtensionInner() {
     }
 
     /**
      * Get the innerProperties property: Properties of an Extension resource.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ExtensionProperties innerProperties() {
@@ -61,7 +64,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Get the identity property: Identity of the Extension resource.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -70,7 +73,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Set the identity property: Identity of the Extension resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ExtensionInner object itself.
      */
@@ -82,7 +85,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Get the systemData property: Top level metadata
      * https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/common-api-contracts.md#system-metadata-for-all-azure-resources.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -91,7 +94,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Get the plan property: The plan information.
-     *
+     * 
      * @return the plan value.
      */
     public Plan plan() {
@@ -100,7 +103,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Set the plan property: The plan information.
-     *
+     * 
      * @param plan the plan value to set.
      * @return the ExtensionInner object itself.
      */
@@ -112,7 +115,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Get the extensionType property: Type of the Extension, of which this resource is an instance of. It must be one
      * of the Extension Types registered with Microsoft.KubernetesConfiguration by the Extension publisher.
-     *
+     * 
      * @return the extensionType value.
      */
     public String extensionType() {
@@ -122,7 +125,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Set the extensionType property: Type of the Extension, of which this resource is an instance of. It must be one
      * of the Extension Types registered with Microsoft.KubernetesConfiguration by the Extension publisher.
-     *
+     * 
      * @param extensionType the extensionType value to set.
      * @return the ExtensionInner object itself.
      */
@@ -137,7 +140,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Get the autoUpgradeMinorVersion property: Flag to note if this extension participates in auto upgrade of minor
      * version, or not.
-     *
+     * 
      * @return the autoUpgradeMinorVersion value.
      */
     public Boolean autoUpgradeMinorVersion() {
@@ -147,7 +150,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Set the autoUpgradeMinorVersion property: Flag to note if this extension participates in auto upgrade of minor
      * version, or not.
-     *
+     * 
      * @param autoUpgradeMinorVersion the autoUpgradeMinorVersion value to set.
      * @return the ExtensionInner object itself.
      */
@@ -162,7 +165,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Get the releaseTrain property: ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable,
      * Preview, etc.) - only if autoUpgradeMinorVersion is 'true'.
-     *
+     * 
      * @return the releaseTrain value.
      */
     public String releaseTrain() {
@@ -172,7 +175,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Set the releaseTrain property: ReleaseTrain this extension participates in for auto-upgrade (e.g. Stable,
      * Preview, etc.) - only if autoUpgradeMinorVersion is 'true'.
-     *
+     * 
      * @param releaseTrain the releaseTrain value to set.
      * @return the ExtensionInner object itself.
      */
@@ -187,7 +190,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Get the version property: User-specified version of the extension for this extension to 'pin'. To use 'version',
      * autoUpgradeMinorVersion must be 'false'.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -197,7 +200,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Set the version property: User-specified version of the extension for this extension to 'pin'. To use 'version',
      * autoUpgradeMinorVersion must be 'false'.
-     *
+     * 
      * @param version the version value to set.
      * @return the ExtensionInner object itself.
      */
@@ -211,7 +214,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Get the scope property: Scope at which the extension is installed.
-     *
+     * 
      * @return the scope value.
      */
     public Scope scope() {
@@ -220,7 +223,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Set the scope property: Scope at which the extension is installed.
-     *
+     * 
      * @param scope the scope value to set.
      * @return the ExtensionInner object itself.
      */
@@ -235,7 +238,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Get the configurationSettings property: Configuration settings, as name-value pairs for configuring this
      * extension.
-     *
+     * 
      * @return the configurationSettings value.
      */
     public Map<String, String> configurationSettings() {
@@ -245,7 +248,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Set the configurationSettings property: Configuration settings, as name-value pairs for configuring this
      * extension.
-     *
+     * 
      * @param configurationSettings the configurationSettings value to set.
      * @return the ExtensionInner object itself.
      */
@@ -260,7 +263,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Get the configurationProtectedSettings property: Configuration settings that are sensitive, as name-value pairs
      * for configuring this extension.
-     *
+     * 
      * @return the configurationProtectedSettings value.
      */
     public Map<String, String> configurationProtectedSettings() {
@@ -270,7 +273,7 @@ public final class ExtensionInner extends ProxyResource {
     /**
      * Set the configurationProtectedSettings property: Configuration settings that are sensitive, as name-value pairs
      * for configuring this extension.
-     *
+     * 
      * @param configurationProtectedSettings the configurationProtectedSettings value to set.
      * @return the ExtensionInner object itself.
      */
@@ -284,7 +287,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Get the currentVersion property: Currently installed version of the extension.
-     *
+     * 
      * @return the currentVersion value.
      */
     public String currentVersion() {
@@ -293,7 +296,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: Status of installation of this extension.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -302,7 +305,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Get the statuses property: Status from this extension.
-     *
+     * 
      * @return the statuses value.
      */
     public List<ExtensionStatus> statuses() {
@@ -311,7 +314,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Set the statuses property: Status from this extension.
-     *
+     * 
      * @param statuses the statuses value to set.
      * @return the ExtensionInner object itself.
      */
@@ -325,7 +328,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Get the errorInfo property: Error information from the Agent - e.g. errors during installation.
-     *
+     * 
      * @return the errorInfo value.
      */
     public ManagementError errorInfo() {
@@ -334,7 +337,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Get the customLocationSettings property: Custom Location settings properties.
-     *
+     * 
      * @return the customLocationSettings value.
      */
     public Map<String, String> customLocationSettings() {
@@ -343,7 +346,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Get the packageUri property: Uri of the Helm package.
-     *
+     * 
      * @return the packageUri value.
      */
     public String packageUri() {
@@ -352,7 +355,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Get the aksAssignedIdentity property: Identity of the Extension resource in an AKS cluster.
-     *
+     * 
      * @return the aksAssignedIdentity value.
      */
     public ExtensionPropertiesAksAssignedIdentity aksAssignedIdentity() {
@@ -361,7 +364,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Set the aksAssignedIdentity property: Identity of the Extension resource in an AKS cluster.
-     *
+     * 
      * @param aksAssignedIdentity the aksAssignedIdentity value to set.
      * @return the ExtensionInner object itself.
      */
@@ -375,7 +378,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Get the isSystemExtension property: Flag to note if this extension is a system extension.
-     *
+     * 
      * @return the isSystemExtension value.
      */
     public Boolean isSystemExtension() {
@@ -384,7 +387,7 @@ public final class ExtensionInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

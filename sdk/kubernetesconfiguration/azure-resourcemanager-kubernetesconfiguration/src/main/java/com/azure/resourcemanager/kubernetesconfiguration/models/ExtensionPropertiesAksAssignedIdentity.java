@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Identity of the Extension resource in an AKS cluster. */
+/**
+ * Identity of the Extension resource in an AKS cluster.
+ */
 @Fluent
 public final class ExtensionPropertiesAksAssignedIdentity {
     /*
@@ -28,13 +30,15 @@ public final class ExtensionPropertiesAksAssignedIdentity {
     @JsonProperty(value = "type")
     private AksIdentityType type;
 
-    /** Creates an instance of ExtensionPropertiesAksAssignedIdentity class. */
+    /**
+     * Creates an instance of ExtensionPropertiesAksAssignedIdentity class.
+     */
     public ExtensionPropertiesAksAssignedIdentity() {
     }
 
     /**
      * Get the principalId property: The principal ID of resource identity.
-     *
+     * 
      * @return the principalId value.
      */
     public String principalId() {
@@ -43,7 +47,7 @@ public final class ExtensionPropertiesAksAssignedIdentity {
 
     /**
      * Get the tenantId property: The tenant ID of resource.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -52,7 +56,7 @@ public final class ExtensionPropertiesAksAssignedIdentity {
 
     /**
      * Get the type property: The identity type.
-     *
+     * 
      * @return the type value.
      */
     public AksIdentityType type() {
@@ -61,7 +65,7 @@ public final class ExtensionPropertiesAksAssignedIdentity {
 
     /**
      * Set the type property: The identity type.
-     *
+     * 
      * @param type the type value to set.
      * @return the ExtensionPropertiesAksAssignedIdentity object itself.
      */
@@ -72,7 +76,7 @@ public final class ExtensionPropertiesAksAssignedIdentity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,20 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Source Kind to pull the configuration data from. */
+/**
+ * Source Kind to pull the configuration data from.
+ */
 public final class SourceKindType extends ExpandableStringEnum<SourceKindType> {
-    /** Static value GitRepository for SourceKindType. */
+    /**
+     * Static value GitRepository for SourceKindType.
+     */
     public static final SourceKindType GIT_REPOSITORY = fromString("GitRepository");
 
-    /** Static value Bucket for SourceKindType. */
+    /**
+     * Static value Bucket for SourceKindType.
+     */
     public static final SourceKindType BUCKET = fromString("Bucket");
 
-    /** Static value AzureBlob for SourceKindType. */
+    /**
+     * Static value AzureBlob for SourceKindType.
+     */
     public static final SourceKindType AZURE_BLOB = fromString("AzureBlob");
 
     /**
+     * Static value OCIRepository for SourceKindType.
+     */
+    public static final SourceKindType OCIREPOSITORY = fromString("OCIRepository");
+
+    /**
      * Creates a new instance of SourceKindType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +43,7 @@ public final class SourceKindType extends ExpandableStringEnum<SourceKindType> {
 
     /**
      * Creates or finds a SourceKindType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SourceKindType.
      */
@@ -41,7 +54,7 @@ public final class SourceKindType extends ExpandableStringEnum<SourceKindType> {
 
     /**
      * Gets known SourceKindType values.
-     *
+     * 
      * @return known SourceKindType values.
      */
     public static Collection<SourceKindType> values() {

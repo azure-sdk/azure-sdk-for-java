@@ -27,13 +27,15 @@ public final class SourceControlConfigurationList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SourceControlConfigurationList class. */
+    /**
+     * Creates an instance of SourceControlConfigurationList class.
+     */
     public SourceControlConfigurationList() {
     }
 
     /**
      * Get the value property: List of Source Control Configurations within a Kubernetes cluster.
-     *
+     * 
      * @return the value value.
      */
     public List<SourceControlConfigurationInner> value() {
@@ -42,7 +44,7 @@ public final class SourceControlConfigurationList {
 
     /**
      * Get the nextLink property: URL to get the next set of configuration objects, if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -51,7 +53,7 @@ public final class SourceControlConfigurationList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

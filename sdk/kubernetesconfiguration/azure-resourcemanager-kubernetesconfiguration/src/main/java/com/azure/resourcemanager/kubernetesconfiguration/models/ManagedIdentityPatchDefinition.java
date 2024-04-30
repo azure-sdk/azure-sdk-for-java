@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Parameters to authenticate using a Managed Identity. */
+/**
+ * Parameters to authenticate using a Managed Identity.
+ */
 @Fluent
 public final class ManagedIdentityPatchDefinition {
     /*
@@ -16,13 +18,15 @@ public final class ManagedIdentityPatchDefinition {
     @JsonProperty(value = "clientId")
     private String clientId;
 
-    /** Creates an instance of ManagedIdentityPatchDefinition class. */
+    /**
+     * Creates an instance of ManagedIdentityPatchDefinition class.
+     */
     public ManagedIdentityPatchDefinition() {
     }
 
     /**
      * Get the clientId property: The client Id for authenticating a Managed Identity.
-     *
+     * 
      * @return the clientId value.
      */
     public String clientId() {
@@ -31,7 +35,7 @@ public final class ManagedIdentityPatchDefinition {
 
     /**
      * Set the clientId property: The client Id for authenticating a Managed Identity.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the ManagedIdentityPatchDefinition object itself.
      */
@@ -42,7 +46,7 @@ public final class ManagedIdentityPatchDefinition {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

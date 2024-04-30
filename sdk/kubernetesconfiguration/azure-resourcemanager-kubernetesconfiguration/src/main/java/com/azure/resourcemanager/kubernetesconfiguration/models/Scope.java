@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Scope of the extension. It can be either Cluster or Namespace; but not both. */
+/**
+ * Scope of the extension. It can be either Cluster or Namespace; but not both.
+ */
 @Fluent
 public final class Scope {
     /*
@@ -22,13 +24,15 @@ public final class Scope {
     @JsonProperty(value = "namespace")
     private ScopeNamespace namespace;
 
-    /** Creates an instance of Scope class. */
+    /**
+     * Creates an instance of Scope class.
+     */
     public Scope() {
     }
 
     /**
      * Get the cluster property: Specifies that the scope of the extension is Cluster.
-     *
+     * 
      * @return the cluster value.
      */
     public ScopeCluster cluster() {
@@ -37,7 +41,7 @@ public final class Scope {
 
     /**
      * Set the cluster property: Specifies that the scope of the extension is Cluster.
-     *
+     * 
      * @param cluster the cluster value to set.
      * @return the Scope object itself.
      */
@@ -48,7 +52,7 @@ public final class Scope {
 
     /**
      * Get the namespace property: Specifies that the scope of the extension is Namespace.
-     *
+     * 
      * @return the namespace value.
      */
     public ScopeNamespace namespace() {
@@ -57,7 +61,7 @@ public final class Scope {
 
     /**
      * Set the namespace property: Specifies that the scope of the extension is Namespace.
-     *
+     * 
      * @param namespace the namespace value to set.
      * @return the Scope object itself.
      */
@@ -68,7 +72,7 @@ public final class Scope {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

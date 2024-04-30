@@ -9,7 +9,9 @@ import com.azure.resourcemanager.kubernetesconfiguration.fluent.models.Operation
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The async operations in progress, in the cluster. */
+/**
+ * The async operations in progress, in the cluster.
+ */
 @Immutable
 public final class OperationStatusList {
     /*
@@ -24,13 +26,15 @@ public final class OperationStatusList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of OperationStatusList class. */
+    /**
+     * Creates an instance of OperationStatusList class.
+     */
     public OperationStatusList() {
     }
 
     /**
      * Get the value property: List of async operations in progress, in the cluster.
-     *
+     * 
      * @return the value value.
      */
     public List<OperationStatusResultInner> value() {
@@ -39,7 +43,7 @@ public final class OperationStatusList {
 
     /**
      * Get the nextLink property: URL to get the next set of Operation Result objects, if any.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class OperationStatusList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

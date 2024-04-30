@@ -4,26 +4,22 @@
 
 package com.azure.resourcemanager.kubernetesconfiguration.generated;
 
-/** Samples for Extensions Get. */
+/**
+ * Samples for Extensions Get.
+ */
 public final class ExtensionsGetSamples {
     /*
      * x-ms-original-file: specification/kubernetesconfiguration/resource-manager/Microsoft.KubernetesConfiguration/stable/2023-05-01/examples/GetExtensionWithPlan.json
      */
     /**
      * Sample code: Get Extension with Plan.
-     *
+     * 
      * @param manager Entry point to SourceControlConfigurationManager.
      */
     public static void getExtensionWithPlan(
         com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager
-            .extensions()
-            .getWithResponse(
-                "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
-                "clusterName1",
-                "azureVote",
+        manager.extensions()
+            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "azureVote",
                 com.azure.core.util.Context.NONE);
     }
 
@@ -32,19 +28,13 @@ public final class ExtensionsGetSamples {
      */
     /**
      * Sample code: Get Extension.
-     *
+     * 
      * @param manager Entry point to SourceControlConfigurationManager.
      */
-    public static void getExtension(
-        com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
-        manager
-            .extensions()
-            .getWithResponse(
-                "rg1",
-                "Microsoft.Kubernetes",
-                "connectedClusters",
-                "clusterName1",
-                "ClusterMonitor",
+    public static void
+        getExtension(com.azure.resourcemanager.kubernetesconfiguration.SourceControlConfigurationManager manager) {
+        manager.extensions()
+            .getWithResponse("rg1", "Microsoft.Kubernetes", "connectedClusters", "clusterName1", "ClusterMonitor",
                 com.azure.core.util.Context.NONE);
     }
 }

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties for Helm operator. */
+/**
+ * Properties for Helm operator.
+ */
 @Fluent
 public final class HelmOperatorProperties {
     /*
@@ -22,13 +24,15 @@ public final class HelmOperatorProperties {
     @JsonProperty(value = "chartValues")
     private String chartValues;
 
-    /** Creates an instance of HelmOperatorProperties class. */
+    /**
+     * Creates an instance of HelmOperatorProperties class.
+     */
     public HelmOperatorProperties() {
     }
 
     /**
      * Get the chartVersion property: Version of the operator Helm chart.
-     *
+     * 
      * @return the chartVersion value.
      */
     public String chartVersion() {
@@ -37,7 +41,7 @@ public final class HelmOperatorProperties {
 
     /**
      * Set the chartVersion property: Version of the operator Helm chart.
-     *
+     * 
      * @param chartVersion the chartVersion value to set.
      * @return the HelmOperatorProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class HelmOperatorProperties {
 
     /**
      * Get the chartValues property: Values override for the operator Helm chart.
-     *
+     * 
      * @return the chartValues value.
      */
     public String chartValues() {
@@ -57,7 +61,7 @@ public final class HelmOperatorProperties {
 
     /**
      * Set the chartValues property: Values override for the operator Helm chart.
-     *
+     * 
      * @param chartValues the chartValues value to set.
      * @return the HelmOperatorProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class HelmOperatorProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

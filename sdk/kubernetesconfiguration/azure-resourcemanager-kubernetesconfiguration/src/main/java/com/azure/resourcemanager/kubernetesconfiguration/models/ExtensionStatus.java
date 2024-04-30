@@ -7,7 +7,9 @@ package com.azure.resourcemanager.kubernetesconfiguration.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Status from the extension. */
+/**
+ * Status from the extension.
+ */
 @Fluent
 public final class ExtensionStatus {
     /*
@@ -40,13 +42,15 @@ public final class ExtensionStatus {
     @JsonProperty(value = "time")
     private String time;
 
-    /** Creates an instance of ExtensionStatus class. */
+    /**
+     * Creates an instance of ExtensionStatus class.
+     */
     public ExtensionStatus() {
     }
 
     /**
      * Get the code property: Status code provided by the Extension.
-     *
+     * 
      * @return the code value.
      */
     public String code() {
@@ -55,7 +59,7 @@ public final class ExtensionStatus {
 
     /**
      * Set the code property: Status code provided by the Extension.
-     *
+     * 
      * @param code the code value to set.
      * @return the ExtensionStatus object itself.
      */
@@ -66,7 +70,7 @@ public final class ExtensionStatus {
 
     /**
      * Get the displayStatus property: Short description of status of the extension.
-     *
+     * 
      * @return the displayStatus value.
      */
     public String displayStatus() {
@@ -75,7 +79,7 @@ public final class ExtensionStatus {
 
     /**
      * Set the displayStatus property: Short description of status of the extension.
-     *
+     * 
      * @param displayStatus the displayStatus value to set.
      * @return the ExtensionStatus object itself.
      */
@@ -86,7 +90,7 @@ public final class ExtensionStatus {
 
     /**
      * Get the level property: Level of the status.
-     *
+     * 
      * @return the level value.
      */
     public LevelType level() {
@@ -95,7 +99,7 @@ public final class ExtensionStatus {
 
     /**
      * Set the level property: Level of the status.
-     *
+     * 
      * @param level the level value to set.
      * @return the ExtensionStatus object itself.
      */
@@ -106,7 +110,7 @@ public final class ExtensionStatus {
 
     /**
      * Get the message property: Detailed message of the status from the Extension.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -115,7 +119,7 @@ public final class ExtensionStatus {
 
     /**
      * Set the message property: Detailed message of the status from the Extension.
-     *
+     * 
      * @param message the message value to set.
      * @return the ExtensionStatus object itself.
      */
@@ -126,7 +130,7 @@ public final class ExtensionStatus {
 
     /**
      * Get the time property: DateLiteral (per ISO8601) noting the time of installation status.
-     *
+     * 
      * @return the time value.
      */
     public String time() {
@@ -135,7 +139,7 @@ public final class ExtensionStatus {
 
     /**
      * Set the time property: DateLiteral (per ISO8601) noting the time of installation status.
-     *
+     * 
      * @param time the time value to set.
      * @return the ExtensionStatus object itself.
      */
@@ -146,7 +150,7 @@ public final class ExtensionStatus {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
