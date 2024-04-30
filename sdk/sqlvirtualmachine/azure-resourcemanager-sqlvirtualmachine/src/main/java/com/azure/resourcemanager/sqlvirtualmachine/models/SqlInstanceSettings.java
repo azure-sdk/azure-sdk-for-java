@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Set the server/instance-level settings for SQL Server. */
+/**
+ * Set the server/instance-level settings for SQL Server.
+ */
 @Fluent
 public final class SqlInstanceSettings {
     /*
@@ -52,13 +54,15 @@ public final class SqlInstanceSettings {
     @JsonProperty(value = "isIfiEnabled")
     private Boolean isIfiEnabled;
 
-    /** Creates an instance of SqlInstanceSettings class. */
+    /**
+     * Creates an instance of SqlInstanceSettings class.
+     */
     public SqlInstanceSettings() {
     }
 
     /**
      * Get the collation property: SQL Server Collation.
-     *
+     * 
      * @return the collation value.
      */
     public String collation() {
@@ -67,7 +71,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Set the collation property: SQL Server Collation.
-     *
+     * 
      * @param collation the collation value to set.
      * @return the SqlInstanceSettings object itself.
      */
@@ -78,7 +82,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Get the maxDop property: SQL Server MAXDOP.
-     *
+     * 
      * @return the maxDop value.
      */
     public Integer maxDop() {
@@ -87,7 +91,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Set the maxDop property: SQL Server MAXDOP.
-     *
+     * 
      * @param maxDop the maxDop value to set.
      * @return the SqlInstanceSettings object itself.
      */
@@ -98,7 +102,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Get the isOptimizeForAdHocWorkloadsEnabled property: SQL Server Optimize for Adhoc workloads.
-     *
+     * 
      * @return the isOptimizeForAdHocWorkloadsEnabled value.
      */
     public Boolean isOptimizeForAdHocWorkloadsEnabled() {
@@ -107,7 +111,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Set the isOptimizeForAdHocWorkloadsEnabled property: SQL Server Optimize for Adhoc workloads.
-     *
+     * 
      * @param isOptimizeForAdHocWorkloadsEnabled the isOptimizeForAdHocWorkloadsEnabled value to set.
      * @return the SqlInstanceSettings object itself.
      */
@@ -118,7 +122,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Get the minServerMemoryMB property: SQL Server minimum memory.
-     *
+     * 
      * @return the minServerMemoryMB value.
      */
     public Integer minServerMemoryMB() {
@@ -127,7 +131,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Set the minServerMemoryMB property: SQL Server minimum memory.
-     *
+     * 
      * @param minServerMemoryMB the minServerMemoryMB value to set.
      * @return the SqlInstanceSettings object itself.
      */
@@ -138,7 +142,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Get the maxServerMemoryMB property: SQL Server maximum memory.
-     *
+     * 
      * @return the maxServerMemoryMB value.
      */
     public Integer maxServerMemoryMB() {
@@ -147,7 +151,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Set the maxServerMemoryMB property: SQL Server maximum memory.
-     *
+     * 
      * @param maxServerMemoryMB the maxServerMemoryMB value to set.
      * @return the SqlInstanceSettings object itself.
      */
@@ -158,7 +162,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Get the isLpimEnabled property: SQL Server LPIM.
-     *
+     * 
      * @return the isLpimEnabled value.
      */
     public Boolean isLpimEnabled() {
@@ -167,7 +171,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Set the isLpimEnabled property: SQL Server LPIM.
-     *
+     * 
      * @param isLpimEnabled the isLpimEnabled value to set.
      * @return the SqlInstanceSettings object itself.
      */
@@ -178,7 +182,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Get the isIfiEnabled property: SQL Server IFI.
-     *
+     * 
      * @return the isIfiEnabled value.
      */
     public Boolean isIfiEnabled() {
@@ -187,7 +191,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Set the isIfiEnabled property: SQL Server IFI.
-     *
+     * 
      * @param isIfiEnabled the isIfiEnabled value to set.
      * @return the SqlInstanceSettings object itself.
      */
@@ -198,7 +202,7 @@ public final class SqlInstanceSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

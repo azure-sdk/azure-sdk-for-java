@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Additional SQL Server feature settings. */
+/**
+ * Additional SQL Server feature settings.
+ */
 @Fluent
 public final class AdditionalFeaturesServerConfigurations {
     /*
@@ -16,13 +18,15 @@ public final class AdditionalFeaturesServerConfigurations {
     @JsonProperty(value = "isRServicesEnabled")
     private Boolean isRServicesEnabled;
 
-    /** Creates an instance of AdditionalFeaturesServerConfigurations class. */
+    /**
+     * Creates an instance of AdditionalFeaturesServerConfigurations class.
+     */
     public AdditionalFeaturesServerConfigurations() {
     }
 
     /**
      * Get the isRServicesEnabled property: Enable or disable R services (SQL 2016 onwards).
-     *
+     * 
      * @return the isRServicesEnabled value.
      */
     public Boolean isRServicesEnabled() {
@@ -31,7 +35,7 @@ public final class AdditionalFeaturesServerConfigurations {
 
     /**
      * Set the isRServicesEnabled property: Enable or disable R services (SQL 2016 onwards).
-     *
+     * 
      * @param isRServicesEnabled the isRServicesEnabled value to set.
      * @return the AdditionalFeaturesServerConfigurations object itself.
      */
@@ -42,7 +46,7 @@ public final class AdditionalFeaturesServerConfigurations {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

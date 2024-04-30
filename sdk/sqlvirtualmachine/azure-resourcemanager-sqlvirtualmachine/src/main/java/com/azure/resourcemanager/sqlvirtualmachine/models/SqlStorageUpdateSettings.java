@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Set disk storage settings for SQL Server. */
+/**
+ * Set disk storage settings for SQL Server.
+ */
 @Fluent
 public final class SqlStorageUpdateSettings {
     /*
@@ -28,13 +30,15 @@ public final class SqlStorageUpdateSettings {
     @JsonProperty(value = "diskConfigurationType")
     private DiskConfigurationType diskConfigurationType;
 
-    /** Creates an instance of SqlStorageUpdateSettings class. */
+    /**
+     * Creates an instance of SqlStorageUpdateSettings class.
+     */
     public SqlStorageUpdateSettings() {
     }
 
     /**
      * Get the diskCount property: Virtual machine disk count.
-     *
+     * 
      * @return the diskCount value.
      */
     public Integer diskCount() {
@@ -43,7 +47,7 @@ public final class SqlStorageUpdateSettings {
 
     /**
      * Set the diskCount property: Virtual machine disk count.
-     *
+     * 
      * @param diskCount the diskCount value to set.
      * @return the SqlStorageUpdateSettings object itself.
      */
@@ -54,7 +58,7 @@ public final class SqlStorageUpdateSettings {
 
     /**
      * Get the startingDeviceId property: Device id of the first disk to be updated.
-     *
+     * 
      * @return the startingDeviceId value.
      */
     public Integer startingDeviceId() {
@@ -63,7 +67,7 @@ public final class SqlStorageUpdateSettings {
 
     /**
      * Set the startingDeviceId property: Device id of the first disk to be updated.
-     *
+     * 
      * @param startingDeviceId the startingDeviceId value to set.
      * @return the SqlStorageUpdateSettings object itself.
      */
@@ -74,7 +78,7 @@ public final class SqlStorageUpdateSettings {
 
     /**
      * Get the diskConfigurationType property: Disk configuration to apply to SQL Server.
-     *
+     * 
      * @return the diskConfigurationType value.
      */
     public DiskConfigurationType diskConfigurationType() {
@@ -83,7 +87,7 @@ public final class SqlStorageUpdateSettings {
 
     /**
      * Set the diskConfigurationType property: Disk configuration to apply to SQL Server.
-     *
+     * 
      * @param diskConfigurationType the diskConfigurationType value to set.
      * @return the SqlStorageUpdateSettings object itself.
      */
@@ -94,7 +98,7 @@ public final class SqlStorageUpdateSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Configure SQL best practices Assessment for databases in your SQL virtual machine. */
+/**
+ * Configure SQL best practices Assessment for databases in your SQL virtual machine.
+ */
 @Fluent
 public final class AssessmentSettings {
     /*
@@ -28,13 +30,15 @@ public final class AssessmentSettings {
     @JsonProperty(value = "schedule")
     private Schedule schedule;
 
-    /** Creates an instance of AssessmentSettings class. */
+    /**
+     * Creates an instance of AssessmentSettings class.
+     */
     public AssessmentSettings() {
     }
 
     /**
      * Get the enable property: Enable or disable SQL best practices Assessment feature on SQL virtual machine.
-     *
+     * 
      * @return the enable value.
      */
     public Boolean enable() {
@@ -43,7 +47,7 @@ public final class AssessmentSettings {
 
     /**
      * Set the enable property: Enable or disable SQL best practices Assessment feature on SQL virtual machine.
-     *
+     * 
      * @param enable the enable value to set.
      * @return the AssessmentSettings object itself.
      */
@@ -54,7 +58,7 @@ public final class AssessmentSettings {
 
     /**
      * Get the runImmediately property: Run SQL best practices Assessment immediately on SQL virtual machine.
-     *
+     * 
      * @return the runImmediately value.
      */
     public Boolean runImmediately() {
@@ -63,7 +67,7 @@ public final class AssessmentSettings {
 
     /**
      * Set the runImmediately property: Run SQL best practices Assessment immediately on SQL virtual machine.
-     *
+     * 
      * @param runImmediately the runImmediately value to set.
      * @return the AssessmentSettings object itself.
      */
@@ -74,7 +78,7 @@ public final class AssessmentSettings {
 
     /**
      * Get the schedule property: Schedule for SQL best practices Assessment.
-     *
+     * 
      * @return the schedule value.
      */
     public Schedule schedule() {
@@ -83,7 +87,7 @@ public final class AssessmentSettings {
 
     /**
      * Set the schedule property: Schedule for SQL best practices Assessment.
-     *
+     * 
      * @param schedule the schedule value to set.
      * @return the AssessmentSettings object itself.
      */
@@ -94,7 +98,7 @@ public final class AssessmentSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

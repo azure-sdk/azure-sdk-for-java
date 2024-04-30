@@ -7,7 +7,9 @@ package com.azure.resourcemanager.sqlvirtualmachine.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Set workload type to optimize storage for SQL Server. */
+/**
+ * Set workload type to optimize storage for SQL Server.
+ */
 @Fluent
 public final class SqlWorkloadTypeUpdateSettings {
     /*
@@ -16,13 +18,15 @@ public final class SqlWorkloadTypeUpdateSettings {
     @JsonProperty(value = "sqlWorkloadType")
     private SqlWorkloadType sqlWorkloadType;
 
-    /** Creates an instance of SqlWorkloadTypeUpdateSettings class. */
+    /**
+     * Creates an instance of SqlWorkloadTypeUpdateSettings class.
+     */
     public SqlWorkloadTypeUpdateSettings() {
     }
 
     /**
      * Get the sqlWorkloadType property: SQL Server workload type.
-     *
+     * 
      * @return the sqlWorkloadType value.
      */
     public SqlWorkloadType sqlWorkloadType() {
@@ -31,7 +35,7 @@ public final class SqlWorkloadTypeUpdateSettings {
 
     /**
      * Set the sqlWorkloadType property: SQL Server workload type.
-     *
+     * 
      * @param sqlWorkloadType the sqlWorkloadType value to set.
      * @return the SqlWorkloadTypeUpdateSettings object itself.
      */
@@ -42,7 +46,7 @@ public final class SqlWorkloadTypeUpdateSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

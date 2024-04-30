@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Availability group configuration. */
+/**
+ * Availability group configuration.
+ */
 @Fluent
 public final class AgConfiguration {
     /*
@@ -17,13 +19,15 @@ public final class AgConfiguration {
     @JsonProperty(value = "replicas")
     private List<AgReplica> replicas;
 
-    /** Creates an instance of AgConfiguration class. */
+    /**
+     * Creates an instance of AgConfiguration class.
+     */
     public AgConfiguration() {
     }
 
     /**
      * Get the replicas property: Replica configurations.
-     *
+     * 
      * @return the replicas value.
      */
     public List<AgReplica> replicas() {
@@ -32,7 +36,7 @@ public final class AgConfiguration {
 
     /**
      * Set the replicas property: Replica configurations.
-     *
+     * 
      * @param replicas the replicas value to set.
      * @return the AgConfiguration object itself.
      */
@@ -43,7 +47,7 @@ public final class AgConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
