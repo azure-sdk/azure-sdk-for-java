@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Data representing a single evaluation run of an assistant thread.
+ * Data representing a single evaluation run of an assistant thread. And.
  */
 @Immutable
 public final class ThreadRun implements JsonSerializable<ThreadRun> {
