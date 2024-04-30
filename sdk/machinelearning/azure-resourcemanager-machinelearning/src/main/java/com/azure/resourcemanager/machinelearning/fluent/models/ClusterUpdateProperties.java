@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.ScaleSettingsInformation;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of a amlCompute that need to be updated. */
+/**
+ * The properties of a amlCompute that need to be updated.
+ */
 @Fluent
 public final class ClusterUpdateProperties {
     /*
@@ -17,13 +19,15 @@ public final class ClusterUpdateProperties {
     @JsonProperty(value = "properties")
     private ScaleSettingsInformation properties;
 
-    /** Creates an instance of ClusterUpdateProperties class. */
+    /**
+     * Creates an instance of ClusterUpdateProperties class.
+     */
     public ClusterUpdateProperties() {
     }
 
     /**
      * Get the properties property: Properties of ClusterUpdate.
-     *
+     * 
      * @return the properties value.
      */
     public ScaleSettingsInformation properties() {
@@ -32,7 +36,7 @@ public final class ClusterUpdateProperties {
 
     /**
      * Set the properties property: Properties of ClusterUpdate.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ClusterUpdateProperties object itself.
      */
@@ -43,7 +47,7 @@ public final class ClusterUpdateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
