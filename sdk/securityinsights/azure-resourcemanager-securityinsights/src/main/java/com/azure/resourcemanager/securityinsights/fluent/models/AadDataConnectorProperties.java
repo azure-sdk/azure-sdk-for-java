@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.AlertsDataTypeOfDataCon
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** AAD (Azure Active Directory) data connector properties. */
+/**
+ * AADIP (Azure Active Directory Identity Protection) data connector properties.
+ */
 @Fluent
 public final class AadDataConnectorProperties extends DataConnectorTenantId {
     /*
@@ -19,8 +21,14 @@ public final class AadDataConnectorProperties extends DataConnectorTenantId {
     private AlertsDataTypeOfDataConnector dataTypes;
 
     /**
+     * Creates an instance of AadDataConnectorProperties class.
+     */
+    public AadDataConnectorProperties() {
+    }
+
+    /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AlertsDataTypeOfDataConnector dataTypes() {
@@ -29,7 +37,7 @@ public final class AadDataConnectorProperties extends DataConnectorTenantId {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the AadDataConnectorProperties object itself.
      */
@@ -38,7 +46,9 @@ public final class AadDataConnectorProperties extends DataConnectorTenantId {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AadDataConnectorProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -47,7 +57,7 @@ public final class AadDataConnectorProperties extends DataConnectorTenantId {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

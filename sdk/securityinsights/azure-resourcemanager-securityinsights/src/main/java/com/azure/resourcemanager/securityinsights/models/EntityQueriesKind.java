@@ -8,17 +8,32 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for EntityQueriesKind. */
+/**
+ * Defines values for EntityQueriesKind.
+ */
 public final class EntityQueriesKind extends ExpandableStringEnum<EntityQueriesKind> {
-    /** Static value Expansion for EntityQueriesKind. */
+    /**
+     * Static value Expansion for EntityQueriesKind.
+     */
     public static final EntityQueriesKind EXPANSION = fromString("Expansion");
 
-    /** Static value Activity for EntityQueriesKind. */
+    /**
+     * Static value Activity for EntityQueriesKind.
+     */
     public static final EntityQueriesKind ACTIVITY = fromString("Activity");
 
     /**
+     * Creates a new instance of EntityQueriesKind value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public EntityQueriesKind() {
+    }
+
+    /**
      * Creates or finds a EntityQueriesKind from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding EntityQueriesKind.
      */
@@ -29,7 +44,7 @@ public final class EntityQueriesKind extends ExpandableStringEnum<EntityQueriesK
 
     /**
      * Gets known EntityQueriesKind values.
-     *
+     * 
      * @return known EntityQueriesKind values.
      */
     public static Collection<EntityQueriesKind> values() {

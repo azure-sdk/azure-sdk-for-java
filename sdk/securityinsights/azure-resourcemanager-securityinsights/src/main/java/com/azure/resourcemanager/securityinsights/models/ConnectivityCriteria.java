@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Setting for the connector check connectivity. */
+/**
+ * Setting for the connector check connectivity.
+ */
 @Fluent
 public class ConnectivityCriteria {
     /*
@@ -24,8 +26,14 @@ public class ConnectivityCriteria {
     private List<String> value;
 
     /**
+     * Creates an instance of ConnectivityCriteria class.
+     */
+    public ConnectivityCriteria() {
+    }
+
+    /**
      * Get the type property: type of connectivity.
-     *
+     * 
      * @return the type value.
      */
     public ConnectivityType type() {
@@ -34,7 +42,7 @@ public class ConnectivityCriteria {
 
     /**
      * Set the type property: type of connectivity.
-     *
+     * 
      * @param type the type value to set.
      * @return the ConnectivityCriteria object itself.
      */
@@ -45,7 +53,7 @@ public class ConnectivityCriteria {
 
     /**
      * Get the value property: Queries for checking connectivity.
-     *
+     * 
      * @return the value value.
      */
     public List<String> value() {
@@ -54,7 +62,7 @@ public class ConnectivityCriteria {
 
     /**
      * Set the value property: Queries for checking connectivity.
-     *
+     * 
      * @param value the value value to set.
      * @return the ConnectivityCriteria object itself.
      */
@@ -65,7 +73,7 @@ public class ConnectivityCriteria {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
