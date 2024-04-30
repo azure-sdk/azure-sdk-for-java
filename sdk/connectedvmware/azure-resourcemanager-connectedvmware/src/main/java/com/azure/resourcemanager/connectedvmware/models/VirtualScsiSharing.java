@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines the sharing mode for sharing the SCSI bus. */
+/**
+ * Defines the sharing mode for sharing the SCSI bus.
+ */
 public final class VirtualScsiSharing extends ExpandableStringEnum<VirtualScsiSharing> {
-    /** Static value noSharing for VirtualScsiSharing. */
+    /**
+     * Static value noSharing for VirtualScsiSharing.
+     */
     public static final VirtualScsiSharing NO_SHARING = fromString("noSharing");
 
-    /** Static value physicalSharing for VirtualScsiSharing. */
+    /**
+     * Static value physicalSharing for VirtualScsiSharing.
+     */
     public static final VirtualScsiSharing PHYSICAL_SHARING = fromString("physicalSharing");
 
-    /** Static value virtualSharing for VirtualScsiSharing. */
+    /**
+     * Static value virtualSharing for VirtualScsiSharing.
+     */
     public static final VirtualScsiSharing VIRTUAL_SHARING = fromString("virtualSharing");
 
     /**
      * Creates a new instance of VirtualScsiSharing value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class VirtualScsiSharing extends ExpandableStringEnum<VirtualScsiSh
 
     /**
      * Creates or finds a VirtualScsiSharing from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding VirtualScsiSharing.
      */
@@ -41,7 +49,7 @@ public final class VirtualScsiSharing extends ExpandableStringEnum<VirtualScsiSh
 
     /**
      * Gets known VirtualScsiSharing values.
-     *
+     * 
      * @return known VirtualScsiSharing values.
      */
     public static Collection<VirtualScsiSharing> values() {

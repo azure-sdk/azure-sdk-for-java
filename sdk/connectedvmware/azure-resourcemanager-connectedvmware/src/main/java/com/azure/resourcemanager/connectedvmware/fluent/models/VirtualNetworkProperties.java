@@ -10,7 +10,9 @@ import com.azure.resourcemanager.connectedvmware.models.ResourceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the properties of a Virtual Network. */
+/**
+ * Describes the properties of a Virtual Network.
+ */
 @Fluent
 public final class VirtualNetworkProperties {
     /*
@@ -61,13 +63,15 @@ public final class VirtualNetworkProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of VirtualNetworkProperties class. */
+    /**
+     * Creates an instance of VirtualNetworkProperties class.
+     */
     public VirtualNetworkProperties() {
     }
 
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.
-     *
+     * 
      * @return the uuid value.
      */
     public String uuid() {
@@ -76,7 +80,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this template resides.
-     *
+     * 
      * @return the vCenterId value.
      */
     public String vCenterId() {
@@ -85,7 +89,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Set the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this template resides.
-     *
+     * 
      * @param vCenterId the vCenterId value to set.
      * @return the VirtualNetworkProperties object itself.
      */
@@ -96,7 +100,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the moRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID for the virtual network.
-     *
+     * 
      * @return the moRefId value.
      */
     public String moRefId() {
@@ -105,7 +109,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Set the moRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID for the virtual network.
-     *
+     * 
      * @param moRefId the moRefId value to set.
      * @return the VirtualNetworkProperties object itself.
      */
@@ -116,7 +120,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the virtual network.
-     *
+     * 
      * @return the inventoryItemId value.
      */
     public String inventoryItemId() {
@@ -125,7 +129,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Set the inventoryItemId property: Gets or sets the inventory Item ID for the virtual network.
-     *
+     * 
      * @param inventoryItemId the inventoryItemId value to set.
      * @return the VirtualNetworkProperties object itself.
      */
@@ -136,7 +140,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the moName property: Gets or sets the vCenter Managed Object name for the virtual network.
-     *
+     * 
      * @return the moName value.
      */
     public String moName() {
@@ -145,7 +149,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the customResourceName property: Gets the name of the corresponding resource in Kubernetes.
-     *
+     * 
      * @return the customResourceName value.
      */
     public String customResourceName() {
@@ -154,7 +158,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the statuses property: The resource status information.
-     *
+     * 
      * @return the statuses value.
      */
     public List<ResourceStatus> statuses() {
@@ -163,7 +167,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Get the provisioningState property: Gets the provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -172,7 +176,7 @@ public final class VirtualNetworkProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

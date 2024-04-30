@@ -5,33 +5,66 @@
 package com.azure.resourcemanager.connectedvmware.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The Virtual network inventory item. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "inventoryType")
+/**
+ * The Virtual network inventory item.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "inventoryType",
+    defaultImpl = VirtualNetworkInventoryItem.class,
+    visible = true)
 @JsonTypeName("VirtualNetwork")
 @Fluent
 public final class VirtualNetworkInventoryItem extends InventoryItemProperties {
-    /** Creates an instance of VirtualNetworkInventoryItem class. */
+    /*
+     * They inventory type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "inventoryType", required = true)
+    private InventoryType inventoryType = InventoryType.VIRTUAL_NETWORK;
+
+    /**
+     * Creates an instance of VirtualNetworkInventoryItem class.
+     */
     public VirtualNetworkInventoryItem() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the inventoryType property: They inventory type.
+     * 
+     * @return the inventoryType value.
+     */
+    @Override
+    public InventoryType inventoryType() {
+        return this.inventoryType;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkInventoryItem withManagedResourceId(String managedResourceId) {
         super.withManagedResourceId(managedResourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkInventoryItem withMoRefId(String moRefId) {
         super.withMoRefId(moRefId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualNetworkInventoryItem withMoName(String moName) {
         super.withMoName(moName);
@@ -40,7 +73,7 @@ public final class VirtualNetworkInventoryItem extends InventoryItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

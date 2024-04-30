@@ -7,7 +7,9 @@ package com.azure.resourcemanager.connectedvmware.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** IP address information for a virtual network adapter reported by the fabric. */
+/**
+ * IP address information for a virtual network adapter reported by the fabric.
+ */
 @Immutable
 public final class NicIpAddressSettings {
     /*
@@ -28,13 +30,15 @@ public final class NicIpAddressSettings {
     @JsonProperty(value = "subnetMask", access = JsonProperty.Access.WRITE_ONLY)
     private String subnetMask;
 
-    /** Creates an instance of NicIpAddressSettings class. */
+    /**
+     * Creates an instance of NicIpAddressSettings class.
+     */
     public NicIpAddressSettings() {
     }
 
     /**
      * Get the allocationMethod property: Gets the ip address allocation method.
-     *
+     * 
      * @return the allocationMethod value.
      */
     public String allocationMethod() {
@@ -43,7 +47,7 @@ public final class NicIpAddressSettings {
 
     /**
      * Get the ipAddress property: Gets the ip address for the nic.
-     *
+     * 
      * @return the ipAddress value.
      */
     public String ipAddress() {
@@ -52,7 +56,7 @@ public final class NicIpAddressSettings {
 
     /**
      * Get the subnetMask property: Gets the mask.
-     *
+     * 
      * @return the subnetMask value.
      */
     public String subnetMask() {
@@ -61,7 +65,7 @@ public final class NicIpAddressSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

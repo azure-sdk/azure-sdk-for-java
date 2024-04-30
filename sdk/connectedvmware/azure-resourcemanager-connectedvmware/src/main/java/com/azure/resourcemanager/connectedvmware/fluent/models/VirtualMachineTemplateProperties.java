@@ -14,7 +14,9 @@ import com.azure.resourcemanager.connectedvmware.models.VirtualDisk;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes the properties of a Virtual Machine Template. */
+/**
+ * Describes the properties of a Virtual Machine Template.
+ */
 @Fluent
 public final class VirtualMachineTemplateProperties {
     /*
@@ -133,13 +135,15 @@ public final class VirtualMachineTemplateProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of VirtualMachineTemplateProperties class. */
+    /**
+     * Creates an instance of VirtualMachineTemplateProperties class.
+     */
     public VirtualMachineTemplateProperties() {
     }
 
     /**
      * Get the uuid property: Gets or sets a unique identifier for this resource.
-     *
+     * 
      * @return the uuid value.
      */
     public String uuid() {
@@ -148,7 +152,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this template resides.
-     *
+     * 
      * @return the vCenterId value.
      */
     public String vCenterId() {
@@ -157,7 +161,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Set the vCenterId property: Gets or sets the ARM Id of the vCenter resource in which this template resides.
-     *
+     * 
      * @param vCenterId the vCenterId value to set.
      * @return the VirtualMachineTemplateProperties object itself.
      */
@@ -169,7 +173,7 @@ public final class VirtualMachineTemplateProperties {
     /**
      * Get the moRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID for the virtual machine
      * template.
-     *
+     * 
      * @return the moRefId value.
      */
     public String moRefId() {
@@ -179,7 +183,7 @@ public final class VirtualMachineTemplateProperties {
     /**
      * Set the moRefId property: Gets or sets the vCenter MoRef (Managed Object Reference) ID for the virtual machine
      * template.
-     *
+     * 
      * @param moRefId the moRefId value to set.
      * @return the VirtualMachineTemplateProperties object itself.
      */
@@ -190,7 +194,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the inventoryItemId property: Gets or sets the inventory Item ID for the virtual machine template.
-     *
+     * 
      * @return the inventoryItemId value.
      */
     public String inventoryItemId() {
@@ -199,7 +203,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Set the inventoryItemId property: Gets or sets the inventory Item ID for the virtual machine template.
-     *
+     * 
      * @param inventoryItemId the inventoryItemId value to set.
      * @return the VirtualMachineTemplateProperties object itself.
      */
@@ -210,7 +214,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the moName property: Gets or sets the vCenter Managed Object name for the virtual machine template.
-     *
+     * 
      * @return the moName value.
      */
     public String moName() {
@@ -219,7 +223,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the memorySizeMB property: Gets or sets memory size in MBs for the template.
-     *
+     * 
      * @return the memorySizeMB value.
      */
     public Integer memorySizeMB() {
@@ -228,7 +232,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the numCPUs property: Gets or sets the number of vCPUs for the template.
-     *
+     * 
      * @return the numCPUs value.
      */
     public Integer numCPUs() {
@@ -236,9 +240,9 @@ public final class VirtualMachineTemplateProperties {
     }
 
     /**
-     * Get the numCoresPerSocket property: Gets or sets the number of cores per socket for the template. Defaults to 1
-     * if unspecified.
-     *
+     * Get the numCoresPerSocket property: Gets or sets the number of cores per socket for the template.
+     * Defaults to 1 if unspecified.
+     * 
      * @return the numCoresPerSocket value.
      */
     public Integer numCoresPerSocket() {
@@ -247,7 +251,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the osType property: Gets or sets the type of the os.
-     *
+     * 
      * @return the osType value.
      */
     public OsType osType() {
@@ -256,7 +260,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the osName property: Gets or sets os name.
-     *
+     * 
      * @return the osName value.
      */
     public String osName() {
@@ -265,7 +269,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the folderPath property: Gets or sets the folder path of the template.
-     *
+     * 
      * @return the folderPath value.
      */
     public String folderPath() {
@@ -274,7 +278,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the networkInterfaces property: Gets or sets the network interfaces of the template.
-     *
+     * 
      * @return the networkInterfaces value.
      */
     public List<NetworkInterface> networkInterfaces() {
@@ -283,7 +287,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the disks property: Gets or sets the disks the template.
-     *
+     * 
      * @return the disks value.
      */
     public List<VirtualDisk> disks() {
@@ -292,7 +296,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the customResourceName property: Gets the name of the corresponding resource in Kubernetes.
-     *
+     * 
      * @return the customResourceName value.
      */
     public String customResourceName() {
@@ -302,7 +306,7 @@ public final class VirtualMachineTemplateProperties {
     /**
      * Get the toolsVersionStatus property: Gets or sets the current version status of VMware Tools installed in the
      * guest operating system.
-     *
+     * 
      * @return the toolsVersionStatus value.
      */
     public String toolsVersionStatus() {
@@ -311,7 +315,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the toolsVersion property: Gets or sets the current version of VMware Tools.
-     *
+     * 
      * @return the toolsVersion value.
      */
     public String toolsVersion() {
@@ -320,7 +324,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the firmwareType property: Firmware type.
-     *
+     * 
      * @return the firmwareType value.
      */
     public FirmwareType firmwareType() {
@@ -329,7 +333,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the statuses property: The resource status information.
-     *
+     * 
      * @return the statuses value.
      */
     public List<ResourceStatus> statuses() {
@@ -338,7 +342,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Get the provisioningState property: Gets the provisioning state.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -347,7 +351,7 @@ public final class VirtualMachineTemplateProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
