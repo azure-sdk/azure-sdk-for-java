@@ -12,7 +12,7 @@ import com.azure.core.util.Context;
  */
 public interface StorageTaskAssignments {
     /**
-     * Lists all the storage tasks available under the given resource group.
+     * Lists resource ids of the Storage Task Assignments associated with this Storage Task.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
@@ -25,7 +25,7 @@ public interface StorageTaskAssignments {
     PagedIterable<StorageTaskAssignment> list(String resourceGroupName, String storageTaskName);
 
     /**
-     * Lists all the storage tasks available under the given resource group.
+     * Lists resource ids of the Storage Task Assignments associated with this Storage Task.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must

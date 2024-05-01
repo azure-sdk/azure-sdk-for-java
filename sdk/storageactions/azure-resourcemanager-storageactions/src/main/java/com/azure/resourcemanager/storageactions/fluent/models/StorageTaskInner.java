@@ -7,6 +7,7 @@ package com.azure.resourcemanager.storageactions.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.storageactions.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.storageactions.models.StorageTaskProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,13 +21,13 @@ public final class StorageTaskInner extends Resource {
     /*
      * The managed service identity of the resource.
      */
-    @JsonProperty(value = "identity")
+    @JsonProperty(value = "identity", required = true)
     private ManagedServiceIdentity identity;
 
     /*
      * Properties of the storage task.
      */
-    @JsonProperty(value = "properties")
+    @JsonProperty(value = "properties", required = true)
     private StorageTaskProperties properties;
 
     /*
@@ -114,11 +115,19 @@ public final class StorageTaskInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (identity() != null) {
+        if (identity() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property identity in model StorageTaskInner"));
+        } else {
             identity().validate();
         }
-        if (properties() != null) {
+        if (properties() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property properties in model StorageTaskInner"));
+        } else {
             properties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(StorageTaskInner.class);
 }

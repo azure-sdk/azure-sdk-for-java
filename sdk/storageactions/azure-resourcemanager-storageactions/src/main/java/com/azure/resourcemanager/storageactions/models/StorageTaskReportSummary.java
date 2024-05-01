@@ -21,8 +21,7 @@ public final class StorageTaskReportSummary {
     private List<StorageTaskReportInstanceInner> value;
 
     /*
-     * Request URL that can be used to query next page of storage task run results summary. Returned when the number of
-     * run instances and summary reports exceed maximum page size.
+     * Request URL that can be used to query next page of storage task run results summary. Returned when the number of run instances and summary reports exceed maximum page size.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;

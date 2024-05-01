@@ -78,8 +78,9 @@ public final class StorageTaskPreviewActionCondition {
      */
     public void validate() {
         if (ifProperty() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property ifProperty in model StorageTaskPreviewActionCondition"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property ifProperty in model StorageTaskPreviewActionCondition"));
         } else {
             ifProperty().validate();
         }

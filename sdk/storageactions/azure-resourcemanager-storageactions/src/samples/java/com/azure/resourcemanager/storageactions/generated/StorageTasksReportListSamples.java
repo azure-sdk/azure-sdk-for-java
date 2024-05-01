@@ -9,9 +9,7 @@ package com.azure.resourcemanager.storageactions.generated;
  */
 public final class StorageTasksReportListSamples {
     /*
-     * x-ms-original-file:
-     * specification/storageactions/resource-manager/Microsoft.StorageActions/stable/2023-01-01/examples/
-     * storageTasksList/ListStorageTasksRunReportSummary.json
+     * x-ms-original-file: specification/storageactions/resource-manager/Microsoft.StorageActions/stable/2023-01-01/examples/storageTasksList/ListStorageTasksRunReportSummary.json
      */
     /**
      * Sample code: ListStorageTasksByResourceGroup.

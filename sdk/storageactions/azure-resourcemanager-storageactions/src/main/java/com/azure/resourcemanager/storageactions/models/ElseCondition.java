@@ -53,8 +53,8 @@ public final class ElseCondition {
      */
     public void validate() {
         if (operations() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property operations in model ElseCondition"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property operations in model ElseCondition"));
         } else {
             operations().forEach(e -> e.validate());
         }

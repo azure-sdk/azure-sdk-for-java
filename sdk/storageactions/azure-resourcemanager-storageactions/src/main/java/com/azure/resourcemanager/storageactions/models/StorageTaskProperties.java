@@ -29,7 +29,7 @@ public final class StorageTaskProperties {
     /*
      * Text that describes the purpose of the storage task
      */
-    @JsonProperty(value = "description", required = true)
+    @JsonProperty(value = "description")
     private String description;
 
     /*
@@ -149,13 +149,9 @@ public final class StorageTaskProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (description() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property description in model StorageTaskProperties"));
-        }
         if (action() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property action in model StorageTaskProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property action in model StorageTaskProperties"));
         } else {
             action().validate();
         }

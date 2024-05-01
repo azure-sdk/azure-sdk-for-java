@@ -15,7 +15,7 @@ import com.azure.resourcemanager.storageactions.fluent.models.StorageTaskAssignm
  */
 public interface StorageTaskAssignmentsClient {
     /**
-     * Lists all the storage tasks available under the given resource group.
+     * Lists resource ids of the Storage Task Assignments associated with this Storage Task.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
@@ -29,7 +29,7 @@ public interface StorageTaskAssignmentsClient {
     PagedIterable<StorageTaskAssignmentInner> list(String resourceGroupName, String storageTaskName);
 
     /**
-     * Lists all the storage tasks available under the given resource group.
+     * Lists resource ids of the Storage Task Assignments associated with this Storage Task.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param storageTaskName The name of the storage task within the specified resource group. Storage task names must
