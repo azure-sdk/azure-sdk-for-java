@@ -4,14 +4,16 @@
 
 package com.azure.resourcemanager.storagemover.generated;
 
-/** Samples for Projects List. */
+/**
+ * Samples for Projects List.
+ */
 public final class ProjectsListSamples {
     /*
-     * x-ms-original-file: specification/storagemover/resource-manager/Microsoft.StorageMover/stable/2023-10-01/examples/Projects_List.json
+     * x-ms-original-file: specification/storagemover/resource-manager/Microsoft.StorageMover/preview/2024-05-01-preview/examples/Projects_List.json
      */
     /**
      * Sample code: Projects_List.
-     *
+     * 
      * @param manager Entry point to StorageMoverManager.
      */
     public static void projectsList(com.azure.resourcemanager.storagemover.StorageMoverManager manager) {
