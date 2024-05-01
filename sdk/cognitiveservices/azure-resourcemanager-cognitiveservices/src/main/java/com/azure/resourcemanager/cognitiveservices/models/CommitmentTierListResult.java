@@ -9,7 +9,9 @@ import com.azure.resourcemanager.cognitiveservices.fluent.models.CommitmentTierI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of cognitive services accounts operation response. */
+/**
+ * The list of cognitive services accounts operation response.
+ */
 @Fluent
 public final class CommitmentTierListResult {
     /*
@@ -24,13 +26,15 @@ public final class CommitmentTierListResult {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<CommitmentTierInner> value;
 
-    /** Creates an instance of CommitmentTierListResult class. */
+    /**
+     * Creates an instance of CommitmentTierListResult class.
+     */
     public CommitmentTierListResult() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of CommitmentTier.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class CommitmentTierListResult {
 
     /**
      * Set the nextLink property: The link used to get the next page of CommitmentTier.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the CommitmentTierListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class CommitmentTierListResult {
 
     /**
      * Get the value property: Gets the list of Cognitive Services accounts CommitmentTier and their properties.
-     *
+     * 
      * @return the value value.
      */
     public List<CommitmentTierInner> value() {
@@ -59,7 +63,7 @@ public final class CommitmentTierListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

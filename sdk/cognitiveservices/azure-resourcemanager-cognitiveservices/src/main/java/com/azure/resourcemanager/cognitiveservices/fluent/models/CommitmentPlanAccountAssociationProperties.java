@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The commitment plan account association properties. */
+/**
+ * The commitment plan account association properties.
+ */
 @Fluent
 public final class CommitmentPlanAccountAssociationProperties {
     /*
@@ -16,13 +18,15 @@ public final class CommitmentPlanAccountAssociationProperties {
     @JsonProperty(value = "accountId")
     private String accountId;
 
-    /** Creates an instance of CommitmentPlanAccountAssociationProperties class. */
+    /**
+     * Creates an instance of CommitmentPlanAccountAssociationProperties class.
+     */
     public CommitmentPlanAccountAssociationProperties() {
     }
 
     /**
      * Get the accountId property: The Azure resource id of the account.
-     *
+     * 
      * @return the accountId value.
      */
     public String accountId() {
@@ -31,7 +35,7 @@ public final class CommitmentPlanAccountAssociationProperties {
 
     /**
      * Set the accountId property: The Azure resource id of the account.
-     *
+     * 
      * @param accountId the accountId value to set.
      * @return the CommitmentPlanAccountAssociationProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class CommitmentPlanAccountAssociationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

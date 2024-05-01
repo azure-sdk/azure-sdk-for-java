@@ -9,7 +9,9 @@ import com.azure.resourcemanager.cognitiveservices.models.AccountSku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of cognitive services accounts operation response. */
+/**
+ * The list of cognitive services accounts operation response.
+ */
 @Fluent
 public final class AccountSkuListResultInner {
     /*
@@ -18,13 +20,15 @@ public final class AccountSkuListResultInner {
     @JsonProperty(value = "value")
     private List<AccountSku> value;
 
-    /** Creates an instance of AccountSkuListResultInner class. */
+    /**
+     * Creates an instance of AccountSkuListResultInner class.
+     */
     public AccountSkuListResultInner() {
     }
 
     /**
      * Get the value property: Gets the list of Cognitive Services accounts and their properties.
-     *
+     * 
      * @return the value value.
      */
     public List<AccountSku> value() {
@@ -33,7 +37,7 @@ public final class AccountSkuListResultInner {
 
     /**
      * Set the value property: Gets the list of Cognitive Services accounts and their properties.
-     *
+     * 
      * @param value the value value to set.
      * @return the AccountSkuListResultInner object itself.
      */
@@ -44,7 +48,7 @@ public final class AccountSkuListResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

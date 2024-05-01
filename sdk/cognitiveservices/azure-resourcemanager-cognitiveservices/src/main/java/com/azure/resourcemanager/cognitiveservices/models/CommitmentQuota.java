@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cognitive Services account commitment quota. */
+/**
+ * Cognitive Services account commitment quota.
+ */
 @Fluent
 public final class CommitmentQuota {
     /*
@@ -22,13 +24,15 @@ public final class CommitmentQuota {
     @JsonProperty(value = "unit")
     private String unit;
 
-    /** Creates an instance of CommitmentQuota class. */
+    /**
+     * Creates an instance of CommitmentQuota class.
+     */
     public CommitmentQuota() {
     }
 
     /**
      * Get the quantity property: Commitment quota quantity.
-     *
+     * 
      * @return the quantity value.
      */
     public Long quantity() {
@@ -37,7 +41,7 @@ public final class CommitmentQuota {
 
     /**
      * Set the quantity property: Commitment quota quantity.
-     *
+     * 
      * @param quantity the quantity value to set.
      * @return the CommitmentQuota object itself.
      */
@@ -48,7 +52,7 @@ public final class CommitmentQuota {
 
     /**
      * Get the unit property: Commitment quota unit.
-     *
+     * 
      * @return the unit value.
      */
     public String unit() {
@@ -57,7 +61,7 @@ public final class CommitmentQuota {
 
     /**
      * Set the unit property: Commitment quota unit.
-     *
+     * 
      * @param unit the unit value to set.
      * @return the CommitmentQuota object itself.
      */
@@ -68,7 +72,7 @@ public final class CommitmentQuota {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
