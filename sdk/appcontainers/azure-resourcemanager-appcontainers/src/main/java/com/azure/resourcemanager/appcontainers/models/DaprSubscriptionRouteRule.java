@@ -13,9 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class DaprSubscriptionRouteRule {
     /*
-     * The optional CEL expression used to match the event. If the match is not specified, then the route is considered
-     * the default. The rules are tested in the order specified, so they should be define from most-to-least specific.
-     * The default route should appear last in the list.
+     * The optional CEL expression used to match the event. If the match is not specified, then the route is considered the default. The rules are tested in the order specified, so they should be define from most-to-least specific. The default route should appear last in the list.
      */
     @JsonProperty(value = "match")
     private String match;

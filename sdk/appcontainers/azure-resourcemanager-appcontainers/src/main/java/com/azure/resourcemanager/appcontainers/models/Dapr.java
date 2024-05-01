@@ -43,8 +43,7 @@ public final class Dapr {
     private Integer httpReadBufferSize;
 
     /*
-     * Increasing max size of request body http and grpc servers parameter in MB to handle uploading of big files.
-     * Default is 4 MB.
+     * Increasing max size of request body http and grpc servers parameter in MB to handle uploading of big files. Default is 4 MB.
      */
     @JsonProperty(value = "httpMaxRequestSize")
     private Integer httpMaxRequestSize;
@@ -172,8 +171,8 @@ public final class Dapr {
     }
 
     /**
-     * Get the httpMaxRequestSize property: Increasing max size of request body http and grpc servers parameter in MB
-     * to handle uploading of big files. Default is 4 MB.
+     * Get the httpMaxRequestSize property: Increasing max size of request body http and grpc servers parameter in MB to
+     * handle uploading of big files. Default is 4 MB.
      * 
      * @return the httpMaxRequestSize value.
      */
@@ -182,8 +181,8 @@ public final class Dapr {
     }
 
     /**
-     * Set the httpMaxRequestSize property: Increasing max size of request body http and grpc servers parameter in MB
-     * to handle uploading of big files. Default is 4 MB.
+     * Set the httpMaxRequestSize property: Increasing max size of request body http and grpc servers parameter in MB to
+     * handle uploading of big files. Default is 4 MB.
      * 
      * @param httpMaxRequestSize the httpMaxRequestSize value to set.
      * @return the Dapr object itself.

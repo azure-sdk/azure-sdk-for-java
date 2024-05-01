@@ -14,6 +14,7 @@ import com.azure.resourcemanager.appcontainers.models.DaprConfiguration;
 import com.azure.resourcemanager.appcontainers.models.EnvironmentProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.KedaConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerAuthentication;
+import com.azure.resourcemanager.appcontainers.models.ManagedEnvironmentPropertiesPeerTrafficConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.appcontainers.models.OpenTelemetryConfiguration;
 import com.azure.resourcemanager.appcontainers.models.VnetConfiguration;
@@ -34,8 +35,7 @@ public final class ManagedEnvironmentInner extends Resource {
     private String kind;
 
     /*
-     * Managed identities for the Managed Environment to interact with other Azure services without maintaining any
-     * secrets or credentials in code.
+     * Managed identities for the Managed Environment to interact with other Azure services without maintaining any secrets or credentials in code.
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
@@ -171,8 +171,8 @@ public final class ManagedEnvironmentInner extends Resource {
     }
 
     /**
-     * Get the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service
-     * to Service communication telemetry.
+     * Get the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service to
+     * Service communication telemetry.
      * 
      * @return the daprAIConnectionString value.
      */
@@ -181,8 +181,8 @@ public final class ManagedEnvironmentInner extends Resource {
     }
 
     /**
-     * Set the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service
-     * to Service communication telemetry.
+     * Set the daprAIConnectionString property: Application Insights connection string used by Dapr to export Service to
+     * Service communication telemetry.
      * 
      * @param daprAIConnectionString the daprAIConnectionString value to set.
      * @return the ManagedEnvironmentInner object itself.
@@ -444,9 +444,9 @@ public final class ManagedEnvironmentInner extends Resource {
     }
 
     /**
-     * Get the infrastructureResourceGroup property: Name of the platform-managed resource group created for the
-     * Managed Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be
-     * created in the same subscription as the subnet.
+     * Get the infrastructureResourceGroup property: Name of the platform-managed resource group created for the Managed
+     * Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be created in
+     * the same subscription as the subnet.
      * 
      * @return the infrastructureResourceGroup value.
      */
@@ -455,9 +455,9 @@ public final class ManagedEnvironmentInner extends Resource {
     }
 
     /**
-     * Set the infrastructureResourceGroup property: Name of the platform-managed resource group created for the
-     * Managed Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be
-     * created in the same subscription as the subnet.
+     * Set the infrastructureResourceGroup property: Name of the platform-managed resource group created for the Managed
+     * Environment to host infrastructure resources. If a subnet ID is provided, this resource group will be created in
+     * the same subscription as the subnet.
      * 
      * @param infrastructureResourceGroup the infrastructureResourceGroup value to set.
      * @return the ManagedEnvironmentInner object itself.
@@ -491,6 +491,30 @@ public final class ManagedEnvironmentInner extends Resource {
             this.innerProperties = new ManagedEnvironmentProperties();
         }
         this.innerProperties().withPeerAuthentication(peerAuthentication);
+        return this;
+    }
+
+    /**
+     * Get the peerTrafficConfiguration property: Peer traffic settings for the Managed Environment.
+     * 
+     * @return the peerTrafficConfiguration value.
+     */
+    public ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().peerTrafficConfiguration();
+    }
+
+    /**
+     * Set the peerTrafficConfiguration property: Peer traffic settings for the Managed Environment.
+     * 
+     * @param peerTrafficConfiguration the peerTrafficConfiguration value to set.
+     * @return the ManagedEnvironmentInner object itself.
+     */
+    public ManagedEnvironmentInner
+        withPeerTrafficConfiguration(ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ManagedEnvironmentProperties();
+        }
+        this.innerProperties().withPeerTrafficConfiguration(peerTrafficConfiguration);
         return this;
     }
 

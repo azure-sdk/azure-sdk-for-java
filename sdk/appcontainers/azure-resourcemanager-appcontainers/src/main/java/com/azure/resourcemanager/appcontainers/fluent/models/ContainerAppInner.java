@@ -8,8 +8,10 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.appcontainers.models.Configuration;
+import com.azure.resourcemanager.appcontainers.models.ContainerAppPropertiesPatchingConfiguration;
 import com.azure.resourcemanager.appcontainers.models.ContainerAppProvisioningState;
 import com.azure.resourcemanager.appcontainers.models.ExtendedLocation;
+import com.azure.resourcemanager.appcontainers.models.Kind;
 import com.azure.resourcemanager.appcontainers.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.appcontainers.models.Template;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,19 +30,22 @@ public final class ContainerAppInner extends Resource {
     private ExtendedLocation extendedLocation;
 
     /*
-     * managed identities for the Container App to interact with other Azure services without maintaining any secrets
-     * or credentials in code.
+     * managed identities for the Container App to interact with other Azure services without maintaining any secrets or credentials in code.
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
 
     /*
-     * The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is
-     * managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if
-     * it is removed from the template since it is managed by another resource.
+     * The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource.
      */
     @JsonProperty(value = "managedBy")
     private String managedBy;
+
+    /*
+     * Metadata used to render different experiences for resources of the same type; e.g. WorkflowApp is a kind of Microsoft.App/ContainerApps type. If supported, the resource provider must validate and persist this value.
+     */
+    @JsonProperty(value = "kind")
+    private Kind kind;
 
     /*
      * ContainerApp resource specific properties
@@ -81,8 +86,8 @@ public final class ContainerAppInner extends Resource {
     }
 
     /**
-     * Get the identity property: managed identities for the Container App to interact with other Azure services
-     * without maintaining any secrets or credentials in code.
+     * Get the identity property: managed identities for the Container App to interact with other Azure services without
+     * maintaining any secrets or credentials in code.
      * 
      * @return the identity value.
      */
@@ -91,8 +96,8 @@ public final class ContainerAppInner extends Resource {
     }
 
     /**
-     * Set the identity property: managed identities for the Container App to interact with other Azure services
-     * without maintaining any secrets or credentials in code.
+     * Set the identity property: managed identities for the Container App to interact with other Azure services without
+     * maintaining any secrets or credentials in code.
      * 
      * @param identity the identity value to set.
      * @return the ContainerAppInner object itself.
@@ -103,9 +108,9 @@ public final class ContainerAppInner extends Resource {
     }
 
     /**
-     * Get the managedBy property: The fully qualified resource ID of the resource that manages this resource.
-     * Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment
-     * will not delete the resource if it is removed from the template since it is managed by another resource.
+     * Get the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
+     * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
+     * delete the resource if it is removed from the template since it is managed by another resource.
      * 
      * @return the managedBy value.
      */
@@ -114,15 +119,39 @@ public final class ContainerAppInner extends Resource {
     }
 
     /**
-     * Set the managedBy property: The fully qualified resource ID of the resource that manages this resource.
-     * Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment
-     * will not delete the resource if it is removed from the template since it is managed by another resource.
+     * Set the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
+     * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
+     * delete the resource if it is removed from the template since it is managed by another resource.
      * 
      * @param managedBy the managedBy value to set.
      * @return the ContainerAppInner object itself.
      */
     public ContainerAppInner withManagedBy(String managedBy) {
         this.managedBy = managedBy;
+        return this;
+    }
+
+    /**
+     * Get the kind property: Metadata used to render different experiences for resources of the same type; e.g.
+     * WorkflowApp is a kind of Microsoft.App/ContainerApps type. If supported, the resource provider must validate and
+     * persist this value.
+     * 
+     * @return the kind value.
+     */
+    public Kind kind() {
+        return this.kind;
+    }
+
+    /**
+     * Set the kind property: Metadata used to render different experiences for resources of the same type; e.g.
+     * WorkflowApp is a kind of Microsoft.App/ContainerApps type. If supported, the resource provider must validate and
+     * persist this value.
+     * 
+     * @param kind the kind value to set.
+     * @return the ContainerAppInner object itself.
+     */
+    public ContainerAppInner withKind(Kind kind) {
+        this.kind = kind;
         return this;
     }
 
@@ -237,6 +266,30 @@ public final class ContainerAppInner extends Resource {
             this.innerProperties = new ContainerAppProperties();
         }
         this.innerProperties().withWorkloadProfileName(workloadProfileName);
+        return this;
+    }
+
+    /**
+     * Get the patchingConfiguration property: Container App auto patch configuration.
+     * 
+     * @return the patchingConfiguration value.
+     */
+    public ContainerAppPropertiesPatchingConfiguration patchingConfiguration() {
+        return this.innerProperties() == null ? null : this.innerProperties().patchingConfiguration();
+    }
+
+    /**
+     * Set the patchingConfiguration property: Container App auto patch configuration.
+     * 
+     * @param patchingConfiguration the patchingConfiguration value to set.
+     * @return the ContainerAppInner object itself.
+     */
+    public ContainerAppInner
+        withPatchingConfiguration(ContainerAppPropertiesPatchingConfiguration patchingConfiguration) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ContainerAppProperties();
+        }
+        this.innerProperties().withPatchingConfiguration(patchingConfiguration);
         return this;
     }
 

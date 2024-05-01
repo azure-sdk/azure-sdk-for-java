@@ -28,8 +28,7 @@ public final class JobInner extends Resource {
     private ExtendedLocation extendedLocation;
 
     /*
-     * Managed identities needed by a container app job to interact with other Azure services to not maintain any
-     * secrets or credentials in code.
+     * Managed identities needed by a container app job to interact with other Azure services to not maintain any secrets or credentials in code.
      */
     @JsonProperty(value = "identity")
     private ManagedServiceIdentity identity;
@@ -73,8 +72,8 @@ public final class JobInner extends Resource {
     }
 
     /**
-     * Get the identity property: Managed identities needed by a container app job to interact with other Azure
-     * services to not maintain any secrets or credentials in code.
+     * Get the identity property: Managed identities needed by a container app job to interact with other Azure services
+     * to not maintain any secrets or credentials in code.
      * 
      * @return the identity value.
      */
@@ -83,8 +82,8 @@ public final class JobInner extends Resource {
     }
 
     /**
-     * Set the identity property: Managed identities needed by a container app job to interact with other Azure
-     * services to not maintain any secrets or credentials in code.
+     * Set the identity property: Managed identities needed by a container app job to interact with other Azure services
+     * to not maintain any secrets or credentials in code.
      * 
      * @param identity the identity value to set.
      * @return the JobInner object itself.

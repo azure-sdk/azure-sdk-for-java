@@ -206,6 +206,13 @@ public interface ManagedEnvironment {
     ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication();
 
     /**
+     * Gets the peerTrafficConfiguration property: Peer traffic settings for the Managed Environment.
+     * 
+     * @return the peerTrafficConfiguration value.
+     */
+    ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -288,14 +295,15 @@ public interface ManagedEnvironment {
          * The stage of the ManagedEnvironment definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithKind,
-            DefinitionStages.WithIdentity, DefinitionStages.WithDaprAIInstrumentationKey,
-            DefinitionStages.WithDaprAIConnectionString, DefinitionStages.WithVnetConfiguration,
-            DefinitionStages.WithAppLogsConfiguration, DefinitionStages.WithAppInsightsConfiguration,
-            DefinitionStages.WithOpenTelemetryConfiguration, DefinitionStages.WithZoneRedundant,
-            DefinitionStages.WithCustomDomainConfiguration, DefinitionStages.WithWorkloadProfiles,
-            DefinitionStages.WithKedaConfiguration, DefinitionStages.WithDaprConfiguration,
-            DefinitionStages.WithInfrastructureResourceGroup, DefinitionStages.WithPeerAuthentication {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithKind, DefinitionStages.WithIdentity,
+            DefinitionStages.WithDaprAIInstrumentationKey, DefinitionStages.WithDaprAIConnectionString,
+            DefinitionStages.WithVnetConfiguration, DefinitionStages.WithAppLogsConfiguration,
+            DefinitionStages.WithAppInsightsConfiguration, DefinitionStages.WithOpenTelemetryConfiguration,
+            DefinitionStages.WithZoneRedundant, DefinitionStages.WithCustomDomainConfiguration,
+            DefinitionStages.WithWorkloadProfiles, DefinitionStages.WithKedaConfiguration,
+            DefinitionStages.WithDaprConfiguration, DefinitionStages.WithInfrastructureResourceGroup,
+            DefinitionStages.WithPeerAuthentication, DefinitionStages.WithPeerTrafficConfiguration {
             /**
              * Executes the create request.
              * 
@@ -533,6 +541,20 @@ public interface ManagedEnvironment {
              */
             WithCreate withPeerAuthentication(ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication);
         }
+
+        /**
+         * The stage of the ManagedEnvironment definition allowing to specify peerTrafficConfiguration.
+         */
+        interface WithPeerTrafficConfiguration {
+            /**
+             * Specifies the peerTrafficConfiguration property: Peer traffic settings for the Managed Environment.
+             * 
+             * @param peerTrafficConfiguration Peer traffic settings for the Managed Environment.
+             * @return the next definition stage.
+             */
+            WithCreate withPeerTrafficConfiguration(
+                ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration);
+        }
     }
 
     /**
@@ -550,7 +572,8 @@ public interface ManagedEnvironment {
         UpdateStages.WithVnetConfiguration, UpdateStages.WithAppLogsConfiguration,
         UpdateStages.WithAppInsightsConfiguration, UpdateStages.WithOpenTelemetryConfiguration,
         UpdateStages.WithCustomDomainConfiguration, UpdateStages.WithWorkloadProfiles,
-        UpdateStages.WithKedaConfiguration, UpdateStages.WithDaprConfiguration, UpdateStages.WithPeerAuthentication {
+        UpdateStages.WithKedaConfiguration, UpdateStages.WithDaprConfiguration, UpdateStages.WithPeerAuthentication,
+        UpdateStages.WithPeerTrafficConfiguration {
         /**
          * Executes the update request.
          * 
@@ -761,6 +784,20 @@ public interface ManagedEnvironment {
              * @return the next definition stage.
              */
             Update withPeerAuthentication(ManagedEnvironmentPropertiesPeerAuthentication peerAuthentication);
+        }
+
+        /**
+         * The stage of the ManagedEnvironment update allowing to specify peerTrafficConfiguration.
+         */
+        interface WithPeerTrafficConfiguration {
+            /**
+             * Specifies the peerTrafficConfiguration property: Peer traffic settings for the Managed Environment.
+             * 
+             * @param peerTrafficConfiguration Peer traffic settings for the Managed Environment.
+             * @return the next definition stage.
+             */
+            Update withPeerTrafficConfiguration(
+                ManagedEnvironmentPropertiesPeerTrafficConfiguration peerTrafficConfiguration);
         }
     }
 
