@@ -8,14 +8,28 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Model to capture detailed information for farmBeatsExtensions. */
+/**
+ * Model to capture detailed information for Data Manager For AgricultureExtensions.
+ */
 @Fluent
 public final class DetailedInformation {
     /*
-     * ApiName available for the farmBeatsExtension.
+     * ApiName available for the Data Manager For Agriculture Extension.
      */
     @JsonProperty(value = "apiName")
     private String apiName;
+
+    /*
+     * Extension provider's API documentation link.
+     */
+    @JsonProperty(value = "apiDocsLink")
+    private String apiDocsLink;
+
+    /*
+     * Type of Api in Extension.
+     */
+    @JsonProperty(value = "apiType")
+    private String apiType;
 
     /*
      * List of customParameters.
@@ -30,6 +44,12 @@ public final class DetailedInformation {
     private List<String> platformParameters;
 
     /*
+     * List of defaultParameters.
+     */
+    @JsonProperty(value = "apiDefaultInputParameters")
+    private List<String> apiDefaultInputParameters;
+
+    /*
      * Unit systems info for the data provider.
      */
     @JsonProperty(value = "unitsSupported")
@@ -42,8 +62,14 @@ public final class DetailedInformation {
     private List<String> apiInputParameters;
 
     /**
-     * Get the apiName property: ApiName available for the farmBeatsExtension.
-     *
+     * Creates an instance of DetailedInformation class.
+     */
+    public DetailedInformation() {
+    }
+
+    /**
+     * Get the apiName property: ApiName available for the Data Manager For Agriculture Extension.
+     * 
      * @return the apiName value.
      */
     public String apiName() {
@@ -51,8 +77,8 @@ public final class DetailedInformation {
     }
 
     /**
-     * Set the apiName property: ApiName available for the farmBeatsExtension.
-     *
+     * Set the apiName property: ApiName available for the Data Manager For Agriculture Extension.
+     * 
      * @param apiName the apiName value to set.
      * @return the DetailedInformation object itself.
      */
@@ -62,8 +88,48 @@ public final class DetailedInformation {
     }
 
     /**
+     * Get the apiDocsLink property: Extension provider's API documentation link.
+     * 
+     * @return the apiDocsLink value.
+     */
+    public String apiDocsLink() {
+        return this.apiDocsLink;
+    }
+
+    /**
+     * Set the apiDocsLink property: Extension provider's API documentation link.
+     * 
+     * @param apiDocsLink the apiDocsLink value to set.
+     * @return the DetailedInformation object itself.
+     */
+    public DetailedInformation withApiDocsLink(String apiDocsLink) {
+        this.apiDocsLink = apiDocsLink;
+        return this;
+    }
+
+    /**
+     * Get the apiType property: Type of Api in Extension.
+     * 
+     * @return the apiType value.
+     */
+    public String apiType() {
+        return this.apiType;
+    }
+
+    /**
+     * Set the apiType property: Type of Api in Extension.
+     * 
+     * @param apiType the apiType value to set.
+     * @return the DetailedInformation object itself.
+     */
+    public DetailedInformation withApiType(String apiType) {
+        this.apiType = apiType;
+        return this;
+    }
+
+    /**
      * Get the customParameters property: List of customParameters.
-     *
+     * 
      * @return the customParameters value.
      */
     public List<String> customParameters() {
@@ -72,7 +138,7 @@ public final class DetailedInformation {
 
     /**
      * Set the customParameters property: List of customParameters.
-     *
+     * 
      * @param customParameters the customParameters value to set.
      * @return the DetailedInformation object itself.
      */
@@ -83,7 +149,7 @@ public final class DetailedInformation {
 
     /**
      * Get the platformParameters property: List of platformParameters.
-     *
+     * 
      * @return the platformParameters value.
      */
     public List<String> platformParameters() {
@@ -92,7 +158,7 @@ public final class DetailedInformation {
 
     /**
      * Set the platformParameters property: List of platformParameters.
-     *
+     * 
      * @param platformParameters the platformParameters value to set.
      * @return the DetailedInformation object itself.
      */
@@ -102,8 +168,28 @@ public final class DetailedInformation {
     }
 
     /**
+     * Get the apiDefaultInputParameters property: List of defaultParameters.
+     * 
+     * @return the apiDefaultInputParameters value.
+     */
+    public List<String> apiDefaultInputParameters() {
+        return this.apiDefaultInputParameters;
+    }
+
+    /**
+     * Set the apiDefaultInputParameters property: List of defaultParameters.
+     * 
+     * @param apiDefaultInputParameters the apiDefaultInputParameters value to set.
+     * @return the DetailedInformation object itself.
+     */
+    public DetailedInformation withApiDefaultInputParameters(List<String> apiDefaultInputParameters) {
+        this.apiDefaultInputParameters = apiDefaultInputParameters;
+        return this;
+    }
+
+    /**
      * Get the unitsSupported property: Unit systems info for the data provider.
-     *
+     * 
      * @return the unitsSupported value.
      */
     public UnitSystemsInfo unitsSupported() {
@@ -112,7 +198,7 @@ public final class DetailedInformation {
 
     /**
      * Set the unitsSupported property: Unit systems info for the data provider.
-     *
+     * 
      * @param unitsSupported the unitsSupported value to set.
      * @return the DetailedInformation object itself.
      */
@@ -123,7 +209,7 @@ public final class DetailedInformation {
 
     /**
      * Get the apiInputParameters property: List of apiInputParameters.
-     *
+     * 
      * @return the apiInputParameters value.
      */
     public List<String> apiInputParameters() {
@@ -132,7 +218,7 @@ public final class DetailedInformation {
 
     /**
      * Set the apiInputParameters property: List of apiInputParameters.
-     *
+     * 
      * @param apiInputParameters the apiInputParameters value to set.
      * @return the DetailedInformation object itself.
      */
@@ -143,7 +229,7 @@ public final class DetailedInformation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
