@@ -33,6 +33,16 @@ public final class LicenseProfileSubscriptionStatus extends ExpandableStringEnum
     public static final LicenseProfileSubscriptionStatus DISABLED = fromString("Disabled");
 
     /**
+     * Static value Disabling for LicenseProfileSubscriptionStatus.
+     */
+    public static final LicenseProfileSubscriptionStatus DISABLING = fromString("Disabling");
+
+    /**
+     * Static value Failed for LicenseProfileSubscriptionStatus.
+     */
+    public static final LicenseProfileSubscriptionStatus FAILED = fromString("Failed");
+
+    /**
      * Creates a new instance of LicenseProfileSubscriptionStatus value.
      * 
      * @deprecated Use the {@link #fromString(String)} factory method.

@@ -289,7 +289,7 @@ public final class HybridComputeManagementClientImpl implements HybridComputeMan
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2023-10-03-preview";
+        this.apiVersion = "2024-05-01-preview";
         this.machines = new MachinesClientImpl(this);
         this.machineExtensions = new MachineExtensionsClientImpl(this);
         this.resourceProviders = new ResourceProvidersClientImpl(this);

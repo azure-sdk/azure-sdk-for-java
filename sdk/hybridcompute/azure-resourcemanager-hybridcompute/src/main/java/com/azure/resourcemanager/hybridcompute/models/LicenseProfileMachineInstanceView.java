@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hybridcompute.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.exception.ManagementError;
 import com.azure.resourcemanager.hybridcompute.fluent.models.LicenseProfileArmProductProfileProperties;
 import com.azure.resourcemanager.hybridcompute.fluent.models.LicenseProfileMachineInstanceViewSoftwareAssurance;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -181,15 +182,6 @@ public final class LicenseProfileMachineInstanceView {
     }
 
     /**
-     * Get the billingStartDate property: The timestamp in UTC when the billing starts.
-     * 
-     * @return the billingStartDate value.
-     */
-    public OffsetDateTime billingStartDate() {
-        return this.innerProductProfile() == null ? null : this.innerProductProfile().billingStartDate();
-    }
-
-    /**
      * Get the enrollmentDate property: The timestamp in UTC when the user enrolls the feature.
      * 
      * @return the enrollmentDate value.
@@ -199,12 +191,39 @@ public final class LicenseProfileMachineInstanceView {
     }
 
     /**
+     * Get the billingStartDate property: The timestamp in UTC when the billing starts.
+     * 
+     * @return the billingStartDate value.
+     */
+    public OffsetDateTime billingStartDate() {
+        return this.innerProductProfile() == null ? null : this.innerProductProfile().billingStartDate();
+    }
+
+    /**
      * Get the disenrollmentDate property: The timestamp in UTC when the user disenrolled the feature.
      * 
      * @return the disenrollmentDate value.
      */
     public OffsetDateTime disenrollmentDate() {
         return this.innerProductProfile() == null ? null : this.innerProductProfile().disenrollmentDate();
+    }
+
+    /**
+     * Get the billingEndDate property: The timestamp in UTC when the billing ends.
+     * 
+     * @return the billingEndDate value.
+     */
+    public OffsetDateTime billingEndDate() {
+        return this.innerProductProfile() == null ? null : this.innerProductProfile().billingEndDate();
+    }
+
+    /**
+     * Get the error property: The errors that were encountered during the feature enrollment or disenrollment.
+     * 
+     * @return the error value.
+     */
+    public ManagementError error() {
+        return this.innerProductProfile() == null ? null : this.innerProductProfile().error();
     }
 
     /**

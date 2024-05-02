@@ -81,6 +81,40 @@ public final class OSProfileWindowsConfiguration {
     }
 
     /**
+     * Get the enableHotpatching property: Captures the hotpatch capability enrollment intent of the customers, which
+     * enables customers to patch their Windows machines without requiring a reboot.
+     * 
+     * @return the enableHotpatching value.
+     */
+    public Boolean enableHotpatching() {
+        return this.innerPatchSettings() == null ? null : this.innerPatchSettings().enableHotpatching();
+    }
+
+    /**
+     * Set the enableHotpatching property: Captures the hotpatch capability enrollment intent of the customers, which
+     * enables customers to patch their Windows machines without requiring a reboot.
+     * 
+     * @param enableHotpatching the enableHotpatching value to set.
+     * @return the OSProfileWindowsConfiguration object itself.
+     */
+    public OSProfileWindowsConfiguration withEnableHotpatching(Boolean enableHotpatching) {
+        if (this.innerPatchSettings() == null) {
+            this.innerPatchSettings = new PatchSettings();
+        }
+        this.innerPatchSettings().withEnableHotpatching(enableHotpatching);
+        return this;
+    }
+
+    /**
+     * Get the status property: Status of the hotpatch capability enrollment or disenrollment.
+     * 
+     * @return the status value.
+     */
+    public PatchSettingsStatus status() {
+        return this.innerPatchSettings() == null ? null : this.innerPatchSettings().status();
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.

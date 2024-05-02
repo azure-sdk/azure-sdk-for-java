@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hybridcompute.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.management.exception.ManagementError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
@@ -26,22 +27,34 @@ public final class ProductFeature {
     private LicenseProfileSubscriptionStatus subscriptionStatus;
 
     /*
-     * The timestamp in UTC when the billing starts.
-     */
-    @JsonProperty(value = "billingStartDate", access = JsonProperty.Access.WRITE_ONLY)
-    private OffsetDateTime billingStartDate;
-
-    /*
      * The timestamp in UTC when the user enrolls the feature.
      */
     @JsonProperty(value = "enrollmentDate", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime enrollmentDate;
 
     /*
+     * The timestamp in UTC when the billing starts.
+     */
+    @JsonProperty(value = "billingStartDate", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime billingStartDate;
+
+    /*
      * The timestamp in UTC when the user disenrolled the feature.
      */
     @JsonProperty(value = "disenrollmentDate", access = JsonProperty.Access.WRITE_ONLY)
     private OffsetDateTime disenrollmentDate;
+
+    /*
+     * The timestamp in UTC when the billing ends.
+     */
+    @JsonProperty(value = "billingEndDate", access = JsonProperty.Access.WRITE_ONLY)
+    private OffsetDateTime billingEndDate;
+
+    /*
+     * The errors that were encountered during the feature enrollment or disenrollment.
+     */
+    @JsonProperty(value = "error", access = JsonProperty.Access.WRITE_ONLY)
+    private ManagementError error;
 
     /**
      * Creates an instance of ProductFeature class.
@@ -90,15 +103,6 @@ public final class ProductFeature {
     }
 
     /**
-     * Get the billingStartDate property: The timestamp in UTC when the billing starts.
-     * 
-     * @return the billingStartDate value.
-     */
-    public OffsetDateTime billingStartDate() {
-        return this.billingStartDate;
-    }
-
-    /**
      * Get the enrollmentDate property: The timestamp in UTC when the user enrolls the feature.
      * 
      * @return the enrollmentDate value.
@@ -108,12 +112,39 @@ public final class ProductFeature {
     }
 
     /**
+     * Get the billingStartDate property: The timestamp in UTC when the billing starts.
+     * 
+     * @return the billingStartDate value.
+     */
+    public OffsetDateTime billingStartDate() {
+        return this.billingStartDate;
+    }
+
+    /**
      * Get the disenrollmentDate property: The timestamp in UTC when the user disenrolled the feature.
      * 
      * @return the disenrollmentDate value.
      */
     public OffsetDateTime disenrollmentDate() {
         return this.disenrollmentDate;
+    }
+
+    /**
+     * Get the billingEndDate property: The timestamp in UTC when the billing ends.
+     * 
+     * @return the billingEndDate value.
+     */
+    public OffsetDateTime billingEndDate() {
+        return this.billingEndDate;
+    }
+
+    /**
+     * Get the error property: The errors that were encountered during the feature enrollment or disenrollment.
+     * 
+     * @return the error value.
+     */
+    public ManagementError error() {
+        return this.error;
     }
 
     /**
