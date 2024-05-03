@@ -9,16 +9,14 @@ package com.azure.resourcemanager.mobilenetwork.generated;
  */
 public final class PacketCoreControlPlaneVersionsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2024-02-01/examples/
-     * PacketCoreControlPlaneVersionList.json
+     * x-ms-original-file: specification/mobilenetwork/resource-manager/Microsoft.MobileNetwork/stable/2024-06-01/examples/PacketCoreControlPlaneVersionListBySubscription.json
      */
     /**
-     * Sample code: Get supported packet core control plane versions.
+     * Sample code: Get supported packet core control plane versions by subscription.
      * 
      * @param manager Entry point to MobileNetworkManager.
      */
-    public static void getSupportedPacketCoreControlPlaneVersions(
+    public static void getSupportedPacketCoreControlPlaneVersionsBySubscription(
         com.azure.resourcemanager.mobilenetwork.MobileNetworkManager manager) {
         manager.packetCoreControlPlaneVersions().list(com.azure.core.util.Context.NONE);
     }

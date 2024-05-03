@@ -15,16 +15,34 @@ import java.util.List;
 @Fluent
 public final class UeSessionInfo5G {
     /*
-     * PDU session identifier
+     * Aggregate maximum bit rate.
+     */
+    @JsonProperty(value = "ambr", required = true)
+    private Ambr ambr;
+
+    /*
+     * Data network name.
+     */
+    @JsonProperty(value = "dnn", required = true)
+    private String dnn;
+
+    /*
+     * Packet Data Network Type.
+     */
+    @JsonProperty(value = "pdnType", required = true)
+    private PdnType pdnType;
+
+    /*
+     * PDU session identifier.
      */
     @JsonProperty(value = "pduSessionId", required = true)
     private int pduSessionId;
 
     /*
-     * Data network name
+     * QoS Flow.
      */
-    @JsonProperty(value = "dnn", required = true)
-    private String dnn;
+    @JsonProperty(value = "qosFlow", required = true)
+    private List<UeQosFlow> qosFlow;
 
     /*
      * Single-network slice selection assistance information (S-NSSAI).
@@ -33,33 +51,75 @@ public final class UeSessionInfo5G {
     private Snssai snssai;
 
     /*
-     * UE IP address
+     * UE IP address.
      */
     @JsonProperty(value = "ueIpAddress", required = true)
     private UeIpAddress ueIpAddress;
-
-    /*
-     * Packet Data Network Type
-     */
-    @JsonProperty(value = "pdnType", required = true)
-    private PdnType pdnType;
-
-    /*
-     * Aggregate maximum bit rate.
-     */
-    @JsonProperty(value = "ambr", required = true)
-    private Ambr ambr;
-
-    /*
-     * The qosFlow property.
-     */
-    @JsonProperty(value = "qosFlow", required = true)
-    private List<UeQosFlow> qosFlow;
 
     /**
      * Creates an instance of UeSessionInfo5G class.
      */
     public UeSessionInfo5G() {
+    }
+
+    /**
+     * Get the ambr property: Aggregate maximum bit rate.
+     * 
+     * @return the ambr value.
+     */
+    public Ambr ambr() {
+        return this.ambr;
+    }
+
+    /**
+     * Set the ambr property: Aggregate maximum bit rate.
+     * 
+     * @param ambr the ambr value to set.
+     * @return the UeSessionInfo5G object itself.
+     */
+    public UeSessionInfo5G withAmbr(Ambr ambr) {
+        this.ambr = ambr;
+        return this;
+    }
+
+    /**
+     * Get the dnn property: Data network name.
+     * 
+     * @return the dnn value.
+     */
+    public String dnn() {
+        return this.dnn;
+    }
+
+    /**
+     * Set the dnn property: Data network name.
+     * 
+     * @param dnn the dnn value to set.
+     * @return the UeSessionInfo5G object itself.
+     */
+    public UeSessionInfo5G withDnn(String dnn) {
+        this.dnn = dnn;
+        return this;
+    }
+
+    /**
+     * Get the pdnType property: Packet Data Network Type.
+     * 
+     * @return the pdnType value.
+     */
+    public PdnType pdnType() {
+        return this.pdnType;
+    }
+
+    /**
+     * Set the pdnType property: Packet Data Network Type.
+     * 
+     * @param pdnType the pdnType value to set.
+     * @return the UeSessionInfo5G object itself.
+     */
+    public UeSessionInfo5G withPdnType(PdnType pdnType) {
+        this.pdnType = pdnType;
+        return this;
     }
 
     /**
@@ -83,22 +143,22 @@ public final class UeSessionInfo5G {
     }
 
     /**
-     * Get the dnn property: Data network name.
+     * Get the qosFlow property: QoS Flow.
      * 
-     * @return the dnn value.
+     * @return the qosFlow value.
      */
-    public String dnn() {
-        return this.dnn;
+    public List<UeQosFlow> qosFlow() {
+        return this.qosFlow;
     }
 
     /**
-     * Set the dnn property: Data network name.
+     * Set the qosFlow property: QoS Flow.
      * 
-     * @param dnn the dnn value to set.
+     * @param qosFlow the qosFlow value to set.
      * @return the UeSessionInfo5G object itself.
      */
-    public UeSessionInfo5G withDnn(String dnn) {
-        this.dnn = dnn;
+    public UeSessionInfo5G withQosFlow(List<UeQosFlow> qosFlow) {
+        this.qosFlow = qosFlow;
         return this;
     }
 
@@ -143,102 +203,42 @@ public final class UeSessionInfo5G {
     }
 
     /**
-     * Get the pdnType property: Packet Data Network Type.
-     * 
-     * @return the pdnType value.
-     */
-    public PdnType pdnType() {
-        return this.pdnType;
-    }
-
-    /**
-     * Set the pdnType property: Packet Data Network Type.
-     * 
-     * @param pdnType the pdnType value to set.
-     * @return the UeSessionInfo5G object itself.
-     */
-    public UeSessionInfo5G withPdnType(PdnType pdnType) {
-        this.pdnType = pdnType;
-        return this;
-    }
-
-    /**
-     * Get the ambr property: Aggregate maximum bit rate.
-     * 
-     * @return the ambr value.
-     */
-    public Ambr ambr() {
-        return this.ambr;
-    }
-
-    /**
-     * Set the ambr property: Aggregate maximum bit rate.
-     * 
-     * @param ambr the ambr value to set.
-     * @return the UeSessionInfo5G object itself.
-     */
-    public UeSessionInfo5G withAmbr(Ambr ambr) {
-        this.ambr = ambr;
-        return this;
-    }
-
-    /**
-     * Get the qosFlow property: The qosFlow property.
-     * 
-     * @return the qosFlow value.
-     */
-    public List<UeQosFlow> qosFlow() {
-        return this.qosFlow;
-    }
-
-    /**
-     * Set the qosFlow property: The qosFlow property.
-     * 
-     * @param qosFlow the qosFlow value to set.
-     * @return the UeSessionInfo5G object itself.
-     */
-    public UeSessionInfo5G withQosFlow(List<UeQosFlow> qosFlow) {
-        this.qosFlow = qosFlow;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (ambr() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property ambr in model UeSessionInfo5G"));
+        } else {
+            ambr().validate();
+        }
         if (dnn() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property dnn in model UeSessionInfo5G"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property dnn in model UeSessionInfo5G"));
+        }
+        if (pdnType() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property pdnType in model UeSessionInfo5G"));
+        }
+        if (qosFlow() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property qosFlow in model UeSessionInfo5G"));
+        } else {
+            qosFlow().forEach(e -> e.validate());
         }
         if (snssai() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property snssai in model UeSessionInfo5G"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property snssai in model UeSessionInfo5G"));
         } else {
             snssai().validate();
         }
         if (ueIpAddress() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property ueIpAddress in model UeSessionInfo5G"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property ueIpAddress in model UeSessionInfo5G"));
         } else {
             ueIpAddress().validate();
-        }
-        if (pdnType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property pdnType in model UeSessionInfo5G"));
-        }
-        if (ambr() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property ambr in model UeSessionInfo5G"));
-        } else {
-            ambr().validate();
-        }
-        if (qosFlow() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property qosFlow in model UeSessionInfo5G"));
-        } else {
-            qosFlow().forEach(e -> e.validate());
         }
     }
 

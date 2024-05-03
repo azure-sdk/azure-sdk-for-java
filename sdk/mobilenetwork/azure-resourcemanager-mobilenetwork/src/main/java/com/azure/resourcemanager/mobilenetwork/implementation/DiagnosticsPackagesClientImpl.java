@@ -70,47 +70,47 @@ public final class DiagnosticsPackagesClientImpl implements DiagnosticsPackagesC
     @ServiceInterface(name = "MobileNetworkManagem")
     public interface DiagnosticsPackagesService {
         @Headers({ "Content-Type: application/json" })
-        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/diagnosticsPackages/{diagnosticsPackageName}")
-        @ExpectedResponses({ 200, 201 })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/diagnosticsPackages")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<DiagnosticsPackageListResult>> listByPacketCoreControlPlane(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @PathParam("diagnosticsPackageName") String diagnosticsPackageName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/diagnosticsPackages/{diagnosticsPackageName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DiagnosticsPackageInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @PathParam("diagnosticsPackageName") String diagnosticsPackageName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("diagnosticsPackageName") String diagnosticsPackageName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/diagnosticsPackages/{diagnosticsPackageName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
+            @PathParam("diagnosticsPackageName") String diagnosticsPackageName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/diagnosticsPackages/{diagnosticsPackageName}")
-        @ExpectedResponses({ 200, 202, 204 })
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @PathParam("diagnosticsPackageName") String diagnosticsPackageName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/diagnosticsPackages")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DiagnosticsPackageListResult>> listByPacketCoreControlPlane(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("diagnosticsPackageName") String diagnosticsPackageName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -119,6 +119,297 @@ public final class DiagnosticsPackagesClientImpl implements DiagnosticsPackagesC
         Mono<Response<DiagnosticsPackageListResult>> listByPacketCoreControlPlaneNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+    }
+
+    /**
+     * Lists all the diagnostics packages under a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DiagnosticsPackage list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<DiagnosticsPackageInner>>
+        listByPacketCoreControlPlaneSinglePageAsync(String resourceGroupName, String packetCoreControlPlaneName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByPacketCoreControlPlane(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, accept, context))
+            .<PagedResponse<DiagnosticsPackageInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists all the diagnostics packages under a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DiagnosticsPackage list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<DiagnosticsPackageInner>> listByPacketCoreControlPlaneSinglePageAsync(
+        String resourceGroupName, String packetCoreControlPlaneName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByPacketCoreControlPlane(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Lists all the diagnostics packages under a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DiagnosticsPackage list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<DiagnosticsPackageInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
+        String packetCoreControlPlaneName) {
+        return new PagedFlux<>(
+            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName),
+            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists all the diagnostics packages under a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DiagnosticsPackage list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<DiagnosticsPackageInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, Context context) {
+        return new PagedFlux<>(
+            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName, context),
+            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists all the diagnostics packages under a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DiagnosticsPackage list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DiagnosticsPackageInner> listByPacketCoreControlPlane(String resourceGroupName,
+        String packetCoreControlPlaneName) {
+        return new PagedIterable<>(listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName));
+    }
+
+    /**
+     * Lists all the diagnostics packages under a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DiagnosticsPackage list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DiagnosticsPackageInner> listByPacketCoreControlPlane(String resourceGroupName,
+        String packetCoreControlPlaneName, Context context) {
+        return new PagedIterable<>(
+            listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName, context));
+    }
+
+    /**
+     * Gets information about the specified diagnostics package.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param diagnosticsPackageName The name of the diagnostics package.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified diagnostics package along with {@link Response} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DiagnosticsPackageInner>> getWithResponseAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String diagnosticsPackageName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        if (diagnosticsPackageName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter diagnosticsPackageName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName,
+                accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets information about the specified diagnostics package.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param diagnosticsPackageName The name of the diagnostics package.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified diagnostics package along with {@link Response} on successful completion
+     * of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DiagnosticsPackageInner>> getWithResponseAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String diagnosticsPackageName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        if (diagnosticsPackageName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter diagnosticsPackageName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName, accept, context);
+    }
+
+    /**
+     * Gets information about the specified diagnostics package.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param diagnosticsPackageName The name of the diagnostics package.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified diagnostics package on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DiagnosticsPackageInner> getAsync(String resourceGroupName, String packetCoreControlPlaneName,
+        String diagnosticsPackageName) {
+        return getWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets information about the specified diagnostics package.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param diagnosticsPackageName The name of the diagnostics package.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified diagnostics package along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<DiagnosticsPackageInner> getWithResponse(String resourceGroupName,
+        String packetCoreControlPlaneName, String diagnosticsPackageName, Context context) {
+        return getWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName, context)
+            .block();
+    }
+
+    /**
+     * Gets information about the specified diagnostics package.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param diagnosticsPackageName The name of the diagnostics package.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified diagnostics package.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DiagnosticsPackageInner get(String resourceGroupName, String packetCoreControlPlaneName,
+        String diagnosticsPackageName) {
+        return getWithResponse(resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -157,8 +448,8 @@ public final class DiagnosticsPackagesClientImpl implements DiagnosticsPackagesC
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName, this.client.getApiVersion(),
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName,
                 accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
@@ -200,8 +491,9 @@ public final class DiagnosticsPackagesClientImpl implements DiagnosticsPackagesC
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            packetCoreControlPlaneName, diagnosticsPackageName, this.client.getApiVersion(), accept, context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName,
+            accept, context);
     }
 
     /**
@@ -319,7 +611,8 @@ public final class DiagnosticsPackagesClientImpl implements DiagnosticsPackagesC
     private Mono<DiagnosticsPackageInner> createOrUpdateAsync(String resourceGroupName,
         String packetCoreControlPlaneName, String diagnosticsPackageName, Context context) {
         return beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName, context)
-            .last().flatMap(this.client::getLroFinalResultOrError);
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
     }
 
     /**
@@ -359,146 +652,6 @@ public final class DiagnosticsPackagesClientImpl implements DiagnosticsPackagesC
     }
 
     /**
-     * Gets information about the specified diagnostics package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param diagnosticsPackageName The name of the diagnostics package.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified diagnostics package along with {@link Response} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DiagnosticsPackageInner>> getWithResponseAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String diagnosticsPackageName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        if (diagnosticsPackageName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter diagnosticsPackageName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    packetCoreControlPlaneName, diagnosticsPackageName, this.client.getApiVersion(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets information about the specified diagnostics package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param diagnosticsPackageName The name of the diagnostics package.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified diagnostics package along with {@link Response} on successful completion
-     * of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DiagnosticsPackageInner>> getWithResponseAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String diagnosticsPackageName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        if (diagnosticsPackageName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter diagnosticsPackageName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            packetCoreControlPlaneName, diagnosticsPackageName, this.client.getApiVersion(), accept, context);
-    }
-
-    /**
-     * Gets information about the specified diagnostics package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param diagnosticsPackageName The name of the diagnostics package.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified diagnostics package on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DiagnosticsPackageInner> getAsync(String resourceGroupName, String packetCoreControlPlaneName,
-        String diagnosticsPackageName) {
-        return getWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets information about the specified diagnostics package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param diagnosticsPackageName The name of the diagnostics package.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified diagnostics package along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<DiagnosticsPackageInner> getWithResponse(String resourceGroupName,
-        String packetCoreControlPlaneName, String diagnosticsPackageName, Context context) {
-        return getWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName, context)
-            .block();
-    }
-
-    /**
-     * Gets information about the specified diagnostics package.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param diagnosticsPackageName The name of the diagnostics package.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified diagnostics package.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DiagnosticsPackageInner get(String resourceGroupName, String packetCoreControlPlaneName,
-        String diagnosticsPackageName) {
-        return getWithResponse(resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName, Context.NONE)
-            .getValue();
-    }
-
-    /**
      * Deletes the specified diagnostics package.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -534,9 +687,9 @@ public final class DiagnosticsPackagesClientImpl implements DiagnosticsPackagesC
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    packetCoreControlPlaneName, diagnosticsPackageName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -577,8 +730,8 @@ public final class DiagnosticsPackagesClientImpl implements DiagnosticsPackagesC
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            packetCoreControlPlaneName, diagnosticsPackageName, this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, packetCoreControlPlaneName, diagnosticsPackageName, accept, context);
     }
 
     /**
@@ -730,157 +883,6 @@ public final class DiagnosticsPackagesClientImpl implements DiagnosticsPackagesC
     }
 
     /**
-     * Lists all the diagnostics packages under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for diagnostics package API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DiagnosticsPackageInner>>
-        listByPacketCoreControlPlaneSinglePageAsync(String resourceGroupName, String packetCoreControlPlaneName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listByPacketCoreControlPlane(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName,
-                this.client.getApiVersion(), accept, context))
-            .<PagedResponse<DiagnosticsPackageInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists all the diagnostics packages under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for diagnostics package API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DiagnosticsPackageInner>> listByPacketCoreControlPlaneSinglePageAsync(
-        String resourceGroupName, String packetCoreControlPlaneName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByPacketCoreControlPlane(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                packetCoreControlPlaneName, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists all the diagnostics packages under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for diagnostics package API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DiagnosticsPackageInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
-        String packetCoreControlPlaneName) {
-        return new PagedFlux<>(
-            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName),
-            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists all the diagnostics packages under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for diagnostics package API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DiagnosticsPackageInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, Context context) {
-        return new PagedFlux<>(
-            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName, context),
-            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists all the diagnostics packages under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for diagnostics package API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DiagnosticsPackageInner> listByPacketCoreControlPlane(String resourceGroupName,
-        String packetCoreControlPlaneName) {
-        return new PagedIterable<>(listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName));
-    }
-
-    /**
-     * Lists all the diagnostics packages under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for diagnostics package API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DiagnosticsPackageInner> listByPacketCoreControlPlane(String resourceGroupName,
-        String packetCoreControlPlaneName, Context context) {
-        return new PagedIterable<>(
-            listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName, context));
-    }
-
-    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items
@@ -889,7 +891,7 @@ public final class DiagnosticsPackagesClientImpl implements DiagnosticsPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for diagnostics package API service call along with {@link PagedResponse} on successful
+     * @return the response of a DiagnosticsPackage list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -920,7 +922,7 @@ public final class DiagnosticsPackagesClientImpl implements DiagnosticsPackagesC
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for diagnostics package API service call along with {@link PagedResponse} on successful
+     * @return the response of a DiagnosticsPackage list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)

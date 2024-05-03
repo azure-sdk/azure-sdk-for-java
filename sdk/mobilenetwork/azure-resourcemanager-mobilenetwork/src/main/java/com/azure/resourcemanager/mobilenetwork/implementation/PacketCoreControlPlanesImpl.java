@@ -30,12 +30,25 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
         this.serviceManager = serviceManager;
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String packetCoreControlPlaneName) {
-        this.serviceClient().delete(resourceGroupName, packetCoreControlPlaneName);
+    public PagedIterable<PacketCoreControlPlane> list() {
+        PagedIterable<PacketCoreControlPlaneInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreControlPlaneImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String packetCoreControlPlaneName, Context context) {
-        this.serviceClient().delete(resourceGroupName, packetCoreControlPlaneName, context);
+    public PagedIterable<PacketCoreControlPlane> list(Context context) {
+        PagedIterable<PacketCoreControlPlaneInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreControlPlaneImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<PacketCoreControlPlane> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<PacketCoreControlPlaneInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreControlPlaneImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<PacketCoreControlPlane> listByResourceGroup(String resourceGroupName, Context context) {
+        PagedIterable<PacketCoreControlPlaneInner> inner
+            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreControlPlaneImpl(inner1, this.manager()));
     }
 
     public Response<PacketCoreControlPlane> getByResourceGroupWithResponse(String resourceGroupName,
@@ -60,29 +73,18 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
         }
     }
 
-    public PagedIterable<PacketCoreControlPlane> list() {
-        PagedIterable<PacketCoreControlPlaneInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreControlPlaneImpl(inner1, this.manager()));
+    public void deleteByResourceGroup(String resourceGroupName, String packetCoreControlPlaneName) {
+        this.serviceClient().delete(resourceGroupName, packetCoreControlPlaneName);
     }
 
-    public PagedIterable<PacketCoreControlPlane> list(Context context) {
-        PagedIterable<PacketCoreControlPlaneInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreControlPlaneImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String packetCoreControlPlaneName, Context context) {
+        this.serviceClient().delete(resourceGroupName, packetCoreControlPlaneName, context);
     }
 
-    public PagedIterable<PacketCoreControlPlane> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<PacketCoreControlPlaneInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreControlPlaneImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<PacketCoreControlPlane> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<PacketCoreControlPlaneInner> inner
-            = this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreControlPlaneImpl(inner1, this.manager()));
-    }
-
-    public AsyncOperationStatus rollback(String resourceGroupName, String packetCoreControlPlaneName) {
-        AsyncOperationStatusInner inner = this.serviceClient().rollback(resourceGroupName, packetCoreControlPlaneName);
+    public AsyncOperationStatus collectDiagnosticsPackage(String resourceGroupName, String packetCoreControlPlaneName,
+        PacketCoreControlPlaneCollectDiagnosticsPackage body) {
+        AsyncOperationStatusInner inner
+            = this.serviceClient().collectDiagnosticsPackage(resourceGroupName, packetCoreControlPlaneName, body);
         if (inner != null) {
             return new AsyncOperationStatusImpl(inner, this.manager());
         } else {
@@ -90,9 +92,10 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
         }
     }
 
-    public AsyncOperationStatus rollback(String resourceGroupName, String packetCoreControlPlaneName, Context context) {
-        AsyncOperationStatusInner inner
-            = this.serviceClient().rollback(resourceGroupName, packetCoreControlPlaneName, context);
+    public AsyncOperationStatus collectDiagnosticsPackage(String resourceGroupName, String packetCoreControlPlaneName,
+        PacketCoreControlPlaneCollectDiagnosticsPackage body, Context context) {
+        AsyncOperationStatusInner inner = this.serviceClient()
+            .collectDiagnosticsPackage(resourceGroupName, packetCoreControlPlaneName, body, context);
         if (inner != null) {
             return new AsyncOperationStatusImpl(inner, this.manager());
         } else {
@@ -120,10 +123,8 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
         }
     }
 
-    public AsyncOperationStatus collectDiagnosticsPackage(String resourceGroupName, String packetCoreControlPlaneName,
-        PacketCoreControlPlaneCollectDiagnosticsPackage parameters) {
-        AsyncOperationStatusInner inner
-            = this.serviceClient().collectDiagnosticsPackage(resourceGroupName, packetCoreControlPlaneName, parameters);
+    public AsyncOperationStatus rollback(String resourceGroupName, String packetCoreControlPlaneName) {
+        AsyncOperationStatusInner inner = this.serviceClient().rollback(resourceGroupName, packetCoreControlPlaneName);
         if (inner != null) {
             return new AsyncOperationStatusImpl(inner, this.manager());
         } else {
@@ -131,10 +132,9 @@ public final class PacketCoreControlPlanesImpl implements PacketCoreControlPlane
         }
     }
 
-    public AsyncOperationStatus collectDiagnosticsPackage(String resourceGroupName, String packetCoreControlPlaneName,
-        PacketCoreControlPlaneCollectDiagnosticsPackage parameters, Context context) {
-        AsyncOperationStatusInner inner = this.serviceClient().collectDiagnosticsPackage(resourceGroupName,
-            packetCoreControlPlaneName, parameters, context);
+    public AsyncOperationStatus rollback(String resourceGroupName, String packetCoreControlPlaneName, Context context) {
+        AsyncOperationStatusInner inner
+            = this.serviceClient().rollback(resourceGroupName, packetCoreControlPlaneName, context);
         if (inner != null) {
             return new AsyncOperationStatusImpl(inner, this.manager());
         } else {

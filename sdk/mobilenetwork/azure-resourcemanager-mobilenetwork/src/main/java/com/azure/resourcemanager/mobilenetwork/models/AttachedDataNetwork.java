@@ -142,9 +142,8 @@ public interface AttachedDataNetwork {
     /**
      * The entirety of the AttachedDataNetwork definition.
      */
-    interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithParentResource,
-        DefinitionStages.WithUserPlaneDataInterface, DefinitionStages.WithDnsAddresses, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
 
     /**
@@ -190,46 +189,16 @@ public interface AttachedDataNetwork {
              * @param packetCoreDataPlaneName The name of the packet core data plane.
              * @return the next definition stage.
              */
-            WithUserPlaneDataInterface withExistingPacketCoreDataPlane(String resourceGroupName,
-                String packetCoreControlPlaneName, String packetCoreDataPlaneName);
-        }
-
-        /**
-         * The stage of the AttachedDataNetwork definition allowing to specify userPlaneDataInterface.
-         */
-        interface WithUserPlaneDataInterface {
-            /**
-             * Specifies the userPlaneDataInterface property: The user plane interface on the data network. For 5G
-             * networks, this is the N6 interface. For 4G networks, this is the SGi interface..
-             * 
-             * @param userPlaneDataInterface The user plane interface on the data network. For 5G networks, this is the
-             * N6 interface. For 4G networks, this is the SGi interface.
-             * @return the next definition stage.
-             */
-            WithDnsAddresses withUserPlaneDataInterface(InterfaceProperties userPlaneDataInterface);
-        }
-
-        /**
-         * The stage of the AttachedDataNetwork definition allowing to specify dnsAddresses.
-         */
-        interface WithDnsAddresses {
-            /**
-             * Specifies the dnsAddresses property: The DNS servers to signal to UEs to use for this attached data
-             * network. This configuration is mandatory - if you don't want DNS servers, you must provide an empty
-             * array..
-             * 
-             * @param dnsAddresses The DNS servers to signal to UEs to use for this attached data network. This
-             * configuration is mandatory - if you don't want DNS servers, you must provide an empty array.
-             * @return the next definition stage.
-             */
-            WithCreate withDnsAddresses(List<String> dnsAddresses);
+            WithCreate withExistingPacketCoreDataPlane(String resourceGroupName, String packetCoreControlPlaneName,
+                String packetCoreDataPlaneName);
         }
 
         /**
          * The stage of the AttachedDataNetwork definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithNaptConfiguration,
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithUserPlaneDataInterface,
+            DefinitionStages.WithDnsAddresses, DefinitionStages.WithNaptConfiguration,
             DefinitionStages.WithUserEquipmentAddressPoolPrefix,
             DefinitionStages.WithUserEquipmentStaticAddressPoolPrefix {
             /**
@@ -259,6 +228,37 @@ public interface AttachedDataNetwork {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+
+        /**
+         * The stage of the AttachedDataNetwork definition allowing to specify userPlaneDataInterface.
+         */
+        interface WithUserPlaneDataInterface {
+            /**
+             * Specifies the userPlaneDataInterface property: The user plane interface on the data network. For 5G
+             * networks, this is the N6 interface. For 4G networks, this is the SGi interface..
+             * 
+             * @param userPlaneDataInterface The user plane interface on the data network. For 5G networks, this is the
+             * N6 interface. For 4G networks, this is the SGi interface.
+             * @return the next definition stage.
+             */
+            WithCreate withUserPlaneDataInterface(InterfaceProperties userPlaneDataInterface);
+        }
+
+        /**
+         * The stage of the AttachedDataNetwork definition allowing to specify dnsAddresses.
+         */
+        interface WithDnsAddresses {
+            /**
+             * Specifies the dnsAddresses property: The DNS servers to signal to UEs to use for this attached data
+             * network. This configuration is mandatory - if you don't want DNS servers, you must provide an empty
+             * array..
+             * 
+             * @param dnsAddresses The DNS servers to signal to UEs to use for this attached data network. This
+             * configuration is mandatory - if you don't want DNS servers, you must provide an empty array.
+             * @return the next definition stage.
+             */
+            WithCreate withDnsAddresses(List<String> dnsAddresses);
         }
 
         /**

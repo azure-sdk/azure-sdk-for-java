@@ -47,25 +47,32 @@ public interface MobileNetworkManagementClient {
     Duration getDefaultPollInterval();
 
     /**
-     * Gets the AttachedDataNetworksClient object to access its operations.
+     * Gets the OperationsClient object to access its operations.
      * 
-     * @return the AttachedDataNetworksClient object.
+     * @return the OperationsClient object.
      */
-    AttachedDataNetworksClient getAttachedDataNetworks();
+    OperationsClient getOperations();
 
     /**
-     * Gets the DataNetworksClient object to access its operations.
+     * Gets the PacketCoreControlPlaneVersionsTenantResourcesClient object to access its operations.
      * 
-     * @return the DataNetworksClient object.
+     * @return the PacketCoreControlPlaneVersionsTenantResourcesClient object.
      */
-    DataNetworksClient getDataNetworks();
+    PacketCoreControlPlaneVersionsTenantResourcesClient getPacketCoreControlPlaneVersionsTenantResources();
 
     /**
-     * Gets the DiagnosticsPackagesClient object to access its operations.
+     * Gets the AmfDeploymentsClient object to access its operations.
      * 
-     * @return the DiagnosticsPackagesClient object.
+     * @return the AmfDeploymentsClient object.
      */
-    DiagnosticsPackagesClient getDiagnosticsPackages();
+    AmfDeploymentsClient getAmfDeployments();
+
+    /**
+     * Gets the ClusterServicesClient object to access its operations.
+     * 
+     * @return the ClusterServicesClient object.
+     */
+    ClusterServicesClient getClusterServices();
 
     /**
      * Gets the MobileNetworksClient object to access its operations.
@@ -75,25 +82,25 @@ public interface MobileNetworkManagementClient {
     MobileNetworksClient getMobileNetworks();
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the NrfDeploymentsClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the NrfDeploymentsClient object.
      */
-    OperationsClient getOperations();
+    NrfDeploymentsClient getNrfDeployments();
 
     /**
-     * Gets the PacketCapturesClient object to access its operations.
+     * Gets the NssfDeploymentsClient object to access its operations.
      * 
-     * @return the PacketCapturesClient object.
+     * @return the NssfDeploymentsClient object.
      */
-    PacketCapturesClient getPacketCaptures();
+    NssfDeploymentsClient getNssfDeployments();
 
     /**
-     * Gets the PacketCoreControlPlanesClient object to access its operations.
+     * Gets the ObservabilityServicesClient object to access its operations.
      * 
-     * @return the PacketCoreControlPlanesClient object.
+     * @return the ObservabilityServicesClient object.
      */
-    PacketCoreControlPlanesClient getPacketCoreControlPlanes();
+    ObservabilityServicesClient getObservabilityServices();
 
     /**
      * Gets the PacketCoreControlPlaneVersionsClient object to access its operations.
@@ -103,25 +110,11 @@ public interface MobileNetworkManagementClient {
     PacketCoreControlPlaneVersionsClient getPacketCoreControlPlaneVersions();
 
     /**
-     * Gets the PacketCoreDataPlanesClient object to access its operations.
+     * Gets the PacketCoreControlPlanesClient object to access its operations.
      * 
-     * @return the PacketCoreDataPlanesClient object.
+     * @return the PacketCoreControlPlanesClient object.
      */
-    PacketCoreDataPlanesClient getPacketCoreDataPlanes();
-
-    /**
-     * Gets the ServicesClient object to access its operations.
-     * 
-     * @return the ServicesClient object.
-     */
-    ServicesClient getServices();
-
-    /**
-     * Gets the SimsClient object to access its operations.
-     * 
-     * @return the SimsClient object.
-     */
-    SimsClient getSims();
+    PacketCoreControlPlanesClient getPacketCoreControlPlanes();
 
     /**
      * Gets the SimGroupsClient object to access its operations.
@@ -129,6 +122,34 @@ public interface MobileNetworkManagementClient {
      * @return the SimGroupsClient object.
      */
     SimGroupsClient getSimGroups();
+
+    /**
+     * Gets the SmfDeploymentsClient object to access its operations.
+     * 
+     * @return the SmfDeploymentsClient object.
+     */
+    SmfDeploymentsClient getSmfDeployments();
+
+    /**
+     * Gets the UpfDeploymentsClient object to access its operations.
+     * 
+     * @return the UpfDeploymentsClient object.
+     */
+    UpfDeploymentsClient getUpfDeployments();
+
+    /**
+     * Gets the DataNetworksClient object to access its operations.
+     * 
+     * @return the DataNetworksClient object.
+     */
+    DataNetworksClient getDataNetworks();
+
+    /**
+     * Gets the ServicesClient object to access its operations.
+     * 
+     * @return the ServicesClient object.
+     */
+    ServicesClient getServices();
 
     /**
      * Gets the SimPoliciesClient object to access its operations.
@@ -152,16 +173,58 @@ public interface MobileNetworkManagementClient {
     SlicesClient getSlices();
 
     /**
-     * Gets the ExtendedUeInformationsClient object to access its operations.
+     * Gets the DiagnosticsPackagesClient object to access its operations.
      * 
-     * @return the ExtendedUeInformationsClient object.
+     * @return the DiagnosticsPackagesClient object.
      */
-    ExtendedUeInformationsClient getExtendedUeInformations();
+    DiagnosticsPackagesClient getDiagnosticsPackages();
 
     /**
-     * Gets the UeInformationsClient object to access its operations.
+     * Gets the PacketCapturesClient object to access its operations.
      * 
-     * @return the UeInformationsClient object.
+     * @return the PacketCapturesClient object.
      */
-    UeInformationsClient getUeInformations();
+    PacketCapturesClient getPacketCaptures();
+
+    /**
+     * Gets the PacketCoreDataPlanesClient object to access its operations.
+     * 
+     * @return the PacketCoreDataPlanesClient object.
+     */
+    PacketCoreDataPlanesClient getPacketCoreDataPlanes();
+
+    /**
+     * Gets the AttachedDataNetworksClient object to access its operations.
+     * 
+     * @return the AttachedDataNetworksClient object.
+     */
+    AttachedDataNetworksClient getAttachedDataNetworks();
+
+    /**
+     * Gets the RoutingInfoModelsClient object to access its operations.
+     * 
+     * @return the RoutingInfoModelsClient object.
+     */
+    RoutingInfoModelsClient getRoutingInfoModels();
+
+    /**
+     * Gets the UesClient object to access its operations.
+     * 
+     * @return the UesClient object.
+     */
+    UesClient getUes();
+
+    /**
+     * Gets the ExtendedUeInfosClient object to access its operations.
+     * 
+     * @return the ExtendedUeInfosClient object.
+     */
+    ExtendedUeInfosClient getExtendedUeInfos();
+
+    /**
+     * Gets the SimsClient object to access its operations.
+     * 
+     * @return the SimsClient object.
+     */
+    SimsClient getSims();
 }

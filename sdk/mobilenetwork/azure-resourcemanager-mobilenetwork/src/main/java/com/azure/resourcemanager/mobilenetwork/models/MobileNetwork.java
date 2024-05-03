@@ -4,6 +4,7 @@
 
 package com.azure.resourcemanager.mobilenetwork.models;
 
+import com.azure.core.http.rest.PagedIterable;
 import com.azure.core.management.Region;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
@@ -128,9 +129,8 @@ public interface MobileNetwork {
     /**
      * The entirety of the MobileNetwork definition.
      */
-    interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithResourceGroup,
-        DefinitionStages.WithPublicLandMobileNetworkIdentifier, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
 
     /**
@@ -174,24 +174,7 @@ public interface MobileNetwork {
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
-            WithPublicLandMobileNetworkIdentifier withExistingResourceGroup(String resourceGroupName);
-        }
-
-        /**
-         * The stage of the MobileNetwork definition allowing to specify publicLandMobileNetworkIdentifier.
-         */
-        interface WithPublicLandMobileNetworkIdentifier {
-            /**
-             * Specifies the publicLandMobileNetworkIdentifier property: The unique public land mobile network
-             * identifier for the network. If both 'publicLandMobileNetworks' and 'publicLandMobileNetworkIdentifier'
-             * are specified, then the 'publicLandMobileNetworks' will take precedence..
-             * 
-             * @param publicLandMobileNetworkIdentifier The unique public land mobile network identifier for the
-             * network. If both 'publicLandMobileNetworks' and 'publicLandMobileNetworkIdentifier' are specified, then
-             * the 'publicLandMobileNetworks' will take precedence.
-             * @return the next definition stage.
-             */
-            WithCreate withPublicLandMobileNetworkIdentifier(PlmnId publicLandMobileNetworkIdentifier);
+            WithCreate withExistingResourceGroup(String resourceGroupName);
         }
 
         /**
@@ -199,7 +182,7 @@ public interface MobileNetwork {
          * to be created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
-            DefinitionStages.WithPublicLandMobileNetworks {
+            DefinitionStages.WithPublicLandMobileNetworkIdentifier, DefinitionStages.WithPublicLandMobileNetworks {
             /**
              * Executes the create request.
              * 
@@ -242,6 +225,23 @@ public interface MobileNetwork {
              * @return the next definition stage.
              */
             WithCreate withIdentity(ManagedServiceIdentity identity);
+        }
+
+        /**
+         * The stage of the MobileNetwork definition allowing to specify publicLandMobileNetworkIdentifier.
+         */
+        interface WithPublicLandMobileNetworkIdentifier {
+            /**
+             * Specifies the publicLandMobileNetworkIdentifier property: The unique public land mobile network
+             * identifier for the network. If both 'publicLandMobileNetworks' and 'publicLandMobileNetworkIdentifier'
+             * are specified, then the 'publicLandMobileNetworks' will take precedence..
+             * 
+             * @param publicLandMobileNetworkIdentifier The unique public land mobile network identifier for the
+             * network. If both 'publicLandMobileNetworks' and 'publicLandMobileNetworkIdentifier' are specified, then
+             * the 'publicLandMobileNetworks' will take precedence.
+             * @return the next definition stage.
+             */
+            WithCreate withPublicLandMobileNetworkIdentifier(PlmnId publicLandMobileNetworkIdentifier);
         }
 
         /**
@@ -334,4 +334,24 @@ public interface MobileNetwork {
      * @return the refreshed resource.
      */
     MobileNetwork refresh(Context context);
+
+    /**
+     * Gets all the SIM groups assigned to a mobile network.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the SIM groups assigned to a mobile network as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SimGroup> listSimGroups();
+
+    /**
+     * Gets all the SIM groups assigned to a mobile network.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the SIM groups assigned to a mobile network as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<SimGroup> listSimGroups(Context context);
 }

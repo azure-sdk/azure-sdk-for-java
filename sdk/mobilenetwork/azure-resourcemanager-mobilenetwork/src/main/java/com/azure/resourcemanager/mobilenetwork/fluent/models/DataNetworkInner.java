@@ -17,7 +17,7 @@ import java.util.Map;
 @Fluent
 public final class DataNetworkInner extends Resource {
     /*
-     * Data network properties.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private DataNetworkPropertiesFormat innerProperties;
@@ -35,7 +35,7 @@ public final class DataNetworkInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: Data network properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */

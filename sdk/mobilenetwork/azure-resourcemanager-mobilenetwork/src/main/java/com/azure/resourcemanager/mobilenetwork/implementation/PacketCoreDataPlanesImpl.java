@@ -27,19 +27,24 @@ public final class PacketCoreDataPlanesImpl implements PacketCoreDataPlanes {
         this.serviceManager = serviceManager;
     }
 
-    public void delete(String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName) {
-        this.serviceClient().delete(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName);
+    public PagedIterable<PacketCoreDataPlane> listByPacketCoreControlPlane(String resourceGroupName,
+        String packetCoreControlPlaneName) {
+        PagedIterable<PacketCoreDataPlaneInner> inner
+            = this.serviceClient().listByPacketCoreControlPlane(resourceGroupName, packetCoreControlPlaneName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreDataPlaneImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
-        Context context) {
-        this.serviceClient().delete(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, context);
+    public PagedIterable<PacketCoreDataPlane> listByPacketCoreControlPlane(String resourceGroupName,
+        String packetCoreControlPlaneName, Context context) {
+        PagedIterable<PacketCoreDataPlaneInner> inner
+            = this.serviceClient().listByPacketCoreControlPlane(resourceGroupName, packetCoreControlPlaneName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreDataPlaneImpl(inner1, this.manager()));
     }
 
     public Response<PacketCoreDataPlane> getWithResponse(String resourceGroupName, String packetCoreControlPlaneName,
         String packetCoreDataPlaneName, Context context) {
-        Response<PacketCoreDataPlaneInner> inner = this.serviceClient().getWithResponse(resourceGroupName,
-            packetCoreControlPlaneName, packetCoreDataPlaneName, context);
+        Response<PacketCoreDataPlaneInner> inner = this.serviceClient()
+            .getWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new PacketCoreDataPlaneImpl(inner.getValue(), this.manager()));
@@ -59,18 +64,13 @@ public final class PacketCoreDataPlanesImpl implements PacketCoreDataPlanes {
         }
     }
 
-    public PagedIterable<PacketCoreDataPlane> listByPacketCoreControlPlane(String resourceGroupName,
-        String packetCoreControlPlaneName) {
-        PagedIterable<PacketCoreDataPlaneInner> inner
-            = this.serviceClient().listByPacketCoreControlPlane(resourceGroupName, packetCoreControlPlaneName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreDataPlaneImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName) {
+        this.serviceClient().delete(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName);
     }
 
-    public PagedIterable<PacketCoreDataPlane> listByPacketCoreControlPlane(String resourceGroupName,
-        String packetCoreControlPlaneName, Context context) {
-        PagedIterable<PacketCoreDataPlaneInner> inner
-            = this.serviceClient().listByPacketCoreControlPlane(resourceGroupName, packetCoreControlPlaneName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCoreDataPlaneImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
+        Context context) {
+        this.serviceClient().delete(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, context);
     }
 
     public PacketCoreDataPlane getById(String id) {

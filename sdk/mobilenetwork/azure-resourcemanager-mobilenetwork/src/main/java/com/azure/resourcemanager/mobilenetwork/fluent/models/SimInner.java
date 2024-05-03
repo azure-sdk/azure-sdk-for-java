@@ -7,7 +7,6 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.azure.resourcemanager.mobilenetwork.models.SimPolicyResourceId;
 import com.azure.resourcemanager.mobilenetwork.models.SimState;
@@ -23,10 +22,10 @@ import java.util.Map;
 @Fluent
 public final class SimInner extends ProxyResource {
     /*
-     * SIM Properties.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private SimPropertiesFormat innerProperties = new SimPropertiesFormat();
+    @JsonProperty(value = "properties")
+    private SimPropertiesFormat innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -41,7 +40,7 @@ public final class SimInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: SIM Properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -123,8 +122,7 @@ public final class SimInner extends ProxyResource {
     }
 
     /**
-     * Get the siteProvisioningState property: A dictionary of sites to the provisioning state of this SIM on that
-     * site.
+     * Get the siteProvisioningState property: A dictionary of sites to the provisioning state of this SIM on that site.
      * 
      * @return the siteProvisioningState value.
      */
@@ -181,9 +179,9 @@ public final class SimInner extends ProxyResource {
     }
 
     /**
-     * Get the deviceType property: An optional free-form text field that can be used to record the device type this
-     * SIM is associated with, for example 'Video camera'. The Azure portal allows SIMs to be grouped and filtered
-     * based on this value.
+     * Get the deviceType property: An optional free-form text field that can be used to record the device type this SIM
+     * is associated with, for example 'Video camera'. The Azure portal allows SIMs to be grouped and filtered based on
+     * this value.
      * 
      * @return the deviceType value.
      */
@@ -192,9 +190,9 @@ public final class SimInner extends ProxyResource {
     }
 
     /**
-     * Set the deviceType property: An optional free-form text field that can be used to record the device type this
-     * SIM is associated with, for example 'Video camera'. The Azure portal allows SIMs to be grouped and filtered
-     * based on this value.
+     * Set the deviceType property: An optional free-form text field that can be used to record the device type this SIM
+     * is associated with, for example 'Video camera'. The Azure portal allows SIMs to be grouped and filtered based on
+     * this value.
      * 
      * @param deviceType the deviceType value to set.
      * @return the SimInner object itself.
@@ -282,13 +280,8 @@ public final class SimInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model SimInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SimInner.class);
 }

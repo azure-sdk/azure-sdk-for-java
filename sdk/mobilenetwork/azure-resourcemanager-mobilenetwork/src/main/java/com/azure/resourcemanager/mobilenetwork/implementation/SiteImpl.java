@@ -9,6 +9,7 @@ import com.azure.core.management.SubResource;
 import com.azure.core.management.SystemData;
 import com.azure.core.util.Context;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.SiteInner;
+import com.azure.resourcemanager.mobilenetwork.models.AsyncOperationStatus;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.azure.resourcemanager.mobilenetwork.models.Site;
 import com.azure.resourcemanager.mobilenetwork.models.SiteDeletePacketCore;
@@ -90,7 +91,7 @@ public final class SiteImpl implements Site, Site.Definition, Site.Update {
 
     private String siteName;
 
-    private TagsObject updateParameters;
+    private TagsObject updateProperties;
 
     public SiteImpl withExistingMobileNetwork(String resourceGroupName, String mobileNetworkName) {
         this.resourceGroupName = resourceGroupName;
@@ -99,14 +100,16 @@ public final class SiteImpl implements Site, Site.Definition, Site.Update {
     }
 
     public Site create() {
-        this.innerObject = serviceManager.serviceClient().getSites().createOrUpdate(resourceGroupName,
-            mobileNetworkName, siteName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getSites()
+            .createOrUpdate(resourceGroupName, mobileNetworkName, siteName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Site create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSites().createOrUpdate(resourceGroupName,
-            mobileNetworkName, siteName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getSites()
+            .createOrUpdate(resourceGroupName, mobileNetworkName, siteName, this.innerModel(), context);
         return this;
     }
 
@@ -117,20 +120,22 @@ public final class SiteImpl implements Site, Site.Definition, Site.Update {
     }
 
     public SiteImpl update() {
-        this.updateParameters = new TagsObject();
+        this.updateProperties = new TagsObject();
         return this;
     }
 
     public Site apply() {
-        this.innerObject = serviceManager.serviceClient().getSites()
-            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, siteName, updateParameters, Context.NONE)
+        this.innerObject = serviceManager.serviceClient()
+            .getSites()
+            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, siteName, updateProperties, Context.NONE)
             .getValue();
         return this;
     }
 
     public Site apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSites()
-            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, siteName, updateParameters, context)
+        this.innerObject = serviceManager.serviceClient()
+            .getSites()
+            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, siteName, updateProperties, context)
             .getValue();
         return this;
     }
@@ -144,23 +149,27 @@ public final class SiteImpl implements Site, Site.Definition, Site.Update {
     }
 
     public Site refresh() {
-        this.innerObject = serviceManager.serviceClient().getSites()
-            .getWithResponse(resourceGroupName, mobileNetworkName, siteName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSites()
+            .getWithResponse(resourceGroupName, mobileNetworkName, siteName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Site refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSites()
-            .getWithResponse(resourceGroupName, mobileNetworkName, siteName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSites()
+            .getWithResponse(resourceGroupName, mobileNetworkName, siteName, context)
+            .getValue();
         return this;
     }
 
-    public void deletePacketCore(SiteDeletePacketCore parameters) {
-        serviceManager.sites().deletePacketCore(resourceGroupName, mobileNetworkName, siteName, parameters);
+    public AsyncOperationStatus deletePacketCore(SiteDeletePacketCore body) {
+        return serviceManager.sites().deletePacketCore(resourceGroupName, mobileNetworkName, siteName, body);
     }
 
-    public void deletePacketCore(SiteDeletePacketCore parameters, Context context) {
-        serviceManager.sites().deletePacketCore(resourceGroupName, mobileNetworkName, siteName, parameters, context);
+    public AsyncOperationStatus deletePacketCore(SiteDeletePacketCore body, Context context) {
+        return serviceManager.sites().deletePacketCore(resourceGroupName, mobileNetworkName, siteName, body, context);
     }
 
     public SiteImpl withRegion(Region location) {
@@ -178,7 +187,7 @@ public final class SiteImpl implements Site, Site.Definition, Site.Update {
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateParameters.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
     }

@@ -110,7 +110,7 @@ public interface Slice {
      * The entirety of the Slice definition.
      */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
-        DefinitionStages.WithParentResource, DefinitionStages.WithSnssai, DefinitionStages.WithCreate {
+        DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
 
     /**
@@ -155,29 +155,15 @@ public interface Slice {
              * @param mobileNetworkName The name of the mobile network.
              * @return the next definition stage.
              */
-            WithSnssai withExistingMobileNetwork(String resourceGroupName, String mobileNetworkName);
-        }
-
-        /**
-         * The stage of the Slice definition allowing to specify snssai.
-         */
-        interface WithSnssai {
-            /**
-             * Specifies the snssai property: Single-network slice selection assistance information (S-NSSAI). Unique at
-             * the scope of a mobile network..
-             * 
-             * @param snssai Single-network slice selection assistance information (S-NSSAI). Unique at the scope of a
-             * mobile network.
-             * @return the next definition stage.
-             */
-            WithCreate withSnssai(Snssai snssai);
+            WithCreate withExistingMobileNetwork(String resourceGroupName, String mobileNetworkName);
         }
 
         /**
          * The stage of the Slice definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithDescription {
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithSnssai, DefinitionStages.WithDescription {
             /**
              * Executes the create request.
              * 
@@ -205,6 +191,21 @@ public interface Slice {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+
+        /**
+         * The stage of the Slice definition allowing to specify snssai.
+         */
+        interface WithSnssai {
+            /**
+             * Specifies the snssai property: Single-network slice selection assistance information (S-NSSAI). Unique at
+             * the scope of a mobile network..
+             * 
+             * @param snssai Single-network slice selection assistance information (S-NSSAI). Unique at the scope of a
+             * mobile network.
+             * @return the next definition stage.
+             */
+            WithCreate withSnssai(Snssai snssai);
         }
 
         /**

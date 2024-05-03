@@ -7,7 +7,6 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.DiagnosticsPackageStatus;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,11 +17,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class DiagnosticsPackageInner extends ProxyResource {
     /*
-     * Diagnostics package properties. A diagnostics package file derived from the name of this resource will be
-     * uploaded to the Storage Account Container URL in the packet core control plane properties
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private DiagnosticsPackagePropertiesFormat innerProperties = new DiagnosticsPackagePropertiesFormat();
+    @JsonProperty(value = "properties")
+    private DiagnosticsPackagePropertiesFormat innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -37,9 +35,7 @@ public final class DiagnosticsPackageInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: Diagnostics package properties. A diagnostics package file derived from the
-     * name of this resource will be uploaded to the Storage Account Container URL in the packet core control plane
-     * properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -89,13 +85,8 @@ public final class DiagnosticsPackageInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property innerProperties in model DiagnosticsPackageInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(DiagnosticsPackageInner.class);
 }

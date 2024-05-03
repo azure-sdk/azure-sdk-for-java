@@ -91,7 +91,7 @@ public final class SimGroupImpl implements SimGroup, SimGroup.Definition, SimGro
 
     private String simGroupName;
 
-    private IdentityAndTagsObject updateParameters;
+    private IdentityAndTagsObject updateProperties;
 
     public SimGroupImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -99,14 +99,16 @@ public final class SimGroupImpl implements SimGroup, SimGroup.Definition, SimGro
     }
 
     public SimGroup create() {
-        this.innerObject = serviceManager.serviceClient().getSimGroups().createOrUpdate(resourceGroupName, simGroupName,
-            this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getSimGroups()
+            .createOrUpdate(resourceGroupName, simGroupName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public SimGroup create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSimGroups().createOrUpdate(resourceGroupName, simGroupName,
-            this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getSimGroups()
+            .createOrUpdate(resourceGroupName, simGroupName, this.innerModel(), context);
         return this;
     }
 
@@ -117,19 +119,23 @@ public final class SimGroupImpl implements SimGroup, SimGroup.Definition, SimGro
     }
 
     public SimGroupImpl update() {
-        this.updateParameters = new IdentityAndTagsObject();
+        this.updateProperties = new IdentityAndTagsObject();
         return this;
     }
 
     public SimGroup apply() {
-        this.innerObject = serviceManager.serviceClient().getSimGroups()
-            .updateTagsWithResponse(resourceGroupName, simGroupName, updateParameters, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSimGroups()
+            .updateTagsWithResponse(resourceGroupName, simGroupName, updateProperties, Context.NONE)
+            .getValue();
         return this;
     }
 
     public SimGroup apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSimGroups()
-            .updateTagsWithResponse(resourceGroupName, simGroupName, updateParameters, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSimGroups()
+            .updateTagsWithResponse(resourceGroupName, simGroupName, updateProperties, context)
+            .getValue();
         return this;
     }
 
@@ -142,14 +148,18 @@ public final class SimGroupImpl implements SimGroup, SimGroup.Definition, SimGro
     }
 
     public SimGroup refresh() {
-        this.innerObject = serviceManager.serviceClient().getSimGroups()
-            .getByResourceGroupWithResponse(resourceGroupName, simGroupName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSimGroups()
+            .getByResourceGroupWithResponse(resourceGroupName, simGroupName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public SimGroup refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSimGroups()
-            .getByResourceGroupWithResponse(resourceGroupName, simGroupName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSimGroups()
+            .getByResourceGroupWithResponse(resourceGroupName, simGroupName, context)
+            .getValue();
         return this;
     }
 
@@ -168,7 +178,7 @@ public final class SimGroupImpl implements SimGroup, SimGroup.Definition, SimGro
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateParameters.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
     }
@@ -178,7 +188,7 @@ public final class SimGroupImpl implements SimGroup, SimGroup.Definition, SimGro
             this.innerModel().withIdentity(identity);
             return this;
         } else {
-            this.updateParameters.withIdentity(identity);
+            this.updateProperties.withIdentity(identity);
             return this;
         }
     }

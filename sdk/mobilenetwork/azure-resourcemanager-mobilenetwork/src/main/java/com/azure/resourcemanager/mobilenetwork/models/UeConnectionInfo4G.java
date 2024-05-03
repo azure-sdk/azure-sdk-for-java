@@ -15,40 +15,52 @@ import java.time.OffsetDateTime;
 @Fluent
 public final class UeConnectionInfo4G {
     /*
-     * UE Location Info properties
-     */
-    @JsonProperty(value = "locationInfo")
-    private UeLocationInfo locationInfo;
-
-    /*
-     * Global RAN Node ID
-     */
-    @JsonProperty(value = "globalRanNodeId", required = true)
-    private GlobalRanNodeId globalRanNodeId;
-
-    /*
-     * Per-UE transport network layer association
-     */
-    @JsonProperty(value = "perUeTnla")
-    private String perUeTnla;
-
-    /*
-     * MME S1AP identifier
-     */
-    @JsonProperty(value = "mmeS1apId", required = true)
-    private int mmeS1ApId;
-
-    /*
-     * eNodeB S1AP identifier
+     * eNodeB S1AP identifier.
      */
     @JsonProperty(value = "enbS1apId", required = true)
     private int enbS1ApId;
 
     /*
-     * Last Visited TAI
+     * Global RAN Node ID.
+     */
+    @JsonProperty(value = "globalRanNodeId", required = true)
+    private GlobalRanNodeId globalRanNodeId;
+
+    /*
+     * The timestamp of last activity of UE (UTC).
+     */
+    @JsonProperty(value = "lastActivityTime")
+    private OffsetDateTime lastActivityTime;
+
+    /*
+     * Last Visited TAI.
      */
     @JsonProperty(value = "lastVisitedTai")
     private String lastVisitedTai;
+
+    /*
+     * UE Location Info properties.
+     */
+    @JsonProperty(value = "locationInfo")
+    private UeLocationInfo locationInfo;
+
+    /*
+     * MME S1AP identifier.
+     */
+    @JsonProperty(value = "mmeS1apId", required = true)
+    private int mmeS1ApId;
+
+    /*
+     * Per-UE transport network layer association.
+     */
+    @JsonProperty(value = "perUeTnla")
+    private String perUeTnla;
+
+    /*
+     * Radio connection establishment cause.
+     */
+    @JsonProperty(value = "rrcEstablishmentCause", required = true)
+    private RrcEstablishmentCause rrcEstablishmentCause;
 
     /*
      * State of the UE.
@@ -57,22 +69,10 @@ public final class UeConnectionInfo4G {
     private UeState ueState;
 
     /*
-     * Radio connection establishment cause
-     */
-    @JsonProperty(value = "rrcEstablishmentCause", required = true)
-    private RrcEstablishmentCause rrcEstablishmentCause;
-
-    /*
-     * The UE's usage setting
+     * The UE's usage setting.
      */
     @JsonProperty(value = "ueUsageSetting")
     private UeUsageSetting ueUsageSetting;
-
-    /*
-     * The timestamp of last activity of UE (UTC).
-     */
-    @JsonProperty(value = "lastActivityTime")
-    private OffsetDateTime lastActivityTime;
 
     /**
      * Creates an instance of UeConnectionInfo4G class.
@@ -81,22 +81,22 @@ public final class UeConnectionInfo4G {
     }
 
     /**
-     * Get the locationInfo property: UE Location Info properties.
+     * Get the enbS1ApId property: eNodeB S1AP identifier.
      * 
-     * @return the locationInfo value.
+     * @return the enbS1ApId value.
      */
-    public UeLocationInfo locationInfo() {
-        return this.locationInfo;
+    public int enbS1ApId() {
+        return this.enbS1ApId;
     }
 
     /**
-     * Set the locationInfo property: UE Location Info properties.
+     * Set the enbS1ApId property: eNodeB S1AP identifier.
      * 
-     * @param locationInfo the locationInfo value to set.
+     * @param enbS1ApId the enbS1ApId value to set.
      * @return the UeConnectionInfo4G object itself.
      */
-    public UeConnectionInfo4G withLocationInfo(UeLocationInfo locationInfo) {
-        this.locationInfo = locationInfo;
+    public UeConnectionInfo4G withEnbS1ApId(int enbS1ApId) {
+        this.enbS1ApId = enbS1ApId;
         return this;
     }
 
@@ -121,62 +121,22 @@ public final class UeConnectionInfo4G {
     }
 
     /**
-     * Get the perUeTnla property: Per-UE transport network layer association.
+     * Get the lastActivityTime property: The timestamp of last activity of UE (UTC).
      * 
-     * @return the perUeTnla value.
+     * @return the lastActivityTime value.
      */
-    public String perUeTnla() {
-        return this.perUeTnla;
+    public OffsetDateTime lastActivityTime() {
+        return this.lastActivityTime;
     }
 
     /**
-     * Set the perUeTnla property: Per-UE transport network layer association.
+     * Set the lastActivityTime property: The timestamp of last activity of UE (UTC).
      * 
-     * @param perUeTnla the perUeTnla value to set.
+     * @param lastActivityTime the lastActivityTime value to set.
      * @return the UeConnectionInfo4G object itself.
      */
-    public UeConnectionInfo4G withPerUeTnla(String perUeTnla) {
-        this.perUeTnla = perUeTnla;
-        return this;
-    }
-
-    /**
-     * Get the mmeS1ApId property: MME S1AP identifier.
-     * 
-     * @return the mmeS1ApId value.
-     */
-    public int mmeS1ApId() {
-        return this.mmeS1ApId;
-    }
-
-    /**
-     * Set the mmeS1ApId property: MME S1AP identifier.
-     * 
-     * @param mmeS1ApId the mmeS1ApId value to set.
-     * @return the UeConnectionInfo4G object itself.
-     */
-    public UeConnectionInfo4G withMmeS1ApId(int mmeS1ApId) {
-        this.mmeS1ApId = mmeS1ApId;
-        return this;
-    }
-
-    /**
-     * Get the enbS1ApId property: eNodeB S1AP identifier.
-     * 
-     * @return the enbS1ApId value.
-     */
-    public int enbS1ApId() {
-        return this.enbS1ApId;
-    }
-
-    /**
-     * Set the enbS1ApId property: eNodeB S1AP identifier.
-     * 
-     * @param enbS1ApId the enbS1ApId value to set.
-     * @return the UeConnectionInfo4G object itself.
-     */
-    public UeConnectionInfo4G withEnbS1ApId(int enbS1ApId) {
-        this.enbS1ApId = enbS1ApId;
+    public UeConnectionInfo4G withLastActivityTime(OffsetDateTime lastActivityTime) {
+        this.lastActivityTime = lastActivityTime;
         return this;
     }
 
@@ -201,22 +161,62 @@ public final class UeConnectionInfo4G {
     }
 
     /**
-     * Get the ueState property: State of the UE.
+     * Get the locationInfo property: UE Location Info properties.
      * 
-     * @return the ueState value.
+     * @return the locationInfo value.
      */
-    public UeState ueState() {
-        return this.ueState;
+    public UeLocationInfo locationInfo() {
+        return this.locationInfo;
     }
 
     /**
-     * Set the ueState property: State of the UE.
+     * Set the locationInfo property: UE Location Info properties.
      * 
-     * @param ueState the ueState value to set.
+     * @param locationInfo the locationInfo value to set.
      * @return the UeConnectionInfo4G object itself.
      */
-    public UeConnectionInfo4G withUeState(UeState ueState) {
-        this.ueState = ueState;
+    public UeConnectionInfo4G withLocationInfo(UeLocationInfo locationInfo) {
+        this.locationInfo = locationInfo;
+        return this;
+    }
+
+    /**
+     * Get the mmeS1ApId property: MME S1AP identifier.
+     * 
+     * @return the mmeS1ApId value.
+     */
+    public int mmeS1ApId() {
+        return this.mmeS1ApId;
+    }
+
+    /**
+     * Set the mmeS1ApId property: MME S1AP identifier.
+     * 
+     * @param mmeS1ApId the mmeS1ApId value to set.
+     * @return the UeConnectionInfo4G object itself.
+     */
+    public UeConnectionInfo4G withMmeS1ApId(int mmeS1ApId) {
+        this.mmeS1ApId = mmeS1ApId;
+        return this;
+    }
+
+    /**
+     * Get the perUeTnla property: Per-UE transport network layer association.
+     * 
+     * @return the perUeTnla value.
+     */
+    public String perUeTnla() {
+        return this.perUeTnla;
+    }
+
+    /**
+     * Set the perUeTnla property: Per-UE transport network layer association.
+     * 
+     * @param perUeTnla the perUeTnla value to set.
+     * @return the UeConnectionInfo4G object itself.
+     */
+    public UeConnectionInfo4G withPerUeTnla(String perUeTnla) {
+        this.perUeTnla = perUeTnla;
         return this;
     }
 
@@ -241,6 +241,26 @@ public final class UeConnectionInfo4G {
     }
 
     /**
+     * Get the ueState property: State of the UE.
+     * 
+     * @return the ueState value.
+     */
+    public UeState ueState() {
+        return this.ueState;
+    }
+
+    /**
+     * Set the ueState property: State of the UE.
+     * 
+     * @param ueState the ueState value to set.
+     * @return the UeConnectionInfo4G object itself.
+     */
+    public UeConnectionInfo4G withUeState(UeState ueState) {
+        this.ueState = ueState;
+        return this;
+    }
+
+    /**
      * Get the ueUsageSetting property: The UE's usage setting.
      * 
      * @return the ueUsageSetting value.
@@ -261,47 +281,29 @@ public final class UeConnectionInfo4G {
     }
 
     /**
-     * Get the lastActivityTime property: The timestamp of last activity of UE (UTC).
-     * 
-     * @return the lastActivityTime value.
-     */
-    public OffsetDateTime lastActivityTime() {
-        return this.lastActivityTime;
-    }
-
-    /**
-     * Set the lastActivityTime property: The timestamp of last activity of UE (UTC).
-     * 
-     * @param lastActivityTime the lastActivityTime value to set.
-     * @return the UeConnectionInfo4G object itself.
-     */
-    public UeConnectionInfo4G withLastActivityTime(OffsetDateTime lastActivityTime) {
-        this.lastActivityTime = lastActivityTime;
-        return this;
-    }
-
-    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (locationInfo() != null) {
-            locationInfo().validate();
-        }
         if (globalRanNodeId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property globalRanNodeId in model UeConnectionInfo4G"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property globalRanNodeId in model UeConnectionInfo4G"));
         } else {
             globalRanNodeId().validate();
         }
-        if (ueState() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property ueState in model UeConnectionInfo4G"));
+        if (locationInfo() != null) {
+            locationInfo().validate();
         }
         if (rrcEstablishmentCause() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property rrcEstablishmentCause in model UeConnectionInfo4G"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property rrcEstablishmentCause in model UeConnectionInfo4G"));
+        }
+        if (ueState() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property ueState in model UeConnectionInfo4G"));
         }
     }
 

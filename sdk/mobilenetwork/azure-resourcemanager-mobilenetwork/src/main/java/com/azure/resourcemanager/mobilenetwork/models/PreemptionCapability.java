@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Preemption capability.
+ * Default QoS Flow preemption capability. The preemption capability of a QoS Flow controls whether it can preempt
+ * another QoS Flow with a lower priority level. See 3GPP TS23.501 section 5.7.2.2 for a full description of the ARP
+ * parameters.
  */
 public final class PreemptionCapability extends ExpandableStringEnum<PreemptionCapability> {
     /**

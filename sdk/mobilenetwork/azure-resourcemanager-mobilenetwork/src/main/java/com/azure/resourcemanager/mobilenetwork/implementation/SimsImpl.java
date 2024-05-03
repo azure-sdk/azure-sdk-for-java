@@ -15,9 +15,11 @@ import com.azure.resourcemanager.mobilenetwork.fluent.models.SimInner;
 import com.azure.resourcemanager.mobilenetwork.models.AsyncOperationStatus;
 import com.azure.resourcemanager.mobilenetwork.models.EncryptedSimUploadList;
 import com.azure.resourcemanager.mobilenetwork.models.Sim;
+import com.azure.resourcemanager.mobilenetwork.models.SimClone;
 import com.azure.resourcemanager.mobilenetwork.models.SimDeleteList;
-import com.azure.resourcemanager.mobilenetwork.models.SimUploadList;
+import com.azure.resourcemanager.mobilenetwork.models.SimMove;
 import com.azure.resourcemanager.mobilenetwork.models.Sims;
+import com.azure.resourcemanager.mobilenetwork.models.SimUploadList;
 
 public final class SimsImpl implements Sims {
     private static final ClientLogger LOGGER = new ClientLogger(SimsImpl.class);
@@ -32,12 +34,70 @@ public final class SimsImpl implements Sims {
         this.serviceManager = serviceManager;
     }
 
-    public void delete(String resourceGroupName, String simGroupName, String simName) {
-        this.serviceClient().delete(resourceGroupName, simGroupName, simName);
+    public AsyncOperationStatus clone(String resourceGroupName, String simGroupName, SimClone body) {
+        AsyncOperationStatusInner inner = this.serviceClient().clone(resourceGroupName, simGroupName, body);
+        if (inner != null) {
+            return new AsyncOperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public void delete(String resourceGroupName, String simGroupName, String simName, Context context) {
-        this.serviceClient().delete(resourceGroupName, simGroupName, simName, context);
+    public AsyncOperationStatus clone(String resourceGroupName, String simGroupName, SimClone body, Context context) {
+        AsyncOperationStatusInner inner = this.serviceClient().clone(resourceGroupName, simGroupName, body, context);
+        if (inner != null) {
+            return new AsyncOperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public AsyncOperationStatus bulkDelete(String resourceGroupName, String simGroupName, SimDeleteList body) {
+        AsyncOperationStatusInner inner = this.serviceClient().bulkDelete(resourceGroupName, simGroupName, body);
+        if (inner != null) {
+            return new AsyncOperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public AsyncOperationStatus bulkDelete(String resourceGroupName, String simGroupName, SimDeleteList body,
+        Context context) {
+        AsyncOperationStatusInner inner
+            = this.serviceClient().bulkDelete(resourceGroupName, simGroupName, body, context);
+        if (inner != null) {
+            return new AsyncOperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public AsyncOperationStatus move(String resourceGroupName, String simGroupName, SimMove body) {
+        AsyncOperationStatusInner inner = this.serviceClient().move(resourceGroupName, simGroupName, body);
+        if (inner != null) {
+            return new AsyncOperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public AsyncOperationStatus move(String resourceGroupName, String simGroupName, SimMove body, Context context) {
+        AsyncOperationStatusInner inner = this.serviceClient().move(resourceGroupName, simGroupName, body, context);
+        if (inner != null) {
+            return new AsyncOperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public PagedIterable<Sim> listByGroup(String resourceGroupName, String simGroupName) {
+        PagedIterable<SimInner> inner = this.serviceClient().listByGroup(resourceGroupName, simGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<Sim> listByGroup(String resourceGroupName, String simGroupName, Context context) {
+        PagedIterable<SimInner> inner = this.serviceClient().listByGroup(resourceGroupName, simGroupName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimImpl(inner1, this.manager()));
     }
 
     public Response<Sim> getWithResponse(String resourceGroupName, String simGroupName, String simName,
@@ -61,49 +121,18 @@ public final class SimsImpl implements Sims {
         }
     }
 
-    public PagedIterable<Sim> listByGroup(String resourceGroupName, String simGroupName) {
-        PagedIterable<SimInner> inner = this.serviceClient().listByGroup(resourceGroupName, simGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String simGroupName, String simName) {
+        this.serviceClient().delete(resourceGroupName, simGroupName, simName);
     }
 
-    public PagedIterable<Sim> listByGroup(String resourceGroupName, String simGroupName, Context context) {
-        PagedIterable<SimInner> inner = this.serviceClient().listByGroup(resourceGroupName, simGroupName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String simGroupName, String simName, Context context) {
+        this.serviceClient().delete(resourceGroupName, simGroupName, simName, context);
     }
 
-    public AsyncOperationStatus bulkUpload(String resourceGroupName, String simGroupName, SimUploadList parameters) {
-        AsyncOperationStatusInner inner = this.serviceClient().bulkUpload(resourceGroupName, simGroupName, parameters);
-        if (inner != null) {
-            return new AsyncOperationStatusImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public AsyncOperationStatus bulkUpload(String resourceGroupName, String simGroupName, SimUploadList parameters,
-        Context context) {
+    public AsyncOperationStatus bulkUploadEncrypted(String resourceGroupName, String simGroupName,
+        EncryptedSimUploadList body) {
         AsyncOperationStatusInner inner
-            = this.serviceClient().bulkUpload(resourceGroupName, simGroupName, parameters, context);
-        if (inner != null) {
-            return new AsyncOperationStatusImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public AsyncOperationStatus bulkDelete(String resourceGroupName, String simGroupName, SimDeleteList parameters) {
-        AsyncOperationStatusInner inner = this.serviceClient().bulkDelete(resourceGroupName, simGroupName, parameters);
-        if (inner != null) {
-            return new AsyncOperationStatusImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
-    public AsyncOperationStatus bulkDelete(String resourceGroupName, String simGroupName, SimDeleteList parameters,
-        Context context) {
-        AsyncOperationStatusInner inner
-            = this.serviceClient().bulkDelete(resourceGroupName, simGroupName, parameters, context);
+            = this.serviceClient().bulkUploadEncrypted(resourceGroupName, simGroupName, body);
         if (inner != null) {
             return new AsyncOperationStatusImpl(inner, this.manager());
         } else {
@@ -112,9 +141,9 @@ public final class SimsImpl implements Sims {
     }
 
     public AsyncOperationStatus bulkUploadEncrypted(String resourceGroupName, String simGroupName,
-        EncryptedSimUploadList parameters) {
+        EncryptedSimUploadList body, Context context) {
         AsyncOperationStatusInner inner
-            = this.serviceClient().bulkUploadEncrypted(resourceGroupName, simGroupName, parameters);
+            = this.serviceClient().bulkUploadEncrypted(resourceGroupName, simGroupName, body, context);
         if (inner != null) {
             return new AsyncOperationStatusImpl(inner, this.manager());
         } else {
@@ -122,10 +151,19 @@ public final class SimsImpl implements Sims {
         }
     }
 
-    public AsyncOperationStatus bulkUploadEncrypted(String resourceGroupName, String simGroupName,
-        EncryptedSimUploadList parameters, Context context) {
+    public AsyncOperationStatus bulkUpload(String resourceGroupName, String simGroupName, SimUploadList body) {
+        AsyncOperationStatusInner inner = this.serviceClient().bulkUpload(resourceGroupName, simGroupName, body);
+        if (inner != null) {
+            return new AsyncOperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public AsyncOperationStatus bulkUpload(String resourceGroupName, String simGroupName, SimUploadList body,
+        Context context) {
         AsyncOperationStatusInner inner
-            = this.serviceClient().bulkUploadEncrypted(resourceGroupName, simGroupName, parameters, context);
+            = this.serviceClient().bulkUpload(resourceGroupName, simGroupName, body, context);
         if (inner != null) {
             return new AsyncOperationStatusImpl(inner, this.manager());
         } else {

@@ -27,41 +27,6 @@ public final class AttachedDataNetworksImpl implements AttachedDataNetworks {
         this.serviceManager = serviceManager;
     }
 
-    public void delete(String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
-        String attachedDataNetworkName) {
-        this.serviceClient().delete(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
-            attachedDataNetworkName);
-    }
-
-    public void delete(String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
-        String attachedDataNetworkName, Context context) {
-        this.serviceClient().delete(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
-            attachedDataNetworkName, context);
-    }
-
-    public Response<AttachedDataNetwork> getWithResponse(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCoreDataPlaneName, String attachedDataNetworkName, Context context) {
-        Response<AttachedDataNetworkInner> inner = this.serviceClient().getWithResponse(resourceGroupName,
-            packetCoreControlPlaneName, packetCoreDataPlaneName, attachedDataNetworkName, context);
-        if (inner != null) {
-            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
-                new AttachedDataNetworkImpl(inner.getValue(), this.manager()));
-        } else {
-            return null;
-        }
-    }
-
-    public AttachedDataNetwork get(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCoreDataPlaneName, String attachedDataNetworkName) {
-        AttachedDataNetworkInner inner = this.serviceClient().get(resourceGroupName, packetCoreControlPlaneName,
-            packetCoreDataPlaneName, attachedDataNetworkName);
-        if (inner != null) {
-            return new AttachedDataNetworkImpl(inner, this.manager());
-        } else {
-            return null;
-        }
-    }
-
     public PagedIterable<AttachedDataNetwork> listByPacketCoreDataPlane(String resourceGroupName,
         String packetCoreControlPlaneName, String packetCoreDataPlaneName) {
         PagedIterable<AttachedDataNetworkInner> inner = this.serviceClient()
@@ -74,6 +39,43 @@ public final class AttachedDataNetworksImpl implements AttachedDataNetworks {
         PagedIterable<AttachedDataNetworkInner> inner = this.serviceClient()
             .listByPacketCoreDataPlane(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, context);
         return ResourceManagerUtils.mapPage(inner, inner1 -> new AttachedDataNetworkImpl(inner1, this.manager()));
+    }
+
+    public Response<AttachedDataNetwork> getWithResponse(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCoreDataPlaneName, String attachedDataNetworkName, Context context) {
+        Response<AttachedDataNetworkInner> inner = this.serviceClient()
+            .getWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+                attachedDataNetworkName, context);
+        if (inner != null) {
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new AttachedDataNetworkImpl(inner.getValue(), this.manager()));
+        } else {
+            return null;
+        }
+    }
+
+    public AttachedDataNetwork get(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCoreDataPlaneName, String attachedDataNetworkName) {
+        AttachedDataNetworkInner inner = this.serviceClient()
+            .get(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, attachedDataNetworkName);
+        if (inner != null) {
+            return new AttachedDataNetworkImpl(inner, this.manager());
+        } else {
+            return null;
+        }
+    }
+
+    public void delete(String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
+        String attachedDataNetworkName) {
+        this.serviceClient()
+            .delete(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, attachedDataNetworkName);
+    }
+
+    public void delete(String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
+        String attachedDataNetworkName, Context context) {
+        this.serviceClient()
+            .delete(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, attachedDataNetworkName,
+                context);
     }
 
     public AttachedDataNetwork getById(String id) {
@@ -97,8 +99,10 @@ public final class AttachedDataNetworksImpl implements AttachedDataNetworks {
             throw LOGGER.logExceptionAsError(new IllegalArgumentException(
                 String.format("The resource ID '%s' is not valid. Missing path segment 'attachedDataNetworks'.", id)));
         }
-        return this.getWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
-            attachedDataNetworkName, Context.NONE).getValue();
+        return this
+            .getWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+                attachedDataNetworkName, Context.NONE)
+            .getValue();
     }
 
     public Response<AttachedDataNetwork> getByIdWithResponse(String id, Context context) {

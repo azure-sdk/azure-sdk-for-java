@@ -5,25 +5,26 @@
 package com.azure.resourcemanager.mobilenetwork.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.PacketCoreDataPlaneInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Response for packet core data planes API service call.
+ * The response of a PacketCoreDataPlane list operation.
  */
 @Fluent
 public final class PacketCoreDataPlaneListResult {
     /*
-     * A list of packet core data planes in a resource group.
+     * The PacketCoreDataPlane items on this page
      */
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "value", required = true)
     private List<PacketCoreDataPlaneInner> value;
 
     /*
-     * The URL to get the next set of results.
+     * The link to the next page of items
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /**
@@ -33,7 +34,7 @@ public final class PacketCoreDataPlaneListResult {
     }
 
     /**
-     * Get the value property: A list of packet core data planes in a resource group.
+     * Get the value property: The PacketCoreDataPlane items on this page.
      * 
      * @return the value value.
      */
@@ -42,7 +43,7 @@ public final class PacketCoreDataPlaneListResult {
     }
 
     /**
-     * Set the value property: A list of packet core data planes in a resource group.
+     * Set the value property: The PacketCoreDataPlane items on this page.
      * 
      * @param value the value value to set.
      * @return the PacketCoreDataPlaneListResult object itself.
@@ -53,7 +54,7 @@ public final class PacketCoreDataPlaneListResult {
     }
 
     /**
-     * Get the nextLink property: The URL to get the next set of results.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -62,13 +63,30 @@ public final class PacketCoreDataPlaneListResult {
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the PacketCoreDataPlaneListResult object itself.
+     */
+    public PacketCoreDataPlaneListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model PacketCoreDataPlaneListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PacketCoreDataPlaneListResult.class);
 }

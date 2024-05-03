@@ -13,29 +13,110 @@ import com.azure.core.util.Context;
  */
 public interface Sims {
     /**
-     * Deletes the specified SIM.
+     * Clone SIMs to another SIM Group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param simGroupName The name of the SIM Group.
-     * @param simName The name of the SIM.
+     * @param body Parameters supplied to clone the SIMs.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
      */
-    void delete(String resourceGroupName, String simGroupName, String simName);
+    AsyncOperationStatus clone(String resourceGroupName, String simGroupName, SimClone body);
 
     /**
-     * Deletes the specified SIM.
+     * Clone SIMs to another SIM Group.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param simGroupName The name of the SIM Group.
-     * @param simName The name of the SIM.
+     * @param body Parameters supplied to clone the SIMs.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
      */
-    void delete(String resourceGroupName, String simGroupName, String simName, Context context);
+    AsyncOperationStatus clone(String resourceGroupName, String simGroupName, SimClone body, Context context);
+
+    /**
+     * Bulk delete SIMs from a SIM group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param simGroupName The name of the SIM Group.
+     * @param body Parameters supplied to the bulk SIM delete operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    AsyncOperationStatus bulkDelete(String resourceGroupName, String simGroupName, SimDeleteList body);
+
+    /**
+     * Bulk delete SIMs from a SIM group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param simGroupName The name of the SIM Group.
+     * @param body Parameters supplied to the bulk SIM delete operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    AsyncOperationStatus bulkDelete(String resourceGroupName, String simGroupName, SimDeleteList body, Context context);
+
+    /**
+     * Move SIMs to another SIM Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param simGroupName The name of the SIM Group.
+     * @param body Parameters supplied to move the SIMs.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    AsyncOperationStatus move(String resourceGroupName, String simGroupName, SimMove body);
+
+    /**
+     * Move SIMs to another SIM Group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param simGroupName The name of the SIM Group.
+     * @param body Parameters supplied to move the SIMs.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    AsyncOperationStatus move(String resourceGroupName, String simGroupName, SimMove body, Context context);
+
+    /**
+     * Gets all the SIMs in a SIM group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param simGroupName The name of the SIM Group.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the SIMs in a SIM group as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<Sim> listByGroup(String resourceGroupName, String simGroupName);
+
+    /**
+     * Gets all the SIMs in a SIM group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param simGroupName The name of the SIM Group.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the SIMs in a SIM group as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<Sim> listByGroup(String resourceGroupName, String simGroupName, Context context);
 
     /**
      * Gets information about the specified SIM.
@@ -65,114 +146,85 @@ public interface Sims {
     Sim get(String resourceGroupName, String simGroupName, String simName);
 
     /**
-     * Gets all the SIMs in a SIM group.
+     * Deletes the specified SIM.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param simGroupName The name of the SIM Group.
+     * @param simName The name of the SIM.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the SIMs in a SIM group as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Sim> listByGroup(String resourceGroupName, String simGroupName);
+    void delete(String resourceGroupName, String simGroupName, String simName);
 
     /**
-     * Gets all the SIMs in a SIM group.
+     * Deletes the specified SIM.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param simGroupName The name of the SIM Group.
+     * @param simName The name of the SIM.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the SIMs in a SIM group as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Sim> listByGroup(String resourceGroupName, String simGroupName, Context context);
-
-    /**
-     * Bulk upload SIMs to a SIM group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param simGroupName The name of the SIM Group.
-     * @param parameters Parameters supplied to the bulk SIM upload operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    AsyncOperationStatus bulkUpload(String resourceGroupName, String simGroupName, SimUploadList parameters);
-
-    /**
-     * Bulk upload SIMs to a SIM group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param simGroupName The name of the SIM Group.
-     * @param parameters Parameters supplied to the bulk SIM upload operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    AsyncOperationStatus bulkUpload(String resourceGroupName, String simGroupName, SimUploadList parameters,
-        Context context);
-
-    /**
-     * Bulk delete SIMs from a SIM group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param simGroupName The name of the SIM Group.
-     * @param parameters Parameters supplied to the bulk SIM delete operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    AsyncOperationStatus bulkDelete(String resourceGroupName, String simGroupName, SimDeleteList parameters);
-
-    /**
-     * Bulk delete SIMs from a SIM group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param simGroupName The name of the SIM Group.
-     * @param parameters Parameters supplied to the bulk SIM delete operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the current status of an async operation.
-     */
-    AsyncOperationStatus bulkDelete(String resourceGroupName, String simGroupName, SimDeleteList parameters,
-        Context context);
+    void delete(String resourceGroupName, String simGroupName, String simName, Context context);
 
     /**
      * Bulk upload SIMs in encrypted form to a SIM group. The SIM credentials must be encrypted.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param simGroupName The name of the SIM Group.
-     * @param parameters Parameters supplied to the encrypted SIMs upload operation.
+     * @param body Parameters supplied to the encrypted SIMs upload operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current status of an async operation.
      */
     AsyncOperationStatus bulkUploadEncrypted(String resourceGroupName, String simGroupName,
-        EncryptedSimUploadList parameters);
+        EncryptedSimUploadList body);
 
     /**
      * Bulk upload SIMs in encrypted form to a SIM group. The SIM credentials must be encrypted.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param simGroupName The name of the SIM Group.
-     * @param parameters Parameters supplied to the encrypted SIMs upload operation.
+     * @param body Parameters supplied to the encrypted SIMs upload operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current status of an async operation.
      */
-    AsyncOperationStatus bulkUploadEncrypted(String resourceGroupName, String simGroupName,
-        EncryptedSimUploadList parameters, Context context);
+    AsyncOperationStatus bulkUploadEncrypted(String resourceGroupName, String simGroupName, EncryptedSimUploadList body,
+        Context context);
+
+    /**
+     * Bulk upload SIMs to a SIM group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param simGroupName The name of the SIM Group.
+     * @param body Parameters supplied to the bulk SIM upload operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    AsyncOperationStatus bulkUpload(String resourceGroupName, String simGroupName, SimUploadList body);
+
+    /**
+     * Bulk upload SIMs to a SIM group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param simGroupName The name of the SIM Group.
+     * @param body Parameters supplied to the bulk SIM upload operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
+     */
+    AsyncOperationStatus bulkUpload(String resourceGroupName, String simGroupName, SimUploadList body, Context context);
 
     /**
      * Gets information about the specified SIM.

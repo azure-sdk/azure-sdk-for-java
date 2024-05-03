@@ -7,7 +7,6 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.Ambr;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.azure.resourcemanager.mobilenetwork.models.SiteProvisioningState;
@@ -23,10 +22,10 @@ import java.util.Map;
 @Fluent
 public final class SimPolicyInner extends Resource {
     /*
-     * SIM policy Properties.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private SimPolicyPropertiesFormat innerProperties = new SimPolicyPropertiesFormat();
+    @JsonProperty(value = "properties")
+    private SimPolicyPropertiesFormat innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -41,7 +40,7 @@ public final class SimPolicyInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: SIM policy Properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -121,8 +120,8 @@ public final class SimPolicyInner extends Resource {
     }
 
     /**
-     * Get the defaultSlice property: The default slice to use if the UE does not explicitly specify it. This slice
-     * must exist in the `sliceConfigurations` map. The slice must be in the same location as the SIM policy.
+     * Get the defaultSlice property: The default slice to use if the UE does not explicitly specify it. This slice must
+     * exist in the `sliceConfigurations` map. The slice must be in the same location as the SIM policy.
      * 
      * @return the defaultSlice value.
      */
@@ -131,8 +130,8 @@ public final class SimPolicyInner extends Resource {
     }
 
     /**
-     * Set the defaultSlice property: The default slice to use if the UE does not explicitly specify it. This slice
-     * must exist in the `sliceConfigurations` map. The slice must be in the same location as the SIM policy.
+     * Set the defaultSlice property: The default slice to use if the UE does not explicitly specify it. This slice must
+     * exist in the `sliceConfigurations` map. The slice must be in the same location as the SIM policy.
      * 
      * @param defaultSlice the defaultSlice value to set.
      * @return the SimPolicyInner object itself.
@@ -226,13 +225,8 @@ public final class SimPolicyInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model SimPolicyInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SimPolicyInner.class);
 }

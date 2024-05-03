@@ -15,37 +15,37 @@ import java.util.List;
 @Fluent
 public final class UeInfo4GProperties {
     /*
-     * International mobile subscriber identifier
-     */
-    @JsonProperty(value = "imsi", required = true)
-    private String imsi;
-
-    /*
-     * International mobile equipment identity
-     */
-    @JsonProperty(value = "imei")
-    private String imei;
-
-    /*
-     * International mobile equipment identity – software version
-     */
-    @JsonProperty(value = "imeisv")
-    private String imeisv;
-
-    /*
-     * Globally Unique Temporary Identifier (4G)
-     */
-    @JsonProperty(value = "guti", required = true)
-    private Guti4G guti;
-
-    /*
-     * UE Connection Info for 4G
+     * UE Connection Info for 4G.
      */
     @JsonProperty(value = "connectionInfo")
     private UeConnectionInfo4G connectionInfo;
 
     /*
-     * The sessionInfo property.
+     * Globally Unique Temporary Identifier (4G).
+     */
+    @JsonProperty(value = "guti", required = true)
+    private Guti4G guti;
+
+    /*
+     * International mobile equipment identity.
+     */
+    @JsonProperty(value = "imei")
+    private String imei;
+
+    /*
+     * International mobile equipment identity – software version.
+     */
+    @JsonProperty(value = "imeisv")
+    private String imeisv;
+
+    /*
+     * International mobile subscriber identifier.
+     */
+    @JsonProperty(value = "imsi", required = true)
+    private String imsi;
+
+    /*
+     * UE Session Info for 4G.
      */
     @JsonProperty(value = "sessionInfo")
     private List<UeSessionInfo4G> sessionInfo;
@@ -57,22 +57,42 @@ public final class UeInfo4GProperties {
     }
 
     /**
-     * Get the imsi property: International mobile subscriber identifier.
+     * Get the connectionInfo property: UE Connection Info for 4G.
      * 
-     * @return the imsi value.
+     * @return the connectionInfo value.
      */
-    public String imsi() {
-        return this.imsi;
+    public UeConnectionInfo4G connectionInfo() {
+        return this.connectionInfo;
     }
 
     /**
-     * Set the imsi property: International mobile subscriber identifier.
+     * Set the connectionInfo property: UE Connection Info for 4G.
      * 
-     * @param imsi the imsi value to set.
+     * @param connectionInfo the connectionInfo value to set.
      * @return the UeInfo4GProperties object itself.
      */
-    public UeInfo4GProperties withImsi(String imsi) {
-        this.imsi = imsi;
+    public UeInfo4GProperties withConnectionInfo(UeConnectionInfo4G connectionInfo) {
+        this.connectionInfo = connectionInfo;
+        return this;
+    }
+
+    /**
+     * Get the guti property: Globally Unique Temporary Identifier (4G).
+     * 
+     * @return the guti value.
+     */
+    public Guti4G guti() {
+        return this.guti;
+    }
+
+    /**
+     * Set the guti property: Globally Unique Temporary Identifier (4G).
+     * 
+     * @param guti the guti value to set.
+     * @return the UeInfo4GProperties object itself.
+     */
+    public UeInfo4GProperties withGuti(Guti4G guti) {
+        this.guti = guti;
         return this;
     }
 
@@ -117,47 +137,27 @@ public final class UeInfo4GProperties {
     }
 
     /**
-     * Get the guti property: Globally Unique Temporary Identifier (4G).
+     * Get the imsi property: International mobile subscriber identifier.
      * 
-     * @return the guti value.
+     * @return the imsi value.
      */
-    public Guti4G guti() {
-        return this.guti;
+    public String imsi() {
+        return this.imsi;
     }
 
     /**
-     * Set the guti property: Globally Unique Temporary Identifier (4G).
+     * Set the imsi property: International mobile subscriber identifier.
      * 
-     * @param guti the guti value to set.
+     * @param imsi the imsi value to set.
      * @return the UeInfo4GProperties object itself.
      */
-    public UeInfo4GProperties withGuti(Guti4G guti) {
-        this.guti = guti;
+    public UeInfo4GProperties withImsi(String imsi) {
+        this.imsi = imsi;
         return this;
     }
 
     /**
-     * Get the connectionInfo property: UE Connection Info for 4G.
-     * 
-     * @return the connectionInfo value.
-     */
-    public UeConnectionInfo4G connectionInfo() {
-        return this.connectionInfo;
-    }
-
-    /**
-     * Set the connectionInfo property: UE Connection Info for 4G.
-     * 
-     * @param connectionInfo the connectionInfo value to set.
-     * @return the UeInfo4GProperties object itself.
-     */
-    public UeInfo4GProperties withConnectionInfo(UeConnectionInfo4G connectionInfo) {
-        this.connectionInfo = connectionInfo;
-        return this;
-    }
-
-    /**
-     * Get the sessionInfo property: The sessionInfo property.
+     * Get the sessionInfo property: UE Session Info for 4G.
      * 
      * @return the sessionInfo value.
      */
@@ -166,7 +166,7 @@ public final class UeInfo4GProperties {
     }
 
     /**
-     * Set the sessionInfo property: The sessionInfo property.
+     * Set the sessionInfo property: UE Session Info for 4G.
      * 
      * @param sessionInfo the sessionInfo value to set.
      * @return the UeInfo4GProperties object itself.
@@ -182,18 +182,18 @@ public final class UeInfo4GProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (imsi() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property imsi in model UeInfo4GProperties"));
+        if (connectionInfo() != null) {
+            connectionInfo().validate();
         }
         if (guti() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property guti in model UeInfo4GProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property guti in model UeInfo4GProperties"));
         } else {
             guti().validate();
         }
-        if (connectionInfo() != null) {
-            connectionInfo().validate();
+        if (imsi() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property imsi in model UeInfo4GProperties"));
         }
         if (sessionInfo() != null) {
             sessionInfo().forEach(e -> e.validate());

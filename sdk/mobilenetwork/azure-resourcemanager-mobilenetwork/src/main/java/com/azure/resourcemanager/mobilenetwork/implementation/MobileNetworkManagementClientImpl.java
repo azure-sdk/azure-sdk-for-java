@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.mobilenetwork.implementation;
 
 import com.azure.core.annotation.ServiceClient;
+import com.azure.core.http.HttpHeaderName;
 import com.azure.core.http.HttpHeaders;
 import com.azure.core.http.HttpPipeline;
 import com.azure.core.http.HttpResponse;
@@ -12,8 +13,8 @@ import com.azure.core.http.rest.Response;
 import com.azure.core.management.AzureEnvironment;
 import com.azure.core.management.exception.ManagementError;
 import com.azure.core.management.exception.ManagementException;
-import com.azure.core.management.polling.PollResult;
 import com.azure.core.management.polling.PollerFactory;
+import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.CoreUtils;
 import com.azure.core.util.logging.ClientLogger;
@@ -22,24 +23,33 @@ import com.azure.core.util.polling.LongRunningOperationStatus;
 import com.azure.core.util.polling.PollerFlux;
 import com.azure.core.util.serializer.SerializerAdapter;
 import com.azure.core.util.serializer.SerializerEncoding;
+import com.azure.resourcemanager.mobilenetwork.fluent.AmfDeploymentsClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.AttachedDataNetworksClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.ClusterServicesClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.DataNetworksClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.DiagnosticsPackagesClient;
-import com.azure.resourcemanager.mobilenetwork.fluent.ExtendedUeInformationsClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.ExtendedUeInfosClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.MobileNetworkManagementClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.MobileNetworksClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.NrfDeploymentsClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.NssfDeploymentsClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.ObservabilityServicesClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.OperationsClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.PacketCapturesClient;
-import com.azure.resourcemanager.mobilenetwork.fluent.PacketCoreControlPlaneVersionsClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.PacketCoreControlPlanesClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.PacketCoreControlPlaneVersionsClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.PacketCoreControlPlaneVersionsTenantResourcesClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.PacketCoreDataPlanesClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.RoutingInfoModelsClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.ServicesClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.SimGroupsClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.SimPoliciesClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.SimsClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.SitesClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.SlicesClient;
-import com.azure.resourcemanager.mobilenetwork.fluent.UeInformationsClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.SmfDeploymentsClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.UesClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.UpfDeploymentsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.nio.ByteBuffer;
@@ -139,45 +149,59 @@ public final class MobileNetworkManagementClientImpl implements MobileNetworkMan
     }
 
     /**
-     * The AttachedDataNetworksClient object to access its operations.
+     * The OperationsClient object to access its operations.
      */
-    private final AttachedDataNetworksClient attachedDataNetworks;
+    private final OperationsClient operations;
 
     /**
-     * Gets the AttachedDataNetworksClient object to access its operations.
+     * Gets the OperationsClient object to access its operations.
      * 
-     * @return the AttachedDataNetworksClient object.
+     * @return the OperationsClient object.
      */
-    public AttachedDataNetworksClient getAttachedDataNetworks() {
-        return this.attachedDataNetworks;
+    public OperationsClient getOperations() {
+        return this.operations;
     }
 
     /**
-     * The DataNetworksClient object to access its operations.
+     * The PacketCoreControlPlaneVersionsTenantResourcesClient object to access its operations.
      */
-    private final DataNetworksClient dataNetworks;
+    private final PacketCoreControlPlaneVersionsTenantResourcesClient packetCoreControlPlaneVersionsTenantResources;
 
     /**
-     * Gets the DataNetworksClient object to access its operations.
+     * Gets the PacketCoreControlPlaneVersionsTenantResourcesClient object to access its operations.
      * 
-     * @return the DataNetworksClient object.
+     * @return the PacketCoreControlPlaneVersionsTenantResourcesClient object.
      */
-    public DataNetworksClient getDataNetworks() {
-        return this.dataNetworks;
+    public PacketCoreControlPlaneVersionsTenantResourcesClient getPacketCoreControlPlaneVersionsTenantResources() {
+        return this.packetCoreControlPlaneVersionsTenantResources;
     }
 
     /**
-     * The DiagnosticsPackagesClient object to access its operations.
+     * The AmfDeploymentsClient object to access its operations.
      */
-    private final DiagnosticsPackagesClient diagnosticsPackages;
+    private final AmfDeploymentsClient amfDeployments;
 
     /**
-     * Gets the DiagnosticsPackagesClient object to access its operations.
+     * Gets the AmfDeploymentsClient object to access its operations.
      * 
-     * @return the DiagnosticsPackagesClient object.
+     * @return the AmfDeploymentsClient object.
      */
-    public DiagnosticsPackagesClient getDiagnosticsPackages() {
-        return this.diagnosticsPackages;
+    public AmfDeploymentsClient getAmfDeployments() {
+        return this.amfDeployments;
+    }
+
+    /**
+     * The ClusterServicesClient object to access its operations.
+     */
+    private final ClusterServicesClient clusterServices;
+
+    /**
+     * Gets the ClusterServicesClient object to access its operations.
+     * 
+     * @return the ClusterServicesClient object.
+     */
+    public ClusterServicesClient getClusterServices() {
+        return this.clusterServices;
     }
 
     /**
@@ -195,45 +219,45 @@ public final class MobileNetworkManagementClientImpl implements MobileNetworkMan
     }
 
     /**
-     * The OperationsClient object to access its operations.
+     * The NrfDeploymentsClient object to access its operations.
      */
-    private final OperationsClient operations;
+    private final NrfDeploymentsClient nrfDeployments;
 
     /**
-     * Gets the OperationsClient object to access its operations.
+     * Gets the NrfDeploymentsClient object to access its operations.
      * 
-     * @return the OperationsClient object.
+     * @return the NrfDeploymentsClient object.
      */
-    public OperationsClient getOperations() {
-        return this.operations;
+    public NrfDeploymentsClient getNrfDeployments() {
+        return this.nrfDeployments;
     }
 
     /**
-     * The PacketCapturesClient object to access its operations.
+     * The NssfDeploymentsClient object to access its operations.
      */
-    private final PacketCapturesClient packetCaptures;
+    private final NssfDeploymentsClient nssfDeployments;
 
     /**
-     * Gets the PacketCapturesClient object to access its operations.
+     * Gets the NssfDeploymentsClient object to access its operations.
      * 
-     * @return the PacketCapturesClient object.
+     * @return the NssfDeploymentsClient object.
      */
-    public PacketCapturesClient getPacketCaptures() {
-        return this.packetCaptures;
+    public NssfDeploymentsClient getNssfDeployments() {
+        return this.nssfDeployments;
     }
 
     /**
-     * The PacketCoreControlPlanesClient object to access its operations.
+     * The ObservabilityServicesClient object to access its operations.
      */
-    private final PacketCoreControlPlanesClient packetCoreControlPlanes;
+    private final ObservabilityServicesClient observabilityServices;
 
     /**
-     * Gets the PacketCoreControlPlanesClient object to access its operations.
+     * Gets the ObservabilityServicesClient object to access its operations.
      * 
-     * @return the PacketCoreControlPlanesClient object.
+     * @return the ObservabilityServicesClient object.
      */
-    public PacketCoreControlPlanesClient getPacketCoreControlPlanes() {
-        return this.packetCoreControlPlanes;
+    public ObservabilityServicesClient getObservabilityServices() {
+        return this.observabilityServices;
     }
 
     /**
@@ -251,45 +275,17 @@ public final class MobileNetworkManagementClientImpl implements MobileNetworkMan
     }
 
     /**
-     * The PacketCoreDataPlanesClient object to access its operations.
+     * The PacketCoreControlPlanesClient object to access its operations.
      */
-    private final PacketCoreDataPlanesClient packetCoreDataPlanes;
+    private final PacketCoreControlPlanesClient packetCoreControlPlanes;
 
     /**
-     * Gets the PacketCoreDataPlanesClient object to access its operations.
+     * Gets the PacketCoreControlPlanesClient object to access its operations.
      * 
-     * @return the PacketCoreDataPlanesClient object.
+     * @return the PacketCoreControlPlanesClient object.
      */
-    public PacketCoreDataPlanesClient getPacketCoreDataPlanes() {
-        return this.packetCoreDataPlanes;
-    }
-
-    /**
-     * The ServicesClient object to access its operations.
-     */
-    private final ServicesClient services;
-
-    /**
-     * Gets the ServicesClient object to access its operations.
-     * 
-     * @return the ServicesClient object.
-     */
-    public ServicesClient getServices() {
-        return this.services;
-    }
-
-    /**
-     * The SimsClient object to access its operations.
-     */
-    private final SimsClient sims;
-
-    /**
-     * Gets the SimsClient object to access its operations.
-     * 
-     * @return the SimsClient object.
-     */
-    public SimsClient getSims() {
-        return this.sims;
+    public PacketCoreControlPlanesClient getPacketCoreControlPlanes() {
+        return this.packetCoreControlPlanes;
     }
 
     /**
@@ -304,6 +300,62 @@ public final class MobileNetworkManagementClientImpl implements MobileNetworkMan
      */
     public SimGroupsClient getSimGroups() {
         return this.simGroups;
+    }
+
+    /**
+     * The SmfDeploymentsClient object to access its operations.
+     */
+    private final SmfDeploymentsClient smfDeployments;
+
+    /**
+     * Gets the SmfDeploymentsClient object to access its operations.
+     * 
+     * @return the SmfDeploymentsClient object.
+     */
+    public SmfDeploymentsClient getSmfDeployments() {
+        return this.smfDeployments;
+    }
+
+    /**
+     * The UpfDeploymentsClient object to access its operations.
+     */
+    private final UpfDeploymentsClient upfDeployments;
+
+    /**
+     * Gets the UpfDeploymentsClient object to access its operations.
+     * 
+     * @return the UpfDeploymentsClient object.
+     */
+    public UpfDeploymentsClient getUpfDeployments() {
+        return this.upfDeployments;
+    }
+
+    /**
+     * The DataNetworksClient object to access its operations.
+     */
+    private final DataNetworksClient dataNetworks;
+
+    /**
+     * Gets the DataNetworksClient object to access its operations.
+     * 
+     * @return the DataNetworksClient object.
+     */
+    public DataNetworksClient getDataNetworks() {
+        return this.dataNetworks;
+    }
+
+    /**
+     * The ServicesClient object to access its operations.
+     */
+    private final ServicesClient services;
+
+    /**
+     * Gets the ServicesClient object to access its operations.
+     * 
+     * @return the ServicesClient object.
+     */
+    public ServicesClient getServices() {
+        return this.services;
     }
 
     /**
@@ -349,31 +401,115 @@ public final class MobileNetworkManagementClientImpl implements MobileNetworkMan
     }
 
     /**
-     * The ExtendedUeInformationsClient object to access its operations.
+     * The DiagnosticsPackagesClient object to access its operations.
      */
-    private final ExtendedUeInformationsClient extendedUeInformations;
+    private final DiagnosticsPackagesClient diagnosticsPackages;
 
     /**
-     * Gets the ExtendedUeInformationsClient object to access its operations.
+     * Gets the DiagnosticsPackagesClient object to access its operations.
      * 
-     * @return the ExtendedUeInformationsClient object.
+     * @return the DiagnosticsPackagesClient object.
      */
-    public ExtendedUeInformationsClient getExtendedUeInformations() {
-        return this.extendedUeInformations;
+    public DiagnosticsPackagesClient getDiagnosticsPackages() {
+        return this.diagnosticsPackages;
     }
 
     /**
-     * The UeInformationsClient object to access its operations.
+     * The PacketCapturesClient object to access its operations.
      */
-    private final UeInformationsClient ueInformations;
+    private final PacketCapturesClient packetCaptures;
 
     /**
-     * Gets the UeInformationsClient object to access its operations.
+     * Gets the PacketCapturesClient object to access its operations.
      * 
-     * @return the UeInformationsClient object.
+     * @return the PacketCapturesClient object.
      */
-    public UeInformationsClient getUeInformations() {
-        return this.ueInformations;
+    public PacketCapturesClient getPacketCaptures() {
+        return this.packetCaptures;
+    }
+
+    /**
+     * The PacketCoreDataPlanesClient object to access its operations.
+     */
+    private final PacketCoreDataPlanesClient packetCoreDataPlanes;
+
+    /**
+     * Gets the PacketCoreDataPlanesClient object to access its operations.
+     * 
+     * @return the PacketCoreDataPlanesClient object.
+     */
+    public PacketCoreDataPlanesClient getPacketCoreDataPlanes() {
+        return this.packetCoreDataPlanes;
+    }
+
+    /**
+     * The AttachedDataNetworksClient object to access its operations.
+     */
+    private final AttachedDataNetworksClient attachedDataNetworks;
+
+    /**
+     * Gets the AttachedDataNetworksClient object to access its operations.
+     * 
+     * @return the AttachedDataNetworksClient object.
+     */
+    public AttachedDataNetworksClient getAttachedDataNetworks() {
+        return this.attachedDataNetworks;
+    }
+
+    /**
+     * The RoutingInfoModelsClient object to access its operations.
+     */
+    private final RoutingInfoModelsClient routingInfoModels;
+
+    /**
+     * Gets the RoutingInfoModelsClient object to access its operations.
+     * 
+     * @return the RoutingInfoModelsClient object.
+     */
+    public RoutingInfoModelsClient getRoutingInfoModels() {
+        return this.routingInfoModels;
+    }
+
+    /**
+     * The UesClient object to access its operations.
+     */
+    private final UesClient ues;
+
+    /**
+     * Gets the UesClient object to access its operations.
+     * 
+     * @return the UesClient object.
+     */
+    public UesClient getUes() {
+        return this.ues;
+    }
+
+    /**
+     * The ExtendedUeInfosClient object to access its operations.
+     */
+    private final ExtendedUeInfosClient extendedUeInfos;
+
+    /**
+     * Gets the ExtendedUeInfosClient object to access its operations.
+     * 
+     * @return the ExtendedUeInfosClient object.
+     */
+    public ExtendedUeInfosClient getExtendedUeInfos() {
+        return this.extendedUeInfos;
+    }
+
+    /**
+     * The SimsClient object to access its operations.
+     */
+    private final SimsClient sims;
+
+    /**
+     * Gets the SimsClient object to access its operations.
+     * 
+     * @return the SimsClient object.
+     */
+    public SimsClient getSims() {
+        return this.sims;
     }
 
     /**
@@ -393,24 +529,34 @@ public final class MobileNetworkManagementClientImpl implements MobileNetworkMan
         this.defaultPollInterval = defaultPollInterval;
         this.subscriptionId = subscriptionId;
         this.endpoint = endpoint;
-        this.apiVersion = "2024-02-01";
-        this.attachedDataNetworks = new AttachedDataNetworksClientImpl(this);
-        this.dataNetworks = new DataNetworksClientImpl(this);
-        this.diagnosticsPackages = new DiagnosticsPackagesClientImpl(this);
-        this.mobileNetworks = new MobileNetworksClientImpl(this);
+        this.apiVersion = "2024-06-01";
         this.operations = new OperationsClientImpl(this);
-        this.packetCaptures = new PacketCapturesClientImpl(this);
-        this.packetCoreControlPlanes = new PacketCoreControlPlanesClientImpl(this);
+        this.packetCoreControlPlaneVersionsTenantResources
+            = new PacketCoreControlPlaneVersionsTenantResourcesClientImpl(this);
+        this.amfDeployments = new AmfDeploymentsClientImpl(this);
+        this.clusterServices = new ClusterServicesClientImpl(this);
+        this.mobileNetworks = new MobileNetworksClientImpl(this);
+        this.nrfDeployments = new NrfDeploymentsClientImpl(this);
+        this.nssfDeployments = new NssfDeploymentsClientImpl(this);
+        this.observabilityServices = new ObservabilityServicesClientImpl(this);
         this.packetCoreControlPlaneVersions = new PacketCoreControlPlaneVersionsClientImpl(this);
-        this.packetCoreDataPlanes = new PacketCoreDataPlanesClientImpl(this);
-        this.services = new ServicesClientImpl(this);
-        this.sims = new SimsClientImpl(this);
+        this.packetCoreControlPlanes = new PacketCoreControlPlanesClientImpl(this);
         this.simGroups = new SimGroupsClientImpl(this);
+        this.smfDeployments = new SmfDeploymentsClientImpl(this);
+        this.upfDeployments = new UpfDeploymentsClientImpl(this);
+        this.dataNetworks = new DataNetworksClientImpl(this);
+        this.services = new ServicesClientImpl(this);
         this.simPolicies = new SimPoliciesClientImpl(this);
         this.sites = new SitesClientImpl(this);
         this.slices = new SlicesClientImpl(this);
-        this.extendedUeInformations = new ExtendedUeInformationsClientImpl(this);
-        this.ueInformations = new UeInformationsClientImpl(this);
+        this.diagnosticsPackages = new DiagnosticsPackagesClientImpl(this);
+        this.packetCaptures = new PacketCapturesClientImpl(this);
+        this.packetCoreDataPlanes = new PacketCoreDataPlanesClientImpl(this);
+        this.attachedDataNetworks = new AttachedDataNetworksClientImpl(this);
+        this.routingInfoModels = new RoutingInfoModelsClientImpl(this);
+        this.ues = new UesClientImpl(this);
+        this.extendedUeInfos = new ExtendedUeInfosClientImpl(this);
+        this.sims = new SimsClientImpl(this);
     }
 
     /**
@@ -473,8 +619,8 @@ public final class MobileNetworkManagementClientImpl implements MobileNetworkMan
                 if (errorBody != null) {
                     // try to deserialize error body to ManagementError
                     try {
-                        managementError = this.getSerializerAdapter().deserialize(errorBody, ManagementError.class,
-                            SerializerEncoding.JSON);
+                        managementError = this.getSerializerAdapter()
+                            .deserialize(errorBody, ManagementError.class, SerializerEncoding.JSON);
                         if (managementError.getCode() == null || managementError.getMessage() == null) {
                             managementError = null;
                         }
@@ -515,7 +661,7 @@ public final class MobileNetworkManagementClientImpl implements MobileNetworkMan
         }
 
         public String getHeaderValue(String s) {
-            return httpHeaders.getValue(s);
+            return httpHeaders.getValue(HttpHeaderName.fromString(s));
         }
 
         public HttpHeaders getHeaders() {

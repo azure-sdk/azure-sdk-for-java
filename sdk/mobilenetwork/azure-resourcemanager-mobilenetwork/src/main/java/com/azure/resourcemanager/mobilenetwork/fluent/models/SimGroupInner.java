@@ -7,7 +7,6 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.KeyVaultKey;
 import com.azure.resourcemanager.mobilenetwork.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.mobilenetwork.models.MobileNetworkResourceId;
@@ -21,10 +20,10 @@ import java.util.Map;
 @Fluent
 public final class SimGroupInner extends Resource {
     /*
-     * SIM group Properties.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private SimGroupPropertiesFormat innerProperties = new SimGroupPropertiesFormat();
+    @JsonProperty(value = "properties")
+    private SimGroupPropertiesFormat innerProperties;
 
     /*
      * The identity used to retrieve the encryption key from Azure key vault.
@@ -45,7 +44,7 @@ public final class SimGroupInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: SIM group Properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -163,16 +162,11 @@ public final class SimGroupInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model SimGroupInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
         if (identity() != null) {
             identity().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SimGroupInner.class);
 }

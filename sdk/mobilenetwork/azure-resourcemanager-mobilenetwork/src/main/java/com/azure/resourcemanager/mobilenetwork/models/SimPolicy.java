@@ -144,8 +144,7 @@ public interface SimPolicy {
      * The entirety of the SimPolicy definition.
      */
     interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
-        DefinitionStages.WithParentResource, DefinitionStages.WithUeAmbr, DefinitionStages.WithDefaultSlice,
-        DefinitionStages.WithSliceConfigurations, DefinitionStages.WithCreate {
+        DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
 
     /**
@@ -190,61 +189,16 @@ public interface SimPolicy {
              * @param mobileNetworkName The name of the mobile network.
              * @return the next definition stage.
              */
-            WithUeAmbr withExistingMobileNetwork(String resourceGroupName, String mobileNetworkName);
-        }
-
-        /**
-         * The stage of the SimPolicy definition allowing to specify ueAmbr.
-         */
-        interface WithUeAmbr {
-            /**
-             * Specifies the ueAmbr property: Aggregate maximum bit rate across all non-GBR QoS flows of all PDU
-             * sessions of a given UE. See 3GPP TS23.501 section 5.7.2.6 for a full description of the UE-AMBR..
-             * 
-             * @param ueAmbr Aggregate maximum bit rate across all non-GBR QoS flows of all PDU sessions of a given UE.
-             * See 3GPP TS23.501 section 5.7.2.6 for a full description of the UE-AMBR.
-             * @return the next definition stage.
-             */
-            WithDefaultSlice withUeAmbr(Ambr ueAmbr);
-        }
-
-        /**
-         * The stage of the SimPolicy definition allowing to specify defaultSlice.
-         */
-        interface WithDefaultSlice {
-            /**
-             * Specifies the defaultSlice property: The default slice to use if the UE does not explicitly specify it.
-             * This slice must exist in the `sliceConfigurations` map. The slice must be in the same location as the SIM
-             * policy..
-             * 
-             * @param defaultSlice The default slice to use if the UE does not explicitly specify it. This slice must
-             * exist in the `sliceConfigurations` map. The slice must be in the same location as the SIM policy.
-             * @return the next definition stage.
-             */
-            WithSliceConfigurations withDefaultSlice(SliceResourceId defaultSlice);
-        }
-
-        /**
-         * The stage of the SimPolicy definition allowing to specify sliceConfigurations.
-         */
-        interface WithSliceConfigurations {
-            /**
-             * Specifies the sliceConfigurations property: The allowed slices and the settings to use for them. The list
-             * must not contain duplicate items and must contain at least one item..
-             * 
-             * @param sliceConfigurations The allowed slices and the settings to use for them. The list must not contain
-             * duplicate items and must contain at least one item.
-             * @return the next definition stage.
-             */
-            WithCreate withSliceConfigurations(List<SliceConfiguration> sliceConfigurations);
+            WithCreate withExistingMobileNetwork(String resourceGroupName, String mobileNetworkName);
         }
 
         /**
          * The stage of the SimPolicy definition which contains all the minimum required properties for the resource to
          * be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithRfspIndex, DefinitionStages.WithRegistrationTimer {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithUeAmbr,
+            DefinitionStages.WithDefaultSlice, DefinitionStages.WithRfspIndex, DefinitionStages.WithRegistrationTimer,
+            DefinitionStages.WithSliceConfigurations {
             /**
              * Executes the create request.
              * 
@@ -275,6 +229,37 @@ public interface SimPolicy {
         }
 
         /**
+         * The stage of the SimPolicy definition allowing to specify ueAmbr.
+         */
+        interface WithUeAmbr {
+            /**
+             * Specifies the ueAmbr property: Aggregate maximum bit rate across all non-GBR QoS flows of all PDU
+             * sessions of a given UE. See 3GPP TS23.501 section 5.7.2.6 for a full description of the UE-AMBR..
+             * 
+             * @param ueAmbr Aggregate maximum bit rate across all non-GBR QoS flows of all PDU sessions of a given UE.
+             * See 3GPP TS23.501 section 5.7.2.6 for a full description of the UE-AMBR.
+             * @return the next definition stage.
+             */
+            WithCreate withUeAmbr(Ambr ueAmbr);
+        }
+
+        /**
+         * The stage of the SimPolicy definition allowing to specify defaultSlice.
+         */
+        interface WithDefaultSlice {
+            /**
+             * Specifies the defaultSlice property: The default slice to use if the UE does not explicitly specify it.
+             * This slice must exist in the `sliceConfigurations` map. The slice must be in the same location as the SIM
+             * policy..
+             * 
+             * @param defaultSlice The default slice to use if the UE does not explicitly specify it. This slice must
+             * exist in the `sliceConfigurations` map. The slice must be in the same location as the SIM policy.
+             * @return the next definition stage.
+             */
+            WithCreate withDefaultSlice(SliceResourceId defaultSlice);
+        }
+
+        /**
          * The stage of the SimPolicy definition allowing to specify rfspIndex.
          */
         interface WithRfspIndex {
@@ -302,6 +287,21 @@ public interface SimPolicy {
              * @return the next definition stage.
              */
             WithCreate withRegistrationTimer(Integer registrationTimer);
+        }
+
+        /**
+         * The stage of the SimPolicy definition allowing to specify sliceConfigurations.
+         */
+        interface WithSliceConfigurations {
+            /**
+             * Specifies the sliceConfigurations property: The allowed slices and the settings to use for them. The list
+             * must not contain duplicate items and must contain at least one item..
+             * 
+             * @param sliceConfigurations The allowed slices and the settings to use for them. The list must not contain
+             * duplicate items and must contain at least one item.
+             * @return the next definition stage.
+             */
+            WithCreate withSliceConfigurations(List<SliceConfiguration> sliceConfigurations);
         }
     }
 

@@ -73,59 +73,59 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
     @ServiceInterface(name = "MobileNetworkManagem")
     public interface PacketCapturesService {
         @Headers({ "Content-Type: application/json" })
-        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCaptures/{packetCaptureName}")
-        @ExpectedResponses({ 200, 201 })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCaptures")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+        Mono<Response<PacketCaptureListResult>> listByPacketCoreControlPlane(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @PathParam("packetCaptureName") String packetCaptureName, @QueryParam("api-version") String apiVersion,
-            @BodyParam("application/json") PacketCaptureInner parameters, @HeaderParam("Accept") String accept,
-            Context context);
+            @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCaptures/{packetCaptureName}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PacketCaptureInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @PathParam("packetCaptureName") String packetCaptureName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("packetCaptureName") String packetCaptureName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCaptures/{packetCaptureName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
+            @PathParam("packetCaptureName") String packetCaptureName,
+            @BodyParam("application/json") PacketCaptureInner resource, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCaptures/{packetCaptureName}")
-        @ExpectedResponses({ 200, 202, 204 })
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @PathParam("packetCaptureName") String packetCaptureName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("packetCaptureName") String packetCaptureName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Post("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCaptures/{packetCaptureName}/stop")
         @ExpectedResponses({ 200, 202 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> stop(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @PathParam("packetCaptureName") String packetCaptureName, @QueryParam("api-version") String apiVersion,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCaptures")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PacketCaptureListResult>> listByPacketCoreControlPlane(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName,
-            @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @QueryParam("api-version") String apiVersion, @HeaderParam("Accept") String accept, Context context);
+            @PathParam("packetCaptureName") String packetCaptureName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -137,20 +137,19 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
     }
 
     /**
-     * Creates or updates a packet capture.
+     * Lists all the packet capture sessions under a packet core control plane.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCaptureName The name of the packet capture session.
-     * @param parameters Parameters supplied to the create or update packet capture operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet capture session resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response of a PacketCapture list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCaptureName, PacketCaptureInner parameters) {
+    private Mono<PagedResponse<PacketCaptureInner>>
+        listByPacketCoreControlPlaneSinglePageAsync(String resourceGroupName, String packetCoreControlPlaneName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -167,39 +166,31 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
         }
-        if (packetCaptureName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter packetCaptureName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, packetCoreControlPlaneName, packetCaptureName, this.client.getApiVersion(),
-                parameters, accept, context))
+            .withContext(
+                context -> service.listByPacketCoreControlPlane(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, accept, context))
+            .<PagedResponse<PacketCaptureInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
     /**
-     * Creates or updates a packet capture.
+     * Lists all the packet capture sessions under a packet core control plane.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCaptureName The name of the packet capture session.
-     * @param parameters Parameters supplied to the create or update packet capture operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet capture session resource along with {@link Response} on successful completion of {@link Mono}.
+     * @return the response of a PacketCapture list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCaptureName, PacketCaptureInner parameters, Context context) {
+    private Mono<PagedResponse<PacketCaptureInner>> listByPacketCoreControlPlaneSinglePageAsync(
+        String resourceGroupName, String packetCoreControlPlaneName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
@@ -216,183 +207,84 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
             return Mono.error(
                 new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
         }
-        if (packetCaptureName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter packetCaptureName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            packetCoreControlPlaneName, packetCaptureName, this.client.getApiVersion(), parameters, accept, context);
+        return service
+            .listByPacketCoreControlPlane(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
     }
 
     /**
-     * Creates or updates a packet capture.
+     * Lists all the packet capture sessions under a packet core control plane.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCaptureName The name of the packet capture session.
-     * @param parameters Parameters supplied to the create or update packet capture operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of packet capture session resource.
+     * @return the response of a PacketCapture list operation as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<PacketCaptureInner>, PacketCaptureInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String packetCoreControlPlaneName, String packetCaptureName,
-        PacketCaptureInner parameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
-            packetCoreControlPlaneName, packetCaptureName, parameters);
-        return this.client.<PacketCaptureInner, PacketCaptureInner>getLroResult(mono, this.client.getHttpPipeline(),
-            PacketCaptureInner.class, PacketCaptureInner.class, this.client.getContext());
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PacketCaptureInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
+        String packetCoreControlPlaneName) {
+        return new PagedFlux<>(
+            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName),
+            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink));
     }
 
     /**
-     * Creates or updates a packet capture.
+     * Lists all the packet capture sessions under a packet core control plane.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCaptureName The name of the packet capture session.
-     * @param parameters Parameters supplied to the create or update packet capture operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of packet capture session resource.
+     * @return the response of a PacketCapture list operation as paginated response with {@link PagedFlux}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<PacketCaptureInner>, PacketCaptureInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String packetCoreControlPlaneName, String packetCaptureName,
-        PacketCaptureInner parameters, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
-            packetCoreControlPlaneName, packetCaptureName, parameters, context);
-        return this.client.<PacketCaptureInner, PacketCaptureInner>getLroResult(mono, this.client.getHttpPipeline(),
-            PacketCaptureInner.class, PacketCaptureInner.class, context);
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PacketCaptureInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, Context context) {
+        return new PagedFlux<>(
+            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName, context),
+            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink, context));
     }
 
     /**
-     * Creates or updates a packet capture.
+     * Lists all the packet capture sessions under a packet core control plane.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCaptureName The name of the packet capture session.
-     * @param parameters Parameters supplied to the create or update packet capture operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of packet capture session resource.
+     * @return the response of a PacketCapture list operation as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<PacketCaptureInner>, PacketCaptureInner> beginCreateOrUpdate(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCaptureName, PacketCaptureInner parameters) {
-        return this
-            .beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, parameters)
-            .getSyncPoller();
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PacketCaptureInner> listByPacketCoreControlPlane(String resourceGroupName,
+        String packetCoreControlPlaneName) {
+        return new PagedIterable<>(listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName));
     }
 
     /**
-     * Creates or updates a packet capture.
+     * Lists all the packet capture sessions under a packet core control plane.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCaptureName The name of the packet capture session.
-     * @param parameters Parameters supplied to the create or update packet capture operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of packet capture session resource.
+     * @return the response of a PacketCapture list operation as paginated response with {@link PagedIterable}.
      */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<PacketCaptureInner>, PacketCaptureInner> beginCreateOrUpdate(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCaptureName, PacketCaptureInner parameters, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName,
-            parameters, context).getSyncPoller();
-    }
-
-    /**
-     * Creates or updates a packet capture.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCaptureName The name of the packet capture session.
-     * @param parameters Parameters supplied to the create or update packet capture operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet capture session resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PacketCaptureInner> createOrUpdateAsync(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCaptureName, PacketCaptureInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, parameters)
-            .last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates or updates a packet capture.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCaptureName The name of the packet capture session.
-     * @param parameters Parameters supplied to the create or update packet capture operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet capture session resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PacketCaptureInner> createOrUpdateAsync(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCaptureName, PacketCaptureInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, parameters,
-            context).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates or updates a packet capture.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCaptureName The name of the packet capture session.
-     * @param parameters Parameters supplied to the create or update packet capture operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet capture session resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PacketCaptureInner createOrUpdate(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCaptureName, PacketCaptureInner parameters) {
-        return createOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, parameters)
-            .block();
-    }
-
-    /**
-     * Creates or updates a packet capture.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCaptureName The name of the packet capture session.
-     * @param parameters Parameters supplied to the create or update packet capture operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet capture session resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PacketCaptureInner createOrUpdate(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCaptureName, PacketCaptureInner parameters, Context context) {
-        return createOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, parameters,
-            context).block();
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PacketCaptureInner> listByPacketCoreControlPlane(String resourceGroupName,
+        String packetCoreControlPlaneName, Context context) {
+        return new PagedIterable<>(
+            listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName, context));
     }
 
     /**
@@ -432,9 +324,9 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    packetCoreControlPlaneName, packetCaptureName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, packetCaptureName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -476,8 +368,8 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            packetCoreControlPlaneName, packetCaptureName, this.client.getApiVersion(), accept, context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, packetCoreControlPlaneName, packetCaptureName, accept, context);
     }
 
     /**
@@ -535,6 +427,267 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
     }
 
     /**
+     * Creates or updates a packet capture.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCaptureName The name of the packet capture session.
+     * @param resource Parameters supplied to the create or update packet capture operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet capture session resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCaptureName, PacketCaptureInner resource) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        if (packetCaptureName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter packetCaptureName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, packetCaptureName,
+                resource, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Creates or updates a packet capture.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCaptureName The name of the packet capture session.
+     * @param resource Parameters supplied to the create or update packet capture operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet capture session resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCaptureName, PacketCaptureInner resource, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        if (packetCaptureName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter packetCaptureName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, packetCaptureName, resource,
+            accept, context);
+    }
+
+    /**
+     * Creates or updates a packet capture.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCaptureName The name of the packet capture session.
+     * @param resource Parameters supplied to the create or update packet capture operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of packet capture session resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PacketCaptureInner>, PacketCaptureInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String packetCoreControlPlaneName, String packetCaptureName,
+        PacketCaptureInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
+            packetCoreControlPlaneName, packetCaptureName, resource);
+        return this.client.<PacketCaptureInner, PacketCaptureInner>getLroResult(mono, this.client.getHttpPipeline(),
+            PacketCaptureInner.class, PacketCaptureInner.class, this.client.getContext());
+    }
+
+    /**
+     * Creates or updates a packet capture.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCaptureName The name of the packet capture session.
+     * @param resource Parameters supplied to the create or update packet capture operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of packet capture session resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PacketCaptureInner>, PacketCaptureInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String packetCoreControlPlaneName, String packetCaptureName,
+        PacketCaptureInner resource, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
+            packetCoreControlPlaneName, packetCaptureName, resource, context);
+        return this.client.<PacketCaptureInner, PacketCaptureInner>getLroResult(mono, this.client.getHttpPipeline(),
+            PacketCaptureInner.class, PacketCaptureInner.class, context);
+    }
+
+    /**
+     * Creates or updates a packet capture.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCaptureName The name of the packet capture session.
+     * @param resource Parameters supplied to the create or update packet capture operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of packet capture session resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PacketCaptureInner>, PacketCaptureInner> beginCreateOrUpdate(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCaptureName, PacketCaptureInner resource) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, resource)
+            .getSyncPoller();
+    }
+
+    /**
+     * Creates or updates a packet capture.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCaptureName The name of the packet capture session.
+     * @param resource Parameters supplied to the create or update packet capture operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of packet capture session resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PacketCaptureInner>, PacketCaptureInner> beginCreateOrUpdate(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCaptureName, PacketCaptureInner resource, Context context) {
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, resource,
+                context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Creates or updates a packet capture.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCaptureName The name of the packet capture session.
+     * @param resource Parameters supplied to the create or update packet capture operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet capture session resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PacketCaptureInner> createOrUpdateAsync(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCaptureName, PacketCaptureInner resource) {
+        return beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, resource)
+            .last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Creates or updates a packet capture.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCaptureName The name of the packet capture session.
+     * @param resource Parameters supplied to the create or update packet capture operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet capture session resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PacketCaptureInner> createOrUpdateAsync(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCaptureName, PacketCaptureInner resource, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, resource,
+            context).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Creates or updates a packet capture.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCaptureName The name of the packet capture session.
+     * @param resource Parameters supplied to the create or update packet capture operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet capture session resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PacketCaptureInner createOrUpdate(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCaptureName, PacketCaptureInner resource) {
+        return createOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, resource).block();
+    }
+
+    /**
+     * Creates or updates a packet capture.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCaptureName The name of the packet capture session.
+     * @param resource Parameters supplied to the create or update packet capture operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet capture session resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PacketCaptureInner createOrUpdate(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCaptureName, PacketCaptureInner resource, Context context) {
+        return createOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, resource, context)
+            .block();
+    }
+
+    /**
      * Deletes the specified packet capture.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -570,9 +723,9 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    packetCoreControlPlaneName, packetCaptureName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, packetCaptureName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -613,8 +766,8 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            packetCoreControlPlaneName, packetCaptureName, this.client.getApiVersion(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, packetCoreControlPlaneName, packetCaptureName, accept, context);
     }
 
     /**
@@ -801,9 +954,9 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
         }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(
-                context -> service.stop(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                    packetCoreControlPlaneName, packetCaptureName, this.client.getApiVersion(), accept, context))
+            .withContext(context -> service.stop(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, packetCaptureName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -845,8 +998,8 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.stop(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            packetCoreControlPlaneName, packetCaptureName, this.client.getApiVersion(), accept, context);
+        return service.stop(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, packetCoreControlPlaneName, packetCaptureName, accept, context);
     }
 
     /**
@@ -1001,157 +1154,6 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
     }
 
     /**
-     * Lists all the packet capture sessions under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet capture API service call along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PacketCaptureInner>>
-        listByPacketCoreControlPlaneSinglePageAsync(String resourceGroupName, String packetCoreControlPlaneName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listByPacketCoreControlPlane(this.client.getEndpoint(),
-                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName,
-                this.client.getApiVersion(), accept, context))
-            .<PagedResponse<PacketCaptureInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists all the packet capture sessions under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet capture API service call along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PacketCaptureInner>> listByPacketCoreControlPlaneSinglePageAsync(
-        String resourceGroupName, String packetCoreControlPlaneName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByPacketCoreControlPlane(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-                packetCoreControlPlaneName, this.client.getApiVersion(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists all the packet capture sessions under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet capture API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PacketCaptureInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
-        String packetCoreControlPlaneName) {
-        return new PagedFlux<>(
-            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName),
-            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists all the packet capture sessions under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet capture API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PacketCaptureInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, Context context) {
-        return new PagedFlux<>(
-            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName, context),
-            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists all the packet capture sessions under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet capture API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PacketCaptureInner> listByPacketCoreControlPlane(String resourceGroupName,
-        String packetCoreControlPlaneName) {
-        return new PagedIterable<>(listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName));
-    }
-
-    /**
-     * Lists all the packet capture sessions under a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet capture API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PacketCaptureInner> listByPacketCoreControlPlane(String resourceGroupName,
-        String packetCoreControlPlaneName, Context context) {
-        return new PagedIterable<>(
-            listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName, context));
-    }
-
-    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items
@@ -1160,8 +1162,8 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet capture API service call along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a PacketCapture list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PacketCaptureInner>> listByPacketCoreControlPlaneNextSinglePageAsync(String nextLink) {
@@ -1190,8 +1192,8 @@ public final class PacketCapturesClientImpl implements PacketCapturesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet capture API service call along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
+     * @return the response of a PacketCapture list operation along with {@link PagedResponse} on successful completion
+     * of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     private Mono<PagedResponse<PacketCaptureInner>> listByPacketCoreControlPlaneNextSinglePageAsync(String nextLink,

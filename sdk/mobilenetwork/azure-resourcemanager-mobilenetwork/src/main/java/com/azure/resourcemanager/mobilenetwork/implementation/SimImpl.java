@@ -121,14 +121,16 @@ public final class SimImpl implements Sim, Sim.Definition, Sim.Update {
     }
 
     public Sim create() {
-        this.innerObject = serviceManager.serviceClient().getSims().createOrUpdate(resourceGroupName, simGroupName,
-            simName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getSims()
+            .createOrUpdate(resourceGroupName, simGroupName, simName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Sim create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSims().createOrUpdate(resourceGroupName, simGroupName,
-            simName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getSims()
+            .createOrUpdate(resourceGroupName, simGroupName, simName, this.innerModel(), context);
         return this;
     }
 
@@ -143,14 +145,16 @@ public final class SimImpl implements Sim, Sim.Definition, Sim.Update {
     }
 
     public Sim apply() {
-        this.innerObject = serviceManager.serviceClient().getSims().createOrUpdate(resourceGroupName, simGroupName,
-            simName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getSims()
+            .createOrUpdate(resourceGroupName, simGroupName, simName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Sim apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSims().createOrUpdate(resourceGroupName, simGroupName,
-            simName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getSims()
+            .createOrUpdate(resourceGroupName, simGroupName, simName, this.innerModel(), context);
         return this;
     }
 
@@ -163,19 +167,18 @@ public final class SimImpl implements Sim, Sim.Definition, Sim.Update {
     }
 
     public Sim refresh() {
-        this.innerObject = serviceManager.serviceClient().getSims()
-            .getWithResponse(resourceGroupName, simGroupName, simName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSims()
+            .getWithResponse(resourceGroupName, simGroupName, simName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Sim refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSims()
-            .getWithResponse(resourceGroupName, simGroupName, simName, context).getValue();
-        return this;
-    }
-
-    public SimImpl withInternationalMobileSubscriberIdentity(String internationalMobileSubscriberIdentity) {
-        this.innerModel().withInternationalMobileSubscriberIdentity(internationalMobileSubscriberIdentity);
+        this.innerObject = serviceManager.serviceClient()
+            .getSims()
+            .getWithResponse(resourceGroupName, simGroupName, simName, context)
+            .getValue();
         return this;
     }
 
@@ -186,6 +189,11 @@ public final class SimImpl implements Sim, Sim.Definition, Sim.Update {
 
     public SimImpl withOperatorKeyCode(String operatorKeyCode) {
         this.innerModel().withOperatorKeyCode(operatorKeyCode);
+        return this;
+    }
+
+    public SimImpl withInternationalMobileSubscriberIdentity(String internationalMobileSubscriberIdentity) {
+        this.innerModel().withInternationalMobileSubscriberIdentity(internationalMobileSubscriberIdentity);
         return this;
     }
 

@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
- * The core network technology generation (5G core, EPC / 4G core or EPC / 4G + 5G core).
+ * The core network technology generation (5G core or EPC / 4G core).
  */
 public enum CoreNetworkType {
     /**

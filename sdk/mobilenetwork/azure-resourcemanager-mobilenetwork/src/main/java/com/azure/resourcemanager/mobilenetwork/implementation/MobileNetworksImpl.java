@@ -11,8 +11,10 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.fluent.MobileNetworksClient;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.MobileNetworkInner;
+import com.azure.resourcemanager.mobilenetwork.fluent.models.SimGroupInner;
 import com.azure.resourcemanager.mobilenetwork.models.MobileNetwork;
 import com.azure.resourcemanager.mobilenetwork.models.MobileNetworks;
+import com.azure.resourcemanager.mobilenetwork.models.SimGroup;
 
 public final class MobileNetworksImpl implements MobileNetworks {
     private static final ClientLogger LOGGER = new ClientLogger(MobileNetworksImpl.class);
@@ -27,12 +29,24 @@ public final class MobileNetworksImpl implements MobileNetworks {
         this.serviceManager = serviceManager;
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String mobileNetworkName) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName);
+    public PagedIterable<MobileNetwork> list() {
+        PagedIterable<MobileNetworkInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MobileNetworkImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String mobileNetworkName, Context context) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName, context);
+    public PagedIterable<MobileNetwork> list(Context context) {
+        PagedIterable<MobileNetworkInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MobileNetworkImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<MobileNetwork> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<MobileNetworkInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MobileNetworkImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<MobileNetwork> listByResourceGroup(String resourceGroupName, Context context) {
+        PagedIterable<MobileNetworkInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new MobileNetworkImpl(inner1, this.manager()));
     }
 
     public Response<MobileNetwork> getByResourceGroupWithResponse(String resourceGroupName, String mobileNetworkName,
@@ -56,24 +70,23 @@ public final class MobileNetworksImpl implements MobileNetworks {
         }
     }
 
-    public PagedIterable<MobileNetwork> list() {
-        PagedIterable<MobileNetworkInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new MobileNetworkImpl(inner1, this.manager()));
+    public void deleteByResourceGroup(String resourceGroupName, String mobileNetworkName) {
+        this.serviceClient().delete(resourceGroupName, mobileNetworkName);
     }
 
-    public PagedIterable<MobileNetwork> list(Context context) {
-        PagedIterable<MobileNetworkInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new MobileNetworkImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String mobileNetworkName, Context context) {
+        this.serviceClient().delete(resourceGroupName, mobileNetworkName, context);
     }
 
-    public PagedIterable<MobileNetwork> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<MobileNetworkInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new MobileNetworkImpl(inner1, this.manager()));
+    public PagedIterable<SimGroup> listSimGroups(String resourceGroupName, String mobileNetworkName) {
+        PagedIterable<SimGroupInner> inner = this.serviceClient().listSimGroups(resourceGroupName, mobileNetworkName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimGroupImpl(inner1, this.manager()));
     }
 
-    public PagedIterable<MobileNetwork> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<MobileNetworkInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new MobileNetworkImpl(inner1, this.manager()));
+    public PagedIterable<SimGroup> listSimGroups(String resourceGroupName, String mobileNetworkName, Context context) {
+        PagedIterable<SimGroupInner> inner
+            = this.serviceClient().listSimGroups(resourceGroupName, mobileNetworkName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimGroupImpl(inner1, this.manager()));
     }
 
     public MobileNetwork getById(String id) {

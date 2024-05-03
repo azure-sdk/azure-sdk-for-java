@@ -8,7 +8,7 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * The HomeNetworkPrivateKeysProvisioning model.
+ * Home network private keys provisioning state.
  */
 @Immutable
 public final class HomeNetworkPrivateKeysProvisioning {

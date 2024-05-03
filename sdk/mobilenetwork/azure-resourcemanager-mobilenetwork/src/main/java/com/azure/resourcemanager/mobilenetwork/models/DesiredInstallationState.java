@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The desired installation state of the packet core.
+ * The desired installation state.
  */
 public final class DesiredInstallationState extends ExpandableStringEnum<DesiredInstallationState> {
     /**

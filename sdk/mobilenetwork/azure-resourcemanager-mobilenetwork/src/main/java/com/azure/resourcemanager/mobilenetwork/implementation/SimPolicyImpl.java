@@ -117,7 +117,7 @@ public final class SimPolicyImpl implements SimPolicy, SimPolicy.Definition, Sim
 
     private String simPolicyName;
 
-    private TagsObject updateParameters;
+    private TagsObject updateProperties;
 
     public SimPolicyImpl withExistingMobileNetwork(String resourceGroupName, String mobileNetworkName) {
         this.resourceGroupName = resourceGroupName;
@@ -126,14 +126,16 @@ public final class SimPolicyImpl implements SimPolicy, SimPolicy.Definition, Sim
     }
 
     public SimPolicy create() {
-        this.innerObject = serviceManager.serviceClient().getSimPolicies().createOrUpdate(resourceGroupName,
-            mobileNetworkName, simPolicyName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getSimPolicies()
+            .createOrUpdate(resourceGroupName, mobileNetworkName, simPolicyName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public SimPolicy create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSimPolicies().createOrUpdate(resourceGroupName,
-            mobileNetworkName, simPolicyName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getSimPolicies()
+            .createOrUpdate(resourceGroupName, mobileNetworkName, simPolicyName, this.innerModel(), context);
         return this;
     }
 
@@ -144,20 +146,22 @@ public final class SimPolicyImpl implements SimPolicy, SimPolicy.Definition, Sim
     }
 
     public SimPolicyImpl update() {
-        this.updateParameters = new TagsObject();
+        this.updateProperties = new TagsObject();
         return this;
     }
 
     public SimPolicy apply() {
-        this.innerObject = serviceManager.serviceClient().getSimPolicies()
-            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, simPolicyName, updateParameters, Context.NONE)
+        this.innerObject = serviceManager.serviceClient()
+            .getSimPolicies()
+            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, simPolicyName, updateProperties, Context.NONE)
             .getValue();
         return this;
     }
 
     public SimPolicy apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSimPolicies()
-            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, simPolicyName, updateParameters, context)
+        this.innerObject = serviceManager.serviceClient()
+            .getSimPolicies()
+            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, simPolicyName, updateProperties, context)
             .getValue();
         return this;
     }
@@ -172,14 +176,18 @@ public final class SimPolicyImpl implements SimPolicy, SimPolicy.Definition, Sim
     }
 
     public SimPolicy refresh() {
-        this.innerObject = serviceManager.serviceClient().getSimPolicies()
-            .getWithResponse(resourceGroupName, mobileNetworkName, simPolicyName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSimPolicies()
+            .getWithResponse(resourceGroupName, mobileNetworkName, simPolicyName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public SimPolicy refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSimPolicies()
-            .getWithResponse(resourceGroupName, mobileNetworkName, simPolicyName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSimPolicies()
+            .getWithResponse(resourceGroupName, mobileNetworkName, simPolicyName, context)
+            .getValue();
         return this;
     }
 
@@ -193,6 +201,16 @@ public final class SimPolicyImpl implements SimPolicy, SimPolicy.Definition, Sim
         return this;
     }
 
+    public SimPolicyImpl withTags(Map<String, String> tags) {
+        if (isInCreateMode()) {
+            this.innerModel().withTags(tags);
+            return this;
+        } else {
+            this.updateProperties.withTags(tags);
+            return this;
+        }
+    }
+
     public SimPolicyImpl withUeAmbr(Ambr ueAmbr) {
         this.innerModel().withUeAmbr(ueAmbr);
         return this;
@@ -203,21 +221,6 @@ public final class SimPolicyImpl implements SimPolicy, SimPolicy.Definition, Sim
         return this;
     }
 
-    public SimPolicyImpl withSliceConfigurations(List<SliceConfiguration> sliceConfigurations) {
-        this.innerModel().withSliceConfigurations(sliceConfigurations);
-        return this;
-    }
-
-    public SimPolicyImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
-            return this;
-        } else {
-            this.updateParameters.withTags(tags);
-            return this;
-        }
-    }
-
     public SimPolicyImpl withRfspIndex(Integer rfspIndex) {
         this.innerModel().withRfspIndex(rfspIndex);
         return this;
@@ -225,6 +228,11 @@ public final class SimPolicyImpl implements SimPolicy, SimPolicy.Definition, Sim
 
     public SimPolicyImpl withRegistrationTimer(Integer registrationTimer) {
         this.innerModel().withRegistrationTimer(registrationTimer);
+        return this;
+    }
+
+    public SimPolicyImpl withSliceConfigurations(List<SliceConfiguration> sliceConfigurations) {
+        this.innerModel().withSliceConfigurations(sliceConfigurations);
         return this;
     }
 

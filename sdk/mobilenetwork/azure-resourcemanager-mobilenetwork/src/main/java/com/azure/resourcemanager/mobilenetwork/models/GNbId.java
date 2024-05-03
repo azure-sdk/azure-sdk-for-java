@@ -13,13 +13,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class GNbId {
     /*
-     * The bitLength property.
+     * Bit length.
      */
     @JsonProperty(value = "bitLength")
     private Integer bitLength;
 
     /*
-     * The gNBValue property.
+     * gNodeB value.
      */
     @JsonProperty(value = "gNBValue")
     private String gNBValue;
@@ -31,7 +31,7 @@ public final class GNbId {
     }
 
     /**
-     * Get the bitLength property: The bitLength property.
+     * Get the bitLength property: Bit length.
      * 
      * @return the bitLength value.
      */
@@ -40,7 +40,7 @@ public final class GNbId {
     }
 
     /**
-     * Set the bitLength property: The bitLength property.
+     * Set the bitLength property: Bit length.
      * 
      * @param bitLength the bitLength value to set.
      * @return the GNbId object itself.
@@ -51,7 +51,7 @@ public final class GNbId {
     }
 
     /**
-     * Get the gNBValue property: The gNBValue property.
+     * Get the gNBValue property: gNodeB value.
      * 
      * @return the gNBValue value.
      */
@@ -60,7 +60,7 @@ public final class GNbId {
     }
 
     /**
-     * Set the gNBValue property: The gNBValue property.
+     * Set the gNBValue property: gNodeB value.
      * 
      * @param gNBValue the gNBValue value to set.
      * @return the GNbId object itself.

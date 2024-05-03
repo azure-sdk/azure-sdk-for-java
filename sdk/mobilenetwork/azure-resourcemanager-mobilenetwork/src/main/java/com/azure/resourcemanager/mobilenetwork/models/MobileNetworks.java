@@ -13,27 +13,47 @@ import com.azure.core.util.Context;
  */
 public interface MobileNetworks {
     /**
-     * Deletes the specified mobile network.
+     * Lists all the mobile networks in a subscription.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a MobileNetwork list operation as paginated response with {@link PagedIterable}.
      */
-    void deleteByResourceGroup(String resourceGroupName, String mobileNetworkName);
+    PagedIterable<MobileNetwork> list();
 
     /**
-     * Deletes the specified mobile network.
+     * Lists all the mobile networks in a subscription.
      * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a MobileNetwork list operation as paginated response with {@link PagedIterable}.
      */
-    void delete(String resourceGroupName, String mobileNetworkName, Context context);
+    PagedIterable<MobileNetwork> list(Context context);
+
+    /**
+     * Lists all the mobile networks in a resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a MobileNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<MobileNetwork> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * Lists all the mobile networks in a resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a MobileNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    PagedIterable<MobileNetwork> listByResourceGroup(String resourceGroupName, Context context);
 
     /**
      * Gets information about the specified mobile network.
@@ -62,47 +82,52 @@ public interface MobileNetworks {
     MobileNetwork getByResourceGroup(String resourceGroupName, String mobileNetworkName);
 
     /**
-     * Lists all the mobile networks in a subscription.
+     * Deletes the specified mobile network.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for mobile networks API service call as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<MobileNetwork> list();
+    void deleteByResourceGroup(String resourceGroupName, String mobileNetworkName);
 
     /**
-     * Lists all the mobile networks in a subscription.
+     * Deletes the specified mobile network.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for mobile networks API service call as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<MobileNetwork> list(Context context);
+    void delete(String resourceGroupName, String mobileNetworkName, Context context);
 
     /**
-     * Lists all the mobile networks in a resource group.
+     * Gets all the SIM groups assigned to a mobile network.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for mobile networks API service call as paginated response with {@link PagedIterable}.
+     * @return all the SIM groups assigned to a mobile network as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<MobileNetwork> listByResourceGroup(String resourceGroupName);
+    PagedIterable<SimGroup> listSimGroups(String resourceGroupName, String mobileNetworkName);
 
     /**
-     * Lists all the mobile networks in a resource group.
+     * Gets all the SIM groups assigned to a mobile network.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for mobile networks API service call as paginated response with {@link PagedIterable}.
+     * @return all the SIM groups assigned to a mobile network as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<MobileNetwork> listByResourceGroup(String resourceGroupName, Context context);
+    PagedIterable<SimGroup> listSimGroups(String resourceGroupName, String mobileNetworkName, Context context);
 
     /**
      * Gets information about the specified mobile network.

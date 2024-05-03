@@ -14,53 +14,33 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class UeSessionInfo4G {
     /*
-     * EPS bearer identifier
-     */
-    @JsonProperty(value = "ebi", required = true)
-    private int ebi;
-
-    /*
-     * Access point name
+     * Access point name.
      */
     @JsonProperty(value = "apn", required = true)
     private String apn;
 
     /*
-     * UE IP address
+     * EPS bearer identifier.
      */
-    @JsonProperty(value = "ueIpAddress", required = true)
-    private UeIpAddress ueIpAddress;
+    @JsonProperty(value = "ebi", required = true)
+    private int ebi;
 
     /*
-     * Packet Data Network Type
+     * Packet Data Network Type.
      */
     @JsonProperty(value = "pdnType", required = true)
     private PdnType pdnType;
+
+    /*
+     * UE IP address.
+     */
+    @JsonProperty(value = "ueIpAddress", required = true)
+    private UeIpAddress ueIpAddress;
 
     /**
      * Creates an instance of UeSessionInfo4G class.
      */
     public UeSessionInfo4G() {
-    }
-
-    /**
-     * Get the ebi property: EPS bearer identifier.
-     * 
-     * @return the ebi value.
-     */
-    public int ebi() {
-        return this.ebi;
-    }
-
-    /**
-     * Set the ebi property: EPS bearer identifier.
-     * 
-     * @param ebi the ebi value to set.
-     * @return the UeSessionInfo4G object itself.
-     */
-    public UeSessionInfo4G withEbi(int ebi) {
-        this.ebi = ebi;
-        return this;
     }
 
     /**
@@ -84,22 +64,22 @@ public final class UeSessionInfo4G {
     }
 
     /**
-     * Get the ueIpAddress property: UE IP address.
+     * Get the ebi property: EPS bearer identifier.
      * 
-     * @return the ueIpAddress value.
+     * @return the ebi value.
      */
-    public UeIpAddress ueIpAddress() {
-        return this.ueIpAddress;
+    public int ebi() {
+        return this.ebi;
     }
 
     /**
-     * Set the ueIpAddress property: UE IP address.
+     * Set the ebi property: EPS bearer identifier.
      * 
-     * @param ueIpAddress the ueIpAddress value to set.
+     * @param ebi the ebi value to set.
      * @return the UeSessionInfo4G object itself.
      */
-    public UeSessionInfo4G withUeIpAddress(UeIpAddress ueIpAddress) {
-        this.ueIpAddress = ueIpAddress;
+    public UeSessionInfo4G withEbi(int ebi) {
+        this.ebi = ebi;
         return this;
     }
 
@@ -124,24 +104,44 @@ public final class UeSessionInfo4G {
     }
 
     /**
+     * Get the ueIpAddress property: UE IP address.
+     * 
+     * @return the ueIpAddress value.
+     */
+    public UeIpAddress ueIpAddress() {
+        return this.ueIpAddress;
+    }
+
+    /**
+     * Set the ueIpAddress property: UE IP address.
+     * 
+     * @param ueIpAddress the ueIpAddress value to set.
+     * @return the UeSessionInfo4G object itself.
+     */
+    public UeSessionInfo4G withUeIpAddress(UeIpAddress ueIpAddress) {
+        this.ueIpAddress = ueIpAddress;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (apn() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property apn in model UeSessionInfo4G"));
-        }
-        if (ueIpAddress() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property ueIpAddress in model UeSessionInfo4G"));
-        } else {
-            ueIpAddress().validate();
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property apn in model UeSessionInfo4G"));
         }
         if (pdnType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property pdnType in model UeSessionInfo4G"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property pdnType in model UeSessionInfo4G"));
+        }
+        if (ueIpAddress() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property ueIpAddress in model UeSessionInfo4G"));
+        } else {
+            ueIpAddress().validate();
         }
     }
 

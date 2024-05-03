@@ -251,21 +251,23 @@ public interface Site {
     /**
      * Deletes a packet core under the specified mobile network site.
      * 
-     * @param parameters Parameters supplied to delete a packet core under a site.
+     * @param body Parameters supplied to delete a packet core under a site.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
      */
-    void deletePacketCore(SiteDeletePacketCore parameters);
+    AsyncOperationStatus deletePacketCore(SiteDeletePacketCore body);
 
     /**
      * Deletes a packet core under the specified mobile network site.
      * 
-     * @param parameters Parameters supplied to delete a packet core under a site.
+     * @param body Parameters supplied to delete a packet core under a site.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
      */
-    void deletePacketCore(SiteDeletePacketCore parameters, Context context);
+    AsyncOperationStatus deletePacketCore(SiteDeletePacketCore body, Context context);
 }
