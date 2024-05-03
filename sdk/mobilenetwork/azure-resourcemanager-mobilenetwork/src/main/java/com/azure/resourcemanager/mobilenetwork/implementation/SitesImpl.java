@@ -10,7 +10,9 @@ import com.azure.core.http.rest.SimpleResponse;
 import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.fluent.SitesClient;
+import com.azure.resourcemanager.mobilenetwork.fluent.models.AsyncOperationStatusInner;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.SiteInner;
+import com.azure.resourcemanager.mobilenetwork.models.AsyncOperationStatus;
 import com.azure.resourcemanager.mobilenetwork.models.Site;
 import com.azure.resourcemanager.mobilenetwork.models.SiteDeletePacketCore;
 import com.azure.resourcemanager.mobilenetwork.models.Sites;
@@ -28,12 +30,16 @@ public final class SitesImpl implements Sites {
         this.serviceManager = serviceManager;
     }
 
-    public void delete(String resourceGroupName, String mobileNetworkName, String siteName) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName, siteName);
+    public PagedIterable<Site> listByMobileNetwork(String resourceGroupName, String mobileNetworkName) {
+        PagedIterable<SiteInner> inner = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SiteImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String mobileNetworkName, String siteName, Context context) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName, siteName, context);
+    public PagedIterable<Site> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
+        Context context) {
+        PagedIterable<SiteInner> inner
+            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SiteImpl(inner1, this.manager()));
     }
 
     public Response<Site> getWithResponse(String resourceGroupName, String mobileNetworkName, String siteName,
@@ -57,26 +63,34 @@ public final class SitesImpl implements Sites {
         }
     }
 
-    public PagedIterable<Site> listByMobileNetwork(String resourceGroupName, String mobileNetworkName) {
-        PagedIterable<SiteInner> inner = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SiteImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String mobileNetworkName, String siteName) {
+        this.serviceClient().delete(resourceGroupName, mobileNetworkName, siteName);
     }
 
-    public PagedIterable<Site> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
-        Context context) {
-        PagedIterable<SiteInner> inner
-            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SiteImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String mobileNetworkName, String siteName, Context context) {
+        this.serviceClient().delete(resourceGroupName, mobileNetworkName, siteName, context);
     }
 
-    public void deletePacketCore(String resourceGroupName, String mobileNetworkName, String siteName,
-        SiteDeletePacketCore parameters) {
-        this.serviceClient().deletePacketCore(resourceGroupName, mobileNetworkName, siteName, parameters);
+    public AsyncOperationStatus deletePacketCore(String resourceGroupName, String mobileNetworkName, String siteName,
+        SiteDeletePacketCore body) {
+        AsyncOperationStatusInner inner
+            = this.serviceClient().deletePacketCore(resourceGroupName, mobileNetworkName, siteName, body);
+        if (inner != null) {
+            return new AsyncOperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
-    public void deletePacketCore(String resourceGroupName, String mobileNetworkName, String siteName,
-        SiteDeletePacketCore parameters, Context context) {
-        this.serviceClient().deletePacketCore(resourceGroupName, mobileNetworkName, siteName, parameters, context);
+    public AsyncOperationStatus deletePacketCore(String resourceGroupName, String mobileNetworkName, String siteName,
+        SiteDeletePacketCore body, Context context) {
+        AsyncOperationStatusInner inner
+            = this.serviceClient().deletePacketCore(resourceGroupName, mobileNetworkName, siteName, body, context);
+        if (inner != null) {
+            return new AsyncOperationStatusImpl(inner, this.manager());
+        } else {
+            return null;
+        }
     }
 
     public Site getById(String id) {

@@ -15,34 +15,34 @@ import java.util.List;
 @Fluent
 public final class UeInfo5GProperties {
     /*
-     * Subscription Permanent Identifier
-     */
-    @JsonProperty(value = "supi", required = true)
-    private String supi;
-
-    /*
-     * Permanent Equipment Identifier
-     */
-    @JsonProperty(value = "pei")
-    private String pei;
-
-    /*
-     * 5G GUTI
-     */
-    @JsonProperty(value = "fivegGuti", required = true)
-    private Guti5G fivegGuti;
-
-    /*
      * UE Connection Info for 5G.
      */
     @JsonProperty(value = "connectionInfo")
     private UeConnectionInfo5G connectionInfo;
 
     /*
-     * The sessionInfo property.
+     * Globally Unique Temporary Identifier (5G).
+     */
+    @JsonProperty(value = "fivegGuti", required = true)
+    private Guti5G fivegGuti;
+
+    /*
+     * Permanent Equipment Identifier.
+     */
+    @JsonProperty(value = "pei")
+    private String pei;
+
+    /*
+     * UE Session Info for 5G.
      */
     @JsonProperty(value = "sessionInfo")
     private List<UeSessionInfo5G> sessionInfo;
+
+    /*
+     * Subscription Permanent Identifier.
+     */
+    @JsonProperty(value = "supi", required = true)
+    private String supi;
 
     /**
      * Creates an instance of UeInfo5GProperties class.
@@ -51,22 +51,42 @@ public final class UeInfo5GProperties {
     }
 
     /**
-     * Get the supi property: Subscription Permanent Identifier.
+     * Get the connectionInfo property: UE Connection Info for 5G.
      * 
-     * @return the supi value.
+     * @return the connectionInfo value.
      */
-    public String supi() {
-        return this.supi;
+    public UeConnectionInfo5G connectionInfo() {
+        return this.connectionInfo;
     }
 
     /**
-     * Set the supi property: Subscription Permanent Identifier.
+     * Set the connectionInfo property: UE Connection Info for 5G.
      * 
-     * @param supi the supi value to set.
+     * @param connectionInfo the connectionInfo value to set.
      * @return the UeInfo5GProperties object itself.
      */
-    public UeInfo5GProperties withSupi(String supi) {
-        this.supi = supi;
+    public UeInfo5GProperties withConnectionInfo(UeConnectionInfo5G connectionInfo) {
+        this.connectionInfo = connectionInfo;
+        return this;
+    }
+
+    /**
+     * Get the fivegGuti property: Globally Unique Temporary Identifier (5G).
+     * 
+     * @return the fivegGuti value.
+     */
+    public Guti5G fivegGuti() {
+        return this.fivegGuti;
+    }
+
+    /**
+     * Set the fivegGuti property: Globally Unique Temporary Identifier (5G).
+     * 
+     * @param fivegGuti the fivegGuti value to set.
+     * @return the UeInfo5GProperties object itself.
+     */
+    public UeInfo5GProperties withFivegGuti(Guti5G fivegGuti) {
+        this.fivegGuti = fivegGuti;
         return this;
     }
 
@@ -91,47 +111,7 @@ public final class UeInfo5GProperties {
     }
 
     /**
-     * Get the fivegGuti property: 5G GUTI.
-     * 
-     * @return the fivegGuti value.
-     */
-    public Guti5G fivegGuti() {
-        return this.fivegGuti;
-    }
-
-    /**
-     * Set the fivegGuti property: 5G GUTI.
-     * 
-     * @param fivegGuti the fivegGuti value to set.
-     * @return the UeInfo5GProperties object itself.
-     */
-    public UeInfo5GProperties withFivegGuti(Guti5G fivegGuti) {
-        this.fivegGuti = fivegGuti;
-        return this;
-    }
-
-    /**
-     * Get the connectionInfo property: UE Connection Info for 5G.
-     * 
-     * @return the connectionInfo value.
-     */
-    public UeConnectionInfo5G connectionInfo() {
-        return this.connectionInfo;
-    }
-
-    /**
-     * Set the connectionInfo property: UE Connection Info for 5G.
-     * 
-     * @param connectionInfo the connectionInfo value to set.
-     * @return the UeInfo5GProperties object itself.
-     */
-    public UeInfo5GProperties withConnectionInfo(UeConnectionInfo5G connectionInfo) {
-        this.connectionInfo = connectionInfo;
-        return this;
-    }
-
-    /**
-     * Get the sessionInfo property: The sessionInfo property.
+     * Get the sessionInfo property: UE Session Info for 5G.
      * 
      * @return the sessionInfo value.
      */
@@ -140,7 +120,7 @@ public final class UeInfo5GProperties {
     }
 
     /**
-     * Set the sessionInfo property: The sessionInfo property.
+     * Set the sessionInfo property: UE Session Info for 5G.
      * 
      * @param sessionInfo the sessionInfo value to set.
      * @return the UeInfo5GProperties object itself.
@@ -151,26 +131,46 @@ public final class UeInfo5GProperties {
     }
 
     /**
+     * Get the supi property: Subscription Permanent Identifier.
+     * 
+     * @return the supi value.
+     */
+    public String supi() {
+        return this.supi;
+    }
+
+    /**
+     * Set the supi property: Subscription Permanent Identifier.
+     * 
+     * @param supi the supi value to set.
+     * @return the UeInfo5GProperties object itself.
+     */
+    public UeInfo5GProperties withSupi(String supi) {
+        this.supi = supi;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (supi() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property supi in model UeInfo5GProperties"));
-        }
-        if (fivegGuti() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property fivegGuti in model UeInfo5GProperties"));
-        } else {
-            fivegGuti().validate();
-        }
         if (connectionInfo() != null) {
             connectionInfo().validate();
         }
+        if (fivegGuti() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property fivegGuti in model UeInfo5GProperties"));
+        } else {
+            fivegGuti().validate();
+        }
         if (sessionInfo() != null) {
             sessionInfo().forEach(e -> e.validate());
+        }
+        if (supi() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property supi in model UeInfo5GProperties"));
         }
     }
 

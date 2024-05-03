@@ -13,41 +13,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class MmeId {
     /*
-     * MME group identifier
-     */
-    @JsonProperty(value = "groupId", required = true)
-    private int groupId;
-
-    /*
-     * MME code
+     * MME code.
      */
     @JsonProperty(value = "code", required = true)
     private int code;
+
+    /*
+     * MME group identifier.
+     */
+    @JsonProperty(value = "groupId", required = true)
+    private int groupId;
 
     /**
      * Creates an instance of MmeId class.
      */
     public MmeId() {
-    }
-
-    /**
-     * Get the groupId property: MME group identifier.
-     * 
-     * @return the groupId value.
-     */
-    public int groupId() {
-        return this.groupId;
-    }
-
-    /**
-     * Set the groupId property: MME group identifier.
-     * 
-     * @param groupId the groupId value to set.
-     * @return the MmeId object itself.
-     */
-    public MmeId withGroupId(int groupId) {
-        this.groupId = groupId;
-        return this;
     }
 
     /**
@@ -67,6 +47,26 @@ public final class MmeId {
      */
     public MmeId withCode(int code) {
         this.code = code;
+        return this;
+    }
+
+    /**
+     * Get the groupId property: MME group identifier.
+     * 
+     * @return the groupId value.
+     */
+    public int groupId() {
+        return this.groupId;
+    }
+
+    /**
+     * Set the groupId property: MME group identifier.
+     * 
+     * @param groupId the groupId value to set.
+     * @return the MmeId object itself.
+     */
+    public MmeId withGroupId(int groupId) {
+        this.groupId = groupId;
         return this;
     }
 

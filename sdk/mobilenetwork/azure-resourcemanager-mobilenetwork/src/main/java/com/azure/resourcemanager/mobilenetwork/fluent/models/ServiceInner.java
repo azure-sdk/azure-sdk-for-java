@@ -7,7 +7,6 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.PccRuleConfiguration;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.azure.resourcemanager.mobilenetwork.models.QosPolicy;
@@ -21,10 +20,10 @@ import java.util.Map;
 @Fluent
 public final class ServiceInner extends Resource {
     /*
-     * Service Properties.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private ServicePropertiesFormat innerProperties = new ServicePropertiesFormat();
+    @JsonProperty(value = "properties")
+    private ServicePropertiesFormat innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -39,7 +38,7 @@ public final class ServiceInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: Service Properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -90,8 +89,8 @@ public final class ServiceInner extends Resource {
      * 
      * @return the servicePrecedence value.
      */
-    public int servicePrecedence() {
-        return this.innerProperties() == null ? 0 : this.innerProperties().servicePrecedence();
+    public Integer servicePrecedence() {
+        return this.innerProperties() == null ? null : this.innerProperties().servicePrecedence();
     }
 
     /**
@@ -102,7 +101,7 @@ public final class ServiceInner extends Resource {
      * @param servicePrecedence the servicePrecedence value to set.
      * @return the ServiceInner object itself.
      */
-    public ServiceInner withServicePrecedence(int servicePrecedence) {
+    public ServiceInner withServicePrecedence(Integer servicePrecedence) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ServicePropertiesFormat();
         }
@@ -166,13 +165,8 @@ public final class ServiceInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model ServiceInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(ServiceInner.class);
 }

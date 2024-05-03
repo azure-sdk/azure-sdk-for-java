@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * Whether network address and port translation is enabled.
+ * Whether NAPT is enabled for connections to this attached data network.
  */
 public final class NaptEnabled extends ExpandableStringEnum<NaptEnabled> {
     /**

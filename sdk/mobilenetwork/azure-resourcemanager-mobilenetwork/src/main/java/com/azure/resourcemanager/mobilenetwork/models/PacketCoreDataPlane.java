@@ -113,9 +113,8 @@ public interface PacketCoreDataPlane {
     /**
      * The entirety of the PacketCoreDataPlane definition.
      */
-    interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithParentResource,
-        DefinitionStages.WithUserPlaneAccessInterface, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
 
     /**
@@ -160,31 +159,15 @@ public interface PacketCoreDataPlane {
              * @param packetCoreControlPlaneName The name of the packet core control plane.
              * @return the next definition stage.
              */
-            WithUserPlaneAccessInterface withExistingPacketCoreControlPlane(String resourceGroupName,
-                String packetCoreControlPlaneName);
-        }
-
-        /**
-         * The stage of the PacketCoreDataPlane definition allowing to specify userPlaneAccessInterface.
-         */
-        interface WithUserPlaneAccessInterface {
-            /**
-             * Specifies the userPlaneAccessInterface property: The user plane interface on the access network. For 5G
-             * networks, this is the N3 interface. For 4G networks, this is the S1-U interface..
-             * 
-             * @param userPlaneAccessInterface The user plane interface on the access network. For 5G networks, this is
-             * the N3 interface. For 4G networks, this is the S1-U interface.
-             * @return the next definition stage.
-             */
-            WithCreate withUserPlaneAccessInterface(InterfaceProperties userPlaneAccessInterface);
+            WithCreate withExistingPacketCoreControlPlane(String resourceGroupName, String packetCoreControlPlaneName);
         }
 
         /**
          * The stage of the PacketCoreDataPlane definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate
-            extends DefinitionStages.WithTags, DefinitionStages.WithUserPlaneAccessVirtualIpv4Addresses {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithUserPlaneAccessInterface,
+            DefinitionStages.WithUserPlaneAccessVirtualIpv4Addresses {
             /**
              * Executes the create request.
              * 
@@ -212,6 +195,21 @@ public interface PacketCoreDataPlane {
              * @return the next definition stage.
              */
             WithCreate withTags(Map<String, String> tags);
+        }
+
+        /**
+         * The stage of the PacketCoreDataPlane definition allowing to specify userPlaneAccessInterface.
+         */
+        interface WithUserPlaneAccessInterface {
+            /**
+             * Specifies the userPlaneAccessInterface property: The user plane interface on the access network. For 5G
+             * networks, this is the N3 interface. For 4G networks, this is the S1-U interface..
+             * 
+             * @param userPlaneAccessInterface The user plane interface on the access network. For 5G networks, this is
+             * the N3 interface. For 4G networks, this is the S1-U interface.
+             * @return the next definition stage.
+             */
+            WithCreate withUserPlaneAccessInterface(InterfaceProperties userPlaneAccessInterface);
         }
 
         /**

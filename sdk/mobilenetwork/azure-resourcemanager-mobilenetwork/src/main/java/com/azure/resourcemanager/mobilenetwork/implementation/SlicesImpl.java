@@ -27,12 +27,17 @@ public final class SlicesImpl implements Slices {
         this.serviceManager = serviceManager;
     }
 
-    public void delete(String resourceGroupName, String mobileNetworkName, String sliceName) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName, sliceName);
+    public PagedIterable<Slice> listByMobileNetwork(String resourceGroupName, String mobileNetworkName) {
+        PagedIterable<SliceInner> inner
+            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SliceImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String mobileNetworkName, String sliceName, Context context) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName, sliceName, context);
+    public PagedIterable<Slice> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
+        Context context) {
+        PagedIterable<SliceInner> inner
+            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SliceImpl(inner1, this.manager()));
     }
 
     public Response<Slice> getWithResponse(String resourceGroupName, String mobileNetworkName, String sliceName,
@@ -56,17 +61,12 @@ public final class SlicesImpl implements Slices {
         }
     }
 
-    public PagedIterable<Slice> listByMobileNetwork(String resourceGroupName, String mobileNetworkName) {
-        PagedIterable<SliceInner> inner
-            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SliceImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String mobileNetworkName, String sliceName) {
+        this.serviceClient().delete(resourceGroupName, mobileNetworkName, sliceName);
     }
 
-    public PagedIterable<Slice> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
-        Context context) {
-        PagedIterable<SliceInner> inner
-            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SliceImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String mobileNetworkName, String sliceName, Context context) {
+        this.serviceClient().delete(resourceGroupName, mobileNetworkName, sliceName, context);
     }
 
     public Slice getById(String id) {

@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * PDU session type (IPv4/IPv6).
+ * The default PDU session type, which is used if the UE does not request a specific session type.
  */
 public final class PduSessionType extends ExpandableStringEnum<PduSessionType> {
     /**

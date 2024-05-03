@@ -14,22 +14,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class UeLocationInfo {
     /*
-     * Location Type
+     * Location Type.
      */
     @JsonProperty(value = "locationType", required = true)
     private String locationType;
 
     /*
-     * Type Allocation Code of UE
-     */
-    @JsonProperty(value = "tac", required = true)
-    private String tac;
-
-    /*
-     * PLMN Identifier
+     * PLMN Identifier.
      */
     @JsonProperty(value = "plmn", required = true)
     private PlmnId plmn;
+
+    /*
+     * Type Allocation Code of UE.
+     */
+    @JsonProperty(value = "tac", required = true)
+    private String tac;
 
     /**
      * Creates an instance of UeLocationInfo class.
@@ -58,26 +58,6 @@ public final class UeLocationInfo {
     }
 
     /**
-     * Get the tac property: Type Allocation Code of UE.
-     * 
-     * @return the tac value.
-     */
-    public String tac() {
-        return this.tac;
-    }
-
-    /**
-     * Set the tac property: Type Allocation Code of UE.
-     * 
-     * @param tac the tac value to set.
-     * @return the UeLocationInfo object itself.
-     */
-    public UeLocationInfo withTac(String tac) {
-        this.tac = tac;
-        return this;
-    }
-
-    /**
      * Get the plmn property: PLMN Identifier.
      * 
      * @return the plmn value.
@@ -98,24 +78,44 @@ public final class UeLocationInfo {
     }
 
     /**
+     * Get the tac property: Type Allocation Code of UE.
+     * 
+     * @return the tac value.
+     */
+    public String tac() {
+        return this.tac;
+    }
+
+    /**
+     * Set the tac property: Type Allocation Code of UE.
+     * 
+     * @param tac the tac value to set.
+     * @return the UeLocationInfo object itself.
+     */
+    public UeLocationInfo withTac(String tac) {
+        this.tac = tac;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (locationType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property locationType in model UeLocationInfo"));
-        }
-        if (tac() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property tac in model UeLocationInfo"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property locationType in model UeLocationInfo"));
         }
         if (plmn() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property plmn in model UeLocationInfo"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property plmn in model UeLocationInfo"));
         } else {
             plmn().validate();
+        }
+        if (tac() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property tac in model UeLocationInfo"));
         }
     }
 

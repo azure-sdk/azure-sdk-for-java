@@ -7,7 +7,6 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.InterfaceProperties;
 import com.azure.resourcemanager.mobilenetwork.models.NaptConfiguration;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
@@ -21,10 +20,10 @@ import java.util.Map;
 @Fluent
 public final class AttachedDataNetworkInner extends Resource {
     /*
-     * Attached data network properties.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private AttachedDataNetworkPropertiesFormat innerProperties = new AttachedDataNetworkPropertiesFormat();
+    @JsonProperty(value = "properties")
+    private AttachedDataNetworkPropertiesFormat innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -39,7 +38,7 @@ public final class AttachedDataNetworkInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: Attached data network properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -229,13 +228,8 @@ public final class AttachedDataNetworkInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property innerProperties in model AttachedDataNetworkInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(AttachedDataNetworkInner.class);
 }

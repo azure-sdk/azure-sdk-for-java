@@ -73,51 +73,6 @@ public final class DataNetworksClientImpl implements DataNetworksClient {
     @ServiceInterface(name = "MobileNetworkManagem")
     public interface DataNetworksService {
         @Headers({ "Content-Type: application/json" })
-        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/mobileNetworks/{mobileNetworkName}/dataNetworks/{dataNetworkName}")
-        @ExpectedResponses({ 200, 202, 204 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
-            @PathParam("mobileNetworkName") String mobileNetworkName,
-            @PathParam("dataNetworkName") String dataNetworkName, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/mobileNetworks/{mobileNetworkName}/dataNetworks/{dataNetworkName}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DataNetworkInner>> get(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
-            @PathParam("mobileNetworkName") String mobileNetworkName,
-            @PathParam("dataNetworkName") String dataNetworkName, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/mobileNetworks/{mobileNetworkName}/dataNetworks/{dataNetworkName}")
-        @ExpectedResponses({ 200, 201 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
-            @PathParam("mobileNetworkName") String mobileNetworkName,
-            @PathParam("dataNetworkName") String dataNetworkName,
-            @BodyParam("application/json") DataNetworkInner parameters, @HeaderParam("Accept") String accept,
-            Context context);
-
-        @Headers({ "Content-Type: application/json" })
-        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/mobileNetworks/{mobileNetworkName}/dataNetworks/{dataNetworkName}")
-        @ExpectedResponses({ 200 })
-        @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<DataNetworkInner>> updateTags(@HostParam("$host") String endpoint,
-            @PathParam("subscriptionId") String subscriptionId,
-            @PathParam("resourceGroupName") String resourceGroupName, @QueryParam("api-version") String apiVersion,
-            @PathParam("mobileNetworkName") String mobileNetworkName,
-            @PathParam("dataNetworkName") String dataNetworkName, @BodyParam("application/json") TagsObject parameters,
-            @HeaderParam("Accept") String accept, Context context);
-
-        @Headers({ "Content-Type: application/json" })
         @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/mobileNetworks/{mobileNetworkName}/dataNetworks")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
@@ -128,12 +83,747 @@ public final class DataNetworksClientImpl implements DataNetworksClient {
             Context context);
 
         @Headers({ "Content-Type: application/json" })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/mobileNetworks/{mobileNetworkName}/dataNetworks/{dataNetworkName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<DataNetworkInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("mobileNetworkName") String mobileNetworkName,
+            @PathParam("dataNetworkName") String dataNetworkName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/mobileNetworks/{mobileNetworkName}/dataNetworks/{dataNetworkName}")
+        @ExpectedResponses({ 200, 201 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("mobileNetworkName") String mobileNetworkName,
+            @PathParam("dataNetworkName") String dataNetworkName,
+            @BodyParam("application/json") DataNetworkInner resource, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Patch("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/mobileNetworks/{mobileNetworkName}/dataNetworks/{dataNetworkName}")
+        @ExpectedResponses({ 200 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<DataNetworkInner>> updateTags(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("mobileNetworkName") String mobileNetworkName,
+            @PathParam("dataNetworkName") String dataNetworkName, @BodyParam("application/json") TagsObject properties,
+            @HeaderParam("Accept") String accept, Context context);
+
+        @Headers({ "Content-Type: application/json" })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/mobileNetworks/{mobileNetworkName}/dataNetworks/{dataNetworkName}")
+        @ExpectedResponses({ 202, 204 })
+        @UnexpectedResponseExceptionType(ManagementException.class)
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
+            @PathParam("resourceGroupName") String resourceGroupName,
+            @PathParam("mobileNetworkName") String mobileNetworkName,
+            @PathParam("dataNetworkName") String dataNetworkName, @HeaderParam("Accept") String accept,
+            Context context);
+
+        @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<DataNetworkListResult>> listByMobileNetworkNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+    }
+
+    /**
+     * Lists all data networks in the mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DataNetwork list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<DataNetworkInner>> listByMobileNetworkSinglePageAsync(String resourceGroupName,
+        String mobileNetworkName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (mobileNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.listByMobileNetwork(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, mobileNetworkName, accept, context))
+            .<PagedResponse<DataNetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
+                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists all data networks in the mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DataNetwork list operation along with {@link PagedResponse} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<DataNetworkInner>> listByMobileNetworkSinglePageAsync(String resourceGroupName,
+        String mobileNetworkName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (mobileNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByMobileNetwork(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, mobileNetworkName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Lists all data networks in the mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DataNetwork list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<DataNetworkInner> listByMobileNetworkAsync(String resourceGroupName, String mobileNetworkName) {
+        return new PagedFlux<>(() -> listByMobileNetworkSinglePageAsync(resourceGroupName, mobileNetworkName),
+            nextLink -> listByMobileNetworkNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists all data networks in the mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DataNetwork list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<DataNetworkInner> listByMobileNetworkAsync(String resourceGroupName, String mobileNetworkName,
+        Context context) {
+        return new PagedFlux<>(() -> listByMobileNetworkSinglePageAsync(resourceGroupName, mobileNetworkName, context),
+            nextLink -> listByMobileNetworkNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists all data networks in the mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DataNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DataNetworkInner> listByMobileNetwork(String resourceGroupName, String mobileNetworkName) {
+        return new PagedIterable<>(listByMobileNetworkAsync(resourceGroupName, mobileNetworkName));
+    }
+
+    /**
+     * Lists all data networks in the mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a DataNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<DataNetworkInner> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
+        Context context) {
+        return new PagedIterable<>(listByMobileNetworkAsync(resourceGroupName, mobileNetworkName, context));
+    }
+
+    /**
+     * Gets information about the specified data network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified data network along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DataNetworkInner>> getWithResponseAsync(String resourceGroupName, String mobileNetworkName,
+        String dataNetworkName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (mobileNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
+        }
+        if (dataNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil.withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, mobileNetworkName, dataNetworkName, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets information about the specified data network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified data network along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DataNetworkInner>> getWithResponseAsync(String resourceGroupName, String mobileNetworkName,
+        String dataNetworkName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (mobileNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
+        }
+        if (dataNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, mobileNetworkName, dataNetworkName, accept, context);
+    }
+
+    /**
+     * Gets information about the specified data network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified data network on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DataNetworkInner> getAsync(String resourceGroupName, String mobileNetworkName,
+        String dataNetworkName) {
+        return getWithResponseAsync(resourceGroupName, mobileNetworkName, dataNetworkName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets information about the specified data network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified data network along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<DataNetworkInner> getWithResponse(String resourceGroupName, String mobileNetworkName,
+        String dataNetworkName, Context context) {
+        return getWithResponseAsync(resourceGroupName, mobileNetworkName, dataNetworkName, context).block();
+    }
+
+    /**
+     * Gets information about the specified data network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified data network.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DataNetworkInner get(String resourceGroupName, String mobileNetworkName, String dataNetworkName) {
+        return getWithResponse(resourceGroupName, mobileNetworkName, dataNetworkName, Context.NONE).getValue();
+    }
+
+    /**
+     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param resource Parameters supplied to the create or update data network operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data network resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String mobileNetworkName, String dataNetworkName, DataNetworkInner resource) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (mobileNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
+        }
+        if (dataNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, mobileNetworkName, dataNetworkName, resource,
+                accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param resource Parameters supplied to the create or update data network operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data network resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String mobileNetworkName, String dataNetworkName, DataNetworkInner resource, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (mobileNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
+        }
+        if (dataNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, mobileNetworkName, dataNetworkName, resource, accept,
+            context);
+    }
+
+    /**
+     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param resource Parameters supplied to the create or update data network operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of data network resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DataNetworkInner>, DataNetworkInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String mobileNetworkName, String dataNetworkName, DataNetworkInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, mobileNetworkName, dataNetworkName, resource);
+        return this.client.<DataNetworkInner, DataNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            DataNetworkInner.class, DataNetworkInner.class, this.client.getContext());
+    }
+
+    /**
+     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param resource Parameters supplied to the create or update data network operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of data network resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<DataNetworkInner>, DataNetworkInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String mobileNetworkName, String dataNetworkName, DataNetworkInner resource,
+        Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono
+            = createOrUpdateWithResponseAsync(resourceGroupName, mobileNetworkName, dataNetworkName, resource, context);
+        return this.client.<DataNetworkInner, DataNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
+            DataNetworkInner.class, DataNetworkInner.class, context);
+    }
+
+    /**
+     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param resource Parameters supplied to the create or update data network operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of data network resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DataNetworkInner>, DataNetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String mobileNetworkName, String dataNetworkName, DataNetworkInner resource) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, resource)
+            .getSyncPoller();
+    }
+
+    /**
+     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param resource Parameters supplied to the create or update data network operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of data network resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<DataNetworkInner>, DataNetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String mobileNetworkName, String dataNetworkName, DataNetworkInner resource, Context context) {
+        return this.beginCreateOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, resource, context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param resource Parameters supplied to the create or update data network operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data network resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DataNetworkInner> createOrUpdateAsync(String resourceGroupName, String mobileNetworkName,
+        String dataNetworkName, DataNetworkInner resource) {
+        return beginCreateOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, resource).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param resource Parameters supplied to the create or update data network operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data network resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DataNetworkInner> createOrUpdateAsync(String resourceGroupName, String mobileNetworkName,
+        String dataNetworkName, DataNetworkInner resource, Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, resource, context).last()
+            .flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param resource Parameters supplied to the create or update data network operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data network resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DataNetworkInner createOrUpdate(String resourceGroupName, String mobileNetworkName, String dataNetworkName,
+        DataNetworkInner resource) {
+        return createOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, resource).block();
+    }
+
+    /**
+     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param resource Parameters supplied to the create or update data network operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data network resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DataNetworkInner createOrUpdate(String resourceGroupName, String mobileNetworkName, String dataNetworkName,
+        DataNetworkInner resource, Context context) {
+        return createOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, resource, context).block();
+    }
+
+    /**
+     * Updates data network tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param properties Parameters supplied to update data network tags.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data network resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DataNetworkInner>> updateTagsWithResponseAsync(String resourceGroupName,
+        String mobileNetworkName, String dataNetworkName, TagsObject properties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (mobileNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
+        }
+        if (dataNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.updateTags(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, mobileNetworkName, dataNetworkName, properties,
+                accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Updates data network tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param properties Parameters supplied to update data network tags.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data network resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<DataNetworkInner>> updateTagsWithResponseAsync(String resourceGroupName,
+        String mobileNetworkName, String dataNetworkName, TagsObject properties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (mobileNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
+        }
+        if (dataNetworkName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.updateTags(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, mobileNetworkName, dataNetworkName, properties, accept,
+            context);
+    }
+
+    /**
+     * Updates data network tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param properties Parameters supplied to update data network tags.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data network resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<DataNetworkInner> updateTagsAsync(String resourceGroupName, String mobileNetworkName,
+        String dataNetworkName, TagsObject properties) {
+        return updateTagsWithResponseAsync(resourceGroupName, mobileNetworkName, dataNetworkName, properties)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Updates data network tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param properties Parameters supplied to update data network tags.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data network resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<DataNetworkInner> updateTagsWithResponse(String resourceGroupName, String mobileNetworkName,
+        String dataNetworkName, TagsObject properties, Context context) {
+        return updateTagsWithResponseAsync(resourceGroupName, mobileNetworkName, dataNetworkName, properties, context)
+            .block();
+    }
+
+    /**
+     * Updates data network tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param dataNetworkName The name of the data network.
+     * @param properties Parameters supplied to update data network tags.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return data network resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public DataNetworkInner updateTags(String resourceGroupName, String mobileNetworkName, String dataNetworkName,
+        TagsObject properties) {
+        return updateTagsWithResponse(resourceGroupName, mobileNetworkName, dataNetworkName, properties, Context.NONE)
+            .getValue();
     }
 
     /**
@@ -171,9 +861,8 @@ public final class DataNetworksClientImpl implements DataNetworksClient {
                 .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
         }
         final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, this.client.getApiVersion(), mobileNetworkName, dataNetworkName, accept, context))
+        return FluxUtil.withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, mobileNetworkName, dataNetworkName, accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -214,8 +903,8 @@ public final class DataNetworksClientImpl implements DataNetworksClient {
         }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            this.client.getApiVersion(), mobileNetworkName, dataNetworkName, accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, mobileNetworkName, dataNetworkName, accept, context);
     }
 
     /**
@@ -363,695 +1052,6 @@ public final class DataNetworksClientImpl implements DataNetworksClient {
     }
 
     /**
-     * Gets information about the specified data network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified data network along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DataNetworkInner>> getWithResponseAsync(String resourceGroupName, String mobileNetworkName,
-        String dataNetworkName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (mobileNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
-        }
-        if (dataNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, this.client.getApiVersion(), mobileNetworkName, dataNetworkName, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets information about the specified data network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified data network along with {@link Response} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DataNetworkInner>> getWithResponseAsync(String resourceGroupName, String mobileNetworkName,
-        String dataNetworkName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (mobileNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
-        }
-        if (dataNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            this.client.getApiVersion(), mobileNetworkName, dataNetworkName, accept, context);
-    }
-
-    /**
-     * Gets information about the specified data network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified data network on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DataNetworkInner> getAsync(String resourceGroupName, String mobileNetworkName,
-        String dataNetworkName) {
-        return getWithResponseAsync(resourceGroupName, mobileNetworkName, dataNetworkName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets information about the specified data network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified data network along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<DataNetworkInner> getWithResponse(String resourceGroupName, String mobileNetworkName,
-        String dataNetworkName, Context context) {
-        return getWithResponseAsync(resourceGroupName, mobileNetworkName, dataNetworkName, context).block();
-    }
-
-    /**
-     * Gets information about the specified data network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified data network.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataNetworkInner get(String resourceGroupName, String mobileNetworkName, String dataNetworkName) {
-        return getWithResponse(resourceGroupName, mobileNetworkName, dataNetworkName, Context.NONE).getValue();
-    }
-
-    /**
-     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to the create or update data network operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data network resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String mobileNetworkName, String dataNetworkName, DataNetworkInner parameters) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (mobileNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
-        }
-        if (dataNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, this.client.getApiVersion(), mobileNetworkName, dataNetworkName, parameters, accept,
-                context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to the create or update data network operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data network resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String mobileNetworkName, String dataNetworkName, DataNetworkInner parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (mobileNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
-        }
-        if (dataNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            this.client.getApiVersion(), mobileNetworkName, dataNetworkName, parameters, accept, context);
-    }
-
-    /**
-     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to the create or update data network operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of data network resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DataNetworkInner>, DataNetworkInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String mobileNetworkName, String dataNetworkName, DataNetworkInner parameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono
-            = createOrUpdateWithResponseAsync(resourceGroupName, mobileNetworkName, dataNetworkName, parameters);
-        return this.client.<DataNetworkInner, DataNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
-            DataNetworkInner.class, DataNetworkInner.class, this.client.getContext());
-    }
-
-    /**
-     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to the create or update data network operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of data network resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<DataNetworkInner>, DataNetworkInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String mobileNetworkName, String dataNetworkName, DataNetworkInner parameters,
-        Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName, mobileNetworkName,
-            dataNetworkName, parameters, context);
-        return this.client.<DataNetworkInner, DataNetworkInner>getLroResult(mono, this.client.getHttpPipeline(),
-            DataNetworkInner.class, DataNetworkInner.class, context);
-    }
-
-    /**
-     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to the create or update data network operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of data network resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DataNetworkInner>, DataNetworkInner> beginCreateOrUpdate(String resourceGroupName,
-        String mobileNetworkName, String dataNetworkName, DataNetworkInner parameters) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, parameters)
-            .getSyncPoller();
-    }
-
-    /**
-     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to the create or update data network operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of data network resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<DataNetworkInner>, DataNetworkInner> beginCreateOrUpdate(String resourceGroupName,
-        String mobileNetworkName, String dataNetworkName, DataNetworkInner parameters, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, parameters, context)
-            .getSyncPoller();
-    }
-
-    /**
-     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to the create or update data network operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data network resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DataNetworkInner> createOrUpdateAsync(String resourceGroupName, String mobileNetworkName,
-        String dataNetworkName, DataNetworkInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, parameters).last()
-            .flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to the create or update data network operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data network resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DataNetworkInner> createOrUpdateAsync(String resourceGroupName, String mobileNetworkName,
-        String dataNetworkName, DataNetworkInner parameters, Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, parameters, context)
-            .last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to the create or update data network operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data network resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataNetworkInner createOrUpdate(String resourceGroupName, String mobileNetworkName, String dataNetworkName,
-        DataNetworkInner parameters) {
-        return createOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, parameters).block();
-    }
-
-    /**
-     * Creates or updates a data network. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to the create or update data network operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data network resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataNetworkInner createOrUpdate(String resourceGroupName, String mobileNetworkName, String dataNetworkName,
-        DataNetworkInner parameters, Context context) {
-        return createOrUpdateAsync(resourceGroupName, mobileNetworkName, dataNetworkName, parameters, context).block();
-    }
-
-    /**
-     * Updates data network tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to update data network tags.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data network resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DataNetworkInner>> updateTagsWithResponseAsync(String resourceGroupName,
-        String mobileNetworkName, String dataNetworkName, TagsObject parameters) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (mobileNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
-        }
-        if (dataNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.updateTags(this.client.getEndpoint(), this.client.getSubscriptionId(),
-                resourceGroupName, this.client.getApiVersion(), mobileNetworkName, dataNetworkName, parameters, accept,
-                context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Updates data network tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to update data network tags.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data network resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<DataNetworkInner>> updateTagsWithResponseAsync(String resourceGroupName,
-        String mobileNetworkName, String dataNetworkName, TagsObject parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (mobileNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
-        }
-        if (dataNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter dataNetworkName is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.updateTags(this.client.getEndpoint(), this.client.getSubscriptionId(), resourceGroupName,
-            this.client.getApiVersion(), mobileNetworkName, dataNetworkName, parameters, accept, context);
-    }
-
-    /**
-     * Updates data network tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to update data network tags.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data network resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<DataNetworkInner> updateTagsAsync(String resourceGroupName, String mobileNetworkName,
-        String dataNetworkName, TagsObject parameters) {
-        return updateTagsWithResponseAsync(resourceGroupName, mobileNetworkName, dataNetworkName, parameters)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Updates data network tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to update data network tags.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data network resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<DataNetworkInner> updateTagsWithResponse(String resourceGroupName, String mobileNetworkName,
-        String dataNetworkName, TagsObject parameters, Context context) {
-        return updateTagsWithResponseAsync(resourceGroupName, mobileNetworkName, dataNetworkName, parameters, context)
-            .block();
-    }
-
-    /**
-     * Updates data network tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param dataNetworkName The name of the data network.
-     * @param parameters Parameters supplied to update data network tags.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return data network resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public DataNetworkInner updateTags(String resourceGroupName, String mobileNetworkName, String dataNetworkName,
-        TagsObject parameters) {
-        return updateTagsWithResponse(resourceGroupName, mobileNetworkName, dataNetworkName, parameters, Context.NONE)
-            .getValue();
-    }
-
-    /**
-     * Lists all data networks in the mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for data network API service call along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DataNetworkInner>> listByMobileNetworkSinglePageAsync(String resourceGroupName,
-        String mobileNetworkName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (mobileNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listByMobileNetwork(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, mobileNetworkName, accept, context))
-            .<PagedResponse<DataNetworkInner>>map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(),
-                res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists all data networks in the mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for data network API service call along with {@link PagedResponse} on successful completion of
-     * {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<DataNetworkInner>> listByMobileNetworkSinglePageAsync(String resourceGroupName,
-        String mobileNetworkName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (mobileNetworkName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter mobileNetworkName is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByMobileNetwork(this.client.getEndpoint(), this.client.getApiVersion(),
-                this.client.getSubscriptionId(), resourceGroupName, mobileNetworkName, accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists all data networks in the mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for data network API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DataNetworkInner> listByMobileNetworkAsync(String resourceGroupName, String mobileNetworkName) {
-        return new PagedFlux<>(() -> listByMobileNetworkSinglePageAsync(resourceGroupName, mobileNetworkName),
-            nextLink -> listByMobileNetworkNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists all data networks in the mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for data network API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<DataNetworkInner> listByMobileNetworkAsync(String resourceGroupName, String mobileNetworkName,
-        Context context) {
-        return new PagedFlux<>(() -> listByMobileNetworkSinglePageAsync(resourceGroupName, mobileNetworkName, context),
-            nextLink -> listByMobileNetworkNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists all data networks in the mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for data network API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DataNetworkInner> listByMobileNetwork(String resourceGroupName, String mobileNetworkName) {
-        return new PagedIterable<>(listByMobileNetworkAsync(resourceGroupName, mobileNetworkName));
-    }
-
-    /**
-     * Lists all data networks in the mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for data network API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<DataNetworkInner> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
-        Context context) {
-        return new PagedIterable<>(listByMobileNetworkAsync(resourceGroupName, mobileNetworkName, context));
-    }
-
-    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items
@@ -1060,7 +1060,7 @@ public final class DataNetworksClientImpl implements DataNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for data network API service call along with {@link PagedResponse} on successful completion of
+     * @return the response of a DataNetwork list operation along with {@link PagedResponse} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1091,7 +1091,7 @@ public final class DataNetworksClientImpl implements DataNetworksClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for data network API service call along with {@link PagedResponse} on successful completion of
+     * @return the response of a DataNetwork list operation along with {@link PagedResponse} on successful completion of
      * {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)

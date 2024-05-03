@@ -6,6 +6,8 @@ package com.azure.resourcemanager.mobilenetwork.models;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.UeInfoInner;
+import java.time.OffsetDateTime;
+import java.util.List;
 
 /**
  * An immutable client-side representation of UeInfo.
@@ -33,18 +35,39 @@ public interface UeInfo {
     String type();
 
     /**
-     * Gets the properties property: Basic UE Information Properties.
-     * 
-     * @return the properties value.
-     */
-    UeInfoPropertiesFormat properties();
-
-    /**
      * Gets the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
      * 
      * @return the systemData value.
      */
     SystemData systemData();
+
+    /**
+     * Gets the ratType property: RAT Type.
+     * 
+     * @return the ratType value.
+     */
+    RatType ratType();
+
+    /**
+     * Gets the ueState property: State of the UE.
+     * 
+     * @return the ueState value.
+     */
+    UeState ueState();
+
+    /**
+     * Gets the ueIpAddresses property: List of DNN and UE IP addresses.
+     * 
+     * @return the ueIpAddresses value.
+     */
+    List<DnnIpPair> ueIpAddresses();
+
+    /**
+     * Gets the lastReadAt property: The timestamp of last list UEs call to the packet core (UTC).
+     * 
+     * @return the lastReadAt value.
+     */
+    OffsetDateTime lastReadAt();
 
     /**
      * Gets the inner com.azure.resourcemanager.mobilenetwork.fluent.models.UeInfoInner object.

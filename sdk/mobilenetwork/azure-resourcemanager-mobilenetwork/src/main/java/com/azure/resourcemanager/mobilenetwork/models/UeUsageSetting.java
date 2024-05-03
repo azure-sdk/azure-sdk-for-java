@@ -13,14 +13,14 @@ import java.util.Collection;
  */
 public final class UeUsageSetting extends ExpandableStringEnum<UeUsageSetting> {
     /**
-     * Static value VoiceCentric for UeUsageSetting.
-     */
-    public static final UeUsageSetting VOICE_CENTRIC = fromString("VoiceCentric");
-
-    /**
      * Static value DataCentric for UeUsageSetting.
      */
     public static final UeUsageSetting DATA_CENTRIC = fromString("DataCentric");
+
+    /**
+     * Static value VoiceCentric for UeUsageSetting.
+     */
+    public static final UeUsageSetting VOICE_CENTRIC = fromString("VoiceCentric");
 
     /**
      * Creates a new instance of UeUsageSetting value.

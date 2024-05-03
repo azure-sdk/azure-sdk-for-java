@@ -5,7 +5,6 @@
 package com.azure.resourcemanager.mobilenetwork.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
@@ -17,7 +16,7 @@ public final class SimDeleteList {
     /*
      * A list of SIM resource names to delete.
      */
-    @JsonProperty(value = "sims", required = true)
+    @JsonProperty(value = "sims")
     private List<String> sims;
 
     /**
@@ -52,11 +51,5 @@ public final class SimDeleteList {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (sims() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property sims in model SimDeleteList"));
-        }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SimDeleteList.class);
 }

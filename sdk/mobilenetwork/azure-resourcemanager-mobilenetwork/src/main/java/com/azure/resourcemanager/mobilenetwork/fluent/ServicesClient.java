@@ -19,6 +19,171 @@ import com.azure.resourcemanager.mobilenetwork.models.TagsObject;
  */
 public interface ServicesClient {
     /**
+     * Gets all the services in a mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the services in a mobile network as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ServiceInner> listByMobileNetwork(String resourceGroupName, String mobileNetworkName);
+
+    /**
+     * Gets all the services in a mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the services in a mobile network as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<ServiceInner> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
+        Context context);
+
+    /**
+     * Gets information about the specified service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     * `requested` or `service`.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified service along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ServiceInner> getWithResponse(String resourceGroupName, String mobileNetworkName, String serviceName,
+        Context context);
+
+    /**
+     * Gets information about the specified service.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     * `requested` or `service`.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified service.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ServiceInner get(String resourceGroupName, String mobileNetworkName, String serviceName);
+
+    /**
+     * Creates or updates a service. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     * `requested` or `service`.
+     * @param resource Parameters supplied to the create or update service operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of service resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ServiceInner>, ServiceInner> beginCreateOrUpdate(String resourceGroupName,
+        String mobileNetworkName, String serviceName, ServiceInner resource);
+
+    /**
+     * Creates or updates a service. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     * `requested` or `service`.
+     * @param resource Parameters supplied to the create or update service operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of service resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<ServiceInner>, ServiceInner> beginCreateOrUpdate(String resourceGroupName,
+        String mobileNetworkName, String serviceName, ServiceInner resource, Context context);
+
+    /**
+     * Creates or updates a service. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     * `requested` or `service`.
+     * @param resource Parameters supplied to the create or update service operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return service resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ServiceInner createOrUpdate(String resourceGroupName, String mobileNetworkName, String serviceName,
+        ServiceInner resource);
+
+    /**
+     * Creates or updates a service. Must be created in the same location as its parent mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     * `requested` or `service`.
+     * @param resource Parameters supplied to the create or update service operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return service resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ServiceInner createOrUpdate(String resourceGroupName, String mobileNetworkName, String serviceName,
+        ServiceInner resource, Context context);
+
+    /**
+     * Updates service tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     * `requested` or `service`.
+     * @param properties Parameters supplied to update service tags.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return service resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<ServiceInner> updateTagsWithResponse(String resourceGroupName, String mobileNetworkName,
+        String serviceName, TagsObject properties, Context context);
+
+    /**
+     * Updates service tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     * `requested` or `service`.
+     * @param properties Parameters supplied to update service tags.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return service resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    ServiceInner updateTags(String resourceGroupName, String mobileNetworkName, String serviceName,
+        TagsObject properties);
+
+    /**
      * Deletes the specified service.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
@@ -79,169 +244,4 @@ public interface ServicesClient {
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
     void delete(String resourceGroupName, String mobileNetworkName, String serviceName, Context context);
-
-    /**
-     * Gets information about the specified service.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     * `requested` or `service`.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified service along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ServiceInner> getWithResponse(String resourceGroupName, String mobileNetworkName, String serviceName,
-        Context context);
-
-    /**
-     * Gets information about the specified service.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     * `requested` or `service`.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified service.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ServiceInner get(String resourceGroupName, String mobileNetworkName, String serviceName);
-
-    /**
-     * Creates or updates a service. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     * `requested` or `service`.
-     * @param parameters Parameters supplied to the create or update service operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of service resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ServiceInner>, ServiceInner> beginCreateOrUpdate(String resourceGroupName,
-        String mobileNetworkName, String serviceName, ServiceInner parameters);
-
-    /**
-     * Creates or updates a service. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     * `requested` or `service`.
-     * @param parameters Parameters supplied to the create or update service operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of service resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<ServiceInner>, ServiceInner> beginCreateOrUpdate(String resourceGroupName,
-        String mobileNetworkName, String serviceName, ServiceInner parameters, Context context);
-
-    /**
-     * Creates or updates a service. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     * `requested` or `service`.
-     * @param parameters Parameters supplied to the create or update service operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ServiceInner createOrUpdate(String resourceGroupName, String mobileNetworkName, String serviceName,
-        ServiceInner parameters);
-
-    /**
-     * Creates or updates a service. Must be created in the same location as its parent mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     * `requested` or `service`.
-     * @param parameters Parameters supplied to the create or update service operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ServiceInner createOrUpdate(String resourceGroupName, String mobileNetworkName, String serviceName,
-        ServiceInner parameters, Context context);
-
-    /**
-     * Updates service tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     * `requested` or `service`.
-     * @param parameters Parameters supplied to update service tags.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<ServiceInner> updateTagsWithResponse(String resourceGroupName, String mobileNetworkName,
-        String serviceName, TagsObject parameters, Context context);
-
-    /**
-     * Updates service tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     * `requested` or `service`.
-     * @param parameters Parameters supplied to update service tags.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return service resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    ServiceInner updateTags(String resourceGroupName, String mobileNetworkName, String serviceName,
-        TagsObject parameters);
-
-    /**
-     * Gets all the services in a mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the services in a mobile network as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ServiceInner> listByMobileNetwork(String resourceGroupName, String mobileNetworkName);
-
-    /**
-     * Gets all the services in a mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the services in a mobile network as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<ServiceInner> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
-        Context context);
 }

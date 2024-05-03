@@ -7,7 +7,6 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.ManagedServiceIdentity;
 import com.azure.resourcemanager.mobilenetwork.models.PlmnId;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
@@ -22,10 +21,10 @@ import java.util.Map;
 @Fluent
 public final class MobileNetworkInner extends Resource {
     /*
-     * Mobile network properties.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private MobileNetworkPropertiesFormat innerProperties = new MobileNetworkPropertiesFormat();
+    @JsonProperty(value = "properties")
+    private MobileNetworkPropertiesFormat innerProperties;
 
     /*
      * The identity used to retrieve any private keys used for SUPI concealment from Azure key vault.
@@ -46,7 +45,7 @@ public final class MobileNetworkInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: Mobile network properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -181,16 +180,11 @@ public final class MobileNetworkInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model MobileNetworkInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
         if (identity() != null) {
             identity().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(MobileNetworkInner.class);
 }

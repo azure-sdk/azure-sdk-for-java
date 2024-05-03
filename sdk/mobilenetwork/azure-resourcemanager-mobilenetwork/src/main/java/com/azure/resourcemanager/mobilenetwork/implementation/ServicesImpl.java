@@ -27,12 +27,17 @@ public final class ServicesImpl implements Services {
         this.serviceManager = serviceManager;
     }
 
-    public void delete(String resourceGroupName, String mobileNetworkName, String serviceName) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName, serviceName);
+    public PagedIterable<Service> listByMobileNetwork(String resourceGroupName, String mobileNetworkName) {
+        PagedIterable<ServiceInner> inner
+            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ServiceImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String mobileNetworkName, String serviceName, Context context) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName, serviceName, context);
+    public PagedIterable<Service> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
+        Context context) {
+        PagedIterable<ServiceInner> inner
+            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new ServiceImpl(inner1, this.manager()));
     }
 
     public Response<Service> getWithResponse(String resourceGroupName, String mobileNetworkName, String serviceName,
@@ -56,17 +61,12 @@ public final class ServicesImpl implements Services {
         }
     }
 
-    public PagedIterable<Service> listByMobileNetwork(String resourceGroupName, String mobileNetworkName) {
-        PagedIterable<ServiceInner> inner
-            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ServiceImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String mobileNetworkName, String serviceName) {
+        this.serviceClient().delete(resourceGroupName, mobileNetworkName, serviceName);
     }
 
-    public PagedIterable<Service> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
-        Context context) {
-        PagedIterable<ServiceInner> inner
-            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new ServiceImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String mobileNetworkName, String serviceName, Context context) {
+        this.serviceClient().delete(resourceGroupName, mobileNetworkName, serviceName, context);
     }
 
     public Service getById(String id) {

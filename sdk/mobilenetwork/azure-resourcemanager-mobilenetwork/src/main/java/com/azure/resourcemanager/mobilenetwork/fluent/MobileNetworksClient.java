@@ -12,12 +12,179 @@ import com.azure.core.management.polling.PollResult;
 import com.azure.core.util.Context;
 import com.azure.core.util.polling.SyncPoller;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.MobileNetworkInner;
+import com.azure.resourcemanager.mobilenetwork.fluent.models.SimGroupInner;
 import com.azure.resourcemanager.mobilenetwork.models.IdentityAndTagsObject;
 
 /**
  * An instance of this class provides access to all the operations defined in MobileNetworksClient.
  */
 public interface MobileNetworksClient {
+    /**
+     * Lists all the mobile networks in a subscription.
+     * 
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a MobileNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<MobileNetworkInner> list();
+
+    /**
+     * Lists all the mobile networks in a subscription.
+     * 
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a MobileNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<MobileNetworkInner> list(Context context);
+
+    /**
+     * Lists all the mobile networks in a resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a MobileNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<MobileNetworkInner> listByResourceGroup(String resourceGroupName);
+
+    /**
+     * Lists all the mobile networks in a resource group.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a MobileNetwork list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    PagedIterable<MobileNetworkInner> listByResourceGroup(String resourceGroupName, Context context);
+
+    /**
+     * Gets information about the specified mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified mobile network along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<MobileNetworkInner> getByResourceGroupWithResponse(String resourceGroupName, String mobileNetworkName,
+        Context context);
+
+    /**
+     * Gets information about the specified mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified mobile network.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    MobileNetworkInner getByResourceGroup(String resourceGroupName, String mobileNetworkName);
+
+    /**
+     * Creates or updates a mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param resource Parameters supplied to the create or update mobile network operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of mobile network resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<MobileNetworkInner>, MobileNetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String mobileNetworkName, MobileNetworkInner resource);
+
+    /**
+     * Creates or updates a mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param resource Parameters supplied to the create or update mobile network operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of mobile network resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    SyncPoller<PollResult<MobileNetworkInner>, MobileNetworkInner> beginCreateOrUpdate(String resourceGroupName,
+        String mobileNetworkName, MobileNetworkInner resource, Context context);
+
+    /**
+     * Creates or updates a mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param resource Parameters supplied to the create or update mobile network operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return mobile network resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    MobileNetworkInner createOrUpdate(String resourceGroupName, String mobileNetworkName, MobileNetworkInner resource);
+
+    /**
+     * Creates or updates a mobile network.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param resource Parameters supplied to the create or update mobile network operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return mobile network resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    MobileNetworkInner createOrUpdate(String resourceGroupName, String mobileNetworkName, MobileNetworkInner resource,
+        Context context);
+
+    /**
+     * Updates mobile network tags and managed identity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param properties Parameters supplied to update mobile network tags and/or identity.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return mobile network resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    Response<MobileNetworkInner> updateTagsWithResponse(String resourceGroupName, String mobileNetworkName,
+        IdentityAndTagsObject properties, Context context);
+
+    /**
+     * Updates mobile network tags and managed identity.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
+     * @param properties Parameters supplied to update mobile network tags and/or identity.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return mobile network resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    MobileNetworkInner updateTags(String resourceGroupName, String mobileNetworkName, IdentityAndTagsObject properties);
+
     /**
      * Deletes the specified mobile network.
      * 
@@ -71,169 +238,29 @@ public interface MobileNetworksClient {
     void delete(String resourceGroupName, String mobileNetworkName, Context context);
 
     /**
-     * Gets information about the specified mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified mobile network along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<MobileNetworkInner> getByResourceGroupWithResponse(String resourceGroupName, String mobileNetworkName,
-        Context context);
-
-    /**
-     * Gets information about the specified mobile network.
+     * Gets all the SIM groups assigned to a mobile network.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified mobile network.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    MobileNetworkInner getByResourceGroup(String resourceGroupName, String mobileNetworkName);
-
-    /**
-     * Creates or updates a mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param parameters Parameters supplied to the create or update mobile network operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of mobile network resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<MobileNetworkInner>, MobileNetworkInner> beginCreateOrUpdate(String resourceGroupName,
-        String mobileNetworkName, MobileNetworkInner parameters);
-
-    /**
-     * Creates or updates a mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param parameters Parameters supplied to the create or update mobile network operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of mobile network resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    SyncPoller<PollResult<MobileNetworkInner>, MobileNetworkInner> beginCreateOrUpdate(String resourceGroupName,
-        String mobileNetworkName, MobileNetworkInner parameters, Context context);
-
-    /**
-     * Creates or updates a mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param parameters Parameters supplied to the create or update mobile network operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mobile network resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    MobileNetworkInner createOrUpdate(String resourceGroupName, String mobileNetworkName,
-        MobileNetworkInner parameters);
-
-    /**
-     * Creates or updates a mobile network.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param parameters Parameters supplied to the create or update mobile network operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mobile network resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    MobileNetworkInner createOrUpdate(String resourceGroupName, String mobileNetworkName, MobileNetworkInner parameters,
-        Context context);
-
-    /**
-     * Updates mobile network tags and managed identity.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param parameters Parameters supplied to update mobile network tags and/or identity.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mobile network resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<MobileNetworkInner> updateTagsWithResponse(String resourceGroupName, String mobileNetworkName,
-        IdentityAndTagsObject parameters, Context context);
-
-    /**
-     * Updates mobile network tags and managed identity.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param mobileNetworkName The name of the mobile network.
-     * @param parameters Parameters supplied to update mobile network tags and/or identity.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return mobile network resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    MobileNetworkInner updateTags(String resourceGroupName, String mobileNetworkName, IdentityAndTagsObject parameters);
-
-    /**
-     * Lists all the mobile networks in a subscription.
-     * 
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for mobile networks API service call as paginated response with {@link PagedIterable}.
+     * @return all the SIM groups assigned to a mobile network as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<MobileNetworkInner> list();
+    PagedIterable<SimGroupInner> listSimGroups(String resourceGroupName, String mobileNetworkName);
 
     /**
-     * Lists all the mobile networks in a subscription.
+     * Gets all the SIM groups assigned to a mobile network.
      * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param mobileNetworkName The name of the mobile network.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for mobile networks API service call as paginated response with {@link PagedIterable}.
+     * @return all the SIM groups assigned to a mobile network as paginated response with {@link PagedIterable}.
      */
     @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<MobileNetworkInner> list(Context context);
-
-    /**
-     * Lists all the mobile networks in a resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for mobile networks API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<MobileNetworkInner> listByResourceGroup(String resourceGroupName);
-
-    /**
-     * Lists all the mobile networks in a resource group.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for mobile networks API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    PagedIterable<MobileNetworkInner> listByResourceGroup(String resourceGroupName, Context context);
+    PagedIterable<SimGroupInner> listSimGroups(String resourceGroupName, String mobileNetworkName, Context context);
 }

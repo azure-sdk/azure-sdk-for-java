@@ -13,24 +13,9 @@ import java.util.Collection;
  */
 public final class ProvisioningState extends ExpandableStringEnum<ProvisioningState> {
     /**
-     * Static value Unknown for ProvisioningState.
-     */
-    public static final ProvisioningState UNKNOWN = fromString("Unknown");
-
-    /**
      * Static value Succeeded for ProvisioningState.
      */
     public static final ProvisioningState SUCCEEDED = fromString("Succeeded");
-
-    /**
-     * Static value Accepted for ProvisioningState.
-     */
-    public static final ProvisioningState ACCEPTED = fromString("Accepted");
-
-    /**
-     * Static value Deleting for ProvisioningState.
-     */
-    public static final ProvisioningState DELETING = fromString("Deleting");
 
     /**
      * Static value Failed for ProvisioningState.
@@ -41,6 +26,31 @@ public final class ProvisioningState extends ExpandableStringEnum<ProvisioningSt
      * Static value Canceled for ProvisioningState.
      */
     public static final ProvisioningState CANCELED = fromString("Canceled");
+
+    /**
+     * Static value Provisioning for ProvisioningState.
+     */
+    public static final ProvisioningState PROVISIONING = fromString("Provisioning");
+
+    /**
+     * Static value Updating for ProvisioningState.
+     */
+    public static final ProvisioningState UPDATING = fromString("Updating");
+
+    /**
+     * Static value Unknown for ProvisioningState.
+     */
+    public static final ProvisioningState UNKNOWN = fromString("Unknown");
+
+    /**
+     * Static value Accepted for ProvisioningState.
+     */
+    public static final ProvisioningState ACCEPTED = fromString("Accepted");
+
+    /**
+     * Static value Deleting for ProvisioningState.
+     */
+    public static final ProvisioningState DELETING = fromString("Deleting");
 
     /**
      * Static value Deleted for ProvisioningState.

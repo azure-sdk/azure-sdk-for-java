@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ConnectedClusterResourceId {
     /*
-     * Azure Arc connected cluster resource ID.
+     * Azure Arc custom location resource ID.
      */
     @JsonProperty(value = "id", required = true)
     private String id;
@@ -26,7 +26,7 @@ public final class ConnectedClusterResourceId {
     }
 
     /**
-     * Get the id property: Azure Arc connected cluster resource ID.
+     * Get the id property: Azure Arc custom location resource ID.
      * 
      * @return the id value.
      */
@@ -35,7 +35,7 @@ public final class ConnectedClusterResourceId {
     }
 
     /**
-     * Set the id property: Azure Arc connected cluster resource ID.
+     * Set the id property: Azure Arc custom location resource ID.
      * 
      * @param id the id value to set.
      * @return the ConnectedClusterResourceId object itself.
@@ -52,8 +52,8 @@ public final class ConnectedClusterResourceId {
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property id in model ConnectedClusterResourceId"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property id in model ConnectedClusterResourceId"));
         }
     }
 

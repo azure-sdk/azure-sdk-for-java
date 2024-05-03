@@ -5,8 +5,10 @@
 package com.azure.resourcemanager.mobilenetwork.implementation;
 
 import com.azure.resourcemanager.mobilenetwork.fluent.models.OperationInner;
+import com.azure.resourcemanager.mobilenetwork.models.ActionType;
 import com.azure.resourcemanager.mobilenetwork.models.Operation;
 import com.azure.resourcemanager.mobilenetwork.models.OperationDisplay;
+import com.azure.resourcemanager.mobilenetwork.models.Origin;
 
 public final class OperationImpl implements Operation {
     private OperationInner innerObject;
@@ -19,16 +21,24 @@ public final class OperationImpl implements Operation {
         this.serviceManager = serviceManager;
     }
 
-    public Boolean isDataAction() {
-        return this.innerModel().isDataAction();
-    }
-
     public String name() {
         return this.innerModel().name();
     }
 
+    public Boolean isDataAction() {
+        return this.innerModel().isDataAction();
+    }
+
     public OperationDisplay display() {
         return this.innerModel().display();
+    }
+
+    public Origin origin() {
+        return this.innerModel().origin();
+    }
+
+    public ActionType actionType() {
+        return this.innerModel().actionType();
     }
 
     public OperationInner innerModel() {

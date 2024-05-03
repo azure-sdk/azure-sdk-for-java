@@ -7,7 +7,6 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.PacketCaptureStatus;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,11 +19,10 @@ import java.util.List;
 @Fluent
 public final class PacketCaptureInner extends ProxyResource {
     /*
-     * Packet capture session properties. Packet capture file(s) derived from the name of this session will be uploaded
-     * to the Storage Account Container URL in the packet core control plane properties
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private PacketCapturePropertiesFormat innerProperties = new PacketCapturePropertiesFormat();
+    @JsonProperty(value = "properties")
+    private PacketCapturePropertiesFormat innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -39,9 +37,7 @@ public final class PacketCaptureInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: Packet capture session properties. Packet capture file(s) derived from the
-     * name of this session will be uploaded to the Storage Account Container URL in the packet core control plane
-     * properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -118,8 +114,8 @@ public final class PacketCaptureInner extends ProxyResource {
     }
 
     /**
-     * Get the bytesToCapturePerPacket property: Number of bytes captured per packet, the remaining bytes are
-     * truncated. The default "0" means the entire packet is captured.
+     * Get the bytesToCapturePerPacket property: Number of bytes captured per packet, the remaining bytes are truncated.
+     * The default "0" means the entire packet is captured.
      * 
      * @return the bytesToCapturePerPacket value.
      */
@@ -128,8 +124,8 @@ public final class PacketCaptureInner extends ProxyResource {
     }
 
     /**
-     * Set the bytesToCapturePerPacket property: Number of bytes captured per packet, the remaining bytes are
-     * truncated. The default "0" means the entire packet is captured.
+     * Set the bytesToCapturePerPacket property: Number of bytes captured per packet, the remaining bytes are truncated.
+     * The default "0" means the entire packet is captured.
      * 
      * @param bytesToCapturePerPacket the bytesToCapturePerPacket value to set.
      * @return the PacketCaptureInner object itself.
@@ -203,13 +199,8 @@ public final class PacketCaptureInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model PacketCaptureInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PacketCaptureInner.class);
 }

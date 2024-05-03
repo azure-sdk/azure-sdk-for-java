@@ -7,7 +7,6 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.Platform;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,11 +18,10 @@ import java.util.List;
 @Fluent
 public final class PacketCoreControlPlaneVersionInner extends ProxyResource {
     /*
-     * Packet core control plane version properties.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private PacketCoreControlPlaneVersionPropertiesFormat innerProperties
-        = new PacketCoreControlPlaneVersionPropertiesFormat();
+    @JsonProperty(value = "properties")
+    private PacketCoreControlPlaneVersionPropertiesFormat innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -38,7 +36,7 @@ public final class PacketCoreControlPlaneVersionInner extends ProxyResource {
     }
 
     /**
-     * Get the innerProperties property: Packet core control plane version properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -93,13 +91,8 @@ public final class PacketCoreControlPlaneVersionInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property innerProperties in model PacketCoreControlPlaneVersionInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PacketCoreControlPlaneVersionInner.class);
 }

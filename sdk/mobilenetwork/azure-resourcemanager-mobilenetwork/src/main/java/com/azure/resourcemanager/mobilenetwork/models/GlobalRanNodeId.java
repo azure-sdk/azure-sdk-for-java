@@ -14,52 +14,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class GlobalRanNodeId {
     /*
-     * PLMN Identifier
-     */
-    @JsonProperty(value = "plmnId", required = true)
-    private PlmnId plmnId;
-
-    /*
-     * gNodeB identifier
-     */
-    @JsonProperty(value = "gNbId")
-    private GNbId gNbId;
-
-    /*
-     * NG-eNodeB identifier
-     */
-    @JsonProperty(value = "ngeNbId")
-    private String ngeNbId;
-
-    /*
-     * eNodeB identifier
+     * eNodeB identifier.
      */
     @JsonProperty(value = "eNbId")
     private String eNbId;
 
     /*
-     * N3 IWF identifier
+     * gNodeB identifier.
+     */
+    @JsonProperty(value = "gNbId")
+    private GNbId gNbId;
+
+    /*
+     * N3 IWF identifier.
      */
     @JsonProperty(value = "n3IwfId")
     private String n3IwfId;
 
     /*
-     * W-AGF identifier
+     * NG-eNodeB identifier.
      */
-    @JsonProperty(value = "wagfId")
-    private String wagfId;
+    @JsonProperty(value = "ngeNbId")
+    private String ngeNbId;
 
     /*
-     * TNGF identifier
+     * Network identifier.
+     */
+    @JsonProperty(value = "nid")
+    private String nid;
+
+    /*
+     * PLMN Identifier.
+     */
+    @JsonProperty(value = "plmnId", required = true)
+    private PlmnId plmnId;
+
+    /*
+     * TNGF identifier.
      */
     @JsonProperty(value = "tngfId")
     private String tngfId;
 
     /*
-     * Network identifier
+     * W-AGF identifier.
      */
-    @JsonProperty(value = "nid")
-    private String nid;
+    @JsonProperty(value = "wagfId")
+    private String wagfId;
 
     /**
      * Creates an instance of GlobalRanNodeId class.
@@ -68,22 +68,22 @@ public final class GlobalRanNodeId {
     }
 
     /**
-     * Get the plmnId property: PLMN Identifier.
+     * Get the eNbId property: eNodeB identifier.
      * 
-     * @return the plmnId value.
+     * @return the eNbId value.
      */
-    public PlmnId plmnId() {
-        return this.plmnId;
+    public String eNbId() {
+        return this.eNbId;
     }
 
     /**
-     * Set the plmnId property: PLMN Identifier.
+     * Set the eNbId property: eNodeB identifier.
      * 
-     * @param plmnId the plmnId value to set.
+     * @param eNbId the eNbId value to set.
      * @return the GlobalRanNodeId object itself.
      */
-    public GlobalRanNodeId withPlmnId(PlmnId plmnId) {
-        this.plmnId = plmnId;
+    public GlobalRanNodeId withENbId(String eNbId) {
+        this.eNbId = eNbId;
         return this;
     }
 
@@ -108,46 +108,6 @@ public final class GlobalRanNodeId {
     }
 
     /**
-     * Get the ngeNbId property: NG-eNodeB identifier.
-     * 
-     * @return the ngeNbId value.
-     */
-    public String ngeNbId() {
-        return this.ngeNbId;
-    }
-
-    /**
-     * Set the ngeNbId property: NG-eNodeB identifier.
-     * 
-     * @param ngeNbId the ngeNbId value to set.
-     * @return the GlobalRanNodeId object itself.
-     */
-    public GlobalRanNodeId withNgeNbId(String ngeNbId) {
-        this.ngeNbId = ngeNbId;
-        return this;
-    }
-
-    /**
-     * Get the eNbId property: eNodeB identifier.
-     * 
-     * @return the eNbId value.
-     */
-    public String eNbId() {
-        return this.eNbId;
-    }
-
-    /**
-     * Set the eNbId property: eNodeB identifier.
-     * 
-     * @param eNbId the eNbId value to set.
-     * @return the GlobalRanNodeId object itself.
-     */
-    public GlobalRanNodeId withENbId(String eNbId) {
-        this.eNbId = eNbId;
-        return this;
-    }
-
-    /**
      * Get the n3IwfId property: N3 IWF identifier.
      * 
      * @return the n3IwfId value.
@@ -168,42 +128,22 @@ public final class GlobalRanNodeId {
     }
 
     /**
-     * Get the wagfId property: W-AGF identifier.
+     * Get the ngeNbId property: NG-eNodeB identifier.
      * 
-     * @return the wagfId value.
+     * @return the ngeNbId value.
      */
-    public String wagfId() {
-        return this.wagfId;
+    public String ngeNbId() {
+        return this.ngeNbId;
     }
 
     /**
-     * Set the wagfId property: W-AGF identifier.
+     * Set the ngeNbId property: NG-eNodeB identifier.
      * 
-     * @param wagfId the wagfId value to set.
+     * @param ngeNbId the ngeNbId value to set.
      * @return the GlobalRanNodeId object itself.
      */
-    public GlobalRanNodeId withWagfId(String wagfId) {
-        this.wagfId = wagfId;
-        return this;
-    }
-
-    /**
-     * Get the tngfId property: TNGF identifier.
-     * 
-     * @return the tngfId value.
-     */
-    public String tngfId() {
-        return this.tngfId;
-    }
-
-    /**
-     * Set the tngfId property: TNGF identifier.
-     * 
-     * @param tngfId the tngfId value to set.
-     * @return the GlobalRanNodeId object itself.
-     */
-    public GlobalRanNodeId withTngfId(String tngfId) {
-        this.tngfId = tngfId;
+    public GlobalRanNodeId withNgeNbId(String ngeNbId) {
+        this.ngeNbId = ngeNbId;
         return this;
     }
 
@@ -228,19 +168,79 @@ public final class GlobalRanNodeId {
     }
 
     /**
+     * Get the plmnId property: PLMN Identifier.
+     * 
+     * @return the plmnId value.
+     */
+    public PlmnId plmnId() {
+        return this.plmnId;
+    }
+
+    /**
+     * Set the plmnId property: PLMN Identifier.
+     * 
+     * @param plmnId the plmnId value to set.
+     * @return the GlobalRanNodeId object itself.
+     */
+    public GlobalRanNodeId withPlmnId(PlmnId plmnId) {
+        this.plmnId = plmnId;
+        return this;
+    }
+
+    /**
+     * Get the tngfId property: TNGF identifier.
+     * 
+     * @return the tngfId value.
+     */
+    public String tngfId() {
+        return this.tngfId;
+    }
+
+    /**
+     * Set the tngfId property: TNGF identifier.
+     * 
+     * @param tngfId the tngfId value to set.
+     * @return the GlobalRanNodeId object itself.
+     */
+    public GlobalRanNodeId withTngfId(String tngfId) {
+        this.tngfId = tngfId;
+        return this;
+    }
+
+    /**
+     * Get the wagfId property: W-AGF identifier.
+     * 
+     * @return the wagfId value.
+     */
+    public String wagfId() {
+        return this.wagfId;
+    }
+
+    /**
+     * Set the wagfId property: W-AGF identifier.
+     * 
+     * @param wagfId the wagfId value to set.
+     * @return the GlobalRanNodeId object itself.
+     */
+    public GlobalRanNodeId withWagfId(String wagfId) {
+        this.wagfId = wagfId;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (plmnId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property plmnId in model GlobalRanNodeId"));
-        } else {
-            plmnId().validate();
-        }
         if (gNbId() != null) {
             gNbId().validate();
+        }
+        if (plmnId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property plmnId in model GlobalRanNodeId"));
+        } else {
+            plmnId().validate();
         }
     }
 

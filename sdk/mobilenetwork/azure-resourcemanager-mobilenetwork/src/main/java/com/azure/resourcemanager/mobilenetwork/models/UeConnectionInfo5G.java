@@ -16,46 +16,58 @@ import java.util.List;
 @Fluent
 public final class UeConnectionInfo5G {
     /*
-     * UE Location Info properties
+     * Allowed Network Slice Selection Assistance Information.
      */
-    @JsonProperty(value = "locationInfo")
-    private UeLocationInfo locationInfo;
+    @JsonProperty(value = "allowedNssai")
+    private List<Snssai> allowedNssai;
 
     /*
-     * Global RAN Node ID
-     */
-    @JsonProperty(value = "globalRanNodeId", required = true)
-    private GlobalRanNodeId globalRanNodeId;
-
-    /*
-     * Per-UE transport network layer association
-     */
-    @JsonProperty(value = "perUeTnla")
-    private String perUeTnla;
-
-    /*
-     * The AMF UE NGAP ID
+     * The AMF UE NGAP ID.
      */
     @JsonProperty(value = "amfUeNgapId", required = true)
     private long amfUeNgapId;
 
     /*
-     * The RAN UE NGAP ID
+     * Global RAN Node ID.
      */
-    @JsonProperty(value = "ranUeNgapId", required = true)
-    private int ranUeNgapId;
+    @JsonProperty(value = "globalRanNodeId", required = true)
+    private GlobalRanNodeId globalRanNodeId;
 
     /*
-     * Last Visited TAI
+     * The timestamp of last activity of UE (UTC).
+     */
+    @JsonProperty(value = "lastActivityTime")
+    private OffsetDateTime lastActivityTime;
+
+    /*
+     * Last Visited TAI.
      */
     @JsonProperty(value = "lastVisitedTai")
     private String lastVisitedTai;
 
     /*
-     * Allowed Network Slice Selection Assistance Information
+     * UE Location Info properties.
      */
-    @JsonProperty(value = "allowedNssai")
-    private List<Snssai> allowedNssai;
+    @JsonProperty(value = "locationInfo")
+    private UeLocationInfo locationInfo;
+
+    /*
+     * Per-UE transport network layer association.
+     */
+    @JsonProperty(value = "perUeTnla")
+    private String perUeTnla;
+
+    /*
+     * The RAN UE NGAP ID.
+     */
+    @JsonProperty(value = "ranUeNgapId", required = true)
+    private int ranUeNgapId;
+
+    /*
+     * Radio connection establishment cause.
+     */
+    @JsonProperty(value = "rrcEstablishmentCause", required = true)
+    private RrcEstablishmentCause rrcEstablishmentCause;
 
     /*
      * State of the UE.
@@ -64,22 +76,10 @@ public final class UeConnectionInfo5G {
     private UeState ueState;
 
     /*
-     * Radio connection establishment cause
-     */
-    @JsonProperty(value = "rrcEstablishmentCause", required = true)
-    private RrcEstablishmentCause rrcEstablishmentCause;
-
-    /*
-     * The UE's usage setting
+     * The UE's usage setting.
      */
     @JsonProperty(value = "ueUsageSetting")
     private UeUsageSetting ueUsageSetting;
-
-    /*
-     * The timestamp of last activity of UE (UTC).
-     */
-    @JsonProperty(value = "lastActivityTime")
-    private OffsetDateTime lastActivityTime;
 
     /**
      * Creates an instance of UeConnectionInfo5G class.
@@ -88,62 +88,22 @@ public final class UeConnectionInfo5G {
     }
 
     /**
-     * Get the locationInfo property: UE Location Info properties.
+     * Get the allowedNssai property: Allowed Network Slice Selection Assistance Information.
      * 
-     * @return the locationInfo value.
+     * @return the allowedNssai value.
      */
-    public UeLocationInfo locationInfo() {
-        return this.locationInfo;
+    public List<Snssai> allowedNssai() {
+        return this.allowedNssai;
     }
 
     /**
-     * Set the locationInfo property: UE Location Info properties.
+     * Set the allowedNssai property: Allowed Network Slice Selection Assistance Information.
      * 
-     * @param locationInfo the locationInfo value to set.
+     * @param allowedNssai the allowedNssai value to set.
      * @return the UeConnectionInfo5G object itself.
      */
-    public UeConnectionInfo5G withLocationInfo(UeLocationInfo locationInfo) {
-        this.locationInfo = locationInfo;
-        return this;
-    }
-
-    /**
-     * Get the globalRanNodeId property: Global RAN Node ID.
-     * 
-     * @return the globalRanNodeId value.
-     */
-    public GlobalRanNodeId globalRanNodeId() {
-        return this.globalRanNodeId;
-    }
-
-    /**
-     * Set the globalRanNodeId property: Global RAN Node ID.
-     * 
-     * @param globalRanNodeId the globalRanNodeId value to set.
-     * @return the UeConnectionInfo5G object itself.
-     */
-    public UeConnectionInfo5G withGlobalRanNodeId(GlobalRanNodeId globalRanNodeId) {
-        this.globalRanNodeId = globalRanNodeId;
-        return this;
-    }
-
-    /**
-     * Get the perUeTnla property: Per-UE transport network layer association.
-     * 
-     * @return the perUeTnla value.
-     */
-    public String perUeTnla() {
-        return this.perUeTnla;
-    }
-
-    /**
-     * Set the perUeTnla property: Per-UE transport network layer association.
-     * 
-     * @param perUeTnla the perUeTnla value to set.
-     * @return the UeConnectionInfo5G object itself.
-     */
-    public UeConnectionInfo5G withPerUeTnla(String perUeTnla) {
-        this.perUeTnla = perUeTnla;
+    public UeConnectionInfo5G withAllowedNssai(List<Snssai> allowedNssai) {
+        this.allowedNssai = allowedNssai;
         return this;
     }
 
@@ -168,122 +128,22 @@ public final class UeConnectionInfo5G {
     }
 
     /**
-     * Get the ranUeNgapId property: The RAN UE NGAP ID.
+     * Get the globalRanNodeId property: Global RAN Node ID.
      * 
-     * @return the ranUeNgapId value.
+     * @return the globalRanNodeId value.
      */
-    public int ranUeNgapId() {
-        return this.ranUeNgapId;
+    public GlobalRanNodeId globalRanNodeId() {
+        return this.globalRanNodeId;
     }
 
     /**
-     * Set the ranUeNgapId property: The RAN UE NGAP ID.
+     * Set the globalRanNodeId property: Global RAN Node ID.
      * 
-     * @param ranUeNgapId the ranUeNgapId value to set.
+     * @param globalRanNodeId the globalRanNodeId value to set.
      * @return the UeConnectionInfo5G object itself.
      */
-    public UeConnectionInfo5G withRanUeNgapId(int ranUeNgapId) {
-        this.ranUeNgapId = ranUeNgapId;
-        return this;
-    }
-
-    /**
-     * Get the lastVisitedTai property: Last Visited TAI.
-     * 
-     * @return the lastVisitedTai value.
-     */
-    public String lastVisitedTai() {
-        return this.lastVisitedTai;
-    }
-
-    /**
-     * Set the lastVisitedTai property: Last Visited TAI.
-     * 
-     * @param lastVisitedTai the lastVisitedTai value to set.
-     * @return the UeConnectionInfo5G object itself.
-     */
-    public UeConnectionInfo5G withLastVisitedTai(String lastVisitedTai) {
-        this.lastVisitedTai = lastVisitedTai;
-        return this;
-    }
-
-    /**
-     * Get the allowedNssai property: Allowed Network Slice Selection Assistance Information.
-     * 
-     * @return the allowedNssai value.
-     */
-    public List<Snssai> allowedNssai() {
-        return this.allowedNssai;
-    }
-
-    /**
-     * Set the allowedNssai property: Allowed Network Slice Selection Assistance Information.
-     * 
-     * @param allowedNssai the allowedNssai value to set.
-     * @return the UeConnectionInfo5G object itself.
-     */
-    public UeConnectionInfo5G withAllowedNssai(List<Snssai> allowedNssai) {
-        this.allowedNssai = allowedNssai;
-        return this;
-    }
-
-    /**
-     * Get the ueState property: State of the UE.
-     * 
-     * @return the ueState value.
-     */
-    public UeState ueState() {
-        return this.ueState;
-    }
-
-    /**
-     * Set the ueState property: State of the UE.
-     * 
-     * @param ueState the ueState value to set.
-     * @return the UeConnectionInfo5G object itself.
-     */
-    public UeConnectionInfo5G withUeState(UeState ueState) {
-        this.ueState = ueState;
-        return this;
-    }
-
-    /**
-     * Get the rrcEstablishmentCause property: Radio connection establishment cause.
-     * 
-     * @return the rrcEstablishmentCause value.
-     */
-    public RrcEstablishmentCause rrcEstablishmentCause() {
-        return this.rrcEstablishmentCause;
-    }
-
-    /**
-     * Set the rrcEstablishmentCause property: Radio connection establishment cause.
-     * 
-     * @param rrcEstablishmentCause the rrcEstablishmentCause value to set.
-     * @return the UeConnectionInfo5G object itself.
-     */
-    public UeConnectionInfo5G withRrcEstablishmentCause(RrcEstablishmentCause rrcEstablishmentCause) {
-        this.rrcEstablishmentCause = rrcEstablishmentCause;
-        return this;
-    }
-
-    /**
-     * Get the ueUsageSetting property: The UE's usage setting.
-     * 
-     * @return the ueUsageSetting value.
-     */
-    public UeUsageSetting ueUsageSetting() {
-        return this.ueUsageSetting;
-    }
-
-    /**
-     * Set the ueUsageSetting property: The UE's usage setting.
-     * 
-     * @param ueUsageSetting the ueUsageSetting value to set.
-     * @return the UeConnectionInfo5G object itself.
-     */
-    public UeConnectionInfo5G withUeUsageSetting(UeUsageSetting ueUsageSetting) {
-        this.ueUsageSetting = ueUsageSetting;
+    public UeConnectionInfo5G withGlobalRanNodeId(GlobalRanNodeId globalRanNodeId) {
+        this.globalRanNodeId = globalRanNodeId;
         return this;
     }
 
@@ -308,30 +168,172 @@ public final class UeConnectionInfo5G {
     }
 
     /**
+     * Get the lastVisitedTai property: Last Visited TAI.
+     * 
+     * @return the lastVisitedTai value.
+     */
+    public String lastVisitedTai() {
+        return this.lastVisitedTai;
+    }
+
+    /**
+     * Set the lastVisitedTai property: Last Visited TAI.
+     * 
+     * @param lastVisitedTai the lastVisitedTai value to set.
+     * @return the UeConnectionInfo5G object itself.
+     */
+    public UeConnectionInfo5G withLastVisitedTai(String lastVisitedTai) {
+        this.lastVisitedTai = lastVisitedTai;
+        return this;
+    }
+
+    /**
+     * Get the locationInfo property: UE Location Info properties.
+     * 
+     * @return the locationInfo value.
+     */
+    public UeLocationInfo locationInfo() {
+        return this.locationInfo;
+    }
+
+    /**
+     * Set the locationInfo property: UE Location Info properties.
+     * 
+     * @param locationInfo the locationInfo value to set.
+     * @return the UeConnectionInfo5G object itself.
+     */
+    public UeConnectionInfo5G withLocationInfo(UeLocationInfo locationInfo) {
+        this.locationInfo = locationInfo;
+        return this;
+    }
+
+    /**
+     * Get the perUeTnla property: Per-UE transport network layer association.
+     * 
+     * @return the perUeTnla value.
+     */
+    public String perUeTnla() {
+        return this.perUeTnla;
+    }
+
+    /**
+     * Set the perUeTnla property: Per-UE transport network layer association.
+     * 
+     * @param perUeTnla the perUeTnla value to set.
+     * @return the UeConnectionInfo5G object itself.
+     */
+    public UeConnectionInfo5G withPerUeTnla(String perUeTnla) {
+        this.perUeTnla = perUeTnla;
+        return this;
+    }
+
+    /**
+     * Get the ranUeNgapId property: The RAN UE NGAP ID.
+     * 
+     * @return the ranUeNgapId value.
+     */
+    public int ranUeNgapId() {
+        return this.ranUeNgapId;
+    }
+
+    /**
+     * Set the ranUeNgapId property: The RAN UE NGAP ID.
+     * 
+     * @param ranUeNgapId the ranUeNgapId value to set.
+     * @return the UeConnectionInfo5G object itself.
+     */
+    public UeConnectionInfo5G withRanUeNgapId(int ranUeNgapId) {
+        this.ranUeNgapId = ranUeNgapId;
+        return this;
+    }
+
+    /**
+     * Get the rrcEstablishmentCause property: Radio connection establishment cause.
+     * 
+     * @return the rrcEstablishmentCause value.
+     */
+    public RrcEstablishmentCause rrcEstablishmentCause() {
+        return this.rrcEstablishmentCause;
+    }
+
+    /**
+     * Set the rrcEstablishmentCause property: Radio connection establishment cause.
+     * 
+     * @param rrcEstablishmentCause the rrcEstablishmentCause value to set.
+     * @return the UeConnectionInfo5G object itself.
+     */
+    public UeConnectionInfo5G withRrcEstablishmentCause(RrcEstablishmentCause rrcEstablishmentCause) {
+        this.rrcEstablishmentCause = rrcEstablishmentCause;
+        return this;
+    }
+
+    /**
+     * Get the ueState property: State of the UE.
+     * 
+     * @return the ueState value.
+     */
+    public UeState ueState() {
+        return this.ueState;
+    }
+
+    /**
+     * Set the ueState property: State of the UE.
+     * 
+     * @param ueState the ueState value to set.
+     * @return the UeConnectionInfo5G object itself.
+     */
+    public UeConnectionInfo5G withUeState(UeState ueState) {
+        this.ueState = ueState;
+        return this;
+    }
+
+    /**
+     * Get the ueUsageSetting property: The UE's usage setting.
+     * 
+     * @return the ueUsageSetting value.
+     */
+    public UeUsageSetting ueUsageSetting() {
+        return this.ueUsageSetting;
+    }
+
+    /**
+     * Set the ueUsageSetting property: The UE's usage setting.
+     * 
+     * @param ueUsageSetting the ueUsageSetting value to set.
+     * @return the UeConnectionInfo5G object itself.
+     */
+    public UeConnectionInfo5G withUeUsageSetting(UeUsageSetting ueUsageSetting) {
+        this.ueUsageSetting = ueUsageSetting;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (locationInfo() != null) {
-            locationInfo().validate();
-        }
-        if (globalRanNodeId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property globalRanNodeId in model UeConnectionInfo5G"));
-        } else {
-            globalRanNodeId().validate();
-        }
         if (allowedNssai() != null) {
             allowedNssai().forEach(e -> e.validate());
         }
-        if (ueState() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property ueState in model UeConnectionInfo5G"));
+        if (globalRanNodeId() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property globalRanNodeId in model UeConnectionInfo5G"));
+        } else {
+            globalRanNodeId().validate();
+        }
+        if (locationInfo() != null) {
+            locationInfo().validate();
         }
         if (rrcEstablishmentCause() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property rrcEstablishmentCause in model UeConnectionInfo5G"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property rrcEstablishmentCause in model UeConnectionInfo5G"));
+        }
+        if (ueState() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property ueState in model UeConnectionInfo5G"));
         }
     }
 

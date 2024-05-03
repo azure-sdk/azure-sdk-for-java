@@ -94,7 +94,7 @@ public final class PacketCoreDataPlaneImpl
 
     private String packetCoreDataPlaneName;
 
-    private TagsObject updateParameters;
+    private TagsObject updateProperties;
 
     public PacketCoreDataPlaneImpl withExistingPacketCoreControlPlane(String resourceGroupName,
         String packetCoreControlPlaneName) {
@@ -104,14 +104,18 @@ public final class PacketCoreDataPlaneImpl
     }
 
     public PacketCoreDataPlane create() {
-        this.innerObject = serviceManager.serviceClient().getPacketCoreDataPlanes().createOrUpdate(resourceGroupName,
-            packetCoreControlPlaneName, packetCoreDataPlaneName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreDataPlanes()
+            .createOrUpdate(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, this.innerModel(),
+                Context.NONE);
         return this;
     }
 
     public PacketCoreDataPlane create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getPacketCoreDataPlanes().createOrUpdate(resourceGroupName,
-            packetCoreControlPlaneName, packetCoreDataPlaneName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreDataPlanes()
+            .createOrUpdate(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, this.innerModel(),
+                context);
         return this;
     }
 
@@ -122,21 +126,25 @@ public final class PacketCoreDataPlaneImpl
     }
 
     public PacketCoreDataPlaneImpl update() {
-        this.updateParameters = new TagsObject();
+        this.updateProperties = new TagsObject();
         return this;
     }
 
     public PacketCoreDataPlane apply() {
-        this.innerObject
-            = serviceManager.serviceClient().getPacketCoreDataPlanes().updateTagsWithResponse(resourceGroupName,
-                packetCoreControlPlaneName, packetCoreDataPlaneName, updateParameters, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreDataPlanes()
+            .updateTagsWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+                updateProperties, Context.NONE)
+            .getValue();
         return this;
     }
 
     public PacketCoreDataPlane apply(Context context) {
-        this.innerObject
-            = serviceManager.serviceClient().getPacketCoreDataPlanes().updateTagsWithResponse(resourceGroupName,
-                packetCoreControlPlaneName, packetCoreDataPlaneName, updateParameters, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreDataPlanes()
+            .updateTagsWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+                updateProperties, context)
+            .getValue();
         return this;
     }
 
@@ -152,14 +160,16 @@ public final class PacketCoreDataPlaneImpl
     }
 
     public PacketCoreDataPlane refresh() {
-        this.innerObject = serviceManager.serviceClient().getPacketCoreDataPlanes()
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreDataPlanes()
             .getWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, Context.NONE)
             .getValue();
         return this;
     }
 
     public PacketCoreDataPlane refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getPacketCoreDataPlanes()
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreDataPlanes()
             .getWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, context)
             .getValue();
         return this;
@@ -175,19 +185,19 @@ public final class PacketCoreDataPlaneImpl
         return this;
     }
 
-    public PacketCoreDataPlaneImpl withUserPlaneAccessInterface(InterfaceProperties userPlaneAccessInterface) {
-        this.innerModel().withUserPlaneAccessInterface(userPlaneAccessInterface);
-        return this;
-    }
-
     public PacketCoreDataPlaneImpl withTags(Map<String, String> tags) {
         if (isInCreateMode()) {
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateParameters.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
+    }
+
+    public PacketCoreDataPlaneImpl withUserPlaneAccessInterface(InterfaceProperties userPlaneAccessInterface) {
+        this.innerModel().withUserPlaneAccessInterface(userPlaneAccessInterface);
+        return this;
     }
 
     public PacketCoreDataPlaneImpl

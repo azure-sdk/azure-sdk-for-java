@@ -120,9 +120,8 @@ public interface Service {
     /**
      * The entirety of the Service definition.
      */
-    interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithParentResource,
-        DefinitionStages.WithServicePrecedence, DefinitionStages.WithPccRules, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
 
     /**
@@ -167,44 +166,15 @@ public interface Service {
              * @param mobileNetworkName The name of the mobile network.
              * @return the next definition stage.
              */
-            WithServicePrecedence withExistingMobileNetwork(String resourceGroupName, String mobileNetworkName);
-        }
-
-        /**
-         * The stage of the Service definition allowing to specify servicePrecedence.
-         */
-        interface WithServicePrecedence {
-            /**
-             * Specifies the servicePrecedence property: A precedence value that is used to decide between services when
-             * identifying the QoS values to use for a particular SIM. A lower value means a higher priority. This value
-             * should be unique among all services configured in the mobile network..
-             * 
-             * @param servicePrecedence A precedence value that is used to decide between services when identifying the
-             * QoS values to use for a particular SIM. A lower value means a higher priority. This value should be
-             * unique among all services configured in the mobile network.
-             * @return the next definition stage.
-             */
-            WithPccRules withServicePrecedence(int servicePrecedence);
-        }
-
-        /**
-         * The stage of the Service definition allowing to specify pccRules.
-         */
-        interface WithPccRules {
-            /**
-             * Specifies the pccRules property: The set of data flow policy rules that make up this service..
-             * 
-             * @param pccRules The set of data flow policy rules that make up this service.
-             * @return the next definition stage.
-             */
-            WithCreate withPccRules(List<PccRuleConfiguration> pccRules);
+            WithCreate withExistingMobileNetwork(String resourceGroupName, String mobileNetworkName);
         }
 
         /**
          * The stage of the Service definition which contains all the minimum required properties for the resource to be
          * created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithServiceQosPolicy {
+        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithServicePrecedence,
+            DefinitionStages.WithServiceQosPolicy, DefinitionStages.WithPccRules {
             /**
              * Executes the create request.
              * 
@@ -235,6 +205,23 @@ public interface Service {
         }
 
         /**
+         * The stage of the Service definition allowing to specify servicePrecedence.
+         */
+        interface WithServicePrecedence {
+            /**
+             * Specifies the servicePrecedence property: A precedence value that is used to decide between services when
+             * identifying the QoS values to use for a particular SIM. A lower value means a higher priority. This value
+             * should be unique among all services configured in the mobile network..
+             * 
+             * @param servicePrecedence A precedence value that is used to decide between services when identifying the
+             * QoS values to use for a particular SIM. A lower value means a higher priority. This value should be
+             * unique among all services configured in the mobile network.
+             * @return the next definition stage.
+             */
+            WithCreate withServicePrecedence(int servicePrecedence);
+        }
+
+        /**
          * The stage of the Service definition allowing to specify serviceQosPolicy.
          */
         interface WithServiceQosPolicy {
@@ -249,6 +236,19 @@ public interface Service {
              * @return the next definition stage.
              */
             WithCreate withServiceQosPolicy(QosPolicy serviceQosPolicy);
+        }
+
+        /**
+         * The stage of the Service definition allowing to specify pccRules.
+         */
+        interface WithPccRules {
+            /**
+             * Specifies the pccRules property: The set of data flow policy rules that make up this service..
+             * 
+             * @param pccRules The set of data flow policy rules that make up this service.
+             * @return the next definition stage.
+             */
+            WithCreate withPccRules(List<PccRuleConfiguration> pccRules);
         }
     }
 

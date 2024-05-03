@@ -19,7 +19,7 @@ import java.util.Map;
 @Fluent
 public final class SiteInner extends Resource {
     /*
-     * Site properties.
+     * The resource-specific properties for this resource.
      */
     @JsonProperty(value = "properties")
     private SitePropertiesFormat innerProperties;
@@ -37,7 +37,7 @@ public final class SiteInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: Site properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */

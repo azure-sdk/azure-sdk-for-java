@@ -4,7 +4,6 @@
 
 /**
  * Package containing the service clients for MobileNetworkManagementClient.
- * The resources in this API specification will be used to manage attached data network resources in mobile network
- * attached to a particular packet core instance.
+ * Mobile Network Management API.
  */
 package com.azure.resourcemanager.mobilenetwork.fluent;

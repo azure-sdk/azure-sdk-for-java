@@ -6,8 +6,13 @@ package com.azure.resourcemanager.mobilenetwork.implementation;
 
 import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.UeInfoInner;
+import com.azure.resourcemanager.mobilenetwork.models.DnnIpPair;
+import com.azure.resourcemanager.mobilenetwork.models.RatType;
 import com.azure.resourcemanager.mobilenetwork.models.UeInfo;
-import com.azure.resourcemanager.mobilenetwork.models.UeInfoPropertiesFormat;
+import com.azure.resourcemanager.mobilenetwork.models.UeState;
+import java.time.OffsetDateTime;
+import java.util.Collections;
+import java.util.List;
 
 public final class UeInfoImpl implements UeInfo {
     private UeInfoInner innerObject;
@@ -31,12 +36,29 @@ public final class UeInfoImpl implements UeInfo {
         return this.innerModel().type();
     }
 
-    public UeInfoPropertiesFormat properties() {
-        return this.innerModel().properties();
-    }
-
     public SystemData systemData() {
         return this.innerModel().systemData();
+    }
+
+    public RatType ratType() {
+        return this.innerModel().ratType();
+    }
+
+    public UeState ueState() {
+        return this.innerModel().ueState();
+    }
+
+    public List<DnnIpPair> ueIpAddresses() {
+        List<DnnIpPair> inner = this.innerModel().ueIpAddresses();
+        if (inner != null) {
+            return Collections.unmodifiableList(inner);
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    public OffsetDateTime lastReadAt() {
+        return this.innerModel().lastReadAt();
     }
 
     public UeInfoInner innerModel() {

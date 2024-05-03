@@ -13,53 +13,33 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class UeQosFlow {
     /*
-     * Qos Flow Identifier
-     */
-    @JsonProperty(value = "qfi", required = true)
-    private int qfi;
-
-    /*
      * 5G QoS Identifier.
      */
     @JsonProperty(value = "fiveqi", required = true)
     private int fiveqi;
 
     /*
-     * Maximum Bit Rate
+     * Guaranteed Bit Rate.
+     */
+    @JsonProperty(value = "gbr")
+    private Ambr gbr;
+
+    /*
+     * Maximum Bit Rate.
      */
     @JsonProperty(value = "mbr")
     private Ambr mbr;
 
     /*
-     * Guaranteed Bit Rate
+     * Qos Flow Identifier.
      */
-    @JsonProperty(value = "gbr")
-    private Ambr gbr;
+    @JsonProperty(value = "qfi", required = true)
+    private int qfi;
 
     /**
      * Creates an instance of UeQosFlow class.
      */
     public UeQosFlow() {
-    }
-
-    /**
-     * Get the qfi property: Qos Flow Identifier.
-     * 
-     * @return the qfi value.
-     */
-    public int qfi() {
-        return this.qfi;
-    }
-
-    /**
-     * Set the qfi property: Qos Flow Identifier.
-     * 
-     * @param qfi the qfi value to set.
-     * @return the UeQosFlow object itself.
-     */
-    public UeQosFlow withQfi(int qfi) {
-        this.qfi = qfi;
-        return this;
     }
 
     /**
@@ -79,26 +59,6 @@ public final class UeQosFlow {
      */
     public UeQosFlow withFiveqi(int fiveqi) {
         this.fiveqi = fiveqi;
-        return this;
-    }
-
-    /**
-     * Get the mbr property: Maximum Bit Rate.
-     * 
-     * @return the mbr value.
-     */
-    public Ambr mbr() {
-        return this.mbr;
-    }
-
-    /**
-     * Set the mbr property: Maximum Bit Rate.
-     * 
-     * @param mbr the mbr value to set.
-     * @return the UeQosFlow object itself.
-     */
-    public UeQosFlow withMbr(Ambr mbr) {
-        this.mbr = mbr;
         return this;
     }
 
@@ -123,16 +83,56 @@ public final class UeQosFlow {
     }
 
     /**
+     * Get the mbr property: Maximum Bit Rate.
+     * 
+     * @return the mbr value.
+     */
+    public Ambr mbr() {
+        return this.mbr;
+    }
+
+    /**
+     * Set the mbr property: Maximum Bit Rate.
+     * 
+     * @param mbr the mbr value to set.
+     * @return the UeQosFlow object itself.
+     */
+    public UeQosFlow withMbr(Ambr mbr) {
+        this.mbr = mbr;
+        return this;
+    }
+
+    /**
+     * Get the qfi property: Qos Flow Identifier.
+     * 
+     * @return the qfi value.
+     */
+    public int qfi() {
+        return this.qfi;
+    }
+
+    /**
+     * Set the qfi property: Qos Flow Identifier.
+     * 
+     * @param qfi the qfi value to set.
+     * @return the UeQosFlow object itself.
+     */
+    public UeQosFlow withQfi(int qfi) {
+        this.qfi = qfi;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (mbr() != null) {
-            mbr().validate();
-        }
         if (gbr() != null) {
             gbr().validate();
+        }
+        if (mbr() != null) {
+            mbr().validate();
         }
     }
 }

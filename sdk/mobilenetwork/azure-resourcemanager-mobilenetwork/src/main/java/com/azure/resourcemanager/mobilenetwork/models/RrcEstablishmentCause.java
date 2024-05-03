@@ -18,24 +18,24 @@ public final class RrcEstablishmentCause extends ExpandableStringEnum<RrcEstabli
     public static final RrcEstablishmentCause EMERGENCY = fromString("Emergency");
 
     /**
-     * Static value MobileOriginatedSignaling for RrcEstablishmentCause.
-     */
-    public static final RrcEstablishmentCause MOBILE_ORIGINATED_SIGNALING = fromString("MobileOriginatedSignaling");
-
-    /**
-     * Static value MobileTerminatedSignaling for RrcEstablishmentCause.
-     */
-    public static final RrcEstablishmentCause MOBILE_TERMINATED_SIGNALING = fromString("MobileTerminatedSignaling");
-
-    /**
      * Static value MobileOriginatedData for RrcEstablishmentCause.
      */
     public static final RrcEstablishmentCause MOBILE_ORIGINATED_DATA = fromString("MobileOriginatedData");
 
     /**
+     * Static value MobileOriginatedSignaling for RrcEstablishmentCause.
+     */
+    public static final RrcEstablishmentCause MOBILE_ORIGINATED_SIGNALING = fromString("MobileOriginatedSignaling");
+
+    /**
      * Static value MobileTerminatedData for RrcEstablishmentCause.
      */
     public static final RrcEstablishmentCause MOBILE_TERMINATED_DATA = fromString("MobileTerminatedData");
+
+    /**
+     * Static value MobileTerminatedSignaling for RrcEstablishmentCause.
+     */
+    public static final RrcEstablishmentCause MOBILE_TERMINATED_SIGNALING = fromString("MobileTerminatedSignaling");
 
     /**
      * Static value SMS for RrcEstablishmentCause.

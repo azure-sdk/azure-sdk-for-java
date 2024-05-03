@@ -13,31 +13,29 @@ import com.azure.core.util.Context;
  */
 public interface Sites {
     /**
-     * Deletes the specified mobile network site. This will also delete any network functions that are a part of this
-     * site.
+     * Lists all sites in the mobile network.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
-     * @param siteName The name of the mobile network site.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a Site list operation as paginated response with {@link PagedIterable}.
      */
-    void delete(String resourceGroupName, String mobileNetworkName, String siteName);
+    PagedIterable<Site> listByMobileNetwork(String resourceGroupName, String mobileNetworkName);
 
     /**
-     * Deletes the specified mobile network site. This will also delete any network functions that are a part of this
-     * site.
+     * Lists all sites in the mobile network.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
-     * @param siteName The name of the mobile network site.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a Site list operation as paginated response with {@link PagedIterable}.
      */
-    void delete(String resourceGroupName, String mobileNetworkName, String siteName, Context context);
+    PagedIterable<Site> listByMobileNetwork(String resourceGroupName, String mobileNetworkName, Context context);
 
     /**
      * Gets information about the specified mobile network site.
@@ -68,29 +66,31 @@ public interface Sites {
     Site get(String resourceGroupName, String mobileNetworkName, String siteName);
 
     /**
-     * Lists all sites in the mobile network.
+     * Deletes the specified mobile network site. This will also delete any network functions that are a part of this
+     * site.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
+     * @param siteName The name of the mobile network site.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for sites API service call as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Site> listByMobileNetwork(String resourceGroupName, String mobileNetworkName);
+    void delete(String resourceGroupName, String mobileNetworkName, String siteName);
 
     /**
-     * Lists all sites in the mobile network.
+     * Deletes the specified mobile network site. This will also delete any network functions that are a part of this
+     * site.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
+     * @param siteName The name of the mobile network site.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for sites API service call as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Site> listByMobileNetwork(String resourceGroupName, String mobileNetworkName, Context context);
+    void delete(String resourceGroupName, String mobileNetworkName, String siteName, Context context);
 
     /**
      * Deletes a packet core under the specified mobile network site.
@@ -98,13 +98,14 @@ public interface Sites {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
      * @param siteName The name of the mobile network site.
-     * @param parameters Parameters supplied to delete a packet core under a site.
+     * @param body Parameters supplied to delete a packet core under a site.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
      */
-    void deletePacketCore(String resourceGroupName, String mobileNetworkName, String siteName,
-        SiteDeletePacketCore parameters);
+    AsyncOperationStatus deletePacketCore(String resourceGroupName, String mobileNetworkName, String siteName,
+        SiteDeletePacketCore body);
 
     /**
      * Deletes a packet core under the specified mobile network site.
@@ -112,14 +113,15 @@ public interface Sites {
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
      * @param siteName The name of the mobile network site.
-     * @param parameters Parameters supplied to delete a packet core under a site.
+     * @param body Parameters supplied to delete a packet core under a site.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the current status of an async operation.
      */
-    void deletePacketCore(String resourceGroupName, String mobileNetworkName, String siteName,
-        SiteDeletePacketCore parameters, Context context);
+    AsyncOperationStatus deletePacketCore(String resourceGroupName, String mobileNetworkName, String siteName,
+        SiteDeletePacketCore body, Context context);
 
     /**
      * Gets information about the specified mobile network site.

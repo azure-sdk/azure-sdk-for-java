@@ -13,27 +13,47 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class AmfId {
     /*
-     * AMF region identifier
+     * AMF pointer.
+     */
+    @JsonProperty(value = "pointer", required = true)
+    private int pointer;
+
+    /*
+     * AMF region identifier.
      */
     @JsonProperty(value = "regionId", required = true)
     private int regionId;
 
     /*
-     * AMF set identifier
+     * AMF set identifier.
      */
     @JsonProperty(value = "setId", required = true)
     private int setId;
-
-    /*
-     * AMF pointer
-     */
-    @JsonProperty(value = "pointer", required = true)
-    private int pointer;
 
     /**
      * Creates an instance of AmfId class.
      */
     public AmfId() {
+    }
+
+    /**
+     * Get the pointer property: AMF pointer.
+     * 
+     * @return the pointer value.
+     */
+    public int pointer() {
+        return this.pointer;
+    }
+
+    /**
+     * Set the pointer property: AMF pointer.
+     * 
+     * @param pointer the pointer value to set.
+     * @return the AmfId object itself.
+     */
+    public AmfId withPointer(int pointer) {
+        this.pointer = pointer;
+        return this;
     }
 
     /**
@@ -73,26 +93,6 @@ public final class AmfId {
      */
     public AmfId withSetId(int setId) {
         this.setId = setId;
-        return this;
-    }
-
-    /**
-     * Get the pointer property: AMF pointer.
-     * 
-     * @return the pointer value.
-     */
-    public int pointer() {
-        return this.pointer;
-    }
-
-    /**
-     * Set the pointer property: AMF pointer.
-     * 
-     * @param pointer the pointer value to set.
-     * @return the AmfId object itself.
-     */
-    public AmfId withPointer(int pointer) {
-        this.pointer = pointer;
         return this;
     }
 

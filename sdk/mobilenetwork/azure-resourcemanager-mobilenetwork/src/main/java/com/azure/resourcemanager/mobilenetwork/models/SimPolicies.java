@@ -13,29 +13,29 @@ import com.azure.core.util.Context;
  */
 public interface SimPolicies {
     /**
-     * Deletes the specified SIM policy.
+     * Gets all the SIM policies in a mobile network.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
-     * @param simPolicyName The name of the SIM policy.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the SIM policies in a mobile network as paginated response with {@link PagedIterable}.
      */
-    void delete(String resourceGroupName, String mobileNetworkName, String simPolicyName);
+    PagedIterable<SimPolicy> listByMobileNetwork(String resourceGroupName, String mobileNetworkName);
 
     /**
-     * Deletes the specified SIM policy.
+     * Gets all the SIM policies in a mobile network.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
-     * @param simPolicyName The name of the SIM policy.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the SIM policies in a mobile network as paginated response with {@link PagedIterable}.
      */
-    void delete(String resourceGroupName, String mobileNetworkName, String simPolicyName, Context context);
+    PagedIterable<SimPolicy> listByMobileNetwork(String resourceGroupName, String mobileNetworkName, Context context);
 
     /**
      * Gets information about the specified SIM policy.
@@ -66,29 +66,29 @@ public interface SimPolicies {
     SimPolicy get(String resourceGroupName, String mobileNetworkName, String simPolicyName);
 
     /**
-     * Gets all the SIM policies in a mobile network.
+     * Deletes the specified SIM policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
+     * @param simPolicyName The name of the SIM policy.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the SIM policies in a mobile network as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SimPolicy> listByMobileNetwork(String resourceGroupName, String mobileNetworkName);
+    void delete(String resourceGroupName, String mobileNetworkName, String simPolicyName);
 
     /**
-     * Gets all the SIM policies in a mobile network.
+     * Deletes the specified SIM policy.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
+     * @param simPolicyName The name of the SIM policy.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the SIM policies in a mobile network as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<SimPolicy> listByMobileNetwork(String resourceGroupName, String mobileNetworkName, Context context);
+    void delete(String resourceGroupName, String mobileNetworkName, String simPolicyName, Context context);
 
     /**
      * Gets information about the specified SIM policy.

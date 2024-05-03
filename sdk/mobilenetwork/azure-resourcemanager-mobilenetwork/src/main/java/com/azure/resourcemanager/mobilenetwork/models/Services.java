@@ -13,31 +13,29 @@ import com.azure.core.util.Context;
  */
 public interface Services {
     /**
-     * Deletes the specified service.
+     * Gets all the services in a mobile network.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     * `requested` or `service`.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the services in a mobile network as paginated response with {@link PagedIterable}.
      */
-    void delete(String resourceGroupName, String mobileNetworkName, String serviceName);
+    PagedIterable<Service> listByMobileNetwork(String resourceGroupName, String mobileNetworkName);
 
     /**
-     * Deletes the specified service.
+     * Gets all the services in a mobile network.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
-     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
-     * `requested` or `service`.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return all the services in a mobile network as paginated response with {@link PagedIterable}.
      */
-    void delete(String resourceGroupName, String mobileNetworkName, String serviceName, Context context);
+    PagedIterable<Service> listByMobileNetwork(String resourceGroupName, String mobileNetworkName, Context context);
 
     /**
      * Gets information about the specified service.
@@ -70,29 +68,31 @@ public interface Services {
     Service get(String resourceGroupName, String mobileNetworkName, String serviceName);
 
     /**
-     * Gets all the services in a mobile network.
+     * Deletes the specified service.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     * `requested` or `service`.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the services in a mobile network as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Service> listByMobileNetwork(String resourceGroupName, String mobileNetworkName);
+    void delete(String resourceGroupName, String mobileNetworkName, String serviceName);
 
     /**
-     * Gets all the services in a mobile network.
+     * Deletes the specified service.
      * 
      * @param resourceGroupName The name of the resource group. The name is case insensitive.
      * @param mobileNetworkName The name of the mobile network.
+     * @param serviceName The name of the service. You must not use any of the following reserved strings - `default`,
+     * `requested` or `service`.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return all the services in a mobile network as paginated response with {@link PagedIterable}.
      */
-    PagedIterable<Service> listByMobileNetwork(String resourceGroupName, String mobileNetworkName, Context context);
+    void delete(String resourceGroupName, String mobileNetworkName, String serviceName, Context context);
 
     /**
      * Gets information about the specified service.

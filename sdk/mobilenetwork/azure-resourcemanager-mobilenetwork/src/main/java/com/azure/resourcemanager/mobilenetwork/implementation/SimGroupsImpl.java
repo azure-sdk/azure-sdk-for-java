@@ -27,12 +27,24 @@ public final class SimGroupsImpl implements SimGroups {
         this.serviceManager = serviceManager;
     }
 
-    public void deleteByResourceGroup(String resourceGroupName, String simGroupName) {
-        this.serviceClient().delete(resourceGroupName, simGroupName);
+    public PagedIterable<SimGroup> list() {
+        PagedIterable<SimGroupInner> inner = this.serviceClient().list();
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimGroupImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String simGroupName, Context context) {
-        this.serviceClient().delete(resourceGroupName, simGroupName, context);
+    public PagedIterable<SimGroup> list(Context context) {
+        PagedIterable<SimGroupInner> inner = this.serviceClient().list(context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimGroupImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SimGroup> listByResourceGroup(String resourceGroupName) {
+        PagedIterable<SimGroupInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimGroupImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<SimGroup> listByResourceGroup(String resourceGroupName, Context context) {
+        PagedIterable<SimGroupInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimGroupImpl(inner1, this.manager()));
     }
 
     public Response<SimGroup> getByResourceGroupWithResponse(String resourceGroupName, String simGroupName,
@@ -56,24 +68,12 @@ public final class SimGroupsImpl implements SimGroups {
         }
     }
 
-    public PagedIterable<SimGroup> list() {
-        PagedIterable<SimGroupInner> inner = this.serviceClient().list();
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimGroupImpl(inner1, this.manager()));
+    public void deleteByResourceGroup(String resourceGroupName, String simGroupName) {
+        this.serviceClient().delete(resourceGroupName, simGroupName);
     }
 
-    public PagedIterable<SimGroup> list(Context context) {
-        PagedIterable<SimGroupInner> inner = this.serviceClient().list(context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimGroupImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SimGroup> listByResourceGroup(String resourceGroupName) {
-        PagedIterable<SimGroupInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimGroupImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<SimGroup> listByResourceGroup(String resourceGroupName, Context context) {
-        PagedIterable<SimGroupInner> inner = this.serviceClient().listByResourceGroup(resourceGroupName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimGroupImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String simGroupName, Context context) {
+        this.serviceClient().delete(resourceGroupName, simGroupName, context);
     }
 
     public SimGroup getById(String id) {

@@ -33,7 +33,7 @@ public interface ExtendedUeInfo {
     String type();
 
     /**
-     * Gets the properties property: Extended UE Information Properties.
+     * Gets the properties property: The resource-specific properties for this resource.
      * 
      * @return the properties value.
      */

@@ -150,8 +150,8 @@ public interface Sim {
     /**
      * The entirety of the Sim definition.
      */
-    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithParentResource,
-        DefinitionStages.WithInternationalMobileSubscriberIdentity, DefinitionStages.WithCreate {
+    interface Definition
+        extends DefinitionStages.Blank, DefinitionStages.WithParentResource, DefinitionStages.WithCreate {
     }
 
     /**
@@ -175,23 +175,7 @@ public interface Sim {
              * @param simGroupName The name of the SIM Group.
              * @return the next definition stage.
              */
-            WithInternationalMobileSubscriberIdentity withExistingSimGroup(String resourceGroupName,
-                String simGroupName);
-        }
-
-        /**
-         * The stage of the Sim definition allowing to specify internationalMobileSubscriberIdentity.
-         */
-        interface WithInternationalMobileSubscriberIdentity {
-            /**
-             * Specifies the internationalMobileSubscriberIdentity property: The international mobile subscriber
-             * identity (IMSI) for the SIM..
-             * 
-             * @param internationalMobileSubscriberIdentity The international mobile subscriber identity (IMSI) for the
-             * SIM.
-             * @return the next definition stage.
-             */
-            WithCreate withInternationalMobileSubscriberIdentity(String internationalMobileSubscriberIdentity);
+            WithCreate withExistingSimGroup(String resourceGroupName, String simGroupName);
         }
 
         /**
@@ -199,6 +183,7 @@ public interface Sim {
          * created, but also allows for any other optional properties to be specified.
          */
         interface WithCreate extends DefinitionStages.WithAuthenticationKey, DefinitionStages.WithOperatorKeyCode,
+            DefinitionStages.WithInternationalMobileSubscriberIdentity,
             DefinitionStages.WithIntegratedCircuitCardIdentifier, DefinitionStages.WithDeviceType,
             DefinitionStages.WithSimPolicy, DefinitionStages.WithStaticIpConfiguration {
             /**
@@ -241,6 +226,21 @@ public interface Sim {
              * @return the next definition stage.
              */
             WithCreate withOperatorKeyCode(String operatorKeyCode);
+        }
+
+        /**
+         * The stage of the Sim definition allowing to specify internationalMobileSubscriberIdentity.
+         */
+        interface WithInternationalMobileSubscriberIdentity {
+            /**
+             * Specifies the internationalMobileSubscriberIdentity property: The international mobile subscriber
+             * identity (IMSI) for the SIM..
+             * 
+             * @param internationalMobileSubscriberIdentity The international mobile subscriber identity (IMSI) for the
+             * SIM.
+             * @return the next definition stage.
+             */
+            WithCreate withInternationalMobileSubscriberIdentity(String internationalMobileSubscriberIdentity);
         }
 
         /**

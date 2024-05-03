@@ -203,6 +203,13 @@ public interface PacketCoreControlPlane {
     HomeNetworkPrivateKeysProvisioning homeNetworkPrivateKeysProvisioning();
 
     /**
+     * Gets the userConsent property: The user consent configuration for the packet core.
+     * 
+     * @return the userConsent value.
+     */
+    UserConsentConfiguration userConsent();
+
+    /**
      * Gets the region of the resource.
      * 
      * @return the region of the resource.
@@ -233,10 +240,8 @@ public interface PacketCoreControlPlane {
     /**
      * The entirety of the PacketCoreControlPlane definition.
      */
-    interface Definition
-        extends DefinitionStages.Blank, DefinitionStages.WithLocation, DefinitionStages.WithResourceGroup,
-        DefinitionStages.WithSites, DefinitionStages.WithPlatform, DefinitionStages.WithControlPlaneAccessInterface,
-        DefinitionStages.WithSku, DefinitionStages.WithLocalDiagnosticsAccess, DefinitionStages.WithCreate {
+    interface Definition extends DefinitionStages.Blank, DefinitionStages.WithLocation,
+        DefinitionStages.WithResourceGroup, DefinitionStages.WithCreate {
     }
 
     /**
@@ -280,91 +285,21 @@ public interface PacketCoreControlPlane {
              * @param resourceGroupName The name of the resource group. The name is case insensitive.
              * @return the next definition stage.
              */
-            WithSites withExistingResourceGroup(String resourceGroupName);
-        }
-
-        /**
-         * The stage of the PacketCoreControlPlane definition allowing to specify sites.
-         */
-        interface WithSites {
-            /**
-             * Specifies the sites property: Site(s) under which this packet core control plane should be deployed. The
-             * sites must be in the same location as the packet core control plane..
-             * 
-             * @param sites Site(s) under which this packet core control plane should be deployed. The sites must be in
-             * the same location as the packet core control plane.
-             * @return the next definition stage.
-             */
-            WithPlatform withSites(List<SiteResourceId> sites);
-        }
-
-        /**
-         * The stage of the PacketCoreControlPlane definition allowing to specify platform.
-         */
-        interface WithPlatform {
-            /**
-             * Specifies the platform property: The platform where the packet core is deployed..
-             * 
-             * @param platform The platform where the packet core is deployed.
-             * @return the next definition stage.
-             */
-            WithControlPlaneAccessInterface withPlatform(PlatformConfiguration platform);
-        }
-
-        /**
-         * The stage of the PacketCoreControlPlane definition allowing to specify controlPlaneAccessInterface.
-         */
-        interface WithControlPlaneAccessInterface {
-            /**
-             * Specifies the controlPlaneAccessInterface property: The control plane interface on the access network.
-             * For 5G networks, this is the N2 interface. For 4G networks, this is the S1-MME interface..
-             * 
-             * @param controlPlaneAccessInterface The control plane interface on the access network. For 5G networks,
-             * this is the N2 interface. For 4G networks, this is the S1-MME interface.
-             * @return the next definition stage.
-             */
-            WithSku withControlPlaneAccessInterface(InterfaceProperties controlPlaneAccessInterface);
-        }
-
-        /**
-         * The stage of the PacketCoreControlPlane definition allowing to specify sku.
-         */
-        interface WithSku {
-            /**
-             * Specifies the sku property: The SKU defining the throughput and SIM allowances for this packet core
-             * control plane deployment..
-             * 
-             * @param sku The SKU defining the throughput and SIM allowances for this packet core control plane
-             * deployment.
-             * @return the next definition stage.
-             */
-            WithLocalDiagnosticsAccess withSku(BillingSku sku);
-        }
-
-        /**
-         * The stage of the PacketCoreControlPlane definition allowing to specify localDiagnosticsAccess.
-         */
-        interface WithLocalDiagnosticsAccess {
-            /**
-             * Specifies the localDiagnosticsAccess property: The kubernetes ingress configuration to control access to
-             * packet core diagnostics over local APIs..
-             * 
-             * @param localDiagnosticsAccess The kubernetes ingress configuration to control access to packet core
-             * diagnostics over local APIs.
-             * @return the next definition stage.
-             */
-            WithCreate withLocalDiagnosticsAccess(LocalDiagnosticsAccessConfiguration localDiagnosticsAccess);
+            WithCreate withExistingResourceGroup(String resourceGroupName);
         }
 
         /**
          * The stage of the PacketCoreControlPlane definition which contains all the minimum required properties for the
          * resource to be created, but also allows for any other optional properties to be specified.
          */
-        interface WithCreate extends DefinitionStages.WithTags, DefinitionStages.WithIdentity,
-            DefinitionStages.WithInstallation, DefinitionStages.WithCoreNetworkTechnology, DefinitionStages.WithVersion,
-            DefinitionStages.WithControlPlaneAccessVirtualIpv4Addresses, DefinitionStages.WithUeMtu,
+        interface WithCreate
+            extends DefinitionStages.WithTags, DefinitionStages.WithIdentity, DefinitionStages.WithInstallation,
+            DefinitionStages.WithSites, DefinitionStages.WithPlatform, DefinitionStages.WithCoreNetworkTechnology,
+            DefinitionStages.WithVersion, DefinitionStages.WithControlPlaneAccessInterface,
+            DefinitionStages.WithControlPlaneAccessVirtualIpv4Addresses, DefinitionStages.WithSku,
+            DefinitionStages.WithUeMtu, DefinitionStages.WithLocalDiagnosticsAccess,
             DefinitionStages.WithDiagnosticsUpload, DefinitionStages.WithEventHub, DefinitionStages.WithSignaling,
-            DefinitionStages.WithInteropSettings {
+            DefinitionStages.WithInteropSettings, DefinitionStages.WithUserConsent {
             /**
              * Executes the create request.
              * 
@@ -422,6 +357,34 @@ public interface PacketCoreControlPlane {
         }
 
         /**
+         * The stage of the PacketCoreControlPlane definition allowing to specify sites.
+         */
+        interface WithSites {
+            /**
+             * Specifies the sites property: Site(s) under which this packet core control plane should be deployed. The
+             * sites must be in the same location as the packet core control plane..
+             * 
+             * @param sites Site(s) under which this packet core control plane should be deployed. The sites must be in
+             * the same location as the packet core control plane.
+             * @return the next definition stage.
+             */
+            WithCreate withSites(List<SiteResourceId> sites);
+        }
+
+        /**
+         * The stage of the PacketCoreControlPlane definition allowing to specify platform.
+         */
+        interface WithPlatform {
+            /**
+             * Specifies the platform property: The platform where the packet core is deployed..
+             * 
+             * @param platform The platform where the packet core is deployed.
+             * @return the next definition stage.
+             */
+            WithCreate withPlatform(PlatformConfiguration platform);
+        }
+
+        /**
          * The stage of the PacketCoreControlPlane definition allowing to specify coreNetworkTechnology.
          */
         interface WithCoreNetworkTechnology {
@@ -449,6 +412,21 @@ public interface PacketCoreControlPlane {
         }
 
         /**
+         * The stage of the PacketCoreControlPlane definition allowing to specify controlPlaneAccessInterface.
+         */
+        interface WithControlPlaneAccessInterface {
+            /**
+             * Specifies the controlPlaneAccessInterface property: The control plane interface on the access network.
+             * For 5G networks, this is the N2 interface. For 4G networks, this is the S1-MME interface..
+             * 
+             * @param controlPlaneAccessInterface The control plane interface on the access network. For 5G networks,
+             * this is the N2 interface. For 4G networks, this is the S1-MME interface.
+             * @return the next definition stage.
+             */
+            WithCreate withControlPlaneAccessInterface(InterfaceProperties controlPlaneAccessInterface);
+        }
+
+        /**
          * The stage of the PacketCoreControlPlane definition allowing to specify
          * controlPlaneAccessVirtualIpv4Addresses.
          */
@@ -469,6 +447,21 @@ public interface PacketCoreControlPlane {
         }
 
         /**
+         * The stage of the PacketCoreControlPlane definition allowing to specify sku.
+         */
+        interface WithSku {
+            /**
+             * Specifies the sku property: The SKU defining the throughput and SIM allowances for this packet core
+             * control plane deployment..
+             * 
+             * @param sku The SKU defining the throughput and SIM allowances for this packet core control plane
+             * deployment.
+             * @return the next definition stage.
+             */
+            WithCreate withSku(BillingSku sku);
+        }
+
+        /**
          * The stage of the PacketCoreControlPlane definition allowing to specify ueMtu.
          */
         interface WithUeMtu {
@@ -483,6 +476,21 @@ public interface PacketCoreControlPlane {
              * @return the next definition stage.
              */
             WithCreate withUeMtu(Integer ueMtu);
+        }
+
+        /**
+         * The stage of the PacketCoreControlPlane definition allowing to specify localDiagnosticsAccess.
+         */
+        interface WithLocalDiagnosticsAccess {
+            /**
+             * Specifies the localDiagnosticsAccess property: The kubernetes ingress configuration to control access to
+             * packet core diagnostics over local APIs..
+             * 
+             * @param localDiagnosticsAccess The kubernetes ingress configuration to control access to packet core
+             * diagnostics over local APIs.
+             * @return the next definition stage.
+             */
+            WithCreate withLocalDiagnosticsAccess(LocalDiagnosticsAccessConfiguration localDiagnosticsAccess);
         }
 
         /**
@@ -536,6 +544,19 @@ public interface PacketCoreControlPlane {
              * @return the next definition stage.
              */
             WithCreate withInteropSettings(Object interopSettings);
+        }
+
+        /**
+         * The stage of the PacketCoreControlPlane definition allowing to specify userConsent.
+         */
+        interface WithUserConsent {
+            /**
+             * Specifies the userConsent property: The user consent configuration for the packet core..
+             * 
+             * @param userConsent The user consent configuration for the packet core.
+             * @return the next definition stage.
+             */
+            WithCreate withUserConsent(UserConsentConfiguration userConsent);
         }
     }
 
@@ -613,26 +634,30 @@ public interface PacketCoreControlPlane {
     PacketCoreControlPlane refresh(Context context);
 
     /**
-     * Roll back the specified packet core control plane to the previous version, "rollbackVersion". Multiple
-     * consecutive rollbacks are not possible. This action may cause a service outage.
+     * Collect a diagnostics package for the specified packet core control plane. This action will upload the
+     * diagnostics to a storage account.
      * 
+     * @param body Parameters supplied to the packet core control plane collect diagnostics package operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current status of an async operation.
      */
-    AsyncOperationStatus rollback();
+    AsyncOperationStatus collectDiagnosticsPackage(PacketCoreControlPlaneCollectDiagnosticsPackage body);
 
     /**
-     * Roll back the specified packet core control plane to the previous version, "rollbackVersion". Multiple
-     * consecutive rollbacks are not possible. This action may cause a service outage.
+     * Collect a diagnostics package for the specified packet core control plane. This action will upload the
+     * diagnostics to a storage account.
      * 
+     * @param body Parameters supplied to the packet core control plane collect diagnostics package operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current status of an async operation.
      */
-    AsyncOperationStatus rollback(Context context);
+    AsyncOperationStatus collectDiagnosticsPackage(PacketCoreControlPlaneCollectDiagnosticsPackage body,
+        Context context);
 
     /**
      * Reinstall the specified packet core control plane. This action will try to restore the packet core to the
@@ -657,28 +682,24 @@ public interface PacketCoreControlPlane {
     AsyncOperationStatus reinstall(Context context);
 
     /**
-     * Collect a diagnostics package for the specified packet core control plane. This action will upload the
-     * diagnostics to a storage account.
+     * Roll back the specified packet core control plane to the previous version, "rollbackVersion". Multiple
+     * consecutive rollbacks are not possible. This action may cause a service outage.
      * 
-     * @param parameters Parameters supplied to the packet core control plane collect diagnostics package operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current status of an async operation.
      */
-    AsyncOperationStatus collectDiagnosticsPackage(PacketCoreControlPlaneCollectDiagnosticsPackage parameters);
+    AsyncOperationStatus rollback();
 
     /**
-     * Collect a diagnostics package for the specified packet core control plane. This action will upload the
-     * diagnostics to a storage account.
+     * Roll back the specified packet core control plane to the previous version, "rollbackVersion". Multiple
+     * consecutive rollbacks are not possible. This action may cause a service outage.
      * 
-     * @param parameters Parameters supplied to the packet core control plane collect diagnostics package operation.
      * @param context The context to associate with this operation.
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
      * @return the current status of an async operation.
      */
-    AsyncOperationStatus collectDiagnosticsPackage(PacketCoreControlPlaneCollectDiagnosticsPackage parameters,
-        Context context);
+    AsyncOperationStatus rollback(Context context);
 }

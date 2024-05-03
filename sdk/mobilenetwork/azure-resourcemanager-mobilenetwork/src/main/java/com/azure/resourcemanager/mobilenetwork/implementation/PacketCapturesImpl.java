@@ -29,10 +29,24 @@ public final class PacketCapturesImpl implements PacketCaptures {
         this.serviceManager = serviceManager;
     }
 
+    public PagedIterable<PacketCapture> listByPacketCoreControlPlane(String resourceGroupName,
+        String packetCoreControlPlaneName) {
+        PagedIterable<PacketCaptureInner> inner
+            = this.serviceClient().listByPacketCoreControlPlane(resourceGroupName, packetCoreControlPlaneName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCaptureImpl(inner1, this.manager()));
+    }
+
+    public PagedIterable<PacketCapture> listByPacketCoreControlPlane(String resourceGroupName,
+        String packetCoreControlPlaneName, Context context) {
+        PagedIterable<PacketCaptureInner> inner
+            = this.serviceClient().listByPacketCoreControlPlane(resourceGroupName, packetCoreControlPlaneName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCaptureImpl(inner1, this.manager()));
+    }
+
     public Response<PacketCapture> getWithResponse(String resourceGroupName, String packetCoreControlPlaneName,
         String packetCaptureName, Context context) {
-        Response<PacketCaptureInner> inner = this.serviceClient().getWithResponse(resourceGroupName,
-            packetCoreControlPlaneName, packetCaptureName, context);
+        Response<PacketCaptureInner> inner = this.serviceClient()
+            .getWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCaptureName, context);
         if (inner != null) {
             return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
                 new PacketCaptureImpl(inner.getValue(), this.manager()));
@@ -80,20 +94,6 @@ public final class PacketCapturesImpl implements PacketCaptures {
         } else {
             return null;
         }
-    }
-
-    public PagedIterable<PacketCapture> listByPacketCoreControlPlane(String resourceGroupName,
-        String packetCoreControlPlaneName) {
-        PagedIterable<PacketCaptureInner> inner
-            = this.serviceClient().listByPacketCoreControlPlane(resourceGroupName, packetCoreControlPlaneName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCaptureImpl(inner1, this.manager()));
-    }
-
-    public PagedIterable<PacketCapture> listByPacketCoreControlPlane(String resourceGroupName,
-        String packetCoreControlPlaneName, Context context) {
-        PagedIterable<PacketCaptureInner> inner
-            = this.serviceClient().listByPacketCoreControlPlane(resourceGroupName, packetCoreControlPlaneName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new PacketCaptureImpl(inner1, this.manager()));
     }
 
     public PacketCapture getById(String id) {

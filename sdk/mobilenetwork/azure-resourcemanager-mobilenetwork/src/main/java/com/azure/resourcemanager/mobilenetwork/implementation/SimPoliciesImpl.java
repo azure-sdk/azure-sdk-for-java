@@ -27,12 +27,17 @@ public final class SimPoliciesImpl implements SimPolicies {
         this.serviceManager = serviceManager;
     }
 
-    public void delete(String resourceGroupName, String mobileNetworkName, String simPolicyName) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName, simPolicyName);
+    public PagedIterable<SimPolicy> listByMobileNetwork(String resourceGroupName, String mobileNetworkName) {
+        PagedIterable<SimPolicyInner> inner
+            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimPolicyImpl(inner1, this.manager()));
     }
 
-    public void delete(String resourceGroupName, String mobileNetworkName, String simPolicyName, Context context) {
-        this.serviceClient().delete(resourceGroupName, mobileNetworkName, simPolicyName, context);
+    public PagedIterable<SimPolicy> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
+        Context context) {
+        PagedIterable<SimPolicyInner> inner
+            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName, context);
+        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimPolicyImpl(inner1, this.manager()));
     }
 
     public Response<SimPolicy> getWithResponse(String resourceGroupName, String mobileNetworkName, String simPolicyName,
@@ -56,17 +61,12 @@ public final class SimPoliciesImpl implements SimPolicies {
         }
     }
 
-    public PagedIterable<SimPolicy> listByMobileNetwork(String resourceGroupName, String mobileNetworkName) {
-        PagedIterable<SimPolicyInner> inner
-            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimPolicyImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String mobileNetworkName, String simPolicyName) {
+        this.serviceClient().delete(resourceGroupName, mobileNetworkName, simPolicyName);
     }
 
-    public PagedIterable<SimPolicy> listByMobileNetwork(String resourceGroupName, String mobileNetworkName,
-        Context context) {
-        PagedIterable<SimPolicyInner> inner
-            = this.serviceClient().listByMobileNetwork(resourceGroupName, mobileNetworkName, context);
-        return ResourceManagerUtils.mapPage(inner, inner1 -> new SimPolicyImpl(inner1, this.manager()));
+    public void delete(String resourceGroupName, String mobileNetworkName, String simPolicyName, Context context) {
+        this.serviceClient().delete(resourceGroupName, mobileNetworkName, simPolicyName, context);
     }
 
     public SimPolicy getById(String id) {

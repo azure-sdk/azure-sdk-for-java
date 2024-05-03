@@ -7,9 +7,12 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.mobilenetwork.models.UeInfoPropertiesFormat;
+import com.azure.resourcemanager.mobilenetwork.models.DnnIpPair;
+import com.azure.resourcemanager.mobilenetwork.models.RatType;
+import com.azure.resourcemanager.mobilenetwork.models.UeState;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.OffsetDateTime;
+import java.util.List;
 
 /**
  * Basic UE Information.
@@ -17,10 +20,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class UeInfoInner extends ProxyResource {
     /*
-     * Basic UE Information Properties.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private UeInfoPropertiesFormat properties;
+    @JsonProperty(value = "properties")
+    private UeInfoPropertiesFormat innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -35,23 +38,12 @@ public final class UeInfoInner extends ProxyResource {
     }
 
     /**
-     * Get the properties property: Basic UE Information Properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
-     * @return the properties value.
+     * @return the innerProperties value.
      */
-    public UeInfoPropertiesFormat properties() {
-        return this.properties;
-    }
-
-    /**
-     * Set the properties property: Basic UE Information Properties.
-     * 
-     * @param properties the properties value to set.
-     * @return the UeInfoInner object itself.
-     */
-    public UeInfoInner withProperties(UeInfoPropertiesFormat properties) {
-        this.properties = properties;
-        return this;
+    private UeInfoPropertiesFormat innerProperties() {
+        return this.innerProperties;
     }
 
     /**
@@ -64,18 +56,105 @@ public final class UeInfoInner extends ProxyResource {
     }
 
     /**
+     * Get the ratType property: RAT Type.
+     * 
+     * @return the ratType value.
+     */
+    public RatType ratType() {
+        return this.innerProperties() == null ? null : this.innerProperties().ratType();
+    }
+
+    /**
+     * Set the ratType property: RAT Type.
+     * 
+     * @param ratType the ratType value to set.
+     * @return the UeInfoInner object itself.
+     */
+    public UeInfoInner withRatType(RatType ratType) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UeInfoPropertiesFormat();
+        }
+        this.innerProperties().withRatType(ratType);
+        return this;
+    }
+
+    /**
+     * Get the ueState property: State of the UE.
+     * 
+     * @return the ueState value.
+     */
+    public UeState ueState() {
+        return this.innerProperties() == null ? null : this.innerProperties().ueState();
+    }
+
+    /**
+     * Set the ueState property: State of the UE.
+     * 
+     * @param ueState the ueState value to set.
+     * @return the UeInfoInner object itself.
+     */
+    public UeInfoInner withUeState(UeState ueState) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UeInfoPropertiesFormat();
+        }
+        this.innerProperties().withUeState(ueState);
+        return this;
+    }
+
+    /**
+     * Get the ueIpAddresses property: List of DNN and UE IP addresses.
+     * 
+     * @return the ueIpAddresses value.
+     */
+    public List<DnnIpPair> ueIpAddresses() {
+        return this.innerProperties() == null ? null : this.innerProperties().ueIpAddresses();
+    }
+
+    /**
+     * Set the ueIpAddresses property: List of DNN and UE IP addresses.
+     * 
+     * @param ueIpAddresses the ueIpAddresses value to set.
+     * @return the UeInfoInner object itself.
+     */
+    public UeInfoInner withUeIpAddresses(List<DnnIpPair> ueIpAddresses) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UeInfoPropertiesFormat();
+        }
+        this.innerProperties().withUeIpAddresses(ueIpAddresses);
+        return this;
+    }
+
+    /**
+     * Get the lastReadAt property: The timestamp of last list UEs call to the packet core (UTC).
+     * 
+     * @return the lastReadAt value.
+     */
+    public OffsetDateTime lastReadAt() {
+        return this.innerProperties() == null ? null : this.innerProperties().lastReadAt();
+    }
+
+    /**
+     * Set the lastReadAt property: The timestamp of last list UEs call to the packet core (UTC).
+     * 
+     * @param lastReadAt the lastReadAt value to set.
+     * @return the UeInfoInner object itself.
+     */
+    public UeInfoInner withLastReadAt(OffsetDateTime lastReadAt) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new UeInfoPropertiesFormat();
+        }
+        this.innerProperties().withLastReadAt(lastReadAt);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (properties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property properties in model UeInfoInner"));
-        } else {
-            properties().validate();
+        if (innerProperties() != null) {
+            innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(UeInfoInner.class);
 }

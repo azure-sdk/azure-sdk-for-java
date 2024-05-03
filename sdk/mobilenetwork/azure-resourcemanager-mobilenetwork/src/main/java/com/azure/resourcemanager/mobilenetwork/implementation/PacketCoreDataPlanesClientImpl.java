@@ -73,14 +73,13 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
     @ServiceInterface(name = "MobileNetworkManagem")
     public interface PacketCoreDataPlanesService {
         @Headers({ "Content-Type: application/json" })
-        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCoreDataPlanes/{packetCoreDataPlaneName}")
-        @ExpectedResponses({ 200, 202, 204 })
+        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCoreDataPlanes")
+        @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+        Mono<Response<PacketCoreDataPlaneListResult>> listByPacketCoreControlPlane(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @PathParam("packetCoreDataPlaneName") String packetCoreDataPlaneName,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @HeaderParam("Accept") String accept, Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -88,22 +87,22 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PacketCoreDataPlaneInner>> get(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @PathParam("packetCoreDataPlaneName") String packetCoreDataPlaneName,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("packetCoreDataPlaneName") String packetCoreDataPlaneName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Put("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCoreDataPlanes/{packetCoreDataPlaneName}")
         @ExpectedResponses({ 200, 201 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<Flux<ByteBuffer>>> createOrUpdate(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
             @PathParam("packetCoreDataPlaneName") String packetCoreDataPlaneName,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @BodyParam("application/json") PacketCoreDataPlaneInner parameters, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") PacketCoreDataPlaneInner resource, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
@@ -111,22 +110,23 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
         @ExpectedResponses({ 200 })
         @UnexpectedResponseExceptionType(ManagementException.class)
         Mono<Response<PacketCoreDataPlaneInner>> updateTags(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
             @PathParam("packetCoreDataPlaneName") String packetCoreDataPlaneName,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @BodyParam("application/json") TagsObject parameters, @HeaderParam("Accept") String accept,
+            @BodyParam("application/json") TagsObject properties, @HeaderParam("Accept") String accept,
             Context context);
 
         @Headers({ "Content-Type: application/json" })
-        @Get("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCoreDataPlanes")
-        @ExpectedResponses({ 200 })
+        @Delete("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/packetCoreControlPlanes/{packetCoreControlPlaneName}/packetCoreDataPlanes/{packetCoreDataPlaneName}")
+        @ExpectedResponses({ 202, 204 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<PacketCoreDataPlaneListResult>> listByPacketCoreControlPlane(@HostParam("$host") String endpoint,
+        Mono<Response<Flux<ByteBuffer>>> delete(@HostParam("$host") String endpoint,
+            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName,
             @PathParam("packetCoreControlPlaneName") String packetCoreControlPlaneName,
-            @QueryParam("api-version") String apiVersion, @PathParam("subscriptionId") String subscriptionId,
-            @HeaderParam("Accept") String accept, Context context);
+            @PathParam("packetCoreDataPlaneName") String packetCoreDataPlaneName, @HeaderParam("Accept") String accept,
+            Context context);
 
         @Headers({ "Content-Type: application/json" })
         @Get("{nextLink}")
@@ -135,6 +135,728 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
         Mono<Response<PacketCoreDataPlaneListResult>> listByPacketCoreControlPlaneNext(
             @PathParam(value = "nextLink", encoded = true) String nextLink, @HostParam("$host") String endpoint,
             @HeaderParam("Accept") String accept, Context context);
+    }
+
+    /**
+     * Lists all the packet core data planes associated with a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a PacketCoreDataPlane list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PacketCoreDataPlaneInner>>
+        listByPacketCoreControlPlaneSinglePageAsync(String resourceGroupName, String packetCoreControlPlaneName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(
+                context -> service.listByPacketCoreControlPlane(this.client.getEndpoint(), this.client.getApiVersion(),
+                    this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, accept, context))
+            .<PagedResponse<PacketCoreDataPlaneInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
+                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Lists all the packet core data planes associated with a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a PacketCoreDataPlane list operation along with {@link PagedResponse} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PagedResponse<PacketCoreDataPlaneInner>> listByPacketCoreControlPlaneSinglePageAsync(
+        String resourceGroupName, String packetCoreControlPlaneName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service
+            .listByPacketCoreControlPlane(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, accept, context)
+            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
+                res.getValue().value(), res.getValue().nextLink(), null));
+    }
+
+    /**
+     * Lists all the packet core data planes associated with a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a PacketCoreDataPlane list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PacketCoreDataPlaneInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
+        String packetCoreControlPlaneName) {
+        return new PagedFlux<>(
+            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName),
+            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink));
+    }
+
+    /**
+     * Lists all the packet core data planes associated with a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a PacketCoreDataPlane list operation as paginated response with {@link PagedFlux}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    private PagedFlux<PacketCoreDataPlaneInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, Context context) {
+        return new PagedFlux<>(
+            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName, context),
+            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink, context));
+    }
+
+    /**
+     * Lists all the packet core data planes associated with a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a PacketCoreDataPlane list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PacketCoreDataPlaneInner> listByPacketCoreControlPlane(String resourceGroupName,
+        String packetCoreControlPlaneName) {
+        return new PagedIterable<>(listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName));
+    }
+
+    /**
+     * Lists all the packet core data planes associated with a packet core control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the response of a PacketCoreDataPlane list operation as paginated response with {@link PagedIterable}.
+     */
+    @ServiceMethod(returns = ReturnType.COLLECTION)
+    public PagedIterable<PacketCoreDataPlaneInner> listByPacketCoreControlPlane(String resourceGroupName,
+        String packetCoreControlPlaneName, Context context) {
+        return new PagedIterable<>(
+            listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName, context));
+    }
+
+    /**
+     * Gets information about the specified packet core data plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified packet core data plane along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PacketCoreDataPlaneInner>> getWithResponseAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCoreDataPlaneName) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        if (packetCoreDataPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.get(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+                accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Gets information about the specified packet core data plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified packet core data plane along with {@link Response} on successful
+     * completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PacketCoreDataPlaneInner>> getWithResponseAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCoreDataPlaneName, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        if (packetCoreDataPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.get(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, accept, context);
+    }
+
+    /**
+     * Gets information about the specified packet core data plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified packet core data plane on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PacketCoreDataPlaneInner> getAsync(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCoreDataPlaneName) {
+        return getWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName)
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Gets information about the specified packet core data plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified packet core data plane along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<PacketCoreDataPlaneInner> getWithResponse(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCoreDataPlaneName, Context context) {
+        return getWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, context)
+            .block();
+    }
+
+    /**
+     * Gets information about the specified packet core data plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return information about the specified packet core data plane.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PacketCoreDataPlaneInner get(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCoreDataPlaneName) {
+        return getWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, Context.NONE)
+            .getValue();
+    }
+
+    /**
+     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
+     * control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param resource Parameters supplied to the create or update packet core data plane operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCoreDataPlaneName, PacketCoreDataPlaneInner resource) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        if (packetCoreDataPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+                resource, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
+     * control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param resource Parameters supplied to the create or update packet core data plane operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCoreDataPlaneName, PacketCoreDataPlaneInner resource,
+        Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        if (packetCoreDataPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
+        }
+        if (resource == null) {
+            return Mono.error(new IllegalArgumentException("Parameter resource is required and cannot be null."));
+        } else {
+            resource.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.createOrUpdate(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+            resource, accept, context);
+    }
+
+    /**
+     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
+     * control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param resource Parameters supplied to the create or update packet core data plane operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of packet core data plane resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PacketCoreDataPlaneInner>, PacketCoreDataPlaneInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
+        PacketCoreDataPlaneInner resource) {
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
+            packetCoreControlPlaneName, packetCoreDataPlaneName, resource);
+        return this.client.<PacketCoreDataPlaneInner, PacketCoreDataPlaneInner>getLroResult(mono,
+            this.client.getHttpPipeline(), PacketCoreDataPlaneInner.class, PacketCoreDataPlaneInner.class,
+            this.client.getContext());
+    }
+
+    /**
+     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
+     * control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param resource Parameters supplied to the create or update packet core data plane operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link PollerFlux} for polling of packet core data plane resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    private PollerFlux<PollResult<PacketCoreDataPlaneInner>, PacketCoreDataPlaneInner> beginCreateOrUpdateAsync(
+        String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
+        PacketCoreDataPlaneInner resource, Context context) {
+        context = this.client.mergeContext(context);
+        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
+            packetCoreControlPlaneName, packetCoreDataPlaneName, resource, context);
+        return this.client.<PacketCoreDataPlaneInner, PacketCoreDataPlaneInner>getLroResult(mono,
+            this.client.getHttpPipeline(), PacketCoreDataPlaneInner.class, PacketCoreDataPlaneInner.class, context);
+    }
+
+    /**
+     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
+     * control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param resource Parameters supplied to the create or update packet core data plane operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of packet core data plane resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PacketCoreDataPlaneInner>, PacketCoreDataPlaneInner> beginCreateOrUpdate(
+        String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
+        PacketCoreDataPlaneInner resource) {
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, resource)
+            .getSyncPoller();
+    }
+
+    /**
+     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
+     * control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param resource Parameters supplied to the create or update packet core data plane operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the {@link SyncPoller} for polling of packet core data plane resource.
+     */
+    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
+    public SyncPoller<PollResult<PacketCoreDataPlaneInner>, PacketCoreDataPlaneInner> beginCreateOrUpdate(
+        String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
+        PacketCoreDataPlaneInner resource, Context context) {
+        return this
+            .beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, resource,
+                context)
+            .getSyncPoller();
+    }
+
+    /**
+     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
+     * control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param resource Parameters supplied to the create or update packet core data plane operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PacketCoreDataPlaneInner> createOrUpdateAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCoreDataPlaneName, PacketCoreDataPlaneInner resource) {
+        return beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+            resource).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
+     * control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param resource Parameters supplied to the create or update packet core data plane operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PacketCoreDataPlaneInner> createOrUpdateAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCoreDataPlaneName, PacketCoreDataPlaneInner resource,
+        Context context) {
+        return beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+            resource, context).last().flatMap(this.client::getLroFinalResultOrError);
+    }
+
+    /**
+     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
+     * control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param resource Parameters supplied to the create or update packet core data plane operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PacketCoreDataPlaneInner createOrUpdate(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCoreDataPlaneName, PacketCoreDataPlaneInner resource) {
+        return createOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, resource)
+            .block();
+    }
+
+    /**
+     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
+     * control plane.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param resource Parameters supplied to the create or update packet core data plane operation.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PacketCoreDataPlaneInner createOrUpdate(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCoreDataPlaneName, PacketCoreDataPlaneInner resource, Context context) {
+        return createOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, resource,
+            context).block();
+    }
+
+    /**
+     * Updates packet core data planes tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param properties Parameters supplied to update packet core data plane tags.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PacketCoreDataPlaneInner>> updateTagsWithResponseAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCoreDataPlaneName, TagsObject properties) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        if (packetCoreDataPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        return FluxUtil
+            .withContext(context -> service.updateTags(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+                properties, accept, context))
+            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
+    }
+
+    /**
+     * Updates packet core data planes tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param properties Parameters supplied to update packet core data plane tags.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource along with {@link Response} on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<Response<PacketCoreDataPlaneInner>> updateTagsWithResponseAsync(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCoreDataPlaneName, TagsObject properties, Context context) {
+        if (this.client.getEndpoint() == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
+        }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
+        if (resourceGroupName == null) {
+            return Mono
+                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
+        }
+        if (packetCoreControlPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
+        }
+        if (packetCoreDataPlaneName == null) {
+            return Mono.error(
+                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
+        }
+        if (properties == null) {
+            return Mono.error(new IllegalArgumentException("Parameter properties is required and cannot be null."));
+        } else {
+            properties.validate();
+        }
+        final String accept = "application/json";
+        context = this.client.mergeContext(context);
+        return service.updateTags(this.client.getEndpoint(), this.client.getApiVersion(),
+            this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+            properties, accept, context);
+    }
+
+    /**
+     * Updates packet core data planes tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param properties Parameters supplied to update packet core data plane tags.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource on successful completion of {@link Mono}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    private Mono<PacketCoreDataPlaneInner> updateTagsAsync(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCoreDataPlaneName, TagsObject properties) {
+        return updateTagsWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+            properties).flatMap(res -> Mono.justOrEmpty(res.getValue()));
+    }
+
+    /**
+     * Updates packet core data planes tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param properties Parameters supplied to update packet core data plane tags.
+     * @param context The context to associate with this operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource along with {@link Response}.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Response<PacketCoreDataPlaneInner> updateTagsWithResponse(String resourceGroupName,
+        String packetCoreControlPlaneName, String packetCoreDataPlaneName, TagsObject properties, Context context) {
+        return updateTagsWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+            properties, context).block();
+    }
+
+    /**
+     * Updates packet core data planes tags.
+     * 
+     * @param resourceGroupName The name of the resource group. The name is case insensitive.
+     * @param packetCoreControlPlaneName The name of the packet core control plane.
+     * @param packetCoreDataPlaneName The name of the packet core data plane.
+     * @param properties Parameters supplied to update packet core data plane tags.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws ManagementException thrown if the request is rejected by server.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return packet core data plane resource.
+     */
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public PacketCoreDataPlaneInner updateTags(String resourceGroupName, String packetCoreControlPlaneName,
+        String packetCoreDataPlaneName, TagsObject properties) {
+        return updateTagsWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+            properties, Context.NONE).getValue();
     }
 
     /**
@@ -155,6 +877,10 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
@@ -167,15 +893,11 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
             return Mono.error(
                 new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
         final String accept = "application/json";
         return FluxUtil
-            .withContext(context -> service.delete(this.client.getEndpoint(), resourceGroupName,
-                packetCoreControlPlaneName, packetCoreDataPlaneName, this.client.getApiVersion(),
-                this.client.getSubscriptionId(), accept, context))
+            .withContext(context -> service.delete(this.client.getEndpoint(), this.client.getApiVersion(),
+                this.client.getSubscriptionId(), resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
+                accept, context))
             .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
     }
 
@@ -198,6 +920,10 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
             return Mono.error(
                 new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
         }
+        if (this.client.getSubscriptionId() == null) {
+            return Mono.error(new IllegalArgumentException(
+                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
+        }
         if (resourceGroupName == null) {
             return Mono
                 .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
@@ -210,14 +936,10 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
             return Mono.error(
                 new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
         }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
         final String accept = "application/json";
         context = this.client.mergeContext(context);
-        return service.delete(this.client.getEndpoint(), resourceGroupName, packetCoreControlPlaneName,
-            packetCoreDataPlaneName, this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context);
+        return service.delete(this.client.getEndpoint(), this.client.getApiVersion(), this.client.getSubscriptionId(),
+            resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, accept, context);
     }
 
     /**
@@ -369,725 +1091,6 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
     }
 
     /**
-     * Gets information about the specified packet core data plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified packet core data plane along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PacketCoreDataPlaneInner>> getWithResponseAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCoreDataPlaneName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        if (packetCoreDataPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.get(this.client.getEndpoint(), resourceGroupName,
-                packetCoreControlPlaneName, packetCoreDataPlaneName, this.client.getApiVersion(),
-                this.client.getSubscriptionId(), accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Gets information about the specified packet core data plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified packet core data plane along with {@link Response} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PacketCoreDataPlaneInner>> getWithResponseAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCoreDataPlaneName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        if (packetCoreDataPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.get(this.client.getEndpoint(), resourceGroupName, packetCoreControlPlaneName,
-            packetCoreDataPlaneName, this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context);
-    }
-
-    /**
-     * Gets information about the specified packet core data plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified packet core data plane on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PacketCoreDataPlaneInner> getAsync(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCoreDataPlaneName) {
-        return getWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName)
-            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Gets information about the specified packet core data plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified packet core data plane along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PacketCoreDataPlaneInner> getWithResponse(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCoreDataPlaneName, Context context) {
-        return getWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, context)
-            .block();
-    }
-
-    /**
-     * Gets information about the specified packet core data plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return information about the specified packet core data plane.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PacketCoreDataPlaneInner get(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCoreDataPlaneName) {
-        return getWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, Context.NONE)
-            .getValue();
-    }
-
-    /**
-     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
-     * control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to the create or update packet core data plane operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCoreDataPlaneName, PacketCoreDataPlaneInner parameters) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        if (packetCoreDataPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.createOrUpdate(this.client.getEndpoint(), resourceGroupName,
-                packetCoreControlPlaneName, packetCoreDataPlaneName, this.client.getApiVersion(),
-                this.client.getSubscriptionId(), parameters, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
-     * control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to the create or update packet core data plane operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Flux<ByteBuffer>>> createOrUpdateWithResponseAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCoreDataPlaneName, PacketCoreDataPlaneInner parameters,
-        Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        if (packetCoreDataPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.createOrUpdate(this.client.getEndpoint(), resourceGroupName, packetCoreControlPlaneName,
-            packetCoreDataPlaneName, this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept,
-            context);
-    }
-
-    /**
-     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
-     * control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to the create or update packet core data plane operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of packet core data plane resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<PacketCoreDataPlaneInner>, PacketCoreDataPlaneInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
-        PacketCoreDataPlaneInner parameters) {
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
-            packetCoreControlPlaneName, packetCoreDataPlaneName, parameters);
-        return this.client.<PacketCoreDataPlaneInner, PacketCoreDataPlaneInner>getLroResult(mono,
-            this.client.getHttpPipeline(), PacketCoreDataPlaneInner.class, PacketCoreDataPlaneInner.class,
-            this.client.getContext());
-    }
-
-    /**
-     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
-     * control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to the create or update packet core data plane operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link PollerFlux} for polling of packet core data plane resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    private PollerFlux<PollResult<PacketCoreDataPlaneInner>, PacketCoreDataPlaneInner> beginCreateOrUpdateAsync(
-        String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
-        PacketCoreDataPlaneInner parameters, Context context) {
-        context = this.client.mergeContext(context);
-        Mono<Response<Flux<ByteBuffer>>> mono = createOrUpdateWithResponseAsync(resourceGroupName,
-            packetCoreControlPlaneName, packetCoreDataPlaneName, parameters, context);
-        return this.client.<PacketCoreDataPlaneInner, PacketCoreDataPlaneInner>getLroResult(mono,
-            this.client.getHttpPipeline(), PacketCoreDataPlaneInner.class, PacketCoreDataPlaneInner.class, context);
-    }
-
-    /**
-     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
-     * control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to the create or update packet core data plane operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of packet core data plane resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<PacketCoreDataPlaneInner>, PacketCoreDataPlaneInner> beginCreateOrUpdate(
-        String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
-        PacketCoreDataPlaneInner parameters) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
-            parameters).getSyncPoller();
-    }
-
-    /**
-     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
-     * control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to the create or update packet core data plane operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link SyncPoller} for polling of packet core data plane resource.
-     */
-    @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
-    public SyncPoller<PollResult<PacketCoreDataPlaneInner>, PacketCoreDataPlaneInner> beginCreateOrUpdate(
-        String resourceGroupName, String packetCoreControlPlaneName, String packetCoreDataPlaneName,
-        PacketCoreDataPlaneInner parameters, Context context) {
-        return this.beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
-            parameters, context).getSyncPoller();
-    }
-
-    /**
-     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
-     * control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to the create or update packet core data plane operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PacketCoreDataPlaneInner> createOrUpdateAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCoreDataPlaneName, PacketCoreDataPlaneInner parameters) {
-        return beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
-            parameters).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
-     * control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to the create or update packet core data plane operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PacketCoreDataPlaneInner> createOrUpdateAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCoreDataPlaneName, PacketCoreDataPlaneInner parameters,
-        Context context) {
-        return beginCreateOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
-            parameters, context).last().flatMap(this.client::getLroFinalResultOrError);
-    }
-
-    /**
-     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
-     * control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to the create or update packet core data plane operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PacketCoreDataPlaneInner createOrUpdate(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCoreDataPlaneName, PacketCoreDataPlaneInner parameters) {
-        return createOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, parameters)
-            .block();
-    }
-
-    /**
-     * Creates or updates a packet core data plane. Must be created in the same location as its parent packet core
-     * control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to the create or update packet core data plane operation.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PacketCoreDataPlaneInner createOrUpdate(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCoreDataPlaneName, PacketCoreDataPlaneInner parameters, Context context) {
-        return createOrUpdateAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName, parameters,
-            context).block();
-    }
-
-    /**
-     * Updates packet core data planes tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to update packet core data plane tags.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PacketCoreDataPlaneInner>> updateTagsWithResponseAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCoreDataPlaneName, TagsObject parameters) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        if (packetCoreDataPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.updateTags(this.client.getEndpoint(), resourceGroupName,
-                packetCoreControlPlaneName, packetCoreDataPlaneName, this.client.getApiVersion(),
-                this.client.getSubscriptionId(), parameters, accept, context))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Updates packet core data planes tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to update packet core data plane tags.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource along with {@link Response} on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<PacketCoreDataPlaneInner>> updateTagsWithResponseAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCoreDataPlaneName, TagsObject parameters, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        if (packetCoreDataPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreDataPlaneName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        if (parameters == null) {
-            return Mono.error(new IllegalArgumentException("Parameter parameters is required and cannot be null."));
-        } else {
-            parameters.validate();
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service.updateTags(this.client.getEndpoint(), resourceGroupName, packetCoreControlPlaneName,
-            packetCoreDataPlaneName, this.client.getApiVersion(), this.client.getSubscriptionId(), parameters, accept,
-            context);
-    }
-
-    /**
-     * Updates packet core data planes tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to update packet core data plane tags.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource on successful completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PacketCoreDataPlaneInner> updateTagsAsync(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCoreDataPlaneName, TagsObject parameters) {
-        return updateTagsWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
-            parameters).flatMap(res -> Mono.justOrEmpty(res.getValue()));
-    }
-
-    /**
-     * Updates packet core data planes tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to update packet core data plane tags.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource along with {@link Response}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<PacketCoreDataPlaneInner> updateTagsWithResponse(String resourceGroupName,
-        String packetCoreControlPlaneName, String packetCoreDataPlaneName, TagsObject parameters, Context context) {
-        return updateTagsWithResponseAsync(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
-            parameters, context).block();
-    }
-
-    /**
-     * Updates packet core data planes tags.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param packetCoreDataPlaneName The name of the packet core data plane.
-     * @param parameters Parameters supplied to update packet core data plane tags.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return packet core data plane resource.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    public PacketCoreDataPlaneInner updateTags(String resourceGroupName, String packetCoreControlPlaneName,
-        String packetCoreDataPlaneName, TagsObject parameters) {
-        return updateTagsWithResponse(resourceGroupName, packetCoreControlPlaneName, packetCoreDataPlaneName,
-            parameters, Context.NONE).getValue();
-    }
-
-    /**
-     * Lists all the packet core data planes associated with a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet core data planes API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PacketCoreDataPlaneInner>>
-        listByPacketCoreControlPlaneSinglePageAsync(String resourceGroupName, String packetCoreControlPlaneName) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        return FluxUtil
-            .withContext(context -> service.listByPacketCoreControlPlane(this.client.getEndpoint(), resourceGroupName,
-                packetCoreControlPlaneName, this.client.getApiVersion(), this.client.getSubscriptionId(), accept,
-                context))
-            .<PagedResponse<PacketCoreDataPlaneInner>>map(res -> new PagedResponseBase<>(res.getRequest(),
-                res.getStatusCode(), res.getHeaders(), res.getValue().value(), res.getValue().nextLink(), null))
-            .contextWrite(context -> context.putAll(FluxUtil.toReactorContext(this.client.getContext()).readOnly()));
-    }
-
-    /**
-     * Lists all the packet core data planes associated with a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet core data planes API service call along with {@link PagedResponse} on successful
-     * completion of {@link Mono}.
-     */
-    @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<PagedResponse<PacketCoreDataPlaneInner>> listByPacketCoreControlPlaneSinglePageAsync(
-        String resourceGroupName, String packetCoreControlPlaneName, Context context) {
-        if (this.client.getEndpoint() == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter this.client.getEndpoint() is required and cannot be null."));
-        }
-        if (resourceGroupName == null) {
-            return Mono
-                .error(new IllegalArgumentException("Parameter resourceGroupName is required and cannot be null."));
-        }
-        if (packetCoreControlPlaneName == null) {
-            return Mono.error(
-                new IllegalArgumentException("Parameter packetCoreControlPlaneName is required and cannot be null."));
-        }
-        if (this.client.getSubscriptionId() == null) {
-            return Mono.error(new IllegalArgumentException(
-                "Parameter this.client.getSubscriptionId() is required and cannot be null."));
-        }
-        final String accept = "application/json";
-        context = this.client.mergeContext(context);
-        return service
-            .listByPacketCoreControlPlane(this.client.getEndpoint(), resourceGroupName, packetCoreControlPlaneName,
-                this.client.getApiVersion(), this.client.getSubscriptionId(), accept, context)
-            .map(res -> new PagedResponseBase<>(res.getRequest(), res.getStatusCode(), res.getHeaders(),
-                res.getValue().value(), res.getValue().nextLink(), null));
-    }
-
-    /**
-     * Lists all the packet core data planes associated with a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet core data planes API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PacketCoreDataPlaneInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
-        String packetCoreControlPlaneName) {
-        return new PagedFlux<>(
-            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName),
-            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink));
-    }
-
-    /**
-     * Lists all the packet core data planes associated with a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet core data planes API service call as paginated response with {@link PagedFlux}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    private PagedFlux<PacketCoreDataPlaneInner> listByPacketCoreControlPlaneAsync(String resourceGroupName,
-        String packetCoreControlPlaneName, Context context) {
-        return new PagedFlux<>(
-            () -> listByPacketCoreControlPlaneSinglePageAsync(resourceGroupName, packetCoreControlPlaneName, context),
-            nextLink -> listByPacketCoreControlPlaneNextSinglePageAsync(nextLink, context));
-    }
-
-    /**
-     * Lists all the packet core data planes associated with a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet core data planes API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PacketCoreDataPlaneInner> listByPacketCoreControlPlane(String resourceGroupName,
-        String packetCoreControlPlaneName) {
-        return new PagedIterable<>(listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName));
-    }
-
-    /**
-     * Lists all the packet core data planes associated with a packet core control plane.
-     * 
-     * @param resourceGroupName The name of the resource group. The name is case insensitive.
-     * @param packetCoreControlPlaneName The name of the packet core control plane.
-     * @param context The context to associate with this operation.
-     * @throws IllegalArgumentException thrown if parameters fail the validation.
-     * @throws ManagementException thrown if the request is rejected by server.
-     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet core data planes API service call as paginated response with {@link PagedIterable}.
-     */
-    @ServiceMethod(returns = ReturnType.COLLECTION)
-    public PagedIterable<PacketCoreDataPlaneInner> listByPacketCoreControlPlane(String resourceGroupName,
-        String packetCoreControlPlaneName, Context context) {
-        return new PagedIterable<>(
-            listByPacketCoreControlPlaneAsync(resourceGroupName, packetCoreControlPlaneName, context));
-    }
-
-    /**
      * Get the next page of items.
      * 
      * @param nextLink The URL to get the next list of items
@@ -1096,7 +1099,7 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet core data planes API service call along with {@link PagedResponse} on successful
+     * @return the response of a PacketCoreDataPlane list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
@@ -1127,7 +1130,7 @@ public final class PacketCoreDataPlanesClientImpl implements PacketCoreDataPlane
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return response for packet core data planes API service call along with {@link PagedResponse} on successful
+     * @return the response of a PacketCoreDataPlane list operation along with {@link PagedResponse} on successful
      * completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)

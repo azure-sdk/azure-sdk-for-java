@@ -7,7 +7,6 @@ package com.azure.resourcemanager.mobilenetwork.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.models.InterfaceProperties;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -20,10 +19,10 @@ import java.util.Map;
 @Fluent
 public final class PacketCoreDataPlaneInner extends Resource {
     /*
-     * Packet core data plane Properties.
+     * The resource-specific properties for this resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private PacketCoreDataPlanePropertiesFormat innerProperties = new PacketCoreDataPlanePropertiesFormat();
+    @JsonProperty(value = "properties")
+    private PacketCoreDataPlanePropertiesFormat innerProperties;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -38,7 +37,7 @@ public final class PacketCoreDataPlaneInner extends Resource {
     }
 
     /**
-     * Get the innerProperties property: Packet core data plane Properties.
+     * Get the innerProperties property: The resource-specific properties for this resource.
      * 
      * @return the innerProperties value.
      */
@@ -108,10 +107,10 @@ public final class PacketCoreDataPlaneInner extends Resource {
     }
 
     /**
-     * Get the userPlaneAccessVirtualIpv4Addresses property: The virtual IP address(es) for the user plane on the
-     * access network in a High Availability (HA) system. In an HA deployment the access network router should be
-     * configured to forward traffic for this address to the control plane access interface on the active or standby
-     * node. In non-HA system this list should be omitted or empty.
+     * Get the userPlaneAccessVirtualIpv4Addresses property: The virtual IP address(es) for the user plane on the access
+     * network in a High Availability (HA) system. In an HA deployment the access network router should be configured to
+     * forward traffic for this address to the control plane access interface on the active or standby node. In non-HA
+     * system this list should be omitted or empty.
      * 
      * @return the userPlaneAccessVirtualIpv4Addresses value.
      */
@@ -120,10 +119,10 @@ public final class PacketCoreDataPlaneInner extends Resource {
     }
 
     /**
-     * Set the userPlaneAccessVirtualIpv4Addresses property: The virtual IP address(es) for the user plane on the
-     * access network in a High Availability (HA) system. In an HA deployment the access network router should be
-     * configured to forward traffic for this address to the control plane access interface on the active or standby
-     * node. In non-HA system this list should be omitted or empty.
+     * Set the userPlaneAccessVirtualIpv4Addresses property: The virtual IP address(es) for the user plane on the access
+     * network in a High Availability (HA) system. In an HA deployment the access network router should be configured to
+     * forward traffic for this address to the control plane access interface on the active or standby node. In non-HA
+     * system this list should be omitted or empty.
      * 
      * @param userPlaneAccessVirtualIpv4Addresses the userPlaneAccessVirtualIpv4Addresses value to set.
      * @return the PacketCoreDataPlaneInner object itself.
@@ -143,13 +142,8 @@ public final class PacketCoreDataPlaneInner extends Resource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property innerProperties in model PacketCoreDataPlaneInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(PacketCoreDataPlaneInner.class);
 }

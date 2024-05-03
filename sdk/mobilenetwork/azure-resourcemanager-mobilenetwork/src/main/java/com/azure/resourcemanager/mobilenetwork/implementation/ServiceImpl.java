@@ -98,7 +98,7 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
 
     private String serviceName;
 
-    private TagsObject updateParameters;
+    private TagsObject updateProperties;
 
     public ServiceImpl withExistingMobileNetwork(String resourceGroupName, String mobileNetworkName) {
         this.resourceGroupName = resourceGroupName;
@@ -107,14 +107,16 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
     }
 
     public Service create() {
-        this.innerObject = serviceManager.serviceClient().getServices().createOrUpdate(resourceGroupName,
-            mobileNetworkName, serviceName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .createOrUpdate(resourceGroupName, mobileNetworkName, serviceName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Service create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getServices().createOrUpdate(resourceGroupName,
-            mobileNetworkName, serviceName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .createOrUpdate(resourceGroupName, mobileNetworkName, serviceName, this.innerModel(), context);
         return this;
     }
 
@@ -125,20 +127,22 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
     }
 
     public ServiceImpl update() {
-        this.updateParameters = new TagsObject();
+        this.updateProperties = new TagsObject();
         return this;
     }
 
     public Service apply() {
-        this.innerObject = serviceManager.serviceClient().getServices()
-            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, serviceName, updateParameters, Context.NONE)
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, serviceName, updateProperties, Context.NONE)
             .getValue();
         return this;
     }
 
     public Service apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getServices()
-            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, serviceName, updateParameters, context)
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, serviceName, updateProperties, context)
             .getValue();
         return this;
     }
@@ -152,14 +156,18 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
     }
 
     public Service refresh() {
-        this.innerObject = serviceManager.serviceClient().getServices()
-            .getWithResponse(resourceGroupName, mobileNetworkName, serviceName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .getWithResponse(resourceGroupName, mobileNetworkName, serviceName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Service refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getServices()
-            .getWithResponse(resourceGroupName, mobileNetworkName, serviceName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getServices()
+            .getWithResponse(resourceGroupName, mobileNetworkName, serviceName, context)
+            .getValue();
         return this;
     }
 
@@ -173,28 +181,28 @@ public final class ServiceImpl implements Service, Service.Definition, Service.U
         return this;
     }
 
-    public ServiceImpl withServicePrecedence(int servicePrecedence) {
-        this.innerModel().withServicePrecedence(servicePrecedence);
-        return this;
-    }
-
-    public ServiceImpl withPccRules(List<PccRuleConfiguration> pccRules) {
-        this.innerModel().withPccRules(pccRules);
-        return this;
-    }
-
     public ServiceImpl withTags(Map<String, String> tags) {
         if (isInCreateMode()) {
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateParameters.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
     }
 
+    public ServiceImpl withServicePrecedence(int servicePrecedence) {
+        this.innerModel().withServicePrecedence(servicePrecedence);
+        return this;
+    }
+
     public ServiceImpl withServiceQosPolicy(QosPolicy serviceQosPolicy) {
         this.innerModel().withServiceQosPolicy(serviceQosPolicy);
+        return this;
+    }
+
+    public ServiceImpl withPccRules(List<PccRuleConfiguration> pccRules) {
+        this.innerModel().withPccRules(pccRules);
         return this;
     }
 

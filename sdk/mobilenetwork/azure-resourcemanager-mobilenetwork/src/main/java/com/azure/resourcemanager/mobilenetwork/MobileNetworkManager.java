@@ -11,8 +11,8 @@ import com.azure.core.http.HttpPipelineBuilder;
 import com.azure.core.http.HttpPipelinePosition;
 import com.azure.core.http.policy.AddDatePolicy;
 import com.azure.core.http.policy.AddHeadersFromContextPolicy;
-import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpLoggingPolicy;
+import com.azure.core.http.policy.HttpLogOptions;
 import com.azure.core.http.policy.HttpPipelinePolicy;
 import com.azure.core.http.policy.HttpPolicyProviders;
 import com.azure.core.http.policy.RequestIdPolicy;
@@ -24,41 +24,59 @@ import com.azure.core.management.profile.AzureProfile;
 import com.azure.core.util.Configuration;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.fluent.MobileNetworkManagementClient;
+import com.azure.resourcemanager.mobilenetwork.implementation.AmfDeploymentsImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.AttachedDataNetworksImpl;
+import com.azure.resourcemanager.mobilenetwork.implementation.ClusterServicesImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.DataNetworksImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.DiagnosticsPackagesImpl;
-import com.azure.resourcemanager.mobilenetwork.implementation.ExtendedUeInformationsImpl;
+import com.azure.resourcemanager.mobilenetwork.implementation.ExtendedUeInfosImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.MobileNetworkManagementClientBuilder;
 import com.azure.resourcemanager.mobilenetwork.implementation.MobileNetworksImpl;
+import com.azure.resourcemanager.mobilenetwork.implementation.NrfDeploymentsImpl;
+import com.azure.resourcemanager.mobilenetwork.implementation.NssfDeploymentsImpl;
+import com.azure.resourcemanager.mobilenetwork.implementation.ObservabilityServicesImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.OperationsImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.PacketCapturesImpl;
-import com.azure.resourcemanager.mobilenetwork.implementation.PacketCoreControlPlaneVersionsImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.PacketCoreControlPlanesImpl;
+import com.azure.resourcemanager.mobilenetwork.implementation.PacketCoreControlPlaneVersionsImpl;
+import com.azure.resourcemanager.mobilenetwork.implementation.PacketCoreControlPlaneVersionsTenantResourcesImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.PacketCoreDataPlanesImpl;
+import com.azure.resourcemanager.mobilenetwork.implementation.RoutingInfoModelsImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.ServicesImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.SimGroupsImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.SimPoliciesImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.SimsImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.SitesImpl;
 import com.azure.resourcemanager.mobilenetwork.implementation.SlicesImpl;
-import com.azure.resourcemanager.mobilenetwork.implementation.UeInformationsImpl;
+import com.azure.resourcemanager.mobilenetwork.implementation.SmfDeploymentsImpl;
+import com.azure.resourcemanager.mobilenetwork.implementation.UesImpl;
+import com.azure.resourcemanager.mobilenetwork.implementation.UpfDeploymentsImpl;
+import com.azure.resourcemanager.mobilenetwork.models.AmfDeployments;
 import com.azure.resourcemanager.mobilenetwork.models.AttachedDataNetworks;
+import com.azure.resourcemanager.mobilenetwork.models.ClusterServices;
 import com.azure.resourcemanager.mobilenetwork.models.DataNetworks;
 import com.azure.resourcemanager.mobilenetwork.models.DiagnosticsPackages;
-import com.azure.resourcemanager.mobilenetwork.models.ExtendedUeInformations;
+import com.azure.resourcemanager.mobilenetwork.models.ExtendedUeInfos;
 import com.azure.resourcemanager.mobilenetwork.models.MobileNetworks;
+import com.azure.resourcemanager.mobilenetwork.models.NrfDeployments;
+import com.azure.resourcemanager.mobilenetwork.models.NssfDeployments;
+import com.azure.resourcemanager.mobilenetwork.models.ObservabilityServices;
 import com.azure.resourcemanager.mobilenetwork.models.Operations;
 import com.azure.resourcemanager.mobilenetwork.models.PacketCaptures;
-import com.azure.resourcemanager.mobilenetwork.models.PacketCoreControlPlaneVersions;
 import com.azure.resourcemanager.mobilenetwork.models.PacketCoreControlPlanes;
+import com.azure.resourcemanager.mobilenetwork.models.PacketCoreControlPlaneVersions;
+import com.azure.resourcemanager.mobilenetwork.models.PacketCoreControlPlaneVersionsTenantResources;
 import com.azure.resourcemanager.mobilenetwork.models.PacketCoreDataPlanes;
+import com.azure.resourcemanager.mobilenetwork.models.RoutingInfoModels;
 import com.azure.resourcemanager.mobilenetwork.models.Services;
 import com.azure.resourcemanager.mobilenetwork.models.SimGroups;
 import com.azure.resourcemanager.mobilenetwork.models.SimPolicies;
 import com.azure.resourcemanager.mobilenetwork.models.Sims;
 import com.azure.resourcemanager.mobilenetwork.models.Sites;
 import com.azure.resourcemanager.mobilenetwork.models.Slices;
-import com.azure.resourcemanager.mobilenetwork.models.UeInformations;
+import com.azure.resourcemanager.mobilenetwork.models.SmfDeployments;
+import com.azure.resourcemanager.mobilenetwork.models.Ues;
+import com.azure.resourcemanager.mobilenetwork.models.UpfDeployments;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -68,33 +86,38 @@ import java.util.stream.Collectors;
 
 /**
  * Entry point to MobileNetworkManager.
- * The resources in this API specification will be used to manage attached data network resources in mobile network
- * attached to a particular packet core instance.
+ * Mobile Network Management API.
  */
 public final class MobileNetworkManager {
-    private AttachedDataNetworks attachedDataNetworks;
+    private Operations operations;
 
-    private DataNetworks dataNetworks;
+    private PacketCoreControlPlaneVersionsTenantResources packetCoreControlPlaneVersionsTenantResources;
 
-    private DiagnosticsPackages diagnosticsPackages;
+    private AmfDeployments amfDeployments;
+
+    private ClusterServices clusterServices;
 
     private MobileNetworks mobileNetworks;
 
-    private Operations operations;
+    private NrfDeployments nrfDeployments;
 
-    private PacketCaptures packetCaptures;
+    private NssfDeployments nssfDeployments;
 
-    private PacketCoreControlPlanes packetCoreControlPlanes;
+    private ObservabilityServices observabilityServices;
 
     private PacketCoreControlPlaneVersions packetCoreControlPlaneVersions;
 
-    private PacketCoreDataPlanes packetCoreDataPlanes;
-
-    private Services services;
-
-    private Sims sims;
+    private PacketCoreControlPlanes packetCoreControlPlanes;
 
     private SimGroups simGroups;
+
+    private SmfDeployments smfDeployments;
+
+    private UpfDeployments upfDeployments;
+
+    private DataNetworks dataNetworks;
+
+    private Services services;
 
     private SimPolicies simPolicies;
 
@@ -102,9 +125,21 @@ public final class MobileNetworkManager {
 
     private Slices slices;
 
-    private ExtendedUeInformations extendedUeInformations;
+    private DiagnosticsPackages diagnosticsPackages;
 
-    private UeInformations ueInformations;
+    private PacketCaptures packetCaptures;
+
+    private PacketCoreDataPlanes packetCoreDataPlanes;
+
+    private AttachedDataNetworks attachedDataNetworks;
+
+    private RoutingInfoModels routingInfoModels;
+
+    private Ues ues;
+
+    private ExtendedUeInfos extendedUeInfos;
+
+    private Sims sims;
 
     private final MobileNetworkManagementClient clientObject;
 
@@ -112,8 +147,10 @@ public final class MobileNetworkManager {
         Objects.requireNonNull(httpPipeline, "'httpPipeline' cannot be null.");
         Objects.requireNonNull(profile, "'profile' cannot be null.");
         this.clientObject = new MobileNetworkManagementClientBuilder().pipeline(httpPipeline)
-            .endpoint(profile.getEnvironment().getResourceManagerEndpoint()).subscriptionId(profile.getSubscriptionId())
-            .defaultPollInterval(defaultPollInterval).buildClient();
+            .endpoint(profile.getEnvironment().getResourceManagerEndpoint())
+            .subscriptionId(profile.getSubscriptionId())
+            .defaultPollInterval(defaultPollInterval)
+            .buildClient();
     }
 
     /**
@@ -264,12 +301,19 @@ public final class MobileNetworkManager {
             Objects.requireNonNull(profile, "'profile' cannot be null.");
 
             StringBuilder userAgentBuilder = new StringBuilder();
-            userAgentBuilder.append("azsdk-java").append("-").append("com.azure.resourcemanager.mobilenetwork")
-                .append("/").append("1.1.0");
+            userAgentBuilder.append("azsdk-java")
+                .append("-")
+                .append("com.azure.resourcemanager.mobilenetwork")
+                .append("/")
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
-                userAgentBuilder.append(" (").append(Configuration.getGlobalConfiguration().get("java.version"))
-                    .append("; ").append(Configuration.getGlobalConfiguration().get("os.name")).append("; ")
-                    .append(Configuration.getGlobalConfiguration().get("os.version")).append("; auto-generated)");
+                userAgentBuilder.append(" (")
+                    .append(Configuration.getGlobalConfiguration().get("java.version"))
+                    .append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.name"))
+                    .append("; ")
+                    .append(Configuration.getGlobalConfiguration().get("os.version"))
+                    .append("; auto-generated)");
             } else {
                 userAgentBuilder.append(" (auto-generated)");
             }
@@ -288,68 +332,23 @@ public final class MobileNetworkManager {
             policies.add(new UserAgentPolicy(userAgentBuilder.toString()));
             policies.add(new AddHeadersFromContextPolicy());
             policies.add(new RequestIdPolicy());
-            policies.addAll(this.policies.stream().filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
+            policies.addAll(this.policies.stream()
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_CALL)
                 .collect(Collectors.toList()));
             HttpPolicyProviders.addBeforeRetryPolicies(policies);
             policies.add(retryPolicy);
             policies.add(new AddDatePolicy());
             policies.add(new ArmChallengeAuthenticationPolicy(credential, scopes.toArray(new String[0])));
             policies.addAll(this.policies.stream()
-                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY).collect(Collectors.toList()));
+                .filter(p -> p.getPipelinePosition() == HttpPipelinePosition.PER_RETRY)
+                .collect(Collectors.toList()));
             HttpPolicyProviders.addAfterRetryPolicies(policies);
             policies.add(new HttpLoggingPolicy(httpLogOptions));
             HttpPipeline httpPipeline = new HttpPipelineBuilder().httpClient(httpClient)
-                .policies(policies.toArray(new HttpPipelinePolicy[0])).build();
+                .policies(policies.toArray(new HttpPipelinePolicy[0]))
+                .build();
             return new MobileNetworkManager(httpPipeline, profile, defaultPollInterval);
         }
-    }
-
-    /**
-     * Gets the resource collection API of AttachedDataNetworks. It manages AttachedDataNetwork.
-     * 
-     * @return Resource collection API of AttachedDataNetworks.
-     */
-    public AttachedDataNetworks attachedDataNetworks() {
-        if (this.attachedDataNetworks == null) {
-            this.attachedDataNetworks = new AttachedDataNetworksImpl(clientObject.getAttachedDataNetworks(), this);
-        }
-        return attachedDataNetworks;
-    }
-
-    /**
-     * Gets the resource collection API of DataNetworks. It manages DataNetwork.
-     * 
-     * @return Resource collection API of DataNetworks.
-     */
-    public DataNetworks dataNetworks() {
-        if (this.dataNetworks == null) {
-            this.dataNetworks = new DataNetworksImpl(clientObject.getDataNetworks(), this);
-        }
-        return dataNetworks;
-    }
-
-    /**
-     * Gets the resource collection API of DiagnosticsPackages.
-     * 
-     * @return Resource collection API of DiagnosticsPackages.
-     */
-    public DiagnosticsPackages diagnosticsPackages() {
-        if (this.diagnosticsPackages == null) {
-            this.diagnosticsPackages = new DiagnosticsPackagesImpl(clientObject.getDiagnosticsPackages(), this);
-        }
-        return diagnosticsPackages;
-    }
-
-    /**
-     * Gets the resource collection API of MobileNetworks. It manages MobileNetwork.
-     * 
-     * @return Resource collection API of MobileNetworks.
-     */
-    public MobileNetworks mobileNetworks() {
-        if (this.mobileNetworks == null) {
-            this.mobileNetworks = new MobileNetworksImpl(clientObject.getMobileNetworks(), this);
-        }
-        return mobileNetworks;
     }
 
     /**
@@ -365,28 +364,88 @@ public final class MobileNetworkManager {
     }
 
     /**
-     * Gets the resource collection API of PacketCaptures. It manages PacketCapture.
+     * Gets the resource collection API of PacketCoreControlPlaneVersionsTenantResources.
      * 
-     * @return Resource collection API of PacketCaptures.
+     * @return Resource collection API of PacketCoreControlPlaneVersionsTenantResources.
      */
-    public PacketCaptures packetCaptures() {
-        if (this.packetCaptures == null) {
-            this.packetCaptures = new PacketCapturesImpl(clientObject.getPacketCaptures(), this);
+    public PacketCoreControlPlaneVersionsTenantResources packetCoreControlPlaneVersionsTenantResources() {
+        if (this.packetCoreControlPlaneVersionsTenantResources == null) {
+            this.packetCoreControlPlaneVersionsTenantResources = new PacketCoreControlPlaneVersionsTenantResourcesImpl(
+                clientObject.getPacketCoreControlPlaneVersionsTenantResources(), this);
         }
-        return packetCaptures;
+        return packetCoreControlPlaneVersionsTenantResources;
     }
 
     /**
-     * Gets the resource collection API of PacketCoreControlPlanes. It manages PacketCoreControlPlane.
+     * Gets the resource collection API of AmfDeployments. It manages AmfDeploymentResource.
      * 
-     * @return Resource collection API of PacketCoreControlPlanes.
+     * @return Resource collection API of AmfDeployments.
      */
-    public PacketCoreControlPlanes packetCoreControlPlanes() {
-        if (this.packetCoreControlPlanes == null) {
-            this.packetCoreControlPlanes
-                = new PacketCoreControlPlanesImpl(clientObject.getPacketCoreControlPlanes(), this);
+    public AmfDeployments amfDeployments() {
+        if (this.amfDeployments == null) {
+            this.amfDeployments = new AmfDeploymentsImpl(clientObject.getAmfDeployments(), this);
         }
-        return packetCoreControlPlanes;
+        return amfDeployments;
+    }
+
+    /**
+     * Gets the resource collection API of ClusterServices. It manages ClusterServiceResource.
+     * 
+     * @return Resource collection API of ClusterServices.
+     */
+    public ClusterServices clusterServices() {
+        if (this.clusterServices == null) {
+            this.clusterServices = new ClusterServicesImpl(clientObject.getClusterServices(), this);
+        }
+        return clusterServices;
+    }
+
+    /**
+     * Gets the resource collection API of MobileNetworks. It manages MobileNetwork.
+     * 
+     * @return Resource collection API of MobileNetworks.
+     */
+    public MobileNetworks mobileNetworks() {
+        if (this.mobileNetworks == null) {
+            this.mobileNetworks = new MobileNetworksImpl(clientObject.getMobileNetworks(), this);
+        }
+        return mobileNetworks;
+    }
+
+    /**
+     * Gets the resource collection API of NrfDeployments. It manages NrfDeploymentResource.
+     * 
+     * @return Resource collection API of NrfDeployments.
+     */
+    public NrfDeployments nrfDeployments() {
+        if (this.nrfDeployments == null) {
+            this.nrfDeployments = new NrfDeploymentsImpl(clientObject.getNrfDeployments(), this);
+        }
+        return nrfDeployments;
+    }
+
+    /**
+     * Gets the resource collection API of NssfDeployments. It manages NssfDeploymentResource.
+     * 
+     * @return Resource collection API of NssfDeployments.
+     */
+    public NssfDeployments nssfDeployments() {
+        if (this.nssfDeployments == null) {
+            this.nssfDeployments = new NssfDeploymentsImpl(clientObject.getNssfDeployments(), this);
+        }
+        return nssfDeployments;
+    }
+
+    /**
+     * Gets the resource collection API of ObservabilityServices. It manages ObservabilityServiceResource.
+     * 
+     * @return Resource collection API of ObservabilityServices.
+     */
+    public ObservabilityServices observabilityServices() {
+        if (this.observabilityServices == null) {
+            this.observabilityServices = new ObservabilityServicesImpl(clientObject.getObservabilityServices(), this);
+        }
+        return observabilityServices;
     }
 
     /**
@@ -403,39 +462,16 @@ public final class MobileNetworkManager {
     }
 
     /**
-     * Gets the resource collection API of PacketCoreDataPlanes. It manages PacketCoreDataPlane.
+     * Gets the resource collection API of PacketCoreControlPlanes. It manages PacketCoreControlPlane.
      * 
-     * @return Resource collection API of PacketCoreDataPlanes.
+     * @return Resource collection API of PacketCoreControlPlanes.
      */
-    public PacketCoreDataPlanes packetCoreDataPlanes() {
-        if (this.packetCoreDataPlanes == null) {
-            this.packetCoreDataPlanes = new PacketCoreDataPlanesImpl(clientObject.getPacketCoreDataPlanes(), this);
+    public PacketCoreControlPlanes packetCoreControlPlanes() {
+        if (this.packetCoreControlPlanes == null) {
+            this.packetCoreControlPlanes
+                = new PacketCoreControlPlanesImpl(clientObject.getPacketCoreControlPlanes(), this);
         }
-        return packetCoreDataPlanes;
-    }
-
-    /**
-     * Gets the resource collection API of Services. It manages Service.
-     * 
-     * @return Resource collection API of Services.
-     */
-    public Services services() {
-        if (this.services == null) {
-            this.services = new ServicesImpl(clientObject.getServices(), this);
-        }
-        return services;
-    }
-
-    /**
-     * Gets the resource collection API of Sims. It manages Sim.
-     * 
-     * @return Resource collection API of Sims.
-     */
-    public Sims sims() {
-        if (this.sims == null) {
-            this.sims = new SimsImpl(clientObject.getSims(), this);
-        }
-        return sims;
+        return packetCoreControlPlanes;
     }
 
     /**
@@ -448,6 +484,54 @@ public final class MobileNetworkManager {
             this.simGroups = new SimGroupsImpl(clientObject.getSimGroups(), this);
         }
         return simGroups;
+    }
+
+    /**
+     * Gets the resource collection API of SmfDeployments. It manages SmfDeploymentResource.
+     * 
+     * @return Resource collection API of SmfDeployments.
+     */
+    public SmfDeployments smfDeployments() {
+        if (this.smfDeployments == null) {
+            this.smfDeployments = new SmfDeploymentsImpl(clientObject.getSmfDeployments(), this);
+        }
+        return smfDeployments;
+    }
+
+    /**
+     * Gets the resource collection API of UpfDeployments. It manages UpfDeploymentResource.
+     * 
+     * @return Resource collection API of UpfDeployments.
+     */
+    public UpfDeployments upfDeployments() {
+        if (this.upfDeployments == null) {
+            this.upfDeployments = new UpfDeploymentsImpl(clientObject.getUpfDeployments(), this);
+        }
+        return upfDeployments;
+    }
+
+    /**
+     * Gets the resource collection API of DataNetworks. It manages DataNetwork.
+     * 
+     * @return Resource collection API of DataNetworks.
+     */
+    public DataNetworks dataNetworks() {
+        if (this.dataNetworks == null) {
+            this.dataNetworks = new DataNetworksImpl(clientObject.getDataNetworks(), this);
+        }
+        return dataNetworks;
+    }
+
+    /**
+     * Gets the resource collection API of Services. It manages Service.
+     * 
+     * @return Resource collection API of Services.
+     */
+    public Services services() {
+        if (this.services == null) {
+            this.services = new ServicesImpl(clientObject.getServices(), this);
+        }
+        return services;
     }
 
     /**
@@ -487,28 +571,99 @@ public final class MobileNetworkManager {
     }
 
     /**
-     * Gets the resource collection API of ExtendedUeInformations.
+     * Gets the resource collection API of DiagnosticsPackages.
      * 
-     * @return Resource collection API of ExtendedUeInformations.
+     * @return Resource collection API of DiagnosticsPackages.
      */
-    public ExtendedUeInformations extendedUeInformations() {
-        if (this.extendedUeInformations == null) {
-            this.extendedUeInformations
-                = new ExtendedUeInformationsImpl(clientObject.getExtendedUeInformations(), this);
+    public DiagnosticsPackages diagnosticsPackages() {
+        if (this.diagnosticsPackages == null) {
+            this.diagnosticsPackages = new DiagnosticsPackagesImpl(clientObject.getDiagnosticsPackages(), this);
         }
-        return extendedUeInformations;
+        return diagnosticsPackages;
     }
 
     /**
-     * Gets the resource collection API of UeInformations.
+     * Gets the resource collection API of PacketCaptures. It manages PacketCapture.
      * 
-     * @return Resource collection API of UeInformations.
+     * @return Resource collection API of PacketCaptures.
      */
-    public UeInformations ueInformations() {
-        if (this.ueInformations == null) {
-            this.ueInformations = new UeInformationsImpl(clientObject.getUeInformations(), this);
+    public PacketCaptures packetCaptures() {
+        if (this.packetCaptures == null) {
+            this.packetCaptures = new PacketCapturesImpl(clientObject.getPacketCaptures(), this);
         }
-        return ueInformations;
+        return packetCaptures;
+    }
+
+    /**
+     * Gets the resource collection API of PacketCoreDataPlanes. It manages PacketCoreDataPlane.
+     * 
+     * @return Resource collection API of PacketCoreDataPlanes.
+     */
+    public PacketCoreDataPlanes packetCoreDataPlanes() {
+        if (this.packetCoreDataPlanes == null) {
+            this.packetCoreDataPlanes = new PacketCoreDataPlanesImpl(clientObject.getPacketCoreDataPlanes(), this);
+        }
+        return packetCoreDataPlanes;
+    }
+
+    /**
+     * Gets the resource collection API of AttachedDataNetworks. It manages AttachedDataNetwork.
+     * 
+     * @return Resource collection API of AttachedDataNetworks.
+     */
+    public AttachedDataNetworks attachedDataNetworks() {
+        if (this.attachedDataNetworks == null) {
+            this.attachedDataNetworks = new AttachedDataNetworksImpl(clientObject.getAttachedDataNetworks(), this);
+        }
+        return attachedDataNetworks;
+    }
+
+    /**
+     * Gets the resource collection API of RoutingInfoModels.
+     * 
+     * @return Resource collection API of RoutingInfoModels.
+     */
+    public RoutingInfoModels routingInfoModels() {
+        if (this.routingInfoModels == null) {
+            this.routingInfoModels = new RoutingInfoModelsImpl(clientObject.getRoutingInfoModels(), this);
+        }
+        return routingInfoModels;
+    }
+
+    /**
+     * Gets the resource collection API of Ues.
+     * 
+     * @return Resource collection API of Ues.
+     */
+    public Ues ues() {
+        if (this.ues == null) {
+            this.ues = new UesImpl(clientObject.getUes(), this);
+        }
+        return ues;
+    }
+
+    /**
+     * Gets the resource collection API of ExtendedUeInfos.
+     * 
+     * @return Resource collection API of ExtendedUeInfos.
+     */
+    public ExtendedUeInfos extendedUeInfos() {
+        if (this.extendedUeInfos == null) {
+            this.extendedUeInfos = new ExtendedUeInfosImpl(clientObject.getExtendedUeInfos(), this);
+        }
+        return extendedUeInfos;
+    }
+
+    /**
+     * Gets the resource collection API of Sims. It manages Sim.
+     * 
+     * @return Resource collection API of Sims.
+     */
+    public Sims sims() {
+        if (this.sims == null) {
+            this.sims = new SimsImpl(clientObject.getSims(), this);
+        }
+        return sims;
     }
 
     /**

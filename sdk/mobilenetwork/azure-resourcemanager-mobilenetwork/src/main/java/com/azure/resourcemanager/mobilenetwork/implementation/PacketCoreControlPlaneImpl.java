@@ -25,6 +25,7 @@ import com.azure.resourcemanager.mobilenetwork.models.PlatformConfiguration;
 import com.azure.resourcemanager.mobilenetwork.models.ProvisioningState;
 import com.azure.resourcemanager.mobilenetwork.models.SignalingConfiguration;
 import com.azure.resourcemanager.mobilenetwork.models.SiteResourceId;
+import com.azure.resourcemanager.mobilenetwork.models.UserConsentConfiguration;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -150,6 +151,10 @@ public final class PacketCoreControlPlaneImpl
         return this.innerModel().homeNetworkPrivateKeysProvisioning();
     }
 
+    public UserConsentConfiguration userConsent() {
+        return this.innerModel().userConsent();
+    }
+
     public Region region() {
         return Region.fromName(this.regionName());
     }
@@ -174,7 +179,7 @@ public final class PacketCoreControlPlaneImpl
 
     private String packetCoreControlPlaneName;
 
-    private IdentityAndTagsObject updateParameters;
+    private IdentityAndTagsObject updateProperties;
 
     public PacketCoreControlPlaneImpl withExistingResourceGroup(String resourceGroupName) {
         this.resourceGroupName = resourceGroupName;
@@ -182,14 +187,16 @@ public final class PacketCoreControlPlaneImpl
     }
 
     public PacketCoreControlPlane create() {
-        this.innerObject = serviceManager.serviceClient().getPacketCoreControlPlanes().createOrUpdate(resourceGroupName,
-            packetCoreControlPlaneName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreControlPlanes()
+            .createOrUpdate(resourceGroupName, packetCoreControlPlaneName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public PacketCoreControlPlane create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getPacketCoreControlPlanes().createOrUpdate(resourceGroupName,
-            packetCoreControlPlaneName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreControlPlanes()
+            .createOrUpdate(resourceGroupName, packetCoreControlPlaneName, this.innerModel(), context);
         return this;
     }
 
@@ -201,20 +208,22 @@ public final class PacketCoreControlPlaneImpl
     }
 
     public PacketCoreControlPlaneImpl update() {
-        this.updateParameters = new IdentityAndTagsObject();
+        this.updateProperties = new IdentityAndTagsObject();
         return this;
     }
 
     public PacketCoreControlPlane apply() {
-        this.innerObject = serviceManager.serviceClient().getPacketCoreControlPlanes()
-            .updateTagsWithResponse(resourceGroupName, packetCoreControlPlaneName, updateParameters, Context.NONE)
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreControlPlanes()
+            .updateTagsWithResponse(resourceGroupName, packetCoreControlPlaneName, updateProperties, Context.NONE)
             .getValue();
         return this;
     }
 
     public PacketCoreControlPlane apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getPacketCoreControlPlanes()
-            .updateTagsWithResponse(resourceGroupName, packetCoreControlPlaneName, updateParameters, context)
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreControlPlanes()
+            .updateTagsWithResponse(resourceGroupName, packetCoreControlPlaneName, updateProperties, context)
             .getValue();
         return this;
     }
@@ -229,24 +238,30 @@ public final class PacketCoreControlPlaneImpl
     }
 
     public PacketCoreControlPlane refresh() {
-        this.innerObject = serviceManager.serviceClient().getPacketCoreControlPlanes()
-            .getByResourceGroupWithResponse(resourceGroupName, packetCoreControlPlaneName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreControlPlanes()
+            .getByResourceGroupWithResponse(resourceGroupName, packetCoreControlPlaneName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public PacketCoreControlPlane refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getPacketCoreControlPlanes()
-            .getByResourceGroupWithResponse(resourceGroupName, packetCoreControlPlaneName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getPacketCoreControlPlanes()
+            .getByResourceGroupWithResponse(resourceGroupName, packetCoreControlPlaneName, context)
+            .getValue();
         return this;
     }
 
-    public AsyncOperationStatus rollback() {
-        return serviceManager.packetCoreControlPlanes().rollback(resourceGroupName, packetCoreControlPlaneName);
+    public AsyncOperationStatus collectDiagnosticsPackage(PacketCoreControlPlaneCollectDiagnosticsPackage body) {
+        return serviceManager.packetCoreControlPlanes()
+            .collectDiagnosticsPackage(resourceGroupName, packetCoreControlPlaneName, body);
     }
 
-    public AsyncOperationStatus rollback(Context context) {
-        return serviceManager.packetCoreControlPlanes().rollback(resourceGroupName, packetCoreControlPlaneName,
-            context);
+    public AsyncOperationStatus collectDiagnosticsPackage(PacketCoreControlPlaneCollectDiagnosticsPackage body,
+        Context context) {
+        return serviceManager.packetCoreControlPlanes()
+            .collectDiagnosticsPackage(resourceGroupName, packetCoreControlPlaneName, body, context);
     }
 
     public AsyncOperationStatus reinstall() {
@@ -254,19 +269,17 @@ public final class PacketCoreControlPlaneImpl
     }
 
     public AsyncOperationStatus reinstall(Context context) {
-        return serviceManager.packetCoreControlPlanes().reinstall(resourceGroupName, packetCoreControlPlaneName,
-            context);
+        return serviceManager.packetCoreControlPlanes()
+            .reinstall(resourceGroupName, packetCoreControlPlaneName, context);
     }
 
-    public AsyncOperationStatus collectDiagnosticsPackage(PacketCoreControlPlaneCollectDiagnosticsPackage parameters) {
-        return serviceManager.packetCoreControlPlanes().collectDiagnosticsPackage(resourceGroupName,
-            packetCoreControlPlaneName, parameters);
+    public AsyncOperationStatus rollback() {
+        return serviceManager.packetCoreControlPlanes().rollback(resourceGroupName, packetCoreControlPlaneName);
     }
 
-    public AsyncOperationStatus collectDiagnosticsPackage(PacketCoreControlPlaneCollectDiagnosticsPackage parameters,
-        Context context) {
-        return serviceManager.packetCoreControlPlanes().collectDiagnosticsPackage(resourceGroupName,
-            packetCoreControlPlaneName, parameters, context);
+    public AsyncOperationStatus rollback(Context context) {
+        return serviceManager.packetCoreControlPlanes()
+            .rollback(resourceGroupName, packetCoreControlPlaneName, context);
     }
 
     public PacketCoreControlPlaneImpl withRegion(Region location) {
@@ -276,6 +289,31 @@ public final class PacketCoreControlPlaneImpl
 
     public PacketCoreControlPlaneImpl withRegion(String location) {
         this.innerModel().withLocation(location);
+        return this;
+    }
+
+    public PacketCoreControlPlaneImpl withTags(Map<String, String> tags) {
+        if (isInCreateMode()) {
+            this.innerModel().withTags(tags);
+            return this;
+        } else {
+            this.updateProperties.withTags(tags);
+            return this;
+        }
+    }
+
+    public PacketCoreControlPlaneImpl withIdentity(ManagedServiceIdentity identity) {
+        if (isInCreateMode()) {
+            this.innerModel().withIdentity(identity);
+            return this;
+        } else {
+            this.updateProperties.withIdentity(identity);
+            return this;
+        }
+    }
+
+    public PacketCoreControlPlaneImpl withInstallation(Installation installation) {
+        this.innerModel().withInstallation(installation);
         return this;
     }
 
@@ -289,47 +327,6 @@ public final class PacketCoreControlPlaneImpl
         return this;
     }
 
-    public PacketCoreControlPlaneImpl withControlPlaneAccessInterface(InterfaceProperties controlPlaneAccessInterface) {
-        this.innerModel().withControlPlaneAccessInterface(controlPlaneAccessInterface);
-        return this;
-    }
-
-    public PacketCoreControlPlaneImpl withSku(BillingSku sku) {
-        this.innerModel().withSku(sku);
-        return this;
-    }
-
-    public PacketCoreControlPlaneImpl
-        withLocalDiagnosticsAccess(LocalDiagnosticsAccessConfiguration localDiagnosticsAccess) {
-        this.innerModel().withLocalDiagnosticsAccess(localDiagnosticsAccess);
-        return this;
-    }
-
-    public PacketCoreControlPlaneImpl withTags(Map<String, String> tags) {
-        if (isInCreateMode()) {
-            this.innerModel().withTags(tags);
-            return this;
-        } else {
-            this.updateParameters.withTags(tags);
-            return this;
-        }
-    }
-
-    public PacketCoreControlPlaneImpl withIdentity(ManagedServiceIdentity identity) {
-        if (isInCreateMode()) {
-            this.innerModel().withIdentity(identity);
-            return this;
-        } else {
-            this.updateParameters.withIdentity(identity);
-            return this;
-        }
-    }
-
-    public PacketCoreControlPlaneImpl withInstallation(Installation installation) {
-        this.innerModel().withInstallation(installation);
-        return this;
-    }
-
     public PacketCoreControlPlaneImpl withCoreNetworkTechnology(CoreNetworkType coreNetworkTechnology) {
         this.innerModel().withCoreNetworkTechnology(coreNetworkTechnology);
         return this;
@@ -340,14 +337,30 @@ public final class PacketCoreControlPlaneImpl
         return this;
     }
 
+    public PacketCoreControlPlaneImpl withControlPlaneAccessInterface(InterfaceProperties controlPlaneAccessInterface) {
+        this.innerModel().withControlPlaneAccessInterface(controlPlaneAccessInterface);
+        return this;
+    }
+
     public PacketCoreControlPlaneImpl
         withControlPlaneAccessVirtualIpv4Addresses(List<String> controlPlaneAccessVirtualIpv4Addresses) {
         this.innerModel().withControlPlaneAccessVirtualIpv4Addresses(controlPlaneAccessVirtualIpv4Addresses);
         return this;
     }
 
+    public PacketCoreControlPlaneImpl withSku(BillingSku sku) {
+        this.innerModel().withSku(sku);
+        return this;
+    }
+
     public PacketCoreControlPlaneImpl withUeMtu(Integer ueMtu) {
         this.innerModel().withUeMtu(ueMtu);
+        return this;
+    }
+
+    public PacketCoreControlPlaneImpl
+        withLocalDiagnosticsAccess(LocalDiagnosticsAccessConfiguration localDiagnosticsAccess) {
+        this.innerModel().withLocalDiagnosticsAccess(localDiagnosticsAccess);
         return this;
     }
 
@@ -368,6 +381,11 @@ public final class PacketCoreControlPlaneImpl
 
     public PacketCoreControlPlaneImpl withInteropSettings(Object interopSettings) {
         this.innerModel().withInteropSettings(interopSettings);
+        return this;
+    }
+
+    public PacketCoreControlPlaneImpl withUserConsent(UserConsentConfiguration userConsent) {
+        this.innerModel().withUserConsent(userConsent);
         return this;
     }
 

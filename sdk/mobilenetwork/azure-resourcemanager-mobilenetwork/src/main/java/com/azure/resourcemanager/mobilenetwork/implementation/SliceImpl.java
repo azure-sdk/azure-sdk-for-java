@@ -87,7 +87,7 @@ public final class SliceImpl implements Slice, Slice.Definition, Slice.Update {
 
     private String sliceName;
 
-    private TagsObject updateParameters;
+    private TagsObject updateProperties;
 
     public SliceImpl withExistingMobileNetwork(String resourceGroupName, String mobileNetworkName) {
         this.resourceGroupName = resourceGroupName;
@@ -96,14 +96,16 @@ public final class SliceImpl implements Slice, Slice.Definition, Slice.Update {
     }
 
     public Slice create() {
-        this.innerObject = serviceManager.serviceClient().getSlices().createOrUpdate(resourceGroupName,
-            mobileNetworkName, sliceName, this.innerModel(), Context.NONE);
+        this.innerObject = serviceManager.serviceClient()
+            .getSlices()
+            .createOrUpdate(resourceGroupName, mobileNetworkName, sliceName, this.innerModel(), Context.NONE);
         return this;
     }
 
     public Slice create(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSlices().createOrUpdate(resourceGroupName,
-            mobileNetworkName, sliceName, this.innerModel(), context);
+        this.innerObject = serviceManager.serviceClient()
+            .getSlices()
+            .createOrUpdate(resourceGroupName, mobileNetworkName, sliceName, this.innerModel(), context);
         return this;
     }
 
@@ -114,20 +116,22 @@ public final class SliceImpl implements Slice, Slice.Definition, Slice.Update {
     }
 
     public SliceImpl update() {
-        this.updateParameters = new TagsObject();
+        this.updateProperties = new TagsObject();
         return this;
     }
 
     public Slice apply() {
-        this.innerObject = serviceManager.serviceClient().getSlices()
-            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, sliceName, updateParameters, Context.NONE)
+        this.innerObject = serviceManager.serviceClient()
+            .getSlices()
+            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, sliceName, updateProperties, Context.NONE)
             .getValue();
         return this;
     }
 
     public Slice apply(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSlices()
-            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, sliceName, updateParameters, context)
+        this.innerObject = serviceManager.serviceClient()
+            .getSlices()
+            .updateTagsWithResponse(resourceGroupName, mobileNetworkName, sliceName, updateProperties, context)
             .getValue();
         return this;
     }
@@ -141,14 +145,18 @@ public final class SliceImpl implements Slice, Slice.Definition, Slice.Update {
     }
 
     public Slice refresh() {
-        this.innerObject = serviceManager.serviceClient().getSlices()
-            .getWithResponse(resourceGroupName, mobileNetworkName, sliceName, Context.NONE).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSlices()
+            .getWithResponse(resourceGroupName, mobileNetworkName, sliceName, Context.NONE)
+            .getValue();
         return this;
     }
 
     public Slice refresh(Context context) {
-        this.innerObject = serviceManager.serviceClient().getSlices()
-            .getWithResponse(resourceGroupName, mobileNetworkName, sliceName, context).getValue();
+        this.innerObject = serviceManager.serviceClient()
+            .getSlices()
+            .getWithResponse(resourceGroupName, mobileNetworkName, sliceName, context)
+            .getValue();
         return this;
     }
 
@@ -162,19 +170,19 @@ public final class SliceImpl implements Slice, Slice.Definition, Slice.Update {
         return this;
     }
 
-    public SliceImpl withSnssai(Snssai snssai) {
-        this.innerModel().withSnssai(snssai);
-        return this;
-    }
-
     public SliceImpl withTags(Map<String, String> tags) {
         if (isInCreateMode()) {
             this.innerModel().withTags(tags);
             return this;
         } else {
-            this.updateParameters.withTags(tags);
+            this.updateProperties.withTags(tags);
             return this;
         }
+    }
+
+    public SliceImpl withSnssai(Snssai snssai) {
+        this.innerModel().withSnssai(snssai);
+        return this;
     }
 
     public SliceImpl withDescription(String description) {

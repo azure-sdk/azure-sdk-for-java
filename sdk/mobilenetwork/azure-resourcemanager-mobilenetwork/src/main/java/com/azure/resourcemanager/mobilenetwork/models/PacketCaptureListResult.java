@@ -5,25 +5,26 @@
 package com.azure.resourcemanager.mobilenetwork.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.mobilenetwork.fluent.models.PacketCaptureInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 /**
- * Response for packet capture API service call.
+ * The response of a PacketCapture list operation.
  */
 @Fluent
 public final class PacketCaptureListResult {
     /*
-     * A list of packet capture sessions under a packet core control plane.
+     * The PacketCapture items on this page
      */
-    @JsonProperty(value = "value")
+    @JsonProperty(value = "value", required = true)
     private List<PacketCaptureInner> value;
 
     /*
-     * The URL to get the next set of results.
+     * The link to the next page of items
      */
-    @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(value = "nextLink")
     private String nextLink;
 
     /**
@@ -33,7 +34,7 @@ public final class PacketCaptureListResult {
     }
 
     /**
-     * Get the value property: A list of packet capture sessions under a packet core control plane.
+     * Get the value property: The PacketCapture items on this page.
      * 
      * @return the value value.
      */
@@ -42,7 +43,7 @@ public final class PacketCaptureListResult {
     }
 
     /**
-     * Set the value property: A list of packet capture sessions under a packet core control plane.
+     * Set the value property: The PacketCapture items on this page.
      * 
      * @param value the value value to set.
      * @return the PacketCaptureListResult object itself.
@@ -53,7 +54,7 @@ public final class PacketCaptureListResult {
     }
 
     /**
-     * Get the nextLink property: The URL to get the next set of results.
+     * Get the nextLink property: The link to the next page of items.
      * 
      * @return the nextLink value.
      */
@@ -62,13 +63,29 @@ public final class PacketCaptureListResult {
     }
 
     /**
+     * Set the nextLink property: The link to the next page of items.
+     * 
+     * @param nextLink the nextLink value to set.
+     * @return the PacketCaptureListResult object itself.
+     */
+    public PacketCaptureListResult withNextLink(String nextLink) {
+        this.nextLink = nextLink;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (value() != null) {
+        if (value() == null) {
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model PacketCaptureListResult"));
+        } else {
             value().forEach(e -> e.validate());
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(PacketCaptureListResult.class);
 }
