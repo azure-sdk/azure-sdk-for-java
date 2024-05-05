@@ -34,13 +34,6 @@ public final class FollowupRecommendationInference extends RadiologyInsightsInfe
     private RadiologyInsightsInferenceType kind = RadiologyInsightsInferenceType.FOLLOWUP_RECOMMENDATION;
 
     /*
-     * Date and time are displayed when the procedure is recommended to be done at a specific point in time.
-     */
-    @Generated
-    @JsonProperty(value = "effectiveDateTime")
-    private String effectiveDateTime;
-
-    /*
      * The period is shown if a specific period is mentioned, with a start and end date-time.
      */
     @Generated
@@ -123,17 +116,6 @@ public final class FollowupRecommendationInference extends RadiologyInsightsInfe
     }
 
     /**
-     * Get the effectiveDateTime property: Date and time are displayed when the procedure is recommended to be done at a
-     * specific point in time.
-     *
-     * @return the effectiveDateTime value.
-     */
-    @Generated
-    public String getEffectiveDateTime() {
-        return this.effectiveDateTime;
-    }
-
-    /**
      * Get the effectivePeriod property: The period is shown if a specific period is mentioned, with a start and end
      * date-time.
      *
@@ -208,5 +190,23 @@ public final class FollowupRecommendationInference extends RadiologyInsightsInfe
     @Generated
     public ProcedureRecommendation getRecommendedProcedure() {
         return this.recommendedProcedure;
+    }
+
+    /*
+     * Date and time are displayed when the procedure is recommended to be done at a specific point in time.
+     */
+    @Generated
+    @JsonProperty(value = "effectiveAt")
+    private String effectiveAt;
+
+    /**
+     * Get the effectiveAt property: Date and time are displayed when the procedure is recommended to be done at a
+     * specific point in time.
+     *
+     * @return the effectiveAt value.
+     */
+    @Generated
+    public String getEffectiveAt() {
+        return this.effectiveAt;
     }
 }
