@@ -67,6 +67,12 @@ public final class ManagedCcfProperties {
     @JsonProperty(value = "nodeCount")
     private Integer nodeCount;
 
+    /*
+     * Enclave platform of Managed CCF.
+     */
+    @JsonProperty(value = "enclavePlatform")
+    private EnclavePlatform enclavePlatform;
+
     /**
      * Creates an instance of ManagedCcfProperties class.
      */
@@ -195,6 +201,26 @@ public final class ManagedCcfProperties {
      */
     public ManagedCcfProperties withNodeCount(Integer nodeCount) {
         this.nodeCount = nodeCount;
+        return this;
+    }
+
+    /**
+     * Get the enclavePlatform property: Enclave platform of Managed CCF.
+     * 
+     * @return the enclavePlatform value.
+     */
+    public EnclavePlatform enclavePlatform() {
+        return this.enclavePlatform;
+    }
+
+    /**
+     * Set the enclavePlatform property: Enclave platform of Managed CCF.
+     * 
+     * @param enclavePlatform the enclavePlatform value to set.
+     * @return the ManagedCcfProperties object itself.
+     */
+    public ManagedCcfProperties withEnclavePlatform(EnclavePlatform enclavePlatform) {
+        this.enclavePlatform = enclavePlatform;
         return this;
     }
 

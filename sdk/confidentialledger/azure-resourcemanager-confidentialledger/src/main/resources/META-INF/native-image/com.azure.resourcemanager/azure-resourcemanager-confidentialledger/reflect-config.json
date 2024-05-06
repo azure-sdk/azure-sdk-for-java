@@ -148,4 +148,9 @@
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.confidentialledger.models.EnclavePlatform",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
 } ]
