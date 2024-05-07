@@ -5,15 +5,13 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Resource model definition. */
+/**
+ * The Resource model definition.
+ */
 @Immutable
 public class ResourceAttributes {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ResourceAttributes.class);
-
     /*
      * Resource location
      */
@@ -27,8 +25,14 @@ public class ResourceAttributes {
     private String sku;
 
     /**
+     * Creates an instance of ResourceAttributes class.
+     */
+    public ResourceAttributes() {
+    }
+
+    /**
      * Get the location property: Resource location.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -37,7 +41,7 @@ public class ResourceAttributes {
 
     /**
      * Get the sku property: Resource sku.
-     *
+     * 
      * @return the sku value.
      */
     public String sku() {
@@ -46,7 +50,7 @@ public class ResourceAttributes {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -5,17 +5,15 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.ReservationRecommendationInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of listing reservation recommendations. */
+/**
+ * Result of listing reservation recommendations.
+ */
 @Immutable
 public final class ReservationRecommendationsListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationRecommendationsListResult.class);
-
     /*
      * The list of reservation recommendations.
      */
@@ -35,8 +33,14 @@ public final class ReservationRecommendationsListResult {
     private String previousLink;
 
     /**
+     * Creates an instance of ReservationRecommendationsListResult class.
+     */
+    public ReservationRecommendationsListResult() {
+    }
+
+    /**
      * Get the value property: The list of reservation recommendations.
-     *
+     * 
      * @return the value value.
      */
     public List<ReservationRecommendationInner> value() {
@@ -45,7 +49,7 @@ public final class ReservationRecommendationsListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -54,7 +58,7 @@ public final class ReservationRecommendationsListResult {
 
     /**
      * Get the previousLink property: The link (url) to the previous page of results.
-     *
+     * 
      * @return the previousLink value.
      */
     public String previousLink() {
@@ -63,7 +67,7 @@ public final class ReservationRecommendationsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -5,15 +5,13 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Dimensions or Tags to filter a budget by. */
+/**
+ * The Dimensions or Tags to filter a budget by.
+ */
 @Fluent
 public final class BudgetFilterProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BudgetFilterProperties.class);
-
     /*
      * Has comparison expression for a dimension
      */
@@ -27,8 +25,14 @@ public final class BudgetFilterProperties {
     private BudgetComparisonExpression tags;
 
     /**
+     * Creates an instance of BudgetFilterProperties class.
+     */
+    public BudgetFilterProperties() {
+    }
+
+    /**
      * Get the dimensions property: Has comparison expression for a dimension.
-     *
+     * 
      * @return the dimensions value.
      */
     public BudgetComparisonExpression dimensions() {
@@ -37,7 +41,7 @@ public final class BudgetFilterProperties {
 
     /**
      * Set the dimensions property: Has comparison expression for a dimension.
-     *
+     * 
      * @param dimensions the dimensions value to set.
      * @return the BudgetFilterProperties object itself.
      */
@@ -48,7 +52,7 @@ public final class BudgetFilterProperties {
 
     /**
      * Get the tags property: Has comparison expression for a tag.
-     *
+     * 
      * @return the tags value.
      */
     public BudgetComparisonExpression tags() {
@@ -57,7 +61,7 @@ public final class BudgetFilterProperties {
 
     /**
      * Set the tags property: Has comparison expression for a tag.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the BudgetFilterProperties object itself.
      */
@@ -68,7 +72,7 @@ public final class BudgetFilterProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

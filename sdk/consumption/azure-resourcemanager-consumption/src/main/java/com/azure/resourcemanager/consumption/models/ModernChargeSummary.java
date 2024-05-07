@@ -7,17 +7,24 @@ package com.azure.resourcemanager.consumption.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.ModernChargeSummaryProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Modern charge summary. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Modern charge summary.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = ModernChargeSummary.class, visible = true)
 @JsonTypeName("modern")
 @Fluent
 public final class ModernChargeSummary extends ChargeSummary {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernChargeSummary.class);
+    /*
+     * Specifies the kind of charge summary.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private ChargeSummaryKind kind = ChargeSummaryKind.MODERN;
 
     /*
      * Properties for modern charge summary
@@ -26,15 +33,33 @@ public final class ModernChargeSummary extends ChargeSummary {
     private ModernChargeSummaryProperties innerProperties = new ModernChargeSummaryProperties();
 
     /**
+     * Creates an instance of ModernChargeSummary class.
+     */
+    public ModernChargeSummary() {
+    }
+
+    /**
+     * Get the kind property: Specifies the kind of charge summary.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public ChargeSummaryKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: Properties for modern charge summary.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ModernChargeSummaryProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ModernChargeSummary withEtag(String etag) {
         super.withEtag(etag);
@@ -43,7 +68,7 @@ public final class ModernChargeSummary extends ChargeSummary {
 
     /**
      * Get the billingPeriodId property: The id of the billing period resource that the charge belongs to.
-     *
+     * 
      * @return the billingPeriodId value.
      */
     public String billingPeriodId() {
@@ -52,7 +77,7 @@ public final class ModernChargeSummary extends ChargeSummary {
 
     /**
      * Get the usageStart property: Usage start date.
-     *
+     * 
      * @return the usageStart value.
      */
     public String usageStart() {
@@ -61,7 +86,7 @@ public final class ModernChargeSummary extends ChargeSummary {
 
     /**
      * Get the usageEnd property: Usage end date.
-     *
+     * 
      * @return the usageEnd value.
      */
     public String usageEnd() {
@@ -70,7 +95,7 @@ public final class ModernChargeSummary extends ChargeSummary {
 
     /**
      * Get the azureCharges property: Azure Charges.
-     *
+     * 
      * @return the azureCharges value.
      */
     public Amount azureCharges() {
@@ -79,7 +104,7 @@ public final class ModernChargeSummary extends ChargeSummary {
 
     /**
      * Get the chargesBilledSeparately property: Charges Billed separately.
-     *
+     * 
      * @return the chargesBilledSeparately value.
      */
     public Amount chargesBilledSeparately() {
@@ -88,7 +113,7 @@ public final class ModernChargeSummary extends ChargeSummary {
 
     /**
      * Get the marketplaceCharges property: Marketplace Charges.
-     *
+     * 
      * @return the marketplaceCharges value.
      */
     public Amount marketplaceCharges() {
@@ -97,7 +122,7 @@ public final class ModernChargeSummary extends ChargeSummary {
 
     /**
      * Get the billingAccountId property: Billing Account Id.
-     *
+     * 
      * @return the billingAccountId value.
      */
     public String billingAccountId() {
@@ -106,7 +131,7 @@ public final class ModernChargeSummary extends ChargeSummary {
 
     /**
      * Get the billingProfileId property: Billing Profile Id.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -115,7 +140,7 @@ public final class ModernChargeSummary extends ChargeSummary {
 
     /**
      * Get the invoiceSectionId property: Invoice Section Id.
-     *
+     * 
      * @return the invoiceSectionId value.
      */
     public String invoiceSectionId() {
@@ -124,7 +149,7 @@ public final class ModernChargeSummary extends ChargeSummary {
 
     /**
      * Get the customerId property: Customer Id.
-     *
+     * 
      * @return the customerId value.
      */
     public String customerId() {
@@ -133,7 +158,7 @@ public final class ModernChargeSummary extends ChargeSummary {
 
     /**
      * Get the isInvoiced property: Is charge Invoiced.
-     *
+     * 
      * @return the isInvoiced value.
      */
     public Boolean isInvoiced() {
@@ -141,20 +166,30 @@ public final class ModernChargeSummary extends ChargeSummary {
     }
 
     /**
+     * Get the subscriptionId property: Subscription guid.
+     * 
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.innerProperties() == null ? null : this.innerProperties().subscriptionId();
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (innerProperties() == null) {
-            throw logger
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property innerProperties in model ModernChargeSummary"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property innerProperties in model ModernChargeSummary"));
         } else {
             innerProperties().validate();
         }
     }
+
+    private static final ClientLogger LOGGER = new ClientLogger(ModernChargeSummary.class);
 }

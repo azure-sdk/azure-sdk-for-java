@@ -6,31 +6,37 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.LegacyReservationRecommendation;
 import com.azure.resourcemanager.consumption.models.ModernReservationRecommendation;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.resourcemanager.consumption.models.ReservationRecommendationKind;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** A reservation recommendation resource. */
+/**
+ * A reservation recommendation resource.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "kind",
-    defaultImpl = ReservationRecommendationInner.class)
+    defaultImpl = ReservationRecommendationInner.class,
+    visible = true)
 @JsonTypeName("ReservationRecommendation")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "legacy", value = LegacyReservationRecommendation.class),
-    @JsonSubTypes.Type(name = "modern", value = ModernReservationRecommendation.class)
-})
+    @JsonSubTypes.Type(name = "modern", value = ModernReservationRecommendation.class) })
 @Immutable
 public class ReservationRecommendationInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationRecommendationInner.class);
+    /*
+     * Specifies the kind of reservation recommendation.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private ReservationRecommendationKind kind;
 
     /*
      * The etag for the resource.
@@ -58,8 +64,24 @@ public class ReservationRecommendationInner extends ProxyResource {
     private String sku;
 
     /**
+     * Creates an instance of ReservationRecommendationInner class.
+     */
+    public ReservationRecommendationInner() {
+        this.kind = ReservationRecommendationKind.fromString("ReservationRecommendation");
+    }
+
+    /**
+     * Get the kind property: Specifies the kind of reservation recommendation.
+     * 
+     * @return the kind value.
+     */
+    public ReservationRecommendationKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the etag property: The etag for the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -68,7 +90,7 @@ public class ReservationRecommendationInner extends ProxyResource {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -77,7 +99,7 @@ public class ReservationRecommendationInner extends ProxyResource {
 
     /**
      * Get the location property: Resource location.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -86,7 +108,7 @@ public class ReservationRecommendationInner extends ProxyResource {
 
     /**
      * Get the sku property: Resource sku.
-     *
+     * 
      * @return the sku value.
      */
     public String sku() {
@@ -95,7 +117,7 @@ public class ReservationRecommendationInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

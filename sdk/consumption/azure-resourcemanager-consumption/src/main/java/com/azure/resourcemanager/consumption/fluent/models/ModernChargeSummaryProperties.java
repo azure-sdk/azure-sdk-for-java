@@ -5,16 +5,14 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.Amount;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of modern charge summary. */
+/**
+ * The properties of modern charge summary.
+ */
 @Immutable
 public final class ModernChargeSummaryProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernChargeSummaryProperties.class);
-
     /*
      * The id of the billing period resource that the charge belongs to.
      */
@@ -81,9 +79,21 @@ public final class ModernChargeSummaryProperties {
     @JsonProperty(value = "isInvoiced", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isInvoiced;
 
+    /*
+     * Subscription guid.
+     */
+    @JsonProperty(value = "subscriptionId", access = JsonProperty.Access.WRITE_ONLY)
+    private String subscriptionId;
+
+    /**
+     * Creates an instance of ModernChargeSummaryProperties class.
+     */
+    public ModernChargeSummaryProperties() {
+    }
+
     /**
      * Get the billingPeriodId property: The id of the billing period resource that the charge belongs to.
-     *
+     * 
      * @return the billingPeriodId value.
      */
     public String billingPeriodId() {
@@ -92,7 +102,7 @@ public final class ModernChargeSummaryProperties {
 
     /**
      * Get the usageStart property: Usage start date.
-     *
+     * 
      * @return the usageStart value.
      */
     public String usageStart() {
@@ -101,7 +111,7 @@ public final class ModernChargeSummaryProperties {
 
     /**
      * Get the usageEnd property: Usage end date.
-     *
+     * 
      * @return the usageEnd value.
      */
     public String usageEnd() {
@@ -110,7 +120,7 @@ public final class ModernChargeSummaryProperties {
 
     /**
      * Get the azureCharges property: Azure Charges.
-     *
+     * 
      * @return the azureCharges value.
      */
     public Amount azureCharges() {
@@ -119,7 +129,7 @@ public final class ModernChargeSummaryProperties {
 
     /**
      * Get the chargesBilledSeparately property: Charges Billed separately.
-     *
+     * 
      * @return the chargesBilledSeparately value.
      */
     public Amount chargesBilledSeparately() {
@@ -128,7 +138,7 @@ public final class ModernChargeSummaryProperties {
 
     /**
      * Get the marketplaceCharges property: Marketplace Charges.
-     *
+     * 
      * @return the marketplaceCharges value.
      */
     public Amount marketplaceCharges() {
@@ -137,7 +147,7 @@ public final class ModernChargeSummaryProperties {
 
     /**
      * Get the billingAccountId property: Billing Account Id.
-     *
+     * 
      * @return the billingAccountId value.
      */
     public String billingAccountId() {
@@ -146,7 +156,7 @@ public final class ModernChargeSummaryProperties {
 
     /**
      * Get the billingProfileId property: Billing Profile Id.
-     *
+     * 
      * @return the billingProfileId value.
      */
     public String billingProfileId() {
@@ -155,7 +165,7 @@ public final class ModernChargeSummaryProperties {
 
     /**
      * Get the invoiceSectionId property: Invoice Section Id.
-     *
+     * 
      * @return the invoiceSectionId value.
      */
     public String invoiceSectionId() {
@@ -164,7 +174,7 @@ public final class ModernChargeSummaryProperties {
 
     /**
      * Get the customerId property: Customer Id.
-     *
+     * 
      * @return the customerId value.
      */
     public String customerId() {
@@ -173,7 +183,7 @@ public final class ModernChargeSummaryProperties {
 
     /**
      * Get the isInvoiced property: Is charge Invoiced.
-     *
+     * 
      * @return the isInvoiced value.
      */
     public Boolean isInvoiced() {
@@ -181,8 +191,17 @@ public final class ModernChargeSummaryProperties {
     }
 
     /**
+     * Get the subscriptionId property: Subscription guid.
+     * 
+     * @return the subscriptionId value.
+     */
+    public String subscriptionId() {
+        return this.subscriptionId;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
