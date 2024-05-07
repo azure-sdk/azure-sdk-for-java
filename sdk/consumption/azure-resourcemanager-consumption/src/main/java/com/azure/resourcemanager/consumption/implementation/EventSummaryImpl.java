@@ -17,8 +17,8 @@ public final class EventSummaryImpl implements EventSummary {
 
     private final com.azure.resourcemanager.consumption.ConsumptionManager serviceManager;
 
-    EventSummaryImpl(
-        EventSummaryInner innerObject, com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
+    EventSummaryImpl(EventSummaryInner innerObject,
+        com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
@@ -65,6 +65,14 @@ public final class EventSummaryImpl implements EventSummary {
 
     public Amount closedBalance() {
         return this.innerModel().closedBalance();
+    }
+
+    public String billingAccountId() {
+        return this.innerModel().billingAccountId();
+    }
+
+    public String billingAccountDisplayName() {
+        return this.innerModel().billingAccountDisplayName();
     }
 
     public EventType eventType() {
@@ -125,6 +133,10 @@ public final class EventSummaryImpl implements EventSummary {
 
     public AmountWithExchangeRate closedBalanceInBillingCurrency() {
         return this.innerModel().closedBalanceInBillingCurrency();
+    }
+
+    public Boolean isEstimatedBalance() {
+        return this.innerModel().isEstimatedBalance();
     }
 
     public String etagPropertiesEtag() {

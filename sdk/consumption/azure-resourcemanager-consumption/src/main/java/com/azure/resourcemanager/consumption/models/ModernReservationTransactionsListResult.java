@@ -5,17 +5,15 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.ModernReservationTransactionInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of listing reservation recommendations. */
+/**
+ * Result of listing reservation recommendations.
+ */
 @Immutable
 public final class ModernReservationTransactionsListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ModernReservationTransactionsListResult.class);
-
     /*
      * The list of reservation recommendations.
      */
@@ -29,8 +27,14 @@ public final class ModernReservationTransactionsListResult {
     private String nextLink;
 
     /**
+     * Creates an instance of ModernReservationTransactionsListResult class.
+     */
+    public ModernReservationTransactionsListResult() {
+    }
+
+    /**
      * Get the value property: The list of reservation recommendations.
-     *
+     * 
      * @return the value value.
      */
     public List<ModernReservationTransactionInner> value() {
@@ -39,7 +43,7 @@ public final class ModernReservationTransactionsListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class ModernReservationTransactionsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -5,18 +5,16 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.MeterDetails;
 import com.azure.resourcemanager.consumption.models.PriceSheetProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** price sheet result. It contains the pricesheet associated with billing period. */
+/**
+ * price sheet result. It contains the pricesheet associated with billing period.
+ */
 @Immutable
 public final class PriceSheetModel {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(PriceSheetModel.class);
-
     /*
      * Price sheet
      */
@@ -36,8 +34,14 @@ public final class PriceSheetModel {
     private MeterDetails download;
 
     /**
+     * Creates an instance of PriceSheetModel class.
+     */
+    public PriceSheetModel() {
+    }
+
+    /**
      * Get the pricesheets property: Price sheet.
-     *
+     * 
      * @return the pricesheets value.
      */
     public List<PriceSheetProperties> pricesheets() {
@@ -46,7 +50,7 @@ public final class PriceSheetModel {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -55,7 +59,7 @@ public final class PriceSheetModel {
 
     /**
      * Get the download property: Pricesheet download details.
-     *
+     * 
      * @return the download value.
      */
     public MeterDetails download() {
@@ -64,7 +68,7 @@ public final class PriceSheetModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
