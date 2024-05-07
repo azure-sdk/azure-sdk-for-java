@@ -5,30 +5,52 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Online deployment scaling configuration. */
+/**
+ * Online deployment scaling configuration.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "scaleType",
-    defaultImpl = OnlineScaleSettings.class)
+    defaultImpl = OnlineScaleSettings.class,
+    visible = true)
 @JsonTypeName("OnlineScaleSettings")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Default", value = DefaultScaleSettings.class),
-    @JsonSubTypes.Type(name = "TargetUtilization", value = TargetUtilizationScaleSettings.class)
-})
+    @JsonSubTypes.Type(name = "TargetUtilization", value = TargetUtilizationScaleSettings.class) })
 @Immutable
 public class OnlineScaleSettings {
-    /** Creates an instance of OnlineScaleSettings class. */
+    /*
+     * [Required] Type of deployment scaling algorithm
+     */
+    @JsonTypeId
+    @JsonProperty(value = "scaleType", required = true)
+    private ScaleType scaleType;
+
+    /**
+     * Creates an instance of OnlineScaleSettings class.
+     */
     public OnlineScaleSettings() {
+        this.scaleType = ScaleType.fromString("OnlineScaleSettings");
+    }
+
+    /**
+     * Get the scaleType property: [Required] Type of deployment scaling algorithm.
+     * 
+     * @return the scaleType value.
+     */
+    public ScaleType scaleType() {
+        return this.scaleType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

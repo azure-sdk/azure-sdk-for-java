@@ -7,27 +7,53 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The JobScheduleAction model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "actionType")
+/**
+ * The JobScheduleAction model.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "actionType",
+    defaultImpl = JobScheduleAction.class,
+    visible = true)
 @JsonTypeName("CreateJob")
 @Fluent
 public final class JobScheduleAction extends ScheduleActionBase {
+    /*
+     * [Required] Specifies the action type of the schedule
+     */
+    @JsonTypeId
+    @JsonProperty(value = "actionType", required = true)
+    private ScheduleActionType actionType = ScheduleActionType.CREATE_JOB;
+
     /*
      * [Required] Defines Schedule action definition details.
      */
     @JsonProperty(value = "jobDefinition", required = true)
     private JobBaseProperties jobDefinition;
 
-    /** Creates an instance of JobScheduleAction class. */
+    /**
+     * Creates an instance of JobScheduleAction class.
+     */
     public JobScheduleAction() {
     }
 
     /**
+     * Get the actionType property: [Required] Specifies the action type of the schedule.
+     * 
+     * @return the actionType value.
+     */
+    @Override
+    public ScheduleActionType actionType() {
+        return this.actionType;
+    }
+
+    /**
      * Get the jobDefinition property: [Required] Defines Schedule action definition details.
-     *
+     * 
      * @return the jobDefinition value.
      */
     public JobBaseProperties jobDefinition() {
@@ -36,7 +62,7 @@ public final class JobScheduleAction extends ScheduleActionBase {
 
     /**
      * Set the jobDefinition property: [Required] Defines Schedule action definition details.
-     *
+     * 
      * @param jobDefinition the jobDefinition value to set.
      * @return the JobScheduleAction object itself.
      */
@@ -47,15 +73,15 @@ public final class JobScheduleAction extends ScheduleActionBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (jobDefinition() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property jobDefinition in model JobScheduleAction"));
         } else {
             jobDefinition().validate();

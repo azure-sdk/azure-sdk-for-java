@@ -5,112 +5,176 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Properties specific to a ManagedOnlineDeployment. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "endpointComputeType")
+/**
+ * Properties specific to a ManagedOnlineDeployment.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "endpointComputeType",
+    defaultImpl = ManagedOnlineDeployment.class,
+    visible = true)
 @JsonTypeName("Managed")
 @Fluent
 public final class ManagedOnlineDeployment extends OnlineDeploymentProperties {
-    /** Creates an instance of ManagedOnlineDeployment class. */
+    /*
+     * [Required] The compute type of the endpoint.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "endpointComputeType", required = true)
+    private EndpointComputeType endpointComputeType = EndpointComputeType.MANAGED;
+
+    /**
+     * Creates an instance of ManagedOnlineDeployment class.
+     */
     public ManagedOnlineDeployment() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the endpointComputeType property: [Required] The compute type of the endpoint.
+     * 
+     * @return the endpointComputeType value.
+     */
+    @Override
+    public EndpointComputeType endpointComputeType() {
+        return this.endpointComputeType;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withAppInsightsEnabled(Boolean appInsightsEnabled) {
         super.withAppInsightsEnabled(appInsightsEnabled);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public ManagedOnlineDeployment withEgressPublicNetworkAccess(
-        EgressPublicNetworkAccessType egressPublicNetworkAccess) {
+    public ManagedOnlineDeployment withDataCollector(DataCollector dataCollector) {
+        super.withDataCollector(dataCollector);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ManagedOnlineDeployment
+        withEgressPublicNetworkAccess(EgressPublicNetworkAccessType egressPublicNetworkAccess) {
         super.withEgressPublicNetworkAccess(egressPublicNetworkAccess);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withInstanceType(String instanceType) {
         super.withInstanceType(instanceType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withLivenessProbe(ProbeSettings livenessProbe) {
         super.withLivenessProbe(livenessProbe);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withModel(String model) {
         super.withModel(model);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withModelMountPath(String modelMountPath) {
         super.withModelMountPath(modelMountPath);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withReadinessProbe(ProbeSettings readinessProbe) {
         super.withReadinessProbe(readinessProbe);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withRequestSettings(OnlineRequestSettings requestSettings) {
         super.withRequestSettings(requestSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withScaleSettings(OnlineScaleSettings scaleSettings) {
         super.withScaleSettings(scaleSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withCodeConfiguration(CodeConfiguration codeConfiguration) {
         super.withCodeConfiguration(codeConfiguration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withEnvironmentId(String environmentId) {
         super.withEnvironmentId(environmentId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withEnvironmentVariables(Map<String, String> environmentVariables) {
         super.withEnvironmentVariables(environmentVariables);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ManagedOnlineDeployment withProperties(Map<String, String> properties) {
         super.withProperties(properties);
@@ -119,7 +183,7 @@ public final class ManagedOnlineDeployment extends OnlineDeploymentProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
