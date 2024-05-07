@@ -6,6 +6,8 @@
 - [CreateOrReplace](#assetendpointprofiles_createorreplace)
 - [Delete](#assetendpointprofiles_delete)
 - [GetByResourceGroup](#assetendpointprofiles_getbyresourcegroup)
+- [List](#assetendpointprofiles_list)
+- [ListByResourceGroup](#assetendpointprofiles_listbyresourcegroup)
 - [Update](#assetendpointprofiles_update)
 
 ## Assets
@@ -13,6 +15,8 @@
 - [CreateOrReplace](#assets_createorreplace)
 - [Delete](#assets_delete)
 - [GetByResourceGroup](#assets_getbyresourcegroup)
+- [List](#assets_list)
+- [ListByResourceGroup](#assets_listbyresourcegroup)
 - [Update](#assets_update)
 
 ## OperationStatus
@@ -111,6 +115,44 @@ public final class AssetEndpointProfilesGetByResourceGroupSamples {
 }
 ```
 
+### AssetEndpointProfiles_List
+
+```java
+/**
+ * Samples for AssetEndpointProfiles List.
+ */
+public final class AssetEndpointProfilesListSamples {
+    /**
+     * Sample code: List_AssetEndpointProfiles_Subscription.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void
+        listAssetEndpointProfilesSubscription(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assetEndpointProfiles().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### AssetEndpointProfiles_ListByResourceGroup
+
+```java
+/**
+ * Samples for AssetEndpointProfiles ListByResourceGroup.
+ */
+public final class AssetEndpointProfilesListByResourceGroupSamples {
+    /**
+     * Sample code: List_AssetEndpointProfiles_ResourceGroup.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void
+        listAssetEndpointProfilesResourceGroup(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assetEndpointProfiles().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
 ### AssetEndpointProfiles_Update
 
 ```java
@@ -158,12 +200,12 @@ import java.util.Map;
  */
 public final class AssetsCreateOrReplaceSamples {
     /**
-     * Sample code: Create_Asset_Without_DisplayName.
+     * Sample code: Create_Asset_With_ExternalAssetId.
      * 
      * @param manager Entry point to DeviceRegistryManager.
      */
     public static void
-        createAssetWithoutDisplayName(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        createAssetWithExternalAssetId(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
         manager.assets()
             .define("my-asset")
             .withRegion("West Europe")
@@ -175,6 +217,7 @@ public final class AssetsCreateOrReplaceSamples {
             .withProperties(new AssetProperties().withAssetType("MyAssetType")
                 .withEnabled(true)
                 .withExternalAssetId("8ZBA6LRHU0A458969")
+                .withDisplayName("AssetDisplayName")
                 .withDescription("This is a sample Asset")
                 .withAssetEndpointProfileUri("https://www.example.com/myAssetEndpointProfile")
                 .withManufacturer("Contoso")
@@ -258,6 +301,42 @@ public final class AssetsGetByResourceGroupSamples {
     public static void getAsset(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
         manager.assets()
             .getByResourceGroupWithResponse("myResourceGroup", "my-asset", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Assets_List
+
+```java
+/**
+ * Samples for Assets List.
+ */
+public final class AssetsListSamples {
+    /**
+     * Sample code: List_Assets_Subscription.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void listAssetsSubscription(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assets().list(com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### Assets_ListByResourceGroup
+
+```java
+/**
+ * Samples for Assets ListByResourceGroup.
+ */
+public final class AssetsListByResourceGroupSamples {
+    /**
+     * Sample code: List_Assets_ResourceGroup.
+     * 
+     * @param manager Entry point to DeviceRegistryManager.
+     */
+    public static void listAssetsResourceGroup(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        manager.assets().listByResourceGroup("myResourceGroup", com.azure.core.util.Context.NONE);
     }
 }
 ```

@@ -19,12 +19,12 @@ import java.util.Map;
  */
 public final class AssetsCreateOrReplaceSamples {
     /**
-     * Sample code: Create_Asset_Without_DisplayName.
+     * Sample code: Create_Asset_With_ExternalAssetId.
      * 
      * @param manager Entry point to DeviceRegistryManager.
      */
     public static void
-        createAssetWithoutDisplayName(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
+        createAssetWithExternalAssetId(com.azure.resourcemanager.deviceregistry.DeviceRegistryManager manager) {
         manager.assets()
             .define("my-asset")
             .withRegion("West Europe")
@@ -36,6 +36,7 @@ public final class AssetsCreateOrReplaceSamples {
             .withProperties(new AssetProperties().withAssetType("MyAssetType")
                 .withEnabled(true)
                 .withExternalAssetId("8ZBA6LRHU0A458969")
+                .withDisplayName("AssetDisplayName")
                 .withDescription("This is a sample Asset")
                 .withAssetEndpointProfileUri("https://www.example.com/myAssetEndpointProfile")
                 .withManufacturer("Contoso")
