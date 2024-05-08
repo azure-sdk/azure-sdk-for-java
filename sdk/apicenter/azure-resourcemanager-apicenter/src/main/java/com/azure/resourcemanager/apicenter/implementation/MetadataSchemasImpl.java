@@ -70,13 +70,13 @@ public final class MetadataSchemasImpl implements MetadataSchemas {
         this.serviceClient().delete(resourceGroupName, serviceName, metadataSchemaName);
     }
 
-    public Response<Void> headWithResponse(String resourceGroupName, String serviceName, String metadataSchemaName,
+    public Response<Boolean> headWithResponse(String resourceGroupName, String serviceName, String metadataSchemaName,
         Context context) {
         return this.serviceClient().headWithResponse(resourceGroupName, serviceName, metadataSchemaName, context);
     }
 
-    public void head(String resourceGroupName, String serviceName, String metadataSchemaName) {
-        this.serviceClient().head(resourceGroupName, serviceName, metadataSchemaName);
+    public boolean head(String resourceGroupName, String serviceName, String metadataSchemaName) {
+        return this.serviceClient().head(resourceGroupName, serviceName, metadataSchemaName);
     }
 
     public MetadataSchema getById(String id) {

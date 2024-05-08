@@ -104,8 +104,8 @@ public final class ExternalDocumentation {
      */
     public void validate() {
         if (url() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property url in model ExternalDocumentation"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property url in model ExternalDocumentation"));
         }
     }
 

@@ -69,13 +69,13 @@ public final class ApisImpl implements Apis {
         this.serviceClient().delete(resourceGroupName, serviceName, workspaceName, apiName);
     }
 
-    public Response<Void> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+    public Response<Boolean> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, Context context) {
         return this.serviceClient().headWithResponse(resourceGroupName, serviceName, workspaceName, apiName, context);
     }
 
-    public void head(String resourceGroupName, String serviceName, String workspaceName, String apiName) {
-        this.serviceClient().head(resourceGroupName, serviceName, workspaceName, apiName);
+    public boolean head(String resourceGroupName, String serviceName, String workspaceName, String apiName) {
+        return this.serviceClient().head(resourceGroupName, serviceName, workspaceName, apiName);
     }
 
     public Api getById(String id) {

@@ -9,8 +9,7 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class ApiDefinitionsImportSpecificationSamples {
     /*
-     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/
-     * ApiDefinitions_ImportSpecification.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/ApiDefinitions_ImportSpecification.json
      */
     /**
      * Sample code: ApiDefinitions_ImportSpecification.
@@ -18,7 +17,8 @@ public final class ApiDefinitionsImportSpecificationSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void apiDefinitionsImportSpecification(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.apiDefinitions().importSpecification("contoso-resources", "contoso", "default", "echo-api",
-            "2023-01-01", "openapi", null, com.azure.core.util.Context.NONE);
+        manager.apiDefinitions()
+            .importSpecification("contoso-resources", "contoso", "default", "echo-api", "2023-01-01", "openapi", null,
+                com.azure.core.util.Context.NONE);
     }
 }

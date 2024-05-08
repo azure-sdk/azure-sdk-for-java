@@ -69,13 +69,13 @@ public final class WorkspacesImpl implements Workspaces {
         this.serviceClient().delete(resourceGroupName, serviceName, workspaceName);
     }
 
-    public Response<Void> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+    public Response<Boolean> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
         Context context) {
         return this.serviceClient().headWithResponse(resourceGroupName, serviceName, workspaceName, context);
     }
 
-    public void head(String resourceGroupName, String serviceName, String workspaceName) {
-        this.serviceClient().head(resourceGroupName, serviceName, workspaceName);
+    public boolean head(String resourceGroupName, String serviceName, String workspaceName) {
+        return this.serviceClient().head(resourceGroupName, serviceName, workspaceName);
     }
 
     public Workspace getById(String id) {

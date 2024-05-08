@@ -147,10 +147,10 @@ public interface WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return whether resource exists along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    Response<Void> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+    Response<Boolean> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
         Context context);
 
     /**
@@ -162,7 +162,8 @@ public interface WorkspacesClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws com.azure.core.management.exception.ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return whether resource exists.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    void head(String resourceGroupName, String serviceName, String workspaceName);
+    boolean head(String resourceGroupName, String serviceName, String workspaceName);
 }

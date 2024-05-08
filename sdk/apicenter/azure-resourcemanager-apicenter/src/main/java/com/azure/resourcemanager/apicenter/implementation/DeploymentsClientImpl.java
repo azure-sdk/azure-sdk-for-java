@@ -111,9 +111,9 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
 
         @Headers({ "Content-Type: application/json" })
         @Head("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/deployments/{deploymentName}")
-        @ExpectedResponses({ 200 })
+        @ExpectedResponses({ 204, 404 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> head(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Boolean>> head(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
@@ -820,10 +820,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return whether resource exists along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> headWithResponseAsync(String resourceGroupName, String serviceName,
+    private Mono<Response<Boolean>> headWithResponseAsync(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String deploymentName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -869,10 +869,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return whether resource exists along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> headWithResponseAsync(String resourceGroupName, String serviceName,
+    private Mono<Response<Boolean>> headWithResponseAsync(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String deploymentName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -915,13 +915,13 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return whether resource exists on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> headAsync(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+    private Mono<Boolean> headAsync(String resourceGroupName, String serviceName, String workspaceName, String apiName,
         String deploymentName) {
         return headWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, deploymentName)
-            .flatMap(ignored -> Mono.empty());
+            .flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -936,10 +936,10 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return whether resource exists along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+    public Response<Boolean> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String deploymentName, Context context) {
         return headWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, deploymentName, context)
             .block();
@@ -956,11 +956,13 @@ public final class DeploymentsClientImpl implements DeploymentsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return whether resource exists.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void head(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+    public boolean head(String resourceGroupName, String serviceName, String workspaceName, String apiName,
         String deploymentName) {
-        headWithResponse(resourceGroupName, serviceName, workspaceName, apiName, deploymentName, Context.NONE);
+        return headWithResponse(resourceGroupName, serviceName, workspaceName, apiName, deploymentName, Context.NONE)
+            .getValue();
     }
 
     /**

@@ -123,9 +123,9 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
 
         @Headers({ "Content-Type: application/json" })
         @Head("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}/versions/{versionName}/definitions/{definitionName}")
-        @ExpectedResponses({ 200 })
+        @ExpectedResponses({ 204, 404 })
         @UnexpectedResponseExceptionType(ManagementException.class)
-        Mono<Response<Void>> head(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
+        Mono<Response<Boolean>> head(@HostParam("$host") String endpoint, @QueryParam("api-version") String apiVersion,
             @PathParam("subscriptionId") String subscriptionId,
             @PathParam("resourceGroupName") String resourceGroupName, @PathParam("serviceName") String serviceName,
             @PathParam("workspaceName") String workspaceName, @PathParam("apiName") String apiName,
@@ -907,10 +907,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return whether resource exists along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> headWithResponseAsync(String resourceGroupName, String serviceName,
+    private Mono<Response<Boolean>> headWithResponseAsync(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String versionName, String definitionName) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -960,10 +960,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response} on successful completion of {@link Mono}.
+     * @return whether resource exists along with {@link Response} on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Response<Void>> headWithResponseAsync(String resourceGroupName, String serviceName,
+    private Mono<Response<Boolean>> headWithResponseAsync(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String versionName, String definitionName, Context context) {
         if (this.client.getEndpoint() == null) {
             return Mono.error(
@@ -1010,13 +1010,13 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return A {@link Mono} that completes when a successful response is received.
+     * @return whether resource exists on successful completion of {@link Mono}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    private Mono<Void> headAsync(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+    private Mono<Boolean> headAsync(String resourceGroupName, String serviceName, String workspaceName, String apiName,
         String versionName, String definitionName) {
         return headWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName).flatMap(ignored -> Mono.empty());
+            definitionName).flatMap(res -> Mono.justOrEmpty(res.getValue()));
     }
 
     /**
@@ -1032,10 +1032,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
-     * @return the {@link Response}.
+     * @return whether resource exists along with {@link Response}.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public Response<Void> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
+    public Response<Boolean> headWithResponse(String resourceGroupName, String serviceName, String workspaceName,
         String apiName, String versionName, String definitionName, Context context) {
         return headWithResponseAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
             definitionName, context).block();
@@ -1053,12 +1053,13 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
      * @throws IllegalArgumentException thrown if parameters fail the validation.
      * @throws ManagementException thrown if the request is rejected by server.
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return whether resource exists.
      */
     @ServiceMethod(returns = ReturnType.SINGLE)
-    public void head(String resourceGroupName, String serviceName, String workspaceName, String apiName,
+    public boolean head(String resourceGroupName, String serviceName, String workspaceName, String apiName,
         String versionName, String definitionName) {
-        headWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
-            Context.NONE);
+        return headWithResponse(resourceGroupName, serviceName, workspaceName, apiName, versionName, definitionName,
+            Context.NONE).getValue();
     }
 
     /**
@@ -1235,8 +1236,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     public SyncPoller<PollResult<ApiSpecExportResultInner>, ApiSpecExportResultInner> beginExportSpecification(
         String resourceGroupName, String serviceName, String workspaceName, String apiName, String versionName,
         String definitionName) {
-        return this.beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName).getSyncPoller();
+        return this
+            .beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                definitionName)
+            .getSyncPoller();
     }
 
     /**
@@ -1258,8 +1261,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     public SyncPoller<PollResult<ApiSpecExportResultInner>, ApiSpecExportResultInner> beginExportSpecification(
         String resourceGroupName, String serviceName, String workspaceName, String apiName, String versionName,
         String definitionName, Context context) {
-        return this.beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, context).getSyncPoller();
+        return this
+            .beginExportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                definitionName, context)
+            .getSyncPoller();
     }
 
     /**
@@ -1536,8 +1541,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     @ServiceMethod(returns = ReturnType.LONG_RUNNING_OPERATION)
     public SyncPoller<PollResult<Void>, Void> beginImportSpecification(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String versionName, String definitionName, ApiSpecImportRequest body) {
-        return this.beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, body).getSyncPoller();
+        return this
+            .beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                definitionName, body)
+            .getSyncPoller();
     }
 
     /**
@@ -1560,8 +1567,10 @@ public final class ApiDefinitionsClientImpl implements ApiDefinitionsClient {
     public SyncPoller<PollResult<Void>, Void> beginImportSpecification(String resourceGroupName, String serviceName,
         String workspaceName, String apiName, String versionName, String definitionName, ApiSpecImportRequest body,
         Context context) {
-        return this.beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
-            definitionName, body, context).getSyncPoller();
+        return this
+            .beginImportSpecificationAsync(resourceGroupName, serviceName, workspaceName, apiName, versionName,
+                definitionName, body, context)
+            .getSyncPoller();
     }
 
     /**
