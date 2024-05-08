@@ -56,7 +56,7 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "AzureDataLakeStoreSource", value = AzureDataLakeStoreSource.class),
     @JsonSubTypes.Type(name = "AzureBlobFSSource", value = AzureBlobFSSource.class),
     @JsonSubTypes.Type(name = "HttpSource", value = HttpSource.class),
-    @JsonSubTypes.Type(name = "LakeHouseTableSource", value = LakeHouseTableSource.class),
+    @JsonSubTypes.Type(name = "LakehouseTableSource", value = LakehouseTableSource.class),
     @JsonSubTypes.Type(name = "SnowflakeSource", value = SnowflakeSource.class),
     @JsonSubTypes.Type(name = "SnowflakeV2Source", value = SnowflakeV2Source.class),
     @JsonSubTypes.Type(name = "AzureDatabricksDeltaLakeSource", value = AzureDatabricksDeltaLakeSource.class),

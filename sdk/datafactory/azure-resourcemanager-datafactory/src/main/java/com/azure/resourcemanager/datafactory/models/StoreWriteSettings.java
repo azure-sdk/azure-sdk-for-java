@@ -29,7 +29,7 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "AzureDataLakeStoreWriteSettings", value = AzureDataLakeStoreWriteSettings.class),
     @JsonSubTypes.Type(name = "FileServerWriteSettings", value = FileServerWriteSettings.class),
     @JsonSubTypes.Type(name = "AzureFileStorageWriteSettings", value = AzureFileStorageWriteSettings.class),
-    @JsonSubTypes.Type(name = "LakeHouseWriteSettings", value = LakeHouseWriteSettings.class) })
+    @JsonSubTypes.Type(name = "LakehouseWriteSettings", value = LakehouseWriteSettings.class) })
 @Fluent
 public class StoreWriteSettings {
     /*
