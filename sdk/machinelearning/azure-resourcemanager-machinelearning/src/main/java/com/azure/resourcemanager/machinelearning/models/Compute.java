@@ -8,17 +8,16 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.management.exception.ManagementError;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Machine Learning compute object. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "computeType",
-    defaultImpl = Compute.class)
+/**
+ * Machine Learning compute object.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "computeType", defaultImpl = Compute.class, visible = true)
 @JsonTypeName("Compute")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AKS", value = Aks.class),
@@ -30,10 +29,16 @@ import java.util.List;
     @JsonSubTypes.Type(name = "DataFactory", value = DataFactory.class),
     @JsonSubTypes.Type(name = "Databricks", value = Databricks.class),
     @JsonSubTypes.Type(name = "DataLakeAnalytics", value = DataLakeAnalytics.class),
-    @JsonSubTypes.Type(name = "SynapseSpark", value = SynapseSpark.class)
-})
+    @JsonSubTypes.Type(name = "SynapseSpark", value = SynapseSpark.class) })
 @Fluent
 public class Compute {
+    /*
+     * The type of compute
+     */
+    @JsonTypeId
+    @JsonProperty(value = "computeType", required = true)
+    private ComputeType computeType;
+
     /*
      * Location for the underlying compute
      */
@@ -77,8 +82,7 @@ public class Compute {
     private List<ManagementError> provisioningErrors;
 
     /*
-     * Indicating whether the compute was provisioned by user and brought from outside if true, or machine learning
-     * service provisioned it if false.
+     * Indicating whether the compute was provisioned by user and brought from outside if true, or machine learning service provisioned it if false.
      */
     @JsonProperty(value = "isAttachedCompute", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean isAttachedCompute;
@@ -89,13 +93,25 @@ public class Compute {
     @JsonProperty(value = "disableLocalAuth")
     private Boolean disableLocalAuth;
 
-    /** Creates an instance of Compute class. */
+    /**
+     * Creates an instance of Compute class.
+     */
     public Compute() {
+        this.computeType = ComputeType.fromString("Compute");
+    }
+
+    /**
+     * Get the computeType property: The type of compute.
+     * 
+     * @return the computeType value.
+     */
+    public ComputeType computeType() {
+        return this.computeType;
     }
 
     /**
      * Get the computeLocation property: Location for the underlying compute.
-     *
+     * 
      * @return the computeLocation value.
      */
     public String computeLocation() {
@@ -104,7 +120,7 @@ public class Compute {
 
     /**
      * Set the computeLocation property: Location for the underlying compute.
-     *
+     * 
      * @param computeLocation the computeLocation value to set.
      * @return the Compute object itself.
      */
@@ -116,7 +132,7 @@ public class Compute {
     /**
      * Get the provisioningState property: The provision state of the cluster. Valid values are Unknown, Updating,
      * Provisioning, Succeeded, and Failed.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -125,7 +141,7 @@ public class Compute {
 
     /**
      * Get the description property: The description of the Machine Learning compute.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -134,7 +150,7 @@ public class Compute {
 
     /**
      * Set the description property: The description of the Machine Learning compute.
-     *
+     * 
      * @param description the description value to set.
      * @return the Compute object itself.
      */
@@ -145,7 +161,7 @@ public class Compute {
 
     /**
      * Get the createdOn property: The time at which the compute was created.
-     *
+     * 
      * @return the createdOn value.
      */
     public OffsetDateTime createdOn() {
@@ -154,7 +170,7 @@ public class Compute {
 
     /**
      * Get the modifiedOn property: The time at which the compute was last modified.
-     *
+     * 
      * @return the modifiedOn value.
      */
     public OffsetDateTime modifiedOn() {
@@ -163,7 +179,7 @@ public class Compute {
 
     /**
      * Get the resourceId property: ARM resource id of the underlying compute.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -172,7 +188,7 @@ public class Compute {
 
     /**
      * Set the resourceId property: ARM resource id of the underlying compute.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the Compute object itself.
      */
@@ -183,7 +199,7 @@ public class Compute {
 
     /**
      * Get the provisioningErrors property: Errors during provisioning.
-     *
+     * 
      * @return the provisioningErrors value.
      */
     public List<ManagementError> provisioningErrors() {
@@ -193,7 +209,7 @@ public class Compute {
     /**
      * Get the isAttachedCompute property: Indicating whether the compute was provisioned by user and brought from
      * outside if true, or machine learning service provisioned it if false.
-     *
+     * 
      * @return the isAttachedCompute value.
      */
     public Boolean isAttachedCompute() {
@@ -203,7 +219,7 @@ public class Compute {
     /**
      * Get the disableLocalAuth property: Opt-out of local authentication and ensure customers can use only MSI and AAD
      * exclusively for authentication.
-     *
+     * 
      * @return the disableLocalAuth value.
      */
     public Boolean disableLocalAuth() {
@@ -213,7 +229,7 @@ public class Compute {
     /**
      * Set the disableLocalAuth property: Opt-out of local authentication and ensure customers can use only MSI and AAD
      * exclusively for authentication.
-     *
+     * 
      * @param disableLocalAuth the disableLocalAuth value to set.
      * @return the Compute object itself.
      */
@@ -224,7 +240,7 @@ public class Compute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.models.UsageName;
 import com.azure.resourcemanager.machinelearning.models.UsageUnit;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes AML Resource Usage. */
+/**
+ * Describes AML Resource Usage.
+ */
 @Immutable
 public final class UsageInner {
     /*
@@ -54,13 +56,15 @@ public final class UsageInner {
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)
     private UsageName name;
 
-    /** Creates an instance of UsageInner class. */
+    /**
+     * Creates an instance of UsageInner class.
+     */
     public UsageInner() {
     }
 
     /**
      * Get the id property: Specifies the resource ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -69,7 +73,7 @@ public final class UsageInner {
 
     /**
      * Get the amlWorkspaceLocation property: Region of the AML workspace in the id.
-     *
+     * 
      * @return the amlWorkspaceLocation value.
      */
     public String amlWorkspaceLocation() {
@@ -78,7 +82,7 @@ public final class UsageInner {
 
     /**
      * Get the type property: Specifies the resource type.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -87,7 +91,7 @@ public final class UsageInner {
 
     /**
      * Get the unit property: An enum describing the unit of usage measurement.
-     *
+     * 
      * @return the unit value.
      */
     public UsageUnit unit() {
@@ -96,7 +100,7 @@ public final class UsageInner {
 
     /**
      * Get the currentValue property: The current usage of the resource.
-     *
+     * 
      * @return the currentValue value.
      */
     public Long currentValue() {
@@ -105,7 +109,7 @@ public final class UsageInner {
 
     /**
      * Get the limit property: The maximum permitted usage of the resource.
-     *
+     * 
      * @return the limit value.
      */
     public Long limit() {
@@ -114,7 +118,7 @@ public final class UsageInner {
 
     /**
      * Get the name property: The name of the type of usage.
-     *
+     * 
      * @return the name value.
      */
     public UsageName name() {
@@ -123,7 +127,7 @@ public final class UsageInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
