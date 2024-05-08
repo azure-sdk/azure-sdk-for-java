@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Properties of Cognitive Services account commitment plan. */
+/**
+ * Properties of Cognitive Services account commitment plan.
+ */
 @Fluent
 public final class CommitmentPlanProperties {
     /*
@@ -65,13 +67,15 @@ public final class CommitmentPlanProperties {
     @JsonProperty(value = "provisioningIssues", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> provisioningIssues;
 
-    /** Creates an instance of CommitmentPlanProperties class. */
+    /**
+     * Creates an instance of CommitmentPlanProperties class.
+     */
     public CommitmentPlanProperties() {
     }
 
     /**
      * Get the provisioningState property: Gets the status of the resource at the time the operation was called.
-     *
+     * 
      * @return the provisioningState value.
      */
     public CommitmentPlanProvisioningState provisioningState() {
@@ -80,7 +84,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Get the commitmentPlanGuid property: Commitment plan guid.
-     *
+     * 
      * @return the commitmentPlanGuid value.
      */
     public String commitmentPlanGuid() {
@@ -89,7 +93,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Set the commitmentPlanGuid property: Commitment plan guid.
-     *
+     * 
      * @param commitmentPlanGuid the commitmentPlanGuid value to set.
      * @return the CommitmentPlanProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Get the hostingModel property: Account hosting model.
-     *
+     * 
      * @return the hostingModel value.
      */
     public HostingModel hostingModel() {
@@ -109,7 +113,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Set the hostingModel property: Account hosting model.
-     *
+     * 
      * @param hostingModel the hostingModel value to set.
      * @return the CommitmentPlanProperties object itself.
      */
@@ -120,7 +124,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Get the planType property: Commitment plan type.
-     *
+     * 
      * @return the planType value.
      */
     public String planType() {
@@ -129,7 +133,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Set the planType property: Commitment plan type.
-     *
+     * 
      * @param planType the planType value to set.
      * @return the CommitmentPlanProperties object itself.
      */
@@ -140,7 +144,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Get the current property: Cognitive Services account commitment period.
-     *
+     * 
      * @return the current value.
      */
     public CommitmentPeriod current() {
@@ -149,7 +153,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Set the current property: Cognitive Services account commitment period.
-     *
+     * 
      * @param current the current value to set.
      * @return the CommitmentPlanProperties object itself.
      */
@@ -160,7 +164,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Get the autoRenew property: AutoRenew commitment plan.
-     *
+     * 
      * @return the autoRenew value.
      */
     public Boolean autoRenew() {
@@ -169,7 +173,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Set the autoRenew property: AutoRenew commitment plan.
-     *
+     * 
      * @param autoRenew the autoRenew value to set.
      * @return the CommitmentPlanProperties object itself.
      */
@@ -180,7 +184,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Get the next property: Cognitive Services account commitment period.
-     *
+     * 
      * @return the next value.
      */
     public CommitmentPeriod next() {
@@ -189,7 +193,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Set the next property: Cognitive Services account commitment period.
-     *
+     * 
      * @param next the next value to set.
      * @return the CommitmentPlanProperties object itself.
      */
@@ -200,7 +204,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Get the last property: Cognitive Services account commitment period.
-     *
+     * 
      * @return the last value.
      */
     public CommitmentPeriod last() {
@@ -209,7 +213,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Get the provisioningIssues property: The list of ProvisioningIssue.
-     *
+     * 
      * @return the provisioningIssues value.
      */
     public List<String> provisioningIssues() {
@@ -218,7 +222,7 @@ public final class CommitmentPlanProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

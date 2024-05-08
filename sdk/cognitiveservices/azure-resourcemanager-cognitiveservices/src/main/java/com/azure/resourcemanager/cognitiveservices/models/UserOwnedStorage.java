@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The user owned storage for Cognitive Services account. */
+/**
+ * The user owned storage for Cognitive Services account.
+ */
 @Fluent
 public final class UserOwnedStorage {
     /*
@@ -22,13 +24,15 @@ public final class UserOwnedStorage {
     @JsonProperty(value = "identityClientId")
     private String identityClientId;
 
-    /** Creates an instance of UserOwnedStorage class. */
+    /**
+     * Creates an instance of UserOwnedStorage class.
+     */
     public UserOwnedStorage() {
     }
 
     /**
      * Get the resourceId property: Full resource id of a Microsoft.Storage resource.
-     *
+     * 
      * @return the resourceId value.
      */
     public String resourceId() {
@@ -37,7 +41,7 @@ public final class UserOwnedStorage {
 
     /**
      * Set the resourceId property: Full resource id of a Microsoft.Storage resource.
-     *
+     * 
      * @param resourceId the resourceId value to set.
      * @return the UserOwnedStorage object itself.
      */
@@ -48,7 +52,7 @@ public final class UserOwnedStorage {
 
     /**
      * Get the identityClientId property: The identityClientId property.
-     *
+     * 
      * @return the identityClientId value.
      */
     public String identityClientId() {
@@ -57,7 +61,7 @@ public final class UserOwnedStorage {
 
     /**
      * Set the identityClientId property: The identityClientId property.
-     *
+     * 
      * @param identityClientId the identityClientId value to set.
      * @return the UserOwnedStorage object itself.
      */
@@ -68,7 +72,7 @@ public final class UserOwnedStorage {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.cognitiveservices.fluent.models.AccountModelInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of cognitive services accounts operation response. */
+/**
+ * The list of cognitive services accounts operation response.
+ */
 @Fluent
 public final class AccountModelListResult {
     /*
@@ -24,13 +26,15 @@ public final class AccountModelListResult {
     @JsonProperty(value = "value")
     private List<AccountModelInner> value;
 
-    /** Creates an instance of AccountModelListResult class. */
+    /**
+     * Creates an instance of AccountModelListResult class.
+     */
     public AccountModelListResult() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of Model.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class AccountModelListResult {
 
     /**
      * Set the nextLink property: The link used to get the next page of Model.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the AccountModelListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class AccountModelListResult {
 
     /**
      * Get the value property: Gets the list of Cognitive Services accounts Model and their properties.
-     *
+     * 
      * @return the value value.
      */
     public List<AccountModelInner> value() {
@@ -59,7 +63,7 @@ public final class AccountModelListResult {
 
     /**
      * Set the value property: Gets the list of Cognitive Services accounts Model and their properties.
-     *
+     * 
      * @param value the value value to set.
      * @return the AccountModelListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class AccountModelListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
