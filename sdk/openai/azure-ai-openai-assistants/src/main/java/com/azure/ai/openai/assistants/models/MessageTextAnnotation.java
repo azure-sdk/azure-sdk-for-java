@@ -23,33 +23,6 @@ public class MessageTextAnnotation implements JsonSerializable<MessageTextAnnota
     @Generated
     private final String text;
 
-    /*
-     * The first text index associated with this text annotation.
-     */
-    @Generated
-    private final int startIndex;
-
-    /*
-     * The last text index associated with this text annotation.
-     */
-    @Generated
-    private final int endIndex;
-
-    /**
-     * Creates an instance of MessageTextAnnotation class.
-     *
-     * @param text the text value to set.
-     * @param startIndex the startIndex value to set.
-     * @param endIndex the endIndex value to set.
-     */
-    @Generated
-    protected MessageTextAnnotation(String text, int startIndex, int endIndex) {
-        this.type = "MessageTextAnnotation";
-        this.text = text;
-        this.startIndex = startIndex;
-        this.endIndex = endIndex;
-    }
-
     /**
      * Get the text property: The textual content associated with this text annotation item.
      *
@@ -61,26 +34,6 @@ public class MessageTextAnnotation implements JsonSerializable<MessageTextAnnota
     }
 
     /**
-     * Get the startIndex property: The first text index associated with this text annotation.
-     *
-     * @return the startIndex value.
-     */
-    @Generated
-    public int getStartIndex() {
-        return this.startIndex;
-    }
-
-    /**
-     * Get the endIndex property: The last text index associated with this text annotation.
-     *
-     * @return the endIndex value.
-     */
-    @Generated
-    public int getEndIndex() {
-        return this.endIndex;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Generated
@@ -88,8 +41,6 @@ public class MessageTextAnnotation implements JsonSerializable<MessageTextAnnota
     public JsonWriter toJson(JsonWriter jsonWriter) throws IOException {
         jsonWriter.writeStartObject();
         jsonWriter.writeStringField("text", this.text);
-        jsonWriter.writeIntField("start_index", this.startIndex);
-        jsonWriter.writeIntField("end_index", this.endIndex);
         jsonWriter.writeStringField("type", this.type);
         return jsonWriter.writeEndObject();
     }
@@ -168,5 +119,16 @@ public class MessageTextAnnotation implements JsonSerializable<MessageTextAnnota
     @Generated
     public String getType() {
         return this.type;
+    }
+
+    /**
+     * Creates an instance of MessageTextAnnotation class.
+     *
+     * @param text the text value to set.
+     */
+    @Generated
+    protected MessageTextAnnotation(String text) {
+        this.type = "MessageTextAnnotation";
+        this.text = text;
     }
 }

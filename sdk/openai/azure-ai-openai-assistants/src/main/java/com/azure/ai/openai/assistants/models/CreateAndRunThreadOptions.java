@@ -26,7 +26,7 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
     private final String assistantId;
 
     /*
-     * The details used to create the new thread.
+     * The details used to create the new thread. If no thread is provided, an empty one will be created.
      */
     @Generated
     private AssistantThreadCreationOptions thread;
@@ -76,7 +76,8 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
     }
 
     /**
-     * Get the thread property: The details used to create the new thread.
+     * Get the thread property: The details used to create the new thread. If no thread is provided, an empty one will
+     * be created.
      *
      * @return the thread value.
      */
@@ -86,7 +87,8 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
     }
 
     /**
-     * Set the thread property: The details used to create the new thread.
+     * Set the thread property: The details used to create the new thread. If no thread is provided, an empty one will
+     * be created.
      *
      * @param thread the thread value to set.
      * @return the CreateAndRunThreadOptions object itself.
@@ -201,6 +203,7 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
         jsonWriter.writeStringField("model", this.model);
         jsonWriter.writeStringField("instructions", this.instructions);
         jsonWriter.writeArrayField("tools", this.tools, (writer, element) -> writer.writeJson(element));
+        jsonWriter.writeBooleanField("stream", this.stream);
         jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeString(element));
         return jsonWriter.writeEndObject();
     }
@@ -222,6 +225,7 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
             String model = null;
             String instructions = null;
             List<ToolDefinition> tools = null;
+            Boolean stream = null;
             Map<String, String> metadata = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
@@ -236,6 +240,8 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
                     instructions = reader.getString();
                 } else if ("tools".equals(fieldName)) {
                     tools = reader.readArray(reader1 -> ToolDefinition.fromJson(reader1));
+                } else if ("stream".equals(fieldName)) {
+                    stream = reader.getNullable(JsonReader::getBoolean);
                 } else if ("metadata".equals(fieldName)) {
                     metadata = reader.readMap(reader1 -> reader1.getString());
                 } else {
@@ -248,8 +254,40 @@ public final class CreateAndRunThreadOptions implements JsonSerializable<CreateA
             deserializedCreateAndRunThreadOptions.model = model;
             deserializedCreateAndRunThreadOptions.instructions = instructions;
             deserializedCreateAndRunThreadOptions.tools = tools;
+            deserializedCreateAndRunThreadOptions.stream = stream;
             deserializedCreateAndRunThreadOptions.metadata = metadata;
             return deserializedCreateAndRunThreadOptions;
         });
+    }
+
+    /*
+     * If `true`, returns a stream of events that happen during the Run as server-sent events,
+     * terminating when the Run enters a terminal state with a `data: [DONE]` message.
+     */
+    @Generated
+    private Boolean stream;
+
+    /**
+     * Get the stream property: If `true`, returns a stream of events that happen during the Run as server-sent events,
+     * terminating when the Run enters a terminal state with a `data: [DONE]` message.
+     *
+     * @return the stream value.
+     */
+    @Generated
+    public Boolean isStream() {
+        return this.stream;
+    }
+
+    /**
+     * Set the stream property: If `true`, returns a stream of events that happen during the Run as server-sent events,
+     * terminating when the Run enters a terminal state with a `data: [DONE]` message.
+     *
+     * @param stream the stream value to set.
+     * @return the CreateAndRunThreadOptions object itself.
+     */
+    @Generated
+    public CreateAndRunThreadOptions setStream(Boolean stream) {
+        this.stream = stream;
+        return this;
     }
 }

@@ -356,6 +356,7 @@ public final class RunStep implements JsonSerializable<RunStep> {
         jsonWriter.writeNumberField("cancelled_at", this.cancelledAt);
         jsonWriter.writeNumberField("failed_at", this.failedAt);
         jsonWriter.writeMapField("metadata", this.metadata, (writer, element) -> writer.writeString(element));
+        jsonWriter.writeJsonField("usage", this.usage);
         return jsonWriter.writeEndObject();
     }
 
@@ -385,6 +386,7 @@ public final class RunStep implements JsonSerializable<RunStep> {
             OffsetDateTime cancelledAt = null;
             OffsetDateTime failedAt = null;
             Map<String, String> metadata = null;
+            RunStepCompletionUsage usage = null;
             while (reader.nextToken() != JsonToken.END_OBJECT) {
                 String fieldName = reader.getFieldName();
                 reader.nextToken();
@@ -430,12 +432,33 @@ public final class RunStep implements JsonSerializable<RunStep> {
                     }
                 } else if ("metadata".equals(fieldName)) {
                     metadata = reader.readMap(reader1 -> reader1.getString());
+                } else if ("usage".equals(fieldName)) {
+                    usage = RunStepCompletionUsage.fromJson(reader);
                 } else {
                     reader.skipChildren();
                 }
             }
-            return new RunStep(id, type, assistantId, threadId, runId, status, stepDetails, lastError, createdAt,
-                expiredAt, completedAt, cancelledAt, failedAt, metadata);
+            RunStep deserializedRunStep = new RunStep(id, type, assistantId, threadId, runId, status, stepDetails,
+                lastError, createdAt, expiredAt, completedAt, cancelledAt, failedAt, metadata);
+            deserializedRunStep.usage = usage;
+            return deserializedRunStep;
         });
+    }
+
+    /*
+     * Usage statistics related to the run step. This value will be `null` while the run step's status is `in_progress`.
+     */
+    @Generated
+    private RunStepCompletionUsage usage;
+
+    /**
+     * Get the usage property: Usage statistics related to the run step. This value will be `null` while the run step's
+     * status is `in_progress`.
+     *
+     * @return the usage value.
+     */
+    @Generated
+    public RunStepCompletionUsage getUsage() {
+        return this.usage;
     }
 }
