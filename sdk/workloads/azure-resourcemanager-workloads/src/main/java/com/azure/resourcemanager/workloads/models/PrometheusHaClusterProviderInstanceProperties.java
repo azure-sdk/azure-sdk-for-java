@@ -6,14 +6,28 @@ package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Gets or sets the PrometheusHaCluster provider properties. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "providerType")
+/**
+ * Gets or sets the PrometheusHaCluster provider properties.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "providerType",
+    defaultImpl = PrometheusHaClusterProviderInstanceProperties.class,
+    visible = true)
 @JsonTypeName("PrometheusHaCluster")
 @Fluent
 public final class PrometheusHaClusterProviderInstanceProperties extends ProviderSpecificProperties {
+    /*
+     * The provider type. For example, the value can be SapHana.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "providerType", required = true)
+    private String providerType = "PrometheusHaCluster";
+
     /*
      * URL of the Node Exporter endpoint.
      */
@@ -50,13 +64,25 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
     @JsonProperty(value = "sslCertificateUri")
     private String sslCertificateUri;
 
-    /** Creates an instance of PrometheusHaClusterProviderInstanceProperties class. */
+    /**
+     * Creates an instance of PrometheusHaClusterProviderInstanceProperties class.
+     */
     public PrometheusHaClusterProviderInstanceProperties() {
     }
 
     /**
+     * Get the providerType property: The provider type. For example, the value can be SapHana.
+     * 
+     * @return the providerType value.
+     */
+    @Override
+    public String providerType() {
+        return this.providerType;
+    }
+
+    /**
      * Get the prometheusUrl property: URL of the Node Exporter endpoint.
-     *
+     * 
      * @return the prometheusUrl value.
      */
     public String prometheusUrl() {
@@ -65,7 +91,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Set the prometheusUrl property: URL of the Node Exporter endpoint.
-     *
+     * 
      * @param prometheusUrl the prometheusUrl value to set.
      * @return the PrometheusHaClusterProviderInstanceProperties object itself.
      */
@@ -76,7 +102,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Get the hostname property: Gets or sets the target machine name.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -85,7 +111,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Set the hostname property: Gets or sets the target machine name.
-     *
+     * 
      * @param hostname the hostname value to set.
      * @return the PrometheusHaClusterProviderInstanceProperties object itself.
      */
@@ -96,7 +122,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Get the sid property: Gets or sets the cluster sid.
-     *
+     * 
      * @return the sid value.
      */
     public String sid() {
@@ -105,7 +131,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Set the sid property: Gets or sets the cluster sid.
-     *
+     * 
      * @param sid the sid value to set.
      * @return the PrometheusHaClusterProviderInstanceProperties object itself.
      */
@@ -116,7 +142,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Get the clusterName property: Gets or sets the clusterName.
-     *
+     * 
      * @return the clusterName value.
      */
     public String clusterName() {
@@ -125,7 +151,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Set the clusterName property: Gets or sets the clusterName.
-     *
+     * 
      * @param clusterName the clusterName value to set.
      * @return the PrometheusHaClusterProviderInstanceProperties object itself.
      */
@@ -136,7 +162,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Get the sslPreference property: Gets or sets certificate preference if secure communication is enabled.
-     *
+     * 
      * @return the sslPreference value.
      */
     public SslPreference sslPreference() {
@@ -145,7 +171,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Set the sslPreference property: Gets or sets certificate preference if secure communication is enabled.
-     *
+     * 
      * @param sslPreference the sslPreference value to set.
      * @return the PrometheusHaClusterProviderInstanceProperties object itself.
      */
@@ -156,7 +182,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Get the sslCertificateUri property: Gets or sets the blob URI to SSL certificate for the HA cluster exporter.
-     *
+     * 
      * @return the sslCertificateUri value.
      */
     public String sslCertificateUri() {
@@ -165,7 +191,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Set the sslCertificateUri property: Gets or sets the blob URI to SSL certificate for the HA cluster exporter.
-     *
+     * 
      * @param sslCertificateUri the sslCertificateUri value to set.
      * @return the PrometheusHaClusterProviderInstanceProperties object itself.
      */
@@ -176,7 +202,7 @@ public final class PrometheusHaClusterProviderInstanceProperties extends Provide
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

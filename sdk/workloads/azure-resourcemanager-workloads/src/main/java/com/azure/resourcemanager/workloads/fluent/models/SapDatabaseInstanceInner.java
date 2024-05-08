@@ -16,7 +16,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Define the Database resource. */
+/**
+ * Define the Database resource.
+ */
 @Fluent
 public final class SapDatabaseInstanceInner extends Resource {
     /*
@@ -31,13 +33,15 @@ public final class SapDatabaseInstanceInner extends Resource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of SapDatabaseInstanceInner class. */
+    /**
+     * Creates an instance of SapDatabaseInstanceInner class.
+     */
     public SapDatabaseInstanceInner() {
     }
 
     /**
      * Get the innerProperties property: Defines the Database properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SapDatabaseProperties innerProperties() {
@@ -46,21 +50,25 @@ public final class SapDatabaseInstanceInner extends Resource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
         return this.systemData;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SapDatabaseInstanceInner withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SapDatabaseInstanceInner withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -69,7 +77,7 @@ public final class SapDatabaseInstanceInner extends Resource {
 
     /**
      * Get the subnet property: Database subnet.
-     *
+     * 
      * @return the subnet value.
      */
     public String subnet() {
@@ -78,7 +86,7 @@ public final class SapDatabaseInstanceInner extends Resource {
 
     /**
      * Get the databaseSid property: Database SID name.
-     *
+     * 
      * @return the databaseSid value.
      */
     public String databaseSid() {
@@ -88,7 +96,7 @@ public final class SapDatabaseInstanceInner extends Resource {
     /**
      * Get the databaseType property: Database type, that is if the DB is HANA, DB2, Oracle, SAP ASE, Max DB or MS SQL
      * Server.
-     *
+     * 
      * @return the databaseType value.
      */
     public String databaseType() {
@@ -97,7 +105,7 @@ public final class SapDatabaseInstanceInner extends Resource {
 
     /**
      * Get the ipAddress property: Database IP Address.
-     *
+     * 
      * @return the ipAddress value.
      */
     public String ipAddress() {
@@ -107,7 +115,7 @@ public final class SapDatabaseInstanceInner extends Resource {
     /**
      * Get the loadBalancerDetails property: The Load Balancer details such as LoadBalancer ID attached to Database
      * Virtual Machines.
-     *
+     * 
      * @return the loadBalancerDetails value.
      */
     public LoadBalancerDetails loadBalancerDetails() {
@@ -116,7 +124,7 @@ public final class SapDatabaseInstanceInner extends Resource {
 
     /**
      * Get the vmDetails property: The list of virtual machines corresponding to the Database resource.
-     *
+     * 
      * @return the vmDetails value.
      */
     public List<DatabaseVmDetails> vmDetails() {
@@ -125,7 +133,7 @@ public final class SapDatabaseInstanceInner extends Resource {
 
     /**
      * Get the status property: Defines the SAP Instance status.
-     *
+     * 
      * @return the status value.
      */
     public SapVirtualInstanceStatus status() {
@@ -134,7 +142,7 @@ public final class SapDatabaseInstanceInner extends Resource {
 
     /**
      * Get the provisioningState property: Defines the provisioning states.
-     *
+     * 
      * @return the provisioningState value.
      */
     public SapVirtualInstanceProvisioningState provisioningState() {
@@ -143,7 +151,7 @@ public final class SapDatabaseInstanceInner extends Resource {
 
     /**
      * Get the errors property: Defines the errors related to Database resource.
-     *
+     * 
      * @return the errors value.
      */
     public SapVirtualInstanceError errors() {
@@ -152,7 +160,7 @@ public final class SapDatabaseInstanceInner extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

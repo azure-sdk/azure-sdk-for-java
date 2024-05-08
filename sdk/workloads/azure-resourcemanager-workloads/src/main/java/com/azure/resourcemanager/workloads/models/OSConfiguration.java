@@ -5,30 +5,48 @@
 package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines the OS configuration. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "osType",
-    defaultImpl = OSConfiguration.class)
+/**
+ * Defines the OS configuration.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "osType", defaultImpl = OSConfiguration.class, visible = true)
 @JsonTypeName("OSConfiguration")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Windows", value = WindowsConfiguration.class),
-    @JsonSubTypes.Type(name = "Linux", value = LinuxConfiguration.class)
-})
+    @JsonSubTypes.Type(name = "Linux", value = LinuxConfiguration.class) })
 @Immutable
 public class OSConfiguration {
-    /** Creates an instance of OSConfiguration class. */
+    /*
+     * The OS Type
+     */
+    @JsonTypeId
+    @JsonProperty(value = "osType", required = true)
+    private OSType osType;
+
+    /**
+     * Creates an instance of OSConfiguration class.
+     */
     public OSConfiguration() {
+        this.osType = OSType.fromString("OSConfiguration");
+    }
+
+    /**
+     * Get the osType property: The OS Type.
+     * 
+     * @return the osType value.
+     */
+    public OSType osType() {
+        return this.osType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

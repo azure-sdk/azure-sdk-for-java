@@ -5,32 +5,55 @@
 package com.azure.resourcemanager.workloads.fluent.models;
 
 import com.azure.core.annotation.Immutable;
+import com.azure.resourcemanager.workloads.models.SapDeploymentType;
 import com.azure.resourcemanager.workloads.models.SingleServerRecommendationResult;
 import com.azure.resourcemanager.workloads.models.ThreeTierRecommendationResult;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The SAP sizing recommendation result. */
+/**
+ * The SAP sizing recommendation result.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "deploymentType",
-    defaultImpl = SapSizingRecommendationResultInner.class)
+    defaultImpl = SapSizingRecommendationResultInner.class,
+    visible = true)
 @JsonTypeName("SapSizingRecommendationResult")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "SingleServer", value = SingleServerRecommendationResult.class),
-    @JsonSubTypes.Type(name = "ThreeTier", value = ThreeTierRecommendationResult.class)
-})
+    @JsonSubTypes.Type(name = "ThreeTier", value = ThreeTierRecommendationResult.class) })
 @Immutable
 public class SapSizingRecommendationResultInner {
-    /** Creates an instance of SapSizingRecommendationResultInner class. */
+    /*
+     * The type of SAP deployment, single server or Three tier.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "deploymentType", required = true)
+    private SapDeploymentType deploymentType;
+
+    /**
+     * Creates an instance of SapSizingRecommendationResultInner class.
+     */
     public SapSizingRecommendationResultInner() {
+        this.deploymentType = SapDeploymentType.fromString("SapSizingRecommendationResult");
+    }
+
+    /**
+     * Get the deploymentType property: The type of SAP deployment, single server or Three tier.
+     * 
+     * @return the deploymentType value.
+     */
+    public SapDeploymentType deploymentType() {
+        return this.deploymentType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

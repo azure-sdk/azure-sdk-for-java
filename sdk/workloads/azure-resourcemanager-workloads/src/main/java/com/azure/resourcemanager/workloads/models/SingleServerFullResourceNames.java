@@ -6,6 +6,7 @@ package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -13,23 +14,46 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * The resource name object where the specified values will be full resource names of the corresponding resources in a
  * single server SAP system.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "namingPatternType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "namingPatternType",
+    defaultImpl = SingleServerFullResourceNames.class,
+    visible = true)
 @JsonTypeName("FullResourceName")
 @Fluent
 public final class SingleServerFullResourceNames extends SingleServerCustomResourceNames {
+    /*
+     * The pattern type to be used for resource naming.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "namingPatternType", required = true)
+    private NamingPatternType namingPatternType = NamingPatternType.FULL_RESOURCE_NAME;
+
     /*
      * The resource names object for virtual machine and related resources.
      */
     @JsonProperty(value = "virtualMachine")
     private VirtualMachineResourceNames virtualMachine;
 
-    /** Creates an instance of SingleServerFullResourceNames class. */
+    /**
+     * Creates an instance of SingleServerFullResourceNames class.
+     */
     public SingleServerFullResourceNames() {
     }
 
     /**
+     * Get the namingPatternType property: The pattern type to be used for resource naming.
+     * 
+     * @return the namingPatternType value.
+     */
+    @Override
+    public NamingPatternType namingPatternType() {
+        return this.namingPatternType;
+    }
+
+    /**
      * Get the virtualMachine property: The resource names object for virtual machine and related resources.
-     *
+     * 
      * @return the virtualMachine value.
      */
     public VirtualMachineResourceNames virtualMachine() {
@@ -38,7 +62,7 @@ public final class SingleServerFullResourceNames extends SingleServerCustomResou
 
     /**
      * Set the virtualMachine property: The resource names object for virtual machine and related resources.
-     *
+     * 
      * @param virtualMachine the virtualMachine value to set.
      * @return the SingleServerFullResourceNames object itself.
      */
@@ -49,7 +73,7 @@ public final class SingleServerFullResourceNames extends SingleServerCustomResou
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
