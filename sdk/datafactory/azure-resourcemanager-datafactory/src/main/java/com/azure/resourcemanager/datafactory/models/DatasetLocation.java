@@ -35,7 +35,7 @@ import java.util.Map;
     @JsonSubTypes.Type(name = "SftpLocation", value = SftpLocation.class),
     @JsonSubTypes.Type(name = "HttpServerLocation", value = HttpServerLocation.class),
     @JsonSubTypes.Type(name = "HdfsLocation", value = HdfsLocation.class),
-    @JsonSubTypes.Type(name = "LakeHouseLocation", value = LakeHouseLocation.class) })
+    @JsonSubTypes.Type(name = "LakehouseLocation", value = LakehouseLocation.class) })
 @Fluent
 public class DatasetLocation {
     /*
