@@ -96,6 +96,20 @@ public interface HybridComputeManagementClient {
     MachineRunCommandsClient getMachineRunCommands();
 
     /**
+     * Gets the GatewaysClient object to access its operations.
+     * 
+     * @return the GatewaysClient object.
+     */
+    GatewaysClient getGateways();
+
+    /**
+     * Gets the SettingsOperationsClient object to access its operations.
+     * 
+     * @return the SettingsOperationsClient object.
+     */
+    SettingsOperationsClient getSettingsOperations();
+
+    /**
      * Gets the PrivateLinkScopesClient object to access its operations.
      * 
      * @return the PrivateLinkScopesClient object.
