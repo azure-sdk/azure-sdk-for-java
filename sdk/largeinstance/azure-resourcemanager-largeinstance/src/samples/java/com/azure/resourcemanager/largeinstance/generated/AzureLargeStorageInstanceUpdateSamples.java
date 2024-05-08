@@ -9,9 +9,7 @@ package com.azure.resourcemanager.largeinstance.generated;
  */
 public final class AzureLargeStorageInstanceUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeStorageInstance_PatchTags_Delete.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeStorageInstance_PatchTags_Delete.json
      */
     /**
      * Sample code: AzureLargeStorageInstance_Delete_Tag.
@@ -20,14 +18,12 @@ public final class AzureLargeStorageInstanceUpdateSamples {
      */
     public static void
         azureLargeStorageInstanceDeleteTag(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeStorageInstances().updateWithResponse("myResourceGroup", "myALSInstance", null,
-            com.azure.core.util.Context.NONE);
+        manager.azureLargeStorageInstances()
+            .updateWithResponse("myResourceGroup", "myALSInstance", null, com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeStorageInstance_PatchTags.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeStorageInstance_PatchTags.json
      */
     /**
      * Sample code: AzureLargeStorageInstance_Update_Tag.
@@ -36,7 +32,7 @@ public final class AzureLargeStorageInstanceUpdateSamples {
      */
     public static void
         azureLargeStorageInstanceUpdateTag(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeStorageInstances().updateWithResponse("myResourceGroup", "myALSInstance", null,
-            com.azure.core.util.Context.NONE);
+        manager.azureLargeStorageInstances()
+            .updateWithResponse("myResourceGroup", "myALSInstance", null, com.azure.core.util.Context.NONE);
     }
 }
