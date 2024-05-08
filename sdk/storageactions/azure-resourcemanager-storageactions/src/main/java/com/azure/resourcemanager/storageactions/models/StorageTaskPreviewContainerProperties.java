@@ -14,7 +14,7 @@ import java.util.List;
 @Fluent
 public final class StorageTaskPreviewContainerProperties {
     /*
-     * property for the container name.
+     * Name of test container
      */
     @JsonProperty(value = "name")
     private String name;
@@ -32,7 +32,7 @@ public final class StorageTaskPreviewContainerProperties {
     }
 
     /**
-     * Get the name property: property for the container name.
+     * Get the name property: Name of test container.
      * 
      * @return the name value.
      */
@@ -41,7 +41,7 @@ public final class StorageTaskPreviewContainerProperties {
     }
 
     /**
-     * Set the name property: property for the container name.
+     * Set the name property: Name of test container.
      * 
      * @param name the name value to set.
      * @return the StorageTaskPreviewContainerProperties object itself.

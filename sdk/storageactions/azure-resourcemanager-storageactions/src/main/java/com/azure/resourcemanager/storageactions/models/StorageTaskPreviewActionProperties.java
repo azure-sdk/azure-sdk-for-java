@@ -15,19 +15,19 @@ import java.util.List;
 @Fluent
 public final class StorageTaskPreviewActionProperties {
     /*
-     * Preview action container properties to be tested for a match with the provided condition.
+     * Properties of a sample container to test for a match with the preview action.
      */
     @JsonProperty(value = "container", required = true)
     private StorageTaskPreviewContainerProperties container;
 
     /*
-     * Preview action container properties to be tested for a match with the provided condition.
+     * Properties of some sample blobs in the container to test for matches with the preview action.
      */
     @JsonProperty(value = "blobs", required = true)
     private List<StorageTaskPreviewBlobProperties> blobs;
 
     /*
-     * Preview action container properties to be tested for a match with the provided condition.
+     * Preview action to test
      */
     @JsonProperty(value = "action", required = true)
     private StorageTaskPreviewActionCondition action;
@@ -39,8 +39,7 @@ public final class StorageTaskPreviewActionProperties {
     }
 
     /**
-     * Get the container property: Preview action container properties to be tested for a match with the provided
-     * condition.
+     * Get the container property: Properties of a sample container to test for a match with the preview action.
      * 
      * @return the container value.
      */
@@ -49,8 +48,7 @@ public final class StorageTaskPreviewActionProperties {
     }
 
     /**
-     * Set the container property: Preview action container properties to be tested for a match with the provided
-     * condition.
+     * Set the container property: Properties of a sample container to test for a match with the preview action.
      * 
      * @param container the container value to set.
      * @return the StorageTaskPreviewActionProperties object itself.
@@ -61,8 +59,8 @@ public final class StorageTaskPreviewActionProperties {
     }
 
     /**
-     * Get the blobs property: Preview action container properties to be tested for a match with the provided
-     * condition.
+     * Get the blobs property: Properties of some sample blobs in the container to test for matches with the preview
+     * action.
      * 
      * @return the blobs value.
      */
@@ -71,8 +69,8 @@ public final class StorageTaskPreviewActionProperties {
     }
 
     /**
-     * Set the blobs property: Preview action container properties to be tested for a match with the provided
-     * condition.
+     * Set the blobs property: Properties of some sample blobs in the container to test for matches with the preview
+     * action.
      * 
      * @param blobs the blobs value to set.
      * @return the StorageTaskPreviewActionProperties object itself.
@@ -83,8 +81,7 @@ public final class StorageTaskPreviewActionProperties {
     }
 
     /**
-     * Get the action property: Preview action container properties to be tested for a match with the provided
-     * condition.
+     * Get the action property: Preview action to test.
      * 
      * @return the action value.
      */
@@ -93,8 +90,7 @@ public final class StorageTaskPreviewActionProperties {
     }
 
     /**
-     * Set the action property: Preview action container properties to be tested for a match with the provided
-     * condition.
+     * Set the action property: Preview action to test.
      * 
      * @param action the action value to set.
      * @return the StorageTaskPreviewActionProperties object itself.
@@ -111,20 +107,23 @@ public final class StorageTaskPreviewActionProperties {
      */
     public void validate() {
         if (container() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property container in model StorageTaskPreviewActionProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property container in model StorageTaskPreviewActionProperties"));
         } else {
             container().validate();
         }
         if (blobs() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property blobs in model StorageTaskPreviewActionProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property blobs in model StorageTaskPreviewActionProperties"));
         } else {
             blobs().forEach(e -> e.validate());
         }
         if (action() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property action in model StorageTaskPreviewActionProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property action in model StorageTaskPreviewActionProperties"));
         } else {
             action().validate();
         }

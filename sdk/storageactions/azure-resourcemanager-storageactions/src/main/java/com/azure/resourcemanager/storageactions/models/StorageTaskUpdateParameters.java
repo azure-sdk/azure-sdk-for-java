@@ -21,9 +21,7 @@ public final class StorageTaskUpdateParameters {
     private ManagedServiceIdentity identity;
 
     /*
-     * Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and
-     * grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag
-     * must have a key no greater in length than 128 characters and a value no greater in length than 256 characters.
+     * Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater in length than 128 characters and a value no greater in length than 256 characters.
      */
     @JsonProperty(value = "tags")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
@@ -64,8 +62,8 @@ public final class StorageTaskUpdateParameters {
     /**
      * Get the tags property: Gets or sets a list of key value pairs that describe the resource. These tags can be used
      * in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a
-     * resource. Each tag must have a key no greater in length than 128 characters and a value no greater in length
-     * than 256 characters.
+     * resource. Each tag must have a key no greater in length than 128 characters and a value no greater in length than
+     * 256 characters.
      * 
      * @return the tags value.
      */
@@ -76,8 +74,8 @@ public final class StorageTaskUpdateParameters {
     /**
      * Set the tags property: Gets or sets a list of key value pairs that describe the resource. These tags can be used
      * in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a
-     * resource. Each tag must have a key no greater in length than 128 characters and a value no greater in length
-     * than 256 characters.
+     * resource. Each tag must have a key no greater in length than 128 characters and a value no greater in length than
+     * 256 characters.
      * 
      * @param tags the tags value to set.
      * @return the StorageTaskUpdateParameters object itself.

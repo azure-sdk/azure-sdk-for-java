@@ -15,14 +15,13 @@ import java.util.List;
 @Immutable
 public final class StorageTaskAssignmentsListResult {
     /*
-     * Gets the list of storage task assignment Ids.
+     * List of Storage Task Assignment Resource IDs associated with this Storage Task.
      */
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private List<StorageTaskAssignmentInner> value;
 
     /*
-     * Request URL that can be used to query next page of storage task assignment Ids. Returned when total number of
-     * requested storage task assignment Ids exceed maximum page size.
+     * Request URL that can be used to query next page of Resource IDs. Returned when total number of requested Resource IDs exceed maximum page size.
      */
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
@@ -34,7 +33,7 @@ public final class StorageTaskAssignmentsListResult {
     }
 
     /**
-     * Get the value property: Gets the list of storage task assignment Ids.
+     * Get the value property: List of Storage Task Assignment Resource IDs associated with this Storage Task.
      * 
      * @return the value value.
      */
@@ -43,8 +42,8 @@ public final class StorageTaskAssignmentsListResult {
     }
 
     /**
-     * Get the nextLink property: Request URL that can be used to query next page of storage task assignment Ids.
-     * Returned when total number of requested storage task assignment Ids exceed maximum page size.
+     * Get the nextLink property: Request URL that can be used to query next page of Resource IDs. Returned when total
+     * number of requested Resource IDs exceed maximum page size.
      * 
      * @return the nextLink value.
      */

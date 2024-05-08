@@ -15,7 +15,7 @@ import java.util.List;
 @Fluent
 public final class IfCondition {
     /*
-     * The condition predicate which is composed of object properties, eg: blob and container properties.
+     * Condition predicate to evaluate each object. See https://aka.ms/storagetaskconditions for valid properties and operators.
      */
     @JsonProperty(value = "condition", required = true)
     private String condition;
@@ -33,8 +33,8 @@ public final class IfCondition {
     }
 
     /**
-     * Get the condition property: The condition predicate which is composed of object properties, eg: blob and
-     * container properties.
+     * Get the condition property: Condition predicate to evaluate each object. See https://aka.ms/storagetaskconditions
+     * for valid properties and operators.
      * 
      * @return the condition value.
      */
@@ -43,8 +43,8 @@ public final class IfCondition {
     }
 
     /**
-     * Set the condition property: The condition predicate which is composed of object properties, eg: blob and
-     * container properties.
+     * Set the condition property: Condition predicate to evaluate each object. See https://aka.ms/storagetaskconditions
+     * for valid properties and operators.
      * 
      * @param condition the condition value to set.
      * @return the IfCondition object itself.
@@ -81,12 +81,12 @@ public final class IfCondition {
      */
     public void validate() {
         if (condition() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property condition in model IfCondition"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property condition in model IfCondition"));
         }
         if (operations() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property operations in model IfCondition"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property operations in model IfCondition"));
         } else {
             operations().forEach(e -> e.validate());
         }

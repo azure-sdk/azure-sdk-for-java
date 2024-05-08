@@ -8,12 +8,12 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Fetch the Storage task assignment ARM ids.
+ * Storage Task Assignment associated with this Storage Task.
  */
 @Immutable
 public final class StorageTaskAssignmentInner {
     /*
-     * ARM Id of the storage task assignments, associated with the storage tasks.
+     * Resource ID of the Storage Task Assignment.
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
@@ -25,7 +25,7 @@ public final class StorageTaskAssignmentInner {
     }
 
     /**
-     * Get the id property: ARM Id of the storage task assignments, associated with the storage tasks.
+     * Get the id property: Resource ID of the Storage Task Assignment.
      * 
      * @return the id value.
      */
