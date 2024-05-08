@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/deid/ci.yml
+      - sdk/deid/azure-healthdataaiservices-deid/
+    exclude:
+      - sdk/deid/pom.xml
+      - sdk/deid/azure-healthdataaiservices-deid/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/deid/ci.yml
+      - sdk/deid/azure-healthdataaiservices-deid/
+    exclude:
+      - sdk/deid/pom.xml
+      - sdk/deid/azure-healthdataaiservices-deid/pom.xml
+
+parameters:
+  - name: release_azurehealthdataaiservicesdeid
+    displayName: azure-healthdataaiservices-deid
+    type: boolean
+    default: true
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: deid
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-healthdataaiservices-deid
+        groupId: com.azure
+        safeName: azurehealthdataaiservicesdeid
+        releaseInBatch: ${{ parameters.release_azurehealthdataaiservicesdeid }}
