@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Switch configuration entries require a description to discern between configuration groups. */
+/**
+ * Switch configuration entries require a description to discern between configuration groups.
+ */
 @Fluent
 public class AnnotationResource {
     /*
@@ -16,13 +18,15 @@ public class AnnotationResource {
     @JsonProperty(value = "annotation")
     private String annotation;
 
-    /** Creates an instance of AnnotationResource class. */
+    /**
+     * Creates an instance of AnnotationResource class.
+     */
     public AnnotationResource() {
     }
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -31,7 +35,7 @@ public class AnnotationResource {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the AnnotationResource object itself.
      */
@@ -42,7 +46,7 @@ public class AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

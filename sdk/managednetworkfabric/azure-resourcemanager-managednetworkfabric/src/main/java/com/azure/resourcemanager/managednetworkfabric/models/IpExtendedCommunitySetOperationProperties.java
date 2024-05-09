@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** IP Extended Community set operation properties. */
+/**
+ * IP Extended Community set operation properties.
+ */
 @Fluent
 public class IpExtendedCommunitySetOperationProperties {
     /*
@@ -16,13 +18,15 @@ public class IpExtendedCommunitySetOperationProperties {
     @JsonProperty(value = "set")
     private IpExtendedCommunityIdList set;
 
-    /** Creates an instance of IpExtendedCommunitySetOperationProperties class. */
+    /**
+     * Creates an instance of IpExtendedCommunitySetOperationProperties class.
+     */
     public IpExtendedCommunitySetOperationProperties() {
     }
 
     /**
      * Get the set property: List of IP Extended Community IDs.
-     *
+     * 
      * @return the set value.
      */
     public IpExtendedCommunityIdList set() {
@@ -31,7 +35,7 @@ public class IpExtendedCommunitySetOperationProperties {
 
     /**
      * Set the set property: List of IP Extended Community IDs.
-     *
+     * 
      * @param set the set value to set.
      * @return the IpExtendedCommunitySetOperationProperties object itself.
      */
@@ -42,7 +46,7 @@ public class IpExtendedCommunitySetOperationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

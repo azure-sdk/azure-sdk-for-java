@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Action that need to performed. */
+/**
+ * Action that need to performed.
+ */
 @Fluent
 public final class AccessControlListAction {
     /*
@@ -22,13 +24,15 @@ public final class AccessControlListAction {
     @JsonProperty(value = "counterName")
     private String counterName;
 
-    /** Creates an instance of AccessControlListAction class. */
+    /**
+     * Creates an instance of AccessControlListAction class.
+     */
     public AccessControlListAction() {
     }
 
     /**
      * Get the type property: Type of actions that can be performed.
-     *
+     * 
      * @return the type value.
      */
     public AclActionType type() {
@@ -37,7 +41,7 @@ public final class AccessControlListAction {
 
     /**
      * Set the type property: Type of actions that can be performed.
-     *
+     * 
      * @param type the type value to set.
      * @return the AccessControlListAction object itself.
      */
@@ -48,7 +52,7 @@ public final class AccessControlListAction {
 
     /**
      * Get the counterName property: Name of the counter block to get match count information.
-     *
+     * 
      * @return the counterName value.
      */
     public String counterName() {
@@ -57,7 +61,7 @@ public final class AccessControlListAction {
 
     /**
      * Set the counterName property: Name of the counter block to get match count information.
-     *
+     * 
      * @param counterName the counterName value to set.
      * @return the AccessControlListAction object itself.
      */
@@ -68,7 +72,7 @@ public final class AccessControlListAction {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Polling interval in seconds. */
+/**
+ * Polling interval in seconds.
+ */
 public final class PollingIntervalInSeconds extends ExpandableStringEnum<PollingIntervalInSeconds> {
-    /** Static value 30 for PollingIntervalInSeconds. */
+    /**
+     * Static value 30 for PollingIntervalInSeconds.
+     */
     public static final PollingIntervalInSeconds THREE_ZERO = fromInt(30);
 
-    /** Static value 60 for PollingIntervalInSeconds. */
+    /**
+     * Static value 60 for PollingIntervalInSeconds.
+     */
     public static final PollingIntervalInSeconds SIX_ZERO = fromInt(60);
 
-    /** Static value 90 for PollingIntervalInSeconds. */
+    /**
+     * Static value 90 for PollingIntervalInSeconds.
+     */
     public static final PollingIntervalInSeconds NINE_ZERO = fromInt(90);
 
-    /** Static value 120 for PollingIntervalInSeconds. */
+    /**
+     * Static value 120 for PollingIntervalInSeconds.
+     */
     public static final PollingIntervalInSeconds ONE_TWO_ZERO = fromInt(120);
 
     /**
      * Creates a new instance of PollingIntervalInSeconds value.
-     *
+     * 
      * @deprecated Use the {@link #fromInt(int)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class PollingIntervalInSeconds extends ExpandableStringEnum<Polling
 
     /**
      * Creates or finds a PollingIntervalInSeconds from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding PollingIntervalInSeconds.
      */
@@ -44,7 +54,7 @@ public final class PollingIntervalInSeconds extends ExpandableStringEnum<Polling
 
     /**
      * Gets known PollingIntervalInSeconds values.
-     *
+     * 
      * @return known PollingIntervalInSeconds values.
      */
     public static Collection<PollingIntervalInSeconds> values() {

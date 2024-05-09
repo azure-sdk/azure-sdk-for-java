@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Reboot properties. */
+/**
+ * Reboot properties.
+ */
 @Fluent
 public final class RebootProperties {
     /*
@@ -16,13 +18,15 @@ public final class RebootProperties {
     @JsonProperty(value = "rebootType")
     private RebootType rebootType;
 
-    /** Creates an instance of RebootProperties class. */
+    /**
+     * Creates an instance of RebootProperties class.
+     */
     public RebootProperties() {
     }
 
     /**
      * Get the rebootType property: Type of reboot to be performed. Example: GracefulRebootWithZTP.
-     *
+     * 
      * @return the rebootType value.
      */
     public RebootType rebootType() {
@@ -31,7 +35,7 @@ public final class RebootProperties {
 
     /**
      * Set the rebootType property: Type of reboot to be performed. Example: GracefulRebootWithZTP.
-     *
+     * 
      * @param rebootType the rebootType value to set.
      * @return the RebootProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class RebootProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

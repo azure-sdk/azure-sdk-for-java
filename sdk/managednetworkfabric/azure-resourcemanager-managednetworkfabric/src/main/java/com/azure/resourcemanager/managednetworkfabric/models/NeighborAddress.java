@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Neighbor Address properties. */
+/**
+ * Neighbor Address properties.
+ */
 @Fluent
 public final class NeighborAddress {
     /*
@@ -22,13 +24,15 @@ public final class NeighborAddress {
     @JsonProperty(value = "configurationState", access = JsonProperty.Access.WRITE_ONLY)
     private ConfigurationState configurationState;
 
-    /** Creates an instance of NeighborAddress class. */
+    /**
+     * Creates an instance of NeighborAddress class.
+     */
     public NeighborAddress() {
     }
 
     /**
      * Get the address property: IP Address.
-     *
+     * 
      * @return the address value.
      */
     public String address() {
@@ -37,7 +41,7 @@ public final class NeighborAddress {
 
     /**
      * Set the address property: IP Address.
-     *
+     * 
      * @param address the address value to set.
      * @return the NeighborAddress object itself.
      */
@@ -48,7 +52,7 @@ public final class NeighborAddress {
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -57,7 +61,7 @@ public final class NeighborAddress {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

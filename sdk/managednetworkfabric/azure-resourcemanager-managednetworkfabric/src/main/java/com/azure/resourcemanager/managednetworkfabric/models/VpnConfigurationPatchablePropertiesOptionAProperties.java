@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** option A properties. */
+/**
+ * option A properties.
+ */
 @Fluent
 public final class VpnConfigurationPatchablePropertiesOptionAProperties extends OptionAProperties {
     /*
@@ -34,13 +36,15 @@ public final class VpnConfigurationPatchablePropertiesOptionAProperties extends 
     @JsonProperty(value = "secondaryIpv6Prefix")
     private String secondaryIpv6Prefix;
 
-    /** Creates an instance of VpnConfigurationPatchablePropertiesOptionAProperties class. */
+    /**
+     * Creates an instance of VpnConfigurationPatchablePropertiesOptionAProperties class.
+     */
     public VpnConfigurationPatchablePropertiesOptionAProperties() {
     }
 
     /**
      * Get the primaryIpv4Prefix property: IPv4 Address Prefix.
-     *
+     * 
      * @return the primaryIpv4Prefix value.
      */
     public String primaryIpv4Prefix() {
@@ -49,7 +53,7 @@ public final class VpnConfigurationPatchablePropertiesOptionAProperties extends 
 
     /**
      * Set the primaryIpv4Prefix property: IPv4 Address Prefix.
-     *
+     * 
      * @param primaryIpv4Prefix the primaryIpv4Prefix value to set.
      * @return the VpnConfigurationPatchablePropertiesOptionAProperties object itself.
      */
@@ -60,7 +64,7 @@ public final class VpnConfigurationPatchablePropertiesOptionAProperties extends 
 
     /**
      * Get the primaryIpv6Prefix property: IPv6 Address Prefix.
-     *
+     * 
      * @return the primaryIpv6Prefix value.
      */
     public String primaryIpv6Prefix() {
@@ -69,7 +73,7 @@ public final class VpnConfigurationPatchablePropertiesOptionAProperties extends 
 
     /**
      * Set the primaryIpv6Prefix property: IPv6 Address Prefix.
-     *
+     * 
      * @param primaryIpv6Prefix the primaryIpv6Prefix value to set.
      * @return the VpnConfigurationPatchablePropertiesOptionAProperties object itself.
      */
@@ -80,7 +84,7 @@ public final class VpnConfigurationPatchablePropertiesOptionAProperties extends 
 
     /**
      * Get the secondaryIpv4Prefix property: Secondary IPv4 Address Prefix.
-     *
+     * 
      * @return the secondaryIpv4Prefix value.
      */
     public String secondaryIpv4Prefix() {
@@ -89,7 +93,7 @@ public final class VpnConfigurationPatchablePropertiesOptionAProperties extends 
 
     /**
      * Set the secondaryIpv4Prefix property: Secondary IPv4 Address Prefix.
-     *
+     * 
      * @param secondaryIpv4Prefix the secondaryIpv4Prefix value to set.
      * @return the VpnConfigurationPatchablePropertiesOptionAProperties object itself.
      */
@@ -100,7 +104,7 @@ public final class VpnConfigurationPatchablePropertiesOptionAProperties extends 
 
     /**
      * Get the secondaryIpv6Prefix property: Secondary IPv6 Address Prefix.
-     *
+     * 
      * @return the secondaryIpv6Prefix value.
      */
     public String secondaryIpv6Prefix() {
@@ -109,7 +113,7 @@ public final class VpnConfigurationPatchablePropertiesOptionAProperties extends 
 
     /**
      * Set the secondaryIpv6Prefix property: Secondary IPv6 Address Prefix.
-     *
+     * 
      * @param secondaryIpv6Prefix the secondaryIpv6Prefix value to set.
      * @return the VpnConfigurationPatchablePropertiesOptionAProperties object itself.
      */
@@ -118,38 +122,46 @@ public final class VpnConfigurationPatchablePropertiesOptionAProperties extends 
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VpnConfigurationPatchablePropertiesOptionAProperties withMtu(Integer mtu) {
         super.withMtu(mtu);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VpnConfigurationPatchablePropertiesOptionAProperties withVlanId(Integer vlanId) {
         super.withVlanId(vlanId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VpnConfigurationPatchablePropertiesOptionAProperties withPeerAsn(Long peerAsn) {
         super.withPeerAsn(peerAsn);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public VpnConfigurationPatchablePropertiesOptionAProperties withBfdConfiguration(
-        BfdConfiguration bfdConfiguration) {
+    public VpnConfigurationPatchablePropertiesOptionAProperties
+        withBfdConfiguration(BfdConfiguration bfdConfiguration) {
         super.withBfdConfiguration(bfdConfiguration);
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

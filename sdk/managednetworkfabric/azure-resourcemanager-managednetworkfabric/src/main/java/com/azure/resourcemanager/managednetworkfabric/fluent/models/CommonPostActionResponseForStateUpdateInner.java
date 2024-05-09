@@ -9,7 +9,9 @@ import com.azure.core.management.exception.ManagementError;
 import com.azure.resourcemanager.managednetworkfabric.models.ConfigurationState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Common response for the state updates. */
+/**
+ * Common response for the state updates.
+ */
 @Fluent
 public final class CommonPostActionResponseForStateUpdateInner {
     /*
@@ -24,13 +26,15 @@ public final class CommonPostActionResponseForStateUpdateInner {
     @JsonProperty(value = "error")
     private ManagementError error;
 
-    /** Creates an instance of CommonPostActionResponseForStateUpdateInner class. */
+    /**
+     * Creates an instance of CommonPostActionResponseForStateUpdateInner class.
+     */
     public CommonPostActionResponseForStateUpdateInner() {
     }
 
     /**
      * Get the configurationState property: Gets the configuration state.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -39,7 +43,7 @@ public final class CommonPostActionResponseForStateUpdateInner {
 
     /**
      * Get the error property: The error object.
-     *
+     * 
      * @return the error value.
      */
     public ManagementError error() {
@@ -48,7 +52,7 @@ public final class CommonPostActionResponseForStateUpdateInner {
 
     /**
      * Set the error property: The error object.
-     *
+     * 
      * @param error the error value to set.
      * @return the CommonPostActionResponseForStateUpdateInner object itself.
      */
@@ -59,7 +63,7 @@ public final class CommonPostActionResponseForStateUpdateInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

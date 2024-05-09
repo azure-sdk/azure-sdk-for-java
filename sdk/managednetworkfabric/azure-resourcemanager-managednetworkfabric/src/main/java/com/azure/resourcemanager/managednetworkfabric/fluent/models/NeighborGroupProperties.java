@@ -11,7 +11,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Neighbor Group Properties defines the properties of the resource. */
+/**
+ * Neighbor Group Properties defines the properties of the resource.
+ */
 @Fluent
 public final class NeighborGroupProperties extends AnnotationResource {
     /*
@@ -38,13 +40,15 @@ public final class NeighborGroupProperties extends AnnotationResource {
     @JsonProperty(value = "destination")
     private NeighborGroupDestination destination;
 
-    /** Creates an instance of NeighborGroupProperties class. */
+    /**
+     * Creates an instance of NeighborGroupProperties class.
+     */
     public NeighborGroupProperties() {
     }
 
     /**
      * Get the networkTapIds property: List of NetworkTap IDs where neighbor group is associated.
-     *
+     * 
      * @return the networkTapIds value.
      */
     public List<String> networkTapIds() {
@@ -53,7 +57,7 @@ public final class NeighborGroupProperties extends AnnotationResource {
 
     /**
      * Get the networkTapRuleIds property: List of Network Tap Rule IDs where neighbor group is associated.
-     *
+     * 
      * @return the networkTapRuleIds value.
      */
     public List<String> networkTapRuleIds() {
@@ -62,7 +66,7 @@ public final class NeighborGroupProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: The provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -71,7 +75,7 @@ public final class NeighborGroupProperties extends AnnotationResource {
 
     /**
      * Get the destination property: An array of destination IPv4 Addresses or IPv6 Addresses.
-     *
+     * 
      * @return the destination value.
      */
     public NeighborGroupDestination destination() {
@@ -80,7 +84,7 @@ public final class NeighborGroupProperties extends AnnotationResource {
 
     /**
      * Set the destination property: An array of destination IPv4 Addresses or IPv6 Addresses.
-     *
+     * 
      * @param destination the destination value to set.
      * @return the NeighborGroupProperties object itself.
      */
@@ -89,7 +93,9 @@ public final class NeighborGroupProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NeighborGroupProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -98,7 +104,7 @@ public final class NeighborGroupProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

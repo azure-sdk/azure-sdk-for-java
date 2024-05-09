@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.ExternalNetw
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of External Networks. */
+/**
+ * List of External Networks.
+ */
 @Fluent
 public final class ExternalNetworksList {
     /*
@@ -24,13 +26,15 @@ public final class ExternalNetworksList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ExternalNetworksList class. */
+    /**
+     * Creates an instance of ExternalNetworksList class.
+     */
     public ExternalNetworksList() {
     }
 
     /**
      * Get the value property: List of External Network resources.
-     *
+     * 
      * @return the value value.
      */
     public List<ExternalNetworkInner> value() {
@@ -39,7 +43,7 @@ public final class ExternalNetworksList {
 
     /**
      * Set the value property: List of External Network resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the ExternalNetworksList object itself.
      */
@@ -50,7 +54,7 @@ public final class ExternalNetworksList {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ExternalNetworksList {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ExternalNetworksList object itself.
      */
@@ -70,7 +74,7 @@ public final class ExternalNetworksList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

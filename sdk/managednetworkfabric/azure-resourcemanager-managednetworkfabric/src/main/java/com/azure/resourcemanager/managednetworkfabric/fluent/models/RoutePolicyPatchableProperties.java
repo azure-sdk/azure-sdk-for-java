@@ -5,26 +5,59 @@
 package com.azure.resourcemanager.managednetworkfabric.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.managednetworkfabric.models.CommunityActionTypes;
 import com.azure.resourcemanager.managednetworkfabric.models.RoutePolicyStatementProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Route Policy patchable properties. */
+/**
+ * Route Policy patchable properties.
+ */
 @Fluent
 public class RoutePolicyPatchableProperties {
+    /*
+     * Default action that needs to be applied when no condition is matched. Example: Permit | Deny.
+     */
+    @JsonProperty(value = "defaultAction")
+    private CommunityActionTypes defaultAction;
+
     /*
      * Route Policy statements.
      */
     @JsonProperty(value = "statements")
     private List<RoutePolicyStatementProperties> statements;
 
-    /** Creates an instance of RoutePolicyPatchableProperties class. */
+    /**
+     * Creates an instance of RoutePolicyPatchableProperties class.
+     */
     public RoutePolicyPatchableProperties() {
     }
 
     /**
+     * Get the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @return the defaultAction value.
+     */
+    public CommunityActionTypes defaultAction() {
+        return this.defaultAction;
+    }
+
+    /**
+     * Set the defaultAction property: Default action that needs to be applied when no condition is matched. Example:
+     * Permit | Deny.
+     * 
+     * @param defaultAction the defaultAction value to set.
+     * @return the RoutePolicyPatchableProperties object itself.
+     */
+    public RoutePolicyPatchableProperties withDefaultAction(CommunityActionTypes defaultAction) {
+        this.defaultAction = defaultAction;
+        return this;
+    }
+
+    /**
      * Get the statements property: Route Policy statements.
-     *
+     * 
      * @return the statements value.
      */
     public List<RoutePolicyStatementProperties> statements() {
@@ -33,7 +66,7 @@ public class RoutePolicyPatchableProperties {
 
     /**
      * Set the statements property: Route Policy statements.
-     *
+     * 
      * @param statements the statements value to set.
      * @return the RoutePolicyPatchableProperties object itself.
      */
@@ -44,7 +77,7 @@ public class RoutePolicyPatchableProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

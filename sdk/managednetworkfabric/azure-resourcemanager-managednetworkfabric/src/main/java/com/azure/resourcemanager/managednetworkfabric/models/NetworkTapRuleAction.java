@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Action that need to performed. */
+/**
+ * Action that need to performed.
+ */
 @Fluent
 public final class NetworkTapRuleAction {
     /*
@@ -35,19 +37,20 @@ public final class NetworkTapRuleAction {
     private String destinationId;
 
     /*
-     * The name of the match configuration. This is used when Goto type is provided. If Goto type is selected and no
-     * match configuration name is provided. It goes to next configuration.
+     * The name of the match configuration. This is used when Goto type is provided. If Goto type is selected and no match configuration name is provided. It goes to next configuration.
      */
     @JsonProperty(value = "matchConfigurationName")
     private String matchConfigurationName;
 
-    /** Creates an instance of NetworkTapRuleAction class. */
+    /**
+     * Creates an instance of NetworkTapRuleAction class.
+     */
     public NetworkTapRuleAction() {
     }
 
     /**
      * Get the type property: Type of actions that can be performed.
-     *
+     * 
      * @return the type value.
      */
     public TapRuleActionType type() {
@@ -56,7 +59,7 @@ public final class NetworkTapRuleAction {
 
     /**
      * Set the type property: Type of actions that can be performed.
-     *
+     * 
      * @param type the type value to set.
      * @return the NetworkTapRuleAction object itself.
      */
@@ -67,7 +70,7 @@ public final class NetworkTapRuleAction {
 
     /**
      * Get the truncate property: Truncate. 0 indicates do not truncate.
-     *
+     * 
      * @return the truncate value.
      */
     public String truncate() {
@@ -76,7 +79,7 @@ public final class NetworkTapRuleAction {
 
     /**
      * Set the truncate property: Truncate. 0 indicates do not truncate.
-     *
+     * 
      * @param truncate the truncate value to set.
      * @return the NetworkTapRuleAction object itself.
      */
@@ -87,7 +90,7 @@ public final class NetworkTapRuleAction {
 
     /**
      * Get the isTimestampEnabled property: The parameter to enable or disable the timestamp.
-     *
+     * 
      * @return the isTimestampEnabled value.
      */
     public BooleanEnumProperty isTimestampEnabled() {
@@ -96,7 +99,7 @@ public final class NetworkTapRuleAction {
 
     /**
      * Set the isTimestampEnabled property: The parameter to enable or disable the timestamp.
-     *
+     * 
      * @param isTimestampEnabled the isTimestampEnabled value to set.
      * @return the NetworkTapRuleAction object itself.
      */
@@ -108,7 +111,7 @@ public final class NetworkTapRuleAction {
     /**
      * Get the destinationId property: Destination Id. The ARM resource Id may be either Network To Network Interconnect
      * or NeighborGroup.
-     *
+     * 
      * @return the destinationId value.
      */
     public String destinationId() {
@@ -118,7 +121,7 @@ public final class NetworkTapRuleAction {
     /**
      * Set the destinationId property: Destination Id. The ARM resource Id may be either Network To Network Interconnect
      * or NeighborGroup.
-     *
+     * 
      * @param destinationId the destinationId value to set.
      * @return the NetworkTapRuleAction object itself.
      */
@@ -130,7 +133,7 @@ public final class NetworkTapRuleAction {
     /**
      * Get the matchConfigurationName property: The name of the match configuration. This is used when Goto type is
      * provided. If Goto type is selected and no match configuration name is provided. It goes to next configuration.
-     *
+     * 
      * @return the matchConfigurationName value.
      */
     public String matchConfigurationName() {
@@ -140,7 +143,7 @@ public final class NetworkTapRuleAction {
     /**
      * Set the matchConfigurationName property: The name of the match configuration. This is used when Goto type is
      * provided. If Goto type is selected and no match configuration name is provided. It goes to next configuration.
-     *
+     * 
      * @param matchConfigurationName the matchConfigurationName value to set.
      * @return the NetworkTapRuleAction object itself.
      */
@@ -151,7 +154,7 @@ public final class NetworkTapRuleAction {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

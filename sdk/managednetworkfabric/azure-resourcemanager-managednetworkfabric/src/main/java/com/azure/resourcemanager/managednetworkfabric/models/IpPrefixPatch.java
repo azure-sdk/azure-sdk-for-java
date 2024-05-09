@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The IP Prefix patch resource definition. */
+/**
+ * The IP Prefix patch resource definition.
+ */
 @Fluent
 public final class IpPrefixPatch extends TagsUpdate {
     /*
@@ -19,20 +21,24 @@ public final class IpPrefixPatch extends TagsUpdate {
     @JsonProperty(value = "properties")
     private IpPrefixPatchProperties innerProperties;
 
-    /** Creates an instance of IpPrefixPatch class. */
+    /**
+     * Creates an instance of IpPrefixPatch class.
+     */
     public IpPrefixPatch() {
     }
 
     /**
      * Get the innerProperties property: IP Prefix patchable properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private IpPrefixPatchProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IpPrefixPatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -41,7 +47,7 @@ public final class IpPrefixPatch extends TagsUpdate {
 
     /**
      * Get the ipPrefixRules property: The list of IP Prefix Rules.
-     *
+     * 
      * @return the ipPrefixRules value.
      */
     public List<IpPrefixRule> ipPrefixRules() {
@@ -50,7 +56,7 @@ public final class IpPrefixPatch extends TagsUpdate {
 
     /**
      * Set the ipPrefixRules property: The list of IP Prefix Rules.
-     *
+     * 
      * @param ipPrefixRules the ipPrefixRules value to set.
      * @return the IpPrefixPatch object itself.
      */
@@ -64,7 +70,7 @@ public final class IpPrefixPatch extends TagsUpdate {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -73,7 +79,7 @@ public final class IpPrefixPatch extends TagsUpdate {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the IpPrefixPatch object itself.
      */
@@ -87,7 +93,7 @@ public final class IpPrefixPatch extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

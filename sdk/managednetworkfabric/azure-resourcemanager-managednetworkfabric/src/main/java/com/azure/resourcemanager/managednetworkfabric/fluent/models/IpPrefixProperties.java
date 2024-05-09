@@ -13,7 +13,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IP Prefix Properties defines the properties of the resource. */
+/**
+ * IP Prefix Properties defines the properties of the resource.
+ */
 @Fluent
 public final class IpPrefixProperties extends AnnotationResource {
     /*
@@ -40,13 +42,15 @@ public final class IpPrefixProperties extends AnnotationResource {
     @JsonProperty(value = "ipPrefixRules")
     private List<IpPrefixRule> ipPrefixRules;
 
-    /** Creates an instance of IpPrefixProperties class. */
+    /**
+     * Creates an instance of IpPrefixProperties class.
+     */
     public IpPrefixProperties() {
     }
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -55,7 +59,7 @@ public final class IpPrefixProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -64,7 +68,7 @@ public final class IpPrefixProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -73,7 +77,7 @@ public final class IpPrefixProperties extends AnnotationResource {
 
     /**
      * Get the ipPrefixRules property: The list of IP Prefix Rules.
-     *
+     * 
      * @return the ipPrefixRules value.
      */
     public List<IpPrefixRule> ipPrefixRules() {
@@ -82,7 +86,7 @@ public final class IpPrefixProperties extends AnnotationResource {
 
     /**
      * Set the ipPrefixRules property: The list of IP Prefix Rules.
-     *
+     * 
      * @param ipPrefixRules the ipPrefixRules value to set.
      * @return the IpPrefixProperties object itself.
      */
@@ -91,7 +95,9 @@ public final class IpPrefixProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IpPrefixProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -100,7 +106,7 @@ public final class IpPrefixProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

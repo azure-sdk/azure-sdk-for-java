@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.NeighborGrou
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The Neighbor Group Patch definition. */
+/**
+ * The Neighbor Group Patch definition.
+ */
 @Fluent
 public final class NeighborGroupPatch extends TagsUpdate {
     /*
@@ -18,20 +20,24 @@ public final class NeighborGroupPatch extends TagsUpdate {
     @JsonProperty(value = "properties")
     private NeighborGroupPatchProperties innerProperties;
 
-    /** Creates an instance of NeighborGroupPatch class. */
+    /**
+     * Creates an instance of NeighborGroupPatch class.
+     */
     public NeighborGroupPatch() {
     }
 
     /**
      * Get the innerProperties property: Neighbor Group Patch properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private NeighborGroupPatchProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NeighborGroupPatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -40,7 +46,7 @@ public final class NeighborGroupPatch extends TagsUpdate {
 
     /**
      * Get the destination property: An array of destination IPv4 Addresses or IPv6 Addresses.
-     *
+     * 
      * @return the destination value.
      */
     public NeighborGroupDestination destination() {
@@ -49,7 +55,7 @@ public final class NeighborGroupPatch extends TagsUpdate {
 
     /**
      * Set the destination property: An array of destination IPv4 Addresses or IPv6 Addresses.
-     *
+     * 
      * @param destination the destination value to set.
      * @return the NeighborGroupPatch object itself.
      */
@@ -63,7 +69,7 @@ public final class NeighborGroupPatch extends TagsUpdate {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -72,7 +78,7 @@ public final class NeighborGroupPatch extends TagsUpdate {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the NeighborGroupPatch object itself.
      */
@@ -86,7 +92,7 @@ public final class NeighborGroupPatch extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

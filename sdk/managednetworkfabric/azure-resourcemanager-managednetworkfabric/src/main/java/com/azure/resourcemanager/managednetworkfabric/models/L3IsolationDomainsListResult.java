@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.L3IsolationD
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of L3 Isolation Domains. */
+/**
+ * List of L3 Isolation Domains.
+ */
 @Fluent
 public final class L3IsolationDomainsListResult {
     /*
@@ -24,13 +26,15 @@ public final class L3IsolationDomainsListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of L3IsolationDomainsListResult class. */
+    /**
+     * Creates an instance of L3IsolationDomainsListResult class.
+     */
     public L3IsolationDomainsListResult() {
     }
 
     /**
      * Get the value property: List of L3 Isolation Domain resources.
-     *
+     * 
      * @return the value value.
      */
     public List<L3IsolationDomainInner> value() {
@@ -39,7 +43,7 @@ public final class L3IsolationDomainsListResult {
 
     /**
      * Set the value property: List of L3 Isolation Domain resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the L3IsolationDomainsListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class L3IsolationDomainsListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class L3IsolationDomainsListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the L3IsolationDomainsListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class L3IsolationDomainsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

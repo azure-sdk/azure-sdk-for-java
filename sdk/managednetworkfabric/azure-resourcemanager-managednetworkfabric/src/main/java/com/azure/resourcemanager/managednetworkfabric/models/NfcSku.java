@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Network Fabric Controller SKU. */
+/**
+ * Network Fabric Controller SKU.
+ */
 public final class NfcSku extends ExpandableStringEnum<NfcSku> {
-    /** Static value Basic for NfcSku. */
+    /**
+     * Static value Basic for NfcSku.
+     */
     public static final NfcSku BASIC = fromString("Basic");
 
-    /** Static value Standard for NfcSku. */
+    /**
+     * Static value Standard for NfcSku.
+     */
     public static final NfcSku STANDARD = fromString("Standard");
 
-    /** Static value HighPerformance for NfcSku. */
+    /**
+     * Static value HighPerformance for NfcSku.
+     */
     public static final NfcSku HIGH_PERFORMANCE = fromString("HighPerformance");
 
     /**
      * Creates a new instance of NfcSku value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class NfcSku extends ExpandableStringEnum<NfcSku> {
 
     /**
      * Creates or finds a NfcSku from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding NfcSku.
      */
@@ -41,7 +49,7 @@ public final class NfcSku extends ExpandableStringEnum<NfcSku> {
 
     /**
      * Gets known NfcSku values.
-     *
+     * 
      * @return known NfcSku values.
      */
     public static Collection<NfcSku> values() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Route Target Configuration. */
+/**
+ * Route Target Configuration.
+ */
 @Fluent
 public final class RouteTargetInformation {
     /*
@@ -35,13 +37,15 @@ public final class RouteTargetInformation {
     @JsonProperty(value = "exportIpv6RouteTargets")
     private List<String> exportIpv6RouteTargets;
 
-    /** Creates an instance of RouteTargetInformation class. */
+    /**
+     * Creates an instance of RouteTargetInformation class.
+     */
     public RouteTargetInformation() {
     }
 
     /**
      * Get the importIpv4RouteTargets property: Route Targets to be applied for incoming routes into CE.
-     *
+     * 
      * @return the importIpv4RouteTargets value.
      */
     public List<String> importIpv4RouteTargets() {
@@ -50,7 +54,7 @@ public final class RouteTargetInformation {
 
     /**
      * Set the importIpv4RouteTargets property: Route Targets to be applied for incoming routes into CE.
-     *
+     * 
      * @param importIpv4RouteTargets the importIpv4RouteTargets value to set.
      * @return the RouteTargetInformation object itself.
      */
@@ -61,7 +65,7 @@ public final class RouteTargetInformation {
 
     /**
      * Get the importIpv6RouteTargets property: Route Targets to be applied for incoming routes from CE.
-     *
+     * 
      * @return the importIpv6RouteTargets value.
      */
     public List<String> importIpv6RouteTargets() {
@@ -70,7 +74,7 @@ public final class RouteTargetInformation {
 
     /**
      * Set the importIpv6RouteTargets property: Route Targets to be applied for incoming routes from CE.
-     *
+     * 
      * @param importIpv6RouteTargets the importIpv6RouteTargets value to set.
      * @return the RouteTargetInformation object itself.
      */
@@ -81,7 +85,7 @@ public final class RouteTargetInformation {
 
     /**
      * Get the exportIpv4RouteTargets property: Route Targets to be applied for outgoing routes into CE.
-     *
+     * 
      * @return the exportIpv4RouteTargets value.
      */
     public List<String> exportIpv4RouteTargets() {
@@ -90,7 +94,7 @@ public final class RouteTargetInformation {
 
     /**
      * Set the exportIpv4RouteTargets property: Route Targets to be applied for outgoing routes into CE.
-     *
+     * 
      * @param exportIpv4RouteTargets the exportIpv4RouteTargets value to set.
      * @return the RouteTargetInformation object itself.
      */
@@ -101,7 +105,7 @@ public final class RouteTargetInformation {
 
     /**
      * Get the exportIpv6RouteTargets property: Route Targets to be applied for outgoing routes from CE.
-     *
+     * 
      * @return the exportIpv6RouteTargets value.
      */
     public List<String> exportIpv6RouteTargets() {
@@ -110,7 +114,7 @@ public final class RouteTargetInformation {
 
     /**
      * Set the exportIpv6RouteTargets property: Route Targets to be applied for outgoing routes from CE.
-     *
+     * 
      * @param exportIpv6RouteTargets the exportIpv6RouteTargets value to set.
      * @return the RouteTargetInformation object itself.
      */
@@ -121,7 +125,7 @@ public final class RouteTargetInformation {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

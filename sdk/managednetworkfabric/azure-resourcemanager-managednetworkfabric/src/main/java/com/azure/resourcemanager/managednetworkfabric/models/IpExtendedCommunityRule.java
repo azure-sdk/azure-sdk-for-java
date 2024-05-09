@@ -9,7 +9,9 @@ import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of IP Extended Community Rules. */
+/**
+ * List of IP Extended Community Rules.
+ */
 @Fluent
 public final class IpExtendedCommunityRule {
     /*
@@ -19,28 +21,26 @@ public final class IpExtendedCommunityRule {
     private CommunityActionTypes action;
 
     /*
-     * Sequence to insert to/delete from existing route. Prefix lists are evaluated starting with the lowest sequence
-     * number and continue down the list until a match is made. Once a match is made, the permit or deny statement is
-     * applied to that network and the rest of the list is ignored.
+     * Sequence to insert to/delete from existing route. Prefix lists are evaluated starting with the lowest sequence number and continue down the list until a match is made. Once a match is made, the permit or deny statement is applied to that network and the rest of the list is ignored.
      */
     @JsonProperty(value = "sequenceNumber", required = true)
     private long sequenceNumber;
 
     /*
-     * Route Target List.The expected formats are ASN(plain):NN >> example 4294967294:50, ASN.ASN:NN >> example
-     * 65533.65333:40, IP-address:NN >> example 10.10.10.10:65535. The possible values of ASN,NN are in range of
-     * 0-65535, ASN(plain) is in range of 0-4294967295.
+     * Route Target List.The expected formats are ASN(plain):NN >> example 4294967294:50, ASN.ASN:NN >> example 65533.65333:40, IP-address:NN >> example 10.10.10.10:65535. The possible values of ASN,NN are in range of 0-65535, ASN(plain) is in range of 0-4294967295.
      */
     @JsonProperty(value = "routeTargets", required = true)
     private List<String> routeTargets;
 
-    /** Creates an instance of IpExtendedCommunityRule class. */
+    /**
+     * Creates an instance of IpExtendedCommunityRule class.
+     */
     public IpExtendedCommunityRule() {
     }
 
     /**
      * Get the action property: Action to be taken on the configuration. Example: Permit | Deny.
-     *
+     * 
      * @return the action value.
      */
     public CommunityActionTypes action() {
@@ -49,7 +49,7 @@ public final class IpExtendedCommunityRule {
 
     /**
      * Set the action property: Action to be taken on the configuration. Example: Permit | Deny.
-     *
+     * 
      * @param action the action value to set.
      * @return the IpExtendedCommunityRule object itself.
      */
@@ -62,7 +62,7 @@ public final class IpExtendedCommunityRule {
      * Get the sequenceNumber property: Sequence to insert to/delete from existing route. Prefix lists are evaluated
      * starting with the lowest sequence number and continue down the list until a match is made. Once a match is made,
      * the permit or deny statement is applied to that network and the rest of the list is ignored.
-     *
+     * 
      * @return the sequenceNumber value.
      */
     public long sequenceNumber() {
@@ -73,7 +73,7 @@ public final class IpExtendedCommunityRule {
      * Set the sequenceNumber property: Sequence to insert to/delete from existing route. Prefix lists are evaluated
      * starting with the lowest sequence number and continue down the list until a match is made. Once a match is made,
      * the permit or deny statement is applied to that network and the rest of the list is ignored.
-     *
+     * 
      * @param sequenceNumber the sequenceNumber value to set.
      * @return the IpExtendedCommunityRule object itself.
      */
@@ -86,7 +86,7 @@ public final class IpExtendedCommunityRule {
      * Get the routeTargets property: Route Target List.The expected formats are ASN(plain):NN &gt;&gt; example
      * 4294967294:50, ASN.ASN:NN &gt;&gt; example 65533.65333:40, IP-address:NN &gt;&gt; example 10.10.10.10:65535. The
      * possible values of ASN,NN are in range of 0-65535, ASN(plain) is in range of 0-4294967295.
-     *
+     * 
      * @return the routeTargets value.
      */
     public List<String> routeTargets() {
@@ -97,7 +97,7 @@ public final class IpExtendedCommunityRule {
      * Set the routeTargets property: Route Target List.The expected formats are ASN(plain):NN &gt;&gt; example
      * 4294967294:50, ASN.ASN:NN &gt;&gt; example 65533.65333:40, IP-address:NN &gt;&gt; example 10.10.10.10:65535. The
      * possible values of ASN,NN are in range of 0-65535, ASN(plain) is in range of 0-4294967295.
-     *
+     * 
      * @param routeTargets the routeTargets value to set.
      * @return the IpExtendedCommunityRule object itself.
      */
@@ -108,20 +108,18 @@ public final class IpExtendedCommunityRule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (action() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property action in model IpExtendedCommunityRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property action in model IpExtendedCommunityRule"));
         }
         if (routeTargets() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property routeTargets in model IpExtendedCommunityRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property routeTargets in model IpExtendedCommunityRule"));
         }
     }
 

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Route policy statement condition properties. */
+/**
+ * Route policy statement condition properties.
+ */
 @Fluent
 public final class StatementConditionProperties extends IpCommunityIdList {
     /*
@@ -29,13 +31,15 @@ public final class StatementConditionProperties extends IpCommunityIdList {
     @JsonProperty(value = "ipExtendedCommunityIds")
     private List<String> ipExtendedCommunityIds;
 
-    /** Creates an instance of StatementConditionProperties class. */
+    /**
+     * Creates an instance of StatementConditionProperties class.
+     */
     public StatementConditionProperties() {
     }
 
     /**
      * Get the type property: Type of the condition used.
-     *
+     * 
      * @return the type value.
      */
     public RoutePolicyConditionType type() {
@@ -44,7 +48,7 @@ public final class StatementConditionProperties extends IpCommunityIdList {
 
     /**
      * Set the type property: Type of the condition used.
-     *
+     * 
      * @param type the type value to set.
      * @return the StatementConditionProperties object itself.
      */
@@ -55,7 +59,7 @@ public final class StatementConditionProperties extends IpCommunityIdList {
 
     /**
      * Get the ipPrefixId property: Arm Resource Id of IpPrefix.
-     *
+     * 
      * @return the ipPrefixId value.
      */
     public String ipPrefixId() {
@@ -64,7 +68,7 @@ public final class StatementConditionProperties extends IpCommunityIdList {
 
     /**
      * Set the ipPrefixId property: Arm Resource Id of IpPrefix.
-     *
+     * 
      * @param ipPrefixId the ipPrefixId value to set.
      * @return the StatementConditionProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class StatementConditionProperties extends IpCommunityIdList {
 
     /**
      * Get the ipExtendedCommunityIds property: List of IP Extended Community resource IDs.
-     *
+     * 
      * @return the ipExtendedCommunityIds value.
      */
     public List<String> ipExtendedCommunityIds() {
@@ -84,7 +88,7 @@ public final class StatementConditionProperties extends IpCommunityIdList {
 
     /**
      * Set the ipExtendedCommunityIds property: List of IP Extended Community resource IDs.
-     *
+     * 
      * @param ipExtendedCommunityIds the ipExtendedCommunityIds value to set.
      * @return the StatementConditionProperties object itself.
      */
@@ -93,7 +97,9 @@ public final class StatementConditionProperties extends IpCommunityIdList {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public StatementConditionProperties withIpCommunityIds(List<String> ipCommunityIds) {
         super.withIpCommunityIds(ipCommunityIds);
@@ -102,7 +108,7 @@ public final class StatementConditionProperties extends IpCommunityIdList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

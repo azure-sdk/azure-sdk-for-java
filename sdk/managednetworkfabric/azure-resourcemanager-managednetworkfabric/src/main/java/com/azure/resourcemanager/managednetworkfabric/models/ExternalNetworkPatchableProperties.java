@@ -7,9 +7,17 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ExternalNetwork patchable properties. */
+/**
+ * The ExternalNetwork patchable properties.
+ */
 @Fluent
 public class ExternalNetworkPatchableProperties {
+    /*
+     * ARM Resource ID of the networkToNetworkInterconnectId of the ExternalNetwork resource.
+     */
+    @JsonProperty(value = "networkToNetworkInterconnectId")
+    private String networkToNetworkInterconnectId;
+
     /*
      * ARM Resource ID of the RoutePolicy. This is used for the backward compatibility.
      */
@@ -34,14 +42,39 @@ public class ExternalNetworkPatchableProperties {
     @JsonProperty(value = "exportRoutePolicy")
     private ExportRoutePolicy exportRoutePolicy;
 
-    /** Creates an instance of ExternalNetworkPatchableProperties class. */
+    /**
+     * Creates an instance of ExternalNetworkPatchableProperties class.
+     */
     public ExternalNetworkPatchableProperties() {
+    }
+
+    /**
+     * Get the networkToNetworkInterconnectId property: ARM Resource ID of the networkToNetworkInterconnectId of the
+     * ExternalNetwork resource.
+     * 
+     * @return the networkToNetworkInterconnectId value.
+     */
+    public String networkToNetworkInterconnectId() {
+        return this.networkToNetworkInterconnectId;
+    }
+
+    /**
+     * Set the networkToNetworkInterconnectId property: ARM Resource ID of the networkToNetworkInterconnectId of the
+     * ExternalNetwork resource.
+     * 
+     * @param networkToNetworkInterconnectId the networkToNetworkInterconnectId value to set.
+     * @return the ExternalNetworkPatchableProperties object itself.
+     */
+    public ExternalNetworkPatchableProperties
+        withNetworkToNetworkInterconnectId(String networkToNetworkInterconnectId) {
+        this.networkToNetworkInterconnectId = networkToNetworkInterconnectId;
+        return this;
     }
 
     /**
      * Get the importRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @return the importRoutePolicyId value.
      */
     public String importRoutePolicyId() {
@@ -51,7 +84,7 @@ public class ExternalNetworkPatchableProperties {
     /**
      * Set the importRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @param importRoutePolicyId the importRoutePolicyId value to set.
      * @return the ExternalNetworkPatchableProperties object itself.
      */
@@ -63,7 +96,7 @@ public class ExternalNetworkPatchableProperties {
     /**
      * Get the exportRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @return the exportRoutePolicyId value.
      */
     public String exportRoutePolicyId() {
@@ -73,7 +106,7 @@ public class ExternalNetworkPatchableProperties {
     /**
      * Set the exportRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @param exportRoutePolicyId the exportRoutePolicyId value to set.
      * @return the ExternalNetworkPatchableProperties object itself.
      */
@@ -84,7 +117,7 @@ public class ExternalNetworkPatchableProperties {
 
     /**
      * Get the importRoutePolicy property: Import Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @return the importRoutePolicy value.
      */
     public ImportRoutePolicy importRoutePolicy() {
@@ -93,7 +126,7 @@ public class ExternalNetworkPatchableProperties {
 
     /**
      * Set the importRoutePolicy property: Import Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @param importRoutePolicy the importRoutePolicy value to set.
      * @return the ExternalNetworkPatchableProperties object itself.
      */
@@ -104,7 +137,7 @@ public class ExternalNetworkPatchableProperties {
 
     /**
      * Get the exportRoutePolicy property: Export Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @return the exportRoutePolicy value.
      */
     public ExportRoutePolicy exportRoutePolicy() {
@@ -113,7 +146,7 @@ public class ExternalNetworkPatchableProperties {
 
     /**
      * Set the exportRoutePolicy property: Export Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @param exportRoutePolicy the exportRoutePolicy value to set.
      * @return the ExternalNetworkPatchableProperties object itself.
      */
@@ -124,7 +157,7 @@ public class ExternalNetworkPatchableProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -10,7 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The IP Extended Communities patch resource definition. */
+/**
+ * The IP Extended Communities patch resource definition.
+ */
 @Fluent
 public final class IpExtendedCommunityPatch extends TagsUpdate {
     /*
@@ -19,20 +21,24 @@ public final class IpExtendedCommunityPatch extends TagsUpdate {
     @JsonProperty(value = "properties")
     private IpExtendedCommunityPatchProperties innerProperties;
 
-    /** Creates an instance of IpExtendedCommunityPatch class. */
+    /**
+     * Creates an instance of IpExtendedCommunityPatch class.
+     */
     public IpExtendedCommunityPatch() {
     }
 
     /**
      * Get the innerProperties property: IP Extended Community patchable properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private IpExtendedCommunityPatchProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IpExtendedCommunityPatch withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -41,7 +47,7 @@ public final class IpExtendedCommunityPatch extends TagsUpdate {
 
     /**
      * Get the annotation property: Switch configuration description.
-     *
+     * 
      * @return the annotation value.
      */
     public String annotation() {
@@ -50,7 +56,7 @@ public final class IpExtendedCommunityPatch extends TagsUpdate {
 
     /**
      * Set the annotation property: Switch configuration description.
-     *
+     * 
      * @param annotation the annotation value to set.
      * @return the IpExtendedCommunityPatch object itself.
      */
@@ -64,7 +70,7 @@ public final class IpExtendedCommunityPatch extends TagsUpdate {
 
     /**
      * Get the ipExtendedCommunityRules property: List of IP Extended Community Rules.
-     *
+     * 
      * @return the ipExtendedCommunityRules value.
      */
     public List<IpExtendedCommunityRule> ipExtendedCommunityRules() {
@@ -73,12 +79,12 @@ public final class IpExtendedCommunityPatch extends TagsUpdate {
 
     /**
      * Set the ipExtendedCommunityRules property: List of IP Extended Community Rules.
-     *
+     * 
      * @param ipExtendedCommunityRules the ipExtendedCommunityRules value to set.
      * @return the IpExtendedCommunityPatch object itself.
      */
-    public IpExtendedCommunityPatch withIpExtendedCommunityRules(
-        List<IpExtendedCommunityRule> ipExtendedCommunityRules) {
+    public IpExtendedCommunityPatch
+        withIpExtendedCommunityRules(List<IpExtendedCommunityRule> ipExtendedCommunityRules) {
         if (this.innerProperties() == null) {
             this.innerProperties = new IpExtendedCommunityPatchProperties();
         }
@@ -88,7 +94,7 @@ public final class IpExtendedCommunityPatch extends TagsUpdate {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

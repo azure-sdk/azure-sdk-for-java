@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Boolean Enum. Example- True/False. */
+/**
+ * Boolean Enum. Example- True/False.
+ */
 public final class BooleanEnumProperty extends ExpandableStringEnum<BooleanEnumProperty> {
-    /** Static value True for BooleanEnumProperty. */
+    /**
+     * Static value True for BooleanEnumProperty.
+     */
     public static final BooleanEnumProperty TRUE = fromString("True");
 
-    /** Static value False for BooleanEnumProperty. */
+    /**
+     * Static value False for BooleanEnumProperty.
+     */
     public static final BooleanEnumProperty FALSE = fromString("False");
 
     /**
      * Creates a new instance of BooleanEnumProperty value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class BooleanEnumProperty extends ExpandableStringEnum<BooleanEnumP
 
     /**
      * Creates or finds a BooleanEnumProperty from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding BooleanEnumProperty.
      */
@@ -38,7 +44,7 @@ public final class BooleanEnumProperty extends ExpandableStringEnum<BooleanEnumP
 
     /**
      * Gets known BooleanEnumProperty values.
-     *
+     * 
      * @return known BooleanEnumProperty values.
      */
     public static Collection<BooleanEnumProperty> values() {

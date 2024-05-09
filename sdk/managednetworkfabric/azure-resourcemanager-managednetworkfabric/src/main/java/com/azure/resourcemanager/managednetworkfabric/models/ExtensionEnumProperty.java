@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Extension property. */
+/**
+ * Extension property.
+ */
 @Fluent
 public class ExtensionEnumProperty {
     /*
@@ -16,13 +18,15 @@ public class ExtensionEnumProperty {
     @JsonProperty(value = "extension")
     private Extension extension;
 
-    /** Creates an instance of ExtensionEnumProperty class. */
+    /**
+     * Creates an instance of ExtensionEnumProperty class.
+     */
     public ExtensionEnumProperty() {
     }
 
     /**
      * Get the extension property: Extension. Example: NoExtension | NPB.
-     *
+     * 
      * @return the extension value.
      */
     public Extension extension() {
@@ -31,7 +35,7 @@ public class ExtensionEnumProperty {
 
     /**
      * Set the extension property: Extension. Example: NoExtension | NPB.
-     *
+     * 
      * @param extension the extension value to set.
      * @return the ExtensionEnumProperty object itself.
      */
@@ -42,7 +46,7 @@ public class ExtensionEnumProperty {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

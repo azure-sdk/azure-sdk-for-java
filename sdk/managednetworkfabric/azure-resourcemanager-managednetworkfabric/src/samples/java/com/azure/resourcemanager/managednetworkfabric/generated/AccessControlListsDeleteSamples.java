@@ -4,14 +4,16 @@
 
 package com.azure.resourcemanager.managednetworkfabric.generated;
 
-/** Samples for AccessControlLists Delete. */
+/**
+ * Samples for AccessControlLists Delete.
+ */
 public final class AccessControlListsDeleteSamples {
     /*
      * x-ms-original-file: specification/managednetworkfabric/resource-manager/Microsoft.ManagedNetworkFabric/stable/2023-06-15/examples/AccessControlLists_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: AccessControlLists_Delete_MaximumSet_Gen.
-     *
+     * 
      * @param manager Entry point to ManagedNetworkFabricManager.
      */
     public static void accessControlListsDeleteMaximumSetGen(
