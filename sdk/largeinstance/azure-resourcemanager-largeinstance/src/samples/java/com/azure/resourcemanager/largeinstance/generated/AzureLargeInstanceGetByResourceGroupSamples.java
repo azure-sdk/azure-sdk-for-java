@@ -9,9 +9,7 @@ package com.azure.resourcemanager.largeinstance.generated;
  */
 public final class AzureLargeInstanceGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_Get.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_Get.json
      */
     /**
      * Sample code: AzureLargeInstance_Get.
@@ -19,7 +17,8 @@ public final class AzureLargeInstanceGetByResourceGroupSamples {
      * @param manager Entry point to LargeInstanceManager.
      */
     public static void azureLargeInstanceGet(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeInstances().getByResourceGroupWithResponse("myResourceGroup", "myAzureLargeInstance",
-            com.azure.core.util.Context.NONE);
+        manager.azureLargeInstances()
+            .getByResourceGroupWithResponse("myResourceGroup", "myAzureLargeInstance",
+                com.azure.core.util.Context.NONE);
     }
 }

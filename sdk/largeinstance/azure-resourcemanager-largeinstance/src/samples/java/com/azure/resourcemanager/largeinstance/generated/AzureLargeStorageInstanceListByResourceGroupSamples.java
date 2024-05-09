@@ -9,9 +9,7 @@ package com.azure.resourcemanager.largeinstance.generated;
  */
 public final class AzureLargeStorageInstanceListByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeStorageInstance_ListByResourceGroup.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeStorageInstance_ListByResourceGroup.json
      */
     /**
      * Sample code: AzureLargeStorageInstance_ListByResourceGroup.
