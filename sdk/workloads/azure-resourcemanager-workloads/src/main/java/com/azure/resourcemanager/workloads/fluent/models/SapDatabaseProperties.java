@@ -13,7 +13,9 @@ import com.azure.resourcemanager.workloads.models.SapVirtualInstanceStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Defines the Database properties. */
+/**
+ * Defines the Database properties.
+ */
 @Immutable
 public final class SapDatabaseProperties {
     /*
@@ -70,13 +72,15 @@ public final class SapDatabaseProperties {
     @JsonProperty(value = "errors", access = JsonProperty.Access.WRITE_ONLY)
     private SapVirtualInstanceError errors;
 
-    /** Creates an instance of SapDatabaseProperties class. */
+    /**
+     * Creates an instance of SapDatabaseProperties class.
+     */
     public SapDatabaseProperties() {
     }
 
     /**
      * Get the subnet property: Database subnet.
-     *
+     * 
      * @return the subnet value.
      */
     public String subnet() {
@@ -85,7 +89,7 @@ public final class SapDatabaseProperties {
 
     /**
      * Get the databaseSid property: Database SID name.
-     *
+     * 
      * @return the databaseSid value.
      */
     public String databaseSid() {
@@ -95,7 +99,7 @@ public final class SapDatabaseProperties {
     /**
      * Get the databaseType property: Database type, that is if the DB is HANA, DB2, Oracle, SAP ASE, Max DB or MS SQL
      * Server.
-     *
+     * 
      * @return the databaseType value.
      */
     public String databaseType() {
@@ -104,7 +108,7 @@ public final class SapDatabaseProperties {
 
     /**
      * Get the ipAddress property: Database IP Address.
-     *
+     * 
      * @return the ipAddress value.
      */
     public String ipAddress() {
@@ -114,7 +118,7 @@ public final class SapDatabaseProperties {
     /**
      * Get the loadBalancerDetails property: The Load Balancer details such as LoadBalancer ID attached to Database
      * Virtual Machines.
-     *
+     * 
      * @return the loadBalancerDetails value.
      */
     public LoadBalancerDetails loadBalancerDetails() {
@@ -123,7 +127,7 @@ public final class SapDatabaseProperties {
 
     /**
      * Get the vmDetails property: The list of virtual machines corresponding to the Database resource.
-     *
+     * 
      * @return the vmDetails value.
      */
     public List<DatabaseVmDetails> vmDetails() {
@@ -132,7 +136,7 @@ public final class SapDatabaseProperties {
 
     /**
      * Get the status property: Defines the SAP Instance status.
-     *
+     * 
      * @return the status value.
      */
     public SapVirtualInstanceStatus status() {
@@ -141,7 +145,7 @@ public final class SapDatabaseProperties {
 
     /**
      * Get the provisioningState property: Defines the provisioning states.
-     *
+     * 
      * @return the provisioningState value.
      */
     public SapVirtualInstanceProvisioningState provisioningState() {
@@ -150,7 +154,7 @@ public final class SapDatabaseProperties {
 
     /**
      * Get the errors property: Defines the errors related to Database resource.
-     *
+     * 
      * @return the errors value.
      */
     public SapVirtualInstanceError errors() {
@@ -159,7 +163,7 @@ public final class SapDatabaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

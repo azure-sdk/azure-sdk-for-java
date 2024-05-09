@@ -8,35 +8,56 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Deploy SAP Infrastructure Details. */
+/**
+ * Deploy SAP Infrastructure Details.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "deploymentType",
-    defaultImpl = InfrastructureConfiguration.class)
+    defaultImpl = InfrastructureConfiguration.class,
+    visible = true)
 @JsonTypeName("InfrastructureConfiguration")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "SingleServer", value = SingleServerConfiguration.class),
-    @JsonSubTypes.Type(name = "ThreeTier", value = ThreeTierConfiguration.class)
-})
+    @JsonSubTypes.Type(name = "ThreeTier", value = ThreeTierConfiguration.class) })
 @Fluent
 public class InfrastructureConfiguration {
+    /*
+     * The type of SAP deployment, single server or Three tier.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "deploymentType", required = true)
+    private SapDeploymentType deploymentType;
+
     /*
      * The application resource group where SAP system resources will be deployed.
      */
     @JsonProperty(value = "appResourceGroup", required = true)
     private String appResourceGroup;
 
-    /** Creates an instance of InfrastructureConfiguration class. */
+    /**
+     * Creates an instance of InfrastructureConfiguration class.
+     */
     public InfrastructureConfiguration() {
+        this.deploymentType = SapDeploymentType.fromString("InfrastructureConfiguration");
+    }
+
+    /**
+     * Get the deploymentType property: The type of SAP deployment, single server or Three tier.
+     * 
+     * @return the deploymentType value.
+     */
+    public SapDeploymentType deploymentType() {
+        return this.deploymentType;
     }
 
     /**
      * Get the appResourceGroup property: The application resource group where SAP system resources will be deployed.
-     *
+     * 
      * @return the appResourceGroup value.
      */
     public String appResourceGroup() {
@@ -45,7 +66,7 @@ public class InfrastructureConfiguration {
 
     /**
      * Set the appResourceGroup property: The application resource group where SAP system resources will be deployed.
-     *
+     * 
      * @param appResourceGroup the appResourceGroup value to set.
      * @return the InfrastructureConfiguration object itself.
      */
@@ -56,15 +77,14 @@ public class InfrastructureConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (appResourceGroup() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property appResourceGroup in model InfrastructureConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property appResourceGroup in model InfrastructureConfiguration"));
         }
     }
 

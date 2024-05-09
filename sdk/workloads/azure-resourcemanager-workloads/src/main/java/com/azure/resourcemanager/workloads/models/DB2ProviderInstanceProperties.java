@@ -6,14 +6,28 @@ package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Gets or sets the DB2 provider properties. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "providerType")
+/**
+ * Gets or sets the DB2 provider properties.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "providerType",
+    defaultImpl = DB2ProviderInstanceProperties.class,
+    visible = true)
 @JsonTypeName("Db2")
 @Fluent
 public final class DB2ProviderInstanceProperties extends ProviderSpecificProperties {
+    /*
+     * The provider type. For example, the value can be SapHana.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "providerType", required = true)
+    private String providerType = "Db2";
+
     /*
      * Gets or sets the target virtual machine name.
      */
@@ -68,13 +82,25 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
     @JsonProperty(value = "sslCertificateUri")
     private String sslCertificateUri;
 
-    /** Creates an instance of DB2ProviderInstanceProperties class. */
+    /**
+     * Creates an instance of DB2ProviderInstanceProperties class.
+     */
     public DB2ProviderInstanceProperties() {
     }
 
     /**
+     * Get the providerType property: The provider type. For example, the value can be SapHana.
+     * 
+     * @return the providerType value.
+     */
+    @Override
+    public String providerType() {
+        return this.providerType;
+    }
+
+    /**
      * Get the hostname property: Gets or sets the target virtual machine name.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -83,7 +109,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Set the hostname property: Gets or sets the target virtual machine name.
-     *
+     * 
      * @param hostname the hostname value to set.
      * @return the DB2ProviderInstanceProperties object itself.
      */
@@ -94,7 +120,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Get the dbName property: Gets or sets the db2 database name.
-     *
+     * 
      * @return the dbName value.
      */
     public String dbName() {
@@ -103,7 +129,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Set the dbName property: Gets or sets the db2 database name.
-     *
+     * 
      * @param dbName the dbName value to set.
      * @return the DB2ProviderInstanceProperties object itself.
      */
@@ -114,7 +140,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Get the dbPort property: Gets or sets the db2 database sql port.
-     *
+     * 
      * @return the dbPort value.
      */
     public String dbPort() {
@@ -123,7 +149,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Set the dbPort property: Gets or sets the db2 database sql port.
-     *
+     * 
      * @param dbPort the dbPort value to set.
      * @return the DB2ProviderInstanceProperties object itself.
      */
@@ -134,7 +160,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Get the dbUsername property: Gets or sets the db2 database user name.
-     *
+     * 
      * @return the dbUsername value.
      */
     public String dbUsername() {
@@ -143,7 +169,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Set the dbUsername property: Gets or sets the db2 database user name.
-     *
+     * 
      * @param dbUsername the dbUsername value to set.
      * @return the DB2ProviderInstanceProperties object itself.
      */
@@ -154,7 +180,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Get the dbPassword property: Gets or sets the db2 database password.
-     *
+     * 
      * @return the dbPassword value.
      */
     public String dbPassword() {
@@ -163,7 +189,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Set the dbPassword property: Gets or sets the db2 database password.
-     *
+     * 
      * @param dbPassword the dbPassword value to set.
      * @return the DB2ProviderInstanceProperties object itself.
      */
@@ -174,7 +200,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Get the dbPasswordUri property: Gets or sets the key vault URI to secret with the database password.
-     *
+     * 
      * @return the dbPasswordUri value.
      */
     public String dbPasswordUri() {
@@ -183,7 +209,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Set the dbPasswordUri property: Gets or sets the key vault URI to secret with the database password.
-     *
+     * 
      * @param dbPasswordUri the dbPasswordUri value to set.
      * @return the DB2ProviderInstanceProperties object itself.
      */
@@ -194,7 +220,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Get the sapSid property: Gets or sets the SAP System Identifier.
-     *
+     * 
      * @return the sapSid value.
      */
     public String sapSid() {
@@ -203,7 +229,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Set the sapSid property: Gets or sets the SAP System Identifier.
-     *
+     * 
      * @param sapSid the sapSid value to set.
      * @return the DB2ProviderInstanceProperties object itself.
      */
@@ -214,7 +240,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Get the sslPreference property: Gets or sets certificate preference if secure communication is enabled.
-     *
+     * 
      * @return the sslPreference value.
      */
     public SslPreference sslPreference() {
@@ -223,7 +249,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Set the sslPreference property: Gets or sets certificate preference if secure communication is enabled.
-     *
+     * 
      * @param sslPreference the sslPreference value to set.
      * @return the DB2ProviderInstanceProperties object itself.
      */
@@ -234,7 +260,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Get the sslCertificateUri property: Gets or sets the blob URI to SSL certificate for the DB2 Database.
-     *
+     * 
      * @return the sslCertificateUri value.
      */
     public String sslCertificateUri() {
@@ -243,7 +269,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Set the sslCertificateUri property: Gets or sets the blob URI to SSL certificate for the DB2 Database.
-     *
+     * 
      * @param sslCertificateUri the sslCertificateUri value to set.
      * @return the DB2ProviderInstanceProperties object itself.
      */
@@ -254,7 +280,7 @@ public final class DB2ProviderInstanceProperties extends ProviderSpecificPropert
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -4,20 +4,21 @@
 
 package com.azure.resourcemanager.workloads.generated;
 
-/** Samples for ProviderInstances Get. */
+/**
+ * Samples for ProviderInstances Get.
+ */
 public final class ProviderInstancesGetSamples {
     /*
      * x-ms-original-file: specification/workloads/resource-manager/Microsoft.Workloads/stable/2023-04-01/examples/workloadmonitor/ProviderInstances_Get.json
      */
     /**
      * Sample code: Get properties of a SAP monitor Hana provider.
-     *
+     * 
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void getPropertiesOfASAPMonitorHanaProvider(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
+    public static void
+        getPropertiesOfASAPMonitorHanaProvider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager.providerInstances()
             .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
     }
 
@@ -26,13 +27,12 @@ public final class ProviderInstancesGetSamples {
      */
     /**
      * Sample code: Get properties of a PrometheusHaCluster provider.
-     *
+     * 
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void getPropertiesOfAPrometheusHaClusterProvider(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
+    public static void
+        getPropertiesOfAPrometheusHaClusterProvider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager.providerInstances()
             .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
     }
 
@@ -41,12 +41,11 @@ public final class ProviderInstancesGetSamples {
      */
     /**
      * Sample code: Get properties of a OS provider.
-     *
+     * 
      * @param manager Entry point to WorkloadsManager.
      */
     public static void getPropertiesOfAOSProvider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
+        manager.providerInstances()
             .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
     }
 
@@ -55,12 +54,11 @@ public final class ProviderInstancesGetSamples {
      */
     /**
      * Sample code: Get properties of a Db2 provider.
-     *
+     * 
      * @param manager Entry point to WorkloadsManager.
      */
     public static void getPropertiesOfADb2Provider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
+        manager.providerInstances()
             .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
     }
 
@@ -69,13 +67,12 @@ public final class ProviderInstancesGetSamples {
      */
     /**
      * Sample code: Get properties of a MsSqlServer provider.
-     *
+     * 
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void getPropertiesOfAMsSqlServerProvider(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
+    public static void
+        getPropertiesOfAMsSqlServerProvider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager.providerInstances()
             .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
     }
 
@@ -84,13 +81,12 @@ public final class ProviderInstancesGetSamples {
      */
     /**
      * Sample code: Get properties of a SAP monitor NetWeaver provider.
-     *
+     * 
      * @param manager Entry point to WorkloadsManager.
      */
-    public static void getPropertiesOfASAPMonitorNetWeaverProvider(
-        com.azure.resourcemanager.workloads.WorkloadsManager manager) {
-        manager
-            .providerInstances()
+    public static void
+        getPropertiesOfASAPMonitorNetWeaverProvider(com.azure.resourcemanager.workloads.WorkloadsManager manager) {
+        manager.providerInstances()
             .getWithResponse("myResourceGroup", "mySapMonitor", "myProviderInstance", com.azure.core.util.Context.NONE);
     }
 }

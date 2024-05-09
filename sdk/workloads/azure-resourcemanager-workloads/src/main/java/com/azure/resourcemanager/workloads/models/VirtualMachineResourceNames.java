@@ -10,50 +10,45 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** The resource names object for virtual machine and related resources. */
+/**
+ * The resource names object for virtual machine and related resources.
+ */
 @Fluent
 public final class VirtualMachineResourceNames {
     /*
-     * The full name for virtual machine. The length of this field can be upto 64 characters. If name is not provided,
-     * service uses a default name based on the deployment type. For SingleServer, default name is {SID}vm. In case of
-     * HA-AvZone systems, default name will be {SID}{app/ascs/db}z{a/b}vm with an incrementor at the end in case of
-     * more than 1 vm per layer. For distributed and HA-AvSet systems, default name will be {SID}{app/ascs/db}vm with
-     * an incrementor at the end in case of more than 1 vm per layer.
+     * The full name for virtual machine. The length of this field can be upto 64 characters. If name is not provided, service uses a default name based on the deployment type. For SingleServer, default name is {SID}vm. In case of HA-AvZone systems, default name will be {SID}{app/ascs/db}z{a/b}vm with an incrementor at the end in case of more than 1 vm per layer. For distributed and HA-AvSet systems, default name will be {SID}{app/ascs/db}vm with an incrementor at the end in case of more than 1 vm per layer.
      */
     @JsonProperty(value = "vmName")
     private String vmName;
 
     /*
-     * The full name for virtual-machine's host (computer name). Currently, ACSS only supports host names which are
-     * less than or equal to 13 characters long. If this value is not provided, vmName will be used as host name.
+     * The full name for virtual-machine's host (computer name). Currently, ACSS only supports host names which are less than or equal to 13 characters long. If this value is not provided, vmName will be used as host name.
      */
     @JsonProperty(value = "hostName")
     private String hostname;
 
     /*
-     * The list of network interface name objects for the selected virtual machine. Currently, only one network
-     * interface is supported per virtual machine.
+     * The list of network interface name objects for the selected virtual machine. Currently, only one network interface is supported per virtual machine.
      */
     @JsonProperty(value = "networkInterfaces")
     private List<NetworkInterfaceResourceNames> networkInterfaces;
 
     /*
-     * The full name for OS disk attached to the VM. If this value is not provided, it will be named by ARM as per its
-     * default naming standards (prefixed with vm name). There is only one OS disk attached per Virtual Machine.
+     * The full name for OS disk attached to the VM. If this value is not provided, it will be named by ARM as per its default naming standards (prefixed with vm name). There is only one OS disk attached per Virtual Machine.
      */
     @JsonProperty(value = "osDiskName")
     private String osDiskName;
 
     /*
-     * The full resource names for virtual machine data disks. This is a dictionary containing list of names of data
-     * disks per volume. Currently supported volumes for database layer are ['hana/data', 'hana/log', hana/shared',
-     * 'usr/sap', 'os', 'backup']. For application and cs layers, only 'default' volume is supported
+     * The full resource names for virtual machine data disks. This is a dictionary containing list of names of data disks per volume. Currently supported volumes for database layer are ['hana/data', 'hana/log', hana/shared', 'usr/sap', 'os', 'backup']. For application and cs layers, only 'default' volume is supported
      */
     @JsonProperty(value = "dataDiskNames")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, List<String>> dataDiskNames;
 
-    /** Creates an instance of VirtualMachineResourceNames class. */
+    /**
+     * Creates an instance of VirtualMachineResourceNames class.
+     */
     public VirtualMachineResourceNames() {
     }
 
@@ -63,7 +58,7 @@ public final class VirtualMachineResourceNames {
      * is {SID}vm. In case of HA-AvZone systems, default name will be {SID}{app/ascs/db}z{a/b}vm with an incrementor at
      * the end in case of more than 1 vm per layer. For distributed and HA-AvSet systems, default name will be
      * {SID}{app/ascs/db}vm with an incrementor at the end in case of more than 1 vm per layer.
-     *
+     * 
      * @return the vmName value.
      */
     public String vmName() {
@@ -76,7 +71,7 @@ public final class VirtualMachineResourceNames {
      * is {SID}vm. In case of HA-AvZone systems, default name will be {SID}{app/ascs/db}z{a/b}vm with an incrementor at
      * the end in case of more than 1 vm per layer. For distributed and HA-AvSet systems, default name will be
      * {SID}{app/ascs/db}vm with an incrementor at the end in case of more than 1 vm per layer.
-     *
+     * 
      * @param vmName the vmName value to set.
      * @return the VirtualMachineResourceNames object itself.
      */
@@ -89,7 +84,7 @@ public final class VirtualMachineResourceNames {
      * Get the hostname property: The full name for virtual-machine's host (computer name). Currently, ACSS only
      * supports host names which are less than or equal to 13 characters long. If this value is not provided, vmName
      * will be used as host name.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -100,7 +95,7 @@ public final class VirtualMachineResourceNames {
      * Set the hostname property: The full name for virtual-machine's host (computer name). Currently, ACSS only
      * supports host names which are less than or equal to 13 characters long. If this value is not provided, vmName
      * will be used as host name.
-     *
+     * 
      * @param hostname the hostname value to set.
      * @return the VirtualMachineResourceNames object itself.
      */
@@ -112,7 +107,7 @@ public final class VirtualMachineResourceNames {
     /**
      * Get the networkInterfaces property: The list of network interface name objects for the selected virtual machine.
      * Currently, only one network interface is supported per virtual machine.
-     *
+     * 
      * @return the networkInterfaces value.
      */
     public List<NetworkInterfaceResourceNames> networkInterfaces() {
@@ -122,7 +117,7 @@ public final class VirtualMachineResourceNames {
     /**
      * Set the networkInterfaces property: The list of network interface name objects for the selected virtual machine.
      * Currently, only one network interface is supported per virtual machine.
-     *
+     * 
      * @param networkInterfaces the networkInterfaces value to set.
      * @return the VirtualMachineResourceNames object itself.
      */
@@ -135,7 +130,7 @@ public final class VirtualMachineResourceNames {
      * Get the osDiskName property: The full name for OS disk attached to the VM. If this value is not provided, it will
      * be named by ARM as per its default naming standards (prefixed with vm name). There is only one OS disk attached
      * per Virtual Machine.
-     *
+     * 
      * @return the osDiskName value.
      */
     public String osDiskName() {
@@ -146,7 +141,7 @@ public final class VirtualMachineResourceNames {
      * Set the osDiskName property: The full name for OS disk attached to the VM. If this value is not provided, it will
      * be named by ARM as per its default naming standards (prefixed with vm name). There is only one OS disk attached
      * per Virtual Machine.
-     *
+     * 
      * @param osDiskName the osDiskName value to set.
      * @return the VirtualMachineResourceNames object itself.
      */
@@ -160,7 +155,7 @@ public final class VirtualMachineResourceNames {
      * containing list of names of data disks per volume. Currently supported volumes for database layer are
      * ['hana/data', 'hana/log', hana/shared', 'usr/sap', 'os', 'backup']. For application and cs layers, only 'default'
      * volume is supported.
-     *
+     * 
      * @return the dataDiskNames value.
      */
     public Map<String, List<String>> dataDiskNames() {
@@ -172,7 +167,7 @@ public final class VirtualMachineResourceNames {
      * containing list of names of data disks per volume. Currently supported volumes for database layer are
      * ['hana/data', 'hana/log', hana/shared', 'usr/sap', 'os', 'backup']. For application and cs layers, only 'default'
      * volume is supported.
-     *
+     * 
      * @param dataDiskNames the dataDiskNames value to set.
      * @return the VirtualMachineResourceNames object itself.
      */
@@ -183,7 +178,7 @@ public final class VirtualMachineResourceNames {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

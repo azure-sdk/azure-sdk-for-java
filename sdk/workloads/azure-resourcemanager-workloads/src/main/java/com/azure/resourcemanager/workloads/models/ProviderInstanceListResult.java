@@ -9,7 +9,9 @@ import com.azure.resourcemanager.workloads.fluent.models.ProviderInstanceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The response from the List provider instances operation. */
+/**
+ * The response from the List provider instances operation.
+ */
 @Fluent
 public final class ProviderInstanceListResult {
     /*
@@ -24,13 +26,15 @@ public final class ProviderInstanceListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of ProviderInstanceListResult class. */
+    /**
+     * Creates an instance of ProviderInstanceListResult class.
+     */
     public ProviderInstanceListResult() {
     }
 
     /**
      * Get the value property: The list of provider instances.
-     *
+     * 
      * @return the value value.
      */
     public List<ProviderInstanceInner> value() {
@@ -39,7 +43,7 @@ public final class ProviderInstanceListResult {
 
     /**
      * Set the value property: The list of provider instances.
-     *
+     * 
      * @param value the value value to set.
      * @return the ProviderInstanceListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class ProviderInstanceListResult {
 
     /**
      * Get the nextLink property: The URL to get the next set of provider instances.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ProviderInstanceListResult {
 
     /**
      * Set the nextLink property: The URL to get the next set of provider instances.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ProviderInstanceListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class ProviderInstanceListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

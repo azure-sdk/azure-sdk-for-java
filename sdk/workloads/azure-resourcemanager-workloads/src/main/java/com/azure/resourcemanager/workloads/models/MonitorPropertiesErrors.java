@@ -6,16 +6,20 @@ package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Immutable;
 
-/** Defines the SAP monitor errors. */
+/**
+ * Defines the SAP monitor errors.
+ */
 @Immutable
 public final class MonitorPropertiesErrors extends Error {
-    /** Creates an instance of MonitorPropertiesErrors class. */
+    /**
+     * Creates an instance of MonitorPropertiesErrors class.
+     */
     public MonitorPropertiesErrors() {
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
