@@ -8,16 +8,26 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
 /**
  * Integration runtime reference type.
  */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = IntegrationRuntimeReference.class,
+    visible = true)
+@JsonTypeName("IntegrationRuntimeReference")
 @Fluent
-public final class IntegrationRuntimeReference {
+public final class IntegrationRuntimeReference extends Reference {
     /*
-     * Type of integration runtime.
+     * Type of reference.
      */
+    @JsonTypeId
     @JsonProperty(value = "type", required = true)
     private String type = "IntegrationRuntimeReference";
 
@@ -41,23 +51,13 @@ public final class IntegrationRuntimeReference {
     }
 
     /**
-     * Get the type property: Type of integration runtime.
+     * Get the type property: Type of reference.
      * 
      * @return the type value.
      */
+    @Override
     public String type() {
         return this.type;
-    }
-
-    /**
-     * Set the type property: Type of integration runtime.
-     * 
-     * @param type the type value to set.
-     * @return the IntegrationRuntimeReference object itself.
-     */
-    public IntegrationRuntimeReference withType(String type) {
-        this.type = type;
-        return this;
     }
 
     /**
@@ -105,7 +105,9 @@ public final class IntegrationRuntimeReference {
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (referenceName() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException(

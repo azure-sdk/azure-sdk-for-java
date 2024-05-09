@@ -8,16 +8,22 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
 /**
  * Dataset reference type.
  */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = DatasetReference.class, visible = true)
+@JsonTypeName("DatasetReference")
 @Fluent
-public final class DatasetReference {
+public final class DatasetReference extends Reference {
     /*
-     * Dataset reference type.
+     * Type of reference.
      */
+    @JsonTypeId
     @JsonProperty(value = "type", required = true)
     private String type = "DatasetReference";
 
@@ -41,23 +47,13 @@ public final class DatasetReference {
     }
 
     /**
-     * Get the type property: Dataset reference type.
+     * Get the type property: Type of reference.
      * 
      * @return the type value.
      */
+    @Override
     public String type() {
         return this.type;
-    }
-
-    /**
-     * Set the type property: Dataset reference type.
-     * 
-     * @param type the type value to set.
-     * @return the DatasetReference object itself.
-     */
-    public DatasetReference withType(String type) {
-        this.type = type;
-        return this;
     }
 
     /**
@@ -105,7 +101,9 @@ public final class DatasetReference {
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
+    @Override
     public void validate() {
+        super.validate();
         if (referenceName() == null) {
             throw LOGGER.atError()
                 .log(new IllegalArgumentException("Missing required property referenceName in model DatasetReference"));

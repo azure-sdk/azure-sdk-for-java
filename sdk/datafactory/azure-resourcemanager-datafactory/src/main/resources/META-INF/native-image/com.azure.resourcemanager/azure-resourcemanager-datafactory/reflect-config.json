@@ -289,6 +289,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.datafactory.models.Reference",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.datafactory.models.ParameterSpecification",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -2190,6 +2195,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.datafactory.models.AzureTableStorageLinkedService",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.datafactory.models.SqlServerBaseLinkedServiceTypeProperties",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -5339,7 +5349,32 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.datafactory.models.AzureSqlDWAuthenticationType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.datafactory.models.SqlServerAuthenticationType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.datafactory.models.SqlAlwaysEncryptedAkvAuthType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.datafactory.models.AmazonRdsForSqlAuthenticationType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.datafactory.models.AzureSqlDatabaseAuthenticationType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.datafactory.models.AzureSqlMIAuthenticationType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
