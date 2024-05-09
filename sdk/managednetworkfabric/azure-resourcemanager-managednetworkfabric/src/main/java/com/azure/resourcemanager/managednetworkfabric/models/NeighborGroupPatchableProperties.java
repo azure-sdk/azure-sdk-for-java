@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Neighbor Group Patchable Properties defines the patchable properties of the resource. */
+/**
+ * Neighbor Group Patchable Properties defines the patchable properties of the resource.
+ */
 @Fluent
 public class NeighborGroupPatchableProperties {
     /*
@@ -16,13 +18,15 @@ public class NeighborGroupPatchableProperties {
     @JsonProperty(value = "destination")
     private NeighborGroupDestination destination;
 
-    /** Creates an instance of NeighborGroupPatchableProperties class. */
+    /**
+     * Creates an instance of NeighborGroupPatchableProperties class.
+     */
     public NeighborGroupPatchableProperties() {
     }
 
     /**
      * Get the destination property: An array of destination IPv4 Addresses or IPv6 Addresses.
-     *
+     * 
      * @return the destination value.
      */
     public NeighborGroupDestination destination() {
@@ -31,7 +35,7 @@ public class NeighborGroupPatchableProperties {
 
     /**
      * Set the destination property: An array of destination IPv4 Addresses or IPv6 Addresses.
-     *
+     * 
      * @param destination the destination value to set.
      * @return the NeighborGroupPatchableProperties object itself.
      */
@@ -42,7 +46,7 @@ public class NeighborGroupPatchableProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

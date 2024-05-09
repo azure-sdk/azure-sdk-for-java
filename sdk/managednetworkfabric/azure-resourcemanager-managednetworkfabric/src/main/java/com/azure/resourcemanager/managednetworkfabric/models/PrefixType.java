@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** IP Prefix Type. */
+/**
+ * IP Prefix Type that needs to be matched.
+ */
 public final class PrefixType extends ExpandableStringEnum<PrefixType> {
-    /** Static value Prefix for PrefixType. */
+    /**
+     * Static value Prefix for PrefixType.
+     */
     public static final PrefixType PREFIX = fromString("Prefix");
 
-    /** Static value LongestPrefix for PrefixType. */
+    /**
+     * Static value LongestPrefix for PrefixType.
+     */
     public static final PrefixType LONGEST_PREFIX = fromString("LongestPrefix");
 
     /**
      * Creates a new instance of PrefixType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class PrefixType extends ExpandableStringEnum<PrefixType> {
 
     /**
      * Creates or finds a PrefixType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding PrefixType.
      */
@@ -38,7 +44,7 @@ public final class PrefixType extends ExpandableStringEnum<PrefixType> {
 
     /**
      * Gets known PrefixType values.
-     *
+     * 
      * @return known PrefixType values.
      */
     public static Collection<PrefixType> values() {

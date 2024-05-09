@@ -4,14 +4,16 @@
 
 package com.azure.resourcemanager.managednetworkfabric.generated;
 
-/** Samples for NetworkDeviceSkus Get. */
+/**
+ * Samples for NetworkDeviceSkus Get.
+ */
 public final class NetworkDeviceSkusGetSamples {
     /*
      * x-ms-original-file: specification/managednetworkfabric/resource-manager/Microsoft.ManagedNetworkFabric/stable/2023-06-15/examples/NetworkDeviceSkus_Get_MaximumSet_Gen.json
      */
     /**
      * Sample code: NetworkDeviceSkus_Get_MaximumSet_Gen.
-     *
+     * 
      * @param manager Entry point to ManagedNetworkFabricManager.
      */
     public static void networkDeviceSkusGetMaximumSetGen(

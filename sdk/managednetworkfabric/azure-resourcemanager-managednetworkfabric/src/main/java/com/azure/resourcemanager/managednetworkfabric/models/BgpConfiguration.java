@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** BGP configuration properties. */
+/**
+ * BGP configuration properties.
+ */
 @Fluent
 public class BgpConfiguration extends AnnotationResource {
     /*
@@ -24,8 +26,7 @@ public class BgpConfiguration extends AnnotationResource {
     private BooleanEnumProperty defaultRouteOriginate;
 
     /*
-     * Allows for routes to be received and processed even if the router detects its own ASN in the AS-Path. 0 is
-     * disable, Possible values are 1-10, default is 2.
+     * Allows for routes to be received and processed even if the router detects its own ASN in the AS-Path. 0 is disable, Possible values are 1-10, default is 2.
      */
     @JsonProperty(value = "allowAS")
     private Integer allowAS;
@@ -72,13 +73,15 @@ public class BgpConfiguration extends AnnotationResource {
     @JsonProperty(value = "ipv6NeighborAddress")
     private List<NeighborAddress> ipv6NeighborAddress;
 
-    /** Creates an instance of BgpConfiguration class. */
+    /**
+     * Creates an instance of BgpConfiguration class.
+     */
     public BgpConfiguration() {
     }
 
     /**
      * Get the bfdConfiguration property: BFD configuration properties.
-     *
+     * 
      * @return the bfdConfiguration value.
      */
     public BfdConfiguration bfdConfiguration() {
@@ -87,7 +90,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Set the bfdConfiguration property: BFD configuration properties.
-     *
+     * 
      * @param bfdConfiguration the bfdConfiguration value to set.
      * @return the BgpConfiguration object itself.
      */
@@ -98,7 +101,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Get the defaultRouteOriginate property: Originate a defaultRoute. Ex: "True" | "False".
-     *
+     * 
      * @return the defaultRouteOriginate value.
      */
     public BooleanEnumProperty defaultRouteOriginate() {
@@ -107,7 +110,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Set the defaultRouteOriginate property: Originate a defaultRoute. Ex: "True" | "False".
-     *
+     * 
      * @param defaultRouteOriginate the defaultRouteOriginate value to set.
      * @return the BgpConfiguration object itself.
      */
@@ -119,7 +122,7 @@ public class BgpConfiguration extends AnnotationResource {
     /**
      * Get the allowAS property: Allows for routes to be received and processed even if the router detects its own ASN
      * in the AS-Path. 0 is disable, Possible values are 1-10, default is 2.
-     *
+     * 
      * @return the allowAS value.
      */
     public Integer allowAS() {
@@ -129,7 +132,7 @@ public class BgpConfiguration extends AnnotationResource {
     /**
      * Set the allowAS property: Allows for routes to be received and processed even if the router detects its own ASN
      * in the AS-Path. 0 is disable, Possible values are 1-10, default is 2.
-     *
+     * 
      * @param allowAS the allowAS value to set.
      * @return the BgpConfiguration object itself.
      */
@@ -140,7 +143,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Get the allowASOverride property: Enable Or Disable state.
-     *
+     * 
      * @return the allowASOverride value.
      */
     public AllowASOverride allowASOverride() {
@@ -149,7 +152,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Set the allowASOverride property: Enable Or Disable state.
-     *
+     * 
      * @param allowASOverride the allowASOverride value to set.
      * @return the BgpConfiguration object itself.
      */
@@ -160,7 +163,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Get the fabricAsn property: ASN of Network Fabric. Example: 65048.
-     *
+     * 
      * @return the fabricAsn value.
      */
     public Long fabricAsn() {
@@ -169,7 +172,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Get the peerAsn property: Peer ASN. Example: 65047.
-     *
+     * 
      * @return the peerAsn value.
      */
     public Long peerAsn() {
@@ -178,7 +181,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Set the peerAsn property: Peer ASN. Example: 65047.
-     *
+     * 
      * @param peerAsn the peerAsn value to set.
      * @return the BgpConfiguration object itself.
      */
@@ -189,7 +192,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Get the ipv4ListenRangePrefixes property: List of BGP IPv4 Listen Range prefixes.
-     *
+     * 
      * @return the ipv4ListenRangePrefixes value.
      */
     public List<String> ipv4ListenRangePrefixes() {
@@ -198,7 +201,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Set the ipv4ListenRangePrefixes property: List of BGP IPv4 Listen Range prefixes.
-     *
+     * 
      * @param ipv4ListenRangePrefixes the ipv4ListenRangePrefixes value to set.
      * @return the BgpConfiguration object itself.
      */
@@ -209,7 +212,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Get the ipv6ListenRangePrefixes property: List of BGP IPv6 Listen Ranges prefixes.
-     *
+     * 
      * @return the ipv6ListenRangePrefixes value.
      */
     public List<String> ipv6ListenRangePrefixes() {
@@ -218,7 +221,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Set the ipv6ListenRangePrefixes property: List of BGP IPv6 Listen Ranges prefixes.
-     *
+     * 
      * @param ipv6ListenRangePrefixes the ipv6ListenRangePrefixes value to set.
      * @return the BgpConfiguration object itself.
      */
@@ -229,7 +232,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Get the ipv4NeighborAddress property: List with stringified IPv4 Neighbor Addresses.
-     *
+     * 
      * @return the ipv4NeighborAddress value.
      */
     public List<NeighborAddress> ipv4NeighborAddress() {
@@ -238,7 +241,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Set the ipv4NeighborAddress property: List with stringified IPv4 Neighbor Addresses.
-     *
+     * 
      * @param ipv4NeighborAddress the ipv4NeighborAddress value to set.
      * @return the BgpConfiguration object itself.
      */
@@ -249,7 +252,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Get the ipv6NeighborAddress property: List with stringified IPv6 Neighbor Address.
-     *
+     * 
      * @return the ipv6NeighborAddress value.
      */
     public List<NeighborAddress> ipv6NeighborAddress() {
@@ -258,7 +261,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Set the ipv6NeighborAddress property: List with stringified IPv6 Neighbor Address.
-     *
+     * 
      * @param ipv6NeighborAddress the ipv6NeighborAddress value to set.
      * @return the BgpConfiguration object itself.
      */
@@ -267,7 +270,9 @@ public class BgpConfiguration extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BgpConfiguration withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -276,7 +281,7 @@ public class BgpConfiguration extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

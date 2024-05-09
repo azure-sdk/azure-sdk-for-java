@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Validation configuration properties. */
+/**
+ * Validation configuration properties.
+ */
 @Fluent
 public final class ValidateConfigurationProperties {
     /*
@@ -16,13 +18,15 @@ public final class ValidateConfigurationProperties {
     @JsonProperty(value = "validateAction")
     private ValidateAction validateAction;
 
-    /** Creates an instance of ValidateConfigurationProperties class. */
+    /**
+     * Creates an instance of ValidateConfigurationProperties class.
+     */
     public ValidateConfigurationProperties() {
     }
 
     /**
      * Get the validateAction property: Validate action that to be performed.
-     *
+     * 
      * @return the validateAction value.
      */
     public ValidateAction validateAction() {
@@ -31,7 +35,7 @@ public final class ValidateConfigurationProperties {
 
     /**
      * Set the validateAction property: Validate action that to be performed.
-     *
+     * 
      * @param validateAction the validateAction value to set.
      * @return the ValidateConfigurationProperties object itself.
      */
@@ -42,7 +46,7 @@ public final class ValidateConfigurationProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** To check whether monitoring of internal network is enabled or not. */
+/**
+ * To check whether monitoring of internal network is enabled or not.
+ */
 public final class IsMonitoringEnabled extends ExpandableStringEnum<IsMonitoringEnabled> {
-    /** Static value True for IsMonitoringEnabled. */
+    /**
+     * Static value True for IsMonitoringEnabled.
+     */
     public static final IsMonitoringEnabled TRUE = fromString("True");
 
-    /** Static value False for IsMonitoringEnabled. */
+    /**
+     * Static value False for IsMonitoringEnabled.
+     */
     public static final IsMonitoringEnabled FALSE = fromString("False");
 
     /**
      * Creates a new instance of IsMonitoringEnabled value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class IsMonitoringEnabled extends ExpandableStringEnum<IsMonitoring
 
     /**
      * Creates or finds a IsMonitoringEnabled from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding IsMonitoringEnabled.
      */
@@ -38,7 +44,7 @@ public final class IsMonitoringEnabled extends ExpandableStringEnum<IsMonitoring
 
     /**
      * Gets known IsMonitoringEnabled values.
-     *
+     * 
      * @return known IsMonitoringEnabled values.
      */
     public static Collection<IsMonitoringEnabled> values() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.RoutePolicyI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of RoutePolicies. */
+/**
+ * List of RoutePolicies.
+ */
 @Fluent
 public final class RoutePoliciesListResult {
     /*
@@ -24,13 +26,15 @@ public final class RoutePoliciesListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of RoutePoliciesListResult class. */
+    /**
+     * Creates an instance of RoutePoliciesListResult class.
+     */
     public RoutePoliciesListResult() {
     }
 
     /**
      * Get the value property: List of RoutePolicy resources.
-     *
+     * 
      * @return the value value.
      */
     public List<RoutePolicyInner> value() {
@@ -39,7 +43,7 @@ public final class RoutePoliciesListResult {
 
     /**
      * Set the value property: List of RoutePolicy resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the RoutePoliciesListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class RoutePoliciesListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class RoutePoliciesListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the RoutePoliciesListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class RoutePoliciesListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

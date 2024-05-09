@@ -10,7 +10,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.IpPrefixRule;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** IP Prefix patchable properties. */
+/**
+ * IP Prefix patchable properties.
+ */
 @Fluent
 public final class IpPrefixPatchProperties extends AnnotationResource {
     /*
@@ -19,13 +21,15 @@ public final class IpPrefixPatchProperties extends AnnotationResource {
     @JsonProperty(value = "ipPrefixRules")
     private List<IpPrefixRule> ipPrefixRules;
 
-    /** Creates an instance of IpPrefixPatchProperties class. */
+    /**
+     * Creates an instance of IpPrefixPatchProperties class.
+     */
     public IpPrefixPatchProperties() {
     }
 
     /**
      * Get the ipPrefixRules property: The list of IP Prefix Rules.
-     *
+     * 
      * @return the ipPrefixRules value.
      */
     public List<IpPrefixRule> ipPrefixRules() {
@@ -34,7 +38,7 @@ public final class IpPrefixPatchProperties extends AnnotationResource {
 
     /**
      * Set the ipPrefixRules property: The list of IP Prefix Rules.
-     *
+     * 
      * @param ipPrefixRules the ipPrefixRules value to set.
      * @return the IpPrefixPatchProperties object itself.
      */
@@ -43,7 +47,9 @@ public final class IpPrefixPatchProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IpPrefixPatchProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -52,7 +58,7 @@ public final class IpPrefixPatchProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

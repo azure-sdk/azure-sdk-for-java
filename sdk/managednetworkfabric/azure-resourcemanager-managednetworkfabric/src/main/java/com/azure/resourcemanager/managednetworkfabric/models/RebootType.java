@@ -8,23 +8,33 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Type of reboot to be performed. Example: GracefulRebootWithZTP. */
+/**
+ * Type of reboot to be performed. Example: GracefulRebootWithZTP.
+ */
 public final class RebootType extends ExpandableStringEnum<RebootType> {
-    /** Static value GracefulRebootWithZTP for RebootType. */
+    /**
+     * Static value GracefulRebootWithZTP for RebootType.
+     */
     public static final RebootType GRACEFUL_REBOOT_WITH_ZTP = fromString("GracefulRebootWithZTP");
 
-    /** Static value GracefulRebootWithoutZTP for RebootType. */
+    /**
+     * Static value GracefulRebootWithoutZTP for RebootType.
+     */
     public static final RebootType GRACEFUL_REBOOT_WITHOUT_ZTP = fromString("GracefulRebootWithoutZTP");
 
-    /** Static value UngracefulRebootWithZTP for RebootType. */
+    /**
+     * Static value UngracefulRebootWithZTP for RebootType.
+     */
     public static final RebootType UNGRACEFUL_REBOOT_WITH_ZTP = fromString("UngracefulRebootWithZTP");
 
-    /** Static value UngracefulRebootWithoutZTP for RebootType. */
+    /**
+     * Static value UngracefulRebootWithoutZTP for RebootType.
+     */
     public static final RebootType UNGRACEFUL_REBOOT_WITHOUT_ZTP = fromString("UngracefulRebootWithoutZTP");
 
     /**
      * Creates a new instance of RebootType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -33,7 +43,7 @@ public final class RebootType extends ExpandableStringEnum<RebootType> {
 
     /**
      * Creates or finds a RebootType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding RebootType.
      */
@@ -44,7 +54,7 @@ public final class RebootType extends ExpandableStringEnum<RebootType> {
 
     /**
      * Gets known RebootType values.
-     *
+     * 
      * @return known RebootType values.
      */
     public static Collection<RebootType> values() {

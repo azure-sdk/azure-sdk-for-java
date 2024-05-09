@@ -19,7 +19,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Internal Network Properties defines the properties of the resource. */
+/**
+ * Internal Network Properties defines the properties of the resource.
+ */
 @Fluent
 public final class InternalNetworkProperties extends AnnotationResource {
     /*
@@ -124,13 +126,15 @@ public final class InternalNetworkProperties extends AnnotationResource {
     @JsonProperty(value = "extension")
     private Extension extension;
 
-    /** Creates an instance of InternalNetworkProperties class. */
+    /**
+     * Creates an instance of InternalNetworkProperties class.
+     */
     public InternalNetworkProperties() {
     }
 
     /**
      * Get the vlanId property: Vlan identifier. Example: 1001.
-     *
+     * 
      * @return the vlanId value.
      */
     public int vlanId() {
@@ -139,7 +143,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the vlanId property: Vlan identifier. Example: 1001.
-     *
+     * 
      * @param vlanId the vlanId value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -150,7 +154,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the bgpConfiguration property: BGP configuration properties.
-     *
+     * 
      * @return the bgpConfiguration value.
      */
     public InternalNetworkPropertiesBgpConfiguration bgpConfiguration() {
@@ -159,7 +163,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the bgpConfiguration property: BGP configuration properties.
-     *
+     * 
      * @param bgpConfiguration the bgpConfiguration value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -170,7 +174,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the staticRouteConfiguration property: Static Route Configuration properties.
-     *
+     * 
      * @return the staticRouteConfiguration value.
      */
     public InternalNetworkPropertiesStaticRouteConfiguration staticRouteConfiguration() {
@@ -179,19 +183,19 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the staticRouteConfiguration property: Static Route Configuration properties.
-     *
+     * 
      * @param staticRouteConfiguration the staticRouteConfiguration value to set.
      * @return the InternalNetworkProperties object itself.
      */
-    public InternalNetworkProperties withStaticRouteConfiguration(
-        InternalNetworkPropertiesStaticRouteConfiguration staticRouteConfiguration) {
+    public InternalNetworkProperties
+        withStaticRouteConfiguration(InternalNetworkPropertiesStaticRouteConfiguration staticRouteConfiguration) {
         this.staticRouteConfiguration = staticRouteConfiguration;
         return this;
     }
 
     /**
      * Get the configurationState property: Configuration state of the resource.
-     *
+     * 
      * @return the configurationState value.
      */
     public ConfigurationState configurationState() {
@@ -200,7 +204,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -209,7 +213,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the administrativeState property: Administrative state of the resource.
-     *
+     * 
      * @return the administrativeState value.
      */
     public AdministrativeState administrativeState() {
@@ -218,7 +222,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the mtu property: Maximum transmission unit. Default value is 1500.
-     *
+     * 
      * @return the mtu value.
      */
     public Integer mtu() {
@@ -227,7 +231,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the mtu property: Maximum transmission unit. Default value is 1500.
-     *
+     * 
      * @param mtu the mtu value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -238,7 +242,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the connectedIPv4Subnets property: List of Connected IPv4 Subnets.
-     *
+     * 
      * @return the connectedIPv4Subnets value.
      */
     public List<ConnectedSubnet> connectedIPv4Subnets() {
@@ -247,7 +251,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the connectedIPv4Subnets property: List of Connected IPv4 Subnets.
-     *
+     * 
      * @param connectedIPv4Subnets the connectedIPv4Subnets value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -258,7 +262,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the connectedIPv6Subnets property: List of connected IPv6 Subnets.
-     *
+     * 
      * @return the connectedIPv6Subnets value.
      */
     public List<ConnectedSubnet> connectedIPv6Subnets() {
@@ -267,7 +271,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the connectedIPv6Subnets property: List of connected IPv6 Subnets.
-     *
+     * 
      * @param connectedIPv6Subnets the connectedIPv6Subnets value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -279,7 +283,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
     /**
      * Get the importRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @return the importRoutePolicyId value.
      */
     public String importRoutePolicyId() {
@@ -289,7 +293,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
     /**
      * Set the importRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @param importRoutePolicyId the importRoutePolicyId value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -301,7 +305,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
     /**
      * Get the exportRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @return the exportRoutePolicyId value.
      */
     public String exportRoutePolicyId() {
@@ -311,7 +315,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
     /**
      * Set the exportRoutePolicyId property: ARM Resource ID of the RoutePolicy. This is used for the backward
      * compatibility.
-     *
+     * 
      * @param exportRoutePolicyId the exportRoutePolicyId value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -322,7 +326,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the importRoutePolicy property: Import Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @return the importRoutePolicy value.
      */
     public ImportRoutePolicy importRoutePolicy() {
@@ -331,7 +335,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the importRoutePolicy property: Import Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @param importRoutePolicy the importRoutePolicy value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -342,7 +346,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the exportRoutePolicy property: Export Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @return the exportRoutePolicy value.
      */
     public ExportRoutePolicy exportRoutePolicy() {
@@ -351,7 +355,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the exportRoutePolicy property: Export Route Policy either IPv4 or IPv6.
-     *
+     * 
      * @param exportRoutePolicy the exportRoutePolicy value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -362,7 +366,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the ingressAclId value.
      */
     public String ingressAclId() {
@@ -371,7 +375,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the ingressAclId property: Ingress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param ingressAclId the ingressAclId value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -382,7 +386,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @return the egressAclId value.
      */
     public String egressAclId() {
@@ -391,7 +395,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the egressAclId property: Egress Acl. ARM resource ID of Access Control Lists.
-     *
+     * 
      * @param egressAclId the egressAclId value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -402,7 +406,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the isMonitoringEnabled property: To check whether monitoring of internal network is enabled or not.
-     *
+     * 
      * @return the isMonitoringEnabled value.
      */
     public IsMonitoringEnabled isMonitoringEnabled() {
@@ -411,7 +415,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the isMonitoringEnabled property: To check whether monitoring of internal network is enabled or not.
-     *
+     * 
      * @param isMonitoringEnabled the isMonitoringEnabled value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -422,7 +426,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Get the extension property: Extension. Example: NoExtension | NPB.
-     *
+     * 
      * @return the extension value.
      */
     public Extension extension() {
@@ -431,7 +435,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Set the extension property: Extension. Example: NoExtension | NPB.
-     *
+     * 
      * @param extension the extension value to set.
      * @return the InternalNetworkProperties object itself.
      */
@@ -440,7 +444,9 @@ public final class InternalNetworkProperties extends AnnotationResource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InternalNetworkProperties withAnnotation(String annotation) {
         super.withAnnotation(annotation);
@@ -449,7 +455,7 @@ public final class InternalNetworkProperties extends AnnotationResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

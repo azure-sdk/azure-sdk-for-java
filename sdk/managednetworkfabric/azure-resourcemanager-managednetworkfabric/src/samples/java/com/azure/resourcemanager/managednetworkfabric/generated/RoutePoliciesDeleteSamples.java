@@ -4,14 +4,16 @@
 
 package com.azure.resourcemanager.managednetworkfabric.generated;
 
-/** Samples for RoutePolicies Delete. */
+/**
+ * Samples for RoutePolicies Delete.
+ */
 public final class RoutePoliciesDeleteSamples {
     /*
      * x-ms-original-file: specification/managednetworkfabric/resource-manager/Microsoft.ManagedNetworkFabric/stable/2023-06-15/examples/RoutePolicies_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: RoutePolicies_Delete_MaximumSet_Gen.
-     *
+     * 
      * @param manager Entry point to ManagedNetworkFabricManager.
      */
     public static void routePoliciesDeleteMaximumSetGen(

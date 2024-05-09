@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Specify action. */
+/**
+ * Specify action.
+ */
 public final class Action extends ExpandableStringEnum<Action> {
-    /** Static value Allow for Action. */
+    /**
+     * Static value Allow for Action.
+     */
     public static final Action ALLOW = fromString("Allow");
 
-    /** Static value Deny for Action. */
+    /**
+     * Static value Deny for Action.
+     */
     public static final Action DENY = fromString("Deny");
 
     /**
      * Creates a new instance of Action value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class Action extends ExpandableStringEnum<Action> {
 
     /**
      * Creates or finds a Action from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Action.
      */
@@ -38,7 +44,7 @@ public final class Action extends ExpandableStringEnum<Action> {
 
     /**
      * Gets known Action values.
-     *
+     * 
      * @return known Action values.
      */
     public static Collection<Action> values() {

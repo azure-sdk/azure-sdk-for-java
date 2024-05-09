@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkFabri
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Network Fabric Controllers. */
+/**
+ * List of Network Fabric Controllers.
+ */
 @Fluent
 public final class NetworkFabricControllersListResult {
     /*
@@ -24,13 +26,15 @@ public final class NetworkFabricControllersListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of NetworkFabricControllersListResult class. */
+    /**
+     * Creates an instance of NetworkFabricControllersListResult class.
+     */
     public NetworkFabricControllersListResult() {
     }
 
     /**
      * Get the value property: List of Network Fabric Controller resources.
-     *
+     * 
      * @return the value value.
      */
     public List<NetworkFabricControllerInner> value() {
@@ -39,7 +43,7 @@ public final class NetworkFabricControllersListResult {
 
     /**
      * Set the value property: List of Network Fabric Controller resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the NetworkFabricControllersListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class NetworkFabricControllersListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class NetworkFabricControllersListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the NetworkFabricControllersListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class NetworkFabricControllersListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

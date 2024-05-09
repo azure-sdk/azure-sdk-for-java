@@ -4,14 +4,16 @@
 
 package com.azure.resourcemanager.managednetworkfabric.generated;
 
-/** Samples for NetworkFabricControllers ListByResourceGroup. */
+/**
+ * Samples for NetworkFabricControllers ListByResourceGroup.
+ */
 public final class NetworkFabricControllersListByResourceGroupSamples {
     /*
      * x-ms-original-file: specification/managednetworkfabric/resource-manager/Microsoft.ManagedNetworkFabric/stable/2023-06-15/examples/NetworkFabricControllers_ListByResourceGroup_MaximumSet_Gen.json
      */
     /**
      * Sample code: NetworkFabricControllers_ListByResourceGroup_MaximumSet_Gen.
-     *
+     * 
      * @param manager Entry point to ManagedNetworkFabricManager.
      */
     public static void networkFabricControllersListByResourceGroupMaximumSetGen(

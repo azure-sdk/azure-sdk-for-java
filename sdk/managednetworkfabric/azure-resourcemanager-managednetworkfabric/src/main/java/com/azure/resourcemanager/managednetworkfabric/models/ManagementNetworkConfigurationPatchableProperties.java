@@ -7,7 +7,9 @@ package com.azure.resourcemanager.managednetworkfabric.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Configuration to be used to setup the management network. */
+/**
+ * Configuration to be used to setup the management network.
+ */
 @Fluent
 public final class ManagementNetworkConfigurationPatchableProperties {
     /*
@@ -22,13 +24,15 @@ public final class ManagementNetworkConfigurationPatchableProperties {
     @JsonProperty(value = "workloadVpnConfiguration")
     private VpnConfigurationPatchableProperties workloadVpnConfiguration;
 
-    /** Creates an instance of ManagementNetworkConfigurationPatchableProperties class. */
+    /**
+     * Creates an instance of ManagementNetworkConfigurationPatchableProperties class.
+     */
     public ManagementNetworkConfigurationPatchableProperties() {
     }
 
     /**
      * Get the infrastructureVpnConfiguration property: VPN Configuration properties.
-     *
+     * 
      * @return the infrastructureVpnConfiguration value.
      */
     public VpnConfigurationPatchableProperties infrastructureVpnConfiguration() {
@@ -37,19 +41,19 @@ public final class ManagementNetworkConfigurationPatchableProperties {
 
     /**
      * Set the infrastructureVpnConfiguration property: VPN Configuration properties.
-     *
+     * 
      * @param infrastructureVpnConfiguration the infrastructureVpnConfiguration value to set.
      * @return the ManagementNetworkConfigurationPatchableProperties object itself.
      */
-    public ManagementNetworkConfigurationPatchableProperties withInfrastructureVpnConfiguration(
-        VpnConfigurationPatchableProperties infrastructureVpnConfiguration) {
+    public ManagementNetworkConfigurationPatchableProperties
+        withInfrastructureVpnConfiguration(VpnConfigurationPatchableProperties infrastructureVpnConfiguration) {
         this.infrastructureVpnConfiguration = infrastructureVpnConfiguration;
         return this;
     }
 
     /**
      * Get the workloadVpnConfiguration property: VPN Configuration properties.
-     *
+     * 
      * @return the workloadVpnConfiguration value.
      */
     public VpnConfigurationPatchableProperties workloadVpnConfiguration() {
@@ -58,19 +62,19 @@ public final class ManagementNetworkConfigurationPatchableProperties {
 
     /**
      * Set the workloadVpnConfiguration property: VPN Configuration properties.
-     *
+     * 
      * @param workloadVpnConfiguration the workloadVpnConfiguration value to set.
      * @return the ManagementNetworkConfigurationPatchableProperties object itself.
      */
-    public ManagementNetworkConfigurationPatchableProperties withWorkloadVpnConfiguration(
-        VpnConfigurationPatchableProperties workloadVpnConfiguration) {
+    public ManagementNetworkConfigurationPatchableProperties
+        withWorkloadVpnConfiguration(VpnConfigurationPatchableProperties workloadVpnConfiguration) {
         this.workloadVpnConfiguration = workloadVpnConfiguration;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

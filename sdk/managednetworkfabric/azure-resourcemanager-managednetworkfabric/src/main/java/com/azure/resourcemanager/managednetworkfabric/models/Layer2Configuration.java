@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Common properties for Layer2 Configuration. */
+/**
+ * Common properties for Layer2 Configuration.
+ */
 @Fluent
 public final class Layer2Configuration {
     /*
@@ -23,13 +25,15 @@ public final class Layer2Configuration {
     @JsonProperty(value = "interfaces")
     private List<String> interfaces;
 
-    /** Creates an instance of Layer2Configuration class. */
+    /**
+     * Creates an instance of Layer2Configuration class.
+     */
     public Layer2Configuration() {
     }
 
     /**
      * Get the mtu property: MTU of the packets between PE &amp; CE.
-     *
+     * 
      * @return the mtu value.
      */
     public Integer mtu() {
@@ -38,7 +42,7 @@ public final class Layer2Configuration {
 
     /**
      * Set the mtu property: MTU of the packets between PE &amp; CE.
-     *
+     * 
      * @param mtu the mtu value to set.
      * @return the Layer2Configuration object itself.
      */
@@ -49,7 +53,7 @@ public final class Layer2Configuration {
 
     /**
      * Get the interfaces property: List of network device interfaces resource IDs.
-     *
+     * 
      * @return the interfaces value.
      */
     public List<String> interfaces() {
@@ -58,7 +62,7 @@ public final class Layer2Configuration {
 
     /**
      * Set the interfaces property: List of network device interfaces resource IDs.
-     *
+     * 
      * @param interfaces the interfaces value to set.
      * @return the Layer2Configuration object itself.
      */
@@ -69,7 +73,7 @@ public final class Layer2Configuration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

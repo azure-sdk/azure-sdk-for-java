@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Layer4 protocol type that needs to be matched. */
+/**
+ * Layer4 protocol type that needs to be matched.
+ */
 public final class Layer4Protocol extends ExpandableStringEnum<Layer4Protocol> {
-    /** Static value TCP for Layer4Protocol. */
+    /**
+     * Static value TCP for Layer4Protocol.
+     */
     public static final Layer4Protocol TCP = fromString("TCP");
 
-    /** Static value UDP for Layer4Protocol. */
+    /**
+     * Static value UDP for Layer4Protocol.
+     */
     public static final Layer4Protocol UDP = fromString("UDP");
 
     /**
      * Creates a new instance of Layer4Protocol value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class Layer4Protocol extends ExpandableStringEnum<Layer4Protocol> {
 
     /**
      * Creates or finds a Layer4Protocol from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Layer4Protocol.
      */
@@ -38,7 +44,7 @@ public final class Layer4Protocol extends ExpandableStringEnum<Layer4Protocol> {
 
     /**
      * Gets known Layer4Protocol values.
-     *
+     * 
      * @return known Layer4Protocol values.
      */
     public static Collection<Layer4Protocol> values() {

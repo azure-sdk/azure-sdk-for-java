@@ -10,7 +10,9 @@ import com.azure.resourcemanager.managednetworkfabric.models.ProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Network Fabric SKU Properties define properties of the resource. */
+/**
+ * Network Fabric SKU Properties define properties of the resource.
+ */
 @Fluent
 public final class NetworkFabricSkuProperties {
     /*
@@ -20,8 +22,7 @@ public final class NetworkFabricSkuProperties {
     private FabricSkuType type;
 
     /*
-     * Maximum number of compute racks available for this Network Fabric SKU. The value of max count racks is 4 for 4
-     * rack SKU and 8 for 8 rack SKU.
+     * Maximum number of compute racks available for this Network Fabric SKU. The value of max count racks is 4 for 4 rack SKU and 8 for 8 rack SKU.
      */
     @JsonProperty(value = "maxComputeRacks")
     private Integer maxComputeRacks;
@@ -50,13 +51,15 @@ public final class NetworkFabricSkuProperties {
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
 
-    /** Creates an instance of NetworkFabricSkuProperties class. */
+    /**
+     * Creates an instance of NetworkFabricSkuProperties class.
+     */
     public NetworkFabricSkuProperties() {
     }
 
     /**
      * Get the type property: Type of Network Fabric SKU.
-     *
+     * 
      * @return the type value.
      */
     public FabricSkuType type() {
@@ -66,7 +69,7 @@ public final class NetworkFabricSkuProperties {
     /**
      * Get the maxComputeRacks property: Maximum number of compute racks available for this Network Fabric SKU. The
      * value of max count racks is 4 for 4 rack SKU and 8 for 8 rack SKU.
-     *
+     * 
      * @return the maxComputeRacks value.
      */
     public Integer maxComputeRacks() {
@@ -76,7 +79,7 @@ public final class NetworkFabricSkuProperties {
     /**
      * Set the maxComputeRacks property: Maximum number of compute racks available for this Network Fabric SKU. The
      * value of max count racks is 4 for 4 rack SKU and 8 for 8 rack SKU.
-     *
+     * 
      * @param maxComputeRacks the maxComputeRacks value to set.
      * @return the NetworkFabricSkuProperties object itself.
      */
@@ -87,7 +90,7 @@ public final class NetworkFabricSkuProperties {
 
     /**
      * Get the maximumServerCount property: Maximum number of servers available for this Network Fabric SKU.
-     *
+     * 
      * @return the maximumServerCount value.
      */
     public Integer maximumServerCount() {
@@ -96,7 +99,7 @@ public final class NetworkFabricSkuProperties {
 
     /**
      * Set the maximumServerCount property: Maximum number of servers available for this Network Fabric SKU.
-     *
+     * 
      * @param maximumServerCount the maximumServerCount value to set.
      * @return the NetworkFabricSkuProperties object itself.
      */
@@ -107,7 +110,7 @@ public final class NetworkFabricSkuProperties {
 
     /**
      * Get the supportedVersions property: List of supported Network Fabric SKU versions.
-     *
+     * 
      * @return the supportedVersions value.
      */
     public List<String> supportedVersions() {
@@ -116,7 +119,7 @@ public final class NetworkFabricSkuProperties {
 
     /**
      * Get the details property: URL providing detailed configuration of the fabric SKU.
-     *
+     * 
      * @return the details value.
      */
     public String details() {
@@ -125,7 +128,7 @@ public final class NetworkFabricSkuProperties {
 
     /**
      * Get the provisioningState property: Provisioning state of the resource.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ProvisioningState provisioningState() {
@@ -134,7 +137,7 @@ public final class NetworkFabricSkuProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

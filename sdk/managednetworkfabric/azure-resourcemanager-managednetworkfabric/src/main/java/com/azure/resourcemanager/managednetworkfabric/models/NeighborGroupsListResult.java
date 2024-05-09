@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.NeighborGrou
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Neighbor Group. */
+/**
+ * List of Neighbor Group.
+ */
 @Fluent
 public final class NeighborGroupsListResult {
     /*
@@ -24,13 +26,15 @@ public final class NeighborGroupsListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of NeighborGroupsListResult class. */
+    /**
+     * Creates an instance of NeighborGroupsListResult class.
+     */
     public NeighborGroupsListResult() {
     }
 
     /**
      * Get the value property: List of Neighbor Group resources.
-     *
+     * 
      * @return the value value.
      */
     public List<NeighborGroupInner> value() {
@@ -39,7 +43,7 @@ public final class NeighborGroupsListResult {
 
     /**
      * Set the value property: List of Neighbor Group resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the NeighborGroupsListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class NeighborGroupsListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class NeighborGroupsListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the NeighborGroupsListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class NeighborGroupsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

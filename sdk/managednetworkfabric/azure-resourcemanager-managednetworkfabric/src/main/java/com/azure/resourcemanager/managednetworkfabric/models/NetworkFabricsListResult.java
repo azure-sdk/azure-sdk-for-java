@@ -9,7 +9,9 @@ import com.azure.resourcemanager.managednetworkfabric.fluent.models.NetworkFabri
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of Network Fabrics. */
+/**
+ * List of Network Fabrics.
+ */
 @Fluent
 public final class NetworkFabricsListResult {
     /*
@@ -24,13 +26,15 @@ public final class NetworkFabricsListResult {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of NetworkFabricsListResult class. */
+    /**
+     * Creates an instance of NetworkFabricsListResult class.
+     */
     public NetworkFabricsListResult() {
     }
 
     /**
      * Get the value property: List of Network Fabric resources.
-     *
+     * 
      * @return the value value.
      */
     public List<NetworkFabricInner> value() {
@@ -39,7 +43,7 @@ public final class NetworkFabricsListResult {
 
     /**
      * Set the value property: List of Network Fabric resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the NetworkFabricsListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class NetworkFabricsListResult {
 
     /**
      * Get the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class NetworkFabricsListResult {
 
     /**
      * Set the nextLink property: Url to follow for getting next page of resources.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the NetworkFabricsListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class NetworkFabricsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
