@@ -104,16 +104,18 @@ public final class EncryptionKeyDetails {
      */
     public void validate() {
         if (keyVaultUri() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property keyVaultUri in model EncryptionKeyDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property keyVaultUri in model EncryptionKeyDetails"));
         }
         if (keyName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property keyName in model EncryptionKeyDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property keyName in model EncryptionKeyDetails"));
         }
         if (keyVersion() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property keyVersion in model EncryptionKeyDetails"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property keyVersion in model EncryptionKeyDetails"));
         }
     }
 
