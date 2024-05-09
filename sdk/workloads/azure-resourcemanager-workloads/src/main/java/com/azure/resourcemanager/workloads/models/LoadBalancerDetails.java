@@ -7,7 +7,9 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Load Balancer details such as Load Balancer ID. */
+/**
+ * The Load Balancer details such as Load Balancer ID.
+ */
 @Immutable
 public final class LoadBalancerDetails {
     /*
@@ -16,13 +18,15 @@ public final class LoadBalancerDetails {
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
 
-    /** Creates an instance of LoadBalancerDetails class. */
+    /**
+     * Creates an instance of LoadBalancerDetails class.
+     */
     public LoadBalancerDetails() {
     }
 
     /**
      * Get the id property: The id property.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -31,7 +35,7 @@ public final class LoadBalancerDetails {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

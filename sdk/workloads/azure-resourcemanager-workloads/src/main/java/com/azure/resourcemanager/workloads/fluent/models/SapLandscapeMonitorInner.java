@@ -13,7 +13,9 @@ import com.azure.resourcemanager.workloads.models.SapLandscapeMonitorProvisionin
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** configuration associated with SAP Landscape Monitor Dashboard. */
+/**
+ * configuration associated with SAP Landscape Monitor Dashboard.
+ */
 @Fluent
 public final class SapLandscapeMonitorInner extends ProxyResource {
     /*
@@ -28,13 +30,15 @@ public final class SapLandscapeMonitorInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of SapLandscapeMonitorInner class. */
+    /**
+     * Creates an instance of SapLandscapeMonitorInner class.
+     */
     public SapLandscapeMonitorInner() {
     }
 
     /**
      * Get the innerProperties property: Sap Landscape Monitor properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SapLandscapeMonitorProperties innerProperties() {
@@ -43,7 +47,7 @@ public final class SapLandscapeMonitorInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -52,7 +56,7 @@ public final class SapLandscapeMonitorInner extends ProxyResource {
 
     /**
      * Get the provisioningState property: State of provisioning of the SAP monitor.
-     *
+     * 
      * @return the provisioningState value.
      */
     public SapLandscapeMonitorProvisioningState provisioningState() {
@@ -61,7 +65,7 @@ public final class SapLandscapeMonitorInner extends ProxyResource {
 
     /**
      * Get the grouping property: Gets or sets the SID groupings by landscape and Environment.
-     *
+     * 
      * @return the grouping value.
      */
     public SapLandscapeMonitorPropertiesGrouping grouping() {
@@ -70,7 +74,7 @@ public final class SapLandscapeMonitorInner extends ProxyResource {
 
     /**
      * Set the grouping property: Gets or sets the SID groupings by landscape and Environment.
-     *
+     * 
      * @param grouping the grouping value to set.
      * @return the SapLandscapeMonitorInner object itself.
      */
@@ -85,7 +89,7 @@ public final class SapLandscapeMonitorInner extends ProxyResource {
     /**
      * Get the topMetricsThresholds property: Gets or sets the list Top Metric Thresholds for SAP Landscape Monitor
      * Dashboard.
-     *
+     * 
      * @return the topMetricsThresholds value.
      */
     public List<SapLandscapeMonitorMetricThresholds> topMetricsThresholds() {
@@ -95,12 +99,12 @@ public final class SapLandscapeMonitorInner extends ProxyResource {
     /**
      * Set the topMetricsThresholds property: Gets or sets the list Top Metric Thresholds for SAP Landscape Monitor
      * Dashboard.
-     *
+     * 
      * @param topMetricsThresholds the topMetricsThresholds value to set.
      * @return the SapLandscapeMonitorInner object itself.
      */
-    public SapLandscapeMonitorInner withTopMetricsThresholds(
-        List<SapLandscapeMonitorMetricThresholds> topMetricsThresholds) {
+    public SapLandscapeMonitorInner
+        withTopMetricsThresholds(List<SapLandscapeMonitorMetricThresholds> topMetricsThresholds) {
         if (this.innerProperties() == null) {
             this.innerProperties = new SapLandscapeMonitorProperties();
         }
@@ -110,7 +114,7 @@ public final class SapLandscapeMonitorInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

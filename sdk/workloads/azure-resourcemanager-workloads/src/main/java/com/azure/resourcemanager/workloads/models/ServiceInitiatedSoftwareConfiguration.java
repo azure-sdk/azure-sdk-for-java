@@ -7,14 +7,28 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The SAP Software configuration Input when the software is to be installed by service. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "softwareInstallationType")
+/**
+ * The SAP Software configuration Input when the software is to be installed by service.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "softwareInstallationType",
+    defaultImpl = ServiceInitiatedSoftwareConfiguration.class,
+    visible = true)
 @JsonTypeName("ServiceInitiated")
 @Fluent
 public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfiguration {
+    /*
+     * The SAP software installation Type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "softwareInstallationType", required = true)
+    private SapSoftwareInstallationType softwareInstallationType = SapSoftwareInstallationType.SERVICE_INITIATED;
+
     /*
      * The URL to the SAP Build of Materials(BOM) file.
      */
@@ -42,7 +56,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
     /*
      * The SSH private key.
      */
-    @JsonProperty(value = "sshPrivateKey", required = true)
+    @JsonProperty(value = "sshPrivateKey")
     private String sshPrivateKey;
 
     /*
@@ -51,13 +65,25 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
     @JsonProperty(value = "highAvailabilitySoftwareConfiguration")
     private HighAvailabilitySoftwareConfiguration highAvailabilitySoftwareConfiguration;
 
-    /** Creates an instance of ServiceInitiatedSoftwareConfiguration class. */
+    /**
+     * Creates an instance of ServiceInitiatedSoftwareConfiguration class.
+     */
     public ServiceInitiatedSoftwareConfiguration() {
     }
 
     /**
+     * Get the softwareInstallationType property: The SAP software installation Type.
+     * 
+     * @return the softwareInstallationType value.
+     */
+    @Override
+    public SapSoftwareInstallationType softwareInstallationType() {
+        return this.softwareInstallationType;
+    }
+
+    /**
      * Get the bomUrl property: The URL to the SAP Build of Materials(BOM) file.
-     *
+     * 
      * @return the bomUrl value.
      */
     public String bomUrl() {
@@ -66,7 +92,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Set the bomUrl property: The URL to the SAP Build of Materials(BOM) file.
-     *
+     * 
      * @param bomUrl the bomUrl value to set.
      * @return the ServiceInitiatedSoftwareConfiguration object itself.
      */
@@ -77,7 +103,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Get the softwareVersion property: The software version to install.
-     *
+     * 
      * @return the softwareVersion value.
      */
     public String softwareVersion() {
@@ -86,7 +112,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Set the softwareVersion property: The software version to install.
-     *
+     * 
      * @param softwareVersion the softwareVersion value to set.
      * @return the ServiceInitiatedSoftwareConfiguration object itself.
      */
@@ -97,7 +123,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Get the sapBitsStorageAccountId property: The SAP bits storage account id.
-     *
+     * 
      * @return the sapBitsStorageAccountId value.
      */
     public String sapBitsStorageAccountId() {
@@ -106,7 +132,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Set the sapBitsStorageAccountId property: The SAP bits storage account id.
-     *
+     * 
      * @param sapBitsStorageAccountId the sapBitsStorageAccountId value to set.
      * @return the ServiceInitiatedSoftwareConfiguration object itself.
      */
@@ -117,7 +143,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Get the sapFqdn property: The FQDN to set for the SAP system during install.
-     *
+     * 
      * @return the sapFqdn value.
      */
     public String sapFqdn() {
@@ -126,7 +152,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Set the sapFqdn property: The FQDN to set for the SAP system during install.
-     *
+     * 
      * @param sapFqdn the sapFqdn value to set.
      * @return the ServiceInitiatedSoftwareConfiguration object itself.
      */
@@ -137,7 +163,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Get the sshPrivateKey property: The SSH private key.
-     *
+     * 
      * @return the sshPrivateKey value.
      */
     public String sshPrivateKey() {
@@ -146,7 +172,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Set the sshPrivateKey property: The SSH private key.
-     *
+     * 
      * @param sshPrivateKey the sshPrivateKey value to set.
      * @return the ServiceInitiatedSoftwareConfiguration object itself.
      */
@@ -157,7 +183,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Get the highAvailabilitySoftwareConfiguration property: Gets or sets the HA software configuration.
-     *
+     * 
      * @return the highAvailabilitySoftwareConfiguration value.
      */
     public HighAvailabilitySoftwareConfiguration highAvailabilitySoftwareConfiguration() {
@@ -166,7 +192,7 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Set the highAvailabilitySoftwareConfiguration property: Gets or sets the HA software configuration.
-     *
+     * 
      * @param highAvailabilitySoftwareConfiguration the highAvailabilitySoftwareConfiguration value to set.
      * @return the ServiceInitiatedSoftwareConfiguration object itself.
      */
@@ -178,42 +204,36 @@ public final class ServiceInitiatedSoftwareConfiguration extends SoftwareConfigu
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (bomUrl() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property bomUrl in model ServiceInitiatedSoftwareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property bomUrl in model ServiceInitiatedSoftwareConfiguration"));
         }
         if (softwareVersion() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property softwareVersion in model ServiceInitiatedSoftwareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property softwareVersion in model ServiceInitiatedSoftwareConfiguration"));
         }
         if (sapBitsStorageAccountId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sapBitsStorageAccountId in model"
-                            + " ServiceInitiatedSoftwareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sapBitsStorageAccountId in model ServiceInitiatedSoftwareConfiguration"));
         }
         if (sapFqdn() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sapFqdn in model ServiceInitiatedSoftwareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sapFqdn in model ServiceInitiatedSoftwareConfiguration"));
         }
         if (sshPrivateKey() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property sshPrivateKey in model ServiceInitiatedSoftwareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property sshPrivateKey in model ServiceInitiatedSoftwareConfiguration"));
         }
         if (highAvailabilitySoftwareConfiguration() != null) {
             highAvailabilitySoftwareConfiguration().validate();

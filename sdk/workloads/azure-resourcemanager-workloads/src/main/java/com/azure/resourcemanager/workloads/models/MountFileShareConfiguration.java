@@ -7,6 +7,7 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,10 +15,21 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * Gets or sets the file share configuration where the transport directory fileshare already exists, and user wishes to
  * mount the fileshare as a part of the create infra flow.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "configurationType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "configurationType",
+    defaultImpl = MountFileShareConfiguration.class,
+    visible = true)
 @JsonTypeName("Mount")
 @Fluent
 public final class MountFileShareConfiguration extends FileShareConfiguration {
+    /*
+     * The type of file share config.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "configurationType", required = true)
+    private ConfigurationType configurationType = ConfigurationType.MOUNT;
+
     /*
      * The fileshare resource ID
      */
@@ -30,13 +42,25 @@ public final class MountFileShareConfiguration extends FileShareConfiguration {
     @JsonProperty(value = "privateEndpointId", required = true)
     private String privateEndpointId;
 
-    /** Creates an instance of MountFileShareConfiguration class. */
+    /**
+     * Creates an instance of MountFileShareConfiguration class.
+     */
     public MountFileShareConfiguration() {
     }
 
     /**
+     * Get the configurationType property: The type of file share config.
+     * 
+     * @return the configurationType value.
+     */
+    @Override
+    public ConfigurationType configurationType() {
+        return this.configurationType;
+    }
+
+    /**
      * Get the id property: The fileshare resource ID.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -45,7 +69,7 @@ public final class MountFileShareConfiguration extends FileShareConfiguration {
 
     /**
      * Set the id property: The fileshare resource ID.
-     *
+     * 
      * @param id the id value to set.
      * @return the MountFileShareConfiguration object itself.
      */
@@ -56,7 +80,7 @@ public final class MountFileShareConfiguration extends FileShareConfiguration {
 
     /**
      * Get the privateEndpointId property: The private endpoint resource ID.
-     *
+     * 
      * @return the privateEndpointId value.
      */
     public String privateEndpointId() {
@@ -65,7 +89,7 @@ public final class MountFileShareConfiguration extends FileShareConfiguration {
 
     /**
      * Set the privateEndpointId property: The private endpoint resource ID.
-     *
+     * 
      * @param privateEndpointId the privateEndpointId value to set.
      * @return the MountFileShareConfiguration object itself.
      */
@@ -76,22 +100,20 @@ public final class MountFileShareConfiguration extends FileShareConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (id() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property id in model MountFileShareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property id in model MountFileShareConfiguration"));
         }
         if (privateEndpointId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property privateEndpointId in model MountFileShareConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property privateEndpointId in model MountFileShareConfiguration"));
         }
     }
 

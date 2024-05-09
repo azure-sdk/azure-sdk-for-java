@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -15,20 +17,39 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "namingPatternType",
-    defaultImpl = ThreeTierCustomResourceNames.class)
+    defaultImpl = ThreeTierCustomResourceNames.class,
+    visible = true)
 @JsonTypeName("ThreeTierCustomResourceNames")
-@JsonSubTypes({@JsonSubTypes.Type(name = "FullResourceName", value = ThreeTierFullResourceNames.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "FullResourceName", value = ThreeTierFullResourceNames.class) })
 @Immutable
 public class ThreeTierCustomResourceNames {
-    /** Creates an instance of ThreeTierCustomResourceNames class. */
+    /*
+     * The pattern type to be used for resource naming.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "namingPatternType", required = true)
+    private NamingPatternType namingPatternType;
+
+    /**
+     * Creates an instance of ThreeTierCustomResourceNames class.
+     */
     public ThreeTierCustomResourceNames() {
+        this.namingPatternType = NamingPatternType.fromString("ThreeTierCustomResourceNames");
+    }
+
+    /**
+     * Get the namingPatternType property: The pattern type to be used for resource naming.
+     * 
+     * @return the namingPatternType value.
+     */
+    public NamingPatternType namingPatternType() {
+        return this.namingPatternType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

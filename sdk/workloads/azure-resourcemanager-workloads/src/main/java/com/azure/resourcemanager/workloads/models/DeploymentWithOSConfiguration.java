@@ -6,14 +6,28 @@ package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Deployment along with OS Configuration. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "configurationType")
+/**
+ * Deployment along with OS Configuration.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "configurationType",
+    defaultImpl = DeploymentWithOSConfiguration.class,
+    visible = true)
 @JsonTypeName("DeploymentWithOSConfig")
 @Fluent
 public final class DeploymentWithOSConfiguration extends SapConfiguration {
+    /*
+     * The configuration Type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "configurationType", required = true)
+    private SapConfigurationType configurationType = SapConfigurationType.DEPLOYMENT_WITH_OSCONFIG;
+
     /*
      * The geo-location where the SAP system is to be created.
      */
@@ -38,13 +52,25 @@ public final class DeploymentWithOSConfiguration extends SapConfiguration {
     @JsonProperty(value = "osSapConfiguration")
     private OsSapConfiguration osSapConfiguration;
 
-    /** Creates an instance of DeploymentWithOSConfiguration class. */
+    /**
+     * Creates an instance of DeploymentWithOSConfiguration class.
+     */
     public DeploymentWithOSConfiguration() {
     }
 
     /**
+     * Get the configurationType property: The configuration Type.
+     * 
+     * @return the configurationType value.
+     */
+    @Override
+    public SapConfigurationType configurationType() {
+        return this.configurationType;
+    }
+
+    /**
      * Get the appLocation property: The geo-location where the SAP system is to be created.
-     *
+     * 
      * @return the appLocation value.
      */
     public String appLocation() {
@@ -53,7 +79,7 @@ public final class DeploymentWithOSConfiguration extends SapConfiguration {
 
     /**
      * Set the appLocation property: The geo-location where the SAP system is to be created.
-     *
+     * 
      * @param appLocation the appLocation value to set.
      * @return the DeploymentWithOSConfiguration object itself.
      */
@@ -64,7 +90,7 @@ public final class DeploymentWithOSConfiguration extends SapConfiguration {
 
     /**
      * Get the infrastructureConfiguration property: The infrastructure configuration.
-     *
+     * 
      * @return the infrastructureConfiguration value.
      */
     public InfrastructureConfiguration infrastructureConfiguration() {
@@ -73,19 +99,19 @@ public final class DeploymentWithOSConfiguration extends SapConfiguration {
 
     /**
      * Set the infrastructureConfiguration property: The infrastructure configuration.
-     *
+     * 
      * @param infrastructureConfiguration the infrastructureConfiguration value to set.
      * @return the DeploymentWithOSConfiguration object itself.
      */
-    public DeploymentWithOSConfiguration withInfrastructureConfiguration(
-        InfrastructureConfiguration infrastructureConfiguration) {
+    public DeploymentWithOSConfiguration
+        withInfrastructureConfiguration(InfrastructureConfiguration infrastructureConfiguration) {
         this.infrastructureConfiguration = infrastructureConfiguration;
         return this;
     }
 
     /**
      * Get the softwareConfiguration property: The software configuration.
-     *
+     * 
      * @return the softwareConfiguration value.
      */
     public SoftwareConfiguration softwareConfiguration() {
@@ -94,7 +120,7 @@ public final class DeploymentWithOSConfiguration extends SapConfiguration {
 
     /**
      * Set the softwareConfiguration property: The software configuration.
-     *
+     * 
      * @param softwareConfiguration the softwareConfiguration value to set.
      * @return the DeploymentWithOSConfiguration object itself.
      */
@@ -105,7 +131,7 @@ public final class DeploymentWithOSConfiguration extends SapConfiguration {
 
     /**
      * Get the osSapConfiguration property: The OS and SAP configuration.
-     *
+     * 
      * @return the osSapConfiguration value.
      */
     public OsSapConfiguration osSapConfiguration() {
@@ -114,7 +140,7 @@ public final class DeploymentWithOSConfiguration extends SapConfiguration {
 
     /**
      * Set the osSapConfiguration property: The OS and SAP configuration.
-     *
+     * 
      * @param osSapConfiguration the osSapConfiguration value to set.
      * @return the DeploymentWithOSConfiguration object itself.
      */
@@ -125,7 +151,7 @@ public final class DeploymentWithOSConfiguration extends SapConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

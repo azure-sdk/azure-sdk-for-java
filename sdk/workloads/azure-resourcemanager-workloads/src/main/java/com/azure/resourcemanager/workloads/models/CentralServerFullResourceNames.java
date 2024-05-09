@@ -8,13 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The full resource names object for central server layer resources. */
+/**
+ * The full resource names object for central server layer resources.
+ */
 @Fluent
 public final class CentralServerFullResourceNames {
     /*
-     * The list of names for all ASCS virtual machines to be deployed. The number of entries in this list should be
-     * equal to the number VMs to be created for ASCS layer. At maximum, there can be two virtual machines at this
-     * layer: ASCS and ERS.
+     * The list of names for all ASCS virtual machines to be deployed. The number of entries in this list should be equal to the number VMs to be created for ASCS layer. At maximum, there can be two virtual machines at this layer: ASCS and ERS.
      */
     @JsonProperty(value = "virtualMachines")
     private List<VirtualMachineResourceNames> virtualMachines;
@@ -31,7 +31,9 @@ public final class CentralServerFullResourceNames {
     @JsonProperty(value = "loadBalancer")
     private LoadBalancerResourceNames loadBalancer;
 
-    /** Creates an instance of CentralServerFullResourceNames class. */
+    /**
+     * Creates an instance of CentralServerFullResourceNames class.
+     */
     public CentralServerFullResourceNames() {
     }
 
@@ -39,7 +41,7 @@ public final class CentralServerFullResourceNames {
      * Get the virtualMachines property: The list of names for all ASCS virtual machines to be deployed. The number of
      * entries in this list should be equal to the number VMs to be created for ASCS layer. At maximum, there can be two
      * virtual machines at this layer: ASCS and ERS.
-     *
+     * 
      * @return the virtualMachines value.
      */
     public List<VirtualMachineResourceNames> virtualMachines() {
@@ -50,7 +52,7 @@ public final class CentralServerFullResourceNames {
      * Set the virtualMachines property: The list of names for all ASCS virtual machines to be deployed. The number of
      * entries in this list should be equal to the number VMs to be created for ASCS layer. At maximum, there can be two
      * virtual machines at this layer: ASCS and ERS.
-     *
+     * 
      * @param virtualMachines the virtualMachines value to set.
      * @return the CentralServerFullResourceNames object itself.
      */
@@ -62,7 +64,7 @@ public final class CentralServerFullResourceNames {
     /**
      * Get the availabilitySetName property: The full name for availability set. In case name is not provided, it will
      * be defaulted to {SID}-ASCS-AvSet.
-     *
+     * 
      * @return the availabilitySetName value.
      */
     public String availabilitySetName() {
@@ -72,7 +74,7 @@ public final class CentralServerFullResourceNames {
     /**
      * Set the availabilitySetName property: The full name for availability set. In case name is not provided, it will
      * be defaulted to {SID}-ASCS-AvSet.
-     *
+     * 
      * @param availabilitySetName the availabilitySetName value to set.
      * @return the CentralServerFullResourceNames object itself.
      */
@@ -83,7 +85,7 @@ public final class CentralServerFullResourceNames {
 
     /**
      * Get the loadBalancer property: The resource names object for load balancer and related resources.
-     *
+     * 
      * @return the loadBalancer value.
      */
     public LoadBalancerResourceNames loadBalancer() {
@@ -92,7 +94,7 @@ public final class CentralServerFullResourceNames {
 
     /**
      * Set the loadBalancer property: The resource names object for load balancer and related resources.
-     *
+     * 
      * @param loadBalancer the loadBalancer value to set.
      * @return the CentralServerFullResourceNames object itself.
      */
@@ -103,7 +105,7 @@ public final class CentralServerFullResourceNames {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
