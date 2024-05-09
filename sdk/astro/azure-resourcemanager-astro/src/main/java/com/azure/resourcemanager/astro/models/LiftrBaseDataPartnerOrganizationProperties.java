@@ -157,8 +157,9 @@ public final class LiftrBaseDataPartnerOrganizationProperties {
      */
     public void validate() {
         if (organizationName() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property organizationName in model LiftrBaseDataPartnerOrganizationProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property organizationName in model LiftrBaseDataPartnerOrganizationProperties"));
         }
         if (singleSignOnProperties() != null) {
             singleSignOnProperties().validate();
