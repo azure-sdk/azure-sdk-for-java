@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.devcenter.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devcenter.models.DevBoxProvisioningSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterNetworkSettings;
 import com.azure.resourcemanager.devcenter.models.DevCenterProjectCatalogSettings;
 import com.azure.resourcemanager.devcenter.models.Encryption;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,6 +16,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 @Fluent
 public class DevCenterUpdateProperties {
+    /*
+     * Resource Id of an associated Plan
+     */
+    @JsonProperty(value = "planId")
+    private String planId;
+
     /*
      * Encryption settings to be used for server-side encryption for proprietary content (such as catalogs, logs, customizations).
      */
@@ -32,10 +40,42 @@ public class DevCenterUpdateProperties {
     @JsonProperty(value = "projectCatalogSettings")
     private DevCenterProjectCatalogSettings projectCatalogSettings;
 
+    /*
+     * Network settings that will be enforced on network resources associated with the Dev Center.
+     */
+    @JsonProperty(value = "networkSettings")
+    private DevCenterNetworkSettings networkSettings;
+
+    /*
+     * Settings to be used in the provisioning of all Dev Boxes that belong to this dev center.
+     */
+    @JsonProperty(value = "devBoxProvisioningSettings")
+    private DevBoxProvisioningSettings devBoxProvisioningSettings;
+
     /**
      * Creates an instance of DevCenterUpdateProperties class.
      */
     public DevCenterUpdateProperties() {
+    }
+
+    /**
+     * Get the planId property: Resource Id of an associated Plan.
+     * 
+     * @return the planId value.
+     */
+    public String planId() {
+        return this.planId;
+    }
+
+    /**
+     * Set the planId property: Resource Id of an associated Plan.
+     * 
+     * @param planId the planId value to set.
+     * @return the DevCenterUpdateProperties object itself.
+     */
+    public DevCenterUpdateProperties withPlanId(String planId) {
+        this.planId = planId;
+        return this;
     }
 
     /**
@@ -104,6 +144,51 @@ public class DevCenterUpdateProperties {
     }
 
     /**
+     * Get the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @return the networkSettings value.
+     */
+    public DevCenterNetworkSettings networkSettings() {
+        return this.networkSettings;
+    }
+
+    /**
+     * Set the networkSettings property: Network settings that will be enforced on network resources associated with the
+     * Dev Center.
+     * 
+     * @param networkSettings the networkSettings value to set.
+     * @return the DevCenterUpdateProperties object itself.
+     */
+    public DevCenterUpdateProperties withNetworkSettings(DevCenterNetworkSettings networkSettings) {
+        this.networkSettings = networkSettings;
+        return this;
+    }
+
+    /**
+     * Get the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @return the devBoxProvisioningSettings value.
+     */
+    public DevBoxProvisioningSettings devBoxProvisioningSettings() {
+        return this.devBoxProvisioningSettings;
+    }
+
+    /**
+     * Set the devBoxProvisioningSettings property: Settings to be used in the provisioning of all Dev Boxes that belong
+     * to this dev center.
+     * 
+     * @param devBoxProvisioningSettings the devBoxProvisioningSettings value to set.
+     * @return the DevCenterUpdateProperties object itself.
+     */
+    public DevCenterUpdateProperties
+        withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings) {
+        this.devBoxProvisioningSettings = devBoxProvisioningSettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -114,6 +199,12 @@ public class DevCenterUpdateProperties {
         }
         if (projectCatalogSettings() != null) {
             projectCatalogSettings().validate();
+        }
+        if (networkSettings() != null) {
+            networkSettings().validate();
+        }
+        if (devBoxProvisioningSettings() != null) {
+            devBoxProvisioningSettings().validate();
         }
     }
 }

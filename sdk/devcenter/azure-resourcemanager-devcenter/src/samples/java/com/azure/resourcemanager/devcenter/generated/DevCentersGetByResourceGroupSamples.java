@@ -9,7 +9,7 @@ package com.azure.resourcemanager.devcenter.generated;
  */
 public final class DevCentersGetByResourceGroupSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevCenters_Get.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-05-01-preview/examples/DevCenters_Get.json
      */
     /**
      * Sample code: DevCenters_Get.

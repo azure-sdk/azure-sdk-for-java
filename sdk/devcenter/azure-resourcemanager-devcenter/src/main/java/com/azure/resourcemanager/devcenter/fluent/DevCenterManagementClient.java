@@ -47,11 +47,32 @@ public interface DevCenterManagementClient {
     Duration getDefaultPollInterval();
 
     /**
+     * Gets the PlansClient object to access its operations.
+     * 
+     * @return the PlansClient object.
+     */
+    PlansClient getPlans();
+
+    /**
+     * Gets the PlanMembersClient object to access its operations.
+     * 
+     * @return the PlanMembersClient object.
+     */
+    PlanMembersClient getPlanMembers();
+
+    /**
      * Gets the DevCentersClient object to access its operations.
      * 
      * @return the DevCentersClient object.
      */
     DevCentersClient getDevCenters();
+
+    /**
+     * Gets the EncryptionSetsClient object to access its operations.
+     * 
+     * @return the EncryptionSetsClient object.
+     */
+    EncryptionSetsClient getEncryptionSets();
 
     /**
      * Gets the ProjectsClient object to access its operations.
@@ -178,6 +199,13 @@ public interface DevCenterManagementClient {
      * @return the CheckScopedNameAvailabilitiesClient object.
      */
     CheckScopedNameAvailabilitiesClient getCheckScopedNameAvailabilities();
+
+    /**
+     * Gets the CustomizationTasksClient object to access its operations.
+     * 
+     * @return the CustomizationTasksClient object.
+     */
+    CustomizationTasksClient getCustomizationTasks();
 
     /**
      * Gets the SkusClient object to access its operations.

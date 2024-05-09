@@ -9,7 +9,7 @@ package com.azure.resourcemanager.devcenter.generated;
  */
 public final class SkusListSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Skus_ListBySubscription.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-05-01-preview/examples/Skus_ListBySubscription.json
      */
     /**
      * Sample code: Skus_ListBySubscription.

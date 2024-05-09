@@ -9,7 +9,7 @@ package com.azure.resourcemanager.devcenter.generated;
  */
 public final class UsagesListByLocationSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/Usages_ListByLocation.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-05-01-preview/examples/Usages_ListByLocation.json
      */
     /**
      * Sample code: listUsages.

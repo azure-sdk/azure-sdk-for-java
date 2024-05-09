@@ -9,7 +9,7 @@ package com.azure.resourcemanager.devcenter.generated;
  */
 public final class DevBoxDefinitionsGetSamples {
     /*
-     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/stable/2024-02-01/examples/DevBoxDefinitions_Get.json
+     * x-ms-original-file: specification/devcenter/resource-manager/Microsoft.DevCenter/preview/2024-05-01-preview/examples/DevBoxDefinitions_Get.json
      */
     /**
      * Sample code: DevBoxDefinitions_Get.

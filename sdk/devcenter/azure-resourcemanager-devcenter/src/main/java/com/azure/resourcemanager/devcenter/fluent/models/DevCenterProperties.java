@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.devcenter.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.devcenter.models.DevBoxProvisioningSettings;
+import com.azure.resourcemanager.devcenter.models.DevCenterNetworkSettings;
 import com.azure.resourcemanager.devcenter.models.DevCenterProjectCatalogSettings;
 import com.azure.resourcemanager.devcenter.models.Encryption;
 import com.azure.resourcemanager.devcenter.models.ProvisioningState;
@@ -55,6 +57,15 @@ public final class DevCenterProperties extends DevCenterUpdateProperties {
      * {@inheritDoc}
      */
     @Override
+    public DevCenterProperties withPlanId(String planId) {
+        super.withPlanId(planId);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public DevCenterProperties withEncryption(Encryption encryption) {
         super.withEncryption(encryption);
         return this;
@@ -75,6 +86,24 @@ public final class DevCenterProperties extends DevCenterUpdateProperties {
     @Override
     public DevCenterProperties withProjectCatalogSettings(DevCenterProjectCatalogSettings projectCatalogSettings) {
         super.withProjectCatalogSettings(projectCatalogSettings);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DevCenterProperties withNetworkSettings(DevCenterNetworkSettings networkSettings) {
+        super.withNetworkSettings(networkSettings);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DevCenterProperties withDevBoxProvisioningSettings(DevBoxProvisioningSettings devBoxProvisioningSettings) {
+        super.withDevBoxProvisioningSettings(devBoxProvisioningSettings);
         return this;
     }
 

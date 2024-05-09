@@ -14,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public class Sku {
     /*
-     * The name of the SKU. Ex - P3. It is typically a letter+number code
+     * The name of the SKU. E.g. P3. It is typically a letter+number code
      */
     @JsonProperty(value = "name", required = true)
     private String name;
@@ -50,7 +50,7 @@ public class Sku {
     }
 
     /**
-     * Get the name property: The name of the SKU. Ex - P3. It is typically a letter+number code.
+     * Get the name property: The name of the SKU. E.g. P3. It is typically a letter+number code.
      * 
      * @return the name value.
      */
@@ -59,7 +59,7 @@ public class Sku {
     }
 
     /**
-     * Set the name property: The name of the SKU. Ex - P3. It is typically a letter+number code.
+     * Set the name property: The name of the SKU. E.g. P3. It is typically a letter+number code.
      * 
      * @param name the name value to set.
      * @return the Sku object itself.

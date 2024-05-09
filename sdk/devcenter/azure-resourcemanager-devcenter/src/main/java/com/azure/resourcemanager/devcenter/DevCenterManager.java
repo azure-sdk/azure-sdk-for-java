@@ -28,9 +28,11 @@ import com.azure.resourcemanager.devcenter.implementation.AttachedNetworksImpl;
 import com.azure.resourcemanager.devcenter.implementation.CatalogsImpl;
 import com.azure.resourcemanager.devcenter.implementation.CheckNameAvailabilitiesImpl;
 import com.azure.resourcemanager.devcenter.implementation.CheckScopedNameAvailabilitiesImpl;
+import com.azure.resourcemanager.devcenter.implementation.CustomizationTasksImpl;
 import com.azure.resourcemanager.devcenter.implementation.DevBoxDefinitionsImpl;
 import com.azure.resourcemanager.devcenter.implementation.DevCenterManagementClientBuilder;
 import com.azure.resourcemanager.devcenter.implementation.DevCentersImpl;
+import com.azure.resourcemanager.devcenter.implementation.EncryptionSetsImpl;
 import com.azure.resourcemanager.devcenter.implementation.EnvironmentDefinitionsImpl;
 import com.azure.resourcemanager.devcenter.implementation.EnvironmentTypesImpl;
 import com.azure.resourcemanager.devcenter.implementation.GalleriesImpl;
@@ -39,6 +41,8 @@ import com.azure.resourcemanager.devcenter.implementation.ImageVersionsImpl;
 import com.azure.resourcemanager.devcenter.implementation.NetworkConnectionsImpl;
 import com.azure.resourcemanager.devcenter.implementation.OperationsImpl;
 import com.azure.resourcemanager.devcenter.implementation.OperationStatusesImpl;
+import com.azure.resourcemanager.devcenter.implementation.PlanMembersImpl;
+import com.azure.resourcemanager.devcenter.implementation.PlansImpl;
 import com.azure.resourcemanager.devcenter.implementation.PoolsImpl;
 import com.azure.resourcemanager.devcenter.implementation.ProjectAllowedEnvironmentTypesImpl;
 import com.azure.resourcemanager.devcenter.implementation.ProjectCatalogEnvironmentDefinitionsImpl;
@@ -52,8 +56,10 @@ import com.azure.resourcemanager.devcenter.models.AttachedNetworks;
 import com.azure.resourcemanager.devcenter.models.Catalogs;
 import com.azure.resourcemanager.devcenter.models.CheckNameAvailabilities;
 import com.azure.resourcemanager.devcenter.models.CheckScopedNameAvailabilities;
+import com.azure.resourcemanager.devcenter.models.CustomizationTasks;
 import com.azure.resourcemanager.devcenter.models.DevBoxDefinitions;
 import com.azure.resourcemanager.devcenter.models.DevCenters;
+import com.azure.resourcemanager.devcenter.models.EncryptionSets;
 import com.azure.resourcemanager.devcenter.models.EnvironmentDefinitions;
 import com.azure.resourcemanager.devcenter.models.EnvironmentTypes;
 import com.azure.resourcemanager.devcenter.models.Galleries;
@@ -62,6 +68,8 @@ import com.azure.resourcemanager.devcenter.models.ImageVersions;
 import com.azure.resourcemanager.devcenter.models.NetworkConnections;
 import com.azure.resourcemanager.devcenter.models.Operations;
 import com.azure.resourcemanager.devcenter.models.OperationStatuses;
+import com.azure.resourcemanager.devcenter.models.PlanMembers;
+import com.azure.resourcemanager.devcenter.models.Plans;
 import com.azure.resourcemanager.devcenter.models.Pools;
 import com.azure.resourcemanager.devcenter.models.ProjectAllowedEnvironmentTypes;
 import com.azure.resourcemanager.devcenter.models.ProjectCatalogEnvironmentDefinitions;
@@ -83,7 +91,13 @@ import java.util.stream.Collectors;
  * DevCenter Management API.
  */
 public final class DevCenterManager {
+    private Plans plans;
+
+    private PlanMembers planMembers;
+
     private DevCenters devCenters;
+
+    private EncryptionSets encryptionSets;
 
     private Projects projects;
 
@@ -120,6 +134,8 @@ public final class DevCenterManager {
     private CheckNameAvailabilities checkNameAvailabilities;
 
     private CheckScopedNameAvailabilities checkScopedNameAvailabilities;
+
+    private CustomizationTasks customizationTasks;
 
     private Skus skus;
 
@@ -293,7 +309,7 @@ public final class DevCenterManager {
                 .append("-")
                 .append("com.azure.resourcemanager.devcenter")
                 .append("/")
-                .append("1.0.0-beta.7");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -340,6 +356,30 @@ public final class DevCenterManager {
     }
 
     /**
+     * Gets the resource collection API of Plans. It manages DevCenterPlan.
+     * 
+     * @return Resource collection API of Plans.
+     */
+    public Plans plans() {
+        if (this.plans == null) {
+            this.plans = new PlansImpl(clientObject.getPlans(), this);
+        }
+        return plans;
+    }
+
+    /**
+     * Gets the resource collection API of PlanMembers. It manages DevCenterPlanMember.
+     * 
+     * @return Resource collection API of PlanMembers.
+     */
+    public PlanMembers planMembers() {
+        if (this.planMembers == null) {
+            this.planMembers = new PlanMembersImpl(clientObject.getPlanMembers(), this);
+        }
+        return planMembers;
+    }
+
+    /**
      * Gets the resource collection API of DevCenters. It manages DevCenter.
      * 
      * @return Resource collection API of DevCenters.
@@ -349,6 +389,18 @@ public final class DevCenterManager {
             this.devCenters = new DevCentersImpl(clientObject.getDevCenters(), this);
         }
         return devCenters;
+    }
+
+    /**
+     * Gets the resource collection API of EncryptionSets. It manages DevCenterEncryptionSet.
+     * 
+     * @return Resource collection API of EncryptionSets.
+     */
+    public EncryptionSets encryptionSets() {
+        if (this.encryptionSets == null) {
+            this.encryptionSets = new EncryptionSetsImpl(clientObject.getEncryptionSets(), this);
+        }
+        return encryptionSets;
     }
 
     /**
@@ -571,6 +623,18 @@ public final class DevCenterManager {
                 = new CheckScopedNameAvailabilitiesImpl(clientObject.getCheckScopedNameAvailabilities(), this);
         }
         return checkScopedNameAvailabilities;
+    }
+
+    /**
+     * Gets the resource collection API of CustomizationTasks.
+     * 
+     * @return Resource collection API of CustomizationTasks.
+     */
+    public CustomizationTasks customizationTasks() {
+        if (this.customizationTasks == null) {
+            this.customizationTasks = new CustomizationTasksImpl(clientObject.getCustomizationTasks(), this);
+        }
+        return customizationTasks;
     }
 
     /**
