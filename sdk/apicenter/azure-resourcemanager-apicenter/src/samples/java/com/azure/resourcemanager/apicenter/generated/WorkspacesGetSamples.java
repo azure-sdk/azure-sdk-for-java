@@ -9,8 +9,7 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class WorkspacesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/Workspaces_Get.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/Workspaces_Get.json
      */
     /**
      * Sample code: Workspaces_Get.
@@ -18,7 +17,7 @@ public final class WorkspacesGetSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void workspacesGet(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.workspaces().getWithResponse("contoso-resources", "contoso", "default",
-            com.azure.core.util.Context.NONE);
+        manager.workspaces()
+            .getWithResponse("contoso-resources", "contoso", "default", com.azure.core.util.Context.NONE);
     }
 }
