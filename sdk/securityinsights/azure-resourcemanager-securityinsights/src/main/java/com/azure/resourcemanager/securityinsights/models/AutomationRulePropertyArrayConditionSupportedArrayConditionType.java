@@ -8,17 +8,30 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for AutomationRulePropertyArrayConditionSupportedArrayConditionType. */
+/**
+ * Defines values for AutomationRulePropertyArrayConditionSupportedArrayConditionType.
+ */
 public final class AutomationRulePropertyArrayConditionSupportedArrayConditionType
     extends ExpandableStringEnum<AutomationRulePropertyArrayConditionSupportedArrayConditionType> {
-    /** Static value AnyItem for AutomationRulePropertyArrayConditionSupportedArrayConditionType. */
-    public static final AutomationRulePropertyArrayConditionSupportedArrayConditionType ANY_ITEM =
-        fromString("AnyItem");
+    /**
+     * Static value AnyItem for AutomationRulePropertyArrayConditionSupportedArrayConditionType.
+     */
+    public static final AutomationRulePropertyArrayConditionSupportedArrayConditionType ANY_ITEM
+        = fromString("AnyItem");
+
+    /**
+     * Creates a new instance of AutomationRulePropertyArrayConditionSupportedArrayConditionType value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public AutomationRulePropertyArrayConditionSupportedArrayConditionType() {
+    }
 
     /**
      * Creates or finds a AutomationRulePropertyArrayConditionSupportedArrayConditionType from its string
      * representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding AutomationRulePropertyArrayConditionSupportedArrayConditionType.
      */
@@ -29,7 +42,7 @@ public final class AutomationRulePropertyArrayConditionSupportedArrayConditionTy
 
     /**
      * Gets known AutomationRulePropertyArrayConditionSupportedArrayConditionType values.
-     *
+     * 
      * @return known AutomationRulePropertyArrayConditionSupportedArrayConditionType values.
      */
     public static Collection<AutomationRulePropertyArrayConditionSupportedArrayConditionType> values() {

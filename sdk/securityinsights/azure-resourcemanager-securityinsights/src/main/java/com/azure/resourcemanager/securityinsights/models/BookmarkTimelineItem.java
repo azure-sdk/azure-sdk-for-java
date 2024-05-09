@@ -7,16 +7,26 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Represents bookmark timeline item. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents bookmark timeline item.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = BookmarkTimelineItem.class, visible = true)
 @JsonTypeName("Bookmark")
 @Fluent
 public final class BookmarkTimelineItem extends EntityTimelineItem {
+    /*
+     * The entity query kind type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityTimelineKind kind = EntityTimelineKind.BOOKMARK;
+
     /*
      * The bookmark azure resource id.
      */
@@ -66,8 +76,24 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
     private List<String> labels;
 
     /**
+     * Creates an instance of BookmarkTimelineItem class.
+     */
+    public BookmarkTimelineItem() {
+    }
+
+    /**
+     * Get the kind property: The entity query kind type.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityTimelineKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the azureResourceId property: The bookmark azure resource id.
-     *
+     * 
      * @return the azureResourceId value.
      */
     public String azureResourceId() {
@@ -76,7 +102,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the azureResourceId property: The bookmark azure resource id.
-     *
+     * 
      * @param azureResourceId the azureResourceId value to set.
      * @return the BookmarkTimelineItem object itself.
      */
@@ -87,7 +113,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the displayName property: The bookmark display name.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -96,7 +122,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the displayName property: The bookmark display name.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the BookmarkTimelineItem object itself.
      */
@@ -107,7 +133,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the notes property: The notes of the bookmark.
-     *
+     * 
      * @return the notes value.
      */
     public String notes() {
@@ -116,7 +142,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the notes property: The notes of the bookmark.
-     *
+     * 
      * @param notes the notes value to set.
      * @return the BookmarkTimelineItem object itself.
      */
@@ -127,7 +153,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the endTimeUtc property: The bookmark end time.
-     *
+     * 
      * @return the endTimeUtc value.
      */
     public OffsetDateTime endTimeUtc() {
@@ -136,7 +162,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the endTimeUtc property: The bookmark end time.
-     *
+     * 
      * @param endTimeUtc the endTimeUtc value to set.
      * @return the BookmarkTimelineItem object itself.
      */
@@ -147,7 +173,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the startTimeUtc property: The bookmark start time.
-     *
+     * 
      * @return the startTimeUtc value.
      */
     public OffsetDateTime startTimeUtc() {
@@ -156,7 +182,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the startTimeUtc property: The bookmark start time.
-     *
+     * 
      * @param startTimeUtc the startTimeUtc value to set.
      * @return the BookmarkTimelineItem object itself.
      */
@@ -167,7 +193,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the eventTime property: The bookmark event time.
-     *
+     * 
      * @return the eventTime value.
      */
     public OffsetDateTime eventTime() {
@@ -176,7 +202,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the eventTime property: The bookmark event time.
-     *
+     * 
      * @param eventTime the eventTime value to set.
      * @return the BookmarkTimelineItem object itself.
      */
@@ -187,7 +213,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the createdBy property: Describes a user that created the bookmark.
-     *
+     * 
      * @return the createdBy value.
      */
     public UserInfo createdBy() {
@@ -196,7 +222,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the createdBy property: Describes a user that created the bookmark.
-     *
+     * 
      * @param createdBy the createdBy value to set.
      * @return the BookmarkTimelineItem object itself.
      */
@@ -207,7 +233,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Get the labels property: List of labels relevant to this bookmark.
-     *
+     * 
      * @return the labels value.
      */
     public List<String> labels() {
@@ -216,7 +242,7 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Set the labels property: List of labels relevant to this bookmark.
-     *
+     * 
      * @param labels the labels value to set.
      * @return the BookmarkTimelineItem object itself.
      */
@@ -227,17 +253,16 @@ public final class BookmarkTimelineItem extends EntityTimelineItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (azureResourceId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property azureResourceId in model BookmarkTimelineItem"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property azureResourceId in model BookmarkTimelineItem"));
         }
         if (createdBy() != null) {
             createdBy().validate();

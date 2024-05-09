@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Get Insights result metadata. */
+/**
+ * Get Insights result metadata.
+ */
 @Fluent
 public final class GetInsightsResultsMetadata {
     /*
@@ -24,8 +26,14 @@ public final class GetInsightsResultsMetadata {
     private List<GetInsightsErrorKind> errors;
 
     /**
+     * Creates an instance of GetInsightsResultsMetadata class.
+     */
+    public GetInsightsResultsMetadata() {
+    }
+
+    /**
      * Get the totalCount property: the total items found for the insights request.
-     *
+     * 
      * @return the totalCount value.
      */
     public int totalCount() {
@@ -34,7 +42,7 @@ public final class GetInsightsResultsMetadata {
 
     /**
      * Set the totalCount property: the total items found for the insights request.
-     *
+     * 
      * @param totalCount the totalCount value to set.
      * @return the GetInsightsResultsMetadata object itself.
      */
@@ -45,7 +53,7 @@ public final class GetInsightsResultsMetadata {
 
     /**
      * Get the errors property: information about the failed queries.
-     *
+     * 
      * @return the errors value.
      */
     public List<GetInsightsErrorKind> errors() {
@@ -54,7 +62,7 @@ public final class GetInsightsResultsMetadata {
 
     /**
      * Set the errors property: information about the failed queries.
-     *
+     * 
      * @param errors the errors value to set.
      * @return the GetInsightsResultsMetadata object itself.
      */
@@ -65,7 +73,7 @@ public final class GetInsightsResultsMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

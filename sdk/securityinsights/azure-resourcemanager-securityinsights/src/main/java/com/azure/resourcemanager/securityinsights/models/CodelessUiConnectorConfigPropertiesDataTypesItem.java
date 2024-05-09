@@ -6,17 +6,29 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The CodelessUiConnectorConfigPropertiesDataTypesItem model. */
+/**
+ * The CodelessUiConnectorConfigPropertiesDataTypesItem model.
+ */
 @Fluent
 public final class CodelessUiConnectorConfigPropertiesDataTypesItem extends LastDataReceivedDataType {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of CodelessUiConnectorConfigPropertiesDataTypesItem class.
+     */
+    public CodelessUiConnectorConfigPropertiesDataTypesItem() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiConnectorConfigPropertiesDataTypesItem withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CodelessUiConnectorConfigPropertiesDataTypesItem withLastDataReceivedQuery(String lastDataReceivedQuery) {
         super.withLastDataReceivedQuery(lastDataReceivedQuery);
@@ -25,7 +37,7 @@ public final class CodelessUiConnectorConfigPropertiesDataTypesItem extends Last
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

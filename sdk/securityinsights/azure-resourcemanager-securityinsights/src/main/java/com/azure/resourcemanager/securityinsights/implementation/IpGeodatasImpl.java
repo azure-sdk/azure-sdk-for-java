@@ -10,6 +10,7 @@ import com.azure.core.util.Context;
 import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.securityinsights.fluent.IpGeodatasClient;
 import com.azure.resourcemanager.securityinsights.fluent.models.EnrichmentIpGeodataInner;
+import com.azure.resourcemanager.securityinsights.models.EnrichmentIpAddressModel;
 import com.azure.resourcemanager.securityinsights.models.EnrichmentIpGeodata;
 import com.azure.resourcemanager.securityinsights.models.IpGeodatas;
 
@@ -20,31 +21,28 @@ public final class IpGeodatasImpl implements IpGeodatas {
 
     private final com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager;
 
-    public IpGeodatasImpl(
-        IpGeodatasClient innerClient,
+    public IpGeodatasImpl(IpGeodatasClient innerClient,
         com.azure.resourcemanager.securityinsights.SecurityInsightsManager serviceManager) {
         this.innerClient = innerClient;
         this.serviceManager = serviceManager;
     }
 
-    public EnrichmentIpGeodata get(String resourceGroupName, String ipAddress) {
-        EnrichmentIpGeodataInner inner = this.serviceClient().get(resourceGroupName, ipAddress);
+    public Response<EnrichmentIpGeodata> getWithResponse(String resourceGroupName,
+        EnrichmentIpAddressModel enrichmentIpAddress, Context context) {
+        Response<EnrichmentIpGeodataInner> inner
+            = this.serviceClient().getWithResponse(resourceGroupName, enrichmentIpAddress, context);
         if (inner != null) {
-            return new EnrichmentIpGeodataImpl(inner, this.manager());
+            return new SimpleResponse<>(inner.getRequest(), inner.getStatusCode(), inner.getHeaders(),
+                new EnrichmentIpGeodataImpl(inner.getValue(), this.manager()));
         } else {
             return null;
         }
     }
 
-    public Response<EnrichmentIpGeodata> getWithResponse(String resourceGroupName, String ipAddress, Context context) {
-        Response<EnrichmentIpGeodataInner> inner =
-            this.serviceClient().getWithResponse(resourceGroupName, ipAddress, context);
+    public EnrichmentIpGeodata get(String resourceGroupName, EnrichmentIpAddressModel enrichmentIpAddress) {
+        EnrichmentIpGeodataInner inner = this.serviceClient().get(resourceGroupName, enrichmentIpAddress);
         if (inner != null) {
-            return new SimpleResponse<>(
-                inner.getRequest(),
-                inner.getStatusCode(),
-                inner.getHeaders(),
-                new EnrichmentIpGeodataImpl(inner.getValue(), this.manager()));
+            return new EnrichmentIpGeodataImpl(inner, this.manager());
         } else {
             return null;
         }

@@ -13,7 +13,9 @@ import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** Describes watchlist properties. */
+/**
+ * Describes watchlist properties.
+ */
 @Fluent
 public final class WatchlistProperties {
     /*
@@ -119,36 +121,38 @@ public final class WatchlistProperties {
     private Integer numberOfLinesToSkip;
 
     /*
-     * The raw content that represents to watchlist items to create. In case of csv/tsv content type, it's the content
-     * of the file that will parsed by the endpoint
+     * The raw content that represents to watchlist items to create. In case of csv/tsv content type, it's the content of the file that will parsed by the endpoint
      */
     @JsonProperty(value = "rawContent")
     private String rawContent;
 
     /*
-     * The search key is used to optimize query performance when using watchlists for joins with other data. For
-     * example, enable a column with IP addresses to be the designated SearchKey field, then use this field as the key
-     * field when joining to other event data by IP address.
+     * The search key is used to optimize query performance when using watchlists for joins with other data. For example, enable a column with IP addresses to be the designated SearchKey field, then use this field as the key field when joining to other event data by IP address.
      */
     @JsonProperty(value = "itemsSearchKey", required = true)
     private String itemsSearchKey;
 
     /*
-     * The content type of the raw content. Example : text/csv or text/tsv
+     * The content type of the raw content. Example : text/csv or text/tsv 
      */
     @JsonProperty(value = "contentType")
     private String contentType;
 
     /*
-     * The status of the Watchlist upload : New, InProgress or Complete. Pls note : When a Watchlist upload status is
-     * equal to InProgress, the Watchlist cannot be deleted
+     * The status of the Watchlist upload : New, InProgress or Complete. Pls note : When a Watchlist upload status is equal to InProgress, the Watchlist cannot be deleted
      */
     @JsonProperty(value = "uploadStatus")
     private String uploadStatus;
 
     /**
+     * Creates an instance of WatchlistProperties class.
+     */
+    public WatchlistProperties() {
+    }
+
+    /**
      * Get the watchlistId property: The id (a Guid) of the watchlist.
-     *
+     * 
      * @return the watchlistId value.
      */
     public String watchlistId() {
@@ -157,7 +161,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the watchlistId property: The id (a Guid) of the watchlist.
-     *
+     * 
      * @param watchlistId the watchlistId value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -168,7 +172,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the displayName property: The display name of the watchlist.
-     *
+     * 
      * @return the displayName value.
      */
     public String displayName() {
@@ -177,7 +181,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the displayName property: The display name of the watchlist.
-     *
+     * 
      * @param displayName the displayName value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -188,7 +192,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the provider property: The provider of the watchlist.
-     *
+     * 
      * @return the provider value.
      */
     public String provider() {
@@ -197,7 +201,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the provider property: The provider of the watchlist.
-     *
+     * 
      * @param provider the provider value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -208,7 +212,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the source property: The filename of the watchlist, called 'source'.
-     *
+     * 
      * @return the source value.
      */
     public String source() {
@@ -217,7 +221,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the source property: The filename of the watchlist, called 'source'.
-     *
+     * 
      * @param source the source value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -228,7 +232,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the sourceType property: The sourceType of the watchlist.
-     *
+     * 
      * @return the sourceType value.
      */
     public SourceType sourceType() {
@@ -237,7 +241,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the sourceType property: The sourceType of the watchlist.
-     *
+     * 
      * @param sourceType the sourceType value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -248,7 +252,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the created property: The time the watchlist was created.
-     *
+     * 
      * @return the created value.
      */
     public OffsetDateTime created() {
@@ -257,7 +261,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the created property: The time the watchlist was created.
-     *
+     * 
      * @param created the created value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -268,7 +272,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the updated property: The last time the watchlist was updated.
-     *
+     * 
      * @return the updated value.
      */
     public OffsetDateTime updated() {
@@ -277,7 +281,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the updated property: The last time the watchlist was updated.
-     *
+     * 
      * @param updated the updated value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -288,7 +292,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the createdBy property: Describes a user that created the watchlist.
-     *
+     * 
      * @return the createdBy value.
      */
     public UserInfo createdBy() {
@@ -297,7 +301,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the createdBy property: Describes a user that created the watchlist.
-     *
+     * 
      * @param createdBy the createdBy value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -308,7 +312,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the updatedBy property: Describes a user that updated the watchlist.
-     *
+     * 
      * @return the updatedBy value.
      */
     public UserInfo updatedBy() {
@@ -317,7 +321,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the updatedBy property: Describes a user that updated the watchlist.
-     *
+     * 
      * @param updatedBy the updatedBy value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -328,7 +332,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the description property: A description of the watchlist.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -337,7 +341,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the description property: A description of the watchlist.
-     *
+     * 
      * @param description the description value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -348,7 +352,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the watchlistType property: The type of the watchlist.
-     *
+     * 
      * @return the watchlistType value.
      */
     public String watchlistType() {
@@ -357,7 +361,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the watchlistType property: The type of the watchlist.
-     *
+     * 
      * @param watchlistType the watchlistType value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -368,7 +372,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the watchlistAlias property: The alias of the watchlist.
-     *
+     * 
      * @return the watchlistAlias value.
      */
     public String watchlistAlias() {
@@ -377,7 +381,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the watchlistAlias property: The alias of the watchlist.
-     *
+     * 
      * @param watchlistAlias the watchlistAlias value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -388,7 +392,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the isDeleted property: A flag that indicates if the watchlist is deleted or not.
-     *
+     * 
      * @return the isDeleted value.
      */
     public Boolean isDeleted() {
@@ -397,7 +401,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the isDeleted property: A flag that indicates if the watchlist is deleted or not.
-     *
+     * 
      * @param isDeleted the isDeleted value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -408,7 +412,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the labels property: List of labels relevant to this watchlist.
-     *
+     * 
      * @return the labels value.
      */
     public List<String> labels() {
@@ -417,7 +421,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the labels property: List of labels relevant to this watchlist.
-     *
+     * 
      * @param labels the labels value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -428,7 +432,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the defaultDuration property: The default duration of a watchlist (in ISO 8601 duration format).
-     *
+     * 
      * @return the defaultDuration value.
      */
     public Duration defaultDuration() {
@@ -437,7 +441,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the defaultDuration property: The default duration of a watchlist (in ISO 8601 duration format).
-     *
+     * 
      * @param defaultDuration the defaultDuration value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -448,7 +452,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the tenantId property: The tenantId where the watchlist belongs to.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -457,7 +461,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the tenantId property: The tenantId where the watchlist belongs to.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -468,7 +472,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the numberOfLinesToSkip property: The number of lines in a csv/tsv content to skip before the header.
-     *
+     * 
      * @return the numberOfLinesToSkip value.
      */
     public Integer numberOfLinesToSkip() {
@@ -477,7 +481,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the numberOfLinesToSkip property: The number of lines in a csv/tsv content to skip before the header.
-     *
+     * 
      * @param numberOfLinesToSkip the numberOfLinesToSkip value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -489,7 +493,7 @@ public final class WatchlistProperties {
     /**
      * Get the rawContent property: The raw content that represents to watchlist items to create. In case of csv/tsv
      * content type, it's the content of the file that will parsed by the endpoint.
-     *
+     * 
      * @return the rawContent value.
      */
     public String rawContent() {
@@ -499,7 +503,7 @@ public final class WatchlistProperties {
     /**
      * Set the rawContent property: The raw content that represents to watchlist items to create. In case of csv/tsv
      * content type, it's the content of the file that will parsed by the endpoint.
-     *
+     * 
      * @param rawContent the rawContent value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -512,7 +516,7 @@ public final class WatchlistProperties {
      * Get the itemsSearchKey property: The search key is used to optimize query performance when using watchlists for
      * joins with other data. For example, enable a column with IP addresses to be the designated SearchKey field, then
      * use this field as the key field when joining to other event data by IP address.
-     *
+     * 
      * @return the itemsSearchKey value.
      */
     public String itemsSearchKey() {
@@ -523,7 +527,7 @@ public final class WatchlistProperties {
      * Set the itemsSearchKey property: The search key is used to optimize query performance when using watchlists for
      * joins with other data. For example, enable a column with IP addresses to be the designated SearchKey field, then
      * use this field as the key field when joining to other event data by IP address.
-     *
+     * 
      * @param itemsSearchKey the itemsSearchKey value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -534,7 +538,7 @@ public final class WatchlistProperties {
 
     /**
      * Get the contentType property: The content type of the raw content. Example : text/csv or text/tsv.
-     *
+     * 
      * @return the contentType value.
      */
     public String contentType() {
@@ -543,7 +547,7 @@ public final class WatchlistProperties {
 
     /**
      * Set the contentType property: The content type of the raw content. Example : text/csv or text/tsv.
-     *
+     * 
      * @param contentType the contentType value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -555,7 +559,7 @@ public final class WatchlistProperties {
     /**
      * Get the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. Pls note : When
      * a Watchlist upload status is equal to InProgress, the Watchlist cannot be deleted.
-     *
+     * 
      * @return the uploadStatus value.
      */
     public String uploadStatus() {
@@ -565,7 +569,7 @@ public final class WatchlistProperties {
     /**
      * Set the uploadStatus property: The status of the Watchlist upload : New, InProgress or Complete. Pls note : When
      * a Watchlist upload status is equal to InProgress, the Watchlist cannot be deleted.
-     *
+     * 
      * @param uploadStatus the uploadStatus value to set.
      * @return the WatchlistProperties object itself.
      */
@@ -576,19 +580,18 @@ public final class WatchlistProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (displayName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property displayName in model WatchlistProperties"));
         }
         if (provider() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property provider in model WatchlistProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property provider in model WatchlistProperties"));
         }
         if (createdBy() != null) {
             createdBy().validate();
@@ -597,10 +600,9 @@ public final class WatchlistProperties {
             updatedBy().validate();
         }
         if (itemsSearchKey() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property itemsSearchKey in model WatchlistProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property itemsSearchKey in model WatchlistProperties"));
         }
     }
 

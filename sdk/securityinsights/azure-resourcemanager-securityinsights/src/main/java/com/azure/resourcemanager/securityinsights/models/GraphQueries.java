@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The graph query to show the current data status. */
+/**
+ * The graph query to show the current data status.
+ */
 @Fluent
 public class GraphQueries {
     /*
@@ -29,8 +31,14 @@ public class GraphQueries {
     private String baseQuery;
 
     /**
+     * Creates an instance of GraphQueries class.
+     */
+    public GraphQueries() {
+    }
+
+    /**
      * Get the metricName property: the metric that the query is checking.
-     *
+     * 
      * @return the metricName value.
      */
     public String metricName() {
@@ -39,7 +47,7 @@ public class GraphQueries {
 
     /**
      * Set the metricName property: the metric that the query is checking.
-     *
+     * 
      * @param metricName the metricName value to set.
      * @return the GraphQueries object itself.
      */
@@ -50,7 +58,7 @@ public class GraphQueries {
 
     /**
      * Get the legend property: The legend for the graph.
-     *
+     * 
      * @return the legend value.
      */
     public String legend() {
@@ -59,7 +67,7 @@ public class GraphQueries {
 
     /**
      * Set the legend property: The legend for the graph.
-     *
+     * 
      * @param legend the legend value to set.
      * @return the GraphQueries object itself.
      */
@@ -70,7 +78,7 @@ public class GraphQueries {
 
     /**
      * Get the baseQuery property: The base query for the graph.
-     *
+     * 
      * @return the baseQuery value.
      */
     public String baseQuery() {
@@ -79,7 +87,7 @@ public class GraphQueries {
 
     /**
      * Set the baseQuery property: The base query for the graph.
-     *
+     * 
      * @param baseQuery the baseQuery value to set.
      * @return the GraphQueries object itself.
      */
@@ -90,7 +98,7 @@ public class GraphQueries {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

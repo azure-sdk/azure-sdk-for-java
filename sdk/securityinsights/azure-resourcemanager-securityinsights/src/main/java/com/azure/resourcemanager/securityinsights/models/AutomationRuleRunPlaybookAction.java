@@ -6,14 +6,28 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule action to run a playbook. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "actionType")
+/**
+ * Describes an automation rule action to run a playbook.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "actionType",
+    defaultImpl = AutomationRuleRunPlaybookAction.class,
+    visible = true)
 @JsonTypeName("RunPlaybook")
 @Fluent
 public final class AutomationRuleRunPlaybookAction extends AutomationRuleAction {
+    /*
+     * The type of the automation rule action.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "actionType", required = true)
+    private ActionType actionType = ActionType.RUN_PLAYBOOK;
+
     /*
      * The actionConfiguration property.
      */
@@ -21,8 +35,24 @@ public final class AutomationRuleRunPlaybookAction extends AutomationRuleAction 
     private PlaybookActionProperties actionConfiguration;
 
     /**
+     * Creates an instance of AutomationRuleRunPlaybookAction class.
+     */
+    public AutomationRuleRunPlaybookAction() {
+    }
+
+    /**
+     * Get the actionType property: The type of the automation rule action.
+     * 
+     * @return the actionType value.
+     */
+    @Override
+    public ActionType actionType() {
+        return this.actionType;
+    }
+
+    /**
      * Get the actionConfiguration property: The actionConfiguration property.
-     *
+     * 
      * @return the actionConfiguration value.
      */
     public PlaybookActionProperties actionConfiguration() {
@@ -31,7 +61,7 @@ public final class AutomationRuleRunPlaybookAction extends AutomationRuleAction 
 
     /**
      * Set the actionConfiguration property: The actionConfiguration property.
-     *
+     * 
      * @param actionConfiguration the actionConfiguration value to set.
      * @return the AutomationRuleRunPlaybookAction object itself.
      */
@@ -40,7 +70,9 @@ public final class AutomationRuleRunPlaybookAction extends AutomationRuleAction 
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AutomationRuleRunPlaybookAction withOrder(int order) {
         super.withOrder(order);
@@ -49,7 +81,7 @@ public final class AutomationRuleRunPlaybookAction extends AutomationRuleAction 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
