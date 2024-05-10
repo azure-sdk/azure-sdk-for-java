@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.AlertsDataTypeOfDataCon
 import com.azure.resourcemanager.securityinsights.models.DataConnectorWithAlertsProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** ASC (Azure Security Center) data connector properties. */
+/**
+ * ASC (Azure Security Center) data connector properties.
+ */
 @Fluent
 public final class AscDataConnectorProperties extends DataConnectorWithAlertsProperties {
     /*
@@ -19,8 +21,14 @@ public final class AscDataConnectorProperties extends DataConnectorWithAlertsPro
     private String subscriptionId;
 
     /**
+     * Creates an instance of AscDataConnectorProperties class.
+     */
+    public AscDataConnectorProperties() {
+    }
+
+    /**
      * Get the subscriptionId property: The subscription id to connect to, and get the data from.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public String subscriptionId() {
@@ -29,7 +37,7 @@ public final class AscDataConnectorProperties extends DataConnectorWithAlertsPro
 
     /**
      * Set the subscriptionId property: The subscription id to connect to, and get the data from.
-     *
+     * 
      * @param subscriptionId the subscriptionId value to set.
      * @return the AscDataConnectorProperties object itself.
      */
@@ -38,7 +46,9 @@ public final class AscDataConnectorProperties extends DataConnectorWithAlertsPro
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AscDataConnectorProperties withDataTypes(AlertsDataTypeOfDataConnector dataTypes) {
         super.withDataTypes(dataTypes);
@@ -47,7 +57,7 @@ public final class AscDataConnectorProperties extends DataConnectorWithAlertsPro
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

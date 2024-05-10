@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Query results for table insights query. */
+/**
+ * Query results for table insights query.
+ */
 @Fluent
 public final class InsightsTableResult {
     /*
@@ -24,8 +26,14 @@ public final class InsightsTableResult {
     private List<List<String>> rows;
 
     /**
+     * Creates an instance of InsightsTableResult class.
+     */
+    public InsightsTableResult() {
+    }
+
+    /**
      * Get the columns property: Columns Metadata of the table.
-     *
+     * 
      * @return the columns value.
      */
     public List<InsightsTableResultColumnsItem> columns() {
@@ -34,7 +42,7 @@ public final class InsightsTableResult {
 
     /**
      * Set the columns property: Columns Metadata of the table.
-     *
+     * 
      * @param columns the columns value to set.
      * @return the InsightsTableResult object itself.
      */
@@ -45,7 +53,7 @@ public final class InsightsTableResult {
 
     /**
      * Get the rows property: Rows data of the table.
-     *
+     * 
      * @return the rows value.
      */
     public List<List<String>> rows() {
@@ -54,7 +62,7 @@ public final class InsightsTableResult {
 
     /**
      * Set the rows property: Rows data of the table.
-     *
+     * 
      * @param rows the rows value to set.
      * @return the InsightsTableResult object itself.
      */
@@ -65,7 +73,7 @@ public final class InsightsTableResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

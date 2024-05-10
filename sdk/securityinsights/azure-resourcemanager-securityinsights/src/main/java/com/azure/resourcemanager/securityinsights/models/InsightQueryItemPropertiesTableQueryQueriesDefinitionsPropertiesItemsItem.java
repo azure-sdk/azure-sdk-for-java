@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem model. */
+/**
+ * The InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem model.
+ */
 @Fluent
 public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem {
     /*
@@ -23,8 +25,14 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropert
     private String query;
 
     /**
+     * Creates an instance of InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem class.
+     */
+    public InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem() {
+    }
+
+    /**
      * Get the projectedName property: Insight Link Definition Projected Name.
-     *
+     * 
      * @return the projectedName value.
      */
     public String projectedName() {
@@ -33,19 +41,19 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropert
 
     /**
      * Set the projectedName property: Insight Link Definition Projected Name.
-     *
+     * 
      * @param projectedName the projectedName value to set.
      * @return the InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem object itself.
      */
-    public InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem withProjectedName(
-        String projectedName) {
+    public InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem
+        withProjectedName(String projectedName) {
         this.projectedName = projectedName;
         return this;
     }
 
     /**
      * Get the query property: Insight Link Definition Query.
-     *
+     * 
      * @return the query value.
      */
     public String query() {
@@ -54,7 +62,7 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropert
 
     /**
      * Set the query property: Insight Link Definition Query.
-     *
+     * 
      * @param query the query value to set.
      * @return the InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem object itself.
      */
@@ -65,7 +73,7 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropert
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -27,6 +27,10 @@ public final class RepoImpl implements Repo {
         return this.innerModel().fullName();
     }
 
+    public Long installationId() {
+        return this.innerModel().installationId();
+    }
+
     public List<String> branches() {
         List<String> inner = this.innerModel().branches();
         if (inner != null) {

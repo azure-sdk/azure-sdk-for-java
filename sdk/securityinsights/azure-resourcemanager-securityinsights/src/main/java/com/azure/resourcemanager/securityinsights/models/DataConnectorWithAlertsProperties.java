@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Data connector properties. */
+/**
+ * Data connector properties.
+ */
 @Fluent
 public class DataConnectorWithAlertsProperties {
     /*
@@ -17,8 +19,14 @@ public class DataConnectorWithAlertsProperties {
     private AlertsDataTypeOfDataConnector dataTypes;
 
     /**
+     * Creates an instance of DataConnectorWithAlertsProperties class.
+     */
+    public DataConnectorWithAlertsProperties() {
+    }
+
+    /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public AlertsDataTypeOfDataConnector dataTypes() {
@@ -27,7 +35,7 @@ public class DataConnectorWithAlertsProperties {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the DataConnectorWithAlertsProperties object itself.
      */
@@ -38,7 +46,7 @@ public class DataConnectorWithAlertsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

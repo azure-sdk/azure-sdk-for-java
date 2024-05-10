@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.ResourceWithEtag;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Sentinel onboarding state. */
+/**
+ * Sentinel onboarding state.
+ */
 @Fluent
 public final class SentinelOnboardingStateInner extends ResourceWithEtag {
     /*
@@ -18,15 +20,23 @@ public final class SentinelOnboardingStateInner extends ResourceWithEtag {
     private SentinelOnboardingStateProperties innerProperties;
 
     /**
+     * Creates an instance of SentinelOnboardingStateInner class.
+     */
+    public SentinelOnboardingStateInner() {
+    }
+
+    /**
      * Get the innerProperties property: The Sentinel onboarding state object.
-     *
+     * 
      * @return the innerProperties value.
      */
     private SentinelOnboardingStateProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SentinelOnboardingStateInner withEtag(String etag) {
         super.withEtag(etag);
@@ -35,7 +45,7 @@ public final class SentinelOnboardingStateInner extends ResourceWithEtag {
 
     /**
      * Get the customerManagedKey property: Flag that indicates the status of the CMK setting.
-     *
+     * 
      * @return the customerManagedKey value.
      */
     public Boolean customerManagedKey() {
@@ -44,7 +54,7 @@ public final class SentinelOnboardingStateInner extends ResourceWithEtag {
 
     /**
      * Set the customerManagedKey property: Flag that indicates the status of the CMK setting.
-     *
+     * 
      * @param customerManagedKey the customerManagedKey value to set.
      * @return the SentinelOnboardingStateInner object itself.
      */
@@ -58,7 +68,7 @@ public final class SentinelOnboardingStateInner extends ResourceWithEtag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

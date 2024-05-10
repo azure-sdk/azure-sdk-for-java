@@ -7,12 +7,18 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** The connector Availability Status. */
+/**
+ * The connector Availability Status.
+ */
 public enum AvailabilityStatus {
-    /** Enum value 1. */
+    /**
+     * Enum value 1.
+     */
     ONE(1);
 
-    /** The actual serialized value for a AvailabilityStatus instance. */
+    /**
+     * The actual serialized value for a AvailabilityStatus instance.
+     */
     private final int value;
 
     AvailabilityStatus(int value) {
@@ -21,7 +27,7 @@ public enum AvailabilityStatus {
 
     /**
      * Parses a serialized value to a AvailabilityStatus instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed AvailabilityStatus object, or null if unable to parse.
      */
@@ -38,7 +44,7 @@ public enum AvailabilityStatus {
 
     /**
      * De-serializes the instance to int value.
-     *
+     * 
      * @return the int value.
      */
     @JsonValue

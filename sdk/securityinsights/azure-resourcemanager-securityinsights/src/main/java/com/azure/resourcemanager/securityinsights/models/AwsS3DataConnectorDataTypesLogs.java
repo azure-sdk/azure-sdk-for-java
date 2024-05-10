@@ -6,10 +6,20 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** Logs data type. */
+/**
+ * Logs data type.
+ */
 @Fluent
 public final class AwsS3DataConnectorDataTypesLogs extends DataConnectorDataTypeCommon {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of AwsS3DataConnectorDataTypesLogs class.
+     */
+    public AwsS3DataConnectorDataTypesLogs() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AwsS3DataConnectorDataTypesLogs withState(DataTypeState state) {
         super.withState(state);
@@ -18,7 +28,7 @@ public final class AwsS3DataConnectorDataTypesLogs extends DataConnectorDataType
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

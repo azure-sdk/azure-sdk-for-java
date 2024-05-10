@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
-/** Information on the user an incident is assigned to. */
+/**
+ * Information on the user an incident is assigned to.
+ */
 @Fluent
 public final class IncidentOwnerInfo {
     /*
@@ -42,8 +44,14 @@ public final class IncidentOwnerInfo {
     private OwnerType ownerType;
 
     /**
+     * Creates an instance of IncidentOwnerInfo class.
+     */
+    public IncidentOwnerInfo() {
+    }
+
+    /**
      * Get the email property: The email of the user the incident is assigned to.
-     *
+     * 
      * @return the email value.
      */
     public String email() {
@@ -52,7 +60,7 @@ public final class IncidentOwnerInfo {
 
     /**
      * Set the email property: The email of the user the incident is assigned to.
-     *
+     * 
      * @param email the email value to set.
      * @return the IncidentOwnerInfo object itself.
      */
@@ -63,7 +71,7 @@ public final class IncidentOwnerInfo {
 
     /**
      * Get the assignedTo property: The name of the user the incident is assigned to.
-     *
+     * 
      * @return the assignedTo value.
      */
     public String assignedTo() {
@@ -72,7 +80,7 @@ public final class IncidentOwnerInfo {
 
     /**
      * Set the assignedTo property: The name of the user the incident is assigned to.
-     *
+     * 
      * @param assignedTo the assignedTo value to set.
      * @return the IncidentOwnerInfo object itself.
      */
@@ -83,7 +91,7 @@ public final class IncidentOwnerInfo {
 
     /**
      * Get the objectId property: The object id of the user the incident is assigned to.
-     *
+     * 
      * @return the objectId value.
      */
     public UUID objectId() {
@@ -92,7 +100,7 @@ public final class IncidentOwnerInfo {
 
     /**
      * Set the objectId property: The object id of the user the incident is assigned to.
-     *
+     * 
      * @param objectId the objectId value to set.
      * @return the IncidentOwnerInfo object itself.
      */
@@ -103,7 +111,7 @@ public final class IncidentOwnerInfo {
 
     /**
      * Get the userPrincipalName property: The user principal name of the user the incident is assigned to.
-     *
+     * 
      * @return the userPrincipalName value.
      */
     public String userPrincipalName() {
@@ -112,7 +120,7 @@ public final class IncidentOwnerInfo {
 
     /**
      * Set the userPrincipalName property: The user principal name of the user the incident is assigned to.
-     *
+     * 
      * @param userPrincipalName the userPrincipalName value to set.
      * @return the IncidentOwnerInfo object itself.
      */
@@ -123,7 +131,7 @@ public final class IncidentOwnerInfo {
 
     /**
      * Get the ownerType property: The type of the owner the incident is assigned to.
-     *
+     * 
      * @return the ownerType value.
      */
     public OwnerType ownerType() {
@@ -132,7 +140,7 @@ public final class IncidentOwnerInfo {
 
     /**
      * Set the ownerType property: The type of the owner the incident is assigned to.
-     *
+     * 
      * @param ownerType the ownerType value to set.
      * @return the IncidentOwnerInfo object itself.
      */
@@ -143,7 +151,7 @@ public final class IncidentOwnerInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
