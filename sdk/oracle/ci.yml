@@ -1,0 +1,47 @@
+# NOTE: Please refer to https://aka.ms/azsdk/engsys/ci-yaml before editing this file.
+
+trigger:
+  branches:
+    include:
+      - main
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/oracle/ci.yml
+      - sdk/oracle/azure-resourcemanager-oracle/
+    exclude:
+      - sdk/oracle/pom.xml
+      - sdk/oracle/azure-resourcemanager-oracle/pom.xml
+
+pr:
+  branches:
+    include:
+      - main
+      - feature/*
+      - hotfix/*
+      - release/*
+  paths:
+    include:
+      - sdk/oracle/ci.yml
+      - sdk/oracle/azure-resourcemanager-oracle/
+    exclude:
+      - sdk/oracle/pom.xml
+      - sdk/oracle/azure-resourcemanager-oracle/pom.xml
+
+parameters:
+  - name: release_azureresourcemanageroracle
+    displayName: azure-resourcemanager-oracle
+    type: boolean
+    default: false
+
+extends:
+  template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
+  parameters:
+    ServiceDirectory: oracle
+    EnableBatchRelease: true
+    Artifacts:
+      - name: azure-resourcemanager-oracle
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanageroracle
+        releaseInBatch: ${{ parameters.release_azureresourcemanageroracle }}
