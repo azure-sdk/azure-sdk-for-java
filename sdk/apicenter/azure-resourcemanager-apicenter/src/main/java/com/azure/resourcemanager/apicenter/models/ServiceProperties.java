@@ -4,19 +4,25 @@
 
 package com.azure.resourcemanager.apicenter.models;
 
-import com.azure.core.annotation.Immutable;
+import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * The properties of the service.
  */
-@Immutable
+@Fluent
 public final class ServiceProperties {
     /*
      * Provisioning state of the service.
      */
     @JsonProperty(value = "provisioningState", access = JsonProperty.Access.WRITE_ONLY)
     private ProvisioningState provisioningState;
+
+    /*
+     * Flag used to restore soft-deleted API Center service. If specified and set to 'true' all other properties will be ignored.
+     */
+    @JsonProperty(value = "restore")
+    private Boolean restore;
 
     /**
      * Creates an instance of ServiceProperties class.
@@ -31,6 +37,28 @@ public final class ServiceProperties {
      */
     public ProvisioningState provisioningState() {
         return this.provisioningState;
+    }
+
+    /**
+     * Get the restore property: Flag used to restore soft-deleted API Center service. If specified and set to 'true'
+     * all other properties will be ignored.
+     * 
+     * @return the restore value.
+     */
+    public Boolean restore() {
+        return this.restore;
+    }
+
+    /**
+     * Set the restore property: Flag used to restore soft-deleted API Center service. If specified and set to 'true'
+     * all other properties will be ignored.
+     * 
+     * @param restore the restore value to set.
+     * @return the ServiceProperties object itself.
+     */
+    public ServiceProperties withRestore(Boolean restore) {
+        this.restore = restore;
+        return this;
     }
 
     /**
