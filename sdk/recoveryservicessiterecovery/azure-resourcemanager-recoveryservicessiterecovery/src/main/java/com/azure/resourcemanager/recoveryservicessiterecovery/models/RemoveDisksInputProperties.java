@@ -13,8 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class RemoveDisksInputProperties {
     /*
-     * The ReplicationProviderInput. For HyperVReplicaAzure provider, it will be AzureEnableProtectionInput object. For
-     * San provider, it will be SanEnableProtectionInput object. For HyperVReplicaAzure provider, it can be null.
+     * The ReplicationProviderInput. For HyperVReplicaAzure provider, it will be AzureEnableProtectionInput object. For San provider, it will be SanEnableProtectionInput object. For HyperVReplicaAzure provider, it can be null.
      */
     @JsonProperty(value = "providerSpecificDetails")
     private RemoveDisksProviderSpecificInput providerSpecificDetails;

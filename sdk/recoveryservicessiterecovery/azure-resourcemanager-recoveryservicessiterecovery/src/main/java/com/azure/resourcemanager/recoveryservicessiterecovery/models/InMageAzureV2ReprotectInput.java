@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * InMageAzureV2 specific provider input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageAzureV2ReprotectInput.class,
+    visible = true)
 @JsonTypeName("InMageAzureV2")
 @Fluent
 public final class InMageAzureV2ReprotectInput extends ReverseReplicationProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageAzureV2";
+
     /*
      * The Master target Id.
      */
@@ -63,6 +75,16 @@ public final class InMageAzureV2ReprotectInput extends ReverseReplicationProvide
      * Creates an instance of InMageAzureV2ReprotectInput class.
      */
     public InMageAzureV2ReprotectInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

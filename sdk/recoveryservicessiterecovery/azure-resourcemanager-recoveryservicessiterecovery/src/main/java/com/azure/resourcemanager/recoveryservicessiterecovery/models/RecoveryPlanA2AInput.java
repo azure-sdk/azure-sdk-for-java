@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Recovery plan A2A input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = RecoveryPlanA2AInput.class,
+    visible = true)
 @JsonTypeName("A2A")
 @Fluent
 public final class RecoveryPlanA2AInput extends RecoveryPlanProviderSpecificInput {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2A";
+
     /*
      * The primary zone.
      */
@@ -44,6 +56,16 @@ public final class RecoveryPlanA2AInput extends RecoveryPlanProviderSpecificInpu
      * Creates an instance of RecoveryPlanA2AInput class.
      */
     public RecoveryPlanA2AInput() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

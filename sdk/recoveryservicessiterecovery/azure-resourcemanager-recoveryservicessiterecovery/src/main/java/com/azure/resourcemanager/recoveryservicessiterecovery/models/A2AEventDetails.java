@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Model class for event details of a A2A event.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = A2AEventDetails.class,
+    visible = true)
 @JsonTypeName("A2A")
 @Fluent
 public final class A2AEventDetails extends EventProviderSpecificDetails {
+    /*
+     * Gets the class type. Overridden in derived classes.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2A";
+
     /*
      * The protected item arm name.
      */
@@ -56,6 +68,16 @@ public final class A2AEventDetails extends EventProviderSpecificDetails {
      * Creates an instance of A2AEventDetails class.
      */
     public A2AEventDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the class type. Overridden in derived classes.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

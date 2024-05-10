@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -16,13 +17,20 @@ import java.util.List;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = HyperVVirtualMachineDetails.class)
+    defaultImpl = HyperVVirtualMachineDetails.class,
+    visible = true)
 @JsonTypeName("HyperVVirtualMachine")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "VmmVirtualMachine", value = VmmVirtualMachineDetails.class) })
 @Fluent
 public class HyperVVirtualMachineDetails extends ConfigurationSettings {
+    /*
+     * Gets the class type. Overridden in derived classes.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "HyperVVirtualMachine";
+
     /*
      * The source id of the object.
      */
@@ -48,22 +56,19 @@ public class HyperVVirtualMachineDetails extends ConfigurationSettings {
     private List<DiskDetails> diskDetails;
 
     /*
-     * A value indicating whether the VM has a physical disk attached. String value of SrsDataContract.PresenceStatus
-     * enum.
+     * A value indicating whether the VM has a physical disk attached. String value of SrsDataContract.PresenceStatus enum.
      */
     @JsonProperty(value = "hasPhysicalDisk")
     private PresenceStatus hasPhysicalDisk;
 
     /*
-     * A value indicating whether the VM has a fibre channel adapter attached. String value of
-     * SrsDataContract.PresenceStatus enum.
+     * A value indicating whether the VM has a fibre channel adapter attached. String value of SrsDataContract.PresenceStatus enum.
      */
     @JsonProperty(value = "hasFibreChannelAdapter")
     private PresenceStatus hasFibreChannelAdapter;
 
     /*
-     * A value indicating whether the VM has a shared VHD attached. String value of SrsDataContract.PresenceStatus
-     * enum.
+     * A value indicating whether the VM has a shared VHD attached. String value of SrsDataContract.PresenceStatus enum.
      */
     @JsonProperty(value = "hasSharedVhd")
     private PresenceStatus hasSharedVhd;
@@ -78,6 +83,16 @@ public class HyperVVirtualMachineDetails extends ConfigurationSettings {
      * Creates an instance of HyperVVirtualMachineDetails class.
      */
     public HyperVVirtualMachineDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the class type. Overridden in derived classes.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -161,8 +176,8 @@ public class HyperVVirtualMachineDetails extends ConfigurationSettings {
     }
 
     /**
-     * Get the hasPhysicalDisk property: A value indicating whether the VM has a physical disk attached. String value
-     * of SrsDataContract.PresenceStatus enum.
+     * Get the hasPhysicalDisk property: A value indicating whether the VM has a physical disk attached. String value of
+     * SrsDataContract.PresenceStatus enum.
      * 
      * @return the hasPhysicalDisk value.
      */
@@ -171,8 +186,8 @@ public class HyperVVirtualMachineDetails extends ConfigurationSettings {
     }
 
     /**
-     * Set the hasPhysicalDisk property: A value indicating whether the VM has a physical disk attached. String value
-     * of SrsDataContract.PresenceStatus enum.
+     * Set the hasPhysicalDisk property: A value indicating whether the VM has a physical disk attached. String value of
+     * SrsDataContract.PresenceStatus enum.
      * 
      * @param hasPhysicalDisk the hasPhysicalDisk value to set.
      * @return the HyperVVirtualMachineDetails object itself.

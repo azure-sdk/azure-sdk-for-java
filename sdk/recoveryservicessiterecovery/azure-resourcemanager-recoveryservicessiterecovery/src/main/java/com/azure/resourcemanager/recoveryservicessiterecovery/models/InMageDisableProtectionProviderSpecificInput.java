@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMage disable protection provider specific input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageDisableProtectionProviderSpecificInput.class,
+    visible = true)
 @JsonTypeName("InMage")
 @Fluent
 public final class InMageDisableProtectionProviderSpecificInput extends DisableProtectionProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMage";
+
     /*
      * A value indicating whether the replica VM should be destroyed or retained. Values from Delete and Retain.
      */
@@ -26,6 +38,16 @@ public final class InMageDisableProtectionProviderSpecificInput extends DisableP
      * Creates an instance of InMageDisableProtectionProviderSpecificInput class.
      */
     public InMageDisableProtectionProviderSpecificInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

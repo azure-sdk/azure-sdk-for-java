@@ -132,8 +132,8 @@ public final class InMageRcmFailbackSyncDetails {
     }
 
     /**
-     * Get the progressPercentage property: Progress in percentage. Progress percentage is calculated based on
-     * processed bytes.
+     * Get the progressPercentage property: Progress in percentage. Progress percentage is calculated based on processed
+     * bytes.
      * 
      * @return the progressPercentage value.
      */

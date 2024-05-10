@@ -79,12 +79,14 @@ public final class EnableMigrationInputProperties {
      */
     public void validate() {
         if (policyId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property policyId in model EnableMigrationInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property policyId in model EnableMigrationInputProperties"));
         }
         if (providerSpecificDetails() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property providerSpecificDetails in model EnableMigrationInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property providerSpecificDetails in model EnableMigrationInputProperties"));
         } else {
             providerSpecificDetails().validate();
         }

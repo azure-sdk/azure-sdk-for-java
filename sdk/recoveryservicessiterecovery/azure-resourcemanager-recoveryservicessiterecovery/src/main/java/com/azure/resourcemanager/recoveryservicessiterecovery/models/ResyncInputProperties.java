@@ -52,8 +52,9 @@ public final class ResyncInputProperties {
      */
     public void validate() {
         if (providerSpecificDetails() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property providerSpecificDetails in model ResyncInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property providerSpecificDetails in model ResyncInputProperties"));
         } else {
             providerSpecificDetails().validate();
         }

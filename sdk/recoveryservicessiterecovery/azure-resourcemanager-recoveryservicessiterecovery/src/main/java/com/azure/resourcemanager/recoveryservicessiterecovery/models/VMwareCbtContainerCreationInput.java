@@ -5,20 +5,43 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * VMwareCbt container creation input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = VMwareCbtContainerCreationInput.class,
+    visible = true)
 @JsonTypeName("VMwareCbt")
 @Immutable
 public final class VMwareCbtContainerCreationInput extends ReplicationProviderSpecificContainerCreationInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "VMwareCbt";
+
     /**
      * Creates an instance of VMwareCbtContainerCreationInput class.
      */
     public VMwareCbtContainerCreationInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

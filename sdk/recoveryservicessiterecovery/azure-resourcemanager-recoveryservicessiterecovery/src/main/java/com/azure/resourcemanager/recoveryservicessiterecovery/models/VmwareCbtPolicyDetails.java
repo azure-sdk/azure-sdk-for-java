@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * VMware Cbt specific policy details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = VmwareCbtPolicyDetails.class,
+    visible = true)
 @JsonTypeName("VMwareCbt")
 @Fluent
 public final class VmwareCbtPolicyDetails extends PolicyProviderSpecificDetails {
+    /*
+     * Gets the class type. Overridden in derived classes.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "VMwareCbt";
+
     /*
      * The duration in minutes until which the recovery points need to be stored.
      */
@@ -38,6 +50,16 @@ public final class VmwareCbtPolicyDetails extends PolicyProviderSpecificDetails 
      * Creates an instance of VmwareCbtPolicyDetails class.
      */
     public VmwareCbtPolicyDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the class type. Overridden in derived classes.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

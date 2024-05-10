@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMage specific protection profile details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMagePolicyDetails.class,
+    visible = true)
 @JsonTypeName("InMage")
 @Fluent
 public final class InMagePolicyDetails extends PolicyProviderSpecificDetails {
+    /*
+     * Gets the class type. Overridden in derived classes.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMage";
+
     /*
      * The recovery point threshold in minutes.
      */
@@ -47,6 +59,16 @@ public final class InMagePolicyDetails extends PolicyProviderSpecificDetails {
     }
 
     /**
+     * Get the instanceType property: Gets the class type. Overridden in derived classes.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
+    }
+
+    /**
      * Get the recoveryPointThresholdInMinutes property: The recovery point threshold in minutes.
      * 
      * @return the recoveryPointThresholdInMinutes value.
@@ -67,8 +89,7 @@ public final class InMagePolicyDetails extends PolicyProviderSpecificDetails {
     }
 
     /**
-     * Get the recoveryPointHistory property: The duration in minutes until which the recovery points need to be
-     * stored.
+     * Get the recoveryPointHistory property: The duration in minutes until which the recovery points need to be stored.
      * 
      * @return the recoveryPointHistory value.
      */
@@ -77,8 +98,7 @@ public final class InMagePolicyDetails extends PolicyProviderSpecificDetails {
     }
 
     /**
-     * Set the recoveryPointHistory property: The duration in minutes until which the recovery points need to be
-     * stored.
+     * Set the recoveryPointHistory property: The duration in minutes until which the recovery points need to be stored.
      * 
      * @param recoveryPointHistory the recoveryPointHistory value to set.
      * @return the InMagePolicyDetails object itself.

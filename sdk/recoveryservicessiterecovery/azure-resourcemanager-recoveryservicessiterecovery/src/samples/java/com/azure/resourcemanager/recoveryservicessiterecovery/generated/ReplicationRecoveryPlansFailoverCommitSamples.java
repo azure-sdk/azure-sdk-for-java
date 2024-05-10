@@ -9,9 +9,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
  */
 public final class ReplicationRecoveryPlansFailoverCommitSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationRecoveryPlans_FailoverCommit.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples/ReplicationRecoveryPlans_FailoverCommit.json
      */
     /**
      * Sample code: Execute commit failover of the recovery plan.
@@ -20,7 +18,7 @@ public final class ReplicationRecoveryPlansFailoverCommitSamples {
      */
     public static void executeCommitFailoverOfTheRecoveryPlan(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationRecoveryPlans().failoverCommit("vault1", "resourceGroupPS1", "RPtest1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationRecoveryPlans()
+            .failoverCommit("vault1", "resourceGroupPS1", "RPtest1", com.azure.core.util.Context.NONE);
     }
 }

@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.List;
 /**
  * InMageAzureV2 specific provider input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageReprotectInput.class,
+    visible = true)
 @JsonTypeName("InMage")
 @Fluent
 public final class InMageReprotectInput extends ReverseReplicationProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMage";
+
     /*
      * The Master Target Id.
      */
@@ -70,6 +82,16 @@ public final class InMageReprotectInput extends ReverseReplicationProviderSpecif
      * Creates an instance of InMageReprotectInput class.
      */
     public InMageReprotectInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -241,23 +263,26 @@ public final class InMageReprotectInput extends ReverseReplicationProviderSpecif
     public void validate() {
         super.validate();
         if (masterTargetId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property masterTargetId in model InMageReprotectInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property masterTargetId in model InMageReprotectInput"));
         }
         if (processServerId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property processServerId in model InMageReprotectInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property processServerId in model InMageReprotectInput"));
         }
         if (retentionDrive() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property retentionDrive in model InMageReprotectInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property retentionDrive in model InMageReprotectInput"));
         }
         if (diskExclusionInput() != null) {
             diskExclusionInput().validate();
         }
         if (profileId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property profileId in model InMageReprotectInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property profileId in model InMageReprotectInput"));
         }
     }
 

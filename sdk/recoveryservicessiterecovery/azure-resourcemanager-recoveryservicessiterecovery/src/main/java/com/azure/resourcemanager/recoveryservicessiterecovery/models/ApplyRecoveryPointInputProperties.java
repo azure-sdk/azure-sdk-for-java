@@ -79,8 +79,9 @@ public final class ApplyRecoveryPointInputProperties {
      */
     public void validate() {
         if (providerSpecificDetails() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property providerSpecificDetails in model ApplyRecoveryPointInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property providerSpecificDetails in model ApplyRecoveryPointInputProperties"));
         } else {
             providerSpecificDetails().validate();
         }

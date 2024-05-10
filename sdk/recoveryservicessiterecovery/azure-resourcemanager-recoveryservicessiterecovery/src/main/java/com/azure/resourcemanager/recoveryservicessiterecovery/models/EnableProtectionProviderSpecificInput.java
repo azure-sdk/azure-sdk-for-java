@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = EnableProtectionProviderSpecificInput.class)
+    defaultImpl = EnableProtectionProviderSpecificInput.class,
+    visible = true)
 @JsonTypeName("EnableProtectionProviderSpecificInput")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "A2ACrossClusterMigration", value = A2ACrossClusterMigrationEnableProtectionInput.class),
@@ -27,10 +29,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "InMageRcm", value = InMageRcmEnableProtectionInput.class) })
 @Immutable
 public class EnableProtectionProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of EnableProtectionProviderSpecificInput class.
      */
     public EnableProtectionProviderSpecificInput() {
+        this.instanceType = "EnableProtectionProviderSpecificInput";
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

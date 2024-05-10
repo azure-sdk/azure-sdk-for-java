@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
@@ -14,10 +15,21 @@ import java.util.List;
 /**
  * InMageRcmFailback provider specific details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageRcmFailbackReplicationDetails.class,
+    visible = true)
 @JsonTypeName("InMageRcmFailback")
 @Fluent
 public final class InMageRcmFailbackReplicationDetails extends ReplicationProviderSpecificSettings {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageRcmFailback";
+
     /*
      * The virtual machine internal identifier.
      */
@@ -85,8 +97,7 @@ public final class InMageRcmFailbackReplicationDetails extends ReplicationProvid
     private Integer initialReplicationProgressPercentage;
 
     /*
-     * The initial replication processed bytes. This includes sum of total bytes transferred and matched bytes on all
-     * selected disks in source VM.
+     * The initial replication processed bytes. This includes sum of total bytes transferred and matched bytes on all selected disks in source VM.
      */
     @JsonProperty(value = "initialReplicationProcessedBytes", access = JsonProperty.Access.WRITE_ONLY)
     private Long initialReplicationProcessedBytes;
@@ -110,8 +121,7 @@ public final class InMageRcmFailbackReplicationDetails extends ReplicationProvid
     private Integer resyncProgressPercentage;
 
     /*
-     * The resync processed bytes. This includes sum of total bytes transferred and matched bytes on all selected disks
-     * in source VM.
+     * The resync processed bytes. This includes sum of total bytes transferred and matched bytes on all selected disks in source VM.
      */
     @JsonProperty(value = "resyncProcessedBytes", access = JsonProperty.Access.WRITE_ONLY)
     private Long resyncProcessedBytes;
@@ -198,6 +208,16 @@ public final class InMageRcmFailbackReplicationDetails extends ReplicationProvid
      * Creates an instance of InMageRcmFailbackReplicationDetails class.
      */
     public InMageRcmFailbackReplicationDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

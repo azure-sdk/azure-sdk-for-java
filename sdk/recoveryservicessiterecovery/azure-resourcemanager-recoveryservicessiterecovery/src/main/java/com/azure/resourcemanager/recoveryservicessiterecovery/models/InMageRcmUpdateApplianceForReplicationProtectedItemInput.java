@@ -6,17 +6,29 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMageRcm provider specific input to update appliance for replication protected item.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageRcmUpdateApplianceForReplicationProtectedItemInput.class,
+    visible = true)
 @JsonTypeName("InMageRcm")
 @Fluent
 public final class InMageRcmUpdateApplianceForReplicationProtectedItemInput
     extends UpdateReplicationProtectedItemProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageRcm";
+
     /*
      * The run as account Id.
      */
@@ -27,6 +39,16 @@ public final class InMageRcmUpdateApplianceForReplicationProtectedItemInput
      * Creates an instance of InMageRcmUpdateApplianceForReplicationProtectedItemInput class.
      */
     public InMageRcmUpdateApplianceForReplicationProtectedItemInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

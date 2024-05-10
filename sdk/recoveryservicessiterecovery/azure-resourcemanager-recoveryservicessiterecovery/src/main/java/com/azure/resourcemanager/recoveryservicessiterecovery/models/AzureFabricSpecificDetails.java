@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * Azure Fabric Specific Details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = AzureFabricSpecificDetails.class,
+    visible = true)
 @JsonTypeName("Azure")
 @Fluent
 public final class AzureFabricSpecificDetails extends FabricSpecificDetails {
+    /*
+     * Gets the class type. Overridden in derived classes.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "Azure";
+
     /*
      * The Location for the Azure fabric.
      */
@@ -51,6 +63,16 @@ public final class AzureFabricSpecificDetails extends FabricSpecificDetails {
      * Creates an instance of AzureFabricSpecificDetails class.
      */
     public AzureFabricSpecificDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the class type. Overridden in derived classes.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

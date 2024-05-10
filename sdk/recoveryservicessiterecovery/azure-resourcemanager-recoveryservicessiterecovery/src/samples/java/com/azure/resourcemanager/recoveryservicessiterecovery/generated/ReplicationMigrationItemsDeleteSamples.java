@@ -9,9 +9,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
  */
 public final class ReplicationMigrationItemsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationMigrationItems_Delete.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples/ReplicationMigrationItems_Delete.json
      */
     /**
      * Sample code: Delete the migration item.
@@ -20,7 +18,8 @@ public final class ReplicationMigrationItemsDeleteSamples {
      */
     public static void
         deleteTheMigrationItem(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationMigrationItems().delete("migrationvault", "resourcegroup1", "vmwarefabric1",
-            "vmwareContainer1", "virtualmachine1", null, com.azure.core.util.Context.NONE);
+        manager.replicationMigrationItems()
+            .delete("migrationvault", "resourcegroup1", "vmwarefabric1", "vmwareContainer1", "virtualmachine1", null,
+                com.azure.core.util.Context.NONE);
     }
 }

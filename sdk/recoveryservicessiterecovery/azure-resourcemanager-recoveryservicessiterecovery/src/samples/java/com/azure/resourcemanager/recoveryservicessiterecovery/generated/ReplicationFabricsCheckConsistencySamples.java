@@ -9,9 +9,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
  */
 public final class ReplicationFabricsCheckConsistencySamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationFabrics_CheckConsistency.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples/ReplicationFabrics_CheckConsistency.json
      */
     /**
      * Sample code: Checks the consistency of the ASR fabric.
@@ -20,7 +18,7 @@ public final class ReplicationFabricsCheckConsistencySamples {
      */
     public static void checksTheConsistencyOfTheASRFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().checkConsistency("vault1", "resourceGroupPS1", "cloud1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationFabrics()
+            .checkConsistency("vault1", "resourceGroupPS1", "cloud1", com.azure.core.util.Context.NONE);
     }
 }

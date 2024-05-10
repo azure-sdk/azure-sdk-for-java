@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -16,9 +17,9 @@ import java.util.List;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = RecoveryPlanGroupTaskDetails.class)
+    defaultImpl = RecoveryPlanGroupTaskDetails.class,
+    visible = true)
 @JsonTypeName("RecoveryPlanGroupTaskDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(
@@ -26,6 +27,13 @@ import java.util.List;
         value = RecoveryPlanShutdownGroupTaskDetails.class) })
 @Fluent
 public class RecoveryPlanGroupTaskDetails extends GroupTaskDetails {
+    /*
+     * The type of task details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "RecoveryPlanGroupTaskDetails";
+
     /*
      * The name.
      */
@@ -48,6 +56,16 @@ public class RecoveryPlanGroupTaskDetails extends GroupTaskDetails {
      * Creates an instance of RecoveryPlanGroupTaskDetails class.
      */
     public RecoveryPlanGroupTaskDetails() {
+    }
+
+    /**
+     * Get the instanceType property: The type of task details.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

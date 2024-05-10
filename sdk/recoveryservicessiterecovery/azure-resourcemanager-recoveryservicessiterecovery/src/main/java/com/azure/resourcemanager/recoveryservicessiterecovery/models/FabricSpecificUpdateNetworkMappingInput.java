@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = FabricSpecificUpdateNetworkMappingInput.class)
+    defaultImpl = FabricSpecificUpdateNetworkMappingInput.class,
+    visible = true)
 @JsonTypeName("FabricSpecificUpdateNetworkMappingInput")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureToAzure", value = AzureToAzureUpdateNetworkMappingInput.class),
@@ -24,10 +26,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "VmmToVmm", value = VmmToVmmUpdateNetworkMappingInput.class) })
 @Immutable
 public class FabricSpecificUpdateNetworkMappingInput {
+    /*
+     * The instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of FabricSpecificUpdateNetworkMappingInput class.
      */
     public FabricSpecificUpdateNetworkMappingInput() {
+        this.instanceType = "FabricSpecificUpdateNetworkMappingInput";
+    }
+
+    /**
+     * Get the instanceType property: The instance type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

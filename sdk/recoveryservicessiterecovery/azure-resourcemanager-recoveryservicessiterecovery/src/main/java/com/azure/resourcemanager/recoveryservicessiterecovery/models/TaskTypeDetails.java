@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = TaskTypeDetails.class)
+    defaultImpl = TaskTypeDetails.class,
+    visible = true)
 @JsonTypeName("TaskTypeDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AutomationRunbookTaskDetails", value = AutomationRunbookTaskDetails.class),
@@ -27,10 +29,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "VmNicUpdatesTaskDetails", value = VmNicUpdatesTaskDetails.class) })
 @Immutable
 public class TaskTypeDetails {
+    /*
+     * The type of task details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of TaskTypeDetails class.
      */
     public TaskTypeDetails() {
+        this.instanceType = "TaskTypeDetails";
+    }
+
+    /**
+     * Get the instanceType property: The type of task details.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

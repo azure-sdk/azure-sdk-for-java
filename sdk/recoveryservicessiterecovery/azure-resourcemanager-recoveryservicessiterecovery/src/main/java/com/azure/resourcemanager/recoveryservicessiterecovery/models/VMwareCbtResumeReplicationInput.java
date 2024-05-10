@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * VMwareCbt specific resume replication input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = VMwareCbtResumeReplicationInput.class,
+    visible = true)
 @JsonTypeName("VMwareCbt")
 @Fluent
 public final class VMwareCbtResumeReplicationInput extends ResumeReplicationProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "VMwareCbt";
+
     /*
      * A value indicating whether Migration resources to be deleted.
      */
@@ -26,6 +38,16 @@ public final class VMwareCbtResumeReplicationInput extends ResumeReplicationProv
      * Creates an instance of VMwareCbtResumeReplicationInput class.
      */
     public VMwareCbtResumeReplicationInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

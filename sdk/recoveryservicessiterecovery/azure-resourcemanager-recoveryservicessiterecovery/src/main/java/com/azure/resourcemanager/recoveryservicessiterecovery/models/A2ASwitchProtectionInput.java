@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * A2A specific switch protection input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = A2ASwitchProtectionInput.class,
+    visible = true)
 @JsonTypeName("A2A")
 @Fluent
 public final class A2ASwitchProtectionInput extends SwitchProtectionProviderSpecificInput {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2A";
+
     /*
      * The recovery container Id.
      */
@@ -99,6 +111,16 @@ public final class A2ASwitchProtectionInput extends SwitchProtectionProviderSpec
      * Creates an instance of A2ASwitchProtectionInput class.
      */
     public A2ASwitchProtectionInput() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * VMwareCbt specific resync input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = VMwareCbtResyncInput.class,
+    visible = true)
 @JsonTypeName("VMwareCbt")
 @Fluent
 public final class VMwareCbtResyncInput extends ResyncProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "VMwareCbt";
+
     /*
      * A value indicating whether CBT is to be reset.
      */
@@ -27,6 +39,16 @@ public final class VMwareCbtResyncInput extends ResyncProviderSpecificInput {
      * Creates an instance of VMwareCbtResyncInput class.
      */
     public VMwareCbtResyncInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -58,8 +80,9 @@ public final class VMwareCbtResyncInput extends ResyncProviderSpecificInput {
     public void validate() {
         super.validate();
         if (skipCbtReset() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property skipCbtReset in model VMwareCbtResyncInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property skipCbtReset in model VMwareCbtResyncInput"));
         }
     }
 

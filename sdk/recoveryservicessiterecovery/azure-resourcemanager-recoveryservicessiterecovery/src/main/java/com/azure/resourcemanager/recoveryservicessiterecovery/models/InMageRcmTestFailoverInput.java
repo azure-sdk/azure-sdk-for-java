@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMageRcm provider specific input for test failover.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageRcmTestFailoverInput.class,
+    visible = true)
 @JsonTypeName("InMageRcm")
 @Fluent
 public final class InMageRcmTestFailoverInput extends TestFailoverProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageRcm";
+
     /*
      * The test network Id.
      */
@@ -23,8 +35,7 @@ public final class InMageRcmTestFailoverInput extends TestFailoverProviderSpecif
     private String networkId;
 
     /*
-     * The recovery point id to be passed to test failover to a particular recovery point. In case of latest recovery
-     * point, null should be passed.
+     * The recovery point id to be passed to test failover to a particular recovery point. In case of latest recovery point, null should be passed.
      */
     @JsonProperty(value = "recoveryPointId")
     private String recoveryPointId;
@@ -33,6 +44,16 @@ public final class InMageRcmTestFailoverInput extends TestFailoverProviderSpecif
      * Creates an instance of InMageRcmTestFailoverInput class.
      */
     public InMageRcmTestFailoverInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

@@ -7,23 +7,27 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * This class represents a task which is actually a workflow so that one can navigate to its individual drill down.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "instanceType",
-    defaultImpl = JobTaskDetails.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "instanceType", defaultImpl = JobTaskDetails.class, visible = true)
 @JsonTypeName("JobTaskDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "FabricReplicationGroupTaskDetails", value = FabricReplicationGroupTaskDetails.class),
     @JsonSubTypes.Type(name = "VirtualMachineTaskDetails", value = VirtualMachineTaskDetails.class) })
 @Fluent
 public class JobTaskDetails extends TaskTypeDetails {
+    /*
+     * The type of task details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "JobTaskDetails";
+
     /*
      * The job entity.
      */
@@ -34,6 +38,16 @@ public class JobTaskDetails extends TaskTypeDetails {
      * Creates an instance of JobTaskDetails class.
      */
     public JobTaskDetails() {
+    }
+
+    /**
+     * Get the instanceType property: The type of task details.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

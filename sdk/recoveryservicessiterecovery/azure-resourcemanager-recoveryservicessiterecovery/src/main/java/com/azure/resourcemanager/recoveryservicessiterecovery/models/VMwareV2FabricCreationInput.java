@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * VMwareV2 fabric provider specific settings.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = VMwareV2FabricCreationInput.class,
+    visible = true)
 @JsonTypeName("VMwareV2")
 @Fluent
 public final class VMwareV2FabricCreationInput extends FabricSpecificCreationInput {
+    /*
+     * Gets the class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "VMwareV2";
+
     /*
      * The ARM Id of the VMware site.
      */
@@ -39,6 +51,16 @@ public final class VMwareV2FabricCreationInput extends FabricSpecificCreationInp
      * Creates an instance of VMwareV2FabricCreationInput class.
      */
     public VMwareV2FabricCreationInput() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -110,8 +132,9 @@ public final class VMwareV2FabricCreationInput extends FabricSpecificCreationInp
     public void validate() {
         super.validate();
         if (migrationSolutionId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property migrationSolutionId in model VMwareV2FabricCreationInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property migrationSolutionId in model VMwareV2FabricCreationInput"));
         }
     }
 

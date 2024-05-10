@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * This class represents the vm NicUpdates task details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = VmNicUpdatesTaskDetails.class,
+    visible = true)
 @JsonTypeName("VmNicUpdatesTaskDetails")
 @Fluent
 public final class VmNicUpdatesTaskDetails extends TaskTypeDetails {
+    /*
+     * The type of task details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "VmNicUpdatesTaskDetails";
+
     /*
      * Virtual machine Id.
      */
@@ -38,6 +50,16 @@ public final class VmNicUpdatesTaskDetails extends TaskTypeDetails {
      * Creates an instance of VmNicUpdatesTaskDetails class.
      */
     public VmNicUpdatesTaskDetails() {
+    }
+
+    /**
+     * Get the instanceType property: The type of task details.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

@@ -9,9 +9,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
  */
 public final class ReplicationAlertSettingsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationAlertSettings_Get.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples/ReplicationAlertSettings_Get.json
      */
     /**
      * Sample code: Gets an email notification(alert) configuration.
@@ -20,7 +18,7 @@ public final class ReplicationAlertSettingsGetSamples {
      */
     public static void getsAnEmailNotificationAlertConfiguration(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationAlertSettings().getWithResponse("vault1", "resourceGroupPS1", "defaultAlertSetting",
-            com.azure.core.util.Context.NONE);
+        manager.replicationAlertSettings()
+            .getWithResponse("vault1", "resourceGroupPS1", "defaultAlertSetting", com.azure.core.util.Context.NONE);
     }
 }

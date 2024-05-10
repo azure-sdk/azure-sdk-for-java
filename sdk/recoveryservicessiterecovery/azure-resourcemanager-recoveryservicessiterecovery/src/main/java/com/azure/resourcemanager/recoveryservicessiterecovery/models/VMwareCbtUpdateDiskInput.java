@@ -104,8 +104,9 @@ public final class VMwareCbtUpdateDiskInput {
      */
     public void validate() {
         if (diskId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property diskId in model VMwareCbtUpdateDiskInput"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property diskId in model VMwareCbtUpdateDiskInput"));
         }
     }
 

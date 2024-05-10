@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,17 +16,34 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = MigrationProviderSpecificSettings.class)
+    defaultImpl = MigrationProviderSpecificSettings.class,
+    visible = true)
 @JsonTypeName("MigrationProviderSpecificSettings")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "VMwareCbt", value = VMwareCbtMigrationDetails.class) })
 @Immutable
 public class MigrationProviderSpecificSettings {
+    /*
+     * Gets the instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of MigrationProviderSpecificSettings class.
      */
     public MigrationProviderSpecificSettings() {
+        this.instanceType = "MigrationProviderSpecificSettings";
+    }
+
+    /**
+     * Get the instanceType property: Gets the instance type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

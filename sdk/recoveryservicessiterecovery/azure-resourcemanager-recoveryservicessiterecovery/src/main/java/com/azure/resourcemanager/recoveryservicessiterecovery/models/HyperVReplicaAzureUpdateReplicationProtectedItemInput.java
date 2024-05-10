@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -15,11 +16,22 @@ import java.util.Map;
 /**
  * HyperV replica Azure input to update replication protected item.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = HyperVReplicaAzureUpdateReplicationProtectedItemInput.class,
+    visible = true)
 @JsonTypeName("HyperVReplicaAzure")
 @Fluent
 public final class HyperVReplicaAzureUpdateReplicationProtectedItemInput
     extends UpdateReplicationProtectedItemProviderInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "HyperVReplicaAzure";
+
     /*
      * The recovery Azure resource group Id for classic deployment.
      */
@@ -94,6 +106,16 @@ public final class HyperVReplicaAzureUpdateReplicationProtectedItemInput
      * Creates an instance of HyperVReplicaAzureUpdateReplicationProtectedItemInput class.
      */
     public HyperVReplicaAzureUpdateReplicationProtectedItemInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

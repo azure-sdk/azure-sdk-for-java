@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Provider specific input for InMageAzureV2 switch provider.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageAzureV2SwitchProviderInput.class,
+    visible = true)
 @JsonTypeName("InMageAzureV2")
 @Fluent
 public final class InMageAzureV2SwitchProviderInput extends SwitchProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageAzureV2";
+
     /*
      * The target vault Id.
      */
@@ -39,6 +51,16 @@ public final class InMageAzureV2SwitchProviderInput extends SwitchProviderSpecif
      * Creates an instance of InMageAzureV2SwitchProviderInput class.
      */
     public InMageAzureV2SwitchProviderInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -110,16 +132,19 @@ public final class InMageAzureV2SwitchProviderInput extends SwitchProviderSpecif
     public void validate() {
         super.validate();
         if (targetVaultId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property targetVaultId in model InMageAzureV2SwitchProviderInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property targetVaultId in model InMageAzureV2SwitchProviderInput"));
         }
         if (targetFabricId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property targetFabricId in model InMageAzureV2SwitchProviderInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property targetFabricId in model InMageAzureV2SwitchProviderInput"));
         }
         if (targetApplianceId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property targetApplianceId in model InMageAzureV2SwitchProviderInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property targetApplianceId in model InMageAzureV2SwitchProviderInput"));
         }
     }
 

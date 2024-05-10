@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMageRcm provider specific input for unplanned failover.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageRcmUnplannedFailoverInput.class,
+    visible = true)
 @JsonTypeName("InMageRcm")
 @Fluent
 public final class InMageRcmUnplannedFailoverInput extends UnplannedFailoverProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageRcm";
+
     /*
      * A value indicating whether VM is to be shutdown.
      */
@@ -24,8 +36,7 @@ public final class InMageRcmUnplannedFailoverInput extends UnplannedFailoverProv
     private String performShutdown;
 
     /*
-     * The recovery point id to be passed to failover to a particular recovery point. In case of latest recovery point,
-     * null should be passed.
+     * The recovery point id to be passed to failover to a particular recovery point. In case of latest recovery point, null should be passed.
      */
     @JsonProperty(value = "recoveryPointId")
     private String recoveryPointId;
@@ -34,6 +45,16 @@ public final class InMageRcmUnplannedFailoverInput extends UnplannedFailoverProv
      * Creates an instance of InMageRcmUnplannedFailoverInput class.
      */
     public InMageRcmUnplannedFailoverInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -87,8 +108,9 @@ public final class InMageRcmUnplannedFailoverInput extends UnplannedFailoverProv
     public void validate() {
         super.validate();
         if (performShutdown() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property performShutdown in model InMageRcmUnplannedFailoverInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property performShutdown in model InMageRcmUnplannedFailoverInput"));
         }
     }
 

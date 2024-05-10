@@ -52,8 +52,8 @@ public final class TestMigrateInput {
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property properties in model TestMigrateInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property properties in model TestMigrateInput"));
         } else {
             properties().validate();
         }

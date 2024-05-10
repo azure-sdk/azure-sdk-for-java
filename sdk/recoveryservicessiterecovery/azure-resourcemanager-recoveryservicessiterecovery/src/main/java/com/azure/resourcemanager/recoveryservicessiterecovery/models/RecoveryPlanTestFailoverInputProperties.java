@@ -133,12 +133,14 @@ public final class RecoveryPlanTestFailoverInputProperties {
      */
     public void validate() {
         if (failoverDirection() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property failoverDirection in model RecoveryPlanTestFailoverInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property failoverDirection in model RecoveryPlanTestFailoverInputProperties"));
         }
         if (networkType() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property networkType in model RecoveryPlanTestFailoverInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property networkType in model RecoveryPlanTestFailoverInputProperties"));
         }
         if (providerSpecificDetails() != null) {
             providerSpecificDetails().forEach(e -> e.validate());

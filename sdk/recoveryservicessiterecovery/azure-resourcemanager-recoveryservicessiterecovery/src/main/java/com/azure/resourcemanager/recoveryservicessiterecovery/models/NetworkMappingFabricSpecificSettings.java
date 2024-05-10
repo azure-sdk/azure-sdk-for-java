@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = NetworkMappingFabricSpecificSettings.class)
+    defaultImpl = NetworkMappingFabricSpecificSettings.class,
+    visible = true)
 @JsonTypeName("NetworkMappingFabricSpecificSettings")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "AzureToAzure", value = AzureToAzureNetworkMappingSettings.class),
@@ -24,10 +26,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "VmmToVmm", value = VmmToVmmNetworkMappingSettings.class) })
 @Immutable
 public class NetworkMappingFabricSpecificSettings {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of NetworkMappingFabricSpecificSettings class.
      */
     public NetworkMappingFabricSpecificSettings() {
+        this.instanceType = "NetworkMappingFabricSpecificSettings";
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

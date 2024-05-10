@@ -53,8 +53,9 @@ public final class RecoveryPlanTestFailoverCleanupInput {
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property properties in model RecoveryPlanTestFailoverCleanupInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property properties in model RecoveryPlanTestFailoverCleanupInput"));
         } else {
             properties().validate();
         }

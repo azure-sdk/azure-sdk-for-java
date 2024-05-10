@@ -106,8 +106,9 @@ public final class A2AProtectionIntentDiskInputDetails {
      */
     public void validate() {
         if (diskUri() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property diskUri in model A2AProtectionIntentDiskInputDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property diskUri in model A2AProtectionIntentDiskInputDetails"));
         }
         if (recoveryAzureStorageAccountCustomInput() != null) {
             recoveryAzureStorageAccountCustomInput().validate();

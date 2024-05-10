@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,18 +16,35 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = UpdateReplicationProtectedItemProviderSpecificInput.class)
+    defaultImpl = UpdateReplicationProtectedItemProviderSpecificInput.class,
+    visible = true)
 @JsonTypeName("UpdateApplianceForReplicationProtectedItemProviderSpecificInput")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "InMageRcm", value = InMageRcmUpdateApplianceForReplicationProtectedItemInput.class) })
 @Immutable
 public class UpdateReplicationProtectedItemProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of UpdateReplicationProtectedItemProviderSpecificInput class.
      */
     public UpdateReplicationProtectedItemProviderSpecificInput() {
+        this.instanceType = "UpdateApplianceForReplicationProtectedItemProviderSpecificInput";
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

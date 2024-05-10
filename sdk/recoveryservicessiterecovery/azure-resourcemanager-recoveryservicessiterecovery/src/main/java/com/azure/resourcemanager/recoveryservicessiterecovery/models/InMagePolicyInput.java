@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * VMWare Azure specific protection profile Input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMagePolicyInput.class,
+    visible = true)
 @JsonTypeName("InMage")
 @Fluent
 public final class InMagePolicyInput extends PolicyProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMage";
+
     /*
      * The recovery point threshold in minutes.
      */
@@ -48,6 +60,16 @@ public final class InMagePolicyInput extends PolicyProviderSpecificInput {
     }
 
     /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
+    }
+
+    /**
      * Get the recoveryPointThresholdInMinutes property: The recovery point threshold in minutes.
      * 
      * @return the recoveryPointThresholdInMinutes value.
@@ -68,8 +90,7 @@ public final class InMagePolicyInput extends PolicyProviderSpecificInput {
     }
 
     /**
-     * Get the recoveryPointHistory property: The duration in minutes until which the recovery points need to be
-     * stored.
+     * Get the recoveryPointHistory property: The duration in minutes until which the recovery points need to be stored.
      * 
      * @return the recoveryPointHistory value.
      */
@@ -78,8 +99,7 @@ public final class InMagePolicyInput extends PolicyProviderSpecificInput {
     }
 
     /**
-     * Set the recoveryPointHistory property: The duration in minutes until which the recovery points need to be
-     * stored.
+     * Set the recoveryPointHistory property: The duration in minutes until which the recovery points need to be stored.
      * 
      * @param recoveryPointHistory the recoveryPointHistory value to set.
      * @return the InMagePolicyInput object itself.
@@ -140,8 +160,9 @@ public final class InMagePolicyInput extends PolicyProviderSpecificInput {
     public void validate() {
         super.validate();
         if (multiVmSyncStatus() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property multiVmSyncStatus in model InMagePolicyInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property multiVmSyncStatus in model InMagePolicyInput"));
         }
     }
 

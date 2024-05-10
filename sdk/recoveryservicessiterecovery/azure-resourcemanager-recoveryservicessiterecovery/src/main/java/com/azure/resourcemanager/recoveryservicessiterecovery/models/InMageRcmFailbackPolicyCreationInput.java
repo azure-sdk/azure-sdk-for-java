@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMageRcmFailback policy creation input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageRcmFailbackPolicyCreationInput.class,
+    visible = true)
 @JsonTypeName("InMageRcmFailback")
 @Fluent
 public final class InMageRcmFailbackPolicyCreationInput extends PolicyProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageRcmFailback";
+
     /*
      * The crash consistent snapshot frequency (in minutes).
      */
@@ -32,6 +44,16 @@ public final class InMageRcmFailbackPolicyCreationInput extends PolicyProviderSp
      * Creates an instance of InMageRcmFailbackPolicyCreationInput class.
      */
     public InMageRcmFailbackPolicyCreationInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

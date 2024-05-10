@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMageRcm update protection container mapping.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageRcmUpdateContainerMappingInput.class,
+    visible = true)
 @JsonTypeName("InMageRcm")
 @Fluent
 public final class InMageRcmUpdateContainerMappingInput extends ReplicationProviderSpecificUpdateContainerMappingInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageRcm";
+
     /*
      * A value indicating whether agent auto upgrade has to be enabled.
      */
@@ -27,6 +39,16 @@ public final class InMageRcmUpdateContainerMappingInput extends ReplicationProvi
      * Creates an instance of InMageRcmUpdateContainerMappingInput class.
      */
     public InMageRcmUpdateContainerMappingInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -58,8 +80,9 @@ public final class InMageRcmUpdateContainerMappingInput extends ReplicationProvi
     public void validate() {
         super.validate();
         if (enableAgentAutoUpgrade() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property enableAgentAutoUpgrade in model InMageRcmUpdateContainerMappingInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property enableAgentAutoUpgrade in model InMageRcmUpdateContainerMappingInput"));
         }
     }
 

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
@@ -14,10 +15,21 @@ import java.util.List;
 /**
  * HyperV replica 2012 replication details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = HyperVReplicaReplicationDetails.class,
+    visible = true)
 @JsonTypeName("HyperVReplica2012")
 @Fluent
 public final class HyperVReplicaReplicationDetails extends ReplicationProviderSpecificSettings {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "HyperVReplica2012";
+
     /*
      * The Last replication time.
      */
@@ -64,6 +76,16 @@ public final class HyperVReplicaReplicationDetails extends ReplicationProviderSp
      * Creates an instance of HyperVReplicaReplicationDetails class.
      */
     public HyperVReplicaReplicationDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

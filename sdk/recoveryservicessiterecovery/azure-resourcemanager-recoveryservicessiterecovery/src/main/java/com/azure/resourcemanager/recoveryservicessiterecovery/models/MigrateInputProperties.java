@@ -52,8 +52,9 @@ public final class MigrateInputProperties {
      */
     public void validate() {
         if (providerSpecificDetails() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property providerSpecificDetails in model MigrateInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property providerSpecificDetails in model MigrateInputProperties"));
         } else {
             providerSpecificDetails().validate();
         }

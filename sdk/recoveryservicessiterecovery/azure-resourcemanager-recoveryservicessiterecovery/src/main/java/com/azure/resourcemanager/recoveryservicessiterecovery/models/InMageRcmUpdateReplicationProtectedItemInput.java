@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * InMageRcm provider specific input to update replication protected item.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageRcmUpdateReplicationProtectedItemInput.class,
+    visible = true)
 @JsonTypeName("InMageRcm")
 @Fluent
 public final class InMageRcmUpdateReplicationProtectedItemInput extends UpdateReplicationProtectedItemProviderInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageRcm";
+
     /*
      * The target VM name.
      */
@@ -83,10 +95,44 @@ public final class InMageRcmUpdateReplicationProtectedItemInput extends UpdateRe
     @JsonProperty(value = "licenseType")
     private LicenseType licenseType;
 
+    /*
+     * The SQL Server license type.
+     */
+    @JsonProperty(value = "sqlServerLicenseType")
+    private SqlServerLicenseType sqlServerLicenseType;
+
+    /*
+     * The target VM tags.
+     */
+    @JsonProperty(value = "targetVmTags")
+    private List<UserCreatedResourceTag> targetVmTags;
+
+    /*
+     * The tags for the target managed disks.
+     */
+    @JsonProperty(value = "targetManagedDiskTags")
+    private List<UserCreatedResourceTag> targetManagedDiskTags;
+
+    /*
+     * The tags for the target NICs.
+     */
+    @JsonProperty(value = "targetNicTags")
+    private List<UserCreatedResourceTag> targetNicTags;
+
     /**
      * Creates an instance of InMageRcmUpdateReplicationProtectedItemInput class.
      */
     public InMageRcmUpdateReplicationProtectedItemInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -312,6 +358,88 @@ public final class InMageRcmUpdateReplicationProtectedItemInput extends UpdateRe
     }
 
     /**
+     * Get the sqlServerLicenseType property: The SQL Server license type.
+     * 
+     * @return the sqlServerLicenseType value.
+     */
+    public SqlServerLicenseType sqlServerLicenseType() {
+        return this.sqlServerLicenseType;
+    }
+
+    /**
+     * Set the sqlServerLicenseType property: The SQL Server license type.
+     * 
+     * @param sqlServerLicenseType the sqlServerLicenseType value to set.
+     * @return the InMageRcmUpdateReplicationProtectedItemInput object itself.
+     */
+    public InMageRcmUpdateReplicationProtectedItemInput
+        withSqlServerLicenseType(SqlServerLicenseType sqlServerLicenseType) {
+        this.sqlServerLicenseType = sqlServerLicenseType;
+        return this;
+    }
+
+    /**
+     * Get the targetVmTags property: The target VM tags.
+     * 
+     * @return the targetVmTags value.
+     */
+    public List<UserCreatedResourceTag> targetVmTags() {
+        return this.targetVmTags;
+    }
+
+    /**
+     * Set the targetVmTags property: The target VM tags.
+     * 
+     * @param targetVmTags the targetVmTags value to set.
+     * @return the InMageRcmUpdateReplicationProtectedItemInput object itself.
+     */
+    public InMageRcmUpdateReplicationProtectedItemInput withTargetVmTags(List<UserCreatedResourceTag> targetVmTags) {
+        this.targetVmTags = targetVmTags;
+        return this;
+    }
+
+    /**
+     * Get the targetManagedDiskTags property: The tags for the target managed disks.
+     * 
+     * @return the targetManagedDiskTags value.
+     */
+    public List<UserCreatedResourceTag> targetManagedDiskTags() {
+        return this.targetManagedDiskTags;
+    }
+
+    /**
+     * Set the targetManagedDiskTags property: The tags for the target managed disks.
+     * 
+     * @param targetManagedDiskTags the targetManagedDiskTags value to set.
+     * @return the InMageRcmUpdateReplicationProtectedItemInput object itself.
+     */
+    public InMageRcmUpdateReplicationProtectedItemInput
+        withTargetManagedDiskTags(List<UserCreatedResourceTag> targetManagedDiskTags) {
+        this.targetManagedDiskTags = targetManagedDiskTags;
+        return this;
+    }
+
+    /**
+     * Get the targetNicTags property: The tags for the target NICs.
+     * 
+     * @return the targetNicTags value.
+     */
+    public List<UserCreatedResourceTag> targetNicTags() {
+        return this.targetNicTags;
+    }
+
+    /**
+     * Set the targetNicTags property: The tags for the target NICs.
+     * 
+     * @param targetNicTags the targetNicTags value to set.
+     * @return the InMageRcmUpdateReplicationProtectedItemInput object itself.
+     */
+    public InMageRcmUpdateReplicationProtectedItemInput withTargetNicTags(List<UserCreatedResourceTag> targetNicTags) {
+        this.targetNicTags = targetNicTags;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -321,6 +449,15 @@ public final class InMageRcmUpdateReplicationProtectedItemInput extends UpdateRe
         super.validate();
         if (vmNics() != null) {
             vmNics().forEach(e -> e.validate());
+        }
+        if (targetVmTags() != null) {
+            targetVmTags().forEach(e -> e.validate());
+        }
+        if (targetManagedDiskTags() != null) {
+            targetManagedDiskTags().forEach(e -> e.validate());
+        }
+        if (targetNicTags() != null) {
+            targetNicTags().forEach(e -> e.validate());
         }
     }
 }

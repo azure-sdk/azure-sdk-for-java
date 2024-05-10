@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A2A provider specific settings.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = A2ACrossClusterMigrationReplicationDetails.class,
+    visible = true)
 @JsonTypeName("A2ACrossClusterMigration")
 @Fluent
 public final class A2ACrossClusterMigrationReplicationDetails extends ReplicationProviderSpecificSettings {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2ACrossClusterMigration";
+
     /*
      * The fabric specific object Id of the virtual machine.
      */
@@ -47,9 +59,7 @@ public final class A2ACrossClusterMigrationReplicationDetails extends Replicatio
     private String vmProtectionStateDescription;
 
     /*
-     * An id associated with the PE that survives actions like switch protection which change the backing PE/CPE
-     * objects internally.The lifecycle id gets carried forward to have a link/continuity in being able to have an Id
-     * that denotes the "same" protected item even though other internal Ids/ARM Id might be changing.
+     * An id associated with the PE that survives actions like switch protection which change the backing PE/CPE objects internally.The lifecycle id gets carried forward to have a link/continuity in being able to have an Id that denotes the "same" protected item even though other internal Ids/ARM Id might be changing.
      */
     @JsonProperty(value = "lifecycleId")
     private String lifecycleId;
@@ -58,6 +68,16 @@ public final class A2ACrossClusterMigrationReplicationDetails extends Replicatio
      * Creates an instance of A2ACrossClusterMigrationReplicationDetails class.
      */
     public A2ACrossClusterMigrationReplicationDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

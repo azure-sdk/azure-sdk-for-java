@@ -53,8 +53,9 @@ public final class UpdateApplianceForReplicationProtectedItemInput {
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property properties in model UpdateApplianceForReplicationProtectedItemInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property properties in model UpdateApplianceForReplicationProtectedItemInput"));
         } else {
             properties().validate();
         }

@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Recovery plan script action details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = RecoveryPlanScriptActionDetails.class,
+    visible = true)
 @JsonTypeName("ScriptActionDetails")
 @Fluent
 public final class RecoveryPlanScriptActionDetails extends RecoveryPlanActionDetails {
+    /*
+     * Gets the type of action details (see RecoveryPlanActionDetailsTypes enum for possible values).
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "ScriptActionDetails";
+
     /*
      * The script path.
      */
@@ -39,6 +51,17 @@ public final class RecoveryPlanScriptActionDetails extends RecoveryPlanActionDet
      * Creates an instance of RecoveryPlanScriptActionDetails class.
      */
     public RecoveryPlanScriptActionDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the type of action details (see RecoveryPlanActionDetailsTypes enum for
+     * possible values).
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -110,12 +133,14 @@ public final class RecoveryPlanScriptActionDetails extends RecoveryPlanActionDet
     public void validate() {
         super.validate();
         if (path() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property path in model RecoveryPlanScriptActionDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property path in model RecoveryPlanScriptActionDetails"));
         }
         if (fabricLocation() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property fabricLocation in model RecoveryPlanScriptActionDetails"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property fabricLocation in model RecoveryPlanScriptActionDetails"));
         }
     }
 

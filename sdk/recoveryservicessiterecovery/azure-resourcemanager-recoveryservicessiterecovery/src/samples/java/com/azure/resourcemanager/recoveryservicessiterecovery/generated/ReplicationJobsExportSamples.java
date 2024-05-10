@@ -11,9 +11,7 @@ import com.azure.resourcemanager.recoveryservicessiterecovery.models.JobQueryPar
  */
 public final class ReplicationJobsExportSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationJobs_Export.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples/ReplicationJobs_Export.json
      */
     /**
      * Sample code: Exports the details of the Azure Site Recovery jobs of the vault.
@@ -22,9 +20,12 @@ public final class ReplicationJobsExportSamples {
      */
     public static void exportsTheDetailsOfTheAzureSiteRecoveryJobsOfTheVault(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationJobs().export("vault1", "resourceGroupPS1",
-            new JobQueryParameter().withStartTime("2017-04-27T14:26:51.9161395Z")
-                .withEndTime("2017-05-04T14:26:51.9161395Z").withAffectedObjectTypes("").withJobStatus(""),
-            com.azure.core.util.Context.NONE);
+        manager.replicationJobs()
+            .export("vault1", "resourceGroupPS1",
+                new JobQueryParameter().withStartTime("2017-04-27T14:26:51.9161395Z")
+                    .withEndTime("2017-05-04T14:26:51.9161395Z")
+                    .withAffectedObjectTypes("")
+                    .withJobStatus(""),
+                com.azure.core.util.Context.NONE);
     }
 }

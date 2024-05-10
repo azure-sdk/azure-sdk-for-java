@@ -208,12 +208,12 @@ public final class InMageRcmNicInput {
      */
     public void validate() {
         if (nicId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property nicId in model InMageRcmNicInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property nicId in model InMageRcmNicInput"));
         }
         if (isPrimaryNic() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property isPrimaryNic in model InMageRcmNicInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property isPrimaryNic in model InMageRcmNicInput"));
         }
     }
 

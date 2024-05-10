@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.List;
 /**
  * VMware Azure specific enable protection input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageEnableProtectionInput.class,
+    visible = true)
 @JsonTypeName("InMage")
 @Fluent
 public final class InMageEnableProtectionInput extends EnableProtectionProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMage";
+
     /*
      * The VM Name.
      */
@@ -82,6 +94,16 @@ public final class InMageEnableProtectionInput extends EnableProtectionProviderS
      * Creates an instance of InMageEnableProtectionInput class.
      */
     public InMageEnableProtectionInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -293,24 +315,29 @@ public final class InMageEnableProtectionInput extends EnableProtectionProviderS
     public void validate() {
         super.validate();
         if (masterTargetId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property masterTargetId in model InMageEnableProtectionInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property masterTargetId in model InMageEnableProtectionInput"));
         }
         if (processServerId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property processServerId in model InMageEnableProtectionInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property processServerId in model InMageEnableProtectionInput"));
         }
         if (retentionDrive() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property retentionDrive in model InMageEnableProtectionInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property retentionDrive in model InMageEnableProtectionInput"));
         }
         if (multiVmGroupId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property multiVmGroupId in model InMageEnableProtectionInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property multiVmGroupId in model InMageEnableProtectionInput"));
         }
         if (multiVmGroupName() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property multiVmGroupName in model InMageEnableProtectionInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property multiVmGroupName in model InMageEnableProtectionInput"));
         }
         if (diskExclusionInput() != null) {
             diskExclusionInput().validate();

@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * InMageRcm provider specific recovery point details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageRcmRecoveryPointDetails.class,
+    visible = true)
 @JsonTypeName("InMageRcm")
 @Immutable
 public final class InMageRcmRecoveryPointDetails extends ProviderSpecificRecoveryPointDetails {
+    /*
+     * Gets the provider type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageRcm";
+
     /*
      * A value indicating whether the recovery point is multi VM consistent.
      */
@@ -26,6 +38,16 @@ public final class InMageRcmRecoveryPointDetails extends ProviderSpecificRecover
      * Creates an instance of InMageRcmRecoveryPointDetails class.
      */
     public InMageRcmRecoveryPointDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the provider type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

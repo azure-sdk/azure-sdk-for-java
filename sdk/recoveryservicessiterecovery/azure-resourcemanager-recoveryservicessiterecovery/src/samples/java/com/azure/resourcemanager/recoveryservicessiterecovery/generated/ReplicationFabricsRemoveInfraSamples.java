@@ -9,9 +9,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
  */
 public final class ReplicationFabricsRemoveInfraSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationInfrastructure_Delete.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples/ReplicationInfrastructure_Delete.json
      */
     /**
      * Sample code: Removes the appliance's infrastructure under the fabric.
@@ -20,7 +18,7 @@ public final class ReplicationFabricsRemoveInfraSamples {
      */
     public static void removesTheApplianceSInfrastructureUnderTheFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationFabrics().removeInfra("resourceGroupPS1", "vault1", "cloud1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationFabrics()
+            .removeInfra("resourceGroupPS1", "vault1", "cloud1", com.azure.core.util.Context.NONE);
     }
 }

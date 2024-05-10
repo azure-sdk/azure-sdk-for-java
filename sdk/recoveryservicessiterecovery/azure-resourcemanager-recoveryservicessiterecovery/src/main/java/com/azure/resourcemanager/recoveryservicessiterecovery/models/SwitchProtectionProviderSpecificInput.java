@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,17 +16,34 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = SwitchProtectionProviderSpecificInput.class)
+    defaultImpl = SwitchProtectionProviderSpecificInput.class,
+    visible = true)
 @JsonTypeName("SwitchProtectionProviderSpecificInput")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "A2A", value = A2ASwitchProtectionInput.class) })
 @Immutable
 public class SwitchProtectionProviderSpecificInput {
+    /*
+     * Gets the Instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of SwitchProtectionProviderSpecificInput class.
      */
     public SwitchProtectionProviderSpecificInput() {
+        this.instanceType = "SwitchProtectionProviderSpecificInput";
+    }
+
+    /**
+     * Get the instanceType property: Gets the Instance type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

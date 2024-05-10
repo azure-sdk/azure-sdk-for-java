@@ -159,16 +159,19 @@ public final class CreateRecoveryPlanInputProperties {
      */
     public void validate() {
         if (primaryFabricId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property primaryFabricId in model CreateRecoveryPlanInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property primaryFabricId in model CreateRecoveryPlanInputProperties"));
         }
         if (recoveryFabricId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryFabricId in model CreateRecoveryPlanInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryFabricId in model CreateRecoveryPlanInputProperties"));
         }
         if (groups() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property groups in model CreateRecoveryPlanInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property groups in model CreateRecoveryPlanInputProperties"));
         } else {
             groups().forEach(e -> e.validate());
         }

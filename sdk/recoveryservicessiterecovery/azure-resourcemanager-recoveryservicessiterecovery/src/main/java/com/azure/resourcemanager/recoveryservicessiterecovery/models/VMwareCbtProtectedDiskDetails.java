@@ -102,6 +102,12 @@ public final class VMwareCbtProtectedDiskDetails {
     @JsonProperty(value = "gatewayOperationDetails", access = JsonProperty.Access.WRITE_ONLY)
     private GatewayOperationDetails gatewayOperationDetails;
 
+    /*
+     * The logical sector size (in bytes), 512 by default.
+     */
+    @JsonProperty(value = "sectorSizeInBytes")
+    private Integer sectorSizeInBytes;
+
     /**
      * Creates an instance of VMwareCbtProtectedDiskDetails class.
      */
@@ -263,6 +269,26 @@ public final class VMwareCbtProtectedDiskDetails {
      */
     public GatewayOperationDetails gatewayOperationDetails() {
         return this.gatewayOperationDetails;
+    }
+
+    /**
+     * Get the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @return the sectorSizeInBytes value.
+     */
+    public Integer sectorSizeInBytes() {
+        return this.sectorSizeInBytes;
+    }
+
+    /**
+     * Set the sectorSizeInBytes property: The logical sector size (in bytes), 512 by default.
+     * 
+     * @param sectorSizeInBytes the sectorSizeInBytes value to set.
+     * @return the VMwareCbtProtectedDiskDetails object itself.
+     */
+    public VMwareCbtProtectedDiskDetails withSectorSizeInBytes(Integer sectorSizeInBytes) {
+        this.sectorSizeInBytes = sectorSizeInBytes;
+        return this;
     }
 
     /**

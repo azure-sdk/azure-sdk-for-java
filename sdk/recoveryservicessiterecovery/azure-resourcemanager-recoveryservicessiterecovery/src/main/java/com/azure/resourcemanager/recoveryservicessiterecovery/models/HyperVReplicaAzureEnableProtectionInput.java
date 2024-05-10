@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -15,10 +16,21 @@ import java.util.Map;
 /**
  * HyperVReplicaAzure specific enable protection input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = HyperVReplicaAzureEnableProtectionInput.class,
+    visible = true)
 @JsonTypeName("HyperVReplicaAzure")
 @Fluent
 public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtectionProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "HyperVReplicaAzure";
+
     /*
      * The Hyper-V host VM Id.
      */
@@ -36,6 +48,12 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
      */
     @JsonProperty(value = "osType")
     private String osType;
+
+    /*
+     * The OS name selected by user.
+     */
+    @JsonProperty(value = "userSelectedOSName")
+    private String userSelectedOSName;
 
     /*
      * The OS disk VHD id associated with VM.
@@ -62,8 +80,7 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     private String targetAzureSubnetId;
 
     /*
-     * The selected option to enable RDP\SSH on target vm after failover. String value of
-     * SrsDataContract.EnableRDPOnTargetOption enum.
+     * The selected option to enable RDP\SSH on target vm after failover. String value of SrsDataContract.EnableRDPOnTargetOption enum.
      */
     @JsonProperty(value = "enableRdpOnTargetOption")
     private String enableRdpOnTargetOption;
@@ -129,6 +146,12 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     private SqlServerLicenseType sqlServerLicenseType;
 
     /*
+     * The target VM security profile.
+     */
+    @JsonProperty(value = "targetVmSecurityProfile")
+    private SecurityProfileProperties targetVmSecurityProfile;
+
+    /*
      * The target VM size.
      */
     @JsonProperty(value = "targetVmSize")
@@ -147,7 +170,7 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     private String useManagedDisksForReplication;
 
     /*
-     * The DiskType.
+     * The disk type.
      */
     @JsonProperty(value = "diskType")
     private DiskAccountType diskType;
@@ -196,6 +219,16 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
      * Creates an instance of HyperVReplicaAzureEnableProtectionInput class.
      */
     public HyperVReplicaAzureEnableProtectionInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -255,6 +288,26 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
      */
     public HyperVReplicaAzureEnableProtectionInput withOsType(String osType) {
         this.osType = osType;
+        return this;
+    }
+
+    /**
+     * Get the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @return the userSelectedOSName value.
+     */
+    public String userSelectedOSName() {
+        return this.userSelectedOSName;
+    }
+
+    /**
+     * Set the userSelectedOSName property: The OS name selected by user.
+     * 
+     * @param userSelectedOSName the userSelectedOSName value to set.
+     * @return the HyperVReplicaAzureEnableProtectionInput object itself.
+     */
+    public HyperVReplicaAzureEnableProtectionInput withUserSelectedOSName(String userSelectedOSName) {
+        this.userSelectedOSName = userSelectedOSName;
         return this;
     }
 
@@ -567,6 +620,27 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     }
 
     /**
+     * Get the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @return the targetVmSecurityProfile value.
+     */
+    public SecurityProfileProperties targetVmSecurityProfile() {
+        return this.targetVmSecurityProfile;
+    }
+
+    /**
+     * Set the targetVmSecurityProfile property: The target VM security profile.
+     * 
+     * @param targetVmSecurityProfile the targetVmSecurityProfile value to set.
+     * @return the HyperVReplicaAzureEnableProtectionInput object itself.
+     */
+    public HyperVReplicaAzureEnableProtectionInput
+        withTargetVmSecurityProfile(SecurityProfileProperties targetVmSecurityProfile) {
+        this.targetVmSecurityProfile = targetVmSecurityProfile;
+        return this;
+    }
+
+    /**
      * Get the targetVmSize property: The target VM size.
      * 
      * @return the targetVmSize value.
@@ -631,7 +705,7 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     }
 
     /**
-     * Get the diskType property: The DiskType.
+     * Get the diskType property: The disk type.
      * 
      * @return the diskType value.
      */
@@ -640,7 +714,7 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     }
 
     /**
-     * Set the diskType property: The DiskType.
+     * Set the diskType property: The disk type.
      * 
      * @param diskType the diskType value to set.
      * @return the HyperVReplicaAzureEnableProtectionInput object itself.
@@ -780,6 +854,9 @@ public final class HyperVReplicaAzureEnableProtectionInput extends EnableProtect
     @Override
     public void validate() {
         super.validate();
+        if (targetVmSecurityProfile() != null) {
+            targetVmSecurityProfile().validate();
+        }
         if (disksToIncludeForManagedDisks() != null) {
             disksToIncludeForManagedDisks().forEach(e -> e.validate());
         }

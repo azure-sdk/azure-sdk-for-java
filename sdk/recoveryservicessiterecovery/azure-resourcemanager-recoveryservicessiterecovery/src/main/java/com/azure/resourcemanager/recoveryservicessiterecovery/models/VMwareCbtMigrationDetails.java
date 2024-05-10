@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
@@ -16,10 +17,21 @@ import java.util.Map;
 /**
  * VMwareCbt provider specific settings.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = VMwareCbtMigrationDetails.class,
+    visible = true)
 @JsonTypeName("VMwareCbt")
 @Fluent
 public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSettings {
+    /*
+     * Gets the instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "VMwareCbt";
+
     /*
      * The ARM Id of the VM discovered in VMware.
      */
@@ -61,6 +73,12 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
      */
     @JsonProperty(value = "sqlServerLicenseType")
     private String sqlServerLicenseType;
+
+    /*
+     * The license type for Linux VM's.
+     */
+    @JsonProperty(value = "linuxLicenseType")
+    private LinuxLicenseType linuxLicenseType;
 
     /*
      * The data mover run as account Id.
@@ -319,6 +337,16 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
     }
 
     /**
+     * Get the instanceType property: Gets the instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
+    }
+
+    /**
      * Get the vmwareMachineId property: The ARM Id of the VM discovered in VMware.
      * 
      * @return the vmwareMachineId value.
@@ -400,6 +428,26 @@ public final class VMwareCbtMigrationDetails extends MigrationProviderSpecificSe
      */
     public VMwareCbtMigrationDetails withSqlServerLicenseType(String sqlServerLicenseType) {
         this.sqlServerLicenseType = sqlServerLicenseType;
+        return this;
+    }
+
+    /**
+     * Get the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @return the linuxLicenseType value.
+     */
+    public LinuxLicenseType linuxLicenseType() {
+        return this.linuxLicenseType;
+    }
+
+    /**
+     * Set the linuxLicenseType property: The license type for Linux VM's.
+     * 
+     * @param linuxLicenseType the linuxLicenseType value to set.
+     * @return the VMwareCbtMigrationDetails object itself.
+     */
+    public VMwareCbtMigrationDetails withLinuxLicenseType(LinuxLicenseType linuxLicenseType) {
+        this.linuxLicenseType = linuxLicenseType;
         return this;
     }
 

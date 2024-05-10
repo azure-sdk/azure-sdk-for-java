@@ -9,9 +9,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
  */
 public final class RecoveryPointsListByReplicationProtectedItemsSa {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /RecoveryPoints_ListByReplicationProtectedItems.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples/RecoveryPoints_ListByReplicationProtectedItems.json
      */
     /**
      * Sample code: Gets the list of recovery points for a replication protected item.
@@ -20,8 +18,9 @@ public final class RecoveryPointsListByReplicationProtectedItemsSa {
      */
     public static void getsTheListOfRecoveryPointsForAReplicationProtectedItem(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.recoveryPoints().listByReplicationProtectedItems("vault1", "resourceGroupPS1", "cloud1",
-            "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
-            com.azure.core.util.Context.NONE);
+        manager.recoveryPoints()
+            .listByReplicationProtectedItems("vault1", "resourceGroupPS1", "cloud1",
+                "cloud_6d224fc6-f326-5d35-96de-fbf51efb3179", "f8491e4f-817a-40dd-a90c-af773978c75b",
+                com.azure.core.util.Context.NONE);
     }
 }

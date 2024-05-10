@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Existing recovery availability set input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "resourceType",
+    defaultImpl = ExistingRecoveryAvailabilitySet.class,
+    visible = true)
 @JsonTypeName("Existing")
 @Fluent
 public final class ExistingRecoveryAvailabilitySet extends RecoveryAvailabilitySetCustomDetails {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resourceType", required = true)
+    private String resourceType = "Existing";
+
     /*
      * The recovery availability set Id. Will throw error, if resource does not exist.
      */
@@ -26,6 +38,16 @@ public final class ExistingRecoveryAvailabilitySet extends RecoveryAvailabilityS
      * Creates an instance of ExistingRecoveryAvailabilitySet class.
      */
     public ExistingRecoveryAvailabilitySet() {
+    }
+
+    /**
+     * Get the resourceType property: The class type.
+     * 
+     * @return the resourceType value.
+     */
+    @Override
+    public String resourceType() {
+        return this.resourceType;
     }
 
     /**

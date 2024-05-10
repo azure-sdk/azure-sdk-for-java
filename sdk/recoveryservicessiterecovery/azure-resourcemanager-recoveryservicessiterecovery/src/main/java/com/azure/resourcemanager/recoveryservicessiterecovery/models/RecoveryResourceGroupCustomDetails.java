@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,17 +16,34 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "resourceType",
-    defaultImpl = RecoveryResourceGroupCustomDetails.class)
+    defaultImpl = RecoveryResourceGroupCustomDetails.class,
+    visible = true)
 @JsonTypeName("RecoveryResourceGroupCustomDetails")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "Existing", value = ExistingRecoveryResourceGroup.class) })
 @Immutable
 public class RecoveryResourceGroupCustomDetails {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resourceType", required = true)
+    private String resourceType;
+
     /**
      * Creates an instance of RecoveryResourceGroupCustomDetails class.
      */
     public RecoveryResourceGroupCustomDetails() {
+        this.resourceType = "RecoveryResourceGroupCustomDetails";
+    }
+
+    /**
+     * Get the resourceType property: The class type.
+     * 
+     * @return the resourceType value.
+     */
+    public String resourceType() {
+        return this.resourceType;
     }
 
     /**

@@ -78,8 +78,8 @@ public final class UpdateDiskInput {
      */
     public void validate() {
         if (diskId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property diskId in model UpdateDiskInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property diskId in model UpdateDiskInput"));
         }
     }
 

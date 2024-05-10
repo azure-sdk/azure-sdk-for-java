@@ -5,21 +5,44 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A2ACrossClusterMigration cloud creation input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = A2ACrossClusterMigrationContainerCreationInput.class,
+    visible = true)
 @JsonTypeName("A2ACrossClusterMigration")
 @Immutable
 public final class A2ACrossClusterMigrationContainerCreationInput
     extends ReplicationProviderSpecificContainerCreationInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2ACrossClusterMigration";
+
     /**
      * Creates an instance of A2ACrossClusterMigrationContainerCreationInput class.
      */
     public A2ACrossClusterMigrationContainerCreationInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

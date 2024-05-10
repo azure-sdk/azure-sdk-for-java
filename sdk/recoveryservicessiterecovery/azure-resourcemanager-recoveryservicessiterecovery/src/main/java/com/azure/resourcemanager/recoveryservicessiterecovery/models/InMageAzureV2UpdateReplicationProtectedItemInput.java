@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -15,11 +16,22 @@ import java.util.Map;
 /**
  * InMage Azure V2 input to update replication protected item.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InMageAzureV2UpdateReplicationProtectedItemInput.class,
+    visible = true)
 @JsonTypeName("InMageAzureV2")
 @Fluent
 public final class InMageAzureV2UpdateReplicationProtectedItemInput
     extends UpdateReplicationProtectedItemProviderInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InMageAzureV2";
+
     /*
      * The recovery Azure resource group Id for classic deployment.
      */
@@ -87,6 +99,16 @@ public final class InMageAzureV2UpdateReplicationProtectedItemInput
      * Creates an instance of InMageAzureV2UpdateReplicationProtectedItemInput class.
      */
     public InMageAzureV2UpdateReplicationProtectedItemInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

@@ -5,6 +5,8 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
@@ -12,14 +14,31 @@ import java.util.Map;
 /**
  * This class represents job details based on specific job type.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "instanceType", defaultImpl = AsrJobDetails.class, visible = true)
 @JsonTypeName("AsrJobDetails")
 @Fluent
 public final class AsrJobDetails extends JobDetails {
+    /*
+     * Gets the type of job details (see JobDetailsTypes enum for possible values).
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "AsrJobDetails";
+
     /**
      * Creates an instance of AsrJobDetails class.
      */
     public AsrJobDetails() {
+    }
+
+    /**
+     * Get the instanceType property: Gets the type of job details (see JobDetailsTypes enum for possible values).
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

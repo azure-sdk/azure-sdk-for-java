@@ -338,8 +338,8 @@ public final class A2AProtectedDiskDetails {
     }
 
     /**
-     * Get the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the
-     * monitoring job is defined by MonitoringJobType property.
+     * Get the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the monitoring
+     * job is defined by MonitoringJobType property.
      * 
      * @return the monitoringPercentageCompletion value.
      */
@@ -348,8 +348,8 @@ public final class A2AProtectedDiskDetails {
     }
 
     /**
-     * Set the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the
-     * monitoring job is defined by MonitoringJobType property.
+     * Set the monitoringPercentageCompletion property: The percentage of the monitoring job. The type of the monitoring
+     * job is defined by MonitoringJobType property.
      * 
      * @param monitoringPercentageCompletion the monitoringPercentageCompletion value to set.
      * @return the A2AProtectedDiskDetails object itself.

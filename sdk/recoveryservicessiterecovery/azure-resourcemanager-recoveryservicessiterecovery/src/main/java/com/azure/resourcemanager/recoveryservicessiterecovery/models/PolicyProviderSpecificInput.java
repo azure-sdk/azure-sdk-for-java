@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = PolicyProviderSpecificInput.class)
+    defaultImpl = PolicyProviderSpecificInput.class,
+    visible = true)
 @JsonTypeName("PolicyProviderSpecificInput")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "A2ACrossClusterMigration", value = A2ACrossClusterMigrationPolicyCreationInput.class),
@@ -30,10 +32,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "VMwareCbt", value = VMwareCbtPolicyCreationInput.class) })
 @Immutable
 public class PolicyProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of PolicyProviderSpecificInput class.
      */
     public PolicyProviderSpecificInput() {
+        this.instanceType = "PolicyProviderSpecificInput";
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

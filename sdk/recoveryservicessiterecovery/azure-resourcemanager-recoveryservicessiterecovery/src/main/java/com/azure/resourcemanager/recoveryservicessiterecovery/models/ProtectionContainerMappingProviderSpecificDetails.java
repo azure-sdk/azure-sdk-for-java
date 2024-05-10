@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = ProtectionContainerMappingProviderSpecificDetails.class)
+    defaultImpl = ProtectionContainerMappingProviderSpecificDetails.class,
+    visible = true)
 @JsonTypeName("ProtectionContainerMappingProviderSpecificDetails")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "A2A", value = A2AProtectionContainerMappingDetails.class),
@@ -24,10 +26,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "VMwareCbt", value = VMwareCbtProtectionContainerMappingDetails.class) })
 @Immutable
 public class ProtectionContainerMappingProviderSpecificDetails {
+    /*
+     * Gets the class type. Overridden in derived classes.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of ProtectionContainerMappingProviderSpecificDetails class.
      */
     public ProtectionContainerMappingProviderSpecificDetails() {
+        this.instanceType = "ProtectionContainerMappingProviderSpecificDetails";
+    }
+
+    /**
+     * Get the instanceType property: Gets the class type. Overridden in derived classes.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

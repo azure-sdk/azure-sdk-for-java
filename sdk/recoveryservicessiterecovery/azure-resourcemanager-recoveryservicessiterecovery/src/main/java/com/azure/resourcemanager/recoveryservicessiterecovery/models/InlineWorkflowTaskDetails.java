@@ -6,6 +6,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -13,10 +14,21 @@ import java.util.List;
 /**
  * This class represents the inline workflow task details.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = InlineWorkflowTaskDetails.class,
+    visible = true)
 @JsonTypeName("InlineWorkflowTaskDetails")
 @Fluent
 public final class InlineWorkflowTaskDetails extends GroupTaskDetails {
+    /*
+     * The type of task details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "InlineWorkflowTaskDetails";
+
     /*
      * The list of child workflow ids.
      */
@@ -27,6 +39,16 @@ public final class InlineWorkflowTaskDetails extends GroupTaskDetails {
      * Creates an instance of InlineWorkflowTaskDetails class.
      */
     public InlineWorkflowTaskDetails() {
+    }
+
+    /**
+     * Get the instanceType property: The type of task details.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

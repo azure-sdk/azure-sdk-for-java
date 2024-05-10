@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Recovery plan HVR Azure failback input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = RecoveryPlanHyperVReplicaAzureFailbackInput.class,
+    visible = true)
 @JsonTypeName("HyperVReplicaAzureFailback")
 @Fluent
 public final class RecoveryPlanHyperVReplicaAzureFailbackInput extends RecoveryPlanProviderSpecificFailoverInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "HyperVReplicaAzureFailback";
+
     /*
      * The data sync option.
      */
@@ -33,6 +45,16 @@ public final class RecoveryPlanHyperVReplicaAzureFailbackInput extends RecoveryP
      * Creates an instance of RecoveryPlanHyperVReplicaAzureFailbackInput class.
      */
     public RecoveryPlanHyperVReplicaAzureFailbackInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -85,12 +107,14 @@ public final class RecoveryPlanHyperVReplicaAzureFailbackInput extends RecoveryP
     public void validate() {
         super.validate();
         if (dataSyncOption() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property dataSyncOption in model RecoveryPlanHyperVReplicaAzureFailbackInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property dataSyncOption in model RecoveryPlanHyperVReplicaAzureFailbackInput"));
         }
         if (recoveryVmCreationOption() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryVmCreationOption in model RecoveryPlanHyperVReplicaAzureFailbackInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryVmCreationOption in model RecoveryPlanHyperVReplicaAzureFailbackInput"));
         }
     }
 

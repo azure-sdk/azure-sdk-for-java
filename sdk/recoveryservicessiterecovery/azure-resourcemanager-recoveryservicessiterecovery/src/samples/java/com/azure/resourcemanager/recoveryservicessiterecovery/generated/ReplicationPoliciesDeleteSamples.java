@@ -9,9 +9,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
  */
 public final class ReplicationPoliciesDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationPolicies_Delete.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples/ReplicationPolicies_Delete.json
      */
     /**
      * Sample code: Delete the policy.
@@ -20,7 +18,7 @@ public final class ReplicationPoliciesDeleteSamples {
      */
     public static void
         deleteThePolicy(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationPolicies().delete("vault1", "resourceGroupPS1", "protectionprofile1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationPolicies()
+            .delete("vault1", "resourceGroupPS1", "protectionprofile1", com.azure.core.util.Context.NONE);
     }
 }

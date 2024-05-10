@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * New Protection profile input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "resourceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "resourceType",
+    defaultImpl = NewProtectionProfile.class,
+    visible = true)
 @JsonTypeName("New")
 @Fluent
 public final class NewProtectionProfile extends ProtectionProfileCustomDetails {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "resourceType", required = true)
+    private String resourceType = "New";
+
     /*
      * The protection profile input.
      */
@@ -54,6 +66,16 @@ public final class NewProtectionProfile extends ProtectionProfileCustomDetails {
     }
 
     /**
+     * Get the resourceType property: The class type.
+     * 
+     * @return the resourceType value.
+     */
+    @Override
+    public String resourceType() {
+        return this.resourceType;
+    }
+
+    /**
      * Get the policyName property: The protection profile input.
      * 
      * @return the policyName value.
@@ -74,8 +96,7 @@ public final class NewProtectionProfile extends ProtectionProfileCustomDetails {
     }
 
     /**
-     * Get the recoveryPointHistory property: The duration in minutes until which the recovery points need to be
-     * stored.
+     * Get the recoveryPointHistory property: The duration in minutes until which the recovery points need to be stored.
      * 
      * @return the recoveryPointHistory value.
      */
@@ -84,8 +105,7 @@ public final class NewProtectionProfile extends ProtectionProfileCustomDetails {
     }
 
     /**
-     * Set the recoveryPointHistory property: The duration in minutes until which the recovery points need to be
-     * stored.
+     * Set the recoveryPointHistory property: The duration in minutes until which the recovery points need to be stored.
      * 
      * @param recoveryPointHistory the recoveryPointHistory value to set.
      * @return the NewProtectionProfile object itself.
@@ -166,12 +186,14 @@ public final class NewProtectionProfile extends ProtectionProfileCustomDetails {
     public void validate() {
         super.validate();
         if (policyName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property policyName in model NewProtectionProfile"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property policyName in model NewProtectionProfile"));
         }
         if (multiVmSyncStatus() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property multiVmSyncStatus in model NewProtectionProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property multiVmSyncStatus in model NewProtectionProfile"));
         }
     }
 

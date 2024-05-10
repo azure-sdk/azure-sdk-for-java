@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * A2A Policy creation input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = A2APolicyCreationInput.class,
+    visible = true)
 @JsonTypeName("A2A")
 @Fluent
 public final class A2APolicyCreationInput extends PolicyProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2A";
+
     /*
      * The duration in minutes until which the recovery points need to be stored.
      */
@@ -48,8 +60,17 @@ public final class A2APolicyCreationInput extends PolicyProviderSpecificInput {
     }
 
     /**
-     * Get the recoveryPointHistory property: The duration in minutes until which the recovery points need to be
-     * stored.
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
+    }
+
+    /**
+     * Get the recoveryPointHistory property: The duration in minutes until which the recovery points need to be stored.
      * 
      * @return the recoveryPointHistory value.
      */
@@ -58,8 +79,7 @@ public final class A2APolicyCreationInput extends PolicyProviderSpecificInput {
     }
 
     /**
-     * Set the recoveryPointHistory property: The duration in minutes until which the recovery points need to be
-     * stored.
+     * Set the recoveryPointHistory property: The duration in minutes until which the recovery points need to be stored.
      * 
      * @param recoveryPointHistory the recoveryPointHistory value to set.
      * @return the A2APolicyCreationInput object itself.
@@ -140,8 +160,9 @@ public final class A2APolicyCreationInput extends PolicyProviderSpecificInput {
     public void validate() {
         super.validate();
         if (multiVmSyncStatus() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property multiVmSyncStatus in model A2APolicyCreationInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property multiVmSyncStatus in model A2APolicyCreationInput"));
         }
     }
 

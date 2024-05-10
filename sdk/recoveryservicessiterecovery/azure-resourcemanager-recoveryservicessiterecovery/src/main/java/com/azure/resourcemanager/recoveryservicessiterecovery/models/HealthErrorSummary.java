@@ -44,15 +44,13 @@ public final class HealthErrorSummary {
     private String affectedResourceType;
 
     /*
-     * The sub type of any subcomponent within the ARM resource that this might be applicable. Value remains null if
-     * not applicable.
+     * The sub type of any subcomponent within the ARM resource that this might be applicable. Value remains null if not applicable.
      */
     @JsonProperty(value = "affectedResourceSubtype")
     private String affectedResourceSubtype;
 
     /*
-     * The list of affected resource correlation Ids. This can be used to uniquely identify the count of items affected
-     * by a specific category and severity as well as count of item affected by an specific issue.
+     * The list of affected resource correlation Ids. This can be used to uniquely identify the count of items affected by a specific category and severity as well as count of item affected by an specific issue.
      */
     @JsonProperty(value = "affectedResourceCorrelationIds")
     private List<String> affectedResourceCorrelationIds;

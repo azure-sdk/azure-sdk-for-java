@@ -52,8 +52,7 @@ public final class ApplianceResourceDetails {
     }
 
     /**
-     * Get the processUtilization property: A value indicating the utilization percentage by gateway agent on
-     * appliance.
+     * Get the processUtilization property: A value indicating the utilization percentage by gateway agent on appliance.
      * 
      * @return the processUtilization value.
      */

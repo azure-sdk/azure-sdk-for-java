@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.List;
 /**
  * A2A create protection intent input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = A2ACreateProtectionIntentInput.class,
+    visible = true)
 @JsonTypeName("A2A")
 @Fluent
 public final class A2ACreateProtectionIntentInput extends CreateProtectionIntentProviderSpecificDetails {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2A";
+
     /*
      * The fabric specific object Id of the virtual machine.
      */
@@ -154,6 +166,16 @@ public final class A2ACreateProtectionIntentInput extends CreateProtectionIntent
      * Creates an instance of A2ACreateProtectionIntentInput class.
      */
     public A2ACreateProtectionIntentInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -362,8 +384,7 @@ public final class A2ACreateProtectionIntentInput extends CreateProtectionIntent
     }
 
     /**
-     * Get the recoveryProximityPlacementGroupCustomInput property: The recovery proximity placement group custom
-     * input.
+     * Get the recoveryProximityPlacementGroupCustomInput property: The recovery proximity placement group custom input.
      * 
      * @return the recoveryProximityPlacementGroupCustomInput value.
      */
@@ -372,8 +393,7 @@ public final class A2ACreateProtectionIntentInput extends CreateProtectionIntent
     }
 
     /**
-     * Set the recoveryProximityPlacementGroupCustomInput property: The recovery proximity placement group custom
-     * input.
+     * Set the recoveryProximityPlacementGroupCustomInput property: The recovery proximity placement group custom input.
      * 
      * @param recoveryProximityPlacementGroupCustomInput the recoveryProximityPlacementGroupCustomInput value to set.
      * @return the A2ACreateProtectionIntentInput object itself.
@@ -619,31 +639,37 @@ public final class A2ACreateProtectionIntentInput extends CreateProtectionIntent
     public void validate() {
         super.validate();
         if (fabricObjectId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property fabricObjectId in model A2ACreateProtectionIntentInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property fabricObjectId in model A2ACreateProtectionIntentInput"));
         }
         if (primaryLocation() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property primaryLocation in model A2ACreateProtectionIntentInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property primaryLocation in model A2ACreateProtectionIntentInput"));
         }
         if (recoveryLocation() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryLocation in model A2ACreateProtectionIntentInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryLocation in model A2ACreateProtectionIntentInput"));
         }
         if (recoverySubscriptionId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoverySubscriptionId in model A2ACreateProtectionIntentInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoverySubscriptionId in model A2ACreateProtectionIntentInput"));
         }
         if (recoveryAvailabilityType() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryAvailabilityType in model A2ACreateProtectionIntentInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryAvailabilityType in model A2ACreateProtectionIntentInput"));
         }
         if (protectionProfileCustomInput() != null) {
             protectionProfileCustomInput().validate();
         }
         if (recoveryResourceGroupId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property recoveryResourceGroupId in model A2ACreateProtectionIntentInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property recoveryResourceGroupId in model A2ACreateProtectionIntentInput"));
         }
         if (primaryStagingStorageAccountCustomInput() != null) {
             primaryStagingStorageAccountCustomInput().validate();

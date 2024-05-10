@@ -131,8 +131,8 @@ public final class RecoveryPlanGroup {
      */
     public void validate() {
         if (groupType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property groupType in model RecoveryPlanGroup"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property groupType in model RecoveryPlanGroup"));
         }
         if (replicationProtectedItems() != null) {
             replicationProtectedItems().forEach(e -> e.validate());

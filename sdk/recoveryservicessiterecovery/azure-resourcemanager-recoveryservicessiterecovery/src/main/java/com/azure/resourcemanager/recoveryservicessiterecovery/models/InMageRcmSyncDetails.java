@@ -85,8 +85,7 @@ public final class InMageRcmSyncDetails {
     }
 
     /**
-     * Get the last15MinutesTransferredBytes property: The bytes transferred in last 15 minutes from source VM to
-     * azure.
+     * Get the last15MinutesTransferredBytes property: The bytes transferred in last 15 minutes from source VM to azure.
      * 
      * @return the last15MinutesTransferredBytes value.
      */
@@ -132,8 +131,8 @@ public final class InMageRcmSyncDetails {
     }
 
     /**
-     * Get the progressPercentage property: Progress in percentage. Progress percentage is calculated based on
-     * processed bytes.
+     * Get the progressPercentage property: Progress in percentage. Progress percentage is calculated based on processed
+     * bytes.
      * 
      * @return the progressPercentage value.
      */

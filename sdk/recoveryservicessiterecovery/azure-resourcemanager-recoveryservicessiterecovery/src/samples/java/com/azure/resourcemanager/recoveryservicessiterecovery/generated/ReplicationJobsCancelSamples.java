@@ -9,9 +9,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
  */
 public final class ReplicationJobsCancelSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationJobs_Cancel.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples/ReplicationJobs_Cancel.json
      */
     /**
      * Sample code: Cancels the specified job.
@@ -20,7 +18,8 @@ public final class ReplicationJobsCancelSamples {
      */
     public static void
         cancelsTheSpecifiedJob(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationJobs().cancel("vault1", "resourceGroupPS1", "2653c648-fc72-4316-86f3-fdf8eaa0066b",
-            com.azure.core.util.Context.NONE);
+        manager.replicationJobs()
+            .cancel("vault1", "resourceGroupPS1", "2653c648-fc72-4316-86f3-fdf8eaa0066b",
+                com.azure.core.util.Context.NONE);
     }
 }

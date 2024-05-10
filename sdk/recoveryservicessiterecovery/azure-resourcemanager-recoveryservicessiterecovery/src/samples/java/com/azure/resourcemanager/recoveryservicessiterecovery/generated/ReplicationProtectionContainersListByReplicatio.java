@@ -9,9 +9,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
  */
 public final class ReplicationProtectionContainersListByReplicatio {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationProtectionContainers_ListByReplicationFabrics.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples/ReplicationProtectionContainers_ListByReplicationFabrics.json
      */
     /**
      * Sample code: Gets the list of protection container for a fabric.
@@ -20,7 +18,7 @@ public final class ReplicationProtectionContainersListByReplicatio {
      */
     public static void getsTheListOfProtectionContainerForAFabric(
         com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationProtectionContainers().listByReplicationFabrics("vault1", "resourceGroupPS1", "cloud1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationProtectionContainers()
+            .listByReplicationFabrics("vault1", "resourceGroupPS1", "cloud1", com.azure.core.util.Context.NONE);
     }
 }

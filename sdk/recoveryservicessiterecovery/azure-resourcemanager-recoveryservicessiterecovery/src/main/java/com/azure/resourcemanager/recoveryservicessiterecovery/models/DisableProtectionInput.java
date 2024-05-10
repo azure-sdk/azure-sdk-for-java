@@ -52,8 +52,9 @@ public final class DisableProtectionInput {
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property properties in model DisableProtectionInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property properties in model DisableProtectionInput"));
         } else {
             properties().validate();
         }

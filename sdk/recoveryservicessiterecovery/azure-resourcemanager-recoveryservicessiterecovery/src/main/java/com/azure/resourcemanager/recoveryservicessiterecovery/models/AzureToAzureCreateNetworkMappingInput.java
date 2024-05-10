@@ -7,16 +7,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Create network mappings input properties/behavior specific to Azure to Azure Network mapping.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = AzureToAzureCreateNetworkMappingInput.class,
+    visible = true)
 @JsonTypeName("AzureToAzure")
 @Fluent
 public final class AzureToAzureCreateNetworkMappingInput extends FabricSpecificCreateNetworkMappingInput {
+    /*
+     * The instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "AzureToAzure";
+
     /*
      * The primary azure vnet Id.
      */
@@ -27,6 +39,16 @@ public final class AzureToAzureCreateNetworkMappingInput extends FabricSpecificC
      * Creates an instance of AzureToAzureCreateNetworkMappingInput class.
      */
     public AzureToAzureCreateNetworkMappingInput() {
+    }
+
+    /**
+     * Get the instanceType property: The instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -58,8 +80,9 @@ public final class AzureToAzureCreateNetworkMappingInput extends FabricSpecificC
     public void validate() {
         super.validate();
         if (primaryNetworkId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property primaryNetworkId in model AzureToAzureCreateNetworkMappingInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property primaryNetworkId in model AzureToAzureCreateNetworkMappingInput"));
         }
     }
 

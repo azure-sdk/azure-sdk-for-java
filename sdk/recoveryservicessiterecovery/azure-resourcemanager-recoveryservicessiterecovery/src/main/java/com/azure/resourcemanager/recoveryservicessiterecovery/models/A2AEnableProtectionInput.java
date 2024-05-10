@@ -7,6 +7,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.List;
 /**
  * A2A enable protection input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = A2AEnableProtectionInput.class,
+    visible = true)
 @JsonTypeName("A2A")
 @Fluent
 public final class A2AEnableProtectionInput extends EnableProtectionProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "A2A";
+
     /*
      * The fabric specific object Id of the virtual machine.
      */
@@ -79,6 +91,12 @@ public final class A2AEnableProtectionInput extends EnableProtectionProviderSpec
     private String multiVmGroupId;
 
     /*
+     * The replication protection cluster Id.
+     */
+    @JsonProperty(value = "protectionClusterId")
+    private String protectionClusterId;
+
+    /*
      * The boot diagnostic storage account.
      */
     @JsonProperty(value = "recoveryBootDiagStorageAccountId")
@@ -136,6 +154,16 @@ public final class A2AEnableProtectionInput extends EnableProtectionProviderSpec
      * Creates an instance of A2AEnableProtectionInput class.
      */
     public A2AEnableProtectionInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
@@ -339,6 +367,26 @@ public final class A2AEnableProtectionInput extends EnableProtectionProviderSpec
     }
 
     /**
+     * Get the protectionClusterId property: The replication protection cluster Id.
+     * 
+     * @return the protectionClusterId value.
+     */
+    public String protectionClusterId() {
+        return this.protectionClusterId;
+    }
+
+    /**
+     * Set the protectionClusterId property: The replication protection cluster Id.
+     * 
+     * @param protectionClusterId the protectionClusterId value to set.
+     * @return the A2AEnableProtectionInput object itself.
+     */
+    public A2AEnableProtectionInput withProtectionClusterId(String protectionClusterId) {
+        this.protectionClusterId = protectionClusterId;
+        return this;
+    }
+
+    /**
      * Get the recoveryBootDiagStorageAccountId property: The boot diagnostic storage account.
      * 
      * @return the recoveryBootDiagStorageAccountId value.
@@ -527,8 +575,9 @@ public final class A2AEnableProtectionInput extends EnableProtectionProviderSpec
     public void validate() {
         super.validate();
         if (fabricObjectId() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property fabricObjectId in model A2AEnableProtectionInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property fabricObjectId in model A2AEnableProtectionInput"));
         }
         if (vmDisks() != null) {
             vmDisks().forEach(e -> e.validate());

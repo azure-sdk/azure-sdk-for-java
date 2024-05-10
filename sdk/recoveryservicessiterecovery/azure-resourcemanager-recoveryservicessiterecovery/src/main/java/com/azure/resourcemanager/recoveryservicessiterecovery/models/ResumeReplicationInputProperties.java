@@ -53,8 +53,9 @@ public final class ResumeReplicationInputProperties {
      */
     public void validate() {
         if (providerSpecificDetails() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property providerSpecificDetails in model ResumeReplicationInputProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property providerSpecificDetails in model ResumeReplicationInputProperties"));
         } else {
             providerSpecificDetails().validate();
         }

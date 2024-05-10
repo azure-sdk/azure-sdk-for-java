@@ -6,16 +6,28 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * HyperVReplicaAzureFailback specific planned failover input.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = HyperVReplicaAzureFailbackProviderInput.class,
+    visible = true)
 @JsonTypeName("HyperVReplicaAzureFailback")
 @Fluent
 public final class HyperVReplicaAzureFailbackProviderInput extends PlannedFailoverProviderSpecificFailoverInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "HyperVReplicaAzureFailback";
+
     /*
      * Data sync option.
      */
@@ -38,6 +50,16 @@ public final class HyperVReplicaAzureFailbackProviderInput extends PlannedFailov
      * Creates an instance of HyperVReplicaAzureFailbackProviderInput class.
      */
     public HyperVReplicaAzureFailbackProviderInput() {
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

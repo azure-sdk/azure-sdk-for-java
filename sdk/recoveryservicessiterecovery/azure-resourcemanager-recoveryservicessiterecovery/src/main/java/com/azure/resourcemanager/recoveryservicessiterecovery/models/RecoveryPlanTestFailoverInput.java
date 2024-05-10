@@ -52,8 +52,9 @@ public final class RecoveryPlanTestFailoverInput {
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property properties in model RecoveryPlanTestFailoverInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property properties in model RecoveryPlanTestFailoverInput"));
         } else {
             properties().validate();
         }

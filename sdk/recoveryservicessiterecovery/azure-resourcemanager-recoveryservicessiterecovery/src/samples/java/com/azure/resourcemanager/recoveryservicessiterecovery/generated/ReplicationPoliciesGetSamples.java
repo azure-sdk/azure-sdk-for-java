@@ -9,9 +9,7 @@ package com.azure.resourcemanager.recoveryservicessiterecovery.generated;
  */
 public final class ReplicationPoliciesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2023-08-01/examples
-     * /ReplicationPolicies_Get.json
+     * x-ms-original-file: specification/recoveryservicessiterecovery/resource-manager/Microsoft.RecoveryServices/stable/2024-02-01/examples/ReplicationPolicies_Get.json
      */
     /**
      * Sample code: Gets the requested policy.
@@ -20,7 +18,7 @@ public final class ReplicationPoliciesGetSamples {
      */
     public static void
         getsTheRequestedPolicy(com.azure.resourcemanager.recoveryservicessiterecovery.SiteRecoveryManager manager) {
-        manager.replicationPolicies().getWithResponse("vault1", "resourceGroupPS1", "protectionprofile1",
-            com.azure.core.util.Context.NONE);
+        manager.replicationPolicies()
+            .getWithResponse("vault1", "resourceGroupPS1", "protectionprofile1", com.azure.core.util.Context.NONE);
     }
 }

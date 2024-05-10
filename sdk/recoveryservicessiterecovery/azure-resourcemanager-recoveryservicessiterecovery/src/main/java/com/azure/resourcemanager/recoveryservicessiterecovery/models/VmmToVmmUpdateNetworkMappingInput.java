@@ -5,20 +5,43 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Update network mappings input properties/behavior specific to vmm to vmm.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "instanceType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "instanceType",
+    defaultImpl = VmmToVmmUpdateNetworkMappingInput.class,
+    visible = true)
 @JsonTypeName("VmmToVmm")
 @Immutable
 public final class VmmToVmmUpdateNetworkMappingInput extends FabricSpecificUpdateNetworkMappingInput {
+    /*
+     * The instance type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType = "VmmToVmm";
+
     /**
      * Creates an instance of VmmToVmmUpdateNetworkMappingInput class.
      */
     public VmmToVmmUpdateNetworkMappingInput() {
+    }
+
+    /**
+     * Get the instanceType property: The instance type.
+     * 
+     * @return the instanceType value.
+     */
+    @Override
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**

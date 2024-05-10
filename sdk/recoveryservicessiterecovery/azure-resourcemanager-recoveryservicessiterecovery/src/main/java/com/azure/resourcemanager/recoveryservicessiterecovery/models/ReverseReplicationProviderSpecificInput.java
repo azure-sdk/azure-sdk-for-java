@@ -5,7 +5,9 @@
 package com.azure.resourcemanager.recoveryservicessiterecovery.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
@@ -14,9 +16,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "instanceType",
-    defaultImpl = ReverseReplicationProviderSpecificInput.class)
+    defaultImpl = ReverseReplicationProviderSpecificInput.class,
+    visible = true)
 @JsonTypeName("ReverseReplicationProviderSpecificInput")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "A2A", value = A2AReprotectInput.class),
@@ -27,10 +29,27 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "InMage", value = InMageReprotectInput.class) })
 @Immutable
 public class ReverseReplicationProviderSpecificInput {
+    /*
+     * The class type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "instanceType", required = true)
+    private String instanceType;
+
     /**
      * Creates an instance of ReverseReplicationProviderSpecificInput class.
      */
     public ReverseReplicationProviderSpecificInput() {
+        this.instanceType = "ReverseReplicationProviderSpecificInput";
+    }
+
+    /**
+     * Get the instanceType property: The class type.
+     * 
+     * @return the instanceType value.
+     */
+    public String instanceType() {
+        return this.instanceType;
     }
 
     /**
