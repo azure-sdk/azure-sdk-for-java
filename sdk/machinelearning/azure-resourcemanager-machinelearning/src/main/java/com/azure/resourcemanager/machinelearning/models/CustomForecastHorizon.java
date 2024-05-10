@@ -6,27 +6,49 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The desired maximum forecast horizon in units of time-series frequency. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
+/**
+ * The desired maximum forecast horizon in units of time-series frequency.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "mode", defaultImpl = CustomForecastHorizon.class, visible = true)
 @JsonTypeName("Custom")
 @Fluent
 public final class CustomForecastHorizon extends ForecastHorizon {
+    /*
+     * [Required] Set forecast horizon value selection mode.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private ForecastHorizonMode mode = ForecastHorizonMode.CUSTOM;
+
     /*
      * [Required] Forecast horizon value.
      */
     @JsonProperty(value = "value", required = true)
     private int value;
 
-    /** Creates an instance of CustomForecastHorizon class. */
+    /**
+     * Creates an instance of CustomForecastHorizon class.
+     */
     public CustomForecastHorizon() {
     }
 
     /**
+     * Get the mode property: [Required] Set forecast horizon value selection mode.
+     * 
+     * @return the mode value.
+     */
+    @Override
+    public ForecastHorizonMode mode() {
+        return this.mode;
+    }
+
+    /**
      * Get the value property: [Required] Forecast horizon value.
-     *
+     * 
      * @return the value value.
      */
     public int value() {
@@ -35,7 +57,7 @@ public final class CustomForecastHorizon extends ForecastHorizon {
 
     /**
      * Set the value property: [Required] Forecast horizon value.
-     *
+     * 
      * @param value the value value to set.
      * @return the CustomForecastHorizon object itself.
      */
@@ -46,7 +68,7 @@ public final class CustomForecastHorizon extends ForecastHorizon {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The RegenerateEndpointKeysRequest model. */
+/**
+ * The RegenerateEndpointKeysRequest model.
+ */
 @Fluent
 public final class RegenerateEndpointKeysRequest {
     /*
@@ -17,19 +19,15 @@ public final class RegenerateEndpointKeysRequest {
     @JsonProperty(value = "keyType", required = true)
     private KeyType keyType;
 
-    /*
-     * The value the key is set to.
+    /**
+     * Creates an instance of RegenerateEndpointKeysRequest class.
      */
-    @JsonProperty(value = "keyValue")
-    private String keyValue;
-
-    /** Creates an instance of RegenerateEndpointKeysRequest class. */
     public RegenerateEndpointKeysRequest() {
     }
 
     /**
      * Get the keyType property: [Required] Specification for which type of key to generate. Primary or Secondary.
-     *
+     * 
      * @return the keyType value.
      */
     public KeyType keyType() {
@@ -38,7 +36,7 @@ public final class RegenerateEndpointKeysRequest {
 
     /**
      * Set the keyType property: [Required] Specification for which type of key to generate. Primary or Secondary.
-     *
+     * 
      * @param keyType the keyType value to set.
      * @return the RegenerateEndpointKeysRequest object itself.
      */
@@ -48,36 +46,15 @@ public final class RegenerateEndpointKeysRequest {
     }
 
     /**
-     * Get the keyValue property: The value the key is set to.
-     *
-     * @return the keyValue value.
-     */
-    public String keyValue() {
-        return this.keyValue;
-    }
-
-    /**
-     * Set the keyValue property: The value the key is set to.
-     *
-     * @param keyValue the keyValue value to set.
-     * @return the RegenerateEndpointKeysRequest object itself.
-     */
-    public RegenerateEndpointKeysRequest withKeyValue(String keyValue) {
-        this.keyValue = keyValue;
-        return this;
-    }
-
-    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (keyType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property keyType in model RegenerateEndpointKeysRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property keyType in model RegenerateEndpointKeysRequest"));
         }
     }
 

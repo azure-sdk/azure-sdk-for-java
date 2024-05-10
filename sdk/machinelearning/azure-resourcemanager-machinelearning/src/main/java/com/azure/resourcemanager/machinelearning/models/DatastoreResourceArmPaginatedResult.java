@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of Datastore entities. */
+/**
+ * A paginated list of Datastore entities.
+ */
 @Fluent
 public final class DatastoreResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class DatastoreResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<DatastoreInner> value;
 
-    /** Creates an instance of DatastoreResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of DatastoreResourceArmPaginatedResult class.
+     */
     public DatastoreResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of Datastore objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class DatastoreResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of Datastore objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the DatastoreResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class DatastoreResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type Datastore.
-     *
+     * 
      * @return the value value.
      */
     public List<DatastoreInner> value() {
@@ -61,7 +65,7 @@ public final class DatastoreResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type Datastore.
-     *
+     * 
      * @param value the value value to set.
      * @return the DatastoreResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class DatastoreResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

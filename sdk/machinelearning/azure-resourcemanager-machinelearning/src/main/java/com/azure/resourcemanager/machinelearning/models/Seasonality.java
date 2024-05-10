@@ -5,30 +5,48 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Forecasting seasonality. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "mode",
-    defaultImpl = Seasonality.class)
+/**
+ * Forecasting seasonality.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "mode", defaultImpl = Seasonality.class, visible = true)
 @JsonTypeName("Seasonality")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Auto", value = AutoSeasonality.class),
-    @JsonSubTypes.Type(name = "Custom", value = CustomSeasonality.class)
-})
+    @JsonSubTypes.Type(name = "Custom", value = CustomSeasonality.class) })
 @Immutable
 public class Seasonality {
-    /** Creates an instance of Seasonality class. */
+    /*
+     * [Required] Seasonality mode.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private SeasonalityMode mode;
+
+    /**
+     * Creates an instance of Seasonality class.
+     */
     public Seasonality() {
+        this.mode = SeasonalityMode.fromString("Seasonality");
+    }
+
+    /**
+     * Get the mode property: [Required] Seasonality mode.
+     * 
+     * @return the mode value.
+     */
+    public SeasonalityMode mode() {
+        return this.mode;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
