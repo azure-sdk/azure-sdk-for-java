@@ -8,14 +8,18 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The database scale method. */
+/**
+ * The database scale method.
+ */
 public final class SapDatabaseScaleMethod extends ExpandableStringEnum<SapDatabaseScaleMethod> {
-    /** Static value ScaleUp for SapDatabaseScaleMethod. */
+    /**
+     * Static value ScaleUp for SapDatabaseScaleMethod.
+     */
     public static final SapDatabaseScaleMethod SCALE_UP = fromString("ScaleUp");
 
     /**
      * Creates a new instance of SapDatabaseScaleMethod value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -24,7 +28,7 @@ public final class SapDatabaseScaleMethod extends ExpandableStringEnum<SapDataba
 
     /**
      * Creates or finds a SapDatabaseScaleMethod from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SapDatabaseScaleMethod.
      */
@@ -35,7 +39,7 @@ public final class SapDatabaseScaleMethod extends ExpandableStringEnum<SapDataba
 
     /**
      * Gets known SapDatabaseScaleMethod values.
-     *
+     * 
      * @return known SapDatabaseScaleMethod values.
      */
     public static Collection<SapDatabaseScaleMethod> values() {

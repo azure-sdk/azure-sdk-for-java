@@ -7,31 +7,33 @@ package com.azure.resourcemanager.workloads.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The resource names object for shared storage. */
+/**
+ * The resource names object for shared storage.
+ */
 @Fluent
 public final class SharedStorageResourceNames {
     /*
-     * The full name of the shared storage account. If it is not provided, it will be defaulted to {SID}nfs{guid of 15
-     * chars}.
+     * The full name of the shared storage account. If it is not provided, it will be defaulted to {SID}nfs{guid of 15 chars}.
      */
     @JsonProperty(value = "sharedStorageAccountName")
     private String sharedStorageAccountName;
 
     /*
-     * The full name of private end point for the shared storage account. If it is not provided, it will be defaulted
-     * to {storageAccountName}_pe
+     * The full name of private end point for the shared storage account. If it is not provided, it will be defaulted to {storageAccountName}_pe
      */
     @JsonProperty(value = "sharedStorageAccountPrivateEndPointName")
     private String sharedStorageAccountPrivateEndPointName;
 
-    /** Creates an instance of SharedStorageResourceNames class. */
+    /**
+     * Creates an instance of SharedStorageResourceNames class.
+     */
     public SharedStorageResourceNames() {
     }
 
     /**
      * Get the sharedStorageAccountName property: The full name of the shared storage account. If it is not provided, it
      * will be defaulted to {SID}nfs{guid of 15 chars}.
-     *
+     * 
      * @return the sharedStorageAccountName value.
      */
     public String sharedStorageAccountName() {
@@ -41,7 +43,7 @@ public final class SharedStorageResourceNames {
     /**
      * Set the sharedStorageAccountName property: The full name of the shared storage account. If it is not provided, it
      * will be defaulted to {SID}nfs{guid of 15 chars}.
-     *
+     * 
      * @param sharedStorageAccountName the sharedStorageAccountName value to set.
      * @return the SharedStorageResourceNames object itself.
      */
@@ -53,7 +55,7 @@ public final class SharedStorageResourceNames {
     /**
      * Get the sharedStorageAccountPrivateEndPointName property: The full name of private end point for the shared
      * storage account. If it is not provided, it will be defaulted to {storageAccountName}_pe.
-     *
+     * 
      * @return the sharedStorageAccountPrivateEndPointName value.
      */
     public String sharedStorageAccountPrivateEndPointName() {
@@ -63,19 +65,19 @@ public final class SharedStorageResourceNames {
     /**
      * Set the sharedStorageAccountPrivateEndPointName property: The full name of private end point for the shared
      * storage account. If it is not provided, it will be defaulted to {storageAccountName}_pe.
-     *
+     * 
      * @param sharedStorageAccountPrivateEndPointName the sharedStorageAccountPrivateEndPointName value to set.
      * @return the SharedStorageResourceNames object itself.
      */
-    public SharedStorageResourceNames withSharedStorageAccountPrivateEndPointName(
-        String sharedStorageAccountPrivateEndPointName) {
+    public SharedStorageResourceNames
+        withSharedStorageAccountPrivateEndPointName(String sharedStorageAccountPrivateEndPointName) {
         this.sharedStorageAccountPrivateEndPointName = sharedStorageAccountPrivateEndPointName;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
