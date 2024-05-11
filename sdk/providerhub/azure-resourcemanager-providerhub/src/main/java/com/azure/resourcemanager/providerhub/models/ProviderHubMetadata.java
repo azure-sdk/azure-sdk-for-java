@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ProviderHubMetadata model. */
+/**
+ * The ProviderHubMetadata model.
+ */
 @Fluent
 public class ProviderHubMetadata {
     /*
@@ -29,13 +31,15 @@ public class ProviderHubMetadata {
     @JsonProperty(value = "thirdPartyProviderAuthorization")
     private ProviderHubMetadataThirdPartyProviderAuthorization thirdPartyProviderAuthorization;
 
-    /** Creates an instance of ProviderHubMetadata class. */
+    /**
+     * Creates an instance of ProviderHubMetadata class.
+     */
     public ProviderHubMetadata() {
     }
 
     /**
      * Get the providerAuthorizations property: The providerAuthorizations property.
-     *
+     * 
      * @return the providerAuthorizations value.
      */
     public List<ResourceProviderAuthorization> providerAuthorizations() {
@@ -44,7 +48,7 @@ public class ProviderHubMetadata {
 
     /**
      * Set the providerAuthorizations property: The providerAuthorizations property.
-     *
+     * 
      * @param providerAuthorizations the providerAuthorizations value to set.
      * @return the ProviderHubMetadata object itself.
      */
@@ -55,7 +59,7 @@ public class ProviderHubMetadata {
 
     /**
      * Get the providerAuthentication property: The providerAuthentication property.
-     *
+     * 
      * @return the providerAuthentication value.
      */
     public ProviderHubMetadataProviderAuthentication providerAuthentication() {
@@ -64,19 +68,19 @@ public class ProviderHubMetadata {
 
     /**
      * Set the providerAuthentication property: The providerAuthentication property.
-     *
+     * 
      * @param providerAuthentication the providerAuthentication value to set.
      * @return the ProviderHubMetadata object itself.
      */
-    public ProviderHubMetadata withProviderAuthentication(
-        ProviderHubMetadataProviderAuthentication providerAuthentication) {
+    public ProviderHubMetadata
+        withProviderAuthentication(ProviderHubMetadataProviderAuthentication providerAuthentication) {
         this.providerAuthentication = providerAuthentication;
         return this;
     }
 
     /**
      * Get the thirdPartyProviderAuthorization property: The thirdPartyProviderAuthorization property.
-     *
+     * 
      * @return the thirdPartyProviderAuthorization value.
      */
     public ProviderHubMetadataThirdPartyProviderAuthorization thirdPartyProviderAuthorization() {
@@ -85,7 +89,7 @@ public class ProviderHubMetadata {
 
     /**
      * Set the thirdPartyProviderAuthorization property: The thirdPartyProviderAuthorization property.
-     *
+     * 
      * @param thirdPartyProviderAuthorization the thirdPartyProviderAuthorization value to set.
      * @return the ProviderHubMetadata object itself.
      */
@@ -97,7 +101,7 @@ public class ProviderHubMetadata {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

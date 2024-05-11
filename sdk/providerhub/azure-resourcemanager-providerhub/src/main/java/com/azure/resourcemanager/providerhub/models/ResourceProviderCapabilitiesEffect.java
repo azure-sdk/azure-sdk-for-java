@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for ResourceProviderCapabilitiesEffect. */
+/**
+ * Defines values for ResourceProviderCapabilitiesEffect.
+ */
 public final class ResourceProviderCapabilitiesEffect extends ExpandableStringEnum<ResourceProviderCapabilitiesEffect> {
-    /** Static value NotSpecified for ResourceProviderCapabilitiesEffect. */
+    /**
+     * Static value NotSpecified for ResourceProviderCapabilitiesEffect.
+     */
     public static final ResourceProviderCapabilitiesEffect NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value Allow for ResourceProviderCapabilitiesEffect. */
+    /**
+     * Static value Allow for ResourceProviderCapabilitiesEffect.
+     */
     public static final ResourceProviderCapabilitiesEffect ALLOW = fromString("Allow");
 
-    /** Static value Disallow for ResourceProviderCapabilitiesEffect. */
+    /**
+     * Static value Disallow for ResourceProviderCapabilitiesEffect.
+     */
     public static final ResourceProviderCapabilitiesEffect DISALLOW = fromString("Disallow");
 
     /**
      * Creates a new instance of ResourceProviderCapabilitiesEffect value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class ResourceProviderCapabilitiesEffect extends ExpandableStringEn
 
     /**
      * Creates or finds a ResourceProviderCapabilitiesEffect from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ResourceProviderCapabilitiesEffect.
      */
@@ -41,7 +49,7 @@ public final class ResourceProviderCapabilitiesEffect extends ExpandableStringEn
 
     /**
      * Gets known ResourceProviderCapabilitiesEffect values.
-     *
+     * 
      * @return known ResourceProviderCapabilitiesEffect values.
      */
     public static Collection<ResourceProviderCapabilitiesEffect> values() {

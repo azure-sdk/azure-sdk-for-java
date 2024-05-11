@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for NotificationMode. */
+/**
+ * Defines values for NotificationMode.
+ */
 public final class NotificationMode extends ExpandableStringEnum<NotificationMode> {
-    /** Static value NotSpecified for NotificationMode. */
+    /**
+     * Static value NotSpecified for NotificationMode.
+     */
     public static final NotificationMode NOT_SPECIFIED = fromString("NotSpecified");
 
-    /** Static value EventHub for NotificationMode. */
+    /**
+     * Static value EventHub for NotificationMode.
+     */
     public static final NotificationMode EVENT_HUB = fromString("EventHub");
 
-    /** Static value WebHook for NotificationMode. */
+    /**
+     * Static value WebHook for NotificationMode.
+     */
     public static final NotificationMode WEB_HOOK = fromString("WebHook");
 
     /**
      * Creates a new instance of NotificationMode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class NotificationMode extends ExpandableStringEnum<NotificationMod
 
     /**
      * Creates or finds a NotificationMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding NotificationMode.
      */
@@ -41,7 +49,7 @@ public final class NotificationMode extends ExpandableStringEnum<NotificationMod
 
     /**
      * Gets known NotificationMode values.
-     *
+     * 
      * @return known NotificationMode values.
      */
     public static Collection<NotificationMode> values() {

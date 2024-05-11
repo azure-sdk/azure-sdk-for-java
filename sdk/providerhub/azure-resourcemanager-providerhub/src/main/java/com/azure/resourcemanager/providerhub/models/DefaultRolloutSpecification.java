@@ -9,7 +9,9 @@ import com.azure.resourcemanager.providerhub.fluent.models.ResourceTypeRegistrat
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The DefaultRolloutSpecification model. */
+/**
+ * The DefaultRolloutSpecification model.
+ */
 @Fluent
 public class DefaultRolloutSpecification {
     /*
@@ -60,13 +62,15 @@ public class DefaultRolloutSpecification {
     @JsonProperty(value = "resourceTypeRegistrations")
     private List<ResourceTypeRegistrationInner> resourceTypeRegistrations;
 
-    /** Creates an instance of DefaultRolloutSpecification class. */
+    /**
+     * Creates an instance of DefaultRolloutSpecification class.
+     */
     public DefaultRolloutSpecification() {
     }
 
     /**
      * Get the canary property: The canary property.
-     *
+     * 
      * @return the canary value.
      */
     public DefaultRolloutSpecificationCanary canary() {
@@ -75,7 +79,7 @@ public class DefaultRolloutSpecification {
 
     /**
      * Set the canary property: The canary property.
-     *
+     * 
      * @param canary the canary value to set.
      * @return the DefaultRolloutSpecification object itself.
      */
@@ -86,7 +90,7 @@ public class DefaultRolloutSpecification {
 
     /**
      * Get the lowTraffic property: The lowTraffic property.
-     *
+     * 
      * @return the lowTraffic value.
      */
     public DefaultRolloutSpecificationLowTraffic lowTraffic() {
@@ -95,7 +99,7 @@ public class DefaultRolloutSpecification {
 
     /**
      * Set the lowTraffic property: The lowTraffic property.
-     *
+     * 
      * @param lowTraffic the lowTraffic value to set.
      * @return the DefaultRolloutSpecification object itself.
      */
@@ -106,7 +110,7 @@ public class DefaultRolloutSpecification {
 
     /**
      * Get the mediumTraffic property: The mediumTraffic property.
-     *
+     * 
      * @return the mediumTraffic value.
      */
     public DefaultRolloutSpecificationMediumTraffic mediumTraffic() {
@@ -115,7 +119,7 @@ public class DefaultRolloutSpecification {
 
     /**
      * Set the mediumTraffic property: The mediumTraffic property.
-     *
+     * 
      * @param mediumTraffic the mediumTraffic value to set.
      * @return the DefaultRolloutSpecification object itself.
      */
@@ -126,7 +130,7 @@ public class DefaultRolloutSpecification {
 
     /**
      * Get the highTraffic property: The highTraffic property.
-     *
+     * 
      * @return the highTraffic value.
      */
     public DefaultRolloutSpecificationHighTraffic highTraffic() {
@@ -135,7 +139,7 @@ public class DefaultRolloutSpecification {
 
     /**
      * Set the highTraffic property: The highTraffic property.
-     *
+     * 
      * @param highTraffic the highTraffic value to set.
      * @return the DefaultRolloutSpecification object itself.
      */
@@ -146,7 +150,7 @@ public class DefaultRolloutSpecification {
 
     /**
      * Get the restOfTheWorldGroupOne property: The restOfTheWorldGroupOne property.
-     *
+     * 
      * @return the restOfTheWorldGroupOne value.
      */
     public DefaultRolloutSpecificationRestOfTheWorldGroupOne restOfTheWorldGroupOne() {
@@ -155,19 +159,19 @@ public class DefaultRolloutSpecification {
 
     /**
      * Set the restOfTheWorldGroupOne property: The restOfTheWorldGroupOne property.
-     *
+     * 
      * @param restOfTheWorldGroupOne the restOfTheWorldGroupOne value to set.
      * @return the DefaultRolloutSpecification object itself.
      */
-    public DefaultRolloutSpecification withRestOfTheWorldGroupOne(
-        DefaultRolloutSpecificationRestOfTheWorldGroupOne restOfTheWorldGroupOne) {
+    public DefaultRolloutSpecification
+        withRestOfTheWorldGroupOne(DefaultRolloutSpecificationRestOfTheWorldGroupOne restOfTheWorldGroupOne) {
         this.restOfTheWorldGroupOne = restOfTheWorldGroupOne;
         return this;
     }
 
     /**
      * Get the restOfTheWorldGroupTwo property: The restOfTheWorldGroupTwo property.
-     *
+     * 
      * @return the restOfTheWorldGroupTwo value.
      */
     public DefaultRolloutSpecificationRestOfTheWorldGroupTwo restOfTheWorldGroupTwo() {
@@ -176,19 +180,19 @@ public class DefaultRolloutSpecification {
 
     /**
      * Set the restOfTheWorldGroupTwo property: The restOfTheWorldGroupTwo property.
-     *
+     * 
      * @param restOfTheWorldGroupTwo the restOfTheWorldGroupTwo value to set.
      * @return the DefaultRolloutSpecification object itself.
      */
-    public DefaultRolloutSpecification withRestOfTheWorldGroupTwo(
-        DefaultRolloutSpecificationRestOfTheWorldGroupTwo restOfTheWorldGroupTwo) {
+    public DefaultRolloutSpecification
+        withRestOfTheWorldGroupTwo(DefaultRolloutSpecificationRestOfTheWorldGroupTwo restOfTheWorldGroupTwo) {
         this.restOfTheWorldGroupTwo = restOfTheWorldGroupTwo;
         return this;
     }
 
     /**
      * Get the providerRegistration property: The providerRegistration property.
-     *
+     * 
      * @return the providerRegistration value.
      */
     public DefaultRolloutSpecificationProviderRegistration providerRegistration() {
@@ -197,19 +201,19 @@ public class DefaultRolloutSpecification {
 
     /**
      * Set the providerRegistration property: The providerRegistration property.
-     *
+     * 
      * @param providerRegistration the providerRegistration value to set.
      * @return the DefaultRolloutSpecification object itself.
      */
-    public DefaultRolloutSpecification withProviderRegistration(
-        DefaultRolloutSpecificationProviderRegistration providerRegistration) {
+    public DefaultRolloutSpecification
+        withProviderRegistration(DefaultRolloutSpecificationProviderRegistration providerRegistration) {
         this.providerRegistration = providerRegistration;
         return this;
     }
 
     /**
      * Get the resourceTypeRegistrations property: The resourceTypeRegistrations property.
-     *
+     * 
      * @return the resourceTypeRegistrations value.
      */
     public List<ResourceTypeRegistrationInner> resourceTypeRegistrations() {
@@ -218,19 +222,19 @@ public class DefaultRolloutSpecification {
 
     /**
      * Set the resourceTypeRegistrations property: The resourceTypeRegistrations property.
-     *
+     * 
      * @param resourceTypeRegistrations the resourceTypeRegistrations value to set.
      * @return the DefaultRolloutSpecification object itself.
      */
-    public DefaultRolloutSpecification withResourceTypeRegistrations(
-        List<ResourceTypeRegistrationInner> resourceTypeRegistrations) {
+    public DefaultRolloutSpecification
+        withResourceTypeRegistrations(List<ResourceTypeRegistrationInner> resourceTypeRegistrations) {
         this.resourceTypeRegistrations = resourceTypeRegistrations;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

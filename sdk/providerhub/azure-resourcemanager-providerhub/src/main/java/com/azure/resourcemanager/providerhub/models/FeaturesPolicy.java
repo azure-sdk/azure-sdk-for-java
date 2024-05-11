@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for FeaturesPolicy. */
+/**
+ * Defines values for FeaturesPolicy.
+ */
 public final class FeaturesPolicy extends ExpandableStringEnum<FeaturesPolicy> {
-    /** Static value Any for FeaturesPolicy. */
+    /**
+     * Static value Any for FeaturesPolicy.
+     */
     public static final FeaturesPolicy ANY = fromString("Any");
 
-    /** Static value All for FeaturesPolicy. */
+    /**
+     * Static value All for FeaturesPolicy.
+     */
     public static final FeaturesPolicy ALL = fromString("All");
 
     /**
      * Creates a new instance of FeaturesPolicy value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class FeaturesPolicy extends ExpandableStringEnum<FeaturesPolicy> {
 
     /**
      * Creates or finds a FeaturesPolicy from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding FeaturesPolicy.
      */
@@ -38,7 +44,7 @@ public final class FeaturesPolicy extends ExpandableStringEnum<FeaturesPolicy> {
 
     /**
      * Gets known FeaturesPolicy values.
-     *
+     * 
      * @return known FeaturesPolicy values.
      */
     public static Collection<FeaturesPolicy> values() {

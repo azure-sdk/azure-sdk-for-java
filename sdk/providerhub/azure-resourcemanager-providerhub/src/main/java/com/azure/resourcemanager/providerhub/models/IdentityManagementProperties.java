@@ -7,7 +7,9 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The IdentityManagementProperties model. */
+/**
+ * The IdentityManagementProperties model.
+ */
 @Fluent
 public class IdentityManagementProperties {
     /*
@@ -22,13 +24,15 @@ public class IdentityManagementProperties {
     @JsonProperty(value = "applicationId")
     private String applicationId;
 
-    /** Creates an instance of IdentityManagementProperties class. */
+    /**
+     * Creates an instance of IdentityManagementProperties class.
+     */
     public IdentityManagementProperties() {
     }
 
     /**
      * Get the type property: The type property.
-     *
+     * 
      * @return the type value.
      */
     public IdentityManagementTypes type() {
@@ -37,7 +41,7 @@ public class IdentityManagementProperties {
 
     /**
      * Set the type property: The type property.
-     *
+     * 
      * @param type the type value to set.
      * @return the IdentityManagementProperties object itself.
      */
@@ -48,7 +52,7 @@ public class IdentityManagementProperties {
 
     /**
      * Get the applicationId property: The applicationId property.
-     *
+     * 
      * @return the applicationId value.
      */
     public String applicationId() {
@@ -57,7 +61,7 @@ public class IdentityManagementProperties {
 
     /**
      * Set the applicationId property: The applicationId property.
-     *
+     * 
      * @param applicationId the applicationId value to set.
      * @return the IdentityManagementProperties object itself.
      */
@@ -68,7 +72,7 @@ public class IdentityManagementProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

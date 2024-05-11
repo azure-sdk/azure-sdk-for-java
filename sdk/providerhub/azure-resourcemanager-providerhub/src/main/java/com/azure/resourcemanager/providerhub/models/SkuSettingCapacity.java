@@ -6,35 +6,47 @@ package com.azure.resourcemanager.providerhub.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The SkuSettingCapacity model. */
+/**
+ * The SkuSettingCapacity model.
+ */
 @Fluent
 public final class SkuSettingCapacity extends SkuCapacity {
-    /** Creates an instance of SkuSettingCapacity class. */
+    /**
+     * Creates an instance of SkuSettingCapacity class.
+     */
     public SkuSettingCapacity() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SkuSettingCapacity withMinimum(int minimum) {
         super.withMinimum(minimum);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SkuSettingCapacity withMaximum(Integer maximum) {
         super.withMaximum(maximum);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SkuSettingCapacity withDefaultProperty(Integer defaultProperty) {
         super.withDefaultProperty(defaultProperty);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public SkuSettingCapacity withScaleType(SkuScaleType scaleType) {
         super.withScaleType(scaleType);
@@ -43,7 +55,7 @@ public final class SkuSettingCapacity extends SkuCapacity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

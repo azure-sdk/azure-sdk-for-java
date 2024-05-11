@@ -7,15 +7,23 @@ package com.azure.resourcemanager.providerhub.models;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-/** Defines values for OperationActionType. */
+/**
+ * Defines values for OperationActionType.
+ */
 public enum OperationActionType {
-    /** Enum value NotSpecified. */
+    /**
+     * Enum value NotSpecified.
+     */
     NOT_SPECIFIED("NotSpecified"),
 
-    /** Enum value Internal. */
+    /**
+     * Enum value Internal.
+     */
     INTERNAL("Internal");
 
-    /** The actual serialized value for a OperationActionType instance. */
+    /**
+     * The actual serialized value for a OperationActionType instance.
+     */
     private final String value;
 
     OperationActionType(String value) {
@@ -24,7 +32,7 @@ public enum OperationActionType {
 
     /**
      * Parses a serialized value to a OperationActionType instance.
-     *
+     * 
      * @param value the serialized value to parse.
      * @return the parsed OperationActionType object, or null if unable to parse.
      */
@@ -42,7 +50,9 @@ public enum OperationActionType {
         return null;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @JsonValue
     @Override
     public String toString() {

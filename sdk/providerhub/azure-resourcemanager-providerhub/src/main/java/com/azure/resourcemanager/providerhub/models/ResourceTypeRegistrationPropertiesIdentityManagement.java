@@ -6,21 +6,29 @@ package com.azure.resourcemanager.providerhub.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceTypeRegistrationPropertiesIdentityManagement model. */
+/**
+ * The ResourceTypeRegistrationPropertiesIdentityManagement model.
+ */
 @Fluent
 public final class ResourceTypeRegistrationPropertiesIdentityManagement extends IdentityManagementProperties {
-    /** Creates an instance of ResourceTypeRegistrationPropertiesIdentityManagement class. */
+    /**
+     * Creates an instance of ResourceTypeRegistrationPropertiesIdentityManagement class.
+     */
     public ResourceTypeRegistrationPropertiesIdentityManagement() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceTypeRegistrationPropertiesIdentityManagement withType(IdentityManagementTypes type) {
         super.withType(type);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceTypeRegistrationPropertiesIdentityManagement withApplicationId(String applicationId) {
         super.withApplicationId(applicationId);
@@ -29,7 +37,7 @@ public final class ResourceTypeRegistrationPropertiesIdentityManagement extends 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

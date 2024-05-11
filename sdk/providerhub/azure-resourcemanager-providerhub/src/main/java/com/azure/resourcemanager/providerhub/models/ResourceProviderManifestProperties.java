@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ResourceProviderManifestProperties model. */
+/**
+ * The ResourceProviderManifestProperties model.
+ */
 @Fluent
 public class ResourceProviderManifestProperties {
     /*
@@ -83,13 +85,15 @@ public class ResourceProviderManifestProperties {
     @JsonProperty(value = "templateDeploymentOptions")
     private ResourceProviderManifestPropertiesTemplateDeploymentOptions templateDeploymentOptions;
 
-    /** Creates an instance of ResourceProviderManifestProperties class. */
+    /**
+     * Creates an instance of ResourceProviderManifestProperties class.
+     */
     public ResourceProviderManifestProperties() {
     }
 
     /**
      * Get the providerAuthentication property: The providerAuthentication property.
-     *
+     * 
      * @return the providerAuthentication value.
      */
     public ResourceProviderManifestPropertiesProviderAuthentication providerAuthentication() {
@@ -98,19 +102,19 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the providerAuthentication property: The providerAuthentication property.
-     *
+     * 
      * @param providerAuthentication the providerAuthentication value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
-    public ResourceProviderManifestProperties withProviderAuthentication(
-        ResourceProviderManifestPropertiesProviderAuthentication providerAuthentication) {
+    public ResourceProviderManifestProperties
+        withProviderAuthentication(ResourceProviderManifestPropertiesProviderAuthentication providerAuthentication) {
         this.providerAuthentication = providerAuthentication;
         return this;
     }
 
     /**
      * Get the providerAuthorizations property: The providerAuthorizations property.
-     *
+     * 
      * @return the providerAuthorizations value.
      */
     public List<ResourceProviderAuthorization> providerAuthorizations() {
@@ -119,19 +123,19 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the providerAuthorizations property: The providerAuthorizations property.
-     *
+     * 
      * @param providerAuthorizations the providerAuthorizations value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
-    public ResourceProviderManifestProperties withProviderAuthorizations(
-        List<ResourceProviderAuthorization> providerAuthorizations) {
+    public ResourceProviderManifestProperties
+        withProviderAuthorizations(List<ResourceProviderAuthorization> providerAuthorizations) {
         this.providerAuthorizations = providerAuthorizations;
         return this;
     }
 
     /**
      * Get the namespace property: The namespace property.
-     *
+     * 
      * @return the namespace value.
      */
     public String namespace() {
@@ -140,7 +144,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the namespace property: The namespace property.
-     *
+     * 
      * @param namespace the namespace value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
@@ -151,7 +155,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Get the providerVersion property: The providerVersion property.
-     *
+     * 
      * @return the providerVersion value.
      */
     public String providerVersion() {
@@ -160,7 +164,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the providerVersion property: The providerVersion property.
-     *
+     * 
      * @param providerVersion the providerVersion value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
@@ -171,7 +175,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Get the providerType property: The providerType property.
-     *
+     * 
      * @return the providerType value.
      */
     public ResourceProviderType providerType() {
@@ -180,7 +184,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the providerType property: The providerType property.
-     *
+     * 
      * @param providerType the providerType value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
@@ -191,7 +195,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Get the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @return the requiredFeatures value.
      */
     public List<String> requiredFeatures() {
@@ -200,7 +204,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the requiredFeatures property: The requiredFeatures property.
-     *
+     * 
      * @param requiredFeatures the requiredFeatures value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
@@ -211,7 +215,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Get the featuresRule property: The featuresRule property.
-     *
+     * 
      * @return the featuresRule value.
      */
     public ResourceProviderManifestPropertiesFeaturesRule featuresRule() {
@@ -220,19 +224,19 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the featuresRule property: The featuresRule property.
-     *
+     * 
      * @param featuresRule the featuresRule value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
-    public ResourceProviderManifestProperties withFeaturesRule(
-        ResourceProviderManifestPropertiesFeaturesRule featuresRule) {
+    public ResourceProviderManifestProperties
+        withFeaturesRule(ResourceProviderManifestPropertiesFeaturesRule featuresRule) {
         this.featuresRule = featuresRule;
         return this;
     }
 
     /**
      * Get the requestHeaderOptions property: The requestHeaderOptions property.
-     *
+     * 
      * @return the requestHeaderOptions value.
      */
     public ResourceProviderManifestPropertiesRequestHeaderOptions requestHeaderOptions() {
@@ -241,19 +245,19 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the requestHeaderOptions property: The requestHeaderOptions property.
-     *
+     * 
      * @param requestHeaderOptions the requestHeaderOptions value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
-    public ResourceProviderManifestProperties withRequestHeaderOptions(
-        ResourceProviderManifestPropertiesRequestHeaderOptions requestHeaderOptions) {
+    public ResourceProviderManifestProperties
+        withRequestHeaderOptions(ResourceProviderManifestPropertiesRequestHeaderOptions requestHeaderOptions) {
         this.requestHeaderOptions = requestHeaderOptions;
         return this;
     }
 
     /**
      * Get the management property: The management property.
-     *
+     * 
      * @return the management value.
      */
     public ResourceProviderManifestPropertiesManagement management() {
@@ -262,7 +266,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the management property: The management property.
-     *
+     * 
      * @param management the management value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
@@ -273,7 +277,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Get the capabilities property: The capabilities property.
-     *
+     * 
      * @return the capabilities value.
      */
     public List<ResourceProviderCapabilities> capabilities() {
@@ -282,7 +286,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the capabilities property: The capabilities property.
-     *
+     * 
      * @param capabilities the capabilities value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
@@ -293,7 +297,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Get the metadata property: Anything.
-     *
+     * 
      * @return the metadata value.
      */
     public Object metadata() {
@@ -302,7 +306,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the metadata property: Anything.
-     *
+     * 
      * @param metadata the metadata value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
@@ -313,7 +317,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Get the templateDeploymentOptions property: The templateDeploymentOptions property.
-     *
+     * 
      * @return the templateDeploymentOptions value.
      */
     public ResourceProviderManifestPropertiesTemplateDeploymentOptions templateDeploymentOptions() {
@@ -322,7 +326,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Set the templateDeploymentOptions property: The templateDeploymentOptions property.
-     *
+     * 
      * @param templateDeploymentOptions the templateDeploymentOptions value to set.
      * @return the ResourceProviderManifestProperties object itself.
      */
@@ -334,7 +338,7 @@ public class ResourceProviderManifestProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,21 +7,29 @@ package com.azure.resourcemanager.providerhub.models;
 import com.azure.core.annotation.Fluent;
 import java.util.List;
 
-/** The DefaultRolloutSpecificationCanary model. */
+/**
+ * The DefaultRolloutSpecificationCanary model.
+ */
 @Fluent
 public final class DefaultRolloutSpecificationCanary extends CanaryTrafficRegionRolloutConfiguration {
-    /** Creates an instance of DefaultRolloutSpecificationCanary class. */
+    /**
+     * Creates an instance of DefaultRolloutSpecificationCanary class.
+     */
     public DefaultRolloutSpecificationCanary() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationCanary withSkipRegions(List<String> skipRegions) {
         super.withSkipRegions(skipRegions);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public DefaultRolloutSpecificationCanary withRegions(List<String> regions) {
         super.withRegions(regions);
@@ -30,7 +38,7 @@ public final class DefaultRolloutSpecificationCanary extends CanaryTrafficRegion
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
