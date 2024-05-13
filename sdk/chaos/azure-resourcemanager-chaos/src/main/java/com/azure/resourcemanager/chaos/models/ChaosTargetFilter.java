@@ -5,26 +5,41 @@
 package com.azure.resourcemanager.chaos.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Model that represents available filter types that can be applied to a targets list.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-    defaultImpl = ChaosTargetFilter.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = ChaosTargetFilter.class, visible = true)
 @JsonTypeName("ChaosTargetFilter")
 @JsonSubTypes({ @JsonSubTypes.Type(name = "Simple", value = ChaosTargetSimpleFilter.class) })
 @Immutable
 public class ChaosTargetFilter {
+    /*
+     * Enum that discriminates between filter types. Currently only `Simple` type is supported.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private FilterType type;
+
     /**
      * Creates an instance of ChaosTargetFilter class.
      */
     public ChaosTargetFilter() {
+        this.type = FilterType.fromString("ChaosTargetFilter");
+    }
+
+    /**
+     * Get the type property: Enum that discriminates between filter types. Currently only `Simple` type is supported.
+     * 
+     * @return the type value.
+     */
+    public FilterType type() {
+        return this.type;
     }
 
     /**

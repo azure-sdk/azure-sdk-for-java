@@ -78,12 +78,12 @@ public final class KeyValuePair {
      */
     public void validate() {
         if (key() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property key in model KeyValuePair"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property key in model KeyValuePair"));
         }
         if (value() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property value in model KeyValuePair"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property value in model KeyValuePair"));
         }
     }
 

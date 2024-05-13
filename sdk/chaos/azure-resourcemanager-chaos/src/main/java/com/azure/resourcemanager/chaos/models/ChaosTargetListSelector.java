@@ -7,6 +7,7 @@ package com.azure.resourcemanager.chaos.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -14,10 +15,21 @@ import java.util.List;
 /**
  * Model that represents a list selector.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ChaosTargetListSelector.class,
+    visible = true)
 @JsonTypeName("List")
 @Fluent
 public final class ChaosTargetListSelector extends ChaosTargetSelector {
+    /*
+     * Enum of the selector type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private SelectorType type = SelectorType.LIST;
+
     /*
      * List of Target references.
      */
@@ -28,6 +40,16 @@ public final class ChaosTargetListSelector extends ChaosTargetSelector {
      * Creates an instance of ChaosTargetListSelector class.
      */
     public ChaosTargetListSelector() {
+    }
+
+    /**
+     * Get the type property: Enum of the selector type.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public SelectorType type() {
+        return this.type;
     }
 
     /**
@@ -77,8 +99,9 @@ public final class ChaosTargetListSelector extends ChaosTargetSelector {
     public void validate() {
         super.validate();
         if (targets() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property targets in model ChaosTargetListSelector"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property targets in model ChaosTargetListSelector"));
         } else {
             targets().forEach(e -> e.validate());
         }
