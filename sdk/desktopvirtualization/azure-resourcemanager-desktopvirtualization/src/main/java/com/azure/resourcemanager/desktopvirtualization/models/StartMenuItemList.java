@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * StartMenuItemList
- *
- * <p>List of StartMenuItem definitions.
+ * 
+ * List of StartMenuItem definitions.
  */
 @Fluent
 public final class StartMenuItemList {
@@ -28,13 +28,15 @@ public final class StartMenuItemList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of StartMenuItemList class. */
+    /**
+     * Creates an instance of StartMenuItemList class.
+     */
     public StartMenuItemList() {
     }
 
     /**
      * Get the value property: List of StartMenuItem definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<StartMenuItemInner> value() {
@@ -43,7 +45,7 @@ public final class StartMenuItemList {
 
     /**
      * Set the value property: List of StartMenuItem definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the StartMenuItemList object itself.
      */
@@ -54,7 +56,7 @@ public final class StartMenuItemList {
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +65,7 @@ public final class StartMenuItemList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

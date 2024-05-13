@@ -7,7 +7,9 @@ package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Schema for StartMenuItem properties. */
+/**
+ * Schema for StartMenuItem properties.
+ */
 @Fluent
 public final class StartMenuItemProperties {
     /*
@@ -40,13 +42,15 @@ public final class StartMenuItemProperties {
     @JsonProperty(value = "iconIndex")
     private Integer iconIndex;
 
-    /** Creates an instance of StartMenuItemProperties class. */
+    /**
+     * Creates an instance of StartMenuItemProperties class.
+     */
     public StartMenuItemProperties() {
     }
 
     /**
      * Get the appAlias property: Alias of StartMenuItem.
-     *
+     * 
      * @return the appAlias value.
      */
     public String appAlias() {
@@ -55,7 +59,7 @@ public final class StartMenuItemProperties {
 
     /**
      * Set the appAlias property: Alias of StartMenuItem.
-     *
+     * 
      * @param appAlias the appAlias value to set.
      * @return the StartMenuItemProperties object itself.
      */
@@ -66,7 +70,7 @@ public final class StartMenuItemProperties {
 
     /**
      * Get the filePath property: Path to the file of StartMenuItem.
-     *
+     * 
      * @return the filePath value.
      */
     public String filePath() {
@@ -75,7 +79,7 @@ public final class StartMenuItemProperties {
 
     /**
      * Set the filePath property: Path to the file of StartMenuItem.
-     *
+     * 
      * @param filePath the filePath value to set.
      * @return the StartMenuItemProperties object itself.
      */
@@ -86,7 +90,7 @@ public final class StartMenuItemProperties {
 
     /**
      * Get the commandLineArguments property: Command line arguments for StartMenuItem.
-     *
+     * 
      * @return the commandLineArguments value.
      */
     public String commandLineArguments() {
@@ -95,7 +99,7 @@ public final class StartMenuItemProperties {
 
     /**
      * Set the commandLineArguments property: Command line arguments for StartMenuItem.
-     *
+     * 
      * @param commandLineArguments the commandLineArguments value to set.
      * @return the StartMenuItemProperties object itself.
      */
@@ -106,7 +110,7 @@ public final class StartMenuItemProperties {
 
     /**
      * Get the iconPath property: Path to the icon.
-     *
+     * 
      * @return the iconPath value.
      */
     public String iconPath() {
@@ -115,7 +119,7 @@ public final class StartMenuItemProperties {
 
     /**
      * Set the iconPath property: Path to the icon.
-     *
+     * 
      * @param iconPath the iconPath value to set.
      * @return the StartMenuItemProperties object itself.
      */
@@ -126,7 +130,7 @@ public final class StartMenuItemProperties {
 
     /**
      * Get the iconIndex property: Index of the icon.
-     *
+     * 
      * @return the iconIndex value.
      */
     public Integer iconIndex() {
@@ -135,7 +139,7 @@ public final class StartMenuItemProperties {
 
     /**
      * Set the iconIndex property: Index of the icon.
-     *
+     * 
      * @param iconIndex the iconIndex value to set.
      * @return the StartMenuItemProperties object itself.
      */
@@ -146,7 +150,7 @@ public final class StartMenuItemProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

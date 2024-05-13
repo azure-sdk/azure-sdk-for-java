@@ -12,7 +12,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.Time;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A ScalingPlanPooledSchedule. */
+/**
+ * A ScalingPlanPooledSchedule.
+ */
 @Fluent
 public final class ScalingPlanPooledScheduleProperties {
     /*
@@ -117,13 +119,15 @@ public final class ScalingPlanPooledScheduleProperties {
     @JsonProperty(value = "offPeakLoadBalancingAlgorithm")
     private SessionHostLoadBalancingAlgorithm offPeakLoadBalancingAlgorithm;
 
-    /** Creates an instance of ScalingPlanPooledScheduleProperties class. */
+    /**
+     * Creates an instance of ScalingPlanPooledScheduleProperties class.
+     */
     public ScalingPlanPooledScheduleProperties() {
     }
 
     /**
      * Get the daysOfWeek property: Set of days of the week on which this schedule is active.
-     *
+     * 
      * @return the daysOfWeek value.
      */
     public List<DayOfWeek> daysOfWeek() {
@@ -132,7 +136,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the daysOfWeek property: Set of days of the week on which this schedule is active.
-     *
+     * 
      * @param daysOfWeek the daysOfWeek value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -143,7 +147,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the rampUpStartTime property: Starting time for ramp up period.
-     *
+     * 
      * @return the rampUpStartTime value.
      */
     public Time rampUpStartTime() {
@@ -152,7 +156,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampUpStartTime property: Starting time for ramp up period.
-     *
+     * 
      * @param rampUpStartTime the rampUpStartTime value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -163,7 +167,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the rampUpLoadBalancingAlgorithm property: Load balancing algorithm for ramp up period.
-     *
+     * 
      * @return the rampUpLoadBalancingAlgorithm value.
      */
     public SessionHostLoadBalancingAlgorithm rampUpLoadBalancingAlgorithm() {
@@ -172,19 +176,19 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampUpLoadBalancingAlgorithm property: Load balancing algorithm for ramp up period.
-     *
+     * 
      * @param rampUpLoadBalancingAlgorithm the rampUpLoadBalancingAlgorithm value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
-    public ScalingPlanPooledScheduleProperties withRampUpLoadBalancingAlgorithm(
-        SessionHostLoadBalancingAlgorithm rampUpLoadBalancingAlgorithm) {
+    public ScalingPlanPooledScheduleProperties
+        withRampUpLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm rampUpLoadBalancingAlgorithm) {
         this.rampUpLoadBalancingAlgorithm = rampUpLoadBalancingAlgorithm;
         return this;
     }
 
     /**
      * Get the rampUpMinimumHostsPct property: Minimum host percentage for ramp up period.
-     *
+     * 
      * @return the rampUpMinimumHostsPct value.
      */
     public Integer rampUpMinimumHostsPct() {
@@ -193,7 +197,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampUpMinimumHostsPct property: Minimum host percentage for ramp up period.
-     *
+     * 
      * @param rampUpMinimumHostsPct the rampUpMinimumHostsPct value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -204,7 +208,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the rampUpCapacityThresholdPct property: Capacity threshold for ramp up period.
-     *
+     * 
      * @return the rampUpCapacityThresholdPct value.
      */
     public Integer rampUpCapacityThresholdPct() {
@@ -213,7 +217,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampUpCapacityThresholdPct property: Capacity threshold for ramp up period.
-     *
+     * 
      * @param rampUpCapacityThresholdPct the rampUpCapacityThresholdPct value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -224,7 +228,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the peakStartTime property: Starting time for peak period.
-     *
+     * 
      * @return the peakStartTime value.
      */
     public Time peakStartTime() {
@@ -233,7 +237,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the peakStartTime property: Starting time for peak period.
-     *
+     * 
      * @param peakStartTime the peakStartTime value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -244,7 +248,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the peakLoadBalancingAlgorithm property: Load balancing algorithm for peak period.
-     *
+     * 
      * @return the peakLoadBalancingAlgorithm value.
      */
     public SessionHostLoadBalancingAlgorithm peakLoadBalancingAlgorithm() {
@@ -253,19 +257,19 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the peakLoadBalancingAlgorithm property: Load balancing algorithm for peak period.
-     *
+     * 
      * @param peakLoadBalancingAlgorithm the peakLoadBalancingAlgorithm value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
-    public ScalingPlanPooledScheduleProperties withPeakLoadBalancingAlgorithm(
-        SessionHostLoadBalancingAlgorithm peakLoadBalancingAlgorithm) {
+    public ScalingPlanPooledScheduleProperties
+        withPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm peakLoadBalancingAlgorithm) {
         this.peakLoadBalancingAlgorithm = peakLoadBalancingAlgorithm;
         return this;
     }
 
     /**
      * Get the rampDownStartTime property: Starting time for ramp down period.
-     *
+     * 
      * @return the rampDownStartTime value.
      */
     public Time rampDownStartTime() {
@@ -274,7 +278,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampDownStartTime property: Starting time for ramp down period.
-     *
+     * 
      * @param rampDownStartTime the rampDownStartTime value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -285,7 +289,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the rampDownLoadBalancingAlgorithm property: Load balancing algorithm for ramp down period.
-     *
+     * 
      * @return the rampDownLoadBalancingAlgorithm value.
      */
     public SessionHostLoadBalancingAlgorithm rampDownLoadBalancingAlgorithm() {
@@ -294,19 +298,19 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampDownLoadBalancingAlgorithm property: Load balancing algorithm for ramp down period.
-     *
+     * 
      * @param rampDownLoadBalancingAlgorithm the rampDownLoadBalancingAlgorithm value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
-    public ScalingPlanPooledScheduleProperties withRampDownLoadBalancingAlgorithm(
-        SessionHostLoadBalancingAlgorithm rampDownLoadBalancingAlgorithm) {
+    public ScalingPlanPooledScheduleProperties
+        withRampDownLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm rampDownLoadBalancingAlgorithm) {
         this.rampDownLoadBalancingAlgorithm = rampDownLoadBalancingAlgorithm;
         return this;
     }
 
     /**
      * Get the rampDownMinimumHostsPct property: Minimum host percentage for ramp down period.
-     *
+     * 
      * @return the rampDownMinimumHostsPct value.
      */
     public Integer rampDownMinimumHostsPct() {
@@ -315,7 +319,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampDownMinimumHostsPct property: Minimum host percentage for ramp down period.
-     *
+     * 
      * @param rampDownMinimumHostsPct the rampDownMinimumHostsPct value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -326,7 +330,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the rampDownCapacityThresholdPct property: Capacity threshold for ramp down period.
-     *
+     * 
      * @return the rampDownCapacityThresholdPct value.
      */
     public Integer rampDownCapacityThresholdPct() {
@@ -335,7 +339,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampDownCapacityThresholdPct property: Capacity threshold for ramp down period.
-     *
+     * 
      * @param rampDownCapacityThresholdPct the rampDownCapacityThresholdPct value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -346,7 +350,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the rampDownForceLogoffUsers property: Should users be logged off forcefully from hosts.
-     *
+     * 
      * @return the rampDownForceLogoffUsers value.
      */
     public Boolean rampDownForceLogoffUsers() {
@@ -355,7 +359,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampDownForceLogoffUsers property: Should users be logged off forcefully from hosts.
-     *
+     * 
      * @param rampDownForceLogoffUsers the rampDownForceLogoffUsers value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -366,7 +370,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the rampDownStopHostsWhen property: Specifies when to stop hosts during ramp down period.
-     *
+     * 
      * @return the rampDownStopHostsWhen value.
      */
     public StopHostsWhen rampDownStopHostsWhen() {
@@ -375,7 +379,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampDownStopHostsWhen property: Specifies when to stop hosts during ramp down period.
-     *
+     * 
      * @param rampDownStopHostsWhen the rampDownStopHostsWhen value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -386,7 +390,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the rampDownWaitTimeMinutes property: Number of minutes to wait to stop hosts during ramp down period.
-     *
+     * 
      * @return the rampDownWaitTimeMinutes value.
      */
     public Integer rampDownWaitTimeMinutes() {
@@ -395,7 +399,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampDownWaitTimeMinutes property: Number of minutes to wait to stop hosts during ramp down period.
-     *
+     * 
      * @param rampDownWaitTimeMinutes the rampDownWaitTimeMinutes value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -406,7 +410,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the rampDownNotificationMessage property: Notification message for users during ramp down period.
-     *
+     * 
      * @return the rampDownNotificationMessage value.
      */
     public String rampDownNotificationMessage() {
@@ -415,7 +419,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the rampDownNotificationMessage property: Notification message for users during ramp down period.
-     *
+     * 
      * @param rampDownNotificationMessage the rampDownNotificationMessage value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -426,7 +430,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the offPeakStartTime property: Starting time for off-peak period.
-     *
+     * 
      * @return the offPeakStartTime value.
      */
     public Time offPeakStartTime() {
@@ -435,7 +439,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the offPeakStartTime property: Starting time for off-peak period.
-     *
+     * 
      * @param offPeakStartTime the offPeakStartTime value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
@@ -446,7 +450,7 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Get the offPeakLoadBalancingAlgorithm property: Load balancing algorithm for off-peak period.
-     *
+     * 
      * @return the offPeakLoadBalancingAlgorithm value.
      */
     public SessionHostLoadBalancingAlgorithm offPeakLoadBalancingAlgorithm() {
@@ -455,19 +459,19 @@ public final class ScalingPlanPooledScheduleProperties {
 
     /**
      * Set the offPeakLoadBalancingAlgorithm property: Load balancing algorithm for off-peak period.
-     *
+     * 
      * @param offPeakLoadBalancingAlgorithm the offPeakLoadBalancingAlgorithm value to set.
      * @return the ScalingPlanPooledScheduleProperties object itself.
      */
-    public ScalingPlanPooledScheduleProperties withOffPeakLoadBalancingAlgorithm(
-        SessionHostLoadBalancingAlgorithm offPeakLoadBalancingAlgorithm) {
+    public ScalingPlanPooledScheduleProperties
+        withOffPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm offPeakLoadBalancingAlgorithm) {
         this.offPeakLoadBalancingAlgorithm = offPeakLoadBalancingAlgorithm;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

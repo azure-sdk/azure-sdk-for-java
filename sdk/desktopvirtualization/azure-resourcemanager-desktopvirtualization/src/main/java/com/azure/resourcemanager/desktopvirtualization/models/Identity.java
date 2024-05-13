@@ -6,21 +6,24 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.UUID;
 
-/** Identity for the resource. */
+/**
+ * Identity for the resource.
+ */
 @Fluent
 public class Identity {
     /*
-     * The principal ID of resource identity.
+     * The principal ID of resource identity. The value must be an UUID.
      */
     @JsonProperty(value = "principalId", access = JsonProperty.Access.WRITE_ONLY)
-    private String principalId;
+    private UUID principalId;
 
     /*
-     * The tenant ID of resource.
+     * The tenant ID of resource. The value must be an UUID.
      */
     @JsonProperty(value = "tenantId", access = JsonProperty.Access.WRITE_ONLY)
-    private String tenantId;
+    private UUID tenantId;
 
     /*
      * The identity type.
@@ -28,31 +31,33 @@ public class Identity {
     @JsonProperty(value = "type")
     private ResourceIdentityType type;
 
-    /** Creates an instance of Identity class. */
+    /**
+     * Creates an instance of Identity class.
+     */
     public Identity() {
     }
 
     /**
-     * Get the principalId property: The principal ID of resource identity.
-     *
+     * Get the principalId property: The principal ID of resource identity. The value must be an UUID.
+     * 
      * @return the principalId value.
      */
-    public String principalId() {
+    public UUID principalId() {
         return this.principalId;
     }
 
     /**
-     * Get the tenantId property: The tenant ID of resource.
-     *
+     * Get the tenantId property: The tenant ID of resource. The value must be an UUID.
+     * 
      * @return the tenantId value.
      */
-    public String tenantId() {
+    public UUID tenantId() {
         return this.tenantId;
     }
 
     /**
      * Get the type property: The identity type.
-     *
+     * 
      * @return the type value.
      */
     public ResourceIdentityType type() {
@@ -61,7 +66,7 @@ public class Identity {
 
     /**
      * Set the type property: The identity type.
-     *
+     * 
      * @param type the type value to set.
      * @return the Identity object itself.
      */
@@ -72,7 +77,7 @@ public class Identity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

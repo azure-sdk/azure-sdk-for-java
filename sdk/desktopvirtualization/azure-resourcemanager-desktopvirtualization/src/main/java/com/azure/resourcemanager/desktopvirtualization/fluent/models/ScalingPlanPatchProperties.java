@@ -10,7 +10,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.ScalingSchedule;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Scaling plan properties. */
+/**
+ * Scaling plan properties.
+ */
 @Fluent
 public final class ScalingPlanPatchProperties {
     /*
@@ -49,13 +51,15 @@ public final class ScalingPlanPatchProperties {
     @JsonProperty(value = "hostPoolReferences")
     private List<ScalingHostPoolReference> hostPoolReferences;
 
-    /** Creates an instance of ScalingPlanPatchProperties class. */
+    /**
+     * Creates an instance of ScalingPlanPatchProperties class.
+     */
     public ScalingPlanPatchProperties() {
     }
 
     /**
      * Get the description property: Description of scaling plan.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -64,7 +68,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Set the description property: Description of scaling plan.
-     *
+     * 
      * @param description the description value to set.
      * @return the ScalingPlanPatchProperties object itself.
      */
@@ -75,7 +79,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Get the friendlyName property: User friendly name of scaling plan.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -84,7 +88,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Set the friendlyName property: User friendly name of scaling plan.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the ScalingPlanPatchProperties object itself.
      */
@@ -95,7 +99,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Get the timeZone property: Timezone of the scaling plan.
-     *
+     * 
      * @return the timeZone value.
      */
     public String timeZone() {
@@ -104,7 +108,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Set the timeZone property: Timezone of the scaling plan.
-     *
+     * 
      * @param timeZone the timeZone value to set.
      * @return the ScalingPlanPatchProperties object itself.
      */
@@ -115,7 +119,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Get the exclusionTag property: Exclusion tag for scaling plan.
-     *
+     * 
      * @return the exclusionTag value.
      */
     public String exclusionTag() {
@@ -124,7 +128,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Set the exclusionTag property: Exclusion tag for scaling plan.
-     *
+     * 
      * @param exclusionTag the exclusionTag value to set.
      * @return the ScalingPlanPatchProperties object itself.
      */
@@ -135,7 +139,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Get the schedules property: List of ScalingSchedule definitions.
-     *
+     * 
      * @return the schedules value.
      */
     public List<ScalingSchedule> schedules() {
@@ -144,7 +148,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Set the schedules property: List of ScalingSchedule definitions.
-     *
+     * 
      * @param schedules the schedules value to set.
      * @return the ScalingPlanPatchProperties object itself.
      */
@@ -155,7 +159,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Get the hostPoolReferences property: List of ScalingHostPoolReference definitions.
-     *
+     * 
      * @return the hostPoolReferences value.
      */
     public List<ScalingHostPoolReference> hostPoolReferences() {
@@ -164,7 +168,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Set the hostPoolReferences property: List of ScalingHostPoolReference definitions.
-     *
+     * 
      * @param hostPoolReferences the hostPoolReferences value to set.
      * @return the ScalingPlanPatchProperties object itself.
      */
@@ -175,7 +179,7 @@ public final class ScalingPlanPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

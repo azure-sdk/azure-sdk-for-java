@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * WorkspaceList
- *
- * <p>List of Workspace definitions.
+ * 
+ * List of Workspace definitions.
  */
 @Fluent
 public final class WorkspaceList {
@@ -28,13 +28,15 @@ public final class WorkspaceList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of WorkspaceList class. */
+    /**
+     * Creates an instance of WorkspaceList class.
+     */
     public WorkspaceList() {
     }
 
     /**
      * Get the value property: List of Workspace definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<WorkspaceInner> value() {
@@ -43,7 +45,7 @@ public final class WorkspaceList {
 
     /**
      * Set the value property: List of Workspace definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the WorkspaceList object itself.
      */
@@ -54,7 +56,7 @@ public final class WorkspaceList {
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +65,7 @@ public final class WorkspaceList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
