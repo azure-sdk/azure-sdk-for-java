@@ -9,8 +9,7 @@ package com.azure.resourcemanager.sphere.generated;
  */
 public final class DeploymentsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PutDeployment.json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PutDeployment.json
      */
     /**
      * Sample code: Deployments_CreateOrUpdate.
@@ -18,7 +17,9 @@ public final class DeploymentsCreateOrUpdateSamples {
      * @param manager Entry point to AzureSphereManager.
      */
     public static void deploymentsCreateOrUpdate(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        manager.deployments().define("MyDeployment1")
-            .withExistingDeviceGroup("MyResourceGroup1", "MyCatalog1", "MyProduct1", "myDeviceGroup1").create();
+        manager.deployments()
+            .define("MyDeployment1")
+            .withExistingDeviceGroup("MyResourceGroup1", "MyCatalog1", "MyProduct1", "myDeviceGroup1")
+            .create();
     }
 }

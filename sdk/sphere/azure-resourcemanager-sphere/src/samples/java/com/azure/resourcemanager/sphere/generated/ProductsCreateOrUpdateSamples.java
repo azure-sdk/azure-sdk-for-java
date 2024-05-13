@@ -9,8 +9,7 @@ package com.azure.resourcemanager.sphere.generated;
  */
 public final class ProductsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PutProduct.json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PutProduct.json
      */
     /**
      * Sample code: Products_CreateOrUpdate.

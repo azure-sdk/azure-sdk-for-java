@@ -235,32 +235,35 @@ public final class DeviceInsightInner {
      */
     public void validate() {
         if (deviceId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property deviceId in model DeviceInsightInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property deviceId in model DeviceInsightInner"));
         }
         if (description() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property description in model DeviceInsightInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property description in model DeviceInsightInner"));
         }
         if (startTimestampUtc() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property startTimestampUtc in model DeviceInsightInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property startTimestampUtc in model DeviceInsightInner"));
         }
         if (endTimestampUtc() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property endTimestampUtc in model DeviceInsightInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property endTimestampUtc in model DeviceInsightInner"));
         }
         if (eventCategory() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property eventCategory in model DeviceInsightInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property eventCategory in model DeviceInsightInner"));
         }
         if (eventClass() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property eventClass in model DeviceInsightInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property eventClass in model DeviceInsightInner"));
         }
         if (eventType() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property eventType in model DeviceInsightInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property eventType in model DeviceInsightInner"));
         }
     }
 

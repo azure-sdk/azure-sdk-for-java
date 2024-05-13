@@ -9,8 +9,7 @@ package com.azure.resourcemanager.sphere.generated;
  */
 public final class ImagesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/GetImage.json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/GetImage.json
      */
     /**
      * Sample code: Images_Get.
@@ -18,7 +17,8 @@ public final class ImagesGetSamples {
      * @param manager Entry point to AzureSphereManager.
      */
     public static void imagesGet(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        manager.images().getWithResponse("MyResourceGroup1", "MyCatalog1", "00000000-0000-0000-0000-000000000000",
-            com.azure.core.util.Context.NONE);
+        manager.images()
+            .getWithResponse("MyResourceGroup1", "MyCatalog1", "00000000-0000-0000-0000-000000000000",
+                com.azure.core.util.Context.NONE);
     }
 }

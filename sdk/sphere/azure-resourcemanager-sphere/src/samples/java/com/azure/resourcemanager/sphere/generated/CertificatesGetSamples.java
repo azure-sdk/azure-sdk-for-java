@@ -9,8 +9,7 @@ package com.azure.resourcemanager.sphere.generated;
  */
 public final class CertificatesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/GetCertificate.json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/GetCertificate.json
      */
     /**
      * Sample code: Certificates_Get.
@@ -18,7 +17,7 @@ public final class CertificatesGetSamples {
      * @param manager Entry point to AzureSphereManager.
      */
     public static void certificatesGet(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        manager.certificates().getWithResponse("MyResourceGroup1", "MyCatalog1", "default",
-            com.azure.core.util.Context.NONE);
+        manager.certificates()
+            .getWithResponse("MyResourceGroup1", "MyCatalog1", "default", com.azure.core.util.Context.NONE);
     }
 }

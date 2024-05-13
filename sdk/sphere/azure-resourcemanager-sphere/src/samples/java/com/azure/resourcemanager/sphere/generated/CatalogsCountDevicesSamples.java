@@ -9,9 +9,7 @@ package com.azure.resourcemanager.sphere.generated;
  */
 public final class CatalogsCountDevicesSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PostCountDevicesCatalog.
-     * json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PostCountDevicesCatalog.json
      */
     /**
      * Sample code: Catalogs_CountDevices.
