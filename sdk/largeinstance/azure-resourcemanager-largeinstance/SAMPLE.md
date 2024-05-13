@@ -29,9 +29,7 @@
  */
 public final class AzureLargeInstanceGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_Get.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_Get.json
      */
     /**
      * Sample code: AzureLargeInstance_Get.
@@ -39,8 +37,9 @@ public final class AzureLargeInstanceGetByResourceGroupSamples {
      * @param manager Entry point to LargeInstanceManager.
      */
     public static void azureLargeInstanceGet(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeInstances().getByResourceGroupWithResponse("myResourceGroup", "myAzureLargeInstance",
-            com.azure.core.util.Context.NONE);
+        manager.azureLargeInstances()
+            .getByResourceGroupWithResponse("myResourceGroup", "myAzureLargeInstance",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -53,9 +52,7 @@ public final class AzureLargeInstanceGetByResourceGroupSamples {
  */
 public final class AzureLargeInstanceListSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_ListBySubscription.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_ListBySubscription.json
      */
     /**
      * Sample code: AzureLargeInstance_ListBySubscription.
@@ -77,9 +74,7 @@ public final class AzureLargeInstanceListSamples {
  */
 public final class AzureLargeInstanceListByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_ListByResourceGroup.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_ListByResourceGroup.json
      */
     /**
      * Sample code: AzureLargeInstance_ListByResourceGroup.
@@ -102,9 +97,7 @@ public final class AzureLargeInstanceListByResourceGroupSamples {
  */
 public final class AzureLargeInstanceRestartSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_Restart.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_Restart.json
      */
     /**
      * Sample code: AzureLargeInstance_Restart.
@@ -112,8 +105,8 @@ public final class AzureLargeInstanceRestartSamples {
      * @param manager Entry point to LargeInstanceManager.
      */
     public static void azureLargeInstanceRestart(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeInstances().restart("myResourceGroup", "myALInstance", null,
-            com.azure.core.util.Context.NONE);
+        manager.azureLargeInstances()
+            .restart("myResourceGroup", "myALInstance", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -126,9 +119,7 @@ public final class AzureLargeInstanceRestartSamples {
  */
 public final class AzureLargeInstanceShutdownSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_Shutdown.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_Shutdown.json
      */
     /**
      * Sample code: AzureLargeInstance_Shutdown.
@@ -150,9 +141,7 @@ public final class AzureLargeInstanceShutdownSamples {
  */
 public final class AzureLargeInstanceStartSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_Start.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_Start.json
      */
     /**
      * Sample code: AzureLargeInstance_Start.
@@ -174,9 +163,7 @@ public final class AzureLargeInstanceStartSamples {
  */
 public final class AzureLargeInstanceUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_PatchTags.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_PatchTags.json
      */
     /**
      * Sample code: AzureLargeInstance_Update_Tag.
@@ -185,14 +172,12 @@ public final class AzureLargeInstanceUpdateSamples {
      */
     public static void
         azureLargeInstanceUpdateTag(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeInstances().updateWithResponse("myResourceGroup", "myALInstance", null,
-            com.azure.core.util.Context.NONE);
+        manager.azureLargeInstances()
+            .updateWithResponse("myResourceGroup", "myALInstance", null, com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstance_PatchTags_Delete.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstance_PatchTags_Delete.json
      */
     /**
      * Sample code: AzureLargeInstance_Delete_Tag.
@@ -201,8 +186,8 @@ public final class AzureLargeInstanceUpdateSamples {
      */
     public static void
         azureLargeInstanceDeleteTag(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeInstances().updateWithResponse("myResourceGroup", "myALInstance", null,
-            com.azure.core.util.Context.NONE);
+        manager.azureLargeInstances()
+            .updateWithResponse("myResourceGroup", "myALInstance", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -215,9 +200,7 @@ public final class AzureLargeInstanceUpdateSamples {
  */
 public final class AzureLargeStorageInstanceGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeStorageInstance_Get.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeStorageInstance_Get.json
      */
     /**
      * Sample code: AzureLargeStorageInstance_Get.
@@ -226,8 +209,9 @@ public final class AzureLargeStorageInstanceGetByResourceGroupSamples {
      */
     public static void
         azureLargeStorageInstanceGet(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeStorageInstances().getByResourceGroupWithResponse("myResourceGroup",
-            "myAzureLargeStorageInstance", com.azure.core.util.Context.NONE);
+        manager.azureLargeStorageInstances()
+            .getByResourceGroupWithResponse("myResourceGroup", "myAzureLargeStorageInstance",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -240,9 +224,7 @@ public final class AzureLargeStorageInstanceGetByResourceGroupSamples {
  */
 public final class AzureLargeStorageInstanceListSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeStorageInstance_ListBySubscription.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeStorageInstance_ListBySubscription.json
      */
     /**
      * Sample code: AzureLargeStorageInstance_ListBySubscription.
@@ -264,9 +246,7 @@ public final class AzureLargeStorageInstanceListSamples {
  */
 public final class AzureLargeStorageInstanceListByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeStorageInstance_ListByResourceGroup.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeStorageInstance_ListByResourceGroup.json
      */
     /**
      * Sample code: AzureLargeStorageInstance_ListByResourceGroup.
@@ -289,9 +269,7 @@ public final class AzureLargeStorageInstanceListByResourceGroupSamples {
  */
 public final class AzureLargeStorageInstanceUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeStorageInstance_PatchTags_Delete.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeStorageInstance_PatchTags_Delete.json
      */
     /**
      * Sample code: AzureLargeStorageInstance_Delete_Tag.
@@ -300,14 +278,12 @@ public final class AzureLargeStorageInstanceUpdateSamples {
      */
     public static void
         azureLargeStorageInstanceDeleteTag(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeStorageInstances().updateWithResponse("myResourceGroup", "myALSInstance", null,
-            com.azure.core.util.Context.NONE);
+        manager.azureLargeStorageInstances()
+            .updateWithResponse("myResourceGroup", "myALSInstance", null, com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeStorageInstance_PatchTags.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeStorageInstance_PatchTags.json
      */
     /**
      * Sample code: AzureLargeStorageInstance_Update_Tag.
@@ -316,8 +292,8 @@ public final class AzureLargeStorageInstanceUpdateSamples {
      */
     public static void
         azureLargeStorageInstanceUpdateTag(com.azure.resourcemanager.largeinstance.LargeInstanceManager manager) {
-        manager.azureLargeStorageInstances().updateWithResponse("myResourceGroup", "myALSInstance", null,
-            com.azure.core.util.Context.NONE);
+        manager.azureLargeStorageInstances()
+            .updateWithResponse("myResourceGroup", "myALSInstance", null, com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -330,9 +306,7 @@ public final class AzureLargeStorageInstanceUpdateSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/
-     * examples/AzureLargeInstanceOperations_List.json
+     * x-ms-original-file: specification/azurelargeinstance/resource-manager/Microsoft.AzureLargeInstance/preview/2023-07-20-preview/examples/AzureLargeInstanceOperations_List.json
      */
     /**
      * Sample code: Operations_List.
