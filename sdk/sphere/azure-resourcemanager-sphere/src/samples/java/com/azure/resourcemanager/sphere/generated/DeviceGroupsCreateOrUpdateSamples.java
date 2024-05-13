@@ -13,8 +13,7 @@ import com.azure.resourcemanager.sphere.models.UpdatePolicy;
  */
 public final class DeviceGroupsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PutDeviceGroup.json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PutDeviceGroup.json
      */
     /**
      * Sample code: DeviceGroups_CreateOrUpdate.
@@ -22,10 +21,12 @@ public final class DeviceGroupsCreateOrUpdateSamples {
      * @param manager Entry point to AzureSphereManager.
      */
     public static void deviceGroupsCreateOrUpdate(com.azure.resourcemanager.sphere.AzureSphereManager manager) {
-        manager.deviceGroups().define("MyDeviceGroup1")
+        manager.deviceGroups()
+            .define("MyDeviceGroup1")
             .withExistingProduct("MyResourceGroup1", "MyCatalog1", "MyProduct1")
             .withProperties(new DeviceGroupProperties().withDescription("Description for MyDeviceGroup1")
-                .withOsFeedType(OSFeedType.RETAIL).withUpdatePolicy(UpdatePolicy.UPDATE_ALL))
+                .withOsFeedType(OSFeedType.RETAIL)
+                .withUpdatePolicy(UpdatePolicy.UPDATE_ALL))
             .create();
     }
 }
