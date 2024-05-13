@@ -54,6 +54,12 @@ public final class VolumeGroupProperties {
     @JsonProperty(value = "privateEndpointConnections", access = JsonProperty.Access.WRITE_ONLY)
     private List<PrivateEndpointConnectionInner> privateEndpointConnections;
 
+    /*
+     * A boolean indicating whether or not Data Integrity Check is enabled
+     */
+    @JsonProperty(value = "enforceDataIntegrityCheckForIscsi")
+    private Boolean enforceDataIntegrityCheckForIscsi;
+
     /**
      * Creates an instance of VolumeGroupProperties class.
      */
@@ -156,6 +162,28 @@ public final class VolumeGroupProperties {
      */
     public List<PrivateEndpointConnectionInner> privateEndpointConnections() {
         return this.privateEndpointConnections;
+    }
+
+    /**
+     * Get the enforceDataIntegrityCheckForIscsi property: A boolean indicating whether or not Data Integrity Check is
+     * enabled.
+     * 
+     * @return the enforceDataIntegrityCheckForIscsi value.
+     */
+    public Boolean enforceDataIntegrityCheckForIscsi() {
+        return this.enforceDataIntegrityCheckForIscsi;
+    }
+
+    /**
+     * Set the enforceDataIntegrityCheckForIscsi property: A boolean indicating whether or not Data Integrity Check is
+     * enabled.
+     * 
+     * @param enforceDataIntegrityCheckForIscsi the enforceDataIntegrityCheckForIscsi value to set.
+     * @return the VolumeGroupProperties object itself.
+     */
+    public VolumeGroupProperties withEnforceDataIntegrityCheckForIscsi(Boolean enforceDataIntegrityCheckForIscsi) {
+        this.enforceDataIntegrityCheckForIscsi = enforceDataIntegrityCheckForIscsi;
+        return this;
     }
 
     /**

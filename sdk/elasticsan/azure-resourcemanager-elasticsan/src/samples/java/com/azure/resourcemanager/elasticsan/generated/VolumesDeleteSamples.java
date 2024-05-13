@@ -12,22 +12,7 @@ import com.azure.resourcemanager.elasticsan.models.XMsForceDelete;
  */
 public final class VolumesDeleteSamples {
     /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * Volumes_Delete_MinimumSet_Gen.json
-     */
-    /**
-     * Sample code: Volumes_Delete_MinimumSet_Gen.
-     * 
-     * @param manager Entry point to ElasticSanManager.
-     */
-    public static void volumesDeleteMinimumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().delete("resourcegroupname", "elasticsanname", "volumegroupname", "volumename", null, null,
-            com.azure.core.util.Context.NONE);
-    }
-
-    /*
-     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2023-01-01/examples/
-     * Volumes_Delete_MaximumSet_Gen.json
+     * x-ms-original-file: specification/elasticsan/resource-manager/Microsoft.ElasticSan/stable/2024-05-01/examples/Volumes_Delete_MaximumSet_Gen.json
      */
     /**
      * Sample code: Volumes_Delete_MaximumSet_Gen.
@@ -35,7 +20,8 @@ public final class VolumesDeleteSamples {
      * @param manager Entry point to ElasticSanManager.
      */
     public static void volumesDeleteMaximumSetGen(com.azure.resourcemanager.elasticsan.ElasticSanManager manager) {
-        manager.volumes().delete("resourcegroupname", "elasticsanname", "volumegroupname", "volumename",
-            XMsDeleteSnapshots.TRUE, XMsForceDelete.TRUE, com.azure.core.util.Context.NONE);
+        manager.volumes()
+            .delete("resourcegroupname", "elasticsanname", "volumegroupname", "volumename", XMsDeleteSnapshots.TRUE,
+                XMsForceDelete.TRUE, com.azure.core.util.Context.NONE);
     }
 }

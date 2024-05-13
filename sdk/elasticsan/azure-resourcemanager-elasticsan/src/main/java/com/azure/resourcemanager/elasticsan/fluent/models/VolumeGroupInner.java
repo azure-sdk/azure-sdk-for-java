@@ -194,6 +194,31 @@ public final class VolumeGroupInner extends ProxyResource {
     }
 
     /**
+     * Get the enforceDataIntegrityCheckForIscsi property: A boolean indicating whether or not Data Integrity Check is
+     * enabled.
+     * 
+     * @return the enforceDataIntegrityCheckForIscsi value.
+     */
+    public Boolean enforceDataIntegrityCheckForIscsi() {
+        return this.innerProperties() == null ? null : this.innerProperties().enforceDataIntegrityCheckForIscsi();
+    }
+
+    /**
+     * Set the enforceDataIntegrityCheckForIscsi property: A boolean indicating whether or not Data Integrity Check is
+     * enabled.
+     * 
+     * @param enforceDataIntegrityCheckForIscsi the enforceDataIntegrityCheckForIscsi value to set.
+     * @return the VolumeGroupInner object itself.
+     */
+    public VolumeGroupInner withEnforceDataIntegrityCheckForIscsi(Boolean enforceDataIntegrityCheckForIscsi) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new VolumeGroupProperties();
+        }
+        this.innerProperties().withEnforceDataIntegrityCheckForIscsi(enforceDataIntegrityCheckForIscsi);
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.

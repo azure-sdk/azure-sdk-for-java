@@ -40,6 +40,12 @@ public final class VolumeGroupUpdateProperties {
     @JsonProperty(value = "networkAcls")
     private NetworkRuleSet networkAcls;
 
+    /*
+     * A boolean indicating whether or not Data Integrity Check is enabled
+     */
+    @JsonProperty(value = "enforceDataIntegrityCheckForIscsi")
+    private Boolean enforceDataIntegrityCheckForIscsi;
+
     /**
      * Creates an instance of VolumeGroupUpdateProperties class.
      */
@@ -123,6 +129,29 @@ public final class VolumeGroupUpdateProperties {
      */
     public VolumeGroupUpdateProperties withNetworkAcls(NetworkRuleSet networkAcls) {
         this.networkAcls = networkAcls;
+        return this;
+    }
+
+    /**
+     * Get the enforceDataIntegrityCheckForIscsi property: A boolean indicating whether or not Data Integrity Check is
+     * enabled.
+     * 
+     * @return the enforceDataIntegrityCheckForIscsi value.
+     */
+    public Boolean enforceDataIntegrityCheckForIscsi() {
+        return this.enforceDataIntegrityCheckForIscsi;
+    }
+
+    /**
+     * Set the enforceDataIntegrityCheckForIscsi property: A boolean indicating whether or not Data Integrity Check is
+     * enabled.
+     * 
+     * @param enforceDataIntegrityCheckForIscsi the enforceDataIntegrityCheckForIscsi value to set.
+     * @return the VolumeGroupUpdateProperties object itself.
+     */
+    public VolumeGroupUpdateProperties
+        withEnforceDataIntegrityCheckForIscsi(Boolean enforceDataIntegrityCheckForIscsi) {
+        this.enforceDataIntegrityCheckForIscsi = enforceDataIntegrityCheckForIscsi;
         return this;
     }
 

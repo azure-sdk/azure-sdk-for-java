@@ -34,8 +34,7 @@ public final class Identity {
     private IdentityType type;
 
     /*
-     * Gets or sets a list of key value pairs that describe the set of User Assigned identities that will be used with
-     * this volume group. The key is the ARM resource identifier of the identity.
+     * Gets or sets a list of key value pairs that describe the set of User Assigned identities that will be used with this volume group. The key is the ARM resource identifier of the identity.
      */
     @JsonProperty(value = "userAssignedIdentities")
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
@@ -116,8 +115,8 @@ public final class Identity {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property type in model Identity"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property type in model Identity"));
         }
         if (userAssignedIdentities() != null) {
             userAssignedIdentities().values().forEach(e -> {
