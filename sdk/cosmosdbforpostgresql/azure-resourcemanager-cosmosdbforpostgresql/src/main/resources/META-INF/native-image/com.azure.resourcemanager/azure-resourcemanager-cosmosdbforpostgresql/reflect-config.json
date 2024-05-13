@@ -14,6 +14,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.cosmosdbforpostgresql.models.DataEncryption",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.cosmosdbforpostgresql.models.MaintenanceWindow",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -45,6 +50,16 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.cosmosdbforpostgresql.models.AuthConfig",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.cosmosdbforpostgresql.models.IdentityProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.cosmosdbforpostgresql.models.UserAssignedIdentity",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -214,6 +229,21 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.cosmosdbforpostgresql.models.AadEnabledEnum",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.cosmosdbforpostgresql.models.DataEncryptionType",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.cosmosdbforpostgresql.models.PasswordEnabledEnum",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.cosmosdbforpostgresql.models.PrivateEndpointServiceConnectionStatus",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -225,6 +255,11 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.cosmosdbforpostgresql.models.PasswordAuth",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.cosmosdbforpostgresql.models.IdentityType",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

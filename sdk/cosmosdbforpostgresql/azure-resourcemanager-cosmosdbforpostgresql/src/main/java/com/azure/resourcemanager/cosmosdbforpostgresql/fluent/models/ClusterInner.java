@@ -7,8 +7,12 @@ package com.azure.resourcemanager.cosmosdbforpostgresql.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
 import com.azure.core.management.SystemData;
+import com.azure.resourcemanager.cosmosdbforpostgresql.models.AadEnabledEnum;
 import com.azure.resourcemanager.cosmosdbforpostgresql.models.AuthConfig;
+import com.azure.resourcemanager.cosmosdbforpostgresql.models.DataEncryption;
+import com.azure.resourcemanager.cosmosdbforpostgresql.models.IdentityProperties;
 import com.azure.resourcemanager.cosmosdbforpostgresql.models.MaintenanceWindow;
+import com.azure.resourcemanager.cosmosdbforpostgresql.models.PasswordEnabledEnum;
 import com.azure.resourcemanager.cosmosdbforpostgresql.models.ServerNameItem;
 import com.azure.resourcemanager.cosmosdbforpostgresql.models.SimplePrivateEndpointConnection;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,6 +30,12 @@ public final class ClusterInner extends Resource {
      */
     @JsonProperty(value = "properties")
     private ClusterProperties innerProperties;
+
+    /*
+     * Describes the identity of the cluster.
+     */
+    @JsonProperty(value = "identity")
+    private IdentityProperties identity;
 
     /*
      * Azure Resource Manager metadata containing createdBy and modifiedBy information.
@@ -46,6 +56,26 @@ public final class ClusterInner extends Resource {
      */
     private ClusterProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the identity property: Describes the identity of the cluster.
+     * 
+     * @return the identity value.
+     */
+    public IdentityProperties identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: Describes the identity of the cluster.
+     * 
+     * @param identity the identity value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withIdentity(IdentityProperties identity) {
+        this.identity = identity;
+        return this;
     }
 
     /**
@@ -73,6 +103,15 @@ public final class ClusterInner extends Resource {
     public ClusterInner withTags(Map<String, String> tags) {
         super.withTags(tags);
         return this;
+    }
+
+    /**
+     * Get the aadAuthEnabled property: Indicates whether the cluster was created using AAD authentication.
+     * 
+     * @return the aadAuthEnabled value.
+     */
+    public AadEnabledEnum aadAuthEnabled() {
+        return this.innerProperties() == null ? null : this.innerProperties().aadAuthEnabled();
     }
 
     /**
@@ -104,6 +143,29 @@ public final class ClusterInner extends Resource {
             this.innerProperties = new ClusterProperties();
         }
         this.innerProperties().withAdministratorLoginPassword(administratorLoginPassword);
+        return this;
+    }
+
+    /**
+     * Get the dataEncryption property: The data encryption properties of a cluster.
+     * 
+     * @return the dataEncryption value.
+     */
+    public DataEncryption dataEncryption() {
+        return this.innerProperties() == null ? null : this.innerProperties().dataEncryption();
+    }
+
+    /**
+     * Set the dataEncryption property: The data encryption properties of a cluster.
+     * 
+     * @param dataEncryption the dataEncryption value to set.
+     * @return the ClusterInner object itself.
+     */
+    public ClusterInner withDataEncryption(DataEncryption dataEncryption) {
+        if (this.innerProperties() == null) {
+            this.innerProperties = new ClusterProperties();
+        }
+        this.innerProperties().withDataEncryption(dataEncryption);
         return this;
     }
 
@@ -218,8 +280,8 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Get the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be
-     * set to 'true' on single node clusters. Requires shard rebalancing after value is changed.
+     * Get the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be set
+     * to 'true' on single node clusters. Requires shard rebalancing after value is changed.
      * 
      * @return the enableShardsOnCoordinator value.
      */
@@ -228,8 +290,8 @@ public final class ClusterInner extends Resource {
     }
 
     /**
-     * Set the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be
-     * set to 'true' on single node clusters. Requires shard rebalancing after value is changed.
+     * Set the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be set
+     * to 'true' on single node clusters. Requires shard rebalancing after value is changed.
      * 
      * @param enableShardsOnCoordinator the enableShardsOnCoordinator value to set.
      * @return the ClusterInner object itself.
@@ -542,6 +604,16 @@ public final class ClusterInner extends Resource {
     }
 
     /**
+     * Get the passwordEnabled property: Indicates whether the cluster was created with a password or using AAD
+     * authentication.
+     * 
+     * @return the passwordEnabled value.
+     */
+    public PasswordEnabledEnum passwordEnabled() {
+        return this.innerProperties() == null ? null : this.innerProperties().passwordEnabled();
+    }
+
+    /**
      * Get the pointInTimeUtc property: Date and time in UTC (ISO8601 format) for cluster restore.
      * 
      * @return the pointInTimeUtc value.
@@ -670,6 +742,9 @@ public final class ClusterInner extends Resource {
     public void validate() {
         if (innerProperties() != null) {
             innerProperties().validate();
+        }
+        if (identity() != null) {
+            identity().validate();
         }
     }
 }

@@ -14,8 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class ClusterPropertiesForUpdate {
     /*
-     * The password of the administrator login. Each cluster is created with pre-defined administrative role called
-     * ‘citus’. 
+     * The password of the administrator login. Each cluster is created with pre-defined administrative role called ‘citus’. 
      */
     @JsonProperty(value = "administratorLoginPassword")
     private String administratorLoginPassword;
@@ -33,8 +32,7 @@ public final class ClusterPropertiesForUpdate {
     private String citusVersion;
 
     /*
-     * If distributed tables are placed on coordinator or not. Should be set to 'true' on single node clusters.
-     * Requires shard rebalancing after value is changed.
+     * If distributed tables are placed on coordinator or not. Should be set to 'true' on single node clusters. Requires shard rebalancing after value is changed.
      */
     @JsonProperty(value = "enableShardsOnCoordinator")
     private Boolean enableShardsOnCoordinator;
@@ -82,9 +80,7 @@ public final class ClusterPropertiesForUpdate {
     private String nodeServerEdition;
 
     /*
-     * Worker node count of the cluster. When node count is 0, it represents a single node configuration with the
-     * ability to create distributed tables on that node. 2 or more worker nodes represent multi-node configuration.
-     * Node count value cannot be 1.
+     * Worker node count of the cluster. When node count is 0, it represents a single node configuration with the ability to create distributed tables on that node. 2 or more worker nodes represent multi-node configuration. Node count value cannot be 1.
      */
     @JsonProperty(value = "nodeCount")
     private Integer nodeCount;
@@ -182,8 +178,8 @@ public final class ClusterPropertiesForUpdate {
     }
 
     /**
-     * Get the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be
-     * set to 'true' on single node clusters. Requires shard rebalancing after value is changed.
+     * Get the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be set
+     * to 'true' on single node clusters. Requires shard rebalancing after value is changed.
      * 
      * @return the enableShardsOnCoordinator value.
      */
@@ -192,8 +188,8 @@ public final class ClusterPropertiesForUpdate {
     }
 
     /**
-     * Set the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be
-     * set to 'true' on single node clusters. Requires shard rebalancing after value is changed.
+     * Set the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be set
+     * to 'true' on single node clusters. Requires shard rebalancing after value is changed.
      * 
      * @param enableShardsOnCoordinator the enableShardsOnCoordinator value to set.
      * @return the ClusterPropertiesForUpdate object itself.

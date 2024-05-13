@@ -9,9 +9,7 @@ package com.azure.resourcemanager.cosmosdbforpostgresql.generated;
  */
 public final class ConfigurationsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ConfigurationGet.json
+     * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/ConfigurationGet.json
      */
     /**
      * Sample code: Get configuration details.
@@ -20,7 +18,7 @@ public final class ConfigurationsGetSamples {
      */
     public static void
         getConfigurationDetails(com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.configurations().getWithResponse("TestResourceGroup", "testcluster", "client_encoding",
-            com.azure.core.util.Context.NONE);
+        manager.configurations()
+            .getWithResponse("TestResourceGroup", "testcluster", "client_encoding", com.azure.core.util.Context.NONE);
     }
 }

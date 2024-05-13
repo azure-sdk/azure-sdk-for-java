@@ -5,8 +5,11 @@
 package com.azure.resourcemanager.cosmosdbforpostgresql.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.cosmosdbforpostgresql.models.AadEnabledEnum;
 import com.azure.resourcemanager.cosmosdbforpostgresql.models.AuthConfig;
+import com.azure.resourcemanager.cosmosdbforpostgresql.models.DataEncryption;
 import com.azure.resourcemanager.cosmosdbforpostgresql.models.MaintenanceWindow;
+import com.azure.resourcemanager.cosmosdbforpostgresql.models.PasswordEnabledEnum;
 import com.azure.resourcemanager.cosmosdbforpostgresql.models.ServerNameItem;
 import com.azure.resourcemanager.cosmosdbforpostgresql.models.SimplePrivateEndpointConnection;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,6 +22,12 @@ import java.util.List;
 @Fluent
 public final class ClusterProperties {
     /*
+     * Indicates whether the cluster was created using AAD authentication.
+     */
+    @JsonProperty(value = "aadAuthEnabled", access = JsonProperty.Access.WRITE_ONLY)
+    private AadEnabledEnum aadAuthEnabled;
+
+    /*
      * The administrator's login name of the servers in the cluster.
      */
     @JsonProperty(value = "administratorLogin", access = JsonProperty.Access.WRITE_ONLY)
@@ -29,6 +38,12 @@ public final class ClusterProperties {
      */
     @JsonProperty(value = "administratorLoginPassword")
     private String administratorLoginPassword;
+
+    /*
+     * The data encryption properties of a cluster.
+     */
+    @JsonProperty(value = "dataEncryption")
+    private DataEncryption dataEncryption;
 
     /*
      * Provisioning state of the cluster
@@ -67,8 +82,7 @@ public final class ClusterProperties {
     private String preferredPrimaryZone;
 
     /*
-     * If distributed tables are placed on coordinator or not. Should be set to 'true' on single node clusters.
-     * Requires shard rebalancing after value is changed.
+     * If distributed tables are placed on coordinator or not. Should be set to 'true' on single node clusters. Requires shard rebalancing after value is changed.
      */
     @JsonProperty(value = "enableShardsOnCoordinator")
     private Boolean enableShardsOnCoordinator;
@@ -86,15 +100,13 @@ public final class ClusterProperties {
     private String coordinatorServerEdition;
 
     /*
-     * The storage of a server in MB. Required for creation. See
-     * https://learn.microsoft.com/azure/cosmos-db/postgresql/resources-compute for more information.
+     * The storage of a server in MB. Required for creation. See https://learn.microsoft.com/azure/cosmos-db/postgresql/resources-compute for more information.
      */
     @JsonProperty(value = "coordinatorStorageQuotaInMb")
     private Integer coordinatorStorageQuotaInMb;
 
     /*
-     * The vCores count of a server (max: 96). Required for creation. See
-     * https://learn.microsoft.com/azure/cosmos-db/postgresql/resources-compute for more information.
+     * The vCores count of a server (max: 96). Required for creation. See https://learn.microsoft.com/azure/cosmos-db/postgresql/resources-compute for more information.
      */
     @JsonProperty(value = "coordinatorVCores")
     private Integer coordinatorVCores;
@@ -112,23 +124,19 @@ public final class ClusterProperties {
     private String nodeServerEdition;
 
     /*
-     * Worker node count of the cluster. When node count is 0, it represents a single node configuration with the
-     * ability to create distributed tables on that node. 2 or more worker nodes represent multi-node configuration.
-     * Node count value cannot be 1. Required for creation.
+     * Worker node count of the cluster. When node count is 0, it represents a single node configuration with the ability to create distributed tables on that node. 2 or more worker nodes represent multi-node configuration. Node count value cannot be 1. Required for creation.
      */
     @JsonProperty(value = "nodeCount")
     private Integer nodeCount;
 
     /*
-     * The storage in MB on each worker node. See
-     * https://learn.microsoft.com/azure/cosmos-db/postgresql/resources-compute for more information.
+     * The storage in MB on each worker node. See https://learn.microsoft.com/azure/cosmos-db/postgresql/resources-compute for more information.
      */
     @JsonProperty(value = "nodeStorageQuotaInMb")
     private Integer nodeStorageQuotaInMb;
 
     /*
-     * The compute in vCores on each worker node (max: 104). See
-     * https://learn.microsoft.com/azure/cosmos-db/postgresql/resources-compute for more information.
+     * The compute in vCores on each worker node (max: 104). See https://learn.microsoft.com/azure/cosmos-db/postgresql/resources-compute for more information.
      */
     @JsonProperty(value = "nodeVCores")
     private Integer nodeVCores;
@@ -156,6 +164,12 @@ public final class ClusterProperties {
      */
     @JsonProperty(value = "sourceLocation")
     private String sourceLocation;
+
+    /*
+     * Indicates whether the cluster was created with a password or using AAD authentication.
+     */
+    @JsonProperty(value = "passwordEnabled", access = JsonProperty.Access.WRITE_ONLY)
+    private PasswordEnabledEnum passwordEnabled;
 
     /*
      * Date and time in UTC (ISO8601 format) for cluster restore.
@@ -188,8 +202,7 @@ public final class ClusterProperties {
     private String databaseName;
 
     /*
-     * If cluster backup is stored in another Azure region in addition to the copy of the backup stored in the
-     * cluster's region. Enabled only at the time of cluster creation.
+     * If cluster backup is stored in another Azure region in addition to the copy of the backup stored in the cluster's region. Enabled only at the time of cluster creation.
      */
     @JsonProperty(value = "enableGeoBackup")
     private Boolean enableGeoBackup;
@@ -204,6 +217,15 @@ public final class ClusterProperties {
      * Creates an instance of ClusterProperties class.
      */
     public ClusterProperties() {
+    }
+
+    /**
+     * Get the aadAuthEnabled property: Indicates whether the cluster was created using AAD authentication.
+     * 
+     * @return the aadAuthEnabled value.
+     */
+    public AadEnabledEnum aadAuthEnabled() {
+        return this.aadAuthEnabled;
     }
 
     /**
@@ -232,6 +254,26 @@ public final class ClusterProperties {
      */
     public ClusterProperties withAdministratorLoginPassword(String administratorLoginPassword) {
         this.administratorLoginPassword = administratorLoginPassword;
+        return this;
+    }
+
+    /**
+     * Get the dataEncryption property: The data encryption properties of a cluster.
+     * 
+     * @return the dataEncryption value.
+     */
+    public DataEncryption dataEncryption() {
+        return this.dataEncryption;
+    }
+
+    /**
+     * Set the dataEncryption property: The data encryption properties of a cluster.
+     * 
+     * @param dataEncryption the dataEncryption value to set.
+     * @return the ClusterProperties object itself.
+     */
+    public ClusterProperties withDataEncryption(DataEncryption dataEncryption) {
+        this.dataEncryption = dataEncryption;
         return this;
     }
 
@@ -334,8 +376,8 @@ public final class ClusterProperties {
     }
 
     /**
-     * Get the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be
-     * set to 'true' on single node clusters. Requires shard rebalancing after value is changed.
+     * Get the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be set
+     * to 'true' on single node clusters. Requires shard rebalancing after value is changed.
      * 
      * @return the enableShardsOnCoordinator value.
      */
@@ -344,8 +386,8 @@ public final class ClusterProperties {
     }
 
     /**
-     * Set the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be
-     * set to 'true' on single node clusters. Requires shard rebalancing after value is changed.
+     * Set the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be set
+     * to 'true' on single node clusters. Requires shard rebalancing after value is changed.
      * 
      * @param enableShardsOnCoordinator the enableShardsOnCoordinator value to set.
      * @return the ClusterProperties object itself.
@@ -619,6 +661,16 @@ public final class ClusterProperties {
     }
 
     /**
+     * Get the passwordEnabled property: Indicates whether the cluster was created with a password or using AAD
+     * authentication.
+     * 
+     * @return the passwordEnabled value.
+     */
+    public PasswordEnabledEnum passwordEnabled() {
+        return this.passwordEnabled;
+    }
+
+    /**
      * Get the pointInTimeUtc property: Date and time in UTC (ISO8601 format) for cluster restore.
      * 
      * @return the pointInTimeUtc value.
@@ -733,6 +785,9 @@ public final class ClusterProperties {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
+        if (dataEncryption() != null) {
+            dataEncryption().validate();
+        }
         if (maintenanceWindow() != null) {
             maintenanceWindow().validate();
         }

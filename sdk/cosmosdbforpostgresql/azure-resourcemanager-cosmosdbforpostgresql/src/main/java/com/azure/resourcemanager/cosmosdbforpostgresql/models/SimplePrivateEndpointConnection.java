@@ -99,8 +99,8 @@ public final class SimplePrivateEndpointConnection extends ProxyResource {
     }
 
     /**
-     * Get the privateLinkServiceConnectionState property: A collection of information about the state of the
-     * connection between service consumer and provider.
+     * Get the privateLinkServiceConnectionState property: A collection of information about the state of the connection
+     * between service consumer and provider.
      * 
      * @return the privateLinkServiceConnectionState value.
      */
@@ -109,8 +109,8 @@ public final class SimplePrivateEndpointConnection extends ProxyResource {
     }
 
     /**
-     * Set the privateLinkServiceConnectionState property: A collection of information about the state of the
-     * connection between service consumer and provider.
+     * Set the privateLinkServiceConnectionState property: A collection of information about the state of the connection
+     * between service consumer and provider.
      * 
      * @param privateLinkServiceConnectionState the privateLinkServiceConnectionState value to set.
      * @return the SimplePrivateEndpointConnection object itself.

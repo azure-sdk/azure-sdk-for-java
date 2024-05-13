@@ -9,9 +9,7 @@ package com.azure.resourcemanager.cosmosdbforpostgresql.generated;
  */
 public final class ConfigurationsGetCoordinatorSamples {
     /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ConfigurationGetCoordinator.json
+     * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/ConfigurationGetCoordinator.json
      */
     /**
      * Sample code: Get configuration details for coordinator.
@@ -20,7 +18,8 @@ public final class ConfigurationsGetCoordinatorSamples {
      */
     public static void getConfigurationDetailsForCoordinator(
         com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.configurations().getCoordinatorWithResponse("TestResourceGroup", "testcluster", "array_nulls",
-            com.azure.core.util.Context.NONE);
+        manager.configurations()
+            .getCoordinatorWithResponse("TestResourceGroup", "testcluster", "array_nulls",
+                com.azure.core.util.Context.NONE);
     }
 }

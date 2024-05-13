@@ -9,9 +9,7 @@ package com.azure.resourcemanager.cosmosdbforpostgresql.generated;
  */
 public final class PrivateLinkResourcesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * PrivateLinkResourcesGet.json
+     * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/PrivateLinkResourcesGet.json
      */
     /**
      * Sample code: Gets a private link resource for cluster.
@@ -20,7 +18,7 @@ public final class PrivateLinkResourcesGetSamples {
      */
     public static void getsAPrivateLinkResourceForCluster(
         com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.privateLinkResources().getWithResponse("TestGroup", "testcluster", "plr",
-            com.azure.core.util.Context.NONE);
+        manager.privateLinkResources()
+            .getWithResponse("TestGroup", "testcluster", "plr", com.azure.core.util.Context.NONE);
     }
 }

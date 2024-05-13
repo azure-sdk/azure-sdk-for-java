@@ -11,9 +11,7 @@ import com.azure.resourcemanager.cosmosdbforpostgresql.fluent.models.ServerConfi
  */
 public final class ConfigurationsUpdateOnCoordinatorSamples {
     /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ConfigurationUpdateCoordinator.json
+     * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/ConfigurationUpdateCoordinator.json
      */
     /**
      * Sample code: Update single configuration of coordinator.
@@ -22,7 +20,8 @@ public final class ConfigurationsUpdateOnCoordinatorSamples {
      */
     public static void updateSingleConfigurationOfCoordinator(
         com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.configurations().updateOnCoordinator("TestResourceGroup", "testcluster", "array_nulls",
-            new ServerConfigurationInner().withValue("on"), com.azure.core.util.Context.NONE);
+        manager.configurations()
+            .updateOnCoordinator("TestResourceGroup", "testcluster", "array_nulls",
+                new ServerConfigurationInner().withValue("on"), com.azure.core.util.Context.NONE);
     }
 }
