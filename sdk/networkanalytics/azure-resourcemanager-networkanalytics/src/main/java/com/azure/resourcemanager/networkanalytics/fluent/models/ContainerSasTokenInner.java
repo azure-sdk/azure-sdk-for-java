@@ -52,8 +52,9 @@ public final class ContainerSasTokenInner {
      */
     public void validate() {
         if (storageContainerSasToken() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property storageContainerSasToken in model ContainerSasTokenInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property storageContainerSasToken in model ContainerSasTokenInner"));
         }
     }
 
