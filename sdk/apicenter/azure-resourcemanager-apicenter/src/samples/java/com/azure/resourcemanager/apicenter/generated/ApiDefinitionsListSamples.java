@@ -9,8 +9,7 @@ package com.azure.resourcemanager.apicenter.generated;
  */
 public final class ApiDefinitionsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/apicenter/resource-manager/Microsoft.ApiCenter/stable/2024-03-01/examples/ApiDefinitions_List.json
+     * x-ms-original-file: specification/apicenter/resource-manager/Microsoft.ApiCenter/preview/2024-03-15-preview/examples/ApiDefinitions_List.json
      */
     /**
      * Sample code: ApiDefinitions_ListByApiVersion.
@@ -18,7 +17,8 @@ public final class ApiDefinitionsListSamples {
      * @param manager Entry point to ApiCenterManager.
      */
     public static void apiDefinitionsListByApiVersion(com.azure.resourcemanager.apicenter.ApiCenterManager manager) {
-        manager.apiDefinitions().list("contoso-resources", "contoso", "default", "echo-api", "2023-01-01", null,
-            com.azure.core.util.Context.NONE);
+        manager.apiDefinitions()
+            .list("contoso-resources", "contoso", "default", "echo-api", "2023-01-01", null,
+                com.azure.core.util.Context.NONE);
     }
 }
