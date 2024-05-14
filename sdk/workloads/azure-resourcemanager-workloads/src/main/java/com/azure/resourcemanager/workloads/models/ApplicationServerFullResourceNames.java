@@ -26,13 +26,15 @@ public final class ApplicationServerFullResourceNames {
     @JsonProperty(value = "availabilitySetName")
     private String availabilitySetName;
 
-    /** Creates an instance of ApplicationServerFullResourceNames class. */
+    /**
+     * Creates an instance of ApplicationServerFullResourceNames class.
+     */
     public ApplicationServerFullResourceNames() {
     }
 
     /**
      * Get the virtualMachines property: The list of virtual machine naming details.
-     *
+     * 
      * @return the virtualMachines value.
      */
     public List<VirtualMachineResourceNames> virtualMachines() {
@@ -41,7 +43,7 @@ public final class ApplicationServerFullResourceNames {
 
     /**
      * Set the virtualMachines property: The list of virtual machine naming details.
-     *
+     * 
      * @param virtualMachines the virtualMachines value to set.
      * @return the ApplicationServerFullResourceNames object itself.
      */
@@ -53,7 +55,7 @@ public final class ApplicationServerFullResourceNames {
     /**
      * Get the availabilitySetName property: The full name for availability set. In case name is not provided, it will
      * be defaulted to {SID}-App-AvSet.
-     *
+     * 
      * @return the availabilitySetName value.
      */
     public String availabilitySetName() {
@@ -63,7 +65,7 @@ public final class ApplicationServerFullResourceNames {
     /**
      * Set the availabilitySetName property: The full name for availability set. In case name is not provided, it will
      * be defaulted to {SID}-App-AvSet.
-     *
+     * 
      * @param availabilitySetName the availabilitySetName value to set.
      * @return the ApplicationServerFullResourceNames object itself.
      */
@@ -74,7 +76,7 @@ public final class ApplicationServerFullResourceNames {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

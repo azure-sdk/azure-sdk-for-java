@@ -5,33 +5,55 @@
 package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The SAP Software configuration Input. */
+/**
+ * The SAP Software configuration Input.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "softwareInstallationType",
-    defaultImpl = SoftwareConfiguration.class)
+    defaultImpl = SoftwareConfiguration.class,
+    visible = true)
 @JsonTypeName("SoftwareConfiguration")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "ServiceInitiated", value = ServiceInitiatedSoftwareConfiguration.class),
     @JsonSubTypes.Type(
         name = "SAPInstallWithoutOSConfig",
         value = SapInstallWithoutOSConfigSoftwareConfiguration.class),
-    @JsonSubTypes.Type(name = "External", value = ExternalInstallationSoftwareConfiguration.class)
-})
+    @JsonSubTypes.Type(name = "External", value = ExternalInstallationSoftwareConfiguration.class) })
 @Immutable
 public class SoftwareConfiguration {
-    /** Creates an instance of SoftwareConfiguration class. */
+    /*
+     * The SAP software installation Type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "softwareInstallationType", required = true)
+    private SapSoftwareInstallationType softwareInstallationType;
+
+    /**
+     * Creates an instance of SoftwareConfiguration class.
+     */
     public SoftwareConfiguration() {
+        this.softwareInstallationType = SapSoftwareInstallationType.fromString("SoftwareConfiguration");
+    }
+
+    /**
+     * Get the softwareInstallationType property: The SAP software installation Type.
+     * 
+     * @return the softwareInstallationType value.
+     */
+    public SapSoftwareInstallationType softwareInstallationType() {
+        return this.softwareInstallationType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

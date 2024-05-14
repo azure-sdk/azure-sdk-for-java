@@ -9,7 +9,9 @@ import com.azure.resourcemanager.workloads.models.SapSupportedSku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list of supported SKUs for different resources which are part of SAP deployment. */
+/**
+ * The list of supported SKUs for different resources which are part of SAP deployment.
+ */
 @Fluent
 public final class SapSupportedResourceSkusResultInner {
     /*
@@ -18,13 +20,15 @@ public final class SapSupportedResourceSkusResultInner {
     @JsonProperty(value = "supportedSkus")
     private List<SapSupportedSku> supportedSkus;
 
-    /** Creates an instance of SapSupportedResourceSkusResultInner class. */
+    /**
+     * Creates an instance of SapSupportedResourceSkusResultInner class.
+     */
     public SapSupportedResourceSkusResultInner() {
     }
 
     /**
      * Get the supportedSkus property: Gets the list of SAP supported SKUs.
-     *
+     * 
      * @return the supportedSkus value.
      */
     public List<SapSupportedSku> supportedSkus() {
@@ -33,7 +37,7 @@ public final class SapSupportedResourceSkusResultInner {
 
     /**
      * Set the supportedSkus property: Gets the list of SAP supported SKUs.
-     *
+     * 
      * @param supportedSkus the supportedSkus value to set.
      * @return the SapSupportedResourceSkusResultInner object itself.
      */
@@ -44,7 +48,7 @@ public final class SapSupportedResourceSkusResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

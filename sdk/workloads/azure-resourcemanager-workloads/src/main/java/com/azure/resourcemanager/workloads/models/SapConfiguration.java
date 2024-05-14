@@ -5,31 +5,53 @@
 package com.azure.resourcemanager.workloads.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The SAP Configuration. */
+/**
+ * The SAP Configuration.
+ */
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
     property = "configurationType",
-    defaultImpl = SapConfiguration.class)
+    defaultImpl = SapConfiguration.class,
+    visible = true)
 @JsonTypeName("SapConfiguration")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Discovery", value = DiscoveryConfiguration.class),
     @JsonSubTypes.Type(name = "Deployment", value = DeploymentConfiguration.class),
-    @JsonSubTypes.Type(name = "DeploymentWithOSConfig", value = DeploymentWithOSConfiguration.class)
-})
+    @JsonSubTypes.Type(name = "DeploymentWithOSConfig", value = DeploymentWithOSConfiguration.class) })
 @Immutable
 public class SapConfiguration {
-    /** Creates an instance of SapConfiguration class. */
+    /*
+     * The configuration Type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "configurationType", required = true)
+    private SapConfigurationType configurationType;
+
+    /**
+     * Creates an instance of SapConfiguration class.
+     */
     public SapConfiguration() {
+        this.configurationType = SapConfigurationType.fromString("SapConfiguration");
+    }
+
+    /**
+     * Get the configurationType property: The configuration Type.
+     * 
+     * @return the configurationType value.
+     */
+    public SapConfigurationType configurationType() {
+        return this.configurationType;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
