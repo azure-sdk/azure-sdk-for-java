@@ -143,8 +143,9 @@ public final class ConfigurationProperties {
      */
     public void validate() {
         if (serverRoleGroupConfigurations() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property serverRoleGroupConfigurations in model ConfigurationProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property serverRoleGroupConfigurations in model ConfigurationProperties"));
         } else {
             serverRoleGroupConfigurations().forEach(e -> e.validate());
         }

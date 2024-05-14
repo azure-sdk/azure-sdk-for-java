@@ -12,9 +12,7 @@ import com.azure.resourcemanager.cosmosdbforpostgresql.models.PrivateLinkService
  */
 public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * PrivateEndpointConnectionCreateOrUpdate.json
+     * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/PrivateEndpointConnectionCreateOrUpdate.json
      */
     /**
      * Sample code: Approves or Rejects a Private Endpoint Connection with a given name.
@@ -23,7 +21,8 @@ public final class PrivateEndpointConnectionsCreateOrUpdateSamples {
      */
     public static void approvesOrRejectsAPrivateEndpointConnectionWithAGivenName(
         com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.privateEndpointConnections().define("private-endpoint-connection-name")
+        manager.privateEndpointConnections()
+            .define("private-endpoint-connection-name")
             .withExistingServerGroupsv2("TestGroup", "testcluster")
             .withPrivateLinkServiceConnectionState(
                 new PrivateLinkServiceConnectionState().withStatus(PrivateEndpointServiceConnectionStatus.APPROVED)

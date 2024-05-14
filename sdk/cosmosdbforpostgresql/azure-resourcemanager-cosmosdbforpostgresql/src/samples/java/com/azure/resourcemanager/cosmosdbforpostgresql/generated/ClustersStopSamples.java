@@ -9,9 +9,7 @@ package com.azure.resourcemanager.cosmosdbforpostgresql.generated;
  */
 public final class ClustersStopSamples {
     /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ClusterStop.json
+     * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/ClusterStop.json
      */
     /**
      * Sample code: Stop all servers in the cluster.

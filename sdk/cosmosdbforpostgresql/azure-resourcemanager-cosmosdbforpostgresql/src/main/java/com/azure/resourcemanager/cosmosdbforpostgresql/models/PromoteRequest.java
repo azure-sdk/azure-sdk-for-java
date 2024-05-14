@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class PromoteRequest {
     /*
-     * Cluster name to verify.
+     * Boolean property to enable geo-redundant replica promotion.
      */
     @JsonProperty(value = "enableGeoBackup")
     private Boolean enableGeoBackup;
@@ -25,7 +25,7 @@ public final class PromoteRequest {
     }
 
     /**
-     * Get the enableGeoBackup property: Cluster name to verify.
+     * Get the enableGeoBackup property: Boolean property to enable geo-redundant replica promotion.
      * 
      * @return the enableGeoBackup value.
      */
@@ -34,7 +34,7 @@ public final class PromoteRequest {
     }
 
     /**
-     * Set the enableGeoBackup property: Cluster name to verify.
+     * Set the enableGeoBackup property: Boolean property to enable geo-redundant replica promotion.
      * 
      * @param enableGeoBackup the enableGeoBackup value to set.
      * @return the PromoteRequest object itself.

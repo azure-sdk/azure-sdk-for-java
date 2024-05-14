@@ -11,9 +11,7 @@ import com.azure.resourcemanager.cosmosdbforpostgresql.fluent.models.ServerConfi
  */
 public final class ConfigurationsUpdateOnNodeSamples {
     /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ConfigurationUpdateNode.json
+     * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/ConfigurationUpdateNode.json
      */
     /**
      * Sample code: Update single configuration of nodes.
@@ -22,7 +20,8 @@ public final class ConfigurationsUpdateOnNodeSamples {
      */
     public static void updateSingleConfigurationOfNodes(
         com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.configurations().updateOnNode("TestResourceGroup", "testcluster", "array_nulls",
-            new ServerConfigurationInner().withValue("off"), com.azure.core.util.Context.NONE);
+        manager.configurations()
+            .updateOnNode("TestResourceGroup", "testcluster", "array_nulls",
+                new ServerConfigurationInner().withValue("off"), com.azure.core.util.Context.NONE);
     }
 }

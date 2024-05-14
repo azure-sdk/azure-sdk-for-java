@@ -9,9 +9,7 @@ package com.azure.resourcemanager.cosmosdbforpostgresql.generated;
  */
 public final class FirewallRulesGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * FirewallRuleGet.json
+     * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/FirewallRuleGet.json
      */
     /**
      * Sample code: Get the firewall rule of the cluster.

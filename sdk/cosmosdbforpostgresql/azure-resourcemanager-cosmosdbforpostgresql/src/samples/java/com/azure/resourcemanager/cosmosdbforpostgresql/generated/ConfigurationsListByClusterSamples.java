@@ -9,9 +9,7 @@ package com.azure.resourcemanager.cosmosdbforpostgresql.generated;
  */
 public final class ConfigurationsListByClusterSamples {
     /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * ConfigurationListByCluster.json
+     * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/ConfigurationListByCluster.json
      */
     /**
      * Sample code: List configurations of the cluster.

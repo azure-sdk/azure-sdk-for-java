@@ -9,9 +9,7 @@ package com.azure.resourcemanager.cosmosdbforpostgresql.generated;
  */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * PrivateEndpointConnectionsGet.json
+     * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/PrivateEndpointConnectionsGet.json
      */
     /**
      * Sample code: Gets private endpoint connection.
@@ -20,7 +18,8 @@ public final class PrivateEndpointConnectionsGetSamples {
      */
     public static void getsPrivateEndpointConnection(
         com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.privateEndpointConnections().getWithResponse("TestGroup", "testcluster",
-            "private-endpoint-connection-name", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .getWithResponse("TestGroup", "testcluster", "private-endpoint-connection-name",
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -108,12 +108,14 @@ public final class ServerRoleGroupConfiguration {
      */
     public void validate() {
         if (role() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property role in model ServerRoleGroupConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property role in model ServerRoleGroupConfiguration"));
         }
         if (value() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property value in model ServerRoleGroupConfiguration"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property value in model ServerRoleGroupConfiguration"));
         }
     }
 

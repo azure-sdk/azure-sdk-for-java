@@ -9,9 +9,7 @@ package com.azure.resourcemanager.cosmosdbforpostgresql.generated;
  */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/
-     * PrivateEndpointConnectionsDelete.json
+     * x-ms-original-file: specification/postgresqlhsc/resource-manager/Microsoft.DBforPostgreSQL/preview/2023-03-02-preview/examples/PrivateEndpointConnectionsDelete.json
      */
     /**
      * Sample code: Deletes a private endpoint connection with a given name.
@@ -20,7 +18,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
      */
     public static void deletesAPrivateEndpointConnectionWithAGivenName(
         com.azure.resourcemanager.cosmosdbforpostgresql.CosmosDBForPostgreSqlManager manager) {
-        manager.privateEndpointConnections().delete("TestGroup", "testcluster", "private-endpoint-connection-name",
-            com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .delete("TestGroup", "testcluster", "private-endpoint-connection-name", com.azure.core.util.Context.NONE);
     }
 }

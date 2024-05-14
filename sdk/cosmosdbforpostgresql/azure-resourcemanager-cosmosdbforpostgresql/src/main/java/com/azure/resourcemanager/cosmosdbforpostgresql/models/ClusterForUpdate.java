@@ -22,6 +22,12 @@ public final class ClusterForUpdate {
     private ClusterPropertiesForUpdate innerProperties;
 
     /*
+     * Describes the identity of the cluster.
+     */
+    @JsonProperty(value = "identity")
+    private IdentityProperties identity;
+
+    /*
      * Application-specific metadata in the form of key-value pairs.
      */
     @JsonProperty(value = "tags")
@@ -41,6 +47,26 @@ public final class ClusterForUpdate {
      */
     private ClusterPropertiesForUpdate innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the identity property: Describes the identity of the cluster.
+     * 
+     * @return the identity value.
+     */
+    public IdentityProperties identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: Describes the identity of the cluster.
+     * 
+     * @param identity the identity value to set.
+     * @return the ClusterForUpdate object itself.
+     */
+    public ClusterForUpdate withIdentity(IdentityProperties identity) {
+        this.identity = identity;
+        return this;
     }
 
     /**
@@ -135,8 +161,8 @@ public final class ClusterForUpdate {
     }
 
     /**
-     * Get the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be
-     * set to 'true' on single node clusters. Requires shard rebalancing after value is changed.
+     * Get the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be set
+     * to 'true' on single node clusters. Requires shard rebalancing after value is changed.
      * 
      * @return the enableShardsOnCoordinator value.
      */
@@ -145,8 +171,8 @@ public final class ClusterForUpdate {
     }
 
     /**
-     * Set the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be
-     * set to 'true' on single node clusters. Requires shard rebalancing after value is changed.
+     * Set the enableShardsOnCoordinator property: If distributed tables are placed on coordinator or not. Should be set
+     * to 'true' on single node clusters. Requires shard rebalancing after value is changed.
      * 
      * @param enableShardsOnCoordinator the enableShardsOnCoordinator value to set.
      * @return the ClusterForUpdate object itself.
@@ -433,6 +459,9 @@ public final class ClusterForUpdate {
     public void validate() {
         if (innerProperties() != null) {
             innerProperties().validate();
+        }
+        if (identity() != null) {
+            identity().validate();
         }
     }
 }
