@@ -1,8 +1,8 @@
-# Azure Resource Manager AzureSphere client library for Java
+# Azure Resource Manager Azure Sphere client library for Java
 
-Azure Resource Manager AzureSphere client library for Java.
+Azure Resource Manager Azure Sphere client library for Java.
 
-This package contains Microsoft Azure SDK for AzureSphere Management SDK. Azure Sphere resource management API. Package tag package-2024-04-01. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
+This package contains Microsoft Azure SDK for Azure Sphere Management SDK. Azure Sphere resource management API. For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
 ## We'd love to hear your feedback
 
@@ -32,7 +32,7 @@ Various documentation is available to help you get started
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager-sphere</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
