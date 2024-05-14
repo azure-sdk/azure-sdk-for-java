@@ -7,7 +7,9 @@ package com.azure.resourcemanager.loganalytics.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Schema metadata for search. */
+/**
+ * Schema metadata for search.
+ */
 @Fluent
 public final class SearchMetadataSchema {
     /*
@@ -22,13 +24,15 @@ public final class SearchMetadataSchema {
     @JsonProperty(value = "version")
     private Integer version;
 
-    /** Creates an instance of SearchMetadataSchema class. */
+    /**
+     * Creates an instance of SearchMetadataSchema class.
+     */
     public SearchMetadataSchema() {
     }
 
     /**
      * Get the name property: The name of the metadata schema.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class SearchMetadataSchema {
 
     /**
      * Set the name property: The name of the metadata schema.
-     *
+     * 
      * @param name the name value to set.
      * @return the SearchMetadataSchema object itself.
      */
@@ -48,7 +52,7 @@ public final class SearchMetadataSchema {
 
     /**
      * Get the version property: The version of the metadata schema.
-     *
+     * 
      * @return the version value.
      */
     public Integer version() {
@@ -57,7 +61,7 @@ public final class SearchMetadataSchema {
 
     /**
      * Set the version property: The version of the metadata schema.
-     *
+     * 
      * @param version the version value to set.
      * @return the SearchMetadataSchema object itself.
      */
@@ -68,7 +72,7 @@ public final class SearchMetadataSchema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.loganalytics.fluent.models.ClusterInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list clusters operation response. */
+/**
+ * The list clusters operation response.
+ */
 @Fluent
 public final class ClusterListResult {
     /*
@@ -24,13 +26,15 @@ public final class ClusterListResult {
     @JsonProperty(value = "value")
     private List<ClusterInner> value;
 
-    /** Creates an instance of ClusterListResult class. */
+    /**
+     * Creates an instance of ClusterListResult class.
+     */
     public ClusterListResult() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of recommendations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class ClusterListResult {
 
     /**
      * Set the nextLink property: The link used to get the next page of recommendations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ClusterListResult object itself.
      */
@@ -50,7 +54,7 @@ public final class ClusterListResult {
 
     /**
      * Get the value property: A list of Log Analytics clusters.
-     *
+     * 
      * @return the value value.
      */
     public List<ClusterInner> value() {
@@ -59,7 +63,7 @@ public final class ClusterListResult {
 
     /**
      * Set the value property: A list of Log Analytics clusters.
-     *
+     * 
      * @param value the value value to set.
      * @return the ClusterListResult object itself.
      */
@@ -70,7 +74,7 @@ public final class ClusterListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
