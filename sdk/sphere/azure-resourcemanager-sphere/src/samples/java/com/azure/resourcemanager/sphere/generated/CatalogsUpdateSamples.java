@@ -11,8 +11,7 @@ import com.azure.resourcemanager.sphere.models.Catalog;
  */
 public final class CatalogsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PatchCatalog.json
+     * x-ms-original-file: specification/sphere/resource-manager/Microsoft.AzureSphere/stable/2024-04-01/examples/PatchCatalog.json
      */
     /**
      * Sample code: Catalogs_Update.
