@@ -52,8 +52,8 @@ public final class PolicyKeyResource {
      */
     public void validate() {
         if (policyKey() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property policyKey in model PolicyKeyResource"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property policyKey in model PolicyKeyResource"));
         }
     }
 

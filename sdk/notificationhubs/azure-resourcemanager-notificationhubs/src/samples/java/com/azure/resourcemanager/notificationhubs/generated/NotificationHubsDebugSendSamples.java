@@ -9,9 +9,7 @@ package com.azure.resourcemanager.notificationhubs.generated;
  */
 public final class NotificationHubsDebugSendSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/DebugSend.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/DebugSend.json
      */
     /**
      * Sample code: NotificationHubs_DebugSend.
@@ -20,7 +18,7 @@ public final class NotificationHubsDebugSendSamples {
      */
     public static void
         notificationHubsDebugSend(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().debugSendWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-            com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .debugSendWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
 }

@@ -9,9 +9,7 @@ package com.azure.resourcemanager.notificationhubs.generated;
  */
 public final class PrivateEndpointConnectionsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/PrivateEndpointConnectionList.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/PrivateEndpointConnectionList.json
      */
     /**
      * Sample code: PrivateEndpointConnections_List.

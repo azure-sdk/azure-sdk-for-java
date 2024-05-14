@@ -74,8 +74,8 @@ public final class NamespacesClientImpl implements NamespacesClient {
     }
 
     /**
-     * The interface defining all the services for NotificationHubsRPClientNamespaces to be used by the proxy service
-     * to perform REST calls.
+     * The interface defining all the services for NotificationHubsRPClientNamespaces to be used by the proxy service to
+     * perform REST calls.
      */
     @Host("{$host}")
     @ServiceInterface(name = "NotificationHubsRPCl")

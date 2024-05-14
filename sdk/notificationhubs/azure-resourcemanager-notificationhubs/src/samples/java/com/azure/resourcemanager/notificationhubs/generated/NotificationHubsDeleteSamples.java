@@ -9,9 +9,7 @@ package com.azure.resourcemanager.notificationhubs.generated;
  */
 public final class NotificationHubsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/Delete.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/Delete.json
      */
     /**
      * Sample code: NotificationHubs_Delete.
@@ -20,7 +18,7 @@ public final class NotificationHubsDeleteSamples {
      */
     public static void
         notificationHubsDelete(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().deleteWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-            com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .deleteWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
 }

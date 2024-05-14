@@ -9,9 +9,7 @@ package com.azure.resourcemanager.notificationhubs.generated;
  */
 public final class NamespacesGetAuthorizationRuleSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/AuthorizationRuleGet.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/AuthorizationRuleGet.json
      */
     /**
      * Sample code: Namespaces_GetAuthorizationRule.
@@ -20,7 +18,8 @@ public final class NamespacesGetAuthorizationRuleSamples {
      */
     public static void
         namespacesGetAuthorizationRule(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().getAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
-            com.azure.core.util.Context.NONE);
+        manager.namespaces()
+            .getAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
+                com.azure.core.util.Context.NONE);
     }
 }

@@ -57,9 +57,7 @@ import com.azure.resourcemanager.notificationhubs.models.CheckAvailabilityParame
  */
 public final class NamespacesCheckAvailabilitySamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/CheckAvailability.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/CheckAvailability.json
      */
     /**
      * Sample code: Namespaces_CheckAvailability.
@@ -68,8 +66,9 @@ public final class NamespacesCheckAvailabilitySamples {
      */
     public static void
         namespacesCheckAvailability(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().checkAvailabilityWithResponse(
-            new CheckAvailabilityParameters().withName("sdk-Namespace-2924"), com.azure.core.util.Context.NONE);
+        manager.namespaces()
+            .checkAvailabilityWithResponse(new CheckAvailabilityParameters().withName("sdk-Namespace-2924"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -93,9 +92,7 @@ import java.util.Map;
  */
 public final class NamespacesCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/CreateOrUpdate.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/CreateOrUpdate.json
      */
     /**
      * Sample code: Namespaces_CreateOrUpdate.
@@ -104,9 +101,13 @@ public final class NamespacesCreateOrUpdateSamples {
      */
     public static void
         namespacesCreateOrUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().define("nh-sdk-ns").withRegion("South Central US").withExistingResourceGroup("5ktrial")
+        manager.namespaces()
+            .define("nh-sdk-ns")
+            .withRegion("South Central US")
+            .withExistingResourceGroup("5ktrial")
             .withSku(new Sku().withName(SkuName.STANDARD).withTier("Standard"))
-            .withTags(mapOf("tag1", "value1", "tag2", "value2")).withZoneRedundancy(ZoneRedundancyPreference.ENABLED)
+            .withTags(mapOf("tag1", "value1", "tag2", "value2"))
+            .withZoneRedundancy(ZoneRedundancyPreference.ENABLED)
             .withNetworkAcls(new NetworkAcls()
                 .withIpRules(Arrays.asList(new IpRule().withIpMask("185.48.100.00/24")
                     .withRights(Arrays.asList(AccessRights.MANAGE, AccessRights.SEND, AccessRights.LISTEN))))
@@ -141,9 +142,7 @@ import java.util.Arrays;
  */
 public final class NamespacesCreateOrUpdateAuthorizationRuleSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/AuthorizationRuleCreateOrUpdate.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/AuthorizationRuleCreateOrUpdate.json
      */
     /**
      * Sample code: Namespaces_CreateOrUpdateAuthorizationRule.
@@ -169,9 +168,7 @@ public final class NamespacesCreateOrUpdateAuthorizationRuleSamples {
  */
 public final class NamespacesDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/Delete.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/Delete.json
      */
     /**
      * Sample code: Namespaces_Delete.
@@ -179,8 +176,8 @@ public final class NamespacesDeleteSamples {
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void namespacesDelete(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().deleteByResourceGroupWithResponse("5ktrial", "nh-sdk-ns",
-            com.azure.core.util.Context.NONE);
+        manager.namespaces()
+            .deleteByResourceGroupWithResponse("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -193,9 +190,7 @@ public final class NamespacesDeleteSamples {
  */
 public final class NamespacesDeleteAuthorizationRuleSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/AuthorizationRuleDelete.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/AuthorizationRuleDelete.json
      */
     /**
      * Sample code: Namespaces_DeleteAuthorizationRule.
@@ -204,8 +199,9 @@ public final class NamespacesDeleteAuthorizationRuleSamples {
      */
     public static void
         namespacesDeleteAuthorizationRule(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().deleteAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
-            com.azure.core.util.Context.NONE);
+        manager.namespaces()
+            .deleteAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -218,9 +214,7 @@ public final class NamespacesDeleteAuthorizationRuleSamples {
  */
 public final class NamespacesGetAuthorizationRuleSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/AuthorizationRuleGet.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/AuthorizationRuleGet.json
      */
     /**
      * Sample code: Namespaces_GetAuthorizationRule.
@@ -229,8 +223,9 @@ public final class NamespacesGetAuthorizationRuleSamples {
      */
     public static void
         namespacesGetAuthorizationRule(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().getAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
-            com.azure.core.util.Context.NONE);
+        manager.namespaces()
+            .getAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -243,9 +238,7 @@ public final class NamespacesGetAuthorizationRuleSamples {
  */
 public final class NamespacesGetByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/Get.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/Get.json
      */
     /**
      * Sample code: Namespaces_Get.
@@ -266,9 +259,7 @@ public final class NamespacesGetByResourceGroupSamples {
  */
 public final class NamespacesGetPnsCredentialsSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/PnsCredentialsGet.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/PnsCredentialsGet.json
      */
     /**
      * Sample code: Namespaces_GetPnsCredentials.
@@ -290,9 +281,7 @@ public final class NamespacesGetPnsCredentialsSamples {
  */
 public final class NamespacesListSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/ListBySubscription.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/ListBySubscription.json
      */
     /**
      * Sample code: Namespaces_ListAll.
@@ -313,9 +302,7 @@ public final class NamespacesListSamples {
  */
 public final class NamespacesListAuthorizationRulesSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/AuthorizationRuleList.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/AuthorizationRuleList.json
      */
     /**
      * Sample code: Namespaces_ListAuthorizationRules.
@@ -337,9 +324,7 @@ public final class NamespacesListAuthorizationRulesSamples {
  */
 public final class NamespacesListByResourceGroupSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/ListByResourceGroup.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/ListByResourceGroup.json
      */
     /**
      * Sample code: Namespaces_List.
@@ -360,9 +345,7 @@ public final class NamespacesListByResourceGroupSamples {
  */
 public final class NamespacesListKeysSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/AuthorizationRuleListKeys.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/AuthorizationRuleListKeys.json
      */
     /**
      * Sample code: Namespaces_ListKeys.
@@ -370,8 +353,9 @@ public final class NamespacesListKeysSamples {
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void namespacesListKeys(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().listKeysWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
-            com.azure.core.util.Context.NONE);
+        manager.namespaces()
+            .listKeysWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -387,9 +371,7 @@ import com.azure.resourcemanager.notificationhubs.models.PolicyKeyType;
  */
 public final class NamespacesRegenerateKeysSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/AuthorizationRuleRegenerateKey.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/AuthorizationRuleRegenerateKey.json
      */
     /**
      * Sample code: Namespaces_RegenerateKeys.
@@ -398,8 +380,9 @@ public final class NamespacesRegenerateKeysSamples {
      */
     public static void
         namespacesRegenerateKeys(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().regenerateKeysWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
-            new PolicyKeyResource().withPolicyKey(PolicyKeyType.PRIMARY_KEY), com.azure.core.util.Context.NONE);
+        manager.namespaces()
+            .regenerateKeysWithResponse("5ktrial", "nh-sdk-ns", "RootManageSharedAccessKey",
+                new PolicyKeyResource().withPolicyKey(PolicyKeyType.PRIMARY_KEY), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -421,9 +404,7 @@ import java.util.Map;
  */
 public final class NamespacesUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/Update.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/Update.json
      */
     /**
      * Sample code: Namespaces_Update.
@@ -432,11 +413,14 @@ public final class NamespacesUpdateSamples {
      */
     public static void namespacesUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
         NamespaceResource resource = manager.namespaces()
-            .getByResourceGroupWithResponse("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE).getValue();
-        resource.update().withTags(mapOf("tag1", "value3")).withSku(new Sku().withName(SkuName.FREE))
-            .withProperties(
-                new NamespaceProperties().withPnsCredentials(new PnsCredentials().withGcmCredential(new GcmCredential()
-                    .withGcmEndpoint("https://fcm.googleapis.com/fcm/send").withGoogleApiKey("fakeTokenPlaceholder"))))
+            .getByResourceGroupWithResponse("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withTags(mapOf("tag1", "value3"))
+            .withSku(new Sku().withName(SkuName.FREE))
+            .withProperties(new NamespaceProperties().withPnsCredentials(new PnsCredentials()
+                .withGcmCredential(new GcmCredential().withGcmEndpoint("https://fcm.googleapis.com/fcm/send")
+                    .withGoogleApiKey("fakeTokenPlaceholder"))))
             .apply();
     }
 
@@ -464,9 +448,7 @@ import com.azure.resourcemanager.notificationhubs.models.CheckAvailabilityParame
  */
 public final class NotificationHubsCheckNotificationHubAvailabilitySamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/CheckAvailability.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/CheckAvailability.json
      */
     /**
      * Sample code: NotificationHubs_CheckNotificationHubAvailability.
@@ -475,9 +457,10 @@ public final class NotificationHubsCheckNotificationHubAvailabilitySamples {
      */
     public static void notificationHubsCheckNotificationHubAvailability(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().checkNotificationHubAvailabilityWithResponse("5ktrial", "locp-newns",
-            new CheckAvailabilityParameters().withName("sdktest").withLocation("West Europe"),
-            com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .checkNotificationHubAvailabilityWithResponse("5ktrial", "locp-newns",
+                new CheckAvailabilityParameters().withName("sdktest").withLocation("West Europe"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -490,9 +473,7 @@ public final class NotificationHubsCheckNotificationHubAvailabilitySamples {
  */
 public final class NotificationHubsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/CreateOrUpdate.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/CreateOrUpdate.json
      */
     /**
      * Sample code: NotificationHubs_CreateOrUpdate.
@@ -501,8 +482,11 @@ public final class NotificationHubsCreateOrUpdateSamples {
      */
     public static void
         notificationHubsCreateOrUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().define("nh-sdk-hub").withRegion("eastus")
-            .withExistingNamespace("5ktrial", "nh-sdk-ns").create();
+        manager.notificationHubs()
+            .define("nh-sdk-hub")
+            .withRegion("eastus")
+            .withExistingNamespace("5ktrial", "nh-sdk-ns")
+            .create();
     }
 }
 ```
@@ -518,9 +502,7 @@ import java.util.Arrays;
  */
 public final class NotificationHubsCreateOrUpdateAuthorizationRuleSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/AuthorizationRuleCreateOrUpdate.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/AuthorizationRuleCreateOrUpdate.json
      */
     /**
      * Sample code: NotificationHubs_CreateOrUpdateAuthorizationRule.
@@ -529,9 +511,11 @@ public final class NotificationHubsCreateOrUpdateAuthorizationRuleSamples {
      */
     public static void notificationHubsCreateOrUpdateAuthorizationRule(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().defineAuthorizationRule("MyManageSharedAccessKey")
+        manager.notificationHubs()
+            .defineAuthorizationRule("MyManageSharedAccessKey")
             .withExistingNotificationHub("5ktrial", "nh-sdk-ns", "nh-sdk-hub")
-            .withRights(Arrays.asList(AccessRights.LISTEN, AccessRights.SEND)).create();
+            .withRights(Arrays.asList(AccessRights.LISTEN, AccessRights.SEND))
+            .create();
     }
 }
 ```
@@ -544,9 +528,7 @@ public final class NotificationHubsCreateOrUpdateAuthorizationRuleSamples {
  */
 public final class NotificationHubsDebugSendSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/DebugSend.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/DebugSend.json
      */
     /**
      * Sample code: NotificationHubs_DebugSend.
@@ -555,8 +537,8 @@ public final class NotificationHubsDebugSendSamples {
      */
     public static void
         notificationHubsDebugSend(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().debugSendWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-            com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .debugSendWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -569,9 +551,7 @@ public final class NotificationHubsDebugSendSamples {
  */
 public final class NotificationHubsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/Delete.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/Delete.json
      */
     /**
      * Sample code: NotificationHubs_Delete.
@@ -580,8 +560,8 @@ public final class NotificationHubsDeleteSamples {
      */
     public static void
         notificationHubsDelete(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().deleteWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-            com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .deleteWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -594,9 +574,7 @@ public final class NotificationHubsDeleteSamples {
  */
 public final class NotificationHubsDeleteAuthorizationRuleSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/AuthorizationRuleDelete.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/AuthorizationRuleDelete.json
      */
     /**
      * Sample code: NotificationHubs_DeleteAuthorizationRule.
@@ -605,8 +583,9 @@ public final class NotificationHubsDeleteAuthorizationRuleSamples {
      */
     public static void notificationHubsDeleteAuthorizationRule(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().deleteAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-            "DefaultListenSharedAccessSignature", com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .deleteAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
+                "DefaultListenSharedAccessSignature", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -619,9 +598,7 @@ public final class NotificationHubsDeleteAuthorizationRuleSamples {
  */
 public final class NotificationHubsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/Get.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/Get.json
      */
     /**
      * Sample code: NotificationHubs_Get.
@@ -629,8 +606,8 @@ public final class NotificationHubsGetSamples {
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void notificationHubsGet(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().getWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-            com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .getWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -643,9 +620,7 @@ public final class NotificationHubsGetSamples {
  */
 public final class NotificationHubsGetAuthorizationRuleSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/AuthorizationRuleGet.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/AuthorizationRuleGet.json
      */
     /**
      * Sample code: NotificationHubs_GetAuthorizationRule.
@@ -654,8 +629,9 @@ public final class NotificationHubsGetAuthorizationRuleSamples {
      */
     public static void notificationHubsGetAuthorizationRule(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().getAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-            "DefaultListenSharedAccessSignature", com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .getAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
+                "DefaultListenSharedAccessSignature", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -668,9 +644,7 @@ public final class NotificationHubsGetAuthorizationRuleSamples {
  */
 public final class NotificationHubsGetPnsCredentialsSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/PnsCredentialsGet.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/PnsCredentialsGet.json
      */
     /**
      * Sample code: NotificationHubs_GetPnsCredentials.
@@ -679,8 +653,8 @@ public final class NotificationHubsGetPnsCredentialsSamples {
      */
     public static void
         notificationHubsGetPnsCredentials(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().getPnsCredentialsWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-            com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .getPnsCredentialsWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -693,9 +667,7 @@ public final class NotificationHubsGetPnsCredentialsSamples {
  */
 public final class NotificationHubsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/List.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/List.json
      */
     /**
      * Sample code: NotificationHubs_List.
@@ -717,9 +689,7 @@ public final class NotificationHubsListSamples {
  */
 public final class NotificationHubsListAuthorizationRulesSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/AuthorizationRuleList.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/AuthorizationRuleList.json
      */
     /**
      * Sample code: NotificationHubs_ListAuthorizationRules.
@@ -728,8 +698,8 @@ public final class NotificationHubsListAuthorizationRulesSamples {
      */
     public static void notificationHubsListAuthorizationRules(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().listAuthorizationRules("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-            com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .listAuthorizationRules("5ktrial", "nh-sdk-ns", "nh-sdk-hub", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -742,9 +712,7 @@ public final class NotificationHubsListAuthorizationRulesSamples {
  */
 public final class NotificationHubsListKeysSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/AuthorizationRuleListKeys.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/AuthorizationRuleListKeys.json
      */
     /**
      * Sample code: NotificationHubs_ListKeys.
@@ -753,8 +721,9 @@ public final class NotificationHubsListKeysSamples {
      */
     public static void
         notificationHubsListKeys(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().listKeysWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", "sdk-AuthRules-5800",
-            com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .listKeysWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", "sdk-AuthRules-5800",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -770,9 +739,7 @@ import com.azure.resourcemanager.notificationhubs.models.PolicyKeyType;
  */
 public final class NotificationHubsRegenerateKeysSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/AuthorizationRuleRegenerateKey.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/AuthorizationRuleRegenerateKey.json
      */
     /**
      * Sample code: NotificationHubs_RegenerateKeys.
@@ -781,9 +748,9 @@ public final class NotificationHubsRegenerateKeysSamples {
      */
     public static void
         notificationHubsRegenerateKeys(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().regenerateKeysWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-            "DefaultListenSharedAccessSignature", new PolicyKeyResource().withPolicyKey(PolicyKeyType.PRIMARY_KEY),
-            com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .regenerateKeysWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", "DefaultListenSharedAccessSignature",
+                new PolicyKeyResource().withPolicyKey(PolicyKeyType.PRIMARY_KEY), com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -799,9 +766,7 @@ import com.azure.resourcemanager.notificationhubs.models.NotificationHubResource
  */
 public final class NotificationHubsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/Update.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/Update.json
      */
     /**
      * Sample code: NotificationHubs_Update.
@@ -810,11 +775,14 @@ public final class NotificationHubsUpdateSamples {
      */
     public static void
         notificationHubsUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        NotificationHubResource resource = manager.notificationHubs().getWithResponse("sdkresourceGroup", "nh-sdk-ns",
-            "sdk-notificationHubs-8708", com.azure.core.util.Context.NONE).getValue();
-        resource
-            .update().withRegistrationTtl("10675199.02:48:05.4775807").withGcmCredential(new GcmCredential()
-                .withGcmEndpoint("https://fcm.googleapis.com/fcm/send").withGoogleApiKey("fakeTokenPlaceholder"))
+        NotificationHubResource resource = manager.notificationHubs()
+            .getWithResponse("sdkresourceGroup", "nh-sdk-ns", "sdk-notificationHubs-8708",
+                com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withRegistrationTtl("10675199.02:48:05.4775807")
+            .withGcmCredential(new GcmCredential().withGcmEndpoint("https://fcm.googleapis.com/fcm/send")
+                .withGoogleApiKey("fakeTokenPlaceholder"))
             .apply();
     }
 }
@@ -828,9 +796,7 @@ public final class NotificationHubsUpdateSamples {
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NHOperationsList.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NHOperationsList.json
      */
     /**
      * Sample code: Operations_List.
@@ -851,9 +817,7 @@ public final class OperationsListSamples {
  */
 public final class PrivateEndpointConnectionsDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/PrivateEndpointConnectionDelete.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/PrivateEndpointConnectionDelete.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Delete.
@@ -862,8 +826,9 @@ public final class PrivateEndpointConnectionsDeleteSamples {
      */
     public static void
         privateEndpointConnectionsDelete(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.privateEndpointConnections().delete("5ktrial", "nh-sdk-ns",
-            "nh-sdk-ns.1fa229cd-bf3f-47f0-8c49-afb36723997e", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .delete("5ktrial", "nh-sdk-ns", "nh-sdk-ns.1fa229cd-bf3f-47f0-8c49-afb36723997e",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -876,9 +841,7 @@ public final class PrivateEndpointConnectionsDeleteSamples {
  */
 public final class PrivateEndpointConnectionsGetSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/PrivateEndpointConnectionGet.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/PrivateEndpointConnectionGet.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Get.
@@ -887,8 +850,9 @@ public final class PrivateEndpointConnectionsGetSamples {
      */
     public static void
         privateEndpointConnectionsGet(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.privateEndpointConnections().getWithResponse("5ktrial", "nh-sdk-ns",
-            "nh-sdk-ns.1fa229cd-bf3f-47f0-8c49-afb36723997e", com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .getWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-ns.1fa229cd-bf3f-47f0-8c49-afb36723997e",
+                com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -901,9 +865,7 @@ public final class PrivateEndpointConnectionsGetSamples {
  */
 public final class PrivateEndpointConnectionsGetGroupIdSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/PrivateLinkResourceGet.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/PrivateLinkResourceGet.json
      */
     /**
      * Sample code: PrivateEndpointConnections_GetGroupId.
@@ -912,8 +874,8 @@ public final class PrivateEndpointConnectionsGetGroupIdSamples {
      */
     public static void privateEndpointConnectionsGetGroupId(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.privateEndpointConnections().getGroupIdWithResponse("5ktrial", "nh-sdk-ns", "namespace",
-            com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .getGroupIdWithResponse("5ktrial", "nh-sdk-ns", "namespace", com.azure.core.util.Context.NONE);
     }
 }
 ```
@@ -926,9 +888,7 @@ public final class PrivateEndpointConnectionsGetGroupIdSamples {
  */
 public final class PrivateEndpointConnectionsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/PrivateEndpointConnectionList.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/PrivateEndpointConnectionList.json
      */
     /**
      * Sample code: PrivateEndpointConnections_List.
@@ -950,9 +910,7 @@ public final class PrivateEndpointConnectionsListSamples {
  */
 public final class PrivateEndpointConnectionsListGroupIdsSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/PrivateLinkResourceList.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/PrivateLinkResourceList.json
      */
     /**
      * Sample code: PrivateEndpointConnections_ListGroupIds.
@@ -980,9 +938,7 @@ import com.azure.resourcemanager.notificationhubs.models.RemotePrivateLinkServic
  */
 public final class PrivateEndpointConnectionsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/PrivateEndpointConnectionUpdate.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/PrivateEndpointConnectionUpdate.json
      */
     /**
      * Sample code: PrivateEndpointConnections_Update.
@@ -991,12 +947,13 @@ public final class PrivateEndpointConnectionsUpdateSamples {
      */
     public static void
         privateEndpointConnectionsUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.privateEndpointConnections().update("5ktrial", "nh-sdk-ns",
-            "nh-sdk-ns.1fa229cd-bf3f-47f0-8c49-afb36723997e",
-            new PrivateEndpointConnectionResourceInner().withProperties(new PrivateEndpointConnectionProperties()
-                .withPrivateEndpoint(new RemotePrivateEndpointConnection()).withPrivateLinkServiceConnectionState(
-                    new RemotePrivateLinkServiceConnectionState().withStatus(PrivateLinkConnectionStatus.APPROVED))),
-            com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .update("5ktrial", "nh-sdk-ns", "nh-sdk-ns.1fa229cd-bf3f-47f0-8c49-afb36723997e",
+                new PrivateEndpointConnectionResourceInner().withProperties(
+                    new PrivateEndpointConnectionProperties().withPrivateEndpoint(new RemotePrivateEndpointConnection())
+                        .withPrivateLinkServiceConnectionState(new RemotePrivateLinkServiceConnectionState()
+                            .withStatus(PrivateLinkConnectionStatus.APPROVED))),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```

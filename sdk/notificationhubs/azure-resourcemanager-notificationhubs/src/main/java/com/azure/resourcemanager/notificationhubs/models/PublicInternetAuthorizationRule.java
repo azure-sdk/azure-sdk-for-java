@@ -53,8 +53,9 @@ public final class PublicInternetAuthorizationRule {
      */
     public void validate() {
         if (rights() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property rights in model PublicInternetAuthorizationRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property rights in model PublicInternetAuthorizationRule"));
         }
     }
 

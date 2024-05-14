@@ -11,9 +11,7 @@ import com.azure.resourcemanager.notificationhubs.models.CheckAvailabilityParame
  */
 public final class NamespacesCheckAvailabilitySamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/CheckAvailability.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/CheckAvailability.json
      */
     /**
      * Sample code: Namespaces_CheckAvailability.
@@ -22,7 +20,8 @@ public final class NamespacesCheckAvailabilitySamples {
      */
     public static void
         namespacesCheckAvailability(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().checkAvailabilityWithResponse(
-            new CheckAvailabilityParameters().withName("sdk-Namespace-2924"), com.azure.core.util.Context.NONE);
+        manager.namespaces()
+            .checkAvailabilityWithResponse(new CheckAvailabilityParameters().withName("sdk-Namespace-2924"),
+                com.azure.core.util.Context.NONE);
     }
 }

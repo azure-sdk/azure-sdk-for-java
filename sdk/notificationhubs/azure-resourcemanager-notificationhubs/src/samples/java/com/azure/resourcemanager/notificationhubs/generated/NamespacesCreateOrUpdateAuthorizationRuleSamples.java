@@ -13,9 +13,7 @@ import java.util.Arrays;
  */
 public final class NamespacesCreateOrUpdateAuthorizationRuleSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/AuthorizationRuleCreateOrUpdate.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/AuthorizationRuleCreateOrUpdate.json
      */
     /**
      * Sample code: Namespaces_CreateOrUpdateAuthorizationRule.

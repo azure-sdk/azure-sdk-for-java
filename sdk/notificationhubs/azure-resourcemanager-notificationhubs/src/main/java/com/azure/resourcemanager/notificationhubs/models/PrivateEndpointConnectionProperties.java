@@ -20,8 +20,7 @@ public final class PrivateEndpointConnectionProperties {
     private PrivateEndpointConnectionProvisioningState provisioningState;
 
     /*
-     * Represents a Private Endpoint that is connected to Notification Hubs namespace using Private Endpoint
-     * Connection.
+     * Represents a Private Endpoint that is connected to Notification Hubs namespace using Private Endpoint Connection.
      */
     @JsonProperty(value = "privateEndpoint")
     private RemotePrivateEndpointConnection privateEndpoint;

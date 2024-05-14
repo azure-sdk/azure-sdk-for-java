@@ -52,8 +52,8 @@ public final class NetworkAcls {
     }
 
     /**
-     * Get the publicNetworkRule property: A default (public Internet) network authorization rule, which contains
-     * rights if no other network rule matches.
+     * Get the publicNetworkRule property: A default (public Internet) network authorization rule, which contains rights
+     * if no other network rule matches.
      * 
      * @return the publicNetworkRule value.
      */
@@ -62,8 +62,8 @@ public final class NetworkAcls {
     }
 
     /**
-     * Set the publicNetworkRule property: A default (public Internet) network authorization rule, which contains
-     * rights if no other network rule matches.
+     * Set the publicNetworkRule property: A default (public Internet) network authorization rule, which contains rights
+     * if no other network rule matches.
      * 
      * @param publicNetworkRule the publicNetworkRule value to set.
      * @return the NetworkAcls object itself.

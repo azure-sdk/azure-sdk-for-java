@@ -79,12 +79,12 @@ public final class IpRule {
      */
     public void validate() {
         if (ipMask() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property ipMask in model IpRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property ipMask in model IpRule"));
         }
         if (rights() == null) {
-            throw LOGGER
-                .logExceptionAsError(new IllegalArgumentException("Missing required property rights in model IpRule"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property rights in model IpRule"));
         }
     }
 

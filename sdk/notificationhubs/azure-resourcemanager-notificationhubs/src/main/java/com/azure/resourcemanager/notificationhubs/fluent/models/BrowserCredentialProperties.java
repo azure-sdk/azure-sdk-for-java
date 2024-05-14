@@ -104,16 +104,19 @@ public final class BrowserCredentialProperties {
      */
     public void validate() {
         if (subject() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property subject in model BrowserCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property subject in model BrowserCredentialProperties"));
         }
         if (vapidPrivateKey() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property vapidPrivateKey in model BrowserCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property vapidPrivateKey in model BrowserCredentialProperties"));
         }
         if (vapidPublicKey() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property vapidPublicKey in model BrowserCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property vapidPublicKey in model BrowserCredentialProperties"));
         }
     }
 

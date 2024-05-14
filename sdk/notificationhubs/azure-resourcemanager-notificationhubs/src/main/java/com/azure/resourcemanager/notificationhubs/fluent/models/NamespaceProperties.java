@@ -22,7 +22,7 @@ import java.util.List;
 @Fluent
 public final class NamespaceProperties {
     /*
-     * Name of the Notification Hubs namespace. This is immutable property, set automatically
+     * Name of the Notification Hubs namespace. This is immutable property, set automatically 
      * by the service when the namespace is created.
      */
     @JsonProperty(value = "name", access = JsonProperty.Access.WRITE_ONLY)

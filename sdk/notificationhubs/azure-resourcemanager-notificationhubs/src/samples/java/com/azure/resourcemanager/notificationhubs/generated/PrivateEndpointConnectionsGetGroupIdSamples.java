@@ -9,9 +9,7 @@ package com.azure.resourcemanager.notificationhubs.generated;
  */
 public final class PrivateEndpointConnectionsGetGroupIdSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/PrivateLinkResourceGet.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/PrivateLinkResourceGet.json
      */
     /**
      * Sample code: PrivateEndpointConnections_GetGroupId.
@@ -20,7 +18,7 @@ public final class PrivateEndpointConnectionsGetGroupIdSamples {
      */
     public static void privateEndpointConnectionsGetGroupId(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.privateEndpointConnections().getGroupIdWithResponse("5ktrial", "nh-sdk-ns", "namespace",
-            com.azure.core.util.Context.NONE);
+        manager.privateEndpointConnections()
+            .getGroupIdWithResponse("5ktrial", "nh-sdk-ns", "namespace", com.azure.core.util.Context.NONE);
     }
 }

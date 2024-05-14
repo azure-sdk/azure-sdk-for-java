@@ -104,16 +104,19 @@ public final class MpnsCredentialProperties {
      */
     public void validate() {
         if (mpnsCertificate() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property mpnsCertificate in model MpnsCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property mpnsCertificate in model MpnsCredentialProperties"));
         }
         if (certificateKey() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property certificateKey in model MpnsCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property certificateKey in model MpnsCredentialProperties"));
         }
         if (thumbprint() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property thumbprint in model MpnsCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property thumbprint in model MpnsCredentialProperties"));
         }
     }
 

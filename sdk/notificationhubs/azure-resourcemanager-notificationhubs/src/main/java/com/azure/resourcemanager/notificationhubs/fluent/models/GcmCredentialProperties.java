@@ -78,8 +78,9 @@ public final class GcmCredentialProperties {
      */
     public void validate() {
         if (googleApiKey() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property googleApiKey in model GcmCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property googleApiKey in model GcmCredentialProperties"));
         }
     }
 

@@ -104,16 +104,19 @@ public final class FcmV1CredentialProperties {
      */
     public void validate() {
         if (clientEmail() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property clientEmail in model FcmV1CredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property clientEmail in model FcmV1CredentialProperties"));
         }
         if (privateKey() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property privateKey in model FcmV1CredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property privateKey in model FcmV1CredentialProperties"));
         }
         if (projectId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property projectId in model FcmV1CredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property projectId in model FcmV1CredentialProperties"));
         }
     }
 

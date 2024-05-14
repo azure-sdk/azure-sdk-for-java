@@ -232,8 +232,8 @@ public final class ApnsCredential {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model ApnsCredential"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property innerProperties in model ApnsCredential"));
         } else {
             innerProperties().validate();
         }

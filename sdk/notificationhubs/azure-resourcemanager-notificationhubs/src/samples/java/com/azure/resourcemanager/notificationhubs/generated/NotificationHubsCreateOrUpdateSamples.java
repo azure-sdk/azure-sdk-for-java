@@ -9,9 +9,7 @@ package com.azure.resourcemanager.notificationhubs.generated;
  */
 public final class NotificationHubsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/CreateOrUpdate.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/CreateOrUpdate.json
      */
     /**
      * Sample code: NotificationHubs_CreateOrUpdate.
@@ -20,7 +18,10 @@ public final class NotificationHubsCreateOrUpdateSamples {
      */
     public static void
         notificationHubsCreateOrUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().define("nh-sdk-hub").withRegion("eastus")
-            .withExistingNamespace("5ktrial", "nh-sdk-ns").create();
+        manager.notificationHubs()
+            .define("nh-sdk-hub")
+            .withRegion("eastus")
+            .withExistingNamespace("5ktrial", "nh-sdk-ns")
+            .create();
     }
 }

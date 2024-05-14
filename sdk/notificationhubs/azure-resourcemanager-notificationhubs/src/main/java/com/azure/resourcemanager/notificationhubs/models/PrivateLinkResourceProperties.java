@@ -26,8 +26,7 @@ public final class PrivateLinkResourceProperties {
     private List<String> requiredMembers;
 
     /*
-     * Required DNS zone names. For Notification Hubs, it contains two CNames for Service Bus and Notification Hubs
-     * zones.
+     * Required DNS zone names. For Notification Hubs, it contains two CNames for Service Bus and Notification Hubs zones.
      */
     @JsonProperty(value = "requiredZoneNames", access = JsonProperty.Access.WRITE_ONLY)
     private List<String> requiredZoneNames;
@@ -48,8 +47,8 @@ public final class PrivateLinkResourceProperties {
     }
 
     /**
-     * Get the requiredMembers property: Required members. For Notification Hubs, it's always a collection with a
-     * single "namespace" item.
+     * Get the requiredMembers property: Required members. For Notification Hubs, it's always a collection with a single
+     * "namespace" item.
      * 
      * @return the requiredMembers value.
      */

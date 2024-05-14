@@ -56,15 +56,13 @@ public final class MetricSpecification {
     private List<String> supportedTimeGrainTypes;
 
     /*
-     * The matching regex pattern to be applied to the field pointed by the "metricsFilterPathSelector" flag in the ARM
-     * manifest.
+     * The matching regex pattern to be applied to the field pointed by the "metricsFilterPathSelector" flag in the ARM manifest.
      */
     @JsonProperty(value = "metricFilterPattern", access = JsonProperty.Access.WRITE_ONLY)
     private String metricFilterPattern;
 
     /*
-     * Optional property. If set to true, then zero will be returned for time duration where no metric is emitted /
-     * published.
+     * Optional property. If set to true, then zero will be returned for time duration where no metric is emitted / published.
      */
     @JsonProperty(value = "fillGapWithZero", access = JsonProperty.Access.WRITE_ONLY)
     private Boolean fillGapWithZero;
@@ -149,8 +147,8 @@ public final class MetricSpecification {
     }
 
     /**
-     * Get the fillGapWithZero property: Optional property. If set to true, then zero will be returned for time
-     * duration where no metric is emitted / published.
+     * Get the fillGapWithZero property: Optional property. If set to true, then zero will be returned for time duration
+     * where no metric is emitted / published.
      * 
      * @return the fillGapWithZero value.
      */

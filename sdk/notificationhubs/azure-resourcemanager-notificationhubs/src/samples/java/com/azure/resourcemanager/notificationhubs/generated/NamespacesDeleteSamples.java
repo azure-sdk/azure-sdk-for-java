@@ -9,9 +9,7 @@ package com.azure.resourcemanager.notificationhubs.generated;
  */
 public final class NamespacesDeleteSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * Namespaces/Delete.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/Namespaces/Delete.json
      */
     /**
      * Sample code: Namespaces_Delete.
@@ -19,7 +17,7 @@ public final class NamespacesDeleteSamples {
      * @param manager Entry point to NotificationHubsManager.
      */
     public static void namespacesDelete(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.namespaces().deleteByResourceGroupWithResponse("5ktrial", "nh-sdk-ns",
-            com.azure.core.util.Context.NONE);
+        manager.namespaces()
+            .deleteByResourceGroupWithResponse("5ktrial", "nh-sdk-ns", com.azure.core.util.Context.NONE);
     }
 }

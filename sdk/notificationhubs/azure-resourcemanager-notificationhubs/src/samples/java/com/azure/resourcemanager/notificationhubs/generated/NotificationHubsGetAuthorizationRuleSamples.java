@@ -9,9 +9,7 @@ package com.azure.resourcemanager.notificationhubs.generated;
  */
 public final class NotificationHubsGetAuthorizationRuleSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/AuthorizationRuleGet.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/AuthorizationRuleGet.json
      */
     /**
      * Sample code: NotificationHubs_GetAuthorizationRule.
@@ -20,7 +18,8 @@ public final class NotificationHubsGetAuthorizationRuleSamples {
      */
     public static void notificationHubsGetAuthorizationRule(
         com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().getAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
-            "DefaultListenSharedAccessSignature", com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .getAuthorizationRuleWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub",
+                "DefaultListenSharedAccessSignature", com.azure.core.util.Context.NONE);
     }
 }

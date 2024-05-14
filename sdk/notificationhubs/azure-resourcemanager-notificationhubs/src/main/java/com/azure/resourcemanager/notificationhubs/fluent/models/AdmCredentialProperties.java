@@ -104,16 +104,19 @@ public final class AdmCredentialProperties {
      */
     public void validate() {
         if (clientId() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property clientId in model AdmCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property clientId in model AdmCredentialProperties"));
         }
         if (clientSecret() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property clientSecret in model AdmCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property clientSecret in model AdmCredentialProperties"));
         }
         if (authTokenUrl() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property authTokenUrl in model AdmCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property authTokenUrl in model AdmCredentialProperties"));
         }
     }
 

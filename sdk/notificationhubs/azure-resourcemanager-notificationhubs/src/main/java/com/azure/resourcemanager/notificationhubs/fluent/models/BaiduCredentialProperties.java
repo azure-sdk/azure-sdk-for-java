@@ -104,16 +104,19 @@ public final class BaiduCredentialProperties {
      */
     public void validate() {
         if (baiduApiKey() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property baiduApiKey in model BaiduCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property baiduApiKey in model BaiduCredentialProperties"));
         }
         if (baiduEndPoint() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property baiduEndPoint in model BaiduCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property baiduEndPoint in model BaiduCredentialProperties"));
         }
         if (baiduSecretKey() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property baiduSecretKey in model BaiduCredentialProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property baiduSecretKey in model BaiduCredentialProperties"));
         }
     }
 

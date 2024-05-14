@@ -12,9 +12,7 @@ import com.azure.resourcemanager.notificationhubs.models.NotificationHubResource
  */
 public final class NotificationHubsUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/Update.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/Update.json
      */
     /**
      * Sample code: NotificationHubs_Update.
@@ -23,11 +21,14 @@ public final class NotificationHubsUpdateSamples {
      */
     public static void
         notificationHubsUpdate(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        NotificationHubResource resource = manager.notificationHubs().getWithResponse("sdkresourceGroup", "nh-sdk-ns",
-            "sdk-notificationHubs-8708", com.azure.core.util.Context.NONE).getValue();
-        resource
-            .update().withRegistrationTtl("10675199.02:48:05.4775807").withGcmCredential(new GcmCredential()
-                .withGcmEndpoint("https://fcm.googleapis.com/fcm/send").withGoogleApiKey("fakeTokenPlaceholder"))
+        NotificationHubResource resource = manager.notificationHubs()
+            .getWithResponse("sdkresourceGroup", "nh-sdk-ns", "sdk-notificationHubs-8708",
+                com.azure.core.util.Context.NONE)
+            .getValue();
+        resource.update()
+            .withRegistrationTtl("10675199.02:48:05.4775807")
+            .withGcmCredential(new GcmCredential().withGcmEndpoint("https://fcm.googleapis.com/fcm/send")
+                .withGoogleApiKey("fakeTokenPlaceholder"))
             .apply();
     }
 }

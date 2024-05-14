@@ -9,9 +9,7 @@ package com.azure.resourcemanager.notificationhubs.generated;
  */
 public final class NotificationHubsListKeysSamples {
     /*
-     * x-ms-original-file:
-     * specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2023-10-01-preview/examples/
-     * NotificationHubs/AuthorizationRuleListKeys.json
+     * x-ms-original-file: specification/notificationhubs/resource-manager/Microsoft.NotificationHubs/preview/2024-03-01-preview/examples/NotificationHubs/AuthorizationRuleListKeys.json
      */
     /**
      * Sample code: NotificationHubs_ListKeys.
@@ -20,7 +18,8 @@ public final class NotificationHubsListKeysSamples {
      */
     public static void
         notificationHubsListKeys(com.azure.resourcemanager.notificationhubs.NotificationHubsManager manager) {
-        manager.notificationHubs().listKeysWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", "sdk-AuthRules-5800",
-            com.azure.core.util.Context.NONE);
+        manager.notificationHubs()
+            .listKeysWithResponse("5ktrial", "nh-sdk-ns", "nh-sdk-hub", "sdk-AuthRules-5800",
+                com.azure.core.util.Context.NONE);
     }
 }

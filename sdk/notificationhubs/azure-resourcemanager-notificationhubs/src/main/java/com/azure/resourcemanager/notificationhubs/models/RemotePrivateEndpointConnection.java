@@ -13,8 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class RemotePrivateEndpointConnection {
     /*
-     * ARM resource ID of the Private Endpoint. This may belong to different subscription and resource group than a
-     * Notification Hubs namespace.
+     * ARM resource ID of the Private Endpoint. This may belong to different subscription and resource group than a Notification Hubs namespace.
      */
     @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
     private String id;
