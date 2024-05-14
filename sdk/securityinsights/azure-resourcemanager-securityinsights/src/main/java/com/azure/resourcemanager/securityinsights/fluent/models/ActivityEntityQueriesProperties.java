@@ -13,7 +13,9 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** Describes activity entity query properties. */
+/**
+ * Describes activity entity query properties.
+ */
 @Fluent
 public final class ActivityEntityQueriesProperties {
     /*
@@ -84,8 +86,14 @@ public final class ActivityEntityQueriesProperties {
     private OffsetDateTime lastModifiedTimeUtc;
 
     /**
+     * Creates an instance of ActivityEntityQueriesProperties class.
+     */
+    public ActivityEntityQueriesProperties() {
+    }
+
+    /**
      * Get the title property: The entity query title.
-     *
+     * 
      * @return the title value.
      */
     public String title() {
@@ -94,7 +102,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Set the title property: The entity query title.
-     *
+     * 
      * @param title the title value to set.
      * @return the ActivityEntityQueriesProperties object itself.
      */
@@ -105,7 +113,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Get the content property: The entity query content to display in timeline.
-     *
+     * 
      * @return the content value.
      */
     public String content() {
@@ -114,7 +122,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Set the content property: The entity query content to display in timeline.
-     *
+     * 
      * @param content the content value to set.
      * @return the ActivityEntityQueriesProperties object itself.
      */
@@ -125,7 +133,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Get the description property: The entity query description.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -134,7 +142,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Set the description property: The entity query description.
-     *
+     * 
      * @param description the description value to set.
      * @return the ActivityEntityQueriesProperties object itself.
      */
@@ -145,7 +153,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Get the queryDefinitions property: The Activity query definitions.
-     *
+     * 
      * @return the queryDefinitions value.
      */
     public ActivityEntityQueriesPropertiesQueryDefinitions queryDefinitions() {
@@ -154,19 +162,19 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Set the queryDefinitions property: The Activity query definitions.
-     *
+     * 
      * @param queryDefinitions the queryDefinitions value to set.
      * @return the ActivityEntityQueriesProperties object itself.
      */
-    public ActivityEntityQueriesProperties withQueryDefinitions(
-        ActivityEntityQueriesPropertiesQueryDefinitions queryDefinitions) {
+    public ActivityEntityQueriesProperties
+        withQueryDefinitions(ActivityEntityQueriesPropertiesQueryDefinitions queryDefinitions) {
         this.queryDefinitions = queryDefinitions;
         return this;
     }
 
     /**
      * Get the inputEntityType property: The type of the query's source entity.
-     *
+     * 
      * @return the inputEntityType value.
      */
     public EntityType inputEntityType() {
@@ -175,7 +183,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Set the inputEntityType property: The type of the query's source entity.
-     *
+     * 
      * @param inputEntityType the inputEntityType value to set.
      * @return the ActivityEntityQueriesProperties object itself.
      */
@@ -187,7 +195,7 @@ public final class ActivityEntityQueriesProperties {
     /**
      * Get the requiredInputFieldsSets property: List of the fields of the source entity that are required to run the
      * query.
-     *
+     * 
      * @return the requiredInputFieldsSets value.
      */
     public List<List<String>> requiredInputFieldsSets() {
@@ -197,7 +205,7 @@ public final class ActivityEntityQueriesProperties {
     /**
      * Set the requiredInputFieldsSets property: List of the fields of the source entity that are required to run the
      * query.
-     *
+     * 
      * @param requiredInputFieldsSets the requiredInputFieldsSets value to set.
      * @return the ActivityEntityQueriesProperties object itself.
      */
@@ -208,7 +216,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Get the entitiesFilter property: The query applied only to entities matching to all filters.
-     *
+     * 
      * @return the entitiesFilter value.
      */
     public Map<String, List<String>> entitiesFilter() {
@@ -217,7 +225,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Set the entitiesFilter property: The query applied only to entities matching to all filters.
-     *
+     * 
      * @param entitiesFilter the entitiesFilter value to set.
      * @return the ActivityEntityQueriesProperties object itself.
      */
@@ -228,7 +236,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Get the templateName property: The template id this activity was created from.
-     *
+     * 
      * @return the templateName value.
      */
     public String templateName() {
@@ -237,7 +245,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Set the templateName property: The template id this activity was created from.
-     *
+     * 
      * @param templateName the templateName value to set.
      * @return the ActivityEntityQueriesProperties object itself.
      */
@@ -248,7 +256,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Get the enabled property: Determines whether this activity is enabled or disabled.
-     *
+     * 
      * @return the enabled value.
      */
     public Boolean enabled() {
@@ -257,7 +265,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Set the enabled property: Determines whether this activity is enabled or disabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the ActivityEntityQueriesProperties object itself.
      */
@@ -268,7 +276,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Get the createdTimeUtc property: The time the activity was created.
-     *
+     * 
      * @return the createdTimeUtc value.
      */
     public OffsetDateTime createdTimeUtc() {
@@ -277,7 +285,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Get the lastModifiedTimeUtc property: The last time the activity was updated.
-     *
+     * 
      * @return the lastModifiedTimeUtc value.
      */
     public OffsetDateTime lastModifiedTimeUtc() {
@@ -286,7 +294,7 @@ public final class ActivityEntityQueriesProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

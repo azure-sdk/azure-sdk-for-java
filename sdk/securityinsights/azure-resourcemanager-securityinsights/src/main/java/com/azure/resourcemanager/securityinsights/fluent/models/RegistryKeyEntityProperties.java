@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.models.EntityCommonProperties;
 import com.azure.resourcemanager.securityinsights.models.RegistryHive;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** RegistryKey entity property bag. */
+/**
+ * RegistryKey entity property bag.
+ */
 @Immutable
 public final class RegistryKeyEntityProperties extends EntityCommonProperties {
     /*
@@ -25,8 +27,14 @@ public final class RegistryKeyEntityProperties extends EntityCommonProperties {
     private String key;
 
     /**
+     * Creates an instance of RegistryKeyEntityProperties class.
+     */
+    public RegistryKeyEntityProperties() {
+    }
+
+    /**
      * Get the hive property: the hive that holds the registry key.
-     *
+     * 
      * @return the hive value.
      */
     public RegistryHive hive() {
@@ -35,7 +43,7 @@ public final class RegistryKeyEntityProperties extends EntityCommonProperties {
 
     /**
      * Get the key property: The registry key path.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -44,7 +52,7 @@ public final class RegistryKeyEntityProperties extends EntityCommonProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

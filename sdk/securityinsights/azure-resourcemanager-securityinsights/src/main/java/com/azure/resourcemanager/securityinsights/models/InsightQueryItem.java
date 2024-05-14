@@ -6,14 +6,24 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Represents Insight Query. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents Insight Query.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = InsightQueryItem.class, visible = true)
 @JsonTypeName("Insight")
 @Fluent
 public final class InsightQueryItem extends EntityQueryItem {
+    /*
+     * The kind of the entity query
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private EntityQueryKind kind = EntityQueryKind.INSIGHT;
+
     /*
      * Properties bag for InsightQueryItem
      */
@@ -21,8 +31,24 @@ public final class InsightQueryItem extends EntityQueryItem {
     private InsightQueryItemProperties properties;
 
     /**
+     * Creates an instance of InsightQueryItem class.
+     */
+    public InsightQueryItem() {
+    }
+
+    /**
+     * Get the kind property: The kind of the entity query.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public EntityQueryKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the properties property: Properties bag for InsightQueryItem.
-     *
+     * 
      * @return the properties value.
      */
     public InsightQueryItemProperties properties() {
@@ -31,7 +57,7 @@ public final class InsightQueryItem extends EntityQueryItem {
 
     /**
      * Set the properties property: Properties bag for InsightQueryItem.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the InsightQueryItem object itself.
      */
@@ -40,14 +66,18 @@ public final class InsightQueryItem extends EntityQueryItem {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InsightQueryItem withName(String name) {
         super.withName(name);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public InsightQueryItem withType(String type) {
         super.withType(type);
@@ -56,7 +86,7 @@ public final class InsightQueryItem extends EntityQueryItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

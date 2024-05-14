@@ -7,7 +7,9 @@ package com.azure.resourcemanager.securityinsights.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The EntityQueryItemPropertiesDataTypesItem model. */
+/**
+ * The EntityQueryItemPropertiesDataTypesItem model.
+ */
 @Fluent
 public final class EntityQueryItemPropertiesDataTypesItem {
     /*
@@ -17,8 +19,14 @@ public final class EntityQueryItemPropertiesDataTypesItem {
     private String dataType;
 
     /**
+     * Creates an instance of EntityQueryItemPropertiesDataTypesItem class.
+     */
+    public EntityQueryItemPropertiesDataTypesItem() {
+    }
+
+    /**
      * Get the dataType property: Data type name.
-     *
+     * 
      * @return the dataType value.
      */
     public String dataType() {
@@ -27,7 +35,7 @@ public final class EntityQueryItemPropertiesDataTypesItem {
 
     /**
      * Set the dataType property: Data type name.
-     *
+     * 
      * @param dataType the dataType value to set.
      * @return the EntityQueryItemPropertiesDataTypesItem object itself.
      */
@@ -38,7 +46,7 @@ public final class EntityQueryItemPropertiesDataTypesItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

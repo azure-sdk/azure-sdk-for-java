@@ -7,10 +7,20 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 
-/** Threat Intelligence Platforms data connector required properties. */
+/**
+ * Threat Intelligence Platforms data connector required properties.
+ */
 @Fluent
 public final class TICheckRequirementsProperties extends DataConnectorTenantId {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of TICheckRequirementsProperties class.
+     */
+    public TICheckRequirementsProperties() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TICheckRequirementsProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -19,7 +29,7 @@ public final class TICheckRequirementsProperties extends DataConnectorTenantId {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.securityinsights.fluent.models.EntityInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The expansion result values. */
+/**
+ * The expansion result values.
+ */
 @Fluent
 public final class BookmarkExpandResponseValue {
     /*
@@ -25,8 +27,14 @@ public final class BookmarkExpandResponseValue {
     private List<ConnectedEntity> edges;
 
     /**
+     * Creates an instance of BookmarkExpandResponseValue class.
+     */
+    public BookmarkExpandResponseValue() {
+    }
+
+    /**
      * Get the entities property: Array of the expansion result entities.
-     *
+     * 
      * @return the entities value.
      */
     public List<EntityInner> entities() {
@@ -35,7 +43,7 @@ public final class BookmarkExpandResponseValue {
 
     /**
      * Set the entities property: Array of the expansion result entities.
-     *
+     * 
      * @param entities the entities value to set.
      * @return the BookmarkExpandResponseValue object itself.
      */
@@ -46,7 +54,7 @@ public final class BookmarkExpandResponseValue {
 
     /**
      * Get the edges property: Array of expansion result connected entities.
-     *
+     * 
      * @return the edges value.
      */
     public List<ConnectedEntity> edges() {
@@ -55,7 +63,7 @@ public final class BookmarkExpandResponseValue {
 
     /**
      * Set the edges property: Array of expansion result connected entities.
-     *
+     * 
      * @param edges the edges value to set.
      * @return the BookmarkExpandResponseValue object itself.
      */
@@ -66,7 +74,7 @@ public final class BookmarkExpandResponseValue {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

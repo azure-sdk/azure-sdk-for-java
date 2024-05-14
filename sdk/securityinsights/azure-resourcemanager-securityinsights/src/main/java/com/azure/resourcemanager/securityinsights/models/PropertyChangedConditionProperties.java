@@ -6,14 +6,28 @@ package com.azure.resourcemanager.securityinsights.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Describes an automation rule condition that evaluates a property's value change. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "conditionType")
+/**
+ * Describes an automation rule condition that evaluates a property's value change.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "conditionType",
+    defaultImpl = PropertyChangedConditionProperties.class,
+    visible = true)
 @JsonTypeName("PropertyChanged")
 @Fluent
 public final class PropertyChangedConditionProperties extends AutomationRuleCondition {
+    /*
+     * The conditionType property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "conditionType", required = true)
+    private ConditionType conditionType = ConditionType.PROPERTY_CHANGED;
+
     /*
      * The conditionProperties property.
      */
@@ -21,8 +35,24 @@ public final class PropertyChangedConditionProperties extends AutomationRuleCond
     private AutomationRulePropertyValuesChangedCondition conditionProperties;
 
     /**
+     * Creates an instance of PropertyChangedConditionProperties class.
+     */
+    public PropertyChangedConditionProperties() {
+    }
+
+    /**
+     * Get the conditionType property: The conditionType property.
+     * 
+     * @return the conditionType value.
+     */
+    @Override
+    public ConditionType conditionType() {
+        return this.conditionType;
+    }
+
+    /**
      * Get the conditionProperties property: The conditionProperties property.
-     *
+     * 
      * @return the conditionProperties value.
      */
     public AutomationRulePropertyValuesChangedCondition conditionProperties() {
@@ -31,19 +61,19 @@ public final class PropertyChangedConditionProperties extends AutomationRuleCond
 
     /**
      * Set the conditionProperties property: The conditionProperties property.
-     *
+     * 
      * @param conditionProperties the conditionProperties value to set.
      * @return the PropertyChangedConditionProperties object itself.
      */
-    public PropertyChangedConditionProperties withConditionProperties(
-        AutomationRulePropertyValuesChangedCondition conditionProperties) {
+    public PropertyChangedConditionProperties
+        withConditionProperties(AutomationRulePropertyValuesChangedCondition conditionProperties) {
         this.conditionProperties = conditionProperties;
         return this;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
