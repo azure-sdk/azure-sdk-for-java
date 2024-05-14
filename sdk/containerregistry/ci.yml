@@ -34,10 +34,14 @@ pr:
       - sdk/containerregistry/azure-containers-containerregistry-perf/pom.xml
 
 parameters:
-- name: release_dependsonlivetests
-  displayName: 'Release depends on live tests'
-  type: boolean
-  default: true
+  - name: release_dependsonlivetests
+    displayName: Release depends on live tests
+    type: boolean
+    default: true
+  - name: release_azureresourcemanagercontainerregistrygenerated
+    displayName: azure-resourcemanager-containerregistry-generated
+    type: boolean
+    default: false
 
 extends:
   template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
@@ -48,9 +52,12 @@ extends:
       - name: azure-containers-containerregistry
         groupId: com.azure
         safeName: azurecontainerscontainerregistry
+      - name: azure-resourcemanager-containerregistry-generated
+        groupId: com.azure.resourcemanager
+        safeName: azureresourcemanagercontainerregistrygenerated
+        releaseInBatch: ${{ parameters.release_azureresourcemanagercontainerregistrygenerated }}
     AdditionalModules:
       - name: azure-containers-containerregistry-perf
         groupId: com.azure
-        # required by the above perf library
       - name: perf-test-core
         groupId: com.azure
