@@ -40,6 +40,7 @@
     <module>sdk/botservice</module>
     <module>sdk/changeanalysis</module>
     <module>sdk/chaos</module>
+    <module>sdk/clientcore</module>
     <module>sdk/cognitiveservices</module>
     <module>sdk/commerce</module>
     <module>sdk/communication</module>
@@ -56,6 +57,7 @@
     <module>sdk/costmanagement</module>
     <module>sdk/customerinsights</module>
     <module>sdk/dashboard</module>
+    <module>sdk/databasewatcher</module>
     <module>sdk/databox</module>
     <module>sdk/databoxedge</module>
     <module>sdk/databricks</module>
@@ -92,7 +94,6 @@
     <module>sdk/fluidrelay</module>
     <module>sdk/formrecognizer</module>
     <module>sdk/frontdoor</module>
-    <module>sdk/clientcore</module>
     <module>sdk/graphservices</module>
     <module>sdk/hanaonazure</module>
     <module>sdk/hardwaresecuritymodules</module>
