@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Multiregion routing methods. */
+/**
+ * Multiregion routing methods.
+ */
 public final class RoutingMethods extends ExpandableStringEnum<RoutingMethods> {
-    /** Static value Priority for RoutingMethods. */
+    /**
+     * Static value Priority for RoutingMethods.
+     */
     public static final RoutingMethods PRIORITY = fromString("Priority");
 
-    /** Static value Weighted for RoutingMethods. */
+    /**
+     * Static value Weighted for RoutingMethods.
+     */
     public static final RoutingMethods WEIGHTED = fromString("Weighted");
 
-    /** Static value Performance for RoutingMethods. */
+    /**
+     * Static value Performance for RoutingMethods.
+     */
     public static final RoutingMethods PERFORMANCE = fromString("Performance");
 
     /**
      * Creates a new instance of RoutingMethods value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class RoutingMethods extends ExpandableStringEnum<RoutingMethods> {
 
     /**
      * Creates or finds a RoutingMethods from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding RoutingMethods.
      */
@@ -41,7 +49,7 @@ public final class RoutingMethods extends ExpandableStringEnum<RoutingMethods> {
 
     /**
      * Gets known RoutingMethods values.
-     *
+     * 
      * @return known RoutingMethods values.
      */
     public static Collection<RoutingMethods> values() {

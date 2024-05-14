@@ -62,13 +62,15 @@ public final class AccountInner extends AzureEntityResource {
     @JsonProperty(value = "properties")
     private AccountProperties properties;
 
-    /** Creates an instance of AccountInner class. */
+    /**
+     * Creates an instance of AccountInner class.
+     */
     public AccountInner() {
     }
 
     /**
      * Get the kind property: The Kind of the resource.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -77,7 +79,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Set the kind property: The Kind of the resource.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the AccountInner object itself.
      */
@@ -88,7 +90,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Get the sku property: The resource model definition representing SKU.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -97,7 +99,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Set the sku property: The resource model definition representing SKU.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the AccountInner object itself.
      */
@@ -108,7 +110,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Get the identity property: Identity for the resource.
-     *
+     * 
      * @return the identity value.
      */
     public Identity identity() {
@@ -117,7 +119,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Set the identity property: Identity for the resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the AccountInner object itself.
      */
@@ -128,7 +130,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Get the systemData property: Metadata pertaining to creation and last modification of the resource.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -137,7 +139,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -146,7 +148,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the AccountInner object itself.
      */
@@ -157,7 +159,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Get the location property: The geo-location where the resource lives.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -166,7 +168,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Set the location property: The geo-location where the resource lives.
-     *
+     * 
      * @param location the location value to set.
      * @return the AccountInner object itself.
      */
@@ -177,7 +179,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Get the properties property: Properties of Cognitive Services account.
-     *
+     * 
      * @return the properties value.
      */
     public AccountProperties properties() {
@@ -186,7 +188,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Set the properties property: Properties of Cognitive Services account.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the AccountInner object itself.
      */
@@ -197,7 +199,7 @@ public final class AccountInner extends AzureEntityResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

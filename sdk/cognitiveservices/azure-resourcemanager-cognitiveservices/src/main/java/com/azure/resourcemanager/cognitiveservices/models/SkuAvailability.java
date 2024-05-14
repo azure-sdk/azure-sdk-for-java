@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** SKU availability. */
+/**
+ * SKU availability.
+ */
 @Fluent
 public final class SkuAvailability {
     /*
@@ -46,13 +48,15 @@ public final class SkuAvailability {
     @JsonProperty(value = "message")
     private String message;
 
-    /** Creates an instance of SkuAvailability class. */
+    /**
+     * Creates an instance of SkuAvailability class.
+     */
     public SkuAvailability() {
     }
 
     /**
      * Get the kind property: The Kind of the resource.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -61,7 +65,7 @@ public final class SkuAvailability {
 
     /**
      * Set the kind property: The Kind of the resource.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the SkuAvailability object itself.
      */
@@ -72,7 +76,7 @@ public final class SkuAvailability {
 
     /**
      * Get the type property: The Type of the resource.
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -81,7 +85,7 @@ public final class SkuAvailability {
 
     /**
      * Set the type property: The Type of the resource.
-     *
+     * 
      * @param type the type value to set.
      * @return the SkuAvailability object itself.
      */
@@ -92,7 +96,7 @@ public final class SkuAvailability {
 
     /**
      * Get the skuName property: The SKU of Cognitive Services account.
-     *
+     * 
      * @return the skuName value.
      */
     public String skuName() {
@@ -101,7 +105,7 @@ public final class SkuAvailability {
 
     /**
      * Set the skuName property: The SKU of Cognitive Services account.
-     *
+     * 
      * @param skuName the skuName value to set.
      * @return the SkuAvailability object itself.
      */
@@ -112,7 +116,7 @@ public final class SkuAvailability {
 
     /**
      * Get the skuAvailable property: Indicates the given SKU is available or not.
-     *
+     * 
      * @return the skuAvailable value.
      */
     public Boolean skuAvailable() {
@@ -121,7 +125,7 @@ public final class SkuAvailability {
 
     /**
      * Set the skuAvailable property: Indicates the given SKU is available or not.
-     *
+     * 
      * @param skuAvailable the skuAvailable value to set.
      * @return the SkuAvailability object itself.
      */
@@ -132,7 +136,7 @@ public final class SkuAvailability {
 
     /**
      * Get the reason property: Reason why the SKU is not available.
-     *
+     * 
      * @return the reason value.
      */
     public String reason() {
@@ -141,7 +145,7 @@ public final class SkuAvailability {
 
     /**
      * Set the reason property: Reason why the SKU is not available.
-     *
+     * 
      * @param reason the reason value to set.
      * @return the SkuAvailability object itself.
      */
@@ -152,7 +156,7 @@ public final class SkuAvailability {
 
     /**
      * Get the message property: Additional error message.
-     *
+     * 
      * @return the message value.
      */
     public String message() {
@@ -161,7 +165,7 @@ public final class SkuAvailability {
 
     /**
      * Set the message property: Additional error message.
-     *
+     * 
      * @param message the message value to set.
      * @return the SkuAvailability object itself.
      */
@@ -172,7 +176,7 @@ public final class SkuAvailability {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

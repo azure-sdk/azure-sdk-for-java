@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Cognitive Services account ModelDeprecationInfo. */
+/**
+ * Cognitive Services account ModelDeprecationInfo.
+ */
 @Fluent
 public final class ModelDeprecationInfo {
     /*
@@ -22,13 +24,15 @@ public final class ModelDeprecationInfo {
     @JsonProperty(value = "inference")
     private String inference;
 
-    /** Creates an instance of ModelDeprecationInfo class. */
+    /**
+     * Creates an instance of ModelDeprecationInfo class.
+     */
     public ModelDeprecationInfo() {
     }
 
     /**
      * Get the fineTune property: The datetime of deprecation of the fineTune Model.
-     *
+     * 
      * @return the fineTune value.
      */
     public String fineTune() {
@@ -37,7 +41,7 @@ public final class ModelDeprecationInfo {
 
     /**
      * Set the fineTune property: The datetime of deprecation of the fineTune Model.
-     *
+     * 
      * @param fineTune the fineTune value to set.
      * @return the ModelDeprecationInfo object itself.
      */
@@ -48,7 +52,7 @@ public final class ModelDeprecationInfo {
 
     /**
      * Get the inference property: The datetime of deprecation of the inference Model.
-     *
+     * 
      * @return the inference value.
      */
     public String inference() {
@@ -57,7 +61,7 @@ public final class ModelDeprecationInfo {
 
     /**
      * Set the inference property: The datetime of deprecation of the inference Model.
-     *
+     * 
      * @param inference the inference value to set.
      * @return the ModelDeprecationInfo object itself.
      */
@@ -68,7 +72,7 @@ public final class ModelDeprecationInfo {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

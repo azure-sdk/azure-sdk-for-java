@@ -7,7 +7,9 @@ package com.azure.resourcemanager.cognitiveservices.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of Cognitive Services account deployment model. */
+/**
+ * Properties of Cognitive Services account deployment model.
+ */
 @Fluent
 public class DeploymentModel {
     /*
@@ -23,9 +25,7 @@ public class DeploymentModel {
     private String name;
 
     /*
-     * Optional. Deployment model version. If version is not specified, a default version will be assigned. The default
-     * version is different for different models and might change when there is new version available for a model.
-     * Default version for a model could be found from list models API.
+     * Optional. Deployment model version. If version is not specified, a default version will be assigned. The default version is different for different models and might change when there is new version available for a model. Default version for a model could be found from list models API.
      */
     @JsonProperty(value = "version")
     private String version;
@@ -42,13 +42,15 @@ public class DeploymentModel {
     @JsonProperty(value = "callRateLimit", access = JsonProperty.Access.WRITE_ONLY)
     private CallRateLimit callRateLimit;
 
-    /** Creates an instance of DeploymentModel class. */
+    /**
+     * Creates an instance of DeploymentModel class.
+     */
     public DeploymentModel() {
     }
 
     /**
      * Get the format property: Deployment model format.
-     *
+     * 
      * @return the format value.
      */
     public String format() {
@@ -57,7 +59,7 @@ public class DeploymentModel {
 
     /**
      * Set the format property: Deployment model format.
-     *
+     * 
      * @param format the format value to set.
      * @return the DeploymentModel object itself.
      */
@@ -68,7 +70,7 @@ public class DeploymentModel {
 
     /**
      * Get the name property: Deployment model name.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -77,7 +79,7 @@ public class DeploymentModel {
 
     /**
      * Set the name property: Deployment model name.
-     *
+     * 
      * @param name the name value to set.
      * @return the DeploymentModel object itself.
      */
@@ -90,7 +92,7 @@ public class DeploymentModel {
      * Get the version property: Optional. Deployment model version. If version is not specified, a default version will
      * be assigned. The default version is different for different models and might change when there is new version
      * available for a model. Default version for a model could be found from list models API.
-     *
+     * 
      * @return the version value.
      */
     public String version() {
@@ -101,7 +103,7 @@ public class DeploymentModel {
      * Set the version property: Optional. Deployment model version. If version is not specified, a default version will
      * be assigned. The default version is different for different models and might change when there is new version
      * available for a model. Default version for a model could be found from list models API.
-     *
+     * 
      * @param version the version value to set.
      * @return the DeploymentModel object itself.
      */
@@ -112,7 +114,7 @@ public class DeploymentModel {
 
     /**
      * Get the source property: Optional. Deployment model source ARM resource ID.
-     *
+     * 
      * @return the source value.
      */
     public String source() {
@@ -121,7 +123,7 @@ public class DeploymentModel {
 
     /**
      * Set the source property: Optional. Deployment model source ARM resource ID.
-     *
+     * 
      * @param source the source value to set.
      * @return the DeploymentModel object itself.
      */
@@ -132,7 +134,7 @@ public class DeploymentModel {
 
     /**
      * Get the callRateLimit property: The call rate limit Cognitive Services account.
-     *
+     * 
      * @return the callRateLimit value.
      */
     public CallRateLimit callRateLimit() {
@@ -141,7 +143,7 @@ public class DeploymentModel {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** The abuse penalty. */
+/**
+ * The abuse penalty.
+ */
 @Fluent
 public final class AbusePenalty {
     /*
@@ -29,13 +31,15 @@ public final class AbusePenalty {
     @JsonProperty(value = "expiration")
     private OffsetDateTime expiration;
 
-    /** Creates an instance of AbusePenalty class. */
+    /**
+     * Creates an instance of AbusePenalty class.
+     */
     public AbusePenalty() {
     }
 
     /**
      * Get the action property: The action of AbusePenalty.
-     *
+     * 
      * @return the action value.
      */
     public AbusePenaltyAction action() {
@@ -44,7 +48,7 @@ public final class AbusePenalty {
 
     /**
      * Set the action property: The action of AbusePenalty.
-     *
+     * 
      * @param action the action value to set.
      * @return the AbusePenalty object itself.
      */
@@ -55,7 +59,7 @@ public final class AbusePenalty {
 
     /**
      * Get the rateLimitPercentage property: The percentage of rate limit.
-     *
+     * 
      * @return the rateLimitPercentage value.
      */
     public Float rateLimitPercentage() {
@@ -64,7 +68,7 @@ public final class AbusePenalty {
 
     /**
      * Set the rateLimitPercentage property: The percentage of rate limit.
-     *
+     * 
      * @param rateLimitPercentage the rateLimitPercentage value to set.
      * @return the AbusePenalty object itself.
      */
@@ -75,7 +79,7 @@ public final class AbusePenalty {
 
     /**
      * Get the expiration property: The datetime of expiration of the AbusePenalty.
-     *
+     * 
      * @return the expiration value.
      */
     public OffsetDateTime expiration() {
@@ -84,7 +88,7 @@ public final class AbusePenalty {
 
     /**
      * Set the expiration property: The datetime of expiration of the AbusePenalty.
-     *
+     * 
      * @param expiration the expiration value to set.
      * @return the AbusePenalty object itself.
      */
@@ -95,7 +99,7 @@ public final class AbusePenalty {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
