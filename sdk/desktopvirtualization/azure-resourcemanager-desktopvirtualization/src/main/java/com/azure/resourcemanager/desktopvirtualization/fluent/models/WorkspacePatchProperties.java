@@ -9,7 +9,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.PublicNetworkAcces
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Workspace properties that can be patched. */
+/**
+ * Workspace properties that can be patched.
+ */
 @Fluent
 public final class WorkspacePatchProperties {
     /*
@@ -36,13 +38,15 @@ public final class WorkspacePatchProperties {
     @JsonProperty(value = "publicNetworkAccess")
     private PublicNetworkAccess publicNetworkAccess;
 
-    /** Creates an instance of WorkspacePatchProperties class. */
+    /**
+     * Creates an instance of WorkspacePatchProperties class.
+     */
     public WorkspacePatchProperties() {
     }
 
     /**
      * Get the description property: Description of Workspace.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -51,7 +55,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Set the description property: Description of Workspace.
-     *
+     * 
      * @param description the description value to set.
      * @return the WorkspacePatchProperties object itself.
      */
@@ -62,7 +66,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Get the friendlyName property: Friendly name of Workspace.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -71,7 +75,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Set the friendlyName property: Friendly name of Workspace.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the WorkspacePatchProperties object itself.
      */
@@ -82,7 +86,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Get the applicationGroupReferences property: List of applicationGroup links.
-     *
+     * 
      * @return the applicationGroupReferences value.
      */
     public List<String> applicationGroupReferences() {
@@ -91,7 +95,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Set the applicationGroupReferences property: List of applicationGroup links.
-     *
+     * 
      * @param applicationGroupReferences the applicationGroupReferences value to set.
      * @return the WorkspacePatchProperties object itself.
      */
@@ -102,7 +106,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Get the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -111,7 +115,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Set the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the WorkspacePatchProperties object itself.
      */
@@ -122,7 +126,7 @@ public final class WorkspacePatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

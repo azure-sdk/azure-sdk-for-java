@@ -6,11 +6,14 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ScalingPlanPooledScheduleProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** ScalingPlanPooledSchedule properties that can be patched. */
+/**
+ * ScalingPlanPooledSchedule properties that can be patched.
+ */
 @Fluent
 public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
     /*
@@ -19,13 +22,21 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
     @JsonProperty(value = "properties")
     private ScalingPlanPooledScheduleProperties innerProperties;
 
-    /** Creates an instance of ScalingPlanPooledSchedulePatch class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ScalingPlanPooledSchedulePatch class.
+     */
     public ScalingPlanPooledSchedulePatch() {
     }
 
     /**
      * Get the innerProperties property: Detailed properties for ScalingPlanPooledSchedule.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ScalingPlanPooledScheduleProperties innerProperties() {
@@ -33,8 +44,17 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the daysOfWeek property: Set of days of the week on which this schedule is active.
-     *
+     * 
      * @return the daysOfWeek value.
      */
     public List<DayOfWeek> daysOfWeek() {
@@ -43,7 +63,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the daysOfWeek property: Set of days of the week on which this schedule is active.
-     *
+     * 
      * @param daysOfWeek the daysOfWeek value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -57,7 +77,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampUpStartTime property: Starting time for ramp up period.
-     *
+     * 
      * @return the rampUpStartTime value.
      */
     public Time rampUpStartTime() {
@@ -66,7 +86,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampUpStartTime property: Starting time for ramp up period.
-     *
+     * 
      * @param rampUpStartTime the rampUpStartTime value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -80,7 +100,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampUpLoadBalancingAlgorithm property: Load balancing algorithm for ramp up period.
-     *
+     * 
      * @return the rampUpLoadBalancingAlgorithm value.
      */
     public SessionHostLoadBalancingAlgorithm rampUpLoadBalancingAlgorithm() {
@@ -89,12 +109,12 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampUpLoadBalancingAlgorithm property: Load balancing algorithm for ramp up period.
-     *
+     * 
      * @param rampUpLoadBalancingAlgorithm the rampUpLoadBalancingAlgorithm value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
-    public ScalingPlanPooledSchedulePatch withRampUpLoadBalancingAlgorithm(
-        SessionHostLoadBalancingAlgorithm rampUpLoadBalancingAlgorithm) {
+    public ScalingPlanPooledSchedulePatch
+        withRampUpLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm rampUpLoadBalancingAlgorithm) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPooledScheduleProperties();
         }
@@ -104,7 +124,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampUpMinimumHostsPct property: Minimum host percentage for ramp up period.
-     *
+     * 
      * @return the rampUpMinimumHostsPct value.
      */
     public Integer rampUpMinimumHostsPct() {
@@ -113,7 +133,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampUpMinimumHostsPct property: Minimum host percentage for ramp up period.
-     *
+     * 
      * @param rampUpMinimumHostsPct the rampUpMinimumHostsPct value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -127,7 +147,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampUpCapacityThresholdPct property: Capacity threshold for ramp up period.
-     *
+     * 
      * @return the rampUpCapacityThresholdPct value.
      */
     public Integer rampUpCapacityThresholdPct() {
@@ -136,7 +156,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampUpCapacityThresholdPct property: Capacity threshold for ramp up period.
-     *
+     * 
      * @param rampUpCapacityThresholdPct the rampUpCapacityThresholdPct value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -150,7 +170,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the peakStartTime property: Starting time for peak period.
-     *
+     * 
      * @return the peakStartTime value.
      */
     public Time peakStartTime() {
@@ -159,7 +179,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the peakStartTime property: Starting time for peak period.
-     *
+     * 
      * @param peakStartTime the peakStartTime value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -173,7 +193,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the peakLoadBalancingAlgorithm property: Load balancing algorithm for peak period.
-     *
+     * 
      * @return the peakLoadBalancingAlgorithm value.
      */
     public SessionHostLoadBalancingAlgorithm peakLoadBalancingAlgorithm() {
@@ -182,12 +202,12 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the peakLoadBalancingAlgorithm property: Load balancing algorithm for peak period.
-     *
+     * 
      * @param peakLoadBalancingAlgorithm the peakLoadBalancingAlgorithm value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
-    public ScalingPlanPooledSchedulePatch withPeakLoadBalancingAlgorithm(
-        SessionHostLoadBalancingAlgorithm peakLoadBalancingAlgorithm) {
+    public ScalingPlanPooledSchedulePatch
+        withPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm peakLoadBalancingAlgorithm) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPooledScheduleProperties();
         }
@@ -197,7 +217,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampDownStartTime property: Starting time for ramp down period.
-     *
+     * 
      * @return the rampDownStartTime value.
      */
     public Time rampDownStartTime() {
@@ -206,7 +226,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampDownStartTime property: Starting time for ramp down period.
-     *
+     * 
      * @param rampDownStartTime the rampDownStartTime value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -220,7 +240,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampDownLoadBalancingAlgorithm property: Load balancing algorithm for ramp down period.
-     *
+     * 
      * @return the rampDownLoadBalancingAlgorithm value.
      */
     public SessionHostLoadBalancingAlgorithm rampDownLoadBalancingAlgorithm() {
@@ -229,12 +249,12 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampDownLoadBalancingAlgorithm property: Load balancing algorithm for ramp down period.
-     *
+     * 
      * @param rampDownLoadBalancingAlgorithm the rampDownLoadBalancingAlgorithm value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
-    public ScalingPlanPooledSchedulePatch withRampDownLoadBalancingAlgorithm(
-        SessionHostLoadBalancingAlgorithm rampDownLoadBalancingAlgorithm) {
+    public ScalingPlanPooledSchedulePatch
+        withRampDownLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm rampDownLoadBalancingAlgorithm) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPooledScheduleProperties();
         }
@@ -244,7 +264,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampDownMinimumHostsPct property: Minimum host percentage for ramp down period.
-     *
+     * 
      * @return the rampDownMinimumHostsPct value.
      */
     public Integer rampDownMinimumHostsPct() {
@@ -253,7 +273,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampDownMinimumHostsPct property: Minimum host percentage for ramp down period.
-     *
+     * 
      * @param rampDownMinimumHostsPct the rampDownMinimumHostsPct value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -267,7 +287,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampDownCapacityThresholdPct property: Capacity threshold for ramp down period.
-     *
+     * 
      * @return the rampDownCapacityThresholdPct value.
      */
     public Integer rampDownCapacityThresholdPct() {
@@ -276,7 +296,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampDownCapacityThresholdPct property: Capacity threshold for ramp down period.
-     *
+     * 
      * @param rampDownCapacityThresholdPct the rampDownCapacityThresholdPct value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -290,7 +310,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampDownForceLogoffUsers property: Should users be logged off forcefully from hosts.
-     *
+     * 
      * @return the rampDownForceLogoffUsers value.
      */
     public Boolean rampDownForceLogoffUsers() {
@@ -299,7 +319,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampDownForceLogoffUsers property: Should users be logged off forcefully from hosts.
-     *
+     * 
      * @param rampDownForceLogoffUsers the rampDownForceLogoffUsers value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -313,7 +333,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampDownStopHostsWhen property: Specifies when to stop hosts during ramp down period.
-     *
+     * 
      * @return the rampDownStopHostsWhen value.
      */
     public StopHostsWhen rampDownStopHostsWhen() {
@@ -322,7 +342,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampDownStopHostsWhen property: Specifies when to stop hosts during ramp down period.
-     *
+     * 
      * @param rampDownStopHostsWhen the rampDownStopHostsWhen value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -336,7 +356,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampDownWaitTimeMinutes property: Number of minutes to wait to stop hosts during ramp down period.
-     *
+     * 
      * @return the rampDownWaitTimeMinutes value.
      */
     public Integer rampDownWaitTimeMinutes() {
@@ -345,7 +365,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampDownWaitTimeMinutes property: Number of minutes to wait to stop hosts during ramp down period.
-     *
+     * 
      * @param rampDownWaitTimeMinutes the rampDownWaitTimeMinutes value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -359,7 +379,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the rampDownNotificationMessage property: Notification message for users during ramp down period.
-     *
+     * 
      * @return the rampDownNotificationMessage value.
      */
     public String rampDownNotificationMessage() {
@@ -368,7 +388,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the rampDownNotificationMessage property: Notification message for users during ramp down period.
-     *
+     * 
      * @param rampDownNotificationMessage the rampDownNotificationMessage value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -382,7 +402,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the offPeakStartTime property: Starting time for off-peak period.
-     *
+     * 
      * @return the offPeakStartTime value.
      */
     public Time offPeakStartTime() {
@@ -391,7 +411,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the offPeakStartTime property: Starting time for off-peak period.
-     *
+     * 
      * @param offPeakStartTime the offPeakStartTime value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
@@ -405,7 +425,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Get the offPeakLoadBalancingAlgorithm property: Load balancing algorithm for off-peak period.
-     *
+     * 
      * @return the offPeakLoadBalancingAlgorithm value.
      */
     public SessionHostLoadBalancingAlgorithm offPeakLoadBalancingAlgorithm() {
@@ -414,12 +434,12 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Set the offPeakLoadBalancingAlgorithm property: Load balancing algorithm for off-peak period.
-     *
+     * 
      * @param offPeakLoadBalancingAlgorithm the offPeakLoadBalancingAlgorithm value to set.
      * @return the ScalingPlanPooledSchedulePatch object itself.
      */
-    public ScalingPlanPooledSchedulePatch withOffPeakLoadBalancingAlgorithm(
-        SessionHostLoadBalancingAlgorithm offPeakLoadBalancingAlgorithm) {
+    public ScalingPlanPooledSchedulePatch
+        withOffPeakLoadBalancingAlgorithm(SessionHostLoadBalancingAlgorithm offPeakLoadBalancingAlgorithm) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ScalingPlanPooledScheduleProperties();
         }
@@ -429,7 +449,7 @@ public final class ScalingPlanPooledSchedulePatch extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

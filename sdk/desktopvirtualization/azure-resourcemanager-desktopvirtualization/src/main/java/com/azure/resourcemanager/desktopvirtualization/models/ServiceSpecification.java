@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Service specification payload. */
+/**
+ * Service specification payload.
+ */
 @Fluent
 public final class ServiceSpecification {
     /*
@@ -17,13 +19,15 @@ public final class ServiceSpecification {
     @JsonProperty(value = "logSpecifications")
     private List<LogSpecification> logSpecifications;
 
-    /** Creates an instance of ServiceSpecification class. */
+    /**
+     * Creates an instance of ServiceSpecification class.
+     */
     public ServiceSpecification() {
     }
 
     /**
      * Get the logSpecifications property: Specifications of the Log for Azure Monitoring.
-     *
+     * 
      * @return the logSpecifications value.
      */
     public List<LogSpecification> logSpecifications() {
@@ -32,7 +36,7 @@ public final class ServiceSpecification {
 
     /**
      * Set the logSpecifications property: Specifications of the Log for Azure Monitoring.
-     *
+     * 
      * @param logSpecifications the logSpecifications value to set.
      * @return the ServiceSpecification object itself.
      */
@@ -43,7 +47,7 @@ public final class ServiceSpecification {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** SessionHost properties that can be patched. */
+/**
+ * SessionHost properties that can be patched.
+ */
 @Fluent
 public final class SessionHostPatchProperties {
     /*
@@ -28,13 +30,15 @@ public final class SessionHostPatchProperties {
     @JsonProperty(value = "friendlyName")
     private String friendlyName;
 
-    /** Creates an instance of SessionHostPatchProperties class. */
+    /**
+     * Creates an instance of SessionHostPatchProperties class.
+     */
     public SessionHostPatchProperties() {
     }
 
     /**
      * Get the allowNewSession property: Allow a new session.
-     *
+     * 
      * @return the allowNewSession value.
      */
     public Boolean allowNewSession() {
@@ -43,7 +47,7 @@ public final class SessionHostPatchProperties {
 
     /**
      * Set the allowNewSession property: Allow a new session.
-     *
+     * 
      * @param allowNewSession the allowNewSession value to set.
      * @return the SessionHostPatchProperties object itself.
      */
@@ -54,7 +58,7 @@ public final class SessionHostPatchProperties {
 
     /**
      * Get the assignedUser property: User assigned to SessionHost.
-     *
+     * 
      * @return the assignedUser value.
      */
     public String assignedUser() {
@@ -63,7 +67,7 @@ public final class SessionHostPatchProperties {
 
     /**
      * Set the assignedUser property: User assigned to SessionHost.
-     *
+     * 
      * @param assignedUser the assignedUser value to set.
      * @return the SessionHostPatchProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class SessionHostPatchProperties {
 
     /**
      * Get the friendlyName property: Friendly name of SessionHost.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -83,7 +87,7 @@ public final class SessionHostPatchProperties {
 
     /**
      * Set the friendlyName property: Friendly name of SessionHost.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the SessionHostPatchProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class SessionHostPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -6,6 +6,7 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.Resource;
+import com.azure.core.management.SystemData;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
@@ -16,26 +17,19 @@ import java.util.Map;
 @Fluent
 public class ResourceModelWithAllowedPropertySet extends Resource {
     /*
-     * The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is
-     * managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if
-     * it is removed from the template since it is managed by another resource.
+     * The fully qualified resource ID of the resource that manages this resource. Indicates if this resource is managed by another Azure resource. If this is present, complete mode deployment will not delete the resource if it is removed from the template since it is managed by another resource.
      */
     @JsonProperty(value = "managedBy")
     private String managedBy;
 
     /*
-     * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g.
-     * ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist
-     * this value.
+     * Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type. E.g. ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist this value.
      */
     @JsonProperty(value = "kind")
     private String kind;
 
     /*
-     * The etag field is *not* required. If it is provided in the response body, it must also be provided as a header
-     * per the normal etag convention.  Entity tags are used for comparing two or more entities from the same requested
-     * resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match
-     * (section 14.26), and If-Range (section 14.27) header fields.
+     * The etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal etag convention.  Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. 
      */
     @JsonProperty(value = "etag", access = JsonProperty.Access.WRITE_ONLY)
     private String etag;
@@ -58,7 +52,15 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
     @JsonProperty(value = "plan")
     private ResourceModelWithAllowedPropertySetPlan plan;
 
-    /** Creates an instance of ResourceModelWithAllowedPropertySet class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ResourceModelWithAllowedPropertySet class.
+     */
     public ResourceModelWithAllowedPropertySet() {
     }
 
@@ -66,7 +68,7 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
      * Get the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
      * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
      * delete the resource if it is removed from the template since it is managed by another resource.
-     *
+     * 
      * @return the managedBy value.
      */
     public String managedBy() {
@@ -77,7 +79,7 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
      * Set the managedBy property: The fully qualified resource ID of the resource that manages this resource. Indicates
      * if this resource is managed by another Azure resource. If this is present, complete mode deployment will not
      * delete the resource if it is removed from the template since it is managed by another resource.
-     *
+     * 
      * @param managedBy the managedBy value to set.
      * @return the ResourceModelWithAllowedPropertySet object itself.
      */
@@ -88,9 +90,9 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
 
     /**
      * Get the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
-     * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+     * the same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
      * validate and persist this value.
-     *
+     * 
      * @return the kind value.
      */
     public String kind() {
@@ -99,9 +101,9 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
 
     /**
      * Set the kind property: Metadata used by portal/tooling/etc to render different UX experiences for resources of
-     * the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
+     * the same type. E.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must
      * validate and persist this value.
-     *
+     * 
      * @param kind the kind value to set.
      * @return the ResourceModelWithAllowedPropertySet object itself.
      */
@@ -115,7 +117,7 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
      * provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from
      * the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24),
      * If-None-Match (section 14.26), and If-Range (section 14.27) header fields.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -124,7 +126,7 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
 
     /**
      * Get the identity property: The identity property.
-     *
+     * 
      * @return the identity value.
      */
     public ResourceModelWithAllowedPropertySetIdentity identity() {
@@ -133,7 +135,7 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
 
     /**
      * Set the identity property: The identity property.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ResourceModelWithAllowedPropertySet object itself.
      */
@@ -144,7 +146,7 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
 
     /**
      * Get the sku property: The sku property.
-     *
+     * 
      * @return the sku value.
      */
     public ResourceModelWithAllowedPropertySetSku sku() {
@@ -153,7 +155,7 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
 
     /**
      * Set the sku property: The sku property.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ResourceModelWithAllowedPropertySet object itself.
      */
@@ -164,7 +166,7 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
 
     /**
      * Get the plan property: The plan property.
-     *
+     * 
      * @return the plan value.
      */
     public ResourceModelWithAllowedPropertySetPlan plan() {
@@ -173,7 +175,7 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
 
     /**
      * Set the plan property: The plan property.
-     *
+     * 
      * @param plan the plan value to set.
      * @return the ResourceModelWithAllowedPropertySet object itself.
      */
@@ -182,14 +184,27 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySet withLocation(String location) {
         super.withLocation(location);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySet withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -198,7 +213,7 @@ public class ResourceModelWithAllowedPropertySet extends Resource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

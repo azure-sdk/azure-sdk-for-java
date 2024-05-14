@@ -10,7 +10,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.SessionState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Schema for UserSession properties. */
+/**
+ * Schema for UserSession properties.
+ */
 @Fluent
 public final class UserSessionProperties {
     /*
@@ -49,13 +51,15 @@ public final class UserSessionProperties {
     @JsonProperty(value = "createTime")
     private OffsetDateTime createTime;
 
-    /** Creates an instance of UserSessionProperties class. */
+    /**
+     * Creates an instance of UserSessionProperties class.
+     */
     public UserSessionProperties() {
     }
 
     /**
      * Get the objectId property: ObjectId of user session. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -64,7 +68,7 @@ public final class UserSessionProperties {
 
     /**
      * Get the userPrincipalName property: The user principal name.
-     *
+     * 
      * @return the userPrincipalName value.
      */
     public String userPrincipalName() {
@@ -73,7 +77,7 @@ public final class UserSessionProperties {
 
     /**
      * Set the userPrincipalName property: The user principal name.
-     *
+     * 
      * @param userPrincipalName the userPrincipalName value to set.
      * @return the UserSessionProperties object itself.
      */
@@ -84,7 +88,7 @@ public final class UserSessionProperties {
 
     /**
      * Get the applicationType property: Application type of application.
-     *
+     * 
      * @return the applicationType value.
      */
     public ApplicationType applicationType() {
@@ -93,7 +97,7 @@ public final class UserSessionProperties {
 
     /**
      * Set the applicationType property: Application type of application.
-     *
+     * 
      * @param applicationType the applicationType value to set.
      * @return the UserSessionProperties object itself.
      */
@@ -104,7 +108,7 @@ public final class UserSessionProperties {
 
     /**
      * Get the sessionState property: State of user session.
-     *
+     * 
      * @return the sessionState value.
      */
     public SessionState sessionState() {
@@ -113,7 +117,7 @@ public final class UserSessionProperties {
 
     /**
      * Set the sessionState property: State of user session.
-     *
+     * 
      * @param sessionState the sessionState value to set.
      * @return the UserSessionProperties object itself.
      */
@@ -124,7 +128,7 @@ public final class UserSessionProperties {
 
     /**
      * Get the activeDirectoryUsername property: The active directory user name.
-     *
+     * 
      * @return the activeDirectoryUsername value.
      */
     public String activeDirectoryUsername() {
@@ -133,7 +137,7 @@ public final class UserSessionProperties {
 
     /**
      * Set the activeDirectoryUsername property: The active directory user name.
-     *
+     * 
      * @param activeDirectoryUsername the activeDirectoryUsername value to set.
      * @return the UserSessionProperties object itself.
      */
@@ -144,7 +148,7 @@ public final class UserSessionProperties {
 
     /**
      * Get the createTime property: The timestamp of the user session create.
-     *
+     * 
      * @return the createTime value.
      */
     public OffsetDateTime createTime() {
@@ -153,7 +157,7 @@ public final class UserSessionProperties {
 
     /**
      * Set the createTime property: The timestamp of the user session create.
-     *
+     * 
      * @param createTime the createTime value to set.
      * @return the UserSessionProperties object itself.
      */
@@ -164,7 +168,7 @@ public final class UserSessionProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

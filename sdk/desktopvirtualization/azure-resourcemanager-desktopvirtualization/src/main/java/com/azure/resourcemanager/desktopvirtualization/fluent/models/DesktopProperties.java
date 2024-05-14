@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.CoreUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Schema for Desktop properties. */
+/**
+ * Schema for Desktop properties.
+ */
 @Fluent
 public final class DesktopProperties {
     /*
@@ -41,13 +43,15 @@ public final class DesktopProperties {
     @JsonProperty(value = "iconContent", access = JsonProperty.Access.WRITE_ONLY)
     private byte[] iconContent;
 
-    /** Creates an instance of DesktopProperties class. */
+    /**
+     * Creates an instance of DesktopProperties class.
+     */
     public DesktopProperties() {
     }
 
     /**
      * Get the objectId property: ObjectId of Desktop. (internal use).
-     *
+     * 
      * @return the objectId value.
      */
     public String objectId() {
@@ -56,7 +60,7 @@ public final class DesktopProperties {
 
     /**
      * Get the description property: Description of Desktop.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -65,7 +69,7 @@ public final class DesktopProperties {
 
     /**
      * Set the description property: Description of Desktop.
-     *
+     * 
      * @param description the description value to set.
      * @return the DesktopProperties object itself.
      */
@@ -76,7 +80,7 @@ public final class DesktopProperties {
 
     /**
      * Get the friendlyName property: Friendly name of Desktop.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -85,7 +89,7 @@ public final class DesktopProperties {
 
     /**
      * Set the friendlyName property: Friendly name of Desktop.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the DesktopProperties object itself.
      */
@@ -96,7 +100,7 @@ public final class DesktopProperties {
 
     /**
      * Get the iconHash property: Hash of the icon.
-     *
+     * 
      * @return the iconHash value.
      */
     public String iconHash() {
@@ -105,7 +109,7 @@ public final class DesktopProperties {
 
     /**
      * Get the iconContent property: The icon a 64 bit string as a byte array.
-     *
+     * 
      * @return the iconContent value.
      */
     public byte[] iconContent() {
@@ -114,7 +118,7 @@ public final class DesktopProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

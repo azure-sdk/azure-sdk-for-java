@@ -11,7 +11,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import java.util.Map;
 
-/** Workspace properties that can be patched. */
+/**
+ * Workspace properties that can be patched.
+ */
 @Fluent
 public final class WorkspacePatch {
     /*
@@ -27,13 +29,15 @@ public final class WorkspacePatch {
     @JsonProperty(value = "properties")
     private WorkspacePatchProperties innerProperties;
 
-    /** Creates an instance of WorkspacePatch class. */
+    /**
+     * Creates an instance of WorkspacePatch class.
+     */
     public WorkspacePatch() {
     }
 
     /**
      * Get the tags property: tags to be updated.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -42,7 +46,7 @@ public final class WorkspacePatch {
 
     /**
      * Set the tags property: tags to be updated.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the WorkspacePatch object itself.
      */
@@ -53,7 +57,7 @@ public final class WorkspacePatch {
 
     /**
      * Get the innerProperties property: Detailed properties for Workspace.
-     *
+     * 
      * @return the innerProperties value.
      */
     private WorkspacePatchProperties innerProperties() {
@@ -62,7 +66,7 @@ public final class WorkspacePatch {
 
     /**
      * Get the description property: Description of Workspace.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -71,7 +75,7 @@ public final class WorkspacePatch {
 
     /**
      * Set the description property: Description of Workspace.
-     *
+     * 
      * @param description the description value to set.
      * @return the WorkspacePatch object itself.
      */
@@ -85,7 +89,7 @@ public final class WorkspacePatch {
 
     /**
      * Get the friendlyName property: Friendly name of Workspace.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -94,7 +98,7 @@ public final class WorkspacePatch {
 
     /**
      * Set the friendlyName property: Friendly name of Workspace.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the WorkspacePatch object itself.
      */
@@ -108,7 +112,7 @@ public final class WorkspacePatch {
 
     /**
      * Get the applicationGroupReferences property: List of applicationGroup links.
-     *
+     * 
      * @return the applicationGroupReferences value.
      */
     public List<String> applicationGroupReferences() {
@@ -117,7 +121,7 @@ public final class WorkspacePatch {
 
     /**
      * Set the applicationGroupReferences property: List of applicationGroup links.
-     *
+     * 
      * @param applicationGroupReferences the applicationGroupReferences value to set.
      * @return the WorkspacePatch object itself.
      */
@@ -131,7 +135,7 @@ public final class WorkspacePatch {
 
     /**
      * Get the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
+     * 
      * @return the publicNetworkAccess value.
      */
     public PublicNetworkAccess publicNetworkAccess() {
@@ -140,7 +144,7 @@ public final class WorkspacePatch {
 
     /**
      * Set the publicNetworkAccess property: Enabled to allow this resource to be access from the public network.
-     *
+     * 
      * @param publicNetworkAccess the publicNetworkAccess value to set.
      * @return the WorkspacePatch object itself.
      */
@@ -154,7 +158,7 @@ public final class WorkspacePatch {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

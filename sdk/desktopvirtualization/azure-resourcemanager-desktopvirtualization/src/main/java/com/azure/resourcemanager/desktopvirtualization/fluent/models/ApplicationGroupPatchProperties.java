@@ -7,7 +7,9 @@ package com.azure.resourcemanager.desktopvirtualization.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** ApplicationGroup properties that can be patched. */
+/**
+ * ApplicationGroup properties that can be patched.
+ */
 @Fluent
 public final class ApplicationGroupPatchProperties {
     /*
@@ -28,13 +30,15 @@ public final class ApplicationGroupPatchProperties {
     @JsonProperty(value = "showInFeed")
     private Boolean showInFeed;
 
-    /** Creates an instance of ApplicationGroupPatchProperties class. */
+    /**
+     * Creates an instance of ApplicationGroupPatchProperties class.
+     */
     public ApplicationGroupPatchProperties() {
     }
 
     /**
      * Get the description property: Description of ApplicationGroup.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -43,7 +47,7 @@ public final class ApplicationGroupPatchProperties {
 
     /**
      * Set the description property: Description of ApplicationGroup.
-     *
+     * 
      * @param description the description value to set.
      * @return the ApplicationGroupPatchProperties object itself.
      */
@@ -54,7 +58,7 @@ public final class ApplicationGroupPatchProperties {
 
     /**
      * Get the friendlyName property: Friendly name of ApplicationGroup.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -63,7 +67,7 @@ public final class ApplicationGroupPatchProperties {
 
     /**
      * Set the friendlyName property: Friendly name of ApplicationGroup.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the ApplicationGroupPatchProperties object itself.
      */
@@ -74,7 +78,7 @@ public final class ApplicationGroupPatchProperties {
 
     /**
      * Get the showInFeed property: Boolean representing whether the applicationGroup is show in the feed.
-     *
+     * 
      * @return the showInFeed value.
      */
     public Boolean showInFeed() {
@@ -83,7 +87,7 @@ public final class ApplicationGroupPatchProperties {
 
     /**
      * Set the showInFeed property: Boolean representing whether the applicationGroup is show in the feed.
-     *
+     * 
      * @param showInFeed the showInFeed value to set.
      * @return the ApplicationGroupPatchProperties object itself.
      */
@@ -94,7 +98,7 @@ public final class ApplicationGroupPatchProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

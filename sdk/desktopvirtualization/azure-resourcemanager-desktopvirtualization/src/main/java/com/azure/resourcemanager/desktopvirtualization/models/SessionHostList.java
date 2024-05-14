@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * SessionHostList
- *
- * <p>List of SessionHost definitions.
+ * 
+ * List of SessionHost definitions.
  */
 @Fluent
 public final class SessionHostList {
@@ -28,13 +28,15 @@ public final class SessionHostList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SessionHostList class. */
+    /**
+     * Creates an instance of SessionHostList class.
+     */
     public SessionHostList() {
     }
 
     /**
      * Get the value property: List of SessionHost definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<SessionHostInner> value() {
@@ -43,7 +45,7 @@ public final class SessionHostList {
 
     /**
      * Set the value property: List of SessionHost definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the SessionHostList object itself.
      */
@@ -54,7 +56,7 @@ public final class SessionHostList {
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +65,7 @@ public final class SessionHostList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

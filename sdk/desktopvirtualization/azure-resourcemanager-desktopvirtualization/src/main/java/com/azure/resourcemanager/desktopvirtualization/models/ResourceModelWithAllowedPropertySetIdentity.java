@@ -6,14 +6,20 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The ResourceModelWithAllowedPropertySetIdentity model. */
+/**
+ * The ResourceModelWithAllowedPropertySetIdentity model.
+ */
 @Fluent
 public final class ResourceModelWithAllowedPropertySetIdentity extends Identity {
-    /** Creates an instance of ResourceModelWithAllowedPropertySetIdentity class. */
+    /**
+     * Creates an instance of ResourceModelWithAllowedPropertySetIdentity class.
+     */
     public ResourceModelWithAllowedPropertySetIdentity() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ResourceModelWithAllowedPropertySetIdentity withType(ResourceIdentityType type) {
         super.withType(type);
@@ -22,7 +28,7 @@ public final class ResourceModelWithAllowedPropertySetIdentity extends Identity 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
