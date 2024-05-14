@@ -15,30 +15,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Immutable
 public final class CapabilityInner extends ProxyResource {
     /*
-     * The standard system metadata of a resource type.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * The properties of a capability resource.
      */
     @JsonProperty(value = "properties", access = JsonProperty.Access.WRITE_ONLY)
     private CapabilityProperties innerProperties;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /**
      * Creates an instance of CapabilityInner class.
      */
     public CapabilityInner() {
-    }
-
-    /**
-     * Get the systemData property: The standard system metadata of a resource type.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**
@@ -48,6 +39,15 @@ public final class CapabilityInner extends ProxyResource {
      */
     private CapabilityProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**

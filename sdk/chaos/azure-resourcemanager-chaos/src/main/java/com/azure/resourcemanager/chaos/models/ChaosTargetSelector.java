@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.HashMap;
@@ -19,17 +20,20 @@ import java.util.Map;
 /**
  * Model that represents a selector in the Experiment resource.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-    defaultImpl = ChaosTargetSelector.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = ChaosTargetSelector.class, visible = true)
 @JsonTypeName("ChaosTargetSelector")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "List", value = ChaosTargetListSelector.class),
     @JsonSubTypes.Type(name = "Query", value = ChaosTargetQuerySelector.class) })
 @Fluent
 public class ChaosTargetSelector {
+    /*
+     * Enum of the selector type.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private SelectorType type;
+
     /*
      * String of the selector ID.
      */
@@ -52,6 +56,16 @@ public class ChaosTargetSelector {
      * Creates an instance of ChaosTargetSelector class.
      */
     public ChaosTargetSelector() {
+        this.type = SelectorType.fromString("ChaosTargetSelector");
+    }
+
+    /**
+     * Get the type property: Enum of the selector type.
+     * 
+     * @return the type value.
+     */
+    public SelectorType type() {
+        return this.type;
     }
 
     /**
@@ -130,8 +144,8 @@ public class ChaosTargetSelector {
      */
     public void validate() {
         if (id() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property id in model ChaosTargetSelector"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property id in model ChaosTargetSelector"));
         }
         if (filter() != null) {
             filter().validate();

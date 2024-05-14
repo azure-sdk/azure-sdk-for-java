@@ -78,12 +78,12 @@ public final class TargetReference {
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property type in model TargetReference"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property type in model TargetReference"));
         }
         if (id() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property id in model TargetReference"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property id in model TargetReference"));
         }
     }
 

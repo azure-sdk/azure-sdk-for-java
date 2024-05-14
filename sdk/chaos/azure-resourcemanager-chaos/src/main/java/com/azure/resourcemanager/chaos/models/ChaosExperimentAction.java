@@ -8,17 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Model that represents the base action model. 9 total per experiment.
  */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-    defaultImpl = ChaosExperimentAction.class)
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = ChaosExperimentAction.class, visible = true)
 @JsonTypeName("ChaosExperimentAction")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "delay", value = DelayAction.class),
@@ -26,6 +23,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "continuous", value = ContinuousAction.class) })
 @Fluent
 public class ChaosExperimentAction {
+    /*
+     * Enum that discriminates between action models.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type;
+
     /*
      * String that represents a Capability URN.
      */
@@ -36,6 +40,16 @@ public class ChaosExperimentAction {
      * Creates an instance of ChaosExperimentAction class.
      */
     public ChaosExperimentAction() {
+        this.type = "ChaosExperimentAction";
+    }
+
+    /**
+     * Get the type property: Enum that discriminates between action models.
+     * 
+     * @return the type value.
+     */
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -65,8 +79,8 @@ public class ChaosExperimentAction {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model ChaosExperimentAction"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property name in model ChaosExperimentAction"));
         }
     }
 

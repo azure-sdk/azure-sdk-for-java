@@ -17,12 +17,6 @@ import java.util.List;
 @Fluent
 public final class TargetTypeInner extends ProxyResource {
     /*
-     * The system metadata properties of the target type resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * Location of the Target Type resource.
      */
     @JsonProperty(value = "location")
@@ -34,19 +28,16 @@ public final class TargetTypeInner extends ProxyResource {
     @JsonProperty(value = "properties", required = true)
     private TargetTypeProperties innerProperties = new TargetTypeProperties();
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /**
      * Creates an instance of TargetTypeInner class.
      */
     public TargetTypeInner() {
-    }
-
-    /**
-     * Get the systemData property: The system metadata properties of the target type resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**
@@ -76,6 +67,15 @@ public final class TargetTypeInner extends ProxyResource {
      */
     private TargetTypeProperties innerProperties() {
         return this.innerProperties;
+    }
+
+    /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
     }
 
     /**
@@ -121,8 +121,9 @@ public final class TargetTypeInner extends ProxyResource {
      */
     public void validate() {
         if (innerProperties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property innerProperties in model TargetTypeInner"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property innerProperties in model TargetTypeInner"));
         } else {
             innerProperties().validate();
         }

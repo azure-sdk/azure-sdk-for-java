@@ -7,6 +7,7 @@ package com.azure.resourcemanager.chaos.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.Duration;
@@ -14,10 +15,17 @@ import java.time.Duration;
 /**
  * Model that represents a delay action.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = DelayAction.class, visible = true)
 @JsonTypeName("delay")
 @Fluent
 public final class DelayAction extends ChaosExperimentAction {
+    /*
+     * Enum that discriminates between action models.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private String type = "delay";
+
     /*
      * ISO8601 formatted string that represents a duration.
      */
@@ -28,6 +36,16 @@ public final class DelayAction extends ChaosExperimentAction {
      * Creates an instance of DelayAction class.
      */
     public DelayAction() {
+    }
+
+    /**
+     * Get the type property: Enum that discriminates between action models.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public String type() {
+        return this.type;
     }
 
     /**
@@ -68,8 +86,8 @@ public final class DelayAction extends ChaosExperimentAction {
     public void validate() {
         super.validate();
         if (duration() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property duration in model DelayAction"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property duration in model DelayAction"));
         }
     }
 

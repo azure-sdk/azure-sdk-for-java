@@ -6,16 +6,28 @@ package com.azure.resourcemanager.chaos.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Model that represents a simple target filter.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "type",
+    defaultImpl = ChaosTargetSimpleFilter.class,
+    visible = true)
 @JsonTypeName("Simple")
 @Fluent
 public final class ChaosTargetSimpleFilter extends ChaosTargetFilter {
+    /*
+     * Enum that discriminates between filter types. Currently only `Simple` type is supported.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private FilterType type = FilterType.SIMPLE;
+
     /*
      * Model that represents the Simple filter parameters.
      */
@@ -26,6 +38,16 @@ public final class ChaosTargetSimpleFilter extends ChaosTargetFilter {
      * Creates an instance of ChaosTargetSimpleFilter class.
      */
     public ChaosTargetSimpleFilter() {
+    }
+
+    /**
+     * Get the type property: Enum that discriminates between filter types. Currently only `Simple` type is supported.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public FilterType type() {
+        return this.type;
     }
 
     /**

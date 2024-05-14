@@ -18,12 +18,6 @@ import java.util.Map;
 @Fluent
 public final class TargetInner extends ProxyResource {
     /*
-     * The system metadata of the target resource.
-     */
-    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
-    private SystemData systemData;
-
-    /*
      * Location of the target resource.
      */
     @JsonProperty(value = "location")
@@ -36,19 +30,16 @@ public final class TargetInner extends ProxyResource {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, Object> properties;
 
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
     /**
      * Creates an instance of TargetInner class.
      */
     public TargetInner() {
-    }
-
-    /**
-     * Get the systemData property: The system metadata of the target resource.
-     * 
-     * @return the systemData value.
-     */
-    public SystemData systemData() {
-        return this.systemData;
     }
 
     /**
@@ -92,14 +83,23 @@ public final class TargetInner extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (properties() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property properties in model TargetInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property properties in model TargetInner"));
         }
     }
 
