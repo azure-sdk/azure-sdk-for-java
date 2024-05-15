@@ -40,6 +40,7 @@
     <module>sdk/botservice</module>
     <module>sdk/changeanalysis</module>
     <module>sdk/chaos</module>
+    <module>sdk/clientcore</module>
     <module>sdk/cognitiveservices</module>
     <module>sdk/commerce</module>
     <module>sdk/communication</module>
@@ -93,7 +94,6 @@
     <module>sdk/fluidrelay</module>
     <module>sdk/formrecognizer</module>
     <module>sdk/frontdoor</module>
-    <module>sdk/clientcore</module>
     <module>sdk/graphservices</module>
     <module>sdk/hanaonazure</module>
     <module>sdk/hardwaresecuritymodules</module>
@@ -139,6 +139,7 @@
     <module>sdk/mysql</module>
     <module>sdk/mysqlflexibleserver</module>
     <module>sdk/netapp</module>
+    <module>sdk/network</module>
     <module>sdk/networkanalytics</module>
     <module>sdk/networkcloud</module>
     <module>sdk/networkfunction</module>
