@@ -18,9 +18,6 @@
  * Samples for ExtendedZones Get.
  */
 public final class ExtendedZonesGetSamples {
-    /*
-     * x-ms-original-file: specification/edgezones/resource-manager/Microsoft.EdgeZones/preview/2024-04-01-preview/examples/ExtendedZones_Get.json
-     */
     /**
      * Sample code: GetExtendedZone.
      * 
@@ -39,9 +36,6 @@ public final class ExtendedZonesGetSamples {
  * Samples for ExtendedZones List.
  */
 public final class ExtendedZonesListSamples {
-    /*
-     * x-ms-original-file: specification/edgezones/resource-manager/Microsoft.EdgeZones/preview/2024-04-01-preview/examples/ExtendedZones_ListBySubscription.json
-     */
     /**
      * Sample code: ListExtendedZones.
      * 
@@ -60,9 +54,6 @@ public final class ExtendedZonesListSamples {
  * Samples for ExtendedZones Register.
  */
 public final class ExtendedZonesRegisterSamples {
-    /*
-     * x-ms-original-file: specification/edgezones/resource-manager/Microsoft.EdgeZones/preview/2024-04-01-preview/examples/ExtendedZones_Register.json
-     */
     /**
      * Sample code: RegisterExtendedZone.
      * 
@@ -81,9 +72,6 @@ public final class ExtendedZonesRegisterSamples {
  * Samples for ExtendedZones Unregister.
  */
 public final class ExtendedZonesUnregisterSamples {
-    /*
-     * x-ms-original-file: specification/edgezones/resource-manager/Microsoft.EdgeZones/preview/2024-04-01-preview/examples/ExtendedZones_Unregister.json
-     */
     /**
      * Sample code: UnregisterExtendedZone.
      * 
@@ -102,9 +90,6 @@ public final class ExtendedZonesUnregisterSamples {
  * Samples for Operations List.
  */
 public final class OperationsListSamples {
-    /*
-     * x-ms-original-file: specification/edgezones/resource-manager/Microsoft.EdgeZones/preview/2024-04-01-preview/examples/Operations_List.json
-     */
     /**
      * Sample code: ListOperations.
      * 

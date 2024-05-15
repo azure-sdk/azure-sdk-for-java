@@ -1,5 +1,5 @@
 [ {
-  "name" : "com.azure.resourcemanager.edgezones.models.OperationListResult",
+  "name" : "com.azure.resourcemanager.edgezones.implementation.models.PagedOperation",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
@@ -14,17 +14,17 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
-  "name" : "com.azure.resourcemanager.edgezones.models.ExtendedZoneListResult",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
   "name" : "com.azure.resourcemanager.edgezones.fluent.models.ExtendedZoneInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.edgezones.models.ExtendedZoneProperties",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
+  "name" : "com.azure.resourcemanager.edgezones.implementation.models.ExtendedZoneListResult",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
