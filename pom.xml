@@ -40,6 +40,7 @@
     <module>sdk/botservice</module>
     <module>sdk/changeanalysis</module>
     <module>sdk/chaos</module>
+    <module>sdk/clientcore</module>
     <module>sdk/cognitiveservices</module>
     <module>sdk/commerce</module>
     <module>sdk/communication</module>
@@ -50,6 +51,7 @@
     <module>sdk/containerregistry</module>
     <module>sdk/containerservicefleet</module>
     <module>sdk/contentsafety</module>
+    <module>sdk/contosowidgetmanager</module>
     <module>sdk/core</module>
     <module>sdk/cosmos</module>
     <module>sdk/cosmosdbforpostgresql</module>
@@ -93,7 +95,6 @@
     <module>sdk/fluidrelay</module>
     <module>sdk/formrecognizer</module>
     <module>sdk/frontdoor</module>
-    <module>sdk/clientcore</module>
     <module>sdk/graphservices</module>
     <module>sdk/hanaonazure</module>
     <module>sdk/hardwaresecuritymodules</module>
