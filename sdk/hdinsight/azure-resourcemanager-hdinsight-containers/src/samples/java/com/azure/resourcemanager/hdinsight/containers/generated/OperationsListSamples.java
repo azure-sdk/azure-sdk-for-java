@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hdinsight.containers.generated;
  */
 public final class OperationsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/preview/2023-11-01-preview/examples/
-     * GetOperations.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/stable/2024-05-01/examples/GetOperations.json
      */
     /**
      * Sample code: ListOperations.

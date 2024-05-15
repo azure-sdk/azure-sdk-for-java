@@ -7,6 +7,7 @@ package com.azure.resourcemanager.hdinsight.containers.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 /**
  * Cluster pool compute profile.
@@ -24,6 +25,12 @@ public class ClusterPoolComputeProfile {
      */
     @JsonProperty(value = "count", access = JsonProperty.Access.WRITE_ONLY)
     private Integer count;
+
+    /*
+     * The list of Availability zones to use for AKS VMSS nodes.
+     */
+    @JsonProperty(value = "availabilityZones")
+    private List<String> availabilityZones;
 
     /**
      * Creates an instance of ClusterPoolComputeProfile class.
@@ -61,14 +68,35 @@ public class ClusterPoolComputeProfile {
     }
 
     /**
+     * Get the availabilityZones property: The list of Availability zones to use for AKS VMSS nodes.
+     * 
+     * @return the availabilityZones value.
+     */
+    public List<String> availabilityZones() {
+        return this.availabilityZones;
+    }
+
+    /**
+     * Set the availabilityZones property: The list of Availability zones to use for AKS VMSS nodes.
+     * 
+     * @param availabilityZones the availabilityZones value to set.
+     * @return the ClusterPoolComputeProfile object itself.
+     */
+    public ClusterPoolComputeProfile withAvailabilityZones(List<String> availabilityZones) {
+        this.availabilityZones = availabilityZones;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (vmSize() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property vmSize in model ClusterPoolComputeProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property vmSize in model ClusterPoolComputeProfile"));
         }
     }
 

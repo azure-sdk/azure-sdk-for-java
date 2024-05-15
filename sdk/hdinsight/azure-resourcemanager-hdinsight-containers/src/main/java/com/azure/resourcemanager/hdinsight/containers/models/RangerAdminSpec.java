@@ -15,8 +15,7 @@ import java.util.List;
 @Fluent
 public final class RangerAdminSpec {
     /*
-     * List of usernames that should be marked as ranger admins. These usernames should match the user principal name
-     * (UPN) of the respective AAD users.
+     * List of usernames that should be marked as ranger admins. These usernames should match the user principal name (UPN) of the respective AAD users.
      */
     @JsonProperty(value = "admins", required = true)
     private List<String> admins;
@@ -82,12 +81,12 @@ public final class RangerAdminSpec {
      */
     public void validate() {
         if (admins() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property admins in model RangerAdminSpec"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property admins in model RangerAdminSpec"));
         }
         if (database() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property database in model RangerAdminSpec"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property database in model RangerAdminSpec"));
         } else {
             database().validate();
         }

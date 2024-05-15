@@ -20,9 +20,7 @@ public final class HiveCatalogOption {
     private String catalogName;
 
     /*
-     * The authentication mode to connect to your Hive metastore database. More details:
-     * https://learn.microsoft.com/en-us/azure/azure-sql/database/logins-create-manage?view=azuresql#authentication-and-
-     * authorization
+     * The authentication mode to connect to your Hive metastore database. More details: https://learn.microsoft.com/en-us/azure/azure-sql/database/logins-create-manage?view=azuresql#authentication-and-authorization
      */
     @JsonProperty(value = "metastoreDbConnectionAuthenticationMode")
     private MetastoreDbConnectionAuthenticationMode metastoreDbConnectionAuthenticationMode;
@@ -46,8 +44,7 @@ public final class HiveCatalogOption {
     private String metastoreDbConnectionUsername;
 
     /*
-     * Metastore root directory URI, format: abfs[s]://<container>@<account_name>.dfs.core.windows.net/<path>. More
-     * details: https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction-abfs-uri
+     * Metastore root directory URI, format: abfs[s]://<container>@<account_name>.dfs.core.windows.net/<path>. More details: https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction-abfs-uri
      */
     @JsonProperty(value = "metastoreWarehouseDir", required = true)
     private String metastoreWarehouseDir;
@@ -167,7 +164,7 @@ public final class HiveCatalogOption {
 
     /**
      * Get the metastoreWarehouseDir property: Metastore root directory URI, format:
-     * abfs[s]://&lt;container&gt;@&lt;account_name&gt;.dfs.core.windows.net/&lt;path&gt;. More details:
+     * abfs[s]://&lt;container&gt;&#064;&lt;account_name&gt;.dfs.core.windows.net/&lt;path&gt;. More details:
      * https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction-abfs-uri.
      * 
      * @return the metastoreWarehouseDir value.
@@ -178,7 +175,7 @@ public final class HiveCatalogOption {
 
     /**
      * Set the metastoreWarehouseDir property: Metastore root directory URI, format:
-     * abfs[s]://&lt;container&gt;@&lt;account_name&gt;.dfs.core.windows.net/&lt;path&gt;. More details:
+     * abfs[s]://&lt;container&gt;&#064;&lt;account_name&gt;.dfs.core.windows.net/&lt;path&gt;. More details:
      * https://docs.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction-abfs-uri.
      * 
      * @param metastoreWarehouseDir the metastoreWarehouseDir value to set.
@@ -196,16 +193,18 @@ public final class HiveCatalogOption {
      */
     public void validate() {
         if (catalogName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property catalogName in model HiveCatalogOption"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property catalogName in model HiveCatalogOption"));
         }
         if (metastoreDbConnectionUrl() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property metastoreDbConnectionUrl in model HiveCatalogOption"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property metastoreDbConnectionUrl in model HiveCatalogOption"));
         }
         if (metastoreWarehouseDir() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property metastoreWarehouseDir in model HiveCatalogOption"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property metastoreWarehouseDir in model HiveCatalogOption"));
         }
     }
 

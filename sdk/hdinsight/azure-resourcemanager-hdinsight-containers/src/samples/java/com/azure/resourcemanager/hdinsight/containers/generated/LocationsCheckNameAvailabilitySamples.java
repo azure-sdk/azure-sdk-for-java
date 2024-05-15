@@ -11,9 +11,7 @@ import com.azure.resourcemanager.hdinsight.containers.models.NameAvailabilityPar
  */
 public final class LocationsCheckNameAvailabilitySamples {
     /*
-     * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/preview/2023-11-01-preview/examples/
-     * LocationsNameAvailability.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/stable/2024-05-01/examples/LocationsNameAvailability.json
      */
     /**
      * Sample code: LocationsNameAvailability.
@@ -23,8 +21,9 @@ public final class LocationsCheckNameAvailabilitySamples {
     public static void
         locationsNameAvailability(com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
         manager.locations()
-            .checkNameAvailabilityWithResponse("southeastasia", new NameAvailabilityParameters()
-                .withName("contosemember1").withType("Microsoft.HDInsight/clusterPools/clusters"),
+            .checkNameAvailabilityWithResponse("southeastasia",
+                new NameAvailabilityParameters().withName("contosemember1")
+                    .withType("Microsoft.HDInsight/clusterPools/clusters"),
                 com.azure.core.util.Context.NONE);
     }
 }

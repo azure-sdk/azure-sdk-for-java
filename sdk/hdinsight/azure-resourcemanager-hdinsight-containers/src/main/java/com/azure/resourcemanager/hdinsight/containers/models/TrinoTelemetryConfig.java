@@ -13,15 +13,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Fluent
 public final class TrinoTelemetryConfig {
     /*
-     * Hive Catalog name used to mount external tables on the logs written by trino, if not specified there tables are
-     * not created.
+     * Hive Catalog name used to mount external tables on the logs written by trino, if not specified there tables are not created.
      */
     @JsonProperty(value = "hivecatalogName")
     private String hivecatalogName;
 
     /*
-     * Schema of the above catalog to use, to mount query logs as external tables, if not specified tables will be
-     * mounted under schema trinologs.
+     * Schema of the above catalog to use, to mount query logs as external tables, if not specified tables will be mounted under schema trinologs.
      */
     @JsonProperty(value = "hivecatalogSchema")
     private String hivecatalogSchema;
@@ -89,8 +87,8 @@ public final class TrinoTelemetryConfig {
     }
 
     /**
-     * Get the partitionRetentionInDays property: Retention period for query log table partitions, this doesn't have
-     * any affect on actual data.
+     * Get the partitionRetentionInDays property: Retention period for query log table partitions, this doesn't have any
+     * affect on actual data.
      * 
      * @return the partitionRetentionInDays value.
      */
@@ -99,8 +97,8 @@ public final class TrinoTelemetryConfig {
     }
 
     /**
-     * Set the partitionRetentionInDays property: Retention period for query log table partitions, this doesn't have
-     * any affect on actual data.
+     * Set the partitionRetentionInDays property: Retention period for query log table partitions, this doesn't have any
+     * affect on actual data.
      * 
      * @param partitionRetentionInDays the partitionRetentionInDays value to set.
      * @return the TrinoTelemetryConfig object itself.

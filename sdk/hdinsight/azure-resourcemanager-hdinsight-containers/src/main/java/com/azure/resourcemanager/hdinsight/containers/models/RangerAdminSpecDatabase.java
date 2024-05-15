@@ -130,12 +130,12 @@ public final class RangerAdminSpecDatabase {
      */
     public void validate() {
         if (host() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property host in model RangerAdminSpecDatabase"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property host in model RangerAdminSpecDatabase"));
         }
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model RangerAdminSpecDatabase"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property name in model RangerAdminSpecDatabase"));
         }
     }
 

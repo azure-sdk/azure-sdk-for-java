@@ -35,10 +35,16 @@ public final class ClusterProfile {
     private List<ClusterComponentsItem> components;
 
     /*
-     * This property is required by Trino, Spark and Flink cluster but is optional for Kafka cluster.
+     * This is deprecated. Please use managed identity profile instead.
      */
     @JsonProperty(value = "identityProfile")
     private IdentityProfile identityProfile;
+
+    /*
+     * This property is required by Trino, Spark and Flink cluster but is optional for Kafka cluster.
+     */
+    @JsonProperty(value = "managedIdentityProfile")
+    private ManagedIdentityProfile managedIdentityProfile;
 
     /*
      * Authorization profile with details of AAD user Ids and group Ids authorized for data plane access.
@@ -89,8 +95,7 @@ public final class ClusterProfile {
     private SshProfile sshProfile;
 
     /*
-     * This is the Autoscale profile for the cluster. This will allow customer to create cluster enabled with
-     * Autoscale.
+     * This is the Autoscale profile for the cluster. This will allow customer to create cluster enabled with Autoscale.
      */
     @JsonProperty(value = "autoscaleProfile")
     private AutoscaleProfile autoscaleProfile;
@@ -207,8 +212,7 @@ public final class ClusterProfile {
     }
 
     /**
-     * Get the identityProfile property: This property is required by Trino, Spark and Flink cluster but is optional
-     * for Kafka cluster.
+     * Get the identityProfile property: This is deprecated. Please use managed identity profile instead.
      * 
      * @return the identityProfile value.
      */
@@ -217,14 +221,35 @@ public final class ClusterProfile {
     }
 
     /**
-     * Set the identityProfile property: This property is required by Trino, Spark and Flink cluster but is optional
-     * for Kafka cluster.
+     * Set the identityProfile property: This is deprecated. Please use managed identity profile instead.
      * 
      * @param identityProfile the identityProfile value to set.
      * @return the ClusterProfile object itself.
      */
     public ClusterProfile withIdentityProfile(IdentityProfile identityProfile) {
         this.identityProfile = identityProfile;
+        return this;
+    }
+
+    /**
+     * Get the managedIdentityProfile property: This property is required by Trino, Spark and Flink cluster but is
+     * optional for Kafka cluster.
+     * 
+     * @return the managedIdentityProfile value.
+     */
+    public ManagedIdentityProfile managedIdentityProfile() {
+        return this.managedIdentityProfile;
+    }
+
+    /**
+     * Set the managedIdentityProfile property: This property is required by Trino, Spark and Flink cluster but is
+     * optional for Kafka cluster.
+     * 
+     * @param managedIdentityProfile the managedIdentityProfile value to set.
+     * @return the ClusterProfile object itself.
+     */
+    public ClusterProfile withManagedIdentityProfile(ManagedIdentityProfile managedIdentityProfile) {
+        this.managedIdentityProfile = managedIdentityProfile;
         return this;
     }
 
@@ -588,12 +613,12 @@ public final class ClusterProfile {
      */
     public void validate() {
         if (clusterVersion() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property clusterVersion in model ClusterProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property clusterVersion in model ClusterProfile"));
         }
         if (ossVersion() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property ossVersion in model ClusterProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property ossVersion in model ClusterProfile"));
         }
         if (components() != null) {
             components().forEach(e -> e.validate());
@@ -601,9 +626,13 @@ public final class ClusterProfile {
         if (identityProfile() != null) {
             identityProfile().validate();
         }
+        if (managedIdentityProfile() != null) {
+            managedIdentityProfile().validate();
+        }
         if (authorizationProfile() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property authorizationProfile in model ClusterProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property authorizationProfile in model ClusterProfile"));
         } else {
             authorizationProfile().validate();
         }

@@ -19,11 +19,16 @@ public final class SshProfile {
     private int count;
 
     /*
-     * Prefix of the pod names. Pod number will be appended to the prefix. The ingress URLs for the pods will be
-     * available at <clusterFqdn>/<sshBasePath>/<prefix>-<number>
+     * Prefix of the pod names. Pod number will be appended to the prefix. The ingress URLs for the pods will be available at <clusterFqdn>/<sshBasePath>/<prefix>-<number>
      */
     @JsonProperty(value = "podPrefix", access = JsonProperty.Access.WRITE_ONLY)
     private String podPrefix;
+
+    /*
+     * The virtual machine SKU.
+     */
+    @JsonProperty(value = "vmSize")
+    private String vmSize;
 
     /**
      * Creates an instance of SshProfile class.
@@ -59,6 +64,26 @@ public final class SshProfile {
      */
     public String podPrefix() {
         return this.podPrefix;
+    }
+
+    /**
+     * Get the vmSize property: The virtual machine SKU.
+     * 
+     * @return the vmSize value.
+     */
+    public String vmSize() {
+        return this.vmSize;
+    }
+
+    /**
+     * Set the vmSize property: The virtual machine SKU.
+     * 
+     * @param vmSize the vmSize value to set.
+     * @return the SshProfile object itself.
+     */
+    public SshProfile withVmSize(String vmSize) {
+        this.vmSize = vmSize;
+        return this;
     }
 
     /**

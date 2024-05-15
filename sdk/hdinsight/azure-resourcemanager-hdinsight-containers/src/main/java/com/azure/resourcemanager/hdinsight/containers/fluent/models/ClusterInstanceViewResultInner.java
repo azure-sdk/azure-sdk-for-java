@@ -79,12 +79,14 @@ public final class ClusterInstanceViewResultInner {
      */
     public void validate() {
         if (name() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property name in model ClusterInstanceViewResultInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property name in model ClusterInstanceViewResultInner"));
         }
         if (properties() == null) {
-            throw LOGGER.logExceptionAsError(new IllegalArgumentException(
-                "Missing required property properties in model ClusterInstanceViewResultInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property properties in model ClusterInstanceViewResultInner"));
         } else {
             properties().validate();
         }

@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.hdinsight.containers.models;
 
 import com.azure.core.annotation.Fluent;
+import java.util.List;
 
 /**
  * CLuster pool compute profile.
@@ -23,6 +24,15 @@ public final class ClusterPoolResourcePropertiesComputeProfile extends ClusterPo
     @Override
     public ClusterPoolResourcePropertiesComputeProfile withVmSize(String vmSize) {
         super.withVmSize(vmSize);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public ClusterPoolResourcePropertiesComputeProfile withAvailabilityZones(List<String> availabilityZones) {
+        super.withAvailabilityZones(availabilityZones);
         return this;
     }
 

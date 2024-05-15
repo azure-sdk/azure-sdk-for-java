@@ -12,9 +12,7 @@ import com.azure.resourcemanager.hdinsight.containers.models.ClusterResizeProper
  */
 public final class ClustersResizeSamples {
     /*
-     * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/preview/2023-11-01-preview/examples/
-     * ResizeCluster.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/stable/2024-05-01/examples/ResizeCluster.json
      */
     /**
      * Sample code: HDInsightClusterResize.
@@ -23,9 +21,10 @@ public final class ClustersResizeSamples {
      */
     public static void
         hDInsightClusterResize(com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
-        manager.clusters().resize(
-            "hiloResourcegroup", "clusterpool1", "cluster1", new ClusterResizeData().withLocation("West US 2")
-                .withProperties(new ClusterResizeProperties().withTargetWorkerNodeCount(5)),
-            com.azure.core.util.Context.NONE);
+        manager.clusters()
+            .resize("hiloResourcegroup", "clusterpool1", "cluster1",
+                new ClusterResizeData().withLocation("West US 2")
+                    .withProperties(new ClusterResizeProperties().withTargetWorkerNodeCount(5)),
+                com.azure.core.util.Context.NONE);
     }
 }

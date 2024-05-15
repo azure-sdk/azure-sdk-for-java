@@ -9,15 +9,14 @@ import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolResource
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolResourcePropertiesComputeProfile;
 import com.azure.resourcemanager.hdinsight.containers.models.ClusterPoolResourcePropertiesNetworkProfile;
 import com.azure.resourcemanager.hdinsight.containers.models.OutboundType;
+import java.util.Arrays;
 
 /**
  * Samples for ClusterPools CreateOrUpdate.
  */
 public final class ClusterPoolsCreateOrUpdateSamples {
     /*
-     * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/preview/2023-11-01-preview/examples/
-     * CreateClusterPoolWithPrivateAks.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/stable/2024-05-01/examples/CreateClusterPoolWithPrivateAks.json
      */
     /**
      * Sample code: ClusterPoolPutWithPrivateAks.
@@ -26,12 +25,15 @@ public final class ClusterPoolsCreateOrUpdateSamples {
      */
     public static void clusterPoolPutWithPrivateAks(
         com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
-        manager.clusterPools().define("clusterpool1").withRegion("West US 2")
+        manager.clusterPools()
+            .define("clusterpool1")
+            .withRegion("West US 2")
             .withExistingResourceGroup("hiloResourcegroup")
             .withProperties(new ClusterPoolResourceProperties()
                 .withClusterPoolProfile(
                     new ClusterPoolResourcePropertiesClusterPoolProfile().withClusterPoolVersion("1.2"))
-                .withComputeProfile(new ClusterPoolResourcePropertiesComputeProfile().withVmSize("Standard_D3_v2"))
+                .withComputeProfile(new ClusterPoolResourcePropertiesComputeProfile().withVmSize("Standard_D3_v2")
+                    .withAvailabilityZones(Arrays.asList("1", "2", "3")))
                 .withNetworkProfile(new ClusterPoolResourcePropertiesNetworkProfile().withSubnetId(
                     "/subscriptions/subid/resourceGroups/hiloResourcegroup/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1")
                     .withEnablePrivateApiServer(true)))
@@ -39,9 +41,7 @@ public final class ClusterPoolsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/preview/2023-11-01-preview/examples/
-     * CreateClusterPoolWithUDRAks.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/stable/2024-05-01/examples/CreateClusterPoolWithUDRAks.json
      */
     /**
      * Sample code: ClusterPoolPutWithUDRAks.
@@ -50,12 +50,15 @@ public final class ClusterPoolsCreateOrUpdateSamples {
      */
     public static void
         clusterPoolPutWithUDRAks(com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
-        manager.clusterPools().define("clusterpool1").withRegion("West US 2")
+        manager.clusterPools()
+            .define("clusterpool1")
+            .withRegion("West US 2")
             .withExistingResourceGroup("hiloResourcegroup")
             .withProperties(new ClusterPoolResourceProperties()
                 .withClusterPoolProfile(
                     new ClusterPoolResourcePropertiesClusterPoolProfile().withClusterPoolVersion("1.2"))
-                .withComputeProfile(new ClusterPoolResourcePropertiesComputeProfile().withVmSize("Standard_D3_v2"))
+                .withComputeProfile(new ClusterPoolResourcePropertiesComputeProfile().withVmSize("Standard_D3_v2")
+                    .withAvailabilityZones(Arrays.asList("1", "2", "3")))
                 .withNetworkProfile(new ClusterPoolResourcePropertiesNetworkProfile().withSubnetId(
                     "/subscriptions/subid/resourceGroups/hiloResourcegroup/providers/Microsoft.Network/virtualNetworks/vnet1/subnets/subnet1")
                     .withOutboundType(OutboundType.USER_DEFINED_ROUTING)))
@@ -63,9 +66,7 @@ public final class ClusterPoolsCreateOrUpdateSamples {
     }
 
     /*
-     * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/preview/2023-11-01-preview/examples/
-     * CreateClusterPool.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/stable/2024-05-01/examples/CreateClusterPool.json
      */
     /**
      * Sample code: ClusterPoolPut.
@@ -74,12 +75,15 @@ public final class ClusterPoolsCreateOrUpdateSamples {
      */
     public static void
         clusterPoolPut(com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
-        manager.clusterPools().define("clusterpool1").withRegion("West US 2")
+        manager.clusterPools()
+            .define("clusterpool1")
+            .withRegion("West US 2")
             .withExistingResourceGroup("hiloResourcegroup")
             .withProperties(new ClusterPoolResourceProperties()
                 .withClusterPoolProfile(
                     new ClusterPoolResourcePropertiesClusterPoolProfile().withClusterPoolVersion("1.2"))
-                .withComputeProfile(new ClusterPoolResourcePropertiesComputeProfile().withVmSize("Standard_D3_v2")))
+                .withComputeProfile(new ClusterPoolResourcePropertiesComputeProfile().withVmSize("Standard_D3_v2")
+                    .withAvailabilityZones(Arrays.asList("1", "2", "3"))))
             .create();
     }
 }

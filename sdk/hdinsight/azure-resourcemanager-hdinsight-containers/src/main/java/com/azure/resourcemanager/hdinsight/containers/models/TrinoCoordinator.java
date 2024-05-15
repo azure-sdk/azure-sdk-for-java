@@ -19,8 +19,7 @@ public final class TrinoCoordinator {
     private TrinoDebugConfig debug;
 
     /*
-     * The flag that if enable coordinator HA, uses multiple coordinator replicas with auto failover, one per each head
-     * node. Default: true.
+     * The flag that if enable coordinator HA, uses multiple coordinator replicas with auto failover, one per each head node. Default: true.
      */
     @JsonProperty(value = "highAvailabilityEnabled")
     private Boolean highAvailabilityEnabled;

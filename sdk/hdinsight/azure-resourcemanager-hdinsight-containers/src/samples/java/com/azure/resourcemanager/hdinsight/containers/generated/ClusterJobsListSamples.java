@@ -9,9 +9,7 @@ package com.azure.resourcemanager.hdinsight.containers.generated;
  */
 public final class ClusterJobsListSamples {
     /*
-     * x-ms-original-file:
-     * specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/preview/2023-11-01-preview/examples/
-     * ListClusterJobs.json
+     * x-ms-original-file: specification/hdinsight/resource-manager/Microsoft.HDInsight/HDInsightOnAks/stable/2024-05-01/examples/ListClusterJobs.json
      */
     /**
      * Sample code: ListClusterJobs.
@@ -20,7 +18,7 @@ public final class ClusterJobsListSamples {
      */
     public static void
         listClusterJobs(com.azure.resourcemanager.hdinsight.containers.HDInsightContainersManager manager) {
-        manager.clusterJobs().list("hiloResourcegroup", "clusterPool1", "cluster1", null,
-            com.azure.core.util.Context.NONE);
+        manager.clusterJobs()
+            .list("hiloResourcegroup", "clusterPool1", "cluster1", null, com.azure.core.util.Context.NONE);
     }
 }

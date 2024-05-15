@@ -27,8 +27,7 @@ public final class FlinkJobProfile {
     private String jarName;
 
     /*
-     * A string property that specifies the entry class for the Flink job. If not specified, the entry point is
-     * auto-detected from the flink job jar package.
+     * A string property that specifies the entry class for the Flink job. If not specified, the entry point is auto-detected from the flink job jar package.
      */
     @JsonProperty(value = "entryClass")
     private String entryClass;
@@ -46,8 +45,7 @@ public final class FlinkJobProfile {
     private String savePointName;
 
     /*
-     * A string property that indicates the upgrade mode to be performed on the Flink job. It can have one of the
-     * following enum values => STATELESS_UPDATE, UPDATE, LAST_STATE_UPDATE.
+     * A string property that indicates the upgrade mode to be performed on the Flink job. It can have one of the following enum values => STATELESS_UPDATE, UPDATE, LAST_STATE_UPDATE.
      */
     @JsonProperty(value = "upgradeMode", required = true)
     private UpgradeMode upgradeMode;
@@ -163,8 +161,8 @@ public final class FlinkJobProfile {
     }
 
     /**
-     * Get the upgradeMode property: A string property that indicates the upgrade mode to be performed on the Flink
-     * job. It can have one of the following enum values =&gt; STATELESS_UPDATE, UPDATE, LAST_STATE_UPDATE.
+     * Get the upgradeMode property: A string property that indicates the upgrade mode to be performed on the Flink job.
+     * It can have one of the following enum values =&gt; STATELESS_UPDATE, UPDATE, LAST_STATE_UPDATE.
      * 
      * @return the upgradeMode value.
      */
@@ -173,8 +171,8 @@ public final class FlinkJobProfile {
     }
 
     /**
-     * Set the upgradeMode property: A string property that indicates the upgrade mode to be performed on the Flink
-     * job. It can have one of the following enum values =&gt; STATELESS_UPDATE, UPDATE, LAST_STATE_UPDATE.
+     * Set the upgradeMode property: A string property that indicates the upgrade mode to be performed on the Flink job.
+     * It can have one of the following enum values =&gt; STATELESS_UPDATE, UPDATE, LAST_STATE_UPDATE.
      * 
      * @param upgradeMode the upgradeMode value to set.
      * @return the FlinkJobProfile object itself.
@@ -191,16 +189,17 @@ public final class FlinkJobProfile {
      */
     public void validate() {
         if (jobJarDirectory() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property jobJarDirectory in model FlinkJobProfile"));
+            throw LOGGER.atError()
+                .log(
+                    new IllegalArgumentException("Missing required property jobJarDirectory in model FlinkJobProfile"));
         }
         if (jarName() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property jarName in model FlinkJobProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property jarName in model FlinkJobProfile"));
         }
         if (upgradeMode() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property upgradeMode in model FlinkJobProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property upgradeMode in model FlinkJobProfile"));
         }
     }
 

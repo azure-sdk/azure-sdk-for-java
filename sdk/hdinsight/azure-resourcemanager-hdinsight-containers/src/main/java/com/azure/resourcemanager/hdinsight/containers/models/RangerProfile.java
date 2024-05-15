@@ -104,8 +104,8 @@ public final class RangerProfile {
      */
     public void validate() {
         if (rangerAdmin() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property rangerAdmin in model RangerProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property rangerAdmin in model RangerProfile"));
         } else {
             rangerAdmin().validate();
         }
@@ -113,8 +113,8 @@ public final class RangerProfile {
             rangerAudit().validate();
         }
         if (rangerUsersync() == null) {
-            throw LOGGER.logExceptionAsError(
-                new IllegalArgumentException("Missing required property rangerUsersync in model RangerProfile"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property rangerUsersync in model RangerProfile"));
         } else {
             rangerUsersync().validate();
         }
