@@ -8,7 +8,9 @@ trigger:
       - release/*
   paths:
     include:
-      - sdk/vision/
+      - sdk/vision/ci.yml
+      - sdk/vision/azure-ai-vision-imageanalysis/
+      - sdk/vision/azure-ai-vision-face/
     exclude:
       - sdk/vision/pom.xml
       - sdk/vision/azure-ai-vision-imageanalysis/pom.xml
@@ -23,7 +25,9 @@ pr:
       - release/*
   paths:
     include:
-      - sdk/vision/
+      - sdk/vision/ci.yml
+      - sdk/vision/azure-ai-vision-imageanalysis/
+      - sdk/vision/azure-ai-vision-face/
     exclude:
       - sdk/vision/pom.xml
       - sdk/vision/azure-ai-vision-imageanalysis/pom.xml
@@ -32,6 +36,10 @@ pr:
 parameters:
   - name: release_azureaivisionimageanalysis
     displayName: azure-ai-vision-imageanalysis
+    type: boolean
+    default: true
+  - name: release_azureaivisionface
+    displayName: azure-ai-vision-face
     type: boolean
     default: true
 
@@ -51,3 +59,7 @@ extends:
         groupId: com.azure
         safeName: azureaivisionimageanalysis
         releaseInBatch: ${{ parameters.release_azureaivisionimageanalysis }}
+      - name: azure-ai-vision-face
+        groupId: com.azure
+        safeName: azureaivisionface
+        releaseInBatch: ${{ parameters.release_azureaivisionface }}
