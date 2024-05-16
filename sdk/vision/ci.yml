@@ -8,11 +8,11 @@ trigger:
       - release/*
   paths:
     include:
-      - sdk/vision/ci.yml
-      - sdk/vision/azure-ai-vision-imageanalysis/
+      - sdk/vision/
     exclude:
       - sdk/vision/pom.xml
       - sdk/vision/azure-ai-vision-imageanalysis/pom.xml
+      - sdk/vision/azure-ai-vision-face/pom.xml
 
 pr:
   branches:
@@ -23,11 +23,11 @@ pr:
       - release/*
   paths:
     include:
-      - sdk/vision/ci.yml
-      - sdk/vision/azure-ai-vision-imageanalysis/
+      - sdk/vision/
     exclude:
       - sdk/vision/pom.xml
       - sdk/vision/azure-ai-vision-imageanalysis/pom.xml
+      - sdk/vision/azure-ai-vision-face/pom.xml
 
 parameters:
   - name: release_azureaivisionimageanalysis
