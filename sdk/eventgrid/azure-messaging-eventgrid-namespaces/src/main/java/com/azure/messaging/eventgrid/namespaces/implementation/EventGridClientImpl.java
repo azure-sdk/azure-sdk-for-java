@@ -286,10 +286,7 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status
-     * code with an empty JSON object in response. Otherwise, the server can return various error codes. For example,
-     * 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410:
-     * which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error.
+     * Publish a single Cloud Event to a namespace topic.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -332,10 +329,7 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status
-     * code with an empty JSON object in response. Otherwise, the server can return various error codes. For example,
-     * 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410:
-     * which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error.
+     * Publish a single Cloud Event to a namespace topic.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -378,10 +372,7 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status
-     * code with an empty JSON object in response. Otherwise, the server can return various error codes. For example,
-     * 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410:
-     * which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error.
+     * Publish a batch of Cloud Events to a namespace topic.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -426,10 +417,7 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status
-     * code with an empty JSON object in response. Otherwise, the server can return various error codes. For example,
-     * 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410:
-     * which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error.
+     * Publish a batch of Cloud Events to a namespace topic.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -474,7 +462,7 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Receive Batch of Cloud Events from the Event Subscription.
+     * Receive a batch of Cloud Events from a subscription.
      * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
@@ -533,7 +521,7 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Receive Batch of Cloud Events from the Event Subscription.
+     * Receive a batch of Cloud Events from a subscription.
      * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
@@ -591,10 +579,9 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if the request is
-     * successfully accepted. The response body will include the set of successfully acknowledged lockTokens, along with
-     * other failed lockTokens with their corresponding error information. Successfully acknowledged events will no
-     * longer be available to any consumer.
+     * Acknowledge a batch of Cloud Events. The response will include the set of successfully acknowledged lock tokens,
+     * along with other failed lock tokens with their corresponding error information. Successfully acknowledged events
+     * will no longer be available to be received by any consumer.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -653,10 +640,9 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if the request is
-     * successfully accepted. The response body will include the set of successfully acknowledged lockTokens, along with
-     * other failed lockTokens with their corresponding error information. Successfully acknowledged events will no
-     * longer be available to any consumer.
+     * Acknowledge a batch of Cloud Events. The response will include the set of successfully acknowledged lock tokens,
+     * along with other failed lock tokens with their corresponding error information. Successfully acknowledged events
+     * will no longer be available to be received by any consumer.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -713,9 +699,9 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Release batch of Cloud Events. The server responds with an HTTP 200 status code if the request is successfully
-     * accepted. The response body will include the set of successfully released lockTokens, along with other failed
-     * lockTokens with their corresponding error information.
+     * Release a batch of Cloud Events. The response will include the set of successfully released lock tokens, along
+     * with other failed lock tokens with their corresponding error information. Successfully released events can be
+     * received by consumers.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -773,9 +759,9 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Release batch of Cloud Events. The server responds with an HTTP 200 status code if the request is successfully
-     * accepted. The response body will include the set of successfully released lockTokens, along with other failed
-     * lockTokens with their corresponding error information.
+     * Release a batch of Cloud Events. The response will include the set of successfully released lock tokens, along
+     * with other failed lock tokens with their corresponding error information. Successfully released events can be
+     * received by consumers.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -832,9 +818,9 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Reject batch of Cloud Events. The server responds with an HTTP 200 status code if the request is successfully
-     * accepted. The response body will include the set of successfully rejected lockTokens, along with other failed
-     * lockTokens with their corresponding error information.
+     * Reject a batch of Cloud Events. The response will include the set of successfully rejected lock tokens, along
+     * with other failed lock tokens with their corresponding error information. Successfully rejected events will be
+     * dead-lettered and can no longer be received by a consumer.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -892,9 +878,9 @@ public final class EventGridClientImpl {
     }
 
     /**
-     * Reject batch of Cloud Events. The server responds with an HTTP 200 status code if the request is successfully
-     * accepted. The response body will include the set of successfully rejected lockTokens, along with other failed
-     * lockTokens with their corresponding error information.
+     * Reject a batch of Cloud Events. The response will include the set of successfully rejected lock tokens, along
+     * with other failed lock tokens with their corresponding error information. Successfully rejected events will be
+     * dead-lettered and can no longer be received by a consumer.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
