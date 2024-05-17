@@ -34,12 +34,11 @@ parameters:
     displayName: azure-ai-vision-imageanalysis
     type: boolean
     default: true
+  - name: release_azureaivisionface
+    displayName: azure-ai-vision-face
+    type: boolean
+    default: true
 
-# Note that IgnoreVerifyTypeSpecCodeGenerationError is set to true here in order to ignore
-# errors from the task "Verify TypeSpec Code Generation" in the CI pipeline. This task is
-# currently failing because the tools do not account for the additional code snippet that
-# were inserted into Java source code comments (JavaDocs). This task will be enabled again
-# once the tools are updated.
 extends:
   template: ../../eng/pipelines/templates/stages/archetype-sdk-client.yml
   parameters:
@@ -51,3 +50,7 @@ extends:
         groupId: com.azure
         safeName: azureaivisionimageanalysis
         releaseInBatch: ${{ parameters.release_azureaivisionimageanalysis }}
+      - name: azure-ai-vision-face
+        groupId: com.azure
+        safeName: azureaivisionface
+        releaseInBatch: ${{ parameters.release_azureaivisionface }}
