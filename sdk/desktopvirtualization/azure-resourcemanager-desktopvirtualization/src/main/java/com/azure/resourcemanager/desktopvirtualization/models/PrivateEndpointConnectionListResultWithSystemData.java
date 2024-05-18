@@ -9,7 +9,9 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.PrivateEndp
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** List of private endpoint connection associated with the specified storage account. */
+/**
+ * List of private endpoint connection associated with the specified storage account.
+ */
 @Fluent
 public final class PrivateEndpointConnectionListResultWithSystemData {
     /*
@@ -24,13 +26,15 @@ public final class PrivateEndpointConnectionListResultWithSystemData {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of PrivateEndpointConnectionListResultWithSystemData class. */
+    /**
+     * Creates an instance of PrivateEndpointConnectionListResultWithSystemData class.
+     */
     public PrivateEndpointConnectionListResultWithSystemData() {
     }
 
     /**
      * Get the value property: Array of private endpoint connections.
-     *
+     * 
      * @return the value value.
      */
     public List<PrivateEndpointConnectionWithSystemDataInner> value() {
@@ -39,19 +43,19 @@ public final class PrivateEndpointConnectionListResultWithSystemData {
 
     /**
      * Set the value property: Array of private endpoint connections.
-     *
+     * 
      * @param value the value value to set.
      * @return the PrivateEndpointConnectionListResultWithSystemData object itself.
      */
-    public PrivateEndpointConnectionListResultWithSystemData withValue(
-        List<PrivateEndpointConnectionWithSystemDataInner> value) {
+    public PrivateEndpointConnectionListResultWithSystemData
+        withValue(List<PrivateEndpointConnectionWithSystemDataInner> value) {
         this.value = value;
         return this;
     }
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,7 +64,7 @@ public final class PrivateEndpointConnectionListResultWithSystemData {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

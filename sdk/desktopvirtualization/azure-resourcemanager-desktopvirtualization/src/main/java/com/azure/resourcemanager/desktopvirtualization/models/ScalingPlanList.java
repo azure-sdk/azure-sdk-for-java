@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * ScalingPlanList
- *
- * <p>List of scaling plan definitions.
+ * 
+ * List of scaling plan definitions.
  */
 @Fluent
 public final class ScalingPlanList {
@@ -28,13 +28,15 @@ public final class ScalingPlanList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ScalingPlanList class. */
+    /**
+     * Creates an instance of ScalingPlanList class.
+     */
     public ScalingPlanList() {
     }
 
     /**
      * Get the value property: List of scaling plan definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<ScalingPlanInner> value() {
@@ -43,7 +45,7 @@ public final class ScalingPlanList {
 
     /**
      * Set the value property: List of scaling plan definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the ScalingPlanList object itself.
      */
@@ -54,7 +56,7 @@ public final class ScalingPlanList {
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +65,7 @@ public final class ScalingPlanList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

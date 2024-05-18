@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Represents a RegistrationInfo definition. */
+/**
+ * Represents a RegistrationInfo definition.
+ */
 @Fluent
 public final class RegistrationInfoPatch {
     /*
@@ -23,13 +25,15 @@ public final class RegistrationInfoPatch {
     @JsonProperty(value = "registrationTokenOperation")
     private RegistrationTokenOperation registrationTokenOperation;
 
-    /** Creates an instance of RegistrationInfoPatch class. */
+    /**
+     * Creates an instance of RegistrationInfoPatch class.
+     */
     public RegistrationInfoPatch() {
     }
 
     /**
      * Get the expirationTime property: Expiration time of registration token.
-     *
+     * 
      * @return the expirationTime value.
      */
     public OffsetDateTime expirationTime() {
@@ -38,7 +42,7 @@ public final class RegistrationInfoPatch {
 
     /**
      * Set the expirationTime property: Expiration time of registration token.
-     *
+     * 
      * @param expirationTime the expirationTime value to set.
      * @return the RegistrationInfoPatch object itself.
      */
@@ -49,7 +53,7 @@ public final class RegistrationInfoPatch {
 
     /**
      * Get the registrationTokenOperation property: The type of resetting the token.
-     *
+     * 
      * @return the registrationTokenOperation value.
      */
     public RegistrationTokenOperation registrationTokenOperation() {
@@ -58,7 +62,7 @@ public final class RegistrationInfoPatch {
 
     /**
      * Set the registrationTokenOperation property: The type of resetting the token.
-     *
+     * 
      * @param registrationTokenOperation the registrationTokenOperation value to set.
      * @return the RegistrationInfoPatch object itself.
      */
@@ -69,7 +73,7 @@ public final class RegistrationInfoPatch {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

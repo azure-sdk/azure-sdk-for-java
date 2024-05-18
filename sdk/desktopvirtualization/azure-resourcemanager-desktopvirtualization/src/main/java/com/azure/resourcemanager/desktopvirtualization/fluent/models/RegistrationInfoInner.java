@@ -9,7 +9,9 @@ import com.azure.resourcemanager.desktopvirtualization.models.RegistrationTokenO
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** Represents a RegistrationInfo definition. */
+/**
+ * Represents a RegistrationInfo definition.
+ */
 @Fluent
 public final class RegistrationInfoInner {
     /*
@@ -30,13 +32,15 @@ public final class RegistrationInfoInner {
     @JsonProperty(value = "registrationTokenOperation")
     private RegistrationTokenOperation registrationTokenOperation;
 
-    /** Creates an instance of RegistrationInfoInner class. */
+    /**
+     * Creates an instance of RegistrationInfoInner class.
+     */
     public RegistrationInfoInner() {
     }
 
     /**
      * Get the expirationTime property: Expiration time of registration token.
-     *
+     * 
      * @return the expirationTime value.
      */
     public OffsetDateTime expirationTime() {
@@ -45,7 +49,7 @@ public final class RegistrationInfoInner {
 
     /**
      * Set the expirationTime property: Expiration time of registration token.
-     *
+     * 
      * @param expirationTime the expirationTime value to set.
      * @return the RegistrationInfoInner object itself.
      */
@@ -56,7 +60,7 @@ public final class RegistrationInfoInner {
 
     /**
      * Get the token property: The registration token base64 encoded string.
-     *
+     * 
      * @return the token value.
      */
     public String token() {
@@ -65,7 +69,7 @@ public final class RegistrationInfoInner {
 
     /**
      * Set the token property: The registration token base64 encoded string.
-     *
+     * 
      * @param token the token value to set.
      * @return the RegistrationInfoInner object itself.
      */
@@ -76,7 +80,7 @@ public final class RegistrationInfoInner {
 
     /**
      * Get the registrationTokenOperation property: The type of resetting the token.
-     *
+     * 
      * @return the registrationTokenOperation value.
      */
     public RegistrationTokenOperation registrationTokenOperation() {
@@ -85,7 +89,7 @@ public final class RegistrationInfoInner {
 
     /**
      * Set the registrationTokenOperation property: The type of resetting the token.
-     *
+     * 
      * @param registrationTokenOperation the registrationTokenOperation value to set.
      * @return the RegistrationInfoInner object itself.
      */
@@ -96,7 +100,7 @@ public final class RegistrationInfoInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

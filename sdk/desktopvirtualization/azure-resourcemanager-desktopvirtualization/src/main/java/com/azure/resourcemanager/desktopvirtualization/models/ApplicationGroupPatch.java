@@ -6,12 +6,15 @@ package com.azure.resourcemanager.desktopvirtualization.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
+import com.azure.core.management.SystemData;
 import com.azure.resourcemanager.desktopvirtualization.fluent.models.ApplicationGroupPatchProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** ApplicationGroup properties that can be patched. */
+/**
+ * ApplicationGroup properties that can be patched.
+ */
 @Fluent
 public final class ApplicationGroupPatch extends ProxyResource {
     /*
@@ -27,13 +30,21 @@ public final class ApplicationGroupPatch extends ProxyResource {
     @JsonProperty(value = "properties")
     private ApplicationGroupPatchProperties innerProperties;
 
-    /** Creates an instance of ApplicationGroupPatch class. */
+    /*
+     * Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     */
+    @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
+    private SystemData systemData;
+
+    /**
+     * Creates an instance of ApplicationGroupPatch class.
+     */
     public ApplicationGroupPatch() {
     }
 
     /**
      * Get the tags property: tags to be updated.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -42,7 +53,7 @@ public final class ApplicationGroupPatch extends ProxyResource {
 
     /**
      * Set the tags property: tags to be updated.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ApplicationGroupPatch object itself.
      */
@@ -53,7 +64,7 @@ public final class ApplicationGroupPatch extends ProxyResource {
 
     /**
      * Get the innerProperties property: ApplicationGroup properties that can be patched.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ApplicationGroupPatchProperties innerProperties() {
@@ -61,8 +72,17 @@ public final class ApplicationGroupPatch extends ProxyResource {
     }
 
     /**
+     * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
+     * 
+     * @return the systemData value.
+     */
+    public SystemData systemData() {
+        return this.systemData;
+    }
+
+    /**
      * Get the description property: Description of ApplicationGroup.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -71,7 +91,7 @@ public final class ApplicationGroupPatch extends ProxyResource {
 
     /**
      * Set the description property: Description of ApplicationGroup.
-     *
+     * 
      * @param description the description value to set.
      * @return the ApplicationGroupPatch object itself.
      */
@@ -85,7 +105,7 @@ public final class ApplicationGroupPatch extends ProxyResource {
 
     /**
      * Get the friendlyName property: Friendly name of ApplicationGroup.
-     *
+     * 
      * @return the friendlyName value.
      */
     public String friendlyName() {
@@ -94,7 +114,7 @@ public final class ApplicationGroupPatch extends ProxyResource {
 
     /**
      * Set the friendlyName property: Friendly name of ApplicationGroup.
-     *
+     * 
      * @param friendlyName the friendlyName value to set.
      * @return the ApplicationGroupPatch object itself.
      */
@@ -108,7 +128,7 @@ public final class ApplicationGroupPatch extends ProxyResource {
 
     /**
      * Get the showInFeed property: Boolean representing whether the applicationGroup is show in the feed.
-     *
+     * 
      * @return the showInFeed value.
      */
     public Boolean showInFeed() {
@@ -117,7 +137,7 @@ public final class ApplicationGroupPatch extends ProxyResource {
 
     /**
      * Set the showInFeed property: Boolean representing whether the applicationGroup is show in the feed.
-     *
+     * 
      * @param showInFeed the showInFeed value to set.
      * @return the ApplicationGroupPatch object itself.
      */
@@ -131,7 +151,7 @@ public final class ApplicationGroupPatch extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

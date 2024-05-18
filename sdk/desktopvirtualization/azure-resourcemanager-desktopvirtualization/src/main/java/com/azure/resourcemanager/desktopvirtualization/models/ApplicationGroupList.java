@@ -11,8 +11,8 @@ import java.util.List;
 
 /**
  * ApplicationGroupList
- *
- * <p>List of ApplicationGroup definitions.
+ * 
+ * List of ApplicationGroup definitions.
  */
 @Fluent
 public final class ApplicationGroupList {
@@ -28,13 +28,15 @@ public final class ApplicationGroupList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ApplicationGroupList class. */
+    /**
+     * Creates an instance of ApplicationGroupList class.
+     */
     public ApplicationGroupList() {
     }
 
     /**
      * Get the value property: List of ApplicationGroup definitions.
-     *
+     * 
      * @return the value value.
      */
     public List<ApplicationGroupInner> value() {
@@ -43,7 +45,7 @@ public final class ApplicationGroupList {
 
     /**
      * Set the value property: List of ApplicationGroup definitions.
-     *
+     * 
      * @param value the value value to set.
      * @return the ApplicationGroupList object itself.
      */
@@ -54,7 +56,7 @@ public final class ApplicationGroupList {
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -63,7 +65,7 @@ public final class ApplicationGroupList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

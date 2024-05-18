@@ -9,7 +9,9 @@ import com.azure.resourcemanager.desktopvirtualization.fluent.models.ResourcePro
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of the request to list operations. */
+/**
+ * Result of the request to list operations.
+ */
 @Fluent
 public final class ResourceProviderOperationList {
     /*
@@ -24,13 +26,15 @@ public final class ResourceProviderOperationList {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of ResourceProviderOperationList class. */
+    /**
+     * Creates an instance of ResourceProviderOperationList class.
+     */
     public ResourceProviderOperationList() {
     }
 
     /**
      * Get the value property: List of operations supported by this resource provider.
-     *
+     * 
      * @return the value value.
      */
     public List<ResourceProviderOperationInner> value() {
@@ -39,7 +43,7 @@ public final class ResourceProviderOperationList {
 
     /**
      * Set the value property: List of operations supported by this resource provider.
-     *
+     * 
      * @param value the value value to set.
      * @return the ResourceProviderOperationList object itself.
      */
@@ -50,7 +54,7 @@ public final class ResourceProviderOperationList {
 
     /**
      * Get the nextLink property: Link to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -59,7 +63,7 @@ public final class ResourceProviderOperationList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The desired startup behavior during the ramp up period for personal vms in the hostpool. */
+/**
+ * The desired startup behavior during the ramp up period for personal vms in the hostpool.
+ */
 public final class StartupBehavior extends ExpandableStringEnum<StartupBehavior> {
-    /** Static value None for StartupBehavior. */
+    /**
+     * Static value None for StartupBehavior.
+     */
     public static final StartupBehavior NONE = fromString("None");
 
-    /** Static value WithAssignedUser for StartupBehavior. */
+    /**
+     * Static value WithAssignedUser for StartupBehavior.
+     */
     public static final StartupBehavior WITH_ASSIGNED_USER = fromString("WithAssignedUser");
 
-    /** Static value All for StartupBehavior. */
+    /**
+     * Static value All for StartupBehavior.
+     */
     public static final StartupBehavior ALL = fromString("All");
 
     /**
      * Creates a new instance of StartupBehavior value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class StartupBehavior extends ExpandableStringEnum<StartupBehavior>
 
     /**
      * Creates or finds a StartupBehavior from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding StartupBehavior.
      */
@@ -41,7 +49,7 @@ public final class StartupBehavior extends ExpandableStringEnum<StartupBehavior>
 
     /**
      * Gets known StartupBehavior values.
-     *
+     * 
      * @return known StartupBehavior values.
      */
     public static Collection<StartupBehavior> values() {

@@ -8,20 +8,28 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The type of preferred application group type, default to Desktop Application Group. */
+/**
+ * The type of preferred application group type, default to Desktop Application Group.
+ */
 public final class PreferredAppGroupType extends ExpandableStringEnum<PreferredAppGroupType> {
-    /** Static value None for PreferredAppGroupType. */
+    /**
+     * Static value None for PreferredAppGroupType.
+     */
     public static final PreferredAppGroupType NONE = fromString("None");
 
-    /** Static value Desktop for PreferredAppGroupType. */
+    /**
+     * Static value Desktop for PreferredAppGroupType.
+     */
     public static final PreferredAppGroupType DESKTOP = fromString("Desktop");
 
-    /** Static value RailApplications for PreferredAppGroupType. */
+    /**
+     * Static value RailApplications for PreferredAppGroupType.
+     */
     public static final PreferredAppGroupType RAIL_APPLICATIONS = fromString("RailApplications");
 
     /**
      * Creates a new instance of PreferredAppGroupType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +38,7 @@ public final class PreferredAppGroupType extends ExpandableStringEnum<PreferredA
 
     /**
      * Creates or finds a PreferredAppGroupType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding PreferredAppGroupType.
      */
@@ -41,7 +49,7 @@ public final class PreferredAppGroupType extends ExpandableStringEnum<PreferredA
 
     /**
      * Gets known PreferredAppGroupType values.
-     *
+     * 
      * @return known PreferredAppGroupType values.
      */
     public static Collection<PreferredAppGroupType> values() {
