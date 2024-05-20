@@ -14,6 +14,12 @@ import java.util.List;
 @Fluent
 public final class QueueScaleRule {
     /*
+     * Storage account name. required if using managed identity to authenticate
+     */
+    @JsonProperty(value = "accountName")
+    private String accountName;
+
+    /*
      * Queue name.
      */
     @JsonProperty(value = "queueName")
@@ -31,10 +37,36 @@ public final class QueueScaleRule {
     @JsonProperty(value = "auth")
     private List<ScaleRuleAuth> auth;
 
+    /*
+     * The resource ID of a user-assigned managed identity that is assigned to the Container App, or 'system' for system-assigned identity.
+     */
+    @JsonProperty(value = "identity")
+    private String identity;
+
     /**
      * Creates an instance of QueueScaleRule class.
      */
     public QueueScaleRule() {
+    }
+
+    /**
+     * Get the accountName property: Storage account name. required if using managed identity to authenticate.
+     * 
+     * @return the accountName value.
+     */
+    public String accountName() {
+        return this.accountName;
+    }
+
+    /**
+     * Set the accountName property: Storage account name. required if using managed identity to authenticate.
+     * 
+     * @param accountName the accountName value to set.
+     * @return the QueueScaleRule object itself.
+     */
+    public QueueScaleRule withAccountName(String accountName) {
+        this.accountName = accountName;
+        return this;
     }
 
     /**
@@ -94,6 +126,28 @@ public final class QueueScaleRule {
      */
     public QueueScaleRule withAuth(List<ScaleRuleAuth> auth) {
         this.auth = auth;
+        return this;
+    }
+
+    /**
+     * Get the identity property: The resource ID of a user-assigned managed identity that is assigned to the Container
+     * App, or 'system' for system-assigned identity.
+     * 
+     * @return the identity value.
+     */
+    public String identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The resource ID of a user-assigned managed identity that is assigned to the Container
+     * App, or 'system' for system-assigned identity.
+     * 
+     * @param identity the identity value to set.
+     * @return the QueueScaleRule object itself.
+     */
+    public QueueScaleRule withIdentity(String identity) {
+        this.identity = identity;
         return this;
     }
 

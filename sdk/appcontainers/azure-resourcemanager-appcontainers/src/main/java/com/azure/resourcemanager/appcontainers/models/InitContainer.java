@@ -31,6 +31,15 @@ public final class InitContainer extends BaseContainer {
      * {@inheritDoc}
      */
     @Override
+    public InitContainer withImageType(ImageType imageType) {
+        super.withImageType(imageType);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public InitContainer withName(String name) {
         super.withName(name);
         return this;
