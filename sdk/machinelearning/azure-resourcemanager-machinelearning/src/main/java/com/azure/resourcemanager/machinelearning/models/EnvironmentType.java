@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Environment type is either user created or curated by Azure ML service. */
+/**
+ * Environment type is either user created or curated by Azure ML service.
+ */
 public final class EnvironmentType extends ExpandableStringEnum<EnvironmentType> {
-    /** Static value Curated for EnvironmentType. */
+    /**
+     * Static value Curated for EnvironmentType.
+     */
     public static final EnvironmentType CURATED = fromString("Curated");
 
-    /** Static value UserCreated for EnvironmentType. */
+    /**
+     * Static value UserCreated for EnvironmentType.
+     */
     public static final EnvironmentType USER_CREATED = fromString("UserCreated");
 
     /**
      * Creates a new instance of EnvironmentType value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class EnvironmentType extends ExpandableStringEnum<EnvironmentType>
 
     /**
      * Creates or finds a EnvironmentType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding EnvironmentType.
      */
@@ -38,7 +44,7 @@ public final class EnvironmentType extends ExpandableStringEnum<EnvironmentType>
 
     /**
      * Gets known EnvironmentType values.
-     *
+     * 
      * @return known EnvironmentType values.
      */
     public static Collection<EnvironmentType> values() {

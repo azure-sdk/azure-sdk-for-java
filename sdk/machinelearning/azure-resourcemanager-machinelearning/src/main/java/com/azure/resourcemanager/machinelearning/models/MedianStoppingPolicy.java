@@ -5,26 +5,57 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines an early termination policy based on running averages of the primary metric of all runs. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "policyType")
+/**
+ * Defines an early termination policy based on running averages of the primary metric of all runs.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "policyType",
+    defaultImpl = MedianStoppingPolicy.class,
+    visible = true)
 @JsonTypeName("MedianStopping")
 @Fluent
 public final class MedianStoppingPolicy extends EarlyTerminationPolicy {
-    /** Creates an instance of MedianStoppingPolicy class. */
+    /*
+     * [Required] Name of policy configuration
+     */
+    @JsonTypeId
+    @JsonProperty(value = "policyType", required = true)
+    private EarlyTerminationPolicyType policyType = EarlyTerminationPolicyType.MEDIAN_STOPPING;
+
+    /**
+     * Creates an instance of MedianStoppingPolicy class.
+     */
     public MedianStoppingPolicy() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * Get the policyType property: [Required] Name of policy configuration.
+     * 
+     * @return the policyType value.
+     */
+    @Override
+    public EarlyTerminationPolicyType policyType() {
+        return this.policyType;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MedianStoppingPolicy withDelayEvaluation(Integer delayEvaluation) {
         super.withDelayEvaluation(delayEvaluation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MedianStoppingPolicy withEvaluationInterval(Integer evaluationInterval) {
         super.withEvaluationInterval(evaluationInterval);
@@ -33,7 +64,7 @@ public final class MedianStoppingPolicy extends EarlyTerminationPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Featurization Configuration. */
+/**
+ * Featurization Configuration.
+ */
 @Fluent
 public class FeaturizationSettings {
     /*
@@ -16,13 +18,15 @@ public class FeaturizationSettings {
     @JsonProperty(value = "datasetLanguage")
     private String datasetLanguage;
 
-    /** Creates an instance of FeaturizationSettings class. */
+    /**
+     * Creates an instance of FeaturizationSettings class.
+     */
     public FeaturizationSettings() {
     }
 
     /**
      * Get the datasetLanguage property: Dataset language, useful for the text data.
-     *
+     * 
      * @return the datasetLanguage value.
      */
     public String datasetLanguage() {
@@ -31,7 +35,7 @@ public class FeaturizationSettings {
 
     /**
      * Set the datasetLanguage property: Dataset language, useful for the text data.
-     *
+     * 
      * @param datasetLanguage the datasetLanguage value to set.
      * @return the FeaturizationSettings object itself.
      */
@@ -42,7 +46,7 @@ public class FeaturizationSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
