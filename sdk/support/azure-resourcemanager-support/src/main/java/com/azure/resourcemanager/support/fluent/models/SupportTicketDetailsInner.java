@@ -6,7 +6,6 @@ package com.azure.resourcemanager.support.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.support.models.Consent;
 import com.azure.resourcemanager.support.models.ContactProfile;
 import com.azure.resourcemanager.support.models.IsTemporaryTicket;
@@ -28,8 +27,8 @@ public final class SupportTicketDetailsInner extends ProxyResource {
     /*
      * Properties of the resource.
      */
-    @JsonProperty(value = "properties", required = true)
-    private SupportTicketDetailsProperties innerProperties = new SupportTicketDetailsProperties();
+    @JsonProperty(value = "properties")
+    private SupportTicketDetailsProperties innerProperties;
 
     /**
      * Creates an instance of SupportTicketDetailsInner class.
@@ -573,14 +572,8 @@ public final class SupportTicketDetailsInner extends ProxyResource {
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
-        if (innerProperties() == null) {
-            throw LOGGER.atError()
-                .log(new IllegalArgumentException(
-                    "Missing required property innerProperties in model SupportTicketDetailsInner"));
-        } else {
+        if (innerProperties() != null) {
             innerProperties().validate();
         }
     }
-
-    private static final ClientLogger LOGGER = new ClientLogger(SupportTicketDetailsInner.class);
 }
