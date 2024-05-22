@@ -3,7 +3,7 @@
 
 ## CheckNameAvailability
 
-- [Post](#checknameavailability_post)
+- [CheckAvailability](#checknameavailability_checkavailability)
 
 ## Diagnostics
 
@@ -14,13 +14,10 @@
 
 - [List](#discoverysolution_list)
 
-## DiscoverySolutionNlpSubscriptionScope
+## DiscoverySolutionNlp
 
-- [Post](#discoverysolutionnlpsubscriptionscope_post)
-
-## DiscoverySolutionNlpTenantScope
-
-- [Post](#discoverysolutionnlptenantscope_post)
+- [DiscoverSolutions](#discoverysolutionnlp_discoversolutions)
+- [DiscoverSolutionsBySubscription](#discoverysolutionnlp_discoversolutionsbysubscription)
 
 ## Operations
 
@@ -49,15 +46,15 @@
 - [End](#troubleshooters_end)
 - [Get](#troubleshooters_get)
 - [Restart](#troubleshooters_restart)
-### CheckNameAvailability_Post
+### CheckNameAvailability_CheckAvailability
 
 ```java
 import com.azure.resourcemanager.selfhelp.models.CheckNameAvailabilityRequest;
 
 /**
- * Samples for CheckNameAvailability Post.
+ * Samples for CheckNameAvailability CheckAvailability.
  */
-public final class CheckNameAvailabilityPostSamples {
+public final class CheckNameAvailabilityCheckAvailabilitySamples {
     /*
      * x-ms-original-file: specification/help/resource-manager/Microsoft.Help/preview/2024-03-01-preview/examples/CheckNameAvailabilityForDiagnosticWhenNameIsNotAvailable.json
      */
@@ -69,7 +66,7 @@ public final class CheckNameAvailabilityPostSamples {
     public static void exampleWhenNameIsNotAvailableForADiagnosticResource(
         com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
         manager.checkNameAvailabilities()
-            .postWithResponse("subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6",
+            .checkAvailabilityWithResponse("subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6",
                 new CheckNameAvailabilityRequest().withName("sampleName").withType("Microsoft.Help/diagnostics"),
                 com.azure.core.util.Context.NONE);
     }
@@ -85,7 +82,7 @@ public final class CheckNameAvailabilityPostSamples {
     public static void
         exampleWhenNameIsAvailableForADiagnosticResource(com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
         manager.checkNameAvailabilities()
-            .postWithResponse("subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6",
+            .checkAvailabilityWithResponse("subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6",
                 new CheckNameAvailabilityRequest().withName("sampleName").withType("Microsoft.Help/diagnostics"),
                 com.azure.core.util.Context.NONE);
     }
@@ -166,44 +163,15 @@ public final class DiscoverySolutionListSamples {
 }
 ```
 
-### DiscoverySolutionNlpSubscriptionScope_Post
+### DiscoverySolutionNlp_DiscoverSolutions
 
 ```java
 import com.azure.resourcemanager.selfhelp.models.DiscoveryNlpRequest;
 
 /**
- * Samples for DiscoverySolutionNlpSubscriptionScope Post.
+ * Samples for DiscoverySolutionNlp DiscoverSolutions.
  */
-public final class DiscoverySolutionNlpSubscriptionScopePostSamples {
-    /*
-     * x-ms-original-file: specification/help/resource-manager/Microsoft.Help/preview/2024-03-01-preview/examples/DiscoverSolutionsAtSubscriptionScope.json
-     */
-    /**
-     * Sample code: Discovery Solutions using issue summary and service id.
-     * 
-     * @param manager Entry point to SelfHelpManager.
-     */
-    public static void
-        discoverySolutionsUsingIssueSummaryAndServiceId(com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
-        manager.discoverySolutionNlpSubscriptionScopes()
-            .postWithResponse("0d0fcd2e-c4fd-4349-8497-200edb3923c6", new DiscoveryNlpRequest()
-                .withIssueSummary("how to retrieve certs from deleted keyvault.")
-                .withResourceId(
-                    "subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read")
-                .withServiceId("0d0fcd2e-c4fd-4349-8497-200edb39s3ca"), com.azure.core.util.Context.NONE);
-    }
-}
-```
-
-### DiscoverySolutionNlpTenantScope_Post
-
-```java
-import com.azure.resourcemanager.selfhelp.models.DiscoveryNlpRequest;
-
-/**
- * Samples for DiscoverySolutionNlpTenantScope Post.
- */
-public final class DiscoverySolutionNlpTenantScopePostSamples {
+public final class DiscoverySolutionNlpDiscoverSolutionsSamples {
     /*
      * x-ms-original-file: specification/help/resource-manager/Microsoft.Help/preview/2024-03-01-preview/examples/DiscoverSolutionsAtTenantScope.json
      */
@@ -214,9 +182,41 @@ public final class DiscoverySolutionNlpTenantScopePostSamples {
      */
     public static void
         discoverySolutionsUsingIssueSummaryAndServiceId(com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
-        manager.discoverySolutionNlpTenantScopes()
-            .postWithResponse(new DiscoveryNlpRequest().withIssueSummary("how to retrieve certs from deleted keyvault.")
-                .withServiceId("0d0fcd2e-c4fd-4349-8497-200edb39s3ca"), com.azure.core.util.Context.NONE);
+        manager.discoverySolutionNlps()
+            .discoverSolutionsWithResponse(
+                new DiscoveryNlpRequest().withIssueSummary("how to retrieve certs from deleted keyvault.")
+                    .withServiceId("0d0fcd2e-c4fd-4349-8497-200edb39s3ca"),
+                com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### DiscoverySolutionNlp_DiscoverSolutionsBySubscription
+
+```java
+import com.azure.resourcemanager.selfhelp.models.DiscoveryNlpRequest;
+
+/**
+ * Samples for DiscoverySolutionNlp DiscoverSolutionsBySubscription.
+ */
+public final class DiscoverySolutionNlpDiscoverSolutionsBySubscriptionSamples {
+    /*
+     * x-ms-original-file: specification/help/resource-manager/Microsoft.Help/preview/2024-03-01-preview/examples/DiscoverSolutionsAtSubscriptionScope.json
+     */
+    /**
+     * Sample code: Discovery Solutions using issue summary and service id.
+     * 
+     * @param manager Entry point to SelfHelpManager.
+     */
+    public static void
+        discoverySolutionsUsingIssueSummaryAndServiceId(com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
+        manager.discoverySolutionNlps()
+            .discoverSolutionsBySubscriptionWithResponse("0d0fcd2e-c4fd-4349-8497-200edb3923c6",
+                new DiscoveryNlpRequest().withIssueSummary("how to retrieve certs from deleted keyvault.")
+                    .withResourceId(
+                        "subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read")
+                    .withServiceId("0d0fcd2e-c4fd-4349-8497-200edb39s3ca"),
+                com.azure.core.util.Context.NONE);
     }
 }
 ```

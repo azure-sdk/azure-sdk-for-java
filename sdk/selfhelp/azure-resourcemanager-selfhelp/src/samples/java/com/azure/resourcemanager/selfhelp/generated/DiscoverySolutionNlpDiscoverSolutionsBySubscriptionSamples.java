@@ -7,9 +7,9 @@ package com.azure.resourcemanager.selfhelp.generated;
 import com.azure.resourcemanager.selfhelp.models.DiscoveryNlpRequest;
 
 /**
- * Samples for DiscoverySolutionNlpSubscriptionScope Post.
+ * Samples for DiscoverySolutionNlp DiscoverSolutionsBySubscription.
  */
-public final class DiscoverySolutionNlpSubscriptionScopePostSamples {
+public final class DiscoverySolutionNlpDiscoverSolutionsBySubscriptionSamples {
     /*
      * x-ms-original-file: specification/help/resource-manager/Microsoft.Help/preview/2024-03-01-preview/examples/DiscoverSolutionsAtSubscriptionScope.json
      */
@@ -20,11 +20,12 @@ public final class DiscoverySolutionNlpSubscriptionScopePostSamples {
      */
     public static void
         discoverySolutionsUsingIssueSummaryAndServiceId(com.azure.resourcemanager.selfhelp.SelfHelpManager manager) {
-        manager.discoverySolutionNlpSubscriptionScopes()
-            .postWithResponse("0d0fcd2e-c4fd-4349-8497-200edb3923c6", new DiscoveryNlpRequest()
-                .withIssueSummary("how to retrieve certs from deleted keyvault.")
-                .withResourceId(
-                    "subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read")
-                .withServiceId("0d0fcd2e-c4fd-4349-8497-200edb39s3ca"), com.azure.core.util.Context.NONE);
+        manager.discoverySolutionNlps()
+            .discoverSolutionsBySubscriptionWithResponse("0d0fcd2e-c4fd-4349-8497-200edb3923c6",
+                new DiscoveryNlpRequest().withIssueSummary("how to retrieve certs from deleted keyvault.")
+                    .withResourceId(
+                        "subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read")
+                    .withServiceId("0d0fcd2e-c4fd-4349-8497-200edb39s3ca"),
+                com.azure.core.util.Context.NONE);
     }
 }
