@@ -36,7 +36,7 @@ public class DetectFacesAsync {
             FaceDetectionModel.DETECTION_03,
             FaceRecognitionModel.RECOGNITION_04,
             true,
-            Arrays.asList(Detection03.HEAD_POSE, Detection03.MASK, Recognition04.QUALITY_FOR_RECOGNITION),
+            Arrays.asList(Detection03.HEAD_POSE, Detection03.MASK, Detection03.BLUR, Recognition04.QUALITY_FOR_RECOGNITION),
             false,
             true,
             120)
