@@ -6,8 +6,6 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
@@ -15,11 +13,11 @@ import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
-/** A management group aggregated cost resource. */
+/**
+ * A management group aggregated cost resource.
+ */
 @Fluent
 public final class ManagementGroupAggregatedCostResultInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagementGroupAggregatedCostResultInner.class);
-
     /*
      * The properties of the Management Group Aggregated Cost.
      */
@@ -40,8 +38,14 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
     private Map<String, String> tags;
 
     /**
+     * Creates an instance of ManagementGroupAggregatedCostResultInner class.
+     */
+    public ManagementGroupAggregatedCostResultInner() {
+    }
+
+    /**
      * Get the innerProperties property: The properties of the Management Group Aggregated Cost.
-     *
+     * 
      * @return the innerProperties value.
      */
     private ManagementGroupAggregatedCostProperties innerProperties() {
@@ -50,7 +54,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Get the etag property: The etag for the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -59,7 +63,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -68,7 +72,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Get the billingPeriodId property: The id of the billing period resource that the aggregated cost belongs to.
-     *
+     * 
      * @return the billingPeriodId value.
      */
     public String billingPeriodId() {
@@ -77,7 +81,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Get the usageStart property: The start of the date time range covered by aggregated cost.
-     *
+     * 
      * @return the usageStart value.
      */
     public OffsetDateTime usageStart() {
@@ -86,7 +90,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Get the usageEnd property: The end of the date time range covered by the aggregated cost.
-     *
+     * 
      * @return the usageEnd value.
      */
     public OffsetDateTime usageEnd() {
@@ -95,7 +99,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Get the azureCharges property: Azure Charges.
-     *
+     * 
      * @return the azureCharges value.
      */
     public BigDecimal azureCharges() {
@@ -104,7 +108,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Get the marketplaceCharges property: Marketplace Charges.
-     *
+     * 
      * @return the marketplaceCharges value.
      */
     public BigDecimal marketplaceCharges() {
@@ -113,7 +117,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Get the chargesBilledSeparately property: Charges Billed Separately.
-     *
+     * 
      * @return the chargesBilledSeparately value.
      */
     public BigDecimal chargesBilledSeparately() {
@@ -122,7 +126,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Get the currency property: The ISO currency in which the meter is charged, for example, USD.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -131,7 +135,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Get the children property: Children of a management group.
-     *
+     * 
      * @return the children value.
      */
     public List<ManagementGroupAggregatedCostResultInner> children() {
@@ -140,12 +144,12 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Set the children property: Children of a management group.
-     *
+     * 
      * @param children the children value to set.
      * @return the ManagementGroupAggregatedCostResultInner object itself.
      */
-    public ManagementGroupAggregatedCostResultInner withChildren(
-        List<ManagementGroupAggregatedCostResultInner> children) {
+    public ManagementGroupAggregatedCostResultInner
+        withChildren(List<ManagementGroupAggregatedCostResultInner> children) {
         if (this.innerProperties() == null) {
             this.innerProperties = new ManagementGroupAggregatedCostProperties();
         }
@@ -156,7 +160,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
     /**
      * Get the includedSubscriptions property: List of subscription Guids included in the calculation of aggregated
      * cost.
-     *
+     * 
      * @return the includedSubscriptions value.
      */
     public List<String> includedSubscriptions() {
@@ -166,7 +170,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
     /**
      * Set the includedSubscriptions property: List of subscription Guids included in the calculation of aggregated
      * cost.
-     *
+     * 
      * @param includedSubscriptions the includedSubscriptions value to set.
      * @return the ManagementGroupAggregatedCostResultInner object itself.
      */
@@ -181,7 +185,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
     /**
      * Get the excludedSubscriptions property: List of subscription Guids excluded from the calculation of aggregated
      * cost.
-     *
+     * 
      * @return the excludedSubscriptions value.
      */
     public List<String> excludedSubscriptions() {
@@ -191,7 +195,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
     /**
      * Set the excludedSubscriptions property: List of subscription Guids excluded from the calculation of aggregated
      * cost.
-     *
+     * 
      * @param excludedSubscriptions the excludedSubscriptions value to set.
      * @return the ManagementGroupAggregatedCostResultInner object itself.
      */
@@ -205,7 +209,7 @@ public final class ManagementGroupAggregatedCostResultInner extends ProxyResourc
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -5,16 +5,14 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The tag resource. */
+/**
+ * The tag resource.
+ */
 @Fluent
 public final class Tag {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Tag.class);
-
     /*
      * Tag key.
      */
@@ -28,8 +26,14 @@ public final class Tag {
     private List<String> value;
 
     /**
+     * Creates an instance of Tag class.
+     */
+    public Tag() {
+    }
+
+    /**
      * Get the key property: Tag key.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -38,7 +42,7 @@ public final class Tag {
 
     /**
      * Set the key property: Tag key.
-     *
+     * 
      * @param key the key value to set.
      * @return the Tag object itself.
      */
@@ -49,7 +53,7 @@ public final class Tag {
 
     /**
      * Get the value property: Tag values.
-     *
+     * 
      * @return the value value.
      */
     public List<String> value() {
@@ -58,7 +62,7 @@ public final class Tag {
 
     /**
      * Set the value property: Tag values.
-     *
+     * 
      * @param value the value value to set.
      * @return the Tag object itself.
      */
@@ -69,7 +73,7 @@ public final class Tag {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

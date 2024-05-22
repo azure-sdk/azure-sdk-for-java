@@ -5,17 +5,15 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.BudgetInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of listing budgets. It contains a list of available budgets in the scope provided. */
+/**
+ * Result of listing budgets. It contains a list of available budgets in the scope provided.
+ */
 @Immutable
 public final class BudgetsListResult {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BudgetsListResult.class);
-
     /*
      * The list of budgets.
      */
@@ -29,8 +27,14 @@ public final class BudgetsListResult {
     private String nextLink;
 
     /**
+     * Creates an instance of BudgetsListResult class.
+     */
+    public BudgetsListResult() {
+    }
+
+    /**
      * Get the value property: The list of budgets.
-     *
+     * 
      * @return the value value.
      */
     public List<BudgetInner> value() {
@@ -39,7 +43,7 @@ public final class BudgetsListResult {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class BudgetsListResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

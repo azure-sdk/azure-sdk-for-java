@@ -4,35 +4,90 @@
 
 package com.azure.resourcemanager.consumption.generated;
 
-import com.azure.core.util.Context;
-
-/** Samples for LotsOperation ListByBillingAccount. */
+/**
+ * Samples for LotsOperation ListByBillingAccount.
+ */
 public final class LotsOperationListByBillingAccountSamples {
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/LotsListByBillingAccount.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/LotsListByBillingAccount.json
      */
     /**
      * Sample code: LotsListByBillingAccount.
-     *
+     * 
      * @param manager Entry point to ConsumptionManager.
      */
     public static void lotsListByBillingAccount(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager.lotsOperations().listByBillingAccount("1234:5678", null, Context.NONE);
+        manager.lotsOperations().listByBillingAccount("1234:5678", null, com.azure.core.util.Context.NONE);
     }
 
     /*
-     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2021-10-01/examples/LotsListByBillingAccountWithFilters.json
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/LotsListByBillingAccount-Primary.json
+     */
+    /**
+     * Sample code: LotsListByBillingAccount-Primary.
+     * 
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void
+        lotsListByBillingAccountPrimary(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.lotsOperations().listByBillingAccount("1234:5678", null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/LotsListByBillingAccountWithFilters.json
      */
     /**
      * Sample code: LotsListByBillingAccountWithStatusFilter.
-     *
+     * 
      * @param manager Entry point to ConsumptionManager.
      */
-    public static void lotsListByBillingAccountWithStatusFilter(
+    public static void
+        lotsListByBillingAccountWithStatusFilter(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.lotsOperations()
+            .listByBillingAccount("1234:5678", "status eq 'active' AND source eq 'consumptioncommitment'",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/LotsListByBillingAccount-Contributor.json
+     */
+    /**
+     * Sample code: LotsListByBillingAccount-Contributor.
+     * 
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void
+        lotsListByBillingAccountContributor(com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.lotsOperations().listByBillingAccount("1234:5678", null, com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/LotsListByBillingAccountWithFilters-Primary.json
+     */
+    /**
+     * Sample code: LotsListByBillingAccountWithStatusFilter-Primary.
+     * 
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void lotsListByBillingAccountWithStatusFilterPrimary(
         com.azure.resourcemanager.consumption.ConsumptionManager manager) {
-        manager
-            .lotsOperations()
-            .listByBillingAccount(
-                "1234:5678", "status eq 'active' AND source eq 'consumptioncommitment'", Context.NONE);
+        manager.lotsOperations()
+            .listByBillingAccount("1234:5678", "status eq 'active' AND source eq 'consumptioncommitment'",
+                com.azure.core.util.Context.NONE);
+    }
+
+    /*
+     * x-ms-original-file: specification/consumption/resource-manager/Microsoft.Consumption/stable/2023-11-01/examples/LotsListByBillingAccountWithFilters-Contributor.json
+     */
+    /**
+     * Sample code: LotsListByBillingAccountWithStatusFilter-Contributor.
+     * 
+     * @param manager Entry point to ConsumptionManager.
+     */
+    public static void lotsListByBillingAccountWithStatusFilterContributor(
+        com.azure.resourcemanager.consumption.ConsumptionManager manager) {
+        manager.lotsOperations()
+            .listByBillingAccount("1234:5678", "status eq 'active' AND source eq 'consumptioncommitment'",
+                com.azure.core.util.Context.NONE);
     }
 }

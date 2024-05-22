@@ -5,17 +5,15 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.LotSummaryInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of listing lot summary. */
+/**
+ * Result of listing lot summary.
+ */
 @Immutable
 public final class Lots {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Lots.class);
-
     /*
      * The list of lot summary.
      */
@@ -29,8 +27,14 @@ public final class Lots {
     private String nextLink;
 
     /**
+     * Creates an instance of Lots class.
+     */
+    public Lots() {
+    }
+
+    /**
      * Get the value property: The list of lot summary.
-     *
+     * 
      * @return the value value.
      */
     public List<LotSummaryInner> value() {
@@ -39,7 +43,7 @@ public final class Lots {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class Lots {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

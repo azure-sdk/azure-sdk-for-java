@@ -8,17 +8,32 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for Datagrain. */
+/**
+ * Defines values for Datagrain.
+ */
 public final class Datagrain extends ExpandableStringEnum<Datagrain> {
-    /** Static value daily for Datagrain. */
+    /**
+     * Static value daily for Datagrain.
+     */
     public static final Datagrain DAILY = fromString("daily");
 
-    /** Static value monthly for Datagrain. */
+    /**
+     * Static value monthly for Datagrain.
+     */
     public static final Datagrain MONTHLY = fromString("monthly");
 
     /**
+     * Creates a new instance of Datagrain value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public Datagrain() {
+    }
+
+    /**
      * Creates or finds a Datagrain from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding Datagrain.
      */
@@ -27,7 +42,11 @@ public final class Datagrain extends ExpandableStringEnum<Datagrain> {
         return fromString(name, Datagrain.class);
     }
 
-    /** @return known Datagrain values. */
+    /**
+     * Gets known Datagrain values.
+     * 
+     * @return known Datagrain values.
+     */
     public static Collection<Datagrain> values() {
         return values(Datagrain.class);
     }

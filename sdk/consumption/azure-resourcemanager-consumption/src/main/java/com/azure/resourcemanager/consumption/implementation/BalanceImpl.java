@@ -101,6 +101,10 @@ public final class BalanceImpl implements Balance {
         return this.innerModel().priceHidden();
     }
 
+    public BigDecimal overageRefund() {
+        return this.innerModel().overageRefund();
+    }
+
     public List<BalancePropertiesNewPurchasesDetailsItem> newPurchasesDetails() {
         List<BalancePropertiesNewPurchasesDetailsItem> inner = this.innerModel().newPurchasesDetails();
         if (inner != null) {

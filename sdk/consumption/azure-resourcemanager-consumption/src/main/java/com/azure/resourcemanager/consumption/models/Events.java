@@ -5,17 +5,15 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.fluent.models.EventSummaryInner;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of listing event summary. */
+/**
+ * Result of listing event summary.
+ */
 @Immutable
 public final class Events {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(Events.class);
-
     /*
      * The list of event summary.
      */
@@ -29,8 +27,14 @@ public final class Events {
     private String nextLink;
 
     /**
+     * Creates an instance of Events class.
+     */
+    public Events() {
+    }
+
+    /**
      * Get the value property: The list of event summary.
-     *
+     * 
      * @return the value value.
      */
     public List<EventSummaryInner> value() {
@@ -39,7 +43,7 @@ public final class Events {
 
     /**
      * Get the nextLink property: The link (url) to the next page of results.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -48,7 +52,7 @@ public final class Events {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

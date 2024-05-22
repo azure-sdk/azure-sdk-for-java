@@ -6,31 +6,33 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.LegacyUsageDetail;
 import com.azure.resourcemanager.consumption.models.ModernUsageDetail;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.azure.resourcemanager.consumption.models.UsageDetailsKind;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** An usage detail resource. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "kind",
-    defaultImpl = UsageDetailInner.class)
+/**
+ * An usage detail resource.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = UsageDetailInner.class, visible = true)
 @JsonTypeName("UsageDetail")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "legacy", value = LegacyUsageDetail.class),
-    @JsonSubTypes.Type(name = "modern", value = ModernUsageDetail.class)
-})
+    @JsonSubTypes.Type(name = "modern", value = ModernUsageDetail.class) })
 @Immutable
 public class UsageDetailInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(UsageDetailInner.class);
+    /*
+     * Specifies the kind of usage details.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private UsageDetailsKind kind;
 
     /*
      * The etag for the resource.
@@ -46,8 +48,24 @@ public class UsageDetailInner extends ProxyResource {
     private Map<String, String> tags;
 
     /**
+     * Creates an instance of UsageDetailInner class.
+     */
+    public UsageDetailInner() {
+        this.kind = UsageDetailsKind.fromString("UsageDetail");
+    }
+
+    /**
+     * Get the kind property: Specifies the kind of usage details.
+     * 
+     * @return the kind value.
+     */
+    public UsageDetailsKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the etag property: The etag for the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -56,7 +74,7 @@ public class UsageDetailInner extends ProxyResource {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -65,7 +83,7 @@ public class UsageDetailInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

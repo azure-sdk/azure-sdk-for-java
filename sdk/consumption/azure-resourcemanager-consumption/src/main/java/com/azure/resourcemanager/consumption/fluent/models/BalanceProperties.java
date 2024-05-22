@@ -5,20 +5,18 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.BalancePropertiesAdjustmentDetailsItem;
 import com.azure.resourcemanager.consumption.models.BalancePropertiesNewPurchasesDetailsItem;
 import com.azure.resourcemanager.consumption.models.BillingFrequency;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.util.List;
 
-/** The properties of the balance. */
+/**
+ * The properties of the balance.
+ */
 @Fluent
 public final class BalanceProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BalanceProperties.class);
-
     /*
      * The ISO currency in which the meter is charged, for example, USD.
      */
@@ -32,8 +30,7 @@ public final class BalanceProperties {
     private BigDecimal beginningBalance;
 
     /*
-     * The ending balance for the billing period (for open periods this will be
-     * updated daily).
+     * The ending balance for the billing period (for open periods this will be updated daily).
      */
     @JsonProperty(value = "endingBalance", access = JsonProperty.Access.WRITE_ONLY)
     private BigDecimal endingBalance;
@@ -99,6 +96,12 @@ public final class BalanceProperties {
     private Boolean priceHidden;
 
     /*
+     * Overage Refunds
+     */
+    @JsonProperty(value = "overageRefund", access = JsonProperty.Access.WRITE_ONLY)
+    private BigDecimal overageRefund;
+
+    /*
      * List of new purchases.
      */
     @JsonProperty(value = "newPurchasesDetails", access = JsonProperty.Access.WRITE_ONLY)
@@ -111,8 +114,14 @@ public final class BalanceProperties {
     private List<BalancePropertiesAdjustmentDetailsItem> adjustmentDetails;
 
     /**
+     * Creates an instance of BalanceProperties class.
+     */
+    public BalanceProperties() {
+    }
+
+    /**
      * Get the currency property: The ISO currency in which the meter is charged, for example, USD.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -121,7 +130,7 @@ public final class BalanceProperties {
 
     /**
      * Get the beginningBalance property: The beginning balance for the billing period.
-     *
+     * 
      * @return the beginningBalance value.
      */
     public BigDecimal beginningBalance() {
@@ -131,7 +140,7 @@ public final class BalanceProperties {
     /**
      * Get the endingBalance property: The ending balance for the billing period (for open periods this will be updated
      * daily).
-     *
+     * 
      * @return the endingBalance value.
      */
     public BigDecimal endingBalance() {
@@ -140,7 +149,7 @@ public final class BalanceProperties {
 
     /**
      * Get the newPurchases property: Total new purchase amount.
-     *
+     * 
      * @return the newPurchases value.
      */
     public BigDecimal newPurchases() {
@@ -149,7 +158,7 @@ public final class BalanceProperties {
 
     /**
      * Get the adjustments property: Total adjustment amount.
-     *
+     * 
      * @return the adjustments value.
      */
     public BigDecimal adjustments() {
@@ -158,7 +167,7 @@ public final class BalanceProperties {
 
     /**
      * Get the utilized property: Total Commitment usage.
-     *
+     * 
      * @return the utilized value.
      */
     public BigDecimal utilized() {
@@ -167,7 +176,7 @@ public final class BalanceProperties {
 
     /**
      * Get the serviceOverage property: Overage for Azure services.
-     *
+     * 
      * @return the serviceOverage value.
      */
     public BigDecimal serviceOverage() {
@@ -176,7 +185,7 @@ public final class BalanceProperties {
 
     /**
      * Get the chargesBilledSeparately property: Charges Billed separately.
-     *
+     * 
      * @return the chargesBilledSeparately value.
      */
     public BigDecimal chargesBilledSeparately() {
@@ -185,7 +194,7 @@ public final class BalanceProperties {
 
     /**
      * Get the totalOverage property: serviceOverage + chargesBilledSeparately.
-     *
+     * 
      * @return the totalOverage value.
      */
     public BigDecimal totalOverage() {
@@ -194,7 +203,7 @@ public final class BalanceProperties {
 
     /**
      * Get the totalUsage property: Azure service commitment + total Overage.
-     *
+     * 
      * @return the totalUsage value.
      */
     public BigDecimal totalUsage() {
@@ -203,7 +212,7 @@ public final class BalanceProperties {
 
     /**
      * Get the azureMarketplaceServiceCharges property: Total charges for Azure Marketplace.
-     *
+     * 
      * @return the azureMarketplaceServiceCharges value.
      */
     public BigDecimal azureMarketplaceServiceCharges() {
@@ -212,7 +221,7 @@ public final class BalanceProperties {
 
     /**
      * Get the billingFrequency property: The billing frequency.
-     *
+     * 
      * @return the billingFrequency value.
      */
     public BillingFrequency billingFrequency() {
@@ -221,7 +230,7 @@ public final class BalanceProperties {
 
     /**
      * Set the billingFrequency property: The billing frequency.
-     *
+     * 
      * @param billingFrequency the billingFrequency value to set.
      * @return the BalanceProperties object itself.
      */
@@ -232,7 +241,7 @@ public final class BalanceProperties {
 
     /**
      * Get the priceHidden property: Price is hidden or not.
-     *
+     * 
      * @return the priceHidden value.
      */
     public Boolean priceHidden() {
@@ -240,8 +249,17 @@ public final class BalanceProperties {
     }
 
     /**
+     * Get the overageRefund property: Overage Refunds.
+     * 
+     * @return the overageRefund value.
+     */
+    public BigDecimal overageRefund() {
+        return this.overageRefund;
+    }
+
+    /**
      * Get the newPurchasesDetails property: List of new purchases.
-     *
+     * 
      * @return the newPurchasesDetails value.
      */
     public List<BalancePropertiesNewPurchasesDetailsItem> newPurchasesDetails() {
@@ -250,7 +268,7 @@ public final class BalanceProperties {
 
     /**
      * Get the adjustmentDetails property: List of Adjustments (Promo credit, SIE credit etc.).
-     *
+     * 
      * @return the adjustmentDetails value.
      */
     public List<BalancePropertiesAdjustmentDetailsItem> adjustmentDetails() {
@@ -259,7 +277,7 @@ public final class BalanceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

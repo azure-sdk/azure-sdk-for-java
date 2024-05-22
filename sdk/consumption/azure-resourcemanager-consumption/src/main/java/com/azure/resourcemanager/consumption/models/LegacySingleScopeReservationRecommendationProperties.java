@@ -5,22 +5,30 @@
 package com.azure.resourcemanager.consumption.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
-import com.azure.resourcemanager.consumption.fluent.models.LegacyReservationRecommendationProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.UUID;
 
-/** The properties of the legacy reservation recommendation for single scope. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "scope")
+/**
+ * The properties of the legacy reservation recommendation for single scope.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "scope",
+    defaultImpl = LegacySingleScopeReservationRecommendationProperties.class,
+    visible = true)
 @JsonTypeName("Single")
 @Immutable
 public final class LegacySingleScopeReservationRecommendationProperties
     extends LegacyReservationRecommendationProperties {
-    @JsonIgnore
-    private final ClientLogger logger = new ClientLogger(LegacySingleScopeReservationRecommendationProperties.class);
+    /*
+     * Shared or single recommendation.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "scope", required = true)
+    private String scope = "Single";
 
     /*
      * Subscription id associated with single scoped recommendation.
@@ -29,8 +37,24 @@ public final class LegacySingleScopeReservationRecommendationProperties
     private UUID subscriptionId;
 
     /**
+     * Creates an instance of LegacySingleScopeReservationRecommendationProperties class.
+     */
+    public LegacySingleScopeReservationRecommendationProperties() {
+    }
+
+    /**
+     * Get the scope property: Shared or single recommendation.
+     * 
+     * @return the scope value.
+     */
+    @Override
+    public String scope() {
+        return this.scope;
+    }
+
+    /**
      * Get the subscriptionId property: Subscription id associated with single scoped recommendation.
-     *
+     * 
      * @return the subscriptionId value.
      */
     public UUID subscriptionId() {
@@ -39,7 +63,7 @@ public final class LegacySingleScopeReservationRecommendationProperties
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

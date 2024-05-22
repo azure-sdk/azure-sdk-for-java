@@ -6,22 +6,20 @@ package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
 import com.azure.core.management.ProxyResource;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.BalancePropertiesAdjustmentDetailsItem;
 import com.azure.resourcemanager.consumption.models.BalancePropertiesNewPurchasesDetailsItem;
 import com.azure.resourcemanager.consumption.models.BillingFrequency;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
-/** A balance resource. */
+/**
+ * A balance resource.
+ */
 @Fluent
 public final class BalanceInner extends ProxyResource {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(BalanceInner.class);
-
     /*
      * The properties of the balance.
      */
@@ -42,8 +40,14 @@ public final class BalanceInner extends ProxyResource {
     private Map<String, String> tags;
 
     /**
+     * Creates an instance of BalanceInner class.
+     */
+    public BalanceInner() {
+    }
+
+    /**
      * Get the innerProperties property: The properties of the balance.
-     *
+     * 
      * @return the innerProperties value.
      */
     private BalanceProperties innerProperties() {
@@ -52,7 +56,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the etag property: The etag for the resource.
-     *
+     * 
      * @return the etag value.
      */
     public String etag() {
@@ -61,7 +65,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -70,7 +74,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the currency property: The ISO currency in which the meter is charged, for example, USD.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -79,7 +83,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the beginningBalance property: The beginning balance for the billing period.
-     *
+     * 
      * @return the beginningBalance value.
      */
     public BigDecimal beginningBalance() {
@@ -89,7 +93,7 @@ public final class BalanceInner extends ProxyResource {
     /**
      * Get the endingBalance property: The ending balance for the billing period (for open periods this will be updated
      * daily).
-     *
+     * 
      * @return the endingBalance value.
      */
     public BigDecimal endingBalance() {
@@ -98,7 +102,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the newPurchases property: Total new purchase amount.
-     *
+     * 
      * @return the newPurchases value.
      */
     public BigDecimal newPurchases() {
@@ -107,7 +111,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the adjustments property: Total adjustment amount.
-     *
+     * 
      * @return the adjustments value.
      */
     public BigDecimal adjustments() {
@@ -116,7 +120,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the utilized property: Total Commitment usage.
-     *
+     * 
      * @return the utilized value.
      */
     public BigDecimal utilized() {
@@ -125,7 +129,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the serviceOverage property: Overage for Azure services.
-     *
+     * 
      * @return the serviceOverage value.
      */
     public BigDecimal serviceOverage() {
@@ -134,7 +138,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the chargesBilledSeparately property: Charges Billed separately.
-     *
+     * 
      * @return the chargesBilledSeparately value.
      */
     public BigDecimal chargesBilledSeparately() {
@@ -143,7 +147,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the totalOverage property: serviceOverage + chargesBilledSeparately.
-     *
+     * 
      * @return the totalOverage value.
      */
     public BigDecimal totalOverage() {
@@ -152,7 +156,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the totalUsage property: Azure service commitment + total Overage.
-     *
+     * 
      * @return the totalUsage value.
      */
     public BigDecimal totalUsage() {
@@ -161,7 +165,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the azureMarketplaceServiceCharges property: Total charges for Azure Marketplace.
-     *
+     * 
      * @return the azureMarketplaceServiceCharges value.
      */
     public BigDecimal azureMarketplaceServiceCharges() {
@@ -170,7 +174,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the billingFrequency property: The billing frequency.
-     *
+     * 
      * @return the billingFrequency value.
      */
     public BillingFrequency billingFrequency() {
@@ -179,7 +183,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Set the billingFrequency property: The billing frequency.
-     *
+     * 
      * @param billingFrequency the billingFrequency value to set.
      * @return the BalanceInner object itself.
      */
@@ -193,7 +197,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the priceHidden property: Price is hidden or not.
-     *
+     * 
      * @return the priceHidden value.
      */
     public Boolean priceHidden() {
@@ -201,8 +205,17 @@ public final class BalanceInner extends ProxyResource {
     }
 
     /**
+     * Get the overageRefund property: Overage Refunds.
+     * 
+     * @return the overageRefund value.
+     */
+    public BigDecimal overageRefund() {
+        return this.innerProperties() == null ? null : this.innerProperties().overageRefund();
+    }
+
+    /**
      * Get the newPurchasesDetails property: List of new purchases.
-     *
+     * 
      * @return the newPurchasesDetails value.
      */
     public List<BalancePropertiesNewPurchasesDetailsItem> newPurchasesDetails() {
@@ -211,7 +224,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Get the adjustmentDetails property: List of Adjustments (Promo credit, SIE credit etc.).
-     *
+     * 
      * @return the adjustmentDetails value.
      */
     public List<BalancePropertiesAdjustmentDetailsItem> adjustmentDetails() {
@@ -220,7 +233,7 @@ public final class BalanceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -8,20 +8,37 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Defines values for PricingModelType. */
+/**
+ * Identifier that indicates how the meter is priced.
+ */
 public final class PricingModelType extends ExpandableStringEnum<PricingModelType> {
-    /** Static value On Demand for PricingModelType. */
+    /**
+     * Static value On Demand for PricingModelType.
+     */
     public static final PricingModelType ON_DEMAND = fromString("On Demand");
 
-    /** Static value Reservation for PricingModelType. */
+    /**
+     * Static value Reservation for PricingModelType.
+     */
     public static final PricingModelType RESERVATION = fromString("Reservation");
 
-    /** Static value Spot for PricingModelType. */
+    /**
+     * Static value Spot for PricingModelType.
+     */
     public static final PricingModelType SPOT = fromString("Spot");
 
     /**
+     * Creates a new instance of PricingModelType value.
+     * 
+     * @deprecated Use the {@link #fromString(String)} factory method.
+     */
+    @Deprecated
+    public PricingModelType() {
+    }
+
+    /**
      * Creates or finds a PricingModelType from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding PricingModelType.
      */
@@ -30,7 +47,11 @@ public final class PricingModelType extends ExpandableStringEnum<PricingModelTyp
         return fromString(name, PricingModelType.class);
     }
 
-    /** @return known PricingModelType values. */
+    /**
+     * Gets known PricingModelType values.
+     * 
+     * @return known PricingModelType values.
+     */
     public static Collection<PricingModelType> values() {
         return values(PricingModelType.class);
     }
