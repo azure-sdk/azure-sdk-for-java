@@ -21,8 +21,7 @@ public final class Configuration {
 
     /*
      * ActiveRevisionsMode controls how active revisions are handled for the Container app:
-     * <list><item>Multiple: multiple revisions can be active.</item><item>Single: Only one revision can be active at a
-     * time. Revision weights can not be used in this mode. If no value if provided, this is the default.</item></list>
+     * <list><item>Multiple: multiple revisions can be active.</item><item>Single: Only one revision can be active at a time. Revision weights can not be used in this mode. If no value if provided, this is the default.</item></list>
      */
     @JsonProperty(value = "activeRevisionsMode")
     private ActiveRevisionsMode activeRevisionsMode;
@@ -46,6 +45,12 @@ public final class Configuration {
     private Dapr dapr;
 
     /*
+     * App runtime configuration for the Container App.
+     */
+    @JsonProperty(value = "runtime")
+    private Runtime runtime;
+
+    /*
      * Optional. Max inactive revisions a Container App can have.
      */
     @JsonProperty(value = "maxInactiveRevisions")
@@ -56,6 +61,12 @@ public final class Configuration {
      */
     @JsonProperty(value = "service")
     private Service service;
+
+    /*
+     * Optional settings for Managed Identities that are assigned to the Container App. If a Managed Identity is not specified here, default settings will be used.
+     */
+    @JsonProperty(value = "identitySettings")
+    private List<IdentitySettings> identitySettings;
 
     /**
      * Creates an instance of Configuration class.
@@ -87,8 +98,8 @@ public final class Configuration {
      * Get the activeRevisionsMode property: ActiveRevisionsMode controls how active revisions are handled for the
      * Container app:
      * &lt;list&gt;&lt;item&gt;Multiple: multiple revisions can be active.&lt;/item&gt;&lt;item&gt;Single: Only one
-     * revision can be active at a time. Revision weights can not be used in this mode. If no value if provided, this
-     * is the default.&lt;/item&gt;&lt;/list&gt;.
+     * revision can be active at a time. Revision weights can not be used in this mode. If no value if provided, this is
+     * the default.&lt;/item&gt;&lt;/list&gt;.
      * 
      * @return the activeRevisionsMode value.
      */
@@ -100,8 +111,8 @@ public final class Configuration {
      * Set the activeRevisionsMode property: ActiveRevisionsMode controls how active revisions are handled for the
      * Container app:
      * &lt;list&gt;&lt;item&gt;Multiple: multiple revisions can be active.&lt;/item&gt;&lt;item&gt;Single: Only one
-     * revision can be active at a time. Revision weights can not be used in this mode. If no value if provided, this
-     * is the default.&lt;/item&gt;&lt;/list&gt;.
+     * revision can be active at a time. Revision weights can not be used in this mode. If no value if provided, this is
+     * the default.&lt;/item&gt;&lt;/list&gt;.
      * 
      * @param activeRevisionsMode the activeRevisionsMode value to set.
      * @return the Configuration object itself.
@@ -174,6 +185,26 @@ public final class Configuration {
     }
 
     /**
+     * Get the runtime property: App runtime configuration for the Container App.
+     * 
+     * @return the runtime value.
+     */
+    public Runtime runtime() {
+        return this.runtime;
+    }
+
+    /**
+     * Set the runtime property: App runtime configuration for the Container App.
+     * 
+     * @param runtime the runtime value to set.
+     * @return the Configuration object itself.
+     */
+    public Configuration withRuntime(Runtime runtime) {
+        this.runtime = runtime;
+        return this;
+    }
+
+    /**
      * Get the maxInactiveRevisions property: Optional. Max inactive revisions a Container App can have.
      * 
      * @return the maxInactiveRevisions value.
@@ -214,6 +245,28 @@ public final class Configuration {
     }
 
     /**
+     * Get the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
+     * App. If a Managed Identity is not specified here, default settings will be used.
+     * 
+     * @return the identitySettings value.
+     */
+    public List<IdentitySettings> identitySettings() {
+        return this.identitySettings;
+    }
+
+    /**
+     * Set the identitySettings property: Optional settings for Managed Identities that are assigned to the Container
+     * App. If a Managed Identity is not specified here, default settings will be used.
+     * 
+     * @param identitySettings the identitySettings value to set.
+     * @return the Configuration object itself.
+     */
+    public Configuration withIdentitySettings(List<IdentitySettings> identitySettings) {
+        this.identitySettings = identitySettings;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -231,8 +284,14 @@ public final class Configuration {
         if (dapr() != null) {
             dapr().validate();
         }
+        if (runtime() != null) {
+            runtime().validate();
+        }
         if (service() != null) {
             service().validate();
+        }
+        if (identitySettings() != null) {
+            identitySettings().forEach(e -> e.validate());
         }
     }
 }

@@ -32,8 +32,7 @@ public final class ContainerAppProbeHttpGet {
     private String path;
 
     /*
-     * Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an
-     * IANA_SVC_NAME.
+     * Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
      */
     @JsonProperty(value = "port", required = true)
     private int port;

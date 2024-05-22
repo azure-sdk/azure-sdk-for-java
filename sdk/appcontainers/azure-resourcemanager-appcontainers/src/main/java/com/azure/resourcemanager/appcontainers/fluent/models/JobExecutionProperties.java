@@ -5,6 +5,7 @@
 package com.azure.resourcemanager.appcontainers.fluent.models;
 
 import com.azure.core.annotation.Fluent;
+import com.azure.resourcemanager.appcontainers.models.ExecutionStatus;
 import com.azure.resourcemanager.appcontainers.models.JobExecutionRunningState;
 import com.azure.resourcemanager.appcontainers.models.JobExecutionTemplate;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -38,6 +39,12 @@ public final class JobExecutionProperties {
      */
     @JsonProperty(value = "template")
     private JobExecutionTemplate template;
+
+    /*
+     * Detailed status of the job execution.
+     */
+    @JsonProperty(value = "detailedStatus")
+    private ExecutionStatus detailedStatus;
 
     /**
      * Creates an instance of JobExecutionProperties class.
@@ -115,6 +122,26 @@ public final class JobExecutionProperties {
     }
 
     /**
+     * Get the detailedStatus property: Detailed status of the job execution.
+     * 
+     * @return the detailedStatus value.
+     */
+    public ExecutionStatus detailedStatus() {
+        return this.detailedStatus;
+    }
+
+    /**
+     * Set the detailedStatus property: Detailed status of the job execution.
+     * 
+     * @param detailedStatus the detailedStatus value to set.
+     * @return the JobExecutionProperties object itself.
+     */
+    public JobExecutionProperties withDetailedStatus(ExecutionStatus detailedStatus) {
+        this.detailedStatus = detailedStatus;
+        return this;
+    }
+
+    /**
      * Validates the instance.
      * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
@@ -122,6 +149,9 @@ public final class JobExecutionProperties {
     public void validate() {
         if (template() != null) {
             template().validate();
+        }
+        if (detailedStatus() != null) {
+            detailedStatus().validate();
         }
     }
 }
