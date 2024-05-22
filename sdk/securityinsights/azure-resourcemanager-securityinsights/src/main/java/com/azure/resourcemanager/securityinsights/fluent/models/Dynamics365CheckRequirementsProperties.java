@@ -7,10 +7,20 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 
-/** Dynamics365 requirements check properties. */
+/**
+ * Dynamics365 requirements check properties.
+ */
 @Fluent
 public final class Dynamics365CheckRequirementsProperties extends DataConnectorTenantId {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of Dynamics365CheckRequirementsProperties class.
+     */
+    public Dynamics365CheckRequirementsProperties() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Dynamics365CheckRequirementsProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -19,7 +29,7 @@ public final class Dynamics365CheckRequirementsProperties extends DataConnectorT
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

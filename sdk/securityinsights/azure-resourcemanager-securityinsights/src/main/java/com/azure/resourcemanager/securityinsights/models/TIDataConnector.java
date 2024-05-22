@@ -8,15 +8,25 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.fluent.models.DataConnectorInner;
 import com.azure.resourcemanager.securityinsights.fluent.models.TIDataConnectorProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.OffsetDateTime;
 
-/** Represents threat intelligence data connector. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "kind")
+/**
+ * Represents threat intelligence data connector.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "kind", defaultImpl = TIDataConnector.class, visible = true)
 @JsonTypeName("ThreatIntelligence")
 @Fluent
 public final class TIDataConnector extends DataConnectorInner {
+    /*
+     * The data connector kind
+     */
+    @JsonTypeId
+    @JsonProperty(value = "kind", required = true)
+    private DataConnectorKind kind = DataConnectorKind.THREAT_INTELLIGENCE;
+
     /*
      * TI (Threat Intelligence) data connector properties.
      */
@@ -24,15 +34,33 @@ public final class TIDataConnector extends DataConnectorInner {
     private TIDataConnectorProperties innerProperties;
 
     /**
+     * Creates an instance of TIDataConnector class.
+     */
+    public TIDataConnector() {
+    }
+
+    /**
+     * Get the kind property: The data connector kind.
+     * 
+     * @return the kind value.
+     */
+    @Override
+    public DataConnectorKind kind() {
+        return this.kind;
+    }
+
+    /**
      * Get the innerProperties property: TI (Threat Intelligence) data connector properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private TIDataConnectorProperties innerProperties() {
         return this.innerProperties;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public TIDataConnector withEtag(String etag) {
         super.withEtag(etag);
@@ -41,7 +69,7 @@ public final class TIDataConnector extends DataConnectorInner {
 
     /**
      * Get the tipLookbackPeriod property: The lookback period for the feed to be imported.
-     *
+     * 
      * @return the tipLookbackPeriod value.
      */
     public OffsetDateTime tipLookbackPeriod() {
@@ -50,7 +78,7 @@ public final class TIDataConnector extends DataConnectorInner {
 
     /**
      * Set the tipLookbackPeriod property: The lookback period for the feed to be imported.
-     *
+     * 
      * @param tipLookbackPeriod the tipLookbackPeriod value to set.
      * @return the TIDataConnector object itself.
      */
@@ -64,7 +92,7 @@ public final class TIDataConnector extends DataConnectorInner {
 
     /**
      * Get the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @return the dataTypes value.
      */
     public TIDataConnectorDataTypes dataTypes() {
@@ -73,7 +101,7 @@ public final class TIDataConnector extends DataConnectorInner {
 
     /**
      * Set the dataTypes property: The available data types for the connector.
-     *
+     * 
      * @param dataTypes the dataTypes value to set.
      * @return the TIDataConnector object itself.
      */
@@ -87,7 +115,7 @@ public final class TIDataConnector extends DataConnectorInner {
 
     /**
      * Get the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @return the tenantId value.
      */
     public String tenantId() {
@@ -96,7 +124,7 @@ public final class TIDataConnector extends DataConnectorInner {
 
     /**
      * Set the tenantId property: The tenant id to connect to, and get the data from.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the TIDataConnector object itself.
      */
@@ -110,7 +138,7 @@ public final class TIDataConnector extends DataConnectorInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

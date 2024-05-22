@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem model. */
+/**
+ * The InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem model.
+ */
 @Fluent
 public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem {
     /*
@@ -36,8 +38,14 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem {
     private List<InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem> linkColumnsDefinitions;
 
     /**
+     * Creates an instance of InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem class.
+     */
+    public InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem() {
+    }
+
+    /**
      * Get the filter property: Insight column header.
-     *
+     * 
      * @return the filter value.
      */
     public String filter() {
@@ -46,7 +54,7 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem {
 
     /**
      * Set the filter property: Insight column header.
-     *
+     * 
      * @param filter the filter value to set.
      * @return the InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem object itself.
      */
@@ -57,7 +65,7 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem {
 
     /**
      * Get the summarize property: Insight column header.
-     *
+     * 
      * @return the summarize value.
      */
     public String summarize() {
@@ -66,7 +74,7 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem {
 
     /**
      * Set the summarize property: Insight column header.
-     *
+     * 
      * @param summarize the summarize value to set.
      * @return the InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem object itself.
      */
@@ -77,7 +85,7 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem {
 
     /**
      * Get the project property: Insight column header.
-     *
+     * 
      * @return the project value.
      */
     public String project() {
@@ -86,7 +94,7 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem {
 
     /**
      * Set the project property: Insight column header.
-     *
+     * 
      * @param project the project value to set.
      * @return the InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem object itself.
      */
@@ -97,7 +105,7 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem {
 
     /**
      * Get the linkColumnsDefinitions property: Insight column header.
-     *
+     * 
      * @return the linkColumnsDefinitions value.
      */
     public List<InsightQueryItemPropertiesTableQueryQueriesDefinitionsPropertiesItemsItem> linkColumnsDefinitions() {
@@ -106,7 +114,7 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem {
 
     /**
      * Set the linkColumnsDefinitions property: Insight column header.
-     *
+     * 
      * @param linkColumnsDefinitions the linkColumnsDefinitions value to set.
      * @return the InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem object itself.
      */
@@ -118,7 +126,7 @@ public final class InsightQueryItemPropertiesTableQueryQueriesDefinitionsItem {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

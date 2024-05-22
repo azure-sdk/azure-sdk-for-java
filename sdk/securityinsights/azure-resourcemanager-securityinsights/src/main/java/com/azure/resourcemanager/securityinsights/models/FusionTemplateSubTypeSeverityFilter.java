@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Represents severity configurations available for a source subtype consumed in Fusion detection. */
+/**
+ * Represents severity configurations available for a source subtype consumed in Fusion detection.
+ */
 @Fluent
 public final class FusionTemplateSubTypeSeverityFilter {
     /*
@@ -24,9 +26,15 @@ public final class FusionTemplateSubTypeSeverityFilter {
     private List<AlertSeverity> severityFilters;
 
     /**
+     * Creates an instance of FusionTemplateSubTypeSeverityFilter class.
+     */
+    public FusionTemplateSubTypeSeverityFilter() {
+    }
+
+    /**
      * Get the isSupported property: Determines whether severity configuration is supported for this source subtype
      * consumed in Fusion detection.
-     *
+     * 
      * @return the isSupported value.
      */
     public boolean isSupported() {
@@ -36,7 +44,7 @@ public final class FusionTemplateSubTypeSeverityFilter {
     /**
      * Set the isSupported property: Determines whether severity configuration is supported for this source subtype
      * consumed in Fusion detection.
-     *
+     * 
      * @param isSupported the isSupported value to set.
      * @return the FusionTemplateSubTypeSeverityFilter object itself.
      */
@@ -48,7 +56,7 @@ public final class FusionTemplateSubTypeSeverityFilter {
     /**
      * Get the severityFilters property: List of all supported severities for this source subtype consumed in Fusion
      * detection.
-     *
+     * 
      * @return the severityFilters value.
      */
     public List<AlertSeverity> severityFilters() {
@@ -58,7 +66,7 @@ public final class FusionTemplateSubTypeSeverityFilter {
     /**
      * Set the severityFilters property: List of all supported severities for this source subtype consumed in Fusion
      * detection.
-     *
+     * 
      * @param severityFilters the severityFilters value to set.
      * @return the FusionTemplateSubTypeSeverityFilter object itself.
      */
@@ -69,7 +77,7 @@ public final class FusionTemplateSubTypeSeverityFilter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,10 +7,20 @@ package com.azure.resourcemanager.securityinsights.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.securityinsights.models.DataConnectorTenantId;
 
-/** MDATP (Microsoft Defender Advanced Threat Protection) requirements check properties. */
+/**
+ * MDATP (Microsoft Defender Advanced Threat Protection) requirements check properties.
+ */
 @Fluent
 public final class MdatpCheckRequirementsProperties extends DataConnectorTenantId {
-    /** {@inheritDoc} */
+    /**
+     * Creates an instance of MdatpCheckRequirementsProperties class.
+     */
+    public MdatpCheckRequirementsProperties() {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MdatpCheckRequirementsProperties withTenantId(String tenantId) {
         super.withTenantId(tenantId);
@@ -19,7 +29,7 @@ public final class MdatpCheckRequirementsProperties extends DataConnectorTenantI
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
