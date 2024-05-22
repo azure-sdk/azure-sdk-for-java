@@ -24,8 +24,11 @@ import com.azure.messaging.eventgrid.namespaces.models.AcknowledgeResult;
 import com.azure.messaging.eventgrid.namespaces.models.ReceiveResult;
 import com.azure.messaging.eventgrid.namespaces.models.RejectOptions;
 import com.azure.messaging.eventgrid.namespaces.models.RejectResult;
+import com.azure.messaging.eventgrid.namespaces.models.ReleaseDelay;
 import com.azure.messaging.eventgrid.namespaces.models.ReleaseOptions;
 import com.azure.messaging.eventgrid.namespaces.models.ReleaseResult;
+import com.azure.messaging.eventgrid.namespaces.models.RenewCloudEventLocksResult;
+import com.azure.messaging.eventgrid.namespaces.models.RenewLockOptions;
 import java.time.Duration;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
@@ -63,10 +66,7 @@ public final class EventGridAsyncClient {
     }
 
     /**
-     * Publish Single Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status
-     * code with an empty JSON object in response. Otherwise, the server can return various error codes. For example,
-     * 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410:
-     * which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error.
+     * Publish a single Cloud Event to a namespace topic.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -107,10 +107,7 @@ public final class EventGridAsyncClient {
     }
 
     /**
-     * Publish Batch Cloud Event to namespace topic. In case of success, the server responds with an HTTP 200 status
-     * code with an empty JSON object in response. Otherwise, the server can return various error codes. For example,
-     * 401: which indicates authorization failure, 403: which indicates quota exceeded or message is too large, 410:
-     * which indicates that specific topic is not found, 400: for bad request, and 500: for internal server error.
+     * Publish a batch of Cloud Events to a namespace topic.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -153,7 +150,7 @@ public final class EventGridAsyncClient {
     }
 
     /**
-     * Receive Batch of Cloud Events from the Event Subscription.
+     * Receive a batch of Cloud Events from a subscription.
      * <p><strong>Query Parameters</strong></p>
      * <table border="1">
      * <caption>Query Parameters</caption>
@@ -211,10 +208,9 @@ public final class EventGridAsyncClient {
     }
 
     /**
-     * Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if the request is
-     * successfully accepted. The response body will include the set of successfully acknowledged lockTokens, along with
-     * other failed lockTokens with their corresponding error information. Successfully acknowledged events will no
-     * longer be available to any consumer.
+     * Acknowledge a batch of Cloud Events. The response will include the set of successfully acknowledged lock tokens,
+     * along with other failed lock tokens with their corresponding error information. Successfully acknowledged events
+     * will no longer be available to be received by any consumer.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -272,9 +268,17 @@ public final class EventGridAsyncClient {
     }
 
     /**
-     * Release batch of Cloud Events. The server responds with an HTTP 200 status code if the request is successfully
-     * accepted. The response body will include the set of successfully released lockTokens, along with other failed
-     * lockTokens with their corresponding error information.
+     * Release a batch of Cloud Events. The response will include the set of successfully released lock tokens, along
+     * with other failed lock tokens with their corresponding error information. Successfully released events can be
+     * received by consumers.
+     * <p><strong>Query Parameters</strong></p>
+     * <table border="1">
+     * <caption>Query Parameters</caption>
+     * <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+     * <tr><td>releaseDelayInSeconds</td><td>String</td><td>No</td><td>Release cloud events with the specified delay in
+     * seconds. Allowed values: "0", "10", "60", "600", "3600".</td></tr>
+     * </table>
+     * You can add these to a request with {@link RequestOptions#addQueryParam}
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -331,9 +335,9 @@ public final class EventGridAsyncClient {
     }
 
     /**
-     * Reject batch of Cloud Events. The server responds with an HTTP 200 status code if the request is successfully
-     * accepted. The response body will include the set of successfully rejected lockTokens, along with other failed
-     * lockTokens with their corresponding error information.
+     * Reject a batch of Cloud Events. The response will include the set of successfully rejected lock tokens, along
+     * with other failed lock tokens with their corresponding error information. Successfully rejected events will be
+     * dead-lettered and can no longer be received by a consumer.
      * <p><strong>Request Body Schema</strong></p>
      * 
      * <pre>{@code
@@ -505,7 +509,7 @@ public final class EventGridAsyncClient {
     }
 
     /**
-     * Receive Batch of Cloud Events from the Event Subscription.
+     * Receive a batch of Cloud Events from a subscription.
      *
      * @param topicName Topic Name.
      * @param eventSubscriptionName Event Subscription Name.
@@ -541,7 +545,7 @@ public final class EventGridAsyncClient {
     }
 
     /**
-     * Receive Batch of Cloud Events from the Event Subscription.
+     * Receive a batch of Cloud Events from a subscription.
      *
      * @param topicName Topic Name.
      * @param eventSubscriptionName Event Subscription Name.
@@ -564,10 +568,9 @@ public final class EventGridAsyncClient {
     }
 
     /**
-     * Acknowledge batch of Cloud Events. The server responds with an HTTP 200 status code if the request is
-     * successfully accepted. The response body will include the set of successfully acknowledged lockTokens, along with
-     * other failed lockTokens with their corresponding error information. Successfully acknowledged events will no
-     * longer be available to any consumer.
+     * Acknowledge a batch of Cloud Events. The response will include the set of successfully acknowledged lock tokens,
+     * along with other failed lock tokens with their corresponding error information. Successfully acknowledged events
+     * will no longer be available to be received by any consumer.
      *
      * @param topicName Topic Name.
      * @param eventSubscriptionName Event Subscription Name.
@@ -592,9 +595,9 @@ public final class EventGridAsyncClient {
     }
 
     /**
-     * Release batch of Cloud Events. The server responds with an HTTP 200 status code if the request is successfully
-     * accepted. The response body will include the set of successfully released lockTokens, along with other failed
-     * lockTokens with their corresponding error information.
+     * Release a batch of Cloud Events. The response will include the set of successfully released lock tokens, along
+     * with other failed lock tokens with their corresponding error information. Successfully released events can be
+     * received by consumers.
      *
      * @param topicName Topic Name.
      * @param eventSubscriptionName Event Subscription Name.
@@ -619,9 +622,9 @@ public final class EventGridAsyncClient {
     }
 
     /**
-     * Reject batch of Cloud Events. The server responds with an HTTP 200 status code if the request is successfully
-     * accepted. The response body will include the set of successfully rejected lockTokens, along with other failed
-     * lockTokens with their corresponding error information.
+     * Reject a batch of Cloud Events. The response will include the set of successfully rejected lock tokens, along
+     * with other failed lock tokens with their corresponding error information. Successfully rejected events will be
+     * dead-lettered and can no longer be received by a consumer.
      *
      * @param topicName Topic Name.
      * @param eventSubscriptionName Event Subscription Name.
@@ -643,5 +646,123 @@ public final class EventGridAsyncClient {
         return rejectCloudEventsWithResponse(topicName, eventSubscriptionName, BinaryData.fromObject(rejectOptions),
             requestOptions).flatMap(FluxUtil::toMono)
             .map(protocolMethodData -> protocolMethodData.toObject(RejectResult.class));
+    }
+
+    /**
+     * Renew locks for a batch of Cloud Events. The response will include the set of successfully renewed lock tokens,
+     * along with other failed lock tokens with their corresponding error information. Successfully renewed locks will
+     * ensure that the associated event is only available to the consumer that holds the renewed lock.
+     * <p><strong>Request Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     lockTokens (Required): [
+     *         String (Required)
+     *     ]
+     * }
+     * }</pre>
+     * 
+     * <p><strong>Response Body Schema</strong></p>
+     * 
+     * <pre>{@code
+     * {
+     *     failedLockTokens (Required): [
+     *          (Required){
+     *             lockToken: String (Required)
+     *             error (Required): {
+     *                 code: String (Required)
+     *                 message: String (Required)
+     *                 target: String (Optional)
+     *                 details (Optional): [
+     *                     (recursive schema, see above)
+     *                 ]
+     *                 innererror (Optional): {
+     *                     code: String (Optional)
+     *                     innererror (Optional): (recursive schema, see innererror above)
+     *                 }
+     *             }
+     *         }
+     *     ]
+     *     succeededLockTokens (Required): [
+     *         String (Required)
+     *     ]
+     * }
+     * }</pre>
+     *
+     * @param topicName Topic Name.
+     * @param eventSubscriptionName Event Subscription Name.
+     * @param renewLockOptions RenewLockOptions.
+     * @param requestOptions The options to configure the HTTP request before HTTP client sends it.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @return the result of the RenewLock operation along with {@link Response} on successful completion of
+     * {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<Response<BinaryData>> renewCloudEventLocksWithResponse(String topicName, String eventSubscriptionName,
+        BinaryData renewLockOptions, RequestOptions requestOptions) {
+        return this.serviceClient.renewCloudEventLocksWithResponseAsync(topicName, eventSubscriptionName,
+            renewLockOptions, requestOptions);
+    }
+
+    /**
+     * Release a batch of Cloud Events. The response will include the set of successfully released lock tokens, along
+     * with other failed lock tokens with their corresponding error information. Successfully released events can be
+     * received by consumers.
+     *
+     * @param topicName Topic Name.
+     * @param eventSubscriptionName Event Subscription Name.
+     * @param releaseOptions ReleaseOptions.
+     * @param releaseDelayInSeconds Release cloud events with the specified delay in seconds.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of the Release operation on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<ReleaseResult> releaseCloudEvents(String topicName, String eventSubscriptionName,
+        ReleaseOptions releaseOptions, ReleaseDelay releaseDelayInSeconds) {
+        // Generated convenience method for releaseCloudEventsWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        if (releaseDelayInSeconds != null) {
+            requestOptions.addQueryParam("releaseDelayInSeconds", releaseDelayInSeconds.toString(), false);
+        }
+        return releaseCloudEventsWithResponse(topicName, eventSubscriptionName, BinaryData.fromObject(releaseOptions),
+            requestOptions).flatMap(FluxUtil::toMono)
+            .map(protocolMethodData -> protocolMethodData.toObject(ReleaseResult.class));
+    }
+
+    /**
+     * Renew locks for a batch of Cloud Events. The response will include the set of successfully renewed lock tokens,
+     * along with other failed lock tokens with their corresponding error information. Successfully renewed locks will
+     * ensure that the associated event is only available to the consumer that holds the renewed lock.
+     *
+     * @param topicName Topic Name.
+     * @param eventSubscriptionName Event Subscription Name.
+     * @param renewLockOptions RenewLockOptions.
+     * @throws IllegalArgumentException thrown if parameters fail the validation.
+     * @throws HttpResponseException thrown if the request is rejected by server.
+     * @throws ClientAuthenticationException thrown if the request is rejected by server on status code 401.
+     * @throws ResourceNotFoundException thrown if the request is rejected by server on status code 404.
+     * @throws ResourceModifiedException thrown if the request is rejected by server on status code 409.
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent.
+     * @return the result of the RenewLock operation on successful completion of {@link Mono}.
+     */
+    @Generated
+    @ServiceMethod(returns = ReturnType.SINGLE)
+    public Mono<RenewCloudEventLocksResult> renewCloudEventLocks(String topicName, String eventSubscriptionName,
+        RenewLockOptions renewLockOptions) {
+        // Generated convenience method for renewCloudEventLocksWithResponse
+        RequestOptions requestOptions = new RequestOptions();
+        return renewCloudEventLocksWithResponse(topicName, eventSubscriptionName,
+            BinaryData.fromObject(renewLockOptions), requestOptions).flatMap(FluxUtil::toMono)
+            .map(protocolMethodData -> protocolMethodData.toObject(RenewCloudEventLocksResult.class));
     }
 }
