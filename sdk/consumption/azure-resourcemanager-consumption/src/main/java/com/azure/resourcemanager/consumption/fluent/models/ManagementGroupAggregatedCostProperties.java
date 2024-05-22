@@ -5,21 +5,18 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Fluent;
-import com.azure.core.util.logging.ClientLogger;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-/** The properties of the Management Group Aggregated Cost. */
+/**
+ * The properties of the Management Group Aggregated Cost.
+ */
 @Fluent
 public final class ManagementGroupAggregatedCostProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ManagementGroupAggregatedCostProperties.class);
-
     /*
-     * The id of the billing period resource that the aggregated cost belongs
-     * to.
+     * The id of the billing period resource that the aggregated cost belongs to.
      */
     @JsonProperty(value = "billingPeriodId", access = JsonProperty.Access.WRITE_ONLY)
     private String billingPeriodId;
@@ -67,22 +64,26 @@ public final class ManagementGroupAggregatedCostProperties {
     private List<ManagementGroupAggregatedCostResultInner> children;
 
     /*
-     * List of subscription Guids included in the calculation of aggregated
-     * cost
+     * List of subscription Guids included in the calculation of aggregated cost
      */
     @JsonProperty(value = "includedSubscriptions")
     private List<String> includedSubscriptions;
 
     /*
-     * List of subscription Guids excluded from the calculation of aggregated
-     * cost
+     * List of subscription Guids excluded from the calculation of aggregated cost
      */
     @JsonProperty(value = "excludedSubscriptions")
     private List<String> excludedSubscriptions;
 
     /**
+     * Creates an instance of ManagementGroupAggregatedCostProperties class.
+     */
+    public ManagementGroupAggregatedCostProperties() {
+    }
+
+    /**
      * Get the billingPeriodId property: The id of the billing period resource that the aggregated cost belongs to.
-     *
+     * 
      * @return the billingPeriodId value.
      */
     public String billingPeriodId() {
@@ -91,7 +92,7 @@ public final class ManagementGroupAggregatedCostProperties {
 
     /**
      * Get the usageStart property: The start of the date time range covered by aggregated cost.
-     *
+     * 
      * @return the usageStart value.
      */
     public OffsetDateTime usageStart() {
@@ -100,7 +101,7 @@ public final class ManagementGroupAggregatedCostProperties {
 
     /**
      * Get the usageEnd property: The end of the date time range covered by the aggregated cost.
-     *
+     * 
      * @return the usageEnd value.
      */
     public OffsetDateTime usageEnd() {
@@ -109,7 +110,7 @@ public final class ManagementGroupAggregatedCostProperties {
 
     /**
      * Get the azureCharges property: Azure Charges.
-     *
+     * 
      * @return the azureCharges value.
      */
     public BigDecimal azureCharges() {
@@ -118,7 +119,7 @@ public final class ManagementGroupAggregatedCostProperties {
 
     /**
      * Get the marketplaceCharges property: Marketplace Charges.
-     *
+     * 
      * @return the marketplaceCharges value.
      */
     public BigDecimal marketplaceCharges() {
@@ -127,7 +128,7 @@ public final class ManagementGroupAggregatedCostProperties {
 
     /**
      * Get the chargesBilledSeparately property: Charges Billed Separately.
-     *
+     * 
      * @return the chargesBilledSeparately value.
      */
     public BigDecimal chargesBilledSeparately() {
@@ -136,7 +137,7 @@ public final class ManagementGroupAggregatedCostProperties {
 
     /**
      * Get the currency property: The ISO currency in which the meter is charged, for example, USD.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -145,7 +146,7 @@ public final class ManagementGroupAggregatedCostProperties {
 
     /**
      * Get the children property: Children of a management group.
-     *
+     * 
      * @return the children value.
      */
     public List<ManagementGroupAggregatedCostResultInner> children() {
@@ -154,12 +155,12 @@ public final class ManagementGroupAggregatedCostProperties {
 
     /**
      * Set the children property: Children of a management group.
-     *
+     * 
      * @param children the children value to set.
      * @return the ManagementGroupAggregatedCostProperties object itself.
      */
-    public ManagementGroupAggregatedCostProperties withChildren(
-        List<ManagementGroupAggregatedCostResultInner> children) {
+    public ManagementGroupAggregatedCostProperties
+        withChildren(List<ManagementGroupAggregatedCostResultInner> children) {
         this.children = children;
         return this;
     }
@@ -167,7 +168,7 @@ public final class ManagementGroupAggregatedCostProperties {
     /**
      * Get the includedSubscriptions property: List of subscription Guids included in the calculation of aggregated
      * cost.
-     *
+     * 
      * @return the includedSubscriptions value.
      */
     public List<String> includedSubscriptions() {
@@ -177,7 +178,7 @@ public final class ManagementGroupAggregatedCostProperties {
     /**
      * Set the includedSubscriptions property: List of subscription Guids included in the calculation of aggregated
      * cost.
-     *
+     * 
      * @param includedSubscriptions the includedSubscriptions value to set.
      * @return the ManagementGroupAggregatedCostProperties object itself.
      */
@@ -189,7 +190,7 @@ public final class ManagementGroupAggregatedCostProperties {
     /**
      * Get the excludedSubscriptions property: List of subscription Guids excluded from the calculation of aggregated
      * cost.
-     *
+     * 
      * @return the excludedSubscriptions value.
      */
     public List<String> excludedSubscriptions() {
@@ -199,7 +200,7 @@ public final class ManagementGroupAggregatedCostProperties {
     /**
      * Set the excludedSubscriptions property: List of subscription Guids excluded from the calculation of aggregated
      * cost.
-     *
+     * 
      * @param excludedSubscriptions the excludedSubscriptions value to set.
      * @return the ManagementGroupAggregatedCostProperties object itself.
      */
@@ -210,7 +211,7 @@ public final class ManagementGroupAggregatedCostProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -5,20 +5,18 @@
 package com.azure.resourcemanager.consumption.fluent.models;
 
 import com.azure.core.annotation.Immutable;
-import com.azure.core.util.logging.ClientLogger;
 import com.azure.resourcemanager.consumption.models.ReservationRecommendationDetailsResourceProperties;
 import com.azure.resourcemanager.consumption.models.ReservationRecommendationDetailsSavingsProperties;
 import com.azure.resourcemanager.consumption.models.ReservationRecommendationDetailsUsageProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The properties of the reservation recommendation. */
+/**
+ * The properties of the reservation recommendation.
+ */
 @Immutable
 public final class ReservationRecommendationDetailsProperties {
-    @JsonIgnore private final ClientLogger logger = new ClientLogger(ReservationRecommendationDetailsProperties.class);
-
     /*
-     * An ISO 4217 currency code identifier for the costs and savings
+     * An ISO 4217 currency code identifier for the costs and savings 
      */
     @JsonProperty(value = "currency", access = JsonProperty.Access.WRITE_ONLY)
     private String currency;
@@ -54,8 +52,14 @@ public final class ReservationRecommendationDetailsProperties {
     private ReservationRecommendationDetailsUsageProperties usage;
 
     /**
+     * Creates an instance of ReservationRecommendationDetailsProperties class.
+     */
+    public ReservationRecommendationDetailsProperties() {
+    }
+
+    /**
      * Get the currency property: An ISO 4217 currency code identifier for the costs and savings.
-     *
+     * 
      * @return the currency value.
      */
     public String currency() {
@@ -64,7 +68,7 @@ public final class ReservationRecommendationDetailsProperties {
 
     /**
      * Get the resource property: Resource specific properties.
-     *
+     * 
      * @return the resource value.
      */
     public ReservationRecommendationDetailsResourceProperties resource() {
@@ -73,7 +77,7 @@ public final class ReservationRecommendationDetailsProperties {
 
     /**
      * Get the resourceGroup property: Resource Group.
-     *
+     * 
      * @return the resourceGroup value.
      */
     public String resourceGroup() {
@@ -82,7 +86,7 @@ public final class ReservationRecommendationDetailsProperties {
 
     /**
      * Get the savings property: Savings information for the recommendation.
-     *
+     * 
      * @return the savings value.
      */
     public ReservationRecommendationDetailsSavingsProperties savings() {
@@ -91,7 +95,7 @@ public final class ReservationRecommendationDetailsProperties {
 
     /**
      * Get the scope property: Scope of the reservation, ex: Single or Shared.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -100,7 +104,7 @@ public final class ReservationRecommendationDetailsProperties {
 
     /**
      * Get the usage property: Historical usage details used to calculate the estimated savings.
-     *
+     * 
      * @return the usage value.
      */
     public ReservationRecommendationDetailsUsageProperties usage() {
@@ -109,7 +113,7 @@ public final class ReservationRecommendationDetailsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -5,8 +5,8 @@
 package com.azure.resourcemanager.consumption.implementation;
 
 import com.azure.resourcemanager.consumption.fluent.models.ChargesListResultInner;
-import com.azure.resourcemanager.consumption.models.ChargeSummary;
 import com.azure.resourcemanager.consumption.models.ChargesListResult;
+import com.azure.resourcemanager.consumption.models.ChargeSummary;
 import java.util.Collections;
 import java.util.List;
 
@@ -15,8 +15,8 @@ public final class ChargesListResultImpl implements ChargesListResult {
 
     private final com.azure.resourcemanager.consumption.ConsumptionManager serviceManager;
 
-    ChargesListResultImpl(
-        ChargesListResultInner innerObject, com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
+    ChargesListResultImpl(ChargesListResultInner innerObject,
+        com.azure.resourcemanager.consumption.ConsumptionManager serviceManager) {
         this.innerObject = innerObject;
         this.serviceManager = serviceManager;
     }
