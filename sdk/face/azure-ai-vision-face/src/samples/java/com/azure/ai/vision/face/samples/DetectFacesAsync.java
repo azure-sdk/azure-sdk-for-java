@@ -48,7 +48,7 @@ public class DetectFacesAsync {
             .setReturnFaceAttributes(Arrays.asList(Detection01.ACCESSORIES, Detection01.GLASSES, Detection01.EXPOSURE, Detection01.NOISE))
             .setReturnFaceLandmarks(true);
 
-        flux = client.detectFromUrl(Resources.TEST_IMAGE_URL_DETECT_SAMPLE, options)
+        flux = client.detect(Resources.TEST_IMAGE_URL_DETECT_SAMPLE, options)
             .flatMapMany(Flux::fromIterable);
 
         flux.subscribe(face -> log("Detected Face from URL:" + Utils.toString(face) + "\n"));
