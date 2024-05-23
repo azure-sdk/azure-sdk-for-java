@@ -32,15 +32,13 @@ public final class Volume {
     private String storageName;
 
     /*
-     * List of secrets to be added in volume. If no secrets are provided, all secrets in collection will be added to
-     * volume.
+     * List of secrets to be added in volume. If no secrets are provided, all secrets in collection will be added to volume.
      */
     @JsonProperty(value = "secrets")
     private List<SecretVolumeItem> secrets;
 
     /*
-     * Mount options used while mounting the Azure file share or NFS Azure file share. Must be a comma-separated
-     * string.
+     * Mount options used while mounting the Azure file share or NFS Azure file share. Must be a comma-separated string.
      */
     @JsonProperty(value = "mountOptions")
     private String mountOptions;

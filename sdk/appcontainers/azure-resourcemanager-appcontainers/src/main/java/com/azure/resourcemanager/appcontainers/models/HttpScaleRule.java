@@ -28,6 +28,12 @@ public final class HttpScaleRule {
     @JsonProperty(value = "auth")
     private List<ScaleRuleAuth> auth;
 
+    /*
+     * The resource ID of a user-assigned managed identity that is assigned to the Container App, or 'system' for system-assigned identity.
+     */
+    @JsonProperty(value = "identity")
+    private String identity;
+
     /**
      * Creates an instance of HttpScaleRule class.
      */
@@ -71,6 +77,28 @@ public final class HttpScaleRule {
      */
     public HttpScaleRule withAuth(List<ScaleRuleAuth> auth) {
         this.auth = auth;
+        return this;
+    }
+
+    /**
+     * Get the identity property: The resource ID of a user-assigned managed identity that is assigned to the Container
+     * App, or 'system' for system-assigned identity.
+     * 
+     * @return the identity value.
+     */
+    public String identity() {
+        return this.identity;
+    }
+
+    /**
+     * Set the identity property: The resource ID of a user-assigned managed identity that is assigned to the Container
+     * App, or 'system' for system-assigned identity.
+     * 
+     * @param identity the identity value to set.
+     * @return the HttpScaleRule object itself.
+     */
+    public HttpScaleRule withIdentity(String identity) {
+        this.identity = identity;
         return this;
     }
 
