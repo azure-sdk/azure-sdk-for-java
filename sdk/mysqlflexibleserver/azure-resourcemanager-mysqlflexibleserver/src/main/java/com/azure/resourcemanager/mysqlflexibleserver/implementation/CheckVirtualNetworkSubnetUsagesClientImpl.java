@@ -100,7 +100,7 @@ public final class CheckVirtualNetworkSubnetUsagesClientImpl implements CheckVir
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.execute(this.client.getEndpoint(), apiVersion,
@@ -139,7 +139,7 @@ public final class CheckVirtualNetworkSubnetUsagesClientImpl implements CheckVir
         } else {
             parameters.validate();
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.execute(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), locationName,

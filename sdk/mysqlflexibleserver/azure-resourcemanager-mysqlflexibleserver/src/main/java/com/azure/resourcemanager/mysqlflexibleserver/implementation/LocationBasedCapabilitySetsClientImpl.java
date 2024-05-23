@@ -110,7 +110,7 @@ public final class LocationBasedCapabilitySetsClientImpl implements LocationBase
         if (locationName == null) {
             return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.list(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
@@ -144,7 +144,7 @@ public final class LocationBasedCapabilitySetsClientImpl implements LocationBase
         if (locationName == null) {
             return Mono.error(new IllegalArgumentException("Parameter locationName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service
@@ -242,7 +242,7 @@ public final class LocationBasedCapabilitySetsClientImpl implements LocationBase
             return Mono
                 .error(new IllegalArgumentException("Parameter capabilitySetName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         return FluxUtil
             .withContext(context -> service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(),
@@ -280,7 +280,7 @@ public final class LocationBasedCapabilitySetsClientImpl implements LocationBase
             return Mono
                 .error(new IllegalArgumentException("Parameter capabilitySetName is required and cannot be null."));
         }
-        final String apiVersion = "2023-12-30";
+        final String apiVersion = "2023-12-01-preview";
         final String accept = "application/json";
         context = this.client.mergeContext(context);
         return service.get(this.client.getEndpoint(), apiVersion, this.client.getSubscriptionId(), locationName,
