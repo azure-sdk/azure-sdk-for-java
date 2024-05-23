@@ -8,7 +8,9 @@ import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Describes scaling information of a sku. */
+/**
+ * Describes scaling information of a sku.
+ */
 @Immutable
 public final class SkuCapacity {
     /*
@@ -41,13 +43,15 @@ public final class SkuCapacity {
     @JsonProperty(value = "scaleType", access = JsonProperty.Access.WRITE_ONLY)
     private ScaleType scaleType;
 
-    /** Creates an instance of SkuCapacity class. */
+    /**
+     * Creates an instance of SkuCapacity class.
+     */
     public SkuCapacity() {
     }
 
     /**
      * Get the minimum property: The lowest permitted capacity for this resource.
-     *
+     * 
      * @return the minimum value.
      */
     public Integer minimum() {
@@ -56,7 +60,7 @@ public final class SkuCapacity {
 
     /**
      * Get the maximum property: The highest permitted capacity for this resource.
-     *
+     * 
      * @return the maximum value.
      */
     public Integer maximum() {
@@ -65,7 +69,7 @@ public final class SkuCapacity {
 
     /**
      * Get the defaultProperty property: The default capacity.
-     *
+     * 
      * @return the defaultProperty value.
      */
     public Integer defaultProperty() {
@@ -74,7 +78,7 @@ public final class SkuCapacity {
 
     /**
      * Get the allowedValues property: Allows capacity value list.
-     *
+     * 
      * @return the allowedValues value.
      */
     public List<Integer> allowedValues() {
@@ -83,7 +87,7 @@ public final class SkuCapacity {
 
     /**
      * Get the scaleType property: The scale type applicable to the sku.
-     *
+     * 
      * @return the scaleType value.
      */
     public ScaleType scaleType() {
@@ -92,7 +96,7 @@ public final class SkuCapacity {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -4,19 +4,20 @@
 
 package com.azure.resourcemanager.signalr.generated;
 
-/** Samples for SignalRPrivateLinkResources List. */
+/**
+ * Samples for SignalRPrivateLinkResources List.
+ */
 public final class SignalRPrivateLinkResourcesListSamples {
     /*
-     * x-ms-original-file: specification/signalr/resource-manager/Microsoft.SignalRService/preview/2023-08-01-preview/examples/SignalRPrivateLinkResources_List.json
+     * x-ms-original-file: specification/signalr/resource-manager/Microsoft.SignalRService/stable/2024-03-01/examples/SignalRPrivateLinkResources_List.json
      */
     /**
      * Sample code: SignalRPrivateLinkResources_List.
-     *
+     * 
      * @param manager Entry point to SignalRManager.
      */
     public static void signalRPrivateLinkResourcesList(com.azure.resourcemanager.signalr.SignalRManager manager) {
-        manager
-            .signalRPrivateLinkResources()
+        manager.signalRPrivateLinkResources()
             .list("myResourceGroup", "mySignalRService", com.azure.core.util.Context.NONE);
     }
 }

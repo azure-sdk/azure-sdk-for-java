@@ -11,7 +11,9 @@ import com.azure.resourcemanager.signalr.models.ShareablePrivateLinkResourceType
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Private link resource. */
+/**
+ * Private link resource.
+ */
 @Fluent
 public final class PrivateLinkResourceInner extends ProxyResource {
     /*
@@ -26,13 +28,15 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     @JsonProperty(value = "systemData", access = JsonProperty.Access.WRITE_ONLY)
     private SystemData systemData;
 
-    /** Creates an instance of PrivateLinkResourceInner class. */
+    /**
+     * Creates an instance of PrivateLinkResourceInner class.
+     */
     public PrivateLinkResourceInner() {
     }
 
     /**
      * Get the innerProperties property: Private link resource properties.
-     *
+     * 
      * @return the innerProperties value.
      */
     private PrivateLinkResourceProperties innerProperties() {
@@ -41,7 +45,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -50,7 +54,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Get the groupId property: Group Id of the private link resource.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -59,7 +63,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Set the groupId property: Group Id of the private link resource.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the PrivateLinkResourceInner object itself.
      */
@@ -73,7 +77,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Get the requiredMembers property: Required members of the private link resource.
-     *
+     * 
      * @return the requiredMembers value.
      */
     public List<String> requiredMembers() {
@@ -82,7 +86,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Set the requiredMembers property: Required members of the private link resource.
-     *
+     * 
      * @param requiredMembers the requiredMembers value to set.
      * @return the PrivateLinkResourceInner object itself.
      */
@@ -96,7 +100,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Get the requiredZoneNames property: Required private DNS zone names.
-     *
+     * 
      * @return the requiredZoneNames value.
      */
     public List<String> requiredZoneNames() {
@@ -105,7 +109,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Set the requiredZoneNames property: Required private DNS zone names.
-     *
+     * 
      * @param requiredZoneNames the requiredZoneNames value to set.
      * @return the PrivateLinkResourceInner object itself.
      */
@@ -120,7 +124,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     /**
      * Get the shareablePrivateLinkResourceTypes property: The list of resources that are onboarded to private link
      * service.
-     *
+     * 
      * @return the shareablePrivateLinkResourceTypes value.
      */
     public List<ShareablePrivateLinkResourceType> shareablePrivateLinkResourceTypes() {
@@ -130,7 +134,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
     /**
      * Set the shareablePrivateLinkResourceTypes property: The list of resources that are onboarded to private link
      * service.
-     *
+     * 
      * @param shareablePrivateLinkResourceTypes the shareablePrivateLinkResourceTypes value to set.
      * @return the PrivateLinkResourceInner object itself.
      */
@@ -145,7 +149,7 @@ public final class PrivateLinkResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

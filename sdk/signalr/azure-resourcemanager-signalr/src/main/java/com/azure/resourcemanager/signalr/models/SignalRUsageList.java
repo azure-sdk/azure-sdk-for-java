@@ -9,7 +9,9 @@ import com.azure.resourcemanager.signalr.fluent.models.SignalRUsageInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Object that includes an array of the resource usages and a possible link for next set. */
+/**
+ * Object that includes an array of the resource usages and a possible link for next set.
+ */
 @Fluent
 public final class SignalRUsageList {
     /*
@@ -25,13 +27,15 @@ public final class SignalRUsageList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of SignalRUsageList class. */
+    /**
+     * Creates an instance of SignalRUsageList class.
+     */
     public SignalRUsageList() {
     }
 
     /**
      * Get the value property: List of the resource usages.
-     *
+     * 
      * @return the value value.
      */
     public List<SignalRUsageInner> value() {
@@ -40,7 +44,7 @@ public final class SignalRUsageList {
 
     /**
      * Set the value property: List of the resource usages.
-     *
+     * 
      * @param value the value value to set.
      * @return the SignalRUsageList object itself.
      */
@@ -50,9 +54,9 @@ public final class SignalRUsageList {
     }
 
     /**
-     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,9 +64,9 @@ public final class SignalRUsageList {
     }
 
     /**
-     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SignalRUsageList object itself.
      */
@@ -73,7 +77,7 @@ public final class SignalRUsageList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
