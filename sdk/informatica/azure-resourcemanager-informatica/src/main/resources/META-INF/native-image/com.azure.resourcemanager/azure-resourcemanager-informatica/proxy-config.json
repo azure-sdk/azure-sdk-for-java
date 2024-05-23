@@ -1,0 +1,1 @@
+[ [ "com.azure.resourcemanager.informatica.implementation.OperationsClientImpl$OperationsService" ], [ "com.azure.resourcemanager.informatica.implementation.OrganizationsClientImpl$OrganizationsService" ], [ "com.azure.resourcemanager.informatica.implementation.ServerlessRuntimesClientImpl$ServerlessRuntimesService" ] ]
