@@ -443,6 +443,13 @@
 - [List](#topology_list)
 - [ListByHomeRegion](#topology_listbyhomeregion)
 
+## TrustedIpsOperation
+
+- [CreateOrUpdate](#trustedipsoperation_createorupdate)
+- [Delete](#trustedipsoperation_delete)
+- [Get](#trustedipsoperation_get)
+- [List](#trustedipsoperation_list)
+
 ## WorkspaceSettings
 
 - [Create](#workspacesettings_create)
@@ -7432,6 +7439,104 @@ public final class TopologyListByHomeRegionSamples {
     public static void
         getTopologyOnASubscriptionFromSecurityDataLocation(com.azure.resourcemanager.security.SecurityManager manager) {
         manager.topologies().listByHomeRegion("centralus", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### TrustedIpsOperation_CreateOrUpdate
+
+```java
+/**
+ * Samples for TrustedIpsOperation CreateOrUpdate.
+ */
+public final class TrustedIpsOperationCreateOrUpdateSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-07-01-preview/examples/trustedIps/PutSubscriptionTrustedIps_example.json
+     */
+    /**
+     * Sample code: Create or update trusted IPs over subscription scope.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void
+        createOrUpdateTrustedIPsOverSubscriptionScope(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.trustedIpsOperations()
+            .define("ef51421b-e3d2-43c8-aa2a-7cad1cbf0f11")
+            .withExistingScope("subscriptions/db575f70-0d25-477b-a038-54f4c6e7da5a")
+            .withDisplayName("Sample trusted IPs range")
+            .withCidr("192.168.0.0/24")
+            .create();
+    }
+}
+```
+
+### TrustedIpsOperation_Delete
+
+```java
+/**
+ * Samples for TrustedIpsOperation Delete.
+ */
+public final class TrustedIpsOperationDeleteSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-07-01-preview/examples/trustedIps/DeleteManagementGroupTrustedIps_example.json
+     */
+    /**
+     * Sample code: Delete a trusted IPs object over management group scope.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void
+        deleteATrustedIPsObjectOverManagementGroupScope(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.trustedIpsOperations()
+            .deleteByResourceGroupWithResponse("providers/Microsoft.Management/managementGroups/exampleManagementGroup",
+                "ef51421b-e3d2-43c8-aa2a-7cad1cbf0f11", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### TrustedIpsOperation_Get
+
+```java
+/**
+ * Samples for TrustedIpsOperation Get.
+ */
+public final class TrustedIpsOperationGetSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-07-01-preview/examples/trustedIps/GetSecurityConnectorTrustedIps_example.json
+     */
+    /**
+     * Sample code: Get a trusted IPs object over security connector scope.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void
+        getATrustedIPsObjectOverSecurityConnectorScope(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.trustedIpsOperations()
+            .getWithResponse(
+                "subscriptions/db575f70-0d25-477b-a038-54f4c6e7da5a/resourceGroups/exampleResourceGroup/providers/Microsoft.Security/securityConnectors/exampleConnector",
+                "ef51421b-e3d2-43c8-aa2a-7cad1cbf0f11", com.azure.core.util.Context.NONE);
+    }
+}
+```
+
+### TrustedIpsOperation_List
+
+```java
+/**
+ * Samples for TrustedIpsOperation List.
+ */
+public final class TrustedIpsOperationListSamples {
+    /*
+     * x-ms-original-file: specification/security/resource-manager/Microsoft.Security/preview/2024-07-01-preview/examples/trustedIps/ListBySubscriptionTrustedIps_example.json
+     */
+    /**
+     * Sample code: List trusted IPs by subscription scope.
+     * 
+     * @param manager Entry point to SecurityManager.
+     */
+    public static void listTrustedIPsBySubscriptionScope(com.azure.resourcemanager.security.SecurityManager manager) {
+        manager.trustedIpsOperations()
+            .list("subscriptions/db575f70-0d25-477b-a038-54f4c6e7da5a", com.azure.core.util.Context.NONE);
     }
 }
 ```

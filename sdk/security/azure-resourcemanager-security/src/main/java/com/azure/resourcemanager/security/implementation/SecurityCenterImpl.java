@@ -93,6 +93,7 @@ import com.azure.resourcemanager.security.fluent.SqlVulnerabilityAssessmentScans
 import com.azure.resourcemanager.security.fluent.SubAssessmentsClient;
 import com.azure.resourcemanager.security.fluent.TasksClient;
 import com.azure.resourcemanager.security.fluent.TopologiesClient;
+import com.azure.resourcemanager.security.fluent.TrustedIpsOperationsClient;
 import com.azure.resourcemanager.security.fluent.WorkspaceSettingsClient;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -1159,6 +1160,20 @@ public final class SecurityCenterImpl implements SecurityCenter {
     }
 
     /**
+     * The TrustedIpsOperationsClient object to access its operations.
+     */
+    private final TrustedIpsOperationsClient trustedIpsOperations;
+
+    /**
+     * Gets the TrustedIpsOperationsClient object to access its operations.
+     * 
+     * @return the TrustedIpsOperationsClient object.
+     */
+    public TrustedIpsOperationsClient getTrustedIpsOperations() {
+        return this.trustedIpsOperations;
+    }
+
+    /**
      * Initializes an instance of SecurityCenter client.
      * 
      * @param httpPipeline The HTTP pipeline to send requests through.
@@ -1247,6 +1262,7 @@ public final class SecurityCenterImpl implements SecurityCenter {
         this.gitLabSubgroups = new GitLabSubgroupsClientImpl(this);
         this.gitLabProjects = new GitLabProjectsClientImpl(this);
         this.devOpsOperationResults = new DevOpsOperationResultsClientImpl(this);
+        this.trustedIpsOperations = new TrustedIpsOperationsClientImpl(this);
     }
 
     /**

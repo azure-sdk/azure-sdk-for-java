@@ -94,6 +94,7 @@ import com.azure.resourcemanager.security.implementation.SqlVulnerabilityAssessm
 import com.azure.resourcemanager.security.implementation.SubAssessmentsImpl;
 import com.azure.resourcemanager.security.implementation.TasksImpl;
 import com.azure.resourcemanager.security.implementation.TopologiesImpl;
+import com.azure.resourcemanager.security.implementation.TrustedIpsOperationsImpl;
 import com.azure.resourcemanager.security.implementation.WorkspaceSettingsImpl;
 import com.azure.resourcemanager.security.models.AdaptiveApplicationControls;
 import com.azure.resourcemanager.security.models.AdaptiveNetworkHardenings;
@@ -164,6 +165,7 @@ import com.azure.resourcemanager.security.models.SqlVulnerabilityAssessmentScans
 import com.azure.resourcemanager.security.models.SubAssessments;
 import com.azure.resourcemanager.security.models.Tasks;
 import com.azure.resourcemanager.security.models.Topologies;
+import com.azure.resourcemanager.security.models.TrustedIpsOperations;
 import com.azure.resourcemanager.security.models.WorkspaceSettings;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
@@ -316,6 +318,8 @@ public final class SecurityManager {
     private GitLabProjects gitLabProjects;
 
     private DevOpsOperationResults devOpsOperationResults;
+
+    private TrustedIpsOperations trustedIpsOperations;
 
     private final SecurityCenter clientObject;
 
@@ -481,7 +485,7 @@ public final class SecurityManager {
                 .append("-")
                 .append("com.azure.resourcemanager.security")
                 .append("/")
-                .append("1.0.0-beta.7");
+                .append("1.0.0-beta.1");
             if (!Configuration.getGlobalConfiguration().get("AZURE_TELEMETRY_DISABLED", false)) {
                 userAgentBuilder.append(" (")
                     .append(Configuration.getGlobalConfiguration().get("java.version"))
@@ -1392,6 +1396,18 @@ public final class SecurityManager {
                 = new DevOpsOperationResultsImpl(clientObject.getDevOpsOperationResults(), this);
         }
         return devOpsOperationResults;
+    }
+
+    /**
+     * Gets the resource collection API of TrustedIpsOperations. It manages TrustedIps.
+     * 
+     * @return Resource collection API of TrustedIpsOperations.
+     */
+    public TrustedIpsOperations trustedIpsOperations() {
+        if (this.trustedIpsOperations == null) {
+            this.trustedIpsOperations = new TrustedIpsOperationsImpl(clientObject.getTrustedIpsOperations(), this);
+        }
+        return trustedIpsOperations;
     }
 
     /**

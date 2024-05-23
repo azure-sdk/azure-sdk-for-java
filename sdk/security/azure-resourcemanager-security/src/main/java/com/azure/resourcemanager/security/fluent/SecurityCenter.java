@@ -528,4 +528,11 @@ public interface SecurityCenter {
      * @return the DevOpsOperationResultsClient object.
      */
     DevOpsOperationResultsClient getDevOpsOperationResults();
+
+    /**
+     * Gets the TrustedIpsOperationsClient object to access its operations.
+     * 
+     * @return the TrustedIpsOperationsClient object.
+     */
+    TrustedIpsOperationsClient getTrustedIpsOperations();
 }
