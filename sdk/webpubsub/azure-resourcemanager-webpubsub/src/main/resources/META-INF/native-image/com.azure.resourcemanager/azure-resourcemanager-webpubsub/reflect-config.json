@@ -159,6 +159,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.webpubsub.models.WebPubSubSocketIOSettings",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.webpubsub.models.ManagedIdentity",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -304,6 +309,11 @@
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true
 }, {
+  "name" : "com.azure.resourcemanager.webpubsub.models.SharedPrivateLinkResourceList",
+  "allDeclaredConstructors" : true,
+  "allDeclaredFields" : true,
+  "allDeclaredMethods" : true
+}, {
   "name" : "com.azure.resourcemanager.webpubsub.fluent.models.SkuListInner",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
@@ -315,11 +325,6 @@
   "allDeclaredMethods" : true
 }, {
   "name" : "com.azure.resourcemanager.webpubsub.models.SkuCapacity",
-  "allDeclaredConstructors" : true,
-  "allDeclaredFields" : true,
-  "allDeclaredMethods" : true
-}, {
-  "name" : "com.azure.resourcemanager.webpubsub.models.SharedPrivateLinkResourceList",
   "allDeclaredConstructors" : true,
   "allDeclaredFields" : true,
   "allDeclaredMethods" : true

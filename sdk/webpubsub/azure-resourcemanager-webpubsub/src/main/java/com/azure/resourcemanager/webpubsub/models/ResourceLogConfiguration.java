@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Resource log configuration of a Microsoft.SignalRService resource. */
+/**
+ * Resource log configuration of a Microsoft.SignalRService resource.
+ */
 @Fluent
 public final class ResourceLogConfiguration {
     /*
@@ -17,13 +19,15 @@ public final class ResourceLogConfiguration {
     @JsonProperty(value = "categories")
     private List<ResourceLogCategory> categories;
 
-    /** Creates an instance of ResourceLogConfiguration class. */
+    /**
+     * Creates an instance of ResourceLogConfiguration class.
+     */
     public ResourceLogConfiguration() {
     }
 
     /**
      * Get the categories property: Gets or sets the list of category configurations.
-     *
+     * 
      * @return the categories value.
      */
     public List<ResourceLogCategory> categories() {
@@ -32,7 +36,7 @@ public final class ResourceLogConfiguration {
 
     /**
      * Set the categories property: Gets or sets the list of category configurations.
-     *
+     * 
      * @param categories the categories value to set.
      * @return the ResourceLogConfiguration object itself.
      */
@@ -43,7 +47,7 @@ public final class ResourceLogConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

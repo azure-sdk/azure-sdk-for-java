@@ -9,7 +9,9 @@ import com.azure.resourcemanager.webpubsub.models.Sku;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The list skus operation response. */
+/**
+ * The list skus operation response.
+ */
 @Immutable
 public final class SkuListInner {
     /*
@@ -25,13 +27,15 @@ public final class SkuListInner {
     @JsonProperty(value = "nextLink", access = JsonProperty.Access.WRITE_ONLY)
     private String nextLink;
 
-    /** Creates an instance of SkuListInner class. */
+    /**
+     * Creates an instance of SkuListInner class.
+     */
     public SkuListInner() {
     }
 
     /**
      * Get the value property: The list of skus available for the resource.
-     *
+     * 
      * @return the value value.
      */
     public List<Sku> value() {
@@ -39,9 +43,9 @@ public final class SkuListInner {
     }
 
     /**
-     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -50,7 +54,7 @@ public final class SkuListInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

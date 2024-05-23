@@ -7,7 +7,9 @@ package com.azure.resourcemanager.webpubsub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Localizable String object containing the name and a localized value. */
+/**
+ * Localizable String object containing the name and a localized value.
+ */
 @Fluent
 public final class SignalRServiceUsageName {
     /*
@@ -22,13 +24,15 @@ public final class SignalRServiceUsageName {
     @JsonProperty(value = "localizedValue")
     private String localizedValue;
 
-    /** Creates an instance of SignalRServiceUsageName class. */
+    /**
+     * Creates an instance of SignalRServiceUsageName class.
+     */
     public SignalRServiceUsageName() {
     }
 
     /**
      * Get the value property: The identifier of the usage.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -37,7 +41,7 @@ public final class SignalRServiceUsageName {
 
     /**
      * Set the value property: The identifier of the usage.
-     *
+     * 
      * @param value the value value to set.
      * @return the SignalRServiceUsageName object itself.
      */
@@ -48,7 +52,7 @@ public final class SignalRServiceUsageName {
 
     /**
      * Get the localizedValue property: Localized name of the usage.
-     *
+     * 
      * @return the localizedValue value.
      */
     public String localizedValue() {
@@ -57,7 +61,7 @@ public final class SignalRServiceUsageName {
 
     /**
      * Set the localizedValue property: Localized name of the usage.
-     *
+     * 
      * @param localizedValue the localizedValue value to set.
      * @return the SignalRServiceUsageName object itself.
      */
@@ -68,7 +72,7 @@ public final class SignalRServiceUsageName {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

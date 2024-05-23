@@ -7,7 +7,9 @@ package com.azure.resourcemanager.webpubsub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Parameters describes the request to regenerate access keys. */
+/**
+ * Parameters describes the request to regenerate access keys.
+ */
 @Fluent
 public final class RegenerateKeyParameters {
     /*
@@ -16,13 +18,15 @@ public final class RegenerateKeyParameters {
     @JsonProperty(value = "keyType")
     private KeyType keyType;
 
-    /** Creates an instance of RegenerateKeyParameters class. */
+    /**
+     * Creates an instance of RegenerateKeyParameters class.
+     */
     public RegenerateKeyParameters() {
     }
 
     /**
      * Get the keyType property: The type of access key.
-     *
+     * 
      * @return the keyType value.
      */
     public KeyType keyType() {
@@ -31,7 +35,7 @@ public final class RegenerateKeyParameters {
 
     /**
      * Set the keyType property: The type of access key.
-     *
+     * 
      * @param keyType the keyType value to set.
      * @return the RegenerateKeyParameters object itself.
      */
@@ -42,7 +46,7 @@ public final class RegenerateKeyParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

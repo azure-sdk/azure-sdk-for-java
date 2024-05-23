@@ -6,18 +6,27 @@ package com.azure.resourcemanager.webpubsub.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 
-/** Filter events by their name. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+/**
+ * Filter events by their name.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = EventNameFilter.class, visible = true)
 @JsonTypeName("EventName")
 @Fluent
 public final class EventNameFilter extends EventListenerFilter {
     /*
-     * Gets or sets a list of system events. Supported events: "connected" and "disconnected". Blocking event "connect"
-     * is not supported because it requires a response.
+     * The type property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private EventListenerFilterDiscriminator type = EventListenerFilterDiscriminator.EVENT_NAME;
+
+    /*
+     * Gets or sets a list of system events. Supported events: "connected" and "disconnected". Blocking event "connect" is not supported because it requires a response.
      */
     @JsonProperty(value = "systemEvents")
     private List<String> systemEvents;
@@ -25,21 +34,33 @@ public final class EventNameFilter extends EventListenerFilter {
     /*
      * Gets or sets a matching pattern for event names.
      * There are 3 kinds of patterns supported:
-     * 1. "*", it matches any event name
-     * 2. Combine multiple events with ",", for example "event1,event2", it matches events "event1" and "event2"
-     * 3. A single event name, for example, "event1", it matches "event1"
+     *     1. "*", it matches any event name
+     *     2. Combine multiple events with ",", for example "event1,event2", it matches events "event1" and "event2"
+     *     3. A single event name, for example, "event1", it matches "event1"
      */
     @JsonProperty(value = "userEventPattern")
     private String userEventPattern;
 
-    /** Creates an instance of EventNameFilter class. */
+    /**
+     * Creates an instance of EventNameFilter class.
+     */
     public EventNameFilter() {
+    }
+
+    /**
+     * Get the type property: The type property.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public EventListenerFilterDiscriminator type() {
+        return this.type;
     }
 
     /**
      * Get the systemEvents property: Gets or sets a list of system events. Supported events: "connected" and
      * "disconnected". Blocking event "connect" is not supported because it requires a response.
-     *
+     * 
      * @return the systemEvents value.
      */
     public List<String> systemEvents() {
@@ -49,7 +70,7 @@ public final class EventNameFilter extends EventListenerFilter {
     /**
      * Set the systemEvents property: Gets or sets a list of system events. Supported events: "connected" and
      * "disconnected". Blocking event "connect" is not supported because it requires a response.
-     *
+     * 
      * @param systemEvents the systemEvents value to set.
      * @return the EventNameFilter object itself.
      */
@@ -59,10 +80,12 @@ public final class EventNameFilter extends EventListenerFilter {
     }
 
     /**
-     * Get the userEventPattern property: Gets or sets a matching pattern for event names. There are 3 kinds of patterns
-     * supported: 1. "*", it matches any event name 2. Combine multiple events with ",", for example "event1,event2", it
-     * matches events "event1" and "event2" 3. A single event name, for example, "event1", it matches "event1".
-     *
+     * Get the userEventPattern property: Gets or sets a matching pattern for event names.
+     * There are 3 kinds of patterns supported:
+     * 1. "*", it matches any event name
+     * 2. Combine multiple events with ",", for example "event1,event2", it matches events "event1" and "event2"
+     * 3. A single event name, for example, "event1", it matches "event1".
+     * 
      * @return the userEventPattern value.
      */
     public String userEventPattern() {
@@ -70,10 +93,12 @@ public final class EventNameFilter extends EventListenerFilter {
     }
 
     /**
-     * Set the userEventPattern property: Gets or sets a matching pattern for event names. There are 3 kinds of patterns
-     * supported: 1. "*", it matches any event name 2. Combine multiple events with ",", for example "event1,event2", it
-     * matches events "event1" and "event2" 3. A single event name, for example, "event1", it matches "event1".
-     *
+     * Set the userEventPattern property: Gets or sets a matching pattern for event names.
+     * There are 3 kinds of patterns supported:
+     * 1. "*", it matches any event name
+     * 2. Combine multiple events with ",", for example "event1,event2", it matches events "event1" and "event2"
+     * 3. A single event name, for example, "event1", it matches "event1".
+     * 
      * @param userEventPattern the userEventPattern value to set.
      * @return the EventNameFilter object itself.
      */
@@ -84,7 +109,7 @@ public final class EventNameFilter extends EventListenerFilter {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

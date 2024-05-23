@@ -9,7 +9,9 @@ import com.azure.resourcemanager.webpubsub.fluent.models.OperationInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Result of the request to list REST API operations. It contains a list of operations. */
+/**
+ * Result of the request to list REST API operations. It contains a list of operations.
+ */
 @Fluent
 public final class OperationList {
     /*
@@ -25,13 +27,15 @@ public final class OperationList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of OperationList class. */
+    /**
+     * Creates an instance of OperationList class.
+     */
     public OperationList() {
     }
 
     /**
      * Get the value property: List of operations supported by the resource provider.
-     *
+     * 
      * @return the value value.
      */
     public List<OperationInner> value() {
@@ -40,7 +44,7 @@ public final class OperationList {
 
     /**
      * Set the value property: List of operations supported by the resource provider.
-     *
+     * 
      * @param value the value value to set.
      * @return the OperationList object itself.
      */
@@ -50,9 +54,9 @@ public final class OperationList {
     }
 
     /**
-     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,9 +64,9 @@ public final class OperationList {
     }
 
     /**
-     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the OperationList object itself.
      */
@@ -73,7 +77,7 @@ public final class OperationList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

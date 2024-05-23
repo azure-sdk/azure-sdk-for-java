@@ -7,7 +7,9 @@ package com.azure.resourcemanager.webpubsub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Upstream auth settings. If not set, no auth is used for upstream messages. */
+/**
+ * Upstream auth settings. If not set, no auth is used for upstream messages.
+ */
 @Fluent
 public final class UpstreamAuthSettings {
     /*
@@ -22,13 +24,15 @@ public final class UpstreamAuthSettings {
     @JsonProperty(value = "managedIdentity")
     private ManagedIdentitySettings managedIdentity;
 
-    /** Creates an instance of UpstreamAuthSettings class. */
+    /**
+     * Creates an instance of UpstreamAuthSettings class.
+     */
     public UpstreamAuthSettings() {
     }
 
     /**
      * Get the type property: Upstream auth type enum.
-     *
+     * 
      * @return the type value.
      */
     public UpstreamAuthType type() {
@@ -37,7 +41,7 @@ public final class UpstreamAuthSettings {
 
     /**
      * Set the type property: Upstream auth type enum.
-     *
+     * 
      * @param type the type value to set.
      * @return the UpstreamAuthSettings object itself.
      */
@@ -48,7 +52,7 @@ public final class UpstreamAuthSettings {
 
     /**
      * Get the managedIdentity property: Managed identity settings for upstream.
-     *
+     * 
      * @return the managedIdentity value.
      */
     public ManagedIdentitySettings managedIdentity() {
@@ -57,7 +61,7 @@ public final class UpstreamAuthSettings {
 
     /**
      * Set the managedIdentity property: Managed identity settings for upstream.
-     *
+     * 
      * @param managedIdentity the managedIdentity value to set.
      * @return the UpstreamAuthSettings object itself.
      */
@@ -68,7 +72,7 @@ public final class UpstreamAuthSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

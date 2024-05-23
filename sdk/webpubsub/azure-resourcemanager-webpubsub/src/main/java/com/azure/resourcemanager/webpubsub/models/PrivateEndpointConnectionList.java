@@ -9,7 +9,9 @@ import com.azure.resourcemanager.webpubsub.fluent.models.PrivateEndpointConnecti
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A list of private endpoint connections. */
+/**
+ * A list of private endpoint connections.
+ */
 @Fluent
 public final class PrivateEndpointConnectionList {
     /*
@@ -19,19 +21,20 @@ public final class PrivateEndpointConnectionList {
     private List<PrivateEndpointConnectionInner> value;
 
     /*
-     * Request URL that can be used to query next page of private endpoint connections. Returned when the total number
-     * of requested private endpoint connections exceed maximum page size.
+     * Request URL that can be used to query next page of private endpoint connections. Returned when the total number of requested private endpoint connections exceed maximum page size.
      */
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of PrivateEndpointConnectionList class. */
+    /**
+     * Creates an instance of PrivateEndpointConnectionList class.
+     */
     public PrivateEndpointConnectionList() {
     }
 
     /**
      * Get the value property: The list of the private endpoint connections.
-     *
+     * 
      * @return the value value.
      */
     public List<PrivateEndpointConnectionInner> value() {
@@ -40,7 +43,7 @@ public final class PrivateEndpointConnectionList {
 
     /**
      * Set the value property: The list of the private endpoint connections.
-     *
+     * 
      * @param value the value value to set.
      * @return the PrivateEndpointConnectionList object itself.
      */
@@ -52,7 +55,7 @@ public final class PrivateEndpointConnectionList {
     /**
      * Get the nextLink property: Request URL that can be used to query next page of private endpoint connections.
      * Returned when the total number of requested private endpoint connections exceed maximum page size.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -62,7 +65,7 @@ public final class PrivateEndpointConnectionList {
     /**
      * Set the nextLink property: Request URL that can be used to query next page of private endpoint connections.
      * Returned when the total number of requested private endpoint connections exceed maximum page size.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the PrivateEndpointConnectionList object itself.
      */
@@ -73,7 +76,7 @@ public final class PrivateEndpointConnectionList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

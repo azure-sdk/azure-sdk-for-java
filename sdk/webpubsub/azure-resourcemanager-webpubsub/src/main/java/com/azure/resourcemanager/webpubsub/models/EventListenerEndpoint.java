@@ -5,27 +5,46 @@
 package com.azure.resourcemanager.webpubsub.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** An endpoint specifying where Web PubSub should send events to. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-    defaultImpl = EventListenerEndpoint.class)
+/**
+ * An endpoint specifying where Web PubSub should send events to.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = EventListenerEndpoint.class, visible = true)
 @JsonTypeName("EventListenerEndpoint")
-@JsonSubTypes({@JsonSubTypes.Type(name = "EventHub", value = EventHubEndpoint.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "EventHub", value = EventHubEndpoint.class) })
 @Immutable
 public class EventListenerEndpoint {
-    /** Creates an instance of EventListenerEndpoint class. */
+    /*
+     * The type property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private EventListenerEndpointDiscriminator type;
+
+    /**
+     * Creates an instance of EventListenerEndpoint class.
+     */
     public EventListenerEndpoint() {
+        this.type = EventListenerEndpointDiscriminator.fromString("EventListenerEndpoint");
+    }
+
+    /**
+     * Get the type property: The type property.
+     * 
+     * @return the type value.
+     */
+    public EventListenerEndpointDiscriminator type() {
+        return this.type;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

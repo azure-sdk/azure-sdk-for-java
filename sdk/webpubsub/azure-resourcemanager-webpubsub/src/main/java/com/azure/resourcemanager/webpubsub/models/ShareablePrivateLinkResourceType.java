@@ -7,7 +7,9 @@ package com.azure.resourcemanager.webpubsub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes a resource type that has been onboarded to private link service. */
+/**
+ * Describes a resource type that has been onboarded to private link service.
+ */
 @Fluent
 public final class ShareablePrivateLinkResourceType {
     /*
@@ -22,13 +24,15 @@ public final class ShareablePrivateLinkResourceType {
     @JsonProperty(value = "properties")
     private ShareablePrivateLinkResourceProperties properties;
 
-    /** Creates an instance of ShareablePrivateLinkResourceType class. */
+    /**
+     * Creates an instance of ShareablePrivateLinkResourceType class.
+     */
     public ShareablePrivateLinkResourceType() {
     }
 
     /**
      * Get the name property: The name of the resource type that has been onboarded to private link service.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class ShareablePrivateLinkResourceType {
 
     /**
      * Set the name property: The name of the resource type that has been onboarded to private link service.
-     *
+     * 
      * @param name the name value to set.
      * @return the ShareablePrivateLinkResourceType object itself.
      */
@@ -49,7 +53,7 @@ public final class ShareablePrivateLinkResourceType {
     /**
      * Get the properties property: Describes the properties of a resource type that has been onboarded to private link
      * service.
-     *
+     * 
      * @return the properties value.
      */
     public ShareablePrivateLinkResourceProperties properties() {
@@ -59,7 +63,7 @@ public final class ShareablePrivateLinkResourceType {
     /**
      * Set the properties property: Describes the properties of a resource type that has been onboarded to private link
      * service.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ShareablePrivateLinkResourceType object itself.
      */
@@ -70,7 +74,7 @@ public final class ShareablePrivateLinkResourceType {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

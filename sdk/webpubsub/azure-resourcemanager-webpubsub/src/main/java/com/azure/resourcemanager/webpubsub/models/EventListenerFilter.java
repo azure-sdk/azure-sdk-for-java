@@ -5,27 +5,46 @@
 package com.azure.resourcemanager.webpubsub.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** A base class for event filter which determines whether an event should be sent to an event listener. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "type",
-    defaultImpl = EventListenerFilter.class)
+/**
+ * A base class for event filter which determines whether an event should be sent to an event listener.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = EventListenerFilter.class, visible = true)
 @JsonTypeName("EventListenerFilter")
-@JsonSubTypes({@JsonSubTypes.Type(name = "EventName", value = EventNameFilter.class)})
+@JsonSubTypes({ @JsonSubTypes.Type(name = "EventName", value = EventNameFilter.class) })
 @Immutable
 public class EventListenerFilter {
-    /** Creates an instance of EventListenerFilter class. */
+    /*
+     * The type property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private EventListenerFilterDiscriminator type;
+
+    /**
+     * Creates an instance of EventListenerFilter class.
+     */
     public EventListenerFilter() {
+        this.type = EventListenerFilterDiscriminator.fromString("EventListenerFilter");
+    }
+
+    /**
+     * Get the type property: The type property.
+     * 
+     * @return the type value.
+     */
+    public EventListenerFilterDiscriminator type() {
+        return this.type;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

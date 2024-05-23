@@ -7,17 +7,26 @@ package com.azure.resourcemanager.webpubsub.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * An Event Hub endpoint. The managed identity of Web PubSub service must be enabled, and the identity should have the
- * "Azure Event Hubs Data sender" role to access Event Hub.
+ * An Event Hub endpoint.
+ * The managed identity of Web PubSub service must be enabled, and the identity should have the "Azure Event Hubs Data
+ * sender" role to access Event Hub.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type", defaultImpl = EventHubEndpoint.class, visible = true)
 @JsonTypeName("EventHub")
 @Fluent
 public final class EventHubEndpoint extends EventListenerEndpoint {
+    /*
+     * The type property.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "type", required = true)
+    private EventListenerEndpointDiscriminator type = EventListenerEndpointDiscriminator.EVENT_HUB;
+
     /*
      * The fully qualified namespace name of the Event Hub resource. For example, "example.servicebus.windows.net".
      */
@@ -30,14 +39,26 @@ public final class EventHubEndpoint extends EventListenerEndpoint {
     @JsonProperty(value = "eventHubName", required = true)
     private String eventHubName;
 
-    /** Creates an instance of EventHubEndpoint class. */
+    /**
+     * Creates an instance of EventHubEndpoint class.
+     */
     public EventHubEndpoint() {
+    }
+
+    /**
+     * Get the type property: The type property.
+     * 
+     * @return the type value.
+     */
+    @Override
+    public EventListenerEndpointDiscriminator type() {
+        return this.type;
     }
 
     /**
      * Get the fullyQualifiedNamespace property: The fully qualified namespace name of the Event Hub resource. For
      * example, "example.servicebus.windows.net".
-     *
+     * 
      * @return the fullyQualifiedNamespace value.
      */
     public String fullyQualifiedNamespace() {
@@ -47,7 +68,7 @@ public final class EventHubEndpoint extends EventListenerEndpoint {
     /**
      * Set the fullyQualifiedNamespace property: The fully qualified namespace name of the Event Hub resource. For
      * example, "example.servicebus.windows.net".
-     *
+     * 
      * @param fullyQualifiedNamespace the fullyQualifiedNamespace value to set.
      * @return the EventHubEndpoint object itself.
      */
@@ -58,7 +79,7 @@ public final class EventHubEndpoint extends EventListenerEndpoint {
 
     /**
      * Get the eventHubName property: The name of the Event Hub.
-     *
+     * 
      * @return the eventHubName value.
      */
     public String eventHubName() {
@@ -67,7 +88,7 @@ public final class EventHubEndpoint extends EventListenerEndpoint {
 
     /**
      * Set the eventHubName property: The name of the Event Hub.
-     *
+     * 
      * @param eventHubName the eventHubName value to set.
      * @return the EventHubEndpoint object itself.
      */
@@ -78,22 +99,20 @@ public final class EventHubEndpoint extends EventListenerEndpoint {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (fullyQualifiedNamespace() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property fullyQualifiedNamespace in model EventHubEndpoint"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property fullyQualifiedNamespace in model EventHubEndpoint"));
         }
         if (eventHubName() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property eventHubName in model EventHubEndpoint"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property eventHubName in model EventHubEndpoint"));
         }
     }
 

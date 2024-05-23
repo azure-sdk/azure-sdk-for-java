@@ -7,7 +7,9 @@ package com.azure.resourcemanager.webpubsub.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Live trace category configuration of a Microsoft.SignalRService resource. */
+/**
+ * Live trace category configuration of a Microsoft.SignalRService resource.
+ */
 @Fluent
 public final class LiveTraceCategory {
     /*
@@ -26,14 +28,17 @@ public final class LiveTraceCategory {
     @JsonProperty(value = "enabled")
     private String enabled;
 
-    /** Creates an instance of LiveTraceCategory class. */
+    /**
+     * Creates an instance of LiveTraceCategory class.
+     */
     public LiveTraceCategory() {
     }
 
     /**
-     * Get the name property: Gets or sets the live trace category's name. Available values: ConnectivityLogs,
-     * MessagingLogs. Case insensitive.
-     *
+     * Get the name property: Gets or sets the live trace category's name.
+     * Available values: ConnectivityLogs, MessagingLogs.
+     * Case insensitive.
+     * 
      * @return the name value.
      */
     public String name() {
@@ -41,9 +46,10 @@ public final class LiveTraceCategory {
     }
 
     /**
-     * Set the name property: Gets or sets the live trace category's name. Available values: ConnectivityLogs,
-     * MessagingLogs. Case insensitive.
-     *
+     * Set the name property: Gets or sets the live trace category's name.
+     * Available values: ConnectivityLogs, MessagingLogs.
+     * Case insensitive.
+     * 
      * @param name the name value to set.
      * @return the LiveTraceCategory object itself.
      */
@@ -53,9 +59,10 @@ public final class LiveTraceCategory {
     }
 
     /**
-     * Get the enabled property: Indicates whether or the live trace category is enabled. Available values: true, false.
+     * Get the enabled property: Indicates whether or the live trace category is enabled.
+     * Available values: true, false.
      * Case insensitive.
-     *
+     * 
      * @return the enabled value.
      */
     public String enabled() {
@@ -63,9 +70,10 @@ public final class LiveTraceCategory {
     }
 
     /**
-     * Set the enabled property: Indicates whether or the live trace category is enabled. Available values: true, false.
+     * Set the enabled property: Indicates whether or the live trace category is enabled.
+     * Available values: true, false.
      * Case insensitive.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the LiveTraceCategory object itself.
      */
@@ -76,7 +84,7 @@ public final class LiveTraceCategory {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

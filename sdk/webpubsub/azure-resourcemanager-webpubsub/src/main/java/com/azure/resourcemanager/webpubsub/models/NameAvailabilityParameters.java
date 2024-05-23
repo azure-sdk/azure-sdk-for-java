@@ -8,12 +8,13 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Data POST-ed to the nameAvailability action. */
+/**
+ * Data POST-ed to the nameAvailability action.
+ */
 @Fluent
 public final class NameAvailabilityParameters {
     /*
-     * The resource type. Can be "Microsoft.SignalRService/SignalR", "Microsoft.SignalRService/WebPubSub",
-     * "Microsoft.SignalRService/SignalR/replicas" or "Microsoft.SignalRService/WebPubSub/replicas"
+     * The resource type. Can be "Microsoft.SignalRService/SignalR", "Microsoft.SignalRService/WebPubSub", "Microsoft.SignalRService/SignalR/replicas" or "Microsoft.SignalRService/WebPubSub/replicas"
      */
     @JsonProperty(value = "type", required = true)
     private String type;
@@ -24,7 +25,9 @@ public final class NameAvailabilityParameters {
     @JsonProperty(value = "name", required = true)
     private String name;
 
-    /** Creates an instance of NameAvailabilityParameters class. */
+    /**
+     * Creates an instance of NameAvailabilityParameters class.
+     */
     public NameAvailabilityParameters() {
     }
 
@@ -32,7 +35,7 @@ public final class NameAvailabilityParameters {
      * Get the type property: The resource type. Can be "Microsoft.SignalRService/SignalR",
      * "Microsoft.SignalRService/WebPubSub", "Microsoft.SignalRService/SignalR/replicas" or
      * "Microsoft.SignalRService/WebPubSub/replicas".
-     *
+     * 
      * @return the type value.
      */
     public String type() {
@@ -43,7 +46,7 @@ public final class NameAvailabilityParameters {
      * Set the type property: The resource type. Can be "Microsoft.SignalRService/SignalR",
      * "Microsoft.SignalRService/WebPubSub", "Microsoft.SignalRService/SignalR/replicas" or
      * "Microsoft.SignalRService/WebPubSub/replicas".
-     *
+     * 
      * @param type the type value to set.
      * @return the NameAvailabilityParameters object itself.
      */
@@ -54,7 +57,7 @@ public final class NameAvailabilityParameters {
 
     /**
      * Get the name property: The resource name to validate. e.g."my-resource-name".
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -63,7 +66,7 @@ public final class NameAvailabilityParameters {
 
     /**
      * Set the name property: The resource name to validate. e.g."my-resource-name".
-     *
+     * 
      * @param name the name value to set.
      * @return the NameAvailabilityParameters object itself.
      */
@@ -74,18 +77,18 @@ public final class NameAvailabilityParameters {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (type() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property type in model NameAvailabilityParameters"));
         }
         if (name() == null) {
-            throw LOGGER
-                .logExceptionAsError(
+            throw LOGGER.atError()
+                .log(
                     new IllegalArgumentException("Missing required property name in model NameAvailabilityParameters"));
         }
     }

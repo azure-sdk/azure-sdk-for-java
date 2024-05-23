@@ -9,7 +9,9 @@ import com.azure.resourcemanager.webpubsub.fluent.models.WebPubSubResourceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** Object that includes an array of resources and a possible link for next set. */
+/**
+ * Object that includes an array of resources and a possible link for next set.
+ */
 @Fluent
 public final class WebPubSubResourceList {
     /*
@@ -25,13 +27,15 @@ public final class WebPubSubResourceList {
     @JsonProperty(value = "nextLink")
     private String nextLink;
 
-    /** Creates an instance of WebPubSubResourceList class. */
+    /**
+     * Creates an instance of WebPubSubResourceList class.
+     */
     public WebPubSubResourceList() {
     }
 
     /**
      * Get the value property: List of the resources.
-     *
+     * 
      * @return the value value.
      */
     public List<WebPubSubResourceInner> value() {
@@ -40,7 +44,7 @@ public final class WebPubSubResourceList {
 
     /**
      * Set the value property: List of the resources.
-     *
+     * 
      * @param value the value value to set.
      * @return the WebPubSubResourceList object itself.
      */
@@ -50,9 +54,9 @@ public final class WebPubSubResourceList {
     }
 
     /**
-     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Get the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -60,9 +64,9 @@ public final class WebPubSubResourceList {
     }
 
     /**
-     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging). It's
-     * null for now, added for future use.
-     *
+     * Set the nextLink property: The URL the client should use to fetch the next page (per server side paging).
+     * It's null for now, added for future use.
+     * 
      * @param nextLink the nextLink value to set.
      * @return the WebPubSubResourceList object itself.
      */
@@ -73,7 +77,7 @@ public final class WebPubSubResourceList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

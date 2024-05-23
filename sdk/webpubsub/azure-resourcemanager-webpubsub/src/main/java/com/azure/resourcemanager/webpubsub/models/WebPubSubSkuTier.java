@@ -10,25 +10,33 @@ import java.util.Collection;
 
 /**
  * Optional tier of this particular SKU. 'Standard' or 'Free'.
- *
- * <p>`Basic` is deprecated, use `Standard` instead.
+ * 
+ * `Basic` is deprecated, use `Standard` instead.
  */
 public final class WebPubSubSkuTier extends ExpandableStringEnum<WebPubSubSkuTier> {
-    /** Static value Free for WebPubSubSkuTier. */
+    /**
+     * Static value Free for WebPubSubSkuTier.
+     */
     public static final WebPubSubSkuTier FREE = fromString("Free");
 
-    /** Static value Basic for WebPubSubSkuTier. */
+    /**
+     * Static value Basic for WebPubSubSkuTier.
+     */
     public static final WebPubSubSkuTier BASIC = fromString("Basic");
 
-    /** Static value Standard for WebPubSubSkuTier. */
+    /**
+     * Static value Standard for WebPubSubSkuTier.
+     */
     public static final WebPubSubSkuTier STANDARD = fromString("Standard");
 
-    /** Static value Premium for WebPubSubSkuTier. */
+    /**
+     * Static value Premium for WebPubSubSkuTier.
+     */
     public static final WebPubSubSkuTier PREMIUM = fromString("Premium");
 
     /**
      * Creates a new instance of WebPubSubSkuTier value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -37,7 +45,7 @@ public final class WebPubSubSkuTier extends ExpandableStringEnum<WebPubSubSkuTie
 
     /**
      * Creates or finds a WebPubSubSkuTier from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding WebPubSubSkuTier.
      */
@@ -48,7 +56,7 @@ public final class WebPubSubSkuTier extends ExpandableStringEnum<WebPubSubSkuTie
 
     /**
      * Gets known WebPubSubSkuTier values.
-     *
+     * 
      * @return known WebPubSubSkuTier values.
      */
     public static Collection<WebPubSubSkuTier> values() {
