@@ -24,13 +24,15 @@ public final class ClusterAvailableVersion {
     @JsonProperty(value = "targetClusterVersion", access = JsonProperty.Access.WRITE_ONLY)
     private String targetClusterVersion;
 
-    /** Creates an instance of ClusterAvailableVersion class. */
+    /**
+     * Creates an instance of ClusterAvailableVersion class.
+     */
     public ClusterAvailableVersion() {
     }
 
     /**
      * Get the supportExpiryDate property: The last date the version of the platform is supported.
-     *
+     * 
      * @return the supportExpiryDate value.
      */
     public String supportExpiryDate() {
@@ -39,7 +41,7 @@ public final class ClusterAvailableVersion {
 
     /**
      * Get the targetClusterVersion property: The version of the cluster to be deployed.
-     *
+     * 
      * @return the targetClusterVersion value.
      */
     public String targetClusterVersion() {
@@ -48,7 +50,7 @@ public final class ClusterAvailableVersion {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

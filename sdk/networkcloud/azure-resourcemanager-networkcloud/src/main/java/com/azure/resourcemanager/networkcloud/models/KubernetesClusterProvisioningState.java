@@ -8,35 +8,53 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The provisioning state of the Kubernetes cluster resource. */
+/**
+ * The provisioning state of the Kubernetes cluster resource.
+ */
 public final class KubernetesClusterProvisioningState extends ExpandableStringEnum<KubernetesClusterProvisioningState> {
-    /** Static value Succeeded for KubernetesClusterProvisioningState. */
+    /**
+     * Static value Succeeded for KubernetesClusterProvisioningState.
+     */
     public static final KubernetesClusterProvisioningState SUCCEEDED = fromString("Succeeded");
 
-    /** Static value Failed for KubernetesClusterProvisioningState. */
+    /**
+     * Static value Failed for KubernetesClusterProvisioningState.
+     */
     public static final KubernetesClusterProvisioningState FAILED = fromString("Failed");
 
-    /** Static value Canceled for KubernetesClusterProvisioningState. */
+    /**
+     * Static value Canceled for KubernetesClusterProvisioningState.
+     */
     public static final KubernetesClusterProvisioningState CANCELED = fromString("Canceled");
 
-    /** Static value Accepted for KubernetesClusterProvisioningState. */
+    /**
+     * Static value Accepted for KubernetesClusterProvisioningState.
+     */
     public static final KubernetesClusterProvisioningState ACCEPTED = fromString("Accepted");
 
-    /** Static value InProgress for KubernetesClusterProvisioningState. */
+    /**
+     * Static value InProgress for KubernetesClusterProvisioningState.
+     */
     public static final KubernetesClusterProvisioningState IN_PROGRESS = fromString("InProgress");
 
-    /** Static value Created for KubernetesClusterProvisioningState. */
+    /**
+     * Static value Created for KubernetesClusterProvisioningState.
+     */
     public static final KubernetesClusterProvisioningState CREATED = fromString("Created");
 
-    /** Static value Updating for KubernetesClusterProvisioningState. */
+    /**
+     * Static value Updating for KubernetesClusterProvisioningState.
+     */
     public static final KubernetesClusterProvisioningState UPDATING = fromString("Updating");
 
-    /** Static value Deleting for KubernetesClusterProvisioningState. */
+    /**
+     * Static value Deleting for KubernetesClusterProvisioningState.
+     */
     public static final KubernetesClusterProvisioningState DELETING = fromString("Deleting");
 
     /**
      * Creates a new instance of KubernetesClusterProvisioningState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -45,7 +63,7 @@ public final class KubernetesClusterProvisioningState extends ExpandableStringEn
 
     /**
      * Creates or finds a KubernetesClusterProvisioningState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding KubernetesClusterProvisioningState.
      */
@@ -56,7 +74,7 @@ public final class KubernetesClusterProvisioningState extends ExpandableStringEn
 
     /**
      * Gets known KubernetesClusterProvisioningState values.
-     *
+     * 
      * @return known KubernetesClusterProvisioningState values.
      */
     public static Collection<KubernetesClusterProvisioningState> values() {

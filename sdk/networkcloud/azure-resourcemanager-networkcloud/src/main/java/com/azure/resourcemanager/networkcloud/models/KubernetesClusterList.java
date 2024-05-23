@@ -9,7 +9,9 @@ import com.azure.resourcemanager.networkcloud.fluent.models.KubernetesClusterInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** KubernetesClusterList represents a list of Kubernetes clusters. */
+/**
+ * KubernetesClusterList represents a list of Kubernetes clusters.
+ */
 @Fluent
 public final class KubernetesClusterList {
     /*
@@ -24,13 +26,15 @@ public final class KubernetesClusterList {
     @JsonProperty(value = "value")
     private List<KubernetesClusterInner> value;
 
-    /** Creates an instance of KubernetesClusterList class. */
+    /**
+     * Creates an instance of KubernetesClusterList class.
+     */
     public KubernetesClusterList() {
     }
 
     /**
      * Get the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -39,7 +43,7 @@ public final class KubernetesClusterList {
 
     /**
      * Set the nextLink property: The link used to get the next page of operations.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the KubernetesClusterList object itself.
      */
@@ -50,7 +54,7 @@ public final class KubernetesClusterList {
 
     /**
      * Get the value property: The list of additional details related to Kubernetes clusters.
-     *
+     * 
      * @return the value value.
      */
     public List<KubernetesClusterInner> value() {
@@ -59,7 +63,7 @@ public final class KubernetesClusterList {
 
     /**
      * Set the value property: The list of additional details related to Kubernetes clusters.
-     *
+     * 
      * @param value the value value to set.
      * @return the KubernetesClusterList object itself.
      */
@@ -70,7 +74,7 @@ public final class KubernetesClusterList {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

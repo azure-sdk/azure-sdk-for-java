@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** NetworkInterface represents properties of the network interface. */
+/**
+ * NetworkInterface represents properties of the network interface.
+ */
 @Immutable
 public final class NetworkInterface {
     /*
@@ -52,13 +54,15 @@ public final class NetworkInterface {
     @JsonProperty(value = "vendor", access = JsonProperty.Access.WRITE_ONLY)
     private String vendor;
 
-    /** Creates an instance of NetworkInterface class. */
+    /**
+     * Creates an instance of NetworkInterface class.
+     */
     public NetworkInterface() {
     }
 
     /**
      * Get the address property: The partial address of Peripheral Component Interconnect (PCI).
-     *
+     * 
      * @return the address value.
      */
     public String address() {
@@ -67,7 +71,7 @@ public final class NetworkInterface {
 
     /**
      * Get the deviceConnectionType property: The connection type of the device.
-     *
+     * 
      * @return the deviceConnectionType value.
      */
     public DeviceConnectionType deviceConnectionType() {
@@ -76,7 +80,7 @@ public final class NetworkInterface {
 
     /**
      * Get the model property: The model name of the device.
-     *
+     * 
      * @return the model value.
      */
     public String model() {
@@ -85,7 +89,7 @@ public final class NetworkInterface {
 
     /**
      * Get the physicalSlot property: The physical slot for this device.
-     *
+     * 
      * @return the physicalSlot value.
      */
     public Long physicalSlot() {
@@ -94,7 +98,7 @@ public final class NetworkInterface {
 
     /**
      * Get the portCount property: The number of ports on the device.
-     *
+     * 
      * @return the portCount value.
      */
     public Long portCount() {
@@ -104,7 +108,7 @@ public final class NetworkInterface {
     /**
      * Get the portSpeed property: The maximum amount of data in GB that the line card transmits through a port at any
      * given second.
-     *
+     * 
      * @return the portSpeed value.
      */
     public Long portSpeed() {
@@ -113,7 +117,7 @@ public final class NetworkInterface {
 
     /**
      * Get the vendor property: The vendor name of the device.
-     *
+     * 
      * @return the vendor value.
      */
     public String vendor() {
@@ -122,7 +126,7 @@ public final class NetworkInterface {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

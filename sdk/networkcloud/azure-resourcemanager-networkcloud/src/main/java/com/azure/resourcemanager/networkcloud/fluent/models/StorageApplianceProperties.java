@@ -13,13 +13,14 @@ import com.azure.resourcemanager.networkcloud.models.StorageApplianceDetailedSta
 import com.azure.resourcemanager.networkcloud.models.StorageApplianceProvisioningState;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** StorageApplianceProperties represents the properties of the storage appliance. */
+/**
+ * StorageApplianceProperties represents the properties of the storage appliance.
+ */
 @Fluent
 public final class StorageApplianceProperties {
     /*
-     * AdministrativeCredentials represents the admin credentials for the device requiring password-based
-     * authentication.
-     *
+     * AdministrativeCredentials represents the admin credentials for the device requiring password-based authentication.
+     * 
      * The credentials of the administrative interface on this storage appliance.
      */
     @JsonProperty(value = "administratorCredentials", required = true)
@@ -86,8 +87,7 @@ public final class StorageApplianceProperties {
     private RemoteVendorManagementFeature remoteVendorManagementFeature;
 
     /*
-     * The indicator of whether the remote vendor management feature is enabled or disabled, or unsupported if it is an
-     * unsupported feature.
+     * The indicator of whether the remote vendor management feature is enabled or disabled, or unsupported if it is an unsupported feature.
      */
     @JsonProperty(value = "remoteVendorManagementStatus", access = JsonProperty.Access.WRITE_ONLY)
     private RemoteVendorManagementStatus remoteVendorManagementStatus;
@@ -104,16 +104,18 @@ public final class StorageApplianceProperties {
     @JsonProperty(value = "storageApplianceSkuId", required = true)
     private String storageApplianceSkuId;
 
-    /** Creates an instance of StorageApplianceProperties class. */
+    /**
+     * Creates an instance of StorageApplianceProperties class.
+     */
     public StorageApplianceProperties() {
     }
 
     /**
      * Get the administratorCredentials property: AdministrativeCredentials represents the admin credentials for the
      * device requiring password-based authentication.
-     *
-     * <p>The credentials of the administrative interface on this storage appliance.
-     *
+     * 
+     * The credentials of the administrative interface on this storage appliance.
+     * 
      * @return the administratorCredentials value.
      */
     public AdministrativeCredentials administratorCredentials() {
@@ -123,9 +125,9 @@ public final class StorageApplianceProperties {
     /**
      * Set the administratorCredentials property: AdministrativeCredentials represents the admin credentials for the
      * device requiring password-based authentication.
-     *
-     * <p>The credentials of the administrative interface on this storage appliance.
-     *
+     * 
+     * The credentials of the administrative interface on this storage appliance.
+     * 
      * @param administratorCredentials the administratorCredentials value to set.
      * @return the StorageApplianceProperties object itself.
      */
@@ -136,7 +138,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Get the capacity property: The total capacity of the storage appliance.
-     *
+     * 
      * @return the capacity value.
      */
     public Long capacity() {
@@ -145,7 +147,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Get the capacityUsed property: The amount of storage consumed.
-     *
+     * 
      * @return the capacityUsed value.
      */
     public Long capacityUsed() {
@@ -154,7 +156,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Get the clusterId property: The resource ID of the cluster this storage appliance is associated with.
-     *
+     * 
      * @return the clusterId value.
      */
     public String clusterId() {
@@ -163,7 +165,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Get the detailedStatus property: The detailed status of the storage appliance.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public StorageApplianceDetailedStatus detailedStatus() {
@@ -172,7 +174,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -181,7 +183,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Get the managementIpv4Address property: The endpoint for the management interface of the storage appliance.
-     *
+     * 
      * @return the managementIpv4Address value.
      */
     public String managementIpv4Address() {
@@ -190,7 +192,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the storage appliance.
-     *
+     * 
      * @return the provisioningState value.
      */
     public StorageApplianceProvisioningState provisioningState() {
@@ -199,7 +201,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Get the rackId property: The resource ID of the rack where this storage appliance resides.
-     *
+     * 
      * @return the rackId value.
      */
     public String rackId() {
@@ -208,7 +210,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Set the rackId property: The resource ID of the rack where this storage appliance resides.
-     *
+     * 
      * @param rackId the rackId value to set.
      * @return the StorageApplianceProperties object itself.
      */
@@ -219,7 +221,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Get the rackSlot property: The slot the storage appliance is in the rack based on the BOM configuration.
-     *
+     * 
      * @return the rackSlot value.
      */
     public long rackSlot() {
@@ -228,7 +230,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Set the rackSlot property: The slot the storage appliance is in the rack based on the BOM configuration.
-     *
+     * 
      * @param rackSlot the rackSlot value to set.
      * @return the StorageApplianceProperties object itself.
      */
@@ -240,7 +242,7 @@ public final class StorageApplianceProperties {
     /**
      * Get the remoteVendorManagementFeature property: The indicator of whether the storage appliance supports remote
      * vendor management.
-     *
+     * 
      * @return the remoteVendorManagementFeature value.
      */
     public RemoteVendorManagementFeature remoteVendorManagementFeature() {
@@ -250,7 +252,7 @@ public final class StorageApplianceProperties {
     /**
      * Get the remoteVendorManagementStatus property: The indicator of whether the remote vendor management feature is
      * enabled or disabled, or unsupported if it is an unsupported feature.
-     *
+     * 
      * @return the remoteVendorManagementStatus value.
      */
     public RemoteVendorManagementStatus remoteVendorManagementStatus() {
@@ -259,7 +261,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Get the serialNumber property: The serial number for the storage appliance.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -268,7 +270,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Set the serialNumber property: The serial number for the storage appliance.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the StorageApplianceProperties object itself.
      */
@@ -279,7 +281,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Get the storageApplianceSkuId property: The SKU for the storage appliance.
-     *
+     * 
      * @return the storageApplianceSkuId value.
      */
     public String storageApplianceSkuId() {
@@ -288,7 +290,7 @@ public final class StorageApplianceProperties {
 
     /**
      * Set the storageApplianceSkuId property: The SKU for the storage appliance.
-     *
+     * 
      * @param storageApplianceSkuId the storageApplianceSkuId value to set.
      * @return the StorageApplianceProperties object itself.
      */
@@ -299,35 +301,31 @@ public final class StorageApplianceProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (administratorCredentials() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property administratorCredentials in model StorageApplianceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property administratorCredentials in model StorageApplianceProperties"));
         } else {
             administratorCredentials().validate();
         }
         if (rackId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property rackId in model StorageApplianceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property rackId in model StorageApplianceProperties"));
         }
         if (serialNumber() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property serialNumber in model StorageApplianceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property serialNumber in model StorageApplianceProperties"));
         }
         if (storageApplianceSkuId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property storageApplianceSkuId in model StorageApplianceProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property storageApplianceSkuId in model StorageApplianceProperties"));
         }
     }
 

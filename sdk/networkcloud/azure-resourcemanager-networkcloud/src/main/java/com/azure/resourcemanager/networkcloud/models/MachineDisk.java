@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Disk represents the properties of the disk. */
+/**
+ * Disk represents the properties of the disk.
+ */
 @Immutable
 public final class MachineDisk {
     /*
@@ -28,13 +30,15 @@ public final class MachineDisk {
     @JsonProperty(value = "type", access = JsonProperty.Access.WRITE_ONLY)
     private DiskType type;
 
-    /** Creates an instance of MachineDisk class. */
+    /**
+     * Creates an instance of MachineDisk class.
+     */
     public MachineDisk() {
     }
 
     /**
      * Get the capacityGB property: The maximum amount of storage in GB.
-     *
+     * 
      * @return the capacityGB value.
      */
     public Long capacityGB() {
@@ -43,7 +47,7 @@ public final class MachineDisk {
 
     /**
      * Get the connection property: The connection type of the rack SKU resource.
-     *
+     * 
      * @return the connection value.
      */
     public MachineSkuDiskConnectionType connection() {
@@ -52,7 +56,7 @@ public final class MachineDisk {
 
     /**
      * Get the type property: The disk type of rack SKU resource.
-     *
+     * 
      * @return the type value.
      */
     public DiskType type() {
@@ -61,7 +65,7 @@ public final class MachineDisk {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

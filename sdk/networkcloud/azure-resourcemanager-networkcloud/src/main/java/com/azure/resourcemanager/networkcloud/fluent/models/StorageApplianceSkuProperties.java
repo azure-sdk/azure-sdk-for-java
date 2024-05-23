@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** StorageApplianceSkuProperties represents the properties of the storage appliance SKU. */
+/**
+ * StorageApplianceSkuProperties represents the properties of the storage appliance SKU.
+ */
 @Immutable
 public final class StorageApplianceSkuProperties {
     /*
@@ -22,13 +24,15 @@ public final class StorageApplianceSkuProperties {
     @JsonProperty(value = "model", access = JsonProperty.Access.WRITE_ONLY)
     private String model;
 
-    /** Creates an instance of StorageApplianceSkuProperties class. */
+    /**
+     * Creates an instance of StorageApplianceSkuProperties class.
+     */
     public StorageApplianceSkuProperties() {
     }
 
     /**
      * Get the capacityGB property: The maximum capacity of the storage appliance.
-     *
+     * 
      * @return the capacityGB value.
      */
     public Long capacityGB() {
@@ -37,7 +41,7 @@ public final class StorageApplianceSkuProperties {
 
     /**
      * Get the model property: The model of the storage appliance.
-     *
+     * 
      * @return the model value.
      */
     public String model() {
@@ -46,7 +50,7 @@ public final class StorageApplianceSkuProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

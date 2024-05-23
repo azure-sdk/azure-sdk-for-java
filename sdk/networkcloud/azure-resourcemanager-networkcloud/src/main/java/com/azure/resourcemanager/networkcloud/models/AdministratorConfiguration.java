@@ -15,27 +15,27 @@ import java.util.List;
 @Fluent
 public final class AdministratorConfiguration {
     /*
-     * The user name for the administrator that will be applied to the operating systems that run Kubernetes nodes. If
-     * not supplied, a user name will be chosen by the service.
+     * The user name for the administrator that will be applied to the operating systems that run Kubernetes nodes. If not supplied, a user name will be chosen by the service.
      */
     @JsonProperty(value = "adminUsername")
     private String adminUsername;
 
     /*
-     * The SSH configuration for the operating systems that run the nodes in the Kubernetes cluster. In some cases,
-     * specification of public keys may be required to produce a working environment.
+     * The SSH configuration for the operating systems that run the nodes in the Kubernetes cluster. In some cases, specification of public keys may be required to produce a working environment.
      */
     @JsonProperty(value = "sshPublicKeys")
     private List<SshPublicKey> sshPublicKeys;
 
-    /** Creates an instance of AdministratorConfiguration class. */
+    /**
+     * Creates an instance of AdministratorConfiguration class.
+     */
     public AdministratorConfiguration() {
     }
 
     /**
      * Get the adminUsername property: The user name for the administrator that will be applied to the operating systems
      * that run Kubernetes nodes. If not supplied, a user name will be chosen by the service.
-     *
+     * 
      * @return the adminUsername value.
      */
     public String adminUsername() {
@@ -45,7 +45,7 @@ public final class AdministratorConfiguration {
     /**
      * Set the adminUsername property: The user name for the administrator that will be applied to the operating systems
      * that run Kubernetes nodes. If not supplied, a user name will be chosen by the service.
-     *
+     * 
      * @param adminUsername the adminUsername value to set.
      * @return the AdministratorConfiguration object itself.
      */
@@ -57,7 +57,7 @@ public final class AdministratorConfiguration {
     /**
      * Get the sshPublicKeys property: The SSH configuration for the operating systems that run the nodes in the
      * Kubernetes cluster. In some cases, specification of public keys may be required to produce a working environment.
-     *
+     * 
      * @return the sshPublicKeys value.
      */
     public List<SshPublicKey> sshPublicKeys() {
@@ -67,7 +67,7 @@ public final class AdministratorConfiguration {
     /**
      * Set the sshPublicKeys property: The SSH configuration for the operating systems that run the nodes in the
      * Kubernetes cluster. In some cases, specification of public keys may be required to produce a working environment.
-     *
+     * 
      * @param sshPublicKeys the sshPublicKeys value to set.
      * @return the AdministratorConfiguration object itself.
      */
@@ -78,7 +78,7 @@ public final class AdministratorConfiguration {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

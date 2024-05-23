@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** HardwareInventoryNetworkInterface represents the network interface details as part of a hardware inventory. */
+/**
+ * HardwareInventoryNetworkInterface represents the network interface details as part of a hardware inventory.
+ */
 @Immutable
 public final class HardwareInventoryNetworkInterface {
     /*
@@ -29,19 +31,20 @@ public final class HardwareInventoryNetworkInterface {
     private String name;
 
     /*
-     * The resource ID of the network interface for the port on the switch that this machine's interface is connected
-     * to.
+     * The resource ID of the network interface for the port on the switch that this machine's interface is connected to.
      */
     @JsonProperty(value = "networkInterfaceId", access = JsonProperty.Access.WRITE_ONLY)
     private String networkInterfaceId;
 
-    /** Creates an instance of HardwareInventoryNetworkInterface class. */
+    /**
+     * Creates an instance of HardwareInventoryNetworkInterface class.
+     */
     public HardwareInventoryNetworkInterface() {
     }
 
     /**
      * Get the linkStatus property: The current status of the link.
-     *
+     * 
      * @return the linkStatus value.
      */
     public String linkStatus() {
@@ -50,7 +53,7 @@ public final class HardwareInventoryNetworkInterface {
 
     /**
      * Get the macAddress property: The MAC address associated with this interface.
-     *
+     * 
      * @return the macAddress value.
      */
     public String macAddress() {
@@ -59,7 +62,7 @@ public final class HardwareInventoryNetworkInterface {
 
     /**
      * Get the name property: The name of the interface.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -69,7 +72,7 @@ public final class HardwareInventoryNetworkInterface {
     /**
      * Get the networkInterfaceId property: The resource ID of the network interface for the port on the switch that
      * this machine's interface is connected to.
-     *
+     * 
      * @return the networkInterfaceId value.
      */
     public String networkInterfaceId() {
@@ -78,7 +81,7 @@ public final class HardwareInventoryNetworkInterface {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.networkcloud.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** ClusterAvailableUpgradeVersion represents the various cluster upgrade parameters. */
+/**
+ * ClusterAvailableUpgradeVersion represents the various cluster upgrade parameters.
+ */
 @Immutable
 public final class ClusterAvailableUpgradeVersion {
     /*
@@ -46,13 +48,15 @@ public final class ClusterAvailableUpgradeVersion {
     @JsonProperty(value = "workloadImpact", access = JsonProperty.Access.WRITE_ONLY)
     private WorkloadImpact workloadImpact;
 
-    /** Creates an instance of ClusterAvailableUpgradeVersion class. */
+    /**
+     * Creates an instance of ClusterAvailableUpgradeVersion class.
+     */
     public ClusterAvailableUpgradeVersion() {
     }
 
     /**
      * Get the controlImpact property: The indicator of whether the control plane will be impacted during the upgrade.
-     *
+     * 
      * @return the controlImpact value.
      */
     public ControlImpact controlImpact() {
@@ -61,7 +65,7 @@ public final class ClusterAvailableUpgradeVersion {
 
     /**
      * Get the expectedDuration property: The expected duration needed for this upgrade.
-     *
+     * 
      * @return the expectedDuration value.
      */
     public String expectedDuration() {
@@ -70,7 +74,7 @@ public final class ClusterAvailableUpgradeVersion {
 
     /**
      * Get the impactDescription property: The impact description including the specific details and release notes.
-     *
+     * 
      * @return the impactDescription value.
      */
     public String impactDescription() {
@@ -79,7 +83,7 @@ public final class ClusterAvailableUpgradeVersion {
 
     /**
      * Get the supportExpiryDate property: The last date the version of the platform is supported.
-     *
+     * 
      * @return the supportExpiryDate value.
      */
     public String supportExpiryDate() {
@@ -88,7 +92,7 @@ public final class ClusterAvailableUpgradeVersion {
 
     /**
      * Get the targetClusterVersion property: The target version this cluster will be upgraded to.
-     *
+     * 
      * @return the targetClusterVersion value.
      */
     public String targetClusterVersion() {
@@ -97,7 +101,7 @@ public final class ClusterAvailableUpgradeVersion {
 
     /**
      * Get the workloadImpact property: The indicator of whether the workload will be impacted during the upgrade.
-     *
+     * 
      * @return the workloadImpact value.
      */
     public WorkloadImpact workloadImpact() {
@@ -106,7 +110,7 @@ public final class ClusterAvailableUpgradeVersion {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

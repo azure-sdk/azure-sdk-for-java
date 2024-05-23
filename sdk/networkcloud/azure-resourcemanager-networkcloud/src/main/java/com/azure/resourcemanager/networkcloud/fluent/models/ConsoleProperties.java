@@ -13,7 +13,9 @@ import com.azure.resourcemanager.networkcloud.models.SshPublicKey;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.OffsetDateTime;
 
-/** ConsoleProperties represents the properties of the virtual machine console. */
+/**
+ * ConsoleProperties represents the properties of the virtual machine console.
+ */
 @Fluent
 public final class ConsoleProperties {
     /*
@@ -54,9 +56,8 @@ public final class ConsoleProperties {
 
     /*
      * SshPublicKey represents the public key used to authenticate with a resource through SSH.
-     *
-     * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
-     * private key for logging in.
+     * 
+     * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH private key for logging in.
      */
     @JsonProperty(value = "sshPublicKey", required = true)
     private SshPublicKey sshPublicKey;
@@ -67,13 +68,15 @@ public final class ConsoleProperties {
     @JsonProperty(value = "virtualMachineAccessId", access = JsonProperty.Access.WRITE_ONLY)
     private String virtualMachineAccessId;
 
-    /** Creates an instance of ConsoleProperties class. */
+    /**
+     * Creates an instance of ConsoleProperties class.
+     */
     public ConsoleProperties() {
     }
 
     /**
      * Get the detailedStatus property: The more detailed status of the console.
-     *
+     * 
      * @return the detailedStatus value.
      */
     public ConsoleDetailedStatus detailedStatus() {
@@ -82,7 +85,7 @@ public final class ConsoleProperties {
 
     /**
      * Get the detailedStatusMessage property: The descriptive message about the current detailed status.
-     *
+     * 
      * @return the detailedStatusMessage value.
      */
     public String detailedStatusMessage() {
@@ -91,7 +94,7 @@ public final class ConsoleProperties {
 
     /**
      * Get the enabled property: The indicator of whether the console access is enabled.
-     *
+     * 
      * @return the enabled value.
      */
     public ConsoleEnabled enabled() {
@@ -100,7 +103,7 @@ public final class ConsoleProperties {
 
     /**
      * Set the enabled property: The indicator of whether the console access is enabled.
-     *
+     * 
      * @param enabled the enabled value to set.
      * @return the ConsoleProperties object itself.
      */
@@ -111,7 +114,7 @@ public final class ConsoleProperties {
 
     /**
      * Get the expiration property: The date and time after which the key will be disallowed access.
-     *
+     * 
      * @return the expiration value.
      */
     public OffsetDateTime expiration() {
@@ -120,7 +123,7 @@ public final class ConsoleProperties {
 
     /**
      * Set the expiration property: The date and time after which the key will be disallowed access.
-     *
+     * 
      * @param expiration the expiration value to set.
      * @return the ConsoleProperties object itself.
      */
@@ -132,7 +135,7 @@ public final class ConsoleProperties {
     /**
      * Get the privateLinkServiceId property: The resource ID of the private link service that is used to provide
      * virtual machine console access.
-     *
+     * 
      * @return the privateLinkServiceId value.
      */
     public String privateLinkServiceId() {
@@ -141,7 +144,7 @@ public final class ConsoleProperties {
 
     /**
      * Get the provisioningState property: The provisioning state of the virtual machine console.
-     *
+     * 
      * @return the provisioningState value.
      */
     public ConsoleProvisioningState provisioningState() {
@@ -151,10 +154,10 @@ public final class ConsoleProperties {
     /**
      * Get the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
      * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * 
+     * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
+     * private key for logging in.
+     * 
      * @return the sshPublicKey value.
      */
     public SshPublicKey sshPublicKey() {
@@ -164,10 +167,10 @@ public final class ConsoleProperties {
     /**
      * Set the sshPublicKey property: SshPublicKey represents the public key used to authenticate with a resource
      * through SSH.
-     *
-     * <p>The SSH public key that will be provisioned for user access. The user is expected to have the corresponding
-     * SSH private key for logging in.
-     *
+     * 
+     * The SSH public key that will be provisioned for user access. The user is expected to have the corresponding SSH
+     * private key for logging in.
+     * 
      * @param sshPublicKey the sshPublicKey value to set.
      * @return the ConsoleProperties object itself.
      */
@@ -179,7 +182,7 @@ public final class ConsoleProperties {
     /**
      * Get the virtualMachineAccessId property: The unique identifier for the virtual machine that is used to access the
      * console.
-     *
+     * 
      * @return the virtualMachineAccessId value.
      */
     public String virtualMachineAccessId() {
@@ -188,19 +191,17 @@ public final class ConsoleProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (enabled() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property enabled in model ConsoleProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property enabled in model ConsoleProperties"));
         }
         if (sshPublicKey() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property sshPublicKey in model ConsoleProperties"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property sshPublicKey in model ConsoleProperties"));
         } else {
             sshPublicKey().validate();
         }

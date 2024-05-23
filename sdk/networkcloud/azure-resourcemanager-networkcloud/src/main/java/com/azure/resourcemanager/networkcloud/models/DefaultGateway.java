@@ -9,19 +9,24 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
 /**
- * The indicator of whether this is the default gateway. Only one of the attached networks (including the
- * CloudServicesNetwork attachment) for a single machine may be specified as True.
+ * The indicator of whether this is the default gateway.
+ * Only one of the attached networks (including the CloudServicesNetwork attachment) for a single machine may be
+ * specified as True.
  */
 public final class DefaultGateway extends ExpandableStringEnum<DefaultGateway> {
-    /** Static value True for DefaultGateway. */
+    /**
+     * Static value True for DefaultGateway.
+     */
     public static final DefaultGateway TRUE = fromString("True");
 
-    /** Static value False for DefaultGateway. */
+    /**
+     * Static value False for DefaultGateway.
+     */
     public static final DefaultGateway FALSE = fromString("False");
 
     /**
      * Creates a new instance of DefaultGateway value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +35,7 @@ public final class DefaultGateway extends ExpandableStringEnum<DefaultGateway> {
 
     /**
      * Creates or finds a DefaultGateway from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding DefaultGateway.
      */
@@ -41,7 +46,7 @@ public final class DefaultGateway extends ExpandableStringEnum<DefaultGateway> {
 
     /**
      * Gets known DefaultGateway values.
-     *
+     * 
      * @return known DefaultGateway values.
      */
     public static Collection<DefaultGateway> values() {

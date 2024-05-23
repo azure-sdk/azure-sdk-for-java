@@ -8,13 +8,14 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** StorageApplianceConfigurationData represents configuration for the storage application. */
+/**
+ * StorageApplianceConfigurationData represents configuration for the storage application.
+ */
 @Fluent
 public final class StorageApplianceConfigurationData {
     /*
-     * AdministrativeCredentials represents the admin credentials for the device requiring password-based
-     * authentication.
-     *
+     * AdministrativeCredentials represents the admin credentials for the device requiring password-based authentication.
+     * 
      * The credentials of the administrative interface on this storage appliance.
      */
     @JsonProperty(value = "adminCredentials", required = true)
@@ -38,16 +39,18 @@ public final class StorageApplianceConfigurationData {
     @JsonProperty(value = "storageApplianceName")
     private String storageApplianceName;
 
-    /** Creates an instance of StorageApplianceConfigurationData class. */
+    /**
+     * Creates an instance of StorageApplianceConfigurationData class.
+     */
     public StorageApplianceConfigurationData() {
     }
 
     /**
      * Get the adminCredentials property: AdministrativeCredentials represents the admin credentials for the device
      * requiring password-based authentication.
-     *
-     * <p>The credentials of the administrative interface on this storage appliance.
-     *
+     * 
+     * The credentials of the administrative interface on this storage appliance.
+     * 
      * @return the adminCredentials value.
      */
     public AdministrativeCredentials adminCredentials() {
@@ -57,9 +60,9 @@ public final class StorageApplianceConfigurationData {
     /**
      * Set the adminCredentials property: AdministrativeCredentials represents the admin credentials for the device
      * requiring password-based authentication.
-     *
-     * <p>The credentials of the administrative interface on this storage appliance.
-     *
+     * 
+     * The credentials of the administrative interface on this storage appliance.
+     * 
      * @param adminCredentials the adminCredentials value to set.
      * @return the StorageApplianceConfigurationData object itself.
      */
@@ -70,7 +73,7 @@ public final class StorageApplianceConfigurationData {
 
     /**
      * Get the rackSlot property: The slot that storage appliance is in the rack based on the BOM configuration.
-     *
+     * 
      * @return the rackSlot value.
      */
     public long rackSlot() {
@@ -79,7 +82,7 @@ public final class StorageApplianceConfigurationData {
 
     /**
      * Set the rackSlot property: The slot that storage appliance is in the rack based on the BOM configuration.
-     *
+     * 
      * @param rackSlot the rackSlot value to set.
      * @return the StorageApplianceConfigurationData object itself.
      */
@@ -90,7 +93,7 @@ public final class StorageApplianceConfigurationData {
 
     /**
      * Get the serialNumber property: The serial number of the appliance.
-     *
+     * 
      * @return the serialNumber value.
      */
     public String serialNumber() {
@@ -99,7 +102,7 @@ public final class StorageApplianceConfigurationData {
 
     /**
      * Set the serialNumber property: The serial number of the appliance.
-     *
+     * 
      * @param serialNumber the serialNumber value to set.
      * @return the StorageApplianceConfigurationData object itself.
      */
@@ -111,7 +114,7 @@ public final class StorageApplianceConfigurationData {
     /**
      * Get the storageApplianceName property: The user-provided name for the storage appliance that will be created from
      * this specification.
-     *
+     * 
      * @return the storageApplianceName value.
      */
     public String storageApplianceName() {
@@ -121,7 +124,7 @@ public final class StorageApplianceConfigurationData {
     /**
      * Set the storageApplianceName property: The user-provided name for the storage appliance that will be created from
      * this specification.
-     *
+     * 
      * @param storageApplianceName the storageApplianceName value to set.
      * @return the StorageApplianceConfigurationData object itself.
      */
@@ -132,23 +135,21 @@ public final class StorageApplianceConfigurationData {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (adminCredentials() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property adminCredentials in model StorageApplianceConfigurationData"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property adminCredentials in model StorageApplianceConfigurationData"));
         } else {
             adminCredentials().validate();
         }
         if (serialNumber() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property serialNumber in model StorageApplianceConfigurationData"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property serialNumber in model StorageApplianceConfigurationData"));
         }
     }
 

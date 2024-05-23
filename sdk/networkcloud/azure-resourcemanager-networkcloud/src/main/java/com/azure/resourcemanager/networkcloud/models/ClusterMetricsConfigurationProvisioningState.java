@@ -8,27 +8,39 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** The provisioning state of the metrics configuration. */
+/**
+ * The provisioning state of the metrics configuration.
+ */
 public final class ClusterMetricsConfigurationProvisioningState
     extends ExpandableStringEnum<ClusterMetricsConfigurationProvisioningState> {
-    /** Static value Succeeded for ClusterMetricsConfigurationProvisioningState. */
+    /**
+     * Static value Succeeded for ClusterMetricsConfigurationProvisioningState.
+     */
     public static final ClusterMetricsConfigurationProvisioningState SUCCEEDED = fromString("Succeeded");
 
-    /** Static value Failed for ClusterMetricsConfigurationProvisioningState. */
+    /**
+     * Static value Failed for ClusterMetricsConfigurationProvisioningState.
+     */
     public static final ClusterMetricsConfigurationProvisioningState FAILED = fromString("Failed");
 
-    /** Static value Canceled for ClusterMetricsConfigurationProvisioningState. */
+    /**
+     * Static value Canceled for ClusterMetricsConfigurationProvisioningState.
+     */
     public static final ClusterMetricsConfigurationProvisioningState CANCELED = fromString("Canceled");
 
-    /** Static value Accepted for ClusterMetricsConfigurationProvisioningState. */
+    /**
+     * Static value Accepted for ClusterMetricsConfigurationProvisioningState.
+     */
     public static final ClusterMetricsConfigurationProvisioningState ACCEPTED = fromString("Accepted");
 
-    /** Static value Provisioning for ClusterMetricsConfigurationProvisioningState. */
+    /**
+     * Static value Provisioning for ClusterMetricsConfigurationProvisioningState.
+     */
     public static final ClusterMetricsConfigurationProvisioningState PROVISIONING = fromString("Provisioning");
 
     /**
      * Creates a new instance of ClusterMetricsConfigurationProvisioningState value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -37,7 +49,7 @@ public final class ClusterMetricsConfigurationProvisioningState
 
     /**
      * Creates or finds a ClusterMetricsConfigurationProvisioningState from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ClusterMetricsConfigurationProvisioningState.
      */
@@ -48,7 +60,7 @@ public final class ClusterMetricsConfigurationProvisioningState
 
     /**
      * Gets known ClusterMetricsConfigurationProvisioningState values.
-     *
+     * 
      * @return known ClusterMetricsConfigurationProvisioningState values.
      */
     public static Collection<ClusterMetricsConfigurationProvisioningState> values() {

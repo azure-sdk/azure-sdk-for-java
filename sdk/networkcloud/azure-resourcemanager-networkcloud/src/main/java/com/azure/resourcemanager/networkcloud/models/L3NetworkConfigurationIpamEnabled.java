@@ -13,15 +13,19 @@ import java.util.Collection;
  * attached.
  */
 public final class L3NetworkConfigurationIpamEnabled extends ExpandableStringEnum<L3NetworkConfigurationIpamEnabled> {
-    /** Static value True for L3NetworkConfigurationIpamEnabled. */
+    /**
+     * Static value True for L3NetworkConfigurationIpamEnabled.
+     */
     public static final L3NetworkConfigurationIpamEnabled TRUE = fromString("True");
 
-    /** Static value False for L3NetworkConfigurationIpamEnabled. */
+    /**
+     * Static value False for L3NetworkConfigurationIpamEnabled.
+     */
     public static final L3NetworkConfigurationIpamEnabled FALSE = fromString("False");
 
     /**
      * Creates a new instance of L3NetworkConfigurationIpamEnabled value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -30,7 +34,7 @@ public final class L3NetworkConfigurationIpamEnabled extends ExpandableStringEnu
 
     /**
      * Creates or finds a L3NetworkConfigurationIpamEnabled from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding L3NetworkConfigurationIpamEnabled.
      */
@@ -41,7 +45,7 @@ public final class L3NetworkConfigurationIpamEnabled extends ExpandableStringEnu
 
     /**
      * Gets known L3NetworkConfigurationIpamEnabled values.
-     *
+     * 
      * @return known L3NetworkConfigurationIpamEnabled values.
      */
     public static Collection<L3NetworkConfigurationIpamEnabled> values() {
