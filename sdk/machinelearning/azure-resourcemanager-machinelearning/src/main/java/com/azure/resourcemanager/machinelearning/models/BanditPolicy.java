@@ -6,14 +6,24 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Defines an early termination policy based on slack criteria, and a frequency and delay interval for evaluation. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "policyType")
+/**
+ * Defines an early termination policy based on slack criteria, and a frequency and delay interval for evaluation.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "policyType", defaultImpl = BanditPolicy.class, visible = true)
 @JsonTypeName("Bandit")
 @Fluent
 public final class BanditPolicy extends EarlyTerminationPolicy {
+    /*
+     * [Required] Name of policy configuration
+     */
+    @JsonTypeId
+    @JsonProperty(value = "policyType", required = true)
+    private EarlyTerminationPolicyType policyType = EarlyTerminationPolicyType.BANDIT;
+
     /*
      * Absolute distance allowed from the best performing run.
      */
@@ -26,13 +36,25 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
     @JsonProperty(value = "slackFactor")
     private Float slackFactor;
 
-    /** Creates an instance of BanditPolicy class. */
+    /**
+     * Creates an instance of BanditPolicy class.
+     */
     public BanditPolicy() {
     }
 
     /**
+     * Get the policyType property: [Required] Name of policy configuration.
+     * 
+     * @return the policyType value.
+     */
+    @Override
+    public EarlyTerminationPolicyType policyType() {
+        return this.policyType;
+    }
+
+    /**
      * Get the slackAmount property: Absolute distance allowed from the best performing run.
-     *
+     * 
      * @return the slackAmount value.
      */
     public Float slackAmount() {
@@ -41,7 +63,7 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
 
     /**
      * Set the slackAmount property: Absolute distance allowed from the best performing run.
-     *
+     * 
      * @param slackAmount the slackAmount value to set.
      * @return the BanditPolicy object itself.
      */
@@ -52,7 +74,7 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
 
     /**
      * Get the slackFactor property: Ratio of the allowed distance from the best performing run.
-     *
+     * 
      * @return the slackFactor value.
      */
     public Float slackFactor() {
@@ -61,7 +83,7 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
 
     /**
      * Set the slackFactor property: Ratio of the allowed distance from the best performing run.
-     *
+     * 
      * @param slackFactor the slackFactor value to set.
      * @return the BanditPolicy object itself.
      */
@@ -70,14 +92,18 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BanditPolicy withDelayEvaluation(Integer delayEvaluation) {
         super.withDelayEvaluation(delayEvaluation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public BanditPolicy withEvaluationInterval(Integer evaluationInterval) {
         super.withEvaluationInterval(evaluationInterval);
@@ -86,7 +112,7 @@ public final class BanditPolicy extends EarlyTerminationPolicy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
