@@ -6,28 +6,54 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Properties specific to a KubernetesOnlineDeployment. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "endpointComputeType")
+/**
+ * Properties specific to a KubernetesOnlineDeployment.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "endpointComputeType",
+    defaultImpl = KubernetesOnlineDeployment.class,
+    visible = true)
 @JsonTypeName("Kubernetes")
 @Fluent
 public final class KubernetesOnlineDeployment extends OnlineDeploymentProperties {
+    /*
+     * [Required] The compute type of the endpoint.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "endpointComputeType", required = true)
+    private EndpointComputeType endpointComputeType = EndpointComputeType.KUBERNETES;
+
     /*
      * The resource requirements for the container (cpu and memory).
      */
     @JsonProperty(value = "containerResourceRequirements")
     private ContainerResourceRequirements containerResourceRequirements;
 
-    /** Creates an instance of KubernetesOnlineDeployment class. */
+    /**
+     * Creates an instance of KubernetesOnlineDeployment class.
+     */
     public KubernetesOnlineDeployment() {
     }
 
     /**
+     * Get the endpointComputeType property: [Required] The compute type of the endpoint.
+     * 
+     * @return the endpointComputeType value.
+     */
+    @Override
+    public EndpointComputeType endpointComputeType() {
+        return this.endpointComputeType;
+    }
+
+    /**
      * Get the containerResourceRequirements property: The resource requirements for the container (cpu and memory).
-     *
+     * 
      * @return the containerResourceRequirements value.
      */
     public ContainerResourceRequirements containerResourceRequirements() {
@@ -36,109 +62,146 @@ public final class KubernetesOnlineDeployment extends OnlineDeploymentProperties
 
     /**
      * Set the containerResourceRequirements property: The resource requirements for the container (cpu and memory).
-     *
+     * 
      * @param containerResourceRequirements the containerResourceRequirements value to set.
      * @return the KubernetesOnlineDeployment object itself.
      */
-    public KubernetesOnlineDeployment withContainerResourceRequirements(
-        ContainerResourceRequirements containerResourceRequirements) {
+    public KubernetesOnlineDeployment
+        withContainerResourceRequirements(ContainerResourceRequirements containerResourceRequirements) {
         this.containerResourceRequirements = containerResourceRequirements;
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withAppInsightsEnabled(Boolean appInsightsEnabled) {
         super.withAppInsightsEnabled(appInsightsEnabled);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public KubernetesOnlineDeployment withEgressPublicNetworkAccess(
-        EgressPublicNetworkAccessType egressPublicNetworkAccess) {
+    public KubernetesOnlineDeployment withDataCollector(DataCollector dataCollector) {
+        super.withDataCollector(dataCollector);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public KubernetesOnlineDeployment
+        withEgressPublicNetworkAccess(EgressPublicNetworkAccessType egressPublicNetworkAccess) {
         super.withEgressPublicNetworkAccess(egressPublicNetworkAccess);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withInstanceType(String instanceType) {
         super.withInstanceType(instanceType);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withLivenessProbe(ProbeSettings livenessProbe) {
         super.withLivenessProbe(livenessProbe);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withModel(String model) {
         super.withModel(model);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withModelMountPath(String modelMountPath) {
         super.withModelMountPath(modelMountPath);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withReadinessProbe(ProbeSettings readinessProbe) {
         super.withReadinessProbe(readinessProbe);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withRequestSettings(OnlineRequestSettings requestSettings) {
         super.withRequestSettings(requestSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withScaleSettings(OnlineScaleSettings scaleSettings) {
         super.withScaleSettings(scaleSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withCodeConfiguration(CodeConfiguration codeConfiguration) {
         super.withCodeConfiguration(codeConfiguration);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withEnvironmentId(String environmentId) {
         super.withEnvironmentId(environmentId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withEnvironmentVariables(Map<String, String> environmentVariables) {
         super.withEnvironmentVariables(environmentVariables);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public KubernetesOnlineDeployment withProperties(Map<String, String> properties) {
         super.withProperties(properties);
@@ -147,7 +210,7 @@ public final class KubernetesOnlineDeployment extends OnlineDeploymentProperties
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

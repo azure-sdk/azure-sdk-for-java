@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** The AssetBase model. */
+/**
+ * The AssetBase model.
+ */
 @Fluent
 public class AssetBase extends ResourceBase {
     /*
@@ -23,13 +25,15 @@ public class AssetBase extends ResourceBase {
     @JsonProperty(value = "isArchived")
     private Boolean isArchived;
 
-    /** Creates an instance of AssetBase class. */
+    /**
+     * Creates an instance of AssetBase class.
+     */
     public AssetBase() {
     }
 
     /**
      * Get the isAnonymous property: If the name version are system generated (anonymous registration).
-     *
+     * 
      * @return the isAnonymous value.
      */
     public Boolean isAnonymous() {
@@ -38,7 +42,7 @@ public class AssetBase extends ResourceBase {
 
     /**
      * Set the isAnonymous property: If the name version are system generated (anonymous registration).
-     *
+     * 
      * @param isAnonymous the isAnonymous value to set.
      * @return the AssetBase object itself.
      */
@@ -49,7 +53,7 @@ public class AssetBase extends ResourceBase {
 
     /**
      * Get the isArchived property: Is the asset archived?.
-     *
+     * 
      * @return the isArchived value.
      */
     public Boolean isArchived() {
@@ -58,7 +62,7 @@ public class AssetBase extends ResourceBase {
 
     /**
      * Set the isArchived property: Is the asset archived?.
-     *
+     * 
      * @param isArchived the isArchived value to set.
      * @return the AssetBase object itself.
      */
@@ -67,21 +71,27 @@ public class AssetBase extends ResourceBase {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AssetBase withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AssetBase withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AssetBase withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -90,7 +100,7 @@ public class AssetBase extends ResourceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

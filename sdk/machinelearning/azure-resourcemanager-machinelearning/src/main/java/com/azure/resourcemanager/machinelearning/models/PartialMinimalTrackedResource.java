@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Strictly used in update requests. */
+/**
+ * Strictly used in update requests.
+ */
 @Fluent
 public class PartialMinimalTrackedResource {
     /*
@@ -19,13 +21,15 @@ public class PartialMinimalTrackedResource {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> tags;
 
-    /** Creates an instance of PartialMinimalTrackedResource class. */
+    /**
+     * Creates an instance of PartialMinimalTrackedResource class.
+     */
     public PartialMinimalTrackedResource() {
     }
 
     /**
      * Get the tags property: Resource tags.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -34,7 +38,7 @@ public class PartialMinimalTrackedResource {
 
     /**
      * Set the tags property: Resource tags.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the PartialMinimalTrackedResource object itself.
      */
@@ -45,7 +49,7 @@ public class PartialMinimalTrackedResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

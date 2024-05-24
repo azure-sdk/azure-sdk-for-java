@@ -6,27 +6,49 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The CustomSeasonality model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
+/**
+ * The CustomSeasonality model.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "mode", defaultImpl = CustomSeasonality.class, visible = true)
 @JsonTypeName("Custom")
 @Fluent
 public final class CustomSeasonality extends Seasonality {
+    /*
+     * [Required] Seasonality mode.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private SeasonalityMode mode = SeasonalityMode.CUSTOM;
+
     /*
      * [Required] Seasonality value.
      */
     @JsonProperty(value = "value", required = true)
     private int value;
 
-    /** Creates an instance of CustomSeasonality class. */
+    /**
+     * Creates an instance of CustomSeasonality class.
+     */
     public CustomSeasonality() {
     }
 
     /**
+     * Get the mode property: [Required] Seasonality mode.
+     * 
+     * @return the mode value.
+     */
+    @Override
+    public SeasonalityMode mode() {
+        return this.mode;
+    }
+
+    /**
      * Get the value property: [Required] Seasonality value.
-     *
+     * 
      * @return the value value.
      */
     public int value() {
@@ -35,7 +57,7 @@ public final class CustomSeasonality extends Seasonality {
 
     /**
      * Set the value property: [Required] Seasonality value.
-     *
+     * 
      * @param value the value value to set.
      * @return the CustomSeasonality object itself.
      */
@@ -46,7 +68,7 @@ public final class CustomSeasonality extends Seasonality {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

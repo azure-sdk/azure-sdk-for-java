@@ -7,27 +7,53 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.fluent.models.DatastoreSecretsInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Datastore account key secrets. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "secretsType")
+/**
+ * Datastore account key secrets.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "secretsType",
+    defaultImpl = AccountKeyDatastoreSecrets.class,
+    visible = true)
 @JsonTypeName("AccountKey")
 @Fluent
 public final class AccountKeyDatastoreSecrets extends DatastoreSecretsInner {
+    /*
+     * [Required] Credential type used to authentication with storage.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "secretsType", required = true)
+    private SecretsType secretsType = SecretsType.ACCOUNT_KEY;
+
     /*
      * Storage account key.
      */
     @JsonProperty(value = "key")
     private String key;
 
-    /** Creates an instance of AccountKeyDatastoreSecrets class. */
+    /**
+     * Creates an instance of AccountKeyDatastoreSecrets class.
+     */
     public AccountKeyDatastoreSecrets() {
     }
 
     /**
+     * Get the secretsType property: [Required] Credential type used to authentication with storage.
+     * 
+     * @return the secretsType value.
+     */
+    @Override
+    public SecretsType secretsType() {
+        return this.secretsType;
+    }
+
+    /**
      * Get the key property: Storage account key.
-     *
+     * 
      * @return the key value.
      */
     public String key() {
@@ -36,7 +62,7 @@ public final class AccountKeyDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Set the key property: Storage account key.
-     *
+     * 
      * @param key the key value to set.
      * @return the AccountKeyDatastoreSecrets object itself.
      */
@@ -47,7 +73,7 @@ public final class AccountKeyDatastoreSecrets extends DatastoreSecretsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.SkuResourceInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of SkuResource entities. */
+/**
+ * A paginated list of SkuResource entities.
+ */
 @Fluent
 public final class SkuResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class SkuResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<SkuResourceInner> value;
 
-    /** Creates an instance of SkuResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of SkuResourceArmPaginatedResult class.
+     */
     public SkuResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of SkuResource objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class SkuResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of SkuResource objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the SkuResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class SkuResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type SkuResource.
-     *
+     * 
      * @return the value value.
      */
     public List<SkuResourceInner> value() {
@@ -61,7 +65,7 @@ public final class SkuResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type SkuResource.
-     *
+     * 
      * @param value the value value to set.
      * @return the SkuResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class SkuResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

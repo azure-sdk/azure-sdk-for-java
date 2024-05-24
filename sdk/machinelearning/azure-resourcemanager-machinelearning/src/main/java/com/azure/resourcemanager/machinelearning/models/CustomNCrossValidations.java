@@ -6,27 +6,53 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** N-Cross validations are specified by user. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
+/**
+ * N-Cross validations are specified by user.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "mode",
+    defaultImpl = CustomNCrossValidations.class,
+    visible = true)
 @JsonTypeName("Custom")
 @Fluent
 public final class CustomNCrossValidations extends NCrossValidations {
+    /*
+     * [Required] Mode for determining N-Cross validations.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private NCrossValidationsMode mode = NCrossValidationsMode.CUSTOM;
+
     /*
      * [Required] N-Cross validations value.
      */
     @JsonProperty(value = "value", required = true)
     private int value;
 
-    /** Creates an instance of CustomNCrossValidations class. */
+    /**
+     * Creates an instance of CustomNCrossValidations class.
+     */
     public CustomNCrossValidations() {
     }
 
     /**
+     * Get the mode property: [Required] Mode for determining N-Cross validations.
+     * 
+     * @return the mode value.
+     */
+    @Override
+    public NCrossValidationsMode mode() {
+        return this.mode;
+    }
+
+    /**
      * Get the value property: [Required] N-Cross validations value.
-     *
+     * 
      * @return the value value.
      */
     public int value() {
@@ -35,7 +61,7 @@ public final class CustomNCrossValidations extends NCrossValidations {
 
     /**
      * Set the value property: [Required] N-Cross validations value.
-     *
+     * 
      * @param value the value value to set.
      * @return the CustomNCrossValidations object itself.
      */
@@ -46,7 +72,7 @@ public final class CustomNCrossValidations extends NCrossValidations {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

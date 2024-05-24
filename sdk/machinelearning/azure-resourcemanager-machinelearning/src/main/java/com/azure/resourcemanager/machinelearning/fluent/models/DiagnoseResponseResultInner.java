@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.DiagnoseResponseResultValue;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DiagnoseResponseResult model. */
+/**
+ * The DiagnoseResponseResult model.
+ */
 @Fluent
 public final class DiagnoseResponseResultInner {
     /*
@@ -17,13 +19,15 @@ public final class DiagnoseResponseResultInner {
     @JsonProperty(value = "value")
     private DiagnoseResponseResultValue value;
 
-    /** Creates an instance of DiagnoseResponseResultInner class. */
+    /**
+     * Creates an instance of DiagnoseResponseResultInner class.
+     */
     public DiagnoseResponseResultInner() {
     }
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public DiagnoseResponseResultValue value() {
@@ -32,7 +36,7 @@ public final class DiagnoseResponseResultInner {
 
     /**
      * Set the value property: The value property.
-     *
+     * 
      * @param value the value value to set.
      * @return the DiagnoseResponseResultInner object itself.
      */
@@ -43,7 +47,7 @@ public final class DiagnoseResponseResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

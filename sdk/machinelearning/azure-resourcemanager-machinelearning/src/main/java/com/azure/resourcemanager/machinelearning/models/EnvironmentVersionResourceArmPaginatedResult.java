@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.EnvironmentVersio
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of EnvironmentVersion entities. */
+/**
+ * A paginated list of EnvironmentVersion entities.
+ */
 @Fluent
 public final class EnvironmentVersionResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class EnvironmentVersionResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<EnvironmentVersionInner> value;
 
-    /** Creates an instance of EnvironmentVersionResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of EnvironmentVersionResourceArmPaginatedResult class.
+     */
     public EnvironmentVersionResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of EnvironmentVersion objects. If null, there are no
      * additional pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class EnvironmentVersionResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of EnvironmentVersion objects. If null, there are no
      * additional pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the EnvironmentVersionResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class EnvironmentVersionResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type EnvironmentVersion.
-     *
+     * 
      * @return the value value.
      */
     public List<EnvironmentVersionInner> value() {
@@ -61,7 +65,7 @@ public final class EnvironmentVersionResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type EnvironmentVersion.
-     *
+     * 
      * @param value the value value to set.
      * @return the EnvironmentVersionResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class EnvironmentVersionResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

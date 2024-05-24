@@ -7,27 +7,53 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.fluent.models.ComputeSecretsInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Secrets related to a Machine Learning compute based on AKS. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
+/**
+ * Secrets related to a Machine Learning compute based on AKS.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "computeType",
+    defaultImpl = VirtualMachineSecrets.class,
+    visible = true)
 @JsonTypeName("VirtualMachine")
 @Fluent
 public final class VirtualMachineSecrets extends ComputeSecretsInner {
+    /*
+     * The type of compute
+     */
+    @JsonTypeId
+    @JsonProperty(value = "computeType", required = true)
+    private ComputeType computeType = ComputeType.VIRTUAL_MACHINE;
+
     /*
      * Admin credentials for virtual machine.
      */
     @JsonProperty(value = "administratorAccount")
     private VirtualMachineSshCredentials administratorAccount;
 
-    /** Creates an instance of VirtualMachineSecrets class. */
+    /**
+     * Creates an instance of VirtualMachineSecrets class.
+     */
     public VirtualMachineSecrets() {
     }
 
     /**
+     * Get the computeType property: The type of compute.
+     * 
+     * @return the computeType value.
+     */
+    @Override
+    public ComputeType computeType() {
+        return this.computeType;
+    }
+
+    /**
      * Get the administratorAccount property: Admin credentials for virtual machine.
-     *
+     * 
      * @return the administratorAccount value.
      */
     public VirtualMachineSshCredentials administratorAccount() {
@@ -36,7 +62,7 @@ public final class VirtualMachineSecrets extends ComputeSecretsInner {
 
     /**
      * Set the administratorAccount property: Admin credentials for virtual machine.
-     *
+     * 
      * @param administratorAccount the administratorAccount value to set.
      * @return the VirtualMachineSecrets object itself.
      */
@@ -47,7 +73,7 @@ public final class VirtualMachineSecrets extends ComputeSecretsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

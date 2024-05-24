@@ -7,15 +7,14 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Command job definition. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "jobInputType",
-    defaultImpl = JobInput.class)
+/**
+ * Command job definition.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "jobInputType", defaultImpl = JobInput.class, visible = true)
 @JsonTypeName("JobInput")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "mltable", value = MLTableJobInput.class),
@@ -24,23 +23,41 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
     @JsonSubTypes.Type(name = "literal", value = LiteralJobInput.class),
     @JsonSubTypes.Type(name = "triton_model", value = TritonModelJobInput.class),
     @JsonSubTypes.Type(name = "uri_file", value = UriFileJobInput.class),
-    @JsonSubTypes.Type(name = "uri_folder", value = UriFolderJobInput.class)
-})
+    @JsonSubTypes.Type(name = "uri_folder", value = UriFolderJobInput.class) })
 @Fluent
 public class JobInput {
+    /*
+     * [Required] Specifies the type of job.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobInputType", required = true)
+    private JobInputType jobInputType;
+
     /*
      * Description for the input.
      */
     @JsonProperty(value = "description")
     private String description;
 
-    /** Creates an instance of JobInput class. */
+    /**
+     * Creates an instance of JobInput class.
+     */
     public JobInput() {
+        this.jobInputType = JobInputType.fromString("JobInput");
+    }
+
+    /**
+     * Get the jobInputType property: [Required] Specifies the type of job.
+     * 
+     * @return the jobInputType value.
+     */
+    public JobInputType jobInputType() {
+        return this.jobInputType;
     }
 
     /**
      * Get the description property: Description for the input.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -49,7 +66,7 @@ public class JobInput {
 
     /**
      * Set the description property: Description for the input.
-     *
+     * 
      * @param description the description value to set.
      * @return the JobInput object itself.
      */
@@ -60,7 +77,7 @@ public class JobInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

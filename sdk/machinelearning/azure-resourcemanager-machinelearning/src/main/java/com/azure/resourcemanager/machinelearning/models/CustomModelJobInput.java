@@ -7,14 +7,28 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The CustomModelJobInput model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobInputType")
+/**
+ * The CustomModelJobInput model.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "jobInputType",
+    defaultImpl = CustomModelJobInput.class,
+    visible = true)
 @JsonTypeName("custom_model")
 @Fluent
 public final class CustomModelJobInput extends JobInput {
+    /*
+     * [Required] Specifies the type of job.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobInputType", required = true)
+    private JobInputType jobInputType = JobInputType.CUSTOM_MODEL;
+
     /*
      * Input Asset Delivery Mode.
      */
@@ -27,13 +41,25 @@ public final class CustomModelJobInput extends JobInput {
     @JsonProperty(value = "uri", required = true)
     private String uri;
 
-    /** Creates an instance of CustomModelJobInput class. */
+    /**
+     * Creates an instance of CustomModelJobInput class.
+     */
     public CustomModelJobInput() {
     }
 
     /**
+     * Get the jobInputType property: [Required] Specifies the type of job.
+     * 
+     * @return the jobInputType value.
+     */
+    @Override
+    public JobInputType jobInputType() {
+        return this.jobInputType;
+    }
+
+    /**
      * Get the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public InputDeliveryMode mode() {
@@ -42,7 +68,7 @@ public final class CustomModelJobInput extends JobInput {
 
     /**
      * Set the mode property: Input Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the CustomModelJobInput object itself.
      */
@@ -53,7 +79,7 @@ public final class CustomModelJobInput extends JobInput {
 
     /**
      * Get the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -62,7 +88,7 @@ public final class CustomModelJobInput extends JobInput {
 
     /**
      * Set the uri property: [Required] Input Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the CustomModelJobInput object itself.
      */
@@ -71,7 +97,9 @@ public final class CustomModelJobInput extends JobInput {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CustomModelJobInput withDescription(String description) {
         super.withDescription(description);
@@ -80,16 +108,15 @@ public final class CustomModelJobInput extends JobInput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (uri() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property uri in model CustomModelJobInput"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property uri in model CustomModelJobInput"));
         }
     }
 

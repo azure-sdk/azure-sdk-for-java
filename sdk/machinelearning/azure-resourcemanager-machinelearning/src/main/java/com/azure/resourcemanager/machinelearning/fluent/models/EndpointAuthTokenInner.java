@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Service Token. */
+/**
+ * Service Token.
+ */
 @Fluent
 public final class EndpointAuthTokenInner {
     /*
@@ -34,13 +36,15 @@ public final class EndpointAuthTokenInner {
     @JsonProperty(value = "tokenType")
     private String tokenType;
 
-    /** Creates an instance of EndpointAuthTokenInner class. */
+    /**
+     * Creates an instance of EndpointAuthTokenInner class.
+     */
     public EndpointAuthTokenInner() {
     }
 
     /**
      * Get the accessToken property: Access token for endpoint authentication.
-     *
+     * 
      * @return the accessToken value.
      */
     public String accessToken() {
@@ -49,7 +53,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Set the accessToken property: Access token for endpoint authentication.
-     *
+     * 
      * @param accessToken the accessToken value to set.
      * @return the EndpointAuthTokenInner object itself.
      */
@@ -60,7 +64,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Get the expiryTimeUtc property: Access token expiry time (UTC).
-     *
+     * 
      * @return the expiryTimeUtc value.
      */
     public Long expiryTimeUtc() {
@@ -69,7 +73,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Set the expiryTimeUtc property: Access token expiry time (UTC).
-     *
+     * 
      * @param expiryTimeUtc the expiryTimeUtc value to set.
      * @return the EndpointAuthTokenInner object itself.
      */
@@ -80,7 +84,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Get the refreshAfterTimeUtc property: Refresh access token after time (UTC).
-     *
+     * 
      * @return the refreshAfterTimeUtc value.
      */
     public Long refreshAfterTimeUtc() {
@@ -89,7 +93,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Set the refreshAfterTimeUtc property: Refresh access token after time (UTC).
-     *
+     * 
      * @param refreshAfterTimeUtc the refreshAfterTimeUtc value to set.
      * @return the EndpointAuthTokenInner object itself.
      */
@@ -100,7 +104,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Get the tokenType property: Access token type.
-     *
+     * 
      * @return the tokenType value.
      */
     public String tokenType() {
@@ -109,7 +113,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Set the tokenType property: Access token type.
-     *
+     * 
      * @param tokenType the tokenType value to set.
      * @return the EndpointAuthTokenInner object itself.
      */
@@ -120,7 +124,7 @@ public final class EndpointAuthTokenInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

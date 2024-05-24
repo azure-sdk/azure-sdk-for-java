@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Compute start stop schedule properties. */
+/**
+ * Compute start stop schedule properties.
+ */
 @Fluent
 public final class ComputeStartStopSchedule {
     /*
@@ -38,19 +40,19 @@ public final class ComputeStartStopSchedule {
      * [Required] The schedule trigger type.
      */
     @JsonProperty(value = "triggerType")
-    private TriggerType triggerType;
+    private ComputeTriggerType triggerType;
 
     /*
      * Required if triggerType is Recurrence.
      */
     @JsonProperty(value = "recurrence")
-    private RecurrenceTrigger recurrence;
+    private Recurrence recurrence;
 
     /*
      * Required if triggerType is Cron.
      */
     @JsonProperty(value = "cron")
-    private CronTrigger cron;
+    private Cron cron;
 
     /*
      * [Deprecated] Not used any more.
@@ -58,13 +60,15 @@ public final class ComputeStartStopSchedule {
     @JsonProperty(value = "schedule")
     private ScheduleBase schedule;
 
-    /** Creates an instance of ComputeStartStopSchedule class. */
+    /**
+     * Creates an instance of ComputeStartStopSchedule class.
+     */
     public ComputeStartStopSchedule() {
     }
 
     /**
      * Get the id property: A system assigned id for the schedule.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -73,7 +77,7 @@ public final class ComputeStartStopSchedule {
 
     /**
      * Get the provisioningStatus property: The current deployment state of schedule.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public ProvisioningStatus provisioningStatus() {
@@ -82,7 +86,7 @@ public final class ComputeStartStopSchedule {
 
     /**
      * Get the status property: Is the schedule enabled or disabled?.
-     *
+     * 
      * @return the status value.
      */
     public ScheduleStatus status() {
@@ -91,7 +95,7 @@ public final class ComputeStartStopSchedule {
 
     /**
      * Set the status property: Is the schedule enabled or disabled?.
-     *
+     * 
      * @param status the status value to set.
      * @return the ComputeStartStopSchedule object itself.
      */
@@ -102,7 +106,7 @@ public final class ComputeStartStopSchedule {
 
     /**
      * Get the action property: [Required] The compute power action.
-     *
+     * 
      * @return the action value.
      */
     public ComputePowerAction action() {
@@ -111,7 +115,7 @@ public final class ComputeStartStopSchedule {
 
     /**
      * Set the action property: [Required] The compute power action.
-     *
+     * 
      * @param action the action value to set.
      * @return the ComputeStartStopSchedule object itself.
      */
@@ -122,67 +126,67 @@ public final class ComputeStartStopSchedule {
 
     /**
      * Get the triggerType property: [Required] The schedule trigger type.
-     *
+     * 
      * @return the triggerType value.
      */
-    public TriggerType triggerType() {
+    public ComputeTriggerType triggerType() {
         return this.triggerType;
     }
 
     /**
      * Set the triggerType property: [Required] The schedule trigger type.
-     *
+     * 
      * @param triggerType the triggerType value to set.
      * @return the ComputeStartStopSchedule object itself.
      */
-    public ComputeStartStopSchedule withTriggerType(TriggerType triggerType) {
+    public ComputeStartStopSchedule withTriggerType(ComputeTriggerType triggerType) {
         this.triggerType = triggerType;
         return this;
     }
 
     /**
      * Get the recurrence property: Required if triggerType is Recurrence.
-     *
+     * 
      * @return the recurrence value.
      */
-    public RecurrenceTrigger recurrence() {
+    public Recurrence recurrence() {
         return this.recurrence;
     }
 
     /**
      * Set the recurrence property: Required if triggerType is Recurrence.
-     *
+     * 
      * @param recurrence the recurrence value to set.
      * @return the ComputeStartStopSchedule object itself.
      */
-    public ComputeStartStopSchedule withRecurrence(RecurrenceTrigger recurrence) {
+    public ComputeStartStopSchedule withRecurrence(Recurrence recurrence) {
         this.recurrence = recurrence;
         return this;
     }
 
     /**
      * Get the cron property: Required if triggerType is Cron.
-     *
+     * 
      * @return the cron value.
      */
-    public CronTrigger cron() {
+    public Cron cron() {
         return this.cron;
     }
 
     /**
      * Set the cron property: Required if triggerType is Cron.
-     *
+     * 
      * @param cron the cron value to set.
      * @return the ComputeStartStopSchedule object itself.
      */
-    public ComputeStartStopSchedule withCron(CronTrigger cron) {
+    public ComputeStartStopSchedule withCron(Cron cron) {
         this.cron = cron;
         return this;
     }
 
     /**
      * Get the schedule property: [Deprecated] Not used any more.
-     *
+     * 
      * @return the schedule value.
      */
     public ScheduleBase schedule() {
@@ -191,7 +195,7 @@ public final class ComputeStartStopSchedule {
 
     /**
      * Set the schedule property: [Deprecated] Not used any more.
-     *
+     * 
      * @param schedule the schedule value to set.
      * @return the ComputeStartStopSchedule object itself.
      */
@@ -202,7 +206,7 @@ public final class ComputeStartStopSchedule {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

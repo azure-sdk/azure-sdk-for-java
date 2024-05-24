@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Batch endpoint default values. */
+/**
+ * Batch endpoint default values.
+ */
 @Fluent
 public final class BatchEndpointDefaults {
     /*
@@ -17,14 +19,16 @@ public final class BatchEndpointDefaults {
     @JsonProperty(value = "deploymentName")
     private String deploymentName;
 
-    /** Creates an instance of BatchEndpointDefaults class. */
+    /**
+     * Creates an instance of BatchEndpointDefaults class.
+     */
     public BatchEndpointDefaults() {
     }
 
     /**
-     * Get the deploymentName property: Name of the deployment that will be default for the endpoint. This deployment
-     * will end up getting 100% traffic when the endpoint scoring URL is invoked.
-     *
+     * Get the deploymentName property: Name of the deployment that will be default for the endpoint.
+     * This deployment will end up getting 100% traffic when the endpoint scoring URL is invoked.
+     * 
      * @return the deploymentName value.
      */
     public String deploymentName() {
@@ -32,9 +36,9 @@ public final class BatchEndpointDefaults {
     }
 
     /**
-     * Set the deploymentName property: Name of the deployment that will be default for the endpoint. This deployment
-     * will end up getting 100% traffic when the endpoint scoring URL is invoked.
-     *
+     * Set the deploymentName property: Name of the deployment that will be default for the endpoint.
+     * This deployment will end up getting 100% traffic when the endpoint scoring URL is invoked.
+     * 
      * @param deploymentName the deploymentName value to set.
      * @return the BatchEndpointDefaults object itself.
      */
@@ -45,7 +49,7 @@ public final class BatchEndpointDefaults {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

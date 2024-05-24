@@ -5,30 +5,48 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The number of past periods to lag from the target column. */
-@JsonTypeInfo(
-    use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.PROPERTY,
-    property = "mode",
-    defaultImpl = TargetLags.class)
+/**
+ * The number of past periods to lag from the target column.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "mode", defaultImpl = TargetLags.class, visible = true)
 @JsonTypeName("TargetLags")
 @JsonSubTypes({
     @JsonSubTypes.Type(name = "Auto", value = AutoTargetLags.class),
-    @JsonSubTypes.Type(name = "Custom", value = CustomTargetLags.class)
-})
+    @JsonSubTypes.Type(name = "Custom", value = CustomTargetLags.class) })
 @Immutable
 public class TargetLags {
-    /** Creates an instance of TargetLags class. */
+    /*
+     * [Required] Set target lags mode - Auto/Custom
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private TargetLagsMode mode;
+
+    /**
+     * Creates an instance of TargetLags class.
+     */
     public TargetLags() {
+        this.mode = TargetLagsMode.fromString("TargetLags");
+    }
+
+    /**
+     * Get the mode property: [Required] Set target lags mode - Auto/Custom.
+     * 
+     * @return the mode value.
+     */
+    public TargetLagsMode mode() {
+        return this.mode;
     }
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

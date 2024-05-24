@@ -14,7 +14,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Machine Learning compute object wrapped into ARM resource envelope. */
+/**
+ * Machine Learning compute object wrapped into ARM resource envelope.
+ */
 @Fluent
 public final class ComputeResourceInner extends ProxyResource {
     /*
@@ -54,13 +56,15 @@ public final class ComputeResourceInner extends ProxyResource {
     @JsonProperty(value = "properties")
     private Compute properties;
 
-    /** Creates an instance of ComputeResourceInner class. */
+    /**
+     * Creates an instance of ComputeResourceInner class.
+     */
     public ComputeResourceInner() {
     }
 
     /**
      * Get the identity property: The identity of the resource.
-     *
+     * 
      * @return the identity value.
      */
     public ManagedServiceIdentity identity() {
@@ -69,7 +73,7 @@ public final class ComputeResourceInner extends ProxyResource {
 
     /**
      * Set the identity property: The identity of the resource.
-     *
+     * 
      * @param identity the identity value to set.
      * @return the ComputeResourceInner object itself.
      */
@@ -80,7 +84,7 @@ public final class ComputeResourceInner extends ProxyResource {
 
     /**
      * Get the location property: Specifies the location of the resource.
-     *
+     * 
      * @return the location value.
      */
     public String location() {
@@ -89,7 +93,7 @@ public final class ComputeResourceInner extends ProxyResource {
 
     /**
      * Set the location property: Specifies the location of the resource.
-     *
+     * 
      * @param location the location value to set.
      * @return the ComputeResourceInner object itself.
      */
@@ -100,7 +104,7 @@ public final class ComputeResourceInner extends ProxyResource {
 
     /**
      * Get the tags property: Contains resource tags defined as key/value pairs.
-     *
+     * 
      * @return the tags value.
      */
     public Map<String, String> tags() {
@@ -109,7 +113,7 @@ public final class ComputeResourceInner extends ProxyResource {
 
     /**
      * Set the tags property: Contains resource tags defined as key/value pairs.
-     *
+     * 
      * @param tags the tags value to set.
      * @return the ComputeResourceInner object itself.
      */
@@ -120,7 +124,7 @@ public final class ComputeResourceInner extends ProxyResource {
 
     /**
      * Get the sku property: The sku of the workspace.
-     *
+     * 
      * @return the sku value.
      */
     public Sku sku() {
@@ -129,7 +133,7 @@ public final class ComputeResourceInner extends ProxyResource {
 
     /**
      * Set the sku property: The sku of the workspace.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the ComputeResourceInner object itself.
      */
@@ -140,7 +144,7 @@ public final class ComputeResourceInner extends ProxyResource {
 
     /**
      * Get the systemData property: Azure Resource Manager metadata containing createdBy and modifiedBy information.
-     *
+     * 
      * @return the systemData value.
      */
     public SystemData systemData() {
@@ -149,7 +153,7 @@ public final class ComputeResourceInner extends ProxyResource {
 
     /**
      * Get the properties property: Compute properties.
-     *
+     * 
      * @return the properties value.
      */
     public Compute properties() {
@@ -158,7 +162,7 @@ public final class ComputeResourceInner extends ProxyResource {
 
     /**
      * Set the properties property: Compute properties.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the ComputeResourceInner object itself.
      */
@@ -169,7 +173,7 @@ public final class ComputeResourceInner extends ProxyResource {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

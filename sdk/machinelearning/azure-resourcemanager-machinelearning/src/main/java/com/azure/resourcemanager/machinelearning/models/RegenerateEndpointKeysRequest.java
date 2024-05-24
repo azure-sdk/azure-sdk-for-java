@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The RegenerateEndpointKeysRequest model. */
+/**
+ * The RegenerateEndpointKeysRequest model.
+ */
 @Fluent
 public final class RegenerateEndpointKeysRequest {
     /*
@@ -18,18 +20,20 @@ public final class RegenerateEndpointKeysRequest {
     private KeyType keyType;
 
     /*
-     * The value the key is set to.
+     * [Deprecated] The value the key is set to. This value is no longer supported, and should not be set. If set, the KeyValue will be ignored.
      */
     @JsonProperty(value = "keyValue")
     private String keyValue;
 
-    /** Creates an instance of RegenerateEndpointKeysRequest class. */
+    /**
+     * Creates an instance of RegenerateEndpointKeysRequest class.
+     */
     public RegenerateEndpointKeysRequest() {
     }
 
     /**
      * Get the keyType property: [Required] Specification for which type of key to generate. Primary or Secondary.
-     *
+     * 
      * @return the keyType value.
      */
     public KeyType keyType() {
@@ -38,7 +42,7 @@ public final class RegenerateEndpointKeysRequest {
 
     /**
      * Set the keyType property: [Required] Specification for which type of key to generate. Primary or Secondary.
-     *
+     * 
      * @param keyType the keyType value to set.
      * @return the RegenerateEndpointKeysRequest object itself.
      */
@@ -48,8 +52,9 @@ public final class RegenerateEndpointKeysRequest {
     }
 
     /**
-     * Get the keyValue property: The value the key is set to.
-     *
+     * Get the keyValue property: [Deprecated] The value the key is set to. This value is no longer supported, and
+     * should not be set. If set, the KeyValue will be ignored.
+     * 
      * @return the keyValue value.
      */
     public String keyValue() {
@@ -57,8 +62,9 @@ public final class RegenerateEndpointKeysRequest {
     }
 
     /**
-     * Set the keyValue property: The value the key is set to.
-     *
+     * Set the keyValue property: [Deprecated] The value the key is set to. This value is no longer supported, and
+     * should not be set. If set, the KeyValue will be ignored.
+     * 
      * @param keyValue the keyValue value to set.
      * @return the RegenerateEndpointKeysRequest object itself.
      */
@@ -69,15 +75,14 @@ public final class RegenerateEndpointKeysRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (keyType() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property keyType in model RegenerateEndpointKeysRequest"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property keyType in model RegenerateEndpointKeysRequest"));
         }
     }
 

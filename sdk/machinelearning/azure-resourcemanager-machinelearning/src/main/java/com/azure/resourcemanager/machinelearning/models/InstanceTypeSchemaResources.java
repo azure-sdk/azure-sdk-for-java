@@ -9,7 +9,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Resource requests/limits for this instance type. */
+/**
+ * Resource requests/limits for this instance type.
+ */
 @Fluent
 public final class InstanceTypeSchemaResources {
     /*
@@ -26,13 +28,15 @@ public final class InstanceTypeSchemaResources {
     @JsonInclude(value = JsonInclude.Include.NON_NULL, content = JsonInclude.Include.ALWAYS)
     private Map<String, String> limits;
 
-    /** Creates an instance of InstanceTypeSchemaResources class. */
+    /**
+     * Creates an instance of InstanceTypeSchemaResources class.
+     */
     public InstanceTypeSchemaResources() {
     }
 
     /**
      * Get the requests property: Resource requests for this instance type.
-     *
+     * 
      * @return the requests value.
      */
     public Map<String, String> requests() {
@@ -41,7 +45,7 @@ public final class InstanceTypeSchemaResources {
 
     /**
      * Set the requests property: Resource requests for this instance type.
-     *
+     * 
      * @param requests the requests value to set.
      * @return the InstanceTypeSchemaResources object itself.
      */
@@ -52,7 +56,7 @@ public final class InstanceTypeSchemaResources {
 
     /**
      * Get the limits property: Resource limits for this instance type.
-     *
+     * 
      * @return the limits value.
      */
     public Map<String, String> limits() {
@@ -61,7 +65,7 @@ public final class InstanceTypeSchemaResources {
 
     /**
      * Set the limits property: Resource limits for this instance type.
-     *
+     * 
      * @param limits the limits value to set.
      * @return the InstanceTypeSchemaResources object itself.
      */
@@ -72,7 +76,7 @@ public final class InstanceTypeSchemaResources {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

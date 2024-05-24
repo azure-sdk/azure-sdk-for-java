@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Describes information on user who created this ComputeInstance. */
+/**
+ * Describes information on user who created this ComputeInstance.
+ */
 @Immutable
 public final class ComputeInstanceCreatedBy {
     /*
@@ -28,13 +30,15 @@ public final class ComputeInstanceCreatedBy {
     @JsonProperty(value = "userId", access = JsonProperty.Access.WRITE_ONLY)
     private String userId;
 
-    /** Creates an instance of ComputeInstanceCreatedBy class. */
+    /**
+     * Creates an instance of ComputeInstanceCreatedBy class.
+     */
     public ComputeInstanceCreatedBy() {
     }
 
     /**
      * Get the username property: Name of the user.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -43,7 +47,7 @@ public final class ComputeInstanceCreatedBy {
 
     /**
      * Get the userOrgId property: Uniquely identifies user' Azure Active Directory organization.
-     *
+     * 
      * @return the userOrgId value.
      */
     public String userOrgId() {
@@ -52,7 +56,7 @@ public final class ComputeInstanceCreatedBy {
 
     /**
      * Get the userId property: Uniquely identifies the user within his/her organization.
-     *
+     * 
      * @return the userId value.
      */
     public String userId() {
@@ -61,7 +65,7 @@ public final class ComputeInstanceCreatedBy {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

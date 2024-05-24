@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The ScheduleBase model. */
+/**
+ * The ScheduleBase model.
+ */
 @Fluent
 public final class ScheduleBase {
     /*
@@ -28,13 +30,15 @@ public final class ScheduleBase {
     @JsonProperty(value = "status")
     private ScheduleStatus status;
 
-    /** Creates an instance of ScheduleBase class. */
+    /**
+     * Creates an instance of ScheduleBase class.
+     */
     public ScheduleBase() {
     }
 
     /**
      * Get the id property: A system assigned id for the schedule.
-     *
+     * 
      * @return the id value.
      */
     public String id() {
@@ -43,7 +47,7 @@ public final class ScheduleBase {
 
     /**
      * Set the id property: A system assigned id for the schedule.
-     *
+     * 
      * @param id the id value to set.
      * @return the ScheduleBase object itself.
      */
@@ -54,7 +58,7 @@ public final class ScheduleBase {
 
     /**
      * Get the provisioningStatus property: The current deployment state of schedule.
-     *
+     * 
      * @return the provisioningStatus value.
      */
     public ScheduleProvisioningState provisioningStatus() {
@@ -63,7 +67,7 @@ public final class ScheduleBase {
 
     /**
      * Set the provisioningStatus property: The current deployment state of schedule.
-     *
+     * 
      * @param provisioningStatus the provisioningStatus value to set.
      * @return the ScheduleBase object itself.
      */
@@ -74,7 +78,7 @@ public final class ScheduleBase {
 
     /**
      * Get the status property: Is the schedule enabled or disabled?.
-     *
+     * 
      * @return the status value.
      */
     public ScheduleStatus status() {
@@ -83,7 +87,7 @@ public final class ScheduleBase {
 
     /**
      * Set the status property: Is the schedule enabled or disabled?.
-     *
+     * 
      * @param status the status value to set.
      * @return the ScheduleBase object itself.
      */
@@ -94,7 +98,7 @@ public final class ScheduleBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

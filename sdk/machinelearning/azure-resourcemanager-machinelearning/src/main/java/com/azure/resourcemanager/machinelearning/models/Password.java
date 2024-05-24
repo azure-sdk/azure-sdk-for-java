@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The Password model. */
+/**
+ * The Password model.
+ */
 @Immutable
 public final class Password {
     /*
@@ -22,13 +24,15 @@ public final class Password {
     @JsonProperty(value = "value", access = JsonProperty.Access.WRITE_ONLY)
     private String value;
 
-    /** Creates an instance of Password class. */
+    /**
+     * Creates an instance of Password class.
+     */
     public Password() {
     }
 
     /**
      * Get the name property: The name property.
-     *
+     * 
      * @return the name value.
      */
     public String name() {
@@ -37,7 +41,7 @@ public final class Password {
 
     /**
      * Get the value property: The value property.
-     *
+     * 
      * @return the value value.
      */
     public String value() {
@@ -46,7 +50,7 @@ public final class Password {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

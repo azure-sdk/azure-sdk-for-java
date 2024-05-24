@@ -5,21 +5,44 @@
 package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Immutable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** User identity configuration. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "identityType")
+/**
+ * User identity configuration.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "identityType", defaultImpl = UserIdentity.class, visible = true)
 @JsonTypeName("UserIdentity")
 @Immutable
-public class UserIdentity extends IdentityConfiguration {
-    /** Creates an instance of UserIdentity class. */
+public final class UserIdentity extends IdentityConfiguration {
+    /*
+     * [Required] Specifies the type of identity framework.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "identityType", required = true)
+    private IdentityConfigurationType identityType = IdentityConfigurationType.USER_IDENTITY;
+
+    /**
+     * Creates an instance of UserIdentity class.
+     */
     public UserIdentity() {
     }
 
     /**
+     * Get the identityType property: [Required] Specifies the type of identity framework.
+     * 
+     * @return the identityType value.
+     */
+    @Override
+    public IdentityConfigurationType identityType() {
+        return this.identityType;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

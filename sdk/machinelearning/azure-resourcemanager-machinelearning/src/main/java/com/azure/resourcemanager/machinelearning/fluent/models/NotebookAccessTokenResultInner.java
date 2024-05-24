@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.fluent.models;
 import com.azure.core.annotation.Immutable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The NotebookAccessTokenResult model. */
+/**
+ * The NotebookAccessTokenResult model.
+ */
 @Immutable
 public final class NotebookAccessTokenResultInner {
     /*
@@ -58,13 +60,15 @@ public final class NotebookAccessTokenResultInner {
     @JsonProperty(value = "scope", access = JsonProperty.Access.WRITE_ONLY)
     private String scope;
 
-    /** Creates an instance of NotebookAccessTokenResultInner class. */
+    /**
+     * Creates an instance of NotebookAccessTokenResultInner class.
+     */
     public NotebookAccessTokenResultInner() {
     }
 
     /**
      * Get the notebookResourceId property: The notebookResourceId property.
-     *
+     * 
      * @return the notebookResourceId value.
      */
     public String notebookResourceId() {
@@ -73,7 +77,7 @@ public final class NotebookAccessTokenResultInner {
 
     /**
      * Get the hostname property: The hostName property.
-     *
+     * 
      * @return the hostname value.
      */
     public String hostname() {
@@ -82,7 +86,7 @@ public final class NotebookAccessTokenResultInner {
 
     /**
      * Get the publicDns property: The publicDns property.
-     *
+     * 
      * @return the publicDns value.
      */
     public String publicDns() {
@@ -91,7 +95,7 @@ public final class NotebookAccessTokenResultInner {
 
     /**
      * Get the accessToken property: The accessToken property.
-     *
+     * 
      * @return the accessToken value.
      */
     public String accessToken() {
@@ -100,7 +104,7 @@ public final class NotebookAccessTokenResultInner {
 
     /**
      * Get the tokenType property: The tokenType property.
-     *
+     * 
      * @return the tokenType value.
      */
     public String tokenType() {
@@ -109,7 +113,7 @@ public final class NotebookAccessTokenResultInner {
 
     /**
      * Get the expiresIn property: The expiresIn property.
-     *
+     * 
      * @return the expiresIn value.
      */
     public Integer expiresIn() {
@@ -118,7 +122,7 @@ public final class NotebookAccessTokenResultInner {
 
     /**
      * Get the refreshToken property: The refreshToken property.
-     *
+     * 
      * @return the refreshToken value.
      */
     public String refreshToken() {
@@ -127,7 +131,7 @@ public final class NotebookAccessTokenResultInner {
 
     /**
      * Get the scope property: The scope property.
-     *
+     * 
      * @return the scope value.
      */
     public String scope() {
@@ -136,7 +140,7 @@ public final class NotebookAccessTokenResultInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

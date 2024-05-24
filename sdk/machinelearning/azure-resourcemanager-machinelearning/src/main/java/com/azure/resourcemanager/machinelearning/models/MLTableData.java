@@ -6,29 +6,51 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
 import java.util.Map;
 
-/** MLTable data definition. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "dataType")
+/**
+ * MLTable data definition.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "dataType", defaultImpl = MLTableData.class, visible = true)
 @JsonTypeName("mltable")
 @Fluent
 public final class MLTableData extends DataVersionBaseProperties {
+    /*
+     * [Required] Specifies the type of data.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "dataType", required = true)
+    private DataType dataType = DataType.MLTABLE;
+
     /*
      * Uris referenced in the MLTable definition (required for lineage)
      */
     @JsonProperty(value = "referencedUris")
     private List<String> referencedUris;
 
-    /** Creates an instance of MLTableData class. */
+    /**
+     * Creates an instance of MLTableData class.
+     */
     public MLTableData() {
     }
 
     /**
+     * Get the dataType property: [Required] Specifies the type of data.
+     * 
+     * @return the dataType value.
+     */
+    @Override
+    public DataType dataType() {
+        return this.dataType;
+    }
+
+    /**
      * Get the referencedUris property: Uris referenced in the MLTable definition (required for lineage).
-     *
+     * 
      * @return the referencedUris value.
      */
     public List<String> referencedUris() {
@@ -37,7 +59,7 @@ public final class MLTableData extends DataVersionBaseProperties {
 
     /**
      * Set the referencedUris property: Uris referenced in the MLTable definition (required for lineage).
-     *
+     * 
      * @param referencedUris the referencedUris value to set.
      * @return the MLTableData object itself.
      */
@@ -46,42 +68,54 @@ public final class MLTableData extends DataVersionBaseProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withDataUri(String dataUri) {
         super.withDataUri(dataUri);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withIsAnonymous(Boolean isAnonymous) {
         super.withIsAnonymous(isAnonymous);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public MLTableData withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -90,7 +124,7 @@ public final class MLTableData extends DataVersionBaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

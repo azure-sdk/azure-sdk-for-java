@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Enum to determine forecast horizon selection mode. */
+/**
+ * Enum to determine forecast horizon selection mode.
+ */
 public final class ForecastHorizonMode extends ExpandableStringEnum<ForecastHorizonMode> {
-    /** Static value Auto for ForecastHorizonMode. */
+    /**
+     * Static value Auto for ForecastHorizonMode.
+     */
     public static final ForecastHorizonMode AUTO = fromString("Auto");
 
-    /** Static value Custom for ForecastHorizonMode. */
+    /**
+     * Static value Custom for ForecastHorizonMode.
+     */
     public static final ForecastHorizonMode CUSTOM = fromString("Custom");
 
     /**
      * Creates a new instance of ForecastHorizonMode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class ForecastHorizonMode extends ExpandableStringEnum<ForecastHori
 
     /**
      * Creates or finds a ForecastHorizonMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding ForecastHorizonMode.
      */
@@ -38,7 +44,7 @@ public final class ForecastHorizonMode extends ExpandableStringEnum<ForecastHori
 
     /**
      * Gets known ForecastHorizonMode values.
-     *
+     * 
      * @return known ForecastHorizonMode values.
      */
     public static Collection<ForecastHorizonMode> values() {
