@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.models.SkuCapacity;
 import com.azure.resourcemanager.machinelearning.models.SkuSetting;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Fulfills ARM Contract requirement to list all available SKUS for a resource. */
+/**
+ * Fulfills ARM Contract requirement to list all available SKUS for a resource.
+ */
 @Fluent
 public final class SkuResourceInner {
     /*
@@ -30,13 +32,15 @@ public final class SkuResourceInner {
     @JsonProperty(value = "sku")
     private SkuSetting sku;
 
-    /** Creates an instance of SkuResourceInner class. */
+    /**
+     * Creates an instance of SkuResourceInner class.
+     */
     public SkuResourceInner() {
     }
 
     /**
      * Get the capacity property: Gets or sets the Sku Capacity.
-     *
+     * 
      * @return the capacity value.
      */
     public SkuCapacity capacity() {
@@ -45,7 +49,7 @@ public final class SkuResourceInner {
 
     /**
      * Set the capacity property: Gets or sets the Sku Capacity.
-     *
+     * 
      * @param capacity the capacity value to set.
      * @return the SkuResourceInner object itself.
      */
@@ -56,7 +60,7 @@ public final class SkuResourceInner {
 
     /**
      * Get the resourceType property: The resource type name.
-     *
+     * 
      * @return the resourceType value.
      */
     public String resourceType() {
@@ -65,7 +69,7 @@ public final class SkuResourceInner {
 
     /**
      * Get the sku property: Gets or sets the Sku.
-     *
+     * 
      * @return the sku value.
      */
     public SkuSetting sku() {
@@ -74,7 +78,7 @@ public final class SkuResourceInner {
 
     /**
      * Set the sku property: Gets or sets the Sku.
-     *
+     * 
      * @param sku the sku value to set.
      * @return the SkuResourceInner object itself.
      */
@@ -85,7 +89,7 @@ public final class SkuResourceInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

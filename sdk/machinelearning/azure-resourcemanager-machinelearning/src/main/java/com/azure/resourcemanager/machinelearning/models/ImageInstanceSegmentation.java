@@ -7,6 +7,7 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.List;
@@ -15,10 +16,21 @@ import java.util.List;
  * Image Instance Segmentation. Instance segmentation is used to identify objects in an image at the pixel level,
  * drawing a polygon around each object in the image.
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "taskType")
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "taskType",
+    defaultImpl = ImageInstanceSegmentation.class,
+    visible = true)
 @JsonTypeName("ImageInstanceSegmentation")
 @Fluent
 public final class ImageInstanceSegmentation extends AutoMLVertical {
+    /*
+     * [Required] Task type for AutoMLJob.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "taskType", required = true)
+    private TaskType taskType = TaskType.IMAGE_INSTANCE_SEGMENTATION;
+
     /*
      * Primary metric to optimize for this task.
      */
@@ -63,13 +75,25 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
     @JsonProperty(value = "validationDataSize")
     private Double validationDataSize;
 
-    /** Creates an instance of ImageInstanceSegmentation class. */
+    /**
+     * Creates an instance of ImageInstanceSegmentation class.
+     */
     public ImageInstanceSegmentation() {
     }
 
     /**
+     * Get the taskType property: [Required] Task type for AutoMLJob.
+     * 
+     * @return the taskType value.
+     */
+    @Override
+    public TaskType taskType() {
+        return this.taskType;
+    }
+
+    /**
      * Get the primaryMetric property: Primary metric to optimize for this task.
-     *
+     * 
      * @return the primaryMetric value.
      */
     public InstanceSegmentationPrimaryMetrics primaryMetric() {
@@ -78,7 +102,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Set the primaryMetric property: Primary metric to optimize for this task.
-     *
+     * 
      * @param primaryMetric the primaryMetric value to set.
      * @return the ImageInstanceSegmentation object itself.
      */
@@ -89,7 +113,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Get the modelSettings property: Settings used for training the model.
-     *
+     * 
      * @return the modelSettings value.
      */
     public ImageModelSettingsObjectDetection modelSettings() {
@@ -98,7 +122,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Set the modelSettings property: Settings used for training the model.
-     *
+     * 
      * @param modelSettings the modelSettings value to set.
      * @return the ImageInstanceSegmentation object itself.
      */
@@ -110,7 +134,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
     /**
      * Get the searchSpace property: Search space for sampling different combinations of models and their
      * hyperparameters.
-     *
+     * 
      * @return the searchSpace value.
      */
     public List<ImageModelDistributionSettingsObjectDetection> searchSpace() {
@@ -120,7 +144,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
     /**
      * Set the searchSpace property: Search space for sampling different combinations of models and their
      * hyperparameters.
-     *
+     * 
      * @param searchSpace the searchSpace value to set.
      * @return the ImageInstanceSegmentation object itself.
      */
@@ -131,7 +155,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Get the limitSettings property: [Required] Limit settings for the AutoML job.
-     *
+     * 
      * @return the limitSettings value.
      */
     public ImageLimitSettings limitSettings() {
@@ -140,7 +164,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Set the limitSettings property: [Required] Limit settings for the AutoML job.
-     *
+     * 
      * @param limitSettings the limitSettings value to set.
      * @return the ImageInstanceSegmentation object itself.
      */
@@ -151,7 +175,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Get the sweepSettings property: Model sweeping and hyperparameter sweeping related settings.
-     *
+     * 
      * @return the sweepSettings value.
      */
     public ImageSweepSettings sweepSettings() {
@@ -160,7 +184,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Set the sweepSettings property: Model sweeping and hyperparameter sweeping related settings.
-     *
+     * 
      * @param sweepSettings the sweepSettings value to set.
      * @return the ImageInstanceSegmentation object itself.
      */
@@ -171,7 +195,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Get the validationData property: Validation data inputs.
-     *
+     * 
      * @return the validationData value.
      */
     public MLTableJobInput validationData() {
@@ -180,7 +204,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Set the validationData property: Validation data inputs.
-     *
+     * 
      * @param validationData the validationData value to set.
      * @return the ImageInstanceSegmentation object itself.
      */
@@ -191,8 +215,10 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Get the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @return the validationDataSize value.
      */
     public Double validationDataSize() {
@@ -201,8 +227,10 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Set the validationDataSize property: The fraction of training dataset that needs to be set aside for validation
-     * purpose. Values between (0.0 , 1.0) Applied when validation dataset is not provided.
-     *
+     * purpose.
+     * Values between (0.0 , 1.0)
+     * Applied when validation dataset is not provided.
+     * 
      * @param validationDataSize the validationDataSize value to set.
      * @return the ImageInstanceSegmentation object itself.
      */
@@ -211,21 +239,27 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageInstanceSegmentation withLogVerbosity(LogVerbosity logVerbosity) {
         super.withLogVerbosity(logVerbosity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageInstanceSegmentation withTargetColumnName(String targetColumnName) {
         super.withTargetColumnName(targetColumnName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageInstanceSegmentation withTrainingData(MLTableJobInput trainingData) {
         super.withTrainingData(trainingData);
@@ -234,7 +268,7 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
@@ -247,10 +281,9 @@ public final class ImageInstanceSegmentation extends AutoMLVertical {
             searchSpace().forEach(e -> e.validate());
         }
         if (limitSettings() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property limitSettings in model ImageInstanceSegmentation"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property limitSettings in model ImageInstanceSegmentation"));
         } else {
             limitSettings().validate();
         }

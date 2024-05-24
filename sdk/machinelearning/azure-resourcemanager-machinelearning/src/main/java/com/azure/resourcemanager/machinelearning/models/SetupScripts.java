@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Details of customized scripts to execute for setting up the cluster. */
+/**
+ * Details of customized scripts to execute for setting up the cluster.
+ */
 @Fluent
 public final class SetupScripts {
     /*
@@ -16,13 +18,15 @@ public final class SetupScripts {
     @JsonProperty(value = "scripts")
     private ScriptsToExecute scripts;
 
-    /** Creates an instance of SetupScripts class. */
+    /**
+     * Creates an instance of SetupScripts class.
+     */
     public SetupScripts() {
     }
 
     /**
      * Get the scripts property: Customized setup scripts.
-     *
+     * 
      * @return the scripts value.
      */
     public ScriptsToExecute scripts() {
@@ -31,7 +35,7 @@ public final class SetupScripts {
 
     /**
      * Set the scripts property: Customized setup scripts.
-     *
+     * 
      * @param scripts the scripts value to set.
      * @return the SetupScripts object itself.
      */
@@ -42,7 +46,7 @@ public final class SetupScripts {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
