@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of AksComputeSecrets. */
+/**
+ * Properties of AksComputeSecrets.
+ */
 @Fluent
 public class AksComputeSecretsProperties {
     /*
@@ -28,14 +30,16 @@ public class AksComputeSecretsProperties {
     @JsonProperty(value = "imagePullSecretName")
     private String imagePullSecretName;
 
-    /** Creates an instance of AksComputeSecretsProperties class. */
+    /**
+     * Creates an instance of AksComputeSecretsProperties class.
+     */
     public AksComputeSecretsProperties() {
     }
 
     /**
      * Get the userKubeConfig property: Content of kubeconfig file that can be used to connect to the Kubernetes
      * cluster.
-     *
+     * 
      * @return the userKubeConfig value.
      */
     public String userKubeConfig() {
@@ -45,7 +49,7 @@ public class AksComputeSecretsProperties {
     /**
      * Set the userKubeConfig property: Content of kubeconfig file that can be used to connect to the Kubernetes
      * cluster.
-     *
+     * 
      * @param userKubeConfig the userKubeConfig value to set.
      * @return the AksComputeSecretsProperties object itself.
      */
@@ -57,7 +61,7 @@ public class AksComputeSecretsProperties {
     /**
      * Get the adminKubeConfig property: Content of kubeconfig file that can be used to connect to the Kubernetes
      * cluster.
-     *
+     * 
      * @return the adminKubeConfig value.
      */
     public String adminKubeConfig() {
@@ -67,7 +71,7 @@ public class AksComputeSecretsProperties {
     /**
      * Set the adminKubeConfig property: Content of kubeconfig file that can be used to connect to the Kubernetes
      * cluster.
-     *
+     * 
      * @param adminKubeConfig the adminKubeConfig value to set.
      * @return the AksComputeSecretsProperties object itself.
      */
@@ -78,7 +82,7 @@ public class AksComputeSecretsProperties {
 
     /**
      * Get the imagePullSecretName property: Image registry pull secret.
-     *
+     * 
      * @return the imagePullSecretName value.
      */
     public String imagePullSecretName() {
@@ -87,7 +91,7 @@ public class AksComputeSecretsProperties {
 
     /**
      * Set the imagePullSecretName property: Image registry pull secret.
-     *
+     * 
      * @param imagePullSecretName the imagePullSecretName value to set.
      * @return the AksComputeSecretsProperties object itself.
      */
@@ -98,7 +102,7 @@ public class AksComputeSecretsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

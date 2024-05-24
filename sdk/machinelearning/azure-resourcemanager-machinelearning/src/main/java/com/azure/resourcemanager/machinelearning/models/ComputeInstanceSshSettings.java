@@ -7,15 +7,15 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Specifies policy and settings for SSH access. */
+/**
+ * Specifies policy and settings for SSH access.
+ */
 @Fluent
 public final class ComputeInstanceSshSettings {
     /*
      * Access policy for SSH
-     *
-     * State of the public SSH port. Possible values are: Disabled - Indicates that the public ssh port is closed on
-     * this instance. Enabled - Indicates that the public ssh port is open and accessible according to the VNet/subnet
-     * policy if applicable.
+     * 
+     * State of the public SSH port. Possible values are: Disabled - Indicates that the public ssh port is closed on this instance. Enabled - Indicates that the public ssh port is open and accessible according to the VNet/subnet policy if applicable.
      */
     @JsonProperty(value = "sshPublicAccess")
     private SshPublicAccess sshPublicAccess;
@@ -33,23 +33,24 @@ public final class ComputeInstanceSshSettings {
     private Integer sshPort;
 
     /*
-     * Specifies the SSH rsa public key file as a string. Use "ssh-keygen -t rsa -b 2048" to generate your SSH key
-     * pairs.
+     * Specifies the SSH rsa public key file as a string. Use "ssh-keygen -t rsa -b 2048" to generate your SSH key pairs.
      */
     @JsonProperty(value = "adminPublicKey")
     private String adminPublicKey;
 
-    /** Creates an instance of ComputeInstanceSshSettings class. */
+    /**
+     * Creates an instance of ComputeInstanceSshSettings class.
+     */
     public ComputeInstanceSshSettings() {
     }
 
     /**
      * Get the sshPublicAccess property: Access policy for SSH
-     *
-     * <p>State of the public SSH port. Possible values are: Disabled - Indicates that the public ssh port is closed on
+     * 
+     * State of the public SSH port. Possible values are: Disabled - Indicates that the public ssh port is closed on
      * this instance. Enabled - Indicates that the public ssh port is open and accessible according to the VNet/subnet
      * policy if applicable.
-     *
+     * 
      * @return the sshPublicAccess value.
      */
     public SshPublicAccess sshPublicAccess() {
@@ -58,11 +59,11 @@ public final class ComputeInstanceSshSettings {
 
     /**
      * Set the sshPublicAccess property: Access policy for SSH
-     *
-     * <p>State of the public SSH port. Possible values are: Disabled - Indicates that the public ssh port is closed on
+     * 
+     * State of the public SSH port. Possible values are: Disabled - Indicates that the public ssh port is closed on
      * this instance. Enabled - Indicates that the public ssh port is open and accessible according to the VNet/subnet
      * policy if applicable.
-     *
+     * 
      * @param sshPublicAccess the sshPublicAccess value to set.
      * @return the ComputeInstanceSshSettings object itself.
      */
@@ -73,7 +74,7 @@ public final class ComputeInstanceSshSettings {
 
     /**
      * Get the adminUsername property: Describes the admin user name.
-     *
+     * 
      * @return the adminUsername value.
      */
     public String adminUsername() {
@@ -82,7 +83,7 @@ public final class ComputeInstanceSshSettings {
 
     /**
      * Get the sshPort property: Describes the port for connecting through SSH.
-     *
+     * 
      * @return the sshPort value.
      */
     public Integer sshPort() {
@@ -92,7 +93,7 @@ public final class ComputeInstanceSshSettings {
     /**
      * Get the adminPublicKey property: Specifies the SSH rsa public key file as a string. Use "ssh-keygen -t rsa -b
      * 2048" to generate your SSH key pairs.
-     *
+     * 
      * @return the adminPublicKey value.
      */
     public String adminPublicKey() {
@@ -102,7 +103,7 @@ public final class ComputeInstanceSshSettings {
     /**
      * Set the adminPublicKey property: Specifies the SSH rsa public key file as a string. Use "ssh-keygen -t rsa -b
      * 2048" to generate your SSH key pairs.
-     *
+     * 
      * @param adminPublicKey the adminPublicKey value to set.
      * @return the ComputeInstanceSshSettings object itself.
      */
@@ -113,7 +114,7 @@ public final class ComputeInstanceSshSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

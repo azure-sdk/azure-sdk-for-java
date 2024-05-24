@@ -11,12 +11,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
 
-/** Inference Endpoint base definition. */
+/**
+ * Inference Endpoint base definition.
+ */
 @Fluent
 public class EndpointPropertiesBaseInner {
     /*
-     * [Required] Use 'Key' for key based authentication and 'AMLToken' for Azure Machine Learning token-based
-     * authentication. 'Key' doesn't expire but 'AMLToken' does.
+     * [Required] Use 'Key' for key-based authentication, 'AMLToken' for Azure Machine Learning token-based authentication, and 'AADToken' for Microsoft Entra token-based authentication.
      */
     @JsonProperty(value = "authMode", required = true)
     private EndpointAuthMode authMode;
@@ -53,14 +54,16 @@ public class EndpointPropertiesBaseInner {
     @JsonProperty(value = "swaggerUri", access = JsonProperty.Access.WRITE_ONLY)
     private String swaggerUri;
 
-    /** Creates an instance of EndpointPropertiesBaseInner class. */
+    /**
+     * Creates an instance of EndpointPropertiesBaseInner class.
+     */
     public EndpointPropertiesBaseInner() {
     }
 
     /**
-     * Get the authMode property: [Required] Use 'Key' for key based authentication and 'AMLToken' for Azure Machine
-     * Learning token-based authentication. 'Key' doesn't expire but 'AMLToken' does.
-     *
+     * Get the authMode property: [Required] Use 'Key' for key-based authentication, 'AMLToken' for Azure Machine
+     * Learning token-based authentication, and 'AADToken' for Microsoft Entra token-based authentication.
+     * 
      * @return the authMode value.
      */
     public EndpointAuthMode authMode() {
@@ -68,9 +71,9 @@ public class EndpointPropertiesBaseInner {
     }
 
     /**
-     * Set the authMode property: [Required] Use 'Key' for key based authentication and 'AMLToken' for Azure Machine
-     * Learning token-based authentication. 'Key' doesn't expire but 'AMLToken' does.
-     *
+     * Set the authMode property: [Required] Use 'Key' for key-based authentication, 'AMLToken' for Azure Machine
+     * Learning token-based authentication, and 'AADToken' for Microsoft Entra token-based authentication.
+     * 
      * @param authMode the authMode value to set.
      * @return the EndpointPropertiesBaseInner object itself.
      */
@@ -81,7 +84,7 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Get the description property: Description of the inference endpoint.
-     *
+     * 
      * @return the description value.
      */
     public String description() {
@@ -90,7 +93,7 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Set the description property: Description of the inference endpoint.
-     *
+     * 
      * @param description the description value to set.
      * @return the EndpointPropertiesBaseInner object itself.
      */
@@ -100,9 +103,9 @@ public class EndpointPropertiesBaseInner {
     }
 
     /**
-     * Get the keys property: EndpointAuthKeys to set initially on an Endpoint. This property will always be returned as
-     * null. AuthKey values must be retrieved using the ListKeys API.
-     *
+     * Get the keys property: EndpointAuthKeys to set initially on an Endpoint.
+     * This property will always be returned as null. AuthKey values must be retrieved using the ListKeys API.
+     * 
      * @return the keys value.
      */
     public EndpointAuthKeysInner keys() {
@@ -110,9 +113,9 @@ public class EndpointPropertiesBaseInner {
     }
 
     /**
-     * Set the keys property: EndpointAuthKeys to set initially on an Endpoint. This property will always be returned as
-     * null. AuthKey values must be retrieved using the ListKeys API.
-     *
+     * Set the keys property: EndpointAuthKeys to set initially on an Endpoint.
+     * This property will always be returned as null. AuthKey values must be retrieved using the ListKeys API.
+     * 
      * @param keys the keys value to set.
      * @return the EndpointPropertiesBaseInner object itself.
      */
@@ -123,7 +126,7 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Get the properties property: Property dictionary. Properties can be added, but not removed or altered.
-     *
+     * 
      * @return the properties value.
      */
     public Map<String, String> properties() {
@@ -132,7 +135,7 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Set the properties property: Property dictionary. Properties can be added, but not removed or altered.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the EndpointPropertiesBaseInner object itself.
      */
@@ -143,7 +146,7 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Get the scoringUri property: Endpoint URI.
-     *
+     * 
      * @return the scoringUri value.
      */
     public String scoringUri() {
@@ -152,7 +155,7 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Get the swaggerUri property: Endpoint Swagger URI.
-     *
+     * 
      * @return the swaggerUri value.
      */
     public String swaggerUri() {
@@ -161,15 +164,14 @@ public class EndpointPropertiesBaseInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
         if (authMode() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property authMode in model EndpointPropertiesBaseInner"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property authMode in model EndpointPropertiesBaseInner"));
         }
         if (keys() != null) {
             keys().validate();

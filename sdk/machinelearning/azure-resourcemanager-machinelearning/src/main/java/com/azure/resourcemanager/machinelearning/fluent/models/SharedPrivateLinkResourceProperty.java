@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.models.PrivateEndpointServiceConnectionStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of a shared private link resource. */
+/**
+ * Properties of a shared private link resource.
+ */
 @Fluent
 public final class SharedPrivateLinkResourceProperty {
     /*
@@ -35,13 +37,15 @@ public final class SharedPrivateLinkResourceProperty {
     @JsonProperty(value = "status")
     private PrivateEndpointServiceConnectionStatus status;
 
-    /** Creates an instance of SharedPrivateLinkResourceProperty class. */
+    /**
+     * Creates an instance of SharedPrivateLinkResourceProperty class.
+     */
     public SharedPrivateLinkResourceProperty() {
     }
 
     /**
      * Get the privateLinkResourceId property: The resource id that private link links to.
-     *
+     * 
      * @return the privateLinkResourceId value.
      */
     public String privateLinkResourceId() {
@@ -50,7 +54,7 @@ public final class SharedPrivateLinkResourceProperty {
 
     /**
      * Set the privateLinkResourceId property: The resource id that private link links to.
-     *
+     * 
      * @param privateLinkResourceId the privateLinkResourceId value to set.
      * @return the SharedPrivateLinkResourceProperty object itself.
      */
@@ -61,7 +65,7 @@ public final class SharedPrivateLinkResourceProperty {
 
     /**
      * Get the groupId property: The private link resource group id.
-     *
+     * 
      * @return the groupId value.
      */
     public String groupId() {
@@ -70,7 +74,7 @@ public final class SharedPrivateLinkResourceProperty {
 
     /**
      * Set the groupId property: The private link resource group id.
-     *
+     * 
      * @param groupId the groupId value to set.
      * @return the SharedPrivateLinkResourceProperty object itself.
      */
@@ -81,7 +85,7 @@ public final class SharedPrivateLinkResourceProperty {
 
     /**
      * Get the requestMessage property: Request message.
-     *
+     * 
      * @return the requestMessage value.
      */
     public String requestMessage() {
@@ -90,7 +94,7 @@ public final class SharedPrivateLinkResourceProperty {
 
     /**
      * Set the requestMessage property: Request message.
-     *
+     * 
      * @param requestMessage the requestMessage value to set.
      * @return the SharedPrivateLinkResourceProperty object itself.
      */
@@ -102,7 +106,7 @@ public final class SharedPrivateLinkResourceProperty {
     /**
      * Get the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
      * service.
-     *
+     * 
      * @return the status value.
      */
     public PrivateEndpointServiceConnectionStatus status() {
@@ -112,7 +116,7 @@ public final class SharedPrivateLinkResourceProperty {
     /**
      * Set the status property: Indicates whether the connection has been Approved/Rejected/Removed by the owner of the
      * service.
-     *
+     * 
      * @param status the status value to set.
      * @return the SharedPrivateLinkResourceProperty object itself.
      */
@@ -123,7 +127,7 @@ public final class SharedPrivateLinkResourceProperty {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Defines an Aml Instance DataDisk. */
+/**
+ * Defines an Aml Instance DataDisk.
+ */
 @Fluent
 public final class ComputeInstanceDataDisk {
     /*
@@ -24,9 +26,8 @@ public final class ComputeInstanceDataDisk {
 
     /*
      * The logical unit number.
-     *
-     * The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct
-     * lun.
+     * 
+     * The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct lun.
      */
     @JsonProperty(value = "lun")
     private Integer lun;
@@ -37,13 +38,15 @@ public final class ComputeInstanceDataDisk {
     @JsonProperty(value = "storageAccountType")
     private StorageAccountType storageAccountType;
 
-    /** Creates an instance of ComputeInstanceDataDisk class. */
+    /**
+     * Creates an instance of ComputeInstanceDataDisk class.
+     */
     public ComputeInstanceDataDisk() {
     }
 
     /**
      * Get the caching property: Caching type of Data Disk.
-     *
+     * 
      * @return the caching value.
      */
     public Caching caching() {
@@ -52,7 +55,7 @@ public final class ComputeInstanceDataDisk {
 
     /**
      * Set the caching property: Caching type of Data Disk.
-     *
+     * 
      * @param caching the caching value to set.
      * @return the ComputeInstanceDataDisk object itself.
      */
@@ -63,7 +66,7 @@ public final class ComputeInstanceDataDisk {
 
     /**
      * Get the diskSizeGB property: The initial disk size in gigabytes.
-     *
+     * 
      * @return the diskSizeGB value.
      */
     public Integer diskSizeGB() {
@@ -72,7 +75,7 @@ public final class ComputeInstanceDataDisk {
 
     /**
      * Set the diskSizeGB property: The initial disk size in gigabytes.
-     *
+     * 
      * @param diskSizeGB the diskSizeGB value to set.
      * @return the ComputeInstanceDataDisk object itself.
      */
@@ -83,10 +86,10 @@ public final class ComputeInstanceDataDisk {
 
     /**
      * Get the lun property: The logical unit number.
-     *
-     * <p>The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct
+     * 
+     * The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct
      * lun.
-     *
+     * 
      * @return the lun value.
      */
     public Integer lun() {
@@ -95,10 +98,10 @@ public final class ComputeInstanceDataDisk {
 
     /**
      * Set the lun property: The logical unit number.
-     *
-     * <p>The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct
+     * 
+     * The lun is used to uniquely identify each data disk. If attaching multiple disks, each should have a distinct
      * lun.
-     *
+     * 
      * @param lun the lun value to set.
      * @return the ComputeInstanceDataDisk object itself.
      */
@@ -109,7 +112,7 @@ public final class ComputeInstanceDataDisk {
 
     /**
      * Get the storageAccountType property: type of this storage account.
-     *
+     * 
      * @return the storageAccountType value.
      */
     public StorageAccountType storageAccountType() {
@@ -118,7 +121,7 @@ public final class ComputeInstanceDataDisk {
 
     /**
      * Set the storageAccountType property: type of this storage account.
-     *
+     * 
      * @param storageAccountType the storageAccountType value to set.
      * @return the ComputeInstanceDataDisk object itself.
      */
@@ -129,7 +132,7 @@ public final class ComputeInstanceDataDisk {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {
