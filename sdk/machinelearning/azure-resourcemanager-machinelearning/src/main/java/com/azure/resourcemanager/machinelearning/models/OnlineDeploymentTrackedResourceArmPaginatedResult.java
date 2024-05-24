@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.OnlineDeploymentI
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of OnlineDeployment entities. */
+/**
+ * A paginated list of OnlineDeployment entities.
+ */
 @Fluent
 public final class OnlineDeploymentTrackedResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<OnlineDeploymentInner> value;
 
-    /** Creates an instance of OnlineDeploymentTrackedResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of OnlineDeploymentTrackedResourceArmPaginatedResult class.
+     */
     public OnlineDeploymentTrackedResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of OnlineDeployment objects. If null, there are no
      * additional pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of OnlineDeployment objects. If null, there are no
      * additional pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the OnlineDeploymentTrackedResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type OnlineDeployment.
-     *
+     * 
      * @return the value value.
      */
     public List<OnlineDeploymentInner> value() {
@@ -61,7 +65,7 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type OnlineDeployment.
-     *
+     * 
      * @param value the value value to set.
      * @return the OnlineDeploymentTrackedResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class OnlineDeploymentTrackedResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Kubernetes Compute Schema. */
+/**
+ * Kubernetes Compute Schema.
+ */
 @Fluent
 public class KubernetesSchema {
     /*
@@ -16,13 +18,15 @@ public class KubernetesSchema {
     @JsonProperty(value = "properties")
     private KubernetesProperties properties;
 
-    /** Creates an instance of KubernetesSchema class. */
+    /**
+     * Creates an instance of KubernetesSchema class.
+     */
     public KubernetesSchema() {
     }
 
     /**
      * Get the properties property: Properties of Kubernetes.
-     *
+     * 
      * @return the properties value.
      */
     public KubernetesProperties properties() {
@@ -31,7 +35,7 @@ public class KubernetesSchema {
 
     /**
      * Set the properties property: Properties of Kubernetes.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the KubernetesSchema object itself.
      */
@@ -42,7 +46,7 @@ public class KubernetesSchema {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

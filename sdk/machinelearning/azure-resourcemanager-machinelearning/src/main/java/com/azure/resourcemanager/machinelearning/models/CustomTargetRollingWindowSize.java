@@ -6,27 +6,53 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The CustomTargetRollingWindowSize model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "mode")
+/**
+ * The CustomTargetRollingWindowSize model.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "mode",
+    defaultImpl = CustomTargetRollingWindowSize.class,
+    visible = true)
 @JsonTypeName("Custom")
 @Fluent
 public final class CustomTargetRollingWindowSize extends TargetRollingWindowSize {
+    /*
+     * [Required] TargetRollingWindowSiz detection mode.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "mode", required = true)
+    private TargetRollingWindowSizeMode mode = TargetRollingWindowSizeMode.CUSTOM;
+
     /*
      * [Required] TargetRollingWindowSize value.
      */
     @JsonProperty(value = "value", required = true)
     private int value;
 
-    /** Creates an instance of CustomTargetRollingWindowSize class. */
+    /**
+     * Creates an instance of CustomTargetRollingWindowSize class.
+     */
     public CustomTargetRollingWindowSize() {
     }
 
     /**
+     * Get the mode property: [Required] TargetRollingWindowSiz detection mode.
+     * 
+     * @return the mode value.
+     */
+    @Override
+    public TargetRollingWindowSizeMode mode() {
+        return this.mode;
+    }
+
+    /**
      * Get the value property: [Required] TargetRollingWindowSize value.
-     *
+     * 
      * @return the value value.
      */
     public int value() {
@@ -35,7 +61,7 @@ public final class CustomTargetRollingWindowSize extends TargetRollingWindowSize
 
     /**
      * Set the value property: [Required] TargetRollingWindowSize value.
-     *
+     * 
      * @param value the value value to set.
      * @return the CustomTargetRollingWindowSize object itself.
      */
@@ -46,7 +72,7 @@ public final class CustomTargetRollingWindowSize extends TargetRollingWindowSize
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

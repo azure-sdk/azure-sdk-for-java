@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The DeploymentLogsRequest model. */
+/**
+ * The DeploymentLogsRequest model.
+ */
 @Fluent
 public final class DeploymentLogsRequest {
     /*
@@ -22,13 +24,15 @@ public final class DeploymentLogsRequest {
     @JsonProperty(value = "tail")
     private Integer tail;
 
-    /** Creates an instance of DeploymentLogsRequest class. */
+    /**
+     * Creates an instance of DeploymentLogsRequest class.
+     */
     public DeploymentLogsRequest() {
     }
 
     /**
      * Get the containerType property: The type of container to retrieve logs from.
-     *
+     * 
      * @return the containerType value.
      */
     public ContainerType containerType() {
@@ -37,7 +41,7 @@ public final class DeploymentLogsRequest {
 
     /**
      * Set the containerType property: The type of container to retrieve logs from.
-     *
+     * 
      * @param containerType the containerType value to set.
      * @return the DeploymentLogsRequest object itself.
      */
@@ -48,7 +52,7 @@ public final class DeploymentLogsRequest {
 
     /**
      * Get the tail property: The maximum number of lines to tail.
-     *
+     * 
      * @return the tail value.
      */
     public Integer tail() {
@@ -57,7 +61,7 @@ public final class DeploymentLogsRequest {
 
     /**
      * Set the tail property: The maximum number of lines to tail.
-     *
+     * 
      * @param tail the tail value to set.
      * @return the DeploymentLogsRequest object itself.
      */
@@ -68,7 +72,7 @@ public final class DeploymentLogsRequest {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

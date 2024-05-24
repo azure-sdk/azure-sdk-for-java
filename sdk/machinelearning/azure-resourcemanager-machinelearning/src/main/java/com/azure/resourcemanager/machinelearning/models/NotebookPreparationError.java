@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The NotebookPreparationError model. */
+/**
+ * The NotebookPreparationError model.
+ */
 @Fluent
 public final class NotebookPreparationError {
     /*
@@ -22,13 +24,15 @@ public final class NotebookPreparationError {
     @JsonProperty(value = "statusCode")
     private Integer statusCode;
 
-    /** Creates an instance of NotebookPreparationError class. */
+    /**
+     * Creates an instance of NotebookPreparationError class.
+     */
     public NotebookPreparationError() {
     }
 
     /**
      * Get the errorMessage property: The errorMessage property.
-     *
+     * 
      * @return the errorMessage value.
      */
     public String errorMessage() {
@@ -37,7 +41,7 @@ public final class NotebookPreparationError {
 
     /**
      * Set the errorMessage property: The errorMessage property.
-     *
+     * 
      * @param errorMessage the errorMessage value to set.
      * @return the NotebookPreparationError object itself.
      */
@@ -48,7 +52,7 @@ public final class NotebookPreparationError {
 
     /**
      * Get the statusCode property: The statusCode property.
-     *
+     * 
      * @return the statusCode value.
      */
     public Integer statusCode() {
@@ -57,7 +61,7 @@ public final class NotebookPreparationError {
 
     /**
      * Set the statusCode property: The statusCode property.
-     *
+     * 
      * @param statusCode the statusCode value to set.
      * @return the NotebookPreparationError object itself.
      */
@@ -68,7 +72,7 @@ public final class NotebookPreparationError {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

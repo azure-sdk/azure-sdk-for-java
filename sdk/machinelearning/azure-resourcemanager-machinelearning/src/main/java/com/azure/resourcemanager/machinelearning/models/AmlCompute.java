@@ -6,27 +6,49 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** An Azure Machine Learning compute. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
+/**
+ * An Azure Machine Learning compute.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "computeType", defaultImpl = AmlCompute.class, visible = true)
 @JsonTypeName("AmlCompute")
 @Fluent
 public final class AmlCompute extends Compute {
+    /*
+     * The type of compute
+     */
+    @JsonTypeId
+    @JsonProperty(value = "computeType", required = true)
+    private ComputeType computeType = ComputeType.AML_COMPUTE;
+
     /*
      * Properties of AmlCompute
      */
     @JsonProperty(value = "properties")
     private AmlComputeProperties properties;
 
-    /** Creates an instance of AmlCompute class. */
+    /**
+     * Creates an instance of AmlCompute class.
+     */
     public AmlCompute() {
     }
 
     /**
+     * Get the computeType property: The type of compute.
+     * 
+     * @return the computeType value.
+     */
+    @Override
+    public ComputeType computeType() {
+        return this.computeType;
+    }
+
+    /**
      * Get the properties property: Properties of AmlCompute.
-     *
+     * 
      * @return the properties value.
      */
     public AmlComputeProperties properties() {
@@ -35,7 +57,7 @@ public final class AmlCompute extends Compute {
 
     /**
      * Set the properties property: Properties of AmlCompute.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the AmlCompute object itself.
      */
@@ -44,28 +66,36 @@ public final class AmlCompute extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AmlCompute withComputeLocation(String computeLocation) {
         super.withComputeLocation(computeLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AmlCompute withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AmlCompute withResourceId(String resourceId) {
         super.withResourceId(resourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AmlCompute withDisableLocalAuth(Boolean disableLocalAuth) {
         super.withDisableLocalAuth(disableLocalAuth);
@@ -74,7 +104,7 @@ public final class AmlCompute extends Compute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

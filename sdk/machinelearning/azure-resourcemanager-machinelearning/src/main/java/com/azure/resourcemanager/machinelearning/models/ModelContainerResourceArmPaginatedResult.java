@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ModelContainerInn
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of ModelContainer entities. */
+/**
+ * A paginated list of ModelContainer entities.
+ */
 @Fluent
 public final class ModelContainerResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class ModelContainerResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<ModelContainerInner> value;
 
-    /** Creates an instance of ModelContainerResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of ModelContainerResourceArmPaginatedResult class.
+     */
     public ModelContainerResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of ModelContainer objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class ModelContainerResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of ModelContainer objects. If null, there are no additional
      * pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ModelContainerResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class ModelContainerResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type ModelContainer.
-     *
+     * 
      * @return the value value.
      */
     public List<ModelContainerInner> value() {
@@ -61,7 +65,7 @@ public final class ModelContainerResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type ModelContainer.
-     *
+     * 
      * @param value the value value to set.
      * @return the ModelContainerResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class ModelContainerResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

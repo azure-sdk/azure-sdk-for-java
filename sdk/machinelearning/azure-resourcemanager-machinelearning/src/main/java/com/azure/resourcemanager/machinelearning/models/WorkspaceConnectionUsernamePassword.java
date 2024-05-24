@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The WorkspaceConnectionUsernamePassword model. */
+/**
+ * The WorkspaceConnectionUsernamePassword model.
+ */
 @Fluent
 public final class WorkspaceConnectionUsernamePassword {
     /*
@@ -22,13 +24,21 @@ public final class WorkspaceConnectionUsernamePassword {
     @JsonProperty(value = "password")
     private String password;
 
-    /** Creates an instance of WorkspaceConnectionUsernamePassword class. */
+    /*
+     * Optional, required by connections like SalesForce for extra security in addition to UsernamePassword
+     */
+    @JsonProperty(value = "securityToken")
+    private String securityToken;
+
+    /**
+     * Creates an instance of WorkspaceConnectionUsernamePassword class.
+     */
     public WorkspaceConnectionUsernamePassword() {
     }
 
     /**
      * Get the username property: The username property.
-     *
+     * 
      * @return the username value.
      */
     public String username() {
@@ -37,7 +47,7 @@ public final class WorkspaceConnectionUsernamePassword {
 
     /**
      * Set the username property: The username property.
-     *
+     * 
      * @param username the username value to set.
      * @return the WorkspaceConnectionUsernamePassword object itself.
      */
@@ -48,7 +58,7 @@ public final class WorkspaceConnectionUsernamePassword {
 
     /**
      * Get the password property: The password property.
-     *
+     * 
      * @return the password value.
      */
     public String password() {
@@ -57,7 +67,7 @@ public final class WorkspaceConnectionUsernamePassword {
 
     /**
      * Set the password property: The password property.
-     *
+     * 
      * @param password the password value to set.
      * @return the WorkspaceConnectionUsernamePassword object itself.
      */
@@ -67,8 +77,30 @@ public final class WorkspaceConnectionUsernamePassword {
     }
 
     /**
+     * Get the securityToken property: Optional, required by connections like SalesForce for extra security in addition
+     * to UsernamePassword.
+     * 
+     * @return the securityToken value.
+     */
+    public String securityToken() {
+        return this.securityToken;
+    }
+
+    /**
+     * Set the securityToken property: Optional, required by connections like SalesForce for extra security in addition
+     * to UsernamePassword.
+     * 
+     * @param securityToken the securityToken value to set.
+     * @return the WorkspaceConnectionUsernamePassword object itself.
+     */
+    public WorkspaceConnectionUsernamePassword withSecurityToken(String securityToken) {
+        this.securityToken = securityToken;
+        return this;
+    }
+
+    /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

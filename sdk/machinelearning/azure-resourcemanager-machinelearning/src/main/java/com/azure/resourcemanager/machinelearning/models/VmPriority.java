@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Virtual Machine priority. */
+/**
+ * Virtual Machine priority.
+ */
 public final class VmPriority extends ExpandableStringEnum<VmPriority> {
-    /** Static value Dedicated for VmPriority. */
+    /**
+     * Static value Dedicated for VmPriority.
+     */
     public static final VmPriority DEDICATED = fromString("Dedicated");
 
-    /** Static value LowPriority for VmPriority. */
+    /**
+     * Static value LowPriority for VmPriority.
+     */
     public static final VmPriority LOW_PRIORITY = fromString("LowPriority");
 
     /**
      * Creates a new instance of VmPriority value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class VmPriority extends ExpandableStringEnum<VmPriority> {
 
     /**
      * Creates or finds a VmPriority from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding VmPriority.
      */
@@ -38,7 +44,7 @@ public final class VmPriority extends ExpandableStringEnum<VmPriority> {
 
     /**
      * Gets known VmPriority values.
-     *
+     * 
      * @return known VmPriority values.
      */
     public static Collection<VmPriority> values() {

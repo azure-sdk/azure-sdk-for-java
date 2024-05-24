@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** Properties of Databricks Compute Secrets. */
+/**
+ * Properties of Databricks Compute Secrets.
+ */
 @Fluent
 public class DatabricksComputeSecretsProperties {
     /*
@@ -16,13 +18,15 @@ public class DatabricksComputeSecretsProperties {
     @JsonProperty(value = "databricksAccessToken")
     private String databricksAccessToken;
 
-    /** Creates an instance of DatabricksComputeSecretsProperties class. */
+    /**
+     * Creates an instance of DatabricksComputeSecretsProperties class.
+     */
     public DatabricksComputeSecretsProperties() {
     }
 
     /**
      * Get the databricksAccessToken property: access token for databricks account.
-     *
+     * 
      * @return the databricksAccessToken value.
      */
     public String databricksAccessToken() {
@@ -31,7 +35,7 @@ public class DatabricksComputeSecretsProperties {
 
     /**
      * Set the databricksAccessToken property: access token for databricks account.
-     *
+     * 
      * @param databricksAccessToken the databricksAccessToken value to set.
      * @return the DatabricksComputeSecretsProperties object itself.
      */
@@ -42,7 +46,7 @@ public class DatabricksComputeSecretsProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

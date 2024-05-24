@@ -8,7 +8,9 @@ import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** The ImageClassificationBase model. */
+/**
+ * The ImageClassificationBase model.
+ */
 @Fluent
 public class ImageClassificationBase extends ImageVertical {
     /*
@@ -23,13 +25,15 @@ public class ImageClassificationBase extends ImageVertical {
     @JsonProperty(value = "searchSpace")
     private List<ImageModelDistributionSettingsClassification> searchSpace;
 
-    /** Creates an instance of ImageClassificationBase class. */
+    /**
+     * Creates an instance of ImageClassificationBase class.
+     */
     public ImageClassificationBase() {
     }
 
     /**
      * Get the modelSettings property: Settings used for training the model.
-     *
+     * 
      * @return the modelSettings value.
      */
     public ImageModelSettingsClassification modelSettings() {
@@ -38,7 +42,7 @@ public class ImageClassificationBase extends ImageVertical {
 
     /**
      * Set the modelSettings property: Settings used for training the model.
-     *
+     * 
      * @param modelSettings the modelSettings value to set.
      * @return the ImageClassificationBase object itself.
      */
@@ -50,7 +54,7 @@ public class ImageClassificationBase extends ImageVertical {
     /**
      * Get the searchSpace property: Search space for sampling different combinations of models and their
      * hyperparameters.
-     *
+     * 
      * @return the searchSpace value.
      */
     public List<ImageModelDistributionSettingsClassification> searchSpace() {
@@ -60,7 +64,7 @@ public class ImageClassificationBase extends ImageVertical {
     /**
      * Set the searchSpace property: Search space for sampling different combinations of models and their
      * hyperparameters.
-     *
+     * 
      * @param searchSpace the searchSpace value to set.
      * @return the ImageClassificationBase object itself.
      */
@@ -69,28 +73,36 @@ public class ImageClassificationBase extends ImageVertical {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageClassificationBase withLimitSettings(ImageLimitSettings limitSettings) {
         super.withLimitSettings(limitSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageClassificationBase withSweepSettings(ImageSweepSettings sweepSettings) {
         super.withSweepSettings(sweepSettings);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageClassificationBase withValidationData(MLTableJobInput validationData) {
         super.withValidationData(validationData);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ImageClassificationBase withValidationDataSize(Double validationDataSize) {
         super.withValidationDataSize(validationDataSize);
@@ -99,7 +111,7 @@ public class ImageClassificationBase extends ImageVertical {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

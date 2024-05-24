@@ -8,17 +8,23 @@ import com.azure.core.util.ExpandableStringEnum;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.Collection;
 
-/** Forecasting seasonality mode. */
+/**
+ * Forecasting seasonality mode.
+ */
 public final class SeasonalityMode extends ExpandableStringEnum<SeasonalityMode> {
-    /** Static value Auto for SeasonalityMode. */
+    /**
+     * Static value Auto for SeasonalityMode.
+     */
     public static final SeasonalityMode AUTO = fromString("Auto");
 
-    /** Static value Custom for SeasonalityMode. */
+    /**
+     * Static value Custom for SeasonalityMode.
+     */
     public static final SeasonalityMode CUSTOM = fromString("Custom");
 
     /**
      * Creates a new instance of SeasonalityMode value.
-     *
+     * 
      * @deprecated Use the {@link #fromString(String)} factory method.
      */
     @Deprecated
@@ -27,7 +33,7 @@ public final class SeasonalityMode extends ExpandableStringEnum<SeasonalityMode>
 
     /**
      * Creates or finds a SeasonalityMode from its string representation.
-     *
+     * 
      * @param name a name to look for.
      * @return the corresponding SeasonalityMode.
      */
@@ -38,7 +44,7 @@ public final class SeasonalityMode extends ExpandableStringEnum<SeasonalityMode>
 
     /**
      * Gets known SeasonalityMode values.
-     *
+     * 
      * @return known SeasonalityMode values.
      */
     public static Collection<SeasonalityMode> values() {

@@ -6,27 +6,49 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** A Machine Learning compute based on Azure Virtual Machines. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
+/**
+ * A Machine Learning compute based on Azure Virtual Machines.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "computeType", defaultImpl = VirtualMachine.class, visible = true)
 @JsonTypeName("VirtualMachine")
 @Fluent
 public final class VirtualMachine extends Compute {
+    /*
+     * The type of compute
+     */
+    @JsonTypeId
+    @JsonProperty(value = "computeType", required = true)
+    private ComputeType computeType = ComputeType.VIRTUAL_MACHINE;
+
     /*
      * The properties property.
      */
     @JsonProperty(value = "properties")
     private VirtualMachineSchemaProperties properties;
 
-    /** Creates an instance of VirtualMachine class. */
+    /**
+     * Creates an instance of VirtualMachine class.
+     */
     public VirtualMachine() {
     }
 
     /**
+     * Get the computeType property: The type of compute.
+     * 
+     * @return the computeType value.
+     */
+    @Override
+    public ComputeType computeType() {
+        return this.computeType;
+    }
+
+    /**
      * Get the properties property: The properties property.
-     *
+     * 
      * @return the properties value.
      */
     public VirtualMachineSchemaProperties properties() {
@@ -35,7 +57,7 @@ public final class VirtualMachine extends Compute {
 
     /**
      * Set the properties property: The properties property.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the VirtualMachine object itself.
      */
@@ -44,28 +66,36 @@ public final class VirtualMachine extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualMachine withComputeLocation(String computeLocation) {
         super.withComputeLocation(computeLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualMachine withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualMachine withResourceId(String resourceId) {
         super.withResourceId(resourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public VirtualMachine withDisableLocalAuth(Boolean disableLocalAuth) {
         super.withDisableLocalAuth(disableLocalAuth);
@@ -74,7 +104,7 @@ public final class VirtualMachine extends Compute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

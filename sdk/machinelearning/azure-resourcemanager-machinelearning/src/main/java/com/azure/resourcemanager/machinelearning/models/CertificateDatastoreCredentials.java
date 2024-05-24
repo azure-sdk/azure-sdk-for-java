@@ -7,15 +7,29 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.UUID;
 
-/** Certificate datastore credentials configuration. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "credentialsType")
+/**
+ * Certificate datastore credentials configuration.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "credentialsType",
+    defaultImpl = CertificateDatastoreCredentials.class,
+    visible = true)
 @JsonTypeName("Certificate")
 @Fluent
 public final class CertificateDatastoreCredentials extends DatastoreCredentials {
+    /*
+     * [Required] Credential type used to authentication with storage.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "credentialsType", required = true)
+    private CredentialsType credentialsType = CredentialsType.CERTIFICATE;
+
     /*
      * Authority URL used for authentication.
      */
@@ -37,7 +51,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
     /*
      * [Required] Service principal secrets.
      */
-    @JsonProperty(value = "secrets", required = true)
+    @JsonProperty(value = "secrets")
     private CertificateDatastoreSecrets secrets;
 
     /*
@@ -52,13 +66,25 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
     @JsonProperty(value = "thumbprint", required = true)
     private String thumbprint;
 
-    /** Creates an instance of CertificateDatastoreCredentials class. */
+    /**
+     * Creates an instance of CertificateDatastoreCredentials class.
+     */
     public CertificateDatastoreCredentials() {
     }
 
     /**
+     * Get the credentialsType property: [Required] Credential type used to authentication with storage.
+     * 
+     * @return the credentialsType value.
+     */
+    @Override
+    public CredentialsType credentialsType() {
+        return this.credentialsType;
+    }
+
+    /**
      * Get the authorityUrl property: Authority URL used for authentication.
-     *
+     * 
      * @return the authorityUrl value.
      */
     public String authorityUrl() {
@@ -67,7 +93,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Set the authorityUrl property: Authority URL used for authentication.
-     *
+     * 
      * @param authorityUrl the authorityUrl value to set.
      * @return the CertificateDatastoreCredentials object itself.
      */
@@ -78,7 +104,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Get the clientId property: [Required] Service principal client ID.
-     *
+     * 
      * @return the clientId value.
      */
     public UUID clientId() {
@@ -87,7 +113,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Set the clientId property: [Required] Service principal client ID.
-     *
+     * 
      * @param clientId the clientId value to set.
      * @return the CertificateDatastoreCredentials object itself.
      */
@@ -98,7 +124,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Get the resourceUrl property: Resource the service principal has access to.
-     *
+     * 
      * @return the resourceUrl value.
      */
     public String resourceUrl() {
@@ -107,7 +133,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Set the resourceUrl property: Resource the service principal has access to.
-     *
+     * 
      * @param resourceUrl the resourceUrl value to set.
      * @return the CertificateDatastoreCredentials object itself.
      */
@@ -118,7 +144,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Get the secrets property: [Required] Service principal secrets.
-     *
+     * 
      * @return the secrets value.
      */
     public CertificateDatastoreSecrets secrets() {
@@ -127,7 +153,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Set the secrets property: [Required] Service principal secrets.
-     *
+     * 
      * @param secrets the secrets value to set.
      * @return the CertificateDatastoreCredentials object itself.
      */
@@ -138,7 +164,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Get the tenantId property: [Required] ID of the tenant to which the service principal belongs.
-     *
+     * 
      * @return the tenantId value.
      */
     public UUID tenantId() {
@@ -147,7 +173,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Set the tenantId property: [Required] ID of the tenant to which the service principal belongs.
-     *
+     * 
      * @param tenantId the tenantId value to set.
      * @return the CertificateDatastoreCredentials object itself.
      */
@@ -158,7 +184,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Get the thumbprint property: [Required] Thumbprint of the certificate used for authentication.
-     *
+     * 
      * @return the thumbprint value.
      */
     public String thumbprint() {
@@ -167,7 +193,7 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Set the thumbprint property: [Required] Thumbprint of the certificate used for authentication.
-     *
+     * 
      * @param thumbprint the thumbprint value to set.
      * @return the CertificateDatastoreCredentials object itself.
      */
@@ -178,37 +204,33 @@ public final class CertificateDatastoreCredentials extends DatastoreCredentials 
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (clientId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property clientId in model CertificateDatastoreCredentials"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property clientId in model CertificateDatastoreCredentials"));
         }
         if (secrets() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property secrets in model CertificateDatastoreCredentials"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property secrets in model CertificateDatastoreCredentials"));
         } else {
             secrets().validate();
         }
         if (tenantId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property tenantId in model CertificateDatastoreCredentials"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property tenantId in model CertificateDatastoreCredentials"));
         }
         if (thumbprint() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException(
-                        "Missing required property thumbprint in model CertificateDatastoreCredentials"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException(
+                    "Missing required property thumbprint in model CertificateDatastoreCredentials"));
         }
     }
 

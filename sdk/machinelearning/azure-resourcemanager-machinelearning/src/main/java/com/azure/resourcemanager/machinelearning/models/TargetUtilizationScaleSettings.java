@@ -6,15 +6,29 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.time.Duration;
 
-/** The TargetUtilizationScaleSettings model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "scaleType")
+/**
+ * The TargetUtilizationScaleSettings model.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "scaleType",
+    defaultImpl = TargetUtilizationScaleSettings.class,
+    visible = true)
 @JsonTypeName("TargetUtilization")
 @Fluent
 public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
+    /*
+     * [Required] Type of deployment scaling algorithm
+     */
+    @JsonTypeId
+    @JsonProperty(value = "scaleType", required = true)
+    private ScaleType scaleType = ScaleType.TARGET_UTILIZATION;
+
     /*
      * The maximum number of instances that the deployment can scale to. The quota will be reserved for max_instances.
      */
@@ -39,14 +53,26 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
     @JsonProperty(value = "targetUtilizationPercentage")
     private Integer targetUtilizationPercentage;
 
-    /** Creates an instance of TargetUtilizationScaleSettings class. */
+    /**
+     * Creates an instance of TargetUtilizationScaleSettings class.
+     */
     public TargetUtilizationScaleSettings() {
+    }
+
+    /**
+     * Get the scaleType property: [Required] Type of deployment scaling algorithm.
+     * 
+     * @return the scaleType value.
+     */
+    @Override
+    public ScaleType scaleType() {
+        return this.scaleType;
     }
 
     /**
      * Get the maxInstances property: The maximum number of instances that the deployment can scale to. The quota will
      * be reserved for max_instances.
-     *
+     * 
      * @return the maxInstances value.
      */
     public Integer maxInstances() {
@@ -56,7 +82,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
     /**
      * Set the maxInstances property: The maximum number of instances that the deployment can scale to. The quota will
      * be reserved for max_instances.
-     *
+     * 
      * @param maxInstances the maxInstances value to set.
      * @return the TargetUtilizationScaleSettings object itself.
      */
@@ -67,7 +93,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
 
     /**
      * Get the minInstances property: The minimum number of instances to always be present.
-     *
+     * 
      * @return the minInstances value.
      */
     public Integer minInstances() {
@@ -76,7 +102,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
 
     /**
      * Set the minInstances property: The minimum number of instances to always be present.
-     *
+     * 
      * @param minInstances the minInstances value to set.
      * @return the TargetUtilizationScaleSettings object itself.
      */
@@ -88,7 +114,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
     /**
      * Get the pollingInterval property: The polling interval in ISO 8691 format. Only supports duration with precision
      * as low as Seconds.
-     *
+     * 
      * @return the pollingInterval value.
      */
     public Duration pollingInterval() {
@@ -98,7 +124,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
     /**
      * Set the pollingInterval property: The polling interval in ISO 8691 format. Only supports duration with precision
      * as low as Seconds.
-     *
+     * 
      * @param pollingInterval the pollingInterval value to set.
      * @return the TargetUtilizationScaleSettings object itself.
      */
@@ -109,7 +135,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
 
     /**
      * Get the targetUtilizationPercentage property: Target CPU usage for the autoscaler.
-     *
+     * 
      * @return the targetUtilizationPercentage value.
      */
     public Integer targetUtilizationPercentage() {
@@ -118,7 +144,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
 
     /**
      * Set the targetUtilizationPercentage property: Target CPU usage for the autoscaler.
-     *
+     * 
      * @param targetUtilizationPercentage the targetUtilizationPercentage value to set.
      * @return the TargetUtilizationScaleSettings object itself.
      */
@@ -129,7 +155,7 @@ public final class TargetUtilizationScaleSettings extends OnlineScaleSettings {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

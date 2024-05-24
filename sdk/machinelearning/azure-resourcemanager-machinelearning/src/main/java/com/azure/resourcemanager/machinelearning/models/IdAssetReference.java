@@ -7,27 +7,53 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Reference to an asset via its ARM resource ID. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "referenceType")
+/**
+ * Reference to an asset via its ARM resource ID.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "referenceType",
+    defaultImpl = IdAssetReference.class,
+    visible = true)
 @JsonTypeName("Id")
 @Fluent
 public final class IdAssetReference extends AssetReferenceBase {
+    /*
+     * [Required] Specifies the type of asset reference.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "referenceType", required = true)
+    private ReferenceType referenceType = ReferenceType.ID;
+
     /*
      * [Required] ARM resource ID of the asset.
      */
     @JsonProperty(value = "assetId", required = true)
     private String assetId;
 
-    /** Creates an instance of IdAssetReference class. */
+    /**
+     * Creates an instance of IdAssetReference class.
+     */
     public IdAssetReference() {
     }
 
     /**
+     * Get the referenceType property: [Required] Specifies the type of asset reference.
+     * 
+     * @return the referenceType value.
+     */
+    @Override
+    public ReferenceType referenceType() {
+        return this.referenceType;
+    }
+
+    /**
      * Get the assetId property: [Required] ARM resource ID of the asset.
-     *
+     * 
      * @return the assetId value.
      */
     public String assetId() {
@@ -36,7 +62,7 @@ public final class IdAssetReference extends AssetReferenceBase {
 
     /**
      * Set the assetId property: [Required] ARM resource ID of the asset.
-     *
+     * 
      * @param assetId the assetId value to set.
      * @return the IdAssetReference object itself.
      */
@@ -47,16 +73,15 @@ public final class IdAssetReference extends AssetReferenceBase {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (assetId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property assetId in model IdAssetReference"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property assetId in model IdAssetReference"));
         }
     }
 

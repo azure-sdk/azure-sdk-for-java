@@ -6,14 +6,28 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** The UriFileJobOutput model. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobOutputType")
+/**
+ * The UriFileJobOutput model.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "jobOutputType",
+    defaultImpl = UriFileJobOutput.class,
+    visible = true)
 @JsonTypeName("uri_file")
 @Fluent
 public final class UriFileJobOutput extends JobOutput {
+    /*
+     * [Required] Specifies the type of job.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobOutputType", required = true)
+    private JobOutputType jobOutputType = JobOutputType.URI_FILE;
+
     /*
      * Output Asset Delivery Mode.
      */
@@ -26,13 +40,25 @@ public final class UriFileJobOutput extends JobOutput {
     @JsonProperty(value = "uri")
     private String uri;
 
-    /** Creates an instance of UriFileJobOutput class. */
+    /**
+     * Creates an instance of UriFileJobOutput class.
+     */
     public UriFileJobOutput() {
     }
 
     /**
+     * Get the jobOutputType property: [Required] Specifies the type of job.
+     * 
+     * @return the jobOutputType value.
+     */
+    @Override
+    public JobOutputType jobOutputType() {
+        return this.jobOutputType;
+    }
+
+    /**
      * Get the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @return the mode value.
      */
     public OutputDeliveryMode mode() {
@@ -41,7 +67,7 @@ public final class UriFileJobOutput extends JobOutput {
 
     /**
      * Set the mode property: Output Asset Delivery Mode.
-     *
+     * 
      * @param mode the mode value to set.
      * @return the UriFileJobOutput object itself.
      */
@@ -52,7 +78,7 @@ public final class UriFileJobOutput extends JobOutput {
 
     /**
      * Get the uri property: Output Asset URI.
-     *
+     * 
      * @return the uri value.
      */
     public String uri() {
@@ -61,7 +87,7 @@ public final class UriFileJobOutput extends JobOutput {
 
     /**
      * Set the uri property: Output Asset URI.
-     *
+     * 
      * @param uri the uri value to set.
      * @return the UriFileJobOutput object itself.
      */
@@ -70,7 +96,9 @@ public final class UriFileJobOutput extends JobOutput {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public UriFileJobOutput withDescription(String description) {
         super.withDescription(description);
@@ -79,7 +107,7 @@ public final class UriFileJobOutput extends JobOutput {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

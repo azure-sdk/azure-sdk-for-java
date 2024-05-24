@@ -7,7 +7,9 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/** The WorkspaceConnectionPersonalAccessToken model. */
+/**
+ * The WorkspaceConnectionPersonalAccessToken model.
+ */
 @Fluent
 public final class WorkspaceConnectionPersonalAccessToken {
     /*
@@ -16,13 +18,15 @@ public final class WorkspaceConnectionPersonalAccessToken {
     @JsonProperty(value = "pat")
     private String pat;
 
-    /** Creates an instance of WorkspaceConnectionPersonalAccessToken class. */
+    /**
+     * Creates an instance of WorkspaceConnectionPersonalAccessToken class.
+     */
     public WorkspaceConnectionPersonalAccessToken() {
     }
 
     /**
      * Get the pat property: The pat property.
-     *
+     * 
      * @return the pat value.
      */
     public String pat() {
@@ -31,7 +35,7 @@ public final class WorkspaceConnectionPersonalAccessToken {
 
     /**
      * Set the pat property: The pat property.
-     *
+     * 
      * @param pat the pat value to set.
      * @return the WorkspaceConnectionPersonalAccessToken object itself.
      */
@@ -42,7 +46,7 @@ public final class WorkspaceConnectionPersonalAccessToken {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

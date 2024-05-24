@@ -6,27 +6,49 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** A DataFactory compute. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
+/**
+ * A DataFactory compute.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "computeType", defaultImpl = Databricks.class, visible = true)
 @JsonTypeName("Databricks")
 @Fluent
 public final class Databricks extends Compute {
+    /*
+     * The type of compute
+     */
+    @JsonTypeId
+    @JsonProperty(value = "computeType", required = true)
+    private ComputeType computeType = ComputeType.DATABRICKS;
+
     /*
      * Properties of Databricks
      */
     @JsonProperty(value = "properties")
     private DatabricksProperties properties;
 
-    /** Creates an instance of Databricks class. */
+    /**
+     * Creates an instance of Databricks class.
+     */
     public Databricks() {
     }
 
     /**
+     * Get the computeType property: The type of compute.
+     * 
+     * @return the computeType value.
+     */
+    @Override
+    public ComputeType computeType() {
+        return this.computeType;
+    }
+
+    /**
      * Get the properties property: Properties of Databricks.
-     *
+     * 
      * @return the properties value.
      */
     public DatabricksProperties properties() {
@@ -35,7 +57,7 @@ public final class Databricks extends Compute {
 
     /**
      * Set the properties property: Properties of Databricks.
-     *
+     * 
      * @param properties the properties value to set.
      * @return the Databricks object itself.
      */
@@ -44,28 +66,36 @@ public final class Databricks extends Compute {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Databricks withComputeLocation(String computeLocation) {
         super.withComputeLocation(computeLocation);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Databricks withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Databricks withResourceId(String resourceId) {
         super.withResourceId(resourceId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Databricks withDisableLocalAuth(Boolean disableLocalAuth) {
         super.withDisableLocalAuth(disableLocalAuth);
@@ -74,7 +104,7 @@ public final class Databricks extends Compute {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

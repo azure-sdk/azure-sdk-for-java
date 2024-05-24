@@ -6,14 +6,20 @@ package com.azure.resourcemanager.machinelearning.models;
 
 import com.azure.core.annotation.Fluent;
 
-/** The NlpVerticalFeaturizationSettings model. */
+/**
+ * The NlpVerticalFeaturizationSettings model.
+ */
 @Fluent
 public final class NlpVerticalFeaturizationSettings extends FeaturizationSettings {
-    /** Creates an instance of NlpVerticalFeaturizationSettings class. */
+    /**
+     * Creates an instance of NlpVerticalFeaturizationSettings class.
+     */
     public NlpVerticalFeaturizationSettings() {
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public NlpVerticalFeaturizationSettings withDatasetLanguage(String datasetLanguage) {
         super.withDatasetLanguage(datasetLanguage);
@@ -22,7 +28,7 @@ public final class NlpVerticalFeaturizationSettings extends FeaturizationSetting
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override

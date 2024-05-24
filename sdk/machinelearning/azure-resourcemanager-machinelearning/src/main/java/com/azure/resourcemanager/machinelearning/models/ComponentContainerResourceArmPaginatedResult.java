@@ -9,7 +9,9 @@ import com.azure.resourcemanager.machinelearning.fluent.models.ComponentContaine
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
-/** A paginated list of ComponentContainer entities. */
+/**
+ * A paginated list of ComponentContainer entities.
+ */
 @Fluent
 public final class ComponentContainerResourceArmPaginatedResult {
     /*
@@ -24,14 +26,16 @@ public final class ComponentContainerResourceArmPaginatedResult {
     @JsonProperty(value = "value")
     private List<ComponentContainerInner> value;
 
-    /** Creates an instance of ComponentContainerResourceArmPaginatedResult class. */
+    /**
+     * Creates an instance of ComponentContainerResourceArmPaginatedResult class.
+     */
     public ComponentContainerResourceArmPaginatedResult() {
     }
 
     /**
      * Get the nextLink property: The link to the next page of ComponentContainer objects. If null, there are no
      * additional pages.
-     *
+     * 
      * @return the nextLink value.
      */
     public String nextLink() {
@@ -41,7 +45,7 @@ public final class ComponentContainerResourceArmPaginatedResult {
     /**
      * Set the nextLink property: The link to the next page of ComponentContainer objects. If null, there are no
      * additional pages.
-     *
+     * 
      * @param nextLink the nextLink value to set.
      * @return the ComponentContainerResourceArmPaginatedResult object itself.
      */
@@ -52,7 +56,7 @@ public final class ComponentContainerResourceArmPaginatedResult {
 
     /**
      * Get the value property: An array of objects of type ComponentContainer.
-     *
+     * 
      * @return the value value.
      */
     public List<ComponentContainerInner> value() {
@@ -61,7 +65,7 @@ public final class ComponentContainerResourceArmPaginatedResult {
 
     /**
      * Set the value property: An array of objects of type ComponentContainer.
-     *
+     * 
      * @param value the value value to set.
      * @return the ComponentContainerResourceArmPaginatedResult object itself.
      */
@@ -72,7 +76,7 @@ public final class ComponentContainerResourceArmPaginatedResult {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     public void validate() {

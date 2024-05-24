@@ -8,15 +8,25 @@ import com.azure.core.annotation.Fluent;
 import com.azure.core.util.logging.ClientLogger;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import java.util.Map;
 
-/** Command job definition. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "jobType")
+/**
+ * Command job definition.
+ */
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "jobType", defaultImpl = CommandJob.class, visible = true)
 @JsonTypeName("Command")
 @Fluent
 public final class CommandJob extends JobBaseProperties {
+    /*
+     * [Required] Specifies the type of job.
+     */
+    @JsonTypeId
+    @JsonProperty(value = "jobType", required = true)
+    private JobType jobType = JobType.COMMAND;
+
     /*
      * ARM resource ID of the code asset.
      */
@@ -75,18 +85,36 @@ public final class CommandJob extends JobBaseProperties {
     private Object parameters;
 
     /*
+     * Queue settings for the job
+     */
+    @JsonProperty(value = "queueSettings")
+    private QueueSettings queueSettings;
+
+    /*
      * Compute Resource configuration for the job.
      */
     @JsonProperty(value = "resources")
     private JobResourceConfiguration resources;
 
-    /** Creates an instance of CommandJob class. */
+    /**
+     * Creates an instance of CommandJob class.
+     */
     public CommandJob() {
     }
 
     /**
+     * Get the jobType property: [Required] Specifies the type of job.
+     * 
+     * @return the jobType value.
+     */
+    @Override
+    public JobType jobType() {
+        return this.jobType;
+    }
+
+    /**
      * Get the codeId property: ARM resource ID of the code asset.
-     *
+     * 
      * @return the codeId value.
      */
     public String codeId() {
@@ -95,7 +123,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Set the codeId property: ARM resource ID of the code asset.
-     *
+     * 
      * @param codeId the codeId value to set.
      * @return the CommandJob object itself.
      */
@@ -106,7 +134,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Get the command property: [Required] The command to execute on startup of the job. eg. "python train.py".
-     *
+     * 
      * @return the command value.
      */
     public String command() {
@@ -115,7 +143,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Set the command property: [Required] The command to execute on startup of the job. eg. "python train.py".
-     *
+     * 
      * @param command the command value to set.
      * @return the CommandJob object itself.
      */
@@ -127,7 +155,7 @@ public final class CommandJob extends JobBaseProperties {
     /**
      * Get the distribution property: Distribution configuration of the job. If set, this should be one of Mpi,
      * Tensorflow, PyTorch, or null.
-     *
+     * 
      * @return the distribution value.
      */
     public DistributionConfiguration distribution() {
@@ -137,7 +165,7 @@ public final class CommandJob extends JobBaseProperties {
     /**
      * Set the distribution property: Distribution configuration of the job. If set, this should be one of Mpi,
      * Tensorflow, PyTorch, or null.
-     *
+     * 
      * @param distribution the distribution value to set.
      * @return the CommandJob object itself.
      */
@@ -148,7 +176,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Get the environmentId property: [Required] The ARM resource ID of the Environment specification for the job.
-     *
+     * 
      * @return the environmentId value.
      */
     public String environmentId() {
@@ -157,7 +185,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Set the environmentId property: [Required] The ARM resource ID of the Environment specification for the job.
-     *
+     * 
      * @param environmentId the environmentId value to set.
      * @return the CommandJob object itself.
      */
@@ -168,7 +196,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Get the environmentVariables property: Environment variables included in the job.
-     *
+     * 
      * @return the environmentVariables value.
      */
     public Map<String, String> environmentVariables() {
@@ -177,7 +205,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Set the environmentVariables property: Environment variables included in the job.
-     *
+     * 
      * @param environmentVariables the environmentVariables value to set.
      * @return the CommandJob object itself.
      */
@@ -188,7 +216,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Get the inputs property: Mapping of input data bindings used in the job.
-     *
+     * 
      * @return the inputs value.
      */
     public Map<String, JobInput> inputs() {
@@ -197,7 +225,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Set the inputs property: Mapping of input data bindings used in the job.
-     *
+     * 
      * @param inputs the inputs value to set.
      * @return the CommandJob object itself.
      */
@@ -208,7 +236,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Get the limits property: Command Job limit.
-     *
+     * 
      * @return the limits value.
      */
     public CommandJobLimits limits() {
@@ -217,7 +245,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Set the limits property: Command Job limit.
-     *
+     * 
      * @param limits the limits value to set.
      * @return the CommandJob object itself.
      */
@@ -228,7 +256,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Get the outputs property: Mapping of output data bindings used in the job.
-     *
+     * 
      * @return the outputs value.
      */
     public Map<String, JobOutput> outputs() {
@@ -237,7 +265,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Set the outputs property: Mapping of output data bindings used in the job.
-     *
+     * 
      * @param outputs the outputs value to set.
      * @return the CommandJob object itself.
      */
@@ -248,7 +276,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Get the parameters property: Input parameters.
-     *
+     * 
      * @return the parameters value.
      */
     public Object parameters() {
@@ -256,8 +284,28 @@ public final class CommandJob extends JobBaseProperties {
     }
 
     /**
+     * Get the queueSettings property: Queue settings for the job.
+     * 
+     * @return the queueSettings value.
+     */
+    public QueueSettings queueSettings() {
+        return this.queueSettings;
+    }
+
+    /**
+     * Set the queueSettings property: Queue settings for the job.
+     * 
+     * @param queueSettings the queueSettings value to set.
+     * @return the CommandJob object itself.
+     */
+    public CommandJob withQueueSettings(QueueSettings queueSettings) {
+        this.queueSettings = queueSettings;
+        return this;
+    }
+
+    /**
      * Get the resources property: Compute Resource configuration for the job.
-     *
+     * 
      * @return the resources value.
      */
     public JobResourceConfiguration resources() {
@@ -266,7 +314,7 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Set the resources property: Compute Resource configuration for the job.
-     *
+     * 
      * @param resources the resources value to set.
      * @return the CommandJob object itself.
      */
@@ -275,70 +323,99 @@ public final class CommandJob extends JobBaseProperties {
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJob withComponentId(String componentId) {
         super.withComponentId(componentId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJob withComputeId(String computeId) {
         super.withComputeId(computeId);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJob withDisplayName(String displayName) {
         super.withDisplayName(displayName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJob withExperimentName(String experimentName) {
         super.withExperimentName(experimentName);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJob withIdentity(IdentityConfiguration identity) {
         super.withIdentity(identity);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJob withIsArchived(Boolean isArchived) {
         super.withIsArchived(isArchived);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public CommandJob withNotificationSetting(NotificationSetting notificationSetting) {
+        super.withNotificationSetting(notificationSetting);
+        return this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJob withServices(Map<String, JobService> services) {
         super.withServices(services);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJob withDescription(String description) {
         super.withDescription(description);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJob withProperties(Map<String, String> properties) {
         super.withProperties(properties);
         return this;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandJob withTags(Map<String, String> tags) {
         super.withTags(tags);
@@ -347,47 +424,42 @@ public final class CommandJob extends JobBaseProperties {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
     public void validate() {
         super.validate();
         if (command() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property command in model CommandJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property command in model CommandJob"));
         }
         if (distribution() != null) {
             distribution().validate();
         }
         if (environmentId() == null) {
-            throw LOGGER
-                .logExceptionAsError(
-                    new IllegalArgumentException("Missing required property environmentId in model CommandJob"));
+            throw LOGGER.atError()
+                .log(new IllegalArgumentException("Missing required property environmentId in model CommandJob"));
         }
         if (inputs() != null) {
-            inputs()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            inputs().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
         }
         if (limits() != null) {
             limits().validate();
         }
         if (outputs() != null) {
-            outputs()
-                .values()
-                .forEach(
-                    e -> {
-                        if (e != null) {
-                            e.validate();
-                        }
-                    });
+            outputs().values().forEach(e -> {
+                if (e != null) {
+                    e.validate();
+                }
+            });
+        }
+        if (queueSettings() != null) {
+            queueSettings().validate();
         }
         if (resources() != null) {
             resources().validate();

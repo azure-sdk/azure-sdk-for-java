@@ -7,27 +7,53 @@ package com.azure.resourcemanager.machinelearning.models;
 import com.azure.core.annotation.Fluent;
 import com.azure.resourcemanager.machinelearning.fluent.models.ComputeSecretsInner;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeId;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
-/** Secrets related to a Machine Learning compute based on Databricks. */
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "computeType")
+/**
+ * Secrets related to a Machine Learning compute based on Databricks.
+ */
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    property = "computeType",
+    defaultImpl = DatabricksComputeSecrets.class,
+    visible = true)
 @JsonTypeName("Databricks")
 @Fluent
 public final class DatabricksComputeSecrets extends ComputeSecretsInner {
+    /*
+     * The type of compute
+     */
+    @JsonTypeId
+    @JsonProperty(value = "computeType", required = true)
+    private ComputeType computeType = ComputeType.DATABRICKS;
+
     /*
      * access token for databricks account.
      */
     @JsonProperty(value = "databricksAccessToken")
     private String databricksAccessToken;
 
-    /** Creates an instance of DatabricksComputeSecrets class. */
+    /**
+     * Creates an instance of DatabricksComputeSecrets class.
+     */
     public DatabricksComputeSecrets() {
     }
 
     /**
+     * Get the computeType property: The type of compute.
+     * 
+     * @return the computeType value.
+     */
+    @Override
+    public ComputeType computeType() {
+        return this.computeType;
+    }
+
+    /**
      * Get the databricksAccessToken property: access token for databricks account.
-     *
+     * 
      * @return the databricksAccessToken value.
      */
     public String databricksAccessToken() {
@@ -36,7 +62,7 @@ public final class DatabricksComputeSecrets extends ComputeSecretsInner {
 
     /**
      * Set the databricksAccessToken property: access token for databricks account.
-     *
+     * 
      * @param databricksAccessToken the databricksAccessToken value to set.
      * @return the DatabricksComputeSecrets object itself.
      */
@@ -47,7 +73,7 @@ public final class DatabricksComputeSecrets extends ComputeSecretsInner {
 
     /**
      * Validates the instance.
-     *
+     * 
      * @throws IllegalArgumentException thrown if the instance is not valid.
      */
     @Override
